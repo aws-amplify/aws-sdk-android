@@ -37,8 +37,8 @@ class PutRecordsRequestEntryJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Data")) {
-                putRecordsRequestEntry.setData(ByteBufferJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                putRecordsRequestEntry.setData(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ExplicitHashKey")) {
                 putRecordsRequestEntry.setExplicitHashKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

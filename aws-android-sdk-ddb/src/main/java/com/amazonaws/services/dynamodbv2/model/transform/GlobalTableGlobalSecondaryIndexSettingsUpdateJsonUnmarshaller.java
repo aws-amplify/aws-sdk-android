@@ -39,7 +39,8 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("IndexName")) {
                 globalTableGlobalSecondaryIndexSettingsUpdate.setIndexName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ProvisionedWriteCapacityUnits")) {
                 globalTableGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
@@ -47,7 +48,8 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
             } else if (name.equals("ProvisionedWriteCapacityAutoScalingSettingsUpdate")) {
                 globalTableGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedWriteCapacityAutoScalingSettingsUpdate(AutoScalingSettingsUpdateJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

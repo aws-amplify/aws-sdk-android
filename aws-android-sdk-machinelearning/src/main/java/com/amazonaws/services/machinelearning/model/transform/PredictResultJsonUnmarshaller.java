@@ -34,8 +34,8 @@ public class PredictResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Prediction")) {
-                predictResult.setPrediction(PredictionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                predictResult.setPrediction(PredictionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

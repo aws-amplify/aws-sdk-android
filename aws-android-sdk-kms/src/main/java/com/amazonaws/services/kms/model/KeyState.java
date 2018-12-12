@@ -26,7 +26,8 @@ public enum KeyState {
     Enabled("Enabled"),
     Disabled("Disabled"),
     PendingDeletion("PendingDeletion"),
-    PendingImport("PendingImport");
+    PendingImport("PendingImport"),
+    Unavailable("Unavailable");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum KeyState {
         enumMap.put("Disabled", Disabled);
         enumMap.put("PendingDeletion", PendingDeletion);
         enumMap.put("PendingImport", PendingImport);
+        enumMap.put("Unavailable", Unavailable);
     }
 
     /**

@@ -40,19 +40,20 @@ class ADMChannelResponseJsonUnmarshaller implements
                 aDMChannelResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                aDMChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aDMChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                aDMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aDMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("HasCredential")) {
                 aDMChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                aDMChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                aDMChannelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
-                aDMChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aDMChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
                 aDMChannelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -60,11 +61,11 @@ class ADMChannelResponseJsonUnmarshaller implements
                 aDMChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                aDMChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aDMChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Version")) {
-                aDMChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aDMChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

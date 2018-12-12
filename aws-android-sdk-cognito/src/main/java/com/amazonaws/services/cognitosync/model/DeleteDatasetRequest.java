@@ -30,7 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API can be called with temporary user credentials provided by Cognito
  * Identity or with developer credentials.
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DeleteDatasetRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * A name-spaced GUID (for example,

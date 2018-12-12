@@ -37,7 +37,9 @@ class AbortConfigJsonUnmarshaller implements Unmarshaller<AbortConfig, JsonUnmar
             String name = reader.nextName();
             if (name.equals("criteriaList")) {
                 abortConfig.setCriteriaList(new ListUnmarshaller<AbortCriteria>(
-                        AbortCriteriaJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AbortCriteriaJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -22,6 +22,10 @@ import android.provider.Settings;
 import android.util.Log;
 import android.os.Build;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class AndroidConnectivity implements Connectivity {
     private static final String TAG = "AndroidConnectivity";
 

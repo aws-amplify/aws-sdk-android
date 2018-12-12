@@ -37,14 +37,14 @@ class ExportJobResourceJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("RoleArn")) {
-                exportJobResource.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportJobResource.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("S3UrlPrefix")) {
-                exportJobResource.setS3UrlPrefix(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportJobResource.setS3UrlPrefix(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentId")) {
-                exportJobResource.setSegmentId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportJobResource.setSegmentId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentVersion")) {
                 exportJobResource.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

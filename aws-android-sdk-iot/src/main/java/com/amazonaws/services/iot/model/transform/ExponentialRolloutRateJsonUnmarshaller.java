@@ -44,7 +44,8 @@ class ExponentialRolloutRateJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("rateIncreaseCriteria")) {
                 exponentialRolloutRate.setRateIncreaseCriteria(RateIncreaseCriteriaJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

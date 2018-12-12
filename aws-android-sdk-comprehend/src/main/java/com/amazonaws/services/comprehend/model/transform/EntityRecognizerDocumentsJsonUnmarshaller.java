@@ -37,8 +37,8 @@ class EntityRecognizerDocumentsJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("S3Uri")) {
-                entityRecognizerDocuments.setS3Uri(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                entityRecognizerDocuments.setS3Uri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

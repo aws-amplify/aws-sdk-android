@@ -17,6 +17,10 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery.p
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class DefaultDeliveryPolicyFactory implements DeliveryPolicyFactory {
     public static final String KEY_FORCE_SUBMISSION_WAIT = "forceSubmissionWaitTime";
 

@@ -34,6 +34,10 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.mobileanalytics.AmazonMobileAnalyticsClient;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class DefaultAnalyticsContext implements AnalyticsContext {
     private final Configuration configuration;
     private Id uniqueId;

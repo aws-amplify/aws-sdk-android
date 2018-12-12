@@ -36,7 +36,8 @@ public class ListSecurityProfilesResultJsonUnmarshaller implements
             if (name.equals("securityProfileIdentifiers")) {
                 listSecurityProfilesResult
                         .setSecurityProfileIdentifiers(new ListUnmarshaller<SecurityProfileIdentifier>(
-                                SecurityProfileIdentifierJsonUnmarshaller.getInstance())
+                                SecurityProfileIdentifierJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listSecurityProfilesResult.setNextToken(StringJsonUnmarshaller.getInstance()

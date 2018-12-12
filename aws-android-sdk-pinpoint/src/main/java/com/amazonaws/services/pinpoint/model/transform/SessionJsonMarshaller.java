@@ -26,7 +26,7 @@ class SessionJsonMarshaller {
     public void marshall(Session session, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
         if (session.getDuration() != null) {
-            Long duration = session.getDuration();
+            Integer duration = session.getDuration();
             jsonWriter.name("Duration");
             jsonWriter.value(duration);
         }

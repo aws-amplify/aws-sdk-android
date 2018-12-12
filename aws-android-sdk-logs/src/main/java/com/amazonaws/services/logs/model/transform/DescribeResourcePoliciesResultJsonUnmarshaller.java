@@ -37,7 +37,9 @@ public class DescribeResourcePoliciesResultJsonUnmarshaller implements
             if (name.equals("resourcePolicies")) {
                 describeResourcePoliciesResult
                         .setResourcePolicies(new ListUnmarshaller<ResourcePolicy>(
-                                ResourcePolicyJsonUnmarshaller.getInstance()).unmarshall(context));
+                                ResourcePolicyJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeResourcePoliciesResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

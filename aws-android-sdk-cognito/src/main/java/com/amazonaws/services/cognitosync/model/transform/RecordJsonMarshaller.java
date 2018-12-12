@@ -20,7 +20,9 @@ import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
  * JSON marshaller for POJO Record
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 class RecordJsonMarshaller {
 
     public void marshall(Record record, AwsJsonWriter jsonWriter) throws Exception {

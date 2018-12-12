@@ -36,24 +36,29 @@ class ExportTaskJsonUnmarshaller implements Unmarshaller<ExportTask, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("taskId")) {
-                exportTask.setTaskId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setTaskId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("taskName")) {
-                exportTask.setTaskName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setTaskName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("logGroupName")) {
-                exportTask
-                        .setLogGroupName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setLogGroupName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("from")) {
-                exportTask.setFrom(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setFrom(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("to")) {
-                exportTask.setTo(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setTo(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("destination")) {
-                exportTask.setDestination(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                exportTask.setDestination(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("destinationPrefix")) {
-                exportTask.setDestinationPrefix(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportTask.setDestinationPrefix(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("status")) {
-                exportTask.setStatus(ExportTaskStatusJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportTask.setStatus(ExportTaskStatusJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("executionInfo")) {
                 exportTask.setExecutionInfo(ExportTaskExecutionInfoJsonUnmarshaller.getInstance()
                         .unmarshall(context));

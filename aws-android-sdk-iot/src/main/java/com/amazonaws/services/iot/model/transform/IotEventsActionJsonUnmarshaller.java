@@ -37,14 +37,14 @@ class IotEventsActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("inputName")) {
-                iotEventsAction.setInputName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                iotEventsAction.setInputName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("messageId")) {
-                iotEventsAction.setMessageId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                iotEventsAction.setMessageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                iotEventsAction
-                        .setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                iotEventsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

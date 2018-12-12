@@ -37,8 +37,8 @@ class ImportJobResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                importJobResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CompletedPieces")) {
                 importJobResponse.setCompletedPieces(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -46,33 +46,37 @@ class ImportJobResponseJsonUnmarshaller implements
                 importJobResponse.setCompletionDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                importJobResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Definition")) {
                 importJobResponse.setDefinition(ImportJobResourceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("FailedPieces")) {
-                importJobResponse.setFailedPieces(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResponse.setFailedPieces(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Failures")) {
                 importJobResponse.setFailures(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Id")) {
-                importJobResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                importJobResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
-                importJobResponse.setJobStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResponse.setJobStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TotalFailures")) {
                 importJobResponse.setTotalFailures(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TotalPieces")) {
-                importJobResponse.setTotalPieces(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResponse.setTotalPieces(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TotalProcessed")) {
                 importJobResponse.setTotalProcessed(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Type")) {
-                importJobResponse.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                importJobResponse.setType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

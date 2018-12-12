@@ -36,7 +36,8 @@ public class CreateDynamicThingGroupResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("thingGroupName")) {
                 createDynamicThingGroupResult.setThingGroupName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingGroupArn")) {
                 createDynamicThingGroupResult.setThingGroupArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

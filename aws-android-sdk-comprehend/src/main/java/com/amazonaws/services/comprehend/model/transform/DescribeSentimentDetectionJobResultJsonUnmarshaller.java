@@ -37,7 +37,8 @@ public class DescribeSentimentDetectionJobResultJsonUnmarshaller implements
             if (name.equals("SentimentDetectionJobProperties")) {
                 describeSentimentDetectionJobResult
                         .setSentimentDetectionJobProperties(SentimentDetectionJobPropertiesJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

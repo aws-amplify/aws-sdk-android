@@ -37,7 +37,8 @@ class OutputDataConfigJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("S3Uri")) {
-                outputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                outputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -16,7 +16,10 @@
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery;
 
 import java.util.Iterator;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public interface EventStore {
     public boolean put(final String event) throws EventStoreException;
 

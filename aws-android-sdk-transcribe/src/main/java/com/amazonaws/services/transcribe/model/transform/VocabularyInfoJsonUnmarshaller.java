@@ -37,17 +37,17 @@ class VocabularyInfoJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("VocabularyName")) {
-                vocabularyInfo.setVocabularyName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                vocabularyInfo.setVocabularyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LanguageCode")) {
-                vocabularyInfo.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                vocabularyInfo.setLanguageCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedTime")) {
-                vocabularyInfo.setLastModifiedTime(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                vocabularyInfo.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("VocabularyState")) {
-                vocabularyInfo.setVocabularyState(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                vocabularyInfo.setVocabularyState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -44,19 +44,30 @@ class DirectMessageConfigurationJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("BaiduMessage")) {
                 directMessageConfiguration.setBaiduMessage(BaiduMessageJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DefaultMessage")) {
                 directMessageConfiguration.setDefaultMessage(DefaultMessageJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DefaultPushNotificationMessage")) {
                 directMessageConfiguration
                         .setDefaultPushNotificationMessage(DefaultPushNotificationMessageJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("EmailMessage")) {
+                directMessageConfiguration.setEmailMessage(EmailMessageJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("GCMMessage")) {
                 directMessageConfiguration.setGCMMessage(GCMMessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SMSMessage")) {
                 directMessageConfiguration.setSMSMessage(SMSMessageJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("VoiceMessage")) {
+                directMessageConfiguration.setVoiceMessage(VoiceMessageJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

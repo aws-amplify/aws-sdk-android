@@ -34,8 +34,8 @@ public class GetLoggingOptionsResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                getLoggingOptionsResult.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                getLoggingOptionsResult.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("logLevel")) {
                 getLoggingOptionsResult.setLogLevel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

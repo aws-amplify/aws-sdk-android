@@ -36,9 +36,11 @@ class StreamJsonUnmarshaller implements Unmarshaller<Stream, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("streamId")) {
-                stream.setStreamId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                stream.setStreamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("fileId")) {
-                stream.setFileId(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+                stream.setFileId(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

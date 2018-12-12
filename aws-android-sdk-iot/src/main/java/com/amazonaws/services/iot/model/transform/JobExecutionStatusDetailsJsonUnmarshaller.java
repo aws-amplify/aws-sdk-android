@@ -38,7 +38,9 @@ class JobExecutionStatusDetailsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("detailsMap")) {
                 jobExecutionStatusDetails.setDetailsMap(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

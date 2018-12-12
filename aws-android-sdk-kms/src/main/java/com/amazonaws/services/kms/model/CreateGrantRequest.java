@@ -95,6 +95,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String granteePrincipal;
 
@@ -117,6 +118,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String retiringPrincipal;
 
@@ -154,7 +156,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
+     * A friendly name for identifying the grant. Use this value to prevent
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -405,6 +407,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The principal that is given permission to perform the operations
@@ -445,6 +448,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
      *            The principal that is given permission to perform the
@@ -488,6 +492,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
      *            The principal that is given permission to perform the
@@ -531,6 +536,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The principal that is given permission to retire the grant by
@@ -571,6 +577,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The principal that is given permission to retire the grant by
@@ -614,6 +621,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The principal that is given permission to retire the grant by
@@ -911,7 +919,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
+     * A friendly name for identifying the grant. Use this value to prevent
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -936,7 +944,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         A friendly name for identifying the grant. Use this value to
-     *         prevent the unintended creation of duplicate grants when retrying
+     *         prevent unintended creation of duplicate grants when retrying
      *         this request.
      *         </p>
      *         <p>
@@ -963,7 +971,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
+     * A friendly name for identifying the grant. Use this value to prevent
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -988,8 +996,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param name <p>
      *            A friendly name for identifying the grant. Use this value to
-     *            prevent the unintended creation of duplicate grants when
-     *            retrying this request.
+     *            prevent unintended creation of duplicate grants when retrying
+     *            this request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>
@@ -1015,7 +1023,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
+     * A friendly name for identifying the grant. Use this value to prevent
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -1043,8 +1051,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param name <p>
      *            A friendly name for identifying the grant. Use this value to
-     *            prevent the unintended creation of duplicate grants when
-     *            retrying this request.
+     *            prevent unintended creation of duplicate grants when retrying
+     *            this request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>

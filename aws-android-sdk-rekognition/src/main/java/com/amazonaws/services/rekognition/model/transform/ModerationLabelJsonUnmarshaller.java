@@ -37,13 +37,14 @@ class ModerationLabelJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Confidence")) {
-                moderationLabel.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                moderationLabel.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Name")) {
-                moderationLabel.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                moderationLabel.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ParentName")) {
-                moderationLabel.setParentName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                moderationLabel.setParentName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

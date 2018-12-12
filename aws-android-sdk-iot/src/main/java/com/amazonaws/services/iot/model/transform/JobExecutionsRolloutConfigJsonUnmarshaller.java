@@ -38,7 +38,8 @@ class JobExecutionsRolloutConfigJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("maximumPerMinute")) {
                 jobExecutionsRolloutConfig.setMaximumPerMinute(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("exponentialRate")) {
                 jobExecutionsRolloutConfig
                         .setExponentialRate(ExponentialRolloutRateJsonUnmarshaller.getInstance()

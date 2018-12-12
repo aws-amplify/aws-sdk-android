@@ -35,13 +35,17 @@ public class ListCollectionsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("CollectionIds")) {
                 listCollectionsResult.setCollectionIds(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listCollectionsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listCollectionsResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("FaceModelVersions")) {
                 listCollectionsResult.setFaceModelVersions(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -46,14 +46,14 @@ class CertificateDescriptionJsonUnmarshaller implements
                 certificateDescription.setCaCertificateId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("status")) {
-                certificateDescription.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                certificateDescription.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("certificatePem")) {
                 certificateDescription.setCertificatePem(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ownedBy")) {
-                certificateDescription.setOwnedBy(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                certificateDescription.setOwnedBy(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("previousOwnedBy")) {
                 certificateDescription.setPreviousOwnedBy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -74,7 +74,8 @@ class CertificateDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("validity")) {
                 certificateDescription.setValidity(CertificateValidityJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

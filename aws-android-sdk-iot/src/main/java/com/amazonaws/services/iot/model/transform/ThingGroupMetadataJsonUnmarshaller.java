@@ -42,10 +42,12 @@ class ThingGroupMetadataJsonUnmarshaller implements
             } else if (name.equals("rootToParentThingGroups")) {
                 thingGroupMetadata
                         .setRootToParentThingGroups(new ListUnmarshaller<GroupNameAndArn>(
-                                GroupNameAndArnJsonUnmarshaller.getInstance()).unmarshall(context));
+                                GroupNameAndArnJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("creationDate")) {
-                thingGroupMetadata.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                thingGroupMetadata.setCreationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

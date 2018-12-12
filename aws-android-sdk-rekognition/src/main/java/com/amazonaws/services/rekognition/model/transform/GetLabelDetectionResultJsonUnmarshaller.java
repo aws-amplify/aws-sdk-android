@@ -41,22 +41,28 @@ public class GetLabelDetectionResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("VideoMetadata")) {
                 getLabelDetectionResult.setVideoMetadata(VideoMetadataJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 getLabelDetectionResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Labels")) {
                 getLabelDetectionResult.setLabels(new ListUnmarshaller<LabelDetection>(
-                        LabelDetectionJsonUnmarshaller.getInstance()).unmarshall(context));
+                        LabelDetectionJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("BillableDurationSeconds")) {
                 getLabelDetectionResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ErrorCode")) {
                 getLabelDetectionResult.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Warnings")) {
                 getLabelDetectionResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()).unmarshall(context));
+                        WarningJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

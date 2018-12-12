@@ -37,14 +37,14 @@ class RestoreSummaryJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("SourceBackupArn")) {
-                restoreSummary.setSourceBackupArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                restoreSummary.setSourceBackupArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SourceTableArn")) {
-                restoreSummary.setSourceTableArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                restoreSummary.setSourceTableArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RestoreDateTime")) {
-                restoreSummary.setRestoreDateTime(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                restoreSummary.setRestoreDateTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RestoreInProgress")) {
                 restoreSummary.setRestoreInProgress(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -35,10 +35,13 @@ public class ListGlobalTablesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("GlobalTables")) {
                 listGlobalTablesResult.setGlobalTables(new ListUnmarshaller<GlobalTable>(
-                        GlobalTableJsonUnmarshaller.getInstance()).unmarshall(context));
+                        GlobalTableJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("LastEvaluatedGlobalTableName")) {
                 listGlobalTablesResult.setLastEvaluatedGlobalTableName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,22 +36,29 @@ class AuditFindingJsonUnmarshaller implements Unmarshaller<AuditFinding, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("taskId")) {
-                auditFinding.setTaskId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                auditFinding.setTaskId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("checkName")) {
-                auditFinding.setCheckName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                auditFinding.setCheckName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("taskStartTime")) {
                 auditFinding.setTaskStartTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("findingTime")) {
-                auditFinding.setFindingTime(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                auditFinding.setFindingTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("severity")) {
-                auditFinding.setSeverity(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                auditFinding.setSeverity(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("nonCompliantResource")) {
                 auditFinding.setNonCompliantResource(NonCompliantResourceJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("relatedResources")) {
                 auditFinding.setRelatedResources(new ListUnmarshaller<RelatedResource>(
-                        RelatedResourceJsonUnmarshaller.getInstance()).unmarshall(context));
+                        RelatedResourceJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("reasonForNonCompliance")) {
                 auditFinding.setReasonForNonCompliance(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

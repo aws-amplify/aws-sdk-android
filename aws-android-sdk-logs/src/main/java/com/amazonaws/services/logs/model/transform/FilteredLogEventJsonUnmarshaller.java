@@ -37,8 +37,8 @@ class FilteredLogEventJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("logStreamName")) {
-                filteredLogEvent.setLogStreamName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                filteredLogEvent.setLogStreamName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("timestamp")) {
                 filteredLogEvent.setTimestamp(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -46,8 +46,8 @@ class FilteredLogEventJsonUnmarshaller implements
                 filteredLogEvent.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ingestionTime")) {
-                filteredLogEvent.setIngestionTime(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                filteredLogEvent.setIngestionTime(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("eventId")) {
                 filteredLogEvent.setEventId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

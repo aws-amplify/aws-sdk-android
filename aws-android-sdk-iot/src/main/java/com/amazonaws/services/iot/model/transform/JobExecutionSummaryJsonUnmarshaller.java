@@ -37,17 +37,17 @@ class JobExecutionSummaryJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("status")) {
-                jobExecutionSummary.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecutionSummary.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("queuedAt")) {
-                jobExecutionSummary.setQueuedAt(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecutionSummary.setQueuedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("startedAt")) {
-                jobExecutionSummary.setStartedAt(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecutionSummary.setStartedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastUpdatedAt")) {
-                jobExecutionSummary.setLastUpdatedAt(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecutionSummary.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("executionNumber")) {
                 jobExecutionSummary.setExecutionNumber(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

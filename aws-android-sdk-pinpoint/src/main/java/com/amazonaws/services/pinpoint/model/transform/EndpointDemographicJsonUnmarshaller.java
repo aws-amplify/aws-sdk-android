@@ -37,29 +37,29 @@ class EndpointDemographicJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("AppVersion")) {
-                endpointDemographic.setAppVersion(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointDemographic.setAppVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Locale")) {
-                endpointDemographic.setLocale(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointDemographic.setLocale(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Make")) {
                 endpointDemographic.setMake(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Model")) {
-                endpointDemographic.setModel(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointDemographic.setModel(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ModelVersion")) {
                 endpointDemographic.setModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                endpointDemographic.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointDemographic.setPlatform(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PlatformVersion")) {
                 endpointDemographic.setPlatformVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Timezone")) {
-                endpointDemographic.setTimezone(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointDemographic.setTimezone(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,15 +37,20 @@ class SegmentGroupJsonUnmarshaller implements Unmarshaller<SegmentGroup, JsonUnm
             String name = reader.nextName();
             if (name.equals("Dimensions")) {
                 segmentGroup.setDimensions(new ListUnmarshaller<SegmentDimensions>(
-                        SegmentDimensionsJsonUnmarshaller.getInstance()).unmarshall(context));
+                        SegmentDimensionsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("SourceSegments")) {
                 segmentGroup.setSourceSegments(new ListUnmarshaller<SegmentReference>(
-                        SegmentReferenceJsonUnmarshaller.getInstance()).unmarshall(context));
+                        SegmentReferenceJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("SourceType")) {
-                segmentGroup
-                        .setSourceType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                segmentGroup.setSourceType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Type")) {
-                segmentGroup.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                segmentGroup.setType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

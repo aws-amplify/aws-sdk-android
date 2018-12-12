@@ -41,7 +41,8 @@ class ThingGroupPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("attributePayload")) {
                 thingGroupProperties.setAttributePayload(AttributePayloadJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -34,8 +34,8 @@ public class StartLabelDetectionResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("JobId")) {
-                startLabelDetectionResult.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                startLabelDetectionResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

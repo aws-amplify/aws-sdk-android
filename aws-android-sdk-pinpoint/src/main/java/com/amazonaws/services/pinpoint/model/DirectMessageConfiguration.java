@@ -51,6 +51,11 @@ public class DirectMessageConfiguration implements Serializable {
     private DefaultPushNotificationMessage defaultPushNotificationMessage;
 
     /**
+     * The message to Email channels. Overrides the default message.
+     */
+    private EmailMessage emailMessage;
+
+    /**
      * The message to GCM channels. Overrides the default push notification
      * message.
      */
@@ -60,6 +65,11 @@ public class DirectMessageConfiguration implements Serializable {
      * The message to SMS channels. Overrides the default message.
      */
     private SMSMessage sMSMessage;
+
+    /**
+     * The message to Voice channels. Overrides the default message.
+     */
+    private VoiceMessage voiceMessage;
 
     /**
      * The message to ADM channels. Overrides the default push notification
@@ -249,6 +259,41 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
+     * The message to Email channels. Overrides the default message.
+     *
+     * @return The message to Email channels. Overrides the default message.
+     */
+    public EmailMessage getEmailMessage() {
+        return emailMessage;
+    }
+
+    /**
+     * The message to Email channels. Overrides the default message.
+     *
+     * @param emailMessage The message to Email channels. Overrides the default
+     *            message.
+     */
+    public void setEmailMessage(EmailMessage emailMessage) {
+        this.emailMessage = emailMessage;
+    }
+
+    /**
+     * The message to Email channels. Overrides the default message.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param emailMessage The message to Email channels. Overrides the default
+     *            message.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DirectMessageConfiguration withEmailMessage(EmailMessage emailMessage) {
+        this.emailMessage = emailMessage;
+        return this;
+    }
+
+    /**
      * The message to GCM channels. Overrides the default push notification
      * message.
      *
@@ -323,6 +368,41 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
+     * The message to Voice channels. Overrides the default message.
+     *
+     * @return The message to Voice channels. Overrides the default message.
+     */
+    public VoiceMessage getVoiceMessage() {
+        return voiceMessage;
+    }
+
+    /**
+     * The message to Voice channels. Overrides the default message.
+     *
+     * @param voiceMessage The message to Voice channels. Overrides the default
+     *            message.
+     */
+    public void setVoiceMessage(VoiceMessage voiceMessage) {
+        this.voiceMessage = voiceMessage;
+    }
+
+    /**
+     * The message to Voice channels. Overrides the default message.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param voiceMessage The message to Voice channels. Overrides the default
+     *            message.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DirectMessageConfiguration withVoiceMessage(VoiceMessage voiceMessage) {
+        this.voiceMessage = voiceMessage;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -344,10 +424,14 @@ public class DirectMessageConfiguration implements Serializable {
         if (getDefaultPushNotificationMessage() != null)
             sb.append("DefaultPushNotificationMessage: " + getDefaultPushNotificationMessage()
                     + ",");
+        if (getEmailMessage() != null)
+            sb.append("EmailMessage: " + getEmailMessage() + ",");
         if (getGCMMessage() != null)
             sb.append("GCMMessage: " + getGCMMessage() + ",");
         if (getSMSMessage() != null)
-            sb.append("SMSMessage: " + getSMSMessage());
+            sb.append("SMSMessage: " + getSMSMessage() + ",");
+        if (getVoiceMessage() != null)
+            sb.append("VoiceMessage: " + getVoiceMessage());
         sb.append("}");
         return sb.toString();
     }
@@ -368,8 +452,12 @@ public class DirectMessageConfiguration implements Serializable {
                 * hashCode
                 + ((getDefaultPushNotificationMessage() == null) ? 0
                         : getDefaultPushNotificationMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getEmailMessage() == null) ? 0 : getEmailMessage().hashCode());
         hashCode = prime * hashCode + ((getGCMMessage() == null) ? 0 : getGCMMessage().hashCode());
         hashCode = prime * hashCode + ((getSMSMessage() == null) ? 0 : getSMSMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getVoiceMessage() == null) ? 0 : getVoiceMessage().hashCode());
         return hashCode;
     }
 
@@ -411,6 +499,11 @@ public class DirectMessageConfiguration implements Serializable {
                 && other.getDefaultPushNotificationMessage().equals(
                         this.getDefaultPushNotificationMessage()) == false)
             return false;
+        if (other.getEmailMessage() == null ^ this.getEmailMessage() == null)
+            return false;
+        if (other.getEmailMessage() != null
+                && other.getEmailMessage().equals(this.getEmailMessage()) == false)
+            return false;
         if (other.getGCMMessage() == null ^ this.getGCMMessage() == null)
             return false;
         if (other.getGCMMessage() != null
@@ -420,6 +513,11 @@ public class DirectMessageConfiguration implements Serializable {
             return false;
         if (other.getSMSMessage() != null
                 && other.getSMSMessage().equals(this.getSMSMessage()) == false)
+            return false;
+        if (other.getVoiceMessage() == null ^ this.getVoiceMessage() == null)
+            return false;
+        if (other.getVoiceMessage() != null
+                && other.getVoiceMessage().equals(this.getVoiceMessage()) == false)
             return false;
         return true;
     }

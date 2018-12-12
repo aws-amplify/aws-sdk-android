@@ -39,7 +39,8 @@ class APNSVoipSandboxChannelResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
                 aPNSVoipSandboxChannelResponse.setApplicationId(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
                 aPNSVoipSandboxChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,7 +53,8 @@ class APNSVoipSandboxChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("HasCredential")) {
                 aPNSVoipSandboxChannelResponse.setHasCredential(BooleanJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("HasTokenKey")) {
                 aPNSVoipSandboxChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -64,10 +66,12 @@ class APNSVoipSandboxChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
                 aPNSVoipSandboxChannelResponse.setLastModifiedBy(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
                 aPNSVoipSandboxChannelResponse.setLastModifiedDate(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Platform")) {
                 aPNSVoipSandboxChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

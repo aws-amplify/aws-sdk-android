@@ -36,10 +36,13 @@ class AuthInfoJsonUnmarshaller implements Unmarshaller<AuthInfo, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("actionType")) {
-                authInfo.setActionType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                authInfo.setActionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("resources")) {
                 authInfo.setResources(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

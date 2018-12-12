@@ -36,48 +36,55 @@ class OTAUpdateInfoJsonUnmarshaller implements Unmarshaller<OTAUpdateInfo, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("otaUpdateId")) {
-                oTAUpdateInfo.setOtaUpdateId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setOtaUpdateId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("otaUpdateArn")) {
-                oTAUpdateInfo.setOtaUpdateArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setOtaUpdateArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("creationDate")) {
                 oTAUpdateInfo.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("lastModifiedDate")) {
-                oTAUpdateInfo.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("description")) {
-                oTAUpdateInfo.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("targets")) {
                 oTAUpdateInfo.setTargets(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("awsJobExecutionsRolloutConfig")) {
                 oTAUpdateInfo
                         .setAwsJobExecutionsRolloutConfig(AwsJobExecutionsRolloutConfigJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("targetSelection")) {
-                oTAUpdateInfo.setTargetSelection(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setTargetSelection(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("otaUpdateFiles")) {
                 oTAUpdateInfo.setOtaUpdateFiles(new ListUnmarshaller<OTAUpdateFile>(
-                        OTAUpdateFileJsonUnmarshaller.getInstance()).unmarshall(context));
+                        OTAUpdateFileJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("otaUpdateStatus")) {
-                oTAUpdateInfo.setOtaUpdateStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setOtaUpdateStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("awsIotJobId")) {
-                oTAUpdateInfo.setAwsIotJobId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setAwsIotJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("awsIotJobArn")) {
-                oTAUpdateInfo.setAwsIotJobArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setAwsIotJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("errorInfo")) {
-                oTAUpdateInfo.setErrorInfo(ErrorInfoJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateInfo.setErrorInfo(ErrorInfoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("additionalParameters")) {
                 oTAUpdateInfo.setAdditionalParameters(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

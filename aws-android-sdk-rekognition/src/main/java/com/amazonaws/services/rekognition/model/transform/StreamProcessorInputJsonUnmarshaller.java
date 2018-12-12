@@ -38,7 +38,8 @@ class StreamProcessorInputJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("KinesisVideoStream")) {
                 streamProcessorInput.setKinesisVideoStream(KinesisVideoStreamJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

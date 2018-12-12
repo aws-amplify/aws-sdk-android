@@ -40,8 +40,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * and then stores it in the container. Later, a different component of the
  * system, called the <i>data plane</i>, puts encrypted data into the
  * containers. To do this, it passes the encrypted data key to the
- * <a>Decrypt</a> operation. It then uses the returned plaintext data key to
- * encrypt data and finally stores the encrypted data in the container. In this
+ * <a>Decrypt</a> operation, then uses the returned plaintext data key to
+ * encrypt data, and finally stores the encrypted data in the container. In this
  * system, the control plane never sees the plaintext data key.
  * </p>
  * <p>
@@ -61,9 +61,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
      * </p>
      * <p>
      * For example:
@@ -161,9 +161,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
      * </p>
      * <p>
      * For example:
@@ -208,8 +208,8 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
-     *         account, you must use the key ARN or alias ARN.
+     *         with "alias/". To specify a CMK in a different AWS account, you
+     *         must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -255,9 +255,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
      * </p>
      * <p>
      * For example:
@@ -302,8 +302,8 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            with "alias/". To specify a CMK in a different AWS account,
+     *            you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -349,9 +349,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with
-     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
-     * must use the key ARN or alias ARN.
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
      * </p>
      * <p>
      * For example:
@@ -399,8 +399,8 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with <code>"alias/"</code>. To specify a CMK in a different
-     *            AWS account, you must use the key ARN or alias ARN.
+     *            with "alias/". To specify a CMK in a different AWS account,
+     *            you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:

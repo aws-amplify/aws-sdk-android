@@ -22,7 +22,9 @@ import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * JSON unmarshaller for response ListRecordsResult
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class ListRecordsResultJsonUnmarshaller implements
         Unmarshaller<ListRecordsResult, JsonUnmarshallerContext> {
 
@@ -35,10 +37,12 @@ public class ListRecordsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Records")) {
                 listRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listRecordsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listRecordsResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Count")) {
                 listRecordsResult.setCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -50,13 +54,16 @@ public class ListRecordsResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("MergedDatasetNames")) {
                 listRecordsResult.setMergedDatasetNames(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("DatasetExists")) {
                 listRecordsResult.setDatasetExists(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DatasetDeletedAfterRequestedSyncCount")) {
                 listRecordsResult.setDatasetDeletedAfterRequestedSyncCount(BooleanJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SyncSessionToken")) {
                 listRecordsResult.setSyncSessionToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

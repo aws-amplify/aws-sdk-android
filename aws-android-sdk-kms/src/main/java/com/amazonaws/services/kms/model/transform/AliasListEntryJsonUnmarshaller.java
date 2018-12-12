@@ -40,11 +40,11 @@ class AliasListEntryJsonUnmarshaller implements
                 aliasListEntry.setAliasName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("AliasArn")) {
-                aliasListEntry
-                        .setAliasArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                aliasListEntry.setAliasArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TargetKeyId")) {
-                aliasListEntry.setTargetKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aliasListEntry.setTargetKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

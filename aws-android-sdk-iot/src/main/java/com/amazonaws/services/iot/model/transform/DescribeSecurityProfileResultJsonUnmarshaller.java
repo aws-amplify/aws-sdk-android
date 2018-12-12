@@ -36,19 +36,26 @@ public class DescribeSecurityProfileResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("securityProfileName")) {
                 describeSecurityProfileResult.setSecurityProfileName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileArn")) {
                 describeSecurityProfileResult.setSecurityProfileArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileDescription")) {
                 describeSecurityProfileResult.setSecurityProfileDescription(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("behaviors")) {
                 describeSecurityProfileResult.setBehaviors(new ListUnmarshaller<Behavior>(
-                        BehaviorJsonUnmarshaller.getInstance()).unmarshall(context));
+                        BehaviorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("alertTargets")) {
                 describeSecurityProfileResult.setAlertTargets(new MapUnmarshaller<AlertTarget>(
-                        AlertTargetJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AlertTargetJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("version")) {
                 describeSecurityProfileResult.setVersion(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -57,7 +64,8 @@ public class DescribeSecurityProfileResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("lastModifiedDate")) {
                 describeSecurityProfileResult.setLastModifiedDate(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

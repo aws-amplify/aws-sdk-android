@@ -36,21 +36,23 @@ class EventStreamJsonUnmarshaller implements Unmarshaller<EventStream, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                eventStream.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                eventStream.setApplicationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DestinationStreamArn")) {
                 eventStream.setDestinationStreamArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ExternalId")) {
-                eventStream.setExternalId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                eventStream.setExternalId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
-                eventStream.setLastModifiedDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                eventStream.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastUpdatedBy")) {
-                eventStream.setLastUpdatedBy(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                eventStream.setLastUpdatedBy(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RoleArn")) {
-                eventStream.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                eventStream.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

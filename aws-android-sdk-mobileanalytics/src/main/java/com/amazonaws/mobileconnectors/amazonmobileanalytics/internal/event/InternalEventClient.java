@@ -17,7 +17,10 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public interface InternalEventClient extends EventClient {
     public InternalEvent createInternalEvent(final String eventType, final long sessionStart,
             final Long sessionEnd, final Long duration);

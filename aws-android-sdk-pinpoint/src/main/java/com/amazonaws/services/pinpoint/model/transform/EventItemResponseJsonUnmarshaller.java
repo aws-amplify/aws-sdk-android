@@ -37,11 +37,11 @@ class EventItemResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Message")) {
-                eventItemResponse.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                eventItemResponse.setMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusCode")) {
-                eventItemResponse.setStatusCode(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                eventItemResponse.setStatusCode(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,14 +37,14 @@ class EndpointMessageResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Address")) {
-                endpointMessageResult.setAddress(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointMessageResult.setAddress(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DeliveryStatus")) {
                 endpointMessageResult.setDeliveryStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MessageId")) {
-                endpointMessageResult.setMessageId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointMessageResult.setMessageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusCode")) {
                 endpointMessageResult.setStatusCode(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

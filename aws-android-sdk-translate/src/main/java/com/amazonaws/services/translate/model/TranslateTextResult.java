@@ -20,17 +20,18 @@ import java.io.Serializable;
 public class TranslateTextResult implements Serializable {
     /**
      * <p>
-     * The text translated into the target language.
+     * The the translated text. The maximum length of this text is 5kb.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b> - 10000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      */
     private String translatedText;
 
     /**
      * <p>
-     * The language code for the language of the input text.
+     * The language code for the language of the source text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,7 +41,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the translated text.
+     * The language code for the language of the target text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,14 +51,23 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The text translated into the target language.
+     * The names of the custom terminologies applied to the input text by Amazon
+     * Translate for the translated text response.
+     * </p>
+     */
+    private java.util.List<AppliedTerminology> appliedTerminologies;
+
+    /**
+     * <p>
+     * The the translated text. The maximum length of this text is 5kb.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b> - 10000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @return <p>
-     *         The text translated into the target language.
+     *         The the translated text. The maximum length of this text is 5kb.
      *         </p>
      */
     public String getTranslatedText() {
@@ -66,14 +76,16 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The text translated into the target language.
+     * The the translated text. The maximum length of this text is 5kb.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b> - 10000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @param translatedText <p>
-     *            The text translated into the target language.
+     *            The the translated text. The maximum length of this text is
+     *            5kb.
      *            </p>
      */
     public void setTranslatedText(String translatedText) {
@@ -82,17 +94,19 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The text translated into the target language.
+     * The the translated text. The maximum length of this text is 5kb.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b> - 10000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @param translatedText <p>
-     *            The text translated into the target language.
+     *            The the translated text. The maximum length of this text is
+     *            5kb.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -104,14 +118,14 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the input text.
+     * The language code for the language of the source text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @return <p>
-     *         The language code for the language of the input text.
+     *         The language code for the language of the source text.
      *         </p>
      */
     public String getSourceLanguageCode() {
@@ -120,14 +134,14 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the input text.
+     * The language code for the language of the source text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @param sourceLanguageCode <p>
-     *            The language code for the language of the input text.
+     *            The language code for the language of the source text.
      *            </p>
      */
     public void setSourceLanguageCode(String sourceLanguageCode) {
@@ -136,7 +150,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the input text.
+     * The language code for the language of the source text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -146,7 +160,7 @@ public class TranslateTextResult implements Serializable {
      * <b>Length: </b>2 - 5<br/>
      *
      * @param sourceLanguageCode <p>
-     *            The language code for the language of the input text.
+     *            The language code for the language of the source text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -158,14 +172,14 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the translated text.
+     * The language code for the language of the target text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @return <p>
-     *         The language code for the language of the translated text.
+     *         The language code for the language of the target text.
      *         </p>
      */
     public String getTargetLanguageCode() {
@@ -174,14 +188,14 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the translated text.
+     * The language code for the language of the target text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @param targetLanguageCode <p>
-     *            The language code for the language of the translated text.
+     *            The language code for the language of the target text.
      *            </p>
      */
     public void setTargetLanguageCode(String targetLanguageCode) {
@@ -190,7 +204,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the language of the translated text.
+     * The language code for the language of the target text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -200,13 +214,99 @@ public class TranslateTextResult implements Serializable {
      * <b>Length: </b>2 - 5<br/>
      *
      * @param targetLanguageCode <p>
-     *            The language code for the language of the translated text.
+     *            The language code for the language of the target text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public TranslateTextResult withTargetLanguageCode(String targetLanguageCode) {
         this.targetLanguageCode = targetLanguageCode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The names of the custom terminologies applied to the input text by Amazon
+     * Translate for the translated text response.
+     * </p>
+     *
+     * @return <p>
+     *         The names of the custom terminologies applied to the input text
+     *         by Amazon Translate for the translated text response.
+     *         </p>
+     */
+    public java.util.List<AppliedTerminology> getAppliedTerminologies() {
+        return appliedTerminologies;
+    }
+
+    /**
+     * <p>
+     * The names of the custom terminologies applied to the input text by Amazon
+     * Translate for the translated text response.
+     * </p>
+     *
+     * @param appliedTerminologies <p>
+     *            The names of the custom terminologies applied to the input
+     *            text by Amazon Translate for the translated text response.
+     *            </p>
+     */
+    public void setAppliedTerminologies(
+            java.util.Collection<AppliedTerminology> appliedTerminologies) {
+        if (appliedTerminologies == null) {
+            this.appliedTerminologies = null;
+            return;
+        }
+
+        this.appliedTerminologies = new java.util.ArrayList<AppliedTerminology>(
+                appliedTerminologies);
+    }
+
+    /**
+     * <p>
+     * The names of the custom terminologies applied to the input text by Amazon
+     * Translate for the translated text response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param appliedTerminologies <p>
+     *            The names of the custom terminologies applied to the input
+     *            text by Amazon Translate for the translated text response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranslateTextResult withAppliedTerminologies(AppliedTerminology... appliedTerminologies) {
+        if (getAppliedTerminologies() == null) {
+            this.appliedTerminologies = new java.util.ArrayList<AppliedTerminology>(
+                    appliedTerminologies.length);
+        }
+        for (AppliedTerminology value : appliedTerminologies) {
+            this.appliedTerminologies.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The names of the custom terminologies applied to the input text by Amazon
+     * Translate for the translated text response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param appliedTerminologies <p>
+     *            The names of the custom terminologies applied to the input
+     *            text by Amazon Translate for the translated text response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranslateTextResult withAppliedTerminologies(
+            java.util.Collection<AppliedTerminology> appliedTerminologies) {
+        setAppliedTerminologies(appliedTerminologies);
         return this;
     }
 
@@ -226,7 +326,9 @@ public class TranslateTextResult implements Serializable {
         if (getSourceLanguageCode() != null)
             sb.append("SourceLanguageCode: " + getSourceLanguageCode() + ",");
         if (getTargetLanguageCode() != null)
-            sb.append("TargetLanguageCode: " + getTargetLanguageCode());
+            sb.append("TargetLanguageCode: " + getTargetLanguageCode() + ",");
+        if (getAppliedTerminologies() != null)
+            sb.append("AppliedTerminologies: " + getAppliedTerminologies());
         sb.append("}");
         return sb.toString();
     }
@@ -242,6 +344,8 @@ public class TranslateTextResult implements Serializable {
                 + ((getSourceLanguageCode() == null) ? 0 : getSourceLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetLanguageCode() == null) ? 0 : getTargetLanguageCode().hashCode());
+        hashCode = prime * hashCode
+                + ((getAppliedTerminologies() == null) ? 0 : getAppliedTerminologies().hashCode());
         return hashCode;
     }
 
@@ -270,6 +374,11 @@ public class TranslateTextResult implements Serializable {
             return false;
         if (other.getTargetLanguageCode() != null
                 && other.getTargetLanguageCode().equals(this.getTargetLanguageCode()) == false)
+            return false;
+        if (other.getAppliedTerminologies() == null ^ this.getAppliedTerminologies() == null)
+            return false;
+        if (other.getAppliedTerminologies() != null
+                && other.getAppliedTerminologies().equals(this.getAppliedTerminologies()) == false)
             return false;
         return true;
     }

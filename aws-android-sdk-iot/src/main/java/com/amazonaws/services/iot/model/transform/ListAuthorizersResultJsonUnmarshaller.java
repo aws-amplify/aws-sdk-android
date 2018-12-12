@@ -35,7 +35,9 @@ public class ListAuthorizersResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("authorizers")) {
                 listAuthorizersResult.setAuthorizers(new ListUnmarshaller<AuthorizerSummary>(
-                        AuthorizerSummaryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AuthorizerSummaryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listAuthorizersResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

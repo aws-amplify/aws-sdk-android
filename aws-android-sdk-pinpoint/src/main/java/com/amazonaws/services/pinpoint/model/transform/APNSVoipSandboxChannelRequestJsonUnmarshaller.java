@@ -45,7 +45,8 @@ class APNSVoipSandboxChannelRequestJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSVoipSandboxChannelRequest.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSVoipSandboxChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

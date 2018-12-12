@@ -36,18 +36,25 @@ class VoiceJsonUnmarshaller implements Unmarshaller<Voice, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Gender")) {
-                voice.setGender(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                voice.setGender(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
-                voice.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                voice.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LanguageCode")) {
-                voice.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                voice.setLanguageCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LanguageName")) {
-                voice.setLanguageName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                voice.setLanguageName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Name")) {
-                voice.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                voice.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("AdditionalLanguageCodes")) {
                 voice.setAdditionalLanguageCodes(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

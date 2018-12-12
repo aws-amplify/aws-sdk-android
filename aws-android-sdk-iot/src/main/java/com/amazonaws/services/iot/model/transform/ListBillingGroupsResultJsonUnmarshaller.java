@@ -35,7 +35,9 @@ public class ListBillingGroupsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("billingGroups")) {
                 listBillingGroupsResult.setBillingGroups(new ListUnmarshaller<GroupNameAndArn>(
-                        GroupNameAndArnJsonUnmarshaller.getInstance()).unmarshall(context));
+                        GroupNameAndArnJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listBillingGroupsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

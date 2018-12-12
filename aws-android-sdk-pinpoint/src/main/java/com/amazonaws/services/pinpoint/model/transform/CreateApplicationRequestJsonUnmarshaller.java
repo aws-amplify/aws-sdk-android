@@ -37,8 +37,8 @@ class CreateApplicationRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Name")) {
-                createApplicationRequest.setName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                createApplicationRequest.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

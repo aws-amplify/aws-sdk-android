@@ -38,7 +38,9 @@ class UpdateAttributesRequestJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Blacklist")) {
                 updateAttributesRequest.setBlacklist(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

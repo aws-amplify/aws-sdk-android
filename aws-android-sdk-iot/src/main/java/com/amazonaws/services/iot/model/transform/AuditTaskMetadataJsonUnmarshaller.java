@@ -40,11 +40,11 @@ class AuditTaskMetadataJsonUnmarshaller implements
                 auditTaskMetadata.setTaskId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("taskStatus")) {
-                auditTaskMetadata.setTaskStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                auditTaskMetadata.setTaskStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("taskType")) {
-                auditTaskMetadata.setTaskType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                auditTaskMetadata.setTaskType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

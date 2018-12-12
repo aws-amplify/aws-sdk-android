@@ -38,10 +38,12 @@ class ImportJobsResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 importJobsResponse.setItem(new ListUnmarshaller<ImportJobResponse>(
-                        ImportJobResponseJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ImportJobResponseJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
-                importJobsResponse.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobsResponse.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -24,7 +24,9 @@ import java.util.Date;
 /**
  * A Record is the element stored in a {@link Dataset}. There can be up to 1k
  * records or up to 1 MB in size in a {@link Dataset}.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public final class Record {
     /**
      * The key of this record. It's a non empty string.

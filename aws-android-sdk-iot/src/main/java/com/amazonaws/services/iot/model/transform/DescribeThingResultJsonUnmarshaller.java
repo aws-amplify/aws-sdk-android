@@ -37,23 +37,25 @@ public class DescribeThingResultJsonUnmarshaller implements
                 describeThingResult.setDefaultClientId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("thingName")) {
-                describeThingResult.setThingName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingResult.setThingName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingId")) {
-                describeThingResult.setThingId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingResult.setThingId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingArn")) {
-                describeThingResult.setThingArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingResult.setThingArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingTypeName")) {
                 describeThingResult.setThingTypeName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("attributes")) {
                 describeThingResult.setAttributes(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("version")) {
-                describeThingResult.setVersion(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingResult.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("billingGroupName")) {
                 describeThingResult.setBillingGroupName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

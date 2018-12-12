@@ -38,14 +38,21 @@ public class BatchGetItemResultJsonUnmarshaller implements
                         .setResponses(new MapUnmarshaller<java.util.List<java.util.Map<String, AttributeValue>>>(
                                 new ListUnmarshaller<java.util.Map<String, AttributeValue>>(
                                         new MapUnmarshaller<AttributeValue>(
-                                                AttributeValueJsonUnmarshaller.getInstance())))
+                                                AttributeValueJsonUnmarshaller.getInstance()
+                                        )
+                                )
+                        )
                                 .unmarshall(context));
             } else if (name.equals("UnprocessedKeys")) {
                 batchGetItemResult.setUnprocessedKeys(new MapUnmarshaller<KeysAndAttributes>(
-                        KeysAndAttributesJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeysAndAttributesJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ConsumedCapacity")) {
                 batchGetItemResult.setConsumedCapacity(new ListUnmarshaller<ConsumedCapacity>(
-                        ConsumedCapacityJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ConsumedCapacityJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

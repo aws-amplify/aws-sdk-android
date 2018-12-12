@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * Response to a successful DeleteDataset request.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DeleteDatasetResult implements Serializable {
     /**
      * A collection of data for an identity pool. An identity pool can have

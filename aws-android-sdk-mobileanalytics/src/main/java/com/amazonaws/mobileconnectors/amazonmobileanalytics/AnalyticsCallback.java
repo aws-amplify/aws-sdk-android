@@ -19,7 +19,9 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * The {@link AnalyticsCallback} is an abstract class which allows you create
  * subclasses that will handle the completion of certain tasks. On success, the
  * handler's return object is passed into the onComplete method as an argument.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public abstract class AnalyticsCallback<T> {
     protected AnalyticsCallback() {
     }

@@ -35,7 +35,9 @@ public class ListViolationEventsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("violationEvents")) {
                 listViolationEventsResult.setViolationEvents(new ListUnmarshaller<ViolationEvent>(
-                        ViolationEventJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ViolationEventJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listViolationEventsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

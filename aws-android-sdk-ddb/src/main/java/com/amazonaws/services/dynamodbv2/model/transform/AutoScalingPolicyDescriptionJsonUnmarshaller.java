@@ -43,7 +43,8 @@ class AutoScalingPolicyDescriptionJsonUnmarshaller implements
             } else if (name.equals("TargetTrackingScalingPolicyConfiguration")) {
                 autoScalingPolicyDescription
                         .setTargetTrackingScalingPolicyConfiguration(AutoScalingTargetTrackingScalingPolicyConfigurationDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

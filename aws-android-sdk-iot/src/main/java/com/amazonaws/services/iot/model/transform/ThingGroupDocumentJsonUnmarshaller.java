@@ -40,17 +40,21 @@ class ThingGroupDocumentJsonUnmarshaller implements
                 thingGroupDocument.setThingGroupName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("thingGroupId")) {
-                thingGroupDocument.setThingGroupId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                thingGroupDocument.setThingGroupId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingGroupDescription")) {
                 thingGroupDocument.setThingGroupDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("attributes")) {
                 thingGroupDocument.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("parentGroupNames")) {
                 thingGroupDocument.setParentGroupNames(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

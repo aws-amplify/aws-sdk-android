@@ -34,14 +34,18 @@ public class SearchIndexResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("nextToken")) {
-                searchIndexResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                searchIndexResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("things")) {
                 searchIndexResult.setThings(new ListUnmarshaller<ThingDocument>(
-                        ThingDocumentJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ThingDocumentJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("thingGroups")) {
                 searchIndexResult.setThingGroups(new ListUnmarshaller<ThingGroupDocument>(
-                        ThingGroupDocumentJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ThingGroupDocumentJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

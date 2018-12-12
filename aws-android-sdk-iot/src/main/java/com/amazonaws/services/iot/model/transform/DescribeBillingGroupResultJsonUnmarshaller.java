@@ -48,7 +48,8 @@ public class DescribeBillingGroupResultJsonUnmarshaller implements
             } else if (name.equals("billingGroupProperties")) {
                 describeBillingGroupResult
                         .setBillingGroupProperties(BillingGroupPropertiesJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("billingGroupMetadata")) {
                 describeBillingGroupResult
                         .setBillingGroupMetadata(BillingGroupMetadataJsonUnmarshaller.getInstance()

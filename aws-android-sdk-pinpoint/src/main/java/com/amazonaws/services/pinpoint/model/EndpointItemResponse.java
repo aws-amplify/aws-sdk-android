@@ -18,8 +18,8 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * The responses that are returned after you create or update an endpoint and
- * record an event.
+ * A complex object that holds the status code and message as a result of
+ * processing an endpoint.
  */
 public class EndpointItemResponse implements Serializable {
     /**
@@ -29,8 +29,8 @@ public class EndpointItemResponse implements Serializable {
     private String message;
 
     /**
-     * The status code to respond with for a particular endpoint id after
-     * endpoint registration
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      */
     private Integer statusCode;
 
@@ -74,36 +74,36 @@ public class EndpointItemResponse implements Serializable {
     }
 
     /**
-     * The status code to respond with for a particular endpoint id after
-     * endpoint registration
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      *
-     * @return The status code to respond with for a particular endpoint id
-     *         after endpoint registration
+     * @return The status code associated with the merging of an endpoint when
+     *         issuing a response.
      */
     public Integer getStatusCode() {
         return statusCode;
     }
 
     /**
-     * The status code to respond with for a particular endpoint id after
-     * endpoint registration
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      *
-     * @param statusCode The status code to respond with for a particular
-     *            endpoint id after endpoint registration
+     * @param statusCode The status code associated with the merging of an
+     *            endpoint when issuing a response.
      */
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 
     /**
-     * The status code to respond with for a particular endpoint id after
-     * endpoint registration
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param statusCode The status code to respond with for a particular
-     *            endpoint id after endpoint registration
+     * @param statusCode The status code associated with the merging of an
+     *            endpoint when issuing a response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

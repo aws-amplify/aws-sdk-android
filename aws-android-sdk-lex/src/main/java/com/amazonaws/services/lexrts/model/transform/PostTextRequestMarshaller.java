@@ -83,6 +83,21 @@ public class PostTextRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (postTextRequest.getRequestAttributes() != null) {
+                java.util.Map<String, String> requestAttributes = postTextRequest
+                        .getRequestAttributes();
+                jsonWriter.name("requestAttributes");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> requestAttributesEntry : requestAttributes
+                        .entrySet()) {
+                    String requestAttributesValue = requestAttributesEntry.getValue();
+                    if (requestAttributesValue != null) {
+                        jsonWriter.name(requestAttributesEntry.getKey());
+                        jsonWriter.value(requestAttributesValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
             if (postTextRequest.getInputText() != null) {
                 String inputText = postTextRequest.getInputText();
                 jsonWriter.name("inputText");

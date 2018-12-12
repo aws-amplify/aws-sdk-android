@@ -44,13 +44,16 @@ public class DescribeAuditTaskResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("taskStatistics")) {
                 describeAuditTaskResult.setTaskStatistics(TaskStatisticsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("scheduledAuditName")) {
                 describeAuditTaskResult.setScheduledAuditName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("auditDetails")) {
                 describeAuditTaskResult.setAuditDetails(new MapUnmarshaller<AuditCheckDetails>(
-                        AuditCheckDetailsJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AuditCheckDetailsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

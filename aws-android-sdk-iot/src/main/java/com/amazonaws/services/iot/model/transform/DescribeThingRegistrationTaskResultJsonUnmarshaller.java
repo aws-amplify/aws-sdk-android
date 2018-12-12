@@ -39,19 +39,24 @@ public class DescribeThingRegistrationTaskResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("creationDate")) {
                 describeThingRegistrationTaskResult.setCreationDate(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastModifiedDate")) {
                 describeThingRegistrationTaskResult.setLastModifiedDate(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("templateBody")) {
                 describeThingRegistrationTaskResult.setTemplateBody(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("inputFileBucket")) {
                 describeThingRegistrationTaskResult.setInputFileBucket(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("inputFileKey")) {
                 describeThingRegistrationTaskResult.setInputFileKey(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
                 describeThingRegistrationTaskResult.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -63,13 +68,16 @@ public class DescribeThingRegistrationTaskResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("successCount")) {
                 describeThingRegistrationTaskResult.setSuccessCount(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("failureCount")) {
                 describeThingRegistrationTaskResult.setFailureCount(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("percentageProgress")) {
                 describeThingRegistrationTaskResult.setPercentageProgress(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

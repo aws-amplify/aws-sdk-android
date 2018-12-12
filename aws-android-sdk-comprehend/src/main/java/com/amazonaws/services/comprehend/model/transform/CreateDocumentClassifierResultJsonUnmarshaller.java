@@ -36,7 +36,8 @@ public class CreateDocumentClassifierResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("DocumentClassifierArn")) {
                 createDocumentClassifierResult.setDocumentClassifierArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

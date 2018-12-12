@@ -35,8 +35,8 @@ import com.amazonaws.services.translate.model.transform.*;
  * client are blocking, and will not return until the service call completes.
  * <p>
  * <p>
- * Provides translation between English and one of six languages, or between one
- * of the six languages and English.
+ * Provides translation between one source language and another of the same set
+ * of languages.
  * </p>
  */
 public class AmazonTranslateClient extends AmazonWebServiceClient implements AmazonTranslate {
@@ -261,7 +261,10 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new DetectedLanguageLowConfidenceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextSizeLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
@@ -287,9 +290,215 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
 
     /**
      * <p>
-     * Translates input text from the source language to the target language.
-     * You can translate between English (en) and one of the following
-     * languages, or between one of the following languages and English.
+     * A synchronous action that deletes a custom terminology.
+     * </p>
+     * 
+     * @param deleteTerminologyRequest
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteTerminology(DeleteTerminologyRequest deleteTerminologyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteTerminologyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTerminologyRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTerminologyRequestMarshaller()
+                        .marshall(deleteTerminologyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves a custom terminology.
+     * </p>
+     * 
+     * @param getTerminologyRequest
+     * @return getTerminologyResult The response from the GetTerminology service
+     *         method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetTerminologyResult getTerminology(GetTerminologyRequest getTerminologyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getTerminologyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTerminologyRequest> request = null;
+        Response<GetTerminologyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTerminologyRequestMarshaller().marshall(getTerminologyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetTerminologyResult, JsonUnmarshallerContext> unmarshaller = new GetTerminologyResultJsonUnmarshaller();
+            JsonResponseHandler<GetTerminologyResult> responseHandler = new JsonResponseHandler<GetTerminologyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates or updates a custom terminology, depending on whether or not one
+     * already exists for the given terminology name. Importing a terminology
+     * with the same name as an existing one will merge the terminologies based
+     * on the chosen merge strategy. Currently, the only supported merge
+     * strategy is OVERWRITE, and so the imported terminology will overwrite an
+     * existing terminology of the same name.
+     * </p>
+     * <p>
+     * If you import a terminology that overwrites an existing one, the new
+     * terminology take up to 10 minutes to fully propagate and be available for
+     * use in a translation due to cache policies with the DataPlane service
+     * that performs the translations.
+     * </p>
+     * 
+     * @param importTerminologyRequest
+     * @return importTerminologyResult The response from the ImportTerminology
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ImportTerminologyResult importTerminology(
+            ImportTerminologyRequest importTerminologyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(importTerminologyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ImportTerminologyRequest> request = null;
+        Response<ImportTerminologyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ImportTerminologyRequestMarshaller()
+                        .marshall(importTerminologyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ImportTerminologyResult, JsonUnmarshallerContext> unmarshaller = new ImportTerminologyResultJsonUnmarshaller();
+            JsonResponseHandler<ImportTerminologyResult> responseHandler = new JsonResponseHandler<ImportTerminologyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides a list of custom terminologies associated with your account.
+     * </p>
+     * 
+     * @param listTerminologiesRequest
+     * @return listTerminologiesResult The response from the ListTerminologies
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTerminologiesResult listTerminologies(
+            ListTerminologiesRequest listTerminologiesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTerminologiesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTerminologiesRequest> request = null;
+        Response<ListTerminologiesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTerminologiesRequestMarshaller()
+                        .marshall(listTerminologiesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTerminologiesResult, JsonUnmarshallerContext> unmarshaller = new ListTerminologiesResultJsonUnmarshaller();
+            JsonResponseHandler<ListTerminologiesResult> responseHandler = new JsonResponseHandler<ListTerminologiesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Translates input text from the source language to the target language. It
+     * is not necessary to use English (en) as either the source or the target
+     * language but not all language combinations are supported by Amazon
+     * Translate. For more information, see <a
+     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
+     * >Supported Language Pairs</a>.
      * </p>
      * <ul>
      * <li>
@@ -304,6 +513,36 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * </li>
      * <li>
      * <p>
+     * Chinese (Traditional) (zh-TW)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Czech (cs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Danish (da)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Dutch (nl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * English (en)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Finnish (fi)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * French (fr)
      * </p>
      * </li>
@@ -314,12 +553,57 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * </li>
      * <li>
      * <p>
+     * Hebrew (he)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Indonesian (id)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Italian (it)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Japanese (ja)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Korean (ko)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Polish (pl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Portuguese (pt)
      * </p>
      * </li>
      * <li>
      * <p>
+     * Russian (ru)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Spanish (es)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Swedish (sv)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Turkish (tr)
      * </p>
      * </li>
      * </ul>
@@ -338,6 +622,7 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * @throws TooManyRequestsException
      * @throws UnsupportedLanguagePairException
      * @throws DetectedLanguageLowConfidenceException
+     * @throws ResourceNotFoundException
      * @throws InternalServerException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered

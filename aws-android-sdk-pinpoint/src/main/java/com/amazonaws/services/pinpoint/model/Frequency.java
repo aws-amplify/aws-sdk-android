@@ -27,7 +27,8 @@ public enum Frequency {
     HOURLY("HOURLY"),
     DAILY("DAILY"),
     WEEKLY("WEEKLY"),
-    MONTHLY("MONTHLY");
+    MONTHLY("MONTHLY"),
+    EVENT("EVENT");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum Frequency {
         enumMap.put("DAILY", DAILY);
         enumMap.put("WEEKLY", WEEKLY);
         enumMap.put("MONTHLY", MONTHLY);
+        enumMap.put("EVENT", EVENT);
     }
 
     /**

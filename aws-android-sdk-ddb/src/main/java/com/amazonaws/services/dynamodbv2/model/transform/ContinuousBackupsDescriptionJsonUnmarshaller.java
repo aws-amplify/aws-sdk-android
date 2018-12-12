@@ -39,11 +39,13 @@ class ContinuousBackupsDescriptionJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("ContinuousBackupsStatus")) {
                 continuousBackupsDescription.setContinuousBackupsStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PointInTimeRecoveryDescription")) {
                 continuousBackupsDescription
                         .setPointInTimeRecoveryDescription(PointInTimeRecoveryDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

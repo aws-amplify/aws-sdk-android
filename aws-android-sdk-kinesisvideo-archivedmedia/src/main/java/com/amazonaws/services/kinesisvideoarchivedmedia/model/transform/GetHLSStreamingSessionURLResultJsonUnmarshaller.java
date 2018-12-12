@@ -36,7 +36,8 @@ public class GetHLSStreamingSessionURLResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("HLSStreamingSessionURL")) {
                 getHLSStreamingSessionURLResult.setHLSStreamingSessionURL(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

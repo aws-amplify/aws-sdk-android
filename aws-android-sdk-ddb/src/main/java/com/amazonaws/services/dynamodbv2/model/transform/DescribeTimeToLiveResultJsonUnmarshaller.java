@@ -36,7 +36,8 @@ public class DescribeTimeToLiveResultJsonUnmarshaller implements
             if (name.equals("TimeToLiveDescription")) {
                 describeTimeToLiveResult
                         .setTimeToLiveDescription(TimeToLiveDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

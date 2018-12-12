@@ -40,10 +40,15 @@ class KeysAndAttributesJsonUnmarshaller implements
                 keysAndAttributes
                         .setKeys(new ListUnmarshaller<java.util.Map<String, AttributeValue>>(
                                 new MapUnmarshaller<AttributeValue>(AttributeValueJsonUnmarshaller
-                                        .getInstance())).unmarshall(context));
+                                        .getInstance()
+                                )
+                        )
+                                .unmarshall(context));
             } else if (name.equals("AttributesToGet")) {
                 keysAndAttributes.setAttributesToGet(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ConsistentRead")) {
                 keysAndAttributes.setConsistentRead(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,7 +57,9 @@ class KeysAndAttributesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("ExpressionAttributeNames")) {
                 keysAndAttributes.setExpressionAttributeNames(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

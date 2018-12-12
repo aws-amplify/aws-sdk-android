@@ -22,8 +22,8 @@ import com.amazonaws.services.translate.model.*;
 /**
  * Interface for accessing Amazon Translate
  * <p>
- * Provides translation between English and one of six languages, or between one
- * of the six languages and English.
+ * Provides translation between one source language and another of the same set
+ * of languages.
  * </p>
  **/
 public interface AmazonTranslate {
@@ -88,9 +88,111 @@ public interface AmazonTranslate {
 
     /**
      * <p>
-     * Translates input text from the source language to the target language.
-     * You can translate between English (en) and one of the following
-     * languages, or between one of the following languages and English.
+     * A synchronous action that deletes a custom terminology.
+     * </p>
+     * 
+     * @param deleteTerminologyRequest
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteTerminology(DeleteTerminologyRequest deleteTerminologyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves a custom terminology.
+     * </p>
+     * 
+     * @param getTerminologyRequest
+     * @return getTerminologyResult The response from the GetTerminology service
+     *         method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetTerminologyResult getTerminology(GetTerminologyRequest getTerminologyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates or updates a custom terminology, depending on whether or not one
+     * already exists for the given terminology name. Importing a terminology
+     * with the same name as an existing one will merge the terminologies based
+     * on the chosen merge strategy. Currently, the only supported merge
+     * strategy is OVERWRITE, and so the imported terminology will overwrite an
+     * existing terminology of the same name.
+     * </p>
+     * <p>
+     * If you import a terminology that overwrites an existing one, the new
+     * terminology take up to 10 minutes to fully propagate and be available for
+     * use in a translation due to cache policies with the DataPlane service
+     * that performs the translations.
+     * </p>
+     * 
+     * @param importTerminologyRequest
+     * @return importTerminologyResult The response from the ImportTerminology
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ImportTerminologyResult importTerminology(ImportTerminologyRequest importTerminologyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides a list of custom terminologies associated with your account.
+     * </p>
+     * 
+     * @param listTerminologiesRequest
+     * @return listTerminologiesResult The response from the ListTerminologies
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTerminologiesResult listTerminologies(ListTerminologiesRequest listTerminologiesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Translates input text from the source language to the target language. It
+     * is not necessary to use English (en) as either the source or the target
+     * language but not all language combinations are supported by Amazon
+     * Translate. For more information, see <a
+     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
+     * >Supported Language Pairs</a>.
      * </p>
      * <ul>
      * <li>
@@ -105,6 +207,36 @@ public interface AmazonTranslate {
      * </li>
      * <li>
      * <p>
+     * Chinese (Traditional) (zh-TW)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Czech (cs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Danish (da)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Dutch (nl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * English (en)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Finnish (fi)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * French (fr)
      * </p>
      * </li>
@@ -115,12 +247,57 @@ public interface AmazonTranslate {
      * </li>
      * <li>
      * <p>
+     * Hebrew (he)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Indonesian (id)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Italian (it)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Japanese (ja)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Korean (ko)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Polish (pl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Portuguese (pt)
      * </p>
      * </li>
      * <li>
      * <p>
+     * Russian (ru)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Spanish (es)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Swedish (sv)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Turkish (tr)
      * </p>
      * </li>
      * </ul>
@@ -139,6 +316,7 @@ public interface AmazonTranslate {
      * @throws TooManyRequestsException
      * @throws UnsupportedLanguagePairException
      * @throws DetectedLanguageLowConfidenceException
+     * @throws ResourceNotFoundException
      * @throws InternalServerException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered

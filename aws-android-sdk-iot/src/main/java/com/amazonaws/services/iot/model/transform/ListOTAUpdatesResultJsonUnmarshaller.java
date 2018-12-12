@@ -35,10 +35,12 @@ public class ListOTAUpdatesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("otaUpdates")) {
                 listOTAUpdatesResult.setOtaUpdates(new ListUnmarshaller<OTAUpdateSummary>(
-                        OTAUpdateSummaryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        OTAUpdateSummaryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listOTAUpdatesResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listOTAUpdatesResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

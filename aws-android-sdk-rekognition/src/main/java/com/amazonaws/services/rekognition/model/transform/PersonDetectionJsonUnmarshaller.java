@@ -37,11 +37,11 @@ class PersonDetectionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Timestamp")) {
-                personDetection
-                        .setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                personDetection.setTimestamp(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Person")) {
-                personDetection.setPerson(PersonDetailJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                personDetection.setPerson(PersonDetailJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

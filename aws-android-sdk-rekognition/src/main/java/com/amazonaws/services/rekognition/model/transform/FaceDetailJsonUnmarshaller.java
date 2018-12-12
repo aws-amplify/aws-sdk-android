@@ -36,42 +36,54 @@ class FaceDetailJsonUnmarshaller implements Unmarshaller<FaceDetail, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BoundingBox")) {
-                faceDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                faceDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("AgeRange")) {
-                faceDetail.setAgeRange(AgeRangeJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setAgeRange(AgeRangeJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Smile")) {
-                faceDetail.setSmile(SmileJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setSmile(SmileJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Eyeglasses")) {
-                faceDetail.setEyeglasses(EyeglassesJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                faceDetail.setEyeglasses(EyeglassesJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Sunglasses")) {
-                faceDetail.setSunglasses(SunglassesJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                faceDetail.setSunglasses(SunglassesJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Gender")) {
-                faceDetail.setGender(GenderJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setGender(GenderJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Beard")) {
-                faceDetail.setBeard(BeardJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setBeard(BeardJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Mustache")) {
-                faceDetail.setMustache(MustacheJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setMustache(MustacheJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EyesOpen")) {
-                faceDetail.setEyesOpen(EyeOpenJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setEyesOpen(EyeOpenJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MouthOpen")) {
-                faceDetail
-                        .setMouthOpen(MouthOpenJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setMouthOpen(MouthOpenJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Emotions")) {
                 faceDetail.setEmotions(new ListUnmarshaller<Emotion>(EmotionJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Landmarks")) {
                 faceDetail.setLandmarks(new ListUnmarshaller<Landmark>(LandmarkJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Pose")) {
-                faceDetail.setPose(PoseJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setPose(PoseJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Quality")) {
                 faceDetail.setQuality(ImageQualityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                faceDetail.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                faceDetail.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

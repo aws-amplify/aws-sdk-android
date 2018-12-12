@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Phone Number Information request.
+ * Phone Number Validate request.
  */
 public class NumberValidateRequest implements Serializable {
     /**

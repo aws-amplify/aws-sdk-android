@@ -21,7 +21,9 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * AWS Lambda throttled your account, please contact AWS Support
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class LambdaThrottledException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

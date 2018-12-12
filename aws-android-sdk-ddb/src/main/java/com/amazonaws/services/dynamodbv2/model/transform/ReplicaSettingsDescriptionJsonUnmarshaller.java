@@ -49,7 +49,8 @@ class ReplicaSettingsDescriptionJsonUnmarshaller implements
             } else if (name.equals("ReplicaProvisionedReadCapacityAutoScalingSettings")) {
                 replicaSettingsDescription
                         .setReplicaProvisionedReadCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ReplicaProvisionedWriteCapacityUnits")) {
                 replicaSettingsDescription
                         .setReplicaProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
@@ -57,12 +58,15 @@ class ReplicaSettingsDescriptionJsonUnmarshaller implements
             } else if (name.equals("ReplicaProvisionedWriteCapacityAutoScalingSettings")) {
                 replicaSettingsDescription
                         .setReplicaProvisionedWriteCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ReplicaGlobalSecondaryIndexSettings")) {
                 replicaSettingsDescription
                         .setReplicaGlobalSecondaryIndexSettings(new ListUnmarshaller<ReplicaGlobalSecondaryIndexSettingsDescription>(
                                 ReplicaGlobalSecondaryIndexSettingsDescriptionJsonUnmarshaller
-                                        .getInstance()).unmarshall(context));
+                                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

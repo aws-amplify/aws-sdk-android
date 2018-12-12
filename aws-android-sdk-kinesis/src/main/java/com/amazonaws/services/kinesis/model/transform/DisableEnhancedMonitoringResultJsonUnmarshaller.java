@@ -40,11 +40,15 @@ public class DisableEnhancedMonitoringResultJsonUnmarshaller implements
             } else if (name.equals("CurrentShardLevelMetrics")) {
                 disableEnhancedMonitoringResult
                         .setCurrentShardLevelMetrics(new ListUnmarshaller<String>(
-                                StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                                StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("DesiredShardLevelMetrics")) {
                 disableEnhancedMonitoringResult
                         .setDesiredShardLevelMetrics(new ListUnmarshaller<String>(
-                                StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                                StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

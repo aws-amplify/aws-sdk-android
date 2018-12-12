@@ -36,9 +36,11 @@ class MessageBodyJsonUnmarshaller implements Unmarshaller<MessageBody, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Message")) {
-                messageBody.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                messageBody.setMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RequestID")) {
-                messageBody.setRequestID(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                messageBody.setRequestID(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

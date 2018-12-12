@@ -39,7 +39,8 @@ public class DescribeStreamProcessorResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("StreamProcessorArn")) {
                 describeStreamProcessorResult.setStreamProcessorArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Status")) {
                 describeStreamProcessorResult.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -48,22 +49,27 @@ public class DescribeStreamProcessorResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("CreationTimestamp")) {
                 describeStreamProcessorResult.setCreationTimestamp(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastUpdateTimestamp")) {
                 describeStreamProcessorResult.setLastUpdateTimestamp(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Input")) {
                 describeStreamProcessorResult.setInput(StreamProcessorInputJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Output")) {
                 describeStreamProcessorResult.setOutput(StreamProcessorOutputJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RoleArn")) {
                 describeStreamProcessorResult.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Settings")) {
                 describeStreamProcessorResult.setSettings(StreamProcessorSettingsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,10 +36,12 @@ public class StopDominantLanguageDetectionJobResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("JobId")) {
                 stopDominantLanguageDetectionJobResult.setJobId(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 stopDominantLanguageDetectionJobResult.setJobStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

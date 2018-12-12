@@ -36,16 +36,20 @@ class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("SequenceNumber")) {
-                record.setSequenceNumber(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                record.setSequenceNumber(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ApproximateArrivalTimestamp")) {
                 record.setApproximateArrivalTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Data")) {
-                record.setData(ByteBufferJsonUnmarshaller.getInstance().unmarshall(context));
+                record.setData(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PartitionKey")) {
-                record.setPartitionKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                record.setPartitionKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EncryptionType")) {
-                record.setEncryptionType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                record.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

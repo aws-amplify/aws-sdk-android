@@ -22,7 +22,9 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
 /**
  * Session Logic for when the Application Session is INACTIVE. ie: The session
  * has either been stopped or not started yet.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class InactiveSessionState extends SessionClientState {
 
     private static final String TAG = "InactiveSessionState";

@@ -17,10 +17,7 @@ package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.iot.model.ResourceRegistrationFailureException;
 
 public class ResourceRegistrationFailureExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -42,33 +39,5 @@ public class ResourceRegistrationFailureExceptionUnmarshaller extends JsonErrorU
         e.setErrorCode("ResourceRegistrationFailureException");
 
         return e;
-    }
-
-    public ResourceRegistrationFailureException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        ResourceRegistrationFailureException resourceRegistrationFailureException = new ResourceRegistrationFailureException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                resourceRegistrationFailureException.setErrorMessage(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return resourceRegistrationFailureException;
     }
 }

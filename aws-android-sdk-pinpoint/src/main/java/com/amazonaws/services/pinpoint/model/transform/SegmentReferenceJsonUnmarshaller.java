@@ -37,10 +37,11 @@ class SegmentReferenceJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Id")) {
-                segmentReference.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                segmentReference.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Version")) {
-                segmentReference.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                segmentReference.setVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

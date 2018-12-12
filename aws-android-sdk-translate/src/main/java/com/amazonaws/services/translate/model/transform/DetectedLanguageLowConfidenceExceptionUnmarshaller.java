@@ -17,10 +17,7 @@ package com.amazonaws.services.translate.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.translate.model.DetectedLanguageLowConfidenceException;
 
 public class DetectedLanguageLowConfidenceExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -43,37 +40,5 @@ public class DetectedLanguageLowConfidenceExceptionUnmarshaller extends JsonErro
         e.setDetectedLanguageCode(String.valueOf(error.get("DetectedLanguageCode")));
 
         return e;
-    }
-
-    public DetectedLanguageLowConfidenceException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        DetectedLanguageLowConfidenceException detectedLanguageLowConfidenceException = new DetectedLanguageLowConfidenceException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                detectedLanguageLowConfidenceException.setErrorMessage(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
-            } else if (name.equals("DetectedLanguageCode")) {
-                detectedLanguageLowConfidenceException
-                        .setDetectedLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
-                                context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return detectedLanguageLowConfidenceException;
     }
 }

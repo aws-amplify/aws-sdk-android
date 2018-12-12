@@ -37,7 +37,9 @@ public class DetectModerationLabelsResultJsonUnmarshaller implements
             if (name.equals("ModerationLabels")) {
                 detectModerationLabelsResult
                         .setModerationLabels(new ListUnmarshaller<ModerationLabel>(
-                                ModerationLabelJsonUnmarshaller.getInstance()).unmarshall(context));
+                                ModerationLabelJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

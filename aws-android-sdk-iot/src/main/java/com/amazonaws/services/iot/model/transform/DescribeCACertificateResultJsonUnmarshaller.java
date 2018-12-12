@@ -36,7 +36,8 @@ public class DescribeCACertificateResultJsonUnmarshaller implements
             if (name.equals("certificateDescription")) {
                 describeCACertificateResult
                         .setCertificateDescription(CACertificateDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("registrationConfig")) {
                 describeCACertificateResult
                         .setRegistrationConfig(RegistrationConfigJsonUnmarshaller.getInstance()

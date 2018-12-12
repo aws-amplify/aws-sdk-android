@@ -37,8 +37,8 @@ class SecurityProfileTargetJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("arn")) {
-                securityProfileTarget.setArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                securityProfileTarget.setArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

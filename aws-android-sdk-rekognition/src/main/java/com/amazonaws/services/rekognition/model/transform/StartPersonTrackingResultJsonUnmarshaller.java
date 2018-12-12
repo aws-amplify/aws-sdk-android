@@ -34,8 +34,8 @@ public class StartPersonTrackingResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("JobId")) {
-                startPersonTrackingResult.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                startPersonTrackingResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

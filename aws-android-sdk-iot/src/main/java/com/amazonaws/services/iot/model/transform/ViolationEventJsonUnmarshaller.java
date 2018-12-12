@@ -37,8 +37,8 @@ class ViolationEventJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("violationId")) {
-                violationEvent.setViolationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                violationEvent.setViolationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingName")) {
                 violationEvent.setThingName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -46,17 +46,17 @@ class ViolationEventJsonUnmarshaller implements
                 violationEvent.setSecurityProfileName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("behavior")) {
-                violationEvent.setBehavior(BehaviorJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                violationEvent.setBehavior(BehaviorJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("metricValue")) {
-                violationEvent.setMetricValue(MetricValueJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                violationEvent.setMetricValue(MetricValueJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("violationEventType")) {
                 violationEvent.setViolationEventType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("violationEventTime")) {
-                violationEvent.setViolationEventTime(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                violationEvent.setViolationEventTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

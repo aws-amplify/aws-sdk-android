@@ -35,7 +35,9 @@ public class DescribeLogStreamsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("logStreams")) {
                 describeLogStreamsResult.setLogStreams(new ListUnmarshaller<LogStream>(
-                        LogStreamJsonUnmarshaller.getInstance()).unmarshall(context));
+                        LogStreamJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeLogStreamsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

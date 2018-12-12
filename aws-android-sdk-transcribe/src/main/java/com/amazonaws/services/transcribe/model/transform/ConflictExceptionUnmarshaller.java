@@ -17,10 +17,7 @@ package com.amazonaws.services.transcribe.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.transcribe.model.ConflictException;
 
 public class ConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -41,31 +38,5 @@ public class ConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
         e.setErrorCode("ConflictException");
 
         return e;
-    }
-
-    public ConflictException unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        ConflictException conflictException = new ConflictException("No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                conflictException.setErrorMessage(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return conflictException;
     }
 }

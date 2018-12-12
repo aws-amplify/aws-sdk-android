@@ -37,7 +37,8 @@ public class DescribeEntityRecognizerResultJsonUnmarshaller implements
             if (name.equals("EntityRecognizerProperties")) {
                 describeEntityRecognizerResult
                         .setEntityRecognizerProperties(EntityRecognizerPropertiesJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

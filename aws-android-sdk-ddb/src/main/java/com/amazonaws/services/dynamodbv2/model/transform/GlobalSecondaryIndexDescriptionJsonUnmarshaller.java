@@ -43,23 +43,29 @@ class GlobalSecondaryIndexDescriptionJsonUnmarshaller implements
             } else if (name.equals("KeySchema")) {
                 globalSecondaryIndexDescription
                         .setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                                KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+                                KeySchemaElementJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Projection")) {
                 globalSecondaryIndexDescription.setProjection(ProjectionJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IndexStatus")) {
                 globalSecondaryIndexDescription.setIndexStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Backfilling")) {
                 globalSecondaryIndexDescription.setBackfilling(BooleanJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ProvisionedThroughput")) {
                 globalSecondaryIndexDescription
                         .setProvisionedThroughput(ProvisionedThroughputDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("IndexSizeBytes")) {
                 globalSecondaryIndexDescription.setIndexSizeBytes(LongJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ItemCount")) {
                 globalSecondaryIndexDescription.setItemCount(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

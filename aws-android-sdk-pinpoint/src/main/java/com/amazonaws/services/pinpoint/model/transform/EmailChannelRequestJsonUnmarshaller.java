@@ -36,18 +36,21 @@ class EmailChannelRequestJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Enabled")) {
-                emailChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+            if (name.equals("ConfigurationSet")) {
+                emailChannelRequest.setConfigurationSet(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Enabled")) {
+                emailChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("FromAddress")) {
-                emailChannelRequest.setFromAddress(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                emailChannelRequest.setFromAddress(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Identity")) {
-                emailChannelRequest.setIdentity(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                emailChannelRequest.setIdentity(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RoleArn")) {
-                emailChannelRequest.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                emailChannelRequest.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

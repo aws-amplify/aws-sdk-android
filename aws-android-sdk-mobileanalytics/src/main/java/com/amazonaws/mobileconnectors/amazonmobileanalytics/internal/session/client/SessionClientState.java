@@ -26,7 +26,9 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.session.cli
  * client, based on The session state. If the Session is in state X, and there
  * is a call for method Y, the X.Y() will execute; This is the abstract base
  * class for the state objects.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public abstract class SessionClientState {
 
     protected final DefaultSessionClient client;

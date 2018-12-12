@@ -37,11 +37,11 @@ class ThingConnectivityJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("connected")) {
-                thingConnectivity.setConnected(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                thingConnectivity.setConnected(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("timestamp")) {
-                thingConnectivity.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                thingConnectivity.setTimestamp(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

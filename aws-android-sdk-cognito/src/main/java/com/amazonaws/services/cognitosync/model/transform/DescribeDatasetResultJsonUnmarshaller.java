@@ -22,7 +22,9 @@ import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * JSON unmarshaller for response DescribeDatasetResult
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DescribeDatasetResultJsonUnmarshaller implements
         Unmarshaller<DescribeDatasetResult, JsonUnmarshallerContext> {
 
@@ -34,8 +36,8 @@ public class DescribeDatasetResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Dataset")) {
-                describeDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

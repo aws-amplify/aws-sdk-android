@@ -34,8 +34,8 @@ public class UpdateThingGroupResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("version")) {
-                updateThingGroupResult.setVersion(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                updateThingGroupResult.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,24 +36,31 @@ class TopicRuleJsonUnmarshaller implements Unmarshaller<TopicRule, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ruleName")) {
-                topicRule.setRuleName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setRuleName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("sql")) {
-                topicRule.setSql(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setSql(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("description")) {
-                topicRule.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("createdAt")) {
-                topicRule.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setCreatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("actions")) {
                 topicRule.setActions(new ListUnmarshaller<Action>(ActionJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ruleDisabled")) {
-                topicRule
-                        .setRuleDisabled(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setRuleDisabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("awsIotSqlVersion")) {
-                topicRule.setAwsIotSqlVersion(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRule.setAwsIotSqlVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("errorAction")) {
-                topicRule.setErrorAction(ActionJsonUnmarshaller.getInstance().unmarshall(context));
+                topicRule.setErrorAction(ActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

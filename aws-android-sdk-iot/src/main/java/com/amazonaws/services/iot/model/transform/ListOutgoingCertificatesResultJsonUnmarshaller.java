@@ -37,7 +37,8 @@ public class ListOutgoingCertificatesResultJsonUnmarshaller implements
             if (name.equals("outgoingCertificates")) {
                 listOutgoingCertificatesResult
                         .setOutgoingCertificates(new ListUnmarshaller<OutgoingCertificate>(
-                                OutgoingCertificateJsonUnmarshaller.getInstance())
+                                OutgoingCertificateJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listOutgoingCertificatesResult.setNextMarker(StringJsonUnmarshaller.getInstance()

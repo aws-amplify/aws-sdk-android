@@ -36,10 +36,11 @@ class FaceRecordJsonUnmarshaller implements Unmarshaller<FaceRecord, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Face")) {
-                faceRecord.setFace(FaceJsonUnmarshaller.getInstance().unmarshall(context));
+                faceRecord.setFace(FaceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("FaceDetail")) {
-                faceRecord.setFaceDetail(FaceDetailJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                faceRecord.setFaceDetail(FaceDetailJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

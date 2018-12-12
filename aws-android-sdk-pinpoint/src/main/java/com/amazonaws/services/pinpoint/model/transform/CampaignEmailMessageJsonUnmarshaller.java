@@ -37,17 +37,17 @@ class CampaignEmailMessageJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Body")) {
-                campaignEmailMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignEmailMessage.setBody(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("FromAddress")) {
                 campaignEmailMessage.setFromAddress(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("HtmlBody")) {
-                campaignEmailMessage.setHtmlBody(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignEmailMessage.setHtmlBody(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Title")) {
-                campaignEmailMessage.setTitle(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignEmailMessage.setTitle(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

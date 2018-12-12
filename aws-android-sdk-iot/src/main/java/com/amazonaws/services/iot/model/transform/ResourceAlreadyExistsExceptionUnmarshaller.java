@@ -17,10 +17,7 @@ package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 
 public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -44,39 +41,5 @@ public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarsh
         e.setResourceArn(String.valueOf(error.get("resourceArn")));
 
         return e;
-    }
-
-    public ResourceAlreadyExistsException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        ResourceAlreadyExistsException resourceAlreadyExistsException = new ResourceAlreadyExistsException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                resourceAlreadyExistsException.setErrorMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("resourceId")) {
-                resourceAlreadyExistsException.setResourceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("resourceArn")) {
-                resourceAlreadyExistsException.setResourceArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return resourceAlreadyExistsException;
     }
 }

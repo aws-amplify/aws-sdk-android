@@ -31,7 +31,10 @@ public class SegmentGroup implements Serializable {
      * defines the starting "universe" of endpoints. When you add dimensions to
      * the segment, it filters the source segment based on the dimensions that
      * you specify. You can specify more than one dimensional segment. You can
-     * only specify one imported segment.
+     * only specify one imported segment. NOTE: If you specify an imported
+     * segment for this attribute, the segment size estimate that appears in the
+     * Amazon Pinpoint console shows the size of the imported segment, without
+     * any filters applied to it.
      */
     private java.util.List<SegmentReference> sourceSegments;
 
@@ -119,14 +122,20 @@ public class SegmentGroup implements Serializable {
      * defines the starting "universe" of endpoints. When you add dimensions to
      * the segment, it filters the source segment based on the dimensions that
      * you specify. You can specify more than one dimensional segment. You can
-     * only specify one imported segment.
+     * only specify one imported segment. NOTE: If you specify an imported
+     * segment for this attribute, the segment size estimate that appears in the
+     * Amazon Pinpoint console shows the size of the imported segment, without
+     * any filters applied to it.
      *
      * @return The base segment that you build your segment on. The source
      *         segment defines the starting "universe" of endpoints. When you
      *         add dimensions to the segment, it filters the source segment
      *         based on the dimensions that you specify. You can specify more
      *         than one dimensional segment. You can only specify one imported
-     *         segment.
+     *         segment. NOTE: If you specify an imported segment for this
+     *         attribute, the segment size estimate that appears in the Amazon
+     *         Pinpoint console shows the size of the imported segment, without
+     *         any filters applied to it.
      */
     public java.util.List<SegmentReference> getSourceSegments() {
         return sourceSegments;
@@ -137,14 +146,20 @@ public class SegmentGroup implements Serializable {
      * defines the starting "universe" of endpoints. When you add dimensions to
      * the segment, it filters the source segment based on the dimensions that
      * you specify. You can specify more than one dimensional segment. You can
-     * only specify one imported segment.
+     * only specify one imported segment. NOTE: If you specify an imported
+     * segment for this attribute, the segment size estimate that appears in the
+     * Amazon Pinpoint console shows the size of the imported segment, without
+     * any filters applied to it.
      *
      * @param sourceSegments The base segment that you build your segment on.
      *            The source segment defines the starting "universe" of
      *            endpoints. When you add dimensions to the segment, it filters
      *            the source segment based on the dimensions that you specify.
      *            You can specify more than one dimensional segment. You can
-     *            only specify one imported segment.
+     *            only specify one imported segment. NOTE: If you specify an
+     *            imported segment for this attribute, the segment size estimate
+     *            that appears in the Amazon Pinpoint console shows the size of
+     *            the imported segment, without any filters applied to it.
      */
     public void setSourceSegments(java.util.Collection<SegmentReference> sourceSegments) {
         if (sourceSegments == null) {
@@ -160,7 +175,10 @@ public class SegmentGroup implements Serializable {
      * defines the starting "universe" of endpoints. When you add dimensions to
      * the segment, it filters the source segment based on the dimensions that
      * you specify. You can specify more than one dimensional segment. You can
-     * only specify one imported segment.
+     * only specify one imported segment. NOTE: If you specify an imported
+     * segment for this attribute, the segment size estimate that appears in the
+     * Amazon Pinpoint console shows the size of the imported segment, without
+     * any filters applied to it.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -170,7 +188,10 @@ public class SegmentGroup implements Serializable {
      *            endpoints. When you add dimensions to the segment, it filters
      *            the source segment based on the dimensions that you specify.
      *            You can specify more than one dimensional segment. You can
-     *            only specify one imported segment.
+     *            only specify one imported segment. NOTE: If you specify an
+     *            imported segment for this attribute, the segment size estimate
+     *            that appears in the Amazon Pinpoint console shows the size of
+     *            the imported segment, without any filters applied to it.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -189,7 +210,10 @@ public class SegmentGroup implements Serializable {
      * defines the starting "universe" of endpoints. When you add dimensions to
      * the segment, it filters the source segment based on the dimensions that
      * you specify. You can specify more than one dimensional segment. You can
-     * only specify one imported segment.
+     * only specify one imported segment. NOTE: If you specify an imported
+     * segment for this attribute, the segment size estimate that appears in the
+     * Amazon Pinpoint console shows the size of the imported segment, without
+     * any filters applied to it.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -199,7 +223,10 @@ public class SegmentGroup implements Serializable {
      *            endpoints. When you add dimensions to the segment, it filters
      *            the source segment based on the dimensions that you specify.
      *            You can specify more than one dimensional segment. You can
-     *            only specify one imported segment.
+     *            only specify one imported segment. NOTE: If you specify an
+     *            imported segment for this attribute, the segment size estimate
+     *            that appears in the Amazon Pinpoint console shows the size of
+     *            the imported segment, without any filters applied to it.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

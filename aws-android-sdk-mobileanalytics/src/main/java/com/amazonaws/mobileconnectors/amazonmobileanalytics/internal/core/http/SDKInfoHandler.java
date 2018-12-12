@@ -20,6 +20,10 @@ import com.amazonaws.Response;
 import com.amazonaws.handlers.RequestHandler2;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.SDKInfo;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public final class SDKInfoHandler extends RequestHandler2 {
     static final String CLIENT_SDK_VERSION_HEADER_NAME = "x-amzn-ClientSDKVersion";
 

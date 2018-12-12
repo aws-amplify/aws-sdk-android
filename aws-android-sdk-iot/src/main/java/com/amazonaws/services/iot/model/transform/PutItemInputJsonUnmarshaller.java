@@ -36,7 +36,8 @@ class PutItemInputJsonUnmarshaller implements Unmarshaller<PutItemInput, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("tableName")) {
-                putItemInput.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                putItemInput.setTableName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

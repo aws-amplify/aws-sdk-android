@@ -37,11 +37,13 @@ class LocalSecondaryIndexJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("IndexName")) {
-                localSecondaryIndex.setIndexName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                localSecondaryIndex.setIndexName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KeySchema")) {
                 localSecondaryIndex.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Projection")) {
                 localSecondaryIndex.setProjection(ProjectionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

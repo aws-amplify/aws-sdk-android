@@ -38,10 +38,12 @@ public class PutRecordsResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Records")) {
                 putRecordsResult.setRecords(new ListUnmarshaller<PutRecordsResultEntry>(
-                        PutRecordsResultEntryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        PutRecordsResultEntryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("EncryptionType")) {
-                putRecordsResult.setEncryptionType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                putRecordsResult.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

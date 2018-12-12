@@ -64,6 +64,18 @@ public class TranslateTextRequestMarshaller implements
                 jsonWriter.name("Text");
                 jsonWriter.value(text);
             }
+            if (translateTextRequest.getTerminologyNames() != null) {
+                java.util.List<String> terminologyNames = translateTextRequest
+                        .getTerminologyNames();
+                jsonWriter.name("TerminologyNames");
+                jsonWriter.beginArray();
+                for (String terminologyNamesItem : terminologyNames) {
+                    if (terminologyNamesItem != null) {
+                        jsonWriter.value(terminologyNamesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (translateTextRequest.getSourceLanguageCode() != null) {
                 String sourceLanguageCode = translateTextRequest.getSourceLanguageCode();
                 jsonWriter.name("SourceLanguageCode");

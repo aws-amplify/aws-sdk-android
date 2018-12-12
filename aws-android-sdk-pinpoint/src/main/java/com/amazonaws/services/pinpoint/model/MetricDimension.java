@@ -22,47 +22,54 @@ import java.io.Serializable;
  */
 public class MetricDimension implements Serializable {
     /**
-     * GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL |
+     * The operator that you're using to compare metric values. Possible values:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
      * EQUAL
      */
     private String comparisonOperator;
 
     /**
-     * Value to be compared.
+     * The value to be compared.
      */
     private Double value;
 
     /**
-     * GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL |
+     * The operator that you're using to compare metric values. Possible values:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
      * EQUAL
      *
-     * @return GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL |
-     *         LESS_THAN_OR_EQUAL | EQUAL
+     * @return The operator that you're using to compare metric values. Possible
+     *         values: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL,
+     *         LESS_THAN_OR_EQUAL, or EQUAL
      */
     public String getComparisonOperator() {
         return comparisonOperator;
     }
 
     /**
-     * GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL |
+     * The operator that you're using to compare metric values. Possible values:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
      * EQUAL
      *
-     * @param comparisonOperator GREATER_THAN | LESS_THAN |
-     *            GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL | EQUAL
+     * @param comparisonOperator The operator that you're using to compare
+     *            metric values. Possible values: GREATER_THAN, LESS_THAN,
+     *            GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or EQUAL
      */
     public void setComparisonOperator(String comparisonOperator) {
         this.comparisonOperator = comparisonOperator;
     }
 
     /**
-     * GREATER_THAN | LESS_THAN | GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL |
+     * The operator that you're using to compare metric values. Possible values:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
      * EQUAL
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param comparisonOperator GREATER_THAN | LESS_THAN |
-     *            GREATER_THAN_OR_EQUAL | LESS_THAN_OR_EQUAL | EQUAL
+     * @param comparisonOperator The operator that you're using to compare
+     *            metric values. Possible values: GREATER_THAN, LESS_THAN,
+     *            GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or EQUAL
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -72,30 +79,30 @@ public class MetricDimension implements Serializable {
     }
 
     /**
-     * Value to be compared.
+     * The value to be compared.
      *
-     * @return Value to be compared.
+     * @return The value to be compared.
      */
     public Double getValue() {
         return value;
     }
 
     /**
-     * Value to be compared.
+     * The value to be compared.
      *
-     * @param value Value to be compared.
+     * @param value The value to be compared.
      */
     public void setValue(Double value) {
         this.value = value;
     }
 
     /**
-     * Value to be compared.
+     * The value to be compared.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param value Value to be compared.
+     * @param value The value to be compared.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

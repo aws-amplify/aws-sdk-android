@@ -36,17 +36,23 @@ class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("FaceId")) {
-                face.setFaceId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setFaceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BoundingBox")) {
-                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ImageId")) {
-                face.setImageId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setImageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ExternalImageId")) {
-                face.setExternalImageId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setExternalImageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                face.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("AssociationScore")) {
-                face.setAssociationScore(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                face.setAssociationScore(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

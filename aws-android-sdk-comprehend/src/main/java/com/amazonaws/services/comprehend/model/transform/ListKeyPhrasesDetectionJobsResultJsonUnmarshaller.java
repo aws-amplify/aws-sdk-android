@@ -37,7 +37,8 @@ public class ListKeyPhrasesDetectionJobsResultJsonUnmarshaller implements
             if (name.equals("KeyPhrasesDetectionJobPropertiesList")) {
                 listKeyPhrasesDetectionJobsResult
                         .setKeyPhrasesDetectionJobPropertiesList(new ListUnmarshaller<KeyPhrasesDetectionJobProperties>(
-                                KeyPhrasesDetectionJobPropertiesJsonUnmarshaller.getInstance())
+                                KeyPhrasesDetectionJobPropertiesJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listKeyPhrasesDetectionJobsResult.setNextToken(StringJsonUnmarshaller.getInstance()

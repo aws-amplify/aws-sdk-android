@@ -48,8 +48,9 @@ public class DefaultPushNotificationMessage implements Serializable {
     private java.util.Map<String, String> data;
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      */
     private Boolean silentPush;
 
@@ -329,51 +330,57 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return Indicates if the message should display on the recipient's
+     *         device. You can use silent pushes for remote configuration or to
+     *         deliver messages to in-app notification centers.
      */
     public Boolean isSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return Indicates if the message should display on the recipient's
+     *         device. You can use silent pushes for remote configuration or to
+     *         deliver messages to in-app notification centers.
      */
     public Boolean getSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush Indicates if the message should display on the
+     *            recipient's device. You can use silent pushes for remote
+     *            configuration or to deliver messages to in-app notification
+     *            centers.
      */
     public void setSilentPush(Boolean silentPush) {
         this.silentPush = silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush Indicates if the message should display on the
+     *            recipient's device. You can use silent pushes for remote
+     *            configuration or to deliver messages to in-app notification
+     *            centers.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

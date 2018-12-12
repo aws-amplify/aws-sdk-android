@@ -41,14 +41,17 @@ class GlobalSecondaryIndexInfoJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("KeySchema")) {
                 globalSecondaryIndexInfo.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Projection")) {
                 globalSecondaryIndexInfo.setProjection(ProjectionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ProvisionedThroughput")) {
                 globalSecondaryIndexInfo
                         .setProvisionedThroughput(ProvisionedThroughputJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

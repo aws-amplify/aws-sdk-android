@@ -36,13 +36,14 @@ class KinesisActionJsonUnmarshaller implements Unmarshaller<KinesisAction, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                kinesisAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                kinesisAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("streamName")) {
                 kinesisAction.setStreamName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("partitionKey")) {
-                kinesisAction.setPartitionKey(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                kinesisAction.setPartitionKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
