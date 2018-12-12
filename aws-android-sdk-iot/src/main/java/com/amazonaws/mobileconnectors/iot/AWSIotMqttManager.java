@@ -163,7 +163,7 @@ public class AWSIotMqttManager {
     private boolean needResubscribe;
 
     /** Is this a clean Session with no state being persisted from a prior session */
-    private boolean cleanSession = true;
+    private boolean cleanSession = MqttConnectOptions.CLEAN_SESSION_DEFAULT;
     /**
      * Indicates whether metrics collection is enabled.
      * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
@@ -938,7 +938,7 @@ public class AWSIotMqttManager {
 
             final MqttConnectOptions options = new MqttConnectOptions();
 
-            options.setCleanSession(false);
+            options.setCleanSession(cleanSession);
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
@@ -962,7 +962,7 @@ public class AWSIotMqttManager {
 
                 try {
                     final String mqttWebSocketURL = signer
-                            .getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
+                            .getSignedUrl(endpointWithHttpPort, clientCredentialsProvider.getCredentials(),
                                     System.currentTimeMillis());
                     LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
                     // Specify the URL through the server URI array.  This is checked
