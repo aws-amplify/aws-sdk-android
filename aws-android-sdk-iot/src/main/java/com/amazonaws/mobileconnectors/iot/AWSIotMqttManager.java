@@ -64,14 +64,6 @@ public class AWSIotMqttManager {
     private static final Integer MILLIS_IN_ONE_SECOND = 1000;
 
     private static final Log LOGGER = LogFactory.getLog(AWSIotMqttManager.class);
-    /** Constant for number of tokens in endpoint. */
-    private static final int ENDPOINT_SPLIT_SIZE = 5;
-    /** Constant for token offset of "iot" in endpoint. */
-    private static final int ENDPOINT_IOT_OFFSET = 1;
-    /** Constant for token offset of "amazonaws" in endpoint. */
-    private static final int ENDPOINT_DOMAIN_OFFSET = 3;
-    /** Constant for token offset of "com" in endpoint. */
-    private static final int ENDPOINT_TLD_OFFSET = 4;
 
     /** Default value for starting delay in exponential backoff reconnect algorithm. */
     public static final Integer DEFAULT_MIN_RECONNECT_RETRY_TIME_SECONDS = 4;
@@ -162,8 +154,6 @@ public class AWSIotMqttManager {
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
 
-    /** Is this a clean Session with no state being persisted from a prior session */
-    private boolean cleanSession = MqttConnectOptions.CLEAN_SESSION_DEFAULT;
     /**
      * Indicates whether metrics collection is enabled.
      * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
@@ -550,16 +540,6 @@ public class AWSIotMqttManager {
         needResubscribe = enabled;
     }
 
-
-    /**
-     * Set to true if the connection should be established with a clean session, false otherwise.
-     * By default, this is set to true.
-     * @param cleanSession flag to establish a clean session
-     */
-    public void setCleanSession(boolean cleanSession) {
-        this.cleanSession = cleanSession;
-    }
-
     /**
      * Constructs a new AWSIotMqttManager.
      *
@@ -817,7 +797,6 @@ public class AWSIotMqttManager {
             final AWSIotMqttClientStatusCallback statusCallback) {
         LOGGER.debug("ready to do mqtt connect");
 
-        options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
         if (isMetricsEnabled()) {
@@ -938,7 +917,6 @@ public class AWSIotMqttManager {
 
             final MqttConnectOptions options = new MqttConnectOptions();
 
-            options.setCleanSession(cleanSession);
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
