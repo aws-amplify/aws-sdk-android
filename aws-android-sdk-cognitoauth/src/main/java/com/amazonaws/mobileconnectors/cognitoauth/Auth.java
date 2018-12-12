@@ -63,7 +63,7 @@ public final class Auth {
     /**
      * Bundle containing customization flags for chrome custom tab
      */
-    private final Bundle extraCustomBundle;
+    private final Bundle customTabExtras;
 
     /**
      * This identifies the settings for additional userPool features.
@@ -150,7 +150,7 @@ public final class Auth {
                  final boolean advancedSecurityDataCollectionFlag,
                  final String identityProvider,
                  final String idpIdentifier,
-                 final Bundle extraCustomBundle) {
+                 final Bundle customTabExtras) {
         this.context = context;
         this.appWebDomain = appWebDomain;
         this.appId = appId;
@@ -165,7 +165,7 @@ public final class Auth {
         this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
         this.identityProvider = identityProvider;
         this.idpIdentifier = idpIdentifier;
-        this.extraCustomBundle = extraCustomBundle;
+        this.customTabExtras = customTabExtras;
         getCurrentUser();
     }
 
@@ -233,7 +233,7 @@ public final class Auth {
         /**
          * Bundle of flags to customize chrome custom tab UI
          */
-        private Bundle mExtraCustomBundle;
+        private Bundle mCustomTabsExtras;
 
         /**
          * Flag indicating if data collection for advanced security mode is enabled.
@@ -418,12 +418,12 @@ public final class Auth {
          * <p>
          *     Optional. Set a bundle to customize UI
          * </p>
-         * @param mExtraCustomBundle Optional: Pass to chrome custom tab a bundle of customization flags
+         * @param mCustomTabsExtras Optional: Pass to chrome custom tab a bundle of customization flags
          * @return A reference to this builder.
          */
         @SuppressWarnings("checkstyle:hiddenfield")
-        public Builder setExtraCustomBundle(final Bundle mExtraCustomBundle) {
-            this.mExtraCustomBundle = mExtraCustomBundle;
+        public Builder setCustomTabsExtras(final Bundle mCustomTabsExtras) {
+            this.mCustomTabsExtras = mCustomTabsExtras;
             return this;
         }
 
@@ -445,7 +445,7 @@ public final class Auth {
                     this.mAdvancedSecurityDataCollectionFlag,
                     this.mIdentityProvider,
                     this.mIdpIdentifier,
-                    this.mExtraCustomBundle);
+                    this.mCustomTabsExtras);
         }
 
 
@@ -590,8 +590,8 @@ public final class Auth {
     /**
      * @return Extra customization bundle for this {@link Auth} instance.
      */
-    public Bundle getExtraCustomBundle() {
-        return extraCustomBundle;
+    public Bundle getCustomTabExtras() {
+        return customTabExtras;
     }
 
     /**
