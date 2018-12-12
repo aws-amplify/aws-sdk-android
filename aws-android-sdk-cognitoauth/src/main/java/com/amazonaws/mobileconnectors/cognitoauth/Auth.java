@@ -19,6 +19,7 @@ package com.amazonaws.mobileconnectors.cognitoauth;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Patterns;
 
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidParameterException;
@@ -58,6 +59,11 @@ public final class Auth {
      * Identity provider (idp) identifier, works as an alias to the real idp
      */
     private final String idpIdentifier;
+
+    /**
+     * Bundle containing customization flags for chrome custom tab
+     */
+    private final Bundle customTabExtras;
 
     /**
      * This identifies the settings for additional userPool features.
@@ -143,7 +149,8 @@ public final class Auth {
                  final AuthHandler userHandler,
                  final boolean advancedSecurityDataCollectionFlag,
                  final String identityProvider,
-                 final String idpIdentifier) {
+                 final String idpIdentifier,
+                 final Bundle customTabExtras) {
         this.context = context;
         this.appWebDomain = appWebDomain;
         this.appId = appId;
@@ -158,6 +165,7 @@ public final class Auth {
         this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
         this.identityProvider = identityProvider;
         this.idpIdentifier = idpIdentifier;
+        this.customTabExtras = customTabExtras;
         getCurrentUser();
     }
 
@@ -221,6 +229,11 @@ public final class Auth {
          * Idp identifier for the userPool.
          */
         private String mIdpIdentifier;
+
+        /**
+         * Bundle of flags to customize chrome custom tab UI
+         */
+        private Bundle mCustomTabsExtras;
 
         /**
          * Flag indicating if data collection for advanced security mode is enabled.
@@ -401,6 +414,20 @@ public final class Auth {
         }
 
         /**
+         * Sets customization bundle. This allow to customize chrome custom tab.
+         * <p>
+         *     Optional. Set a bundle to customize UI
+         * </p>
+         * @param mCustomTabsExtras Optional: Pass to chrome custom tab a bundle of customization flags
+         * @return A reference to this builder.
+         */
+        @SuppressWarnings("checkstyle:hiddenfield")
+        public Builder setCustomTabsExtras(final Bundle mCustomTabsExtras) {
+            this.mCustomTabsExtras = mCustomTabsExtras;
+            return this;
+        }
+
+        /**
          * Instantiates {@link Auth} with the set options.
          * @return {@link Auth}.
          */
@@ -417,7 +444,8 @@ public final class Auth {
                     this.mUserHandler,
                     this.mAdvancedSecurityDataCollectionFlag,
                     this.mIdentityProvider,
-                    this.mIdpIdentifier);
+                    this.mIdpIdentifier,
+                    this.mCustomTabsExtras);
         }
 
 
@@ -557,6 +585,13 @@ public final class Auth {
      */
     public String getIdpIdentifier() {
         return idpIdentifier;
+    }
+
+    /**
+     * @return Extra customization bundle for this {@link Auth} instance.
+     */
+    public Bundle getCustomTabExtras() {
+        return customTabExtras;
     }
 
     /**
