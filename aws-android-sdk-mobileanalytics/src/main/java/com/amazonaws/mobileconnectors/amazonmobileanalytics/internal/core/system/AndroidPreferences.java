@@ -18,6 +18,10 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.syste
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class AndroidPreferences implements Preferences {
 
     private final SharedPreferences preferences;

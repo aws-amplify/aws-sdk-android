@@ -18,47 +18,48 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * The endpoint and events combined response definition
+ * The response that's provided after registering the endpoint.
  */
 public class ItemResponse implements Serializable {
     /**
-     * Endpoint item response after endpoint registration
+     * The response received after the endpoint was accepted.
      */
     private EndpointItemResponse endpointItemResponse;
 
     /**
-     * Events item response is a multipart response object per event Id, with
-     * eventId as the key and EventItemResponse object as the value
+     * A multipart response object that contains a key and value for each event
+     * ID in the request. In each object, the event ID is the key, and an
+     * EventItemResponse object is the value.
      */
     private java.util.Map<String, EventItemResponse> eventsItemResponse;
 
     /**
-     * Endpoint item response after endpoint registration
+     * The response received after the endpoint was accepted.
      *
-     * @return Endpoint item response after endpoint registration
+     * @return The response received after the endpoint was accepted.
      */
     public EndpointItemResponse getEndpointItemResponse() {
         return endpointItemResponse;
     }
 
     /**
-     * Endpoint item response after endpoint registration
+     * The response received after the endpoint was accepted.
      *
-     * @param endpointItemResponse Endpoint item response after endpoint
-     *            registration
+     * @param endpointItemResponse The response received after the endpoint was
+     *            accepted.
      */
     public void setEndpointItemResponse(EndpointItemResponse endpointItemResponse) {
         this.endpointItemResponse = endpointItemResponse;
     }
 
     /**
-     * Endpoint item response after endpoint registration
+     * The response received after the endpoint was accepted.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointItemResponse Endpoint item response after endpoint
-     *            registration
+     * @param endpointItemResponse The response received after the endpoint was
+     *            accepted.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -68,38 +69,44 @@ public class ItemResponse implements Serializable {
     }
 
     /**
-     * Events item response is a multipart response object per event Id, with
-     * eventId as the key and EventItemResponse object as the value
+     * A multipart response object that contains a key and value for each event
+     * ID in the request. In each object, the event ID is the key, and an
+     * EventItemResponse object is the value.
      *
-     * @return Events item response is a multipart response object per event Id,
-     *         with eventId as the key and EventItemResponse object as the value
+     * @return A multipart response object that contains a key and value for
+     *         each event ID in the request. In each object, the event ID is the
+     *         key, and an EventItemResponse object is the value.
      */
     public java.util.Map<String, EventItemResponse> getEventsItemResponse() {
         return eventsItemResponse;
     }
 
     /**
-     * Events item response is a multipart response object per event Id, with
-     * eventId as the key and EventItemResponse object as the value
+     * A multipart response object that contains a key and value for each event
+     * ID in the request. In each object, the event ID is the key, and an
+     * EventItemResponse object is the value.
      *
-     * @param eventsItemResponse Events item response is a multipart response
-     *            object per event Id, with eventId as the key and
-     *            EventItemResponse object as the value
+     * @param eventsItemResponse A multipart response object that contains a key
+     *            and value for each event ID in the request. In each object,
+     *            the event ID is the key, and an EventItemResponse object is
+     *            the value.
      */
     public void setEventsItemResponse(java.util.Map<String, EventItemResponse> eventsItemResponse) {
         this.eventsItemResponse = eventsItemResponse;
     }
 
     /**
-     * Events item response is a multipart response object per event Id, with
-     * eventId as the key and EventItemResponse object as the value
+     * A multipart response object that contains a key and value for each event
+     * ID in the request. In each object, the event ID is the key, and an
+     * EventItemResponse object is the value.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventsItemResponse Events item response is a multipart response
-     *            object per event Id, with eventId as the key and
-     *            EventItemResponse object as the value
+     * @param eventsItemResponse A multipart response object that contains a key
+     *            and value for each event ID in the request. In each object,
+     *            the event ID is the key, and an EventItemResponse object is
+     *            the value.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -110,8 +117,9 @@ public class ItemResponse implements Serializable {
     }
 
     /**
-     * Events item response is a multipart response object per event Id, with
-     * eventId as the key and EventItemResponse object as the value
+     * A multipart response object that contains a key and value for each event
+     * ID in the request. In each object, the event ID is the key, and an
+     * EventItemResponse object is the value.
      * <p>
      * The method adds a new key-value pair into EventsItemResponse parameter,
      * and returns a reference to this object so that method calls can be

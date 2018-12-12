@@ -32,7 +32,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,7 +103,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -111,7 +111,7 @@ public class DecryptResult implements Serializable {
      *
      * @return <p>
      *         Decrypted plaintext data. When you use the HTTP API or the AWS
-     *         CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     *         CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -121,7 +121,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -129,7 +129,7 @@ public class DecryptResult implements Serializable {
      *
      * @param plaintext <p>
      *            Decrypted plaintext data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded.
      *            </p>
      */
@@ -140,7 +140,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +151,7 @@ public class DecryptResult implements Serializable {
      *
      * @param plaintext <p>
      *            Decrypted plaintext data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be

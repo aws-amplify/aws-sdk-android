@@ -37,7 +37,9 @@ class DeleteRequestJsonUnmarshaller implements Unmarshaller<DeleteRequest, JsonU
             String name = reader.nextName();
             if (name.equals("Key")) {
                 deleteRequest.setKey(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

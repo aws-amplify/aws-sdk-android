@@ -36,9 +36,11 @@ class EyeglassesJsonUnmarshaller implements Unmarshaller<Eyeglasses, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                eyeglasses.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                eyeglasses.setValue(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                eyeglasses.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                eyeglasses.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -41,7 +41,9 @@ class LocalSecondaryIndexInfoJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("KeySchema")) {
                 localSecondaryIndexInfo.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Projection")) {
                 localSecondaryIndexInfo.setProjection(ProjectionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

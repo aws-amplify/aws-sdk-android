@@ -35,7 +35,9 @@ public class ListTagsForStreamResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Tags")) {
                 listTagsForStreamResult.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("HasMoreTags")) {
                 listTagsForStreamResult.setHasMoreTags(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

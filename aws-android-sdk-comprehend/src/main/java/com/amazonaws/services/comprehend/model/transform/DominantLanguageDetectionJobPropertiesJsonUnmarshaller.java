@@ -39,22 +39,28 @@ class DominantLanguageDetectionJobPropertiesJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("JobId")) {
                 dominantLanguageDetectionJobProperties.setJobId(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 dominantLanguageDetectionJobProperties.setJobName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 dominantLanguageDetectionJobProperties.setJobStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Message")) {
                 dominantLanguageDetectionJobProperties.setMessage(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubmitTime")) {
                 dominantLanguageDetectionJobProperties.setSubmitTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EndTime")) {
                 dominantLanguageDetectionJobProperties.setEndTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 dominantLanguageDetectionJobProperties
                         .setInputDataConfig(InputDataConfigJsonUnmarshaller.getInstance()
@@ -65,7 +71,8 @@ class DominantLanguageDetectionJobPropertiesJsonUnmarshaller implements
                                 .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 dominantLanguageDetectionJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

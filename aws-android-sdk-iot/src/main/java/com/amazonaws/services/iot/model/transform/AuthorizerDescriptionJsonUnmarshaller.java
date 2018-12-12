@@ -50,10 +50,12 @@ class AuthorizerDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("tokenSigningPublicKeys")) {
                 authorizerDescription.setTokenSigningPublicKeys(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("status")) {
-                authorizerDescription.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                authorizerDescription.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("creationDate")) {
                 authorizerDescription.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

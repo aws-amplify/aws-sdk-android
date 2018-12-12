@@ -37,7 +37,8 @@ public class DescribeSubscriptionFiltersResultJsonUnmarshaller implements
             if (name.equals("subscriptionFilters")) {
                 describeSubscriptionFiltersResult
                         .setSubscriptionFilters(new ListUnmarshaller<SubscriptionFilter>(
-                                SubscriptionFilterJsonUnmarshaller.getInstance())
+                                SubscriptionFilterJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeSubscriptionFiltersResult.setNextToken(StringJsonUnmarshaller.getInstance()

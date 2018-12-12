@@ -35,10 +35,12 @@ public class ListStreamsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("streams")) {
                 listStreamsResult.setStreams(new ListUnmarshaller<StreamSummary>(
-                        StreamSummaryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StreamSummaryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listStreamsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listStreamsResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

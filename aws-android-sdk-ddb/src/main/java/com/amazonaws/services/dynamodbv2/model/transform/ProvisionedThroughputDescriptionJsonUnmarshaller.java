@@ -39,19 +39,24 @@ class ProvisionedThroughputDescriptionJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("LastIncreaseDateTime")) {
                 provisionedThroughputDescription.setLastIncreaseDateTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastDecreaseDateTime")) {
                 provisionedThroughputDescription.setLastDecreaseDateTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NumberOfDecreasesToday")) {
                 provisionedThroughputDescription.setNumberOfDecreasesToday(LongJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ReadCapacityUnits")) {
                 provisionedThroughputDescription.setReadCapacityUnits(LongJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("WriteCapacityUnits")) {
                 provisionedThroughputDescription.setWriteCapacityUnits(LongJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -35,13 +35,16 @@ public class UpdateItemResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Attributes")) {
                 updateItemResult.setAttributes(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ConsumedCapacity")) {
                 updateItemResult.setConsumedCapacity(ConsumedCapacityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ItemCollectionMetrics")) {
                 updateItemResult.setItemCollectionMetrics(ItemCollectionMetricsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

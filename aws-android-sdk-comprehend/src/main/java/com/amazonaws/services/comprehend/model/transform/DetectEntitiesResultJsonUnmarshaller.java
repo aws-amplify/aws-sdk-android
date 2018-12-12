@@ -35,7 +35,9 @@ public class DetectEntitiesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Entities")) {
                 detectEntitiesResult.setEntities(new ListUnmarshaller<Entity>(
-                        EntityJsonUnmarshaller.getInstance()).unmarshall(context));
+                        EntityJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

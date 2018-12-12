@@ -36,11 +36,14 @@ public class BatchDetectSentimentResultJsonUnmarshaller implements
             if (name.equals("ResultList")) {
                 batchDetectSentimentResult
                         .setResultList(new ListUnmarshaller<BatchDetectSentimentItemResult>(
-                                BatchDetectSentimentItemResultJsonUnmarshaller.getInstance())
+                                BatchDetectSentimentItemResultJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("ErrorList")) {
                 batchDetectSentimentResult.setErrorList(new ListUnmarshaller<BatchItemError>(
-                        BatchItemErrorJsonUnmarshaller.getInstance()).unmarshall(context));
+                        BatchItemErrorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

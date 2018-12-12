@@ -29,8 +29,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the job. You can't use the strings "." or ".." in the job
-     * name. The name must be unique within an AWS account.
+     * The name of the job. Note that you can't use the strings "." or ".." by
+     * themselves as the job name. The name must also be unique within an AWS
+     * account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,7 +46,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      */
     private String languageCode;
 
@@ -113,8 +115,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. You can't use the strings "." or ".." in the job
-     * name. The name must be unique within an AWS account.
+     * The name of the job. Note that you can't use the strings "." or ".." by
+     * themselves as the job name. The name must also be unique within an AWS
+     * account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,8 +125,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the job. You can't use the strings "." or ".." in the
-     *         job name. The name must be unique within an AWS account.
+     *         The name of the job. Note that you can't use the strings "." or
+     *         ".." by themselves as the job name. The name must also be unique
+     *         within an AWS account.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -132,8 +136,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. You can't use the strings "." or ".." in the job
-     * name. The name must be unique within an AWS account.
+     * The name of the job. Note that you can't use the strings "." or ".." by
+     * themselves as the job name. The name must also be unique within an AWS
+     * account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,8 +146,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. You can't use the strings "." or ".." in
-     *            the job name. The name must be unique within an AWS account.
+     *            The name of the job. Note that you can't use the strings "."
+     *            or ".." by themselves as the job name. The name must also be
+     *            unique within an AWS account.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -151,8 +157,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. You can't use the strings "." or ".." in the job
-     * name. The name must be unique within an AWS account.
+     * The name of the job. Note that you can't use the strings "." or ".." by
+     * themselves as the job name. The name must also be unique within an AWS
+     * account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -163,8 +170,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. You can't use the strings "." or ".." in
-     *            the job name. The name must be unique within an AWS account.
+     *            The name of the job. Note that you can't use the strings "."
+     *            or ".." by themselves as the job name. The name must also be
+     *            unique within an AWS account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,7 +188,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -197,7 +206,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -218,7 +228,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -239,7 +250,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -260,7 +272,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
+     * fr-FR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media

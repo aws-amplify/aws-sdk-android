@@ -20,7 +20,9 @@ import com.amazonaws.AmazonServiceException;
 /**
  * Thrown if an update can't be applied because the resource was changed by
  * another call and this would result in a conflict.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class ResourceConflictException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

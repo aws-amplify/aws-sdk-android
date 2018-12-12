@@ -36,9 +36,11 @@ class LogTargetJsonUnmarshaller implements Unmarshaller<LogTarget, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("targetType")) {
-                logTarget.setTargetType(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                logTarget.setTargetType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("targetName")) {
-                logTarget.setTargetName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                logTarget.setTargetName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

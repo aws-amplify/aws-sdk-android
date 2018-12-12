@@ -37,7 +37,9 @@ class PutRequestJsonUnmarshaller implements Unmarshaller<PutRequest, JsonUnmarsh
             String name = reader.nextName();
             if (name.equals("Item")) {
                 putRequest.setItem(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -43,8 +43,8 @@ class CACertificateDescriptionJsonUnmarshaller implements
                 cACertificateDescription.setCertificateId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("status")) {
-                cACertificateDescription.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                cACertificateDescription.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("certificatePem")) {
                 cACertificateDescription.setCertificatePem(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -56,7 +56,8 @@ class CACertificateDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("autoRegistrationStatus")) {
                 cACertificateDescription.setAutoRegistrationStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastModifiedDate")) {
                 cACertificateDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -68,7 +69,8 @@ class CACertificateDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("validity")) {
                 cACertificateDescription.setValidity(CertificateValidityJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

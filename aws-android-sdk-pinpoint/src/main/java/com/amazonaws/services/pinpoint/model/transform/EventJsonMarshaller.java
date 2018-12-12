@@ -25,6 +25,21 @@ class EventJsonMarshaller {
 
     public void marshall(Event event, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (event.getAppPackageName() != null) {
+            String appPackageName = event.getAppPackageName();
+            jsonWriter.name("AppPackageName");
+            jsonWriter.value(appPackageName);
+        }
+        if (event.getAppTitle() != null) {
+            String appTitle = event.getAppTitle();
+            jsonWriter.name("AppTitle");
+            jsonWriter.value(appTitle);
+        }
+        if (event.getAppVersionCode() != null) {
+            String appVersionCode = event.getAppVersionCode();
+            jsonWriter.name("AppVersionCode");
+            jsonWriter.value(appVersionCode);
+        }
         if (event.getAttributes() != null) {
             java.util.Map<String, String> attributes = event.getAttributes();
             jsonWriter.name("Attributes");
@@ -60,6 +75,11 @@ class EventJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (event.getSdkName() != null) {
+            String sdkName = event.getSdkName();
+            jsonWriter.name("SdkName");
+            jsonWriter.value(sdkName);
         }
         if (event.getSession() != null) {
             Session session = event.getSession();

@@ -35,7 +35,9 @@ public class GetItemResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 getItemResult.setItem(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ConsumedCapacity")) {
                 getItemResult.setConsumedCapacity(ConsumedCapacityJsonUnmarshaller.getInstance()
                         .unmarshall(context));

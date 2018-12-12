@@ -37,14 +37,14 @@ class ResourcePolicyJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("policyName")) {
-                resourcePolicy.setPolicyName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                resourcePolicy.setPolicyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("policyDocument")) {
-                resourcePolicy.setPolicyDocument(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                resourcePolicy.setPolicyDocument(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastUpdatedTime")) {
-                resourcePolicy.setLastUpdatedTime(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                resourcePolicy.setLastUpdatedTime(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

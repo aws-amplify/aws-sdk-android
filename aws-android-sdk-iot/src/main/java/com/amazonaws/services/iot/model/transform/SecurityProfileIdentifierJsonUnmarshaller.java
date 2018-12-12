@@ -37,11 +37,11 @@ class SecurityProfileIdentifierJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("name")) {
-                securityProfileIdentifier.setName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                securityProfileIdentifier.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("arn")) {
-                securityProfileIdentifier.setArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                securityProfileIdentifier.setArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

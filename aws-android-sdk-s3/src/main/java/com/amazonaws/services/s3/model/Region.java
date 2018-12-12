@@ -157,6 +157,19 @@ public enum Region {
     EU_Frankfurt("eu-central-1"),
 
     /**
+     * The EU (Stockholm) Amazon S3 Region. This region uses Amazon S3 servers
+     * located in Stockholm.
+     * <p>
+     * Note that to access S3 buckets in Stockholm you must explicitly set the
+     * region on the AWS S3 Client you are working with. In Amazon S3, the EU
+     * (Stockholm) Region provides read-after-write consistency for PUTS of new
+     * objects in Amazon S3 buckets and eventual consistency for overwrite PUTS
+     * and DELETES.
+     * </p>
+     */
+    EU_Stockholm("eu-north-1"),
+
+    /**
      * The Asia Pacific (Mumbai) Region. This region uses Amazon S3 servers
      * located in Singapore.
      * <p>

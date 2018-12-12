@@ -36,12 +36,14 @@ class CampaignHookJsonUnmarshaller implements Unmarshaller<CampaignHook, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("LambdaFunctionName")) {
-                campaignHook.setLambdaFunctionName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignHook.setLambdaFunctionName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Mode")) {
-                campaignHook.setMode(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                campaignHook.setMode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("WebUrl")) {
-                campaignHook.setWebUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                campaignHook.setWebUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

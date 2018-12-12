@@ -35,10 +35,12 @@ public class ListLexiconsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Lexicons")) {
                 listLexiconsResult.setLexicons(new ListUnmarshaller<LexiconDescription>(
-                        LexiconDescriptionJsonUnmarshaller.getInstance()).unmarshall(context));
+                        LexiconDescriptionJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listLexiconsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listLexiconsResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -35,7 +35,9 @@ public class ListTagsOfResourceResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Tags")) {
                 listTagsOfResourceResult.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listTagsOfResourceResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

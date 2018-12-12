@@ -38,7 +38,9 @@ public class RegisterThingResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("resourceArns")) {
                 registerThingResult.setResourceArns(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

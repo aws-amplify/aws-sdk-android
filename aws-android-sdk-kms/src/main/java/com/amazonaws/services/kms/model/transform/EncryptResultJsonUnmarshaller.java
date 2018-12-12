@@ -37,7 +37,8 @@ public class EncryptResultJsonUnmarshaller implements
                 encryptResult.setCiphertextBlob(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyId")) {
-                encryptResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                encryptResult.setKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

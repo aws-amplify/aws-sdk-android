@@ -36,7 +36,9 @@ public class ListActiveViolationsResultJsonUnmarshaller implements
             if (name.equals("activeViolations")) {
                 listActiveViolationsResult
                         .setActiveViolations(new ListUnmarshaller<ActiveViolation>(
-                                ActiveViolationJsonUnmarshaller.getInstance()).unmarshall(context));
+                                ActiveViolationJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listActiveViolationsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

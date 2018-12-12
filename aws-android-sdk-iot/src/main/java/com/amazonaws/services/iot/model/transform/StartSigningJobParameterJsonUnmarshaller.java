@@ -39,7 +39,8 @@ class StartSigningJobParameterJsonUnmarshaller implements
             if (name.equals("signingProfileParameter")) {
                 startSigningJobParameter
                         .setSigningProfileParameter(SigningProfileParameterJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("signingProfileName")) {
                 startSigningJobParameter.setSigningProfileName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

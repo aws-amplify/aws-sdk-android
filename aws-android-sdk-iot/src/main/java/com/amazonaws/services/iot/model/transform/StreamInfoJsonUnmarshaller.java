@@ -36,23 +36,31 @@ class StreamInfoJsonUnmarshaller implements Unmarshaller<StreamInfo, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("streamId")) {
-                streamInfo.setStreamId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setStreamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("streamArn")) {
-                streamInfo.setStreamArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setStreamArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("streamVersion")) {
-                streamInfo.setStreamVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamInfo.setStreamVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("description")) {
-                streamInfo.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("files")) {
                 streamInfo.setFiles(new ListUnmarshaller<StreamFile>(StreamFileJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("createdAt")) {
-                streamInfo.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setCreatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastUpdatedAt")) {
-                streamInfo.setLastUpdatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                streamInfo.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamInfo.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

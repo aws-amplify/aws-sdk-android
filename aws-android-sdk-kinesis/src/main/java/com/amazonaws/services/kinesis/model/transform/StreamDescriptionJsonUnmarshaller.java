@@ -37,17 +37,19 @@ class StreamDescriptionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("StreamName")) {
-                streamDescription.setStreamName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamDescription.setStreamName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StreamARN")) {
-                streamDescription.setStreamARN(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamDescription.setStreamARN(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StreamStatus")) {
-                streamDescription.setStreamStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamDescription.setStreamStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Shards")) {
                 streamDescription.setShards(new ListUnmarshaller<Shard>(ShardJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("HasMoreShards")) {
                 streamDescription.setHasMoreShards(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -59,13 +61,15 @@ class StreamDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("EnhancedMonitoring")) {
                 streamDescription.setEnhancedMonitoring(new ListUnmarshaller<EnhancedMetrics>(
-                        EnhancedMetricsJsonUnmarshaller.getInstance()).unmarshall(context));
+                        EnhancedMetricsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("EncryptionType")) {
                 streamDescription.setEncryptionType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyId")) {
-                streamDescription
-                        .setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamDescription.setKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

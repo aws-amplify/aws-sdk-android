@@ -42,13 +42,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * Whenever possible, use key policies to give users permission to call the
- * Decrypt operation on the CMK, instead of IAM policies. Otherwise, you might
- * create an IAM user policy that gives the user Decrypt permission on all CMKs.
- * This user could decrypt ciphertext that was encrypted by CMKs in other
- * accounts if the key policy for the cross-account CMK permits it. If you must
- * use an IAM policy for <code>Decrypt</code> permissions, limit the user to
- * particular CMKs or particular trusted accounts.
+ * Note that if a caller has been granted access permissions to all keys
+ * (through, for example, IAM user policies that grant <code>Decrypt</code>
+ * permission on all resources), then ciphertext encrypted by using keys in
+ * other accounts where the key grants access to the caller can be decrypted. To
+ * remedy this, we recommend that you do not grant <code>Decrypt</code> access
+ * in an IAM user policy. Instead grant <code>Decrypt</code> access only in key
+ * policies. If you must grant <code>Decrypt</code> access in an IAM user
+ * policy, you should scope the resource to specific keys or to specific trusted
+ * accounts.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For

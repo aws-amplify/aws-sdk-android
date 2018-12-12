@@ -37,14 +37,14 @@ class IotAnalyticsActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("channelArn")) {
-                iotAnalyticsAction.setChannelArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                iotAnalyticsAction.setChannelArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("channelName")) {
-                iotAnalyticsAction.setChannelName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                iotAnalyticsAction.setChannelName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                iotAnalyticsAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                iotAnalyticsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

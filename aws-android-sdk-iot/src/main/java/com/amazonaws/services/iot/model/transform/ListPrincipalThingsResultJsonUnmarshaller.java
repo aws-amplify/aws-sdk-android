@@ -35,7 +35,9 @@ public class ListPrincipalThingsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("things")) {
                 listPrincipalThingsResult.setThings(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listPrincipalThingsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -15,6 +15,11 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,33 +32,37 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
-import com.amazonaws.services.pinpoint.model.EndpointDemographic;
-import com.amazonaws.services.pinpoint.model.EndpointLocation;
-import com.amazonaws.services.pinpoint.model.EndpointRequest;
-import com.amazonaws.services.pinpoint.model.EndpointUser;
-import com.amazonaws.services.pinpoint.model.Event;
-import com.amazonaws.services.pinpoint.model.EventItemResponse;
-import com.amazonaws.services.pinpoint.model.EventsBatch;
-import com.amazonaws.services.pinpoint.model.PutEventsRequest;
-import com.amazonaws.services.pinpoint.model.PutEventsResult;
-import com.amazonaws.services.pinpoint.model.Session;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidAppDetails;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
+
+import com.amazonaws.services.pinpoint.model.EndpointDemographic;
+import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
+import com.amazonaws.services.pinpoint.model.EndpointLocation;
+import com.amazonaws.services.pinpoint.model.EndpointUser;
+import com.amazonaws.services.pinpoint.model.Event;
+import com.amazonaws.services.pinpoint.model.EventItemResponse;
+import com.amazonaws.services.pinpoint.model.EventsBatch;
+import com.amazonaws.services.pinpoint.model.EventsRequest;
+import com.amazonaws.services.pinpoint.model.PublicEndpoint;
+import com.amazonaws.services.pinpoint.model.PutEventsRequest;
+import com.amazonaws.services.pinpoint.model.PutEventsResult;
+import com.amazonaws.services.pinpoint.model.Session;
+
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.VersionInfoUtils;
-import android.database.Cursor;
-import android.net.Uri;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Provides methods to record events and submit events to Pinpoint.
@@ -399,11 +408,16 @@ public class EventRecorder {
     }
 
     private void processEndpointResponse(EndpointProfile endpoint, PutEventsResult resultResponse) {
-        if(resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getStatusCode() == 202) {
+        final EndpointItemResponse endpointItemResponse = resultResponse
+                .getEventsResponse()
+                .getResults()
+                .get(endpoint.getEndpointId())
+                .getEndpointItemResponse();
+        if(202 == endpointItemResponse.getStatusCode()) {
             log.info("EndpointProfile updated successfully.");
         } else {
             log.error("AmazonServiceException occurred during endpoint update: " +
-                    resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getMessage());
+                    endpointItemResponse.getMessage());
         }
     }
 
@@ -414,9 +428,12 @@ public class EventRecorder {
         for(int i = 0; i < eventArray.length(); i++) {
             try {
                 eventId = eventArray.getJSONObject(i).getString(EVENT_ID);
-                responseMessage = resultResponse.getResults()
+                responseMessage = resultResponse
+                        .getEventsResponse()
+                        .getResults()
                         .get(endpointProfile.getEndpointId())
-                        .getEventsItemResponse().get(eventId);
+                        .getEventsItemResponse()
+                        .get(eventId);
                 if (responseMessage.getMessage().equalsIgnoreCase("Accepted")) {
                     successfulEventIds.add(eventId);
                     log.info(String.format("Successful submit event with event id %s", eventId));
@@ -438,10 +455,9 @@ public class EventRecorder {
     }
 
     private boolean isRetryable(String responseCode) {
-        if (responseCode.equalsIgnoreCase("ValidationException")
-                || responseCode.equalsIgnoreCase("SerializationException")
-                || responseCode.equalsIgnoreCase("BadRequestException")
-                ) {
+        if (responseCode.equalsIgnoreCase("ValidationException") ||
+            responseCode.equalsIgnoreCase("SerializationException") ||
+            responseCode.equalsIgnoreCase("BadRequestException")) {
             return false;
         }
         return true;
@@ -450,18 +466,20 @@ public class EventRecorder {
     /**
      * @param events
      * @param endpointProfile
-     * @return
+     *
+     * @return the request to put event
      */
-    private PutEventsRequest createRecordEventsRequest(final JSONArray events, final EndpointProfile endpointProfile) {
+    private PutEventsRequest createRecordEventsRequest(final JSONArray events,
+                                                       final EndpointProfile endpointProfile) {
 
         final PutEventsRequest putRequest = new PutEventsRequest().withApplicationId(endpointProfile.getApplicationId());
         final String endpointId = endpointProfile.getEndpointId();
         final Map<String, EventsBatch> eventsBatchMap = new HashMap<String, EventsBatch>();
         final EventsBatch eventsBatch = new EventsBatch();
-        final EndpointRequest endpoint = new EndpointRequest();
+        final PublicEndpoint endpoint = new PublicEndpoint();
         final Map<String,Event> eventsMap = new HashMap<String, Event>();
 
-        //build endpoint payload
+        // build endpoint payload
         buildEndpointPayload(endpointProfile, endpoint);
 
         for (int i = 0; i < events.length(); i++) {
@@ -476,27 +494,36 @@ public class EventRecorder {
                 continue;
             }
 
-            //build event payload
+            // build event payload
             final Event event = new Event();
             buildEventPayload(internalEvent, event);
             eventsMap.put(internalEvent.getEventId(), event);
         }
 
-
-        //build request payload, could also build with only endpoint payload
+        // build request payload, could also build with only endpoint payload
         buildRequestPayload(putRequest, endpointId, eventsBatchMap, eventsBatch, endpoint, eventsMap);
 
         return putRequest;
     }
 
-    private void buildRequestPayload(PutEventsRequest putRequest, String endpointId, Map<String, EventsBatch> eventsBatchMap, EventsBatch eventsBatch, EndpointRequest endpoint, Map<String,Event> eventsMap) {
-        eventsBatch.withEndpoint(endpoint)
-                            .withEvents(eventsMap);
+    private void buildRequestPayload(PutEventsRequest putRequest, 
+                                     String endpointId, 
+                                     Map<String, EventsBatch> eventsBatchMap, 
+                                     EventsBatch eventsBatch, 
+                                     PublicEndpoint endpoint, 
+                                     Map<String,Event> eventsMap) {
+        eventsBatch
+            .withEndpoint(endpoint)
+            .withEvents(eventsMap);
         eventsBatchMap.put(endpointId, eventsBatch);
-        putRequest.withBatchItem(eventsBatchMap);
+        
+        final EventsRequest eventsRequest = new EventsRequest();
+        eventsRequest.withBatchItem(eventsBatchMap);
+        putRequest.withEventsRequest(eventsRequest);
     }
 
-    private void buildEndpointPayload(EndpointProfile endpointProfile, EndpointRequest endpoint) {
+    private void buildEndpointPayload(EndpointProfile endpointProfile, 
+                                      PublicEndpoint endpoint) {
         final EndpointDemographic demographic = new EndpointDemographic()
                 .withAppVersion(endpointProfile.getDemographic().getAppVersion())
                 .withLocale(endpointProfile.getDemographic().getLocale().toString())
@@ -534,24 +561,30 @@ public class EventRecorder {
                 .withUser(user);
     }
 
-    private void buildEventPayload(AnalyticsEvent internalEvent, Event event) {
+    void buildEventPayload(AnalyticsEvent internalEvent,
+                           Event event) {
         final Session session = new Session();
 
         session.withId(internalEvent.getSession().getSessionId());
         session.withStartTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStart())));
         if (internalEvent.getSession().getSessionStop() != null &&
-                internalEvent.getSession().getSessionStop() != 0L) {
+            internalEvent.getSession().getSessionStop() != 0L) {
             session.withStopTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStop())));
         }
-        if (internalEvent.getSession().getSessionDuration() != null && internalEvent.getSession().getSessionDuration() != 0L) {
-            session.withDuration(internalEvent.getSession().getSessionDuration());
+        if (internalEvent.getSession().getSessionDuration() != null &&
+            internalEvent.getSession().getSessionDuration() != 0L) {
+            session.withDuration(internalEvent.getSession().getSessionDuration().intValue());
         }
 
-        event.withEventType(internalEvent.getEventType())
+        final AndroidAppDetails appDetails = internalEvent.getAppDetails();
+        event.withAppPackageName(appDetails.packageName())
+                .withAppTitle(appDetails.getAppTitle())
+                .withAppVersionCode(appDetails.versionCode())
                 .withClientSdkVersion(internalEvent.getSdkVersion())
-                .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())))
-                .withAttributes(internalEvent.getAllAttributes())
+                .withEventType(internalEvent.getEventType())
                 .withMetrics(internalEvent.getAllMetrics())
-                .withSession(session);
+                .withSdkName(internalEvent.getSdkName())
+                .withSession(session)
+                .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())));
     }
 }

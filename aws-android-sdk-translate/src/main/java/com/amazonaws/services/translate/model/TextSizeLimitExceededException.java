@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The size of the input text exceeds the length constraint for the
- * <code>Text</code> field. Try again with a shorter text.
+ * The size of the text you submitted exceeds the size limit. Reduce the size of
+ * the text or use a smaller document and then retry your request.
  * </p>
  */
 public class TextSizeLimitExceededException extends AmazonServiceException {

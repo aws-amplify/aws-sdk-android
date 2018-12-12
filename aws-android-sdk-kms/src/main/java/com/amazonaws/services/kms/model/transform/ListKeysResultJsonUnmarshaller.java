@@ -35,13 +35,15 @@ public class ListKeysResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Keys")) {
                 listKeysResult.setKeys(new ListUnmarshaller<KeyListEntry>(
-                        KeyListEntryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeyListEntryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextMarker")) {
-                listKeysResult.setNextMarker(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listKeysResult.setNextMarker(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Truncated")) {
-                listKeysResult.setTruncated(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listKeysResult.setTruncated(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

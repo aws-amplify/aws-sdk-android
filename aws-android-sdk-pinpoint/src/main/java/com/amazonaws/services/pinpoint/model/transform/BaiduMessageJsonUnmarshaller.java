@@ -36,42 +36,52 @@ class BaiduMessageJsonUnmarshaller implements Unmarshaller<BaiduMessage, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Action")) {
-                baiduMessage.setAction(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setAction(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Body")) {
-                baiduMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setBody(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Data")) {
                 baiduMessage.setData(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("IconReference")) {
-                baiduMessage.setIconReference(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduMessage.setIconReference(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ImageIconUrl")) {
-                baiduMessage.setImageIconUrl(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduMessage.setImageIconUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ImageUrl")) {
-                baiduMessage.setImageUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setImageUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RawContent")) {
-                baiduMessage
-                        .setRawContent(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setRawContent(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SilentPush")) {
                 baiduMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SmallImageIconUrl")) {
-                baiduMessage.setSmallImageIconUrl(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduMessage.setSmallImageIconUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Sound")) {
-                baiduMessage.setSound(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setSound(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 baiduMessage.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
-                        .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                        )
+                                .unmarshall(context));
             } else if (name.equals("TimeToLive")) {
                 baiduMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Title")) {
-                baiduMessage.setTitle(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setTitle(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Url")) {
-                baiduMessage.setUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduMessage.setUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

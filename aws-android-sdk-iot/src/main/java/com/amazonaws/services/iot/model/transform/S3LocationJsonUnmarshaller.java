@@ -36,11 +36,14 @@ class S3LocationJsonUnmarshaller implements Unmarshaller<S3Location, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("bucket")) {
-                s3Location.setBucket(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                s3Location.setBucket(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("key")) {
-                s3Location.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                s3Location.setKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("version")) {
-                s3Location.setVersion(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                s3Location.setVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

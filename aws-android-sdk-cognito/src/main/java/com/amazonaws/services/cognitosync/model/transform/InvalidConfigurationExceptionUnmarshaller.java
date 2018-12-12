@@ -17,12 +17,13 @@ package com.amazonaws.services.cognitosync.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.cognitosync.model.InvalidConfigurationException;
 
+/**
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
+ */
+@Deprecated
 public class InvalidConfigurationExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     public InvalidConfigurationExceptionUnmarshaller() {
@@ -41,33 +42,5 @@ public class InvalidConfigurationExceptionUnmarshaller extends JsonErrorUnmarsha
         e.setErrorCode("InvalidConfigurationException");
 
         return e;
-    }
-
-    public InvalidConfigurationException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        InvalidConfigurationException invalidConfigurationException = new InvalidConfigurationException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                invalidConfigurationException.setErrorMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return invalidConfigurationException;
     }
 }

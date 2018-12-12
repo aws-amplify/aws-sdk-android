@@ -44,10 +44,12 @@ class ThingTypeDefinitionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("thingTypeProperties")) {
                 thingTypeDefinition.setThingTypeProperties(ThingTypePropertiesJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingTypeMetadata")) {
                 thingTypeDefinition.setThingTypeMetadata(ThingTypeMetadataJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

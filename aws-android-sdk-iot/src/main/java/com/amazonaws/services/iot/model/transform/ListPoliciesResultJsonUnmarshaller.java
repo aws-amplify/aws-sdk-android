@@ -35,10 +35,12 @@ public class ListPoliciesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("policies")) {
                 listPoliciesResult.setPolicies(new ListUnmarshaller<Policy>(PolicyJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextMarker")) {
-                listPoliciesResult.setNextMarker(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listPoliciesResult.setNextMarker(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -34,14 +34,14 @@ public class PutRecordResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ShardId")) {
-                putRecordResult
-                        .setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                putRecordResult.setShardId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SequenceNumber")) {
-                putRecordResult.setSequenceNumber(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                putRecordResult.setSequenceNumber(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EncryptionType")) {
-                putRecordResult.setEncryptionType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                putRecordResult.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

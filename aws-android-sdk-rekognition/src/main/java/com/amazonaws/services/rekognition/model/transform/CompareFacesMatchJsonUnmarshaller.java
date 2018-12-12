@@ -37,11 +37,11 @@ class CompareFacesMatchJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Similarity")) {
-                compareFacesMatch.setSimilarity(FloatJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                compareFacesMatch.setSimilarity(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Face")) {
-                compareFacesMatch.setFace(ComparedFaceJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                compareFacesMatch.setFace(ComparedFaceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

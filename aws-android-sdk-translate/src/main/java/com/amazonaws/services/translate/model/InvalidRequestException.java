@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request is invalid.
+ * The request that you made is invalid. Check your request to determine why
+ * it's invalid and then retry the request.
  * </p>
  */
 public class InvalidRequestException extends AmazonServiceException {

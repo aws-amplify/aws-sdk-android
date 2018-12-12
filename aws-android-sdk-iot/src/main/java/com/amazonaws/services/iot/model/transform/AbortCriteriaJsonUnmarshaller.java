@@ -36,10 +36,11 @@ class AbortCriteriaJsonUnmarshaller implements Unmarshaller<AbortCriteria, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("failureType")) {
-                abortCriteria.setFailureType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                abortCriteria.setFailureType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("action")) {
-                abortCriteria.setAction(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                abortCriteria.setAction(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thresholdPercentage")) {
                 abortCriteria.setThresholdPercentage(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -53,6 +53,11 @@ class DirectMessageConfigurationJsonMarshaller {
             DefaultPushNotificationMessageJsonMarshaller.getInstance().marshall(
                     defaultPushNotificationMessage, jsonWriter);
         }
+        if (directMessageConfiguration.getEmailMessage() != null) {
+            EmailMessage emailMessage = directMessageConfiguration.getEmailMessage();
+            jsonWriter.name("EmailMessage");
+            EmailMessageJsonMarshaller.getInstance().marshall(emailMessage, jsonWriter);
+        }
         if (directMessageConfiguration.getGCMMessage() != null) {
             GCMMessage gCMMessage = directMessageConfiguration.getGCMMessage();
             jsonWriter.name("GCMMessage");
@@ -62,6 +67,11 @@ class DirectMessageConfigurationJsonMarshaller {
             SMSMessage sMSMessage = directMessageConfiguration.getSMSMessage();
             jsonWriter.name("SMSMessage");
             SMSMessageJsonMarshaller.getInstance().marshall(sMSMessage, jsonWriter);
+        }
+        if (directMessageConfiguration.getVoiceMessage() != null) {
+            VoiceMessage voiceMessage = directMessageConfiguration.getVoiceMessage();
+            jsonWriter.name("VoiceMessage");
+            VoiceMessageJsonMarshaller.getInstance().marshall(voiceMessage, jsonWriter);
         }
         jsonWriter.endObject();
     }

@@ -41,10 +41,13 @@ class NonCompliantResourceJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("resourceIdentifier")) {
                 nonCompliantResource.setResourceIdentifier(ResourceIdentifierJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("additionalInfo")) {
                 nonCompliantResource.setAdditionalInfo(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

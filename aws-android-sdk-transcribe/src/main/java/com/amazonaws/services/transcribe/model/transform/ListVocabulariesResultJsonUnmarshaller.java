@@ -34,14 +34,16 @@ public class ListVocabulariesResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Status")) {
-                listVocabulariesResult.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listVocabulariesResult.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listVocabulariesResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Vocabularies")) {
                 listVocabulariesResult.setVocabularies(new ListUnmarshaller<VocabularyInfo>(
-                        VocabularyInfoJsonUnmarshaller.getInstance()).unmarshall(context));
+                        VocabularyInfoJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

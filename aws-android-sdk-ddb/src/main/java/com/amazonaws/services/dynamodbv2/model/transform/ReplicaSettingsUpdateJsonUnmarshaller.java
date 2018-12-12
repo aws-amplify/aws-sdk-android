@@ -41,16 +41,20 @@ class ReplicaSettingsUpdateJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("ReplicaProvisionedReadCapacityUnits")) {
                 replicaSettingsUpdate.setReplicaProvisionedReadCapacityUnits(LongJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate")) {
                 replicaSettingsUpdate
                         .setReplicaProvisionedReadCapacityAutoScalingSettingsUpdate(AutoScalingSettingsUpdateJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ReplicaGlobalSecondaryIndexSettingsUpdate")) {
                 replicaSettingsUpdate
                         .setReplicaGlobalSecondaryIndexSettingsUpdate(new ListUnmarshaller<ReplicaGlobalSecondaryIndexSettingsUpdate>(
                                 ReplicaGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller
-                                        .getInstance()).unmarshall(context));
+                                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

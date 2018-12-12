@@ -36,11 +36,14 @@ class SqsActionJsonUnmarshaller implements Unmarshaller<SqsAction, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                sqsAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                sqsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("queueUrl")) {
-                sqsAction.setQueueUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                sqsAction.setQueueUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("useBase64")) {
-                sqsAction.setUseBase64(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                sqsAction.setUseBase64(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

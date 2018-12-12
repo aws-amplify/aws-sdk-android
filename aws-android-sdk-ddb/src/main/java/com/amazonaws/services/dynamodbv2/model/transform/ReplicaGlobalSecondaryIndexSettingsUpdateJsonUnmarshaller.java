@@ -39,7 +39,8 @@ class ReplicaGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("IndexName")) {
                 replicaGlobalSecondaryIndexSettingsUpdate.setIndexName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ProvisionedReadCapacityUnits")) {
                 replicaGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedReadCapacityUnits(LongJsonUnmarshaller.getInstance()
@@ -47,7 +48,8 @@ class ReplicaGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
             } else if (name.equals("ProvisionedReadCapacityAutoScalingSettingsUpdate")) {
                 replicaGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedReadCapacityAutoScalingSettingsUpdate(AutoScalingSettingsUpdateJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

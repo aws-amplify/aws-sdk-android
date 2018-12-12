@@ -26,6 +26,11 @@ class EmailChannelRequestJsonMarshaller {
     public void marshall(EmailChannelRequest emailChannelRequest, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (emailChannelRequest.getConfigurationSet() != null) {
+            String configurationSet = emailChannelRequest.getConfigurationSet();
+            jsonWriter.name("ConfigurationSet");
+            jsonWriter.value(configurationSet);
+        }
         if (emailChannelRequest.getEnabled() != null) {
             Boolean enabled = emailChannelRequest.getEnabled();
             jsonWriter.name("Enabled");

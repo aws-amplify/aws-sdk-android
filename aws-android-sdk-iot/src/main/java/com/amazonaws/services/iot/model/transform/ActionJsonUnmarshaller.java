@@ -36,25 +36,32 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("dynamoDB")) {
-                action.setDynamoDB(DynamoDBActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setDynamoDB(DynamoDBActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("dynamoDBv2")) {
-                action.setDynamoDBv2(DynamoDBv2ActionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                action.setDynamoDBv2(DynamoDBv2ActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lambda")) {
-                action.setLambda(LambdaActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setLambda(LambdaActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("sns")) {
-                action.setSns(SnsActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setSns(SnsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("sqs")) {
-                action.setSqs(SqsActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setSqs(SqsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("kinesis")) {
-                action.setKinesis(KinesisActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setKinesis(KinesisActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("republish")) {
-                action.setRepublish(RepublishActionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                action.setRepublish(RepublishActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("s3")) {
-                action.setS3(S3ActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setS3(S3ActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("firehose")) {
-                action.setFirehose(FirehoseActionJsonUnmarshaller.getInstance().unmarshall(context));
+                action.setFirehose(FirehoseActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("cloudwatchMetric")) {
                 action.setCloudwatchMetric(CloudwatchMetricActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -65,14 +72,14 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
                 action.setElasticsearch(ElasticsearchActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("salesforce")) {
-                action.setSalesforce(SalesforceActionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                action.setSalesforce(SalesforceActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("iotAnalytics")) {
-                action.setIotAnalytics(IotAnalyticsActionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                action.setIotAnalytics(IotAnalyticsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("iotEvents")) {
-                action.setIotEvents(IotEventsActionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                action.setIotEvents(IotEventsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("stepFunctions")) {
                 action.setStepFunctions(StepFunctionsActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

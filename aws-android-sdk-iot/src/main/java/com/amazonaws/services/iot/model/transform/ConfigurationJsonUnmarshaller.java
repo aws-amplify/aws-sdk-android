@@ -36,7 +36,8 @@ class ConfigurationJsonUnmarshaller implements Unmarshaller<Configuration, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Enabled")) {
-                configuration.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                configuration.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

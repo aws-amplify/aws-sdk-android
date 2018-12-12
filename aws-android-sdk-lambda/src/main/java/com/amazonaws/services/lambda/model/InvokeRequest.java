@@ -62,7 +62,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class InvokeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the lambda function.
+     * The name of the Lambda function.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -188,7 +188,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the lambda function.
+     * The name of the Lambda function.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -224,7 +224,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @return <p>
-     *         The name of the lambda function.
+     *         The name of the Lambda function.
      *         </p>
      *         <p class="title">
      *         <b>Name formats</b>
@@ -261,7 +261,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the lambda function.
+     * The name of the Lambda function.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -297,7 +297,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the lambda function.
+     *            The name of the Lambda function.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>
@@ -334,7 +334,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the lambda function.
+     * The name of the Lambda function.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -373,7 +373,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the lambda function.
+     *            The name of the Lambda function.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>

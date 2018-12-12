@@ -40,7 +40,8 @@ class EntityRecognizerInputDataConfigJsonUnmarshaller implements
             if (name.equals("EntityTypes")) {
                 entityRecognizerInputDataConfig
                         .setEntityTypes(new ListUnmarshaller<EntityTypesListItem>(
-                                EntityTypesListItemJsonUnmarshaller.getInstance())
+                                EntityTypesListItemJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("Documents")) {
                 entityRecognizerInputDataConfig

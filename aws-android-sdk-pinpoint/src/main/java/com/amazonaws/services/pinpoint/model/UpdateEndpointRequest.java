@@ -34,7 +34,7 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     private String endpointId;
 
     /**
-     * Endpoint update request
+     * An endpoint update request.
      */
     private EndpointRequest endpointRequest;
 
@@ -105,30 +105,30 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Endpoint update request
+     * An endpoint update request.
      *
-     * @return Endpoint update request
+     * @return An endpoint update request.
      */
     public EndpointRequest getEndpointRequest() {
         return endpointRequest;
     }
 
     /**
-     * Endpoint update request
+     * An endpoint update request.
      *
-     * @param endpointRequest Endpoint update request
+     * @param endpointRequest An endpoint update request.
      */
     public void setEndpointRequest(EndpointRequest endpointRequest) {
         this.endpointRequest = endpointRequest;
     }
 
     /**
-     * Endpoint update request
+     * An endpoint update request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointRequest Endpoint update request
+     * @param endpointRequest An endpoint update request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -37,11 +37,14 @@ class DefaultMessageJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Body")) {
-                defaultMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                defaultMessage.setBody(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 defaultMessage.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
-                        .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

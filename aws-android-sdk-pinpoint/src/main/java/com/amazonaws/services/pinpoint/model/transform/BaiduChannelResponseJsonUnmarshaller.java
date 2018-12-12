@@ -43,17 +43,17 @@ class BaiduChannelResponseJsonUnmarshaller implements
                 baiduChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Credential")) {
-                baiduChannelResponse.setCredential(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduChannelResponse.setCredential(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                baiduChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("HasCredential")) {
                 baiduChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                baiduChannelResponse
-                        .setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                baiduChannelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
                 baiduChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -64,11 +64,11 @@ class BaiduChannelResponseJsonUnmarshaller implements
                 baiduChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                baiduChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Version")) {
-                baiduChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                baiduChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

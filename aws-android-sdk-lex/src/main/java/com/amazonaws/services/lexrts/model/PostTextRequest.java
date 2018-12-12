@@ -132,26 +132,43 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The ID of the client application user. The application developer decides
-     * the user IDs. At runtime, each request must include the user ID.
-     * Typically, each of your application users should have a unique ID. Note
-     * the following considerations:
+     * The ID of the client application user. Amazon Lex uses this to identify a
+     * user's conversation with your bot. At runtime, each request must contain
+     * the <code>userID</code> field.
+     * </p>
+     * <p>
+     * To decide the user ID to use for your application, consider the following
+     * factors.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * If you want a user to start a conversation on one device and continue the
-     * conversation on another device, you might choose a user-specific
-     * identifier, such as a login or Amazon Cognito user ID (assuming your
-     * application is using Amazon Cognito).
+     * The <code>userID</code> field must not contain any personally
+     * identifiable information of the user, for example, name, personal
+     * identification numbers, or other end user personal information.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you want a user to start a conversation on one device and continue on
+     * another device, use a user-specific identifier.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you want the same user to be able to have two independent
-     * conversations on two different devices, you might choose a
-     * device-specific identifier, such as device ID, or some globally unique
+     * conversations on two different devices, choose a device-specific
      * identifier.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A user can't have two independent conversations with two different
+     * versions of the same bot. For example, a user can't have a conversation
+     * with the PROD and BETA versions of the same bot. If you anticipate that a
+     * user will need to have conversation with two different versions, for
+     * example, while testing, include the bot alias in the user ID to separate
+     * the two conversations.
      * </p>
      * </li>
      * </ul>
@@ -164,85 +181,34 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * By using session attributes, a client application can pass contextual
-     * information in the request to Amazon Lex For example,
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * In Getting Started Exercise 1, the example bot uses the
-     * <code>price</code> session attribute to maintain the price of the flowers
-     * ordered (for example, "Price":25). The code hook (the Lambda function)
-     * sets this attribute based on the type of flowers ordered. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     * >Review the Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * In the BookTrip bot exercise, the bot uses the
-     * <code>currentReservation</code> session attribute to maintain slot data
-     * during the in-progress conversation to book a hotel or book a car. For
-     * more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     * >Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * You might use the session attributes (key, value pairs) to track the
-     * requestID of user requests.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Amazon Lex simply passes these session attributes to the Lambda functions
-     * configured for the intent.
+     * Application-specific information passed between Amazon Lex and a client
+     * application.
      * </p>
      * <p>
-     * In your Lambda function, you can also use the session attributes for
-     * initialization and customization (prompts and response cards). Some
-     * examples are:
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * >Setting Session Attributes</a>.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Initialization - In a pizza ordering bot, if you can pass the user
-     * location as a session attribute (for example,
-     * <code>"Location" : "111 Maple street"</code>), then your Lambda function
-     * might use this information to determine the closest pizzeria to place the
-     * order (perhaps to set the storeAddress slot value).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Personalize prompts - For example, you can configure prompts to refer to
-     * the user name. (For example,
-     * "Hey [FirstName], what toppings would you like?"). You can pass the user
-     * name as a session attribute (<code>"FirstName" : "Joe"</code>) so that
-     * Amazon Lex can substitute the placeholder to provide a personalize prompt
-     * to the user ("Hey Joe, what toppings would you like?").
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * Amazon Lex does not persist session attributes.
-     * </p>
-     * <p>
-     * If you configure a code hook for the intent, Amazon Lex passes the
-     * incoming session attributes to the Lambda function. If you want Amazon
-     * Lex to return these session attributes back to the client, the Lambda
-     * function must return them.
-     * </p>
-     * <p>
-     * If there is no code hook configured for the intent, Amazon Lex simply
-     * returns the session attributes back to the client application.
-     * </p>
-     * </note>
      */
     private java.util.Map<String, String> sessionAttributes;
+
+    /**
+     * <p>
+     * Request-specific information passed between Amazon Lex and a client
+     * application.
+     * </p>
+     * <p>
+     * The namespace <code>x-amz-lex:</code> is reserved for special attributes.
+     * Don't create any request attributes with the prefix
+     * <code>x-amz-lex:</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * >Setting Request Attributes</a>.
+     * </p>
+     */
+    private java.util.Map<String, String> requestAttributes;
 
     /**
      * <p>
@@ -346,26 +312,43 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The ID of the client application user. The application developer decides
-     * the user IDs. At runtime, each request must include the user ID.
-     * Typically, each of your application users should have a unique ID. Note
-     * the following considerations:
+     * The ID of the client application user. Amazon Lex uses this to identify a
+     * user's conversation with your bot. At runtime, each request must contain
+     * the <code>userID</code> field.
+     * </p>
+     * <p>
+     * To decide the user ID to use for your application, consider the following
+     * factors.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * If you want a user to start a conversation on one device and continue the
-     * conversation on another device, you might choose a user-specific
-     * identifier, such as a login or Amazon Cognito user ID (assuming your
-     * application is using Amazon Cognito).
+     * The <code>userID</code> field must not contain any personally
+     * identifiable information of the user, for example, name, personal
+     * identification numbers, or other end user personal information.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you want a user to start a conversation on one device and continue on
+     * another device, use a user-specific identifier.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you want the same user to be able to have two independent
-     * conversations on two different devices, you might choose a
-     * device-specific identifier, such as device ID, or some globally unique
+     * conversations on two different devices, choose a device-specific
      * identifier.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A user can't have two independent conversations with two different
+     * versions of the same bot. For example, a user can't have a conversation
+     * with the PROD and BETA versions of the same bot. If you anticipate that a
+     * user will need to have conversation with two different versions, for
+     * example, while testing, include the bot alias in the user ID to separate
+     * the two conversations.
      * </p>
      * </li>
      * </ul>
@@ -375,26 +358,43 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * <b>Pattern: </b>[0-9a-zA-Z._:-]+<br/>
      *
      * @return <p>
-     *         The ID of the client application user. The application developer
-     *         decides the user IDs. At runtime, each request must include the
-     *         user ID. Typically, each of your application users should have a
-     *         unique ID. Note the following considerations:
+     *         The ID of the client application user. Amazon Lex uses this to
+     *         identify a user's conversation with your bot. At runtime, each
+     *         request must contain the <code>userID</code> field.
+     *         </p>
+     *         <p>
+     *         To decide the user ID to use for your application, consider the
+     *         following factors.
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
+     *         The <code>userID</code> field must not contain any personally
+     *         identifiable information of the user, for example, name, personal
+     *         identification numbers, or other end user personal information.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
      *         If you want a user to start a conversation on one device and
-     *         continue the conversation on another device, you might choose a
-     *         user-specific identifier, such as a login or Amazon Cognito user
-     *         ID (assuming your application is using Amazon Cognito).
+     *         continue on another device, use a user-specific identifier.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         If you want the same user to be able to have two independent
-     *         conversations on two different devices, you might choose a
-     *         device-specific identifier, such as device ID, or some globally
-     *         unique identifier.
+     *         conversations on two different devices, choose a device-specific
+     *         identifier.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         A user can't have two independent conversations with two
+     *         different versions of the same bot. For example, a user can't
+     *         have a conversation with the PROD and BETA versions of the same
+     *         bot. If you anticipate that a user will need to have conversation
+     *         with two different versions, for example, while testing, include
+     *         the bot alias in the user ID to separate the two conversations.
      *         </p>
      *         </li>
      *         </ul>
@@ -405,26 +405,43 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The ID of the client application user. The application developer decides
-     * the user IDs. At runtime, each request must include the user ID.
-     * Typically, each of your application users should have a unique ID. Note
-     * the following considerations:
+     * The ID of the client application user. Amazon Lex uses this to identify a
+     * user's conversation with your bot. At runtime, each request must contain
+     * the <code>userID</code> field.
+     * </p>
+     * <p>
+     * To decide the user ID to use for your application, consider the following
+     * factors.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * If you want a user to start a conversation on one device and continue the
-     * conversation on another device, you might choose a user-specific
-     * identifier, such as a login or Amazon Cognito user ID (assuming your
-     * application is using Amazon Cognito).
+     * The <code>userID</code> field must not contain any personally
+     * identifiable information of the user, for example, name, personal
+     * identification numbers, or other end user personal information.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you want a user to start a conversation on one device and continue on
+     * another device, use a user-specific identifier.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you want the same user to be able to have two independent
-     * conversations on two different devices, you might choose a
-     * device-specific identifier, such as device ID, or some globally unique
+     * conversations on two different devices, choose a device-specific
      * identifier.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A user can't have two independent conversations with two different
+     * versions of the same bot. For example, a user can't have a conversation
+     * with the PROD and BETA versions of the same bot. If you anticipate that a
+     * user will need to have conversation with two different versions, for
+     * example, while testing, include the bot alias in the user ID to separate
+     * the two conversations.
      * </p>
      * </li>
      * </ul>
@@ -434,26 +451,45 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * <b>Pattern: </b>[0-9a-zA-Z._:-]+<br/>
      *
      * @param userId <p>
-     *            The ID of the client application user. The application
-     *            developer decides the user IDs. At runtime, each request must
-     *            include the user ID. Typically, each of your application users
-     *            should have a unique ID. Note the following considerations:
+     *            The ID of the client application user. Amazon Lex uses this to
+     *            identify a user's conversation with your bot. At runtime, each
+     *            request must contain the <code>userID</code> field.
+     *            </p>
+     *            <p>
+     *            To decide the user ID to use for your application, consider
+     *            the following factors.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
+     *            The <code>userID</code> field must not contain any personally
+     *            identifiable information of the user, for example, name,
+     *            personal identification numbers, or other end user personal
+     *            information.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            If you want a user to start a conversation on one device and
-     *            continue the conversation on another device, you might choose
-     *            a user-specific identifier, such as a login or Amazon Cognito
-     *            user ID (assuming your application is using Amazon Cognito).
+     *            continue on another device, use a user-specific identifier.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            If you want the same user to be able to have two independent
-     *            conversations on two different devices, you might choose a
-     *            device-specific identifier, such as device ID, or some
-     *            globally unique identifier.
+     *            conversations on two different devices, choose a
+     *            device-specific identifier.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            A user can't have two independent conversations with two
+     *            different versions of the same bot. For example, a user can't
+     *            have a conversation with the PROD and BETA versions of the
+     *            same bot. If you anticipate that a user will need to have
+     *            conversation with two different versions, for example, while
+     *            testing, include the bot alias in the user ID to separate the
+     *            two conversations.
      *            </p>
      *            </li>
      *            </ul>
@@ -464,26 +500,43 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * The ID of the client application user. The application developer decides
-     * the user IDs. At runtime, each request must include the user ID.
-     * Typically, each of your application users should have a unique ID. Note
-     * the following considerations:
+     * The ID of the client application user. Amazon Lex uses this to identify a
+     * user's conversation with your bot. At runtime, each request must contain
+     * the <code>userID</code> field.
+     * </p>
+     * <p>
+     * To decide the user ID to use for your application, consider the following
+     * factors.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * If you want a user to start a conversation on one device and continue the
-     * conversation on another device, you might choose a user-specific
-     * identifier, such as a login or Amazon Cognito user ID (assuming your
-     * application is using Amazon Cognito).
+     * The <code>userID</code> field must not contain any personally
+     * identifiable information of the user, for example, name, personal
+     * identification numbers, or other end user personal information.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you want a user to start a conversation on one device and continue on
+     * another device, use a user-specific identifier.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you want the same user to be able to have two independent
-     * conversations on two different devices, you might choose a
-     * device-specific identifier, such as device ID, or some globally unique
+     * conversations on two different devices, choose a device-specific
      * identifier.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A user can't have two independent conversations with two different
+     * versions of the same bot. For example, a user can't have a conversation
+     * with the PROD and BETA versions of the same bot. If you anticipate that a
+     * user will need to have conversation with two different versions, for
+     * example, while testing, include the bot alias in the user ID to separate
+     * the two conversations.
      * </p>
      * </li>
      * </ul>
@@ -496,26 +549,45 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * <b>Pattern: </b>[0-9a-zA-Z._:-]+<br/>
      *
      * @param userId <p>
-     *            The ID of the client application user. The application
-     *            developer decides the user IDs. At runtime, each request must
-     *            include the user ID. Typically, each of your application users
-     *            should have a unique ID. Note the following considerations:
+     *            The ID of the client application user. Amazon Lex uses this to
+     *            identify a user's conversation with your bot. At runtime, each
+     *            request must contain the <code>userID</code> field.
+     *            </p>
+     *            <p>
+     *            To decide the user ID to use for your application, consider
+     *            the following factors.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
+     *            The <code>userID</code> field must not contain any personally
+     *            identifiable information of the user, for example, name,
+     *            personal identification numbers, or other end user personal
+     *            information.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            If you want a user to start a conversation on one device and
-     *            continue the conversation on another device, you might choose
-     *            a user-specific identifier, such as a login or Amazon Cognito
-     *            user ID (assuming your application is using Amazon Cognito).
+     *            continue on another device, use a user-specific identifier.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            If you want the same user to be able to have two independent
-     *            conversations on two different devices, you might choose a
-     *            device-specific identifier, such as device ID, or some
-     *            globally unique identifier.
+     *            conversations on two different devices, choose a
+     *            device-specific identifier.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            A user can't have two independent conversations with two
+     *            different versions of the same bot. For example, a user can't
+     *            have a conversation with the PROD and BETA versions of the
+     *            same bot. If you anticipate that a user will need to have
+     *            conversation with two different versions, for example, while
+     *            testing, include the bot alias in the user ID to separate the
+     *            two conversations.
      *            </p>
      *            </li>
      *            </ul>
@@ -529,165 +601,24 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * By using session attributes, a client application can pass contextual
-     * information in the request to Amazon Lex For example,
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * In Getting Started Exercise 1, the example bot uses the
-     * <code>price</code> session attribute to maintain the price of the flowers
-     * ordered (for example, "Price":25). The code hook (the Lambda function)
-     * sets this attribute based on the type of flowers ordered. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     * >Review the Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * In the BookTrip bot exercise, the bot uses the
-     * <code>currentReservation</code> session attribute to maintain slot data
-     * during the in-progress conversation to book a hotel or book a car. For
-     * more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     * >Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * You might use the session attributes (key, value pairs) to track the
-     * requestID of user requests.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Amazon Lex simply passes these session attributes to the Lambda functions
-     * configured for the intent.
+     * Application-specific information passed between Amazon Lex and a client
+     * application.
      * </p>
      * <p>
-     * In your Lambda function, you can also use the session attributes for
-     * initialization and customization (prompts and response cards). Some
-     * examples are:
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * >Setting Session Attributes</a>.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Initialization - In a pizza ordering bot, if you can pass the user
-     * location as a session attribute (for example,
-     * <code>"Location" : "111 Maple street"</code>), then your Lambda function
-     * might use this information to determine the closest pizzeria to place the
-     * order (perhaps to set the storeAddress slot value).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Personalize prompts - For example, you can configure prompts to refer to
-     * the user name. (For example,
-     * "Hey [FirstName], what toppings would you like?"). You can pass the user
-     * name as a session attribute (<code>"FirstName" : "Joe"</code>) so that
-     * Amazon Lex can substitute the placeholder to provide a personalize prompt
-     * to the user ("Hey Joe, what toppings would you like?").
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * Amazon Lex does not persist session attributes.
-     * </p>
-     * <p>
-     * If you configure a code hook for the intent, Amazon Lex passes the
-     * incoming session attributes to the Lambda function. If you want Amazon
-     * Lex to return these session attributes back to the client, the Lambda
-     * function must return them.
-     * </p>
-     * <p>
-     * If there is no code hook configured for the intent, Amazon Lex simply
-     * returns the session attributes back to the client application.
-     * </p>
-     * </note>
      *
      * @return <p>
-     *         By using session attributes, a client application can pass
-     *         contextual information in the request to Amazon Lex For example,
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         In Getting Started Exercise 1, the example bot uses the
-     *         <code>price</code> session attribute to maintain the price of the
-     *         flowers ordered (for example, "Price":25). The code hook (the
-     *         Lambda function) sets this attribute based on the type of flowers
-     *         ordered. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     *         >Review the Details of Information Flow</a>.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         In the BookTrip bot exercise, the bot uses the
-     *         <code>currentReservation</code> session attribute to maintain
-     *         slot data during the in-progress conversation to book a hotel or
-     *         book a car. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     *         >Details of Information Flow</a>.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         You might use the session attributes (key, value pairs) to track
-     *         the requestID of user requests.
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <p>
-     *         Amazon Lex simply passes these session attributes to the Lambda
-     *         functions configured for the intent.
+     *         Application-specific information passed between Amazon Lex and a
+     *         client application.
      *         </p>
      *         <p>
-     *         In your Lambda function, you can also use the session attributes
-     *         for initialization and customization (prompts and response
-     *         cards). Some examples are:
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *         >Setting Session Attributes</a>.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Initialization - In a pizza ordering bot, if you can pass the
-     *         user location as a session attribute (for example,
-     *         <code>"Location" : "111 Maple street"</code>), then your Lambda
-     *         function might use this information to determine the closest
-     *         pizzeria to place the order (perhaps to set the storeAddress slot
-     *         value).
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Personalize prompts - For example, you can configure prompts to
-     *         refer to the user name. (For example,
-     *         "Hey [FirstName], what toppings would you like?"). You can pass
-     *         the user name as a session attribute (
-     *         <code>"FirstName" : "Joe"</code>) so that Amazon Lex can
-     *         substitute the placeholder to provide a personalize prompt to the
-     *         user ("Hey Joe, what toppings would you like?").
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <note>
-     *         <p>
-     *         Amazon Lex does not persist session attributes.
-     *         </p>
-     *         <p>
-     *         If you configure a code hook for the intent, Amazon Lex passes
-     *         the incoming session attributes to the Lambda function. If you
-     *         want Amazon Lex to return these session attributes back to the
-     *         client, the Lambda function must return them.
-     *         </p>
-     *         <p>
-     *         If there is no code hook configured for the intent, Amazon Lex
-     *         simply returns the session attributes back to the client
-     *         application.
-     *         </p>
-     *         </note>
      */
     public java.util.Map<String, String> getSessionAttributes() {
         return sessionAttributes;
@@ -695,166 +626,24 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * By using session attributes, a client application can pass contextual
-     * information in the request to Amazon Lex For example,
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * In Getting Started Exercise 1, the example bot uses the
-     * <code>price</code> session attribute to maintain the price of the flowers
-     * ordered (for example, "Price":25). The code hook (the Lambda function)
-     * sets this attribute based on the type of flowers ordered. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     * >Review the Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * In the BookTrip bot exercise, the bot uses the
-     * <code>currentReservation</code> session attribute to maintain slot data
-     * during the in-progress conversation to book a hotel or book a car. For
-     * more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     * >Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * You might use the session attributes (key, value pairs) to track the
-     * requestID of user requests.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Amazon Lex simply passes these session attributes to the Lambda functions
-     * configured for the intent.
+     * Application-specific information passed between Amazon Lex and a client
+     * application.
      * </p>
      * <p>
-     * In your Lambda function, you can also use the session attributes for
-     * initialization and customization (prompts and response cards). Some
-     * examples are:
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * >Setting Session Attributes</a>.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Initialization - In a pizza ordering bot, if you can pass the user
-     * location as a session attribute (for example,
-     * <code>"Location" : "111 Maple street"</code>), then your Lambda function
-     * might use this information to determine the closest pizzeria to place the
-     * order (perhaps to set the storeAddress slot value).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Personalize prompts - For example, you can configure prompts to refer to
-     * the user name. (For example,
-     * "Hey [FirstName], what toppings would you like?"). You can pass the user
-     * name as a session attribute (<code>"FirstName" : "Joe"</code>) so that
-     * Amazon Lex can substitute the placeholder to provide a personalize prompt
-     * to the user ("Hey Joe, what toppings would you like?").
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * Amazon Lex does not persist session attributes.
-     * </p>
-     * <p>
-     * If you configure a code hook for the intent, Amazon Lex passes the
-     * incoming session attributes to the Lambda function. If you want Amazon
-     * Lex to return these session attributes back to the client, the Lambda
-     * function must return them.
-     * </p>
-     * <p>
-     * If there is no code hook configured for the intent, Amazon Lex simply
-     * returns the session attributes back to the client application.
-     * </p>
-     * </note>
      *
      * @param sessionAttributes <p>
-     *            By using session attributes, a client application can pass
-     *            contextual information in the request to Amazon Lex For
-     *            example,
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In Getting Started Exercise 1, the example bot uses the
-     *            <code>price</code> session attribute to maintain the price of
-     *            the flowers ordered (for example, "Price":25). The code hook
-     *            (the Lambda function) sets this attribute based on the type of
-     *            flowers ordered. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     *            >Review the Details of Information Flow</a>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            In the BookTrip bot exercise, the bot uses the
-     *            <code>currentReservation</code> session attribute to maintain
-     *            slot data during the in-progress conversation to book a hotel
-     *            or book a car. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     *            >Details of Information Flow</a>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            You might use the session attributes (key, value pairs) to
-     *            track the requestID of user requests.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            Amazon Lex simply passes these session attributes to the
-     *            Lambda functions configured for the intent.
+     *            Application-specific information passed between Amazon Lex and
+     *            a client application.
      *            </p>
      *            <p>
-     *            In your Lambda function, you can also use the session
-     *            attributes for initialization and customization (prompts and
-     *            response cards). Some examples are:
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            >Setting Session Attributes</a>.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Initialization - In a pizza ordering bot, if you can pass the
-     *            user location as a session attribute (for example,
-     *            <code>"Location" : "111 Maple street"</code>), then your
-     *            Lambda function might use this information to determine the
-     *            closest pizzeria to place the order (perhaps to set the
-     *            storeAddress slot value).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Personalize prompts - For example, you can configure prompts
-     *            to refer to the user name. (For example,
-     *            "Hey [FirstName], what toppings would you like?"). You can
-     *            pass the user name as a session attribute (
-     *            <code>"FirstName" : "Joe"</code>) so that Amazon Lex can
-     *            substitute the placeholder to provide a personalize prompt to
-     *            the user ("Hey Joe, what toppings would you like?").
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <note>
-     *            <p>
-     *            Amazon Lex does not persist session attributes.
-     *            </p>
-     *            <p>
-     *            If you configure a code hook for the intent, Amazon Lex passes
-     *            the incoming session attributes to the Lambda function. If you
-     *            want Amazon Lex to return these session attributes back to the
-     *            client, the Lambda function must return them.
-     *            </p>
-     *            <p>
-     *            If there is no code hook configured for the intent, Amazon Lex
-     *            simply returns the session attributes back to the client
-     *            application.
-     *            </p>
-     *            </note>
      */
     public void setSessionAttributes(java.util.Map<String, String> sessionAttributes) {
         this.sessionAttributes = sessionAttributes;
@@ -862,169 +651,27 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * By using session attributes, a client application can pass contextual
-     * information in the request to Amazon Lex For example,
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * In Getting Started Exercise 1, the example bot uses the
-     * <code>price</code> session attribute to maintain the price of the flowers
-     * ordered (for example, "Price":25). The code hook (the Lambda function)
-     * sets this attribute based on the type of flowers ordered. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     * >Review the Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * In the BookTrip bot exercise, the bot uses the
-     * <code>currentReservation</code> session attribute to maintain slot data
-     * during the in-progress conversation to book a hotel or book a car. For
-     * more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     * >Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * You might use the session attributes (key, value pairs) to track the
-     * requestID of user requests.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Amazon Lex simply passes these session attributes to the Lambda functions
-     * configured for the intent.
+     * Application-specific information passed between Amazon Lex and a client
+     * application.
      * </p>
      * <p>
-     * In your Lambda function, you can also use the session attributes for
-     * initialization and customization (prompts and response cards). Some
-     * examples are:
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * >Setting Session Attributes</a>.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Initialization - In a pizza ordering bot, if you can pass the user
-     * location as a session attribute (for example,
-     * <code>"Location" : "111 Maple street"</code>), then your Lambda function
-     * might use this information to determine the closest pizzeria to place the
-     * order (perhaps to set the storeAddress slot value).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Personalize prompts - For example, you can configure prompts to refer to
-     * the user name. (For example,
-     * "Hey [FirstName], what toppings would you like?"). You can pass the user
-     * name as a session attribute (<code>"FirstName" : "Joe"</code>) so that
-     * Amazon Lex can substitute the placeholder to provide a personalize prompt
-     * to the user ("Hey Joe, what toppings would you like?").
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * Amazon Lex does not persist session attributes.
-     * </p>
-     * <p>
-     * If you configure a code hook for the intent, Amazon Lex passes the
-     * incoming session attributes to the Lambda function. If you want Amazon
-     * Lex to return these session attributes back to the client, the Lambda
-     * function must return them.
-     * </p>
-     * <p>
-     * If there is no code hook configured for the intent, Amazon Lex simply
-     * returns the session attributes back to the client application.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sessionAttributes <p>
-     *            By using session attributes, a client application can pass
-     *            contextual information in the request to Amazon Lex For
-     *            example,
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            In Getting Started Exercise 1, the example bot uses the
-     *            <code>price</code> session attribute to maintain the price of
-     *            the flowers ordered (for example, "Price":25). The code hook
-     *            (the Lambda function) sets this attribute based on the type of
-     *            flowers ordered. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     *            >Review the Details of Information Flow</a>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            In the BookTrip bot exercise, the bot uses the
-     *            <code>currentReservation</code> session attribute to maintain
-     *            slot data during the in-progress conversation to book a hotel
-     *            or book a car. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     *            >Details of Information Flow</a>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            You might use the session attributes (key, value pairs) to
-     *            track the requestID of user requests.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            Amazon Lex simply passes these session attributes to the
-     *            Lambda functions configured for the intent.
+     *            Application-specific information passed between Amazon Lex and
+     *            a client application.
      *            </p>
      *            <p>
-     *            In your Lambda function, you can also use the session
-     *            attributes for initialization and customization (prompts and
-     *            response cards). Some examples are:
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            >Setting Session Attributes</a>.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Initialization - In a pizza ordering bot, if you can pass the
-     *            user location as a session attribute (for example,
-     *            <code>"Location" : "111 Maple street"</code>), then your
-     *            Lambda function might use this information to determine the
-     *            closest pizzeria to place the order (perhaps to set the
-     *            storeAddress slot value).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Personalize prompts - For example, you can configure prompts
-     *            to refer to the user name. (For example,
-     *            "Hey [FirstName], what toppings would you like?"). You can
-     *            pass the user name as a session attribute (
-     *            <code>"FirstName" : "Joe"</code>) so that Amazon Lex can
-     *            substitute the placeholder to provide a personalize prompt to
-     *            the user ("Hey Joe, what toppings would you like?").
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <note>
-     *            <p>
-     *            Amazon Lex does not persist session attributes.
-     *            </p>
-     *            <p>
-     *            If you configure a code hook for the intent, Amazon Lex passes
-     *            the incoming session attributes to the Lambda function. If you
-     *            want Amazon Lex to return these session attributes back to the
-     *            client, the Lambda function must return them.
-     *            </p>
-     *            <p>
-     *            If there is no code hook configured for the intent, Amazon Lex
-     *            simply returns the session attributes back to the client
-     *            application.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1035,83 +682,14 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
-     * By using session attributes, a client application can pass contextual
-     * information in the request to Amazon Lex For example,
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * In Getting Started Exercise 1, the example bot uses the
-     * <code>price</code> session attribute to maintain the price of the flowers
-     * ordered (for example, "Price":25). The code hook (the Lambda function)
-     * sets this attribute based on the type of flowers ordered. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/gs-bp-details-after-lambda.html"
-     * >Review the Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * In the BookTrip bot exercise, the bot uses the
-     * <code>currentReservation</code> session attribute to maintain slot data
-     * during the in-progress conversation to book a hotel or book a car. For
-     * more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/book-trip-detail-flow.html"
-     * >Details of Information Flow</a>.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * You might use the session attributes (key, value pairs) to track the
-     * requestID of user requests.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * Amazon Lex simply passes these session attributes to the Lambda functions
-     * configured for the intent.
+     * Application-specific information passed between Amazon Lex and a client
+     * application.
      * </p>
      * <p>
-     * In your Lambda function, you can also use the session attributes for
-     * initialization and customization (prompts and response cards). Some
-     * examples are:
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * >Setting Session Attributes</a>.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Initialization - In a pizza ordering bot, if you can pass the user
-     * location as a session attribute (for example,
-     * <code>"Location" : "111 Maple street"</code>), then your Lambda function
-     * might use this information to determine the closest pizzeria to place the
-     * order (perhaps to set the storeAddress slot value).
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Personalize prompts - For example, you can configure prompts to refer to
-     * the user name. (For example,
-     * "Hey [FirstName], what toppings would you like?"). You can pass the user
-     * name as a session attribute (<code>"FirstName" : "Joe"</code>) so that
-     * Amazon Lex can substitute the placeholder to provide a personalize prompt
-     * to the user ("Hey Joe, what toppings would you like?").
-     * </p>
-     * </li>
-     * </ul>
-     * <note>
-     * <p>
-     * Amazon Lex does not persist session attributes.
-     * </p>
-     * <p>
-     * If you configure a code hook for the intent, Amazon Lex passes the
-     * incoming session attributes to the Lambda function. If you want Amazon
-     * Lex to return these session attributes back to the client, the Lambda
-     * function must return them.
-     * </p>
-     * <p>
-     * If there is no code hook configured for the intent, Amazon Lex simply
-     * returns the session attributes back to the client application.
-     * </p>
-     * </note>
      * <p>
      * The method adds a new key-value pair into sessionAttributes parameter,
      * and returns a reference to this object so that method calls can be
@@ -1142,6 +720,165 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      */
     public PostTextRequest clearsessionAttributesEntries() {
         this.sessionAttributes = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Request-specific information passed between Amazon Lex and a client
+     * application.
+     * </p>
+     * <p>
+     * The namespace <code>x-amz-lex:</code> is reserved for special attributes.
+     * Don't create any request attributes with the prefix
+     * <code>x-amz-lex:</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * >Setting Request Attributes</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Request-specific information passed between Amazon Lex and a
+     *         client application.
+     *         </p>
+     *         <p>
+     *         The namespace <code>x-amz-lex:</code> is reserved for special
+     *         attributes. Don't create any request attributes with the prefix
+     *         <code>x-amz-lex:</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *         >Setting Request Attributes</a>.
+     *         </p>
+     */
+    public java.util.Map<String, String> getRequestAttributes() {
+        return requestAttributes;
+    }
+
+    /**
+     * <p>
+     * Request-specific information passed between Amazon Lex and a client
+     * application.
+     * </p>
+     * <p>
+     * The namespace <code>x-amz-lex:</code> is reserved for special attributes.
+     * Don't create any request attributes with the prefix
+     * <code>x-amz-lex:</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * >Setting Request Attributes</a>.
+     * </p>
+     *
+     * @param requestAttributes <p>
+     *            Request-specific information passed between Amazon Lex and a
+     *            client application.
+     *            </p>
+     *            <p>
+     *            The namespace <code>x-amz-lex:</code> is reserved for special
+     *            attributes. Don't create any request attributes with the
+     *            prefix <code>x-amz-lex:</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            >Setting Request Attributes</a>.
+     *            </p>
+     */
+    public void setRequestAttributes(java.util.Map<String, String> requestAttributes) {
+        this.requestAttributes = requestAttributes;
+    }
+
+    /**
+     * <p>
+     * Request-specific information passed between Amazon Lex and a client
+     * application.
+     * </p>
+     * <p>
+     * The namespace <code>x-amz-lex:</code> is reserved for special attributes.
+     * Don't create any request attributes with the prefix
+     * <code>x-amz-lex:</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * >Setting Request Attributes</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param requestAttributes <p>
+     *            Request-specific information passed between Amazon Lex and a
+     *            client application.
+     *            </p>
+     *            <p>
+     *            The namespace <code>x-amz-lex:</code> is reserved for special
+     *            attributes. Don't create any request attributes with the
+     *            prefix <code>x-amz-lex:</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            >Setting Request Attributes</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextRequest withRequestAttributes(java.util.Map<String, String> requestAttributes) {
+        this.requestAttributes = requestAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Request-specific information passed between Amazon Lex and a client
+     * application.
+     * </p>
+     * <p>
+     * The namespace <code>x-amz-lex:</code> is reserved for special attributes.
+     * Don't create any request attributes with the prefix
+     * <code>x-amz-lex:</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * >Setting Request Attributes</a>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into requestAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into requestAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            requestAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextRequest addrequestAttributesEntry(String key, String value) {
+        if (null == this.requestAttributes) {
+            this.requestAttributes = new java.util.HashMap<String, String>();
+        }
+        if (this.requestAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.requestAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into requestAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public PostTextRequest clearrequestAttributesEntries() {
+        this.requestAttributes = null;
         return this;
     }
 
@@ -1220,6 +957,8 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
             sb.append("userId: " + getUserId() + ",");
         if (getSessionAttributes() != null)
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
+        if (getRequestAttributes() != null)
+            sb.append("requestAttributes: " + getRequestAttributes() + ",");
         if (getInputText() != null)
             sb.append("inputText: " + getInputText());
         sb.append("}");
@@ -1236,6 +975,8 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
         hashCode = prime * hashCode + ((getUserId() == null) ? 0 : getUserId().hashCode());
         hashCode = prime * hashCode
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestAttributes() == null) ? 0 : getRequestAttributes().hashCode());
         hashCode = prime * hashCode + ((getInputText() == null) ? 0 : getInputText().hashCode());
         return hashCode;
     }
@@ -1267,6 +1008,11 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
             return false;
         if (other.getSessionAttributes() != null
                 && other.getSessionAttributes().equals(this.getSessionAttributes()) == false)
+            return false;
+        if (other.getRequestAttributes() == null ^ this.getRequestAttributes() == null)
+            return false;
+        if (other.getRequestAttributes() != null
+                && other.getRequestAttributes().equals(this.getRequestAttributes()) == false)
             return false;
         if (other.getInputText() == null ^ this.getInputText() == null)
             return false;

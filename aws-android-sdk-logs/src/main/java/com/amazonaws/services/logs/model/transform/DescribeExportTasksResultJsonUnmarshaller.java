@@ -35,7 +35,9 @@ public class DescribeExportTasksResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("exportTasks")) {
                 describeExportTasksResult.setExportTasks(new ListUnmarshaller<ExportTask>(
-                        ExportTaskJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ExportTaskJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeExportTasksResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

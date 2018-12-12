@@ -30,6 +30,11 @@ class ScheduleJsonMarshaller {
             jsonWriter.name("EndTime");
             jsonWriter.value(endTime);
         }
+        if (schedule.getEventFilter() != null) {
+            CampaignEventFilter eventFilter = schedule.getEventFilter();
+            jsonWriter.name("EventFilter");
+            CampaignEventFilterJsonMarshaller.getInstance().marshall(eventFilter, jsonWriter);
+        }
         if (schedule.getFrequency() != null) {
             String frequency = schedule.getFrequency();
             jsonWriter.name("Frequency");

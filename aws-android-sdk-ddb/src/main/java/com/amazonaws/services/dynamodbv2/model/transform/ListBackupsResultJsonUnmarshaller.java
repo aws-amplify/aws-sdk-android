@@ -35,7 +35,9 @@ public class ListBackupsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("BackupSummaries")) {
                 listBackupsResult.setBackupSummaries(new ListUnmarshaller<BackupSummary>(
-                        BackupSummaryJsonUnmarshaller.getInstance()).unmarshall(context));
+                        BackupSummaryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("LastEvaluatedBackupArn")) {
                 listBackupsResult.setLastEvaluatedBackupArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

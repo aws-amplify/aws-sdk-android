@@ -37,9 +37,11 @@ class StreamProcessorJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Name")) {
-                streamProcessor.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamProcessor.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Status")) {
-                streamProcessor.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamProcessor.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

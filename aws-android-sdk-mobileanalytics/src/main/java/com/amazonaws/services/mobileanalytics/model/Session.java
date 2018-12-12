@@ -21,7 +21,9 @@ import java.io.Serializable;
  * <p>
  * Describes the session. Session information is required on ALL events.
  * </p>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class Session implements Serializable {
     /**
      * <p>

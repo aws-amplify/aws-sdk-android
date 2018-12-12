@@ -53,7 +53,9 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics;
  * events will be dropped. When events successfully submitted, they are removed
  * from the local filestore
  * </p>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public interface EventClient {
 
     /**

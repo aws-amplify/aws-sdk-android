@@ -35,7 +35,9 @@ public class ListStreamsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("StreamNames")) {
                 listStreamsResult.setStreamNames(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("HasMoreStreams")) {
                 listStreamsResult.setHasMoreStreams(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

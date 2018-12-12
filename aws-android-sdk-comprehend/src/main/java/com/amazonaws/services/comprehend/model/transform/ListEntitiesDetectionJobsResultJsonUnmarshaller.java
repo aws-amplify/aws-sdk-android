@@ -37,7 +37,8 @@ public class ListEntitiesDetectionJobsResultJsonUnmarshaller implements
             if (name.equals("EntitiesDetectionJobPropertiesList")) {
                 listEntitiesDetectionJobsResult
                         .setEntitiesDetectionJobPropertiesList(new ListUnmarshaller<EntitiesDetectionJobProperties>(
-                                EntitiesDetectionJobPropertiesJsonUnmarshaller.getInstance())
+                                EntitiesDetectionJobPropertiesJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listEntitiesDetectionJobsResult.setNextToken(StringJsonUnmarshaller.getInstance()

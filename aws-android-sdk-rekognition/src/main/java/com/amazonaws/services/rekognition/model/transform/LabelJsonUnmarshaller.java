@@ -36,9 +36,11 @@ class LabelJsonUnmarshaller implements Unmarshaller<Label, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Name")) {
-                label.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                label.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                label.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                label.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

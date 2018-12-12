@@ -37,7 +37,8 @@ public class ListSentimentDetectionJobsResultJsonUnmarshaller implements
             if (name.equals("SentimentDetectionJobPropertiesList")) {
                 listSentimentDetectionJobsResult
                         .setSentimentDetectionJobPropertiesList(new ListUnmarshaller<SentimentDetectionJobProperties>(
-                                SentimentDetectionJobPropertiesJsonUnmarshaller.getInstance())
+                                SentimentDetectionJobPropertiesJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listSentimentDetectionJobsResult.setNextToken(StringJsonUnmarshaller.getInstance()

@@ -41,7 +41,9 @@ class AttributeDimensionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Values")) {
                 attributeDimension.setValues(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

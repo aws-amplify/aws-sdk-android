@@ -37,13 +37,17 @@ public class ListThingRegistrationTaskReportsResultJsonUnmarshaller implements
             if (name.equals("resourceLinks")) {
                 listThingRegistrationTaskReportsResult
                         .setResourceLinks(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                                .getInstance()).unmarshall(context));
+                                .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("reportType")) {
                 listThingRegistrationTaskReportsResult.setReportType(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listThingRegistrationTaskReportsResult.setNextToken(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

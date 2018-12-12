@@ -40,8 +40,8 @@ class ImportJobResourceJsonUnmarshaller implements
                 importJobResource.setDefineSegment(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ExternalId")) {
-                importJobResource.setExternalId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResource.setExternalId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Format")) {
                 importJobResource.setFormat(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -49,17 +49,17 @@ class ImportJobResourceJsonUnmarshaller implements
                 importJobResource.setRegisterEndpoints(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("RoleArn")) {
-                importJobResource.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResource.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("S3Url")) {
-                importJobResource
-                        .setS3Url(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                importJobResource.setS3Url(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentId")) {
-                importJobResource.setSegmentId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResource.setSegmentId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentName")) {
-                importJobResource.setSegmentName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                importJobResource.setSegmentName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

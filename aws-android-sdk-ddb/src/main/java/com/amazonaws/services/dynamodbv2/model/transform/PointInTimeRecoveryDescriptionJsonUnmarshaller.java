@@ -39,13 +39,16 @@ class PointInTimeRecoveryDescriptionJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("PointInTimeRecoveryStatus")) {
                 pointInTimeRecoveryDescription.setPointInTimeRecoveryStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EarliestRestorableDateTime")) {
                 pointInTimeRecoveryDescription.setEarliestRestorableDateTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LatestRestorableDateTime")) {
                 pointInTimeRecoveryDescription.setLatestRestorableDateTime(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

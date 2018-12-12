@@ -37,8 +37,8 @@ class CloudwatchMetricActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                cloudwatchMetricAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                cloudwatchMetricAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("metricNamespace")) {
                 cloudwatchMetricAction.setMetricNamespace(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

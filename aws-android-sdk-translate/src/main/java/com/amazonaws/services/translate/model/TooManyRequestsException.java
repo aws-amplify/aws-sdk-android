@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The number of requests exceeds the limit. Resubmit your request later.
+ * You have made too many requests within a short period of time. Wait for a
+ * short time and then try your request again.
  * </p>
  */
 public class TooManyRequestsException extends AmazonServiceException {

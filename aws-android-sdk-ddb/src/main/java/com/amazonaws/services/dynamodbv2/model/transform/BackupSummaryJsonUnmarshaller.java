@@ -36,15 +36,17 @@ class BackupSummaryJsonUnmarshaller implements Unmarshaller<BackupSummary, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TableName")) {
-                backupSummary
-                        .setTableName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                backupSummary.setTableName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TableId")) {
-                backupSummary.setTableId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                backupSummary.setTableId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TableArn")) {
-                backupSummary.setTableArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                backupSummary.setTableArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BackupArn")) {
-                backupSummary
-                        .setBackupArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                backupSummary.setBackupArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BackupName")) {
                 backupSummary.setBackupName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -55,14 +57,14 @@ class BackupSummaryJsonUnmarshaller implements Unmarshaller<BackupSummary, JsonU
                 backupSummary.setBackupExpiryDateTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("BackupStatus")) {
-                backupSummary.setBackupStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                backupSummary.setBackupStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BackupType")) {
                 backupSummary.setBackupType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("BackupSizeBytes")) {
-                backupSummary.setBackupSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                backupSummary.setBackupSizeBytes(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

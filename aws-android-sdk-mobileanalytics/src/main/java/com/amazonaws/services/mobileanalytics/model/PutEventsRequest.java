@@ -25,7 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * unique custom events per app, any combination of up to 40 attributes and
  * metrics per custom event, and any number of attribute or metric values.
  * </p>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class PutEventsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>

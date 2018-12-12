@@ -46,7 +46,9 @@ class SendUsersMessageResponseJsonUnmarshaller implements
                 sendUsersMessageResponse
                         .setResult(new MapUnmarshaller<java.util.Map<String, EndpointMessageResult>>(
                                 new MapUnmarshaller<EndpointMessageResult>(
-                                        EndpointMessageResultJsonUnmarshaller.getInstance()))
+                                        EndpointMessageResultJsonUnmarshaller.getInstance()
+                                )
+                        )
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

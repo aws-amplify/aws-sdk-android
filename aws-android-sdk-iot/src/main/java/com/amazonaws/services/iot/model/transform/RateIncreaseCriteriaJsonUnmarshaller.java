@@ -38,10 +38,12 @@ class RateIncreaseCriteriaJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("numberOfNotifiedThings")) {
                 rateIncreaseCriteria.setNumberOfNotifiedThings(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("numberOfSucceededThings")) {
                 rateIncreaseCriteria.setNumberOfSucceededThings(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

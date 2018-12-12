@@ -36,9 +36,11 @@ class BeardJsonUnmarshaller implements Unmarshaller<Beard, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                beard.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                beard.setValue(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                beard.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                beard.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

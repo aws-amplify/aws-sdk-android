@@ -37,10 +37,11 @@ class DominantLanguageJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("LanguageCode")) {
-                dominantLanguage.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                dominantLanguage.setLanguageCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Score")) {
-                dominantLanguage.setScore(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                dominantLanguage.setScore(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

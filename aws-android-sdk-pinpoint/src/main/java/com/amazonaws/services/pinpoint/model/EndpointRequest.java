@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Endpoint update request
+ * An endpoint update request.
  */
 public class EndpointRequest implements Serializable {
     /**
@@ -49,7 +49,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      */
     private String channelType;
 
@@ -289,7 +289,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @return The channel type. Valid values: GCM | APNS | APNS_SANDBOX |
      *         APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
@@ -305,7 +305,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -325,7 +325,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -345,7 +345,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -365,7 +365,7 @@ public class EndpointRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |

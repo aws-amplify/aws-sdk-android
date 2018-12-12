@@ -36,11 +36,14 @@ class PoseJsonUnmarshaller implements Unmarshaller<Pose, JsonUnmarshallerContext
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Roll")) {
-                pose.setRoll(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                pose.setRoll(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Yaw")) {
-                pose.setYaw(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                pose.setYaw(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Pitch")) {
-                pose.setPitch(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                pose.setPitch(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

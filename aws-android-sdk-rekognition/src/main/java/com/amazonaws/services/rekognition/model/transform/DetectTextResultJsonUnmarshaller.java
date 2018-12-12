@@ -35,7 +35,9 @@ public class DetectTextResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TextDetections")) {
                 detectTextResult.setTextDetections(new ListUnmarshaller<TextDetection>(
-                        TextDetectionJsonUnmarshaller.getInstance()).unmarshall(context));
+                        TextDetectionJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

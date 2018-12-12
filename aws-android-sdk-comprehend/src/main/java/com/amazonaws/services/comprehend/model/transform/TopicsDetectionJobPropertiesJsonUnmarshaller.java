@@ -57,13 +57,16 @@ class TopicsDetectionJobPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 topicsDetectionJobProperties.setInputDataConfig(InputDataConfigJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("OutputDataConfig")) {
                 topicsDetectionJobProperties.setOutputDataConfig(OutputDataConfigJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NumberOfTopics")) {
                 topicsDetectionJobProperties.setNumberOfTopics(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,7 +36,9 @@ import com.amazonaws.util.json.JsonUtils;
 
 /**
  * JSON request marshaller for RegisterDeviceRequest
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class RegisterDeviceRequestMarshaller implements
         Marshaller<Request<RegisterDeviceRequest>, RegisterDeviceRequest> {
 

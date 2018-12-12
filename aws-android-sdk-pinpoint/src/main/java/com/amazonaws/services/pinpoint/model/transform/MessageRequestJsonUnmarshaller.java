@@ -38,19 +38,26 @@ class MessageRequestJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Addresses")) {
                 messageRequest.setAddresses(new MapUnmarshaller<AddressConfiguration>(
-                        AddressConfigurationJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AddressConfigurationJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Context")) {
                 messageRequest.setContext(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Endpoints")) {
                 messageRequest.setEndpoints(new MapUnmarshaller<EndpointSendConfiguration>(
-                        EndpointSendConfigurationJsonUnmarshaller.getInstance())
-                        .unmarshall(context));
+                        EndpointSendConfigurationJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("MessageConfiguration")) {
                 messageRequest.setMessageConfiguration(DirectMessageConfigurationJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TraceId")) {
-                messageRequest.setTraceId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                messageRequest.setTraceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

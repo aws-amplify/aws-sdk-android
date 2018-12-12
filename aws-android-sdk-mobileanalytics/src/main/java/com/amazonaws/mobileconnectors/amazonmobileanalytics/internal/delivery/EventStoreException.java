@@ -14,7 +14,10 @@
  */
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class EventStoreException extends RuntimeException {
     private static final long serialVersionUID = 7508256672436016788L;
 

@@ -36,20 +36,20 @@ class MessageResultJsonUnmarshaller implements Unmarshaller<MessageResult, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("DeliveryStatus")) {
-                messageResult.setDeliveryStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                messageResult.setDeliveryStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MessageId")) {
-                messageResult
-                        .setMessageId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                messageResult.setMessageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusCode")) {
-                messageResult.setStatusCode(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                messageResult.setStatusCode(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusMessage")) {
-                messageResult.setStatusMessage(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                messageResult.setStatusMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("UpdatedToken")) {
-                messageResult.setUpdatedToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                messageResult.setUpdatedToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

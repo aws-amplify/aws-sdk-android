@@ -40,47 +40,52 @@ class EndpointResponseJsonUnmarshaller implements
                 endpointResponse.setAddress(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ApplicationId")) {
-                endpointResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Attributes")) {
                 endpointResponse.setAttributes(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
-                        .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ChannelType")) {
-                endpointResponse.setChannelType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setChannelType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CohortId")) {
-                endpointResponse.setCohortId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setCohortId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                endpointResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Demographic")) {
                 endpointResponse.setDemographic(EndpointDemographicJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("EffectiveDate")) {
-                endpointResponse.setEffectiveDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setEffectiveDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EndpointStatus")) {
-                endpointResponse.setEndpointStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setEndpointStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
-                endpointResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                endpointResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Location")) {
                 endpointResponse.setLocation(EndpointLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Metrics")) {
                 endpointResponse.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("OptOut")) {
-                endpointResponse
-                        .setOptOut(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                endpointResponse.setOptOut(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RequestId")) {
-                endpointResponse.setRequestId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setRequestId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("User")) {
-                endpointResponse.setUser(EndpointUserJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointResponse.setUser(EndpointUserJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

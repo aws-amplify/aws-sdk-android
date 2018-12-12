@@ -32,7 +32,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      */
     private String channelType;
 
@@ -103,7 +103,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @return The channel type. Valid values: GCM | APNS | APNS_SANDBOX |
      *         APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
@@ -119,7 +119,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -139,7 +139,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -159,7 +159,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
@@ -179,7 +179,7 @@ public class AddressConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
-     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
+     * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
      * @param channelType The channel type. Valid values: GCM | APNS |
      *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |

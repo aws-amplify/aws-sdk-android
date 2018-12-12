@@ -19,8 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Lambda fulfilment function returned <code>DelegateDialogAction</code> to
- * Amazon Lex without changing any slot values.
+ * This exception is not used.
  * </p>
  */
 public class LoopDetectedException extends AmazonServiceException {

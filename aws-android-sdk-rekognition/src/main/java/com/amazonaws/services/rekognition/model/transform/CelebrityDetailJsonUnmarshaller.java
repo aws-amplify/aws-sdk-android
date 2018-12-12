@@ -38,14 +38,18 @@ class CelebrityDetailJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Urls")) {
                 celebrityDetail.setUrls(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Name")) {
-                celebrityDetail.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                celebrityDetail.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
-                celebrityDetail.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                celebrityDetail.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                celebrityDetail.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                celebrityDetail.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BoundingBox")) {
                 celebrityDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -41,10 +41,12 @@ class ApplicationSettingsResourceJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("CampaignHook")) {
                 applicationSettingsResource.setCampaignHook(CampaignHookJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
                 applicationSettingsResource.setLastModifiedDate(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Limits")) {
                 applicationSettingsResource.setLimits(CampaignLimitsJsonUnmarshaller.getInstance()
                         .unmarshall(context));

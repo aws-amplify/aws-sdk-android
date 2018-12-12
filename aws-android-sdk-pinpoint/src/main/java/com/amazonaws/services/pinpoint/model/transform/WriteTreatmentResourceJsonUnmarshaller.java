@@ -38,7 +38,8 @@ class WriteTreatmentResourceJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("MessageConfiguration")) {
                 writeTreatmentResource.setMessageConfiguration(MessageConfigurationJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Schedule")) {
                 writeTreatmentResource.setSchedule(ScheduleJsonUnmarshaller.getInstance()
                         .unmarshall(context));

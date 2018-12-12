@@ -40,14 +40,16 @@ class ExpectedAttributeValueJsonUnmarshaller implements
                 expectedAttributeValue.setValue(AttributeValueJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Exists")) {
-                expectedAttributeValue.setExists(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                expectedAttributeValue.setExists(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ComparisonOperator")) {
                 expectedAttributeValue.setComparisonOperator(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("AttributeValueList")) {
                 expectedAttributeValue.setAttributeValueList(new ListUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

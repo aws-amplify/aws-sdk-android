@@ -40,19 +40,20 @@ class SMSChannelResponseJsonUnmarshaller implements
                 sMSChannelResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                sMSChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                sMSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("HasCredential")) {
                 sMSChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                sMSChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                sMSChannelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
-                sMSChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
                 sMSChannelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -60,23 +61,25 @@ class SMSChannelResponseJsonUnmarshaller implements
                 sMSChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                sMSChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PromotionalMessagesPerSecond")) {
                 sMSChannelResponse.setPromotionalMessagesPerSecond(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SenderId")) {
-                sMSChannelResponse.setSenderId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setSenderId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ShortCode")) {
-                sMSChannelResponse.setShortCode(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setShortCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TransactionalMessagesPerSecond")) {
                 sMSChannelResponse.setTransactionalMessagesPerSecond(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Version")) {
-                sMSChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sMSChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

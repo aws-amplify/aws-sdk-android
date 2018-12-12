@@ -49,8 +49,8 @@ public class GetVocabularyResultJsonUnmarshaller implements
                 getVocabularyResult.setFailureReason(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DownloadUri")) {
-                getVocabularyResult.setDownloadUri(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                getVocabularyResult.setDownloadUri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

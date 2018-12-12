@@ -57,17 +57,20 @@ class KeyPhrasesDetectionJobPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 keyPhrasesDetectionJobProperties.setInputDataConfig(InputDataConfigJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("OutputDataConfig")) {
                 keyPhrasesDetectionJobProperties
                         .setOutputDataConfig(OutputDataConfigJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
             } else if (name.equals("LanguageCode")) {
                 keyPhrasesDetectionJobProperties.setLanguageCode(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 keyPhrasesDetectionJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

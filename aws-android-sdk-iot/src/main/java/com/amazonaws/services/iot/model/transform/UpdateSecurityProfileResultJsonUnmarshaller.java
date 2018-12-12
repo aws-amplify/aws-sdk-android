@@ -35,19 +35,26 @@ public class UpdateSecurityProfileResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("securityProfileName")) {
                 updateSecurityProfileResult.setSecurityProfileName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileArn")) {
                 updateSecurityProfileResult.setSecurityProfileArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileDescription")) {
                 updateSecurityProfileResult.setSecurityProfileDescription(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("behaviors")) {
                 updateSecurityProfileResult.setBehaviors(new ListUnmarshaller<Behavior>(
-                        BehaviorJsonUnmarshaller.getInstance()).unmarshall(context));
+                        BehaviorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("alertTargets")) {
                 updateSecurityProfileResult.setAlertTargets(new MapUnmarshaller<AlertTarget>(
-                        AlertTargetJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AlertTargetJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("version")) {
                 updateSecurityProfileResult.setVersion(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

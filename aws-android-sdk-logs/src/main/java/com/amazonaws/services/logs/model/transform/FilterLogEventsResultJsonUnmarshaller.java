@@ -35,15 +35,18 @@ public class FilterLogEventsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("events")) {
                 filterLogEventsResult.setEvents(new ListUnmarshaller<FilteredLogEvent>(
-                        FilteredLogEventJsonUnmarshaller.getInstance()).unmarshall(context));
+                        FilteredLogEventJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("searchedLogStreams")) {
                 filterLogEventsResult
                         .setSearchedLogStreams(new ListUnmarshaller<SearchedLogStream>(
-                                SearchedLogStreamJsonUnmarshaller.getInstance())
+                                SearchedLogStreamJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
-                filterLogEventsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                filterLogEventsResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

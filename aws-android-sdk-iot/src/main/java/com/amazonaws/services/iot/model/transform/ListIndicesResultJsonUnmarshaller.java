@@ -35,10 +35,12 @@ public class ListIndicesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("indexNames")) {
                 listIndicesResult.setIndexNames(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listIndicesResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                listIndicesResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

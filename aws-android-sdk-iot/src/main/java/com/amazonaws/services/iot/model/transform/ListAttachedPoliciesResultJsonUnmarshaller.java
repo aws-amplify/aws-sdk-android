@@ -35,7 +35,9 @@ public class ListAttachedPoliciesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("policies")) {
                 listAttachedPoliciesResult.setPolicies(new ListUnmarshaller<Policy>(
-                        PolicyJsonUnmarshaller.getInstance()).unmarshall(context));
+                        PolicyJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listAttachedPoliciesResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

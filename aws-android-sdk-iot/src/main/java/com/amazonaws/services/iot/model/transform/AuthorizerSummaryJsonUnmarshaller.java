@@ -40,8 +40,8 @@ class AuthorizerSummaryJsonUnmarshaller implements
                 authorizerSummary.setAuthorizerName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("authorizerArn")) {
-                authorizerSummary.setAuthorizerArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                authorizerSummary.setAuthorizerArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

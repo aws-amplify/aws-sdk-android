@@ -36,11 +36,13 @@ class ProjectionJsonUnmarshaller implements Unmarshaller<Projection, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ProjectionType")) {
-                projection.setProjectionType(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                projection.setProjectionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NonKeyAttributes")) {
                 projection.setNonKeyAttributes(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

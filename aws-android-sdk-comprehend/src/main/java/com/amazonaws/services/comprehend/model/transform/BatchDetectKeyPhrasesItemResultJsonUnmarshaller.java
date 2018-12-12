@@ -42,7 +42,9 @@ class BatchDetectKeyPhrasesItemResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("KeyPhrases")) {
                 batchDetectKeyPhrasesItemResult.setKeyPhrases(new ListUnmarshaller<KeyPhrase>(
-                        KeyPhraseJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeyPhraseJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

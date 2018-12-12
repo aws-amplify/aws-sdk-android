@@ -21,7 +21,9 @@ import java.io.Serializable;
  * <p>
  * Response to an UnsubscribeFromDataset request.
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class UnsubscribeFromDatasetResult implements Serializable {
     /**
      * Returns a string representation of this object; useful for testing and

@@ -35,7 +35,9 @@ public class DetectKeyPhrasesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("KeyPhrases")) {
                 detectKeyPhrasesResult.setKeyPhrases(new ListUnmarshaller<KeyPhrase>(
-                        KeyPhraseJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeyPhraseJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

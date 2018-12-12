@@ -37,25 +37,26 @@ class ChannelResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                channelResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                channelResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                channelResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                channelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 channelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("HasCredential")) {
-                channelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                channelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
-                channelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                channelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
-                channelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                channelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
-                channelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                channelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
                 channelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

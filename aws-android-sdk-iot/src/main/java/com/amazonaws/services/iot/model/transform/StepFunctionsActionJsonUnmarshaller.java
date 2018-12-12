@@ -43,8 +43,8 @@ class StepFunctionsActionJsonUnmarshaller implements
                 stepFunctionsAction.setStateMachineName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                stepFunctionsAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                stepFunctionsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

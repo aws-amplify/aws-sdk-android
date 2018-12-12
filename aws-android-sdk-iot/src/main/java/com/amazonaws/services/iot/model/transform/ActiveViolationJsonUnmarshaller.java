@@ -37,23 +37,23 @@ class ActiveViolationJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("violationId")) {
-                activeViolation.setViolationId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                activeViolation.setViolationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingName")) {
-                activeViolation.setThingName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                activeViolation.setThingName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileName")) {
                 activeViolation.setSecurityProfileName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("behavior")) {
-                activeViolation.setBehavior(BehaviorJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                activeViolation.setBehavior(BehaviorJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastViolationValue")) {
                 activeViolation.setLastViolationValue(MetricValueJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("lastViolationTime")) {
-                activeViolation.setLastViolationTime(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                activeViolation.setLastViolationTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("violationStartTime")) {
                 activeViolation.setViolationStartTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -47,7 +47,9 @@ import java.util.HashMap;
  * MobileAnalyticsManager will use to store files about events that you record.
  * If you are developing a library, you should create a app ID for your library
  * so it does not collide with the app ID of app developer using your library.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class MobileAnalyticsManager {
     private static final String SDK_VERSION = VersionInfoUtils.getVersion();
     private static final String SDK_NAME = "AmazonMobileAnalyticsSDK";

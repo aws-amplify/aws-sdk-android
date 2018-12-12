@@ -36,19 +36,22 @@ class OTAUpdateFileJsonUnmarshaller implements Unmarshaller<OTAUpdateFile, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("fileName")) {
-                oTAUpdateFile.setFileName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                oTAUpdateFile.setFileName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("fileVersion")) {
-                oTAUpdateFile.setFileVersion(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateFile.setFileVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("fileLocation")) {
                 oTAUpdateFile.setFileLocation(FileLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("codeSigning")) {
-                oTAUpdateFile.setCodeSigning(CodeSigningJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                oTAUpdateFile.setCodeSigning(CodeSigningJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("attributes")) {
                 oTAUpdateFile.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

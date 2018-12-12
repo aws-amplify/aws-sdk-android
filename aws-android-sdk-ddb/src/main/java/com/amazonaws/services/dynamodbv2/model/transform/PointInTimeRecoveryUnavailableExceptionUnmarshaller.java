@@ -17,10 +17,7 @@ package com.amazonaws.services.dynamodbv2.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.dynamodbv2.model.PointInTimeRecoveryUnavailableException;
 
 public class PointInTimeRecoveryUnavailableExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -42,33 +39,5 @@ public class PointInTimeRecoveryUnavailableExceptionUnmarshaller extends JsonErr
         e.setErrorCode("PointInTimeRecoveryUnavailableException");
 
         return e;
-    }
-
-    public PointInTimeRecoveryUnavailableException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        PointInTimeRecoveryUnavailableException pointInTimeRecoveryUnavailableException = new PointInTimeRecoveryUnavailableException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                pointInTimeRecoveryUnavailableException.setErrorMessage(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return pointInTimeRecoveryUnavailableException;
     }
 }

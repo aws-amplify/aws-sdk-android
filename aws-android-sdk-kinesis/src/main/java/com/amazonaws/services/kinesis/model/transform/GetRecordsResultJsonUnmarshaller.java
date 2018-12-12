@@ -35,7 +35,9 @@ public class GetRecordsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Records")) {
                 getRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextShardIterator")) {
                 getRecordsResult.setNextShardIterator(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

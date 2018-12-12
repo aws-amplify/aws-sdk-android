@@ -36,11 +36,14 @@ public class ValidateSecurityProfileBehaviorsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("valid")) {
                 validateSecurityProfileBehaviorsResult.setValid(BooleanJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("validationErrors")) {
                 validateSecurityProfileBehaviorsResult
                         .setValidationErrors(new ListUnmarshaller<ValidationError>(
-                                ValidationErrorJsonUnmarshaller.getInstance()).unmarshall(context));
+                                ValidationErrorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

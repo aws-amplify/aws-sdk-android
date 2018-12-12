@@ -41,7 +41,8 @@ class HLSFragmentSelectorJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("TimestampRange")) {
                 hLSFragmentSelector.setTimestampRange(HLSTimestampRangeJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

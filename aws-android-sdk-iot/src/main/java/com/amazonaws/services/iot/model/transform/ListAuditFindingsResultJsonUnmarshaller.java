@@ -35,7 +35,9 @@ public class ListAuditFindingsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("findings")) {
                 listAuditFindingsResult.setFindings(new ListUnmarshaller<AuditFinding>(
-                        AuditFindingJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AuditFindingJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listAuditFindingsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
