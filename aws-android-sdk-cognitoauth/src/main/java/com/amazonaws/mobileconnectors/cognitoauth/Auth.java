@@ -655,4 +655,11 @@ public final class Auth {
         this.user.setUsername(username);
         return this;
     }
+
+    /**
+     * Release resources used by {@link Auth}
+     */
+    public void release() {
+        this.user.unbindServiceConnection();
+    }
 }
