@@ -154,6 +154,8 @@ public class AWSIotMqttManager {
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
 
+    /** Is this a clean Session with no state being persisted from a prior session */
+    private boolean cleanSession = MqttConnectOptions.CLEAN_SESSION_DEFAULT;
     /**
      * Indicates whether metrics collection is enabled.
      * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
@@ -541,6 +543,17 @@ public class AWSIotMqttManager {
     }
 
     /**
+     * Set to true if the connection should be established with a clean session, false otherwise.
+     * By default, this is set to true. AWS IoT message broker currently does not support persistent sessions
+     * (connections made with the cleanSession flag set to false). Support for persistent sessions
+     * (setting cleanSesssion to false) may be supported in the future.
+     * @param cleanSession flag to establish a clean session
+     */
+    public void setCleanSession(boolean cleanSession) {
+        this.cleanSession = cleanSession;
+    }
+
+    /**
      * Constructs a new AWSIotMqttManager.
      *
      * @param mqttClientId MQTT client ID to use with this client.
@@ -797,6 +810,7 @@ public class AWSIotMqttManager {
             final AWSIotMqttClientStatusCallback statusCallback) {
         LOGGER.debug("ready to do mqtt connect");
 
+        options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
         if (isMetricsEnabled()) {
@@ -917,6 +931,7 @@ public class AWSIotMqttManager {
 
             final MqttConnectOptions options = new MqttConnectOptions();
 
+            options.setCleanSession(cleanSession);
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
