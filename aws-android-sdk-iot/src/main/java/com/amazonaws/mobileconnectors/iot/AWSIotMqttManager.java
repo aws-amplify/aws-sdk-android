@@ -1262,6 +1262,8 @@ public class AWSIotMqttManager {
                             AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
                             userData);
                 }
+            } else {
+            	throw new AmazonClientException("Client is reconnecting and publishing from offline queue is disabled.");
             }
         } else {
             throw new AmazonClientException("Client is disconnected or not yet connected.");
