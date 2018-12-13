@@ -155,7 +155,7 @@ public class AWSIotMqttManager {
     private boolean needResubscribe;
 
     /** Is this a clean Session with no state being persisted from a prior session */
-    private boolean cleanSession = MqttConnectOptions.CLEAN_SESSION_DEFAULT;
+    private boolean cleanSession = true;
     /**
      * Indicates whether metrics collection is enabled.
      * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
