@@ -159,7 +159,6 @@ public final class Auth {
         this.signOutRedirectUri = signOutRedirectUri;
         this.scopes = scopes;
         this.user = new AuthClient(context, this);
-        this.user = new AuthClient(context, this);
         this.user.setUserHandler(userHandler);
         this.userPoolId = userPoolId;
         this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
