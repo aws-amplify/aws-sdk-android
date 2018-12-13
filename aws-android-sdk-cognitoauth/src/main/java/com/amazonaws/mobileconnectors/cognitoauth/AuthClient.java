@@ -221,6 +221,15 @@ public class AuthClient {
         getTokens(uri, userHandler);
     }
 
+
+    /**
+     * Unbind {@link AuthClient#mCustomTabsServiceConnection}
+     */
+    public void unbindServiceConnection() {
+        if(mCustomTabsServiceConnection != null)
+            context.unbindService(mCustomTabsServiceConnection);
+    }
+
     /**
      * Internal method to exchange code for tokens.
      * <p>
