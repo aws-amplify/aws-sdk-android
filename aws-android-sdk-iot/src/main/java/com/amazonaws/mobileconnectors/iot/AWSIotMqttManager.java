@@ -64,14 +64,6 @@ public class AWSIotMqttManager {
     private static final Integer MILLIS_IN_ONE_SECOND = 1000;
 
     private static final Log LOGGER = LogFactory.getLog(AWSIotMqttManager.class);
-    /** Constant for number of tokens in endpoint. */
-    private static final int ENDPOINT_SPLIT_SIZE = 5;
-    /** Constant for token offset of "iot" in endpoint. */
-    private static final int ENDPOINT_IOT_OFFSET = 1;
-    /** Constant for token offset of "amazonaws" in endpoint. */
-    private static final int ENDPOINT_DOMAIN_OFFSET = 3;
-    /** Constant for token offset of "com" in endpoint. */
-    private static final int ENDPOINT_TLD_OFFSET = 4;
 
     /** Default value for starting delay in exponential backoff reconnect algorithm. */
     public static final Integer DEFAULT_MIN_RECONNECT_RETRY_TIME_SECONDS = 4;
@@ -550,10 +542,11 @@ public class AWSIotMqttManager {
         needResubscribe = enabled;
     }
 
-
     /**
      * Set to true if the connection should be established with a clean session, false otherwise.
-     * By default, this is set to true.
+     * By default, this is set to true. AWS IoT message broker currently does not support persistent sessions
+     * (connections made with the cleanSession flag set to false). Support for persistent sessions
+     * (setting cleanSesssion to false) may be supported in the future.
      * @param cleanSession flag to establish a clean session
      */
     public void setCleanSession(boolean cleanSession) {
@@ -938,7 +931,7 @@ public class AWSIotMqttManager {
 
             final MqttConnectOptions options = new MqttConnectOptions();
 
-            options.setCleanSession(false);
+            options.setCleanSession(cleanSession);
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
@@ -962,7 +955,7 @@ public class AWSIotMqttManager {
 
                 try {
                     final String mqttWebSocketURL = signer
-                            .getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
+                            .getSignedUrl(endpointWithHttpPort, clientCredentialsProvider.getCredentials(),
                                     System.currentTimeMillis());
                     LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
                     // Specify the URL through the server URI array.  This is checked
@@ -1255,15 +1248,13 @@ public class AWSIotMqttManager {
                 }
             }
         } else if (connectionState == MqttManagerConnectionState.Reconnecting) {
-            if (offlinePublishQueueEnabled) {
-                if (!putMessageInQueue(data, topic, qos, publishMessageUserData)) {
-                    // queue is full (and set to hold onto the oldest messages)
-                    userPublishCallback(callback,
-                            AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                            userData);
-                }
-            } else {
-            	throw new AmazonClientException("Client is reconnecting and publishing from offline queue is disabled.");
+            final boolean messagedQueued = offlinePublishQueueEnabled
+                    && putMessageInQueue(data, topic, qos, publishMessageUserData);
+            if (!messagedQueued) {
+                // Message queue is full or queue is not enabled
+                userPublishCallback(callback,
+                        AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                        userData);
             }
         } else {
             throw new AmazonClientException("Client is disconnected or not yet connected.");

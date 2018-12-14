@@ -8,22 +8,8 @@ import com.amazonaws.regions.Regions;
  */
 public final class AwsIotEndpointUtility {
 
-    /** Constant for token offset of user's account prefix in endpoint. */
-    private static final int ENDPOINT_PREFIX_OFFSET = 0;
-    /** Constant for token offset of "iot" in endpoint. */
-    private static final int ENDPOINT_IOT_OFFSET = 1;
     /** Constant for token offset of AWS region in endpoint. */
     private static final int ENDPOINT_REGION_OFFSET = 2;
-    /** Constant for token offset of "amazonaws" in endpoint. */
-    private static final int ENDPOINT_DOMAIN_OFFSET = 3;
-    /** Constant for token offset of "com" in endpoint. */
-    private static final int ENDPOINT_TLD_OFFSET = 4;
-    /** Constant for token offset of "cn" in endpoint*/
-    private static final int ENDPOINT_CN_TLD_OFFSET = 5;
-    /** Constant for number of tokens in endpoint. */
-    private static final int ENDPOINT_SPLIT_SIZE = 5;
-    /** Constant for number of tokens in China's endpoint. */
-    private static final int ENDPOINT_CN_SPLIT_SIZE = 6;
     /** Constant for number of tokens in China's ATS endpoint. */
     private static final int ENDPOINT_CN_ATS_SPLIT_SIZE = 7;
 
