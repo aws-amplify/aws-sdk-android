@@ -2651,6 +2651,39 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testPublishWithCallbackReconnecting() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setOfflinePublishQueueEnabled(false);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+        TestMessageDeliveryCallback mdcb = new TestMessageDeliveryCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper
+                .getIotKeystore(CERT_ID, KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectFail();
+
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting,
+                csb.statuses.get(1));
+
+        // publish, though not yet connected
+        final String userData = "TEST_TOKEN";
+        testClient.publishString("test payload 0", "test/topic", AWSIotMqttQos.QOS0, mdcb, userData);
+
+        // we don't queue when Disconnected (user disconnect or auto-reconnect exhausted)
+        assertEquals(0, testClient.getMqttMessageQueue().size());
+        // callback not called
+        assertEquals(1, mdcb.statuses.size());
+        assertEquals(AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail, mdcb.statuses.get(0));
+        assertEquals(1, mdcb.userDatas.size());
+        assertEquals(userData, mdcb.userDatas.get(0));
+    }
+
+    @Test
     public void testGetKeepAlive() throws Exception {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
