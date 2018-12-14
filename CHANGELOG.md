@@ -1,5 +1,22 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.9.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.1)
+
+### New Features
+
+* **Amazon Cognito Auth**
+  * Added customization for CustomTabs through `setCustomTabsExtras()` in the builder. See [PR #608](https://github.com/aws-amplify/aws-sdk-android/pull/608)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Fixed bug that leaked threads during reconnect. See [PR #601](https://github.com/aws-amplify/aws-sdk-android/pull/601)
+  * Fixed reporting of failed message publishes during reconnect. See [PR #407](https://github.com/aws-amplify/aws-sdk-android/pull/407)
+  * Fix reconnection failure upon network disconnect. Any subsequent reconnect honors the value passed to the cleanSession flag. See [issue #584](https://github.com/aws-amplify/aws-sdk-android/issues/584) and [PR #612](https://github.com/aws-amplify/aws-sdk-android/pull/612)
+
+* **AWS Mobile Client**
+  * Fixed exception being thrown from `getCredentials()` and `refresh()` to adhere to `AmazonClientException` to allow other portions of SDK to catch properly. Previously a generic `RuntimeException` was being thrown; `AmazonClientException` is a subclass of `RuntimeException`. See [issue #588](https://github.com/aws-amplify/aws-sdk-android/issues/588)
+
 ## [Release 2.9.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.0)
 
 ### New Features
