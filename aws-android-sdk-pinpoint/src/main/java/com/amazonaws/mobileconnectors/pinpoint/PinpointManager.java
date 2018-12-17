@@ -48,8 +48,9 @@ import android.content.Context;
  */
 public class PinpointManager {
     private static final String SDK_VERSION = VersionInfoUtils.getVersion();
-    private static final String SDK_NAME = "PinpointSDK";
-    private static final SDKInfo SDL_INFO = new SDKInfo(SDK_NAME, SDK_VERSION);
+    // This value is decided by the Amazon Pinpoint Service
+    private static final String SDK_NAME = "aws-sdk-android";
+    private static final SDKInfo SDK_INFO = new SDKInfo(SDK_NAME, SDK_VERSION);
     private static final Log log = LogFactory.getLog(PinpointManager.class);
     private static final PermissionValidator INTERNET_PERMISSION_VALIDATOR = new PermissionValidator("android.permission.INTERNET");
     private static final PermissionValidator ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR = new PermissionValidator(
@@ -89,7 +90,7 @@ public class PinpointManager {
             ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR.validate(appContext);
             ENCODING_VALIDATOR.validate();
 
-            this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDL_INFO, config);
+            this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDK_INFO, config);
             this.notificationClient = NotificationClient.createClient(this.pinpointContext, channelType);
             this.pinpointContext.setNotificationClient(this.notificationClient);
             PinpointNotificationReceiver.setNotificationClient(this.notificationClient);

@@ -120,7 +120,7 @@ public class SignInUI implements AWSConfigurable {
                 this.authUIConfiguration = loginBuilder.getAuthUIConfiguration();
             }
             final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
-            if (identityManager.isUserSignedIn()) {
+            if (loginBuilder.shouldFederate && identityManager.isUserSignedIn()) {
                 Log.d(LOG_TAG, "User is already signed-in. Moving to the next activity.");
                 startNextActivity(this.loginCallingActivity, this.loginNextActivity);
             } else {
@@ -140,6 +140,7 @@ public class SignInUI implements AWSConfigurable {
     public class LoginBuilder {
 
         private AuthUIConfiguration authUIConfiguration;
+        private boolean shouldFederate = true;
 
         /**
          * Constructor.
@@ -162,6 +163,15 @@ public class SignInUI implements AWSConfigurable {
          */
         public AuthUIConfiguration getAuthUIConfiguration() {
             return this.authUIConfiguration;
+        }
+
+        public LoginBuilder enableFederation(final boolean enabled) {
+            shouldFederate = enabled;
+            return this;
+        }
+
+        public boolean shouldFederate() {
+            return shouldFederate;
         }
 
         /**

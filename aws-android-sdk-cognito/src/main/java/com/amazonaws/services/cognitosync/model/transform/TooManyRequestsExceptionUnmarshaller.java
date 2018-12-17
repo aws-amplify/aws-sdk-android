@@ -20,6 +20,10 @@ import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.cognitosync.model.TooManyRequestsException;
 
+/**
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
+ */
+@Deprecated
 public class TooManyRequestsExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     public TooManyRequestsExceptionUnmarshaller() {

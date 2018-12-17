@@ -135,6 +135,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Adds a thing to a billing group.
+     * </p>
+     * 
+     * @param addThingToBillingGroupRequest
+     * @return addThingToBillingGroupResult The response from the
+     *         AddThingToBillingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    AddThingToBillingGroupResult addThingToBillingGroup(
+            AddThingToBillingGroupRequest addThingToBillingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Adds a thing to a thing group.
      * </p>
      * 
@@ -476,6 +500,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a billing group.
+     * </p>
+     * 
+     * @param createBillingGroupRequest
+     * @return createBillingGroupResult The response from the CreateBillingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateBillingGroupResult createBillingGroup(CreateBillingGroupRequest createBillingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates an X.509 certificate using the specified certificate signing
      * request.
      * </p>
@@ -556,6 +603,33 @@ public interface AWSIot {
      */
     CreateCertificateFromCsrResult createCertificateFromCsr(
             CreateCertificateFromCsrRequest createCertificateFromCsrRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a dynamic thing group.
+     * </p>
+     * 
+     * @param createDynamicThingGroupRequest
+     * @return createDynamicThingGroupResult The response from the
+     *         CreateDynamicThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws InvalidQueryException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateDynamicThingGroupResult createDynamicThingGroup(
+            CreateDynamicThingGroupRequest createDynamicThingGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -931,6 +1005,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ResourceAlreadyExistsException
      * @throws ServiceUnavailableException
+     * @throws ConflictingResourceUpdateException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -997,6 +1072,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes the billing group.
+     * </p>
+     * 
+     * @param deleteBillingGroupRequest
+     * @return deleteBillingGroupResult The response from the DeleteBillingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteBillingGroupResult deleteBillingGroup(DeleteBillingGroupRequest deleteBillingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a registered CA certificate.
      * </p>
      * 
@@ -1056,6 +1154,30 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteCertificate(DeleteCertificateRequest deleteCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a dynamic thing group.
+     * </p>
+     * 
+     * @param deleteDynamicThingGroupRequest
+     * @return deleteDynamicThingGroupResult The response from the
+     *         DeleteDynamicThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteDynamicThingGroupResult deleteDynamicThingGroup(
+            DeleteDynamicThingGroupRequest deleteDynamicThingGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1338,7 +1460,8 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Deletes the specified thing.
+     * Deletes the specified thing. Returns successfully with no error if the
+     * deletion is successful or you specify a thing that doesn't exist.
      * </p>
      * 
      * @param deleteThingRequest <p>
@@ -1389,7 +1512,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Deletes the specified thing type . You cannot delete a thing type if it
+     * Deletes the specified thing type. You cannot delete a thing type if it
      * has things associated with it. To delete a thing type, first mark it as
      * deprecated by calling <a>DeprecateThingType</a>, then remove any
      * associated things by calling <a>UpdateThing</a> to change the thing type
@@ -1431,6 +1554,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ServiceUnavailableException
      * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1562,6 +1686,30 @@ public interface AWSIot {
      */
     DescribeAuthorizerResult describeAuthorizer(DescribeAuthorizerRequest describeAuthorizerRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns information about a billing group.
+     * </p>
+     * 
+     * @param describeBillingGroupRequest
+     * @return describeBillingGroupResult The response from the
+     *         DescribeBillingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeBillingGroupResult describeBillingGroup(
+            DescribeBillingGroupRequest describeBillingGroupRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -2048,6 +2196,12 @@ public interface AWSIot {
      * <p>
      * Detaches the specified principal from the specified thing.
      * </p>
+     * <note>
+     * <p>
+     * This call is asynchronous. It might take several seconds for the
+     * detachment to propagate.
+     * </p>
+     * </note>
      * 
      * @param detachThingPrincipalRequest <p>
      *            The input for the DetachThingPrincipal operation.
@@ -2084,6 +2238,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ServiceUnavailableException
      * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2107,6 +2262,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ServiceUnavailableException
      * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2498,6 +2654,29 @@ public interface AWSIot {
      *             or a server side issue.
      */
     ListAuthorizersResult listAuthorizers(ListAuthorizersRequest listAuthorizersRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the billing groups you have created.
+     * </p>
+     * 
+     * @param listBillingGroupsRequest
+     * @return listBillingGroupsResult The response from the ListBillingGroups
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListBillingGroupsResult listBillingGroups(ListBillingGroupsRequest listBillingGroupsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3008,6 +3187,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists the tags (metadata) you have assigned to the resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * List targets for the specified policy.
      * </p>
      * 
@@ -3237,6 +3440,30 @@ public interface AWSIot {
      */
     ListThingsResult listThings(ListThingsRequest listThingsRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the things you have added to the given billing group.
+     * </p>
+     * 
+     * @param listThingsInBillingGroupRequest
+     * @return listThingsInBillingGroupResult The response from the
+     *         ListThingsInBillingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingsInBillingGroupResult listThingsInBillingGroup(
+            ListThingsInBillingGroupRequest listThingsInBillingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -3471,6 +3698,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Removes the given thing from the billing group.
+     * </p>
+     * 
+     * @param removeThingFromBillingGroupRequest
+     * @return removeThingFromBillingGroupResult The response from the
+     *         RemoveThingFromBillingGroup service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RemoveThingFromBillingGroupResult removeThingFromBillingGroup(
+            RemoveThingFromBillingGroupRequest removeThingFromBillingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Remove the specified thing from the specified group.
      * </p>
      * 
@@ -3509,6 +3761,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ServiceUnavailableException
      * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3746,6 +3999,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Adds to or modifies the tags of the given resource. Tags are metadata
+     * which can be used to manage a resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Tests if a specified principal is authorized to perform an AWS IoT action
      * on a specified resource. Use this to test and debug the authorization
      * behavior of devices that connect to the AWS IoT device gateway.
@@ -3848,6 +4126,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Removes the given tags (metadata) from the resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Configures or reconfigures the Device Defender audit settings for this
      * account. Settings include how audit notifications are sent and which
      * audit checks are enabled or disabled.
@@ -3896,6 +4197,30 @@ public interface AWSIot {
      *             or a server side issue.
      */
     UpdateAuthorizerResult updateAuthorizer(UpdateAuthorizerRequest updateAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates information about the billing group.
+     * </p>
+     * 
+     * @param updateBillingGroupRequest
+     * @return updateBillingGroupResult The response from the UpdateBillingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateBillingGroupResult updateBillingGroup(UpdateBillingGroupRequest updateBillingGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3961,6 +4286,32 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates a dynamic thing group.
+     * </p>
+     * 
+     * @param updateDynamicThingGroupRequest
+     * @return updateDynamicThingGroupResult The response from the
+     *         UpdateDynamicThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateDynamicThingGroupResult updateDynamicThingGroup(
+            UpdateDynamicThingGroupRequest updateDynamicThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates the event configurations.
      * </p>
      * 
@@ -4007,6 +4358,27 @@ public interface AWSIot {
     UpdateIndexingConfigurationResult updateIndexingConfiguration(
             UpdateIndexingConfigurationRequest updateIndexingConfigurationRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates supported fields of the specified job.
+     * </p>
+     * 
+     * @param updateJobRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void updateJob(UpdateJobRequest updateJobRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>

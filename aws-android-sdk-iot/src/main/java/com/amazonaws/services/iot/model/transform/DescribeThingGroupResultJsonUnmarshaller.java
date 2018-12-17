@@ -53,6 +53,18 @@ public class DescribeThingGroupResultJsonUnmarshaller implements
                 describeThingGroupResult.setThingGroupMetadata(ThingGroupMetadataJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("indexName")) {
+                describeThingGroupResult.setIndexName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("queryString")) {
+                describeThingGroupResult.setQueryString(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("queryVersion")) {
+                describeThingGroupResult.setQueryVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("status")) {
+                describeThingGroupResult.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

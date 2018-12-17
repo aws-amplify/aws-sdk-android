@@ -24,9 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Describes the load balancers for the specified Auto Scaling group.
  * </p>
  * <p>
- * Note that this operation describes only Classic Load Balancers. If you have
- * Application Load Balancers, use <a>DescribeLoadBalancerTargetGroups</a>
- * instead.
+ * This operation describes only Classic Load Balancers. If you have Application
+ * Load Balancers, use <a>DescribeLoadBalancerTargetGroups</a> instead.
  * </p>
  */
 public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {

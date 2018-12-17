@@ -25,7 +25,9 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.services.pinpoint.model.BadRequestException;
 import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
+import com.amazonaws.services.pinpoint.model.Event;
 import com.amazonaws.services.pinpoint.model.EventItemResponse;
+import com.amazonaws.services.pinpoint.model.EventsResponse;
 import com.amazonaws.services.pinpoint.model.InternalServerErrorException;
 import com.amazonaws.services.pinpoint.model.ItemResponse;
 import com.amazonaws.services.pinpoint.model.PutEventsResult;
@@ -53,6 +55,7 @@ import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockAppDetails;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import android.database.Cursor;
@@ -61,6 +64,7 @@ import android.net.Uri;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -145,6 +149,23 @@ public class EventRecorderTest {
         c.close();
     }
 
+    @Test
+    public void testRecordEventPayload() throws JSONException {
+        final Event event = new Event();
+        eventRecorder.buildEventPayload(analyticsEvent, event);
+
+        final MockAppDetails mockAppDetails = new MockAppDetails();
+        assertEquals(mockAppDetails.packageName(), event.getAppPackageName());
+        assertEquals(mockAppDetails.getAppTitle(), event.getAppTitle());
+        assertEquals(mockAppDetails.versionCode(), event.getAppVersionCode());
+        assertEquals(EVENT_NAME, event.getEventType());
+        assertEquals(SDK_NAME, event.getSdkName());
+        assertEquals(SDK_VERSION, event.getClientSdkVersion());
+        assertNull(event.getAttributes());
+        assertNotNull(event.getMetrics());
+        assertNotNull(event.getSession());
+    }
+
     @Test (expected=IllegalStateException.class)
     public void testReadEventFromCursorThrowsException() throws Exception {
         final Log mockLog = Mockito.mock(Log.class);
@@ -209,7 +230,9 @@ public class EventRecorderTest {
                 .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(202).withMessage("Accepted"));
         itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
         putEventsResult = new PutEventsResult();
-        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+        putEventsResult.withEventsResponse(
+            new EventsResponse()
+                .addResultsEntry(endpointProfile.getEndpointId(), itemResponse));
 
         eventRecorder.recordEvent(analyticsEvent);
         final ArrayList<String> attrValues = new ArrayList<String>();
@@ -234,7 +257,9 @@ public class EventRecorderTest {
                 .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(500).withMessage("InternalServerErrorException"));
         itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
         putEventsResult = new PutEventsResult();
-        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+        putEventsResult.withEventsResponse(
+            new EventsResponse()
+                .addResultsEntry(endpointProfile.getEndpointId(), itemResponse));
 
         eventRecorder.recordEvent(analyticsEvent);
         final ArrayList<String> attrValues = new ArrayList<String>();
@@ -259,7 +284,9 @@ public class EventRecorderTest {
                 .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(400).withMessage("BadRequestException"));
         itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
         putEventsResult = new PutEventsResult();
-        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+        putEventsResult.withEventsResponse(
+            new EventsResponse()
+                .addResultsEntry(endpointProfile.getEndpointId(), itemResponse));
 
         eventRecorder.recordEvent(analyticsEvent);
         final ArrayList<String> attrValues = new ArrayList<String>();

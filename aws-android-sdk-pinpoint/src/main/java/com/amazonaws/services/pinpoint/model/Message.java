@@ -63,8 +63,8 @@ public class Message implements Serializable {
     private String jsonBody;
 
     /**
-     * The URL that points to the media resource, for example a .mp4 or .gif
-     * file.
+     * A URL that refers to the location of an image or video that you want to
+     * display in the push notification.
      */
     private String mediaUrl;
 
@@ -423,36 +423,36 @@ public class Message implements Serializable {
     }
 
     /**
-     * The URL that points to the media resource, for example a .mp4 or .gif
-     * file.
+     * A URL that refers to the location of an image or video that you want to
+     * display in the push notification.
      *
-     * @return The URL that points to the media resource, for example a .mp4 or
-     *         .gif file.
+     * @return A URL that refers to the location of an image or video that you
+     *         want to display in the push notification.
      */
     public String getMediaUrl() {
         return mediaUrl;
     }
 
     /**
-     * The URL that points to the media resource, for example a .mp4 or .gif
-     * file.
+     * A URL that refers to the location of an image or video that you want to
+     * display in the push notification.
      *
-     * @param mediaUrl The URL that points to the media resource, for example a
-     *            .mp4 or .gif file.
+     * @param mediaUrl A URL that refers to the location of an image or video
+     *            that you want to display in the push notification.
      */
     public void setMediaUrl(String mediaUrl) {
         this.mediaUrl = mediaUrl;
     }
 
     /**
-     * The URL that points to the media resource, for example a .mp4 or .gif
-     * file.
+     * A URL that refers to the location of an image or video that you want to
+     * display in the push notification.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param mediaUrl The URL that points to the media resource, for example a
-     *            .mp4 or .gif file.
+     * @param mediaUrl A URL that refers to the location of an image or video
+     *            that you want to display in the push notification.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -95,6 +95,17 @@ public class CreateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createSecurityProfileRequest.getTags() != null) {
+                java.util.List<Tag> tags = createSecurityProfileRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

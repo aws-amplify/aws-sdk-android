@@ -42,7 +42,9 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.EventClient;
  * // record the monetization event
  * eventClient.recordEvent(purchaseEvent);
  * </pre>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
     private static final String TAG = "AmazonMonetizationEventBuilder";

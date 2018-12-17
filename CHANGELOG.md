@@ -1,5 +1,123 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.9.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.1)
+
+### New Features
+
+* **Amazon Cognito Auth**
+  * Added customization for CustomTabs through `setCustomTabsExtras()` in the builder. See [PR #608](https://github.com/aws-amplify/aws-sdk-android/pull/608)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Fixed bug that leaked threads during reconnect. See [PR #601](https://github.com/aws-amplify/aws-sdk-android/pull/601)
+  * Fixed reporting of failed message publishes during reconnect. See [PR #407](https://github.com/aws-amplify/aws-sdk-android/pull/407)
+  * Fix reconnection failure upon network disconnect. Any subsequent reconnect honors the value passed to the cleanSession flag. See [issue #584](https://github.com/aws-amplify/aws-sdk-android/issues/584) and [PR #612](https://github.com/aws-amplify/aws-sdk-android/pull/612)
+
+* **AWS Mobile Client**
+  * Fixed exception being thrown from `getCredentials()` and `refresh()` to adhere to `AmazonClientException` to allow other portions of SDK to catch properly. Previously a generic `RuntimeException` was being thrown; `AmazonClientException` is a subclass of `RuntimeException`. See [issue #588](https://github.com/aws-amplify/aws-sdk-android/issues/588)
+
+## [Release 2.9.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.0)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for EU (Stockholm) region - `eu-north-1`.
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+    * `AppPackageName`, `AppTitle`, `AppVersionCode`, `SdkName` fields will now be accepted as part of the `Event` when submitting events from your app to Amazon Pinpoint. This fixes the issue where the event when exported by Amazon Kinesis Streams was missing these fields in the exported event.
+
+### Misc. Updates
+
+* Model updates for the following services
+    * Amazon Pinpoint
+        * **Breaking API Changes:** The following APIs have been changed:
+            * `PutEventsRequest`
+                * The type of `Endpoint` field is now changed back from `EndpointRequest` to `PublicEndpoint`.
+            * `PutEventsResponse`
+                * `PutEventsResponse` will have an `EventsResponse` field. The `Results` object in the `PutEventsResponse` is now nested under `EventsResponse`.
+
+* **Amazon Cognito Sync**
+  * This library is deprecated. Please use [AWS AppSync](https://aws-amplify.github.io/docs/android/api#graphql-realtime-and-offline) for synchronizing data across devices.
+
+* **Amazon Mobile Analytics**
+  * This library is deprecated. Please use [Amazon Pinpoint](https://aws-amplify.github.io/docs/android/analytics#using-amazon-pinpoint) for analytics.
+
+## [Release 2.8.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.5)
+
+### New Features
+
+* **AWS Mobile Client**
+  * Support `showSignIn` without Cognito Identity Pool configured. See [issue #592](https://github.com/aws-amplify/aws-sdk-android/issues/592)
+
+* **Amazon Cognito Auth**
+  * Support identity provider identifier setting. See [PR #602](https://github.com/aws-amplify/aws-sdk-android/pull/602)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix state change to `GUEST` mode which was not being triggered previously and would stay in `SIGNED_OUT` mode. This state is triggered by calling `getCredentials` or `getIdentityId` while signed-out and unauthenticated access is enabled in Cognito Identity Pools.
+
+* **AWS Auth SDK**
+  * Fix forced change password view's IDs to prevent crash. See [issue #586](https://github.com/aws-amplify/aws-sdk-android/issues/586)
+
+* **Amazon Cognito Identity Provider**
+  * Fix secret hash generation for empty value of client secret. Allows for operations such as sign-up to occur without client secret. See [issue #587](https://github.com/aws-amplify/aws-sdk-android/issues/587) [PR #593](https://github.com/aws-amplify/aws-sdk-android/pull/593)
+
+* **Amazon Lex**
+  * Fix race condition for microphone access when no speech is detected during interaction.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS IoT
+  * AWS Lambda
+
+## [Release 2.8.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.4)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix an issue persisting the username between launches. The method `getUsername()` should retain the username while signed-in.
+
+* **AWS IoT**
+  * Removed validation for IoT endpoint.
+  * Fix an issue in parsing the region from ATS enabled endpoint. See [PR #580](https://github.com/aws-amplify/aws-sdk-android/pull/580)
+
+## [Release 2.8.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.3)
+
+### Enhancements
+
+* **Amazon Polly**
+  * Add support for new voices `Bianca`, `Lucia` and `Mia`.
+
+### Bug Fixes
+
+* **Amazon DynamoDB Document Model**
+  * Fixed the typo (`defination` -> `definition`) in the following `IllegalStateException` messages.
+      * `hash key type does not match the one in table definition`
+      * `range key type does not match that of table definition`
+
+* **Amazon Pinpoint**
+  *  Fix an issue where the consecutive direct send messages / send user messages (excluding campaign) replaces the previous notifications. Now the request identifier for the notification is changed from the hashcode of `<campaign_id>:<campaign_activity_id>` to the hashcode of a unique identifier for Direct send messages / send user messages (excluding campaign), so that the notifications are unique within the application. See [AWS Forums Post](https://forums.aws.amazon.com/thread.jspa?threadID=291743)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Auto Scaling
+  * Amazon Comprehend
+  * Amazon Kinesis Firehose
+  * Amazon Polly
+
+## [Release 2.8.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.2)
+
+### Bug Fixes
+
+* **AWS Core Runtime**
+  * Fix logging detection to prevent crash during initialization on Android Oreo and above. [issue #562](https://github.com/aws-amplify/aws-sdk-android/issues/562)
+
 ## [Release 2.8.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.1)
 
 ### New Features

@@ -80,6 +80,16 @@ class KeyMetadataJsonMarshaller {
             jsonWriter.name("Origin");
             jsonWriter.value(origin);
         }
+        if (keyMetadata.getCustomKeyStoreId() != null) {
+            String customKeyStoreId = keyMetadata.getCustomKeyStoreId();
+            jsonWriter.name("CustomKeyStoreId");
+            jsonWriter.value(customKeyStoreId);
+        }
+        if (keyMetadata.getCloudHsmClusterId() != null) {
+            String cloudHsmClusterId = keyMetadata.getCloudHsmClusterId();
+            jsonWriter.name("CloudHsmClusterId");
+            jsonWriter.value(cloudHsmClusterId);
+        }
         if (keyMetadata.getExpirationModel() != null) {
             String expirationModel = keyMetadata.getExpirationModel();
             jsonWriter.name("ExpirationModel");

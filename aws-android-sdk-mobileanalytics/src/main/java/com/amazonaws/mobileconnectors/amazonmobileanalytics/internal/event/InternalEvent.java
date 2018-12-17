@@ -18,7 +18,10 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.event;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.idresolver.Id;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.util.JSONSerializable;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public interface InternalEvent extends AnalyticsEvent, JSONSerializable {
     public Long getEventTimestamp();
 

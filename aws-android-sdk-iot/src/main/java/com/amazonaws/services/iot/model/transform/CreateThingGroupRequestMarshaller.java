@@ -73,6 +73,17 @@ public class CreateThingGroupRequestMarshaller implements
                 ThingGroupPropertiesJsonMarshaller.getInstance().marshall(thingGroupProperties,
                         jsonWriter);
             }
+            if (createThingGroupRequest.getTags() != null) {
+                java.util.List<Tag> tags = createThingGroupRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

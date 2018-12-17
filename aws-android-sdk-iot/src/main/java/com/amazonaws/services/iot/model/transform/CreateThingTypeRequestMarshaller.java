@@ -68,6 +68,17 @@ public class CreateThingTypeRequestMarshaller implements
                 ThingTypePropertiesJsonMarshaller.getInstance().marshall(thingTypeProperties,
                         jsonWriter);
             }
+            if (createThingTypeRequest.getTags() != null) {
+                java.util.List<Tag> tags = createThingTypeRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -80,6 +80,17 @@ public class Job implements Serializable {
 
     /**
      * <p>
+     * If the job was updated, provides the reason code for the update.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     */
+    private String reasonCode;
+
+    /**
+     * <p>
      * If the job was updated, describes the reason for the update.
      * </p>
      * <p>
@@ -120,6 +131,13 @@ public class Job implements Serializable {
      * </p>
      */
     private JobExecutionsRolloutConfig jobExecutionsRolloutConfig;
+
+    /**
+     * <p>
+     * Configuration for criteria to abort the job.
+     * </p>
+     */
+    private AbortConfig abortConfig;
 
     /**
      * <p>
@@ -615,6 +633,65 @@ public class Job implements Serializable {
 
     /**
      * <p>
+     * If the job was updated, provides the reason code for the update.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @return <p>
+     *         If the job was updated, provides the reason code for the update.
+     *         </p>
+     */
+    public String getReasonCode() {
+        return reasonCode;
+    }
+
+    /**
+     * <p>
+     * If the job was updated, provides the reason code for the update.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @param reasonCode <p>
+     *            If the job was updated, provides the reason code for the
+     *            update.
+     *            </p>
+     */
+    public void setReasonCode(String reasonCode) {
+        this.reasonCode = reasonCode;
+    }
+
+    /**
+     * <p>
+     * If the job was updated, provides the reason code for the update.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @param reasonCode <p>
+     *            If the job was updated, provides the reason code for the
+     *            update.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withReasonCode(String reasonCode) {
+        this.reasonCode = reasonCode;
+        return this;
+    }
+
+    /**
+     * <p>
      * If the job was updated, describes the reason for the update.
      * </p>
      * <p>
@@ -892,6 +969,51 @@ public class Job implements Serializable {
      */
     public Job withJobExecutionsRolloutConfig(JobExecutionsRolloutConfig jobExecutionsRolloutConfig) {
         this.jobExecutionsRolloutConfig = jobExecutionsRolloutConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Configuration for criteria to abort the job.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration for criteria to abort the job.
+     *         </p>
+     */
+    public AbortConfig getAbortConfig() {
+        return abortConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for criteria to abort the job.
+     * </p>
+     *
+     * @param abortConfig <p>
+     *            Configuration for criteria to abort the job.
+     *            </p>
+     */
+    public void setAbortConfig(AbortConfig abortConfig) {
+        this.abortConfig = abortConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for criteria to abort the job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param abortConfig <p>
+     *            Configuration for criteria to abort the job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withAbortConfig(AbortConfig abortConfig) {
+        this.abortConfig = abortConfig;
         return this;
     }
 
@@ -1176,6 +1298,8 @@ public class Job implements Serializable {
             sb.append("status: " + getStatus() + ",");
         if (getForceCanceled() != null)
             sb.append("forceCanceled: " + getForceCanceled() + ",");
+        if (getReasonCode() != null)
+            sb.append("reasonCode: " + getReasonCode() + ",");
         if (getComment() != null)
             sb.append("comment: " + getComment() + ",");
         if (getTargets() != null)
@@ -1186,6 +1310,8 @@ public class Job implements Serializable {
             sb.append("presignedUrlConfig: " + getPresignedUrlConfig() + ",");
         if (getJobExecutionsRolloutConfig() != null)
             sb.append("jobExecutionsRolloutConfig: " + getJobExecutionsRolloutConfig() + ",");
+        if (getAbortConfig() != null)
+            sb.append("abortConfig: " + getAbortConfig() + ",");
         if (getCreatedAt() != null)
             sb.append("createdAt: " + getCreatedAt() + ",");
         if (getLastUpdatedAt() != null)
@@ -1212,6 +1338,7 @@ public class Job implements Serializable {
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode
                 + ((getForceCanceled() == null) ? 0 : getForceCanceled().hashCode());
+        hashCode = prime * hashCode + ((getReasonCode() == null) ? 0 : getReasonCode().hashCode());
         hashCode = prime * hashCode + ((getComment() == null) ? 0 : getComment().hashCode());
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
         hashCode = prime * hashCode
@@ -1222,6 +1349,8 @@ public class Job implements Serializable {
                 * hashCode
                 + ((getJobExecutionsRolloutConfig() == null) ? 0 : getJobExecutionsRolloutConfig()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getAbortConfig() == null) ? 0 : getAbortConfig().hashCode());
         hashCode = prime * hashCode + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
         hashCode = prime * hashCode
                 + ((getLastUpdatedAt() == null) ? 0 : getLastUpdatedAt().hashCode());
@@ -1267,6 +1396,11 @@ public class Job implements Serializable {
         if (other.getForceCanceled() != null
                 && other.getForceCanceled().equals(this.getForceCanceled()) == false)
             return false;
+        if (other.getReasonCode() == null ^ this.getReasonCode() == null)
+            return false;
+        if (other.getReasonCode() != null
+                && other.getReasonCode().equals(this.getReasonCode()) == false)
+            return false;
         if (other.getComment() == null ^ this.getComment() == null)
             return false;
         if (other.getComment() != null && other.getComment().equals(this.getComment()) == false)
@@ -1291,6 +1425,11 @@ public class Job implements Serializable {
         if (other.getJobExecutionsRolloutConfig() != null
                 && other.getJobExecutionsRolloutConfig().equals(
                         this.getJobExecutionsRolloutConfig()) == false)
+            return false;
+        if (other.getAbortConfig() == null ^ this.getAbortConfig() == null)
+            return false;
+        if (other.getAbortConfig() != null
+                && other.getAbortConfig().equals(this.getAbortConfig()) == false)
             return false;
         if (other.getCreatedAt() == null ^ this.getCreatedAt() == null)
             return false;

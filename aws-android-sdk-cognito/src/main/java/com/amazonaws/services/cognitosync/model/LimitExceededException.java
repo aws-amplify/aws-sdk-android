@@ -20,7 +20,9 @@ import com.amazonaws.AmazonServiceException;
 /**
  * Thrown when the limit on the number of objects or operations has been
  * exceeded.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class LimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 public class SegmentLocation implements Serializable {
     /**
-     * The country filter according to ISO 3166-1 Alpha-2 codes.
+     * The country or region, in ISO 3166-1 alpha-2 format.
      */
     private SetDimension country;
 
@@ -32,30 +32,30 @@ public class SegmentLocation implements Serializable {
     private GPSPointDimension gPSPoint;
 
     /**
-     * The country filter according to ISO 3166-1 Alpha-2 codes.
+     * The country or region, in ISO 3166-1 alpha-2 format.
      *
-     * @return The country filter according to ISO 3166-1 Alpha-2 codes.
+     * @return The country or region, in ISO 3166-1 alpha-2 format.
      */
     public SetDimension getCountry() {
         return country;
     }
 
     /**
-     * The country filter according to ISO 3166-1 Alpha-2 codes.
+     * The country or region, in ISO 3166-1 alpha-2 format.
      *
-     * @param country The country filter according to ISO 3166-1 Alpha-2 codes.
+     * @param country The country or region, in ISO 3166-1 alpha-2 format.
      */
     public void setCountry(SetDimension country) {
         this.country = country;
     }
 
     /**
-     * The country filter according to ISO 3166-1 Alpha-2 codes.
+     * The country or region, in ISO 3166-1 alpha-2 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param country The country filter according to ISO 3166-1 Alpha-2 codes.
+     * @param country The country or region, in ISO 3166-1 alpha-2 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

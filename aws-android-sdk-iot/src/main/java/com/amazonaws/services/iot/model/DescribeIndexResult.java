@@ -44,7 +44,7 @@ public class DescribeIndexResult implements Serializable {
      * Contains a value that specifies the type of indexing performed. Valid
      * values are:
      * </p>
-     * <ol>
+     * <ul>
      * <li>
      * <p>
      * REGISTRY – Your thing index will contain only registry data.
@@ -52,11 +52,23 @@ public class DescribeIndexResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
-     * data.
+     * REGISTRY_AND_SHADOW - Your thing index will contain registry data and
+     * shadow data.
      * </p>
      * </li>
-     * </ol>
+     * <li>
+     * <p>
+     * REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain registry
+     * data and thing connectivity status data.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index will
+     * contain registry data, shadow data, and thing connectivity status data.
+     * </p>
+     * </li>
+     * </ul>
      */
     private String schema;
 
@@ -219,7 +231,7 @@ public class DescribeIndexResult implements Serializable {
      * Contains a value that specifies the type of indexing performed. Valid
      * values are:
      * </p>
-     * <ol>
+     * <ul>
      * <li>
      * <p>
      * REGISTRY – Your thing index will contain only registry data.
@@ -227,17 +239,29 @@ public class DescribeIndexResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
-     * data.
+     * REGISTRY_AND_SHADOW - Your thing index will contain registry data and
+     * shadow data.
      * </p>
      * </li>
-     * </ol>
+     * <li>
+     * <p>
+     * REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain registry
+     * data and thing connectivity status data.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index will
+     * contain registry data, shadow data, and thing connectivity status data.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         Contains a value that specifies the type of indexing performed.
      *         Valid values are:
      *         </p>
-     *         <ol>
+     *         <ul>
      *         <li>
      *         <p>
      *         REGISTRY – Your thing index will contain only registry data.
@@ -245,11 +269,24 @@ public class DescribeIndexResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         REGISTRY_AND_SHADOW - Your thing index will contain registry and
-     *         shadow data.
+     *         REGISTRY_AND_SHADOW - Your thing index will contain registry data
+     *         and shadow data.
      *         </p>
      *         </li>
-     *         </ol>
+     *         <li>
+     *         <p>
+     *         REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain
+     *         registry data and thing connectivity status data.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index
+     *         will contain registry data, shadow data, and thing connectivity
+     *         status data.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getSchema() {
         return schema;
@@ -260,7 +297,7 @@ public class DescribeIndexResult implements Serializable {
      * Contains a value that specifies the type of indexing performed. Valid
      * values are:
      * </p>
-     * <ol>
+     * <ul>
      * <li>
      * <p>
      * REGISTRY – Your thing index will contain only registry data.
@@ -268,17 +305,29 @@ public class DescribeIndexResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
-     * data.
+     * REGISTRY_AND_SHADOW - Your thing index will contain registry data and
+     * shadow data.
      * </p>
      * </li>
-     * </ol>
+     * <li>
+     * <p>
+     * REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain registry
+     * data and thing connectivity status data.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index will
+     * contain registry data, shadow data, and thing connectivity status data.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param schema <p>
      *            Contains a value that specifies the type of indexing
      *            performed. Valid values are:
      *            </p>
-     *            <ol>
+     *            <ul>
      *            <li>
      *            <p>
      *            REGISTRY – Your thing index will contain only registry data.
@@ -287,10 +336,23 @@ public class DescribeIndexResult implements Serializable {
      *            <li>
      *            <p>
      *            REGISTRY_AND_SHADOW - Your thing index will contain registry
-     *            and shadow data.
+     *            data and shadow data.
      *            </p>
      *            </li>
-     *            </ol>
+     *            <li>
+     *            <p>
+     *            REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will
+     *            contain registry data and thing connectivity status data.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index
+     *            will contain registry data, shadow data, and thing
+     *            connectivity status data.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setSchema(String schema) {
         this.schema = schema;
@@ -301,7 +363,7 @@ public class DescribeIndexResult implements Serializable {
      * Contains a value that specifies the type of indexing performed. Valid
      * values are:
      * </p>
-     * <ol>
+     * <ul>
      * <li>
      * <p>
      * REGISTRY – Your thing index will contain only registry data.
@@ -309,11 +371,23 @@ public class DescribeIndexResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
-     * data.
+     * REGISTRY_AND_SHADOW - Your thing index will contain registry data and
+     * shadow data.
      * </p>
      * </li>
-     * </ol>
+     * <li>
+     * <p>
+     * REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain registry
+     * data and thing connectivity status data.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index will
+     * contain registry data, shadow data, and thing connectivity status data.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -322,7 +396,7 @@ public class DescribeIndexResult implements Serializable {
      *            Contains a value that specifies the type of indexing
      *            performed. Valid values are:
      *            </p>
-     *            <ol>
+     *            <ul>
      *            <li>
      *            <p>
      *            REGISTRY – Your thing index will contain only registry data.
@@ -331,10 +405,23 @@ public class DescribeIndexResult implements Serializable {
      *            <li>
      *            <p>
      *            REGISTRY_AND_SHADOW - Your thing index will contain registry
-     *            and shadow data.
+     *            data and shadow data.
      *            </p>
      *            </li>
-     *            </ol>
+     *            <li>
+     *            <p>
+     *            REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will
+     *            contain registry data and thing connectivity status data.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index
+     *            will contain registry data, shadow data, and thing
+     *            connectivity status data.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

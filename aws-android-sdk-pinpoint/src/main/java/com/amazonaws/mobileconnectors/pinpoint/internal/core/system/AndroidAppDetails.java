@@ -44,13 +44,10 @@ public class AndroidAppDetails {
         try {
             PackageManager packageManager = this.applicationContext
                                                     .getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                                                                           this.applicationContext
-                                                                                   .getPackageName(),
-                                                                           0);
+            PackageInfo packageInfo = packageManager
+                                                .getPackageInfo(this.applicationContext.getPackageName(), 0);
             ApplicationInfo appInfo = packageManager
-                                              .getApplicationInfo(packageInfo.packageName,
-                                                                         0);
+                                              .getApplicationInfo(packageInfo.packageName, 0);
 
             appTitle = (String) packageManager.getApplicationLabel(appInfo);
             packageName = packageInfo.packageName;
@@ -67,9 +64,11 @@ public class AndroidAppDetails {
         }
     }
 
-    public AndroidAppDetails(String packageName, String versionCode,
-                                    String versionName,
-                                    String appTitle, String appId) {
+    public AndroidAppDetails(String packageName, 
+                             String versionCode,
+                             String versionName,
+                             String appTitle,
+                             String appId) {
         this.packageName = packageName;
         this.versionCode = versionCode;
         this.versionName = versionName;

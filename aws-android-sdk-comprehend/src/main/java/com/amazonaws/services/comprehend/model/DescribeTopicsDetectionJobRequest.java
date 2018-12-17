@@ -34,6 +34,7 @@ public class DescribeTopicsDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -44,6 +45,7 @@ public class DescribeTopicsDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier assigned by the user to the detection job.
@@ -60,6 +62,7 @@ public class DescribeTopicsDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned by the user to the detection job.
@@ -79,6 +82,7 @@ public class DescribeTopicsDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned by the user to the detection job.

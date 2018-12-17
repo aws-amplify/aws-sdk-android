@@ -24,35 +24,35 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class PhoneNumberValidateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Phone Number Information request.
+     * Phone Number Validate request.
      */
     private NumberValidateRequest numberValidateRequest;
 
     /**
-     * Phone Number Information request.
+     * Phone Number Validate request.
      *
-     * @return Phone Number Information request.
+     * @return Phone Number Validate request.
      */
     public NumberValidateRequest getNumberValidateRequest() {
         return numberValidateRequest;
     }
 
     /**
-     * Phone Number Information request.
+     * Phone Number Validate request.
      *
-     * @param numberValidateRequest Phone Number Information request.
+     * @param numberValidateRequest Phone Number Validate request.
      */
     public void setNumberValidateRequest(NumberValidateRequest numberValidateRequest) {
         this.numberValidateRequest = numberValidateRequest;
     }
 
     /**
-     * Phone Number Information request.
+     * Phone Number Validate request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param numberValidateRequest Phone Number Information request.
+     * @param numberValidateRequest Phone Number Validate request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

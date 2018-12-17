@@ -20,46 +20,45 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to submit events to Pinpoint into multiple regions.
+ * Use to record events for endpoints. This method creates events and creates or
+ * updates the endpoints that those events are associated with.
  */
 public class PutEventsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * Batch events to submit
+     * A set of events to process.
      */
-    private java.util.Map<String, EventsBatch> batchItem;
+    private EventsRequest eventsRequest;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -69,70 +68,35 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * Batch events to submit
+     * A set of events to process.
      *
-     * @return Batch events to submit
+     * @return A set of events to process.
      */
-    public java.util.Map<String, EventsBatch> getBatchItem() {
-        return batchItem;
+    public EventsRequest getEventsRequest() {
+        return eventsRequest;
     }
 
     /**
-     * Batch events to submit
+     * A set of events to process.
      *
-     * @param batchItem Batch events to submit
+     * @param eventsRequest A set of events to process.
      */
-    public void setBatchItem(java.util.Map<String, EventsBatch> batchItem) {
-        this.batchItem = batchItem;
+    public void setEventsRequest(EventsRequest eventsRequest) {
+        this.eventsRequest = eventsRequest;
     }
 
     /**
-     * Batch events to submit
+     * A set of events to process.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param batchItem Batch events to submit
+     * @param eventsRequest A set of events to process.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PutEventsRequest withBatchItem(java.util.Map<String, EventsBatch> batchItem) {
-        this.batchItem = batchItem;
-        return this;
-    }
-
-    /**
-     * Batch events to submit
-     * <p>
-     * The method adds a new key-value pair into BatchItem parameter, and
-     * returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param key The key of the entry to be added into BatchItem.
-     * @param value The corresponding value of the entry to be added into
-     *            BatchItem.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public PutEventsRequest addBatchItemEntry(String key, EventsBatch value) {
-        if (null == this.batchItem) {
-            this.batchItem = new java.util.HashMap<String, EventsBatch>();
-        }
-        if (this.batchItem.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.batchItem.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into BatchItem.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public PutEventsRequest clearBatchItemEntries() {
-        this.batchItem = null;
+    public PutEventsRequest withEventsRequest(EventsRequest eventsRequest) {
+        this.eventsRequest = eventsRequest;
         return this;
     }
 
@@ -149,8 +113,8 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
         sb.append("{");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
-        if (getBatchItem() != null)
-            sb.append("BatchItem: " + getBatchItem());
+        if (getEventsRequest() != null)
+            sb.append("EventsRequest: " + getEventsRequest());
         sb.append("}");
         return sb.toString();
     }
@@ -162,7 +126,8 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
 
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
-        hashCode = prime * hashCode + ((getBatchItem() == null) ? 0 : getBatchItem().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventsRequest() == null) ? 0 : getEventsRequest().hashCode());
         return hashCode;
     }
 
@@ -182,10 +147,10 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
             return false;
-        if (other.getBatchItem() == null ^ this.getBatchItem() == null)
+        if (other.getEventsRequest() == null ^ this.getEventsRequest() == null)
             return false;
-        if (other.getBatchItem() != null
-                && other.getBatchItem().equals(this.getBatchItem()) == false)
+        if (other.getEventsRequest() != null
+                && other.getEventsRequest().equals(this.getEventsRequest()) == false)
             return false;
         return true;
     }

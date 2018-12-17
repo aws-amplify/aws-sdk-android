@@ -26,7 +26,7 @@ public class Record implements Serializable {
     /**
      * <p>
      * The data blob, which is base64-encoded when the blob is serialized. The
-     * maximum size of the data blob, before base64-encoding, is 1,000 KB.
+     * maximum size of the data blob, before base64-encoding, is 1,000 KiB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,7 +37,7 @@ public class Record implements Serializable {
     /**
      * <p>
      * The data blob, which is base64-encoded when the blob is serialized. The
-     * maximum size of the data blob, before base64-encoding, is 1,000 KB.
+     * maximum size of the data blob, before base64-encoding, is 1,000 KiB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,7 @@ public class Record implements Serializable {
      * @return <p>
      *         The data blob, which is base64-encoded when the blob is
      *         serialized. The maximum size of the data blob, before
-     *         base64-encoding, is 1,000 KB.
+     *         base64-encoding, is 1,000 KiB.
      *         </p>
      */
     public java.nio.ByteBuffer getData() {
@@ -56,7 +56,7 @@ public class Record implements Serializable {
     /**
      * <p>
      * The data blob, which is base64-encoded when the blob is serialized. The
-     * maximum size of the data blob, before base64-encoding, is 1,000 KB.
+     * maximum size of the data blob, before base64-encoding, is 1,000 KiB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +65,7 @@ public class Record implements Serializable {
      * @param data <p>
      *            The data blob, which is base64-encoded when the blob is
      *            serialized. The maximum size of the data blob, before
-     *            base64-encoding, is 1,000 KB.
+     *            base64-encoding, is 1,000 KiB.
      *            </p>
      */
     public void setData(java.nio.ByteBuffer data) {
@@ -75,7 +75,7 @@ public class Record implements Serializable {
     /**
      * <p>
      * The data blob, which is base64-encoded when the blob is serialized. The
-     * maximum size of the data blob, before base64-encoding, is 1,000 KB.
+     * maximum size of the data blob, before base64-encoding, is 1,000 KiB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +87,7 @@ public class Record implements Serializable {
      * @param data <p>
      *            The data blob, which is base64-encoded when the blob is
      *            serialized. The maximum size of the data blob, before
-     *            base64-encoding, is 1,000 KB.
+     *            base64-encoding, is 1,000 KiB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

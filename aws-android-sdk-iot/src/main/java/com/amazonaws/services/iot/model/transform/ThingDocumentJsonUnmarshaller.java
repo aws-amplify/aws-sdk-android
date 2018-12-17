@@ -57,6 +57,9 @@ class ThingDocumentJsonUnmarshaller implements Unmarshaller<ThingDocument, JsonU
             } else if (name.equals("shadow")) {
                 thingDocument.setShadow(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("connectivity")) {
+                thingDocument.setConnectivity(ThingConnectivityJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

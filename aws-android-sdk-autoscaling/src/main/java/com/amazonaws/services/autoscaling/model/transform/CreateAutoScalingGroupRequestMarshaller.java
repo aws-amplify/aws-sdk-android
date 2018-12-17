@@ -59,6 +59,13 @@ public class CreateAutoScalingGroupRequestMarshaller implements
             LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
                     request, prefix + ".");
         }
+        if (createAutoScalingGroupRequest.getMixedInstancesPolicy() != null) {
+            prefix = "MixedInstancesPolicy";
+            MixedInstancesPolicy mixedInstancesPolicy = createAutoScalingGroupRequest
+                    .getMixedInstancesPolicy();
+            MixedInstancesPolicyStaxMarshaller.getInstance().marshall(mixedInstancesPolicy,
+                    request, prefix + ".");
+        }
         if (createAutoScalingGroupRequest.getInstanceId() != null) {
             prefix = "InstanceId";
             String instanceId = createAutoScalingGroupRequest.getInstanceId();

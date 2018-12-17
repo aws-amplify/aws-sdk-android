@@ -26,9 +26,9 @@ class EventsBatchJsonMarshaller {
     public void marshall(EventsBatch eventsBatch, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
         if (eventsBatch.getEndpoint() != null) {
-            EndpointRequest endpoint = eventsBatch.getEndpoint();
+            PublicEndpoint endpoint = eventsBatch.getEndpoint();
             jsonWriter.name("Endpoint");
-            EndpointRequestJsonMarshaller.getInstance().marshall(endpoint, jsonWriter);
+            PublicEndpointJsonMarshaller.getInstance().marshall(endpoint, jsonWriter);
         }
         if (eventsBatch.getEvents() != null) {
             java.util.Map<String, Event> events = eventsBatch.getEvents();

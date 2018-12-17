@@ -25,7 +25,9 @@ import com.amazonaws.ClientConfiguration;
  * be sent over WIFI, but can be set to allow events to be sent over the mobile
  * network. Finally developers can set any networking behavior that a low-level
  * AWS client can change through a ClientConfiguration object.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0 Please use AWS Pinpoint SDK for Android along with AWS Pinpoint service instead.
  */
+@Deprecated
 public class AnalyticsConfig {
 
     private boolean allowEventCollection = true;

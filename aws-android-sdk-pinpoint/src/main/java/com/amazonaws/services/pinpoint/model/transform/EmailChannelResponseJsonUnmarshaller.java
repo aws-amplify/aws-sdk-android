@@ -39,6 +39,9 @@ class EmailChannelResponseJsonUnmarshaller implements
             if (name.equals("ApplicationId")) {
                 emailChannelResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ConfigurationSet")) {
+                emailChannelResponse.setConfigurationSet(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
                 emailChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

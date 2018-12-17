@@ -77,80 +77,65 @@ import java.util.concurrent.TimeUnit;
  * Set the these configurations before initializing this class.
  */
 public class InteractionClient {
-    private final String TAG = "Lex";
-    private static final String INTERACTION_CLIENT_USER_AGENT = "INTERACTION_CLIENT";
-
-    /**
-     * Application context.
-     */
-    private final Context context;
-
-    /**
-     * Amazon Lex service client.
-     */
-    private final AmazonLexRuntime amazonlex;
-
-    /**
-     * User speech interaction client for Android.
-     */
-    private final InteractionConfig interactionConfig;
-
-    /**
-     * Amazon AWS Credentials to access DeespSense service.
-     */
-    private final AWSCredentialsProvider credentialsProvider;
-
-    /**
-     * Callback for high-level user interactions.
-     */
-    private InteractionListener interactionListener;
-
-    /**
-     * Callback for audio playback.
-     */
-    private AudioPlaybackListener audioPlaybackListener;
-
-    /**
-     * Callback for user interactions with microphone.
-     */
-    private MicrophoneListener microphoneListener;
-
-    /**
-     * Local media player for audio playback.
-     */
-    private MediaPlayer lMediaPlayer;
-
-    /**
-     * Audio encoding used for audio streamed to the Amazon Lex service.
-     */
-    private AudioEncoder audioEncoder;
-
-    /**
-     * Intervals for no speech and max speech timeouts.
-     */
-    private AudioTimeouts audioTimeouts;
-
-    /**
-     * Config for voice activity detection.
-     */
-    private DnnVADConfig vadConfig;
-
-    /**
-     * Records user audio for streaming.
-     */
-    private LexAudioRecorder lexAudioRecorder;
-
     /**
      * The size of the each sample in bit.
      */
     public static final int SAMPLE_SIZE = 16;
-
+    private static final String INTERACTION_CLIENT_USER_AGENT = "INTERACTION_CLIENT";
+    private final String TAG = "Lex";
+    /**
+     * Application context.
+     */
+    private final Context context;
+    /**
+     * Amazon Lex service client.
+     */
+    private final AmazonLexRuntime amazonlex;
+    /**
+     * User speech interaction client for Android.
+     */
+    private final InteractionConfig interactionConfig;
+    /**
+     * Amazon AWS Credentials to access DeespSense service.
+     */
+    private final AWSCredentialsProvider credentialsProvider;
     /**
      * Client states.
      */
     private final boolean BUSY = true;
     private final boolean NOT_BUSY = false;
-
+    /**
+     * Callback for high-level user interactions.
+     */
+    private InteractionListener interactionListener;
+    /**
+     * Callback for audio playback.
+     */
+    private AudioPlaybackListener audioPlaybackListener;
+    /**
+     * Callback for user interactions with microphone.
+     */
+    private MicrophoneListener microphoneListener;
+    /**
+     * Local media player for audio playback.
+     */
+    private MediaPlayer lMediaPlayer;
+    /**
+     * Audio encoding used for audio streamed to the Amazon Lex service.
+     */
+    private AudioEncoder audioEncoder;
+    /**
+     * Intervals for no speech and max speech timeouts.
+     */
+    private AudioTimeouts audioTimeouts;
+    /**
+     * Config for voice activity detection.
+     */
+    private DnnVADConfig vadConfig;
+    /**
+     * Records user audio for streaming.
+     */
+    private LexAudioRecorder lexAudioRecorder;
     /**
      * Indicates if the client is busy with a request.
      */
@@ -165,10 +150,10 @@ public class InteractionClient {
      * Constructors for Amazon Lex local clients.
      */
     public InteractionClient(Context context,
-            AWSCredentialsProvider credentialsProvider,
-            Regions region,
-            String botName,
-            String botAlias) {
+                             AWSCredentialsProvider credentialsProvider,
+                             Regions region,
+                             String botName,
+                             String botAlias) {
         // Uses default interaction configuration and listeners.
         this(context,
                 credentialsProvider,
@@ -177,17 +162,17 @@ public class InteractionClient {
     }
 
     public InteractionClient(Context context,
-            AWSCredentialsProvider credentialsProvider,
-            Regions region,
-            InteractionConfig interactionConfig) {
+                             AWSCredentialsProvider credentialsProvider,
+                             Regions region,
+                             InteractionConfig interactionConfig) {
         this(context, credentialsProvider, region, interactionConfig, null);
     }
 
     public InteractionClient(Context context,
-            AWSCredentialsProvider credentialsProvider,
-            Regions region,
-            InteractionConfig interactionConfig,
-            ClientConfiguration clientConfiguration) {
+                             AWSCredentialsProvider credentialsProvider,
+                             Regions region,
+                             InteractionConfig interactionConfig,
+                             ClientConfiguration clientConfiguration) {
 
         if (context == null) {
             throw new InvalidParameterException("Context cannot be null.");
@@ -233,6 +218,7 @@ public class InteractionClient {
 
     /**
      * Accept input from mic (speech) for text, {@link String}, response from the service.
+     *
      * @param sessionAttributes {@link Map}.
      */
     public void audioInForTextOut(final Map<String, String> sessionAttributes) {
@@ -242,6 +228,7 @@ public class InteractionClient {
     /**
      * Accept input from mic (speech) for audio response from the service. To allow the to playback
      * audio from the service response, use {@link InteractionConfig#setEnableAudioPlayback(boolean)}.
+     *
      * @param sessionAttributes {@link Map}.
      */
     public void audioInForAudioOut(final Map<String, String> sessionAttributes) {
@@ -250,7 +237,8 @@ public class InteractionClient {
 
     /**
      * Accept input as text, {@link String}, for text, {@link String}, reponse from the service.
-     * @param text input as {@link String}.
+     *
+     * @param text              input as {@link String}.
      * @param sessionAttributes {@link Map}.
      */
     public void textInForTextOut(final String text, final Map<String, String> sessionAttributes) {
@@ -260,7 +248,8 @@ public class InteractionClient {
     /**
      * Accept input as text, {@link String}, for audio response from the service. To allow the to playback
      * audio from the service response, use {@link InteractionConfig#setEnableAudioPlayback(boolean)}.
-     * @param text input as {@link String}.
+     *
+     * @param text              input as {@link String}.
      * @param sessionAttributes {@link Map}.
      */
     public void textInForAudioOut(final String text, final Map<String, String> sessionAttributes) {
@@ -358,11 +347,11 @@ public class InteractionClient {
      * input over the microphone.
      *
      * @param handler {@link Handler}, to interact with app components in the
-     *            main thread.
+     *                main thread.
      * @param request {@link PostContentResult}, response from the Amazon Lex
-     *            service.
-     * @param client {@link InteractionClient}, reference to this object.
-     * @param mode {@link ResponseType}, current response type.
+     *                service.
+     * @param client  {@link InteractionClient}, reference to this object.
+     * @param mode    {@link ResponseType}, current response type.
      */
     private void sendAudioRequest(final Handler handler,
                                   final PostContentRequest request,
@@ -433,11 +422,11 @@ public class InteractionClient {
      * response does not contain audio stream or if audio playback was not
      * requested, continues to analyze the response.
      *
-     * @param handler {@link Handler}, to interact with app components in the
-     *            main thread.
-     * @param result {@link PostContentResult}, response from the Amazon Lex
-     *            service.
-     * @param client {@link InteractionClient}, reference to this object.
+     * @param handler      {@link Handler}, to interact with app components in the
+     *                     main thread.
+     * @param result       {@link PostContentResult}, response from the Amazon Lex
+     *                     service.
+     * @param client       {@link InteractionClient}, reference to this object.
      * @param responseMode {@link ResponseType}, current response type.
      */
     private void processResponseAudioPlayback(final Handler handler,
@@ -506,14 +495,14 @@ public class InteractionClient {
                             handler.post(appCallback);
                         }
                         try {
-                          if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
-                            lMediaPlayer.stop();
-                          }
-                          lMediaPlayer.release();
+                            if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
+                                lMediaPlayer.stop();
+                            }
+                            lMediaPlayer.release();
                         } catch (final Exception e) {
-                          Log.e(TAG, "InteractionClient: Error while releasing MediaPlayer", e);
+                            Log.e(TAG, "InteractionClient: Error while releasing MediaPlayer", e);
                         } finally {
-                          lMediaPlayer = null;
+                            lMediaPlayer = null;
                         }
                     }
                 });
@@ -546,13 +535,13 @@ public class InteractionClient {
                     handler.post(appCallback);
                 }
                 try {
-                  if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
-                    lMediaPlayer.stop();
-                  }
-                  lMediaPlayer.release();
-                  lMediaPlayer = null;
+                    if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
+                        lMediaPlayer.stop();
+                    }
+                    lMediaPlayer.release();
+                    lMediaPlayer = null;
                 } catch (final Exception exp) {
-                  Log.e(TAG, "InteractionClient: Error while releasing MediaPlayer", exp);
+                    Log.e(TAG, "InteractionClient: Error while releasing MediaPlayer", exp);
                 }
                 processResponse(handler, result, client, responseMode, requestType);
             } finally {
@@ -569,11 +558,11 @@ public class InteractionClient {
      * with the next step, which is usually a callback method in the
      * {@link InteractionListener} object.
      *
-     * @param handler {@link Handler}, to interact with app components in the
-     *            main thread.
-     * @param result {@link PostContentResult}, response from the Amazon Lex
-     *            service.
-     * @param client {@link InteractionClient}, reference to this object.
+     * @param handler      {@link Handler}, to interact with app components in the
+     *                     main thread.
+     * @param result       {@link PostContentResult}, response from the Amazon Lex
+     *                     service.
+     * @param client       {@link InteractionClient}, reference to this object.
      * @param responseMode {@link ResponseType}, current response type.
      */
     private void processResponse(final Handler handler,
@@ -643,139 +632,140 @@ public class InteractionClient {
     /**
      * Starts listening to the user over the mic.
      *
-     * @param handler {@link Handler}, to interact with app components in the
-     *            main thread.
+     * @param handler            {@link Handler}, to interact with app components in the
+     *                           main thread.
      * @param microphoneListener {@link MicrophoneListener}, callback to
-     *            communicate recording over microphone to the application.
-     * @param lexAudioRecorder {@link LexAudioRecorder}, listens to audio from
-     *            mic.
+     *                           communicate recording over microphone to the application.
+     * @param lexAudioRecorder   {@link LexAudioRecorder}, listens to audio from
+     *                           mic.
      */
     private void startListening(final Handler handler,
                                 final MicrophoneListener microphoneListener,
-            final LexAudioRecorder lexAudioRecorder,
+                                final LexAudioRecorder lexAudioRecorder,
                                 final PostContentRequest request,
                                 final InteractionClient client,
                                 final ResponseType mode) {
         final AudioRecordingTask recordingTask = new AudioRecordingTask(lexAudioRecorder,
                 new AudioRecordingTaskListener() {
-            @Override
-            public void onReadyForSpeech() {
-                // Client ready to listen to user speech.
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.readyForRecording();
+                    @Override
+                    public void onReadyForSpeech() {
+                        // Client ready to listen to user speech.
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.readyForRecording();
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
-            }
+                    }
 
-            @Override
-            public void onBeginningOfSpeech() {
-                // App detected speech.
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.startedRecording();
+                    @Override
+                    public void onBeginningOfSpeech() {
+                        // App detected speech.
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.startedRecording();
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
 
                         // Now since the speech frames have been detected, send
                         // the request to the Amazon Lex bot.
-                sendAudioRequest(handler, request, client, mode);
-            }
+                        sendAudioRequest(handler, request, client, mode);
+                    }
 
-            @Override
-            public void onBufferReceived(byte[] buffer) {
-                // No operation required. This callback is invoked by AudioRecorder. The bytes received
-                // in this callback are PCM encoded. LexAudioRecorder extends AudioRecorder to
-                // allow other audio encoders, and pipe the encoded bytes through a PipedInputStream.
+                    @Override
+                    public void onBufferReceived(byte[] buffer) {
+                        // No operation required. This callback is invoked by AudioRecorder. The bytes received
+                        // in this callback are PCM encoded. LexAudioRecorder extends AudioRecorder to
+                        // allow other audio encoders, and pipe the encoded bytes through a PipedInputStream.
                         // The PipedInputStream used in the request to the
                         // Amazon Lex service.
-            }
+                    }
 
-            @Override
-            public void onRmsChanged(final float rmsdB) {
-                // Sound level has changed.
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.onSoundLevelChanged(rmsdB);
+                    @Override
+                    public void onRmsChanged(final float rmsdB) {
+                        // Sound level has changed.
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.onSoundLevelChanged(rmsdB);
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
-            }
+                    }
 
-            @Override
-            public void onSilenceDetected() {
-                // Silence detected after speech.
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.onRecordingEnd();
+                    @Override
+                    public void onSilenceDetected() {
+                        // Silence detected after speech.
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.onRecordingEnd();
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
-            }
+                    }
 
-            @Override
-            public void onNoSpeechTimeout() {
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.onMicrophoneError(
-                                    new NoSpeechTimeOutException(
-                                            "User did not respond within the speech time out limit."));
-                        }
-                    };
-                    handler.post(appCallBack);
-                }
-
-                // Stop recording on no timeout.
+                    @Override
+                    public void onNoSpeechTimeout() {
+                        // Stop recording on no timeout.
                         lexAudioRecorder.cancel();
-                setBusyState(NOT_BUSY);
-            }
 
-            @Override
-            public void onMaxSpeechTimeout() {
-                        lexAudioRecorder.cancel();
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.onMicrophoneError(
-                                    new MaxSpeechTimeOutException(
-                                            "User did not complete response within the max speech time out limit."));
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.onMicrophoneError(
+                                            new NoSpeechTimeOutException(
+                                                    "User did not respond within the speech time out limit."));
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
-            }
 
-            @Override
-            public void onError(final AmazonClientException e) {
-                if (microphoneListener != null) {
-                    final Runnable appCallBack = new Runnable() {
-                        @Override
-                        public void run() {
-                            microphoneListener.onMicrophoneError(
+                        setBusyState(NOT_BUSY);
+                    }
+
+                    @Override
+                    public void onMaxSpeechTimeout() {
+                        lexAudioRecorder.cancel();
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.onMicrophoneError(
+                                            new MaxSpeechTimeOutException(
+                                                    "User did not complete response within the max speech time out limit."));
+                                }
+                            };
+                            handler.post(appCallBack);
+                        }
+                    }
+
+                    @Override
+                    public void onError(final AmazonClientException e) {
+                        if (microphoneListener != null) {
+                            final Runnable appCallBack = new Runnable() {
+                                @Override
+                                public void run() {
+                                    microphoneListener.onMicrophoneError(
                                             new LexClientException(e.getMessage(), e));
+                                }
+                            };
+                            handler.post(appCallBack);
                         }
-                    };
-                    handler.post(appCallBack);
-                }
-            }
-        });
+                    }
+                });
 
         recordingTask.execute();
     }
@@ -783,6 +773,7 @@ public class InteractionClient {
     /**
      * Assign a audio playback listener to this interaction client. This will be invoked during
      * audio playback events only when audio playback is enabled.
+     *
      * @param audioPlaybackListener
      */
     public void setAudioPlaybackListener(AudioPlaybackListener audioPlaybackListener) {
@@ -791,6 +782,7 @@ public class InteractionClient {
 
     /**
      * Assign a listener for microphone events.
+     *
      * @param microphoneListener
      */
     public void setMicrophoneListener(MicrophoneListener microphoneListener) {
@@ -800,6 +792,7 @@ public class InteractionClient {
     /**
      * Set an interaction listener for this client. If no internaction listner was provided, the
      * default implementation is used.
+     *
      * @param interactionListener the interaction listener {@link InteractionListener}.
      */
     public void setInteractionListener(InteractionListener interactionListener) {
@@ -825,6 +818,7 @@ public class InteractionClient {
 
     /**
      * Returns the current state of the client.
+     *
      * @return boolean for the current state of the client.
      */
     private boolean isBusy() {
@@ -833,6 +827,7 @@ public class InteractionClient {
 
     /**
      * Sets the current state of the client.
+     *
      * @param busyState the client state.
      */
     private void setBusyState(boolean busyState) {
@@ -841,6 +836,7 @@ public class InteractionClient {
 
     /**
      * Returns {@code true} if audio playback is on progress.
+     *
      * @return
      */
     private boolean isAudioPlayBackInProgress() {
@@ -849,6 +845,7 @@ public class InteractionClient {
 
     /**
      * Sets the current state of the client.
+     *
      * @param playbackState the audio playback state.
      */
     private void setAudioPlaybackState(boolean playbackState) {
@@ -861,11 +858,11 @@ public class InteractionClient {
     private void terminateAudioPlayback() {
         try {
             if (lMediaPlayer != null) {
-            	if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
-            		lMediaPlayer.stop();
-            	}
-				lMediaPlayer.release();
-				lMediaPlayer = null;
+                if (lMediaPlayer.isPlaying() || lMediaPlayer.isLooping()) {
+                    lMediaPlayer.stop();
+                }
+                lMediaPlayer.release();
+                lMediaPlayer = null;
             }
         } catch (final Exception e) {
             // Media player failed.

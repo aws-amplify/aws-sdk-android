@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The filter specified for the <code>ListTopicDetectionJobs</code> operation is
- * invalid. Specify a different filter.
+ * The filter specified for the <code>ListDocumentClassificationJobs</code>
+ * operation is invalid. Specify a different filter.
  * </p>
  */
 public class InvalidFilterException extends AmazonServiceException {

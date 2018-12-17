@@ -37,7 +37,9 @@ import java.util.TimeZone;
  * status of it's stop time. A session's stop time is only set when the session
  * has been paused, and is set to -1 if it is currently running. Can be
  * serialized and restored for persistence.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class Session implements JSONSerializable {
     // - Session ID configuration constants -------------------------=
     protected static final String SESSION_ID_DATE_FORMAT = "yyyyMMdd";
@@ -184,8 +186,7 @@ public class Session implements JSONSerializable {
 
     /**
      * Generates Session ID by concatenating present AppKey, UniqueID, and
-     * Timestamp more detail:
-     * https://w.amazon.com/index.php/GameLab:SessionEvents#Session_ID
+     * Timestamp
      *
      * @return [String] SessionID
      */

@@ -213,7 +213,7 @@ public class AnalyticsEvent implements JSONSerializable {
                                                                    source.optString("app_version_name"),
                                                                    source.optString("app_title"),
                                                                    source.optString(ClientContext.APP_ID_KEY));
-        final SDKInfo sdkInfo = new SDKInfo(source.optString("sdk_version"), source.optString("sdk_name"));
+        final SDKInfo sdkInfo = new SDKInfo(source.optString("sdk_name"), source.optString("sdk_version"));
         final AndroidDeviceDetails deviceDetails = new AndroidDeviceDetails(source.optString("carrier"));
         final String eventId = source.getString("event_id");
         final String eventType = source.getString("event_type");
@@ -465,6 +465,15 @@ public class AnalyticsEvent implements JSONSerializable {
      */
     public Map<String, Double> getAllMetrics() {
         return Collections.unmodifiableMap(metrics);
+    }
+
+    /**
+     * Returns the App specific information
+     *
+     * @return the App specific information
+     */
+    public AndroidAppDetails getAppDetails() {
+        return appDetails;
     }
 
     @Override

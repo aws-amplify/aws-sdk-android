@@ -56,6 +56,9 @@ public class DescribeThingResultJsonUnmarshaller implements
             } else if (name.equals("version")) {
                 describeThingResult.setVersion(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("billingGroupName")) {
+                describeThingResult.setBillingGroupName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

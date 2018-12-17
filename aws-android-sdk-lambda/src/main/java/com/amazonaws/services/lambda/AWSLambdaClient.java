@@ -306,27 +306,34 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     /**
      * <p>
-     * Invokes a specific Lambda function. For an example, see <a href=
+     * Invokes a Lambda function. For an example, see <a href=
      * "http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually"
      * >Create the Lambda Function and Test It Manually</a>.
      * </p>
      * <p>
-     * If you are using the versioning feature, you can invoke the specific
-     * function version by providing function version or alias name that is
-     * pointing to the function version using the <code>Qualifier</code>
-     * parameter in the request. If you don't provide the <code>Qualifier</code>
-     * parameter, the <code>$LATEST</code> version of the Lambda function is
-     * invoked. Invocations occur at least once in response to an event and
-     * functions must be idempotent to handle this. For information about the
-     * versioning feature, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
-     * Lambda Function Versioning and Aliases</a>.
+     * Specify just a function name to invoke the latest version of the
+     * function. To invoke a published version, use the <code>Qualifier</code>
+     * parameter to specify a <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"
+     * >version or alias</a>.
+     * </p>
+     * <p>
+     * If you use the <code>RequestResponse</code> (synchronous) invocation
+     * option, the function will be invoked only once. If you use the
+     * <code>Event</code> (asynchronous) invocation option, the function will be
+     * invoked at least once in response to an event and the function must be
+     * idempotent to handle this.
+     * </p>
+     * <p>
+     * For functions with a long timeout, your client may be disconnected during
+     * synchronous invocation while it waits for a response. Configure your HTTP
+     * client, SDK, firewall, proxy, or operating system to allow for long
+     * connections with timeout or keep-alive settings.
      * </p>
      * <p>
      * This operation requires permission for the
      * <code>lambda:InvokeFunction</code> action.
      * </p>
-     * <note>
      * <p>
      * The <code>TooManyRequestsException</code> noted below will return the
      * following: <code>ConcurrentInvocationLimitExceeded</code> will be
@@ -337,9 +344,8 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * returned when a function with reserved concurrency exceeds its configured
      * concurrency limit.
      * </p>
-     * </note>
      * 
-     * @param invokeRequest <p/>
+     * @param invokeRequest
      * @return invokeResult The response from the Invoke service method, as
      *         returned by AWS Lambda.
      * @throws ServiceException

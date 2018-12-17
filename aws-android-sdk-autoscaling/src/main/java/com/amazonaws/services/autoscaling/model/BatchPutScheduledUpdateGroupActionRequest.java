@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates or updates one or more scheduled scaling actions for an Auto Scaling
- * group. When updating a scheduled scaling action, if you leave a parameter
- * unspecified, the corresponding value remains unchanged.
+ * group. If you leave a parameter unspecified when updating a scheduled scaling
+ * action, the corresponding value remains unchanged.
  * </p>
  */
 public class BatchPutScheduledUpdateGroupActionRequest extends AmazonWebServiceRequest implements

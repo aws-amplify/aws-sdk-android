@@ -33,6 +33,7 @@ public enum LanguageCode {
     EnIN("en-IN"),
     EnUS("en-US"),
     EsES("es-ES"),
+    EsMX("es-MX"),
     EsUS("es-US"),
     FrCA("fr-CA"),
     FrFR("fr-FR"),
@@ -75,6 +76,7 @@ public enum LanguageCode {
         enumMap.put("en-IN", EnIN);
         enumMap.put("en-US", EnUS);
         enumMap.put("es-ES", EsES);
+        enumMap.put("es-MX", EsMX);
         enumMap.put("es-US", EsUS);
         enumMap.put("fr-CA", FrCA);
         enumMap.put("fr-FR", FrFR);

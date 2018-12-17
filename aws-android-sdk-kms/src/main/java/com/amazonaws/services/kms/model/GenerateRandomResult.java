@@ -21,7 +21,7 @@ public class GenerateRandomResult implements Serializable {
     /**
      * <p>
      * The random byte string. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +32,7 @@ public class GenerateRandomResult implements Serializable {
     /**
      * <p>
      * The random byte string. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,7 +40,7 @@ public class GenerateRandomResult implements Serializable {
      *
      * @return <p>
      *         The random byte string. When you use the HTTP API or the AWS CLI,
-     *         the value is Base64-encoded. Otherwise, it is not encoded.
+     *         the value is Base64-encdoded. Otherwise, it is not encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -50,7 +50,7 @@ public class GenerateRandomResult implements Serializable {
     /**
      * <p>
      * The random byte string. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +58,7 @@ public class GenerateRandomResult implements Serializable {
      *
      * @param plaintext <p>
      *            The random byte string. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded.
      *            </p>
      */
@@ -69,7 +69,7 @@ public class GenerateRandomResult implements Serializable {
     /**
      * <p>
      * The random byte string. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +80,7 @@ public class GenerateRandomResult implements Serializable {
      *
      * @param plaintext <p>
      *            The random byte string. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be

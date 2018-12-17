@@ -19,74 +19,40 @@ import java.io.Serializable;
 
 public class PutEventsResult implements Serializable {
     /**
-     * Events submission response.
+     * Custom messages associated with events.
      */
-    private java.util.Map<String, ItemResponse> results;
+    private EventsResponse eventsResponse;
 
     /**
-     * Events submission response.
+     * Custom messages associated with events.
      *
-     * @return Events submission response.
+     * @return Custom messages associated with events.
      */
-    public java.util.Map<String, ItemResponse> getResults() {
-        return results;
+    public EventsResponse getEventsResponse() {
+        return eventsResponse;
     }
 
     /**
-     * Events submission response.
+     * Custom messages associated with events.
      *
-     * @param results Events submission response.
+     * @param eventsResponse Custom messages associated with events.
      */
-    public void setResults(java.util.Map<String, ItemResponse> results) {
-        this.results = results;
+    public void setEventsResponse(EventsResponse eventsResponse) {
+        this.eventsResponse = eventsResponse;
     }
 
     /**
-     * Events submission response.
+     * Custom messages associated with events.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param results Events submission response.
+     * @param eventsResponse Custom messages associated with events.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PutEventsResult withResults(java.util.Map<String, ItemResponse> results) {
-        this.results = results;
-        return this;
-    }
-
-    /**
-     * Events submission response.
-     * <p>
-     * The method adds a new key-value pair into Results parameter, and returns
-     * a reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into Results.
-     * @param value The corresponding value of the entry to be added into
-     *            Results.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public PutEventsResult addResultsEntry(String key, ItemResponse value) {
-        if (null == this.results) {
-            this.results = new java.util.HashMap<String, ItemResponse>();
-        }
-        if (this.results.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.results.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into Results.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public PutEventsResult clearResultsEntries() {
-        this.results = null;
+    public PutEventsResult withEventsResponse(EventsResponse eventsResponse) {
+        this.eventsResponse = eventsResponse;
         return this;
     }
 
@@ -101,8 +67,8 @@ public class PutEventsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getResults() != null)
-            sb.append("Results: " + getResults());
+        if (getEventsResponse() != null)
+            sb.append("EventsResponse: " + getEventsResponse());
         sb.append("}");
         return sb.toString();
     }
@@ -112,7 +78,8 @@ public class PutEventsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getResults() == null) ? 0 : getResults().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventsResponse() == null) ? 0 : getEventsResponse().hashCode());
         return hashCode;
     }
 
@@ -127,9 +94,10 @@ public class PutEventsResult implements Serializable {
             return false;
         PutEventsResult other = (PutEventsResult) obj;
 
-        if (other.getResults() == null ^ this.getResults() == null)
+        if (other.getEventsResponse() == null ^ this.getEventsResponse() == null)
             return false;
-        if (other.getResults() != null && other.getResults().equals(this.getResults()) == false)
+        if (other.getEventsResponse() != null
+                && other.getEventsResponse().equals(this.getEventsResponse()) == false)
             return false;
         return true;
     }

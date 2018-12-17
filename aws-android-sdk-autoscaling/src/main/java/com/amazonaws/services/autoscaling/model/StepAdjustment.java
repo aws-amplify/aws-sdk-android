@@ -30,16 +30,14 @@ import java.io.Serializable;
  * <ul>
  * <li>
  * <p>
- * If you want the adjustment to be triggered when the metric is greater than or
- * equal to 50 and less than 60, specify a lower bound of 0 and an upper bound
- * of 10.
+ * To trigger the adjustment when the metric is greater than or equal to 50 and
+ * less than 60, specify a lower bound of 0 and an upper bound of 10.
  * </p>
  * </li>
  * <li>
  * <p>
- * If you want the adjustment to be triggered when the metric is greater than 40
- * and less than or equal to 50, specify a lower bound of -10 and an upper bound
- * of 0.
+ * To trigger the adjustment when the metric is greater than 40 and less than or
+ * equal to 50, specify a lower bound of -10 and an upper bound of 0.
  * </p>
  * </li>
  * </ul>
@@ -54,14 +52,14 @@ import java.io.Serializable;
  * </li>
  * <li>
  * <p>
- * At most one step adjustment can have a null lower bound. If one step
+ * At most, one step adjustment can have a null lower bound. If one step
  * adjustment has a negative lower bound, then there must be a step adjustment
  * with a null lower bound.
  * </p>
  * </li>
  * <li>
  * <p>
- * At most one step adjustment can have a null upper bound. If one step
+ * At most, one step adjustment can have a null upper bound. If one step
  * adjustment has a positive upper bound, then there must be a step adjustment
  * with a null upper bound.
  * </p>

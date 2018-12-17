@@ -24,6 +24,10 @@ import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system
 
 import java.util.UUID;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class SharedPrefsUniqueIdService implements UniqueIdService {
 
     private static final String TAG = "SharedPrefsUniqueIdService";

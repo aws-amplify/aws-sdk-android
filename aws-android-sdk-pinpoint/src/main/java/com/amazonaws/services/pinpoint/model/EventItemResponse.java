@@ -18,7 +18,8 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * The responses that are returned after you record an event.
+ * A complex object that holds the status code and message as a result of
+ * processing an event.
  */
 public class EventItemResponse implements Serializable {
     /**
@@ -27,7 +28,9 @@ public class EventItemResponse implements Serializable {
     private String message;
 
     /**
-     * The status code to respond with for a particular event id
+     * The status returned in the response as a result of processing the event.
+     * Possible values: 400 (for invalid events) and 202 (for events that were
+     * accepted).
      */
     private Integer statusCode;
 
@@ -68,32 +71,42 @@ public class EventItemResponse implements Serializable {
     }
 
     /**
-     * The status code to respond with for a particular event id
+     * The status returned in the response as a result of processing the event.
+     * Possible values: 400 (for invalid events) and 202 (for events that were
+     * accepted).
      *
-     * @return The status code to respond with for a particular event id
+     * @return The status returned in the response as a result of processing the
+     *         event. Possible values: 400 (for invalid events) and 202 (for
+     *         events that were accepted).
      */
     public Integer getStatusCode() {
         return statusCode;
     }
 
     /**
-     * The status code to respond with for a particular event id
+     * The status returned in the response as a result of processing the event.
+     * Possible values: 400 (for invalid events) and 202 (for events that were
+     * accepted).
      *
-     * @param statusCode The status code to respond with for a particular event
-     *            id
+     * @param statusCode The status returned in the response as a result of
+     *            processing the event. Possible values: 400 (for invalid
+     *            events) and 202 (for events that were accepted).
      */
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 
     /**
-     * The status code to respond with for a particular event id
+     * The status returned in the response as a result of processing the event.
+     * Possible values: 400 (for invalid events) and 202 (for events that were
+     * accepted).
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param statusCode The status code to respond with for a particular event
-     *            id
+     * @param statusCode The status returned in the response as a result of
+     *            processing the event. Possible values: 400 (for invalid
+     *            events) and 202 (for events that were accepted).
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

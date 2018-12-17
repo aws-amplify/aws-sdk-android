@@ -69,6 +69,11 @@ class ThingDocumentJsonMarshaller {
             jsonWriter.name("shadow");
             jsonWriter.value(shadow);
         }
+        if (thingDocument.getConnectivity() != null) {
+            ThingConnectivity connectivity = thingDocument.getConnectivity();
+            jsonWriter.name("connectivity");
+            ThingConnectivityJsonMarshaller.getInstance().marshall(connectivity, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

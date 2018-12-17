@@ -33,8 +33,8 @@ import com.amazonaws.services.translate.model.*;
 /**
  * Interface for accessing Amazon Translate asynchronously.
  * <p>
- * Provides translation between English and one of six languages, or between one
- * of the six languages and English.
+ * Provides translation between one source language and another of the same set
+ * of languages.
  * </p>
  **/
 public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
@@ -259,9 +259,313 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Translates input text from the source language to the target language.
-     * You can translate between English (en) and one of the following
-     * languages, or between one of the following languages and English.
+     * A synchronous action that deletes a custom terminology.
+     * </p>
+     * 
+     * @param deleteTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTerminology service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteTerminologyAsync(
+            final DeleteTerminologyRequest deleteTerminologyRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteTerminology(deleteTerminologyRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * A synchronous action that deletes a custom terminology.
+     * </p>
+     * 
+     * @param deleteTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTerminology service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteTerminologyAsync(
+            final DeleteTerminologyRequest deleteTerminologyRequest,
+            final AsyncHandler<DeleteTerminologyRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteTerminology(deleteTerminologyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteTerminologyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves a custom terminology.
+     * </p>
+     * 
+     * @param getTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         GetTerminology service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetTerminologyResult> getTerminologyAsync(
+            final GetTerminologyRequest getTerminologyRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<GetTerminologyResult>() {
+            public GetTerminologyResult call() throws Exception {
+                return getTerminology(getTerminologyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves a custom terminology.
+     * </p>
+     * 
+     * @param getTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         GetTerminology service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetTerminologyResult> getTerminologyAsync(
+            final GetTerminologyRequest getTerminologyRequest,
+            final AsyncHandler<GetTerminologyRequest, GetTerminologyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetTerminologyResult>() {
+            public GetTerminologyResult call() throws Exception {
+                GetTerminologyResult result = null;
+                try {
+                    result = getTerminology(getTerminologyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getTerminologyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates or updates a custom terminology, depending on whether or not one
+     * already exists for the given terminology name. Importing a terminology
+     * with the same name as an existing one will merge the terminologies based
+     * on the chosen merge strategy. Currently, the only supported merge
+     * strategy is OVERWRITE, and so the imported terminology will overwrite an
+     * existing terminology of the same name.
+     * </p>
+     * <p>
+     * If you import a terminology that overwrites an existing one, the new
+     * terminology take up to 10 minutes to fully propagate and be available for
+     * use in a translation due to cache policies with the DataPlane service
+     * that performs the translations.
+     * </p>
+     * 
+     * @param importTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         ImportTerminology service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ImportTerminologyResult> importTerminologyAsync(
+            final ImportTerminologyRequest importTerminologyRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ImportTerminologyResult>() {
+            public ImportTerminologyResult call() throws Exception {
+                return importTerminology(importTerminologyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates or updates a custom terminology, depending on whether or not one
+     * already exists for the given terminology name. Importing a terminology
+     * with the same name as an existing one will merge the terminologies based
+     * on the chosen merge strategy. Currently, the only supported merge
+     * strategy is OVERWRITE, and so the imported terminology will overwrite an
+     * existing terminology of the same name.
+     * </p>
+     * <p>
+     * If you import a terminology that overwrites an existing one, the new
+     * terminology take up to 10 minutes to fully propagate and be available for
+     * use in a translation due to cache policies with the DataPlane service
+     * that performs the translations.
+     * </p>
+     * 
+     * @param importTerminologyRequest
+     * @return A Java Future object containing the response from the
+     *         ImportTerminology service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ImportTerminologyResult> importTerminologyAsync(
+            final ImportTerminologyRequest importTerminologyRequest,
+            final AsyncHandler<ImportTerminologyRequest, ImportTerminologyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ImportTerminologyResult>() {
+            public ImportTerminologyResult call() throws Exception {
+                ImportTerminologyResult result = null;
+                try {
+                    result = importTerminology(importTerminologyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(importTerminologyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of custom terminologies associated with your account.
+     * </p>
+     * 
+     * @param listTerminologiesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTerminologies service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTerminologiesResult> listTerminologiesAsync(
+            final ListTerminologiesRequest listTerminologiesRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListTerminologiesResult>() {
+            public ListTerminologiesResult call() throws Exception {
+                return listTerminologies(listTerminologiesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of custom terminologies associated with your account.
+     * </p>
+     * 
+     * @param listTerminologiesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTerminologies service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTerminologiesResult> listTerminologiesAsync(
+            final ListTerminologiesRequest listTerminologiesRequest,
+            final AsyncHandler<ListTerminologiesRequest, ListTerminologiesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTerminologiesResult>() {
+            public ListTerminologiesResult call() throws Exception {
+                ListTerminologiesResult result = null;
+                try {
+                    result = listTerminologies(listTerminologiesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTerminologiesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Translates input text from the source language to the target language. It
+     * is not necessary to use English (en) as either the source or the target
+     * language but not all language combinations are supported by Amazon
+     * Translate. For more information, see <a
+     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
+     * >Supported Language Pairs</a>.
      * </p>
      * <ul>
      * <li>
@@ -276,6 +580,36 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * </li>
      * <li>
      * <p>
+     * Chinese (Traditional) (zh-TW)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Czech (cs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Danish (da)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Dutch (nl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * English (en)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Finnish (fi)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * French (fr)
      * </p>
      * </li>
@@ -286,12 +620,57 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * </li>
      * <li>
      * <p>
+     * Hebrew (he)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Indonesian (id)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Italian (it)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Japanese (ja)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Korean (ko)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Polish (pl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Portuguese (pt)
      * </p>
      * </li>
      * <li>
      * <p>
+     * Russian (ru)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Spanish (es)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Swedish (sv)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Turkish (tr)
      * </p>
      * </li>
      * </ul>
@@ -310,6 +689,7 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws TooManyRequestsException
      * @throws UnsupportedLanguagePairException
      * @throws DetectedLanguageLowConfidenceException
+     * @throws ResourceNotFoundException
      * @throws InternalServerException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
@@ -332,9 +712,12 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Translates input text from the source language to the target language.
-     * You can translate between English (en) and one of the following
-     * languages, or between one of the following languages and English.
+     * Translates input text from the source language to the target language. It
+     * is not necessary to use English (en) as either the source or the target
+     * language but not all language combinations are supported by Amazon
+     * Translate. For more information, see <a
+     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
+     * >Supported Language Pairs</a>.
      * </p>
      * <ul>
      * <li>
@@ -349,6 +732,36 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * </li>
      * <li>
      * <p>
+     * Chinese (Traditional) (zh-TW)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Czech (cs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Danish (da)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Dutch (nl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * English (en)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Finnish (fi)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * French (fr)
      * </p>
      * </li>
@@ -359,12 +772,57 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * </li>
      * <li>
      * <p>
+     * Hebrew (he)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Indonesian (id)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Italian (it)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Japanese (ja)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Korean (ko)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Polish (pl)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Portuguese (pt)
      * </p>
      * </li>
      * <li>
      * <p>
+     * Russian (ru)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Spanish (es)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Swedish (sv)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Turkish (tr)
      * </p>
      * </li>
      * </ul>
@@ -383,6 +841,7 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws TooManyRequestsException
      * @throws UnsupportedLanguagePairException
      * @throws DetectedLanguageLowConfidenceException
+     * @throws ResourceNotFoundException
      * @throws InternalServerException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered

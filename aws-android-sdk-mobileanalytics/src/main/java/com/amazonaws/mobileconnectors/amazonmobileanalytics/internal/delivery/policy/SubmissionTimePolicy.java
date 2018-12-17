@@ -16,7 +16,10 @@
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery.policy;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class SubmissionTimePolicy implements DeliveryPolicy {
 
     static final String SUBMITTED_TIME_KEY = "SubmissionTimePolicy.submissionTime";

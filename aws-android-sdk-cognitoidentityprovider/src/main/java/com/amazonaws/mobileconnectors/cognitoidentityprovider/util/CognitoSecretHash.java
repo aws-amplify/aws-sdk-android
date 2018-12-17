@@ -49,8 +49,9 @@ public final class CognitoSecretHash {
             throw new CognitoParameterInvalidException("client ID cannot be null");
         }
 
-        // Return null as secret hash if clientSecret is null.
-        if (clientSecret == null) {
+        // Return null as secret hash if clientSecret is null or "".
+        // We receive clientSecret as "" if we create CognitoUserPool from awsConfiguration file with "AppClientSecret": ""
+        if (StringUtils.isBlank(clientSecret)) {
             return null;
         }
 

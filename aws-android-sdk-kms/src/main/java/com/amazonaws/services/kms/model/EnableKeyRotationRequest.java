@@ -28,6 +28,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * account.
  * </p>
  * <p>
+ * You cannot enable automatic rotation of CMKs with imported key material or
+ * CMKs in a <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+ * >custom key store</a>.
+ * </p>
+ * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
  * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"

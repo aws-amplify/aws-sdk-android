@@ -50,6 +50,11 @@ class JobJsonMarshaller {
             jsonWriter.name("forceCanceled");
             jsonWriter.value(forceCanceled);
         }
+        if (job.getReasonCode() != null) {
+            String reasonCode = job.getReasonCode();
+            jsonWriter.name("reasonCode");
+            jsonWriter.value(reasonCode);
+        }
         if (job.getComment() != null) {
             String comment = job.getComment();
             jsonWriter.name("comment");
@@ -82,6 +87,11 @@ class JobJsonMarshaller {
             jsonWriter.name("jobExecutionsRolloutConfig");
             JobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                     jobExecutionsRolloutConfig, jsonWriter);
+        }
+        if (job.getAbortConfig() != null) {
+            AbortConfig abortConfig = job.getAbortConfig();
+            jsonWriter.name("abortConfig");
+            AbortConfigJsonMarshaller.getInstance().marshall(abortConfig, jsonWriter);
         }
         if (job.getCreatedAt() != null) {
             java.util.Date createdAt = job.getCreatedAt();

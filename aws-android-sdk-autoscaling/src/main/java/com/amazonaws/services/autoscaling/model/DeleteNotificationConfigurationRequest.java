@@ -41,7 +41,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -115,7 +115,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -125,7 +125,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon Simple Notification
-     *         Service (SNS) topic.
+     *         Service (Amazon SNS) topic.
      *         </p>
      */
     public String getTopicARN() {
@@ -135,7 +135,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +145,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      */
     public void setTopicARN(String topicARN) {
@@ -155,7 +155,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -168,7 +168,7 @@ public class DeleteNotificationConfigurationRequest extends AmazonWebServiceRequ
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

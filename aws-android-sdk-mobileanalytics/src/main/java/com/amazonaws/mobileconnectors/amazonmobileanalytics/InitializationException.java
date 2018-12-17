@@ -20,7 +20,9 @@ import com.amazonaws.AmazonClientException;
 /**
  * An error which represents that MobileAnalyticsManager could not be
  * initialized for any reason.
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class InitializationException extends AmazonClientException {
     private static final long serialVersionUID = 2413377589460950524L;
 

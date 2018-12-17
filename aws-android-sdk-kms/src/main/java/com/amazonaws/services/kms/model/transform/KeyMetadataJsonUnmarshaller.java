@@ -68,6 +68,12 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
             } else if (name.equals("Origin")) {
                 keyMetadata.setOrigin(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CustomKeyStoreId")) {
+                keyMetadata.setCustomKeyStoreId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CloudHsmClusterId")) {
+                keyMetadata.setCloudHsmClusterId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ExpirationModel")) {
                 keyMetadata.setExpirationModel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -38,6 +38,17 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * (Optional)A reason code string that explains why the job was canceled.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     */
+    private String reasonCode;
+
+    /**
+     * <p>
      * An optional comment string describing why the job was canceled.
      * </p>
      * <p>
@@ -119,6 +130,66 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
      */
     public CancelJobRequest withJobId(String jobId) {
         this.jobId = jobId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * (Optional)A reason code string that explains why the job was canceled.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @return <p>
+     *         (Optional)A reason code string that explains why the job was
+     *         canceled.
+     *         </p>
+     */
+    public String getReasonCode() {
+        return reasonCode;
+    }
+
+    /**
+     * <p>
+     * (Optional)A reason code string that explains why the job was canceled.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @param reasonCode <p>
+     *            (Optional)A reason code string that explains why the job was
+     *            canceled.
+     *            </p>
+     */
+    public void setReasonCode(String reasonCode) {
+        this.reasonCode = reasonCode;
+    }
+
+    /**
+     * <p>
+     * (Optional)A reason code string that explains why the job was canceled.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\p{Upper}\p{Digit}_]+<br/>
+     *
+     * @param reasonCode <p>
+     *            (Optional)A reason code string that explains why the job was
+     *            canceled.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CancelJobRequest withReasonCode(String reasonCode) {
+        this.reasonCode = reasonCode;
         return this;
     }
 
@@ -322,6 +393,8 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
         sb.append("{");
         if (getJobId() != null)
             sb.append("jobId: " + getJobId() + ",");
+        if (getReasonCode() != null)
+            sb.append("reasonCode: " + getReasonCode() + ",");
         if (getComment() != null)
             sb.append("comment: " + getComment() + ",");
         if (getForce() != null)
@@ -336,6 +409,7 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
+        hashCode = prime * hashCode + ((getReasonCode() == null) ? 0 : getReasonCode().hashCode());
         hashCode = prime * hashCode + ((getComment() == null) ? 0 : getComment().hashCode());
         hashCode = prime * hashCode + ((getForce() == null) ? 0 : getForce().hashCode());
         return hashCode;
@@ -355,6 +429,11 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getJobId() == null ^ this.getJobId() == null)
             return false;
         if (other.getJobId() != null && other.getJobId().equals(this.getJobId()) == false)
+            return false;
+        if (other.getReasonCode() == null ^ this.getReasonCode() == null)
+            return false;
+        if (other.getReasonCode() != null
+                && other.getReasonCode().equals(this.getReasonCode()) == false)
             return false;
         if (other.getComment() == null ^ this.getComment() == null)
             return false;
