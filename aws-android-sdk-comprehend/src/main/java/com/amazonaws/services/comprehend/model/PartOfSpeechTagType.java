@@ -28,6 +28,7 @@ public enum PartOfSpeechTagType {
     ADV("ADV"),
     AUX("AUX"),
     CONJ("CONJ"),
+    CCONJ("CCONJ"),
     DET("DET"),
     INTJ("INTJ"),
     NOUN("NOUN"),
@@ -60,6 +61,7 @@ public enum PartOfSpeechTagType {
         enumMap.put("ADV", ADV);
         enumMap.put("AUX", AUX);
         enumMap.put("CONJ", CONJ);
+        enumMap.put("CCONJ", CCONJ);
         enumMap.put("DET", DET);
         enumMap.put("INTJ", INTJ);
         enumMap.put("NOUN", NOUN);

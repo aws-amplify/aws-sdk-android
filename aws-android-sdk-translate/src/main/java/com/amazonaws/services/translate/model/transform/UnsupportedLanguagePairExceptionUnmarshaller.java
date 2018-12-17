@@ -37,6 +37,9 @@ public class UnsupportedLanguagePairExceptionUnmarshaller extends JsonErrorUnmar
         UnsupportedLanguagePairException e = (UnsupportedLanguagePairException) super
                 .unmarshall(error);
         e.setErrorCode("UnsupportedLanguagePairException");
+        e.setSourceLanguageCode(String.valueOf(error.get("SourceLanguageCode")));
+
+        e.setTargetLanguageCode(String.valueOf(error.get("TargetLanguageCode")));
 
         return e;
     }

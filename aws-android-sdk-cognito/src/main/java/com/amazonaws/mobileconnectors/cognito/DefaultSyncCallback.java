@@ -14,7 +14,9 @@ import com.amazonaws.logging.LogFactory;
  * A default implementation of SyncCallback. All methods but onConflict are
  * stubbed with logging. onConflict resolves conflicts using a 'last writer
  * wins' strategy
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DefaultSyncCallback implements SyncCallback {
 
     private static final Log LOGGER = LogFactory.getLog(DefaultSyncCallback.class);

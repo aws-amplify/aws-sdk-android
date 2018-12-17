@@ -31,6 +31,12 @@ class ThingIndexingConfigurationJsonMarshaller {
             jsonWriter.name("thingIndexingMode");
             jsonWriter.value(thingIndexingMode);
         }
+        if (thingIndexingConfiguration.getThingConnectivityIndexingMode() != null) {
+            String thingConnectivityIndexingMode = thingIndexingConfiguration
+                    .getThingConnectivityIndexingMode();
+            jsonWriter.name("thingConnectivityIndexingMode");
+            jsonWriter.value(thingConnectivityIndexingMode);
+        }
         jsonWriter.endObject();
     }
 

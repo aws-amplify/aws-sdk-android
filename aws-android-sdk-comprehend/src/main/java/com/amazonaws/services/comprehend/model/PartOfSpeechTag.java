@@ -32,8 +32,8 @@ public class PartOfSpeechTag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      */
     private String tag;
 
@@ -51,8 +51,8 @@ public class PartOfSpeechTag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      *
      * @return <p>
      *         Identifies the part of speech that the token represents.
@@ -69,8 +69,8 @@ public class PartOfSpeechTag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      *
      * @param tag <p>
      *            Identifies the part of speech that the token represents.
@@ -90,8 +90,8 @@ public class PartOfSpeechTag implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      *
      * @param tag <p>
      *            Identifies the part of speech that the token represents.
@@ -111,8 +111,8 @@ public class PartOfSpeechTag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      *
      * @param tag <p>
      *            Identifies the part of speech that the token represents.
@@ -132,8 +132,8 @@ public class PartOfSpeechTag implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, DET, INTJ, NOUN, NUM, O,
-     * PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
+     * <b>Allowed Values: </b>ADJ, ADP, ADV, AUX, CONJ, CCONJ, DET, INTJ, NOUN,
+     * NUM, O, PART, PRON, PROPN, PUNCT, SCONJ, SYM, VERB
      *
      * @param tag <p>
      *            Identifies the part of speech that the token represents.

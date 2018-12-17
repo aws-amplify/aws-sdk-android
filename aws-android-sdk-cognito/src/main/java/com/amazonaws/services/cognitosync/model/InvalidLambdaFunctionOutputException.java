@@ -21,7 +21,9 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The AWS Lambda function returned invalid output or an exception.
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class InvalidLambdaFunctionOutputException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

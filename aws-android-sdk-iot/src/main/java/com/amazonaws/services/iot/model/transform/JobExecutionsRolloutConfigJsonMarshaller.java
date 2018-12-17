@@ -31,6 +31,13 @@ class JobExecutionsRolloutConfigJsonMarshaller {
             jsonWriter.name("maximumPerMinute");
             jsonWriter.value(maximumPerMinute);
         }
+        if (jobExecutionsRolloutConfig.getExponentialRate() != null) {
+            ExponentialRolloutRate exponentialRate = jobExecutionsRolloutConfig
+                    .getExponentialRate();
+            jsonWriter.name("exponentialRate");
+            ExponentialRolloutRateJsonMarshaller.getInstance()
+                    .marshall(exponentialRate, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

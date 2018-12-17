@@ -30,9 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To update an Auto Scaling group with a launch configuration with
  * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
- * disable the collection of group metrics. Otherwise, you will get an error. If
- * you have previously enabled the collection of group metrics, you can disable
- * it using <a>DisableMetricsCollection</a>.
+ * disable the collection of group metrics. Otherwise, you get an error. If you
+ * have previously enabled the collection of group metrics, you can disable it
+ * using <a>DisableMetricsCollection</a>.
  * </p>
  * <p>
  * Note the following:
@@ -78,8 +78,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. If you specify a launch
-     * configuration, you can't specify a launch template.
+     * The name of the launch configuration. If you specify this parameter, you
+     * can't specify a launch template or a mixed instances policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,11 +91,21 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to specify the updates. If you specify a
-     * launch template, you can't specify a launch configuration.
+     * The launch template and version to use to specify the updates. If you
+     * specify this parameter, you can't specify a launch configuration or a
+     * mixed instances policy.
      * </p>
      */
     private LaunchTemplateSpecification launchTemplate;
+
+    /**
+     * <p>
+     * The mixed instances policy to use to specify the updates. If you specify
+     * this parameter, you can't specify a launch configuration or a launch
+     * template.
+     * </p>
+     */
+    private MixedInstancesPolicy mixedInstancesPolicy;
 
     /**
      * <p>
@@ -169,8 +179,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -305,8 +315,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. If you specify a launch
-     * configuration, you can't specify a launch template.
+     * The name of the launch configuration. If you specify this parameter, you
+     * can't specify a launch template or a mixed instances policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -315,8 +325,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the launch configuration. If you specify a launch
-     *         configuration, you can't specify a launch template.
+     *         The name of the launch configuration. If you specify this
+     *         parameter, you can't specify a launch template or a mixed
+     *         instances policy.
      *         </p>
      */
     public String getLaunchConfigurationName() {
@@ -325,8 +336,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. If you specify a launch
-     * configuration, you can't specify a launch template.
+     * The name of the launch configuration. If you specify this parameter, you
+     * can't specify a launch template or a mixed instances policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -335,8 +346,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. If you specify a launch
-     *            configuration, you can't specify a launch template.
+     *            The name of the launch configuration. If you specify this
+     *            parameter, you can't specify a launch template or a mixed
+     *            instances policy.
      *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
@@ -345,8 +357,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. If you specify a launch
-     * configuration, you can't specify a launch template.
+     * The name of the launch configuration. If you specify this parameter, you
+     * can't specify a launch template or a mixed instances policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -358,8 +370,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. If you specify a launch
-     *            configuration, you can't specify a launch template.
+     *            The name of the launch configuration. If you specify this
+     *            parameter, you can't specify a launch template or a mixed
+     *            instances policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -371,13 +384,15 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to specify the updates. If you specify a
-     * launch template, you can't specify a launch configuration.
+     * The launch template and version to use to specify the updates. If you
+     * specify this parameter, you can't specify a launch configuration or a
+     * mixed instances policy.
      * </p>
      *
      * @return <p>
-     *         The launch template to use to specify the updates. If you specify
-     *         a launch template, you can't specify a launch configuration.
+     *         The launch template and version to use to specify the updates. If
+     *         you specify this parameter, you can't specify a launch
+     *         configuration or a mixed instances policy.
      *         </p>
      */
     public LaunchTemplateSpecification getLaunchTemplate() {
@@ -386,14 +401,15 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to specify the updates. If you specify a
-     * launch template, you can't specify a launch configuration.
+     * The launch template and version to use to specify the updates. If you
+     * specify this parameter, you can't specify a launch configuration or a
+     * mixed instances policy.
      * </p>
      *
      * @param launchTemplate <p>
-     *            The launch template to use to specify the updates. If you
-     *            specify a launch template, you can't specify a launch
-     *            configuration.
+     *            The launch template and version to use to specify the updates.
+     *            If you specify this parameter, you can't specify a launch
+     *            configuration or a mixed instances policy.
      *            </p>
      */
     public void setLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
@@ -402,17 +418,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to specify the updates. If you specify a
-     * launch template, you can't specify a launch configuration.
+     * The launch template and version to use to specify the updates. If you
+     * specify this parameter, you can't specify a launch configuration or a
+     * mixed instances policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param launchTemplate <p>
-     *            The launch template to use to specify the updates. If you
-     *            specify a launch template, you can't specify a launch
-     *            configuration.
+     *            The launch template and version to use to specify the updates.
+     *            If you specify this parameter, you can't specify a launch
+     *            configuration or a mixed instances policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -420,6 +437,64 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     public UpdateAutoScalingGroupRequest withLaunchTemplate(
             LaunchTemplateSpecification launchTemplate) {
         this.launchTemplate = launchTemplate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The mixed instances policy to use to specify the updates. If you specify
+     * this parameter, you can't specify a launch configuration or a launch
+     * template.
+     * </p>
+     *
+     * @return <p>
+     *         The mixed instances policy to use to specify the updates. If you
+     *         specify this parameter, you can't specify a launch configuration
+     *         or a launch template.
+     *         </p>
+     */
+    public MixedInstancesPolicy getMixedInstancesPolicy() {
+        return mixedInstancesPolicy;
+    }
+
+    /**
+     * <p>
+     * The mixed instances policy to use to specify the updates. If you specify
+     * this parameter, you can't specify a launch configuration or a launch
+     * template.
+     * </p>
+     *
+     * @param mixedInstancesPolicy <p>
+     *            The mixed instances policy to use to specify the updates. If
+     *            you specify this parameter, you can't specify a launch
+     *            configuration or a launch template.
+     *            </p>
+     */
+    public void setMixedInstancesPolicy(MixedInstancesPolicy mixedInstancesPolicy) {
+        this.mixedInstancesPolicy = mixedInstancesPolicy;
+    }
+
+    /**
+     * <p>
+     * The mixed instances policy to use to specify the updates. If you specify
+     * this parameter, you can't specify a launch configuration or a launch
+     * template.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mixedInstancesPolicy <p>
+     *            The mixed instances policy to use to specify the updates. If
+     *            you specify this parameter, you can't specify a launch
+     *            configuration or a launch template.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAutoScalingGroupRequest withMixedInstancesPolicy(
+            MixedInstancesPolicy mixedInstancesPolicy) {
+        this.mixedInstancesPolicy = mixedInstancesPolicy;
         return this;
     }
 
@@ -893,8 +968,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -906,7 +981,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the placement group into which you'll launch your
+     *         The name of the placement group into which to launch your
      *         instances, if any. For more information, see <a href=
      *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *         >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
@@ -919,8 +994,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -932,7 +1007,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param placementGroup <p>
-     *            The name of the placement group into which you'll launch your
+     *            The name of the placement group into which to launch your
      *            instances, if any. For more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
@@ -945,8 +1020,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -961,7 +1036,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param placementGroup <p>
-     *            The name of the placement group into which you'll launch your
+     *            The name of the placement group into which to launch your
      *            instances, if any. For more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
@@ -1402,6 +1477,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
         if (getLaunchTemplate() != null)
             sb.append("LaunchTemplate: " + getLaunchTemplate() + ",");
+        if (getMixedInstancesPolicy() != null)
+            sb.append("MixedInstancesPolicy: " + getMixedInstancesPolicy() + ",");
         if (getMinSize() != null)
             sb.append("MinSize: " + getMinSize() + ",");
         if (getMaxSize() != null)
@@ -1444,6 +1521,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getLaunchTemplate() == null) ? 0 : getLaunchTemplate().hashCode());
+        hashCode = prime * hashCode
+                + ((getMixedInstancesPolicy() == null) ? 0 : getMixedInstancesPolicy().hashCode());
         hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
         hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
         hashCode = prime * hashCode
@@ -1498,6 +1577,11 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getLaunchTemplate() != null
                 && other.getLaunchTemplate().equals(this.getLaunchTemplate()) == false)
+            return false;
+        if (other.getMixedInstancesPolicy() == null ^ this.getMixedInstancesPolicy() == null)
+            return false;
+        if (other.getMixedInstancesPolicy() != null
+                && other.getMixedInstancesPolicy().equals(this.getMixedInstancesPolicy()) == false)
             return false;
         if (other.getMinSize() == null ^ this.getMinSize() == null)
             return false;

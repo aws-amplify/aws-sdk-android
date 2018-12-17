@@ -55,8 +55,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. The following are possible values:
+     * The state of the EC2 instance to which to attach the lifecycle hook. The
+     * following are possible values:
      * </p>
      * <ul>
      * <li>
@@ -262,8 +262,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. The following are possible values:
+     * The state of the EC2 instance to which to attach the lifecycle hook. The
+     * following are possible values:
      * </p>
      * <ul>
      * <li>
@@ -279,8 +279,8 @@ public class LifecycleHook implements Serializable {
      * </ul>
      *
      * @return <p>
-     *         The state of the EC2 instance to which you want to attach the
-     *         lifecycle hook. The following are possible values:
+     *         The state of the EC2 instance to which to attach the lifecycle
+     *         hook. The following are possible values:
      *         </p>
      *         <ul>
      *         <li>
@@ -301,8 +301,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. The following are possible values:
+     * The state of the EC2 instance to which to attach the lifecycle hook. The
+     * following are possible values:
      * </p>
      * <ul>
      * <li>
@@ -318,8 +318,8 @@ public class LifecycleHook implements Serializable {
      * </ul>
      *
      * @param lifecycleTransition <p>
-     *            The state of the EC2 instance to which you want to attach the
-     *            lifecycle hook. The following are possible values:
+     *            The state of the EC2 instance to which to attach the lifecycle
+     *            hook. The following are possible values:
      *            </p>
      *            <ul>
      *            <li>
@@ -340,8 +340,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. The following are possible values:
+     * The state of the EC2 instance to which to attach the lifecycle hook. The
+     * following are possible values:
      * </p>
      * <ul>
      * <li>
@@ -360,8 +360,8 @@ public class LifecycleHook implements Serializable {
      * together.
      *
      * @param lifecycleTransition <p>
-     *            The state of the EC2 instance to which you want to attach the
-     *            lifecycle hook. The following are possible values:
+     *            The state of the EC2 instance to which to attach the lifecycle
+     *            hook. The following are possible values:
      *            </p>
      *            <ul>
      *            <li>

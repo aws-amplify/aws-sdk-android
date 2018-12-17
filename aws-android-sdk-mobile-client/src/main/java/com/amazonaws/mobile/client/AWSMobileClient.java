@@ -27,11 +27,11 @@ import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobile.client.internal.InternalCallback;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResult;
@@ -42,6 +42,9 @@ import com.amazonaws.mobile.auth.facebook.FacebookSignInProvider;
 import com.amazonaws.mobile.auth.google.GoogleButton;
 import com.amazonaws.mobile.auth.google.GoogleSignInProvider;
 import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
+import com.amazonaws.mobile.auth.ui.SignInUI;
+import com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider;
+import com.amazonaws.mobile.client.internal.InternalCallback;
 import com.amazonaws.mobile.client.results.ForgotPasswordResult;
 import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -49,8 +52,6 @@ import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.SignUpResult;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
-import com.amazonaws.mobile.auth.ui.SignInUI;
-import com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider;
 import com.amazonaws.mobile.config.AWSConfigurable;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
@@ -248,7 +249,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         if (cognitoIdentity == null) {
-            throw new RuntimeException("Cognito Identity not configured");
+            throw new AmazonClientException("Cognito Identity not configured");
         }
 
         try {
@@ -257,12 +258,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             }
 
             AWSSessionCredentials credentials = cognitoIdentity.getCredentials();
+            mStore.set(IDENTITY_ID_KEY, cognitoIdentity.getIdentityId());
             return credentials;
         } catch (NotAuthorizedException e) {
             Log.w(TAG, "getCredentials: Failed to getCredentials from Cognito Identity", e);
-            throw new RuntimeException("Failed to get credentials from Cognito Identity", e);
+            throw new AmazonClientException("Failed to get credentials from Cognito Identity", e);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to get credentials from Cognito Identity", e);
+            throw new AmazonClientException("Failed to get credentials from Cognito Identity", e);
         }
     }
 
@@ -274,10 +276,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         if (cognitoIdentity == null) {
-            throw new RuntimeException("Cognito Identity not configured");
+            throw new AmazonClientException("Cognito Identity not configured");
         }
 
         cognitoIdentity.refresh();
+        mStore.set(IDENTITY_ID_KEY, cognitoIdentity.getIdentityId());
     }
 
     /**
@@ -354,7 +357,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         mStore = new AWSMobileClientStore(AWSMobileClient.this);
                         awsConfiguration = awsConfig;
 
-                        final IdentityManager identityManager = new IdentityManager(mContext, awsConfiguration);
+                        final IdentityManager identityManager = new IdentityManager(mContext);
+                        identityManager.enableFederation(false);
+                        identityManager.setConfiguration(awsConfiguration);
                         IdentityManager.setDefaultIdentityManager(identityManager);
                         registerConfigSignInProviders();
                         identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
@@ -394,7 +399,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             try {
                                 cognitoIdentity = new CognitoCachingCredentialsProvider(mContext, awsConfiguration);
                             } catch (Exception e) {
-                                throw new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e);
+                                callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
+                                return;
                             }
                         }
 
@@ -404,13 +410,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
                                 userpool = new CognitoUserPool(mContext, awsConfiguration);
                             } catch (Exception e) {
-                                throw new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e);
+                                callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
+                                return;
                             }
                         }
 
                         if (cognitoIdentity == null && userpool == null) {
-                            throw new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
-                                    " At least one must be present to use AWSMobileClient.");
+                            callback.onError(new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
+                                    " At least one must be present to use AWSMobileClient."));
+                            return;
                         }
 
                         final UserStateDetails userStateDetails = getUserStateDetails(true);
@@ -496,7 +504,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      */
     public String getUsername() {
         try {
-            return mCognitoUserSession.getUsername();
+            if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
+                return userpool.getCurrentUser().getUserId();
+            }
+            return null;
         } catch (Exception e) {
             return null;
         }
@@ -990,6 +1001,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         @Override
                         public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
                             try {
+                                mCognitoUserSession = userSession;
                                 callback.onResult(new Tokens(
                                         userSession.getAccessToken().getJWTToken(),
                                         userSession.getIdToken().getJWTToken(),
@@ -1466,8 +1478,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             Log.d(TAG, "confirmSignIn called after signIn has succeeded");
                             break;
                         default:
-                            throw new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                    "please file a feature request");
+                            callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                    "please file a feature request"));
+                            return;
                     }
 
                     if (detectedContinuation != null) {
@@ -1955,7 +1968,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 synchronized (showSignInLockObject) {
                     UserState userState = getUserStateDetails(false).getUserState();
                     if (UserState.SIGNED_IN.equals(userState)) {
-                        throw new RuntimeException("Called showSignIn while user is already signed-in");
+                        callback.onError(new RuntimeException("Called showSignIn while user is already signed-in"));
+                        return;
                     }
 
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
@@ -1992,11 +2006,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     SignInUI signin = (SignInUI) getClient(mContext, SignInUI.class);
                     signin.login(callingActivity, nextActivityClass)
                             .authUIConfiguration(authUIConfigBuilder.build())
+                            .enableFederation(false)
                             .execute();
 
                     showSignInWaitLatch = new CountDownLatch(1);
                     try {
                         showSignInWaitLatch.await();
+                        Log.d(TAG, "run: showSignIn completed");
                     } catch (InterruptedException e) {
                         callback.onError(e);
                     }

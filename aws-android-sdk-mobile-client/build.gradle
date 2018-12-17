@@ -56,18 +56,15 @@ dependencies {
      * These should ideally depend on the project version,
      * but need to convert everything to Android libraries
      */
-//    api(project(":aws-android-sdk-auth-core")) {
-//        exclude group: "com.google.android", module: "android"
-//    }
-//    api(project(":aws-android-sdk-cognitoidentityprovider")) {
-//        exclude group: "com.google.android", module: "android"
-//    }
-//    androidTestImplementation(project(':aws-android-sdk-auth-userpools')) {
-//        exclude group: "com.google.android", module: "android"
-//    }
-    api "com.amazonaws:aws-android-sdk-auth-core:2.8.0"
-    api "com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.8.0"
-    androidTestImplementation "com.amazonaws:aws-android-sdk-auth-userpools:2.8.0"
+    api(project(":aws-android-sdk-auth-core")) {
+        exclude group: "com.google.android", module: "android"
+    }
+    api(project(":aws-android-sdk-cognitoidentityprovider")) {
+        exclude group: "com.google.android", module: "android"
+    }
+    androidTestImplementation(project(':aws-android-sdk-auth-userpools')) {
+        exclude group: "com.google.android", module: "android"
+    }
 
     // Optional dependencies
     compileOnly project(':aws-android-sdk-auth-ui')

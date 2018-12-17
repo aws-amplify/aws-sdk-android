@@ -20,29 +20,41 @@ import java.io.Serializable;
 public class DescribeTerminationPolicyTypesResult implements Serializable {
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Amazon EC2 Auto Scaling:
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
-     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
-     * <code>Default</code>).
+     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
+     * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
+     * <code>AllocationStrategy</code>. Currently, the
+     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
+     * policies are only supported for Auto Scaling groups with
+     * <a>MixedInstancesPolicy</a>.
      * </p>
      */
     private java.util.List<String> terminationPolicyTypes = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Amazon EC2 Auto Scaling:
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
-     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
-     * <code>Default</code>).
+     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
+     * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
+     * <code>AllocationStrategy</code>. Currently, the
+     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
+     * policies are only supported for Auto Scaling groups with
+     * <a>MixedInstancesPolicy</a>.
      * </p>
      *
      * @return <p>
-     *         The termination policies supported by Amazon EC2 Auto Scaling (
+     *         The termination policies supported by Amazon EC2 Auto Scaling:
      *         <code>OldestInstance</code>,
      *         <code>OldestLaunchConfiguration</code>,
      *         <code>NewestInstance</code>,
-     *         <code>ClosestToNextInstanceHour</code>, and <code>Default</code>
-     *         ).
+     *         <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
+     *         <code>OldestLaunchTemplate</code>, and
+     *         <code>AllocationStrategy</code>. Currently, the
+     *         <code>OldestLaunchTemplate</code> and
+     *         <code>AllocationStrategy</code> policies are only supported for
+     *         Auto Scaling groups with <a>MixedInstancesPolicy</a>.
      *         </p>
      */
     public java.util.List<String> getTerminationPolicyTypes() {
@@ -51,19 +63,27 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Amazon EC2 Auto Scaling:
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
-     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
-     * <code>Default</code>).
+     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
+     * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
+     * <code>AllocationStrategy</code>. Currently, the
+     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
+     * policies are only supported for Auto Scaling groups with
+     * <a>MixedInstancesPolicy</a>.
      * </p>
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Amazon EC2 Auto Scaling:
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
-     *            <code>ClosestToNextInstanceHour</code>, and
-     *            <code>Default</code>).
+     *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
+     *            <code>OldestLaunchTemplate</code>, and
+     *            <code>AllocationStrategy</code>. Currently, the
+     *            <code>OldestLaunchTemplate</code> and
+     *            <code>AllocationStrategy</code> policies are only supported
+     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
      *            </p>
      */
     public void setTerminationPolicyTypes(java.util.Collection<String> terminationPolicyTypes) {
@@ -77,22 +97,30 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Amazon EC2 Auto Scaling:
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
-     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
-     * <code>Default</code>).
+     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
+     * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
+     * <code>AllocationStrategy</code>. Currently, the
+     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
+     * policies are only supported for Auto Scaling groups with
+     * <a>MixedInstancesPolicy</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Amazon EC2 Auto Scaling:
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
-     *            <code>ClosestToNextInstanceHour</code>, and
-     *            <code>Default</code>).
+     *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
+     *            <code>OldestLaunchTemplate</code>, and
+     *            <code>AllocationStrategy</code>. Currently, the
+     *            <code>OldestLaunchTemplate</code> and
+     *            <code>AllocationStrategy</code> policies are only supported
+     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -111,22 +139,30 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Amazon EC2 Auto Scaling:
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
-     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
-     * <code>Default</code>).
+     * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
+     * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
+     * <code>AllocationStrategy</code>. Currently, the
+     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
+     * policies are only supported for Auto Scaling groups with
+     * <a>MixedInstancesPolicy</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Amazon EC2 Auto Scaling:
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
-     *            <code>ClosestToNextInstanceHour</code>, and
-     *            <code>Default</code>).
+     *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
+     *            <code>OldestLaunchTemplate</code>, and
+     *            <code>AllocationStrategy</code>. Currently, the
+     *            <code>OldestLaunchTemplate</code> and
+     *            <code>AllocationStrategy</code> policies are only supported
+     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

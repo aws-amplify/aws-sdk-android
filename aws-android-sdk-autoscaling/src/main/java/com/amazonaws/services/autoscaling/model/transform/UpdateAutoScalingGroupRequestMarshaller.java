@@ -59,6 +59,13 @@ public class UpdateAutoScalingGroupRequestMarshaller implements
             LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
                     request, prefix + ".");
         }
+        if (updateAutoScalingGroupRequest.getMixedInstancesPolicy() != null) {
+            prefix = "MixedInstancesPolicy";
+            MixedInstancesPolicy mixedInstancesPolicy = updateAutoScalingGroupRequest
+                    .getMixedInstancesPolicy();
+            MixedInstancesPolicyStaxMarshaller.getInstance().marshall(mixedInstancesPolicy,
+                    request, prefix + ".");
+        }
         if (updateAutoScalingGroupRequest.getMinSize() != null) {
             prefix = "MinSize";
             Integer minSize = updateAutoScalingGroupRequest.getMinSize();

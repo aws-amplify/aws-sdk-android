@@ -35,6 +35,7 @@ public class DescribeSentimentDetectionJobRequest extends AmazonWebServiceReques
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -46,6 +47,7 @@ public class DescribeSentimentDetectionJobRequest extends AmazonWebServiceReques
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier that Amazon Comprehend generated for the job. The
@@ -64,6 +66,7 @@ public class DescribeSentimentDetectionJobRequest extends AmazonWebServiceReques
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier that Amazon Comprehend generated for the job.
@@ -85,6 +88,7 @@ public class DescribeSentimentDetectionJobRequest extends AmazonWebServiceReques
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier that Amazon Comprehend generated for the job.

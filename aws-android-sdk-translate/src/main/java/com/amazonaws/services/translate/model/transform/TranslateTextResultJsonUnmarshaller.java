@@ -42,6 +42,12 @@ public class TranslateTextResultJsonUnmarshaller implements
             } else if (name.equals("TargetLanguageCode")) {
                 translateTextResult.setTargetLanguageCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AppliedTerminologies")) {
+                translateTextResult
+                        .setAppliedTerminologies(new ListUnmarshaller<AppliedTerminology>(
+                                AppliedTerminologyJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -27,7 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API can only be called with temporary credentials provided by Cognito
  * Identity. You cannot call this API with developer credentials.
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class RegisterDeviceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>

@@ -71,6 +71,11 @@ public class CreateThingRequestMarshaller implements
                 jsonWriter.name("attributePayload");
                 AttributePayloadJsonMarshaller.getInstance().marshall(attributePayload, jsonWriter);
             }
+            if (createThingRequest.getBillingGroupName() != null) {
+                String billingGroupName = createThingRequest.getBillingGroupName();
+                jsonWriter.name("billingGroupName");
+                jsonWriter.value(billingGroupName);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

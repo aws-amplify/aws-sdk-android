@@ -22,6 +22,21 @@ import java.io.Serializable;
  */
 public class Event implements Serializable {
     /**
+     * The new value for the appPackageName property for this object.
+     */
+    private String appPackageName;
+
+    /**
+     * The new value for the appTitle property for this object.
+     */
+    private String appTitle;
+
+    /**
+     * The new value for the appVersionCode property for this object.
+     */
+    private String appVersionCode;
+
+    /**
      * Custom attributes that are associated with the event you're adding or
      * updating.
      */
@@ -38,12 +53,17 @@ public class Event implements Serializable {
     private String eventType;
 
     /**
-     * Event metrics
+     * Custom metrics related to the event.
      */
     private java.util.Map<String, Double> metrics;
 
     /**
-     * The session
+     * The new value for the sdkName property for this object.
+     */
+    private String sdkName;
+
+    /**
+     * Information about the session in which the event occurred.
      */
     private Session session;
 
@@ -51,6 +71,109 @@ public class Event implements Serializable {
      * The date and time when the event occurred, in ISO 8601 format.
      */
     private String timestamp;
+
+    /**
+     * Returns the value of the appPackageName property for this object.
+     *
+     * @return The value of the appPackageName property for this object.
+     */
+    public String getAppPackageName() {
+        return appPackageName;
+    }
+
+    /**
+     * Sets the value of appPackageName
+     *
+     * @param appPackageName The new value for the appPackageName property for
+     *            this object.
+     */
+    public void setAppPackageName(String appPackageName) {
+        this.appPackageName = appPackageName;
+    }
+
+    /**
+     * Sets the value of the appPackageName property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param appPackageName The new value for the appPackageName property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Event withAppPackageName(String appPackageName) {
+        this.appPackageName = appPackageName;
+        return this;
+    }
+
+    /**
+     * Returns the value of the appTitle property for this object.
+     *
+     * @return The value of the appTitle property for this object.
+     */
+    public String getAppTitle() {
+        return appTitle;
+    }
+
+    /**
+     * Sets the value of appTitle
+     *
+     * @param appTitle The new value for the appTitle property for this object.
+     */
+    public void setAppTitle(String appTitle) {
+        this.appTitle = appTitle;
+    }
+
+    /**
+     * Sets the value of the appTitle property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param appTitle The new value for the appTitle property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Event withAppTitle(String appTitle) {
+        this.appTitle = appTitle;
+        return this;
+    }
+
+    /**
+     * Returns the value of the appVersionCode property for this object.
+     *
+     * @return The value of the appVersionCode property for this object.
+     */
+    public String getAppVersionCode() {
+        return appVersionCode;
+    }
+
+    /**
+     * Sets the value of appVersionCode
+     *
+     * @param appVersionCode The new value for the appVersionCode property for
+     *            this object.
+     */
+    public void setAppVersionCode(String appVersionCode) {
+        this.appVersionCode = appVersionCode;
+    }
+
+    /**
+     * Sets the value of the appVersionCode property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param appVersionCode The new value for the appVersionCode property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Event withAppVersionCode(String appVersionCode) {
+        this.appVersionCode = appVersionCode;
+        return this;
+    }
 
     /**
      * Custom attributes that are associated with the event you're adding or
@@ -196,30 +319,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * Event metrics
+     * Custom metrics related to the event.
      *
-     * @return Event metrics
+     * @return Custom metrics related to the event.
      */
     public java.util.Map<String, Double> getMetrics() {
         return metrics;
     }
 
     /**
-     * Event metrics
+     * Custom metrics related to the event.
      *
-     * @param metrics Event metrics
+     * @param metrics Custom metrics related to the event.
      */
     public void setMetrics(java.util.Map<String, Double> metrics) {
         this.metrics = metrics;
     }
 
     /**
-     * Event metrics
+     * Custom metrics related to the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param metrics Event metrics
+     * @param metrics Custom metrics related to the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -229,7 +352,7 @@ public class Event implements Serializable {
     }
 
     /**
-     * Event metrics
+     * Custom metrics related to the event.
      * <p>
      * The method adds a new key-value pair into Metrics parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -263,30 +386,63 @@ public class Event implements Serializable {
     }
 
     /**
-     * The session
+     * Returns the value of the sdkName property for this object.
      *
-     * @return The session
+     * @return The value of the sdkName property for this object.
+     */
+    public String getSdkName() {
+        return sdkName;
+    }
+
+    /**
+     * Sets the value of sdkName
+     *
+     * @param sdkName The new value for the sdkName property for this object.
+     */
+    public void setSdkName(String sdkName) {
+        this.sdkName = sdkName;
+    }
+
+    /**
+     * Sets the value of the sdkName property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sdkName The new value for the sdkName property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Event withSdkName(String sdkName) {
+        this.sdkName = sdkName;
+        return this;
+    }
+
+    /**
+     * Information about the session in which the event occurred.
+     *
+     * @return Information about the session in which the event occurred.
      */
     public Session getSession() {
         return session;
     }
 
     /**
-     * The session
+     * Information about the session in which the event occurred.
      *
-     * @param session The session
+     * @param session Information about the session in which the event occurred.
      */
     public void setSession(Session session) {
         this.session = session;
     }
 
     /**
-     * The session
+     * Information about the session in which the event occurred.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param session The session
+     * @param session Information about the session in which the event occurred.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -341,6 +497,12 @@ public class Event implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getAppPackageName() != null)
+            sb.append("AppPackageName: " + getAppPackageName() + ",");
+        if (getAppTitle() != null)
+            sb.append("AppTitle: " + getAppTitle() + ",");
+        if (getAppVersionCode() != null)
+            sb.append("AppVersionCode: " + getAppVersionCode() + ",");
         if (getAttributes() != null)
             sb.append("Attributes: " + getAttributes() + ",");
         if (getClientSdkVersion() != null)
@@ -349,6 +511,8 @@ public class Event implements Serializable {
             sb.append("EventType: " + getEventType() + ",");
         if (getMetrics() != null)
             sb.append("Metrics: " + getMetrics() + ",");
+        if (getSdkName() != null)
+            sb.append("SdkName: " + getSdkName() + ",");
         if (getSession() != null)
             sb.append("Session: " + getSession() + ",");
         if (getTimestamp() != null)
@@ -362,11 +526,17 @@ public class Event implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getAppPackageName() == null) ? 0 : getAppPackageName().hashCode());
+        hashCode = prime * hashCode + ((getAppTitle() == null) ? 0 : getAppTitle().hashCode());
+        hashCode = prime * hashCode
+                + ((getAppVersionCode() == null) ? 0 : getAppVersionCode().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getClientSdkVersion() == null) ? 0 : getClientSdkVersion().hashCode());
         hashCode = prime * hashCode + ((getEventType() == null) ? 0 : getEventType().hashCode());
         hashCode = prime * hashCode + ((getMetrics() == null) ? 0 : getMetrics().hashCode());
+        hashCode = prime * hashCode + ((getSdkName() == null) ? 0 : getSdkName().hashCode());
         hashCode = prime * hashCode + ((getSession() == null) ? 0 : getSession().hashCode());
         hashCode = prime * hashCode + ((getTimestamp() == null) ? 0 : getTimestamp().hashCode());
         return hashCode;
@@ -383,6 +553,20 @@ public class Event implements Serializable {
             return false;
         Event other = (Event) obj;
 
+        if (other.getAppPackageName() == null ^ this.getAppPackageName() == null)
+            return false;
+        if (other.getAppPackageName() != null
+                && other.getAppPackageName().equals(this.getAppPackageName()) == false)
+            return false;
+        if (other.getAppTitle() == null ^ this.getAppTitle() == null)
+            return false;
+        if (other.getAppTitle() != null && other.getAppTitle().equals(this.getAppTitle()) == false)
+            return false;
+        if (other.getAppVersionCode() == null ^ this.getAppVersionCode() == null)
+            return false;
+        if (other.getAppVersionCode() != null
+                && other.getAppVersionCode().equals(this.getAppVersionCode()) == false)
+            return false;
         if (other.getAttributes() == null ^ this.getAttributes() == null)
             return false;
         if (other.getAttributes() != null
@@ -401,6 +585,10 @@ public class Event implements Serializable {
         if (other.getMetrics() == null ^ this.getMetrics() == null)
             return false;
         if (other.getMetrics() != null && other.getMetrics().equals(this.getMetrics()) == false)
+            return false;
+        if (other.getSdkName() == null ^ this.getSdkName() == null)
+            return false;
+        if (other.getSdkName() != null && other.getSdkName().equals(this.getSdkName()) == false)
             return false;
         if (other.getSession() == null ^ this.getSession() == null)
             return false;

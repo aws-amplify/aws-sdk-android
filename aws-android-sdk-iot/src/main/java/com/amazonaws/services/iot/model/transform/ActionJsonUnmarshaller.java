@@ -77,6 +77,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("iotAnalytics")) {
                 action.setIotAnalytics(IotAnalyticsActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("iotEvents")) {
+                action.setIotEvents(IotEventsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("stepFunctions")) {
                 action.setStepFunctions(StepFunctionsActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

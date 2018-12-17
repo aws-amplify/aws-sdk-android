@@ -64,6 +64,11 @@ public class GenerateRandomRequestMarshaller implements
                 jsonWriter.name("NumberOfBytes");
                 jsonWriter.value(numberOfBytes);
             }
+            if (generateRandomRequest.getCustomKeyStoreId() != null) {
+                String customKeyStoreId = generateRandomRequest.getCustomKeyStoreId();
+                jsonWriter.name("CustomKeyStoreId");
+                jsonWriter.value(customKeyStoreId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

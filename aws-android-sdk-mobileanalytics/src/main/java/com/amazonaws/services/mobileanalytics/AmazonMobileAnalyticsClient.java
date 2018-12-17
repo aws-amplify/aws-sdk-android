@@ -39,7 +39,9 @@ import com.amazonaws.services.mobileanalytics.model.transform.*;
  * Amazon Mobile Analytics is a service for collecting, visualizing, and
  * understanding app usage data at scale.
  * </p>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class AmazonMobileAnalyticsClient extends AmazonWebServiceClient implements
         AmazonMobileAnalytics {
     /** Provider for AWS credentials. */

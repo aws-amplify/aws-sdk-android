@@ -22,9 +22,9 @@ import java.io.Serializable;
  */
 public class Session implements Serializable {
     /**
-     * Session duration in millis
+     * The duration of the session, in milliseconds.
      */
-    private Long duration;
+    private Integer duration;
 
     /**
      * A unique identifier for the session.
@@ -42,34 +42,34 @@ public class Session implements Serializable {
     private String stopTimestamp;
 
     /**
-     * Session duration in millis
+     * The duration of the session, in milliseconds.
      *
-     * @return Session duration in millis
+     * @return The duration of the session, in milliseconds.
      */
-    public Long getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
     /**
-     * Session duration in millis
+     * The duration of the session, in milliseconds.
      *
-     * @param duration Session duration in millis
+     * @param duration The duration of the session, in milliseconds.
      */
-    public void setDuration(Long duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
     /**
-     * Session duration in millis
+     * The duration of the session, in milliseconds.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param duration Session duration in millis
+     * @param duration The duration of the session, in milliseconds.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public Session withDuration(Long duration) {
+    public Session withDuration(Integer duration) {
         this.duration = duration;
         return this;
     }

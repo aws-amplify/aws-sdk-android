@@ -25,7 +25,10 @@ import org.json.JSONObject;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class EventConstraintDecorator implements InternalEvent {
 
     private static class Pair<T, U> {

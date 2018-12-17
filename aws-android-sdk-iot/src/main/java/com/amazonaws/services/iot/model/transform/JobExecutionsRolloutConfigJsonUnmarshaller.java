@@ -40,6 +40,10 @@ class JobExecutionsRolloutConfigJsonUnmarshaller implements
                 jobExecutionsRolloutConfig.setMaximumPerMinute(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("exponentialRate")) {
+                jobExecutionsRolloutConfig
+                        .setExponentialRate(ExponentialRolloutRateJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -28,7 +28,7 @@ public class EndpointLocation implements Serializable {
 
     /**
      * The two-letter code for the country or region of the endpoint. Specified
-     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
+     * as an ISO 3166-1 alpha-2 code, such as "US" for the United States.
      */
     private String country;
 
@@ -88,10 +88,10 @@ public class EndpointLocation implements Serializable {
 
     /**
      * The two-letter code for the country or region of the endpoint. Specified
-     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
+     * as an ISO 3166-1 alpha-2 code, such as "US" for the United States.
      *
      * @return The two-letter code for the country or region of the endpoint.
-     *         Specified as an ISO 3166-1 Alpha-2 code, such as "US" for the
+     *         Specified as an ISO 3166-1 alpha-2 code, such as "US" for the
      *         United States.
      */
     public String getCountry() {
@@ -100,10 +100,10 @@ public class EndpointLocation implements Serializable {
 
     /**
      * The two-letter code for the country or region of the endpoint. Specified
-     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
+     * as an ISO 3166-1 alpha-2 code, such as "US" for the United States.
      *
      * @param country The two-letter code for the country or region of the
-     *            endpoint. Specified as an ISO 3166-1 Alpha-2 code, such as
+     *            endpoint. Specified as an ISO 3166-1 alpha-2 code, such as
      *            "US" for the United States.
      */
     public void setCountry(String country) {
@@ -112,13 +112,13 @@ public class EndpointLocation implements Serializable {
 
     /**
      * The two-letter code for the country or region of the endpoint. Specified
-     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
+     * as an ISO 3166-1 alpha-2 code, such as "US" for the United States.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param country The two-letter code for the country or region of the
-     *            endpoint. Specified as an ISO 3166-1 Alpha-2 code, such as
+     *            endpoint. Specified as an ISO 3166-1 alpha-2 code, such as
      *            "US" for the United States.
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -27,6 +27,7 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -74,6 +75,7 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier generated for the job. To get the status of the
@@ -94,6 +96,7 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of the
@@ -117,6 +120,7 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of the

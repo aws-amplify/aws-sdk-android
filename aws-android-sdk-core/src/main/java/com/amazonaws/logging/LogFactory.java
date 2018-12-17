@@ -23,6 +23,7 @@ import java.util.HashMap;
  * for backwards compatibility.
  */
 public class LogFactory {
+    private static final String TAG = LogFactory.class.getSimpleName();
     private static final String APACHE_COMMONS_LOGGING_LOGFACTORY = "org.apache.commons.logging.LogFactory";
 
     private static Map<String, Log> logMap = new HashMap<String, Log>();
@@ -34,17 +35,7 @@ public class LogFactory {
      * @return logger
      */
     public static synchronized Log getLog(Class clazz) {
-        Log log = logMap.get(clazz.getSimpleName());
-        if (log == null) {
-            if (checkApacheCommonsLoggingExists()) {
-                log = new ApacheCommonsLogging(clazz);
-                logMap.put(clazz.getSimpleName(), log);
-            } else {
-                log = new AndroidLog(clazz.getSimpleName());
-                logMap.put(clazz.getSimpleName(), log);
-            }
-        }
-        return log;
+        return getLog(clazz.getSimpleName());
     }
 
     /**
@@ -57,9 +48,14 @@ public class LogFactory {
         Log log = logMap.get(string);
         if (log == null) {
             if (checkApacheCommonsLoggingExists()) {
-                log = new ApacheCommonsLogging(string);
-                logMap.put(string, log);
-            } else {
+                try {
+                    log = new ApacheCommonsLogging(string);
+                    logMap.put(string, log);
+                } catch (Exception e) {
+                    android.util.Log.w(TAG, "Could not create log from " + APACHE_COMMONS_LOGGING_LOGFACTORY, e);
+                }
+            }
+            if (log == null) {
                 log = new AndroidLog(string);
                 logMap.put(string, log);
             }
@@ -74,7 +70,7 @@ public class LogFactory {
         } catch (ClassNotFoundException cnfe) {
             return false;
         } catch (Exception ex) {
-            android.util.Log.e(LogFactory.class.getSimpleName(), ex.getMessage());
+            android.util.Log.e(TAG, ex.getMessage());
             return false;
         }
     }

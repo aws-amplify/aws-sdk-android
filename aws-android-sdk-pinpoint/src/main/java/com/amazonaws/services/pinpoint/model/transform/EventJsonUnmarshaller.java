@@ -35,7 +35,16 @@ class EventJsonUnmarshaller implements Unmarshaller<Event, JsonUnmarshallerConte
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Attributes")) {
+            if (name.equals("AppPackageName")) {
+                event.setAppPackageName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AppTitle")) {
+                event.setAppTitle(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AppVersionCode")) {
+                event.setAppVersionCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Attributes")) {
                 event.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
@@ -50,6 +59,9 @@ class EventJsonUnmarshaller implements Unmarshaller<Event, JsonUnmarshallerConte
                 event.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("SdkName")) {
+                event.setSdkName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Session")) {
                 event.setSession(SessionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

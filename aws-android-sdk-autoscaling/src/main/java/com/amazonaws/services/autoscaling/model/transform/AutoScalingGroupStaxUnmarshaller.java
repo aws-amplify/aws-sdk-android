@@ -67,6 +67,11 @@ class AutoScalingGroupStaxUnmarshaller implements
                             .getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("MixedInstancesPolicy", targetDepth)) {
+                    autoScalingGroup.setMixedInstancesPolicy(MixedInstancesPolicyStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
                 if (context.testExpression("MinSize", targetDepth)) {
                     autoScalingGroup.setMinSize(IntegerStaxUnmarshaller.getInstance().unmarshall(
                             context));

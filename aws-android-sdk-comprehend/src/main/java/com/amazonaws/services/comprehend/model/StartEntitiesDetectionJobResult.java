@@ -26,6 +26,7 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -55,6 +56,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * FAILED - The job did not complete. To get details, use the operation.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,6 +83,7 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier generated for the job. To get the status of job,
@@ -89,6 +102,7 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of
@@ -110,6 +124,7 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of
@@ -149,6 +164,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * FAILED - The job did not complete. To get details, use the operation.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,6 +206,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      *         <p>
      *         FAILED - The job did not complete. To get details, use the
      *         operation.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         STOP_REQUESTED - Amazon Comprehend has received a stop request
+     *         for the job and is processing the request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         STOPPED - The job was successfully stopped without completing.
      *         </p>
      *         </li>
      *         </ul>
@@ -215,6 +252,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * FAILED - The job did not complete. To get details, use the operation.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,6 +296,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      *            operation.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            STOP_REQUESTED - Amazon Comprehend has received a stop request
+     *            for the job and is processing the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOPPED - The job was successfully stopped without completing.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see JobStatus
      */
@@ -279,6 +338,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <li>
      * <p>
      * FAILED - The job did not complete. To get details, use the operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
      * </p>
      * </li>
      * </ul>
@@ -315,6 +385,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
      *            operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOP_REQUESTED - Amazon Comprehend has received a stop request
+     *            for the job and is processing the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOPPED - The job was successfully stopped without completing.
      *            </p>
      *            </li>
      *            </ul>
@@ -353,6 +434,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * FAILED - The job did not complete. To get details, use the operation.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -386,6 +478,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      *            operation.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            STOP_REQUESTED - Amazon Comprehend has received a stop request
+     *            for the job and is processing the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOPPED - The job was successfully stopped without completing.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see JobStatus
      */
@@ -417,6 +520,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <li>
      * <p>
      * FAILED - The job did not complete. To get details, use the operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOP_REQUESTED - Amazon Comprehend has received a stop request for the
+     * job and is processing the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * STOPPED - The job was successfully stopped without completing.
      * </p>
      * </li>
      * </ul>
@@ -453,6 +567,17 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
      *            operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOP_REQUESTED - Amazon Comprehend has received a stop request
+     *            for the job and is processing the request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            STOPPED - The job was successfully stopped without completing.
      *            </p>
      *            </li>
      *            </ul>

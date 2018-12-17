@@ -78,7 +78,9 @@ public class InvokeResult implements Serializable {
      * <p>
      * The function version that has been executed. This value is returned only
      * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     * >Traffic Shifting Using Aliases</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -413,7 +415,9 @@ public class InvokeResult implements Serializable {
      * <p>
      * The function version that has been executed. This value is returned only
      * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     * >Traffic Shifting Using Aliases</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -423,8 +427,9 @@ public class InvokeResult implements Serializable {
      * @return <p>
      *         The function version that has been executed. This value is
      *         returned only if the invocation type is
-     *         <code>RequestResponse</code>. For more information, see
-     *         <a>lambda-traffic-shifting-using-aliases</a>.
+     *         <code>RequestResponse</code>. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     *         >Traffic Shifting Using Aliases</a>.
      *         </p>
      */
     public String getExecutedVersion() {
@@ -435,7 +440,9 @@ public class InvokeResult implements Serializable {
      * <p>
      * The function version that has been executed. This value is returned only
      * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     * >Traffic Shifting Using Aliases</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -445,8 +452,10 @@ public class InvokeResult implements Serializable {
      * @param executedVersion <p>
      *            The function version that has been executed. This value is
      *            returned only if the invocation type is
-     *            <code>RequestResponse</code>. For more information, see
-     *            <a>lambda-traffic-shifting-using-aliases</a>.
+     *            <code>RequestResponse</code>. For more information, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     *            >Traffic Shifting Using Aliases</a>.
      *            </p>
      */
     public void setExecutedVersion(String executedVersion) {
@@ -457,7 +466,9 @@ public class InvokeResult implements Serializable {
      * <p>
      * The function version that has been executed. This value is returned only
      * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     * >Traffic Shifting Using Aliases</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -470,8 +481,10 @@ public class InvokeResult implements Serializable {
      * @param executedVersion <p>
      *            The function version that has been executed. This value is
      *            returned only if the invocation type is
-     *            <code>RequestResponse</code>. For more information, see
-     *            <a>lambda-traffic-shifting-using-aliases</a>.
+     *            <code>RequestResponse</code>. For more information, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
+     *            >Traffic Shifting Using Aliases</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

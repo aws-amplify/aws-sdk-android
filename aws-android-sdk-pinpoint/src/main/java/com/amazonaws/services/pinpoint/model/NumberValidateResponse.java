@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Phone Number Information response.
+ * Phone Number Validate response.
  */
 public class NumberValidateResponse implements Serializable {
     /**
@@ -65,8 +65,8 @@ public class NumberValidateResponse implements Serializable {
     private String county;
 
     /**
-     * The two-character ISO code for the country or region that you included in
-     * the request body.
+     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
+     * region in the request body.
      */
     private String originalCountryCodeIso2;
 
@@ -393,36 +393,36 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The two-character ISO code for the country or region that you included in
-     * the request body.
+     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
+     * region in the request body.
      *
-     * @return The two-character ISO code for the country or region that you
-     *         included in the request body.
+     * @return The two-character code (in ISO 3166-1 alpha-2 format) for the
+     *         country or region in the request body.
      */
     public String getOriginalCountryCodeIso2() {
         return originalCountryCodeIso2;
     }
 
     /**
-     * The two-character ISO code for the country or region that you included in
-     * the request body.
+     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
+     * region in the request body.
      *
-     * @param originalCountryCodeIso2 The two-character ISO code for the country
-     *            or region that you included in the request body.
+     * @param originalCountryCodeIso2 The two-character code (in ISO 3166-1
+     *            alpha-2 format) for the country or region in the request body.
      */
     public void setOriginalCountryCodeIso2(String originalCountryCodeIso2) {
         this.originalCountryCodeIso2 = originalCountryCodeIso2;
     }
 
     /**
-     * The two-character ISO code for the country or region that you included in
-     * the request body.
+     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
+     * region in the request body.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param originalCountryCodeIso2 The two-character ISO code for the country
-     *            or region that you included in the request body.
+     * @param originalCountryCodeIso2 The two-character code (in ISO 3166-1
+     *            alpha-2 format) for the country or region in the request body.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -38,6 +38,9 @@ class ScheduleJsonUnmarshaller implements Unmarshaller<Schedule, JsonUnmarshalle
             if (name.equals("EndTime")) {
                 schedule.setEndTime(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EventFilter")) {
+                schedule.setEventFilter(CampaignEventFilterJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Frequency")) {
                 schedule.setFrequency(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

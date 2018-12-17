@@ -337,6 +337,410 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Creates a new document classifier that you can use to categorize
+     * documents. To create a classifier you provide a set of training documents
+     * that labeled with the categories that you want to use. After the
+     * classifier is trained you can use it to categorize a set of labeled
+     * documents into the categories.
+     * </p>
+     * 
+     * @param createDocumentClassifierRequest
+     * @return A Java Future object containing the response from the
+     *         CreateDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateDocumentClassifierResult> createDocumentClassifierAsync(
+            CreateDocumentClassifierRequest createDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new document classifier that you can use to categorize
+     * documents. To create a classifier you provide a set of training documents
+     * that labeled with the categories that you want to use. After the
+     * classifier is trained you can use it to categorize a set of labeled
+     * documents into the categories.
+     * </p>
+     * 
+     * @param createDocumentClassifierRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateDocumentClassifierResult> createDocumentClassifierAsync(
+            CreateDocumentClassifierRequest createDocumentClassifierRequest,
+            AsyncHandler<CreateDocumentClassifierRequest, CreateDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an entity recognizer using submitted files. After your
+     * <code>CreateEntityRecognizer</code> request is submitted, you can check
+     * job status using the API.
+     * </p>
+     * 
+     * @param createEntityRecognizerRequest
+     * @return A Java Future object containing the response from the
+     *         CreateEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEntityRecognizerResult> createEntityRecognizerAsync(
+            CreateEntityRecognizerRequest createEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an entity recognizer using submitted files. After your
+     * <code>CreateEntityRecognizer</code> request is submitted, you can check
+     * job status using the API.
+     * </p>
+     * 
+     * @param createEntityRecognizerRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEntityRecognizerResult> createEntityRecognizerAsync(
+            CreateEntityRecognizerRequest createEntityRecognizerRequest,
+            AsyncHandler<CreateEntityRecognizerRequest, CreateEntityRecognizerResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a previously created document classifier
+     * </p>
+     * <p>
+     * Only those classifiers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the classifier into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * classifier disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteDocumentClassifierRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteDocumentClassifierResult> deleteDocumentClassifierAsync(
+            DeleteDocumentClassifierRequest deleteDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a previously created document classifier
+     * </p>
+     * <p>
+     * Only those classifiers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the classifier into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * classifier disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteDocumentClassifierRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteDocumentClassifierResult> deleteDocumentClassifierAsync(
+            DeleteDocumentClassifierRequest deleteDocumentClassifierRequest,
+            AsyncHandler<DeleteDocumentClassifierRequest, DeleteDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an entity recognizer.
+     * </p>
+     * <p>
+     * Only those recognizers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the recognizer into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * recognizer disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteEntityRecognizerRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteEntityRecognizerResult> deleteEntityRecognizerAsync(
+            DeleteEntityRecognizerRequest deleteEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an entity recognizer.
+     * </p>
+     * <p>
+     * Only those recognizers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the recognizer into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * recognizer disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteEntityRecognizerRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteEntityRecognizerResult> deleteEntityRecognizerAsync(
+            DeleteEntityRecognizerRequest deleteEntityRecognizerRequest,
+            AsyncHandler<DeleteEntityRecognizerRequest, DeleteEntityRecognizerResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classification job. Use
+     * this operation to get the status of a classification job.
+     * </p>
+     * 
+     * @param describeDocumentClassificationJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDocumentClassificationJobResult> describeDocumentClassificationJobAsync(
+            DescribeDocumentClassificationJobRequest describeDocumentClassificationJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classification job. Use
+     * this operation to get the status of a classification job.
+     * </p>
+     * 
+     * @param describeDocumentClassificationJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDocumentClassificationJobResult> describeDocumentClassificationJobAsync(
+            DescribeDocumentClassificationJobRequest describeDocumentClassificationJobRequest,
+            AsyncHandler<DescribeDocumentClassificationJobRequest, DescribeDocumentClassificationJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classifier.
+     * </p>
+     * 
+     * @param describeDocumentClassifierRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDocumentClassifierResult> describeDocumentClassifierAsync(
+            DescribeDocumentClassifierRequest describeDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classifier.
+     * </p>
+     * 
+     * @param describeDocumentClassifierRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDocumentClassifierResult> describeDocumentClassifierAsync(
+            DescribeDocumentClassifierRequest describeDocumentClassifierRequest,
+            AsyncHandler<DescribeDocumentClassifierRequest, DescribeDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets the properties associated with a dominant language detection job.
      * Use this operation to get the status of a detection job.
      * </p>
@@ -447,6 +851,63 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<DescribeEntitiesDetectionJobResult> describeEntitiesDetectionJobAsync(
             DescribeEntitiesDetectionJobRequest describeEntitiesDetectionJobRequest,
             AsyncHandler<DescribeEntitiesDetectionJobRequest, DescribeEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides details about an entity recognizer including status, S3 buckets
+     * containing training data, recognizer metadata, metrics, and so on.
+     * </p>
+     * 
+     * @param describeEntityRecognizerRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEntityRecognizerResult> describeEntityRecognizerAsync(
+            DescribeEntityRecognizerRequest describeEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides details about an entity recognizer including status, S3 buckets
+     * containing training data, recognizer metadata, metrics, and so on.
+     * </p>
+     * 
+     * @param describeEntityRecognizerRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEntityRecognizerResult> describeEntityRecognizerAsync(
+            DescribeEntityRecognizerRequest describeEntityRecognizerRequest,
+            AsyncHandler<DescribeEntityRecognizerRequest, DescribeEntityRecognizerResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -898,6 +1359,118 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Gets a list of the documentation classification jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDocumentClassificationJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassificationJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDocumentClassificationJobsResult> listDocumentClassificationJobsAsync(
+            ListDocumentClassificationJobsRequest listDocumentClassificationJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the documentation classification jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDocumentClassificationJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassificationJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDocumentClassificationJobsResult> listDocumentClassificationJobsAsync(
+            ListDocumentClassificationJobsRequest listDocumentClassificationJobsRequest,
+            AsyncHandler<ListDocumentClassificationJobsRequest, ListDocumentClassificationJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the document classifiers that you have created.
+     * </p>
+     * 
+     * @param listDocumentClassifiersRequest
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassifiers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDocumentClassifiersResult> listDocumentClassifiersAsync(
+            ListDocumentClassifiersRequest listDocumentClassifiersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the document classifiers that you have created.
+     * </p>
+     * 
+     * @param listDocumentClassifiersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassifiers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDocumentClassifiersResult> listDocumentClassifiersAsync(
+            ListDocumentClassifiersRequest listDocumentClassifiersRequest,
+            AsyncHandler<ListDocumentClassifiersRequest, ListDocumentClassifiersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets a list of the dominant language detection jobs that you have
      * submitted.
      * </p>
@@ -1006,6 +1579,77 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<ListEntitiesDetectionJobsResult> listEntitiesDetectionJobsAsync(
             ListEntitiesDetectionJobsRequest listEntitiesDetectionJobsRequest,
             AsyncHandler<ListEntitiesDetectionJobsRequest, ListEntitiesDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the properties of all entity recognizers that you created,
+     * including recognizers currently in training. Allows you to filter the
+     * list of recognizers based on criteria such as status and submission time.
+     * This call returns up to 500 entity recognizers in the list, with a
+     * default number of 100 recognizers in the list.
+     * </p>
+     * <p>
+     * The results of this list are not in any particular order. Please get the
+     * list and sort locally if needed.
+     * </p>
+     * 
+     * @param listEntityRecognizersRequest
+     * @return A Java Future object containing the response from the
+     *         ListEntityRecognizers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEntityRecognizersResult> listEntityRecognizersAsync(
+            ListEntityRecognizersRequest listEntityRecognizersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the properties of all entity recognizers that you created,
+     * including recognizers currently in training. Allows you to filter the
+     * list of recognizers based on criteria such as status and submission time.
+     * This call returns up to 500 entity recognizers in the list, with a
+     * default number of 100 recognizers in the list.
+     * </p>
+     * <p>
+     * The results of this list are not in any particular order. Please get the
+     * list and sort locally if needed.
+     * </p>
+     * 
+     * @param listEntityRecognizersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListEntityRecognizers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEntityRecognizersResult> listEntityRecognizersAsync(
+            ListEntityRecognizersRequest listEntityRecognizersRequest,
+            AsyncHandler<ListEntityRecognizersRequest, ListEntityRecognizersResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1175,6 +1819,65 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Starts an asynchronous document classification job. Use the operation to
+     * track the progress of the job.
+     * </p>
+     * 
+     * @param startDocumentClassificationJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartDocumentClassificationJobResult> startDocumentClassificationJobAsync(
+            StartDocumentClassificationJobRequest startDocumentClassificationJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous document classification job. Use the operation to
+     * track the progress of the job.
+     * </p>
+     * 
+     * @param startDocumentClassificationJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartDocumentClassificationJobResult> startDocumentClassificationJobAsync(
+            StartDocumentClassificationJobRequest startDocumentClassificationJobRequest,
+            AsyncHandler<StartDocumentClassificationJobRequest, StartDocumentClassificationJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Starts an asynchronous dominant language detection job for a collection
      * of documents. Use the operation to track the status of a job.
      * </p>
@@ -1233,6 +1936,12 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * Starts an asynchronous entity detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
+     * <p>
+     * This API can be used for either standard entity detection or custom
+     * entity recognition. In order to be used for custom entity recognition,
+     * the optional <code>EntityRecognizerArn</code> must be used in order to
+     * provide access to the recognizer being used to detect the custom entity.
+     * </p>
      * 
      * @param startEntitiesDetectionJobRequest
      * @return A Java Future object containing the response from the
@@ -1240,6 +1949,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -1258,6 +1969,12 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * Starts an asynchronous entity detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
+     * <p>
+     * This API can be used for either standard entity detection or custom
+     * entity recognition. In order to be used for custom entity recognition,
+     * the optional <code>EntityRecognizerArn</code> must be used in order to
+     * provide access to the recognizer being used to detect the custom entity.
+     * </p>
      * 
      * @param startEntitiesDetectionJobRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1269,6 +1986,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

@@ -56,6 +56,11 @@ class EntitiesDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("EndTime");
             jsonWriter.value(endTime);
         }
+        if (entitiesDetectionJobProperties.getEntityRecognizerArn() != null) {
+            String entityRecognizerArn = entitiesDetectionJobProperties.getEntityRecognizerArn();
+            jsonWriter.name("EntityRecognizerArn");
+            jsonWriter.value(entityRecognizerArn);
+        }
         if (entitiesDetectionJobProperties.getInputDataConfig() != null) {
             InputDataConfig inputDataConfig = entitiesDetectionJobProperties.getInputDataConfig();
             jsonWriter.name("InputDataConfig");

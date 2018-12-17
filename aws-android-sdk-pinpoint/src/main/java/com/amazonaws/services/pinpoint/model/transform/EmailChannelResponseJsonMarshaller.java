@@ -31,6 +31,11 @@ class EmailChannelResponseJsonMarshaller {
             jsonWriter.name("ApplicationId");
             jsonWriter.value(applicationId);
         }
+        if (emailChannelResponse.getConfigurationSet() != null) {
+            String configurationSet = emailChannelResponse.getConfigurationSet();
+            jsonWriter.name("ConfigurationSet");
+            jsonWriter.value(configurationSet);
+        }
         if (emailChannelResponse.getCreationDate() != null) {
             String creationDate = emailChannelResponse.getCreationDate();
             jsonWriter.name("CreationDate");

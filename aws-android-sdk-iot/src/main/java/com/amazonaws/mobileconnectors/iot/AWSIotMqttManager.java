@@ -64,14 +64,6 @@ public class AWSIotMqttManager {
     private static final Integer MILLIS_IN_ONE_SECOND = 1000;
 
     private static final Log LOGGER = LogFactory.getLog(AWSIotMqttManager.class);
-    /** Constant for number of tokens in endpoint. */
-    private static final int ENDPOINT_SPLIT_SIZE = 5;
-    /** Constant for token offset of "iot" in endpoint. */
-    private static final int ENDPOINT_IOT_OFFSET = 1;
-    /** Constant for token offset of "amazonaws" in endpoint. */
-    private static final int ENDPOINT_DOMAIN_OFFSET = 3;
-    /** Constant for token offset of "com" in endpoint. */
-    private static final int ENDPOINT_TLD_OFFSET = 4;
 
     /** Default value for starting delay in exponential backoff reconnect algorithm. */
     public static final Integer DEFAULT_MIN_RECONNECT_RETRY_TIME_SECONDS = 4;
@@ -95,7 +87,7 @@ public class AWSIotMqttManager {
     /** The underlying Paho Java MQTT client. */
     private MqttAsyncClient mqttClient;
 
-    /** MQTT broker URL.  Built from region, customer endpoint. */
+    /** MQTT broker URL. Built from the custom endpoint. */
     private String mqttBrokerURL;
 
     /** WebSocket URL Signer object. */
@@ -106,6 +98,7 @@ public class AWSIotMqttManager {
 
     /** MQTT client ID, used for both initial connection and reconnections. */
     private final String mqttClientId;
+    
     /** AWS IoT region hosting the MQTT service. */
     private final Region region;
 
@@ -168,6 +161,12 @@ public class AWSIotMqttManager {
      * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
      */
     private boolean metricsIsEnabled = true;
+
+    /**
+     * This is your custom endpoint that allows you to connect to AWS IoT.
+     */
+    private final String endpoint;
+
     /**
      * The SDK version that will be sent in the mqtt connect message if metrics collection is enabled.
      */
@@ -543,10 +542,11 @@ public class AWSIotMqttManager {
         needResubscribe = enabled;
     }
 
-
     /**
      * Set to true if the connection should be established with a clean session, false otherwise.
-     * By default, this is set to true.
+     * By default, this is set to true. AWS IoT message broker currently does not support persistent sessions
+     * (connections made with the cleanSession flag set to false). Support for persistent sessions
+     * (setting cleanSesssion to false) may be supported in the future.
      * @param cleanSession flag to establish a clean session
      */
     public void setCleanSession(boolean cleanSession) {
@@ -558,29 +558,40 @@ public class AWSIotMqttManager {
      *
      * @param mqttClientId MQTT client ID to use with this client.
      * @param endpoint AWS IoT endpoint.
-     *                 Expected endpoint format: XXXXXX.iot.[region].amazonaws.com
+     *            Expected endpoint formats:
+     *            XXXXXXX.iot.[region].amazonaws.com or
+     *            XXXXXXX-ats.iot.[region].amazonaws.com or
+     *            XXXXXXX.ats.iot.cn-north-1.amazonaws.com.cn
      */
     public AWSIotMqttManager(String mqttClientId, String endpoint) {
         if (mqttClientId == null || mqttClientId.isEmpty()) {
             throw new IllegalArgumentException("mqttClientId is null or empty");
         }
 
+        if (endpoint == null) {
+            throw new IllegalArgumentException("endpoint is null");
+        }
+
         this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
         this.mqttMessageQueue = new ConcurrentLinkedQueue<AWSIotMqttQueueMessage>();
-        this.accountEndpointPrefix = AwsIotEndpointUtility.getAccountPrefixFromEndpont(endpoint);
         this.mqttClientId = mqttClientId;
+        this.endpoint = endpoint;
+        this.accountEndpointPrefix = null;
         this.region = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
 
         initDefaults();
     }
 
     /**
-     * Constructs a new AWSIotMqttManager.
+     * Constructs a new AWSIotMqttManager. This method does not support
+     * ATS enabled endpoints.
      *
      * @param mqttClientId MQTT client ID to use with this client.
      * @param region The AWS region to use when creating endpoint.
      * @param accountEndpointPrefix Customer specific endpont prefix XXXXXXX in
-     *            XXXXXX.iot.[region].amazonaws.com.
+     *            XXXXXXX.iot.[region].amazonaws.com or
+     *            XXXXXXX-ats.iot.[region].amazonaws.com or
+     *            XXXXXXX.ats.iot.cn-north-1.amazonaws.com.cn
      */
     public AWSIotMqttManager(String mqttClientId, Region region, String accountEndpointPrefix) {
 
@@ -602,6 +613,7 @@ public class AWSIotMqttManager {
         this.accountEndpointPrefix = accountEndpointPrefix;
         this.mqttClientId = mqttClientId;
         this.region = region;
+        this.endpoint = null;
 
         initDefaults();
     }
@@ -657,9 +669,17 @@ public class AWSIotMqttManager {
             return;
         }
 
-        mqttBrokerURL = String
-                .format("ssl://%s.iot.%s.%s:8883", accountEndpointPrefix, region.getName(),
-                        region.getDomain());
+        if (endpoint != null) {
+            mqttBrokerURL = String.format("ssl://%s:8883", endpoint);
+        } else if (accountEndpointPrefix != null) {
+            mqttBrokerURL = String
+                    .format("ssl://%s.iot.%s.%s:8883", accountEndpointPrefix, region.getName(),
+                            region.getDomain());
+        } else {
+            throw new IllegalStateException("No valid endpoint information is available. " +
+                "Please pass in a valid endpoint in AWSIotMqttManager.");
+        }
+
         isWebSocketClient = false;
         LOGGER.debug("MQTT broker: " + mqttBrokerURL);
 
@@ -725,13 +745,26 @@ public class AWSIotMqttManager {
 
                 signer = new AWSIotWebSocketUrlSigner("iotdata");
 
-                final String endpoint = String.format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
-                        region.getDomain());
+                String endpointWithHttpPort;
+
+                if (endpoint != null) {
+                    endpointWithHttpPort = String.format("%s:443", endpoint);
+                } else if (accountEndpointPrefix != null) {
+                    endpointWithHttpPort = String
+                            .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
+                                    region.getDomain());
+                } else {
+                    throw new IllegalStateException("No valid endpoint information is available. " +
+                        "Please pass in a valid endpoint in AWSIotMqttManager.");
+                }
+
                 isWebSocketClient = true;
-                LOGGER.debug("MQTT broker: " + endpoint);
+                LOGGER.debug("MQTT broker: " + endpointWithHttpPort);
+
                 try {
-                    final String mqttWebSocketURL = signer.getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
-                            System.currentTimeMillis());
+                    final String mqttWebSocketURL = signer.getSignedUrl(endpointWithHttpPort, 
+                        clientCredentialsProvider.getCredentials(),
+                        System.currentTimeMillis());
 
                     final MqttConnectOptions options = new MqttConnectOptions();
 
@@ -746,7 +779,7 @@ public class AWSIotMqttManager {
                     }
 
                     if (mqttClient == null) {
-                        mqttClient = new MqttAsyncClient("wss://" + endpoint, mqttClientId,
+                        mqttClient = new MqttAsyncClient("wss://" + endpointWithHttpPort, mqttClientId,
                                 new MemoryPersistence());
                     }
 
@@ -890,13 +923,15 @@ public class AWSIotMqttManager {
      * Attempts to reconnect.  If unsuccessful schedules a reconnect attempt.
      */
     void reconnectToSession() {
+        String endpointWithHttpPort;
+
         // status will be ConnectionLost if user calls disconnect() during reconnect logic
         if (null != mqttClient && connectionState != MqttManagerConnectionState.Disconnected) {
             LOGGER.info("attempting to reconnect to mqtt broker");
 
             final MqttConnectOptions options = new MqttConnectOptions();
 
-            options.setCleanSession(false);
+            options.setCleanSession(cleanSession);
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
@@ -907,12 +942,20 @@ public class AWSIotMqttManager {
             if (isWebSocketClient) {
                 signer = new AWSIotWebSocketUrlSigner("iotdata");
 
-                final String endpoint = String
-                        .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
-                                region.getDomain());
+                if (endpoint != null) {
+                    endpointWithHttpPort = String.format("%s:443", endpoint);
+                } else if (accountEndpointPrefix != null) {
+                    endpointWithHttpPort = String
+                            .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
+                                    region.getDomain());
+                } else {
+                    throw new IllegalStateException("No valid endpoint information is available. " +
+                        "Please pass in a valid endpoint in AWSIotMqttManager.");
+                }
+
                 try {
                     final String mqttWebSocketURL = signer
-                            .getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
+                            .getSignedUrl(endpointWithHttpPort, clientCredentialsProvider.getCredentials(),
                                     System.currentTimeMillis());
                     LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
                     // Specify the URL through the server URI array.  This is checked
@@ -1003,6 +1046,7 @@ public class AWSIotMqttManager {
                     if (mqttClient != null && !mqttClient.isConnected()) {
                         reconnectToSession();
                     }
+                    ht.quit();
                 }
             }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
             currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
@@ -1204,13 +1248,13 @@ public class AWSIotMqttManager {
                 }
             }
         } else if (connectionState == MqttManagerConnectionState.Reconnecting) {
-            if (offlinePublishQueueEnabled) {
-                if (!putMessageInQueue(data, topic, qos, publishMessageUserData)) {
-                    // queue is full (and set to hold onto the oldest messages)
-                    userPublishCallback(callback,
-                            AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                            userData);
-                }
+            final boolean messagedQueued = offlinePublishQueueEnabled
+                    && putMessageInQueue(data, topic, qos, publishMessageUserData);
+            if (!messagedQueued) {
+                // Message queue is full or queue is not enabled
+                userPublishCallback(callback,
+                        AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                        userData);
             }
         } else {
             throw new AmazonClientException("Client is disconnected or not yet connected.");

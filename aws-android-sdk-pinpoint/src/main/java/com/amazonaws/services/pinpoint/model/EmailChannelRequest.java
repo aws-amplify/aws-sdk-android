@@ -22,6 +22,12 @@ import java.io.Serializable;
  */
 public class EmailChannelRequest implements Serializable {
     /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     */
+    private String configurationSet;
+
+    /**
      * If the channel is enabled for sending messages.
      */
     private Boolean enabled;
@@ -41,6 +47,45 @@ public class EmailChannelRequest implements Serializable {
      * ingestion service
      */
     private String roleArn;
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     *
+     * @return The configuration set that you want to use when you send email
+     *         using the Pinpoint Email API.
+     */
+    public String getConfigurationSet() {
+        return configurationSet;
+    }
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     *
+     * @param configurationSet The configuration set that you want to use when
+     *            you send email using the Pinpoint Email API.
+     */
+    public void setConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
+    }
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configurationSet The configuration set that you want to use when
+     *            you send email using the Pinpoint Email API.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EmailChannelRequest withConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
+        return this;
+    }
 
     /**
      * If the channel is enabled for sending messages.
@@ -200,6 +245,8 @@ public class EmailChannelRequest implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getConfigurationSet() != null)
+            sb.append("ConfigurationSet: " + getConfigurationSet() + ",");
         if (getEnabled() != null)
             sb.append("Enabled: " + getEnabled() + ",");
         if (getFromAddress() != null)
@@ -217,6 +264,8 @@ public class EmailChannelRequest implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getConfigurationSet() == null) ? 0 : getConfigurationSet().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode
                 + ((getFromAddress() == null) ? 0 : getFromAddress().hashCode());
@@ -236,6 +285,11 @@ public class EmailChannelRequest implements Serializable {
             return false;
         EmailChannelRequest other = (EmailChannelRequest) obj;
 
+        if (other.getConfigurationSet() == null ^ this.getConfigurationSet() == null)
+            return false;
+        if (other.getConfigurationSet() != null
+                && other.getConfigurationSet().equals(this.getConfigurationSet()) == false)
+            return false;
         if (other.getEnabled() == null ^ this.getEnabled() == null)
             return false;
         if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)

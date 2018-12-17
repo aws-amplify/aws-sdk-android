@@ -78,6 +78,12 @@ public class AddThingToThingGroupRequestMarshaller implements
                 jsonWriter.name("thingArn");
                 jsonWriter.value(thingArn);
             }
+            if (addThingToThingGroupRequest.getOverrideDynamicGroups() != null) {
+                Boolean overrideDynamicGroups = addThingToThingGroupRequest
+                        .getOverrideDynamicGroups();
+                jsonWriter.name("overrideDynamicGroups");
+                jsonWriter.value(overrideDynamicGroups);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

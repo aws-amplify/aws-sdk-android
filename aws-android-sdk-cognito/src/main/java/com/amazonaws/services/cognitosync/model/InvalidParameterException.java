@@ -20,7 +20,9 @@ import com.amazonaws.AmazonServiceException;
 /**
  * Thrown when a request parameter does not comply with the associated
  * constraints.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class InvalidParameterException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

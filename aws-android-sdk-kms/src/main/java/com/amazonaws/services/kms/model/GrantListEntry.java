@@ -71,6 +71,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String granteePrincipal;
 
@@ -81,6 +82,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String retiringPrincipal;
 
@@ -91,6 +93,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String issuingAccount;
 
@@ -344,6 +347,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The principal that receives the grant's permissions.
@@ -360,6 +364,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
      *            The principal that receives the grant's permissions.
@@ -379,6 +384,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
      *            The principal that receives the grant's permissions.
@@ -398,6 +404,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The principal that can retire the grant.
@@ -414,6 +421,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The principal that can retire the grant.
@@ -433,6 +441,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The principal that can retire the grant.
@@ -452,6 +461,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The AWS account under which the grant was issued.
@@ -468,6 +478,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param issuingAccount <p>
      *            The AWS account under which the grant was issued.
@@ -487,6 +498,7 @@ public class GrantListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param issuingAccount <p>
      *            The AWS account under which the grant was issued.

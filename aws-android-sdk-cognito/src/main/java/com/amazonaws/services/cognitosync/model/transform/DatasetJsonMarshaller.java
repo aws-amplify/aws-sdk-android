@@ -20,7 +20,10 @@ import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
  * JSON marshaller for POJO Dataset
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 class DatasetJsonMarshaller {
 
     public void marshall(Dataset dataset, AwsJsonWriter jsonWriter) throws Exception {

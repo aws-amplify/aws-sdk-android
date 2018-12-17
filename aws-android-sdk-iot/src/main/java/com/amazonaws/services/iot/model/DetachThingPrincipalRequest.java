@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Detaches the specified principal from the specified thing.
  * </p>
+ * <note>
+ * <p>
+ * This call is asynchronous. It might take several seconds for the detachment
+ * to propagate.
+ * </p>
+ * </note>
  */
 public class DetachThingPrincipalRequest extends AmazonWebServiceRequest implements Serializable {
     /**

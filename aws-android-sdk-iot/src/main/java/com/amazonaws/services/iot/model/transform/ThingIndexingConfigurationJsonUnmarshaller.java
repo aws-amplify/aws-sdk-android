@@ -40,6 +40,10 @@ class ThingIndexingConfigurationJsonUnmarshaller implements
                 thingIndexingConfiguration.setThingIndexingMode(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("thingConnectivityIndexingMode")) {
+                thingIndexingConfiguration.setThingConnectivityIndexingMode(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

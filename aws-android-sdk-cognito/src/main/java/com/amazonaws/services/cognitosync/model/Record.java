@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * The basic data structure of a dataset.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class Record implements Serializable {
     /**
      * The key for the record.

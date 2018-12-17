@@ -52,6 +52,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
@@ -193,6 +194,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
@@ -219,6 +221,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -248,6 +251,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>

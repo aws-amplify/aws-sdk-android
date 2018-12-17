@@ -28,7 +28,9 @@ import com.amazonaws.services.cognitosync.model.InvalidParameterException;
  * that information to synchronize the local data. This class should only be used 
  * with a push sync notification, isPushSyncUpdate(Intent intent) can be used 
  * to verify as much. 
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class PushSyncUpdate {
     private final String source;
     private final String identityPoolId;

@@ -25,9 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * specified Auto Scaling group.
  * </p>
  * <p>
- * Note that if you suspend either the <code>Launch</code> or
- * <code>Terminate</code> process types, it can prevent other process types from
- * functioning properly.
+ * If you suspend either the <code>Launch</code> or <code>Terminate</code>
+ * process types, it can prevent other process types from functioning properly.
  * </p>
  * <p>
  * To resume processes that have been suspended, use <a>ResumeProcesses</a>.

@@ -25,7 +25,9 @@ import java.util.Date;
  * reflect the most up-to-date information stored remotely. Please call
  * {@link CognitoSyncManager#refreshDatasetMetadata()} to pull the latest
  * information.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public final class DatasetMetadata {
     /**
      * Non empty String name of the dataset

@@ -90,6 +90,17 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
+     * The name of the billing group the thing belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String billingGroupName;
+
+    /**
+     * <p>
      * The default client ID.
      * </p>
      *
@@ -513,6 +524,63 @@ public class DescribeThingResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The name of the billing group the thing belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the billing group the thing belongs to.
+     *         </p>
+     */
+    public String getBillingGroupName() {
+        return billingGroupName;
+    }
+
+    /**
+     * <p>
+     * The name of the billing group the thing belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param billingGroupName <p>
+     *            The name of the billing group the thing belongs to.
+     *            </p>
+     */
+    public void setBillingGroupName(String billingGroupName) {
+        this.billingGroupName = billingGroupName;
+    }
+
+    /**
+     * <p>
+     * The name of the billing group the thing belongs to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param billingGroupName <p>
+     *            The name of the billing group the thing belongs to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingResult withBillingGroupName(String billingGroupName) {
+        this.billingGroupName = billingGroupName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -536,7 +604,9 @@ public class DescribeThingResult implements Serializable {
         if (getAttributes() != null)
             sb.append("attributes: " + getAttributes() + ",");
         if (getVersion() != null)
-            sb.append("version: " + getVersion());
+            sb.append("version: " + getVersion() + ",");
+        if (getBillingGroupName() != null)
+            sb.append("billingGroupName: " + getBillingGroupName());
         sb.append("}");
         return sb.toString();
     }
@@ -555,6 +625,8 @@ public class DescribeThingResult implements Serializable {
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getBillingGroupName() == null) ? 0 : getBillingGroupName().hashCode());
         return hashCode;
     }
 
@@ -600,6 +672,11 @@ public class DescribeThingResult implements Serializable {
         if (other.getVersion() == null ^ this.getVersion() == null)
             return false;
         if (other.getVersion() != null && other.getVersion().equals(this.getVersion()) == false)
+            return false;
+        if (other.getBillingGroupName() == null ^ this.getBillingGroupName() == null)
+            return false;
+        if (other.getBillingGroupName() != null
+                && other.getBillingGroupName().equals(this.getBillingGroupName()) == false)
             return false;
         return true;
     }

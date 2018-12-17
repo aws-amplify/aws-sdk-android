@@ -32,6 +32,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class RequestTimingHandler extends RequestHandler2 {
     private static final String TAG = "RequestTimingHandler";
 

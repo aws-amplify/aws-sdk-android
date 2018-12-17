@@ -122,7 +122,8 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu, Bianca,
+     * Lucia, Mia
      */
     private String voiceId;
 
@@ -780,7 +781,8 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu, Bianca,
+     * Lucia, Mia
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -812,7 +814,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cm-CMN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
      * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @return <p>
@@ -882,7 +884,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cm-CMN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
      * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>

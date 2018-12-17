@@ -67,6 +67,17 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
+     * The name of the billing group the thing will be added to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String billingGroupName;
+
+    /**
+     * <p>
      * The name of the thing to create.
      * </p>
      * <p>
@@ -249,6 +260,63 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
+     * The name of the billing group the thing will be added to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the billing group the thing will be added to.
+     *         </p>
+     */
+    public String getBillingGroupName() {
+        return billingGroupName;
+    }
+
+    /**
+     * <p>
+     * The name of the billing group the thing will be added to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param billingGroupName <p>
+     *            The name of the billing group the thing will be added to.
+     *            </p>
+     */
+    public void setBillingGroupName(String billingGroupName) {
+        this.billingGroupName = billingGroupName;
+    }
+
+    /**
+     * <p>
+     * The name of the billing group the thing will be added to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param billingGroupName <p>
+     *            The name of the billing group the thing will be added to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingRequest withBillingGroupName(String billingGroupName) {
+        this.billingGroupName = billingGroupName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -264,7 +332,9 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
         if (getThingTypeName() != null)
             sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getAttributePayload() != null)
-            sb.append("attributePayload: " + getAttributePayload());
+            sb.append("attributePayload: " + getAttributePayload() + ",");
+        if (getBillingGroupName() != null)
+            sb.append("billingGroupName: " + getBillingGroupName());
         sb.append("}");
         return sb.toString();
     }
@@ -279,6 +349,8 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode
                 + ((getAttributePayload() == null) ? 0 : getAttributePayload().hashCode());
+        hashCode = prime * hashCode
+                + ((getBillingGroupName() == null) ? 0 : getBillingGroupName().hashCode());
         return hashCode;
     }
 
@@ -307,6 +379,11 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getAttributePayload() != null
                 && other.getAttributePayload().equals(this.getAttributePayload()) == false)
+            return false;
+        if (other.getBillingGroupName() == null ^ this.getBillingGroupName() == null)
+            return false;
+        if (other.getBillingGroupName() != null
+                && other.getBillingGroupName().equals(this.getBillingGroupName()) == false)
             return false;
         return true;
     }

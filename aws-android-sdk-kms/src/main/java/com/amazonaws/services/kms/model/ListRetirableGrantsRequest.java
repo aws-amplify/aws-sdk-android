@@ -77,6 +77,7 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      */
     private String retiringPrincipal;
 
@@ -265,6 +266,7 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
      *         The retiring principal for which to list grants.
@@ -303,6 +305,7 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The retiring principal for which to list grants.
@@ -345,6 +348,7 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
+     * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param retiringPrincipal <p>
      *            The retiring principal for which to list grants.

@@ -14,7 +14,10 @@
  */
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.session;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public interface SessionStore {
     public void storeSession(final Session session);
 

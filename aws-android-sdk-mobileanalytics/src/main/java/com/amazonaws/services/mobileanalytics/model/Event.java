@@ -21,7 +21,9 @@ import java.io.Serializable;
  * <p>
  * A JSON object representing a batch of unique event occurrences in your app.
  * </p>
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 public class Event implements Serializable {
     /**
      * <p>

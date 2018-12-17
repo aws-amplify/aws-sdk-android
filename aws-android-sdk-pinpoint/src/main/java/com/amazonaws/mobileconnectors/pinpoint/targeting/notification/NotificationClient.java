@@ -325,11 +325,14 @@ public class NotificationClient {
     }
 
     CampaignPushResult handleNotificationOpen(Map<String, String> campaignAttributes,
-                                                                 final Bundle data) {
-        return notificationClientBase.handleNotificationOpen(campaignAttributes, data);
+                                              final Bundle data) {
+        return notificationClientBase
+                .handleNotificationOpen(campaignAttributes, data);
     }
 
-    int getNotificationRequestId(final String campaignId, final String activityId) {
-        return notificationClientBase.getNotificationRequestId(campaignId, activityId);
+    int getNotificationRequestId(final String campaignId,
+                                 final String activityId) {
+        return notificationClientBase
+                .getNotificationRequestId(campaignId, activityId);
     }
 }

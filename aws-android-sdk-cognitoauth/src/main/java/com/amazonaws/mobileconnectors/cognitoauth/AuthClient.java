@@ -483,6 +483,10 @@ public class AuthClient {
         if (!TextUtils.isEmpty(pool.getIdentityProvider())) {
             builder.appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_IDENTITY_PROVIDER, pool.getIdentityProvider());
         }
+        //check if idp identifier set as param.
+        if (!TextUtils.isEmpty(pool.getIdpIdentifier())) {
+            builder.appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_IDP_IDENTIFIER, pool.getIdpIdentifier());
+        }
 
         // Convert scopes into a string of comma separated values.
         final int noOfScopes = tokenScopes.size();
@@ -527,6 +531,8 @@ public class AuthClient {
     	try {
 	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 	        mCustomTabsIntent = builder.build();
+	        if(pool.getCustomTabExtras() != null)
+	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
 	        mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
 	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

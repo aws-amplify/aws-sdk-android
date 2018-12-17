@@ -20,7 +20,9 @@ package com.amazonaws.mobileconnectors.cognito.exceptions;
 /**
  * This exception is thrown when the data set of interest is not authorized to
  * be accessed
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DataAccessNotAuthorizedException extends DataStorageException {
 
     private static final long serialVersionUID = 5067700802587075978L;

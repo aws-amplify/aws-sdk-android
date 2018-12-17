@@ -36,7 +36,10 @@ class EmailChannelRequestJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Enabled")) {
+            if (name.equals("ConfigurationSet")) {
+                emailChannelRequest.setConfigurationSet(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Enabled")) {
                 emailChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("FromAddress")) {

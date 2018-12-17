@@ -125,6 +125,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Sends an input to an AWS IoT Events detector.
+     * </p>
+     */
+    private IotEventsAction iotEvents;
+
+    /**
+     * <p>
      * Starts execution of a Step Functions state machine.
      * </p>
      */
@@ -774,6 +781,51 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Sends an input to an AWS IoT Events detector.
+     * </p>
+     *
+     * @return <p>
+     *         Sends an input to an AWS IoT Events detector.
+     *         </p>
+     */
+    public IotEventsAction getIotEvents() {
+        return iotEvents;
+    }
+
+    /**
+     * <p>
+     * Sends an input to an AWS IoT Events detector.
+     * </p>
+     *
+     * @param iotEvents <p>
+     *            Sends an input to an AWS IoT Events detector.
+     *            </p>
+     */
+    public void setIotEvents(IotEventsAction iotEvents) {
+        this.iotEvents = iotEvents;
+    }
+
+    /**
+     * <p>
+     * Sends an input to an AWS IoT Events detector.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param iotEvents <p>
+     *            Sends an input to an AWS IoT Events detector.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withIotEvents(IotEventsAction iotEvents) {
+        this.iotEvents = iotEvents;
+        return this;
+    }
+
+    /**
+     * <p>
      * Starts execution of a Step Functions state machine.
      * </p>
      *
@@ -856,6 +908,8 @@ public class Action implements Serializable {
             sb.append("salesforce: " + getSalesforce() + ",");
         if (getIotAnalytics() != null)
             sb.append("iotAnalytics: " + getIotAnalytics() + ",");
+        if (getIotEvents() != null)
+            sb.append("iotEvents: " + getIotEvents() + ",");
         if (getStepFunctions() != null)
             sb.append("stepFunctions: " + getStepFunctions());
         sb.append("}");
@@ -885,6 +939,7 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getSalesforce() == null) ? 0 : getSalesforce().hashCode());
         hashCode = prime * hashCode
                 + ((getIotAnalytics() == null) ? 0 : getIotAnalytics().hashCode());
+        hashCode = prime * hashCode + ((getIotEvents() == null) ? 0 : getIotEvents().hashCode());
         hashCode = prime * hashCode
                 + ((getStepFunctions() == null) ? 0 : getStepFunctions().hashCode());
         return hashCode;
@@ -963,6 +1018,11 @@ public class Action implements Serializable {
             return false;
         if (other.getIotAnalytics() != null
                 && other.getIotAnalytics().equals(this.getIotAnalytics()) == false)
+            return false;
+        if (other.getIotEvents() == null ^ this.getIotEvents() == null)
+            return false;
+        if (other.getIotEvents() != null
+                && other.getIotEvents().equals(this.getIotEvents()) == false)
             return false;
         if (other.getStepFunctions() == null ^ this.getStepFunctions() == null)
             return false;

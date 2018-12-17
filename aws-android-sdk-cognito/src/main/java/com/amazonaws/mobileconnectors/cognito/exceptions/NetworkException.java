@@ -4,7 +4,9 @@ package com.amazonaws.mobileconnectors.cognito.exceptions;
 /**
  * This exception is thrown when a service request failed due to network
  * connectivity problem.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class NetworkException extends DataStorageException {
 
     private static final long serialVersionUID = 8685123233927843893L;
