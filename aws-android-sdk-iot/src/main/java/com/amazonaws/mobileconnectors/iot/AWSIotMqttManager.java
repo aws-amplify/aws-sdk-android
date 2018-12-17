@@ -86,7 +86,7 @@ public class AWSIotMqttManager {
     /** The underlying Paho Java MQTT client. */
     private MqttAsyncClient mqttClient;
 
-    /** MQTT broker URL.  Built from region, customer endpoint. */
+    /** MQTT broker URL. Built from the custom endpoint. */
     private String mqttBrokerURL;
 
     /** WebSocket URL Signer object. */
