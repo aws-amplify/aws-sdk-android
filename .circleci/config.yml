@@ -159,12 +159,16 @@ jobs:
 
 workflows:
   version: 2
+  test:
+    jobs:
+      - release_maven
+      
   build_and_test:
     jobs: 
       - build:
           filters:
             branches:
-              ignore: /gh-.*/
+              ignore: .*/
   #     - unittest:
   #         requires:
   #           - build
