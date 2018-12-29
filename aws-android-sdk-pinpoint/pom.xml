@@ -69,7 +69,7 @@
             <artifactId>android</artifactId>
             <version>5.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../android-21-linux.jar</systemPath>
+            <systemPath>${env.ANDROID_HOME}/platforms/android-21/android.jar</systemPath>
         </dependency>
     </dependencies>
 

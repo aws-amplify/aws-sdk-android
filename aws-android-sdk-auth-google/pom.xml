@@ -77,8 +77,8 @@
         <extensions>true</extensions>
         <configuration>
           <sdk>
-            <platform>25</platform>
-            <buildTools>19.1.0</buildTools>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
           </sdk>
         </configuration>
       </plugin>

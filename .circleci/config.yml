@@ -91,7 +91,7 @@ jobs:
       - run:
           name: copy documents
           command: |
-            git config --local user.name "${CIRCLE_PROJECT_USERNAME}"
+            git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
             cp -R build/docs/javadoc/*   docs/reference/
 
@@ -100,18 +100,37 @@ jobs:
           command: |
             git add docs/reference
             git commit -m "Update document via CircleCI"
-            git push -q https://${GH_TOKEN}@github.com/aws-amplify/aws-sdk-android.git  
-
-  release_maven:
-    working_directory: ~/code
+            git push -q https://${GITHUB_TOKEN}@github.com/aws-amplify/aws-sdk-android.git  
+  tag_doc:
     docker:
       - image: circleci/android:api-27-alpha
     environment:
-      JVM_OPTS: -Xmx3200m
-    resource_class: large
- 
+      JVM_OPTS: -Xmx3200m     
+    steps:
+      - checkout   
+      - run:
+          name: checkout gh-pages
+          command: |
+            git config --local user.name "${GITHUB_USER}"
+            git checkout  gh-pages
+            echo "${GITHUB_USER}"
+            git tag -a v1.4 -m "tag document"
+            echo "git push ..."
+            git push --tags -q https://${GITHUB_TOKEN}@github.com/sunchunqiang/aws-sdk-android.git     
+
+  release_maven:
+    macos: 
+      xcode: "10.1.0"
+
     steps:
       - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "build.gradle" }}
+      - run:
+          name: install android sdk tools
+          command: |
+            brew tap caskroom/cask
+            brew cask install android-sdk
       - run:
           name: install aws cli
           command: |
@@ -122,15 +141,13 @@ jobs:
             echo "${HOME}"
             echo "$JAVA_HOME"
             echo "$ANDROID_HOME"
-            echo "$PATH"          
-            ls  "$ANDROID_HOME"
-            ls  "$ANDROID_HOME/platforms/android-27"            
+            echo "$PATH"                    
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
 
             echo "build-tools;$ANDROID_BUILDTOOL_VERSION" 
 
-            sdkmanager "platforms;android-21" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
+            /usr/local/bin/sdkmanager "platforms;android-21" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
                 
       - run:
           name: download gpghome
@@ -143,7 +160,9 @@ jobs:
       - run:
          name: install maven
          command: |
-          sudo apt-get install maven
+            brew update 
+            brew install maven
+
       - run:
           name: Download Dependencies
           command: bash gradlew androidDependencies
@@ -156,6 +175,7 @@ jobs:
             echo "$ANDROID_HOME"
             echo "$M2_HOME"
             bash CircleciScripts/maven-release.sh
+
 
 workflows:
   version: 2
@@ -213,3 +233,4 @@ workflows:
   #             ignore: /.*/            
   #           tags:
   #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+

@@ -112,7 +112,8 @@
         <extensions>true</extensions>
         <configuration>
           <sdk>
-            <platform>25</platform>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
           </sdk>
         </configuration>
       </plugin>

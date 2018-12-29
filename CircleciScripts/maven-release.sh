@@ -23,6 +23,7 @@ echo "gpg_passphrase:$gpg_passphrase"
 # Perm gen space is increased for maven command
 MAVEN_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
 
+
 mvn clean deploy -X -e -Ppublishing \
     -f "$pom" \
     --settings="CircleciScripts/mvnhome/settings.xml" \
