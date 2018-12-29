@@ -161,7 +161,7 @@ workflows:
   version: 2
   build_and_test:
     jobs: 
-      - build:
+      - release_maven:
           filters:
             branches:
               ignore: /gh-.*/
