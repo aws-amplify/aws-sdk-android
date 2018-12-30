@@ -138,17 +138,24 @@ jobs:
       - run:
           name: install android build tools
           command: |
-            echo "${HOME}"
-            echo "$JAVA_HOME"
-            echo "$ANDROID_HOME"
-            echo "$PATH"                    
+            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
+      - run:
+          name: Set environment
+          command: |
+            echo 'export ANDROID_HOME="${HOME}/Library/Android/sdk"' >> $BASH_ENV
+            echo "Home: ${HOME}"
+            echo "JAVA_HOME: $JAVA_HOME"
+            echo "ANDROID_HOME: $ANDROID_HOME"
+            echo "PATH: $PATH"                    
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+            echo "build-tools;$ANDROID_BUILDTOOL_VERSION"  
 
-            echo "build-tools;$ANDROID_BUILDTOOL_VERSION" 
+      - run:
+          name: Instal gpg
+          command: |
+            brew install gnupg
 
-            /usr/local/bin/sdkmanager "platforms;android-21" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
-                
       - run:
           name: download gpghome
           command: |
@@ -162,10 +169,6 @@ jobs:
          command: |
             brew update 
             brew install maven
-
-      - run:
-          name: Download Dependencies
-          command: bash gradlew androidDependencies
 
       - run:
           name: publish to maven

@@ -1,0 +1,4 @@
+curl --user 71fdf2f56944526b979ac1baa2170317666f19cc: \
+--data build_parameters[CIRCLE_JOB]=test \
+--data build_parameters[sdkversion]=1.2.3 \
+https://circleci.com/api/v1.1/project/github/sunchunqiang/awswrapper/tree/master
