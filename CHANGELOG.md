@@ -1,5 +1,19 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.9.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.2)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * `AWSIotMqttManager` passes publish exceptions via the callback. If callback is not provided it throws `AmazonClientException`.
+  * `AWSIotMqttManager` logs the reconnection errors and pass it to the user provided connection callback.
+
+* **Amazon Pinpoint**
+  * Fixed bug that could potentially cause rejected events to be dropped incorrectly because service response could not be unmarshalled. The response will now be processed correctly and events rejected by the service will be retried.
+
+* **Amazon S3**
+  * Fixed a bug where a disk operation to remove completed transfers from database was performed on the main thread. See [issue #603](https://github.com/aws-amplify/aws-sdk-android/issues/603)
+
 ## [Release 2.9.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.1)
 
 ### New Features
