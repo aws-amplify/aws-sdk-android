@@ -192,35 +192,34 @@ class TransferStatusUpdater {
             return;
         }
 
-        // invoke LISTENERS
+        // remove the transfer record from the database
+        // when the transfer completed successfully.
+        if (TransferState.COMPLETED.equals(newState)) {
+            removeTransferRecordFromDB(id);
+        }
+
         final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
-            if (TransferState.COMPLETED.equals(newState)) {
-                removeTransferRecordFromDB(id);
-            }
             return;
         }
 
-        // invoke on main thread
-        mainHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (final TransferListener l : list) {
+        // invoke TransferListener callback on main thread
+        for (final TransferListener l : list) {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
                     l.onStateChanged(id, newState);
                 }
-                // remove all LISTENERS when the transfer is in a final state so
-                // as to release resources ASAP.
-                if (TransferState.COMPLETED.equals(newState)
-                        || TransferState.FAILED.equals(newState)
-                        || TransferState.CANCELED.equals(newState)) {
-                    list.clear();
-                }
-                
-                if (TransferState.COMPLETED.equals(newState)) {
-                    removeTransferRecordFromDB(id);
-                }
-            }
-        });
+            });
+        }
+
+        // remove all LISTENERS when the transfer is in a final state so
+        // as to release resources ASAP.
+        if (TransferState.COMPLETED.equals(newState) ||
+            TransferState.FAILED.equals(newState) ||
+            TransferState.CANCELED.equals(newState)) {
+            list.clear();
+        }
     }
 
     /**
@@ -253,21 +252,20 @@ class TransferStatusUpdater {
             return;
         }
 
-
-        if (!lastUpdateTime.containsKey(id)
-                || timeInMillis - lastUpdateTime.get(id) > UPDATE_THRESHOLD_MS
-                || bytesCurrent == bytesTotal) {
+        if (!lastUpdateTime.containsKey(id) ||
+            timeInMillis - lastUpdateTime.get(id) > UPDATE_THRESHOLD_MS ||
+            bytesCurrent == bytesTotal) {
             lastUpdateTime.put(id, timeInMillis);
 
-            // invoke on main thread
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    for (final TransferListener l : list) {
+            for (final TransferListener l : list) {
+                // invoke on main thread
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
                         l.onProgressChanged(id, bytesCurrent, bytesTotal);
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -284,15 +282,16 @@ class TransferStatusUpdater {
         if (list == null || list.isEmpty()) {
             return;
         }
-        // invoke on main thread
-        mainHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (final TransferListener l : list) {
+
+        for (final TransferListener l : list) {
+            // invoke on main thread
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
                     l.onError(id, e);
                 }
-            }
-        });
+            });
+        }
     }
 
     /**
@@ -395,3 +394,4 @@ class TransferStatusUpdater {
         return new TransferProgressListener(transfer);
     }
 }
+
