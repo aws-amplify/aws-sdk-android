@@ -1,5 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.10.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.0)
+
+### Misc. Updates
+
+* Model updates for the following services
+    * Amazon Lex
+        * Added overrides to various `InteractionClient` and `LexServiceContinuation` methods, to allow passing request attributes
+        * **Breaking API Changes:** The following APIs have been changed:
+            * `PostContentRequest`, `PostContentResponse`
+                * Certain properties which used to have a type of `Map<String, String>` are now `String`. This requires your calling code to 
+                  JSON serialize and base64-encode the value. The `get`, `set` and `with` APIs of the following properties are affected:
+                  - `PostContentRequest.requestAttributes`
+                  - `PostContentRequest.sessionAttributes`
+                  - `PostContentRequest.slots`
+                  - `PostContentResponse.requestAttributes`
+                  - `PostContentResponse.sessionAttributes`
+                  - `PostContentResponse.slots`
+
 ## [Release 2.9.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.2)
 
 ### Bug Fixes
