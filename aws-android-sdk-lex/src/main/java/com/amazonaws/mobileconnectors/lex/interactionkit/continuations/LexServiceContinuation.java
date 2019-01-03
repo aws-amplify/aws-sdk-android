@@ -92,7 +92,17 @@ public final class LexServiceContinuation{
      * the device's microphone. The service will respond to this request with text.
      */
     public void continueWithAudioInForTextOut() {
-        interactionClient.audioInForTextOut(sessionAttributes);
+        continueWithAudioInForTextOut(null);
+    }
+
+    /**
+     * Use this method if the users response is speech. The client will listen to user's input from
+     * the device's microphone. The service will respond to this request with text.
+     *
+     * @param requestAttributes attributes to add to this request
+     */
+    public void continueWithAudioInForTextOut(Map<String, String> requestAttributes) {
+        interactionClient.audioInForTextOut(sessionAttributes, requestAttributes);
     }
 
     /**
@@ -100,7 +110,17 @@ public final class LexServiceContinuation{
      * the device's microphone. The service will respond to this request with audio.
      */
     public void continueWithAudioInForAudioOut() {
-        interactionClient.audioInForAudioOut(sessionAttributes);
+        continueWithAudioInForAudioOut(null);
+    }
+
+    /**
+     * Use this method if the users response is speech. The client will listen to user's input from
+     * the device's microphone. The service will respond to this request with audio.
+     *
+     * @param requestAttributes attributes to add to this request
+     */
+    public void continueWithAudioInForAudioOut(Map<String, String> requestAttributes) {
+        interactionClient.audioInForAudioOut(sessionAttributes, requestAttributes);
     }
 
     /**
@@ -108,7 +128,17 @@ public final class LexServiceContinuation{
      * @param text the response to the prompt as a {@link String}.
      */
     public void continueWithTextInForAudioOut(String text) {
-        interactionClient.textInForAudioOut(text, sessionAttributes);
+        continueWithTextInForAudioOut(text, null);
+    }
+
+    /**
+     * Use this method to respond with text and expect service response with audio.
+     * @param text the response to the prompt as a {@link String}.
+     *
+     * @param requestAttributes attributes to add to this request
+     */
+    public void continueWithTextInForAudioOut(String text, Map<String, String> requestAttributes) {
+        interactionClient.textInForAudioOut(text, sessionAttributes, requestAttributes);
     }
 
     /**
@@ -116,11 +146,21 @@ public final class LexServiceContinuation{
      * @param text the response to the prompt as a {@link String}.
      */
     public void continueWithTextInForTextOut(String text) {
-        interactionClient.textInForTextOut(text, sessionAttributes);
+        continueWithTextInForTextOut(text, null);
     }
 
     /**
-     * Use this method to continue with the current input and output mode.
+     * Use this method to respond with text and expect service response with text.
+     * @param text the response to the prompt as a {@link String}.
+     *
+     * @param requestAttributes attributes to add to this request
+     */
+    public void continueWithTextInForTextOut(String text, Map<String, String> requestAttributes) {
+        interactionClient.textInForTextOut(text, sessionAttributes, requestAttributes);
+    }
+
+    /**
+     * Use this method to continue with the current audio input and output mode, and current session attributes.
      */
     public void continueWithCurrentMode() {
         Log.d("SDK", " -- responseMode: " + responseMode + "; requestMode: " + requestMode);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,9 +63,9 @@ public class HttpRequestFactory {
          * payload, we put the encoded params directly in the URI, otherwise,
          * we'll put them in the POST request's payload.
          */
-        final boolean requestHasNoPayload = request.getContent() != null;
+        final boolean requestAlreadyHasPayload = request.getContent() != null;
         final boolean requestIsPost = method == HttpMethodName.POST;
-        final boolean putParamsInUri = !requestIsPost || requestHasNoPayload;
+        final boolean putParamsInUri = !requestIsPost || requestAlreadyHasPayload;
         if (encodedParams != null && putParamsInUri) {
             uri += "?" + encodedParams;
         }
@@ -98,13 +98,6 @@ public class HttpRequestFactory {
                 headers.put("Content-Length", String.valueOf(contentBytes.length));
             }
         }
-        /*
-         * if (method == HttpMethodName.POST || method == HttpMethodName.PUT) {
-         * final String len = headers.get("Content-Length"); if (len == null ||
-         * len.isEmpty()) { // streaming mode if (is != null) { throw new
-         * AmazonClientException( "Unknown content-length"); } else {
-         * headers.put("Content-Length", "0"); } } }
-         */
 
         // Enables gzip compression. Also signals the implementation of
         // HttpClient to disable transparent gzip.
