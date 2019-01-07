@@ -220,9 +220,30 @@ public class InteractionClient {
      * Accept input from mic (speech) for text, {@link String}, response from the service.
      *
      * @param sessionAttributes {@link Map}.
+     * @param requestAttributes {@link Map}.
+     */
+    public void audioInForTextOut(final Map<String, String> sessionAttributes, final Map<String, String> requestAttributes) {
+        carryOnWithMic(sessionAttributes, requestAttributes, ResponseType.TEXT);
+    }
+
+    /**
+     * Accept input from mic (speech) for text, {@link String}, response from the service.
+     *
+     * @param sessionAttributes {@link Map}.
      */
     public void audioInForTextOut(final Map<String, String> sessionAttributes) {
-        carryOnWithMic(sessionAttributes, ResponseType.TEXT);
+        audioInForTextOut(sessionAttributes, null);
+    }
+
+    /**
+     * Accept input from mic (speech) for audio response from the service. To allow the to playback
+     * audio from the service response, use {@link InteractionConfig#setEnableAudioPlayback(boolean)}.
+     *
+     * @param sessionAttributes {@link Map}.
+     * @param requestAttributes {@link Map}.
+     */
+    public void audioInForAudioOut(final Map<String, String> sessionAttributes, final Map<String, String> requestAttributes) {
+        carryOnWithMic(sessionAttributes, requestAttributes, ResponseType.AUDIO_MPEG);
     }
 
     /**
@@ -232,7 +253,18 @@ public class InteractionClient {
      * @param sessionAttributes {@link Map}.
      */
     public void audioInForAudioOut(final Map<String, String> sessionAttributes) {
-        carryOnWithMic(sessionAttributes, ResponseType.AUDIO_MPEG);
+        audioInForAudioOut(sessionAttributes, null);
+    }
+
+    /**
+     * Accept input as text, {@link String}, for text, {@link String}, reponse from the service.
+     *
+     * @param text              input as {@link String}.
+     * @param sessionAttributes {@link Map}.
+     * @param requestAttributes {@link Map}.
+     */
+    public void textInForTextOut(final String text, final Map<String, String> sessionAttributes, final Map<String, String> requestAttributes) {
+        carryOnWithText(text, sessionAttributes, requestAttributes, ResponseType.TEXT);
     }
 
     /**
@@ -242,7 +274,19 @@ public class InteractionClient {
      * @param sessionAttributes {@link Map}.
      */
     public void textInForTextOut(final String text, final Map<String, String> sessionAttributes) {
-        carryOnWithText(text, sessionAttributes, ResponseType.TEXT);
+        textInForTextOut(text, sessionAttributes, null);
+    }
+
+    /**
+     * Accept input as text, {@link String}, for audio response from the service. To allow the to playback
+     * audio from the service response, use {@link InteractionConfig#setEnableAudioPlayback(boolean)}.
+     *
+     * @param text              input as {@link String}.
+     * @param sessionAttributes {@link Map}.
+     * @param requestAttributes {@link Map}.
+     */
+    public void textInForAudioOut(final String text, final Map<String, String> sessionAttributes, final Map<String, String> requestAttributes) {
+        carryOnWithText(text, sessionAttributes, requestAttributes, ResponseType.AUDIO_MPEG);
     }
 
     /**
@@ -253,7 +297,7 @@ public class InteractionClient {
      * @param sessionAttributes {@link Map}.
      */
     public void textInForAudioOut(final String text, final Map<String, String> sessionAttributes) {
-        carryOnWithText(text, sessionAttributes, ResponseType.AUDIO_MPEG);
+        textInForAudioOut(text, sessionAttributes, null);
     }
 
     /**
@@ -271,7 +315,9 @@ public class InteractionClient {
      * Starts listening for the user to speak, through the microphones. The voice interaction client
      * detects the start and end of speech.
      */
-    private void carryOnWithMic(final Map<String, String> sessionAttributes, final ResponseType mode) {
+    private void carryOnWithMic(final Map<String, String> sessionAttributes,
+                                final Map<String, String> requestAttributes,
+                                final ResponseType mode) {
         // Ensure that the client is not pre-occupied with another dlalog
         checkBusyState();
         // Send user's response to Amazon Lex service as an audio-stream.
@@ -318,6 +364,7 @@ public class InteractionClient {
 
                     final PostContentRequest request =
                             CreateLexServiceRequest.generatePostContentRequest(sessionAttributes,
+                                    requestAttributes,
                                     interactionConfig,
                                     credentialsProvider,
                                     mode,
@@ -381,7 +428,10 @@ public class InteractionClient {
     /**
      * Accepts user's response as {@link String}.
      */
-    private void carryOnWithText(final String text, final Map<String, String> sessionAttributes, final ResponseType mode) {
+    private void carryOnWithText(final String text,
+                                 final Map<String, String> sessionAttributes,
+                                 final Map<String, String> requestAttributes,
+                                 final ResponseType mode) {
         // Ensure the client is not pre-occupied with a request.
         checkBusyState();
         // Send user's response to Amazon Lex service as a text.
@@ -394,6 +444,7 @@ public class InteractionClient {
                 try {
                     final PostContentRequest request =
                             CreateLexServiceRequest.generatePostContentRequest(sessionAttributes,
+                                    requestAttributes,
                                     interactionConfig,
                                     credentialsProvider,
                                     mode,

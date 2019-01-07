@@ -1,10 +1,7 @@
-# iOS CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
+# Android CircleCI 2.0 configuration file
 #
 version: 2
 jobs:
-
   build:
     working_directory: ~/code
     docker:
@@ -21,16 +18,19 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
-    resource_class: large
     environment:
-      JVM_OPTS: -Xmx3200m
-
+      JVM_OPTS: -Xmx1024m
     steps:
       - checkout
 
       - run:
+          name: test
+          command : |
+            mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+      - run:
           name: run unit tests
           command: |
+            bash ./gradlew --stop
             python3 CircleciScripts/run_unittest.py test_results
       - run:
           name : check unit test result 
@@ -38,7 +38,6 @@ jobs:
           
       - store_artifacts:
           path: test_results
-
 
   release_tag:
     working_directory: ~/code
@@ -52,17 +51,9 @@ jobs:
       - run:
           name: release the tag
           command: |
-            set -x
             export release_tag=${CIRCLE_TAG}
-            echo "release_tag:$release_tag"
             export version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
             export tagdescription=$(sed -n "/## \[Release $version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
-            echo "tagdescription:$tagdescription"
-            export tagname="AWS SDK for Android v$version"
-            echo "tagname:$tagname"
-            echo "token:${GH_TOKEN}"
-            echo "username:${CIRCLE_PROJECT_USERNAME}"
-            echo "repo:${CIRCLE_PROJECT_REPONAME}"
             echo "$tagdescription" | github-release release  -s ${GH_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d - 
 
   release_javadoc:
@@ -76,42 +67,53 @@ jobs:
       - run:
           name: set version
           command: |
-            set -x
-            export circleci_tag=${CIRCLE_TAG}
-            export version=$(echo "$circleci_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
-            echo "version:$version"
-            sed  -i   "s/@SDK_VERSION@/$version/"  gradle.properties  
-            cat gradle.properties 
+            export release_tag=${CIRCLE_TAG}
+            export release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
+            echo "version:$release_version"
       - run:
           name: generate documents
           command: |
-            bash gradlew generateJavadocs
-            git checkout -- gradle.properties 
-
+            currentfolder=$(pwd)
+            python3 CircleciScripts/generatejavadoc.py CircleciScripts/ReleaseConfiguration.json /Users/sdechunq/Documents/github/android/bk/aws-sdk-android/  build/javadoc libs "$release_version"
       - run:
           name: copy documents
           command: |
-            git config --local user.name "${CIRCLE_PROJECT_USERNAME}"
+            git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            cp -R build/docs/javadoc/*   docs/reference/
+            cp -R build/javadoc/*   docs/reference/
 
       - run:
-          name: checkin documents
+          name: check in documents
           command: |
             git add docs/reference
-            git commit -m "Update document via CircleCI"
-            git push -q https://${GH_TOKEN}@github.com/aws-amplify/aws-sdk-android.git  
+            git commit -m "AWS SDK for Android $release_version"
+            git push -q https://${GITHUB_TOKEN}@github.com/aws-amplify/aws-sdk-android.git  
 
-  release_maven:
-    working_directory: ~/code
+  tag_doc:
     docker:
       - image: circleci/android:api-27-alpha
     environment:
-      JVM_OPTS: -Xmx3200m
-    resource_class: large
- 
+      JVM_OPTS: -Xmx3200m     
     steps:
-      - checkout
+      - checkout   
+      - run:
+          name: Add documentation tags to gh-pages
+          command: |
+            git checkout  gh-pages
+            git tag -a ${CIRCLE_TAG}_api_docs  -m "Add documentation tags to version ${CIRCLE_TAG}"            
+            git push --tags -q https://${GITHUB_TOKEN}@github.com/sunchunqiang/aws-sdk-android.git     
+
+  release_maven:
+    macos: 
+      xcode: "10.1.0"
+
+    steps:
+      - checkout    
+      - run:
+          name: install android sdk tools
+          command: |
+            brew tap caskroom/cask
+            brew cask install android-sdk
       - run:
           name: install aws cli
           command: |
@@ -119,19 +121,26 @@ jobs:
       - run:
           name: install android build tools
           command: |
-            echo "${HOME}"
-            echo "$JAVA_HOME"
-            echo "$ANDROID_HOME"
-            echo "$PATH"          
-            ls  "$ANDROID_HOME"
-            ls  "$ANDROID_HOME/platforms/android-27"            
+            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
+            /usr/local/bin/sdkmanager --update
+      - run:
+          name: Set environment
+          command: |
+            echo ~
+            ls /usr/local/share/android-sdk
+            ANDROID_HOME="/usr/local/share/android-sdk"
+            echo 'export ANDROID_HOME="/usr/local/share/android-sdk"' >> $BASH_ENV
+            echo "Home: ${HOME}"
+            echo "JAVA_HOME: $JAVA_HOME"
+            echo "ANDROID_HOME: $ANDROID_HOME"
+            echo "PATH: $PATH"                    
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+      - run:
+          name: Instal gpg
+          command: |
+            brew install gnupg
 
-            echo "build-tools;$ANDROID_BUILDTOOL_VERSION" 
-
-            sdkmanager "platforms;android-21" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
-                
       - run:
           name: download gpghome
           command: |
@@ -143,10 +152,8 @@ jobs:
       - run:
          name: install maven
          command: |
-          sudo apt-get install maven
-      - run:
-          name: Download Dependencies
-          command: bash gradlew androidDependencies
+            brew update 
+            brew install maven
 
       - run:
           name: publish to maven
@@ -157,63 +164,64 @@ jobs:
             echo "$M2_HOME"
             bash CircleciScripts/maven-release.sh
 
+
 workflows:
   version: 2
+
   test:
     jobs:
-      - release_maven
-      
-  build_and_test:
+      - unittest
+  
+  release_sdk:
     jobs: 
       - build:
           filters:
             branches:
-              ignore: .*/
-  #     - unittest:
-  #         requires:
-  #           - build
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
-  # release_sdk:
-  #   jobs: 
-  #     - build:
-  #         filters:
-  #           branches:
-  #             ignore: /.*/            
-  #           tags:
-  #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+      - unittest:
+          requires:
+            - build         
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
-  #     - unittest:
-  #         requires:
-  #           - build         
-  #         filters:
-  #           branches:
-  #             ignore: /.*/            
-  #           tags:
-  #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+      - release_tag:
+          requires:
+            - unittest
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
-  #     - release_tag:
-  #         requires:
-  #           - unittest
-  #         filters:
-  #           branches:
-  #             ignore: /.*/            
-  #           tags:
-  #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+      - release_maven:    
+          requires:
+            - release_tag  
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
-  #     - release_maven:    
-  #         requires:
-  #           - release_tag  
-  #         filters:
-  #           branches:
-  #             ignore: /.*/            
-  #           tags:
-  #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+      - release_javadoc:    
+          requires:
+            - release_tag  
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
-  #     - release_javadoc:    
-  #         requires:
-  #           - release_tag  
-  #         filters:
-  #           branches:
-  #             ignore: /.*/            
-  #           tags:
-  #             only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+      - tag_doc:    
+          requires:
+            - release_javadoc  
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/

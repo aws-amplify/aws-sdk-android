@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,15 +15,24 @@
 
 package com.amazonaws.services.lexrts.model.transform;
 
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
+import com.amazonaws.DefaultRequest;
 import com.amazonaws.http.HttpMethodName;
-import com.amazonaws.services.lexrts.model.PostContentRequest;
+import com.amazonaws.services.lexrts.model.*;
 import com.amazonaws.transform.Marshaller;
-import com.amazonaws.util.Base64;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
-import com.google.gson.Gson;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
  * JSON request marshaller for PostContentRequest
@@ -31,22 +40,23 @@ import com.google.gson.Gson;
 public class PostContentRequestMarshaller implements
         Marshaller<Request<PostContentRequest>, PostContentRequest> {
 
-    @Override
     public Request<PostContentRequest> marshall(PostContentRequest postContentRequest) {
         if (postContentRequest == null) {
             throw new AmazonClientException(
                     "Invalid argument passed to marshall(PostContentRequest)");
         }
 
-        final Request<PostContentRequest> request = new DefaultRequest<PostContentRequest>(
+        Request<PostContentRequest> request = new DefaultRequest<PostContentRequest>(
                 postContentRequest, "AmazonLexRuntime");
         request.setHttpMethod(HttpMethodName.POST);
-        final Gson gson = new Gson();
 
         if (postContentRequest.getSessionAttributes() != null) {
             request.addHeader("x-amz-lex-session-attributes",
-                    Base64.encodeAsString(
-                            gson.toJson(postContentRequest.getSessionAttributes()).getBytes()));
+                    StringUtils.fromString(postContentRequest.getSessionAttributes()));
+        }
+        if (postContentRequest.getRequestAttributes() != null) {
+            request.addHeader("x-amz-lex-request-attributes",
+                    StringUtils.fromString(postContentRequest.getRequestAttributes()));
         }
         if (postContentRequest.getContentType() != null) {
             request.addHeader("Content-Type",

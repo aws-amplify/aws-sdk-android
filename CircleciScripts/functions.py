@@ -46,14 +46,18 @@ def runcommand(command, timeout=0,pipein=None, pipeout =  None):
 def runtest(module, testtype, results):
 
     
-    testcommand = "bash gradlew {0}:{1}".format(module, testtype.testAction)
+    testcommand = "bash gradlew {0}:{1} --no-daemon --max-workers 2".format(module, testtype.testAction)
     print("Running {0} for {1} .......".format(testtype.displayString, module))   
     exit_code = runcommand(testcommand)   
     if exit_code != 0 :
-        desc = "{0}/{1}".format(results, module)
-        runcommand("mkdir {0} ".format(desc))
-        source = "{0}/build/reports/tests/*".format(module)
-        if runcommand("mv {0} {1}".format(source,desc)) != 0 :
+        print("unit test failed for {0}".format(module))
+        dest = "{0}/{1}".format(results, module)
+        runcommand("mkdir {0} ".format(dest))
+        source = "{0}/build/reports/*".format(module)
+        runcommand("ls aws-android-sdk-kinesis")
+        runcommand("ls aws-android-sdk-kinesis/build")
+        runcommand("ls aws-android-sdk-kinesis/build/reports/tests/test")               
+        if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
             return 1
 
     return 0

@@ -1,5 +1,54 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.10.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.0)
+
+### Misc. Updates
+
+* Model updates for the following services
+    * Amazon Lex
+        * Added overrides to various `InteractionClient` and `LexServiceContinuation` methods, to allow passing request attributes
+        * **Breaking API Changes:** The following APIs have been changed:
+            * `PostContentRequest`, `PostContentResponse`
+                * Certain properties which used to have a type of `Map<String, String>` are now `String`. This requires your calling code to 
+                  JSON serialize and base64-encode the value. The `get`, `set` and `with` APIs of the following properties are affected:
+                  - `PostContentRequest.requestAttributes`
+                  - `PostContentRequest.sessionAttributes`
+                  - `PostContentRequest.slots`
+                  - `PostContentResponse.requestAttributes`
+                  - `PostContentResponse.sessionAttributes`
+                  - `PostContentResponse.slots`
+
+## [Release 2.9.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.2)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * `AWSIotMqttManager` passes publish exceptions via the callback. If callback is not provided it throws `AmazonClientException`.
+  * `AWSIotMqttManager` logs the reconnection errors and pass it to the user provided connection callback.
+
+* **Amazon Pinpoint**
+  * Fixed bug that could potentially cause rejected events to be dropped incorrectly because service response could not be unmarshalled. The response will now be processed correctly and events rejected by the service will be retried.
+
+* **Amazon S3**
+  * Fixed a bug where a disk operation to remove completed transfers from database was performed on the main thread. See [issue #603](https://github.com/aws-amplify/aws-sdk-android/issues/603)
+
+## [Release 2.9.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.1)
+
+### New Features
+
+* **Amazon Cognito Auth**
+  * Added customization for CustomTabs through `setCustomTabsExtras()` in the builder. See [PR #608](https://github.com/aws-amplify/aws-sdk-android/pull/608)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Fixed bug that leaked threads during reconnect. See [PR #601](https://github.com/aws-amplify/aws-sdk-android/pull/601)
+  * Fixed reporting of failed message publishes during reconnect. See [PR #407](https://github.com/aws-amplify/aws-sdk-android/pull/407)
+  * Fix reconnection failure upon network disconnect. Any subsequent reconnect honors the value passed to the cleanSession flag. See [issue #584](https://github.com/aws-amplify/aws-sdk-android/issues/584) and [PR #612](https://github.com/aws-amplify/aws-sdk-android/pull/612)
+
+* **AWS Mobile Client**
+  * Fixed exception being thrown from `getCredentials()` and `refresh()` to adhere to `AmazonClientException` to allow other portions of SDK to catch properly. Previously a generic `RuntimeException` was being thrown; `AmazonClientException` is a subclass of `RuntimeException`. See [issue #588](https://github.com/aws-amplify/aws-sdk-android/issues/588)
+
 ## [Release 2.9.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.0)
 
 ### New Features
