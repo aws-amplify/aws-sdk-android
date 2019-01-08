@@ -67,92 +67,92 @@ public class FileRecordStoreTest {
         f.delete();
     }
 
-    // @Test
-    // public void testFileRecordStore_putIterateAndRemove() throws IOException {
+    @Test
+    public void testFileRecordStore_putIterateAndRemove() throws IOException {
 
-    //     FileManager fileManager = new FileManager(TEST_DIRECTORY);
-    //     FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
-    //             RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
+        FileManager fileManager = new FileManager(TEST_DIRECTORY);
+        FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
+                RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
 
-    //     // Put some events into the store
-    //     recordStore.put("1");
-    //     recordStore.put("2");
-    //     recordStore.put("3");
-    //     recordStore.put("4");
-    //     recordStore.put("5");
-    //     recordStore.put("6");
-    //     recordStore.put("7");
-    //     recordStore.put("8");
-    //     recordStore.put("9");
-    //     recordStore.put("10");
+        // Put some events into the store
+        recordStore.put("1");
+        recordStore.put("2");
+        recordStore.put("3");
+        recordStore.put("4");
+        recordStore.put("5");
+        recordStore.put("6");
+        recordStore.put("7");
+        recordStore.put("8");
+        recordStore.put("9");
+        recordStore.put("10");
 
-    //     // Use the iterator to read through the events in the store
-    //     int counter = 0;
-    //     RecordIterator iter = recordStore.iterator();
+        // Use the iterator to read through the events in the store
+        int counter = 0;
+        RecordIterator iter = recordStore.iterator();
 
-    //     while (iter.hasNext()) {
-    //         counter++;
-    //         String record = iter.next();
-    //         assertSame(Integer.valueOf(record), counter);
-    //         // If we read 5 events remove the 5 last read events
-    //         if (counter % 5 == 0) {
-    //             iter.removeReadRecords();
-    //             assertSame(getNumberOfLinesInFile(fileManager), (10 - counter));
-    //         }
-    //     }
+        while (iter.hasNext()) {
+            counter++;
+            String record = iter.next();
+            assertSame(Integer.valueOf(record), counter);
+            // If we read 5 events remove the 5 last read events
+            if (counter % 5 == 0) {
+                iter.removeReadRecords();
+                assertSame(getNumberOfLinesInFile(fileManager), (10 - counter));
+            }
+        }
 
-    //     // Put some events into the store
-    //     recordStore.put("1");
-    //     recordStore.put("2");
-    //     recordStore.put("3");
-    //     recordStore.put("4");
-    //     recordStore.put("5");
-    //     recordStore.put("6");
-    //     recordStore.put("7");
-    //     recordStore.put("8");
-    //     recordStore.put("9");
-    //     recordStore.put("10");
-    //     String nextRecord = null;
-    //     counter = 0;
-    //     iter = recordStore.iterator();
-    //     while ((nextRecord = iter.next()) != null) {
-    //         counter++;
-    //         assertSame(Integer.valueOf(nextRecord), counter);
-    //     }
-    //     iter.removeReadRecords();
-    //     assertSame(getNumberOfLinesInFile(fileManager), 0);
+        // Put some events into the store
+        recordStore.put("1");
+        recordStore.put("2");
+        recordStore.put("3");
+        recordStore.put("4");
+        recordStore.put("5");
+        recordStore.put("6");
+        recordStore.put("7");
+        recordStore.put("8");
+        recordStore.put("9");
+        recordStore.put("10");
+        String nextRecord = null;
+        counter = 0;
+        iter = recordStore.iterator();
+        while ((nextRecord = iter.next()) != null) {
+            counter++;
+            assertSame(Integer.valueOf(nextRecord), counter);
+        }
+        iter.removeReadRecords();
+        assertSame(getNumberOfLinesInFile(fileManager), 0);
 
-    //     // Try getting a new iterator while the store is empty and verify
-    //     // that hasNext is false
-    //     iter = recordStore.iterator();
-    //     assertFalse(iter.hasNext());
-    //     assertNull(iter.next());
+        // Try getting a new iterator while the store is empty and verify
+        // that hasNext is false
+        iter = recordStore.iterator();
+        assertFalse(iter.hasNext());
+        assertNull(iter.next());
 
-    //     // Put another record in the store and try to read it back out with a
-    //     // new iterator.
-    //     recordStore.put("11");
-    //     iter = recordStore.iterator();
+        // Put another record in the store and try to read it back out with a
+        // new iterator.
+        recordStore.put("11");
+        iter = recordStore.iterator();
 
-    //     // Try peeking and the next record more than once and verify it will
-    //     // only show the next record each time
-    //     assertTrue(iter.peek().equalsIgnoreCase("11"));
-    //     assertTrue(iter.peek().equalsIgnoreCase("11"));
+        // Try peeking and the next record more than once and verify it will
+        // only show the next record each time
+        assertTrue(iter.peek().equalsIgnoreCase("11"));
+        assertTrue(iter.peek().equalsIgnoreCase("11"));
 
-    //     // Try calling remove and get an UnsupportedOperationException
-    //     boolean unsupportedCaught = false;
-    //     try {
-    //         iter.remove();
-    //     } catch (UnsupportedOperationException e) {
-    //         unsupportedCaught = true;
-    //     }
-    //     assertTrue(unsupportedCaught);
+        // Try calling remove and get an UnsupportedOperationException
+        boolean unsupportedCaught = false;
+        try {
+            iter.remove();
+        } catch (UnsupportedOperationException e) {
+            unsupportedCaught = true;
+        }
+        assertTrue(unsupportedCaught);
 
-    //     while (iter.hasNext()) {
-    //         String record = iter.next();
-    //         assertSame(Integer.valueOf(record), 11);
-    //     }
+        while (iter.hasNext()) {
+            String record = iter.next();
+            assertSame(Integer.valueOf(record), 11);
+        }
 
-    // }
+    }
 
     // @Test
     // public void
