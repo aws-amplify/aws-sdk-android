@@ -204,122 +204,122 @@ public class FileRecordStoreTest {
 
     }
 
-    @Test
-    public void testWhenWritingTooManyConcurrentRecords() throws
-            InterruptedException, IOException {
-        File recordsDirectory = null;
-        File recordsFile = null;
-        FileManager fileManager = new FileManager(TEST_DIRECTORY);
-        final FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
-                RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
-
-        recordsDirectory = fileManager.getDirectory(Constants.RECORDS_DIRECTORY);
-        recordsFile = new File(recordsDirectory, Constants.RECORDS_FILE_NAME);
-
-        SecureRandom random = new SecureRandom();
-
-        // first fill the disk
-        String tempRecordStr = "";
-        for (int i = 0; i < 10000; i++) {
-            tempRecordStr = tempRecordStr + new BigInteger(130, random).toString(32);
-        }
-
-        final String recordStr = tempRecordStr;
-
-        for (int i = 0; i < 30; i++) {
-            recordStore.put(recordStr);
-        }
-
-        long initialSize = recordsFile.length();
-        assertTrue(recordsFile.length() <= MAX_STORAGE_SIZE);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-        ExecutorService threadPool = Executors.newFixedThreadPool(1);
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    for (int i = 0; i < 100; i++) {
-                        RecordIterator itr = recordStore.iterator();
-                        if (itr.hasNext()) {
-                            String next = itr.next();
-                            assertEquals(next.length(), recordStr.length());
-                            itr.removeReadRecords();
-                        }
-                        Thread.sleep(1);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } finally {
-                    latch.countDown();
-                }
-            }
-        });
-
-        for (int i = 0; i < 10000; i++) {
-            recordStore.put(recordStr);
-            assertTrue(recordsFile.length() <= initialSize);
-            recordStore.put(recordStr);
-            assertTrue(recordsFile.length() <= initialSize);
-            recordStore.put(recordStr);
-            assertTrue(recordsFile.length() <= initialSize);
-            Thread.sleep(1);
-        }
-
-        latch.await();
-        assertEquals(recordsFile.length(), initialSize);
-        assertTrue(recordsFile.length() < MAX_STORAGE_SIZE);
-
-    }
-
     // @Test
-    // public void
-    //         testPutEventsFromMultipleThreads_finishesInTimeAndNothingLost() throws IOException {
+    // public void testWhenWritingTooManyConcurrentRecords() throws
+    //         InterruptedException, IOException {
+    //     File recordsDirectory = null;
+    //     File recordsFile = null;
+    //     FileManager fileManager = new FileManager(TEST_DIRECTORY);
     //     final FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
     //             RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
 
-    //     final CountDownLatch latch = new CountDownLatch(10000);
+    //     recordsDirectory = fileManager.getDirectory(Constants.RECORDS_DIRECTORY);
+    //     recordsFile = new File(recordsDirectory, Constants.RECORDS_FILE_NAME);
 
-    //     long start = System.currentTimeMillis();
-    //     ExecutorService threadPool = Executors.newFixedThreadPool(10);
+    //     SecureRandom random = new SecureRandom();
+
+    //     // first fill the disk
+    //     String tempRecordStr = "";
     //     for (int i = 0; i < 10000; i++) {
-    //         final String recordStr = "" + i;
-    //         threadPool.execute(new Runnable() {
-    //             @Override
-    //             public void run() {
-    //                 try {
-    //                     recordStore.put(recordStr);
-    //                 } catch (IOException e) {
-    //                     throw new RuntimeException(e);
-    //                 } finally {
-    //                     latch.countDown();
+    //         tempRecordStr = tempRecordStr + new BigInteger(130, random).toString(32);
+    //     }
+
+    //     final String recordStr = tempRecordStr;
+
+    //     for (int i = 0; i < 30; i++) {
+    //         recordStore.put(recordStr);
+    //     }
+
+    //     long initialSize = recordsFile.length();
+    //     assertTrue(recordsFile.length() <= MAX_STORAGE_SIZE);
+
+    //     final CountDownLatch latch = new CountDownLatch(1);
+    //     ExecutorService threadPool = Executors.newFixedThreadPool(1);
+    //     threadPool.execute(new Runnable() {
+    //         @Override
+    //         public void run() {
+    //             try {
+    //                 for (int i = 0; i < 100; i++) {
+    //                     RecordIterator itr = recordStore.iterator();
+    //                     if (itr.hasNext()) {
+    //                         String next = itr.next();
+    //                         assertEquals(next.length(), recordStr.length());
+    //                         itr.removeReadRecords();
+    //                     }
+    //                     Thread.sleep(1);
     //                 }
+    //             } catch (InterruptedException e) {
+    //                 e.printStackTrace();
+    //             } catch (IOException e) {
+    //                 throw new RuntimeException(e);
+    //             } finally {
+    //                 latch.countDown();
     //             }
-    //         });
+    //         }
+    //     });
+
+    //     for (int i = 0; i < 10000; i++) {
+    //         recordStore.put(recordStr);
+    //         assertTrue(recordsFile.length() <= initialSize);
+    //         recordStore.put(recordStr);
+    //         assertTrue(recordsFile.length() <= initialSize);
+    //         recordStore.put(recordStr);
+    //         assertTrue(recordsFile.length() <= initialSize);
+    //         Thread.sleep(1);
     //     }
 
-    //     try {
-    //         latch.await();
-    //     } catch (InterruptedException e) {
-    //     }
+    //     latch.await();
+    //     assertEquals(recordsFile.length(), initialSize);
+    //     assertTrue(recordsFile.length() < MAX_STORAGE_SIZE);
 
-    //     long end = System.currentTimeMillis();
-    //     assertFalse(end - start > 10000);
-
-    //     final List<Long> recordList = new LinkedList<Long>();
-    //     RecordIterator iter = recordStore.iterator();
-    //     while (iter.hasNext()) {
-    //         String next = iter.next();
-    //         recordList.add(Long.valueOf(next));
-    //     }
-
-    //     Collections.sort(recordList);
-    //     for (int i = 0; i < 10000; ++i) {
-    //         assertEquals(Long.valueOf(i), recordList.get(i));
-    //     }
     // }
+
+    @Test
+    public void
+            testPutEventsFromMultipleThreads_finishesInTimeAndNothingLost() throws IOException {
+        final FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
+                RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
+
+        final CountDownLatch latch = new CountDownLatch(10000);
+
+        long start = System.currentTimeMillis();
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 10000; i++) {
+            final String recordStr = "" + i;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        recordStore.put(recordStr);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } finally {
+                        latch.countDown();
+                    }
+                }
+            });
+        }
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+        }
+
+        long end = System.currentTimeMillis();
+        assertFalse(end - start > 10000);
+
+        final List<Long> recordList = new LinkedList<Long>();
+        RecordIterator iter = recordStore.iterator();
+        while (iter.hasNext()) {
+            String next = iter.next();
+            recordList.add(Long.valueOf(next));
+        }
+
+        Collections.sort(recordList);
+        for (int i = 0; i < 10000; ++i) {
+            assertEquals(Long.valueOf(i), recordList.get(i));
+        }
+    }
 
     private int getNumberOfLinesInFile(final FileManager fileManager) throws NumberFormatException,
             IOException {

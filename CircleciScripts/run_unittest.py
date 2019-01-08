@@ -17,15 +17,15 @@ for line in lines:
 
  
 testmodules = [
-    "aws-android-sdk-sdb",
-    "aws-android-sdk-polly",
-    "aws-android-sdk-kinesis",
-    "aws-android-sdk-pinpoint",
-    "aws-android-sdk-ddb-mapper",
-    "aws-android-sdk-mobileanalytics",
-    "aws-android-sdk-core",
-    "aws-android-sdk-lambda",
-    "aws-android-sdk-s3"
+    # "aws-android-sdk-sdb",
+    # "aws-android-sdk-polly",
+    "aws-android-sdk-kinesis" 
+    # "aws-android-sdk-pinpoint",
+    # "aws-android-sdk-ddb-mapper",
+    # "aws-android-sdk-mobileanalytics",
+    # "aws-android-sdk-core",
+    # "aws-android-sdk-lambda",
+    # "aws-android-sdk-s3"
 ] 
  
 test_results = sys.argv[1]
