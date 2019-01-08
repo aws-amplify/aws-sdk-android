@@ -46,7 +46,7 @@ def runcommand(command, timeout=0,pipein=None, pipeout =  None):
 def runtest(module, testtype, results):
 
     
-    testcommand = "bash gradlew {0}:{1} --stacktrace --debug".format(module, testtype.testAction)
+    testcommand = "bash gradlew {0}:{1} ".format(module, testtype.testAction)
     print("Running {0} for {1} .......".format(testtype.displayString, module))   
     exit_code = runcommand(testcommand)   
     if exit_code != 0 :
