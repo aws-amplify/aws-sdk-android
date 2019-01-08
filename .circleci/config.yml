@@ -65,6 +65,16 @@ jobs:
       - checkout   
 
       - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli
+
+      - run:
+          name: download third party libararies 
+          command: |
+            aws s3 sync  s3://android-circleci-payload/third-party/  ./libs                
+
+      - run:
           name: set version
           command: |
             export release_tag=${CIRCLE_TAG}
@@ -144,7 +154,7 @@ jobs:
       - run:
           name: download gpghome
           command: |
-            aws s3 cp s3://gpghome-csun/gpghome.zip gpghome.zip
+            aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
             unzip -a gpghome.zip
             echo "gpghome contents:"
             ls gpghome
@@ -168,9 +178,6 @@ jobs:
 workflows:
   version: 2
 
-  test:
-    jobs:
-      - unittest
   
   release_sdk:
     jobs: 
