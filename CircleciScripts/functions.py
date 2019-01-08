@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from enum import Enum
 from collections import namedtuple
+import re
 
 TestType  = namedtuple('TestType', ['value', 'testAction', 'displayString'])
 class TestTypes(Enum):
@@ -61,6 +62,18 @@ def runtest(module, testtype, results):
             return 1
 
     return 0
-   # xcprettyoutput.close()
+
+def getmodules(root):
+    with open(os.path.join(root, "settings.gradle")) as f:
+        lines = f.readlines()
+    modules = []
+    for line in lines:
+        m = re.match(".*':(aws-android-sdk-.*).*'", line)
+        if m is not None:
+            modules.append(m.group(1))
+        else:
+            print("{0} is not a sdk module ".format(line)) 
+    return modules ;
+
 
 

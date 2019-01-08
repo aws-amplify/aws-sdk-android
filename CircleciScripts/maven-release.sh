@@ -25,6 +25,10 @@ echo "enviroment:     ;  $sonatype_password  ;   "
 # Perm gen space is increased for maven command
 MAVEN_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
 
+gpg_keyname="D5503EEA"
+gpg_passphrase="%3kE}\LPf-8|F'D"
+sonatype_username="amazonwebservices"
+sonatype_password="qI@ia573\$0An"
 
 mvn clean deploy -X -e -Ppublishing \
     -f "$pom" \

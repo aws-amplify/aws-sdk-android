@@ -132,6 +132,8 @@ root = sys.argv[2]
 dest = sys.argv[3]
 libs = sys.argv[4]
 sdkVersion = sys.argv[5] 
+print("jsonfilename={0};root={1};dest={2};libs={3};sdkVersion={4}".format(jsonfilename,root,dest,libs,sdkVersion))
+
 with open(jsonfilename, 'r') as jsonfile:
     jsonstring = jsonfile.read()
 rootelement =  demjson.decode(jsonstring)
@@ -184,5 +186,5 @@ os.environ["sdkVersion"]=sdkVersion
 commandline = getCommandline(dest, root, modules, packages,sourthfiles, subpackages,excludes, groups, otheroptions, otherargs)
 returncode = runcommand(commandline)
 print("return code:" , returncode)
-exit(returndcode)
+exit(returncode)
 #print(commandline)
