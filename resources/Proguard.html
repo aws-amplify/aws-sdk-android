@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>Using Proguard with the AWS SDK for Android</title>
+    <style type="text/css">
+        table.sample {
+	        border-width: 2px;
+	        border-spacing: 5px;
+	        border-style: dashed;
+	        border-color: cornflowerblue;
+        }
+        table.sample td {
+	        padding: 5px;
+        }        
+        table.sample tr {
+	        padding: 5px;
+        }        
+    </style>    
+</head>
+<body style="padding: 10px">
+<h1>Using Proguard with the AWS SDK for Android</h1>
+<p> Proguard is an open source project whose aim is to help Java developers shrink, optimize, and
+            obfuscate their Java code. With storage on mobile devices at a premium, Proguard has
+            become a popular option for Android developers looking to minimize the size of their
+            apps and also protect their code from prying eyes. You can learn more about Proguard and
+            its features at the project's <a href="http://proguard.sourceforge.net/">official
+                site</a>. </p>
+<p> Starting with version 1.3.0 of the AWS SDK for Android, AWS will be actively supporting users
+            who want to make use of Proguard in their Android projects. This article discusses how
+            developers can optimally configure Proguard to shrink, optimize, and obfuscate their
+            code and still use the AWS SDK for Android for all services it supports. </p>
+<h2>Creating a Proguard Config</h2>
+<p> Proguard is now integrated into the Eclipse IDE by means of the ADT plug-in. Starting with ADT
+            versions 17 and later, a default config ships with the toolkit and can be included in
+            your Android app. A project customization file <i>proguard-project.txt</i> will also be
+            created where additional options can be supplied as needed. </p>
+<p> If you are adding Proguard to an existing app, you can place your <i>proguard-project.txt</i> anywhere
+in the project folder, but typically it is placed at the root of your project, alongside
+the <i>AndroidManifest.xml</i> and
+<i>project.properties</i> files.
+</p>
+<p>
+Regardless of whether you created the file yourself or used the default
+config when you created a new project, you still
+need to enable Proguard for your app. As noted on the <a
+href="http://tools.android.com/recent/proguardimprovements">Android
+Tools Project Site</a>, you do this by adding a line similar to the following in
+your <i>project.properties</i> file:
+</p> 
+
+<table class="sample"><tr><td align="left" >
+<pre>proguard.config=${sdk.dir}/tools/proguard/proguard-android.txt:proguard-project.txt</pre>
+</td></tr>
+</table>
+
+<p>
+If you did not create your <i>proguard-project.txt</i> file at the root of
+your project directory, you need to supply the path to the file
+as well.
+</p>
+<table class="sample"><tr><td align="left" >
+<pre>proguard.config=${sdk.dir}/tools/proguard/proguard-android.txt:&lt;path_to_proguard&gt;/proguard-project.txt</pre>
+</td></tr>
+</table>
+
+<p> You may also choose to completely override the default proguard configuration as supplied by ADT
+            by simply excluding it from your project.properties. You can than copy the portions of
+            the default <i>proguard-android.txt</i> you want into your <i>proguard-project.txt</i>
+            <b>Note:</b> This is not recommended by the ADT developers and it will prevent your app
+            from receiving updates released with ADT updates and may generate a warning during lint
+            processing. </p>
+<table class="sample"><tr><td align="left" >
+<pre>proguard.config=proguard-project.txt</pre>
+</td></tr>
+</table>
+
+<h2>Modifying proguard-project.txt for the AWS SDK for Android</h2>
+<p>
+When exporting your app using the AWS SDK for
+Android with the default, empty <i>proguard-project.txt</i> file, you may notice that Eclipse 
+reports errors. In order to correct these errors, add
+the following lines to the end of your <i>proguard-project.txt</i> file:
+</p>
+
+<table class="sample"><tr><td align="left" >
+<pre>
+# Class names are needed in reflection
+-keepnames class com.amazonaws.**
+-keepnames class com.amazon.**
+# Request handlers defined in request.handlers
+-keep class com.amazonaws.services.**.*Handler
+# The following are referenced but aren't required to run
+-dontwarn com.fasterxml.jackson.**
+-dontwarn org.apache.commons.logging.**
+# Android 6.0 release removes support for the Apache HTTP client
+-dontwarn org.apache.http.**
+# The SDK has several references of Apache HTTP client
+-dontwarn com.amazonaws.http.**
+-dontwarn com.amazonaws.metrics.**
+</pre></td></tr>
+</table>
+
+<p>
+<b>Note:</b> This configuration applies only to the AWS SDK for
+Android; if you are using other third-party libraries, you need to
+consult the documentation for those libraries to see if they
+require additional configuration to support the use of Proguard.
+</p>
+<h2>Conclusion and Additional Resources</h2>
+<p>
+Proguard is a valuable tool for Android developers who care about the
+size of their apps.  The configuration provided in this
+article allows developers to ship apps using the AWS SDK for
+Android that use less of the user's storage.
+</p>
+<p>
+All samples in the AWS SDK for Android starting with version 1.3.0
+ship with functional Proguard configuration. You can download the
+latest version of the AWS SDK for Android <a
+href="http://aws.amazon.com/sdkforandroid">here</a>.</p>
+
+<h2>Questions?</h2>
+<p>
+Please feel free to ask questions or provide comments in the <a
+href="https://forums.aws.amazon.com/forum.jspa?forumID=88">Mobile
+Development Forum</a>.
+</p>
+
+</body>
+</html>

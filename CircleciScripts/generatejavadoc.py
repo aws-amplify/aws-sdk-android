@@ -110,8 +110,13 @@ def printset(s):
         print(e)
 
 def getJARs(root, libs):
-    sourthpath =os.path.join(root , libs , "*.jar")
-    return glob.glob(sourthpath)
+
+    jars=[]
+    for path, subdirs, files in os.walk(os.path.join(root, libs)):
+        for name in files:
+            if (name.endswith(".jar")):
+                jars.append(os.path.join(path, name))    
+    return jars
 
 
 def copylib(root, modules, target):

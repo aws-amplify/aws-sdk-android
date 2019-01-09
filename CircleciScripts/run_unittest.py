@@ -1,19 +1,14 @@
 from functions import runcommand
 from functions import runtest
 from functions import TestTypes
+from functions import getmodules
 import sys
-import re
+import os
 
-with open("settings.gradle") as f:
-    lines = f.readlines()
-# you may also want to remove whitespace characters like `\n` at the end of each line
-testmodules = []
-for line in lines:
-    m = re.match(".*':(.*).*'", line)
-    if m is not None:
-        testmodules.append(m.group(1))
-    else:
-        print(line)
+test_results = sys.argv[1]
+root = sys.argv[2]
+print(root)
+testmodules =  getmodules(root)
 
  
 # testmodules = [
@@ -29,9 +24,11 @@ for line in lines:
 # ] 
 
  
-test_results = sys.argv[1]
+
 runcommand("rm -rf {0}".format(test_results))
 runcommand("mkdir {0}".format(test_results))
 for module in testmodules:
-	if runtest(module, TestTypes.UnitTest, test_results) != 0 :
-		exit(1)
+    testfolder = os.path.join(root, module, "src/test")
+    if (os.path.isdir(testfolder)):
+        if runtest(module, TestTypes.UnitTest, test_results) != 0 :
+            exit(1)

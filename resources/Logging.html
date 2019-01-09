@@ -1,0 +1,115 @@
+<html>
+<head>
+    <title>Logging with the AWS SDK for Android</title>
+    <style type="text/css">
+        table.sample {
+	        border-width: 2px;
+	        border-spacing: 5px;
+	        border-style: dashed;
+	        border-color: cornflowerblue;
+        }
+        table.sample td {
+	        padding: 5px;
+        }        
+        table.sample tr {
+	        padding: 5px;
+        }        
+    </style>    
+</head>
+<body style="padding: 10px">
+<h1>Logging with the AWS SDK for Android</h1>
+<p>
+The AWS SDK for Android includes logging via the Apache Commons
+logging project.  The SDK makes use of this library and its link to
+Android LogCat to provide logging for internal operations of the SDK.
+By default, only informational, warning, and error messages will be
+visible by LogCat.  This article discusses how to tune the 
+visibility of log messages.
+<br><br>
+Note:  The KinesisRecorder and AmazonMobileAnalytics libraries use LogCat directly.
+</p>
+<h2>Disabling All Logging in the AWS SDK for Android</h2>
+<p>
+If you should choose to disable all logging in the AWS
+SDK for Android, you simply need to insert the following piece of code
+in your Android app:
+</p>
+<table class="sample">
+    <tr>
+        <td align="left" >
+<pre>java.util.logging.Logger.getLogger("com.amazonaws").setLevel(java.util.logging.Level.OFF);</pre>
+        </td>
+    </tr>
+</table>
+
+<h2>Enabling Request Logging in the AWS SDK for Android</h2>
+<p>
+When using the AWS SDK for Android, you may need to inspect the request and basic response
+information from AWS services. To do this, you can enable request logging, but you must first
+add the following code to your Android app:
+</p>
+<table class="sample"><tr><td align="left">
+                    <pre>java.util.logging.Logger.getLogger("com.amazonaws").setLevel(java.util.logging.Level.FINEST);</pre></td></tr>
+</table>
+<p>
+<b>Note:</b> Make sure you remove this code before exporting your
+app for use on Android devices as it will effect the
+performance of your app.
+</p>
+<p>
+Additionally, you will need to execute the following ADB shell command
+to enable LogCat to display these new log messages:
+</p>
+
+<table class="sample"><tr><td align="left">
+                    <pre>adb shell setprop log.tag.com.amazonaws.request DEBUG</pre>
+                </td></tr>
+</table>
+
+<p>
+<b>Note:</b> This command requires that you have a running emulator or
+connected Android device; it will persist only until the emulator/device restarts.
+</p>
+<h2>Enabling HTTP Client Logging in the AWS SDK for Android</h2>
+<p>
+If you need to examine the raw HTTP requests and responses (either at
+the request of AWS support or for your own interests), you can enable
+apache HTTP client logging.  To enable this logging, you must first
+add the following code to your app:</p>
+<table class="sample"><tr><td align="left">
+                    <pre>java.util.logging.Logger.getLogger("org.apache.http").setLevel(java.util.logging.Level.FINEST);</pre>
+                </td></tr>
+</table>
+
+<p>
+<b>Note:</b> Make sure you remove this code before exporting your
+app for use on Android devices as it will effect the
+performance of your app.
+</p>
+<p>
+Additionally, you will need to execute the following ADB shell commands
+to enable LogCat to display these new log messages:
+</p>
+
+<table class="sample"><tr><td align="left">
+                    <pre>adb shell setprop log.tag.org.apache.http.headers VERBOSE
+adb shell setprop log.tag.org.apache.http.wire VERBOSE</pre>
+                </td></tr>
+</table>
+
+<p>
+<b>Note:</b> This command requires that you have a running emulator or
+connected Android device; it will persist only until the emulator/device restarts.
+</p>
+<h2>Additional Resources</h2>
+<p>
+The code and commands provided in this article demonstrate how to
+modify the logging of Android apps using the AWS SDK for Android.
+You can download the SDK and review the documentation <a
+href="http://aws.amazon.com/sdkforandroid">here</a>.
+</p>
+    
+<h2>Questions?</h2>
+<p>Please feel free to ask questions or provide comments in the <a href="https://forums.aws.amazon.com/forum.jspa?forumID=88">Mobile Development Forum</a>.</p>
+</body>
+</html>

@@ -10,7 +10,7 @@ import re
 
 TestType  = namedtuple('TestType', ['value', 'testAction', 'displayString'])
 class TestTypes(Enum):
-    UnitTest = TestType(1, 'test', 'unit test')
+    UnitTest = TestType(1, 'test -PexcludeTests=**/*IntegrationTest.class', 'unit test')
     integration = TestType(2, 'connectedAndroidTest', 'integration test')
     @property
     def displayString(self):
@@ -51,7 +51,7 @@ def runtest(module, testtype, results):
     print("Running {0} for {1} .......".format(testtype.displayString, module))   
     exit_code = runcommand(testcommand)   
     if exit_code != 0 :
-        print("unit test failed for {0}".format(module))
+        print("test failed for {0}".format(module))
         dest = "{0}/{1}".format(results, module)
         runcommand("mkdir {0} ".format(dest))
         source = "{0}/build/reports/*".format(module)
