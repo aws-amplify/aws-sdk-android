@@ -243,9 +243,10 @@ jobs:
           command: |
             aws configure --profile android_stage set region us-east-1
             echo -e "[android_stage]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
-            aws s3 cp "$sdkversion.zip" s3:///mylistname/test  --profile android_stage          
+            aws s3 cp "$sdkversion.zip" s3:///mylistname/test  --profile android_stage     
+
+
 workflows:
-  version: 2
   version: 2
   build_test:
     jobs: 
