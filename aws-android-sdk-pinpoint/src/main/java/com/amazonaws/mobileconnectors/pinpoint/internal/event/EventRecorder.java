@@ -583,6 +583,7 @@ public class EventRecorder {
                 .withClientSdkVersion(internalEvent.getSdkVersion())
                 .withEventType(internalEvent.getEventType())
                 .withMetrics(internalEvent.getAllMetrics())
+                .withAttributes(internalEvent.getAllAttributes())
                 .withSdkName(internalEvent.getSdkName())
                 .withSession(session)
                 .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())));
