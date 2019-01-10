@@ -68,3 +68,6 @@ fastlane/readme.md
 
 # maven file
 target/
+
+#python comile
+__pycache__/

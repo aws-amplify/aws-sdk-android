@@ -9,7 +9,6 @@ dest = sys.argv[2]
 if not os.path.exists(dest):
     os.makedirs(dest)
 modules = getmodules(root)
-print(modules)
 for module in modules:
     print(module)
     jarfile = os.path.join(root,module,"build/libs/{0}.jar".format(module))

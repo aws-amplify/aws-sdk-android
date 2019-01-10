@@ -110,7 +110,6 @@ def printset(s):
         print(e)
 
 def getJARs(root, libs):
-
     jars=[]
     for path, subdirs, files in os.walk(os.path.join(root, libs)):
         for name in files:

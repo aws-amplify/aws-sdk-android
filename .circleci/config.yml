@@ -215,6 +215,17 @@ jobs:
             echo "$ANDROID_HOME"
             echo "$M2_HOME"
             bash CircleciScripts/maven-release.sh
+      - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli      
+            aws configure --profile android_stage set region us-east-1
+            echo -e "[android_stage]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
+      - run:
+          name: upload to maven
+          command: |
+            version=$(echo "${CIRCLE_TAG}" | sed 's|.*v\([0-9\.]*\).*|\1|') 
+            python3 CircleciScripts/s3_maven.py "$(pwd)" $version android_stage  "aws-android-sdk-stage/com/amazonaws" 
 
   release_s3:
     docker:
@@ -267,9 +278,12 @@ jobs:
           command: |
             aws configure --profile android_stage set region us-east-1
             echo -e "[android_stage]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
-            aws s3 cp "$sdkversion.zip" "s3://mylistname/test/$sdkversion.zip"   --profile android_stage     
+            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/$sdkversion.zip"   --profile android_stage   
+            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/latest/aws-android-sdk.zip"   --profile android_stage   
+
 workflows:
   version: 2
+
   build_test:
     jobs: 
       - build 
