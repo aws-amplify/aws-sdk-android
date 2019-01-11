@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
-    <version>2.10.0</version>
+    <version>2.10.1</version>
   </parent>
 
   <dependencies>
@@ -29,7 +29,7 @@
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-core</artifactId>
       <optional>false</optional>
-      <version>2.10.0</version>
+      <version>2.10.1</version>
     </dependency>
 
     <dependency>
@@ -49,8 +49,8 @@
         <extensions>true</extensions>
         <configuration>
           <sdk>
-            <platform>${env.ANDROID_PLATFORM}</platform>
-            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+            <platform>11</platform>
+            <buildTools>19.1.0</buildTools>
           </sdk>
         </configuration>
       </plugin>
