@@ -5,14 +5,14 @@ import demjson
 import glob
 from functions import runcommand
 
-def getCommandline(dest, root, modules, packages, sourthfiles, subpackages,excludes, groups, otheroptions, otherargs):
+def getCommandline(dest, root, modules, packages, sourcefiles, subpackages,excludes, groups, otheroptions, otherargs):
 
 
     commandline = "javadoc " + \
                 " -d '{0}'".format(dest) + \
                 " -sourcepath  '{0}'".format(':'.join(map(lambda module: (root + "/" + module + "/src/main/java/"), modules)))  + \
                 " " + ' '.join(packages)  +  \
-                " " + ' '.join(map(lambda sourthfile:("'{0}'".format(sourthfile)), sourthfiles))  +  \
+                " " + ' '.join(map(lambda sourcefile:("'{0}'".format(sourcefile)), sourcefiles))  +  \
                 " -subpackages '{0}' ".format(':'.join(subpackages)) + \
                 " -exclude '{0}' ".format(':'.join(excludes)) + \
                 " ".join(map(lambda group:(" -group '{0}' '{1}' ".format(group['title'], ':'.join(group['packages']))), groups)) +  \
@@ -72,19 +72,19 @@ def getPackagesWithPattern(root, pattern):
 
 def getAllPackagesWithPattern(root, modules, pattern):
     packages = set()
-    sourthpaths = ""
+    sourcepaths = ""
     for module in modules:
-        sourthpath = os.path.join(root, module ,  "src/main/java/")
-        p = getPackagesWithPattern(sourthpath, pattern);
+        sourcepath = os.path.join(root, module ,  "src/main/java/")
+        p = getPackagesWithPattern(sourcepath, pattern);
         packages.update(p);
     return packages
-def getSourthFilesWithPattern(root, module, patterns):
+def getsourceFilesWithPattern(root, module, patterns):
     files = []
-    sourthpaths = ""
+    sourcepaths = ""
     for module in modules:
         for pattern in patterns:
-            sourthpath =os.path.join(root , module , "src/main/java/", pattern)
-            files.extend(list(filter(lambda x:x.endswith('.html') or x.endswith('.java'), glob.glob(sourthpath))))
+            sourcepath =os.path.join(root , module , "src/main/java/", pattern)
+            files.extend(list(filter(lambda x:x.endswith('.html') or x.endswith('.java'), glob.glob(sourcepath))))
 
     return files
 
@@ -120,9 +120,9 @@ def getJARs(root, libs):
 
 def copylib(root, modules, target):
     for module in modules:
-        sourthpath = os.path.join(root, module, "build/libs")
-        if os.path.isdir(sourthpath):
-            runcommand('cp {0}/*.jar "{1}"'.format(sourthpath, target))
+        sourcepath = os.path.join(root, module, "build/libs")
+        if os.path.isdir(sourcepath):
+            runcommand('cp {0}/*.jar "{1}"'.format(sourcepath, target))
 
 
 
@@ -173,8 +173,8 @@ for exclude in resolveList(docConfigure["excludes"]):
         excludepackageset = getAllPackagesWithPattern(root, modules, exclude);
         excludes.update(excludepackageset)
 
-sourthfiles = getSourthFilesWithPattern(root, modules, docConfigure["sourthfiles"])
-print("sourthfiles: ", sourthfiles)
+sourcefiles = getsourceFilesWithPattern(root, modules, docConfigure["sourcefiles"])
+print("sourcefiles: ", sourcefiles)
 groups = docConfigure["groups"]
 for group in groups:
     group['packages'] = resolveList(group['packages'])
@@ -187,7 +187,7 @@ if "CLASSPATH" in os.environ:
     jarlist.append(os.environ["CLASSPATH"])
 os.environ["CLASSPATH"]=':'.join(jarlist)
 os.environ["sdkVersion"]=sdkVersion
-commandline = getCommandline(dest, root, modules, packages,sourthfiles, subpackages,excludes, groups, otheroptions, otherargs)
+commandline = getCommandline(dest, root, modules, packages,sourcefiles, subpackages,excludes, groups, otheroptions, otherargs)
 returncode = runcommand(commandline)
 print("return code:" , returncode)
 exit(returncode)

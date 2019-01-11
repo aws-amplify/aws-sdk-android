@@ -62,7 +62,7 @@
 			"com.amazonaws.mobileconnectors.*",		
 		],
 
-		sourthfiles: [
+		sourcefiles: [
 			"com/amazonaws/http/Http*" ,
 			"com/amazonaws/http/ApacheHttpClient*" ,
 			"com/amazonaws/http/UrlHttpClient*"  

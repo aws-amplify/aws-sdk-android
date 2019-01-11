@@ -21,8 +21,9 @@ class TestTypes(Enum):
         return self.value.testAction
         
 
-def runcommand(command, timeout=0,pipein=None, pipeout =  None):
-    print("running command: ", command, "......")
+def runcommand(command, timeout=0,pipein=None, pipeout =  None, logcommandline = True):
+    if logcommandline:
+        print("running command: ", command, "......")
     process = Popen(command, shell=True, stdin=pipein, stdout = pipeout)
     wait_times = 0 
     while True:
@@ -50,13 +51,15 @@ def runtest(module, testtype, results):
     testcommand = "bash gradlew {0}:{1} ".format(module, testtype.testAction)
     print("Running {0} for {1} .......".format(testtype.displayString, module))   
     exit_code = runcommand(testcommand)   
-    if exit_code != 0 :
-        print("test failed for {0}".format(module))
-        dest = "{0}/{1}".format(results, module)
-        runcommand("mkdir {0} ".format(dest))
-        source = "{0}/build/reports/*".format(module)              
-        if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
-            return 1
+    print("test failed for {0}".format(module))
+    dest = "{0}/{1}".format(results, module)
+    runcommand("mkdir {0} ".format(dest))
+    source = "{0}/build/reports/*".format(module)             
+    runcommand('echo "export testresult=0" >> $BASH_ENV')
+    if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
+        return 1
+    if exit_code != 0 :    
+        runcommand('echo "export testresult=1" >> $BASH_ENV')  
 
     return 0
 

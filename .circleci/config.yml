@@ -1,6 +1,34 @@
 # Android CircleCI 2.0 configuration file
 #
-version: 2
+version: 2.1
+commands:
+  configure_aws:
+    description: >-
+      install aws cli and configure android aws release profile 
+    steps:
+      - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli
+      - run:
+          name: configure aws profile
+          command: |
+            aws configure --profile android_sdk_release set region us-east-1
+            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
+
+  set_release_version:
+    description: >-
+      set release_version environment 
+    steps:
+      - run:
+          name: set release_version environment 
+          command: |
+            release_tag=${CIRCLE_TAG}
+            echo "export release_tag=$release_tag" >> $BASH_ENV
+            release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
+            echo "export release_version=$release_version" >> $BASH_ENV
+
+
 jobs:
   build:
     working_directory: ~/code
@@ -13,6 +41,7 @@ jobs:
       - run:
           name: build the whole project
           command: |
+            echo "id=${android_distribution_id}" 
             bash gradlew build -x test
 
   buildforrelease:
@@ -51,7 +80,15 @@ jobs:
             python3 CircleciScripts/run_unittest.py test_results "$currentfolder"
       - run:
           name : check unit test result 
-          command : bash CircleciScripts/check_testresult.sh test_results         
+          command : |
+            echo "testresult=$testresult"
+            if [ "$testresult" == "0" ] 
+            then
+                echo "test succeed!"
+            else
+                echo "There are test failures"
+                exit 1
+            fi       
       - store_artifacts:
           path: test_results
 
@@ -61,15 +98,14 @@ jobs:
       - image:  circleci/golang:1.11
     steps:
       - checkout
+      - set_release_version
       - run:
           name: install github-release
           command: go get github.com/aktau/github-release          
       - run:
           name: release the tag
           command: |
-            export release_tag=${CIRCLE_TAG}
-            export version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
-            export tagdescription=$(sed -n "/## \[Release $version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
+            tagdescription=$(sed -n "/## \[Release $release_version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
             echo "$tagdescription" | github-release release  -s ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d - 
 
   release_javadoc:
@@ -79,6 +115,7 @@ jobs:
       JVM_OPTS: -Xmx3200m     
     steps:
       - checkout   
+      - set_release_version
       - run: 
           name: install json parser
           command: |
@@ -97,13 +134,6 @@ jobs:
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
             cp "$ANDROID_HOME/platforms/android-27/android.jar"  third-party/android.jar
-      - run:
-          name: set version
-          command: |
-            export release_tag=${CIRCLE_TAG}
-            echo "release_tag=$release_tag" >> $BASH_ENV
-            export release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
-            echo "release_version=$release_version" >> $BASH_ENV
       - run:
           name: generate documents
           command: |
@@ -139,13 +169,13 @@ jobs:
       JVM_OPTS: -Xmx3200m     
     steps:
       - checkout   
+      - set_release_version
       - run:
           name: Add documentation tags to gh-pages
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            version=$(echo "${CIRCLE_TAG}" | sed 's|.*v\([0-9\.]*\).*|\1|') 
-            git tag -a docs_v$version  -m "Add documentation tags to version ${version}"            
+            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"            
             git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
 
   release_maven:
@@ -153,6 +183,8 @@ jobs:
       xcode: "10.1.0"  #xocde version number does not matter here, we just need a macos image
     steps:
       - checkout    
+      - configure_aws
+      - set_release_version
       - run:
           name: install android sdk tools
           command: |
@@ -162,10 +194,6 @@ jobs:
             brew doctor  
             brew tap caskroom/cask
             brew cask install android-sdk
-      - run:
-          name: install aws cli
-          command: |
-            sudo pip install awscli
       - run:
           name: install android build tools
           command: |
@@ -207,15 +235,9 @@ jobs:
             echo "$M2_HOME"
             bash CircleciScripts/maven_release.sh
       - run:
-          name: configure aws profile
-          command: |
-            aws configure --profile android_sdk_release set region us-east-1
-            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
-      - run:
           name: upload to maven
           command: |
-            version=$(echo "${CIRCLE_TAG}" | sed 's|.*v\([0-9\.]*\).*|\1|') 
-            python3 CircleciScripts/s3_maven.py "$(pwd)" $version android_sdk_release  "aws-android-sdk-stage/com/amazonaws" 
+            python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "aws-android-sdk-stage-csun/com/amazonaws" 
 
   release_s3:
     docker:
@@ -224,17 +246,13 @@ jobs:
       JVM_OPTS: -Xmx1024m     
     steps:
       - checkout   
-      - run:
-          name: install aws cli
-          command: |
-            sudo pip install awscli
+      - configure_aws
+      - set_release_version
       - run:
           name: copy sdk resource
           command: |
-            release_tag=${CIRCLE_TAG}
-            version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
-            sdkversion="aws-android-sdk-$version"
-            echo "sdkversion=$sdkversion" >> $BASH_ENV
+            sdkversion="aws-android-sdk-$release_version"
+            echo "export sdkversion=$sdkversion" >> $BASH_ENV
             mkdir -p "$sdkversion"
             python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkversion"
       - restore_cache:
@@ -264,14 +282,12 @@ jobs:
       - run:
           name: upload to s3
           command: |
-            aws configure --profile android_sdk_release set region us-east-1
-            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
-            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/$sdkversion.zip"   --profile android_stage   
-            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/latest/aws-android-sdk.zip"   --profile android_sdk_release   
+            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage-csun/$sdkversion.zip"   --profile android_sdk_release   
+            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage-csun/latest/aws-android-sdk.zip"   --profile android_sdk_release   
       - run:
           name: invalidate cloudfront
           command: |
-            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  android_distribution_id aws-android-sdk.zip
+            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" aws-android-sdk.zip
 
 workflows:
   version: 2
