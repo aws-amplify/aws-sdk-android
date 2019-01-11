@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.10.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.1)
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+  * Fixed a bug where `Attributes` were not being sent in the `Event` payload while submitting events to Pinpoint. See [PR #641](https://github.com/aws-amplify/aws-sdk-android/pull/641)
+
 ## [Release 2.10.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.0)
 
 ### Misc. Updates
