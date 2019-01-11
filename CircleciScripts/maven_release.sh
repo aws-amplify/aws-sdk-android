@@ -11,7 +11,6 @@ export PATH=$ANDROID_HOME:$PATH
 pom="pom.xml"
 settings="CircleciScripts/mvhome/settings.xml"
 localrepo="${HOME}/.m2" 
-skipRemoteStaging=${SkipRemoteStaging}
 autoReleaseAfterClose=${AutoReleaseAfterClose}
 currentdir=$(pwd)
 gpg_homedir="${currentdir}/gpghome"
@@ -32,7 +31,7 @@ mvn clean deploy -X -e -Ppublishing \
     -Dmaven.repo.local="$localrepo" \
     -DperformRelease \
     -DskipRemoteStaging=false \
-    -DautoReleaseAfterClose=false \
+    -DautoReleaseAfterClose="$autoReleaseAfterClose" \
     -Dsonatype.username="$sonatype_username" \
     -Dsonatype.password="$sonatype_password" \
     -Dgpg.homedir="$gpg_homedir" \

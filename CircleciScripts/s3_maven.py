@@ -8,7 +8,6 @@ root = sys.argv[1]
 version = sys.argv[2]
 s3profile = sys.argv[3]
 s3prefix=sys.argv[4]
-#"aws-android-sdk-stage-csun/com/amazonaws"
 
 modules = getmodules(root)
 for module in modules:

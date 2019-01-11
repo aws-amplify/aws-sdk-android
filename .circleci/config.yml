@@ -16,18 +16,27 @@ commands:
             aws configure --profile android_sdk_release set region us-east-1
             echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
 
-  set_release_version:
+  set_enviroment_vairables:
     description: >-
-      set release_version environment 
+      set environment variables
     steps:
       - run:
-          name: set release_version environment 
+          name: set environment variables 
           command: |
+            sdkName=aws-android-sdk
+            echo "export sdkName=$sdkName" >> $BASH_ENV
+
+            release_bucket=${RELEASE_BUCKET}
+            echo "export release_bucket=$release_bucket" >> $BASH_ENV            
+
+            sdkNameWithVersion="$sdkName-$release_version"
+            echo "export sdkNameWithVersion=$sdkNameWithVersion" >> $BASH_ENV
+
             release_tag=${CIRCLE_TAG}
             echo "export release_tag=$release_tag" >> $BASH_ENV
+
             release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
             echo "export release_version=$release_version" >> $BASH_ENV
-
 
 jobs:
   build:
@@ -73,11 +82,11 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
+      - set_enviroment_vairables
       - run:
           name: run unit tests
           command: |
-            currentfolder=$(pwd)
-            python3 CircleciScripts/run_unittest.py test_results "$currentfolder"
+            python3 CircleciScripts/run_unittest.py "~/test_results" "$(pwd)"
       - run:
           name : check unit test result 
           command : |
@@ -90,7 +99,7 @@ jobs:
                 exit 1
             fi       
       - store_artifacts:
-          path: test_results
+          path: "~/test_results"
 
   release_tag:
     working_directory: ~/code
@@ -98,7 +107,7 @@ jobs:
       - image:  circleci/golang:1.11
     steps:
       - checkout
-      - set_release_version
+      - set_enviroment_vairables
       - run:
           name: install github-release
           command: go get github.com/aktau/github-release          
@@ -115,7 +124,7 @@ jobs:
       JVM_OPTS: -Xmx3200m     
     steps:
       - checkout   
-      - set_release_version
+      - set_enviroment_vairables
       - run: 
           name: install json parser
           command: |
@@ -169,7 +178,7 @@ jobs:
       JVM_OPTS: -Xmx3200m     
     steps:
       - checkout   
-      - set_release_version
+      - set_enviroment_vairables
       - run:
           name: Add documentation tags to gh-pages
           command: |
@@ -184,7 +193,7 @@ jobs:
     steps:
       - checkout    
       - configure_aws
-      - set_release_version
+      - set_enviroment_vairables
       - run:
           name: install android sdk tools
           command: |
@@ -206,7 +215,6 @@ jobs:
       - run:
          name: install maven
          command: |
-            brew update 
             brew install maven                  
       - run:
           name: Set environment
@@ -237,7 +245,7 @@ jobs:
       - run:
           name: upload to maven
           command: |
-            python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "aws-android-sdk-stage-csun/com/amazonaws" 
+            python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "$release_bucket/com/amazonaws" 
 
   release_s3:
     docker:
@@ -247,47 +255,45 @@ jobs:
     steps:
       - checkout   
       - configure_aws
-      - set_release_version
+      - set_enviroment_vairables
       - run:
           name: copy sdk resource
           command: |
-            sdkversion="aws-android-sdk-$release_version"
-            echo "export sdkversion=$sdkversion" >> $BASH_ENV
-            mkdir -p "$sdkversion"
-            python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkversion"
+            mkdir -p "$sdkNameWithVersion"
+            python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkNameWithVersion"
       - restore_cache:
           key: Libs-{{ .Revision }}        
       - run:
           name: copy libs
           command: |
-            mkdir -p "$sdkversion/lib"
-            cp -R  /home/circleci/code/lib/*  "$sdkversion/lib"
+            mkdir -p "$sdkNameWithVersion/lib"
+            cp -R  /home/circleci/code/lib/*  "$sdkNameWithVersion/lib"
       - restore_cache:
           key: API-Reference-{{ .Revision }}
       - run:
           name: copy documents
           command: |
-            mkdir -p "$sdkversion/documentation/javadoc"
-            cp -R docs/reference/*  "$sdkversion/documentation/javadoc"
+            mkdir -p "$sdkNameWithVersion/documentation/javadoc"
+            cp -R docs/reference/*  "$sdkNameWithVersion/documentation/javadoc"
       - run:
           name: copy third party 
           command: |
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
-            mv third-party  "$sdkversion/third-party"           
+            mv third-party  "$sdkNameWithVersion/third-party"           
       - run:
           name: zip sdk folder
           command: |
-            zip -r "$sdkversion.zip" "$sdkversion"
+            zip -r "$sdkNameWithVersion.zip" "$sdkNameWithVersion"
       - run:
           name: upload to s3
           command: |
-            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage-csun/$sdkversion.zip"   --profile android_sdk_release   
-            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage-csun/latest/aws-android-sdk.zip"   --profile android_sdk_release   
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/$sdkNameWithVersion.zip"   --profile android_sdk_release   
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/latest/$sdkName.zip"   --profile android_sdk_release   
       - run:
           name: invalidate cloudfront
           command: |
-            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" aws-android-sdk.zip
+            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
 
 workflows:
   version: 2
