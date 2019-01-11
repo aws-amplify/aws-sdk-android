@@ -126,7 +126,7 @@ jobs:
       - checkout   
       - set_enviroment_vairables
       - run: 
-          name: install json parser
+          name: install python3-pip
           command: |
             sudo apt-get update
             sudo apt-get -y install python3-pip
@@ -242,10 +242,6 @@ jobs:
             echo "$ANDROID_HOME"
             echo "$M2_HOME"
             bash CircleciScripts/maven_release.sh
-      - run:
-          name: upload to maven
-          command: |
-            python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "$release_bucket/com/amazonaws" 
 
   release_s3:
     docker:
@@ -320,18 +316,9 @@ workflows:
               ignore: /.*/            
             tags:
               only: /^release_v[0-9]+.[0-9]+.[0-9]+$/               
-      - release_tag:    
-          requires:
-            - unittest                        
-          filters:
-            branches:
-              ignore: /.*/            
-            tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
-
       - release_maven:    
           requires:
-            - release_tag  
+            - unittest  
           filters:
             branches:
               ignore: /.*/            
@@ -340,7 +327,7 @@ workflows:
 
       - release_javadoc:    
           requires:
-            - release_tag  
+            - unittest  
           filters:
             branches:
               ignore: /.*/            
@@ -359,9 +346,18 @@ workflows:
       - release_s3:    
           requires:
             - release_javadoc  
+            - release_maven
           filters:
             branches:
               ignore: /.*/            
             tags:
               only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
+      - release_tag:    
+          requires:
+            - release_s3                        
+          filters:
+            branches:
+              ignore: /.*/            
+            tags:
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/

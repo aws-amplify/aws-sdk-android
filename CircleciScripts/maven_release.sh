@@ -19,7 +19,6 @@ sonatype_password=${SonatypePassword}
 gpg_keyname=${GpgKeyname}
 gpg_passphrase="${GpgPassphrase}"
 
-echo "enviroment:     ;  $sonatype_password  ;   "
 
 # Perm gen space is increased for maven command
 MAVEN_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
