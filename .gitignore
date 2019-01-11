@@ -65,9 +65,3 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
-
-# maven file
-target/
-
-#python comile
-__pycache__/
