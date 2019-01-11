@@ -54,10 +54,7 @@ def runtest(module, testtype, results):
         print("test failed for {0}".format(module))
         dest = "{0}/{1}".format(results, module)
         runcommand("mkdir {0} ".format(dest))
-        source = "{0}/build/reports/*".format(module)
-        runcommand("ls aws-android-sdk-kinesis")
-        runcommand("ls aws-android-sdk-kinesis/build")
-        runcommand("ls aws-android-sdk-kinesis/build/reports/tests/test")               
+        source = "{0}/build/reports/*".format(module)              
         if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
             return 1
 

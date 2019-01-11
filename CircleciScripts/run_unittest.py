@@ -10,20 +10,6 @@ root = sys.argv[2]
 print(root)
 testmodules =  getmodules(root)
 
- 
-# testmodules = [
-#     # "aws-android-sdk-sdb",
-#     # "aws-android-sdk-polly",
-#     "aws-android-sdk-kinesis" 
-#     # "aws-android-sdk-pinpoint",
-#     # "aws-android-sdk-ddb-mapper",
-#     # "aws-android-sdk-mobileanalytics",
-#     # "aws-android-sdk-core",
-#     # "aws-android-sdk-lambda",
-#     # "aws-android-sdk-s3"
-# ] 
-
- 
 
 runcommand("rm -rf {0}".format(test_results))
 runcommand("mkdir {0}".format(test_results))

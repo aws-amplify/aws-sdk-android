@@ -30,7 +30,7 @@ jobs:
           name: copy libs
           command: |
              rootfolder=$(pwd)
-             python3 CircleciScripts/copylibs.py  "$(pwd)" "$(pwd)/lib"
+             python3 CircleciScripts/copy_libs.py  "$(pwd)" "$(pwd)/lib"
       - save_cache:
           key: Libs-{{ .Revision }}
           paths:
@@ -51,7 +51,7 @@ jobs:
             python3 CircleciScripts/run_unittest.py test_results "$currentfolder"
       - run:
           name : check unit test result 
-          command : bash CircleciScripts/check_test_result.sh test_results         
+          command : bash CircleciScripts/check_testresult.sh test_results         
       - store_artifacts:
           path: test_results
 
@@ -70,7 +70,7 @@ jobs:
             export release_tag=${CIRCLE_TAG}
             export version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
             export tagdescription=$(sed -n "/## \[Release $version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
-            echo "$tagdescription" | github-release release  -s ${GH_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d - 
+            echo "$tagdescription" | github-release release  -s ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d - 
 
   release_javadoc:
     docker:
@@ -97,8 +97,6 @@ jobs:
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
             cp "$ANDROID_HOME/platforms/android-27/android.jar"  third-party/android.jar
-
-
       - run:
           name: set version
           command: |
@@ -110,28 +108,23 @@ jobs:
           name: generate documents
           command: |
             currentfolder=$(pwd)
-            python3 CircleciScripts/generatejavadoc.py CircleciScripts/ReleaseConfiguration.json "$currentfolder" build/javadoc third-party "$release_version"
+            python3 CircleciScripts/generate_javadoc.py CircleciScripts/ReleaseConfiguration.json "$currentfolder" build/javadoc third-party "$release_version"
       - run:
           name: check out gh-pages and preserve old document
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git checkout master CircleciScripts/preserveolddocument.sh
-            set +e
-            bash CircleciScripts/preserveolddocument.sh
+            git checkout master CircleciScripts/preserve_olddocument.sh
+            bash CircleciScripts/preserve_olddocument.sh
       - run:
           name: copy new document
-          command: |
-            cp -R build/javadoc/*   docs/reference/
-      - run:
-          name: check out gh-pages
           command: |
             cp -R build/javadoc/*   docs/reference/
       - run:
           name: check in documents
           command: |
             git add docs/reference
-            git rm --cached  CircleciScripts/preserveolddocument.sh
+            git rm --cached  CircleciScripts/preserve_olddocument.sh
             git commit -m "AWS SDK for Android $release_version"
             git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git  
       - save_cache:
@@ -151,12 +144,13 @@ jobs:
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git tag -a ${CIRCLE_TAG}_api_docs  -m "Add documentation tags to version ${CIRCLE_TAG}"            
+            version=$(echo "${CIRCLE_TAG}" | sed 's|.*v\([0-9\.]*\).*|\1|') 
+            git tag -a docs_v$version  -m "Add documentation tags to version ${version}"            
             git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
 
   release_maven:
     macos: 
-      xcode: "10.1.0"
+      xcode: "10.1.0"  #xocde version number does not matter here, we just need a macos image
     steps:
       - checkout    
       - run:
@@ -178,6 +172,15 @@ jobs:
             sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
             /usr/local/bin/sdkmanager --update
       - run:
+          name: Instal gpg
+          command: |
+            brew install gnupg     
+      - run:
+         name: install maven
+         command: |
+            brew update 
+            brew install maven                  
+      - run:
           name: Set environment
           command: |
             echo ~
@@ -191,22 +194,10 @@ jobs:
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
       - run:
-          name: Instal gpg
-          command: |
-            brew install gnupg
-
-      - run:
           name: download gpghome
           command: |
             aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
             unzip -a gpghome.zip
-            echo "gpghome contents:"
-            ls gpghome
-      - run:
-         name: install maven
-         command: |
-            brew update 
-            brew install maven
       - run:
           name: publish to maven
           command: |
@@ -214,18 +205,17 @@ jobs:
             echo "$JAVA_HOME"
             echo "$ANDROID_HOME"
             echo "$M2_HOME"
-            bash CircleciScripts/maven-release.sh
+            bash CircleciScripts/maven_release.sh
       - run:
-          name: install aws cli
+          name: configure aws profile
           command: |
-            sudo pip install awscli      
-            aws configure --profile android_stage set region us-east-1
-            echo -e "[android_stage]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
+            aws configure --profile android_sdk_release set region us-east-1
+            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
       - run:
           name: upload to maven
           command: |
             version=$(echo "${CIRCLE_TAG}" | sed 's|.*v\([0-9\.]*\).*|\1|') 
-            python3 CircleciScripts/s3_maven.py "$(pwd)" $version android_stage  "aws-android-sdk-stage/com/amazonaws" 
+            python3 CircleciScripts/s3_maven.py "$(pwd)" $version android_sdk_release  "aws-android-sdk-stage/com/amazonaws" 
 
   release_s3:
     docker:
@@ -246,14 +236,12 @@ jobs:
             sdkversion="aws-android-sdk-$version"
             echo "sdkversion=$sdkversion" >> $BASH_ENV
             mkdir -p "$sdkversion"
-            cp -R resources/* "$sdkversion/"
-            ls $sdkversion
+            python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkversion"
       - restore_cache:
           key: Libs-{{ .Revision }}        
       - run:
           name: copy libs
           command: |
-            ls /home/circleci/code/lib
             mkdir -p "$sdkversion/lib"
             cp -R  /home/circleci/code/lib/*  "$sdkversion/lib"
       - restore_cache:
@@ -276,10 +264,14 @@ jobs:
       - run:
           name: upload to s3
           command: |
-            aws configure --profile android_stage set region us-east-1
-            echo -e "[android_stage]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
+            aws configure --profile android_sdk_release set region us-east-1
+            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
             aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/$sdkversion.zip"   --profile android_stage   
-            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/latest/aws-android-sdk.zip"   --profile android_stage   
+            aws s3 cp "$sdkversion.zip" "s3://aws-android-sdk-stage/latest/aws-android-sdk.zip"   --profile android_sdk_release   
+      - run:
+          name: invalidate cloudfront
+          command: |
+            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  android_distribution_id aws-android-sdk.zip
 
 workflows:
   version: 2
