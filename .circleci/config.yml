@@ -38,6 +38,11 @@ commands:
             release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
             echo "export release_version=$release_version" >> $BASH_ENV
 
+            release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|') 
+            echo "export release_type=$release_type" >> $BASH_ENV
+
+
+
 jobs:
   build:
     working_directory: ~/code
@@ -165,11 +170,20 @@ jobs:
             git add docs/reference
             git rm --cached  CircleciScripts/preserve_olddocument.sh
             git commit -m "AWS SDK for Android $release_version"
-            git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git  
+            if [ "$release_type" == "release" ] 
+            then
+                git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
+            else
+                echo "skip checkin API reference"
+            fi              
+      - store_artifacts:
+          path: "docs/"              
+            
       - save_cache:
           key: API-Reference-{{ .Revision }}
           paths:
             - docs/reference/
+
 
   tag_doc:
     docker:
@@ -184,8 +198,8 @@ jobs:
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"            
-            git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
+            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"          
+            git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git      
 
   release_maven:
     macos: 
@@ -209,7 +223,7 @@ jobs:
             sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
             /usr/local/bin/sdkmanager --update
       - run:
-          name: Instal gpg
+          name: Install gpg
           command: |
             brew install gnupg     
       - run:
@@ -240,8 +254,15 @@ jobs:
             echo "${HOME}"
             echo "$JAVA_HOME"
             echo "$ANDROID_HOME"
-            echo "$M2_HOME"
+            echo "$M2_HOME"  
             bash CircleciScripts/maven_release.sh
+
+
+      # - run:
+      #     name: upload to maven
+      #     command: |
+      #       python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "$release_bucket/com/amazonaws" 
+            
 
   release_s3:
     docker:
@@ -276,11 +297,19 @@ jobs:
           command: |
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
-            mv third-party  "$sdkNameWithVersion/third-party"           
+            mv third-party  "$sdkNameWithVersion/third-party"         
+
       - run:
           name: zip sdk folder
           command: |
             zip -r "$sdkNameWithVersion.zip" "$sdkNameWithVersion"
+            if [ "$release_type" == "release" ] 
+            then
+                echo ""   
+            else
+                echo "skip upload to s3"
+                circleci step halt
+            fi    
       - run:
           name: upload to s3
           command: |
@@ -290,6 +319,8 @@ jobs:
           name: invalidate cloudfront
           command: |
             python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
+      - store_artifacts:
+          path: $sdkNameWithVersion.zip                   
 
 workflows:
   version: 2
@@ -307,7 +338,8 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/      
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
       - unittest:
           requires:
             - buildforrelease         
@@ -315,7 +347,8 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/               
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
       - release_maven:    
           requires:
             - unittest  
@@ -323,7 +356,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_javadoc:    
           requires:
@@ -332,7 +365,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
       - tag_doc:    
           requires:
@@ -341,7 +374,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_s3:    
           requires:
@@ -351,7 +384,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_tag:    
           requires:
@@ -360,4 +393,4 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
