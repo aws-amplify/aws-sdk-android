@@ -200,7 +200,15 @@ jobs:
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"          
+
+            if [ "$release_type" == "release" ] 
+            then
+                git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"          
+            else
+                git tag -a "beta_docs_v$release_version"  -m "Add documentation tags to version $release_version"      
+            fi  
+
+                
             git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git      
 
   release_maven:
