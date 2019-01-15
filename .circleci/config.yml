@@ -175,9 +175,11 @@ jobs:
                 git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
             else
                 echo "skip checkin API reference"
-            fi              
+                unzip docs.zip docs
+            fi    
+
       - store_artifacts:
-          path: "docs/"              
+          path: "docs.zip"              
             
       - save_cache:
           key: API-Reference-{{ .Revision }}
@@ -303,6 +305,12 @@ jobs:
           name: zip sdk folder
           command: |
             zip -r "$sdkNameWithVersion.zip" "$sdkNameWithVersion"
+      - store_artifacts:
+          path: $sdkNameWithVersion.zip       
+      - run:
+          name: check current release release_type
+          command: |
+
             if [ "$release_type" == "release" ] 
             then
                 echo ""   
@@ -319,8 +327,7 @@ jobs:
           name: invalidate cloudfront
           command: |
             python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
-      - store_artifacts:
-          path: $sdkNameWithVersion.zip                   
+            
 
 workflows:
   version: 2
