@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':apigatewaycoretest'
 include ':aws-android-sdk-apigateway-core'
 include ':aws-android-sdk-auth-core'
 include ':aws-android-sdk-auth-facebook'

@@ -9,6 +9,7 @@ import android.util.Base64;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.runner.RunWith;
+import org.junit.Test;
 
 @RunWith(AndroidJUnit4.class)
 public class AWSMobileClientTestBase {
@@ -49,4 +50,9 @@ public class AWSMobileClientTestBase {
         String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
         return validAccessToken;
     }
+    @Test
+    public void empty()
+    {
+        
+    }    
 }

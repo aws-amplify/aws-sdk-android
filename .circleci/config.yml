@@ -38,11 +38,6 @@ commands:
             release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|') 
             echo "export release_version=$release_version" >> $BASH_ENV
 
-            release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|') 
-            echo "export release_type=$release_type" >> $BASH_ENV
-
-
-
 jobs:
   build:
     working_directory: ~/code
@@ -105,6 +100,207 @@ jobs:
             fi       
       - store_artifacts:
           path: "~/test_results"
+  integrationtest:
+    working_directory: ~/code
+    docker:
+      # Android the primary container
+      - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml               
+      - run:
+          name: Configure test information
+          command: |
+            echo "${ANDROID_TESTS_INFORMATION_JSON}"  | base64 -di   > testinformation.json
+            python3  CircleciScripts/replace_testinformation.py $(pwd) testinformation.json 
+      - run:
+          name: Setup emulator
+          command: |
+            sdkmanager "system-images;android-16;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-16;default;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel auto -verbose
+          background: true
+      - run:
+          name: Wait emulator
+          command: |
+            echo "wait for emulator to have booted"
+            circle-android wait-for-boot
+            echo "unlock the emulator screen"
+            sleep 30
+            adb shell input keyevent 82
+      - run:
+          name: run integration tests
+          command: |
+            echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
+            python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
+      - run:
+          name : check integration test result 
+          command : |
+            echo "testresult=$testresult"
+            if [ "$testresult" == "0" ] 
+            then
+                echo "test succeed!"
+            else
+                echo "There are test failures"
+                exit 1
+            fi       
+      - store_artifacts:
+          path: awsconfiguration.json
+      - store_artifacts:
+          path: "~/test_results"
+      - store_artifacts:
+          path: aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client
+
+  integrationtest11:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-25-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml               
+      - run:
+          name: Configure test information
+          command: |
+            echo "${ANDROID_TESTS_INFORMATION_JSON}"  | base64 -di   > testinformation.json
+            python3  CircleciScripts/replace_testinformation.py $(pwd) testinformation.json 
+      - run:
+          name: Setup emulator
+          command: |
+            sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel auto -verbose
+          background: true
+      - run:
+          name: Wait emulator
+          command: |
+            echo "wait for emulator to have booted"
+            circle-android wait-for-boot
+            echo "unlock the emulator screen"
+            sleep 30
+            adb shell input keyevent 82
+      - run:
+          name : check integration test result 
+          command : |
+            echo "testresult=$testresult"
+            if [ "$testresult" == "0" ] 
+            then
+                echo "test succeed!"
+            else
+                echo "There are test failures"
+                exit 1
+            fi       
+      - store_artifacts:
+          path: awsconfiguration.json
+      - store_artifacts:
+          path: "~/test_results"
+
+
+#       - run:
+#           name: Install emulator dependencies
+#           command: |
+#             echo "accept licenses"
+#             sudo yes | sdkmanager --licenses
+#             echo "install platform"
+#             sdkmanager "platforms;android-25"
+#             sudo yes | sdkmanager --licenses
+#             echo "install avd"
+#             yes | sdkmanager  "system-images;android-25;google_apis;armeabi-v7a"  && yes | sdkmanager --licenses
+#             echo "install emulator"
+#             sudo apt-get install pulseaudio   
+
+# # echo "install platform"
+# # yes | sdkmanager "platform-tools" "platforms;android-25"    "build-tools;25.0.0" 
+# # echo "install platform"
+# # yes | sdkmanager "platform-tools" "platforms;android-25"  
+
+          
+#         #    yes | sdkmanager "platform-tools" "platforms;android-27" "extras;intel;Hardware_Accelerated_Execution_Manager" "build-tools;27.0.0" "emulator" --verbose 
+
+#       - run:
+#           name: Create avd
+#        #   command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
+#           command: |
+#             export DISPLAY=:0.0
+#             echo no | avdmanager create avd -n testEmulator2 -k "system-images;android-25;google_apis;armeabi-v7a" -g google_apis -d "Nexus 5"
+  
+#           #  avdmanager create avd -n testEmulator -k "system-images;android-27;google_apis;x86" -b x86 -c 100M -d 7 -f
+    
+#       - run:
+#           name: list installed emulator
+#           command: |
+     
+#             emulator  -list-avds
+
+
+#             set  +e
+#             sudo $ANDROID_HOME/platform-tools/adb -e reboot
+#             ls $HOME/.android/avd
+
+
+#       - run:
+#           name: Start emulator
+#           command: |
+#             $ANDROID_HOME/emulator/emulator @testEmulator -no-audio -no-window
+#           background: true
+#           environment:
+#             TERM: dumb
+#       - run:
+#           name: Wait for emulator
+#           command: 
+#             bash CircleciScripts/android-wait-for-boot.sh
+#             $ANDROID_HOME/platform-tools/adb devices
+#       - run:
+#           name: Remove lock screen
+#           command: |
+#             $ANDROID_HOME/platform-tools/adb shell input keyevent 82
+#             echo "current devices"
+#             $ANDROID_HOME/platform-tools/adb devices
+
+#       - run:
+#           name: run integration tests
+#           command: |
+#             awsjson=$(echo ${ANDROID_TESTS_CREDENTIALS_JSON)  | base64 --decode )
+#             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$awsjson"
+#       - run:
+#           name : check integration test result 
+#           command : |
+#             echo "testresult=$testresult"
+#             if [ "$testresult" == "0" ] 
+#             then
+#                 echo "test succeed!"
+#             else
+#                 echo "There are test failures"
+#                 exit 1
+#             fi       
+#       - store_artifacts:
+#           path: "~/test_results"
+
 
   release_tag:
     working_directory: ~/code
@@ -170,22 +366,11 @@ jobs:
             git add docs/reference
             git rm --cached  CircleciScripts/preserve_olddocument.sh
             git commit -m "AWS SDK for Android $release_version"
-            if [ "$release_type" == "release" ] 
-            then
-                git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
-            else
-                echo "skip checkin API reference"
-                unzip docs.zip docs
-            fi    
-
-      - store_artifacts:
-          path: "docs.zip"              
-            
+            git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git  
       - save_cache:
           key: API-Reference-{{ .Revision }}
           paths:
             - docs/reference/
-
 
   tag_doc:
     docker:
@@ -200,8 +385,8 @@ jobs:
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"          
-            git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git      
+            git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"            
+            git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git     
 
   release_maven:
     macos: 
@@ -256,10 +441,8 @@ jobs:
             echo "${HOME}"
             echo "$JAVA_HOME"
             echo "$ANDROID_HOME"
-            echo "$M2_HOME"  
+            echo "$M2_HOME"
             bash CircleciScripts/maven_release.sh
-
-
       # - run:
       #     name: upload to maven
       #     command: |
@@ -299,25 +482,11 @@ jobs:
           command: |
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
-            mv third-party  "$sdkNameWithVersion/third-party"         
-
+            mv third-party  "$sdkNameWithVersion/third-party"           
       - run:
           name: zip sdk folder
           command: |
             zip -r "$sdkNameWithVersion.zip" "$sdkNameWithVersion"
-      - store_artifacts:
-          path: $sdkNameWithVersion.zip       
-      - run:
-          name: check current release release_type
-          command: |
-
-            if [ "$release_type" == "release" ] 
-            then
-                echo ""   
-            else
-                echo "skip upload to s3"
-                circleci step halt
-            fi    
       - run:
           name: upload to s3
           command: |
@@ -327,17 +496,16 @@ jobs:
           name: invalidate cloudfront
           command: |
             python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
-            
 
 workflows:
   version: 2
 
   build_test:
     jobs: 
-      - build 
-      - unittest:
-          requires:
-            - build         
+      - integrationtest 
+      # - unittest:
+      #     requires:
+      #       - build         
   release_sdk:
     jobs:
       - buildforrelease:
@@ -345,8 +513,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/      
       - unittest:
           requires:
             - buildforrelease         
@@ -354,8 +521,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/               
       - release_maven:    
           requires:
             - unittest  
@@ -363,7 +529,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_javadoc:    
           requires:
@@ -372,7 +538,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
       - tag_doc:    
           requires:
@@ -381,7 +547,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_s3:    
           requires:
@@ -391,7 +557,7 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/
 
       - release_tag:    
           requires:
@@ -400,4 +566,4 @@ workflows:
             branches:
               ignore: /.*/            
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+              only: /^release_v[0-9]+.[0-9]+.[0-9]+$/

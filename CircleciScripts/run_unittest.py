@@ -13,6 +13,7 @@ testmodules =  getmodules(root)
 
 runcommand("rm -rf {0}".format(test_results))
 runcommand("mkdir {0}".format(test_results))
+runcommand('echo "export testresult=0" >> $BASH_ENV')
 for module in testmodules:
     testfolder = os.path.join(root, module, "src/test")
     if (os.path.isdir(testfolder)):
