@@ -12,9 +12,9 @@ dependencies {
 }
 test {
 
-	if (project.hasProperty('excludeTests')) { 
-		exclude project.property('excludeTests')
-    	//exclude '**/*IntegrationTest.class'
+    if (project.hasProperty('excludeTests')) { 
+        exclude project.property('excludeTests')
+        //exclude '**/*IntegrationTest.class'
     }
 }
 sourceCompatibility = "1.7"
