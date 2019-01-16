@@ -265,7 +265,7 @@ jobs:
             echo "$M2_HOME"  
             bash CircleciScripts/maven_release.sh
             mkdir m2
-            cp -r $M2_HOME m2
+            cp -r ${HOME}/.m2/* m2
       - store_artifacts:
           path: m2
       # - run:
