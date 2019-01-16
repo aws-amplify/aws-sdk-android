@@ -370,6 +370,7 @@ workflows:
 
       - release_s3:
           requires:
+            - buildforrelease
             - release_javadoc
             - release_maven
           filters:
