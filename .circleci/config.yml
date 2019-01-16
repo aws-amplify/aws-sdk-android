@@ -266,8 +266,10 @@ jobs:
             echo "$ANDROID_HOME"
             echo "$M2_HOME"  
             bash CircleciScripts/maven_release.sh
+            mkdir m2
+            cp -r $M2_HOME m2
       - store_artifacts:
-          path: $M2_HOME
+          path: m2
       # - run:
       #     name: upload to maven
       #     command: |
