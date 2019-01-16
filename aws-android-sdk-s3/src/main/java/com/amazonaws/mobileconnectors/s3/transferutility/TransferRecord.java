@@ -160,7 +160,9 @@ class TransferRecord {
      * @param updater status updater
      * @return Whether the task is running.
      */
-    public boolean start(AmazonS3 s3, TransferDBUtil dbUtil, TransferStatusUpdater updater) {
+    public boolean start(AmazonS3 s3,
+                         TransferDBUtil dbUtil,
+                         TransferStatusUpdater updater) {
         if (!isRunning() && checkIsReadyToRun()) {
             if (type.equals(TransferType.DOWNLOAD)) {
                 submittedTask = TransferThreadPool
