@@ -141,7 +141,7 @@ jobs:
           command: |
             sudo pip install awscli
       - run:
-          name: download third party libararies
+          name: download third party libraries
           command: |
             aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
@@ -161,7 +161,9 @@ jobs:
       - run:
           name: copy new document
           command: |
-            cp -R build/javadoc/*   docs/reference/
+            rm -rf docs/reference
+            mkdir -p docs/reference
+            cp -R build/javadoc/* docs/reference/
       - run:
           name: check in documents
           command: |
@@ -247,9 +249,7 @@ jobs:
           name: publish to maven
           command: |
             echo "${HOME}"
-            echo "$JAVA_HOME"
             echo "$ANDROID_HOME"
-            echo "$M2_HOME"
             bash CircleciScripts/maven_release.sh
             mkdir m2
             cp -r ${HOME}/.m2/com/amazonaws/* m2
@@ -310,24 +310,20 @@ jobs:
       - run:
           name: check current release release_type
           command: |
-
-            if [ "$release_type" == "release" ]
+            if [ "$release_type" != "release" ]
             then
-                echo ""
-            else
-                echo "skip upload to s3"
+                echo "skip upload to s3 because this is not a release"
                 circleci step halt
             fi
       - run:
           name: upload to s3
           command: |
-            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/$sdkNameWithVersion.zip"   --profile android_sdk_release
-            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/latest/$sdkName.zip"   --profile android_sdk_release
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/$sdkNameWithVersion.zip" --profile android_sdk_release
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/latest/$sdkName.zip" --profile android_sdk_release
       - run:
           name: invalidate cloudfront
           command: |
             python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
-
 
 workflows:
   version: 2
