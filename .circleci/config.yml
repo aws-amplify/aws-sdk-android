@@ -213,13 +213,13 @@ jobs:
 
   release_maven:
     macos: 
-      xcode: "10.1.0"  #xocde version number does not matter here, we just need a macos image
+      xcode: "10.1.0"  # Xcode version number does not matter here, we just need a MacOS image
     steps:
       - checkout    
       - configure_aws
       - set_enviroment_vairables
       - run:
-          name: install android sdk tools
+          name: Install Android SDK tools
           command: |
             HOMEBREW_LOGS=~/homebrew-logs
             HOMEBREW_TEMP=~/homebrew-temp          
@@ -228,20 +228,20 @@ jobs:
             brew tap caskroom/cask
             brew cask install android-sdk
       - run:
-          name: install android build tools
+          name: Install Android build tools
           command: |
             sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
             /usr/local/bin/sdkmanager --update
       - run:
-          name: Install gpg
+          name: Install GPG
           command: |
             brew install gnupg     
       - run:
-         name: install maven
+         name: Install Maven
          command: |
             brew install maven                  
       - run:
-          name: Set environment
+          name: Set environment variables
           command: |
             echo ~
             ls /usr/local/share/android-sdk
@@ -254,7 +254,7 @@ jobs:
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
       - run:
-          name: download gpghome
+          name: Download gpghome
           command: |
             aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
             unzip -a gpghome.zip
@@ -266,13 +266,14 @@ jobs:
             echo "$ANDROID_HOME"
             echo "$M2_HOME"  
             bash CircleciScripts/maven_release.sh
-
-
+            mkdir m2
+            cp -r $M2_HOME m2
+      - store_artifacts:
+          path: m2
       # - run:
       #     name: upload to maven
       #     command: |
       #       python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "$release_bucket/com/amazonaws" 
-            
 
   release_s3:
     docker:
@@ -284,21 +285,21 @@ jobs:
       - configure_aws
       - set_enviroment_vairables
       - run:
-          name: copy sdk resource
+          name: Copy SDK resource files
           command: |
             mkdir -p "$sdkNameWithVersion"
             python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkNameWithVersion"
       - restore_cache:
           key: Libs-{{ .Revision }}        
       - run:
-          name: copy libs
+          name: Copy libs
           command: |
             mkdir -p "$sdkNameWithVersion/lib"
             cp -R  /home/circleci/code/lib/*  "$sdkNameWithVersion/lib"
       - restore_cache:
           key: API-Reference-{{ .Revision }}
       - run:
-          name: copy documents
+          name: Copy API reference
           command: |
             mkdir -p "$sdkNameWithVersion/documentation/javadoc"
             cp -R docs/reference/*  "$sdkNameWithVersion/documentation/javadoc"
@@ -318,9 +319,9 @@ jobs:
           name: copy zip file
           command: |
             mkdir -p sdkfiles
-            cp "$sdkNameWithVersion.zip" "sdkfiles/$sdkNameWithVersion.zip"           
+            cp "$sdkNameWithVersion.zip" "sdkfiles/$sdkNameWithVersion.zip"
       - store_artifacts:
-          path: sdkfiles      
+          path: sdkfiles
       - run:
           name: check current release release_type
           command: |
