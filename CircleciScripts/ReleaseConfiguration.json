@@ -278,6 +278,18 @@
 					"${service.prefix}.translate*" 
 				]  
 			},
+			{
+				title : "Amazon Mobile Analytics",
+				packages : [
+					"com.amazonaws.mobileconnectors.amazonmobileanalytics*",
+				]
+			},		
+			{
+				title : "Amazon Cognito Sync",
+				packages : [
+					"com.amazonaws.mobileconnectors.cognito*"
+				]
+			},				
 			{ 
 				title : "Common Runtime" , 
 				packages : [ 
