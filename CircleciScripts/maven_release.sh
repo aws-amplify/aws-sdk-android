@@ -20,6 +20,7 @@ gpg_keyname=${GpgKeyname}
 gpg_passphrase="${GpgPassphrase}"
 
 find $currentdir | grep 'src/main/jniLibs\$' | sed 's/jniLibs/jni/1' | xargs -I {} mv {}Libs {}
+find $currentdir
 
 # Perm gen space is increased for maven command
 MAVEN_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
