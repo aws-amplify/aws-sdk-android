@@ -79,7 +79,7 @@
               <platform>${env.ANDROID_PLATFORM}</platform>
               <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
            </sdk>
-           <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
+           <nativeLibrariesDirectory>${project.basedir}/src/main/jniLibs</nativeLibrariesDirectory>
          </configuration>
        </plugin>
       <plugin>
