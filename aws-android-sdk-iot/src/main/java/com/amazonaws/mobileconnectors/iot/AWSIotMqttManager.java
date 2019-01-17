@@ -1338,19 +1338,20 @@ public class AWSIotMqttManager {
             public void connectionLost(Throwable cause) {
                 LOGGER.warn("connection is Lost");
                 if (!userDisconnect && autoReconnect) {
-                    connectionState = MqttManagerConnectionState.Reconnecting;
-                    userConnectionCallback();
-
                     // If we have been connected longer than the connectionStabilityTime then
                     // restart the reconnect logic from minimum value before scheduling reconnect.
                     if ((lastConnackTime + (connectionStabilityTime * MILLIS_IN_ONE_SECOND)) < getSystemTimeMs()) {
                         resetReconnect();
                     }
-                    scheduleReconnect();
+                    if (scheduleReconnect()) {
+                        connectionState = MqttManagerConnectionState.Reconnecting;
+                    } else {
+                        connectionState = MqttManagerConnectionState.Disconnected;
+                    }
                 } else {
                     connectionState = MqttManagerConnectionState.Disconnected;
-                    userConnectionCallback(cause);
                 }
+                userConnectionCallback(cause);
             }
 
             @Override
