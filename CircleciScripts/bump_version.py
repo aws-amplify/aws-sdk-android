@@ -1,8 +1,8 @@
 from lxml import etree
-import sys
-import os
 from functions import getmodules
 from functions import replacefiles
+import sys
+import os
 def bump_pomxml(filename, newsdkversion, newasfversion):
     tree = etree.parse(filename)
     root = tree.getroot()

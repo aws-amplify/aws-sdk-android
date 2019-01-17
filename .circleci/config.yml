@@ -41,6 +41,9 @@ commands:
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
             echo "export release_type=$release_type" >> $BASH_ENV
 
+            newsdkversion=${NEW_SDK_VERSION}
+            echo "export newsdkversion=$newsdkversion" >> $BASH_ENV
+
 jobs:
   build:
     working_directory: ~/code
@@ -386,11 +389,56 @@ jobs:
       - store_artifacts:
           path: "~/test_results"
 
+  bump_version:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - checkout
+      - set_enviroment_variables
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml    
+      - run:
+          name: checkout_developbranch
+          command : |
+            git fetch
+            git checkout develop
+            git checkout integrationtest CircleciScripts/
+      - run:
+          name: bump version
+          command: |
+            python3 CircleciScripts/bump_version.py "$(pwd)" $newsdkversion 1.0.0
+      - run:
+          name: check in the change 
+          command: |
+
+            gitstatus=$(git status)
+
+            if [[ $gitstatus == *"Changes not staged for commit:"* ]]; then
+              git config --local user.name "${GITHUB_USER}"
+              git add .
+              git commit -m "[bump version %newsdkversion]"            
+              git push  -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+            else
+              echo "No changes"
+            fi         
+
 workflows:
   version: 2
-
   build_test:
     jobs:
+      - build
+      - unittest
       - integrationtest
   release_sdk:
     jobs:
