@@ -11,8 +11,8 @@ import demjson
 
 TestType  = namedtuple('TestType', ['value', 'testAction', 'displayString'])
 class TestTypes(Enum):
-    UnitTest = TestType(1, 'test -PexcludeTests=**/*IntegrationTest.class', 'unit test'),
-    IntegrationTest = TestType(2, 'connectedAndroidTest', 'integration test')
+    UnitTest = TestType(1, 'test -PexcludeTests=**/*IntegrationTest.class', 'unit test')
+    IntegrationTest = TestType(2, 'connectedAndroidTest', 'integration test')   
     @property
     def displayString(self):
         return self.value.displayString
@@ -56,6 +56,8 @@ def runtest(module, testtype, results):
     dest = "{0}/{1}".format(results, module)
     runcommand('mkdir -p "{0}"'.format(dest))
     source = "{0}/build/reports/*".format(module)             
+
+    runcommand('echo "export testresult=0" >> $BASH_ENV')
     if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
         return 1
     if exit_code != 0 :    
@@ -84,74 +86,6 @@ def replacefiles(root, replaces):
             targetfile = os.path.join(root, file)
             runcommand(command = "sed -r -i'' 's/{0}/{1}/' '{2}'".format(match, replace, targetfile), logcommandline = True) 
             print("replace ", match, replace, targetfile)
-
-
-def testreplacefiles(root, replacesjson):
-    with open(replacesjson, 'r') as jsonfile:
-        jsonstring = jsonfile.read()
-    rootelement =  demjson.decode(jsonstring)
-    replaces =  rootelement["replaces"]
-    print(replaces)
-    replacefiles(root, replaces)
-def testre(root):
-    replaces = [
-        {
-            "match" : 'public static final String EMAIL = ".*";', 
-            "replace" : 'public static final String EMAIL = "bimin@amazon.com"; ',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java"
-            ]       
-        } ,
-
-        {
-            "match" : 'public static final String BLURRED_EMAIL = ".*";', 
-            "replace" : 'public static final String BLURRED_EMAIL = "b***@a***.com";',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java"
-            ]       
-        } ,
-
-        {
-            "match" : 'public static final String USERNAME = ".*";', 
-            "replace" : 'public static final String USERNAME = "bimin";',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java"
-            ]       
-        } ,
-
-        {
-            "match" : 'public static final String PASSWORD = ".*!";', 
-            "replace" : 'public static final String PASSWORD = "1234Password!";',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java"
-            ]       
-        } ,
-
-        {
-            "match" : 'public static final String IDENTITY_ID = ".*";', 
-            "replace" : 'public static final String IDENTITY_ID = "us-east-1:ed81e85c-6f1e-49ce-841c-7bba60370a7d";',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java"
-            ]       
-        } ,
-
-        {
-            "match" : 'public static final String NEW_PASSWORD = ".*";', 
-            "replace" : 'public static final String NEW_PASSWORD = "new1234Password!";',
-            "files" : [
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTest.java",
-                "aws-android-sdk-mobile-client/src/androidTest/java/com/amazonaws/mobile/client/AWSMobileClientTestBase.java"
-            ]       
-        } ,
-    ]
-    replacefiles(root, replaces)
-
 
 
 

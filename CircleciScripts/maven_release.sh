@@ -6,8 +6,6 @@ export PATH=$ANDROID_HOME/tools:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME:$PATH
 
-
-
 pom="pom.xml"
 settings="CircleciScripts/mvhome/settings.xml"
 localrepo="${HOME}/.m2" 
@@ -19,10 +17,8 @@ sonatype_password=${SonatypePassword}
 gpg_keyname=${GpgKeyname}
 gpg_passphrase="${GpgPassphrase}"
 
-
 # Perm gen space is increased for maven command
 MAVEN_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
-
 
 mvn clean deploy -X -e -Ppublishing \
     -f "$pom" \

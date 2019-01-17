@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -152,7 +152,7 @@ import java.util.regex.Matcher;
  * web-scale computing easier for developers.
  * </p>
  * <p>
- * The Amazon S3 Java Client provides a simple interface that can be used to
+ * The Amazon S3 Android Client provides a simple interface that can be used to
  * store and retrieve any amount of data, at any time, from anywhere on the web.
  * It gives any developer access to the same highly scalable, reliable, secure,
  * fast, inexpensive infrastructure that Amazon uses to run its own global
@@ -214,7 +214,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     volatile String clientRegion;
 
-    // Number of Kbytes that needs to be written before status updates are called
+    /**
+     * Number of Kbytes that needs to be written before status updates are called.
+     */
     private int notificationThreshold = 1024;
 
     private static final int BUCKET_REGION_CACHE_SIZE = 300;
@@ -333,7 +335,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            retry counts, etc).
      */
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider,
-            ClientConfiguration clientConfiguration) {
+                          ClientConfiguration clientConfiguration) {
         this(credentialsProvider, clientConfiguration, new UrlHttpClient(clientConfiguration));
     }
 
@@ -351,8 +353,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Deprecated
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider,
-            ClientConfiguration clientConfiguration,
-            RequestMetricCollector requestMetricCollector) {
+                          ClientConfiguration clientConfiguration,
+                          RequestMetricCollector requestMetricCollector) {
         super(clientConfiguration, new UrlHttpClient(clientConfiguration),
                 requestMetricCollector);
         this.awsCredentialsProvider = credentialsProvider;
@@ -373,7 +375,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param requestMetricCollector request metric collector
      */
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider,
-            ClientConfiguration clientConfiguration, HttpClient httpClient) {
+                          ClientConfiguration clientConfiguration, HttpClient httpClient) {
         super(clientConfiguration, httpClient);
         this.awsCredentialsProvider = credentialsProvider;
         init();
@@ -552,7 +554,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public VersionListing listVersions(String bucketName, String prefix, String keyMarker,
-            String versionIdMarker, String delimiter, Integer maxKeys)
+                                       String versionIdMarker, String delimiter, Integer maxKeys)
             throws AmazonClientException, AmazonServiceException {
 
         final ListVersionsRequest request = new ListVersionsRequest()
@@ -579,33 +581,28 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         /**
          * This flag shows whether we need to url decode S3 key names. This flag
-         * is enabled only when the customers don't explicitly call
-         * {@link listVersionsRequest#setEncodingType(String)}, otherwise, it
-         * will be disabled for maintaining backwards compatibility.
+         * is enabled only when the customers call
+         * {@link listVersionsRequest#setEncodingType(url)}.
          */
-        final boolean shouldSDKDecodeResponse = listVersionsRequest.getEncodingType() == null;
+        final boolean shouldSDKDecodeResponse = Constants.URL_ENCODING
+                .equals(listVersionsRequest.getEncodingType());
 
         final Request<ListVersionsRequest> request = createRequest(
                 listVersionsRequest.getBucketName(), null, listVersionsRequest, HttpMethodName.GET);
         request.addParameter("versions", null);
 
-        addParameterIfNotNull(request, "prefix",
-                shouldSDKDecodeResponse
-                        ? S3HttpUtils.urlEncode(listVersionsRequest.getPrefix(), true)
-                        : listVersionsRequest.getPrefix());
+        addParameterIfNotNull(request, "prefix", listVersionsRequest.getPrefix());
+        addParameterIfNotNull(request, "delimiter", listVersionsRequest.getDelimiter());
         addParameterIfNotNull(request, "key-marker", listVersionsRequest.getKeyMarker());
         addParameterIfNotNull(request, "version-id-marker",
                 listVersionsRequest.getVersionIdMarker());
-        addParameterIfNotNull(request, "delimiter",
-                shouldSDKDecodeResponse
-                        ? S3HttpUtils.urlEncode(listVersionsRequest.getDelimiter(), true)
-                        : listVersionsRequest.getDelimiter());
+        addParameterIfNotNull(request, "encoding-type",
+                listVersionsRequest.getEncodingType());
 
         if (listVersionsRequest.getMaxResults() != null
                 && listVersionsRequest.getMaxResults().intValue() >= 0) {
             request.addParameter("max-keys", listVersionsRequest.getMaxResults().toString());
         }
-        addParameterIfNotNull(request, "encoding-type", listVersionsRequest.getEncodingType());
 
         return invoke(request, new Unmarshallers.VersionListUnmarshaller(shouldSDKDecodeResponse),
                 listVersionsRequest.getBucketName(), null);
@@ -650,24 +647,22 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * {@link ListObjectsRequest#setEncodingType(String)}, otherwise, it
          * will be disabled for maintaining backwards compatibility.
          */
-        final boolean shouldSDKDecodeResponse = listObjectsRequest.getEncodingType() == null;
+        final boolean shouldSDKDecodeResponse = Constants.URL_ENCODING
+                .equals(listObjectsRequest.getEncodingType());
 
         // if the url is encoded, the prefix also has to be encoded.
         final Request<ListObjectsRequest> request = createRequest(
                 listObjectsRequest.getBucketName(), null, listObjectsRequest, HttpMethodName.GET);
 
-        addParameterIfNotNull(request, "prefix", shouldSDKDecodeResponse
-                ? S3HttpUtils.urlEncode(listObjectsRequest.getPrefix(), true)
-                : listObjectsRequest.getPrefix());
+        addParameterIfNotNull(request, "prefix", listObjectsRequest.getPrefix());
+        addParameterIfNotNull(request, "delimiter", listObjectsRequest.getDelimiter());
         addParameterIfNotNull(request, "marker", listObjectsRequest.getMarker());
-        addParameterIfNotNull(request, "delimiter",
-                shouldSDKDecodeResponse
-                        ? S3HttpUtils.urlEncode(listObjectsRequest.getDelimiter(), true)
-                        : listObjectsRequest.getDelimiter());
         addParameterIfNotNull(request, "encoding-type", listObjectsRequest.getEncodingType());
 
-        if (listObjectsRequest.getMaxKeys() != null
-                && listObjectsRequest.getMaxKeys().intValue() >= 0) {
+        populateRequesterPaysHeader(request, listObjectsRequest.isRequesterPays());
+
+        if (listObjectsRequest.getMaxKeys() != null &&
+                listObjectsRequest.getMaxKeys().intValue() >= 0) {
             request.addParameter("max-keys", listObjectsRequest.getMaxKeys().toString());
         }
         return invoke(request, new Unmarshallers.ListObjectsUnmarshaller(shouldSDKDecodeResponse),
@@ -709,12 +704,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         addParameterIfNotNull(request, "encoding-type", listObjectsV2Request.getEncodingType());
         request.addParameter("fetch-owner", Boolean.toString(listObjectsV2Request.isFetchOwner()));
 
+        populateRequesterPaysHeader(request, listObjectsV2Request.isRequesterPays());
+
         /**
          * If URL encoding has been requested from S3 we'll automatically decode
          * the response.
          */
-        final boolean shouldSDKDecodeResponse = listObjectsV2Request
-                .getEncodingType() == Constants.URL_ENCODING;
+        final boolean shouldSDKDecodeResponse = Constants.URL_ENCODING.equals(listObjectsV2Request.getEncodingType());
 
         return invoke(request, new Unmarshallers.ListObjectsV2Unmarshaller(shouldSDKDecodeResponse),
                 listObjectsV2Request.getBucketName(), null);
@@ -1002,7 +998,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * but allows specifying a request metric collector.
      */
     public void setObjectAcl(String bucketName, String key, String versionId,
-            AccessControlList acl, RequestMetricCollector requestMetricCollector)
+                             AccessControlList acl, RequestMetricCollector requestMetricCollector)
             throws AmazonClientException, AmazonServiceException {
         setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl)
                 .<SetObjectAclRequest> withRequestMetricCollector(requestMetricCollector));
@@ -1010,7 +1006,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     @Override
     public void setObjectAcl(String bucketName, String key, String versionId,
-            CannedAccessControlList acl)
+                             CannedAccessControlList acl)
             throws AmazonClientException, AmazonServiceException {
         setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl));
     }
@@ -1021,8 +1017,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * but allows specifying a request metric collector.
      */
     public void setObjectAcl(String bucketName, String key, String versionId,
-            CannedAccessControlList acl,
-            RequestMetricCollector requestMetricCollector) {
+                             CannedAccessControlList acl,
+                             RequestMetricCollector requestMetricCollector) {
         setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl)
                 .<SetObjectAclRequest> withRequestMetricCollector(requestMetricCollector));
     }
@@ -1105,12 +1101,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * specifying a request metric collector.
      */
     public void setBucketAcl(String bucketName, AccessControlList acl,
-            RequestMetricCollector requestMetricCollector) {
+                             RequestMetricCollector requestMetricCollector) {
         setBucketAcl0(bucketName, acl, requestMetricCollector);
     }
 
     private void setBucketAcl0(String bucketName, AccessControlList acl,
-            RequestMetricCollector requestMetricCollector) {
+                               RequestMetricCollector requestMetricCollector) {
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when setting a bucket's ACL");
         assertParameterNotNull(acl,
@@ -1151,13 +1147,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * specifying a request metric collector.
      */
     public void setBucketAcl(String bucketName, CannedAccessControlList acl,
-            RequestMetricCollector requestMetricCollector) throws AmazonClientException,
+                             RequestMetricCollector requestMetricCollector) throws AmazonClientException,
             AmazonServiceException {
         setBucketAcl0(bucketName, acl, requestMetricCollector);
     }
 
     private void setBucketAcl0(String bucketName, CannedAccessControlList acl,
-            RequestMetricCollector col) throws AmazonClientException,
+                               RequestMetricCollector col) throws AmazonClientException,
             AmazonServiceException {
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when setting a bucket's ACL");
@@ -1434,7 +1430,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                         final MessageDigest digest = MessageDigest.getInstance("MD5");
                         input = new DigestValidationInputStream(input, digest, serverSideHash);
                     } catch (final NoSuchAlgorithmException e) {
-                        log.warn("No MD5 digest algorithm available.  Unable to calculate "
+                        log.warn("No MD5 digest algorithm available. Unable to calculate "
                                 + "checksum and verify data integrity.", e);
                     }
                 }
@@ -1443,9 +1439,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 // expected content-length
                 input = new LengthCheckInputStream(input,
                         s3Object.getObjectMetadata().getContentLength(), // expected
-                                                                         // length
+                        // length
                         INCLUDE_SKIPPED_BYTES); // bytes received from S3 are
-                                                // all included even if skipped
+                // all included even if skipped
             }
 
             // Re-wrap within an S3ObjectInputStream. Explicitly do not collect
@@ -1563,7 +1559,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public PutObjectResult putObject(String bucketName, String key, InputStream input,
-            ObjectMetadata metadata)
+                                     ObjectMetadata metadata)
             throws AmazonClientException, AmazonServiceException {
         return putObject(new PutObjectRequest(bucketName, key, input, metadata));
     }
@@ -1825,7 +1821,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * Sets the acccess control headers for the request given.
      */
     private static void addAclHeaders(Request<? extends AmazonWebServiceRequest> request,
-            AccessControlList acl) {
+                                      AccessControlList acl) {
         final Set<Grant> grants = acl.getGrants();
         final Map<Permission, Collection<Grantee>> grantsByPermission = new HashMap<Permission, Collection<Grantee>>();
         for (final Grant grant : grants) {
@@ -1860,7 +1856,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public CopyObjectResult copyObject(String sourceBucketName, String sourceKey,
-            String destinationBucketName, String destinationKey)
+                                       String destinationBucketName, String destinationKey)
             throws AmazonClientException, AmazonServiceException {
         return copyObject(new CopyObjectRequest(sourceBucketName, sourceKey,
                 destinationBucketName, destinationKey));
@@ -2405,7 +2401,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void setBucketLifecycleConfiguration(String bucketName,
-            BucketLifecycleConfiguration bucketLifecycleConfiguration) {
+                                                BucketLifecycleConfiguration bucketLifecycleConfiguration) {
         setBucketLifecycleConfiguration(new SetBucketLifecycleConfigurationRequest(bucketName,
                 bucketLifecycleConfiguration));
     }
@@ -2535,7 +2531,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void setBucketCrossOriginConfiguration(String bucketName,
-            BucketCrossOriginConfiguration bucketCrossOriginConfiguration) {
+                                                  BucketCrossOriginConfiguration bucketCrossOriginConfiguration) {
         setBucketCrossOriginConfiguration(new SetBucketCrossOriginConfigurationRequest(bucketName,
                 bucketCrossOriginConfiguration));
     }
@@ -2664,7 +2660,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void setBucketTaggingConfiguration(String bucketName,
-            BucketTaggingConfiguration bucketTaggingConfiguration) {
+                                              BucketTaggingConfiguration bucketTaggingConfiguration) {
         setBucketTaggingConfiguration(new SetBucketTaggingConfigurationRequest(bucketName,
                 bucketTaggingConfiguration));
     }
@@ -2752,7 +2748,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void setBucketWebsiteConfiguration(String bucketName,
-            BucketWebsiteConfiguration configuration)
+                                              BucketWebsiteConfiguration configuration)
             throws AmazonClientException, AmazonServiceException {
         setBucketWebsiteConfiguration(new SetBucketWebsiteConfigurationRequest(bucketName,
                 configuration));
@@ -2840,7 +2836,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void setBucketNotificationConfiguration(String bucketName,
-            BucketNotificationConfiguration bucketNotificationConfiguration)
+                                                   BucketNotificationConfiguration bucketNotificationConfiguration)
             throws AmazonClientException, AmazonServiceException {
         setBucketNotificationConfiguration(new SetBucketNotificationConfigurationRequest(
                 bucketName, bucketNotificationConfiguration));
@@ -3007,7 +3003,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     @Override
     public void setBucketAccelerateConfiguration(String bucketName,
-            BucketAccelerateConfiguration accelerateConfiguration)
+                                                 BucketAccelerateConfiguration accelerateConfiguration)
             throws AmazonServiceException, AmazonClientException {
         setBucketAccelerateConfiguration(new SetBucketAccelerateConfigurationRequest(
                 bucketName, accelerateConfiguration));
@@ -3202,7 +3198,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public URL generatePresignedUrl(String bucketName, String key, Date expiration,
-            HttpMethod method)
+                                    HttpMethod method)
             throws AmazonClientException {
         final GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest(bucketName, key,
                 method);
@@ -3275,15 +3271,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         addHeaderIfNotNull(request,
                 Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID,
                 generatePresignedUrlRequest.getKmsCmkId());
-        
+
         // Add custom query parameters
         final Map<String, String> customQueryParameters = generatePresignedUrlRequest.getCustomQueryParameters();
         if (customQueryParameters != null) {
-        	for (Map.Entry<String, String> e: customQueryParameters.entrySet()) {
-        		request.addParameter(e.getKey(), e.getValue());
-        	}
+            for (Map.Entry<String, String> e: customQueryParameters.entrySet()) {
+                request.addParameter(e.getKey(), e.getValue());
+            }
         }
-        
+
         addResponseHeaderParameters(request, generatePresignedUrlRequest.getResponseHeaders());
 
         final Signer signer = createSigner(request, bucketName, key);
@@ -3295,7 +3291,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     request,
                     awsCredentialsProvider.getCredentials(),
                     generatePresignedUrlRequest.getExpiration()
-                    );
+            );
         } else {
             // Otherwise use the default presigning method, which is hardcoded
             // to use QueryStringSigner.
@@ -3378,7 +3374,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader("Content-Type", "application/xml");
             request.addHeader("Content-Length", String.valueOf(xml.length));
 
-        request.setContent(new ByteArrayInputStream(xml));
+            request.setContent(new ByteArrayInputStream(xml));
 
             @SuppressWarnings("unchecked")
             final
@@ -3573,7 +3569,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
 
-	 populateRequesterPaysHeader(request, listPartsRequest.isRequesterPays());
+        populateRequesterPaysHeader(request, listPartsRequest.isRequesterPays());
         return invoke(request, new Unmarshallers.ListPartsResultUnmarshaller(),
                 listPartsRequest.getBucketName(), listPartsRequest.getKey());
     }
@@ -3834,7 +3830,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @return The S3 ACL for the specified resource.
      */
     private AccessControlList getAcl(String bucketName, String key, String versionId,
-            boolean isRequesterPays, AmazonWebServiceRequest originalRequest) {
+                                     boolean isRequesterPays, AmazonWebServiceRequest originalRequest) {
         if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
         }
@@ -3866,8 +3862,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param originalRequest The original, user facing request object.
      */
     private void setAcl(String bucketName, String key, String versionId,
-            CannedAccessControlList cannedAcl, boolean isRequesterPays,
-            AmazonWebServiceRequest originalRequest) {
+                        CannedAccessControlList cannedAcl, boolean isRequesterPays,
+                        AmazonWebServiceRequest originalRequest) {
         if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
         }
@@ -3903,8 +3899,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            The original, user facing request object.
      */
     private void setAcl(String bucketName, String key, String versionId, AccessControlList acl,
-            boolean isRequesterPays,
-            AmazonWebServiceRequest originalRequest) {
+                        boolean isRequesterPays,
+                        AmazonWebServiceRequest originalRequest) {
         if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
         }
@@ -3930,8 +3926,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * and the current S3 client configuration into account.
      */
     protected Signer createSigner(final Request<?> request,
-            final String bucketName,
-            final String key) {
+                                  final String bucketName,
+                                  final String key) {
         // Instead of using request.getEndpoint() for this parameter, we use
         // endpoint which is because
         // in accelerate mode, the endpoint in request is regionless. We need
@@ -3946,16 +3942,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 final String region = clientRegion == null ? bucketRegionCache.get(bucketName)
                         : clientRegion;
                 if (region != null) {
-                     // If cache contains the region for the bucket, create an endpoint for the region and
-                     // update the request with that endpoint.
+                    // If cache contains the region for the bucket, create an endpoint for the region and
+                    // update the request with that endpoint.
                     resolveRequestEndpoint(request, bucketName, key, RuntimeHttpUtils.toUri(
                             RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME),
                             clientConfiguration));
 
-                     final AWSS3V4Signer v4Signer = (AWSS3V4Signer) signer;
-                     v4Signer.setServiceName(getServiceNameIntern());
-                     v4Signer.setRegionName(region);
-                     return v4Signer;
+                    final AWSS3V4Signer v4Signer = (AWSS3V4Signer) signer;
+                    v4Signer.setServiceName(getServiceNameIntern());
+                    v4Signer.setRegionName(region);
+                    return v4Signer;
                 } else if (request.getOriginalRequest() instanceof GeneratePresignedUrlRequest) {
                     return createSigV2Signer(request, bucketName, key);
                 }
@@ -4027,8 +4023,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     }
 
     private S3Signer createSigV2Signer(final Request<?> request,
-            final String bucketName,
-            final String key) {
+                                       final String bucketName,
+                                       final String key) {
         final String resourcePath = "/" +
                 ((bucketName != null) ? bucketName + "/" : "") +
                 ((key != null) ? key : "");
@@ -4053,13 +4049,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            the request (e.g. "location", "acl", "logging", or "torrent").
      */
     protected <T> void presignRequest(Request<T> request, HttpMethod methodName,
-            String bucketName, String key, Date expiration, String subResource) {
+                                      String bucketName, String key, Date expiration, String subResource) {
         // Run any additional request handlers if present
         beforeRequest(request);
 
         String resourcePath = "/" +
                 ((bucketName != null) ? bucketName + "/" : "") +
-                ((key != null) ? S3HttpUtils.urlEncode(key, true) : "") +
+                ((key != null) ? key : "") +
                 ((subResource != null) ? "?" + subResource : "");
 
         // Make sure the resource-path for signing does not contain
@@ -4132,7 +4128,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         if (rawMetadata.get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID) != null
                 && !ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION.equals(rawMetadata
-                        .get(Headers.SERVER_SIDE_ENCRYPTION))) {
+                .get(Headers.SERVER_SIDE_ENCRYPTION))) {
             throw new IllegalArgumentException(
                     "If you specify a KMS key id for server side encryption, you must also set the SSEAlgorithm to ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION");
         }
@@ -4205,11 +4201,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param copyObjectRequest The object containing all the options for
      *            copying an object in Amazon S3.
      */
-    private static void populateRequestWithCopyObjectParameters(
+    private void populateRequestWithCopyObjectParameters(
             Request<? extends AmazonWebServiceRequest> request, CopyObjectRequest copyObjectRequest) {
-        String copySourceHeader =
-                "/" + S3HttpUtils.urlEncode(copyObjectRequest.getSourceBucketName(), true)
-                        + "/" + S3HttpUtils.urlEncode(copyObjectRequest.getSourceKey(), true);
+        String copySourceHeader = "/" + copyObjectRequest.getSourceBucketName()
+                    + "/" + copyObjectRequest.getSourceKey();
+
         if (copyObjectRequest.getSourceVersionId() != null) {
             copySourceHeader += "?versionId=" + copyObjectRequest.getSourceVersionId();
         }
@@ -4264,11 +4260,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param copyPartRequest The object containing all the options for copying
      *            an object in Amazon S3.
      */
-    private static void populateRequestWithCopyPartParameters(Request<?> request,
-            CopyPartRequest copyPartRequest) {
-        String copySourceHeader =
-                "/" + S3HttpUtils.urlEncode(copyPartRequest.getSourceBucketName(), true)
-                        + "/" + S3HttpUtils.urlEncode(copyPartRequest.getSourceKey(), true);
+    private void populateRequestWithCopyPartParameters(Request<?> request,
+                                                       CopyPartRequest copyPartRequest) {
+        String copySourceHeader = "/" + copyPartRequest.getSourceBucketName()
+                    + "/" + copyPartRequest.getSourceKey();
+
         if (copyPartRequest.getSourceVersionId() != null) {
             copySourceHeader += "?versionId=" + copyPartRequest.getSourceVersionId();
         }
@@ -4354,7 +4350,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     }
 
     private static void populateSSE_KMS(Request<?> request,
-            SSEAwsKeyManagementParams sseParams) {
+                                        SSEAwsKeyManagementParams sseParams) {
 
         if (sseParams != null) {
             addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION,
@@ -4408,7 +4404,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            The parameter value.
      */
     private static void addParameterIfNotNull(Request<?> request, String paramName,
-            Integer paramValue) {
+                                              Integer paramValue) {
         if (paramValue != null) {
             addParameterIfNotNull(request, paramName, paramValue.toString());
         }
@@ -4426,7 +4422,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            The parameter value.
      */
     private static void addParameterIfNotNull(Request<?> request, String paramName,
-            String paramValue) {
+                                              String paramValue) {
         if (paramValue != null) {
             request.addParameter(paramName, paramValue);
         }
@@ -4476,7 +4472,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            for none.
      */
     private static void addResponseHeaderParameters(Request<?> request,
-            ResponseHeaderOverrides responseHeaders) {
+                                                    ResponseHeaderOverrides responseHeaders) {
         if (responseHeaders != null) {
             if (responseHeaders.getCacheControl() != null) {
                 request.addParameter(ResponseHeaderOverrides.RESPONSE_HEADER_CACHE_CONTROL,
@@ -4573,12 +4569,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *         headers or parameters, and execute.
      */
     protected <X extends AmazonWebServiceRequest> Request<X> createRequest(String bucketName,
-            String key, X originalRequest, HttpMethodName httpMethod) {
+                                                                           String key, X originalRequest, HttpMethodName httpMethod) {
         return createRequest(bucketName, key, originalRequest, httpMethod, null);
     }
 
     protected <X extends AmazonWebServiceRequest> Request<X> createRequest(String bucketName,
-            String key, X originalRequest, HttpMethodName httpMethod, URI endpoint) {
+                                                                           String key, X originalRequest, HttpMethodName httpMethod, URI endpoint) {
         final Request<X> request = new DefaultRequest<X>(originalRequest,
                 Constants.S3_SERVICE_DISPLAY_NAME);
         // If the underlying AmazonS3Client has enabled accelerate mode and the
@@ -4601,9 +4597,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     }
 
     private <X, Y extends AmazonWebServiceRequest> X invoke(Request<Y> request,
-            Unmarshaller<X, InputStream> unmarshaller,
-            String bucketName,
-            String key) {
+                                                            Unmarshaller<X, InputStream> unmarshaller,
+                                                            String bucketName,
+                                                            String key) {
         return invoke(request, new S3XmlResponseHandler<X>(unmarshaller), bucketName, key);
     }
 
@@ -4614,8 +4610,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     }
 
     private <X, Y extends AmazonWebServiceRequest> X invoke(Request<Y> request,
-            HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
-            String bucket, String key) {
+                                                            HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
+                                                            String bucket, String key) {
         final AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
         final ExecutionContext executionContext = createExecutionContext(originalRequest);
         final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
@@ -4639,7 +4635,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
              */
             if (!request.getHeaders().containsKey(Headers.CONTENT_TYPE)) {
                 request.addHeader(Headers.CONTENT_TYPE,
-                    "application/octet-stream");
+                        "application/octet-stream");
             }
 
             // Update the bucketRegionCache if we can't find region for the
@@ -4829,7 +4825,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     @Override
     public void setBucketReplicationConfiguration(String bucketName,
-            BucketReplicationConfiguration configuration)
+                                                  BucketReplicationConfiguration configuration)
             throws AmazonServiceException, AmazonClientException {
         setBucketReplicationConfiguration(new SetBucketReplicationConfigurationRequest(
                 bucketName, configuration));
@@ -5227,18 +5223,18 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     private String urlEncodeTags(ObjectTagging tagging) {
         if (tagging == null || tagging.getTagSet() == null)
-                return null;
+            return null;
 
         StringBuilder sb = new StringBuilder();
 
         Iterator<Tag> tagIter = tagging.getTagSet().iterator();
         while (tagIter.hasNext()) {
-                Tag tag = tagIter.next();
-                sb.append(S3HttpUtils.urlEncode(tag.getKey(), false)).append('=')
-                                .append(S3HttpUtils.urlEncode(tag.getValue(), false));
-                if (tagIter.hasNext()) {
-                        sb.append("&");
-                }
+            Tag tag = tagIter.next();
+            sb.append(S3HttpUtils.urlEncode(tag.getKey(), false)).append('=')
+                    .append(S3HttpUtils.urlEncode(tag.getValue(), false));
+            if (tagIter.hasNext()) {
+                sb.append("&");
+            }
         }
 
         return sb.toString();
@@ -5373,8 +5369,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         return putObject(new PutObjectRequest(bucketName, key, is, metadata));
     }
 
-
-
     @Override
     public String getRegionName() {
         final String authority = super.endpoint.getAuthority();
@@ -5450,29 +5444,49 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * Set the request's endpoint and resource path with the new region provided
      *
+     * From versions 2.4.+ until 2.10.+, AmazonS3Client adds an additional layer of URL Encoding for
+     * the key names. This resulted in the key name being double encoded because the Core Runtime
+     * (UrlHttpClient) encodes the Http Url which contains the key name. Starting 2.11.0, AmazonS3Client
+     * does not do the extra encoding for the key name and just uses te key name that is passed in.
+     *
      * @param request Request to set endpoint for
-     * @param regionString New region to determine endpoint to hit
+     * @param bucketName the name of the bucket
+     * @param key key that identifies the object
      */
-    public void resolveRequestEndpoint(Request<?> request, String bucketName,
-            String key) {
+    public void resolveRequestEndpoint(Request<?> request,
+                                       String bucketName,
+                                       String key) {
         resolveRequestEndpoint(request, bucketName, key, null);
     }
 
-    public void resolveRequestEndpoint(Request<?> request, String bucketName,
-            String key, URI endpoint) {
+    /**
+     * Set the request's endpoint and resource path with the new region provided.
+     *
+     * From versions 2.4.+ until 2.10.+, AmazonS3Client adds an additional layer of URL Encoding for
+     * the key names. This resulted in the key name being double encoded because the Core Runtime
+     * (UrlHttpClient) encodes the Http Url which contains the key name. Starting 2.11.0, AmazonS3Client
+     * does not do the extra encoding for the key name and just uses te key name that is passed in.
+     *
+     * @param request Request to set endpoint for
+     * @param bucketName the name of the bucket
+     * @param key key that identifies the object
+     * @param endpoint the endpoint URI
+     */
+    public void resolveRequestEndpoint(Request<?> request,
+                                       String bucketName,
+                                       String key,
+                                       URI endpoint) {
         final URI ep = endpoint == null ? this.endpoint : endpoint;
         if (shouldUseVirtualAddressing(ep, bucketName)) {
             request.setEndpoint(convertToVirtualHostEndpoint(ep, bucketName));
-            request.setResourcePath(
-                    S3HttpUtils.urlEncode(getHostStyleResourcePath(key), true));
+            request.setResourcePath(getHostStyleResourcePath(key));
         } else {
             request.setEndpoint(ep);
             if (bucketName != null) {
-                request.setResourcePath(
-                        S3HttpUtils.urlEncode(getPathStyleResourcePath(bucketName, key),
-                                true));
+                request.setResourcePath(getPathStyleResourcePath(bucketName, key));
             }
         }
+        log.info("Key: " + key + "; Request: " + request);
     }
 
     private boolean shouldUseVirtualAddressing(final URI endpoint, final String bucketName) {
@@ -5520,3 +5534,4 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     }
 
 }
+

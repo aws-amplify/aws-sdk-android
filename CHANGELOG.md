@@ -1,5 +1,41 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.11.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.11.0)
+
+### Enhancements
+
+* **Amazon S3**
+  * Introduced `TransferNetworkLossHandler`, a utility that listens for network connectivity changes. `TransferNetworkLossHandler` pauses the on-going transfers when the network goes offline and resumes the transfers that were paused when the network comes back online.
+  * `TransferService` will be moved to foreground state when the device is running Android Oreo (API Level 26) and above. 
+      * Transitioning to the foreground state requires a valid on-going `Notification` object, identifier for on-going notification and the flag that determines the ability to remove the on-going notification when the service transitions out of foreground state. If a valid notification object is not passed in, the service will not be transitioned into the foreground state.
+      * The `TransferService` can now be started using `startForegroundService` method to move the service to foreground state. The service can be invoked in the following way to transition the service to foreground state: `getApplicationContext().startForegroundService(intent);`.
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fixed a bug in `TransferUtility` where the state is not set to '`WAITING_FOR_NETWORK` when network goes offline during execution of transfers.
+  * Fixed a bug where objects with key name containing characters that require special handling are uploaded with URL encoded key name on the S3 bucket.
+      * Since `2.4.0` version of the SDK, the key name containing characters that require special handling are URL encoded and escaped `( space, %2A, ~, /, :, ', (, ), !, [, ] )` by the `AmazonS3Client`, after which the AWS Android Core Runtime encodes the URL resulting in double encoding of the key name.
+      * Starting `2.11.0`, the additional layer of encoding and escaping done by `AmazonS3Client` is removed. The key name will not be encoded and escaped by `AmazonS3Client`. Now, the key name that is given to `AmazonS3Client` or `TransferUtility` will appear on the Amazon S3 console as is.
+      * See [issue #526](https://github.com/aws-amplify/aws-sdk-android/issues/526), [issue #321](https://github.com/aws-amplify/aws-sdk-android/issues/321), [issue #360](https://github.com/aws-amplify/aws-sdk-android/issues/360)
+, [issue #545](https://github.com/aws-amplify/aws-sdk-android/issues/545), [issue #597](https://github.com/aws-amplify/aws-sdk-android/issues/597).
+  * Fixed a bug where `AmazonS3Client.listObjects` operation executed on a bucket, with key names containing characters that require special handling, returns the `ListObjectsResponse` with the key names being URL encoded.
+      * When a S3 bucket contans objects with key names containing characters that require special handling, and since the SDK has an XML parser,  (XML 1.0 parser) which cannot parse some characters, the SDK is required to request that Amazon S3 encode the keys in the response. This can be done by passing in `url` as `encodingType` in the `ListObjectsRequest`.
+      * Since `2.4.0`, there was a bug where the SDK did not decode the key names which are encoded by S3 when `url` is requested as the `encodingType`. This is fixed in `2.11.0`, where the SDK will decode the key names in the `ListObjectsResponse` sent by S3.
+      * If you have objects in S3 bucket that has a key name containing characters that require special handling, you need to pass the `encodingType` as `url` in the `ListObjectsRequest`.
+
+### Misc. Updates
+
+* **Amazon S3**
+  * Allow requester-pays access for `listObjects` and `listObjectsV2` requests.
+
+## [Release 2.10.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.1)
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+  * Fixed a bug where `Attributes` were not being sent in the `Event` payload while submitting events to Pinpoint. See [PR #641](https://github.com/aws-amplify/aws-sdk-android/pull/641)
+
 ## [Release 2.10.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.10.0)
 
 ### Misc. Updates
