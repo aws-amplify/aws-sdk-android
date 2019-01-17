@@ -239,38 +239,38 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testSignInWaitOIDC() throws Exception {
-//        final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
-//        hasWaited.set(false);
-//        writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
-//        setTokensDirectly(appContext, AWSMobileClient.getInstance().getLoginKey(), "fakeToken", "someIdentityId");
-//        listener = new UserStateListener() {
-//            @Override
-//            public void onUserStateChanged(UserStateDetails details) {
-//                switch (details.getUserState()) {
-//                    case SIGNED_OUT_USER_POOLS_TOKENS_INVALID:
-//                        try {
-//                            if (hasWaited.get()) {
-//                                fail("Multiple calls to state change");
-//                            }
-//                            hasWaited.set(true);
-//                            auth.signIn(USERNAME, PASSWORD, null);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                            fail("Sign-in failed, but not expected.");
-//                        }
-//                        break;
-//                    default:
-//                        if (!hasWaited.get()) {
-//                            fail("Sign-in before waiting");
-//                        }
-//                }
-//            }
-//        };
-//        auth.addUserStateListener(listener);
-//        assertTrue("User is online and tokens are invalid", auth.isSignedIn());
-//
-//        auth.getTokens();
-//        assertTrue("Should have waited, but didn't", hasWaited.get());
+        final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
+        hasWaited.set(false);
+       // writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
+        setTokensDirectly(appContext, AWSMobileClient.getInstance().getLoginKey(), "fakeToken", "someIdentityId");
+        listener = new UserStateListener() {
+            @Override
+            public void onUserStateChanged(UserStateDetails details) {
+                switch (details.getUserState()) {
+                    case SIGNED_OUT_USER_POOLS_TOKENS_INVALID:
+                        try {
+                            if (hasWaited.get()) {
+                                fail("Multiple calls to state change");
+                            }
+                            hasWaited.set(true);
+                            auth.signIn(USERNAME, PASSWORD, null);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            fail("Sign-in failed, but not expected.");
+                        }
+                        break;
+                    default:
+                        if (!hasWaited.get()) {
+                            fail("Sign-in before waiting");
+                        }
+                }
+            }
+        };
+        auth.addUserStateListener(listener);
+        assertTrue("User is online and tokens are invalid", auth.isSignedIn());
+
+        auth.getTokens();
+        assertTrue("Should have waited, but didn't", hasWaited.get());
     }
 
     @Test

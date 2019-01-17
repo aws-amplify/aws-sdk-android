@@ -7,7 +7,6 @@ from datetime import datetime
 from enum import Enum
 from collections import namedtuple
 import re
-import demjson
 
 TestType  = namedtuple('TestType', ['value', 'testAction', 'displayString'])
 class TestTypes(Enum):
