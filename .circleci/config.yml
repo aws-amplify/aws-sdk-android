@@ -50,8 +50,17 @@ commands:
       setup emulator
     steps:
       - run:
+          name: Setup emulator
+          command: |
+            sdkmanager "system-images;android-24;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
+      - run:
           name: Launch emulator
           command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -no-boot-anim -no-window -accel auto -verbose
+          background: true
+      - run:
+          name: Launch logcat
+          command: 
+            adb logcat > logcat.log
           background: true
       - run:
           name: Wait emulator
@@ -60,25 +69,11 @@ commands:
             circle-android wait-for-boot
             echo "unlock the emulator screen"
             sleep 30
-            adb shell input keyevent 82      
+            adb shell input keyevent 82  
 
 
 jobs:
   build:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-27-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - checkout
-      - run:
-          name: build the whole project
-          command: |
-            echo "id=${android_distribution_id}"
-            bash gradlew build -x test
-
-  buildforrelease:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
@@ -107,7 +102,6 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
-      - set_enviroment_variables
       - run:
           name: run unit tests
           command: |
@@ -375,11 +369,6 @@ jobs:
             aws s3 cp s3://android-circleci-payload/testinformation/testinformation.json testinformation.json 
             python3  CircleciScripts/replace_testinformation.py $(pwd) testinformation.json 
       - run:
-          name: Setup emulator
-          command: |
-            sdkmanager "system-images;android-16;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-16;default;armeabi-v7a"
-
-      - run:
           name: run integration tests
           command: |
             echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
@@ -449,12 +438,20 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
+      - checkout
+      - configure_aws     
       - run:
           name: checkout sample applications
           command: |
-            git checkout https://github.com/sunchunqiang/aws-sdk-android-samples
+            git clone https://github.com/sunchunqiang/aws-sdk-android-samples.git
       - restore_cache:
           key: Libs-{{ .Revision }}
+      - run:
+          name: copy third party
+          command: |
+            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            unzip third-party.zip
+            cp third-party/**/*.jar  lib/
       - run:
           name: create aws configure json file
           command :
@@ -467,26 +464,41 @@ jobs:
       - run:
           name: run sample ui test
           command: |
-            bash aws-sdk-android-samples/S3TransferUtilitySample/gradlew connectedAndroidTest
+            cd aws-sdk-android-samples/S3TransferUtilitySample
+            bash gradlew connectedAndroidTest
       - store_artifacts:
           path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
       - store_artifacts:
           path: "aws-sdk-android-samples/S3TransferUtilitySample/build.gradle"
+      - store_artifacts:
+          path: logcat.log
 
 workflows:
   version: 2
   build_test:
     jobs:
-      - buildforrelease
+      - build
       - unittest
-      - integrationtest
+      - integrationtest:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+
       - uitest:
           requires:
-            - buildforrelease
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+                - uitest   
 
   release_sdk:
     jobs:
-      - buildforrelease:
+      - build:
           filters:
             branches:
               ignore: /.*/
@@ -520,7 +532,7 @@ workflows:
 
       - release_s3:
           requires:
-            - buildforrelease
+            - build
             - release_javadoc
             - release_maven
           filters:

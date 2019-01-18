@@ -28,7 +28,7 @@ with open(originfile) as source_file:
             if startreplace :
                 line = source_file.readline()
                 continue
-            target_file.write("{0}\n".format(line))
+            target_file.write("{0}".format(line))
             line = source_file.readline()
             print(line)
 
