@@ -440,6 +440,11 @@ workflows:
       - build
       - unittest
       - integrationtest
+          filters:
+            branches:
+              only:
+                - master
+                - develop      
   release_sdk:
     jobs:
       - buildforrelease:
