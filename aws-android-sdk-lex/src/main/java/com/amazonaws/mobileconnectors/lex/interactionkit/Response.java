@@ -16,8 +16,11 @@
 package com.amazonaws.mobileconnectors.lex.interactionkit;
 
 import com.amazonaws.services.lexrts.model.PostContentResult;
+import com.amazonaws.util.Base64;
+import com.amazonaws.util.json.JsonUtils;
 
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 /**
@@ -73,7 +76,7 @@ public class Response {
      * @return session attributes, as {@link Map}.
      */
     public Map<String, String> getSessionAttributes() {
-        return result.getSessionAttributes();
+        return base64ToMap(result.getSessionAttributes());
     }
 
     /**
@@ -128,7 +131,7 @@ public class Response {
      * @return
      */
     public Map<String, String> getSlots() {
-        return result.getSlots();
+        return base64ToMap(result.getSlots());
     }
 
     /**
@@ -138,5 +141,12 @@ public class Response {
      */
     public String getInputTranscript() {
         return result.getInputTranscript();
+    }
+
+    private static Map<String, String> base64ToMap(String base64) {
+        byte[] bytes = Base64.decode(base64);
+        String valueAsString = new String(bytes, Charset.forName("UTF-8"));
+        Map<String, String> valueAsMap = JsonUtils.jsonToMap(valueAsString);
+        return valueAsMap;
     }
 }

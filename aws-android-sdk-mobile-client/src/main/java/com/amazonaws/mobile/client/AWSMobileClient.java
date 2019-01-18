@@ -27,6 +27,7 @@ import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
@@ -248,7 +249,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         if (cognitoIdentity == null) {
-            throw new RuntimeException("Cognito Identity not configured");
+            throw new AmazonClientException("Cognito Identity not configured");
         }
 
         try {
@@ -261,9 +262,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             return credentials;
         } catch (NotAuthorizedException e) {
             Log.w(TAG, "getCredentials: Failed to getCredentials from Cognito Identity", e);
-            throw new RuntimeException("Failed to get credentials from Cognito Identity", e);
+            throw new AmazonClientException("Failed to get credentials from Cognito Identity", e);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to get credentials from Cognito Identity", e);
+            throw new AmazonClientException("Failed to get credentials from Cognito Identity", e);
         }
     }
 
@@ -275,7 +276,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         if (cognitoIdentity == null) {
-            throw new RuntimeException("Cognito Identity not configured");
+            throw new AmazonClientException("Cognito Identity not configured");
         }
 
         cognitoIdentity.refresh();

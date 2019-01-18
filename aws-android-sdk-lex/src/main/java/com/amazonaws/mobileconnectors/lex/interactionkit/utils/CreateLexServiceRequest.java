@@ -19,7 +19,10 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCredentialsProvider;
 import com.amazonaws.mobileconnectors.lex.interactionkit.config.InteractionConfig;
 import com.amazonaws.services.lexrts.model.PostContentRequest;
+import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.json.JsonUtils;
+
 import com.google.common.net.MediaType;
 
 import java.io.ByteArrayInputStream;
@@ -33,19 +36,22 @@ import java.util.Map;
 public class CreateLexServiceRequest {
 
     /**
-     * Creates a request post speech input request for Amazon Lex service.
-     * 
+     * Creates a request to post speech input to the Amazon Lex service.
+     *
      * @param sessionAttributes Session attributes for this current transaction.
+     * @param requestAttributes Attributes to add to the current request
      * @param audioStream audio as {@link InputStream}.
      * @return {@link PostContentRequest}.
      */
     public static PostContentRequest generatePostContentRequest(Map<String, String> sessionAttributes,
+                                                                Map<String, String> requestAttributes,
                                                                 InteractionConfig interactionConfig,
                                                                 AWSCredentialsProvider credentialsProvider,
                                                                 ResponseType mode,
                                                                 InputStream audioStream,
                                                                 String contentType) {
         final PostContentRequest request = generateRequestInternal(sessionAttributes,
+                requestAttributes,
                 interactionConfig,
                 credentialsProvider,
                 mode);
@@ -57,18 +63,21 @@ public class CreateLexServiceRequest {
     }
 
     /**
-     * Creates a request to post text input request for Amazon Lex service.
-     * 
+     * Creates a request to post text input to the Amazon Lex service.
+     *
      * @param sessionAttributes Session attributes for this current transaction.
+     * @param requestAttributes Attributes to add to the current request
      * @param text Input text.
      * @return {@link PostContentRequest}.
      */
     public static PostContentRequest generatePostContentRequest(Map<String, String> sessionAttributes,
+                                                                Map<String, String> requestAttributes,
                                                                 InteractionConfig interactionConfig,
                                                                 AWSCredentialsProvider credentialsProvider,
                                                                 ResponseType mode,
                                                                 String text) {
         final PostContentRequest request = generateRequestInternal(sessionAttributes,
+                requestAttributes,
                 interactionConfig,
                 credentialsProvider,
                 mode);
@@ -81,17 +90,23 @@ public class CreateLexServiceRequest {
     }
 
     /**
+     * Utility method for generating a request. Populates the request with a user ID from either interactionConfig or
+     * the credentialsProvider, which must be an instance of CognitoCredentialsProvider.
      *
-     * @param sessionAttributes
-     * @param interactionConfig
-     * @param credentialsProvider
-     * @param mode
-     * @return
+     * @param sessionAttributes Session attributes for this current transaction.
+     * @param requestAttributes Attributes to add to the current request
+     * @param interactionConfig The configuration for the interaction, which must contain the user ID if
+     *                          credentialsProvider is not an instance of CognitoCredentialsProvider.
+     * @param credentialsProvider The credentialsProvider to obtain the Cognito IdentityId. If the user ID is not set in
+     *                            interactionConfig, credentialsProvider must be an instance of CognitoCredentialsProvider
+     * @param mode The desired response type
+     * @return a PostContentRequest with attributes and user ID, but no content
      */
     private static PostContentRequest generateRequestInternal(Map<String, String> sessionAttributes,
-                                                             InteractionConfig interactionConfig,
-                                                             AWSCredentialsProvider credentialsProvider,
-                                                             ResponseType mode) {
+                                                              Map<String, String> requestAttributes,
+                                                              InteractionConfig interactionConfig,
+                                                              AWSCredentialsProvider credentialsProvider,
+                                                              ResponseType mode) {
         final PostContentRequest request = new PostContentRequest();
 
         request.setBotName(interactionConfig.getBotName());
@@ -104,7 +119,7 @@ public class CreateLexServiceRequest {
             newSessionAttributes.putAll(sessionAttributes);
         }
 
-        request.setSessionAttributes(newSessionAttributes);
+        request.setSessionAttributes(mapToBase64(newSessionAttributes));
 
         if (interactionConfig.getUserId() == null || interactionConfig.getUserId().isEmpty()) {
             final CognitoCredentialsProvider cognitoCredentialsProvider = (CognitoCredentialsProvider) credentialsProvider;
@@ -114,5 +129,12 @@ public class CreateLexServiceRequest {
         }
 
         return request;
+    }
+
+    private static String mapToBase64(Map<String, String> map) {
+        String valueAsString = JsonUtils.mapToString(map);
+        byte[] valueAsBytes = valueAsString.getBytes();
+        String valueAsBase64 = Base64.encodeAsString(valueAsBytes);
+        return valueAsBase64;
     }
 }
