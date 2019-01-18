@@ -30,7 +30,6 @@ import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
@@ -102,6 +101,7 @@ public class AuthClient {
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private CustomTabsServiceConnection mCustomTabsServiceConnection;
+    private Boolean mCustomTabsServiceIsBound = false;
     private volatile boolean receivedCodeTabShouldBeHidden;
 
     /**
@@ -252,8 +252,10 @@ public class AuthClient {
      * Unbind {@link AuthClient#mCustomTabsServiceConnection}
      */
     public void unbindServiceConnection() {
-        if(mCustomTabsServiceConnection != null)
+        if(mCustomTabsServiceConnection != null && mCustomTabsServiceIsBound) {
             context.unbindService(mCustomTabsServiceConnection);
+            mCustomTabsServiceIsBound = false;
+        }
     }
 
     /**
@@ -615,7 +617,7 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
-        boolean chromeState = CustomTabsClient.bindCustomTabsService(context,
+        mCustomTabsServiceIsBound = CustomTabsClient.bindCustomTabsService(context,
                 ClientConstants.CHROME_PACKAGE, mCustomTabsServiceConnection);
     }
 
