@@ -17,6 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoauth;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -47,6 +48,8 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Local client for {@link Auth}.
@@ -574,8 +577,14 @@ public class AuthClient {
 	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        mCustomTabsIntent.launchUrl(context, uri);
-    	} catch (final Exception e) {
-    		userHandler.onFailure(e);
+        } catch (final Exception e) {
+            if(e instanceof ActivityNotFoundException) {
+                unbindServiceConnection();
+                startActivity(context, new Intent(Intent.ACTION_VIEW, uri), null);
+            }
+            else {
+                userHandler.onFailure(e);
+            }
     	}
     }
 
