@@ -39,6 +39,7 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpResponseParser;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
 import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpClient;
+import com.amazonaws.mobileconnectors.cognitoauth.util.CustomTabsHelper;
 import com.amazonaws.mobileconnectors.cognitoauth.util.Pkce;
 import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 
@@ -575,19 +576,11 @@ public class AuthClient {
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
-	        mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	        mCustomTabsIntent.intent.setPackage(CustomTabsHelper.getPackageNameToUse(context));
 	        mCustomTabsIntent.launchUrl(context, uri);
         } catch (final Exception e) {
-            if(e instanceof ActivityNotFoundException) {
-                unbindServiceConnection();
-                startActivity(context, new Intent(Intent.ACTION_VIEW, uri), null);
-            }
-            else {
-                userHandler.onFailure(e);
-            }
-    	}
+            userHandler.onFailure(e);
+        }
     }
 
     private String getUserContextData() {
@@ -617,8 +610,10 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
-        mCustomTabsServiceIsBound = CustomTabsClient.bindCustomTabsService(context,
-                ClientConstants.CHROME_PACKAGE, mCustomTabsServiceConnection);
+        if(CustomTabsHelper.getPackageNameToUse(context) != null) {
+            mCustomTabsServiceIsBound = CustomTabsClient.bindCustomTabsService(context,
+                    CustomTabsHelper.getPackageNameToUse(context), mCustomTabsServiceConnection);
+        }
     }
 
     /**
