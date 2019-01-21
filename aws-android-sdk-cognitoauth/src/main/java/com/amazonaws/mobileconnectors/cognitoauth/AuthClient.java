@@ -576,6 +576,7 @@ public class AuthClient {
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
+            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 	        mCustomTabsIntent.intent.setPackage(CustomTabsHelper.getPackageNameToUse(context));
 	        mCustomTabsIntent.launchUrl(context, uri);
         } catch (final Exception e) {
