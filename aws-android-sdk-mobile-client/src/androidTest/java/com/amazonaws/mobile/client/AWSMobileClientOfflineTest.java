@@ -115,7 +115,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
         }
     }
 
-    @Ignore("This test may get stuck")
+    @Ignore("If network is on on the emulator, this test may get stuck")
     @Test
     public void testSignInWaitOIDCOffline() throws Exception {
         final Queue<UserStateDetails> allChanges = new ConcurrentLinkedQueue<UserStateDetails>();

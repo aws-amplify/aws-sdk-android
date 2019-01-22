@@ -358,7 +358,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         countDownLatch.await(5, TimeUnit.SECONDS);
         assertFalse(triggered.get());
     }
-    @Ignore("This test case may get other test cases stuck")
+    @Ignore("This test case may cause crash on some emulators")
     @Test
     public void testGetTokensStress() throws Exception {
         final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);

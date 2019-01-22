@@ -50,6 +50,7 @@ public class AWSMobileClientTestBase {
         String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
         return validAccessToken;
     }
+    //This is need for CircleCI to run the test suite
     @Test
     public void empty()
     {

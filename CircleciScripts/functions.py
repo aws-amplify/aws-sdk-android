@@ -75,7 +75,16 @@ def getmodules(root):
         else:
             print("{0} is not a sdk module ".format(line)) 
     return modules ;
-
+#replace is a dictionary. it has a format 
+#{
+# "match":string,
+# "replace":string 
+# "files" : [
+# string,
+# ]
+# match and replace will be used by sed command like  sed -E 's/{match}/{replace}/'
+# please check with sed document to see how to handle escape characaters in match and replace
+#}
 def replacefiles(root, replaces):
     for replaceaction in replaces:
         match = replaceaction["match"]
