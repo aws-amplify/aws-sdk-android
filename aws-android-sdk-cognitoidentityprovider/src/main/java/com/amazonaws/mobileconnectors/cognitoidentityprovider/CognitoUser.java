@@ -2757,7 +2757,7 @@ public class CognitoUser {
         Map<String, String> authenticationParameters = authenticationDetails.getAuthenticationParameters();
         if (clientSecret != null &&
             authenticationParameters.get(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH) == null) {
-            secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
+            secretHash = CognitoSecretHash.getSecretHash(authenticationDetails.getUserId(), clientId, clientSecret);
             authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH, secretHash);
         }
         authRequest.setAuthParameters(authenticationDetails.getAuthenticationParameters());
