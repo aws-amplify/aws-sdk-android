@@ -1,0 +1,319 @@
+{
+	JavaDoc : {
+		variables:	{
+			"service.prefix" : "com.amazonaws.services",
+			"connector.prefix": "com.amazonaws.mobileconnectors",
+			"javdoc.doctitle" : "AWS SDK for Android - $sdkVersion"
+		},
+		modules:[
+		"aws-android-sdk-apigateway-core",
+		"aws-android-sdk-auth-core",
+		"aws-android-sdk-auth-facebook",
+		"aws-android-sdk-auth-google",
+		// "aws-android-sdk-auth-ui",
+		"aws-android-sdk-auth-userpools",
+		"aws-android-sdk-autoscaling",
+		"aws-android-sdk-cloudwatch",
+		"aws-android-sdk-cognito",
+	//	"aws-android-sdk-cognitoauth",
+		"aws-android-sdk-cognitoidentityprovider",
+		"aws-android-sdk-comprehend",
+		"aws-android-sdk-core",
+		"aws-android-sdk-ddb",
+		"aws-android-sdk-ddb-document",
+		"aws-android-sdk-ddb-mapper",
+		"aws-android-sdk-ec2",
+		"aws-android-sdk-elb",
+		"aws-android-sdk-iot",
+		"aws-android-sdk-kinesis",
+		"aws-android-sdk-kinesisvideo",
+		"aws-android-sdk-kinesisvideo-archivedmedia",
+		"aws-android-sdk-kms",
+		"aws-android-sdk-lambda",
+		"aws-android-sdk-lex",
+		"aws-android-sdk-logs",
+		"aws-android-sdk-machinelearning",
+		"aws-android-sdk-mobile-client",
+		"aws-android-sdk-pinpoint",
+		"aws-android-sdk-polly",
+		"aws-android-sdk-rekognition",
+		"aws-android-sdk-s3",
+		"aws-android-sdk-sdb",
+		"aws-android-sdk-ses",
+		"aws-android-sdk-sns",
+		"aws-android-sdk-sqs",
+		"aws-android-sdk-transcribe",
+		"aws-android-sdk-translate",
+		"aws-android-sdk-mobileanalytics"
+		],
+		packages : [
+			"com.amazonaws",
+		],
+
+		subpackages : [
+			"com.amazonaws.auth",
+			"com.amazonaws.event",
+			"com.amazonaws.handlers",
+			"com.amazonaws.regions",
+			"com.amazonaws.retry",
+			"com.amazonaws.mobile",
+			"com.amazonaws.kinesisvideo",
+			"com.amazonaws.services",
+			"com.amazonaws.mobileconnectors.*",		
+		],
+
+		sourcefiles: [
+			"com/amazonaws/http/Http*" ,
+			"com/amazonaws/http/ApacheHttpClient*" ,
+			"com/amazonaws/http/UrlHttpClient*"  
+		],
+
+		excludes: [
+			"com.amazonaws.**.internal",
+			"com.amazonaws.cognito.clientcontext",
+			"com.amazonaws.services.*.metrics" ,
+			"com.amazonaws.services.*.model.transform" ,
+			"com.amazonaws.services.mobileanalytics" ,
+			"com.amazonaws.services.cognitoidentity" ,
+			"com.amazonaws.services.cognitoidentityprovider" ,
+			"com.amazonaws.services.cognitosync" ,
+			"com.amazonaws.services.securitytoken" ,
+		],
+		groups : [
+			{
+				title : "AWS Auth SDKs",
+				packages : [
+					"com.amazonaws.mobile.auth.core*",
+					"com.amazonaws.mobile.auth.google*",
+					"com.amazonaws.mobile.auth.facebook*",
+					"com.amazonaws.mobile.auth.userpools*",
+					"com.amazonaws.mobile.auth.ui*",
+					"com.amazonaws.mobile.client*"
+				]			
+			},
+
+			{
+				title : "Amazon S3",
+				packages : [
+					"${service.prefix}.s3*",
+					"${connector.prefix}.s3*"
+				]
+			},
+
+			{
+				title : "Amazon S3",
+				packages : [
+					"${service.prefix}.s3*",
+					"${connector.prefix}.s3*"
+				]
+			},
+			{ 
+				title : "Amazon DynamoDB" , 
+				packages : [ 
+					"${service.prefix}.dynamodb*",
+					"${connector.prefix}.dynamodbv2*" 
+				] 
+			},
+			{ 
+				title : "Amazon Kinesis" , 
+				packages : [ 
+					"${connector.prefix}.kinesis*",
+					"${service.prefix}.kinesis*",
+					"${service.prefix}.kinesisfirehose*" 
+				]  
+			},
+			{ 
+				title : "Amazon Pinpoint" , 
+				packages : [ 
+					"${connector.prefix}.pinpoint*",
+					"${service.prefix}.pinpoint*" 
+				]  
+			},
+			{ 
+				title : "AWS IoT" , 
+				packages : [ 
+					"${service.prefix}.iot*",
+					"${connector.prefix}.iot*" 
+				]  
+			},
+			{ 
+				title : "Amazon Cognito Auth" , 
+				packages : [ 
+					"${connector.prefix}.cognitoauth*" 
+				]  
+			},
+			{ 
+				title : "Amazon Cognito Identity Provider" , 
+				packages : [ 
+					"${connector.prefix}.cognitoidentityprovider*" 
+				]  
+			},
+			{ 
+				title : "AWS Lambda" , 
+				packages : [ 
+					"${service.prefix}.lambda*",
+					"${connector.prefix}.lambdainvoker*",
+					"${connector.prefix}.util*" 
+				]  
+			},
+			{ 
+				title : "Amazon API Gateway" , 
+				packages : [ 
+					"${connector.prefix}.apigateway*" 
+				]  
+			},
+			{ 
+				title : "Amazon Kinesis Video" , 
+				packages : [ 
+					"${service.prefix}.kinesisvideo*",
+					"${connector.prefix}.kinesisvideo*",
+					"com.amazonaws.kinesisvideo*" 
+				]  
+			},
+			{ 
+				title : "Amazon Kinesis Video Archived Media" , 
+				packages : [ 
+					"${service.prefix}.kinesisvideoarchivedmedia*" 
+				]  
+			},
+			{ 
+				title : "Amazon Lex", 
+				packages : [ 
+					"${service.prefix}.lex*",
+					"${connector.prefix}.lex*" 
+				]  
+			},
+			{ 
+				title : "Amazon Polly" , 
+				packages : [ 
+					"${service.prefix}.polly*" 
+				]  
+			},
+			{ 
+				title : "AWS Key Management Service" , 
+				packages : [ 
+					"${service.prefix}.kms*" 
+				]  
+			},
+			{ 
+				title : "Amazon AutoScaling" , 
+				packages : [ 
+					"${service.prefix}.autoscaling*" 
+				]  
+			},
+			{ 
+				title : "Amazon CloudWatch" , 
+				packages : [ 
+					"${service.prefix}.cloudwatch*" 
+				]  
+			},
+			{ 
+				title : "Amazon Comprehend" , 
+				packages : [ 
+					"${service.prefix}.comprehend*" 
+				]  
+			},
+			{ 
+				title : "Amazon EC2" , 
+				packages : [ 
+					"${service.prefix}.ec2*" 
+				]  
+			},
+			{ 
+				title : "Amazon Elastic Load Balancing" , 
+				packages : [ 
+					"${service.prefix}.elasticloadbalancing*" 
+				]  
+			},
+			{ 
+				title : "Amazon Elastic Machine Learning Service" , 
+				packages : [ 
+					"${service.prefix}.machinelearning*" 
+				]  
+			},
+			{ 
+				title : "Amazon Rekognition" , 
+				packages : [ 
+					"${service.prefix}.rekognition*" 
+				]  
+			},
+			{ 
+				title : "Amazon SNS" , 
+				packages : [ 
+					"${service.prefix}.sns*" 
+				]  
+			},
+			{ 
+				title : "Amazon SQS" , 
+				packages : [ 
+					"${service.prefix}.sqs*" 
+				]  
+			},
+			{ 
+				title : "Amazon Simple Email Service" , 
+				packages : [ 
+					"${service.prefix}.simpleemail*" 
+				]  
+			},
+			{ 
+				title : "Amazon Cloud Watch Logs" , 
+				packages : [ 
+					"${service.prefix}.logs*" 
+				]  
+			},
+			{ 
+				title : "Amazon SimpleDB" , 
+				packages : [ 
+					"${service.prefix}.simpledb*" 
+				]  },
+			{ 
+				title : "Amazon Transcribe" , 
+				packages : [ 
+					"${service.prefix}.transcribe*" 
+				]  
+			},
+			{ 
+				title : "Amazon Translate" , 
+				packages : [ 
+					"${service.prefix}.translate*" 
+				]  
+			},
+			{
+				title : "Amazon Mobile Analytics",
+				packages : [
+					"com.amazonaws.mobileconnectors.amazonmobileanalytics*",
+				]
+			},		
+			{
+				title : "Amazon Cognito Sync",
+				packages : [
+					"com.amazonaws.mobileconnectors.cognito*"
+				]
+			},				
+			{ 
+				title : "Common Runtime" , 
+				packages : [ 
+					"com.amazonaws*" 
+				]  
+			}
+		],
+		otheroptions :	{
+			"link" :"http://java.sun.com/j2se/1.5.0/docs/api/" ,
+			"windowtitle" : "${javdoc.doctitle}" ,
+			"doctitle" : "${javdoc.doctitle}",
+			"bottom": "Copyright &#169; 2018 Amazon Web Services, Inc. All Rights Reserved.",
+			"encoding" : "UTF-8",
+			"docencoding" : "UTF-8",
+			stylesheetfile : "CircleciScripts/JavaDoc.css",	
+
+		},
+		otherargs : [
+			"Xdoclint:none",
+			"public",
+			"version",
+			"notree",
+			"nodeprecatedlist"
+		]
+	}
+
+}

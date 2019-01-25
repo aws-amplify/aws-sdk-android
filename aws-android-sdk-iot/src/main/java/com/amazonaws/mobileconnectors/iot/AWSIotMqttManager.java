@@ -705,7 +705,7 @@ public class AWSIotMqttManager {
             clientSocketFactory = socketFactory;
             options.setSocketFactory(clientSocketFactory);
 
-            mqttConnect(options, statusCallback);
+            mqttConnect(options);
         } catch (final NoSuchAlgorithmException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final KeyManagementException e) {
@@ -792,18 +792,14 @@ public class AWSIotMqttManager {
                                 new MemoryPersistence());
                     }
 
-                    mqttConnect(options, statusCallback);
+                    mqttConnect(options);
 
                 } catch (final MqttException e) {
-                    AWSIotMqttManager.this.userStatusCallback.onStatusChanged(
-                            AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost,
-                            new AmazonClientException("An error occurred in the MQTT client.", e)
-                    );
+                    connectionState = MqttManagerConnectionState.Disconnected;
+                    userConnectionCallback(new AmazonClientException("An error occurred in the MQTT client.", e));
                 } catch (final Exception e) {
-                    AWSIotMqttManager.this.userStatusCallback.onStatusChanged(
-                            AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost,
-                            e
-                    );
+                    connectionState = MqttManagerConnectionState.Disconnected;
+                    userConnectionCallback(e);
                 }
             }
         }, "Mqtt Connect Thread").start();
@@ -813,10 +809,8 @@ public class AWSIotMqttManager {
      * Connect to the MQTT service.
      *
      * @param options        MQTT connect options containing a TLS socket factory for authentication.
-     * @param statusCallback callback for status updates on connection.
      */
-    private void mqttConnect(MqttConnectOptions options,
-                             final AWSIotMqttClientStatusCallback statusCallback) {
+    private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
 
         options.setCleanSession(cleanSession);
@@ -858,7 +852,7 @@ public class AWSIotMqttManager {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable e) {
-                    LOGGER.warn("onFailure: connection failed.");
+                    LOGGER.warn("onFailure: connection failed.", e);
                     // Testing shows following reason codes:
                     // REASON_CODE_CLIENT_EXCEPTION = network unavailable / host unresolved
                     // REASON_CODE_CLIENT_EXCEPTION = deactivated certificate
@@ -868,7 +862,7 @@ public class AWSIotMqttManager {
 
                     if (!userDisconnect && autoReconnect) {
                         connectionState = MqttManagerConnectionState.Reconnecting;
-                        userConnectionCallback();
+                        userConnectionCallback(e);
                         scheduleReconnect();
                     } else {
                         connectionState = MqttManagerConnectionState.Disconnected;
@@ -1010,7 +1004,7 @@ public class AWSIotMqttManager {
                         connectionState = MqttManagerConnectionState.Disconnected;
                         clearReconnectHandlerThread();
                     }
-                    userConnectionCallback();
+                    userConnectionCallback(e);
                 }
             } else {
                 options.setSocketFactory(clientSocketFactory);
@@ -1040,14 +1034,14 @@ public class AWSIotMqttManager {
 
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable e) {
-                        LOGGER.warn("Reconnect failed ");
+                        LOGGER.warn("Reconnect failed ", e);
                         if (scheduleReconnect()) {
                             connectionState = MqttManagerConnectionState.Reconnecting;
-                            userConnectionCallback();
+                            userConnectionCallback(e);
                         } else {
                             connectionState = MqttManagerConnectionState.Disconnected;
                             clearReconnectHandlerThread();
-                            userConnectionCallback();
+                            userConnectionCallback(e);
                         }
                     }
                 });
@@ -1055,7 +1049,7 @@ public class AWSIotMqttManager {
                 LOGGER.error("Exception during reconnect, exception: ", e);
                 if (scheduleReconnect()) {
                     connectionState = MqttManagerConnectionState.Reconnecting;
-                    userConnectionCallback();
+                    userConnectionCallback(e);
                 } else {
                     connectionState = MqttManagerConnectionState.Disconnected;
                     clearReconnectHandlerThread();
@@ -1271,35 +1265,24 @@ public class AWSIotMqttManager {
                 try {
                     mqttClient.publish(topic, data, qos.asInt(), false, publishMessageUserData, null);
                 } catch (final MqttException e) {
-                    if (callback != null) {
-                        userPublishCallback(callback,
-                                AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                                userData);
-                    } else {
-                        // throw an exception on publish error if the user did not set a callback
-                        throw new AmazonClientException("Client error while publishing.", e);
-                    }
+                    notifyPublishResult(callback, AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                            userData, new AmazonClientException("Client error while publishing.", e));
                 }
             } else {
                 // if the queue has messages we're making the assumption that offline queueing is enabled
-                if (!putMessageInQueue(data, topic, qos, publishMessageUserData)) {
-                    // queue is full (and set to hold onto the oldest messages)
-                    userPublishCallback(callback,
-                            AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                            userData);
-                }
+                putMessageInQueueAndNotify(data, topic, qos, publishMessageUserData);
             }
         } else if (connectionState == MqttManagerConnectionState.Reconnecting) {
-            final boolean messagedQueued = offlinePublishQueueEnabled
-                    && putMessageInQueue(data, topic, qos, publishMessageUserData);
-            if (!messagedQueued) {
-                // Message queue is full or queue is not enabled
-                userPublishCallback(callback,
-                        AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                        userData);
+            if (offlinePublishQueueEnabled) {
+                putMessageInQueueAndNotify(data, topic, qos, publishMessageUserData);
+            } else {
+                notifyPublishResult(callback, AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                        userData,
+                        new AmazonClientException("Client error while publishing : Offline publish queue is not enabled and client is not connected"));
             }
         } else {
-            throw new AmazonClientException("Client is disconnected or not yet connected.");
+            notifyPublishResult(callback, AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                    userData, new AmazonClientException("Client is disconnected or not yet connected."));
         }
     }
 
@@ -1316,22 +1299,23 @@ public class AWSIotMqttManager {
      * @param qos   The quality of service requested for this message.
      * @param publishMessageUserData The user supplied data for this message including a
      *                               callback and context.
-     * @return True if message is enqueued, false if queue is full and queue is set to skip on full.
      */
-    boolean putMessageInQueue(byte[] data, String topic, AWSIotMqttQos qos,
-                              PublishMessageUserData publishMessageUserData) {
+    void putMessageInQueueAndNotify(byte[] data, String topic, AWSIotMqttQos qos,
+                                    PublishMessageUserData publishMessageUserData) {
         final AWSIotMqttQueueMessage message = new AWSIotMqttQueueMessage(topic, data, qos, publishMessageUserData);
 
         if (mqttMessageQueue.size() >= offlinePublishQueueBound) {
             if (fullQueueKeepsOldest) {
-                return false;
+                notifyPublishResult(publishMessageUserData.getUserCallback(), AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
+                        publishMessageUserData.getUserData(),
+                        new AmazonClientException("Failed to publish the message. Queue is full and set to hold onto the oldest messages."));
+                return;
             } else {
                 mqttMessageQueue.remove(0);
             }
         }
 
         mqttMessageQueue.add(message);
-        return true;
     }
 
     /**
@@ -1362,9 +1346,10 @@ public class AWSIotMqttManager {
                     // such that publishing this message would never succeed.  It is safer to
                     // remove the message from the queue and notify failure than to block
                     // the queue indefinitely.
-                    userPublishCallback(message.getUserData().getUserCallback(),
+                    notifyPublishResult(message.getUserData().getUserCallback(),
                             AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
-                            message.getUserData().getUserData());
+                            message.getUserData().getUserData(),
+                            new AmazonClientException("Client error while publishing.", e));
                 }
 
                 if (mReconnectHandlerThread != null && mReconnectHandler != null) {
@@ -1394,20 +1379,23 @@ public class AWSIotMqttManager {
             public void connectionLost(Throwable cause) {
                 LOGGER.warn("connection is Lost");
                 if (!userDisconnect && autoReconnect) {
-                    connectionState = MqttManagerConnectionState.Reconnecting;
-                    userConnectionCallback();
-
                     // If we have been connected longer than the connectionStabilityTime then
                     // restart the reconnect logic from minimum value before scheduling reconnect.
                     if ((lastConnackTime + (connectionStabilityTime * MILLIS_IN_ONE_SECOND)) < getSystemTimeMs()) {
                         resetReconnect();
                     }
-                    scheduleReconnect();
+                    if (scheduleReconnect()) {
+                        connectionState = MqttManagerConnectionState.Reconnecting;
+                    } else {
+                        connectionState = MqttManagerConnectionState.Disconnected;
+                    }
                 } else {
                     connectionState = MqttManagerConnectionState.Disconnected;
+
                     clearReconnectHandlerThread();
                     userConnectionCallback(cause);
                 }
+                userConnectionCallback(cause);
             }
 
             @Override
@@ -1434,9 +1422,9 @@ public class AWSIotMqttManager {
                     final Object o = token.getUserContext();
                     if (o instanceof PublishMessageUserData) {
                         final PublishMessageUserData pmud = (PublishMessageUserData) o;
-                        userPublishCallback(pmud.getUserCallback(),
+                        notifyPublishResult(pmud.getUserCallback(),
                                 AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Success,
-                                pmud.getUserData());
+                                pmud.getUserData(), null);
                     }
                 }
             }
@@ -1492,15 +1480,22 @@ public class AWSIotMqttManager {
 
     /**
      * Convenience wrapper method to notify user if they have specified a callback.
+     * If callback is not specified, it throws an exception.
      * @param cb - callback to be invoked.
      * @param status - message status to pass in the callback.
      * @param userData User defined data to be passed to the user in the callback.
+     * @param e a Throwable that may have caused publish failure or null for success
      */
-    void userPublishCallback(AWSIotMqttMessageDeliveryCallback cb,
+    void notifyPublishResult(AWSIotMqttMessageDeliveryCallback cb,
                              AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus status,
-                             Object userData) {
+                             Object userData, RuntimeException e) {
+
         if (cb != null) {
             cb.statusChanged(status, userData);
+        } else {
+            if (e != null) {
+                throw e;
+            }
         }
     }
 

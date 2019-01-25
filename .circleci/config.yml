@@ -1,0 +1,389 @@
+# Android CircleCI 2.0 configuration file
+#
+version: 2.1
+commands:
+  configure_aws:
+    description: >-
+      install aws cli and configure android aws release profile
+    steps:
+      - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli
+      - run:
+          name: configure aws profile
+          command: |
+            aws configure --profile android_sdk_release set region us-east-1
+            echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
+
+  set_enviroment_variables:
+    description: >-
+      set environment variables
+    steps:
+      - run:
+          name: set environment variables
+          command: |
+            sdkName=aws-android-sdk
+            echo "export sdkName=$sdkName" >> $BASH_ENV
+
+            release_bucket=${RELEASE_BUCKET}
+            echo "export release_bucket=$release_bucket" >> $BASH_ENV
+
+            release_tag=${CIRCLE_TAG}
+            echo "export release_tag=$release_tag" >> $BASH_ENV
+
+            release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
+            echo "export release_version=$release_version" >> $BASH_ENV
+
+            sdkNameWithVersion="$sdkName-$release_version"
+            echo "export sdkNameWithVersion=$sdkNameWithVersion" >> $BASH_ENV
+
+            release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
+            echo "export release_type=$release_type" >> $BASH_ENV
+
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: build the whole project
+          command: |
+            echo "id=${android_distribution_id}"
+            bash gradlew build -x test
+
+  buildforrelease:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: build the whole project
+          command: bash gradlew build -x test
+      - run:
+          name: copy libs
+          command: |
+             rootfolder=$(pwd)
+             python3 CircleciScripts/copy_libs.py  "$(pwd)" "$(pwd)/lib"
+      - save_cache:
+          key: Libs-{{ .Revision }}
+          paths:
+            - lib
+
+  unittest:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - checkout
+      - set_enviroment_variables
+      - run:
+          name: run unit tests
+          command: |
+            python3 CircleciScripts/run_unittest.py "~/test_results" "$(pwd)"
+      - run:
+          name : check unit test result
+          command : |
+            echo "testresult=$testresult"
+            if [ "$testresult" == "0" ]
+            then
+                echo "test succeed!"
+            else
+                echo "There are test failures"
+                exit 1
+            fi
+      - store_artifacts:
+          path: "~/test_results"
+
+  release_tag:
+    working_directory: ~/code
+    docker:
+      - image:  circleci/golang:1.11
+    steps:
+      - checkout
+      - set_enviroment_variables
+      - run:
+          name: install github-release
+          command: go get github.com/aktau/github-release
+      - run:
+          name: release the tag
+          command: |
+            tagdescription=$(sed -n "/## \[Release $release_version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
+            echo "$tagdescription" | github-release release  -s ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d -
+
+  release_javadoc:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - set_enviroment_variables
+      - run:
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip
+      - run:
+          name: install json parser
+          command: sudo pip3 install demjson
+      - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli
+      - run:
+          name: download third party libraries
+          command: |
+            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            unzip third-party.zip
+            cp "$ANDROID_HOME/platforms/android-27/android.jar"  third-party/android.jar
+      - run:
+          name: generate documents
+          command: |
+            currentfolder=$(pwd)
+            python3 CircleciScripts/generate_javadoc.py CircleciScripts/ReleaseConfiguration.json "$currentfolder" build/javadoc third-party "$release_version"
+      - run:
+          name: check out gh-pages and preserve old document
+          command: |
+            git config --local user.name "${GITHUB_USER}"
+            git checkout  gh-pages
+            git checkout master CircleciScripts/preserve_olddocument.sh
+            bash CircleciScripts/preserve_olddocument.sh
+      - run:
+          name: copy new document
+          command: |
+            rm -rf docs/reference
+            mkdir -p docs/reference
+            cp -R build/javadoc/* docs/reference/
+      - run:
+          name: check in documents
+          command: |
+            git add docs/reference
+            git rm --cached  CircleciScripts/preserve_olddocument.sh
+            git commit -m "AWS SDK for Android $release_version"
+            if [ "$release_type" == "release" ]
+            then
+                git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+            else
+                echo "skip checkin API reference"
+                zip -r docs.zip docs
+            fi
+      - store_artifacts:
+          path: "docs.zip"
+      - save_cache:
+          key: API-Reference-{{ .Revision }}
+          paths:
+            - docs/reference/
+      - run:
+          name: Add documentation tags to gh-pages
+          command: |
+            git config --local user.name "${GITHUB_USER}"
+            git checkout  gh-pages
+
+            if [ "$release_type" == "release" ]
+            then
+                git tag -a "docs_v$release_version"  -m "Add documentation tags to version $release_version"
+            else
+                git tag -a "beta_docs_v$release_version"  -m "Add documentation tags to version $release_version"
+            fi
+
+            git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+
+  release_maven:
+    macos:
+      xcode: "10.1.0"  # Xcode version number does not matter here, we just need a MacOS image
+    steps:
+      - checkout
+      - configure_aws
+      - set_enviroment_variables
+      - run:
+          name: Install Android SDK tools
+          command: |
+            HOMEBREW_LOGS=~/homebrew-logs
+            HOMEBREW_TEMP=~/homebrew-temp
+            brew update
+            brew doctor
+            brew tap caskroom/cask
+            brew cask install android-sdk
+      - run:
+          name: Install Android build tools
+          command: |
+            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
+            /usr/local/bin/sdkmanager --update
+      - run:
+          name: Install GPG
+          command: |
+            brew install gnupg
+      - run:
+         name: Install Maven
+         command: |
+            brew install maven
+      - run:
+          name: Set environment variables
+          command: |
+            echo ~
+            ls /usr/local/share/android-sdk
+            ANDROID_HOME="/usr/local/share/android-sdk"
+            echo 'export ANDROID_HOME="/usr/local/share/android-sdk"' >> $BASH_ENV
+            echo "Home: ${HOME}"
+            echo "JAVA_HOME: $JAVA_HOME"
+            echo "ANDROID_HOME: $ANDROID_HOME"
+            echo "PATH: $PATH"
+            echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
+            echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+      - run:
+          name: Download gpghome
+          command: |
+            aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
+            unzip -a gpghome.zip
+      - run:
+          name: publish to maven
+          command: |
+            echo "${HOME}"
+            echo "$ANDROID_HOME"
+            bash CircleciScripts/maven_release.sh
+            mkdir m2
+            cp -r ${HOME}/.m2/com/amazonaws/* m2
+      - store_artifacts:
+          path: m2
+      # - run:
+      #     name: upload to maven
+      #     command: |
+      #       python3 CircleciScripts/s3_maven.py "$(pwd)" $release_version android_sdk_release  "$release_bucket/com/amazonaws"
+
+  release_s3:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - checkout
+      - configure_aws
+      - set_enviroment_variables
+      - run:
+          name: Copy SDK resource files
+          command: |
+            mkdir -p "$sdkNameWithVersion"
+            python3 CircleciScripts/copy_resourcefiles.py "$(pwd)"  "$(pwd)/$sdkNameWithVersion"
+      - restore_cache:
+          key: Libs-{{ .Revision }}
+      - run:
+          name: Copy libs
+          command: |
+            mkdir -p "$sdkNameWithVersion/lib"
+            cp -R  /home/circleci/code/lib/*  "$sdkNameWithVersion/lib"
+      - restore_cache:
+          key: API-Reference-{{ .Revision }}
+      - run:
+          name: Copy API reference
+          command: |
+            mkdir -p "$sdkNameWithVersion/documentation/javadoc"
+            cp -R docs/reference/*  "$sdkNameWithVersion/documentation/javadoc"
+      - run:
+          name: copy third party
+          command: |
+            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            unzip third-party.zip
+            mv third-party  "$sdkNameWithVersion/third-party"
+
+      - run:
+          name: zip sdk folder
+          command: |
+            zip -r "$sdkNameWithVersion.zip" "$sdkNameWithVersion"
+
+      - run:
+          name: copy zip file
+          command: |
+            mkdir -p sdkfiles
+            cp "$sdkNameWithVersion.zip" "sdkfiles/$sdkNameWithVersion.zip"
+      - store_artifacts:
+          path: sdkfiles
+      - run:
+          name: check current release release_type
+          command: |
+            if [ "$release_type" != "release" ]
+            then
+                echo "skip upload to s3 because this is not a release"
+                circleci step halt
+            fi
+      - run:
+          name: upload to s3
+          command: |
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/$sdkNameWithVersion.zip" --profile android_sdk_release
+            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/latest/$sdkName.zip" --profile android_sdk_release
+      - run:
+          name: invalidate cloudfront
+          command: |
+            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
+
+workflows:
+  version: 2
+
+  build_test:
+    jobs:
+      - build
+      - unittest:
+          requires:
+            - build
+  release_sdk:
+    jobs:
+      - buildforrelease:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - unittest:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - release_maven:
+          requires:
+            - unittest
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - release_javadoc:
+          requires:
+            - unittest
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - release_s3:
+          requires:
+            - buildforrelease
+            - release_javadoc
+            - release_maven
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - release_tag:
+          requires:
+            - release_s3
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/

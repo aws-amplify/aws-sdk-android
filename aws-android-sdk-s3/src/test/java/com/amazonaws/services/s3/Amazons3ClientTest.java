@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.services.s3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -124,6 +125,33 @@ public class Amazons3ClientTest {
     }
 
     @Test
+    public void testCreatePutObjectRequestWithSpecialCharacterKeys() {
+        final String bucketName = "bucket";
+        final String key = "key%^!@#*()";
+        final File file = new File(key);
+        final HttpMethodName method = HttpMethodName.PUT;
+        final PutObjectRequest originalRequest = new PutObjectRequest(bucketName, key, file);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        assertEquals(String.format("%s.s3.amazonaws.com", bucketName),
+                request.getEndpoint().getHost());
+        assertEquals(method, request.getHttpMethod());
+        assertTrue(request.getResourcePath().contains(key));
+    }
+
+    @Test
+    public void testCreateGetObjectRequestWithSpecialCharacterKeys() {
+        final String bucketName = "bucket";
+        final String key = "key%^!@#*()";
+        final HttpMethodName method = HttpMethodName.GET;
+        final GetObjectRequest originalRequest = new GetObjectRequest(bucketName, key);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        assertEquals(String.format("%s.s3.amazonaws.com", bucketName),
+                request.getEndpoint().getHost());
+        assertEquals(method, request.getHttpMethod());
+        assertTrue(request.getResourcePath().contains(key));
+    }
+
+    @Test
     public void testCreateSigner() {
         s3.setS3ClientOptions(accelerateOption);
         final Regions region = Regions.US_WEST_2;
@@ -143,25 +171,49 @@ public class Amazons3ClientTest {
     }
 
     @Test
+    public void testCreateSignerWithSpecialCharacterKeys() {
+        s3.setS3ClientOptions(accelerateOption);
+        final Regions region = Regions.US_WEST_2;
+        s3.setRegion(Region.getRegion(region));
+        final String bucketName = "bucket";
+        final String key = "key%^!@#*()";
+        final HttpMethodName method = HttpMethodName.GET;
+        final GetObjectRequest originalRequest = new GetObjectRequest(bucketName, key);
+        final Request<?> request = s3.createRequest(bucketName, key, originalRequest, method);
+        final Signer signer = s3.createSigner(request, bucketName, key);
+        assertTrue(signer instanceof AWSS3V4Signer);
+        signer.sign(request, creds);
+        final String authorization = request.getHeaders().get("Authorization");
+        assertNotNull(authorization);
+        final String regionName = authorization.split("/")[2];
+        assertEquals(region.getName(), regionName);
+        assertTrue(request.getResourcePath().contains(key));
+    }
+
+    @Test
     public void testConstructorWithBasicAwsCredentials() {
         creds = new BasicAWSCredentials("accessKey", "secretKey");
         s3 = new AmazonS3Client(creds);
+        assertNotNull(s3);
     }
 
     @Test
     public void testDefaultConstructor() {
         s3 = new AmazonS3Client();
+        assertNotNull(s3);
     }
 
     @Test
     public void testConstructorWithBasicAwsCredentialsAndClientConfiguration() {
         creds = new BasicAWSCredentials("accessKey", "secretKey");
         s3 = new AmazonS3Client(creds, new ClientConfiguration());
+        assertNotNull(s3);
     }
 
     @Test
     public void testConstructorWithClientConfiguration() {
         s3 = new AmazonS3Client(new ClientConfiguration());
+        assertNotNull(s3);
     }
 
     @Test
@@ -169,3 +221,4 @@ public class Amazons3ClientTest {
         s3.setNotificationThreshold(8 * 1024);
     }
 }
+

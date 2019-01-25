@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  */
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
-
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.retry.RetryUtils;
@@ -50,10 +49,10 @@ class DownloadTask implements Callable<Boolean> {
     /**
      * Constructs a DownloadTask with the given download info and S3 client.
      *
-     * @param download A TransferRecord object storing all the information of
-     *            the download
-     * @param s3 Low-level S3 client
-     * @param updater status updater
+     * @param download A TransferRecord object storing all the information of the
+     *                 download
+     * @param s3       Low-level S3 client
+     * @param updater  status updater
      */
     public DownloadTask(TransferRecord download, AmazonS3 s3, TransferStatusUpdater updater) {
         this.download = download;
@@ -66,25 +65,28 @@ class DownloadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() {
-        if (TransferService.networkInfoReceiver != null &&
-            !TransferService.networkInfoReceiver.isNetworkConnected()) {
-            LOGGER.info("Network disconnected. Updating the transfer state to WAITING_FOR_NETWORK.");
-            updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
-            return false;
+        try {
+            if (TransferNetworkLossHandler.getInstance() != null && 
+                !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
+                updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
+                return false;
+            }
+        } catch (TransferUtilityException transferUtilityException) {
+            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
         }
+
         updater.updateState(download.id, TransferState.IN_PROGRESS);
 
-        final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
-                download.key);
+        final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName, download.key);
         TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
         final File file = new File(download.file);
         final long bytesCurrent = file.length();
         if (bytesCurrent > 0) {
-            LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id,
-                    bytesCurrent));
+            LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id, bytesCurrent));
             /*
-             * Setting the last byte position to －1 means downloading the object
-             * from bytesCurrent to the end.
+             * Setting the last byte position to －1 means downloading the object from
+             * bytesCurrent to the end.
              */
             getObjectRequest.setRange(bytesCurrent, -1);
         }
@@ -93,8 +95,7 @@ class DownloadTask implements Callable<Boolean> {
         try {
             final S3Object object = s3.getObject(getObjectRequest);
             if (object == null) {
-                updater.throwError(download.id, new IllegalStateException(
-                        "AmazonS3.getObject returns null"));
+                updater.throwError(download.id, new IllegalStateException("AmazonS3.getObject returns null"));
                 updater.updateState(download.id, TransferState.FAILED);
                 return false;
             }
@@ -106,29 +107,44 @@ class DownloadTask implements Callable<Boolean> {
             updater.updateState(download.id, TransferState.COMPLETED);
             return true;
         } catch (final Exception e) {
-            if (RetryUtils.isInterrupted(e)) {
-                /*
-                 * thread is interrupted by user. don't update the state as it's
-                 * set by caller who interrupted
-                 */
-                LOGGER.debug("Transfer " + download.id + " is interrupted by user");
-            } else if (TransferService.networkInfoReceiver != null &&
-                       !TransferService.networkInfoReceiver.isNetworkConnected()) {
-                LOGGER.debug("Transfer " + download.id + " waits for network");
-                updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
-            } else {
-                LOGGER.debug("Failed to download: " + download.id + " due to " + e.getMessage());
-                updater.throwError(download.id, e);
-                updater.updateState(download.id, TransferState.FAILED);
+            // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
+            try {
+                if (TransferNetworkLossHandler.getInstance() != null && 
+                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                    LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
+                    /*
+                     * Network connection is being interrupted. Moving the TransferState to
+                     * WAITING_FOR_NETWORK till the network availability resumes.
+                     */
+                    updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
+                    LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                    return false;
+                }
+            } catch (TransferUtilityException transferUtilityException) {
+                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
             }
+
+            // If the thread that is executing the transfer is interrupted
+            // because of a user initiated pause, do not throw exception or
+            // set the state to FAILED.
+            if (RetryUtils.isInterrupted(e) && 
+                TransferState.PAUSED.equals(download.state)) {
+                LOGGER.error("Download interrupted: " + e.getMessage());
+                return false;
+            }
+
+            // In other cases, set the transfer state to FAILED.
+            LOGGER.debug("Failed to download: " + download.id + " due to " + e.getMessage());
+            updater.throwError(download.id, e);
+            updater.updateState(download.id, TransferState.FAILED);
+            return false;
         }
-        return false;
     }
 
     /**
      * Writes stream data into a file.
      *
-     * @param is input stream
+     * @param is   input stream
      * @param file file to be written
      */
     private void saveToFile(InputStream is, File file) {
@@ -153,8 +169,7 @@ class DownloadTask implements Callable<Boolean> {
             LOGGER.error(errorString);
             throw new AmazonClientException(errorString, socketTimeoutException);
         } catch (final IOException e) {
-            throw new AmazonClientException(
-                    "Unable to store object contents to disk: " + e.getMessage(), e);
+            throw new AmazonClientException("Unable to store object contents to disk: " + e.getMessage(), e);
         } finally {
             try {
                 if (os != null) {

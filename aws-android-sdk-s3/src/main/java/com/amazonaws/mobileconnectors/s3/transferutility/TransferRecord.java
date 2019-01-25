@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -160,7 +160,9 @@ class TransferRecord {
      * @param updater status updater
      * @return Whether the task is running.
      */
-    public boolean start(AmazonS3 s3, TransferDBUtil dbUtil, TransferStatusUpdater updater) {
+    public boolean start(AmazonS3 s3,
+                         TransferDBUtil dbUtil,
+                         TransferStatusUpdater updater) {
         if (!isRunning() && checkIsReadyToRun()) {
             if (type.equals(TransferType.DOWNLOAD)) {
                 submittedTask = TransferThreadPool

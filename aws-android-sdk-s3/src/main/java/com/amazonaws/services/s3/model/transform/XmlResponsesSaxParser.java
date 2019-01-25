@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -729,8 +729,8 @@ public class XmlResponsesSaxParser {
                             shouldSDKDecodeResponse));
 
                 } else if (name.equals("EncodingType")) {
-                    objectListing.setEncodingType(
-                            shouldSDKDecodeResponse ? null : checkForEmptyString(getText()));
+                    // Parsing the EncodingType from the response
+                    objectListing.setEncodingType(checkForEmptyString(getText()));
 
                 } else if (name.equals("IsTruncated")) {
                     final String isTruncatedStr =
@@ -1452,8 +1452,7 @@ public class XmlResponsesSaxParser {
                             shouldSDKDecodeResponse));
 
                 } else if (name.equals("EncodingType")) {
-                    versionListing.setEncodingType(
-                            shouldSDKDecodeResponse ? null : checkForEmptyString(getText()));
+                    versionListing.setEncodingType(checkForEmptyString(getText()));
 
                 } else if (name.equals("NextKeyMarker")) {
                     versionListing.setNextKeyMarker(decodeIfSpecified
