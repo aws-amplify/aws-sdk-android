@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,26 +15,20 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import android.app.Notification;
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.IBinder;
-
-import com.amazonaws.services.s3.AmazonS3;
 
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +46,7 @@ public class TransferService extends Service {
      * registers a BroadcastReceiver to receive network status change events. It
      * will update transfer records in database directly.
      */
-    static NetworkInfoReceiver networkInfoReceiver;
+    static TransferNetworkLossHandler transferNetworkLossHandler;
 
     /**
      * A flag indicates whether the service is started the first time.
@@ -60,24 +54,38 @@ public class TransferService extends Service {
     boolean isReceiverNotRegistered = true;
 
     /**
-     * Reference to the transfer database utility.
+     * The identifier used for the notification.
      */
-    private TransferDBUtil dbUtil;
+    private int ongoingNotificationId = 0;
 
     /**
-     * The status updater that updates the state and the
-     * progress of the transfer in memory and persists to the
-     * database.
+     * This flag determines if the notification needs to be removed
+     * when the service is moved out of the foreground state.
      */
-    TransferStatusUpdater updater;
+    private boolean removeNotification = true;
 
     /**
-     * Lock for synchronizing the pause/resume transfers. There is a need
-     * to synchronize the pause/resume operation because the service could
-     * get duplicate broadcasts which can fire multiple threads to do the
-     * same task.
+     * Constant for Android Oreo.
      */
-    private static final Object LOCK = new Object();
+    private static final int ANDROID_OREO = 26;
+
+    /**
+     * The key that identifies the Notification object that will be displayed
+     * when the service moves to foreground.
+     */
+    public static final String INTENT_KEY_NOTIFICATION = "notification";
+
+    /**
+     * The key that identifies the identifier for the ongoing notification that
+     * will be displayed when the service moves to foreground.
+     */
+    public static final String INTENT_KEY_NOTIFICATION_ID = "ongoing-notification-id";
+
+    /**
+     * The key that identifies the flag, that determines if the notification
+     * needs to be removed when the service is moved out of the foreground state.
+     */
+    public static final String INTENT_KEY_REMOVE_NOTIFICATION = "remove-notification";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -96,108 +104,107 @@ public class TransferService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        LOGGER.info("Starting Transfer Service to listen for network connectivity changes");
+        LOGGER.info("Starting Transfer Service to listen for network connectivity changes.");
 
-        dbUtil = new TransferDBUtil(this);
-        updater = TransferStatusUpdater.getInstance(this);
-        networkInfoReceiver = new NetworkInfoReceiver(getApplicationContext());
+        transferNetworkLossHandler = TransferNetworkLossHandler.getInstance(getApplicationContext());
 
-        if (isReceiverNotRegistered) {
-            try {
-                LOGGER.info("Registering the network receiver");
-                this.registerReceiver(this.networkInfoReceiver,
-                        new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-            } catch (final IllegalArgumentException iae) {
-                LOGGER.warn("Ignoring the exception trying to register the receiver for connectivity change.");
-            } catch (final IllegalStateException ise) {
-                LOGGER.warn("Ignoring the leak in registering the receiver.");
-            } finally {
-                isReceiverNotRegistered = false;
+        synchronized (this) {
+            if (isReceiverNotRegistered) {
+                try {
+                    LOGGER.info("Registering the network receiver");
+                    this.registerReceiver(this.transferNetworkLossHandler,
+                            new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+                    isReceiverNotRegistered = false;
+                } catch (final IllegalArgumentException iae) {
+                    LOGGER.warn("Ignoring the exception trying to register the receiver for connectivity change.");
+                } catch (final IllegalStateException ise) {
+                    LOGGER.warn("Ignoring the leak in registering the receiver.");
+                }
             }
-        }
-    }
-
-    /**
-     * A Broadcast receiver to receive network connection change events.
-     */
-    class NetworkInfoReceiver extends BroadcastReceiver {
-        private final ConnectivityManager connManager;
-
-        /**
-         * Constructs a NetworkInfoReceiver.
-         *
-         * @param context the android context
-         */
-        public NetworkInfoReceiver(Context context) {
-            connManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                LOGGER.info("Network connectivity changed detected.");
-
-                final boolean networkConnected = isNetworkConnected();
-                LOGGER.info("Network connected: " + networkConnected);
-
-                /**
-                 * Scanning the database for transfers and pausing/resuming
-                 * them can be intensive, hence doing it in a background
-                 * thread.
-                 */
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (networkConnected) {
-                            checkTransfersOnNetworkReconnect();
-                        } else {
-                            pauseAllForNetwork();
-                        }
-                    }
-                }).start();
-            }
-        }
-
-        /**
-         * Gets the status of network connectivity.
-         *
-         * @return true if network is connected, false otherwise.
-         */
-        boolean isNetworkConnected() {
-            final NetworkInfo info = connManager.getActiveNetworkInfo();
-            return info != null && info.isConnected();
         }
     }
 
     @Override
     @SuppressWarnings("checkstyle:hiddenfield")
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (isReceiverNotRegistered) {
+        /**
+         * Starting Android Oreo, service cannot be invoked when the application is in background
+         * due to the background limitations imposed by Android. If the Android version is Oreo and
+         * above, the service will be moved from the background state to foreground state.
+         *
+         * To move the service to foreground, an ongoing Notification needs to be displayed. There
+         * are three pieces of information we expect from the intent. a) A valid notification object
+         * b) An identifier for the ongoing notification c) Flag that determines if the notification
+         * needs to be removed when the service is moved out of the foreground state.
+         */
+        if (Build.VERSION.SDK_INT >= ANDROID_OREO) {
             try {
-                LOGGER.info("Registering the network receiver");
-                this.registerReceiver(this.networkInfoReceiver,
-                        new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-            } catch (final IllegalArgumentException iae) {
-                LOGGER.warn("Ignoring the exception trying to register the receiver for connectivity change.");
-            } catch (final IllegalStateException ise) {
-                LOGGER.warn("Ignoring the leak in registering the receiver.");
-            } finally {
-                isReceiverNotRegistered = false;
+                synchronized (this) {
+                    final Notification userProvidedNotification = (Notification) intent.getParcelableExtra(INTENT_KEY_NOTIFICATION);
+                    if (userProvidedNotification != null) {
+                        // Get the notification Id from the intent, if it's null, the default notification Id will be returned.
+                        ongoingNotificationId = (int) intent.getIntExtra(INTENT_KEY_NOTIFICATION_ID, ongoingNotificationId);
+                        
+                        // Get removeNotification from the intent, if it's null, removeNotification will be returned.
+                        removeNotification = (boolean) intent.getBooleanExtra(INTENT_KEY_REMOVE_NOTIFICATION, removeNotification);
+
+                        // Put the service in foreground state
+                        LOGGER.info("Putting the service in Foreground state.");
+                        startForeground(ongoingNotificationId, userProvidedNotification);
+                    } else {
+                        LOGGER.error("No notification is passed in the intent. "
+                            + "Unable to transition to foreground.");
+                    }
+                }
+            } catch (Exception ex) {
+                LOGGER.error("Error in moving the service to foreground state: " + ex);
             }
         }
 
+        synchronized (this) {
+            if (isReceiverNotRegistered) {
+                try {
+                    LOGGER.info("Registering the network receiver");
+                    this.registerReceiver(this.transferNetworkLossHandler,
+                            new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+                    isReceiverNotRegistered = false;
+                } catch (final IllegalArgumentException iae) {
+                    LOGGER.warn("Ignoring the exception trying to register the receiver for connectivity change.");
+                } catch (final IllegalStateException ise) {
+                    LOGGER.warn("Ignoring the leak in registering the receiver.");
+                }
+            }
+        }
+
+        // service can be restarted
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
+        /**
+         * removeNotification determines if the notification will be removed
+         * when the service is moved out of the foreground state.
+         */
         try {
-            if (networkInfoReceiver != null) {
-                LOGGER.info("De-registering the network receiver");
-                this.unregisterReceiver(this.networkInfoReceiver);
-                isReceiverNotRegistered = true;
-                networkInfoReceiver = null;
+            if (Build.VERSION.SDK_INT >= ANDROID_OREO) {
+                LOGGER.info("Moving the service out of the Foreground state.");
+                synchronized (this) {
+                    stopForeground(removeNotification);
+                }
+            }
+        } catch (final Exception ex) {
+            LOGGER.error("Error in moving the service out of the foreground state: " + ex);
+        }
+
+        try {
+            LOGGER.info("De-registering the network receiver.");
+            synchronized (this) {
+                if (!isReceiverNotRegistered) {
+                    this.unregisterReceiver(this.transferNetworkLossHandler);
+                    isReceiverNotRegistered = true;
+                    transferNetworkLossHandler = null;
+                }
             }
         } catch (final IllegalArgumentException iae) {
             /*
@@ -210,98 +217,6 @@ public class TransferService extends Service {
         super.onDestroy();
     }
 
-    /**
-     * Check for the transfers that are in WAITING_FOR_NETWORK state
-     * and resume them to execution.
-     */
-    void checkTransfersOnNetworkReconnect() {
-        if (networkInfoReceiver.isNetworkConnected()) {
-            loadAndResumeTransfersFromDB(new TransferState[] {TransferState.WAITING_FOR_NETWORK});
-        } else {
-            LOGGER.error("Network Connect message received but not connected to network.");
-        }
-    }
-
-    /**
-     * Loads transfers from database. These transfers are unfinished from
-     * previous session or are new transfers waiting for network. It skips any
-     * transfer that is already tracked by the status updater. Also starts
-     * transfers whose states indicate running but aren't.
-     *
-     * The transfers would start only if the AmazonS3Client is present in the
-     * {@code S3ClientReference} map. If the AmazonS3Client is not present, this would
-     * skip starting the transfer.
-     *
-     * @param transferStates The list of the transfer states
-     */
-    void loadAndResumeTransfersFromDB(final TransferState[] transferStates) {
-        LOGGER.debug("Loading transfers from database...");
-        synchronized (LOCK) {
-            Cursor c = null;
-            int count = 0;
-
-            // Read the transfer ids from the cursor and store in this list.
-            List<Integer> transferIds = new ArrayList<Integer>();
-
-            // Query for the unfinished transfers and store them in a list
-            try {
-                c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY,
-                        transferStates);
-                while (c.moveToNext()) {
-                    final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                    // If the transfer status updater doesn't track it, load the transfer record
-                    // from the database and add it to the updater to track
-                    if (updater.getTransfer(id) == null) {
-                        final TransferRecord transfer = new TransferRecord(id);
-                        transfer.updateFromDB(c);
-                        updater.addTransfer(transfer);
-                        count++;
-                    }
-                    transferIds.add(id);
-                }
-            } finally {
-                if (c != null) {
-                    LOGGER.debug("Closing the cursor for loadAndResumeTransfersFromDB");
-                    c.close();
-                }
-            }
-
-            // Iterate over each transfer id and resume them if it's not running.
-            try {
-                for (final Integer id : transferIds) {
-                    final AmazonS3 s3 = S3ClientReference.get(id);
-                    if (s3 != null) {
-                        // Check if it's running. If not, start the transfer.
-                        final TransferRecord transfer = updater.getTransfer(id);
-                        if (transfer != null && !transfer.isRunning()) {
-                            transfer.start(s3, dbUtil, updater);
-                        }
-                    }
-                }
-            } catch (final Exception exception) {
-                LOGGER.error("Error in resuming the transfers." + exception.getMessage());
-            }
-
-            LOGGER.debug(count + " transfers are loaded from database.");
-        }
-    }
-
-    /**
-     * Pause all running transfers and set the state to WAITING_FOR_NETWORK.
-     */
-    void pauseAllForNetwork() {
-        synchronized (LOCK) {
-            for (final TransferRecord transferRecord : updater.getTransfers().values()) {
-                final AmazonS3 s3 = S3ClientReference.get(transferRecord.id);
-                if (s3 != null &&
-                        transferRecord != null &&
-                        transferRecord.pause(s3, updater)) {
-                    updater.updateState(transferRecord.id, TransferState.WAITING_FOR_NETWORK);
-                }
-            }
-        }
-    }
-
     @Override
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
         // only available when the application is debuggable
@@ -309,8 +224,8 @@ public class TransferService extends Service {
             return;
         }
 
-        writer.printf("network status: %s\n", networkInfoReceiver.isNetworkConnected());
-        final Map<Integer, TransferRecord> transfers = updater.getTransfers();
+        writer.printf("network status: %s\n", transferNetworkLossHandler.isNetworkConnected());
+        final Map<Integer, TransferRecord> transfers = TransferStatusUpdater.getInstance(this).getTransfers();
         writer.printf("# of active transfers: %d\n", transfers.size());
         for (final TransferRecord transfer : transfers.values()) {
             writer.printf("bucket: %s, key: %s, status: %s, total size: %d, current: %d\n",

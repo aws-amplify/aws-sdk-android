@@ -46,9 +46,6 @@ class AWSIotWebSocketUrlSigner {
      */
     private String signerServiceName;
 
-    /** Date override for unit testing only. */
-    private Date overriddenDate = null;
-
     /**
      * Create a new AWSIotWebSocketUrlSigner.
      * @param serviceName AWS IoT service name used in SigV4 algorithm.

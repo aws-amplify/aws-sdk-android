@@ -2594,7 +2594,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(0, testClient.getMqttMessageQueue().size());
     }
 
-    @Test(expected = AmazonClientException.class)
+    @Test
     public void testPublishWithCallbackDisconnected() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
@@ -2617,11 +2617,11 @@ public class AWSIotMqttManagerTest {
         // we don't queue when Disconnected (user disconnect or auto-reconnect exhausted)
         assertEquals(0, testClient.getMqttMessageQueue().size());
         // callback not called
-        assertEquals(0, mdcb.statuses.size());
-        assertEquals(0, mdcb.userDatas.size());
+        assertEquals(1, mdcb.statuses.size());
+        assertEquals(1, mdcb.userDatas.size());
     }
 
-    @Test(expected = AmazonClientException.class)
+    @Test
     public void testPublishWithCallbackConnecting() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
@@ -2646,8 +2646,8 @@ public class AWSIotMqttManagerTest {
         // we don't queue when Disconnected (user disconnect or auto-reconnect exhausted)
         assertEquals(0, testClient.getMqttMessageQueue().size());
         // callback not called
-        assertEquals(0, mdcb.statuses.size());
-        assertEquals(0, mdcb.userDatas.size());
+        assertEquals(1, mdcb.statuses.size());
+        assertEquals(1, mdcb.userDatas.size());
     }
 
     @Test

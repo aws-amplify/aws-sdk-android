@@ -115,6 +115,8 @@ public class EventRecorderTest {
                                                            SESSION_DURATION,
                                                            TIME_STAMP,
                                                            EVENT_NAME);
+        analyticsEvent.addAttribute("key1", "value1");
+        analyticsEvent.addAttribute("key2", "value2");
         endpointProfile = new EndpointProfile(mockContext);
         dbUtil = new PinpointDBUtil(RuntimeEnvironment.application
                                             .getApplicationContext());
@@ -161,7 +163,10 @@ public class EventRecorderTest {
         assertEquals(EVENT_NAME, event.getEventType());
         assertEquals(SDK_NAME, event.getSdkName());
         assertEquals(SDK_VERSION, event.getClientSdkVersion());
-        assertNull(event.getAttributes());
+        assertNotNull(event.getAttributes());
+        assertTrue(event.getAttributes().equals(analyticsEvent.getAllAttributes()));
+        assertEquals(event.getAttributes().get("key1"), "value1");
+        assertEquals(event.getAttributes().get("key2"), "value2");
         assertNotNull(event.getMetrics());
         assertNotNull(event.getSession());
     }
