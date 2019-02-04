@@ -29,7 +29,7 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
@@ -57,7 +57,7 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
@@ -83,7 +83,7 @@ public class Media implements Serializable {
      *         form is:
      *         </p>
      *         <p>
-     *         <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *         </p>
      *         <p>
      *         For example:
@@ -110,7 +110,7 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
@@ -136,7 +136,7 @@ public class Media implements Serializable {
      *            general form is:
      *            </p>
      *            <p>
-     *            <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:
@@ -163,7 +163,7 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
@@ -192,7 +192,7 @@ public class Media implements Serializable {
      *            general form is:
      *            </p>
      *            <p>
-     *            <code> https://&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:

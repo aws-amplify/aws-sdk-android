@@ -23,10 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates an existing vocabulary with new values. The
  * <code>UpdateVocabulary</code> operation overwrites all of the existing
- * information with the values that you provide in the request. Note that
- * vocabularies for en-AU, en-UK, and fr-CA languages that are in preview are
- * not available. In the console, the vocabulary section will be greyed-out and
- * SDK will return error message.
+ * information with the values that you provide in the request.
  * </p>
  */
 public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
@@ -48,7 +45,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      */
     private String languageCode;
 
@@ -125,7 +122,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -143,7 +140,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -164,7 +161,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -185,7 +182,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -206,7 +203,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.

@@ -16,6 +16,8 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.event.ProgressEvent;
+import com.amazonaws.event.ProgressListener;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GetObjectRequest;
@@ -78,21 +80,25 @@ class DownloadTask implements Callable<Boolean> {
 
         updater.updateState(download.id, TransferState.IN_PROGRESS);
 
-        final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName, download.key);
-        TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
-        final File file = new File(download.file);
-        final long bytesCurrent = file.length();
-        if (bytesCurrent > 0) {
-            LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id, bytesCurrent));
-            /*
-             * Setting the last byte position to －1 means downloading the object from
-             * bytesCurrent to the end.
-             */
-            getObjectRequest.setRange(bytesCurrent, -1);
-        }
-        getObjectRequest.setGeneralProgressListener(updater.newProgressListener(download.id));
+        GetObjectRequest getObjectRequest;
+        ProgressListener progressListener = updater.newProgressListener(download.id);
 
         try {
+            getObjectRequest = new GetObjectRequest(download.bucketName, download.key);
+            TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
+            final File file = new File(download.file);
+            final long bytesCurrent = file.length();
+            if (bytesCurrent > 0) {
+                LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id, bytesCurrent));
+                /*
+                 * Setting the last byte position to －1 means downloading the object from
+                 * bytesCurrent to the end.
+                 */
+                getObjectRequest.setRange(bytesCurrent, -1);
+            }
+
+            getObjectRequest.setGeneralProgressListener(progressListener);
+
             final S3Object object = s3.getObject(getObjectRequest);
             if (object == null) {
                 updater.throwError(download.id, new IllegalStateException("AmazonS3.getObject returns null"));
@@ -101,36 +107,51 @@ class DownloadTask implements Callable<Boolean> {
             }
 
             final long bytesTotal = object.getObjectMetadata().getInstanceLength();
-            updater.updateProgress(download.id, bytesCurrent, bytesTotal);
+            updater.updateProgress(download.id, bytesCurrent, bytesTotal, true);
             saveToFile(object.getObjectContent(), file);
-            updater.updateProgress(download.id, bytesTotal, bytesTotal);
+            updater.updateProgress(download.id, bytesTotal, bytesTotal, true);
             updater.updateState(download.id, TransferState.COMPLETED);
             return true;
         } catch (final Exception e) {
-            // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
-            try {
-                if (TransferNetworkLossHandler.getInstance() != null && 
-                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
-                    LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
-                    /*
-                     * Network connection is being interrupted. Moving the TransferState to
-                     * WAITING_FOR_NETWORK till the network availability resumes.
-                     */
-                    updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
-                    LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
-                    return false;
-                }
-            } catch (TransferUtilityException transferUtilityException) {
-                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
+            // we dont need to update progress listener
+            if (TransferState.CANCELED.equals(download.state)) {
+                LOGGER.info("Transfer is " + download.state);
+                return false;
+            }
+
+            // pause
+            if (TransferState.PAUSED.equals(download.state)) {
+                LOGGER.info("Transfer is " + download.state);
+                ProgressEvent resetEvent = new ProgressEvent(0);
+                resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+                progressListener.progressChanged(new ProgressEvent(0));
+                return false;
             }
 
             // If the thread that is executing the transfer is interrupted
-            // because of a user initiated pause, do not throw exception or
-            // set the state to FAILED.
-            if (RetryUtils.isInterrupted(e) && 
-                TransferState.PAUSED.equals(download.state)) {
-                LOGGER.error("Download interrupted: " + e.getMessage());
-                return false;
+            // because of a race condition in the network or OS.
+            // interrupted and if its due to network drop, reset progress and
+            // update state to WAITING_FOR_NETWORK.
+            if (RetryUtils.isInterrupted(e)) {
+                // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
+                try {
+                    if (TransferNetworkLossHandler.getInstance() != null && 
+                        !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                        LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
+                        /*
+                         * Network connection is being interrupted. Moving the TransferState to
+                         * WAITING_FOR_NETWORK till the network availability resumes.
+                         */
+                        updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
+                        LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                        ProgressEvent resetEvent = new ProgressEvent(0);
+                        resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+                        progressListener.progressChanged(new ProgressEvent(0));
+                        return false;
+                    }
+                } catch (TransferUtilityException transferUtilityException) {
+                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
+                }
             }
 
             // In other cases, set the transfer state to FAILED.
