@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Queue;
@@ -35,6 +36,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
     public static final String IDENTITY_ID = "redacted";
     public static final String NEW_PASSWORD = "new1234Password!";
     public static final int THROTTLED_DELAY = 5000;
+
 
     Context appContext;
     AWSMobileClient auth;
@@ -113,6 +115,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
         }
     }
 
+    @Ignore("If network is on on the emulator, this test may get stuck")
     @Test
     public void testSignInWaitOIDCOffline() throws Exception {
         final Queue<UserStateDetails> allChanges = new ConcurrentLinkedQueue<UserStateDetails>();
@@ -134,6 +137,6 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
         }
         assertEquals("1 signed-in events should not have been triggered, because tokens swapped underneath", 1, allChanges.size());
         assertEquals(UserState.SIGNED_IN, allChanges.remove().getUserState());
-    }
+   }
 
 }

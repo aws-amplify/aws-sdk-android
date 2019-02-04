@@ -2,6 +2,21 @@
 #
 version: 2.1
 commands:
+  quit_for_nominorversion:
+    description: >-
+      If current release is not a minor version bump, stop executing the current job and return success.
+    steps:
+      - run:
+          name: skip left steps and return immediately from current job if current release is not a minor version bump
+          command: |
+            echo $release_version            
+            maintenance=$(echo $release_version | sed "s/[0-9]*.[0-9]*.\([0-9]*\)/\1/")
+            echo $maintenance
+            if [ "$maintenance" != "0" ]; then
+              echo "This is not minor version bump release, so marking this step successful"
+              circleci step halt
+            fi
+
   configure_aws:
     description: >-
       install aws cli and configure android aws release profile
@@ -41,22 +56,91 @@ commands:
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
             echo "export release_type=$release_type" >> $BASH_ENV
 
+  setup_emulator:
+    description: >-
+      setup emulator
+    steps:
+      - run:
+          name: Setup emulator
+          command: |
+            sdkmanager "system-images;android-24;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -no-boot-anim -no-window -accel auto -verbose
+          background: true
+      - run:
+          name: Launch logcat
+          command: 
+            adb logcat > logcat.log
+          background: true
+      - run:
+          name: Wait emulator
+          command: |
+            echo "wait for emulator to have booted"
+            circle-android wait-for-boot
+            python3 CircleciScripts/unlock_emulatorscreen.py 
+
+
+  bump_version_pre:
+    description: >-
+      prepare bump version
+    steps:
+      - run:
+          name: checkout repository for bump version
+          command: |
+            git config --local user.name "${GITHUB_BUMPVERSION_USER}"
+            git clone "https://github.com/${GITHUB_BUMPVERSION_USER}/${bumpversion_repo_name}.git"
+            cd ${bumpversion_repo_name}
+            git fetch
+            branches=$(git branch)
+            if [[ $branches == *"bump_version"* ]]; then    
+              echo "the branch is already pesent"
+              git checkout bump_version          
+            else
+              echo "create new branch bump_version"
+              git checkout -b bump_version                 
+            fi  
+            git remote add upstream https://github.com/${bumpversion_repo_user}/${bumpversion_repo_name}
+            git remote -v
+            git fetch upstream
+            git reset --hard upstream/master  
+            echo "push update the branch"
+            git push  --force   -q https://${GITHUB_BUMPVERSION_TOKEN}@github.com/${GITHUB_BUMPVERSION_USER}/${bumpversion_repo_name}.git
+
+  bump_version_post:
+    description: >-
+      check in bump version change
+    steps:
+      - run: 
+          name: stage changes
+          command: |
+            cd ${bumpversion_repo_name}
+            git config --local user.name "${GITHUB_BUMPVERSION_USER}"
+            gitstatus=$(git status)
+            echo $gitstatus
+            if [[ $gitstatus == *"Changes not staged for commit:"* ]]; then              
+              git add .
+            else
+              echo "No changes for bump version"
+              circleci step halt             
+            fi                 
+      - run:
+          name: check in changes
+          command: |
+            cd ${bumpversion_repo_name}
+            git status
+            git config --local user.name "${GITHUB_BUMPVERSION_USER}"
+            git commit -m "${bump_version_message}"            
+            git push  --force   -q https://${GITHUB_BUMPVERSION_TOKEN}@github.com/${GITHUB_BUMPVERSION_USER}/${bumpversion_repo_name}.git
+            title="${bump_version_pr_title}"
+            content="${bump_version_message}" 
+            echo "title:$title"
+            echo "content:$content"
+            python3 ../CircleciScripts/create_pullrequest.py  "${GITHUB_BUMPVERSION_USER}" "${GITHUB_BUMPVERSION_TOKEN}" "$title" "$content" "master" "${GITHUB_BUMPVERSION_USER}:bump_version" ${bumpversion_repo_user} ${bumpversion_repo_name}
+
+
 jobs:
   build:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-27-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - checkout
-      - run:
-          name: build the whole project
-          command: |
-            echo "id=${android_distribution_id}"
-            bash gradlew build -x test
-
-  buildforrelease:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
@@ -85,7 +169,6 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
-      - set_enviroment_variables
       - run:
           name: run unit tests
           command: |
@@ -117,6 +200,7 @@ jobs:
       - run:
           name: release the tag
           command: |
+            tagname="AWS SDK for Android $release_version"
             tagdescription=$(sed -n "/## \[Release $release_version\]/,/## \[Release [0-9]*\.[0-9]*\.[0-9]\]/p"  CHANGELOG.md | sed '1d' | sed '$d')
             echo "$tagdescription" | github-release release  -s ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t $release_tag   --name  "$tagname" -d -
 
@@ -318,25 +402,194 @@ jobs:
       - run:
           name: upload to s3
           command: |
-            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/$sdkNameWithVersion.zip" --profile android_sdk_release
-            aws s3 cp "$sdkNameWithVersion.zip" "s3://$release_bucket/latest/$sdkName.zip" --profile android_sdk_release
+            aws s3api put-object --bucket "$release_bucket" --key "$sdkNameWithVersion.zip" --body "$sdkNameWithVersion.zip" --content-disposition "attachment;filename=$sdkNameWithVersion.zip" --acl public-read  --profile android_sdk_release
+            aws s3api put-object --bucket "$release_bucket" --key "latest/$sdkName.zip" --body "$sdkNameWithVersion.zip" --content-disposition "attachment;filename=$sdkNameWithVersion.zip" --acl public-read  --profile android_sdk_release
       - run:
           name: invalidate cloudfront
           command: |
-            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "$sdkName.zip"
+            python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "latest/$sdkName.zip"
+
+  integrationtest:
+    working_directory: ~/code
+    docker:
+      # Android the primary container
+      - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - configure_aws
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml      
+      - run:
+          name: install sdk
+          command: |
+            sudo yes | sdkmanager "platforms;android-27"
+      - setup_emulator         
+      - run:
+          name: Configure test information
+          command: |
+            aws s3 cp s3://android-circleci-payload/testinformation/testinformation.json testinformation.json 
+            python3  CircleciScripts/replace_testinformation.py $(pwd) testinformation.json 
+      - run:
+          name: run integration tests
+          command: |
+            echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
+            python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
+      - run:
+          name : check integration test result 
+          command : |
+            echo "testresult=$testresult"
+            if [ "$testresult" == "0" ] 
+            then
+                echo "test succeed!"
+            else
+                echo "There are test failures"
+                exit 1
+            fi       
+      - store_artifacts:
+          path: "~/test_results"
+  uitest:
+    working_directory: ~/code
+    docker:
+      # Android the primary container
+      - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - configure_aws     
+      - run:
+          name: checkout sample applications
+          command: |
+            git clone https://github.com/sunchunqiang/aws-sdk-android-samples.git
+      - restore_cache:
+          key: Libs-{{ .Revision }}
+      - run:
+          name: copy third party
+          command: |
+            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            unzip third-party.zip
+            cp third-party/**/*.jar  lib/
+      - run:
+          name: create aws configure json file
+          command :
+            echo "${S3SAMPLE_JSON}"  | base64 -di   > aws-sdk-android-samples/S3TransferUtilitySample/res/raw/awsconfiguration.json           
+      - run:
+          name: configure aws dependencies
+          command: |
+            python3 CircleciScripts/replace_awsdependencies.py "$(pwd)/aws-sdk-android-samples/S3TransferUtilitySample/build.gradle" "implementation fileTree(dir: '$(pwd)/lib', include: ['*.jar', '*.aar'])"
+      - setup_emulator         
+      - run:
+          name: run sample ui test
+          command: |
+            cd aws-sdk-android-samples/S3TransferUtilitySample
+            bash gradlew connectedAndroidTest
+      - store_artifacts:
+          path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
+      - store_artifacts:
+          path: "aws-sdk-android-samples/S3TransferUtilitySample/build.gradle"
+      - store_artifacts:
+          path: logcat.log
+
+  bump_sampleapp_version:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - set_enviroment_variables
+      - quit_for_nominorversion
+      - checkout  
+      - run:
+          name: set_bumpversion_enviroment
+          command: |
+            bumpversion_repo_user=awslabs
+            bumpversion_repo_name=aws-sdk-android-samples
+            minorversion=$(echo $release_version | sed "s/\([0-9]*.[0-9]*\).[0-9]*/\1/")
+            echo ${minorversion}
+            bump_version_message="Update sample apps to use ${minorversion}.+ version of the SDK"
+            bump_version_pr_title="Bump sample applications versions to ${minorversion}.+"
+            echo "export bumpversion_repo_user=$bumpversion_repo_user" >> $BASH_ENV
+            echo "export bumpversion_repo_name=$bumpversion_repo_name" >> $BASH_ENV
+            echo "export minorversion=$minorversion" >> $BASH_ENV
+            echo "export bump_version_message='${bump_version_message}'" >> $BASH_ENV
+            echo "export bump_version_pr_title='${bump_version_pr_title}'" >> $BASH_ENV
+            echo "bump_version_pr_title:$bump_version_pr_title"
+      - bump_version_pre
+      - run:
+          name: bump version
+          command:
+            python3 CircleciScripts/bump_androidsample_version.py "$(pwd)/aws-sdk-android-samples" $release_version
+      - bump_version_post
+
+  bump_applifydocs_version:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - set_enviroment_variables
+      - quit_for_nominorversion
+      - checkout  
+      - run:
+          name: set_bumpversion_enviroment
+          command: |
+            bumpversion_repo_user=aws-amplify
+            bumpversion_repo_name=docs
+            minorversion=$(echo $release_version | sed "s/\([0-9]*.[0-9]*\).[0-9]*/\1/")
+            echo ${minorversion}
+            bump_version_message="Update Android docs to ${release_version}"
+            bump_version_pr_title="Update Android docs to ${release_version}"
+            echo "export bumpversion_repo_user=$bumpversion_repo_user" >> $BASH_ENV
+            echo "export bumpversion_repo_name=$bumpversion_repo_name" >> $BASH_ENV
+            echo "export minorversion=$minorversion" >> $BASH_ENV
+            echo "export bump_version_message='${bump_version_message}'" >> $BASH_ENV
+            echo "export bump_version_pr_title='${bump_version_pr_title}'" >> $BASH_ENV
+            echo "bump_version_pr_title:$bump_version_pr_title"
+      - bump_version_pre
+      - run:
+          name: bump version
+          command:
+            python3 CircleciScripts/bump_amplifydocs_version.py "$(pwd)/${bumpversion_repo_name}/android" $release_version
+      - bump_version_post
 
 workflows:
   version: 2
-
   build_test:
     jobs:
       - build
-      - unittest:
+      - unittest
+      - integrationtest:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+
+      - uitest:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+
   release_sdk:
     jobs:
-      - buildforrelease:
+      - build:
           filters:
             branches:
               ignore: /.*/
@@ -370,7 +623,7 @@ workflows:
 
       - release_s3:
           requires:
-            - buildforrelease
+            - build
             - release_javadoc
             - release_maven
           filters:
@@ -387,3 +640,22 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - bump_sampleapp_version:
+          requires:
+            - release_tag
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - bump_applifydocs_version:
+          requires:
+            - release_tag
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+
+

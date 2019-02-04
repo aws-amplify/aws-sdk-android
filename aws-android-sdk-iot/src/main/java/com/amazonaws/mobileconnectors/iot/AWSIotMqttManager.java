@@ -154,7 +154,7 @@ public class AWSIotMqttManager {
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
 
-    /** Is this a clean Session with no state being persisted from a prior session */
+    /** True if this is a clean Session with no state being persisted from a prior session */
     private boolean cleanSession = true;
     /**
      * Indicates whether metrics collection is enabled.

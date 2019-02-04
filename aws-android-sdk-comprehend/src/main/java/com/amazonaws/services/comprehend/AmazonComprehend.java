@@ -231,7 +231,8 @@ public interface AmazonComprehend {
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
      * classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories.
+     * documents into the categories. For more information, see
+     * <a>how-document-classification</a>.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -1220,6 +1221,72 @@ public interface AmazonComprehend {
      */
     StopSentimentDetectionJobResult stopSentimentDetectionJob(
             StopSentimentDetectionJobRequest stopSentimentDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops a document classifier training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and put into
+     * the <code>STOPPED</code> state and the service sends back an HTTP 200
+     * response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingDocumentClassifierRequest
+     * @return stopTrainingDocumentClassifierResult The response from the
+     *         StopTrainingDocumentClassifier service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopTrainingDocumentClassifierResult stopTrainingDocumentClassifier(
+            StopTrainingDocumentClassifierRequest stopTrainingDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops an entity recognizer training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and putted
+     * into the <code>STOPPED</code> state and the service sends back an HTTP
+     * 200 response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingEntityRecognizerRequest
+     * @return stopTrainingEntityRecognizerResult The response from the
+     *         StopTrainingEntityRecognizer service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopTrainingEntityRecognizerResult stopTrainingEntityRecognizer(
+            StopTrainingEntityRecognizerRequest stopTrainingEntityRecognizerRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

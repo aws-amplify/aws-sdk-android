@@ -306,23 +306,33 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     /**
      * <p>
-     * Invokes a Lambda function. For an example, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually"
-     * >Create the Lambda Function and Test It Manually</a>.
+     * Invokes a Lambda function. You can invoke a function synchronously and
+     * wait for the response, or asynchronously. To invoke a function
+     * asynchronously, set <code>InvocationType</code> to <code>Event</code>.
      * </p>
      * <p>
-     * Specify just a function name to invoke the latest version of the
-     * function. To invoke a published version, use the <code>Qualifier</code>
-     * parameter to specify a <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"
-     * >version or alias</a>.
+     * For synchronous invocation, details about the function response,
+     * including errors, are included in the response body and headers. For
+     * either invocation type, you can find more information in the <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
+     * >execution log</a> and <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
+     * record function errors for asynchronous invocations, configure your
+     * function with a <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead letter
+     * queue</a>.
      * </p>
      * <p>
-     * If you use the <code>RequestResponse</code> (synchronous) invocation
-     * option, the function will be invoked only once. If you use the
-     * <code>Event</code> (asynchronous) invocation option, the function will be
-     * invoked at least once in response to an event and the function must be
-     * idempotent to handle this.
+     * The status code in the API response does not reflect function errors.
+     * Error codes are reserved for errors that prevent your function from
+     * executing, such as permissions errors, <a
+     * href="http://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
+     * errors</a>, or issues with your function's code and configuration. For
+     * example, Lambda returns <code>TooManyRequestsException</code> if
+     * executing the function would cause you to exceed a concurrency limit at
+     * either the account level (<code>ConcurrentInvocationLimitExceeded</code>)
+     * or function level (
+     * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
      * </p>
      * <p>
      * For functions with a long timeout, your client may be disconnected during
@@ -333,16 +343,6 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * <p>
      * This operation requires permission for the
      * <code>lambda:InvokeFunction</code> action.
-     * </p>
-     * <p>
-     * The <code>TooManyRequestsException</code> noted below will return the
-     * following: <code>ConcurrentInvocationLimitExceeded</code> will be
-     * returned if you have no functions with reserved concurrency and have
-     * exceeded your account concurrent limit or if a function without reserved
-     * concurrency exceeds the account's unreserved concurrency limit.
-     * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code> will be
-     * returned when a function with reserved concurrency exceeds its configured
-     * concurrency limit.
      * </p>
      * 
      * @param invokeRequest

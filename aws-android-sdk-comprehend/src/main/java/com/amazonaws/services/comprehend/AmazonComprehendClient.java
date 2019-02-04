@@ -571,7 +571,8 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
      * classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories.
+     * documents into the categories. For more information, see
+     * <a>how-document-classification</a>.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -2492,6 +2493,126 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StopSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new StopSentimentDetectionJobResultJsonUnmarshaller();
             JsonResponseHandler<StopSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<StopSentimentDetectionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Stops a document classifier training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and put into
+     * the <code>STOPPED</code> state and the service sends back an HTTP 200
+     * response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingDocumentClassifierRequest
+     * @return stopTrainingDocumentClassifierResult The response from the
+     *         StopTrainingDocumentClassifier service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StopTrainingDocumentClassifierResult stopTrainingDocumentClassifier(
+            StopTrainingDocumentClassifierRequest stopTrainingDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(stopTrainingDocumentClassifierRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StopTrainingDocumentClassifierRequest> request = null;
+        Response<StopTrainingDocumentClassifierResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StopTrainingDocumentClassifierRequestMarshaller()
+                        .marshall(stopTrainingDocumentClassifierRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StopTrainingDocumentClassifierResult, JsonUnmarshallerContext> unmarshaller = new StopTrainingDocumentClassifierResultJsonUnmarshaller();
+            JsonResponseHandler<StopTrainingDocumentClassifierResult> responseHandler = new JsonResponseHandler<StopTrainingDocumentClassifierResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Stops an entity recognizer training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and putted
+     * into the <code>STOPPED</code> state and the service sends back an HTTP
+     * 200 response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingEntityRecognizerRequest
+     * @return stopTrainingEntityRecognizerResult The response from the
+     *         StopTrainingEntityRecognizer service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StopTrainingEntityRecognizerResult stopTrainingEntityRecognizer(
+            StopTrainingEntityRecognizerRequest stopTrainingEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(stopTrainingEntityRecognizerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StopTrainingEntityRecognizerRequest> request = null;
+        Response<StopTrainingEntityRecognizerResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StopTrainingEntityRecognizerRequestMarshaller()
+                        .marshall(stopTrainingEntityRecognizerRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StopTrainingEntityRecognizerResult, JsonUnmarshallerContext> unmarshaller = new StopTrainingEntityRecognizerResultJsonUnmarshaller();
+            JsonResponseHandler<StopTrainingEntityRecognizerResult> responseHandler = new JsonResponseHandler<StopTrainingEntityRecognizerResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

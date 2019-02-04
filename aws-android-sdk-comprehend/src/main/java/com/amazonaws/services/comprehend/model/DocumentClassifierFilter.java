@@ -31,7 +31,8 @@ public class DocumentClassifierFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      */
     private String status;
 
@@ -61,7 +62,8 @@ public class DocumentClassifierFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @return <p>
      *         Filters the list of classifiers based on status.
@@ -78,7 +80,8 @@ public class DocumentClassifierFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            Filters the list of classifiers based on status.
@@ -98,7 +101,8 @@ public class DocumentClassifierFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            Filters the list of classifiers based on status.
@@ -118,7 +122,8 @@ public class DocumentClassifierFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            Filters the list of classifiers based on status.
@@ -138,7 +143,8 @@ public class DocumentClassifierFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            Filters the list of classifiers based on status.

@@ -31,7 +31,8 @@ public class EntityRecognizerFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      */
     private String status;
 
@@ -59,7 +60,8 @@ public class EntityRecognizerFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @return <p>
      *         The status of an entity recognizer.
@@ -76,7 +78,8 @@ public class EntityRecognizerFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -96,7 +99,8 @@ public class EntityRecognizerFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -116,7 +120,8 @@ public class EntityRecognizerFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -136,7 +141,8 @@ public class EntityRecognizerFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
      *            The status of an entity recognizer.

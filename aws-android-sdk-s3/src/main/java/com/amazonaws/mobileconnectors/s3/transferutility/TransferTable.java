@@ -201,6 +201,11 @@ class TransferTable {
      */
     public static final String COLUMN_CANNED_ACL = "canned_acl";
 
+    /**
+     * The allowed connection types a transfer can use.
+     */
+    public static final String COLUMN_TRANSFER_UTILITY_OPTIONS = "transfer_utility_options";
+
     /*
      * Database creation SQL statement
      */
@@ -250,6 +255,7 @@ class TransferTable {
     private static final int TABLE_VERSION_3 = 3;
     private static final int TABLE_VERSION_4 = 4;
     private static final int TABLE_VERSION_5 = 5;
+    private static final int TABLE_VERSION_6 = 6;
 
     /**
      * Upgrades the database.
@@ -272,6 +278,9 @@ class TransferTable {
         }
         if (oldVersion < TABLE_VERSION_5 && newVersion >= TABLE_VERSION_5) {
             addVersion5Columns(database);
+        }
+        if (oldVersion < TABLE_VERSION_6 && newVersion >= TABLE_VERSION_6) {
+            addVersion6Columns(database);
         }
     }
 
@@ -321,5 +330,14 @@ class TransferTable {
         final String addStorageClass = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_HEADER_STORAGE_CLASS + " text;";
         database.execSQL(addStorageClass);
+    }
+
+    /**
+     * Adds columns that were introduced in version 6 to the database
+     */
+    private static void addVersion6Columns(SQLiteDatabase database) {
+        final String addConnectionType = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_TRANSFER_UTILITY_OPTIONS + " text;";
+        database.execSQL(addConnectionType);
     }
 }

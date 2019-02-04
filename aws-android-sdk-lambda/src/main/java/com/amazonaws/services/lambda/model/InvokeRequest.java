@@ -21,22 +21,31 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Invokes a Lambda function. For an example, see <a href=
- * "http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually"
- * >Create the Lambda Function and Test It Manually</a>.
+ * Invokes a Lambda function. You can invoke a function synchronously and wait
+ * for the response, or asynchronously. To invoke a function asynchronously, set
+ * <code>InvocationType</code> to <code>Event</code>.
  * </p>
  * <p>
- * Specify just a function name to invoke the latest version of the function. To
- * invoke a published version, use the <code>Qualifier</code> parameter to
- * specify a <a
- * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"
- * >version or alias</a>.
+ * For synchronous invocation, details about the function response, including
+ * errors, are included in the response body and headers. For either invocation
+ * type, you can find more information in the <a href=
+ * "http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
+ * >execution log</a> and <a
+ * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
+ * record function errors for asynchronous invocations, configure your function
+ * with a <a href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead
+ * letter queue</a>.
  * </p>
  * <p>
- * If you use the <code>RequestResponse</code> (synchronous) invocation option,
- * the function will be invoked only once. If you use the <code>Event</code>
- * (asynchronous) invocation option, the function will be invoked at least once
- * in response to an event and the function must be idempotent to handle this.
+ * The status code in the API response does not reflect function errors. Error
+ * codes are reserved for errors that prevent your function from executing, such
+ * as permissions errors, <a
+ * href="http://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
+ * errors</a>, or issues with your function's code and configuration. For
+ * example, Lambda returns <code>TooManyRequestsException</code> if executing
+ * the function would cause you to exceed a concurrency limit at either the
+ * account level (<code>ConcurrentInvocationLimitExceeded</code>) or function
+ * level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
  * </p>
  * <p>
  * For functions with a long timeout, your client may be disconnected during
@@ -48,21 +57,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This operation requires permission for the <code>lambda:InvokeFunction</code>
  * action.
  * </p>
- * <p>
- * The <code>TooManyRequestsException</code> noted below will return the
- * following: <code>ConcurrentInvocationLimitExceeded</code> will be returned if
- * you have no functions with reserved concurrency and have exceeded your
- * account concurrent limit or if a function without reserved concurrency
- * exceeds the account's unreserved concurrency limit.
- * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code> will be
- * returned when a function with reserved concurrency exceeds its configured
- * concurrency limit.
- * </p>
  */
 public class InvokeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the Lambda function.
+     * The name of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -70,24 +69,26 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>MyFunction</code>.
+     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Function ARN</b> -
-     * <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+     * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.
+     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The length constraint applies only to the full ARN. If you specify only
-     * the function name, it is limited to 64 characters in length.
+     * You can append a version number or alias to any of the formats. The
+     * length constraint applies only to the full ARN. If you specify only the
+     * function name, it is limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -108,13 +109,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -132,11 +135,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,25 +145,9 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Using the <code>ClientContext</code> you can pass client-specific
-     * information to the Lambda function you are invoking. You can then process
-     * the client information in your Lambda function as you choose through the
-     * context variable. For an example of a <code>ClientContext</code> JSON,
-     * see <a href=
-     * "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     * >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User
-     * Guide</i>.
+     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
+     * to the function in the context object.
      * </p>
-     * <p>
-     * The ClientContext JSON must be base64-encoded and has a maximum size of
-     * 3583 bytes.
-     * </p>
-     * <note>
-     * <p>
-     * <code>ClientContext</code> information is returned only if you use the
-     * synchronous (<code>RequestResponse</code>) invocation type.
-     * </p>
-     * </note>
      */
     private String clientContext;
 
@@ -188,7 +171,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function.
+     * The name of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -196,24 +179,26 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>MyFunction</code>.
+     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Function ARN</b> -
-     * <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+     * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.
+     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The length constraint applies only to the full ARN. If you specify only
-     * the function name, it is limited to 64 characters in length.
+     * You can append a version number or alias to any of the formats. The
+     * length constraint applies only to the full ARN. If you specify only the
+     * function name, it is limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -224,7 +209,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @return <p>
-     *         The name of the Lambda function.
+     *         The name of the Lambda function, version, or alias.
      *         </p>
      *         <p class="title">
      *         <b>Name formats</b>
@@ -232,24 +217,26 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         <ul>
      *         <li>
      *         <p>
-     *         <b>Function name</b> - <code>MyFunction</code>.
+     *         <b>Function name</b> - <code>my-function</code> (name-only),
+     *         <code>my-function:v1</code> (with alias).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <b>Function ARN</b> -
-     *         <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>
+     *         <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *         .
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <b>Partial ARN</b> -
-     *         <code>123456789012:function:MyFunction</code>.
+     *         <code>123456789012:function:my-function</code>.
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
+     *         You can append a version number or alias to any of the formats.
      *         The length constraint applies only to the full ARN. If you
      *         specify only the function name, it is limited to 64 characters in
      *         length.
@@ -261,7 +248,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function.
+     * The name of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -269,24 +256,26 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>MyFunction</code>.
+     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Function ARN</b> -
-     * <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+     * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.
+     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The length constraint applies only to the full ARN. If you specify only
-     * the function name, it is limited to 64 characters in length.
+     * You can append a version number or alias to any of the formats. The
+     * length constraint applies only to the full ARN. If you specify only the
+     * function name, it is limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -297,7 +286,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the Lambda function.
+     *            The name of the Lambda function, version, or alias.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>
@@ -305,27 +294,29 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <b>Function name</b> - <code>MyFunction</code>.
+     *            <b>Function name</b> - <code>my-function</code> (name-only),
+     *            <code>my-function:v1</code> (with alias).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Function ARN</b> -
-     *            <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>
+     *            <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *            .
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Partial ARN</b> -
-     *            <code>123456789012:function:MyFunction</code>.
+     *            <code>123456789012:function:my-function</code>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            The length constraint applies only to the full ARN. If you
-     *            specify only the function name, it is limited to 64 characters
-     *            in length.
+     *            You can append a version number or alias to any of the
+     *            formats. The length constraint applies only to the full ARN.
+     *            If you specify only the function name, it is limited to 64
+     *            characters in length.
      *            </p>
      */
     public void setFunctionName(String functionName) {
@@ -334,7 +325,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The name of the Lambda function.
+     * The name of the Lambda function, version, or alias.
      * </p>
      * <p class="title">
      * <b>Name formats</b>
@@ -342,24 +333,26 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>MyFunction</code>.
+     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Function ARN</b> -
-     * <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+     * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.
+     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The length constraint applies only to the full ARN. If you specify only
-     * the function name, it is limited to 64 characters in length.
+     * You can append a version number or alias to any of the formats. The
+     * length constraint applies only to the full ARN. If you specify only the
+     * function name, it is limited to 64 characters in length.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -373,7 +366,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * :)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
-     *            The name of the Lambda function.
+     *            The name of the Lambda function, version, or alias.
      *            </p>
      *            <p class="title">
      *            <b>Name formats</b>
@@ -381,27 +374,29 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <b>Function name</b> - <code>MyFunction</code>.
+     *            <b>Function name</b> - <code>my-function</code> (name-only),
+     *            <code>my-function:v1</code> (with alias).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Function ARN</b> -
-     *            <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>
+     *            <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *            .
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Partial ARN</b> -
-     *            <code>123456789012:function:MyFunction</code>.
+     *            <code>123456789012:function:my-function</code>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            The length constraint applies only to the full ARN. If you
-     *            specify only the function name, it is limited to 64 characters
-     *            in length.
+     *            You can append a version number or alias to any of the
+     *            formats. The length constraint applies only to the full ARN.
+     *            If you specify only the function name, it is limited to 64
+     *            characters in length.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -420,13 +415,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -448,14 +445,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         <p>
      *         <code>RequestResponse</code> (default) - Invoke the function
      *         synchronously. Keep the connection open until the function
-     *         returns a response or times out.
+     *         returns a response or times out. The API response includes the
+     *         function response and additional data.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>Event</code> - Invoke the function asynchronously. Send
      *         events that fail multiple times to the function's dead-letter
-     *         queue (if configured).
+     *         queue (if configured). The API response only includes a status
+     *         code.
      *         </p>
      *         </li>
      *         <li>
@@ -480,13 +479,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -508,14 +509,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>RequestResponse</code> (default) - Invoke the function
      *            synchronously. Keep the connection open until the function
-     *            returns a response or times out.
+     *            returns a response or times out. The API response includes the
+     *            function response and additional data.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured).
+     *            queue (if configured). The API response only includes a status
+     *            code.
      *            </p>
      *            </li>
      *            <li>
@@ -540,13 +543,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -571,14 +576,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>RequestResponse</code> (default) - Invoke the function
      *            synchronously. Keep the connection open until the function
-     *            returns a response or times out.
+     *            returns a response or times out. The API response includes the
+     *            function response and additional data.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured).
+     *            queue (if configured). The API response only includes a status
+     *            code.
      *            </p>
      *            </li>
      *            <li>
@@ -606,13 +613,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -634,14 +643,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>RequestResponse</code> (default) - Invoke the function
      *            synchronously. Keep the connection open until the function
-     *            returns a response or times out.
+     *            returns a response or times out. The API response includes the
+     *            function response and additional data.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured).
+     *            queue (if configured). The API response only includes a status
+     *            code.
      *            </p>
      *            </li>
      *            <li>
@@ -666,13 +677,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * <code>RequestResponse</code> (default) - Invoke the function
      * synchronously. Keep the connection open until the function returns a
-     * response or times out.
+     * response or times out. The API response includes the function response
+     * and additional data.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
      * fail multiple times to the function's dead-letter queue (if configured).
+     * The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -697,14 +710,16 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>RequestResponse</code> (default) - Invoke the function
      *            synchronously. Keep the connection open until the function
-     *            returns a response or times out.
+     *            returns a response or times out. The API response includes the
+     *            function response and additional data.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured).
+     *            queue (if configured). The API response only includes a status
+     *            code.
      *            </p>
      *            </li>
      *            <li>
@@ -725,23 +740,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
      * @return <p>
-     *         You can set this optional parameter to <code>Tail</code> in the
-     *         request only if you specify the <code>InvocationType</code>
-     *         parameter with value <code>RequestResponse</code>. In this case,
-     *         AWS Lambda returns the base64-encoded last 4 KB of log data
-     *         produced by your Lambda function in the
-     *         <code>x-amz-log-result</code> header.
+     *         Set to <code>Tail</code> to include the execution log in the
+     *         response.
      *         </p>
      * @see LogType
      */
@@ -751,23 +758,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
      * @param logType <p>
-     *            You can set this optional parameter to <code>Tail</code> in
-     *            the request only if you specify the
-     *            <code>InvocationType</code> parameter with value
-     *            <code>RequestResponse</code>. In this case, AWS Lambda returns
-     *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-result</code> header.
+     *            Set to <code>Tail</code> to include the execution log in the
+     *            response.
      *            </p>
      * @see LogType
      */
@@ -777,11 +776,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -791,12 +786,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Allowed Values: </b>None, Tail
      *
      * @param logType <p>
-     *            You can set this optional parameter to <code>Tail</code> in
-     *            the request only if you specify the
-     *            <code>InvocationType</code> parameter with value
-     *            <code>RequestResponse</code>. In this case, AWS Lambda returns
-     *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-result</code> header.
+     *            Set to <code>Tail</code> to include the execution log in the
+     *            response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -809,23 +800,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>None, Tail
      *
      * @param logType <p>
-     *            You can set this optional parameter to <code>Tail</code> in
-     *            the request only if you specify the
-     *            <code>InvocationType</code> parameter with value
-     *            <code>RequestResponse</code>. In this case, AWS Lambda returns
-     *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-result</code> header.
+     *            Set to <code>Tail</code> to include the execution log in the
+     *            response.
      *            </p>
      * @see LogType
      */
@@ -835,11 +818,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * You can set this optional parameter to <code>Tail</code> in the request
-     * only if you specify the <code>InvocationType</code> parameter with value
-     * <code>RequestResponse</code>. In this case, AWS Lambda returns the
-     * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-result</code> header.
+     * Set to <code>Tail</code> to include the execution log in the response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -849,12 +828,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Allowed Values: </b>None, Tail
      *
      * @param logType <p>
-     *            You can set this optional parameter to <code>Tail</code> in
-     *            the request only if you specify the
-     *            <code>InvocationType</code> parameter with value
-     *            <code>RequestResponse</code>. In this case, AWS Lambda returns
-     *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-result</code> header.
+     *            Set to <code>Tail</code> to include the execution log in the
+     *            response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -867,47 +842,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Using the <code>ClientContext</code> you can pass client-specific
-     * information to the Lambda function you are invoking. You can then process
-     * the client information in your Lambda function as you choose through the
-     * context variable. For an example of a <code>ClientContext</code> JSON,
-     * see <a href=
-     * "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     * >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User
-     * Guide</i>.
+     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
+     * to the function in the context object.
      * </p>
-     * <p>
-     * The ClientContext JSON must be base64-encoded and has a maximum size of
-     * 3583 bytes.
-     * </p>
-     * <note>
-     * <p>
-     * <code>ClientContext</code> information is returned only if you use the
-     * synchronous (<code>RequestResponse</code>) invocation type.
-     * </p>
-     * </note>
      *
      * @return <p>
-     *         Using the <code>ClientContext</code> you can pass client-specific
-     *         information to the Lambda function you are invoking. You can then
-     *         process the client information in your Lambda function as you
-     *         choose through the context variable. For an example of a
-     *         <code>ClientContext</code> JSON, see <a href=
-     *         "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     *         >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference
-     *         and User Guide</i>.
+     *         Up to 3583 bytes of base64-encoded data about the invoking client
+     *         to pass to the function in the context object.
      *         </p>
-     *         <p>
-     *         The ClientContext JSON must be base64-encoded and has a maximum
-     *         size of 3583 bytes.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         <code>ClientContext</code> information is returned only if you
-     *         use the synchronous (<code>RequestResponse</code>) invocation
-     *         type.
-     *         </p>
-     *         </note>
      */
     public String getClientContext() {
         return clientContext;
@@ -915,48 +857,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Using the <code>ClientContext</code> you can pass client-specific
-     * information to the Lambda function you are invoking. You can then process
-     * the client information in your Lambda function as you choose through the
-     * context variable. For an example of a <code>ClientContext</code> JSON,
-     * see <a href=
-     * "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     * >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User
-     * Guide</i>.
+     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
+     * to the function in the context object.
      * </p>
-     * <p>
-     * The ClientContext JSON must be base64-encoded and has a maximum size of
-     * 3583 bytes.
-     * </p>
-     * <note>
-     * <p>
-     * <code>ClientContext</code> information is returned only if you use the
-     * synchronous (<code>RequestResponse</code>) invocation type.
-     * </p>
-     * </note>
      *
      * @param clientContext <p>
-     *            Using the <code>ClientContext</code> you can pass
-     *            client-specific information to the Lambda function you are
-     *            invoking. You can then process the client information in your
-     *            Lambda function as you choose through the context variable.
-     *            For an example of a <code>ClientContext</code> JSON, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     *            >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference
-     *            and User Guide</i>.
+     *            Up to 3583 bytes of base64-encoded data about the invoking
+     *            client to pass to the function in the context object.
      *            </p>
-     *            <p>
-     *            The ClientContext JSON must be base64-encoded and has a
-     *            maximum size of 3583 bytes.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            <code>ClientContext</code> information is returned only if you
-     *            use the synchronous (<code>RequestResponse</code>) invocation
-     *            type.
-     *            </p>
-     *            </note>
      */
     public void setClientContext(String clientContext) {
         this.clientContext = clientContext;
@@ -964,51 +872,17 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Using the <code>ClientContext</code> you can pass client-specific
-     * information to the Lambda function you are invoking. You can then process
-     * the client information in your Lambda function as you choose through the
-     * context variable. For an example of a <code>ClientContext</code> JSON,
-     * see <a href=
-     * "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     * >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference and User
-     * Guide</i>.
+     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
+     * to the function in the context object.
      * </p>
-     * <p>
-     * The ClientContext JSON must be base64-encoded and has a maximum size of
-     * 3583 bytes.
-     * </p>
-     * <note>
-     * <p>
-     * <code>ClientContext</code> information is returned only if you use the
-     * synchronous (<code>RequestResponse</code>) invocation type.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param clientContext <p>
-     *            Using the <code>ClientContext</code> you can pass
-     *            client-specific information to the Lambda function you are
-     *            invoking. You can then process the client information in your
-     *            Lambda function as you choose through the context variable.
-     *            For an example of a <code>ClientContext</code> JSON, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/mobileanalytics/latest/ug/PutEvents.html"
-     *            >PutEvents</a> in the <i>Amazon Mobile Analytics API Reference
-     *            and User Guide</i>.
+     *            Up to 3583 bytes of base64-encoded data about the invoking
+     *            client to pass to the function in the context object.
      *            </p>
-     *            <p>
-     *            The ClientContext JSON must be base64-encoded and has a
-     *            maximum size of 3583 bytes.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            <code>ClientContext</code> information is returned only if you
-     *            use the synchronous (<code>RequestResponse</code>) invocation
-     *            type.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
