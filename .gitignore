@@ -71,3 +71,4 @@ target/
 
 #python comile
 __pycache__/
+testconfiguration.json
