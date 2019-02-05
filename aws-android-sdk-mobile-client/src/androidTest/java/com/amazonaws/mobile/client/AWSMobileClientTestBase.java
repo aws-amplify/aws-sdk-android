@@ -9,6 +9,7 @@ import android.util.Base64;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.runner.RunWith;
+import org.junit.Test;
 
 @RunWith(AndroidJUnit4.class)
 public class AWSMobileClientTestBase {
@@ -49,4 +50,10 @@ public class AWSMobileClientTestBase {
         String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
         return validAccessToken;
     }
+    //This is need for CircleCI to run the test suite
+    @Test
+    public void empty()
+    {
+        
+    }    
 }

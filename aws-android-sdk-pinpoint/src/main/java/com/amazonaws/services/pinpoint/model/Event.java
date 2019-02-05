@@ -22,17 +22,17 @@ import java.io.Serializable;
  */
 public class Event implements Serializable {
     /**
-     * The new value for the appPackageName property for this object.
+     * The package name associated with the app that's recording the event.
      */
     private String appPackageName;
 
     /**
-     * The new value for the appTitle property for this object.
+     * The title of the app that's recording the event.
      */
     private String appTitle;
 
     /**
-     * The new value for the appVersionCode property for this object.
+     * The version number of the app that's recording the event.
      */
     private String appVersionCode;
 
@@ -58,7 +58,7 @@ public class Event implements Serializable {
     private java.util.Map<String, Double> metrics;
 
     /**
-     * The new value for the sdkName property for this object.
+     * The name of the SDK that's being used to record the event.
      */
     private String sdkName;
 
@@ -73,32 +73,33 @@ public class Event implements Serializable {
     private String timestamp;
 
     /**
-     * Returns the value of the appPackageName property for this object.
+     * The package name associated with the app that's recording the event.
      *
-     * @return The value of the appPackageName property for this object.
+     * @return The package name associated with the app that's recording the
+     *         event.
      */
     public String getAppPackageName() {
         return appPackageName;
     }
 
     /**
-     * Sets the value of appPackageName
+     * The package name associated with the app that's recording the event.
      *
-     * @param appPackageName The new value for the appPackageName property for
-     *            this object.
+     * @param appPackageName The package name associated with the app that's
+     *            recording the event.
      */
     public void setAppPackageName(String appPackageName) {
         this.appPackageName = appPackageName;
     }
 
     /**
-     * Sets the value of the appPackageName property for this object.
+     * The package name associated with the app that's recording the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appPackageName The new value for the appPackageName property for
-     *            this object.
+     * @param appPackageName The package name associated with the app that's
+     *            recording the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -108,30 +109,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * Returns the value of the appTitle property for this object.
+     * The title of the app that's recording the event.
      *
-     * @return The value of the appTitle property for this object.
+     * @return The title of the app that's recording the event.
      */
     public String getAppTitle() {
         return appTitle;
     }
 
     /**
-     * Sets the value of appTitle
+     * The title of the app that's recording the event.
      *
-     * @param appTitle The new value for the appTitle property for this object.
+     * @param appTitle The title of the app that's recording the event.
      */
     public void setAppTitle(String appTitle) {
         this.appTitle = appTitle;
     }
 
     /**
-     * Sets the value of the appTitle property for this object.
+     * The title of the app that's recording the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appTitle The new value for the appTitle property for this object.
+     * @param appTitle The title of the app that's recording the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -141,32 +142,32 @@ public class Event implements Serializable {
     }
 
     /**
-     * Returns the value of the appVersionCode property for this object.
+     * The version number of the app that's recording the event.
      *
-     * @return The value of the appVersionCode property for this object.
+     * @return The version number of the app that's recording the event.
      */
     public String getAppVersionCode() {
         return appVersionCode;
     }
 
     /**
-     * Sets the value of appVersionCode
+     * The version number of the app that's recording the event.
      *
-     * @param appVersionCode The new value for the appVersionCode property for
-     *            this object.
+     * @param appVersionCode The version number of the app that's recording the
+     *            event.
      */
     public void setAppVersionCode(String appVersionCode) {
         this.appVersionCode = appVersionCode;
     }
 
     /**
-     * Sets the value of the appVersionCode property for this object.
+     * The version number of the app that's recording the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appVersionCode The new value for the appVersionCode property for
-     *            this object.
+     * @param appVersionCode The version number of the app that's recording the
+     *            event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -386,30 +387,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * Returns the value of the sdkName property for this object.
+     * The name of the SDK that's being used to record the event.
      *
-     * @return The value of the sdkName property for this object.
+     * @return The name of the SDK that's being used to record the event.
      */
     public String getSdkName() {
         return sdkName;
     }
 
     /**
-     * Sets the value of sdkName
+     * The name of the SDK that's being used to record the event.
      *
-     * @param sdkName The new value for the sdkName property for this object.
+     * @param sdkName The name of the SDK that's being used to record the event.
      */
     public void setSdkName(String sdkName) {
         this.sdkName = sdkName;
     }
 
     /**
-     * Sets the value of the sdkName property for this object.
+     * The name of the SDK that's being used to record the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sdkName The new value for the sdkName property for this object.
+     * @param sdkName The name of the SDK that's being used to record the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

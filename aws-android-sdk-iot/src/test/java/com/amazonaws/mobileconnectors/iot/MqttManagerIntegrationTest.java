@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,17 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import java.io.File;
-import java.security.KeyStore;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.CountDownLatch;
-
 import android.app.Activity;
+import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.iot.AWSIotClient;
-import com.amazonaws.services.iot.model.AttachPrincipalPolicyRequest;
+import com.amazonaws.services.iot.model.AttachPolicyRequest;
 import com.amazonaws.services.iot.model.CertificateStatus;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
@@ -42,18 +35,26 @@ import com.amazonaws.services.iot.model.DeleteCertificateRequest;
 import com.amazonaws.services.iot.model.DeletePolicyRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointResult;
-import com.amazonaws.services.iot.model.DetachPrincipalPolicyRequest;
+import com.amazonaws.services.iot.model.DetachPolicyRequest;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static org.junit.Assert.*;
+import java.io.File;
+import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.CountDownLatch;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest=Config.NONE, emulateSdk = 16, reportSdk = 16)
@@ -73,6 +74,10 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
     private static AWSIotClient iotClient;
 
     private static Random r;
+    private static final String TAG = MqttManagerIntegrationTest.class.getSimpleName();
+
+    private CreateKeysAndCertificateResult certResult;
+    private CreatePolicyResult createPolicyResult;
 
     @Before
     public void setUp() throws Exception {
@@ -90,10 +95,12 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
             initCompleted = true;
         }
+        createAndAttachPolicy();
     }
 
     @After
     public void tearDown() throws Exception {
+        deletePolicyAndCertificate();
         File keystoreFile = new File(KEYSTORE_PATH, KEYSTORE_NAME);
         if (keystoreFile.exists()) {
             keystoreFile.delete();
@@ -145,7 +152,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         mqttConnect(mqttManager);
     }
 
-    @Ignore
     @Test
     public void mqttConnectMalformedEndpoints() throws Exception {
         DescribeEndpointRequest request = new DescribeEndpointRequest();
@@ -196,42 +202,20 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         final ArrayList<String> messages = new ArrayList<String>();
         final ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus>();
 
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        CreateKeysAndCertificateResult certResult = iotClient.createKeysAndCertificate(certRequest);
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
                 certResult.getCertificatePem(),
                 certResult.getKeyPair().getPrivateKey(),
                 KEYSTORE_PATH,
                 KEYSTORE_NAME,
                 KEYSTORE_PASSWORD);
 
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest = null;
-        CreatePolicyResult createPolicyResult = null;
-
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                ex.getMessage().startsWith("Policy cannot be created - name already exists "));
-        }
-
-        // attach the policy to the new cert
-        AttachPrincipalPolicyRequest policyRequest = new AttachPrincipalPolicyRequest();
-        policyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        policyRequest.setPrincipal(certResult.getCertificateArn());
-        iotClient.attachPrincipalPolicy(policyRequest);
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(),
+                KEYSTORE_PATH,
+                KEYSTORE_NAME,
+                KEYSTORE_PASSWORD);
+
         // connect to AWS IoT using keystore
         mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -278,25 +262,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         // disconnect
         mqttManager.disconnect();
-
-        // detach policy
-        DetachPrincipalPolicyRequest detachPrincipalPolicyRequest = new DetachPrincipalPolicyRequest();
-        detachPrincipalPolicyRequest.setPrincipal(certResult.getCertificateArn());
-        detachPrincipalPolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.detachPrincipalPolicy(detachPrincipalPolicyRequest);
-        // delete policy
-        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-        deletePolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.deletePolicy(deletePolicyRequest);
-        // set cert inactive
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-        // delete cert
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
 
         // verify connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -332,10 +297,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        CreateKeysAndCertificateResult certResult = iotClient.createKeysAndCertificate(certRequest);
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
                 certResult.getCertificatePem(),
@@ -343,29 +304,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
                 KEYSTORE_PATH,
                 KEYSTORE_NAME,
                 KEYSTORE_PASSWORD);
-        
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest = null;
-        CreatePolicyResult createPolicyResult = null;
 
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                ex.getMessage().startsWith("Policy cannot be created - name already exists "));
-        }
-
-        // attach the policy to the new cert
-        AttachPrincipalPolicyRequest policyRequest = new AttachPrincipalPolicyRequest();
-        policyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        policyRequest.setPrincipal(certResult.getCertificateArn());
-        iotClient.attachPrincipalPolicy(policyRequest);
         // retrieve the keystore
         KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
@@ -391,7 +330,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         Thread.sleep(2000);
 
         // publish 20 messages
-        for (int i=0; i<20; ++i) {
+        for (int i = 0; i < 20; i++) {
             mqttManager.publishString("integration test " + i, "sdk/test/integration/cert", AWSIotMqttQos.QOS0);
             Thread.sleep(250);
         }
@@ -400,25 +339,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         // disconnect
         mqttManager.disconnect();
-
-        // detach policy
-        DetachPrincipalPolicyRequest detachPrincipalPolicyRequest = new DetachPrincipalPolicyRequest();
-        detachPrincipalPolicyRequest.setPrincipal(certResult.getCertificateArn());
-        detachPrincipalPolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.detachPrincipalPolicy(detachPrincipalPolicyRequest);
-        // delete policy
-        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-        deletePolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.deletePolicy(deletePolicyRequest);
-        // set cert inactive
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-        // delete cert
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
 
         // verify connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -446,10 +366,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         String endpoint = endpointPrefix + ".iot." + Region.getRegion(Regions.US_EAST_1).getName() + ".amazonaws.com";
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
 
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        CreateKeysAndCertificateResult certResult = iotClient.createKeysAndCertificate(certRequest);
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
                 certResult.getCertificatePem(),
@@ -457,29 +373,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
                 KEYSTORE_PATH,
                 KEYSTORE_NAME,
                 KEYSTORE_PASSWORD);
-        
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest = null;
-        CreatePolicyResult createPolicyResult = null;
 
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                ex.getMessage().startsWith("Policy cannot be created - name already exists "));
-        }
-
-        // attach the policy to the new cert
-        AttachPrincipalPolicyRequest policyRequest = new AttachPrincipalPolicyRequest();
-        policyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        policyRequest.setPrincipal(certResult.getCertificateArn());
-        iotClient.attachPrincipalPolicy(policyRequest);
         // retrieve the keystore
         KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
@@ -528,25 +422,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         // disconnect
         mqttManager.disconnect();
-
-        // detach policy
-        DetachPrincipalPolicyRequest detachPrincipalPolicyRequest = new DetachPrincipalPolicyRequest();
-        detachPrincipalPolicyRequest.setPrincipal(certResult.getCertificateArn());
-        detachPrincipalPolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.detachPrincipalPolicy(detachPrincipalPolicyRequest);
-        // delete policy
-        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-        deletePolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.deletePolicy(deletePolicyRequest);
-        // set cert inactive
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-        // delete cert
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
 
         // verify connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -583,42 +458,16 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-c-reconnect", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
         mqttManager.setAutoReconnect(true);
 
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        CreateKeysAndCertificateResult certResult = iotClient.createKeysAndCertificate(certRequest);
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
-                certResult.getCertificatePem(),
-                certResult.getKeyPair().getPrivateKey(),
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
+                this.certResult.getCertificatePem(),
+                this.certResult.getKeyPair().getPrivateKey(),
                 KEYSTORE_PATH,
                 KEYSTORE_NAME,
                 KEYSTORE_PASSWORD);
-        
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest = null;
-        CreatePolicyResult createPolicyResult = null;
 
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                ex.getMessage().startsWith("Policy cannot be created - name already exists "));
-        }
-
-        // attach the policy to the new cert
-        AttachPrincipalPolicyRequest policyRequest = new AttachPrincipalPolicyRequest();
-        policyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        policyRequest.setPrincipal(certResult.getCertificateArn());
-        iotClient.attachPrincipalPolicy(policyRequest);
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(this.certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
         mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -673,25 +522,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         // disconnect
         mqttManager.disconnect();
-
-        // detach policy
-        DetachPrincipalPolicyRequest detachPrincipalPolicyRequest = new DetachPrincipalPolicyRequest();
-        detachPrincipalPolicyRequest.setPrincipal(certResult.getCertificateArn());
-        detachPrincipalPolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.detachPrincipalPolicy(detachPrincipalPolicyRequest);
-        // delete policy
-        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-        deletePolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.deletePolicy(deletePolicyRequest);
-        // set cert inactive
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-        // delete cert
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
     }
 
     @Test
@@ -711,10 +541,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         mqttManager.setAutoReconnect(false);
 
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        CreateKeysAndCertificateResult certResult = iotClient.createKeysAndCertificate(certRequest);
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
                 certResult.getCertificatePem(),
@@ -722,29 +548,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
                 KEYSTORE_PATH,
                 KEYSTORE_NAME,
                 KEYSTORE_PASSWORD);
-        
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest = null;
-        CreatePolicyResult createPolicyResult = null;
 
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                ex.getMessage().startsWith("Policy cannot be created - name already exists "));
-        }
-
-        // attach the policy to the new cert
-        AttachPrincipalPolicyRequest policyRequest = new AttachPrincipalPolicyRequest();
-        policyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        policyRequest.setPrincipal(certResult.getCertificateArn());
-        iotClient.attachPrincipalPolicy(policyRequest);
         // retrieve the keystore
         KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
@@ -773,25 +577,6 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
         // disconnect
         mqttManager.disconnect();
-
-        // detach policy
-        DetachPrincipalPolicyRequest detachPrincipalPolicyRequest = new DetachPrincipalPolicyRequest();
-        detachPrincipalPolicyRequest.setPrincipal(certResult.getCertificateArn());
-        detachPrincipalPolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.detachPrincipalPolicy(detachPrincipalPolicyRequest);
-        // delete policy
-        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-        deletePolicyRequest.setPolicyName(createPolicyResult.getPolicyName());
-        iotClient.deletePolicy(deletePolicyRequest);
-        // set cert inactive
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-        // delete cert
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
 
         // ensure connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -924,8 +709,14 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         mqttManager.disconnect();
     }
 
+    /**
+     * Client-1 connects and subscribes to a topic and disconnects.
+     * Client-2 connects and publishes to the same topic.
+     * Now, Client-1 comes back, connects and subscribes to the topic and
+     * checks if it does not receive the message that Client-2 published.
+     */
     @Test
-    public void mqttCleanSessionTrue() throws Exception {
+    public void mqttCleanSession() throws Exception {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
@@ -1059,9 +850,21 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         assertEquals(0, messages.size());
     }
 
+    /**
+     * Client-1 connects and subscribes to a topic and disconnects.
+     * Client-2 connects and publishes to the same topic.
+     * Now, Client-1 comes back, connects and subscribes to the topic and
+     * checks if it can receive the message that Client-2 published.
+     *
+     * This test is currently ignored because persistent session
+     * (cleanSession = false) is not yet implemented by AWS IoT.
+     *
+     * Please remove the @Ignore annotation when the feature is
+     * released by AWS IoT.
+     */
     @Ignore
     @Test
-    public void mqttCleanSessionFalse() throws Exception {
+    public void mqttPersistantSession() throws Exception {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
@@ -1073,7 +876,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
             endpointPrefix);
 
         mqttManager.setCleanSession(false);
-        mqttManager.setAutoReconnect(true);
+        mqttManager.setAutoReconnect(false);
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -1102,9 +905,11 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
             new AWSIotMqttNewMessageCallback() {
                 @Override
                 public void onMessageArrived(String topic, byte[] data) {
+                    System.out.println("Client client-id-1 received a message on topic:" + topic);
                     messages.add(new String(data));
                 }
             });
+
         // ensure subscription propagates
         Thread.sleep(2000);
 
@@ -1121,7 +926,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
             endpointPrefix);
 
         mqttManager2.setCleanSession(false);
-        mqttManager2.setAutoReconnect(true);
+        mqttManager2.setAutoReconnect(false);
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch2 = new CountDownLatch(1);
@@ -1145,10 +950,20 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         }
 
         // publish large message
-        mqttManager2.publishString(largeMessageString, 
-            topic, 
-            AWSIotMqttQos.QOS0);
+        mqttManager2.publishString(largeMessageString,
+                topic,
+                AWSIotMqttQos.QOS0,
+                new AWSIotMqttMessageDeliveryCallback() {
+                    @Override
+                    public void statusChanged(MessageDeliveryStatus status, Object userData) {
+                        System.out.println("Client client-id-2 published a message. Status :" + status);
+                    }
+                }, null);
 
+        Thread.sleep(3000);
+
+        // disconenct client 2
+        mqttManager2.disconnect();
         Thread.sleep(3000);
 
         mqttManager = new AWSIotMqttManager("client-id-1", 
@@ -1180,17 +995,18 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         }
 
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic(topic, 
-            AWSIotMqttQos.QOS0, 
-            new AWSIotMqttNewMessageCallback() {
-                @Override
-                public void onMessageArrived(String topic, byte[] data) {
-                    messages.add(new String(data));
-                }
-            });
-        
+        mqttManager.subscribeToTopic(topic,
+                AWSIotMqttQos.QOS0,
+                new AWSIotMqttNewMessageCallback() {
+                    @Override
+                    public void onMessageArrived(String topic, byte[] data) {
+                        System.out.println("Client client-id-1 received a message on topic:" + topic);
+                        messages.add(new String(data));
+                    }
+                });
+
         // ensure subscription propagates
-        Thread.sleep(2000);
+        Thread.sleep(10000);
 
         // verify messages arrived on topic
         assertEquals(1, messages.size());
@@ -1198,5 +1014,80 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
 
     private static byte getAlphaChar() {
         return (byte)(0x41 + r.nextInt(57));
+    }
+
+    /**
+     * Create an IoT policy allowing all actions in IoT
+     * Then attaching the created policy to the certificate.
+     *
+     * Warning: This policy is used repeatedly throughout the test
+     */
+    private void createAndAttachPolicy() {
+        // create a new certificate and private key
+        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
+        certRequest.setSetAsActive(true);
+        this.certResult = iotClient.createKeysAndCertificate(certRequest);
+
+        // create an IoT policy allowing all actions in IoT
+        String policyDocument;
+        CreatePolicyRequest createPolicyRequest;
+
+        try {
+            // create an IoT policy allowing all actions in IoT
+            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
+            createPolicyRequest = new CreatePolicyRequest();
+            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
+            createPolicyRequest.setPolicyDocument(policyDocument);
+            this.createPolicyResult = iotClient.createPolicy(createPolicyRequest);
+        }  catch (Exception ex) {
+            assertTrue("Error in creating the policy. ",
+                    ex.getMessage().startsWith("Policy cannot be created - name already exists "));
+        }
+
+        AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
+        attachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
+        attachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        iotClient.attachPolicy(attachPolicyRequest);
+    }
+
+    /**
+     * Detatch the policy from the certificate.
+     * Delete the policy.
+     * Update certificate status as inactive.
+     * Delete the certificate.
+     */
+    private void deletePolicyAndCertificate() {
+        try {
+            Log.d(TAG, "Detatching the policy from the certificate.");
+            DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
+            detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
+            detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+            iotClient.detachPolicy(detachPolicyRequest);
+
+            // delete policy
+            Log.d(TAG, "Deleting the policy.");
+            DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
+            deletePolicyRequest.setPolicyName(IOT_POLICY_NAME);
+            iotClient.deletePolicy(deletePolicyRequest);
+
+            // set cert inactive
+            Log.d(TAG, "Make the certificate inactive.");
+            UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
+            updateCertificateRequest.setCertificateId(this.certResult.getCertificateId());
+            updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
+            iotClient.updateCertificate(updateCertificateRequest);
+
+            // delete cert
+            Log.d(TAG, "Delete the certificate.");
+            DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
+            deleteCertificateRequest.setCertificateId(this.certResult.getCertificateId());
+            iotClient.deleteCertificate(deleteCertificateRequest);
+        } catch (AmazonServiceException ase) {
+            ase.printStackTrace();
+            assertTrue("Exception thrown while deleting the policy and certificate", false);
+        } catch (AmazonClientException ace) {
+            ace.printStackTrace();
+            assertTrue("Exception thrown while deleting the policy and certificate", false);
+        }
     }
 }

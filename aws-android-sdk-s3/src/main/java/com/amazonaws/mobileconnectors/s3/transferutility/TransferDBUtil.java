@@ -29,6 +29,8 @@ import com.amazonaws.util.json.JsonUtils;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,11 @@ class TransferDBUtil {
      * transferDBBase is a basic helper for accessing the database
      */
     private static TransferDBBase transferDBBase;
+
+    /**
+     * Gson object for serializing objects.
+     */
+    private Gson gson = new Gson();
 
     /**
      * Constructs a TransferDBUtil with the given Context.
@@ -85,13 +92,15 @@ class TransferDBUtil {
      * @param uploadId The multipart upload id of the upload.
      * @param bytesTotal The Total bytes of the file.
      * @param isLastPart Whether this part is the last part of the upload.
+     * @param tuOptions Configuration for TransferUtility
      * @return An Uri of the record inserted.
      */
     public Uri insertMultipartUploadRecord(String bucket, String key, File file,
-            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart) {
+            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart,
+            TransferUtilityOptions tuOptions) {
         final ContentValues values = generateContentValuesForMultiPartUpload(bucket, key, file,
                 fileOffset, partNumber, uploadId, bytesTotal, isLastPart, new ObjectMetadata(),
-                null);
+                null, tuOptions);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
 
@@ -104,11 +113,12 @@ class TransferDBUtil {
      *            object.
      * @param file The file to upload.
      * @param metadata The S3 Object metadata associated with this object
+     * @param tuOptions Configuration passed in TransferUtility
      * @return An Uri of the record inserted.
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
-            ObjectMetadata metadata) {
-        return insertSingleTransferRecord(type, bucket, key, file, metadata, null);
+            ObjectMetadata metadata, TransferUtilityOptions tuOptions) {
+        return insertSingleTransferRecord(type, bucket, key, file, metadata, null, tuOptions);
     }
 
     /**
@@ -121,12 +131,13 @@ class TransferDBUtil {
      * @param file The file to upload.
      * @param metadata The S3 Object metadata associated with this object
      * @param cannedAcl The canned Acl of this S3 object
+     * @param tuOptions Configuration passed in TransferUtility
      * @return An Uri of the record inserted.
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
-            ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
+            ObjectMetadata metadata, CannedAccessControlList cannedAcl, TransferUtilityOptions tuOptions) {
         final ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
-                metadata, cannedAcl);
+                metadata, cannedAcl, tuOptions);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
 
@@ -138,11 +149,13 @@ class TransferDBUtil {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
+     * @param tuOptions Configuration passed in TransferUtility
      * @return An Uri of the record inserted.
      */
-    public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file) {
+    public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
+           TransferUtilityOptions tuOptions) {
         return insertSingleTransferRecord(type, bucket, key, file,
-                new ObjectMetadata());
+                new ObjectMetadata(), tuOptions);
     }
 
     /**
@@ -508,6 +521,35 @@ class TransferDBUtil {
     }
 
     /**
+     * Queries the transfer record specified by main upload id.
+     *
+     * @param mainUploadId The mainUploadId of a multipart upload task
+     * @return The bytes already uploaded for this multipart upload task
+     */
+    public long queryBytesTransferredOfPartNum(int mainUploadId, int partNum) {
+        Cursor c = null;
+        long bytesCurrent = 0;
+        try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
+            while (c.moveToNext()) {
+                final int partNumFromDb = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                final String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
+                if (partNumFromDb == partNum &&
+                    !TransferState.PART_COMPLETED.equals(TransferState.getState(state))) {
+                    bytesCurrent = c.getLong(c
+                            .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_CURRENT));
+                    break;
+                }
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return bytesCurrent;
+    }
+
+    /**
      * Deletes the record with the given id.
      *
      * @param id The id of the transfer to be deleted.
@@ -662,12 +704,13 @@ class TransferDBUtil {
      * @param isLastPart Whether this part is the last part of the upload.
      * @param metadata The S3 ObjectMetadata to send along with the object
      * @param cannedAcl The canned ACL associated with the object
+     * @param tuOptions Configuration for TransferUtility
      * @return The ContentValues object generated.
      */
     public ContentValues generateContentValuesForMultiPartUpload(String bucket,
             String key, File file, long fileOffset, int partNumber, String uploadId,
             long bytesTotal, int isLastPart, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl) {
+            CannedAccessControlList cannedAcl, TransferUtilityOptions tuOptions) {
         final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, TransferType.UPLOAD.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -685,6 +728,9 @@ class TransferDBUtil {
         values.putAll(generateContentValuesForObjectMetadata(metadata));
         if (cannedAcl != null) {
             values.put(TransferTable.COLUMN_CANNED_ACL, cannedAcl.toString());
+        }
+        if (tuOptions != null) {
+            values.put(TransferTable.COLUMN_TRANSFER_UTILITY_OPTIONS, gson.toJson(tuOptions));
         }
         return values;
     }
@@ -733,11 +779,12 @@ class TransferDBUtil {
      * @param file The file to upload.
      * @param metadata The S3 ObjectMetadata to send along with the object
      * @param cannedAcl The canned ACL associated with the object
+     * @param tuOptions Configuration passed in TransferUtility
      * @return The ContentValues object generated.
      */
     private ContentValues generateContentValuesForSinglePartTransfer(TransferType type,
             String bucket, String key, File file, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl) {
+            CannedAccessControlList cannedAcl, TransferUtilityOptions tuOptions) {
         final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, type.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -754,6 +801,9 @@ class TransferDBUtil {
         values.putAll(generateContentValuesForObjectMetadata(metadata));
         if (cannedAcl != null) {
             values.put(TransferTable.COLUMN_CANNED_ACL, cannedAcl.toString());
+        }
+        if (tuOptions != null) {
+            values.put(TransferTable.COLUMN_TRANSFER_UTILITY_OPTIONS, gson.toJson(tuOptions));
         }
         return values;
     }

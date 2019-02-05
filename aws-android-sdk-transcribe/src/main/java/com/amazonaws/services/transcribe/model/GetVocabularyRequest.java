@@ -21,9 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about a vocabulary. Note that vocabularies for en-AU, en-UK,
- * and fr-CA languages that are in preview are not available. In the console,
- * the vocabulary section will be greyed-out and SDK will return error message.
+ * Gets information about a vocabulary.
  * </p>
  */
 public class GetVocabularyRequest extends AmazonWebServiceRequest implements Serializable {

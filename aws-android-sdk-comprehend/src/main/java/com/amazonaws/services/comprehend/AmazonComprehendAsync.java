@@ -341,7 +341,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
      * classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories.
+     * documents into the categories. For more information, see
+     * <a>how-document-classification</a>.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -372,7 +373,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
      * classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories.
+     * documents into the categories. For more information, see
+     * <a>how-document-classification</a>.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -2507,6 +2509,148 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<StopSentimentDetectionJobResult> stopSentimentDetectionJobAsync(
             StopSentimentDetectionJobRequest stopSentimentDetectionJobRequest,
             AsyncHandler<StopSentimentDetectionJobRequest, StopSentimentDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a document classifier training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and put into
+     * the <code>STOPPED</code> state and the service sends back an HTTP 200
+     * response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingDocumentClassifierRequest
+     * @return A Java Future object containing the response from the
+     *         StopTrainingDocumentClassifier service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopTrainingDocumentClassifierResult> stopTrainingDocumentClassifierAsync(
+            StopTrainingDocumentClassifierRequest stopTrainingDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a document classifier training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and put into
+     * the <code>STOPPED</code> state and the service sends back an HTTP 200
+     * response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingDocumentClassifierRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopTrainingDocumentClassifier service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopTrainingDocumentClassifierResult> stopTrainingDocumentClassifierAsync(
+            StopTrainingDocumentClassifierRequest stopTrainingDocumentClassifierRequest,
+            AsyncHandler<StopTrainingDocumentClassifierRequest, StopTrainingDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops an entity recognizer training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and putted
+     * into the <code>STOPPED</code> state and the service sends back an HTTP
+     * 200 response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingEntityRecognizerRequest
+     * @return A Java Future object containing the response from the
+     *         StopTrainingEntityRecognizer service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopTrainingEntityRecognizerResult> stopTrainingEntityRecognizerAsync(
+            StopTrainingEntityRecognizerRequest stopTrainingEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops an entity recognizer training job while in progress.
+     * </p>
+     * <p>
+     * If the training job state is <code>TRAINING</code>, the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * training job completes before it can be stopped, it is put into the
+     * <code>TRAINED</code>; otherwise the training job is stopped and putted
+     * into the <code>STOPPED</code> state and the service sends back an HTTP
+     * 200 response with an empty HTTP body.
+     * </p>
+     * 
+     * @param stopTrainingEntityRecognizerRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopTrainingEntityRecognizer service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopTrainingEntityRecognizerResult> stopTrainingEntityRecognizerAsync(
+            StopTrainingEntityRecognizerRequest stopTrainingEntityRecognizerRequest,
+            AsyncHandler<StopTrainingEntityRecognizerRequest, StopTrainingEntityRecognizerResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }
