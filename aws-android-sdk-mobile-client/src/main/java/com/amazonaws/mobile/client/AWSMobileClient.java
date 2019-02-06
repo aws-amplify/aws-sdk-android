@@ -844,6 +844,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    /**
+     * Clears local tokens so that the client is in a signed-out state.
+     */
     public void signOut() {
         mCognitoUserSession = null;
         if (userpool != null) {
@@ -858,6 +861,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         mStore.clear();
         setUserState(getUserStateDetails(false));
         releaseSignInWait();
+    }
+
+    public void signOut(final SignOutOptions signOutOptions) {
+        if (signOutOptions.isSignOutGlobally()) {
+
+        }
     }
 
     /**
