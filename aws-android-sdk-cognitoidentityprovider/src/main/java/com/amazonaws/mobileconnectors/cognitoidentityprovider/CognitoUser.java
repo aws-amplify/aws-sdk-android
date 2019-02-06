@@ -2330,7 +2330,12 @@ public class CognitoUser {
                     .equals(initiateAuthResult.getChallengeName())) {
                 if (authenticationDetails.getPassword() != null) {
                     final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
-                            initiateAuthResult, authenticationDetails, authenticationHelper);
+                            initiateAuthResult.getChallengeParameters(),
+                            initiateAuthResult.getChallengeName(),
+                            initiateAuthResult.getSession(),
+                            authenticationDetails.getPassword(),
+                            authenticationHelper
+                    );
                     return respondToChallenge(challengeRequest, callback, runInBackground);
                 }
             }
@@ -2481,14 +2486,10 @@ public class CognitoUser {
                             pool.getUserPoolId());
                     final Map<String, String> challengeParameters = challenge.getChallengeParameters();
                     cognitoIdentityProviderClient.respondToAuthChallenge(userSrpAuthRequest(
-                            challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USERNAME),
-                            challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP),
-                            authenticationDetails.getPassword(),
-                            challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SRP_B),
-                            challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SALT),
-                            challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK),
+                            challengeParameters,
                             challenge.getChallengeName(),
                             challenge.getSession(),
+                            authenticationDetails.getPassword(),
                             authenticationHelper
                     ));
                 }
@@ -2862,55 +2863,25 @@ public class CognitoUser {
     }
 
     /**
-     * Creates response for the second step of the SRP authentication.
      *
-     * @param challenge REQUIRED: {@link InitiateAuthResult} contains next
-     *            challenge.
-     * @param authenticationDetails REQUIRED: {@link AuthenticationDetails} user
-     *            authentication details.
-     * @param authenticationHelper REQUIRED: Internal helper class for SRP
-     *            calculations.
-     * @return {@link RespondToAuthChallengeRequest}.
-     */
-    private RespondToAuthChallengeRequest userSrpAuthRequest(InitiateAuthResult challenge,
-            AuthenticationDetails authenticationDetails,
-            AuthenticationHelper authenticationHelper) {
-        final Map<String, String> challengeParameters = challenge.getChallengeParameters();
-        return userSrpAuthRequest(
-                challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USERNAME),
-                challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP),
-                authenticationDetails.getPassword(),
-                challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SRP_B),
-                challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SALT),
-                challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK),
-                challenge.getChallengeName(),
-                challenge.getSession(),
-                authenticationHelper
-                );
-    }
-
-    /**
-     * Creates response for the second step of the SRP authentication.
-     *
-     * @param userId returned by service
-     * @param userIdForSRP returned by service
+     * @param challengeParameters returned by service
      * @param password maintained locally
-     * @param srpBString returned by service
-     * @param saltString returned by service
-     * @param secretBlockString returned by service
      * @param challengeName returned by service
      * @param session returned by service
-     * @return {@link RespondToAuthChallengeRequest}.
+     * @param authenticationHelper
+     * @return
      */
-    private RespondToAuthChallengeRequest userSrpAuthRequest(final String userId,
-                                                             final String userIdForSRP,
+    private RespondToAuthChallengeRequest userSrpAuthRequest(final Map<String, String> challengeParameters,
                                                              final String password,
-                                                             final String srpBString,
-                                                             final String saltString,
-                                                             final String secretBlockString,
                                                              final String challengeName,
                                                              final String session,
                                                              final AuthenticationHelper authenticationHelper) {
+        final String userId = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USERNAME);
+        final String userIdForSRP = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
+        final String srpBString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SRP_B);
+        final String saltString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SALT);
+        final String secretBlockString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK);
+
         this.usernameInternal = userId;
         this.deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
                 context);
