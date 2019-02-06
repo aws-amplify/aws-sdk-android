@@ -2264,10 +2264,8 @@ public class CognitoUser {
             final AuthenticationHandler callback, final boolean runInBackground) {
         try {
             if (challengeResponse != null && challengeResponse.getChallengeResponses() != null) {
-                final Map<String, String> challengeResponses = challengeResponse
-                        .getChallengeResponses();
-                challengeResponses.put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
-                challengeResponse.setChallengeResponses(challengeResponses);
+                challengeResponse.getChallengeResponses()
+                        .put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
             }
             final RespondToAuthChallengeResult challenge = cognitoIdentityProviderClient
                     .respondToAuthChallenge(challengeResponse);
@@ -2331,9 +2329,9 @@ public class CognitoUser {
                 if (authenticationDetails.getPassword() != null) {
                     final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
                             initiateAuthResult.getChallengeParameters(),
+                            authenticationDetails.getPassword(),
                             initiateAuthResult.getChallengeName(),
                             initiateAuthResult.getSession(),
-                            authenticationDetails.getPassword(),
                             authenticationHelper
                     );
                     return respondToChallenge(challengeRequest, callback, runInBackground);
@@ -2479,19 +2477,21 @@ public class CognitoUser {
                 }
             }
         } else if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(challengeName)) {
-            return new Runnable() {
+            if (authenticationDetails == null || authenticationDetails.getPassword() == null) {
+                return nextTask;
+            }
+
+            nextTask = new Runnable() {
                 @Override
                 public void run() {
-                    final AuthenticationHelper authenticationHelper = new AuthenticationHelper(
-                            pool.getUserPoolId());
-                    final Map<String, String> challengeParameters = challenge.getChallengeParameters();
-                    cognitoIdentityProviderClient.respondToAuthChallenge(userSrpAuthRequest(
-                            challengeParameters,
+                    final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
+                            challenge.getChallengeParameters(),
+                            authenticationDetails.getPassword(),
                             challenge.getChallengeName(),
                             challenge.getSession(),
-                            authenticationDetails.getPassword(),
-                            authenticationHelper
-                    ));
+                            new AuthenticationHelper(pool.getUserPoolId())
+                    );
+                    respondToChallenge(challengeRequest, callback, runInBackground);
                 }
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)
