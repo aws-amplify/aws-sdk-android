@@ -91,6 +91,10 @@ public class AuthenticationDetails {
         }
     }
 
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
     /**
      * This method returns the password.
      *
