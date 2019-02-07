@@ -54,6 +54,32 @@ public class AuthenticationDetails {
     }
 
     /**
+     * Constructs a new object for custom authentication that starts with SRP protocol.
+     * The first to challenges to be answered are SRP_A and PASSWORD_VERIFIER.
+     *
+     * @param userId REQUIRED: User ID, NOTE: This will over ride the current user ID
+     * @param password REQUIRED: This will be used to answer the PASSWORD_VERIFIER challenge.
+     * @param authenticationParameters REQUIRED: Authentication details that are used in custom
+     *                                 authentication process
+     * @param validationData REQUIRED: Contains authentication parameters which are passed to
+     *                       triggered pre-auth lambda trigger.
+     */
+    public AuthenticationDetails(String userId, String password, Map<String, String> authenticationParameters,
+                                 Map<String, String> validationData) {
+        this.userId = userId;
+        this.password = password;
+        if (authenticationParameters != null) {
+            this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
+            this.authenticationParameters = authenticationParameters;
+            setAuthenticationParameter(CognitoServiceConstants.AUTH_PARAM_USERNAME, userId);
+            setCustomChallenge(CognitoServiceConstants.AUTH_PARAM_SRP_A);
+            setValidationData(validationData);
+        } else {
+            this.authenticationType = null;
+        }
+    }
+
+    /**
      * Constructs a new object for custom authentication.
      *
      * @param userId REQUIRED: User ID, NOTE: This will over ride the current
@@ -154,6 +180,10 @@ public class AuthenticationDetails {
         this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
         setAuthenticationParameter(CognitoServiceConstants.AUTH_PARAM_CHALLENGE_NAME,
                 customChallenge);
+    }
+
+    public String getCustomChallenge() {
+        return this.authenticationParameters.get(CognitoServiceConstants.AUTH_PARAM_CHALLENGE_NAME);
     }
 
     /**
