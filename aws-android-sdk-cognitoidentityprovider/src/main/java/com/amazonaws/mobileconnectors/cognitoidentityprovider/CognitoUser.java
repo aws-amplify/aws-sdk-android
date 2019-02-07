@@ -2383,11 +2383,29 @@ public class CognitoUser {
      */
     private Runnable startWithCustomAuth(final AuthenticationDetails authenticationDetails,
             final AuthenticationHandler callback, final boolean runInBackground) {
-        final InitiateAuthRequest initiateAuthRequest = initiateCustomAuthRequest(
-                authenticationDetails);
         try {
+            final AuthenticationHelper authenticationHelper = new AuthenticationHelper(this.getUserPoolId());
+            final InitiateAuthRequest initiateAuthRequest = initiateCustomAuthRequest(
+                    authenticationDetails,
+                    authenticationHelper);
             final InitiateAuthResult initiateAuthResult = cognitoIdentityProviderClient
                     .initiateAuth(initiateAuthRequest);
+            updateInternalUsername(initiateAuthResult.getChallengeParameters());
+            if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
+                    .equals(initiateAuthResult.getChallengeName())) {
+                if (authenticationDetails.getPassword() == null) {
+                    throw new IllegalStateException("Failed to find password in " +
+                            "authentication details to response to PASSWORD_VERIFIER challenge");
+                }
+                final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
+                        initiateAuthResult.getChallengeParameters(),
+                        authenticationDetails.getPassword(),
+                        initiateAuthResult.getChallengeName(),
+                        initiateAuthResult.getSession(),
+                        authenticationHelper
+                );
+                return respondToChallenge(challengeRequest, callback, runInBackground);
+            }
             return handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground);
         } catch (final Exception e) {
             return new Runnable() {
@@ -2477,21 +2495,13 @@ public class CognitoUser {
                 }
             }
         } else if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(challengeName)) {
-            if (authenticationDetails == null || authenticationDetails.getPassword() == null) {
-                return nextTask;
-            }
-
-            nextTask = new Runnable() {
+            return new Runnable() {
                 @Override
                 public void run() {
-                    final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
-                            challenge.getChallengeParameters(),
-                            authenticationDetails.getPassword(),
-                            challenge.getChallengeName(),
-                            challenge.getSession(),
-                            new AuthenticationHelper(pool.getUserPoolId())
-                    );
-                    respondToChallenge(challengeRequest, callback, runInBackground);
+                    callback.onFailure(new CognitoInternalErrorException(
+                            "Authentication failed due to an internal error: " +
+                                    "PASSWORD_VERIFIER challenge encountered not at the " +
+                                    "start of authentication flow"));
                 }
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)
@@ -2623,7 +2633,7 @@ public class CognitoUser {
     private InitiateAuthRequest initiateUserPasswordAuthRequest(
             AuthenticationDetails authenticationDetails) {
 
-        if (StringUtils.isBlank(authenticationDetails.getUserId()) 
+        if (StringUtils.isBlank(authenticationDetails.getUserId())
                 || StringUtils.isBlank(authenticationDetails.getPassword())) {
             throw new CognitoNotAuthorizedException("User name and password are required");
         }
@@ -2768,8 +2778,8 @@ public class CognitoUser {
      * @return {@link InitiateAuthRequest}, request to start with the user SRP
      *         authentication.
      */
-    private InitiateAuthRequest initiateCustomAuthRequest(
-            AuthenticationDetails authenticationDetails) {
+    private InitiateAuthRequest initiateCustomAuthRequest(final AuthenticationDetails authenticationDetails,
+                                                          final AuthenticationHelper authenticationHelper) {
         final InitiateAuthRequest authRequest = new InitiateAuthRequest();
         authRequest.setAuthFlow(CognitoServiceConstants.AUTH_TYPE_INIT_CUSTOM_AUTH);
         authRequest.setClientId(clientId);
@@ -2783,6 +2793,9 @@ public class CognitoUser {
             authenticationParameters.get(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH) == null) {
             secretHash = CognitoSecretHash.getSecretHash(authenticationDetails.getUserId(), clientId, clientSecret);
             authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH, secretHash);
+        }
+        if (CognitoServiceConstants.AUTH_PARAM_SRP_A.equals(authenticationDetails.getCustomChallenge())) {
+            authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SRP_A, authenticationHelper.getA().toString(16));
         }
         authRequest.setAuthParameters(authenticationDetails.getAuthenticationParameters());
 
@@ -2842,7 +2855,7 @@ public class CognitoUser {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
                         context);
             } else {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(),
                         pool.getUserPoolId(), context);
             }
         }
@@ -3096,8 +3109,8 @@ public class CognitoUser {
 
     /**
      * Returns the current device, if users in this pool can remember devices.
-     * If a deviceKey is not found with the userId, the deviceKey is searched 
-     * with the username in cached tokens, if any. 
+     * If a deviceKey is not found with the userId, the deviceKey is searched
+     * with the username in cached tokens, if any.
      * @return {@link CognitoDevice} if the device is available, null otherwise.
      */
     public CognitoDevice thisDevice() {
@@ -3109,7 +3122,7 @@ public class CognitoUser {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId(), context);
                 if (deviceKey == null) {
                     CognitoUserSession currSession = this.readCachedTokens();
-                    deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                    deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(),
                             this.pool.getUserPoolId(), this.context);
                 }
             }
