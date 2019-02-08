@@ -1,5 +1,30 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.0)
+
+### Enhancements
+
+* **Amazon Cognito Auth**
+  * Allow user to unbind the service after being done with authentication. See [pr #615](https://github.com/aws-amplify/aws-sdk-android/pull/615). Thanks @rlatapy-luna!
+
+* **Amazon Cognito User Pools**
+  * Adds support for the SRP protocol at the beginning of custom auth. Please use `AuthenticationDetails(String, String, Map<String, String>, Map<String, String>)` to trigger custom auth flow with SRP protocol as the first step.
+
+* **Amazon S3**
+    * **Note:** AWS Signature Version 4 (`SigV4`) is recommended for signing Amazon S3 API requests over AWS Signature Version 2 (`SigV2`) as it provides improved security by using a signing key rather than your secret access key. SigV4 is currently supported in all AWS regions while SigV2 is only supported in regions launched prior to Jan 2014. Amazon S3 will stop accepting requests signed using SigV2 in all regions on June 24, 2019, any
+requests signed using SigV2 made after this time will fail. Please visit the S3 documentation site to get more information on using SigV4: [Signing Aamzon S3 requests using SigV4](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html). You can find the list of
+changes between versions here: [Changes in SigV4](https://docs.aws.amazon.com/general/latest/gr/sigv4_changes.html).
+   * Deprecated the existing constructors in `AmazonS3Client` and introduced equivalent constructors that require the AWS region, because a valid AWS region is required to sign the request using SigV4. Please use the following constructors to specify the AWS region in order to sign the request to Amazon S3 using SigV4.
+
+2.11.1 | 2.12.0
+---------- | -------------
+AmazonS3Client(AWSCredentials) | AmazonS3Client(AWSCredentials, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentials, ClientConfiguration) | AmazonS3Client(AWSCredentials, ClientConfiguration, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider) | AmazonS3Client(AWSCredentialsProvider, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider, ClientConfiguration) | AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, HttpClient) | AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, HttpClient, com.amazonaws.regions.Region)
+AmazonS3Client(ClientConfiguration) | AmazonS3Client(ClientConfiguration, com.amazonaws.regions.Region)
+
 ## [Release 2.11.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.11.1)
 
 ### New Features
