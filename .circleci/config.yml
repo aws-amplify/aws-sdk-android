@@ -148,9 +148,12 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - configure_aws
       - run:
           name: build the whole project
-          command: bash gradlew build -x test
+          command: |
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
+            bash gradlew build -x test
       - run:
           name: copy libs
           command: |
@@ -169,9 +172,11 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
+      - configure_aws
       - run:
           name: run unit tests
           command: |
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             python3 CircleciScripts/run_unittest.py "~/test_results" "$(pwd)"
       - run:
           name : check unit test result
@@ -443,6 +448,7 @@ jobs:
       - run:
           name: run integration tests
           command: |
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
       - run:
@@ -455,7 +461,7 @@ jobs:
             else
                 echo "There are test failures"
                 exit 1
-            fi       
+            fi
       - store_artifacts:
           path: "~/test_results"
   uitest:
@@ -493,6 +499,7 @@ jobs:
           name: run sample ui test
           command: |
             cd aws-sdk-android-samples/S3TransferUtilitySample
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             bash gradlew connectedAndroidTest
       - store_artifacts:
           path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
