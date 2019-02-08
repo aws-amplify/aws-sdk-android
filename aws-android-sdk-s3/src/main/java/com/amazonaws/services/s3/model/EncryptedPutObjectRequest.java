@@ -31,7 +31,7 @@ import java.util.Map;
  * </p>
  * <p>
  * If {@link EncryptedPutObjectRequest} is used against the non-encrypting
- * {@link AmazonS3JavaClient}, the additional attributes will be ignored.
+ * {@link AmazonS3EncryptionClient}, the additional attributes will be ignored.
  * </p>
  */
 public class EncryptedPutObjectRequest extends PutObjectRequest implements
