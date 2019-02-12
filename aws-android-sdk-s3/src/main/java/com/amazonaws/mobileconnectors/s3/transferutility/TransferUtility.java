@@ -21,6 +21,7 @@ import static com.amazonaws.services.s3.internal.Constants.MB;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import org.json.JSONObject;
 
@@ -116,6 +117,11 @@ public class TransferUtility {
      * Lock to synchronize access to the user-agent-string.
      */
     private static final Object LOCK = new Object();
+
+    /**
+     * An Android Networking utility that gives network specific information.
+     */
+    final ConnectivityManager connManager;
 
     /**
      * Constants that indicate the type of the transfer operation.
@@ -298,6 +304,7 @@ public class TransferUtility {
         this.dbUtil = new TransferDBUtil(context.getApplicationContext());
         this.updater = TransferStatusUpdater.getInstance(context.getApplicationContext());
         TransferThreadPool.init(this.transferUtilityOptions.getTransferThreadPoolSize());
+        this.connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     /**
@@ -318,6 +325,7 @@ public class TransferUtility {
         this.dbUtil = new TransferDBUtil(context.getApplicationContext());
         this.updater = TransferStatusUpdater.getInstance(context.getApplicationContext());
         TransferThreadPool.init(this.transferUtilityOptions.getTransferThreadPoolSize());
+        this.connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     private String getDefaultBucketOrThrow() {
@@ -374,7 +382,7 @@ public class TransferUtility {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
-        final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD, bucket, key, file);
+        final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD, bucket, key, file, transferUtilityOptions);
         final int recordId = Integer.parseInt(uri.getLastPathSegment());
         if (file.isFile()) {
             LOGGER.warn("Overwrite existing file: " + file);
@@ -539,7 +547,7 @@ public class TransferUtility {
         } else {
 
             final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD, bucket, key, file, metadata,
-                    cannedAcl);
+                    cannedAcl, transferUtilityOptions);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
@@ -717,11 +725,11 @@ public class TransferUtility {
          */
         final ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key, file, fileOffset, 0, "",
-                file.length(), 0, metadata, cannedAcl);
+                file.length(), 0, metadata, cannedAcl, transferUtilityOptions);
         for (int i = 1; i < partCount + 1; i++) {
             final long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key, file, fileOffset, partNumber,
-                    "", bytesForPart, remainingLenth - optimalPartSize <= 0 ? 1 : 0, metadata, cannedAcl);
+                    "", bytesForPart, remainingLenth - optimalPartSize <= 0 ? 1 : 0, metadata, cannedAcl, transferUtilityOptions);
             fileOffset += optimalPartSize;
             remainingLenth -= optimalPartSize;
             partNumber++;
@@ -881,7 +889,7 @@ public class TransferUtility {
         }
 
         if (TRANSFER_ADD.equals(action) || TRANSFER_RESUME.equals(action)) {
-            transfer.start(s3, dbUtil, updater);
+            transfer.start(s3, dbUtil, updater, connManager);
         } else if (TRANSFER_PAUSE.equals(action)) {
             transfer.pause(s3, updater);
         } else if (TRANSFER_CANCEL.equals(action)) {

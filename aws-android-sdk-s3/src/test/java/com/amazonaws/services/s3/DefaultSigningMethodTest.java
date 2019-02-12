@@ -158,11 +158,6 @@ public class DefaultSigningMethodTest {
         testSignAnonymously(s3);
     }
 
-    private static void assertSigV2(AmazonS3Client s3) {
-        final Signer signer = invokeCreateSigner(s3);
-        assertFalse(signer instanceof AWSS3V4Signer);
-    }
-
     private static Request<?> createFakeGetObjectRequest(AmazonS3Client s3) {
         try {
             final GetObjectRequest fakeRequest = new GetObjectRequest(FAKE_BUCKET, FAKE_KEY);

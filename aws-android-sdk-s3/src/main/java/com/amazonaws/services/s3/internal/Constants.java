@@ -28,6 +28,8 @@ import com.amazonaws.logging.LogFactory;
  */
 public class Constants {
 
+    /** Prefix for the S3 service endpoint */
+    public static final String S3_ENDPOINT_PREFIX = "s3";
     /** Default hostname for the S3 service endpoint */
     public static final String S3_HOSTNAME = "s3.amazonaws.com";
     /** Hostname for the s3-external-1 service endpoint */

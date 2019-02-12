@@ -157,7 +157,7 @@ public class AWSIotMqttManager {
     /** Handler for mReconnectHandlerThread */
     private Handler mReconnectHandler;
 
-    /** Is this a clean Session with no state being persisted from a prior session */
+    /** True if this is a clean Session with no state being persisted from a prior session */
     private boolean cleanSession = true;
     /**
      * Indicates whether metrics collection is enabled.

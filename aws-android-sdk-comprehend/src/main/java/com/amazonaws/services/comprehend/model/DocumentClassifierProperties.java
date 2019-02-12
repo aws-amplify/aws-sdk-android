@@ -49,14 +49,15 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      */
     private String status;
 
@@ -304,17 +305,18 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @return <p>
-     *         The status of the document classifier. The the status is
+     *         The status of the document classifier. If the status is
      *         <code>TRAINED</code> the classifier is ready to use. If the
      *         status is <code>FAILED</code> you can see additional information
      *         about why the classifier wasn't trained in the
@@ -328,17 +330,18 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
-     *            The status of the document classifier. The the status is
+     *            The status of the document classifier. If the status is
      *            <code>TRAINED</code> the classifier is ready to use. If the
      *            status is <code>FAILED</code> you can see additional
      *            information about why the classifier wasn't trained in the
@@ -352,7 +355,7 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
@@ -362,10 +365,11 @@ public class DocumentClassifierProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
-     *            The status of the document classifier. The the status is
+     *            The status of the document classifier. If the status is
      *            <code>TRAINED</code> the classifier is ready to use. If the
      *            status is <code>FAILED</code> you can see additional
      *            information about why the classifier wasn't trained in the
@@ -382,17 +386,18 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
-     *            The status of the document classifier. The the status is
+     *            The status of the document classifier. If the status is
      *            <code>TRAINED</code> the classifier is ready to use. If the
      *            status is <code>FAILED</code> you can see additional
      *            information about why the classifier wasn't trained in the
@@ -406,7 +411,7 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
-     * The status of the document classifier. The the status is
+     * The status of the document classifier. If the status is
      * <code>TRAINED</code> the classifier is ready to use. If the status is
      * <code>FAILED</code> you can see additional information about why the
      * classifier wasn't trained in the <code>Message</code> field.
@@ -416,10 +421,11 @@ public class DocumentClassifierProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, IN_ERROR, TRAINED
+     * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
+     * STOPPED, IN_ERROR, TRAINED
      *
      * @param status <p>
-     *            The status of the document classifier. The the status is
+     *            The status of the document classifier. If the status is
      *            <code>TRAINED</code> the classifier is ready to use. If the
      *            status is <code>FAILED</code> you can see additional
      *            information about why the classifier wasn't trained in the

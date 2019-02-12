@@ -44,7 +44,7 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
     /**
      * An Android Networking utility that gives network specific information.
      */
-    private final ConnectivityManager connManager;
+    final ConnectivityManager connManager;
 
     /**
      * Reference to the transfer database utility.
@@ -119,10 +119,10 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (networkConnected) {
-                        checkTransfersOnNetworkReconnect();
+                    if (isNetworkConnected()) {
+                        resumeAllTransfersOnNetworkAvailability();
                     } else {
-                        pauseAllForNetwork();
+                        pauseAllTransfersDueToNetworkInterruption();
                     }
                 }
             }).start();
@@ -142,16 +142,7 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
     /**
      * Check for the transfers that are in WAITING_FOR_NETWORK state and resume them
      * to execution.
-     */
-    private void checkTransfersOnNetworkReconnect() {
-        if (isNetworkConnected()) {
-            loadAndResumeTransfersFromDB(new TransferState[] {TransferState.WAITING_FOR_NETWORK});
-        } else {
-            LOGGER.error("Network Connect message received but not connected to network.");
-        }
-    }
-
-    /**
+     *
      * Loads transfers from database. These transfers are unfinished from previous
      * session or are new transfers waiting for network. It skips any transfer that
      * is already tracked by the status updater. Also starts transfers whose states
@@ -160,10 +151,12 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
      * The transfers would start only if the AmazonS3Client is present in the
      * {@code S3ClientReference} map. If the AmazonS3Client is not present, this
      * would skip starting the transfer.
-     *
-     * @param transferStates The list of the transfer states
      */
-    private synchronized void loadAndResumeTransfersFromDB(final TransferState[] transferStates) {
+    private synchronized void resumeAllTransfersOnNetworkAvailability() {
+        final TransferState[] transferStates = new TransferState[] {
+            TransferState.WAITING_FOR_NETWORK
+        };
+
         LOGGER.debug("Loading transfers from database...");
         Cursor c = null;
         int count = 0;
@@ -188,7 +181,7 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
             }
         } finally {
             if (c != null) {
-                LOGGER.debug("Closing the cursor for loadAndResumeTransfersFromDB");
+                LOGGER.debug("Closing the cursor for resumeAllTransfers");
                 c.close();
             }
         }
@@ -201,7 +194,7 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
                     // Check if it's running. If not, start the transfer.
                     final TransferRecord transfer = updater.getTransfer(id);
                     if (transfer != null && !transfer.isRunning()) {
-                        transfer.start(s3, dbUtil, updater);
+                        transfer.start(s3, dbUtil, updater, connManager);
                     }
                 }
             }
@@ -215,10 +208,12 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
     /**
      * Pause all running transfers and set the state to WAITING_FOR_NETWORK.
      */
-    private void pauseAllForNetwork() {
+    private synchronized void pauseAllTransfersDueToNetworkInterruption() {
         for (final TransferRecord transferRecord : updater.getTransfers().values()) {
             final AmazonS3 s3 = S3ClientReference.get(transferRecord.id);
-            if (s3 != null && transferRecord != null && transferRecord.pause(s3, updater)) {
+            if (s3 != null && 
+                transferRecord != null && 
+                transferRecord.pauseIfRequiredForNetworkInterruption(s3, updater, connManager)) {
                 updater.updateState(transferRecord.id, TransferState.WAITING_FOR_NETWORK);
             }
         }

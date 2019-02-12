@@ -5031,6 +5031,99 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
+     * Updates the Secure Sockets Layer (SSL) certificate for the custom domain
+     * for your user pool.
+     * </p>
+     * <p>
+     * You can use this operation to provide the Amazon Resource Name (ARN) of a
+     * new certificate to Amazon Cognito. You cannot use it to change the domain
+     * for a user pool.
+     * </p>
+     * <p>
+     * A custom domain is used to host the Amazon Cognito hosted UI, which
+     * provides sign-up and sign-in pages for your application. When you set up
+     * a custom domain, you provide a certificate that you manage with AWS
+     * Certificate Manager (ACM). When necessary, you can use this operation to
+     * change the certificate that you applied to your custom domain.
+     * </p>
+     * <p>
+     * Usually, this is unnecessary following routine certificate renewal with
+     * ACM. When you renew your existing certificate in ACM, the ARN for your
+     * certificate remains the same, and your custom domain uses the new
+     * certificate automatically.
+     * </p>
+     * <p>
+     * However, if you replace your existing certificate with a new one, ACM
+     * gives the new certificate a new ARN. To apply the new certificate to your
+     * custom domain, you must provide this ARN to Amazon Cognito.
+     * </p>
+     * <p>
+     * When you add your new certificate in ACM, you must choose US East (N.
+     * Virginia) as the AWS Region.
+     * </p>
+     * <p>
+     * After you submit your request, Amazon Cognito requires up to 1 hour to
+     * distribute your new certificate to your custom domain.
+     * </p>
+     * <p>
+     * For more information about adding a custom domain to your user pool, see
+     * <a href=
+     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"
+     * >Using Your Own Domain for the Hosted UI</a>.
+     * </p>
+     * 
+     * @param updateUserPoolDomainRequest <p>
+     *            The UpdateUserPoolDomain request input.
+     *            </p>
+     * @return updateUserPoolDomainResult The response from the
+     *         UpdateUserPoolDomain service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateUserPoolDomainResult updateUserPoolDomain(
+            UpdateUserPoolDomainRequest updateUserPoolDomainRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateUserPoolDomainRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateUserPoolDomainRequest> request = null;
+        Response<UpdateUserPoolDomainResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateUserPoolDomainRequestMarshaller()
+                        .marshall(updateUserPoolDomainRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateUserPoolDomainResult, JsonUnmarshallerContext> unmarshaller = new UpdateUserPoolDomainResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateUserPoolDomainResult> responseHandler = new JsonResponseHandler<UpdateUserPoolDomainResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Use this API to register a user's entered TOTP code and mark the user's
      * software token MFA status as "verified" if successful. The request takes
      * an access token or a session string, but not both.

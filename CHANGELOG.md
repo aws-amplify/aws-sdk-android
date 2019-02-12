@@ -1,5 +1,73 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.0)
+
+### Enhancements
+
+* **Amazon Cognito Auth**
+  * Allow user to unbind the service after being done with authentication. See [pr #615](https://github.com/aws-amplify/aws-sdk-android/pull/615). Thanks @rlatapy-luna!
+
+* **Amazon Cognito User Pools**
+  * Adds support for the SRP protocol at the beginning of custom auth. Please use `AuthenticationDetails(String, String, Map<String, String>, Map<String, String>)` to trigger custom auth flow with SRP protocol as the first step.
+
+* **Amazon S3**
+    * **Note:** AWS Signature Version 4 (`SigV4`) is recommended for signing Amazon S3 API requests over AWS Signature Version 2 (`SigV2`) as it provides improved security by using a signing key rather than your secret access key. SigV4 is currently supported in all AWS regions while SigV2 is only supported in regions launched prior to Jan 2014. Amazon S3 will stop accepting requests signed using SigV2 in all regions on June 24, 2019, any
+requests signed using SigV2 made after this time will fail. Please visit the S3 documentation site to get more information on using SigV4: [Signing Aamzon S3 requests using SigV4](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html). You can find the list of
+changes between versions here: [Changes in SigV4](https://docs.aws.amazon.com/general/latest/gr/sigv4_changes.html).
+   * Deprecated the existing constructors in `AmazonS3Client` and introduced equivalent constructors that require the AWS region, because a valid AWS region is required to sign the request using SigV4. Please use the following constructors to specify the AWS region in order to sign the request to Amazon S3 using SigV4.
+
+2.11.1 | 2.12.0
+---------- | -------------
+AmazonS3Client(AWSCredentials) | AmazonS3Client(AWSCredentials, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentials, ClientConfiguration) | AmazonS3Client(AWSCredentials, ClientConfiguration, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider) | AmazonS3Client(AWSCredentialsProvider, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider, ClientConfiguration) | AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, com.amazonaws.regions.Region)
+AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, HttpClient) | AmazonS3Client(AWSCredentialsProvider, ClientConfiguration, HttpClient, com.amazonaws.regions.Region)
+AmazonS3Client(ClientConfiguration) | AmazonS3Client(ClientConfiguration, com.amazonaws.regions.Region)
+
+## [Release 2.11.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.11.1)
+
+### New Features
+
+* **Amazon S3**
+  * Add the ability to specify the type of network connection (`TransferNetworkConnectionType.ANY` - any network, `TransferNetworkConnectionType.MOBILE` - mobile only, `TransferNetworkConnectionType.WIFI` - WiFi only) for the transfers through `TransferUtilityOptions`. The `TransferUtilityOptions` is passed to the `TransferUtility` object and is used for all the transfers that are initiated through this object. The network connection type can be passed while constructing the `TransferUtilityOptions` object through `TransferUtilityOptions(int, TransferNetworkConnectionType)`. See [pr #575](https://github.com/aws-amplify/aws-sdk-android/pull/575). Thanks @nasdf!
+
+### Bug Fixes
+
+* **Amazon Cognito Identity Provider**
+  * Fixed a bug that used a null username during custom auth challenge. See [issue #657](https://github.com/aws-amplify/aws-sdk-android/issues/657) & [issue #583](https://github.com/aws-amplify/aws-sdk-android/issues/583)
+
+* **AWS IoT**
+  - Fixed a bug that caused some IoT connections to not reconnect after errors.
+    [See PR #660](https://github.com/aws-amplify/aws-sdk-android/pull/660).
+    Thanks @sklikowicz!
+
+* **Amazon S3**
+  * Improved the state, progress and error reporting when the transfers are interrupted.
+      * When the transfer is paused or cancelled by the user, the state is reported correctly.
+      * When the transfer is interrupted because of a network drop, the state is set to WAITING_FOR_NETWORK when the `TransferNetworkLossHandler` is used.
+      * When the transfer is interrupted otherwise, the transfer is set to FAILED and the exception is reported via `TransferListener.onError` callback.
+  * Fixed the bug where progress is reported inaccurately (over 100%) when a transfer is paused by user or network drop and resumed before completion. See [issue #677](https://github.com/aws-amplify/aws-sdk-android/issues/677), [issue #667](https://github.com/aws-amplify/aws-sdk-android/issues/667), [issue #616](https://github.com/aws-amplify/aws-sdk-android/issues/616), [issue #406](https://github.com/aws-amplify/aws-sdk-android/issues/406)
+
+### Enhancements
+
+* **Amazon Cognito Identity**
+  - The Amazon Cognito Identity SDK now supports all Amazon Cognito Identity
+    APIs, including admin APIs that require developer credentials. Note that by
+    using admin APIs, you are inherently dealing with privileged functions that
+    could result in data loss of data if improperly used. [See issue
+    #645](https://github.com/aws-amplify/aws-sdk-android/issues/645)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS IoT
+  * Amazon Comprehend
+  * Amazon Cognito Identity Provider
+  * Amazon Kinesis Firehose
+  * Amazon Transcribe
+  * Amazon Pinpoint
+ 
 ## [Release 2.11.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.11.0)
 
 ### Enhancements

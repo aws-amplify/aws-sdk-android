@@ -2264,14 +2264,12 @@ public class CognitoUser {
             final AuthenticationHandler callback, final boolean runInBackground) {
         try {
             if (challengeResponse != null && challengeResponse.getChallengeResponses() != null) {
-                final Map<String, String> challengeResponses = challengeResponse
-                        .getChallengeResponses();
-                challengeResponses.put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
-                challengeResponse.setChallengeResponses(challengeResponses);
+                challengeResponse.getChallengeResponses()
+                        .put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
             }
             final RespondToAuthChallengeResult challenge = cognitoIdentityProviderClient
                     .respondToAuthChallenge(challengeResponse);
-            return handleChallenge(challenge, callback, runInBackground);
+            return handleChallenge(challenge, null, callback, runInBackground);
         } catch (final ResourceNotFoundException rna) {
             final CognitoUser cognitoUser = this;
             if (rna.getMessage().contains("Device")) {
@@ -2330,11 +2328,16 @@ public class CognitoUser {
                     .equals(initiateAuthResult.getChallengeName())) {
                 if (authenticationDetails.getPassword() != null) {
                     final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
-                            initiateAuthResult, authenticationDetails, authenticationHelper);
+                            initiateAuthResult.getChallengeParameters(),
+                            authenticationDetails.getPassword(),
+                            initiateAuthResult.getChallengeName(),
+                            initiateAuthResult.getSession(),
+                            authenticationHelper
+                    );
                     return respondToChallenge(challengeRequest, callback, runInBackground);
                 }
             }
-            return handleChallenge(initiateAuthResult, callback, runInBackground);
+            return handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground);
         } catch (final ResourceNotFoundException rna) {
             final CognitoUser cognitoUser = this;
             if (rna.getMessage().contains("Device")) {
@@ -2380,12 +2383,30 @@ public class CognitoUser {
      */
     private Runnable startWithCustomAuth(final AuthenticationDetails authenticationDetails,
             final AuthenticationHandler callback, final boolean runInBackground) {
-        final InitiateAuthRequest initiateAuthRequest = initiateCustomAuthRequest(
-                authenticationDetails);
         try {
+            final AuthenticationHelper authenticationHelper = new AuthenticationHelper(this.getUserPoolId());
+            final InitiateAuthRequest initiateAuthRequest = initiateCustomAuthRequest(
+                    authenticationDetails,
+                    authenticationHelper);
             final InitiateAuthResult initiateAuthResult = cognitoIdentityProviderClient
                     .initiateAuth(initiateAuthRequest);
-            return handleChallenge(initiateAuthResult, callback, runInBackground);
+            updateInternalUsername(initiateAuthResult.getChallengeParameters());
+            if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
+                    .equals(initiateAuthResult.getChallengeName())) {
+                if (authenticationDetails.getPassword() == null) {
+                    throw new IllegalStateException("Failed to find password in " +
+                            "authentication details to response to PASSWORD_VERIFIER challenge");
+                }
+                final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
+                        initiateAuthResult.getChallengeParameters(),
+                        authenticationDetails.getPassword(),
+                        initiateAuthResult.getChallengeName(),
+                        initiateAuthResult.getSession(),
+                        authenticationHelper
+                );
+                return respondToChallenge(challengeRequest, callback, runInBackground);
+            }
+            return handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground);
         } catch (final Exception e) {
             return new Runnable() {
                 @Override
@@ -2412,13 +2433,16 @@ public class CognitoUser {
      *
      * @param challenge REQUIRED: Current challenge details,
      *            {@link RespondToAuthChallengeResult}.
+     * @param authenticationDetails OPTIONAL: This is used in the PASSWORD_VERIFIER challenge
      * @param callback REQUIRED: {@link AuthenticationDetails} callback.
      * @param runInBackground REQUIRED: Boolean to indicate the current
      *            threading.
      * @return {@link Runnable} for the next step in user authentication.
      */
     private Runnable handleChallenge(final RespondToAuthChallengeResult challenge,
-            final AuthenticationHandler callback, final boolean runInBackground) {
+                                     final AuthenticationDetails authenticationDetails,
+                                     final AuthenticationHandler callback,
+                                     final boolean runInBackground) {
         Runnable nextTask;
         final CognitoUser cognitoUser = this;
         nextTask = new Runnable() {
@@ -2471,7 +2495,15 @@ public class CognitoUser {
                 }
             }
         } else if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(challengeName)) {
-            return nextTask;
+            return new Runnable() {
+                @Override
+                public void run() {
+                    callback.onFailure(new CognitoInternalErrorException(
+                            "Authentication failed due to an internal error: " +
+                                    "PASSWORD_VERIFIER challenge encountered not at the " +
+                                    "start of authentication flow"));
+                }
+            };
         } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)
                 || CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challengeName)) {
             final MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation = new MultiFactorAuthenticationContinuation(
@@ -2541,14 +2573,16 @@ public class CognitoUser {
      * @return {@link Runnable} for the next step in user authentication.
      */
     private Runnable handleChallenge(final InitiateAuthResult authResult,
-            final AuthenticationHandler callback, final boolean runInBackground) {
+                                     final AuthenticationDetails authenticationDetails,
+                                     final AuthenticationHandler callback,
+                                     final boolean runInBackground) {
         try {
             final RespondToAuthChallengeResult challenge = new RespondToAuthChallengeResult();
             challenge.setChallengeName(authResult.getChallengeName());
             challenge.setSession(authResult.getSession());
             challenge.setAuthenticationResult(authResult.getAuthenticationResult());
             challenge.setChallengeParameters(authResult.getChallengeParameters());
-            return handleChallenge(challenge, callback, runInBackground);
+            return handleChallenge(challenge, authenticationDetails, callback, runInBackground);
         } catch (final Exception e) {
             return new Runnable() {
                 @Override
@@ -2578,7 +2612,7 @@ public class CognitoUser {
                     .initiateAuth(initiateAuthRequest);
             this.usernameInternal = initiateAuthResult.getChallengeParameters()
                     .get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
-            return handleChallenge(initiateAuthResult, callback, runInBackground);
+            return handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground);
         } catch (final Exception e) {
             return new Runnable() {
                 @Override
@@ -2599,7 +2633,7 @@ public class CognitoUser {
     private InitiateAuthRequest initiateUserPasswordAuthRequest(
             AuthenticationDetails authenticationDetails) {
 
-        if (StringUtils.isBlank(authenticationDetails.getUserId()) 
+        if (StringUtils.isBlank(authenticationDetails.getUserId())
                 || StringUtils.isBlank(authenticationDetails.getPassword())) {
             throw new CognitoNotAuthorizedException("User name and password are required");
         }
@@ -2658,9 +2692,9 @@ public class CognitoUser {
                         authenticationHelper);
                 final RespondToAuthChallengeResult deviceSRPAuthResult = cognitoIdentityProviderClient
                         .respondToAuthChallenge(challengeResponse);
-                return handleChallenge(deviceSRPAuthResult, callback, runInBackground);
+                return handleChallenge(deviceSRPAuthResult, null, callback, runInBackground);
             } else {
-                return handleChallenge(initiateDeviceAuthResult, callback, runInBackground);
+                return handleChallenge(initiateDeviceAuthResult, null, callback, runInBackground);
             }
         } catch (final NotAuthorizedException na) {
             final CognitoUser cognitoUser = this;
@@ -2744,8 +2778,8 @@ public class CognitoUser {
      * @return {@link InitiateAuthRequest}, request to start with the user SRP
      *         authentication.
      */
-    private InitiateAuthRequest initiateCustomAuthRequest(
-            AuthenticationDetails authenticationDetails) {
+    private InitiateAuthRequest initiateCustomAuthRequest(final AuthenticationDetails authenticationDetails,
+                                                          final AuthenticationHelper authenticationHelper) {
         final InitiateAuthRequest authRequest = new InitiateAuthRequest();
         authRequest.setAuthFlow(CognitoServiceConstants.AUTH_TYPE_INIT_CUSTOM_AUTH);
         authRequest.setClientId(clientId);
@@ -2757,8 +2791,11 @@ public class CognitoUser {
         Map<String, String> authenticationParameters = authenticationDetails.getAuthenticationParameters();
         if (clientSecret != null &&
             authenticationParameters.get(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH) == null) {
-            secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
+            secretHash = CognitoSecretHash.getSecretHash(authenticationDetails.getUserId(), clientId, clientSecret);
             authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH, secretHash);
+        }
+        if (CognitoServiceConstants.AUTH_PARAM_SRP_A.equals(authenticationDetails.getCustomChallenge())) {
+            authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SRP_A, authenticationHelper.getA().toString(16));
         }
         authRequest.setAuthParameters(authenticationDetails.getAuthenticationParameters());
 
@@ -2818,7 +2855,7 @@ public class CognitoUser {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
                         context);
             } else {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(),
                         pool.getUserPoolId(), context);
             }
         }
@@ -2839,35 +2876,38 @@ public class CognitoUser {
     }
 
     /**
-     * Creates response for the second step of the SRP authentication.
      *
-     * @param challenge REQUIRED: {@link InitiateAuthResult} contains next
-     *            challenge.
-     * @param authenticationDetails REQUIRED: {@link AuthenticationDetails} user
-     *            authentication details.
-     * @param authenticationHelper REQUIRED: Internal helper class for SRP
-     *            calculations.
-     * @return {@link RespondToAuthChallengeRequest}.
+     * @param challengeParameters returned by service
+     * @param password maintained locally
+     * @param challengeName returned by service
+     * @param session returned by service
+     * @param authenticationHelper
+     * @return
      */
-    private RespondToAuthChallengeRequest userSrpAuthRequest(InitiateAuthResult challenge,
-            AuthenticationDetails authenticationDetails,
-            AuthenticationHelper authenticationHelper) {
-        final String userIdForSRP = challenge.getChallengeParameters()
-                .get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
-        this.usernameInternal = challenge.getChallengeParameters()
-                .get(CognitoServiceConstants.CHLG_PARAM_USERNAME);
+    private RespondToAuthChallengeRequest userSrpAuthRequest(final Map<String, String> challengeParameters,
+                                                             final String password,
+                                                             final String challengeName,
+                                                             final String session,
+                                                             final AuthenticationHelper authenticationHelper) {
+        final String userId = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USERNAME);
+        final String userIdForSRP = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
+        final String srpBString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SRP_B);
+        final String saltString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SALT);
+        final String secretBlockString = challengeParameters.get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK);
+
+        this.usernameInternal = userId;
         this.deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
                 context);
         secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
 
-        final BigInteger srpB = new BigInteger(challenge.getChallengeParameters().get("SRP_B"), 16);
+        final BigInteger srpB = new BigInteger(srpBString, 16);
         if (srpB.mod(AuthenticationHelper.N).equals(BigInteger.ZERO)) {
             throw new CognitoInternalErrorException("SRP error, B cannot be zero");
         }
 
-        final BigInteger salt = new BigInteger(challenge.getChallengeParameters().get("SALT"), 16);
+        final BigInteger salt = new BigInteger(saltString, 16);
         final byte[] key = authenticationHelper.getPasswordAuthenticationKey(userIdForSRP,
-                authenticationDetails.getPassword(), srpB, salt);
+                password, srpB, salt);
 
         final Date timestamp = new Date();
         byte[] hmac;
@@ -2879,7 +2919,7 @@ public class CognitoUser {
             mac.update(pool.getUserPoolId().split("_", 2)[1].getBytes(StringUtils.UTF8));
             mac.update(userIdForSRP.getBytes(StringUtils.UTF8));
             final byte[] secretBlock = Base64
-                    .decode(challenge.getChallengeParameters().get("SECRET_BLOCK"));
+                    .decode(secretBlockString);
             mac.update(secretBlock);
 
             final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
@@ -2895,8 +2935,7 @@ public class CognitoUser {
 
         final Map<String, String> srpAuthResponses = new HashMap<String, String>();
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SECRET_BLOCK,
-                challenge.getChallengeParameters()
-                        .get(CognitoServiceConstants.CHLG_PARAM_SECRET_BLOCK));
+                secretBlockString);
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_PASSWORD_CLAIM_SIGNATURE,
                 new String(Base64.encode(hmac), StringUtils.UTF8));
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_TIMESTAMP, dateString);
@@ -2905,9 +2944,9 @@ public class CognitoUser {
         srpAuthResponses.put(CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);
 
         final RespondToAuthChallengeRequest authChallengeRequest = new RespondToAuthChallengeRequest();
-        authChallengeRequest.setChallengeName(challenge.getChallengeName());
+        authChallengeRequest.setChallengeName(challengeName);
         authChallengeRequest.setClientId(clientId);
-        authChallengeRequest.setSession(challenge.getSession());
+        authChallengeRequest.setSession(session);
         authChallengeRequest.setChallengeResponses(srpAuthResponses);
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
@@ -3070,8 +3109,8 @@ public class CognitoUser {
 
     /**
      * Returns the current device, if users in this pool can remember devices.
-     * If a deviceKey is not found with the userId, the deviceKey is searched 
-     * with the username in cached tokens, if any. 
+     * If a deviceKey is not found with the userId, the deviceKey is searched
+     * with the username in cached tokens, if any.
      * @return {@link CognitoDevice} if the device is available, null otherwise.
      */
     public CognitoDevice thisDevice() {
@@ -3083,7 +3122,7 @@ public class CognitoUser {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId(), context);
                 if (deviceKey == null) {
                     CognitoUserSession currSession = this.readCachedTokens();
-                    deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                    deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(),
                             this.pool.getUserPoolId(), this.context);
                 }
             }

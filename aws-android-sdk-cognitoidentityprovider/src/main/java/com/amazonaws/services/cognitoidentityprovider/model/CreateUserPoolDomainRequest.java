@@ -53,7 +53,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * webpages for your application.
      * </p>
      * <p>
-     * Provide this parameter only if you want to use own custom domain for your
+     * Provide this parameter only if you want to use a custom domain for your
      * user pool. Otherwise, you can exclude this parameter and use the Amazon
      * Cognito hosted domain instead.
      * </p>
@@ -186,7 +186,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * webpages for your application.
      * </p>
      * <p>
-     * Provide this parameter only if you want to use own custom domain for your
+     * Provide this parameter only if you want to use a custom domain for your
      * user pool. Otherwise, you can exclude this parameter and use the Amazon
      * Cognito hosted domain instead.
      * </p>
@@ -202,7 +202,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *         sign-in webpages for your application.
      *         </p>
      *         <p>
-     *         Provide this parameter only if you want to use own custom domain
+     *         Provide this parameter only if you want to use a custom domain
      *         for your user pool. Otherwise, you can exclude this parameter and
      *         use the Amazon Cognito hosted domain instead.
      *         </p>
@@ -223,7 +223,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * webpages for your application.
      * </p>
      * <p>
-     * Provide this parameter only if you want to use own custom domain for your
+     * Provide this parameter only if you want to use a custom domain for your
      * user pool. Otherwise, you can exclude this parameter and use the Amazon
      * Cognito hosted domain instead.
      * </p>
@@ -239,9 +239,9 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *            and sign-in webpages for your application.
      *            </p>
      *            <p>
-     *            Provide this parameter only if you want to use own custom
-     *            domain for your user pool. Otherwise, you can exclude this
-     *            parameter and use the Amazon Cognito hosted domain instead.
+     *            Provide this parameter only if you want to use a custom domain
+     *            for your user pool. Otherwise, you can exclude this parameter
+     *            and use the Amazon Cognito hosted domain instead.
      *            </p>
      *            <p>
      *            For more information about the hosted domain and custom
@@ -260,7 +260,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * webpages for your application.
      * </p>
      * <p>
-     * Provide this parameter only if you want to use own custom domain for your
+     * Provide this parameter only if you want to use a custom domain for your
      * user pool. Otherwise, you can exclude this parameter and use the Amazon
      * Cognito hosted domain instead.
      * </p>
@@ -279,9 +279,9 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *            and sign-in webpages for your application.
      *            </p>
      *            <p>
-     *            Provide this parameter only if you want to use own custom
-     *            domain for your user pool. Otherwise, you can exclude this
-     *            parameter and use the Amazon Cognito hosted domain instead.
+     *            Provide this parameter only if you want to use a custom domain
+     *            for your user pool. Otherwise, you can exclude this parameter
+     *            and use the Amazon Cognito hosted domain instead.
      *            </p>
      *            <p>
      *            For more information about the hosted domain and custom

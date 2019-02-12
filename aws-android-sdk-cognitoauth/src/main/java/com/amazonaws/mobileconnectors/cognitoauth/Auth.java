@@ -159,7 +159,6 @@ public final class Auth {
         this.signOutRedirectUri = signOutRedirectUri;
         this.scopes = scopes;
         this.user = new AuthClient(context, this);
-        this.user = new AuthClient(context, this);
         this.user.setUserHandler(userHandler);
         this.userPoolId = userPoolId;
         this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
@@ -654,5 +653,12 @@ public final class Auth {
     public Auth setUsername(final String username) {
         this.user.setUsername(username);
         return this;
+    }
+
+    /**
+     * Release resources used by {@link Auth}
+     */
+    public void release() {
+        this.user.unbindServiceConnection();
     }
 }

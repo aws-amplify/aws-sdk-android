@@ -17,11 +17,6 @@ package com.amazonaws.services.lambda.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Upon success, returns an empty response. Otherwise, throws an exception.
- * </p>
- */
 public class InvokeResult implements Serializable {
     /**
      * <p>
@@ -36,51 +31,44 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether an error occurred while executing the Lambda function.
-     * If an error occurred this field will have one of two values;
-     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
-     * errors are errors that are reported by the function while the
-     * <code>Unhandled</code> errors are those detected and reported by AWS
-     * Lambda. Unhandled errors include out of memory errors and function
-     * timeouts. For information about how to report an <code>Handled</code>
-     * error, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     * >Programming Model</a>.
+     * If present, indicates that an error occured during function execution.
+     * Details about the error are included in the response payload.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Handled</code> - The runtime caught an error thrown by the function
+     * and formatted it into a JSON document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * example, the function ran out of memory or timed out.
+     * </p>
+     * </li>
+     * </ul>
      */
     private String functionError;
 
     /**
      * <p>
-     * It is the base64-encoded logs for the Lambda function invocation. This is
-     * present only if the invocation type is <code>RequestResponse</code> and
-     * the logs were requested.
+     * The last 4 KB of the execution log, base64 encoded.
      * </p>
      */
     private String logResult;
 
     /**
      * <p>
-     * It is the JSON representation of the object returned by the Lambda
-     * function. This is present only if the invocation type is
-     * <code>RequestResponse</code>.
-     * </p>
-     * <p>
-     * In the event of a function error this field contains a message describing
-     * the error. For the <code>Handled</code> errors the Lambda function will
-     * report this message. For <code>Unhandled</code> errors AWS Lambda reports
-     * the message.
+     * The response from the function, or an error object.
      * </p>
      */
     private java.nio.ByteBuffer payload;
 
     /**
      * <p>
-     * The function version that has been executed. This value is returned only
-     * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     * >Traffic Shifting Using Aliases</a>.
+     * The version of the function that executed. When you invoke a function
+     * with an alias, indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -162,30 +150,43 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether an error occurred while executing the Lambda function.
-     * If an error occurred this field will have one of two values;
-     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
-     * errors are errors that are reported by the function while the
-     * <code>Unhandled</code> errors are those detected and reported by AWS
-     * Lambda. Unhandled errors include out of memory errors and function
-     * timeouts. For information about how to report an <code>Handled</code>
-     * error, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     * >Programming Model</a>.
+     * If present, indicates that an error occured during function execution.
+     * Details about the error are included in the response payload.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Handled</code> - The runtime caught an error thrown by the function
+     * and formatted it into a JSON document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * example, the function ran out of memory or timed out.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         Indicates whether an error occurred while executing the Lambda
-     *         function. If an error occurred this field will have one of two
-     *         values; <code>Handled</code> or <code>Unhandled</code>.
-     *         <code>Handled</code> errors are errors that are reported by the
-     *         function while the <code>Unhandled</code> errors are those
-     *         detected and reported by AWS Lambda. Unhandled errors include out
-     *         of memory errors and function timeouts. For information about how
-     *         to report an <code>Handled</code> error, see <a href=
-     *         "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     *         >Programming Model</a>.
+     *         If present, indicates that an error occured during function
+     *         execution. Details about the error are included in the response
+     *         payload.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>Handled</code> - The runtime caught an error thrown by the
+     *         function and formatted it into a JSON document.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Unhandled</code> - The runtime did not handle the error.
+     *         For example, the function ran out of memory or timed out.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getFunctionError() {
         return functionError;
@@ -193,31 +194,43 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether an error occurred while executing the Lambda function.
-     * If an error occurred this field will have one of two values;
-     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
-     * errors are errors that are reported by the function while the
-     * <code>Unhandled</code> errors are those detected and reported by AWS
-     * Lambda. Unhandled errors include out of memory errors and function
-     * timeouts. For information about how to report an <code>Handled</code>
-     * error, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     * >Programming Model</a>.
+     * If present, indicates that an error occured during function execution.
+     * Details about the error are included in the response payload.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Handled</code> - The runtime caught an error thrown by the function
+     * and formatted it into a JSON document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * example, the function ran out of memory or timed out.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param functionError <p>
-     *            Indicates whether an error occurred while executing the Lambda
-     *            function. If an error occurred this field will have one of two
-     *            values; <code>Handled</code> or <code>Unhandled</code>.
-     *            <code>Handled</code> errors are errors that are reported by
-     *            the function while the <code>Unhandled</code> errors are those
-     *            detected and reported by AWS Lambda. Unhandled errors include
-     *            out of memory errors and function timeouts. For information
-     *            about how to report an <code>Handled</code> error, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     *            >Programming Model</a>.
+     *            If present, indicates that an error occured during function
+     *            execution. Details about the error are included in the
+     *            response payload.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Handled</code> - The runtime caught an error thrown by
+     *            the function and formatted it into a JSON document.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Unhandled</code> - The runtime did not handle the error.
+     *            For example, the function ran out of memory or timed out.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setFunctionError(String functionError) {
         this.functionError = functionError;
@@ -225,34 +238,46 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether an error occurred while executing the Lambda function.
-     * If an error occurred this field will have one of two values;
-     * <code>Handled</code> or <code>Unhandled</code>. <code>Handled</code>
-     * errors are errors that are reported by the function while the
-     * <code>Unhandled</code> errors are those detected and reported by AWS
-     * Lambda. Unhandled errors include out of memory errors and function
-     * timeouts. For information about how to report an <code>Handled</code>
-     * error, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     * >Programming Model</a>.
+     * If present, indicates that an error occured during function execution.
+     * Details about the error are included in the response payload.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Handled</code> - The runtime caught an error thrown by the function
+     * and formatted it into a JSON document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * example, the function ran out of memory or timed out.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param functionError <p>
-     *            Indicates whether an error occurred while executing the Lambda
-     *            function. If an error occurred this field will have one of two
-     *            values; <code>Handled</code> or <code>Unhandled</code>.
-     *            <code>Handled</code> errors are errors that are reported by
-     *            the function while the <code>Unhandled</code> errors are those
-     *            detected and reported by AWS Lambda. Unhandled errors include
-     *            out of memory errors and function timeouts. For information
-     *            about how to report an <code>Handled</code> error, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html"
-     *            >Programming Model</a>.
+     *            If present, indicates that an error occured during function
+     *            execution. Details about the error are included in the
+     *            response payload.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Handled</code> - The runtime caught an error thrown by
+     *            the function and formatted it into a JSON document.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Unhandled</code> - The runtime did not handle the error.
+     *            For example, the function ran out of memory or timed out.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -263,15 +288,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the base64-encoded logs for the Lambda function invocation. This is
-     * present only if the invocation type is <code>RequestResponse</code> and
-     * the logs were requested.
+     * The last 4 KB of the execution log, base64 encoded.
      * </p>
      *
      * @return <p>
-     *         It is the base64-encoded logs for the Lambda function invocation.
-     *         This is present only if the invocation type is
-     *         <code>RequestResponse</code> and the logs were requested.
+     *         The last 4 KB of the execution log, base64 encoded.
      *         </p>
      */
     public String getLogResult() {
@@ -280,15 +301,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the base64-encoded logs for the Lambda function invocation. This is
-     * present only if the invocation type is <code>RequestResponse</code> and
-     * the logs were requested.
+     * The last 4 KB of the execution log, base64 encoded.
      * </p>
      *
      * @param logResult <p>
-     *            It is the base64-encoded logs for the Lambda function
-     *            invocation. This is present only if the invocation type is
-     *            <code>RequestResponse</code> and the logs were requested.
+     *            The last 4 KB of the execution log, base64 encoded.
      *            </p>
      */
     public void setLogResult(String logResult) {
@@ -297,18 +314,14 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the base64-encoded logs for the Lambda function invocation. This is
-     * present only if the invocation type is <code>RequestResponse</code> and
-     * the logs were requested.
+     * The last 4 KB of the execution log, base64 encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param logResult <p>
-     *            It is the base64-encoded logs for the Lambda function
-     *            invocation. This is present only if the invocation type is
-     *            <code>RequestResponse</code> and the logs were requested.
+     *            The last 4 KB of the execution log, base64 encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -320,27 +333,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the JSON representation of the object returned by the Lambda
-     * function. This is present only if the invocation type is
-     * <code>RequestResponse</code>.
-     * </p>
-     * <p>
-     * In the event of a function error this field contains a message describing
-     * the error. For the <code>Handled</code> errors the Lambda function will
-     * report this message. For <code>Unhandled</code> errors AWS Lambda reports
-     * the message.
+     * The response from the function, or an error object.
      * </p>
      *
      * @return <p>
-     *         It is the JSON representation of the object returned by the
-     *         Lambda function. This is present only if the invocation type is
-     *         <code>RequestResponse</code>.
-     *         </p>
-     *         <p>
-     *         In the event of a function error this field contains a message
-     *         describing the error. For the <code>Handled</code> errors the
-     *         Lambda function will report this message. For
-     *         <code>Unhandled</code> errors AWS Lambda reports the message.
+     *         The response from the function, or an error object.
      *         </p>
      */
     public java.nio.ByteBuffer getPayload() {
@@ -349,27 +346,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the JSON representation of the object returned by the Lambda
-     * function. This is present only if the invocation type is
-     * <code>RequestResponse</code>.
-     * </p>
-     * <p>
-     * In the event of a function error this field contains a message describing
-     * the error. For the <code>Handled</code> errors the Lambda function will
-     * report this message. For <code>Unhandled</code> errors AWS Lambda reports
-     * the message.
+     * The response from the function, or an error object.
      * </p>
      *
      * @param payload <p>
-     *            It is the JSON representation of the object returned by the
-     *            Lambda function. This is present only if the invocation type
-     *            is <code>RequestResponse</code>.
-     *            </p>
-     *            <p>
-     *            In the event of a function error this field contains a message
-     *            describing the error. For the <code>Handled</code> errors the
-     *            Lambda function will report this message. For
-     *            <code>Unhandled</code> errors AWS Lambda reports the message.
+     *            The response from the function, or an error object.
      *            </p>
      */
     public void setPayload(java.nio.ByteBuffer payload) {
@@ -378,30 +359,14 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * It is the JSON representation of the object returned by the Lambda
-     * function. This is present only if the invocation type is
-     * <code>RequestResponse</code>.
-     * </p>
-     * <p>
-     * In the event of a function error this field contains a message describing
-     * the error. For the <code>Handled</code> errors the Lambda function will
-     * report this message. For <code>Unhandled</code> errors AWS Lambda reports
-     * the message.
+     * The response from the function, or an error object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param payload <p>
-     *            It is the JSON representation of the object returned by the
-     *            Lambda function. This is present only if the invocation type
-     *            is <code>RequestResponse</code>.
-     *            </p>
-     *            <p>
-     *            In the event of a function error this field contains a message
-     *            describing the error. For the <code>Handled</code> errors the
-     *            Lambda function will report this message. For
-     *            <code>Unhandled</code> errors AWS Lambda reports the message.
+     *            The response from the function, or an error object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -413,11 +378,8 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The function version that has been executed. This value is returned only
-     * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     * >Traffic Shifting Using Aliases</a>.
+     * The version of the function that executed. When you invoke a function
+     * with an alias, indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -425,11 +387,9 @@ public class InvokeResult implements Serializable {
      * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
      *
      * @return <p>
-     *         The function version that has been executed. This value is
-     *         returned only if the invocation type is
-     *         <code>RequestResponse</code>. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     *         >Traffic Shifting Using Aliases</a>.
+     *         The version of the function that executed. When you invoke a
+     *         function with an alias, indicates which version the alias
+     *         resolved to.
      *         </p>
      */
     public String getExecutedVersion() {
@@ -438,11 +398,8 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The function version that has been executed. This value is returned only
-     * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     * >Traffic Shifting Using Aliases</a>.
+     * The version of the function that executed. When you invoke a function
+     * with an alias, indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,12 +407,9 @@ public class InvokeResult implements Serializable {
      * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
      *
      * @param executedVersion <p>
-     *            The function version that has been executed. This value is
-     *            returned only if the invocation type is
-     *            <code>RequestResponse</code>. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     *            >Traffic Shifting Using Aliases</a>.
+     *            The version of the function that executed. When you invoke a
+     *            function with an alias, indicates which version the alias
+     *            resolved to.
      *            </p>
      */
     public void setExecutedVersion(String executedVersion) {
@@ -464,11 +418,8 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The function version that has been executed. This value is returned only
-     * if the invocation type is <code>RequestResponse</code>. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     * >Traffic Shifting Using Aliases</a>.
+     * The version of the function that executed. When you invoke a function
+     * with an alias, indicates which version the alias resolved to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -479,12 +430,9 @@ public class InvokeResult implements Serializable {
      * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
      *
      * @param executedVersion <p>
-     *            The function version that has been executed. This value is
-     *            returned only if the invocation type is
-     *            <code>RequestResponse</code>. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html"
-     *            >Traffic Shifting Using Aliases</a>.
+     *            The version of the function that executed. When you invoke a
+     *            function with an alias, indicates which version the alias
+     *            resolved to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
