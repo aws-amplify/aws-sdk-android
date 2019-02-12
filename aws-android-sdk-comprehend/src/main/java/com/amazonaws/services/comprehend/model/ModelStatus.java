@@ -26,6 +26,8 @@ public enum ModelStatus {
     SUBMITTED("SUBMITTED"),
     TRAINING("TRAINING"),
     DELETING("DELETING"),
+    STOP_REQUESTED("STOP_REQUESTED"),
+    STOPPED("STOPPED"),
     IN_ERROR("IN_ERROR"),
     TRAINED("TRAINED");
 
@@ -46,6 +48,8 @@ public enum ModelStatus {
         enumMap.put("SUBMITTED", SUBMITTED);
         enumMap.put("TRAINING", TRAINING);
         enumMap.put("DELETING", DELETING);
+        enumMap.put("STOP_REQUESTED", STOP_REQUESTED);
+        enumMap.put("STOPPED", STOPPED);
         enumMap.put("IN_ERROR", IN_ERROR);
         enumMap.put("TRAINED", TRAINED);
     }

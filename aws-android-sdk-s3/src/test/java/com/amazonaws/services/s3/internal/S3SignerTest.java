@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,23 @@ import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
 
+/**
+ * TODO:
+ *
+ * Skipping the execution of this test due to the removal of
+ * SigV2. Once SigV2 support is removed from the AmazonS3Client,
+ * delete these tests.
+ */
 public class S3SignerTest {
 
+    @Ignore
     @Test
     public void testSign() throws URISyntaxException {
         final GetObjectRequest gr = new GetObjectRequest("test-bucket123456", "TestFile.txt");

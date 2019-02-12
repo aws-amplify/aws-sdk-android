@@ -25,7 +25,6 @@ import java.io.Serializable;
  * Create TransferUtilityOptions and pass it to {@link TransferUtility}.
  * 
  * TransferUtilityOptions tuOptions = new TransferUtilityOptions();
- * tuOptions.setTransferServiceCheckTimeInterval(5 * 60 * 1000); // Scan for unfinished transfers every 5 minutes.
  * tuOptions.setTransferThreadPoolSize(10); // 10 threads for upload and download operations.
  *
  * // Initializes TransferUtility
@@ -33,7 +32,7 @@ import java.io.Serializable;
  *     .builder()
  *     .s3Client(s3Client)
  *     .context(getApplicationContext())
- *     .transferUtilityConfiguration(tuConfig)
+ *     .transferUtilityConfiguration(tuOptions)
  *     .build();
  * </pre>
  *
@@ -64,6 +63,11 @@ public class TransferUtilityOptions implements Serializable {
      * Number of threads in the pool for the all the transfers.
      */
     private int transferThreadPoolSize;
+
+    /**
+     * Type of connection to use for transfers.
+     */
+    private TransferNetworkConnectionType transferNetworkConnectionType;
     
     /**
      * Constructor that sets the options to the
@@ -73,6 +77,22 @@ public class TransferUtilityOptions implements Serializable {
         super();
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = getDefaultThreadPoolSize();
+        this.transferNetworkConnectionType = getDefaultTransferNetworkConnectionType();
+    }
+
+    /**
+     * Constructor that sets the options to the
+     * default values.
+     *
+     * @param transferThreadPoolSize number of threads in the pool
+     * @param transferNetworkConnectionType type of network connection
+     */
+    public TransferUtilityOptions(int transferThreadPoolSize, 
+                                  TransferNetworkConnectionType transferNetworkConnectionType) {
+        super();
+        this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
+        this.transferThreadPoolSize = transferThreadPoolSize;
+        this.transferNetworkConnectionType = transferNetworkConnectionType;
     }
 
     /**
@@ -123,7 +143,16 @@ public class TransferUtilityOptions implements Serializable {
             this.transferThreadPoolSize = transferThreadPoolSize;
         }
     }
-    
+
+    /**
+     * Retrieve the transfer connection type.
+     *
+     * @return the TransferNetworkConnectionType
+     */
+    public TransferNetworkConnectionType getTransferNetworkConnectionType() {
+        return transferNetworkConnectionType;
+    }
+
     /**
      * Return the default thread pool size.
      * 
@@ -144,5 +173,14 @@ public class TransferUtilityOptions implements Serializable {
     @Deprecated
     static long getDefaultCheckTimeInterval() {
         return 1 * MILLIS_IN_MINUTE;
+    }
+
+    /**
+     * Return the default connection type.
+     *
+     * @return The default connection type.
+     */
+    static TransferNetworkConnectionType getDefaultTransferNetworkConnectionType() {
+        return TransferNetworkConnectionType.ANY;
     }
 }

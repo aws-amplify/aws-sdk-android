@@ -28,7 +28,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,7 +76,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,7 +86,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         When specified, returns only transcription jobs with the
-     *         specified status.
+     *         specified status. Jobs are ordered by creation date, with the
+     *         newest jobs returned first. If you don’t specify a status, Amazon
+     *         Transcribe returns all transcription jobs ordered by creation
+     *         date.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -93,7 +100,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,7 +110,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
-     *            specified status.
+     *            specified status. Jobs are ordered by creation date, with the
+     *            newest jobs returned first. If you don’t specify a status,
+     *            Amazon Transcribe returns all transcription jobs ordered by
+     *            creation date.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -112,7 +124,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,7 +137,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
-     *            specified status.
+     *            specified status. Jobs are ordered by creation date, with the
+     *            newest jobs returned first. If you don’t specify a status,
+     *            Amazon Transcribe returns all transcription jobs ordered by
+     *            creation date.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,7 +154,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +164,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
-     *            specified status.
+     *            specified status. Jobs are ordered by creation date, with the
+     *            newest jobs returned first. If you don’t specify a status,
+     *            Amazon Transcribe returns all transcription jobs ordered by
+     *            creation date.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -156,7 +178,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * When specified, returns only transcription jobs with the specified
-     * status.
+     * status. Jobs are ordered by creation date, with the newest jobs returned
+     * first. If you don’t specify a status, Amazon Transcribe returns all
+     * transcription jobs ordered by creation date.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -167,7 +191,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
-     *            specified status.
+     *            specified status. Jobs are ordered by creation date, with the
+     *            newest jobs returned first. If you don’t specify a status,
+     *            Amazon Transcribe returns all transcription jobs ordered by
+     *            creation date.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

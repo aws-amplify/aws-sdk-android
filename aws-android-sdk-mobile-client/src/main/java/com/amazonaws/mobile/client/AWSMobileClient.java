@@ -831,7 +831,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     /**
-     * Federate tokens from custom identity providers by providing the
+     * Federate tokens from custom identity providers into Cognito Identity Pool by providing the
      * logins key and token
      * <p>
      * The logins key can be specified with {@link IdentityProvider#AMAZON#toString()}
@@ -847,7 +847,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     /**
-     * Federate tokens from custom identity providers by providing the
+     * Federate tokens from custom identity providers into Cognito Identity Pool by providing the
      * logins key and token
      * <p>
      * The logins key can be specified with {@link IdentityProvider#AMAZON}

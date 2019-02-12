@@ -16,6 +16,8 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.event.ProgressEvent;
+import com.amazonaws.event.ProgressListener;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.Headers;
@@ -26,6 +28,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.ObjectTagging;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
 import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -64,6 +67,9 @@ class UploadTask implements Callable<Boolean> {
     private final TransferDBUtil dbUtil;
     private final TransferStatusUpdater updater;
 
+    Map<Integer, UploadPartTaskMetadata> uploadPartTasks;
+    private List<UploadPartRequest> requestList;
+
     public UploadTask(TransferRecord uploadInfo,
                       AmazonS3 s3,
                       TransferDBUtil dbUtil,
@@ -72,6 +78,7 @@ class UploadTask implements Callable<Boolean> {
         this.s3 = s3;
         this.dbUtil = dbUtil;
         this.updater = updater;
+        this.uploadPartTasks = new HashMap<Integer, UploadPartTaskMetadata>();
     }
 
     /*
@@ -114,6 +121,7 @@ class UploadTask implements Callable<Boolean> {
          * it's a resumed upload, upload.multipartId would not be null.
          */
         long bytesAlreadyTransferred = 0;
+
         if (upload.multipartId == null || upload.multipartId.isEmpty()) {
             final PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
             TransferUtility.appendMultipartTransferServiceUserAgentString(putObjectRequest);
@@ -134,20 +142,26 @@ class UploadTask implements Callable<Boolean> {
              */
             bytesAlreadyTransferred = dbUtil.queryBytesTransferredByMainUploadId(upload.id);
             if (bytesAlreadyTransferred > 0) {
-                LOGGER.debug(String.format("Resume transfer %d from %d bytes",
+                LOGGER.info(String.format("Resume transfer %d from %d bytes",
                         upload.id, bytesAlreadyTransferred));
             }
         }
-        updater.updateProgress(upload.id, bytesAlreadyTransferred, upload.bytesTotal);
+        UploadTaskProgressListener uploadTaskProgressListener = new UploadTaskProgressListener(upload);
+        updater.updateProgress(upload.id, bytesAlreadyTransferred, upload.bytesTotal, false);
 
-        final List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
+        requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
         LOGGER.info("Multipart upload " + upload.id + " in " + requestList.size() + " parts.");
-        final ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
-            request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
+
+            UploadPartTaskMetadata uploadPartTaskMetadata = new UploadPartTaskMetadata();
+            uploadPartTaskMetadata.uploadPartRequest = request;
+            uploadPartTaskMetadata.bytesTransferredSoFar = 0;
+            uploadPartTaskMetadata.state = TransferState.WAITING;
+            uploadPartTasks.put(request.getPartNumber(), uploadPartTaskMetadata);
+            uploadPartTaskMetadata.uploadPartTask = TransferThreadPool.submitTask(
+                    new UploadPartTask(uploadPartTaskMetadata, uploadTaskProgressListener, request, s3, dbUtil));
         }
 
         try {
@@ -156,10 +170,10 @@ class UploadTask implements Callable<Boolean> {
              * Future.get() will block the current thread until the method
              * returns.
              */
-            for (final Future<Boolean> f : futures) {
+            for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
                 // UploadPartTask returns false when it's interrupted by user
                 // and the state is set by caller
-                final boolean b = f.get();
+                final boolean b = task.uploadPartTask.get();
                 isSuccess &= b;
             }
             if (!isSuccess) {
@@ -167,51 +181,53 @@ class UploadTask implements Callable<Boolean> {
                 // were waiting for network
                 boolean isNetworkInterrupted = dbUtil.checkWaitingForNetworkPartRequestsFromDB(upload.id);
                 if (isNetworkInterrupted) {
-                    LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                    LOGGER.info("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 }
                 return false;
             }
-        } catch (final InterruptedException e) {
+        } catch (final Exception e) {
+            LOGGER.error("Upload resulted in an exception. " + e);
+
             /*
              * Future.get() will catch InterruptedException, but it's not a
              * failure, it may be caused by a pause operation from applications.
+             * Cancel all the on-going part tasks.
              */
-            for (final Future<?> f : futures) {
-                f.cancel(true);
-            }
-            // abort by user
-            LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
-            LOGGER.error("Error encountered during multi-part upload: " + upload.id
-                    + " due to " + e.getMessage(), e);
-            updater.updateState(upload.id, TransferState.FAILED);
-            updater.throwError(upload.id, e);
-
-            return false;
-        } catch (final ExecutionException ee) {
-            // Set the TransferState to WAITING_FOR_NETWORK if the individual parts
-            // were waiting for network
-            boolean isNetworkInterrupted = dbUtil.checkWaitingForNetworkPartRequestsFromDB(upload.id);
-            if (isNetworkInterrupted) {
-                LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
-                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-                return false;
+            for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
+                task.uploadPartTask.cancel(true);
             }
 
             // If the thread that is executing the transfer is interrupted
-            // because of a user initiated pause, do not throw exception or
-            // set the state to FAILED.
-            final Exception e = (Exception) ee.getCause();
-            if (RetryUtils.isInterrupted(e) &&
+            // because of a user initiated pause or cancel operation, 
+            // do not throw exception or set the state to FAILED.
+            if (TransferState.CANCELED.equals(upload.state) ||
                 TransferState.PAUSED.equals(upload.state)) {
-                LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
+                LOGGER.info("Transfer is " + upload.state);
                 return false;
             }
 
+            // interrupted due to network. Set the TransferState to 
+            // WAITING_FOR_NETWORK if the individual parts were waiting for network
+            for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
+                if (TransferState.WAITING_FOR_NETWORK.equals(task.state)) {
+                    LOGGER.info("Individual part is WAITING_FOR_NETWORK.");
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                    return false;
+                }
+            }
+
+            // interrupted due to reasons other than network.
+            if (RetryUtils.isInterrupted(e)) {
+                LOGGER.info("Transfer is interrupted. " + e);
+                return false;
+            }
+
+            // in other cases, set the transfer to failed.
             LOGGER.error("Error encountered during multi-part upload: " + upload.id
                     + " due to " + e.getMessage(), e);
-            updater.updateState(upload.id, TransferState.FAILED);
             updater.throwError(upload.id, e);
+            updater.updateState(upload.id, TransferState.FAILED);
             return false;
         }
 
@@ -219,7 +235,7 @@ class UploadTask implements Callable<Boolean> {
         try {
             completeMultiPartUpload(upload.id, upload.bucketName, upload.key,
                     upload.multipartId);
-            updater.updateProgress(upload.id, upload.bytesTotal, upload.bytesTotal);
+            updater.updateProgress(upload.id, upload.bytesTotal, upload.bytesTotal, true);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (final AmazonClientException ace) {
@@ -233,48 +249,61 @@ class UploadTask implements Callable<Boolean> {
 
     private Boolean uploadSinglePartAndWaitForCompletion() {
         final PutObjectRequest putObjectRequest = createPutObjectRequest(upload);
+        final ProgressListener progressListener = updater.newProgressListener(upload.id);
 
         final long length = putObjectRequest.getFile().length();
         TransferUtility.appendTransferServiceUserAgentString(putObjectRequest);
-        updater.updateProgress(upload.id, 0, length);
-        putObjectRequest.setGeneralProgressListener(updater.newProgressListener(upload.id));
+        putObjectRequest.setGeneralProgressListener(progressListener);
 
         try {
-            s3.putObject(putObjectRequest);
-            updater.updateProgress(upload.id, length, length);
+            PutObjectResult putObjectResult = s3.putObject(putObjectRequest);
+            updater.updateProgress(upload.id, length, length, true);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (final Exception e) {
-            // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
-            try {
-                if (TransferNetworkLossHandler.getInstance() != null && 
-                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
-                    LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
-                    /*
-                     * Network connection is being interrupted. Moving the TransferState
-                     * to WAITING_FOR_NETWORK till the network availability resumes.
-                     */
-                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-                    LOGGER.debug("Network Connection Interrupted: " +
-                            "Moving the TransferState to WAITING_FOR_NETWORK");
-                    return false;
-                }
-            } catch (TransferUtilityException transferUtilityException) {
-                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
-            }
-
-            // If the thread that is executing the transfer is interrupted
-            // because of a user initiated pause, do not throw exception or
-            // set the state to FAILED.
-            if (RetryUtils.isInterrupted(e) &&
-                TransferState.PAUSED.equals(upload.state)) {
-                // thread interrupted by user
-                LOGGER.error("Single-part Upload interrupted: " + e.getMessage());
+           // we dont need to update progress listener
+            if (TransferState.CANCELED.equals(upload.state)) {
+                LOGGER.info("Transfer is " + upload.state);
                 return false;
             }
 
+            // pause
+            if (TransferState.PAUSED.equals(upload.state)) {
+                LOGGER.info("Transfer is " + upload.state);
+                ProgressEvent resetEvent = new ProgressEvent(0);
+                resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+                progressListener.progressChanged(new ProgressEvent(0));
+                return false;
+            }
+
+            // If the thread that is executing the transfer is interrupted
+            // because of a race condition in the network or OS.
+            // interrupted and if its due to network drop, reset progress and
+            // update state to WAITING_FOR_NETWORK.
+            if (RetryUtils.isInterrupted(e)) {
+                // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
+                try {
+                    if (TransferNetworkLossHandler.getInstance() != null && 
+                        !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                        LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
+                        /*
+                         * Network connection is being interrupted. Moving the TransferState to
+                         * WAITING_FOR_NETWORK till the network availability resumes.
+                         */
+                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                        LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                        ProgressEvent resetEvent = new ProgressEvent(0);
+                        resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+                        progressListener.progressChanged(new ProgressEvent(0));
+                        return false;
+                    }
+                } catch (TransferUtilityException transferUtilityException) {
+                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
+                }
+            }
+
             // In other cases, set the transfer state to FAILED.
-            LOGGER.debug("Failed to do a single-part upload: " + upload.id + " due to " + e.getMessage());
+            LOGGER.debug("Failed to upload: " + upload.id + " due to " + e.getMessage());
             updater.throwError(upload.id, e);
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -414,5 +443,67 @@ class UploadTask implements Callable<Boolean> {
 
     private static CannedAccessControlList getCannedAclFromString(String cannedAcl) {
         return cannedAcl == null ? null : CANNED_ACL_MAP.get(cannedAcl);
+    }
+
+    /**
+     * Progress Listener for the Main UploadTask.
+     */
+    class UploadTaskProgressListener implements ProgressListener {
+
+        // This variable tracks the previously reported total bytes transferred.
+        private long prevTotalBytesTransferredOfAllParts;
+
+        UploadTaskProgressListener(TransferRecord upload) {
+            this.prevTotalBytesTransferredOfAllParts = upload.bytesCurrent;
+        }
+
+        @Override
+        public void progressChanged(final ProgressEvent progressEvent) {
+            // No-op
+        }
+
+        public synchronized void onProgressChanged(final int partNum,
+            final long bytesTransferredSoFarForPartNum) {
+            UploadPartTaskMetadata partNumTask = uploadPartTasks.get(partNum);
+            if (partNumTask == null) {
+                LOGGER.info("Update received for unknown part. Ignoring.");
+                return;
+            }
+
+            partNumTask.bytesTransferredSoFar = bytesTransferredSoFarForPartNum;
+
+            // Compute the sum of bytesTransferredSoFar for all parts
+            long totalBytesTransferredOfAllParts = 0;
+            for (Map.Entry<Integer, UploadPartTaskMetadata> part : uploadPartTasks.entrySet()) {
+                totalBytesTransferredOfAllParts += part.getValue().bytesTransferredSoFar;
+            }
+
+            // Update the transfer record and the transfer listener
+            // when the accumulated total bytesTransferred (totalBytesTransferredOfAllParts) 
+            // exceeds the previously reported toal bytesTransferred 
+            // (prevTotalBytesTransferredOfAllParts).
+            if (totalBytesTransferredOfAllParts > prevTotalBytesTransferredOfAllParts) {
+                updater.updateProgress(UploadTask.this.upload.id,
+                    totalBytesTransferredOfAllParts,
+                    UploadTask.this.upload.bytesTotal,
+                    true);
+                prevTotalBytesTransferredOfAllParts = totalBytesTransferredOfAllParts;
+            }
+        }
+    }
+
+    // This class represents the state being tracked per part
+    class UploadPartTaskMetadata {
+        // Reference to the request object for a part
+        UploadPartRequest uploadPartRequest;
+
+        // The future task that runs UploadPartTask to upload a part
+        Future<Boolean> uploadPartTask;
+
+        // number of bytes transferred so far for this part
+        long bytesTransferredSoFar;
+
+        // state of the transfer
+        TransferState state;
     }
 }

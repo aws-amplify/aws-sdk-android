@@ -50,6 +50,10 @@ public class CreateTopicRuleRequestMarshaller implements
                 createTopicRuleRequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.POST);
 
+        if (createTopicRuleRequest.getTags() != null) {
+            request.addHeader("x-amz-tagging",
+                    StringUtils.fromString(createTopicRuleRequest.getTags()));
+        }
         String uriResourcePath = "/rules/{ruleName}";
         uriResourcePath = uriResourcePath.replace(
                 "{ruleName}",

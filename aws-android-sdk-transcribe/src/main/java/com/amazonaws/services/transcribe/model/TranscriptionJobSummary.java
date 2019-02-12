@@ -19,9 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides a summary of information about a transcription job. Note that en-AU,
- * en-UK, and fr-CA languages are in preview and are only available to
- * whitelisted customers.
+ * Provides a summary of information about a transcription job. .
  * </p>
  */
 public class TranscriptionJobSummary implements Serializable {
@@ -57,7 +55,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      */
     private String languageCode;
 
@@ -257,7 +255,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @return <p>
      *         The language code for the input speech.
@@ -275,7 +273,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -296,7 +294,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -317,7 +315,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -338,7 +336,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR
+     * fr-FR, it-IT
      *
      * @param languageCode <p>
      *            The language code for the input speech.

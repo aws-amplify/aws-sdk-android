@@ -22,7 +22,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 class TransferDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "awss3transfertable.db";
-    private static final int DATABASE_VERSION = 5;
+
+    // This represents the latest database version. Update this when
+    // the database is being upgraded.
+    private static final int DATABASE_VERSION = 6;
 
     private int version;
 

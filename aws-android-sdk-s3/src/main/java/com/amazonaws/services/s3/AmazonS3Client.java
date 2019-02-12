@@ -290,7 +290,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            Amazon S3 with this client.
      * @see AmazonS3Client#AmazonS3Client()
      * @see AmazonS3Client#AmazonS3Client(AWSCredentials, ClientConfiguration)
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(AWSCredentials, 
+     *                                               com.amazonaws.regions.Region)
+     *             instead.
      */
+    @Deprecated
     public AmazonS3Client(AWSCredentials awsCredentials) {
         this(awsCredentials, new ClientConfiguration());
     }
@@ -306,7 +311,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            retry counts, etc).
      * @see AmazonS3Client#AmazonS3Client()
      * @see AmazonS3Client#AmazonS3Client(AWSCredentials)
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(AWSCredentials, 
+     *                                                com.amazonaws.regions.Region, 
+     *                                                ClientConfiguration)
+     *             instead.
      */
+    @Deprecated
     public AmazonS3Client(AWSCredentials awsCredentials, ClientConfiguration clientConfiguration) {
         this(new StaticCredentialsProvider(awsCredentials), clientConfiguration);
     }
@@ -318,7 +329,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param credentialsProvider The AWS credentials provider which will
      *            provide credentials to authenticate requests with AWS
      *            services.
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(AWSCredentialsProvider, 
+     *                                                com.amazonaws.regions.Region)
+     *             instead.
      */
+    @Deprecated
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider) {
         this(credentialsProvider, new ClientConfiguration());
     }
@@ -333,7 +349,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param clientConfiguration The client configuration options controlling
      *            how this client connects to Amazon S3 (e.g. proxy settings,
      *            retry counts, etc).
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(AWSCredentialsProvider, 
+     *                                               com.amazonaws.regions.Region,
+     *                                               ClientConfiguration)
+     *             instead. 
      */
+    @Deprecated
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider,
                           ClientConfiguration clientConfiguration) {
         this(credentialsProvider, clientConfiguration, new UrlHttpClient(clientConfiguration));
@@ -372,8 +394,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param clientConfiguration The client configuration options controlling
      *            how this client connects to Amazon S3 (e.g. proxy settings,
      *            retry counts, etc).
-     * @param requestMetricCollector request metric collector
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(AWSCredentialsProvider, 
+     *                                               com.amazonaws.regions.Region,
+     *                                               ClientConfiguration,
+     *                                               HttpClient)
+     *             instead.
      */
+    @Deprecated
     public AmazonS3Client(AWSCredentialsProvider credentialsProvider,
                           ClientConfiguration clientConfiguration, HttpClient httpClient) {
         super(clientConfiguration, httpClient);
@@ -421,15 +449,162 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            retry counts, etc).
      * @see AmazonS3Client#AmazonS3Client(AWSCredentials)
      * @see AmazonS3Client#AmazonS3Client(AWSCredentials, ClientConfiguration)
+     *
+     * @deprecated Use AmazonS3Client#AmazonS3Client(ClientConfiguration, 
+     *                                               com.amazonaws.regions.Region)
+     *             instead.
      */
+    @Deprecated
     public AmazonS3Client(ClientConfiguration clientConfiguration) {
         this(new DefaultAWSCredentialsProviderChain(), clientConfiguration);
     }
 
+    /**
+     *
+     * @param awsCredentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param region the AWS region
+     */
+    public AmazonS3Client(AWSCredentials awsCredentials,
+                          com.amazonaws.regions.Region region) {
+        this(awsCredentials, region, new ClientConfiguration());
+    }
+
+    /**
+     *
+     * @param awsCredentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param region the AWS region
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (e.g. proxy settings,
+     *            retry counts, etc).
+     */
+    public AmazonS3Client(AWSCredentials awsCredentials,
+                          com.amazonaws.regions.Region region,
+                          ClientConfiguration clientConfiguration) {
+        this(awsCredentials, region, clientConfiguration, new UrlHttpClient(clientConfiguration));
+    }
+
+    /**
+     *
+     * @param awsCredentials The AWS credentials to use when making requests to
+     *            Amazon S3 with this client.
+     * @param region the AWS region
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (e.g. proxy settings,
+     *            retry counts, etc).
+     * @param httpClient
+     */
+    public AmazonS3Client(AWSCredentials awsCredentials,
+                          com.amazonaws.regions.Region region,
+                          ClientConfiguration clientConfiguration,
+                          HttpClient httpClient) {
+        this(new StaticCredentialsProvider(awsCredentials), region, clientConfiguration, httpClient);
+    }
+
+    /**
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param region the AWS region
+     */
+    public AmazonS3Client(AWSCredentialsProvider awsCredentialsProvider,
+                          com.amazonaws.regions.Region region) {
+        this(awsCredentialsProvider, region, new ClientConfiguration());
+    }
+
+    /**
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param region the AWS region
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (e.g. proxy settings,
+     *            retry counts, etc).
+     */
+    public AmazonS3Client(AWSCredentialsProvider awsCredentialsProvider,
+                          com.amazonaws.regions.Region region,
+                          ClientConfiguration clientConfiguration) {
+        this(awsCredentialsProvider, region, clientConfiguration, new UrlHttpClient(clientConfiguration));
+    }
+
+    /**
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param region the AWS region
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (e.g. proxy settings,
+     *            retry counts, etc).
+     * @param httpClient the custome httpclient to send requests and receive responses
+     */
+    public AmazonS3Client(AWSCredentialsProvider awsCredentialsProvider,
+                          com.amazonaws.regions.Region region,
+                          ClientConfiguration clientConfiguration,
+                          HttpClient httpClient) {
+        super(clientConfiguration, httpClient);
+        this.awsCredentialsProvider = awsCredentialsProvider;
+        init(region, clientConfiguration);
+    }
+
+
+    /**
+     * Constructs a new client using the specified client configuration to
+     * access Amazon S3. A credentials provider chain will be used that searches
+     * for credentials in this order:
+     * <ul>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance Profile Credentials - delivered through the Amazon EC2
+     * metadata service</li>
+     * </ul>
+     * <p>
+     * If no credentials are found in the chain, this client will attempt to
+     * work in an anonymous mode where requests aren't signed. Only a subset of
+     * the Amazon S3 API will work with anonymous <i>(i.e. unsigned)</i>
+     * requests, but this can prove useful in some situations. For example:
+     * <ul>
+     * <li>If an Amazon S3 bucket has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #listObjects(String)} to see what objects are stored in a bucket.</li>
+     * <li>If an object has {@link Permission#Read} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can call
+     * {@link #getObject(String, String)} and
+     * {@link #getObjectMetadata(String, String)} to pull object content and
+     * metadata.</li>
+     * <li>If a bucket has {@link Permission#Write} permission for the
+     * {@link GroupGrantee#AllUsers} group, anonymous clients can upload objects
+     * to the bucket.</li>
+     * </ul>
+     * </p>
+     * <p>
+     * You can force the client to operate in an anonymous mode, and skip the
+     * credentials provider chain, by passing in <code>null</code> for the
+     * credentials.
+     * </p>
+     *
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to Amazon S3 (e.g. proxy settings,
+     *            retry counts, etc).
+     * @see AmazonS3Client#AmazonS3Client(AWSCredentials, com.amazonaws.regions.Region)
+     * @see AmazonS3Client#AmazonS3Client(AWSCredentials, ClientConfiguration, com.amazonaws.regions.Region)
+     */
+    public AmazonS3Client(ClientConfiguration clientConfiguration,
+                          com.amazonaws.regions.Region region) {
+        this(new DefaultAWSCredentialsProviderChain(), region, clientConfiguration);
+    }
+
+    /**
+     * @deprecated Use init(com.amazonaws.regions.Region, ClientConfiguration) instead.
+     */
+    @Deprecated
     private void init() {
         // calling this.setEndpoint(...) will also modify the signer accordingly
         setEndpoint(Constants.S3_HOSTNAME);
-        this.endpointPrefix = "s3";
+        this.endpointPrefix = Constants.S3_ENDPOINT_PREFIX;
 
         final HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
@@ -438,19 +613,55 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 "/com/amazonaws/services/s3/request.handler2s"));
     }
 
+    /**
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param region the AWS region
+     * @param clientConfiguration The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     */
+    private void init(com.amazonaws.regions.Region region,
+                      ClientConfiguration clientConfiguration) {
+        if (awsCredentialsProvider == null) {
+            throw new IllegalArgumentException("Credentials cannot be null. Credentials is required to sign the request");
+        }
+
+        if (region == null) {
+            throw new IllegalArgumentException("Region cannot be null. Region is required to sign the request");
+        }
+
+        this.clientConfiguration = clientConfiguration;
+        this.endpointPrefix = Constants.S3_ENDPOINT_PREFIX;
+
+        // calling this.setEndpoint(...) will also modify the signer accordingly
+        setEndpoint(Constants.S3_HOSTNAME);
+        setRegion(region);
+
+        final HandlerChainFactory chainFactory = new HandlerChainFactory();
+        requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
+                "/com/amazonaws/services/s3/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
+                "/com/amazonaws/services/s3/request.handler2s"));
+
+        log.debug("initialized with endpoint = " + this.endpoint);
+    }
+
 
     /**
      * Sets the number of Kbytes that need to be written before updates to the
      * listener occur.
      *
      * @param threshold Number of Kbytes that needs to be written before
-     *            write update notification occurs.
+     *            write update notification occurs. Minimum value supported
+     *            is 128 KB due to the limitations imposed by the HttpClient
+     *            while reading the data from the stream.
      */
     public void setNotificationThreshold(final int threshold) {
         this.notificationThreshold = threshold;
     }
-
-
 
     @Override
     public void setEndpoint(String endpoint) {
@@ -3284,6 +3495,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         final Signer signer = createSigner(request, bucketName, key);
 
+
         if (signer instanceof Presigner) {
             // If we have a signer which knows how to presign requests,
             // delegate directly to it.
@@ -3837,6 +4049,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         final Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
                 HttpMethodName.GET);
+
         request.addParameter("acl", null);
         if (versionId != null) {
             request.addParameter("versionId", versionId);
@@ -3924,6 +4137,25 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * Returns a "complete" S3 specific signer, taking into the S3 bucket, key,
      * and the current S3 client configuration into account.
+     *
+     * Signer = get a Signer based on the bucket endpoint // InternalConfig in CoreRuntime makes this decision
+     * [If the region is not specified, uses SigV2 signer,
+     * Else If the region is specified, and If the region only supports SigV4, then uses SigV4]
+     * If Signer is not Overriden {
+     *    If Signer is a V4 Signer and Region is null
+     *       Get the region from AmazonS3Client or BucketRegionCache
+     *       If available
+     *           Use SigV4
+     *       Else If PresignedUrl
+     *           Use SigV2
+     *   If Signer Region is overriden
+     *       Use SigV4
+     *   If BucketRegionCache has a region
+     *       Use SigV4
+     * }
+
+     * If Signer is SigV2 signer
+     *      Use SigV2
      */
     protected Signer createSigner(final Request<?> request,
                                   final String bucketName,
@@ -3933,25 +4165,32 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // in accelerate mode, the endpoint in request is regionless. We need
         // the client-wide endpoint
         // to fetch the region information and pick the correct signer.
-        final URI uri = clientOptions.isAccelerateModeEnabled() ? endpoint : request.getEndpoint();
+        final URI uri = clientOptions.isAccelerateModeEnabled()
+                ? endpoint
+                : request.getEndpoint();
+
+        // This method retrieves the signer based on the URI. Currently
+        // S3's default signer is a SigV2 signer implemented in S3Signer
         final Signer signer = getSignerByURI(uri);
 
         if (!isSignerOverridden()) {
             if ((signer instanceof AWSS3V4Signer) && noExplicitRegionProvided(request)) {
 
-                final String region = clientRegion == null ? bucketRegionCache.get(bucketName)
+                final String region = clientRegion == null
+                        ? bucketRegionCache.get(bucketName)
                         : clientRegion;
                 if (region != null) {
                     // If cache contains the region for the bucket, create an endpoint for the region and
                     // update the request with that endpoint.
-                    resolveRequestEndpoint(request, bucketName, key, RuntimeHttpUtils.toUri(
-                            RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME),
+                    resolveRequestEndpoint(request,
+                            bucketName,
+                            key,
+                            RuntimeHttpUtils.toUri(RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME),
                             clientConfiguration));
 
-                    final AWSS3V4Signer v4Signer = (AWSS3V4Signer) signer;
-                    v4Signer.setServiceName(getServiceNameIntern());
-                    v4Signer.setRegionName(region);
-                    return v4Signer;
+                    AWSS3V4Signer sigV4Signer = (AWSS3V4Signer) signer;
+                    setAWSS3V4SignerWithServiceNameAndRegion((AWSS3V4Signer) signer, region);
+                    return sigV4Signer;
                 } else if (request.getOriginalRequest() instanceof GeneratePresignedUrlRequest) {
                     return createSigV2Signer(request, bucketName, key);
                 }
@@ -3962,10 +4201,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     ? (clientRegion == null ? bucketRegionCache.get(bucketName) : clientRegion)
                     : getSignerRegionOverride();
             if (regionOverride != null) {
-                final AWSS3V4Signer v4Signer = new AWSS3V4Signer();
-                v4Signer.setServiceName(getServiceNameIntern());
-                v4Signer.setRegionName(regionOverride);
-                return v4Signer;
+                AWSS3V4Signer sigV4Signer = new AWSS3V4Signer();
+                setAWSS3V4SignerWithServiceNameAndRegion(sigV4Signer, regionOverride);
+                return sigV4Signer;
             }
         }
 
@@ -3978,6 +4216,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         return signer;
+    }
+
+    /**
+     * Create and return a SigV4 based signer with the service name and region.
+     *
+     * @param sigV4Signer the signer that signs the request using SigV4
+     *                    algorithm.
+     * @param region the signer region
+     * @return
+     */
+    private void setAWSS3V4SignerWithServiceNameAndRegion(final AWSS3V4Signer sigV4Signer, 
+                                                          final String region) {
+        sigV4Signer.setServiceName(getServiceNameIntern());
+        sigV4Signer.setRegionName(region);
     }
 
     /**
@@ -4022,6 +4274,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         return endpoint.getHost().endsWith(Constants.S3_HOSTNAME);
     }
 
+    @Deprecated
     private S3Signer createSigV2Signer(final Request<?> request,
                                        final String bucketName,
                                        final String key) {
@@ -4655,7 +4908,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             response = client.execute(request, responseHandler,
                     errorResponseHandler, executionContext);
             return response.getAwsResponse();
-        }catch(final AmazonS3Exception ase){
+        } catch(final AmazonS3Exception ase){
             /**
              * This is to handle the edge case: when the bucket is deleted and recreated in a different region,
              * the cache still has the old region info.
@@ -5478,15 +5731,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                                        URI endpoint) {
         final URI ep = endpoint == null ? this.endpoint : endpoint;
         if (shouldUseVirtualAddressing(ep, bucketName)) {
+            log.debug("Using virtual style addressing. Endpoint = " + ep);
             request.setEndpoint(convertToVirtualHostEndpoint(ep, bucketName));
             request.setResourcePath(getHostStyleResourcePath(key));
         } else {
+            log.debug("Using path style addressing. Endpoint = " + ep);
             request.setEndpoint(ep);
             if (bucketName != null) {
                 request.setResourcePath(getPathStyleResourcePath(bucketName, key));
             }
         }
-        log.info("Key: " + key + "; Request: " + request);
+        log.debug("Key: " + key + "; Request: " + request);
     }
 
     private boolean shouldUseVirtualAddressing(final URI endpoint, final String bucketName) {
