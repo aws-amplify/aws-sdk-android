@@ -23,6 +23,7 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-iot/aws-android-sdk-iot.iml" filepath="$PROJECT_DIR$/aws-android-sdk-iot/aws-android-sdk-iot.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesis/aws-android-sdk-kinesis.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesis/aws-android-sdk-kinesis.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lex/aws-android-sdk-lex.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lex/aws-android-sdk-lex.iml" />
