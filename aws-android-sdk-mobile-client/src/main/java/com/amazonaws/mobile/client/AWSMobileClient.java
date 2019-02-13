@@ -27,9 +27,13 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.auth.AWSAbstractCognitoIdentityProvider;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSEnhancedCognitoIdentityProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
+import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.IdentityManager;
@@ -76,7 +80,12 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetail
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
+import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
 
@@ -211,6 +220,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
     AWSMobileClientStore mStore;
+    AWSMobileClientCognitoIdentityProvider provider;
 
     /**
      * Flag that indicates if the tokens would be persisted in SharedPreferences.
@@ -424,28 +434,24 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             });
                         }
 
-                        if (awsConfiguration.optJsonObject("CredentialsProvider") != null
-                                && awsConfig.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
-                            try {
-                                cognitoIdentity = new CognitoCachingCredentialsProvider(mContext, awsConfiguration);
-                                cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
-                            } catch (Exception e) {
-                                callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
-                                return;
-                            }
-                        }
-                    });
-
-                        final JSONObject userPoolJSON = awsConfiguration.optJsonObject("CognitoUserPool");
-                        if (userPoolJSON != null) {
-                            try {
-                                userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
-                                userpool = new CognitoUserPool(mContext, awsConfiguration);
-                                userpool.setPersistenceEnabled(mIsPersistenceEnabled);
-                            } catch (Exception e) {
-                                callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
-                                return;
-                            }
+                    if (awsConfiguration.optJsonObject("CredentialsProvider") != null
+                            && awsConfiguration.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
+                        try {
+                            JSONObject identityPoolJSON = awsConfiguration.optJsonObject(
+                                    "CredentialsProvider").getJSONObject("CognitoIdentity").getJSONObject(awsConfiguration.getConfiguration());
+                            final String poolId = identityPoolJSON.getString("PoolId");
+                            final String regionStr = identityPoolJSON.getString("Region");
+                            AmazonCognitoIdentityClient cibClient =
+                                    new AmazonCognitoIdentityClient(new AnonymousAWSCredentials());
+                            cibClient.setRegion(Region.getRegion(regionStr));
+                            provider = new AWSMobileClientCognitoIdentityProvider(
+                                    null, poolId, cibClient);
+                            cognitoIdentity = new CognitoCachingCredentialsProvider(
+                                    mContext, provider, Regions.fromName(regionStr));
+                            cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
+                        } catch (Exception e) {
+                            callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
+                            return;
                         }
                     }
 
@@ -454,6 +460,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         try {
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
                             userpool = new CognitoUserPool(mContext, awsConfiguration);
+                            userpool.setPersistenceEnabled(mIsPersistenceEnabled);
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
                             return;
@@ -901,7 +908,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 final String token,
                                 final Callback<UserStateDetails> callback) {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
-        internalCallback.async(_federatedSignIn(providerKey, token, internalCallback, true));
+        internalCallback.async(_federatedSignIn(providerKey, token, null, internalCallback, true));
     }
 
     /**
@@ -913,25 +920,59 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
-    public void federatedSignIn(final String providerKey, final String token) throws Exception {
+    public UserStateDetails federatedSignIn(final String providerKey, final String token) throws Exception {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
-        internalCallback.await(_federatedSignIn(providerKey, token, internalCallback, true));
+        return internalCallback.await(_federatedSignIn(providerKey, token, null, internalCallback, true));
+    }
+
+    /**
+     * Federate tokens from custom identity providers by providing the
+     * logins key and token
+     * <p>
+     * The logins key can be specified with {@link IdentityProvider#AMAZON#toString()}
+     *
+     * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
+     * @param token       the JWT token vended by the third-party
+     */
+    public void federatedSignIn(final String providerKey,
+                                final String token,
+                                final FederatedSignInOptions options,
+                                final Callback<UserStateDetails> callback) {
+        InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
+        internalCallback.async(_federatedSignIn(providerKey, token, options, internalCallback, true));
+    }
+
+    /**
+     * Federate tokens from custom identity providers by providing the
+     * logins key and token
+     * <p>
+     * The logins key can be specified with {@link IdentityProvider#AMAZON}
+     *
+     * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
+     * @param token       the JWT token vended by the third-party
+     */
+    public UserStateDetails federatedSignIn(final String providerKey,
+                                final String token,
+                                final FederatedSignInOptions options) throws Exception {
+        InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
+        return internalCallback.await(_federatedSignIn(providerKey, token, options, internalCallback, true));
     }
 
     protected void federatedSignInWithoutAssigningState(final String providerKey, final String token) throws Exception {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
-        internalCallback.await(_federatedSignIn(providerKey, token, internalCallback, false));
+        internalCallback.await(_federatedSignIn(providerKey, token, null, internalCallback, false));
     }
 
     protected void federatedSignInWithoutAssigningState(final String providerKey,
                                                         final String token,
                                                         final Callback<UserStateDetails> callback) {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
-        internalCallback.async(_federatedSignIn(providerKey, token, internalCallback, false));
+        internalCallback.async(_federatedSignIn(providerKey, token, null, internalCallback, false));
     }
 
     private Runnable _federatedSignIn(final String providerKey,
                                       final String token,
+                                      final FederatedSignInOptions options,
                                       final Callback<UserStateDetails> callback,
                                       final boolean assignState) {
 
@@ -958,6 +999,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         cognitoIdentity.clear();
                         cognitoIdentity.setLogins(loginsMap);
                     }
+
+                    if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+                        provider.setDeveloperAuthenticated(options.getIdentityId(), token);
+                    } else {
+                        provider.setNotDeveloperAuthenticated();
+                    }
+
+                    if (!StringUtils.isBlank(options.getCustomRoleARN())) {
+                        cognitoIdentity.setCustomRoleArn(options.getCustomRoleARN());
+                    }
+
                     UserStateDetails userStateDetails = getUserStateDetails(true);
 
                     new Thread(new Runnable() {
@@ -2552,4 +2604,97 @@ class AWSMobileClientStore {
     void clear() {
         mAWSKeyValueStore.clear();
     }
+}
+
+/**
+ * A duplicate class of AWSEnhancedCognitoIdentityProvider that provides the ability to
+ * branch into developer authenticated identities.
+ */
+class AWSMobileClientCognitoIdentityProvider extends AWSAbstractCognitoIdentityProvider {
+
+    boolean isDeveloperAuthenticated;
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId) {
+        this(accountId, identityPoolId, new ClientConfiguration());
+    }
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     * @param clientConfiguration the configuration to apply to service clients
+     *            created
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId,
+                                              ClientConfiguration clientConfiguration) {
+        this(accountId, identityPoolId, new AmazonCognitoIdentityClient
+                (new AnonymousAWSCredentials(), clientConfiguration));
+    }
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     * @param cibClient the cib client which will be used to contact the cib
+     *            back end
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId,
+                                              AmazonCognitoIdentity cibClient) {
+        super(accountId, identityPoolId, cibClient);
+    }
+
+    @Override
+    protected String getUserAgent() {
+        return "AWSMobileClient";
+    }
+
+    /**
+     * Internal method that switches the flow of the {@link com.amazonaws.auth.CognitoCredentialsProvider}
+     * to be the developer authenticated flow.
+     *
+     * @param identityId provided by user upstream
+     * @param token provided by user upstream
+     */
+    void setDeveloperAuthenticated(final String identityId,
+                                   final String token) {
+        super.setIdentityId(identityId);
+        super.setToken(token);
+        isDeveloperAuthenticated = true;
+    }
+
+    /**
+     * Internal method that switches the flow of the {@link com.amazonaws.auth.CognitoCredentialsProvider}
+     * to be the Cognito authenticated flow.
+     */
+    void setNotDeveloperAuthenticated() {
+        isDeveloperAuthenticated = false;
+    }
+
+    @Override
+    public String getProviderName() {
+        return "Cognito";
+    }
+
+    @Override
+    public String refresh() {
+        if (isDeveloperAuthenticated) {
+            // The identity id is already set in the setDeveloperAuthenticated call
+            return this.token;
+        } else {
+            getIdentityId();
+            return null;
+        }
+    }
+
 }
