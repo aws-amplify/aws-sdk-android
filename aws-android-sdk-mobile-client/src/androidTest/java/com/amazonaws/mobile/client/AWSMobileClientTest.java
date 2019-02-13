@@ -283,7 +283,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test
     public void testIdentityId() throws Exception {
         try {
-            createUser(AWSMobileClient.getInstance(), USERNAME, PASSWORD, EMAIL);
+            createUser(AWSMobileClient.getInstance(), userPoolId, USERNAME, PASSWORD, EMAIL);
             fail("The user should already exist in the userpool. Otherwise this test cannot determine whether the identity id was changed.");
         } catch (UsernameExistsException e) {
             // If the person exists, this is expected.

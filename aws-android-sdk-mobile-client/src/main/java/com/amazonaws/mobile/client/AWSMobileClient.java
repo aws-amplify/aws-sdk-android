@@ -983,6 +983,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         HashMap<String, String> details = new HashMap<String, String>();
         details.put(PROVIDER_KEY, providerKey);
         details.put(TOKEN_KEY, token);
+        if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+            details.put(IDENTITY_ID_KEY, options.getIdentityId());
+        }
         mStore.set(details);
 
         return new Runnable() {
@@ -998,12 +1001,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     if (!token.equals(mFederatedLoginsMap.get(providerKey))) {
                         cognitoIdentity.clear();
                         cognitoIdentity.setLogins(loginsMap);
-                    }
-
-                    if (IdentityProvider.DEVELOPER.equals(providerKey)) {
-                        provider.setDeveloperAuthenticated(options.getIdentityId(), token);
-                    } else {
-                        provider.setNotDeveloperAuthenticated();
                     }
 
                     if (!StringUtils.isBlank(options.getCustomRoleARN())) {
@@ -1043,6 +1040,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                                final String token) {
         synchronized (federateWithCognitoIdentityLockObject) {
             if (!hasFederatedToken(providerKey, token)) {
+                if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+                    provider.setDeveloperAuthenticated(mStore.get(IDENTITY_ID_KEY), token);
+                } else {
+                    provider.setNotDeveloperAuthenticated();
+                }
+
                 HashMap<String, String> logins = new HashMap<String, String>();
                 logins.put(providerKey, token);
                 cognitoIdentity.setLogins(logins);
