@@ -31,7 +31,6 @@ import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSAbstractCognitoIdentityProvider;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSEnhancedCognitoIdentityProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
@@ -80,11 +79,14 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetail
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
@@ -137,6 +139,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Log Tag.
      */
     private static final String TAG = AWSMobileClient.class.getSimpleName();
+    public static final String USER_AGENT = "AWSMobileClient";
 
     static final String SHARED_PREFERENCES_KEY = "com.amazonaws.mobile.client";
     static final String PROVIDER_KEY = "provider";
@@ -441,6 +444,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     "CredentialsProvider").getJSONObject("CognitoIdentity").getJSONObject(awsConfiguration.getConfiguration());
                             final String poolId = identityPoolJSON.getString("PoolId");
                             final String regionStr = identityPoolJSON.getString("Region");
+                            final ClientConfiguration clientConfig = new ClientConfiguration();
+                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
                             AmazonCognitoIdentityClient cibClient =
                                     new AmazonCognitoIdentityClient(new AnonymousAWSCredentials());
                             cibClient.setRegion(Region.getRegion(regionStr));
@@ -458,8 +463,18 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     final JSONObject userPoolJSON = awsConfiguration.optJsonObject("CognitoUserPool");
                     if (userPoolJSON != null) {
                         try {
+                            final String userPoolId = userPoolJSON.getString("PoolId");
+                            final String clientId = userPoolJSON.getString("AppClientId");
+                            final String clientSecret = userPoolJSON.optString("AppClientSecret");
+                            final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
+
+                            final ClientConfiguration clientConfig = new ClientConfiguration();
+                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            AmazonCognitoIdentityProvider client =
+                                    new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
+                            client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
-                            userpool = new CognitoUserPool(mContext, awsConfiguration);
+                            userpool = new CognitoUserPool(mContext, userPoolId, clientId, clientSecret, client, pinpointEndpointId);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
@@ -468,7 +483,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     }
 
                     if (cognitoIdentity == null && userpool == null) {
-                        callback.onError(new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
+                        callback.onError(new RuntimeException(
+                                "Neither Cognito Identity or Cognito UserPool was used." +
                                 " At least one must be present to use AWSMobileClient."));
                         return;
                     }
