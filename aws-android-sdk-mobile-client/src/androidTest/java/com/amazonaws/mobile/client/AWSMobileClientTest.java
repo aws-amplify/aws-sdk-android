@@ -662,4 +662,34 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         }
     }
 
+    @Test
+    public void testGlobalSignOut() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        auth.getUserAttributes();
+
+        final String accessTokenA = auth.getTokens().getAccessToken().getTokenString();
+        final String idTokenA = auth.getTokens().getIdToken().getTokenString();
+        final String refreshTokenA = auth.getTokens().getRefreshToken().getTokenString();
+        final String clientId = auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId");
+
+        auth.signOut();
+
+        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
+        auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
+
+        auth.getUserAttributes();
+
+        auth.signOut(SignOutOptions.builder().signOutGlobally(true).build());
+
+        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+
+        try {
+            auth.getUserAttributes();
+            fail("Global sign-out should make the access token invalid");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
