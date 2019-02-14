@@ -224,6 +224,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private Object initLockObject;
     AWSMobileClientStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
+    DeviceOperations mDeviceOperations;
 
     /**
      * Flag that indicates if the tokens would be persisted in SharedPreferences.
@@ -473,9 +474,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             AmazonCognitoIdentityProvider client =
                                     new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
                             client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
+
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
+
                             userpool = new CognitoUserPool(mContext, userPoolId, clientId, clientSecret, client, pinpointEndpointId);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
+
+                            mDeviceOperations = new DeviceOperations(AWSMobileClient.this, client);
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
                             return;
@@ -495,6 +500,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
             }
         };
+    }
+
+    /**
+     * Retrieve a handle to perform device related operations.
+     * This is only available for Cognito User Pools and it must be configured in the client.
+     *
+     * @return a handle for device operations
+     */
+    public DeviceOperations getDeviceOperations() {
+        if (mDeviceOperations == null) {
+            throw new AmazonClientException("Please check if userpools is configured.");
+        }
+        return mDeviceOperations;
     }
 
     /**
