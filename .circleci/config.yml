@@ -17,6 +17,22 @@ commands:
               circleci step halt
             fi
 
+  generate_gradle_wrapper:
+    description: >-
+      Downloads and install gradle 4.10.2
+    steps:
+      - run:
+          name: Download gradle zip
+          command: |
+            cd ~
+            wget https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
+            unzip gradle-4.10.2-bin.zip
+      - run:
+          name: Generate wrapper
+          command: |
+            cd ~/code # This is a pre-defined location
+            ~/gradle-4.10.2/bin/gradle wrapper
+
   configure_aws:
     description: >-
       install aws cli and configure android aws release profile
@@ -148,11 +164,10 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - configure_aws
+      - generate_gradle_wrapper
       - run:
           name: build the whole project
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             bash gradlew build -x test
       - run:
           name: copy libs
@@ -172,11 +187,10 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
-      - configure_aws
+      - generate_gradle_wrapper
       - run:
           name: run unit tests
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             python3 CircleciScripts/run_unittest.py "~/test_results" "$(pwd)"
       - run:
           name : check unit test result
