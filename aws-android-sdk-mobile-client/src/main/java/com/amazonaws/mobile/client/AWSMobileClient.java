@@ -87,6 +87,7 @@ import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
@@ -172,7 +173,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Object that encapuslates the high-level Cognito UserPools client
      */
     CognitoUserPool userpool;
-    private String userpoolsLoginKey;
+    String userpoolsLoginKey;
     Context mContext;
     Map<String, String> mFederatedLoginsMap;
     private UserStateDetails userStateDetails;
@@ -225,6 +226,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     AWSMobileClientStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
+    AmazonCognitoIdentityProvider userpoolLL;
 
     /**
      * Flag that indicates if the tokens would be persisted in SharedPreferences.
@@ -471,16 +473,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
                             clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
-                            AmazonCognitoIdentityProvider client =
+                            userpoolLL =
                                     new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
-                            client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
+                            userpoolLL.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
 
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
 
-                            userpool = new CognitoUserPool(mContext, userPoolId, clientId, clientSecret, client, pinpointEndpointId);
+                            userpool = new CognitoUserPool(mContext, userPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
 
-                            mDeviceOperations = new DeviceOperations(AWSMobileClient.this, client);
+                            mDeviceOperations = new DeviceOperations(AWSMobileClient.this, userpoolLL);
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
                             return;
@@ -923,10 +925,50 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         releaseSignInWait();
     }
 
-    public void signOut(final SignOutOptions signOutOptions) {
-        if (signOutOptions.isSignOutGlobally()) {
+    /**
+     * Sign-out the user with more options.
+     * <pre>
+     * {@code
+     * SignOutOptions.builder()
+     *                  .signOutGlobally(true) // Sign-out user from all sessions across devices
+     *                  .build();
+     * }
+     * </pre>
+     * @param signOutOptions options
+     */
+    public void signOut(final SignOutOptions signOutOptions) throws Exception {
+        _signOut(signOutOptions).await();
+    }
 
-        }
+    /**
+     * Sign-out the user with more options.
+     * <pre>
+     * {@code
+     * SignOutOptions.builder()
+     *                  .signOutGlobally(true) // Sign-out user from all sessions across devices
+     *                  .build();
+     * }
+     * </pre>
+     * @param signOutOptions options
+     */
+    public void signOut(final SignOutOptions signOutOptions, final Callback<Void> callback) {
+        _signOut(signOutOptions).async(callback);
+    }
+
+    private ReturningRunnable<Void> _signOut(final SignOutOptions signOutOptions) {
+        return new ReturningRunnable<Void>() {
+            @Override
+            public Void run() throws Exception {
+                if (signOutOptions.isSignOutGlobally()) {
+                    final GlobalSignOutRequest globalSignOutRequest = new GlobalSignOutRequest();
+                    globalSignOutRequest.setAccessToken(getTokens().getAccessToken().getTokenString());
+
+                    userpoolLL.globalSignOut(globalSignOutRequest);
+                    signOut();
+                }
+                return null;
+            }
+        };
     }
 
     /**

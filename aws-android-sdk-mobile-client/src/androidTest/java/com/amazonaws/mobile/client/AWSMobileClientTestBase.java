@@ -49,6 +49,32 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
     }
 
+    public static void writeUserpoolsTokens(final Context appContext,
+                                            final String clientId,
+                                            final String userId,
+                                            final String accessToken,
+                                            final String idToken,
+                                            final String refreshToken) {
+        final SharedPreferences csiCachedTokens = appContext
+                .getSharedPreferences("CognitoIdentityProviderCache", Context.MODE_PRIVATE);
+
+        // Create keys to look for cached tokens
+        final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".idToken";
+        final String csiAccessTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".accessToken";
+        final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".refreshToken";
+        final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
+
+        // Store the data in Shared Preferences
+        final SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
+        cacheEdit.putString(csiAccessTokenKey, accessToken);
+        cacheEdit.putString(csiIdTokenKey, idToken);
+        cacheEdit.putString(csiRefreshTokenKey, refreshToken);
+        cacheEdit.putString(csiLastUserKey, userId).apply();
+    }
+
     // Create valid access tokens
     public static String getValidJWT(long expiryInSecs){
         long epoch = System.currentTimeMillis()/1000L;
