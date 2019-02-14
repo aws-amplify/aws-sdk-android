@@ -23,9 +23,14 @@ import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperId
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminConfirmSignUpRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult;
+import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.DeviceRememberedStatusType;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
+import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
 import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
 
@@ -41,6 +46,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -72,6 +78,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     static BasicAWSCredentials adminCreds = new BasicAWSCredentials("redacted-mobile-client-cognito-admin-access-key"
             , "redacted-mobile-client-cognito-admin-secret-key");
+    static AmazonCognitoIdentityProvider userpoolLL;
 
     // Populated from awsconfiguration.json
     static Regions clientRegion = Regions.US_WEST_2;
@@ -83,6 +90,14 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     UserStateListener listener;
     String username;
 
+    public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
+        if (userpoolLL == null) {
+            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
+            userpoolLL.setRegion(Region.getRegion(clientRegion));
+        }
+        return userpoolLL;
+    }
+
     public static void createUser(final AWSMobileClient auth,
                                   final String userpoolId,
                                   final String username,
@@ -92,23 +107,18 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         userAttributes.put("email", email);
         auth.signUp(username, password, userAttributes,null);
 
-        AmazonCognitoIdentityProvider userpool = new AmazonCognitoIdentityProviderClient(adminCreds);
-        userpool.setRegion(Region.getRegion("us-west-2"));
-
         AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
         adminConfirmSignUpRequest.withUsername(username).withUserPoolId(userpoolId);
-        userpool.adminConfirmSignUp(adminConfirmSignUpRequest);
+        getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
     }
 
     public static void deleteAllUsers(final String userpoolId) {
-        AmazonCognitoIdentityProvider userpool = new AmazonCognitoIdentityProviderClient(adminCreds);
-        userpool.setRegion(Region.getRegion("us-west-2"));
         ListUsersResult listUsersResult;
         do {
             ListUsersRequest listUsersRequest = new ListUsersRequest()
                     .withUserPoolId(userpoolId)
                     .withLimit(60);
-            listUsersResult = userpool.listUsers(listUsersRequest);
+            listUsersResult = getUserpoolLL().listUsers(listUsersRequest);
             for (UserType user : listUsersResult.getUsers()) {
                 if (USERNAME.equals(user.getUsername())) {
                     // This user is saved to test the identity id permanence
@@ -118,7 +128,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     AWSMobileClient.getInstance().signIn(user.getUsername(), PASSWORD, null);
                     DeleteUserRequest deleteUserRequest = new DeleteUserRequest()
                             .withAccessToken(AWSMobileClient.getInstance().getTokens().getAccessToken().getTokenString());
-                    userpool.deleteUser(deleteUserRequest);
+                    getUserpoolLL().deleteUser(deleteUserRequest);
                 } catch (Exception e) {
                     Log.e(TAG, "deleteAllUsers: Some error trying to delete user", e);
                 }
@@ -166,7 +176,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.signOut();
 
         username = "testUser" + System.currentTimeMillis() + new Random().nextInt();
-        createUser(auth, username, userPoolId, PASSWORD, EMAIL);
+        createUser(auth, userPoolId, username, PASSWORD, EMAIL);
     }
 
     @After
@@ -578,6 +588,77 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         stop.set(true);
         for (Thread t : threads) {
             t.join();
+        }
+    }
+
+    @Test
+    public void testRememberDevice() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+
+        for (int i = 0; i < 2; ++i) {
+            assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+            auth.getDeviceOperations().updateDeviceStatus(true);
+            final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
+            assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+
+            checkDeviceAttribute(deviceKey, auth.getUsername(), "dev:device_remembered_status",
+                    DeviceRememberedStatusType.Remembered.toString());
+
+            auth.getDeviceOperations().updateDeviceStatus(false);
+
+            try {
+                auth.getDeviceOperations().get();
+                fail("Expected the device not the be found because it is not remembered");
+            } catch (ResourceNotFoundException e) {
+            }
+
+            checkDeviceAttribute(deviceKey, auth.getUsername(), "dev:device_remembered_status",
+                    DeviceRememberedStatusType.Not_remembered.toString());
+        }
+    }
+
+    @Test
+    public void testForgetDevice() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+
+        assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+        auth.getDeviceOperations().updateDeviceStatus(true);
+        final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
+        assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+
+        auth.getDeviceOperations().forget();
+
+        assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+        try {
+            auth.getDeviceOperations().updateDeviceStatus(true);
+            fail("Expected ResourceNotFoundException: Device does not exist.");
+        } catch (ResourceNotFoundException e) { }
+
+        auth.signOut();
+
+        auth.signIn(username, PASSWORD, null);
+        auth.getDeviceOperations().updateDeviceStatus(true);
+        assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+    }
+
+    private void checkDeviceAttribute(final String deviceKey,
+                                      final String username,
+                                      final String attributeName,
+                                      final String attributeValue) throws Exception {
+        final AdminGetDeviceRequest adminGetDeviceRequest = new AdminGetDeviceRequest()
+                .withDeviceKey(deviceKey)
+                .withUsername(username)
+                .withUserPoolId(userPoolId);
+        final AdminGetDeviceResult adminGetDeviceResult =
+                getUserpoolLL().adminGetDevice(adminGetDeviceRequest);
+
+        final List<AttributeType> deviceAttributes =
+                adminGetDeviceResult.getDevice().getDeviceAttributes();
+        for (AttributeType attributeType : deviceAttributes) {
+            if (attributeType.getName().equals(attributeName)) {
+                assertEquals(attributeValue, attributeType.getValue());
+                return;
+            }
         }
     }
 
