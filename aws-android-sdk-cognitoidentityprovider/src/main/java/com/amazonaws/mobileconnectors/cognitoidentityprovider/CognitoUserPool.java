@@ -416,14 +416,14 @@ public class CognitoUserPool {
         secretHash = CognitoSecretHash.getSecretHash(userId, clientId, clientSecret);
 
         // Create User registration request
-        final SignUpRequest signUpUserRequest = new SignUpRequest();
-        signUpUserRequest.setUsername(userId);
-        signUpUserRequest.setPassword(password);
-        signUpUserRequest.setClientId(clientId);
-        signUpUserRequest.setSecretHash(secretHash);
-        signUpUserRequest.setUserAttributes(userAttributes.getAttributesList());
-        signUpUserRequest.setValidationData(validationDataList);
-        signUpUserRequest.setUserContextData(getUserContextData(userId));
+        final SignUpRequest signUpUserRequest = new SignUpRequest()
+                .withUsername(userId)
+                .withPassword(password)
+                .withClientId(clientId)
+                .withSecretHash(secretHash)
+                .withUserAttributes(userAttributes.getAttributesList())
+                .withValidationData(validationDataList)
+                .withUserContextData(getUserContextData(userId));
         String ppEndpoint = getPinpointEndpointId();
         if (ppEndpoint != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
