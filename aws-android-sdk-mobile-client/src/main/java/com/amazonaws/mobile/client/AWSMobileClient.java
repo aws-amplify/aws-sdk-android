@@ -146,6 +146,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     static final String PROVIDER_KEY = "provider";
     static final String TOKEN_KEY = "token";
     static final String IDENTITY_ID_KEY = "identityId";
+    private static final String CUSTOM_ROLE_ARN_KEY = "customRoleArn";
     /**
      * Configuration keys for SignInProviders in awsconfiguration.json.
      */
@@ -1060,7 +1061,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         details.put(PROVIDER_KEY, providerKey);
         details.put(TOKEN_KEY, token);
         if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+            if (options == null) {
+                callback.onError(new Exception("Developer authenticated identities require the" +
+                        "identity id to be specified in FederatedSignInOptions"));
+            }
             details.put(IDENTITY_ID_KEY, options.getIdentityId());
+        }
+        if (options != null && !StringUtils.isBlank(options.getCustomRoleARN())) {
+            details.put(CUSTOM_ROLE_ARN_KEY, options.getCustomRoleARN());
         }
         mStore.set(details);
 
@@ -1077,10 +1085,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     if (!token.equals(mFederatedLoginsMap.get(providerKey))) {
                         cognitoIdentity.clear();
                         cognitoIdentity.setLogins(loginsMap);
-                    }
-
-                    if (!StringUtils.isBlank(options.getCustomRoleARN())) {
-                        cognitoIdentity.setCustomRoleArn(options.getCustomRoleARN());
                     }
 
                     UserStateDetails userStateDetails = getUserStateDetails(true);
@@ -1120,6 +1124,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     provider.setDeveloperAuthenticated(mStore.get(IDENTITY_ID_KEY), token);
                 } else {
                     provider.setNotDeveloperAuthenticated();
+                }
+
+                final String customRoleArn = mStore.get(CUSTOM_ROLE_ARN_KEY);
+                if (!StringUtils.isBlank(customRoleArn)) {
+                    cognitoIdentity.setCustomRoleArn(customRoleArn);
                 }
 
                 HashMap<String, String> logins = new HashMap<String, String>();
