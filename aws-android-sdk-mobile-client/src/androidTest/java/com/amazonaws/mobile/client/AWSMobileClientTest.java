@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.mobile.client.results.ForgotPasswordResult;
+import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
 import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.SignUpResult;
@@ -28,6 +30,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeviceRememberedStatusType;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
@@ -125,6 +128,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     continue;
                 }
                 try {
+                    Log.d(TAG, "deleteAllUsers: " + user.getUsername());
                     AWSMobileClient.getInstance().signIn(user.getUsername(), PASSWORD, null);
                     DeleteUserRequest deleteUserRequest = new DeleteUserRequest()
                             .withAccessToken(AWSMobileClient.getInstance().getTokens().getAccessToken().getTokenString());
@@ -641,6 +645,15 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
     }
 
+    /**
+     * Utility function that calls admin API to check the certain device attribute values.
+     *
+     * @param deviceKey the device that holds the attributes to be checked
+     * @param username the user that has the device
+     * @param attributeName the name of the attribute that will be checked
+     * @param attributeValue the value the named attribute should be set to when checked
+     * @throws Exception any error that occurs performing this operation
+     */
     private void checkDeviceAttribute(final String deviceKey,
                                       final String username,
                                       final String attributeName,
@@ -683,6 +696,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.signOut(SignOutOptions.builder().signOutGlobally(true).build());
 
         writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
+        auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
 
         try {
             auth.getUserAttributes();
@@ -690,6 +705,20 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testForgotPassword() throws Exception {
+        // USERNAME user is a confirmed account with a confirmed email
+        final ForgotPasswordResult forgotPasswordResult = auth.forgotPassword(USERNAME);
+        assertEquals(ForgotPasswordState.CONFIRMATION_CODE, forgotPasswordResult.getState());
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void testForgotPasswordWithNewUser() throws Exception {
+        // username user is a confirmed account without a confirmed email or phone
+        final ForgotPasswordResult forgotPasswordResult = auth.forgotPassword(username);
+        assertEquals(ForgotPasswordState.CONFIRMATION_CODE, forgotPasswordResult.getState());
     }
 
 }
