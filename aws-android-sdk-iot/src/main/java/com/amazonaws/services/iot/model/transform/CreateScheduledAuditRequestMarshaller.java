@@ -89,6 +89,17 @@ public class CreateScheduledAuditRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createScheduledAuditRequest.getTags() != null) {
+                java.util.List<Tag> tags = createScheduledAuditRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

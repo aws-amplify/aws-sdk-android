@@ -307,6 +307,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new UserNotConfirmedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserPoolAddOnNotEnabledExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UserPoolTaggingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UsernameExistsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
@@ -585,6 +586,116 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
+     * Deletes a user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDeleteUserRequest <p>
+     *            Represents the request to delete a user as an administrator.
+     *            </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void adminDeleteUser(AdminDeleteUserRequest adminDeleteUserRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminDeleteUserRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminDeleteUserRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminDeleteUserRequestMarshaller().marshall(adminDeleteUserRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the user attributes in a user pool as an administrator. Works on
+     * any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDeleteUserAttributesRequest <p>
+     *            Represents the request to delete user attributes as an
+     *            administrator.
+     *            </p>
+     * @return adminDeleteUserAttributesResult The response from the
+     *         AdminDeleteUserAttributes service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminDeleteUserAttributesResult adminDeleteUserAttributes(
+            AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminDeleteUserAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminDeleteUserAttributesRequest> request = null;
+        Response<AdminDeleteUserAttributesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminDeleteUserAttributesRequestMarshaller()
+                        .marshall(adminDeleteUserAttributesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminDeleteUserAttributesResult, JsonUnmarshallerContext> unmarshaller = new AdminDeleteUserAttributesResultJsonUnmarshaller();
+            JsonResponseHandler<AdminDeleteUserAttributesResult> responseHandler = new JsonResponseHandler<AdminDeleteUserAttributesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Disables the user from signing in with the specified external (SAML or
      * social) identity provider. If the user to disable is a Cognito User Pools
      * native username + password user, they are not permitted to use their
@@ -668,6 +779,120 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminDisableProviderForUserResult, JsonUnmarshallerContext> unmarshaller = new AdminDisableProviderForUserResultJsonUnmarshaller();
             JsonResponseHandler<AdminDisableProviderForUserResult> responseHandler = new JsonResponseHandler<AdminDisableProviderForUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Disables the specified user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDisableUserRequest <p>
+     *            Represents the request to disable any user as an
+     *            administrator.
+     *            </p>
+     * @return adminDisableUserResult The response from the AdminDisableUser
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminDisableUserResult adminDisableUser(AdminDisableUserRequest adminDisableUserRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminDisableUserRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminDisableUserRequest> request = null;
+        Response<AdminDisableUserResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminDisableUserRequestMarshaller().marshall(adminDisableUserRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminDisableUserResult, JsonUnmarshallerContext> unmarshaller = new AdminDisableUserResultJsonUnmarshaller();
+            JsonResponseHandler<AdminDisableUserResult> responseHandler = new JsonResponseHandler<AdminDisableUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Enables the specified user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminEnableUserRequest <p>
+     *            Represents the request that enables the user as an
+     *            administrator.
+     *            </p>
+     * @return adminEnableUserResult The response from the AdminEnableUser
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminEnableUserResult adminEnableUser(AdminEnableUserRequest adminEnableUserRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminEnableUserRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminEnableUserRequest> request = null;
+        Response<AdminEnableUserResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminEnableUserRequestMarshaller().marshall(adminEnableUserRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminEnableUserResult, JsonUnmarshallerContext> unmarshaller = new AdminEnableUserResultJsonUnmarshaller();
+            JsonResponseHandler<AdminEnableUserResult> responseHandler = new JsonResponseHandler<AdminEnableUserResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -775,6 +1000,64 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminGetDeviceResult, JsonUnmarshallerContext> unmarshaller = new AdminGetDeviceResultJsonUnmarshaller();
             JsonResponseHandler<AdminGetDeviceResult> responseHandler = new JsonResponseHandler<AdminGetDeviceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the specified user by user name in a user pool as an administrator.
+     * Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminGetUserRequest <p>
+     *            Represents the request to get the specified user as an
+     *            administrator.
+     *            </p>
+     * @return adminGetUserResult The response from the AdminGetUser service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminGetUserResult adminGetUser(AdminGetUserRequest adminGetUserRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminGetUserRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminGetUserRequest> request = null;
+        Response<AdminGetUserResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminGetUserRequestMarshaller().marshall(adminGetUserRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminGetUserResult, JsonUnmarshallerContext> unmarshaller = new AdminGetUserResultJsonUnmarshaller();
+            JsonResponseHandler<AdminGetUserResult> responseHandler = new JsonResponseHandler<AdminGetUserResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1155,6 +1438,85 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
+     * Resets the specified user's password in a user pool as an administrator.
+     * Works on any user.
+     * </p>
+     * <p>
+     * When a developer calls this API, the current password is invalidated, so
+     * it must be changed. If a user tries to sign in after the API is called,
+     * the app will get a PasswordResetRequiredException exception back and
+     * should direct the user down the flow to reset the password, which is the
+     * same as the forgot password flow. In addition, if the user pool has phone
+     * verification selected and a verified phone number exists for the user, or
+     * if email verification is selected and a verified email exists for the
+     * user, calling this API will also result in sending a message to the end
+     * user with the code to change their password.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminResetUserPasswordRequest <p>
+     *            Represents the request to reset a user's password as an
+     *            administrator.
+     *            </p>
+     * @return adminResetUserPasswordResult The response from the
+     *         AdminResetUserPassword service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws NotAuthorizedException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws LimitExceededException
+     * @throws UserNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminResetUserPasswordResult adminResetUserPassword(
+            AdminResetUserPasswordRequest adminResetUserPasswordRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminResetUserPasswordRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminResetUserPasswordRequest> request = null;
+        Response<AdminResetUserPasswordResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminResetUserPasswordRequestMarshaller()
+                        .marshall(adminResetUserPasswordRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminResetUserPasswordResult, JsonUnmarshallerContext> unmarshaller = new AdminResetUserPasswordResultJsonUnmarshaller();
+            JsonResponseHandler<AdminResetUserPasswordResult> responseHandler = new JsonResponseHandler<AdminResetUserPasswordResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Responds to an authentication challenge, as an administrator.
      * </p>
      * <p>
@@ -1447,6 +1809,79 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminUpdateDeviceStatusResult, JsonUnmarshallerContext> unmarshaller = new AdminUpdateDeviceStatusResultJsonUnmarshaller();
             JsonResponseHandler<AdminUpdateDeviceStatusResult> responseHandler = new JsonResponseHandler<AdminUpdateDeviceStatusResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified user's attributes, including developer attributes,
+     * as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
+     * In addition to updating user attributes, this API can also be used to
+     * mark phone and email as verified.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminUpdateUserAttributesRequest <p>
+     *            Represents the request to update the user's attributes as an
+     *            administrator.
+     *            </p>
+     * @return adminUpdateUserAttributesResult The response from the
+     *         AdminUpdateUserAttributes service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws AliasExistsException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminUpdateUserAttributesResult adminUpdateUserAttributes(
+            AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminUpdateUserAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminUpdateUserAttributesRequest> request = null;
+        Response<AdminUpdateUserAttributesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminUpdateUserAttributesRequestMarshaller()
+                        .marshall(adminUpdateUserAttributesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminUpdateUserAttributesResult, JsonUnmarshallerContext> unmarshaller = new AdminUpdateUserAttributesResultJsonUnmarshaller();
+            JsonResponseHandler<AdminUpdateUserAttributesResult> responseHandler = new JsonResponseHandler<AdminUpdateUserAttributesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2026,6 +2461,63 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<CreateUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new CreateUserImportJobResultJsonUnmarshaller();
             JsonResponseHandler<CreateUserImportJobResult> responseHandler = new JsonResponseHandler<CreateUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new Amazon Cognito user pool and sets the password policy for
+     * the pool.
+     * </p>
+     * 
+     * @param createUserPoolRequest <p>
+     *            Represents the request to create a user pool.
+     *            </p>
+     * @return createUserPoolResult The response from the CreateUserPool service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws LimitExceededException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws NotAuthorizedException
+     * @throws UserPoolTaggingException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public CreateUserPoolResult createUserPool(CreateUserPoolRequest createUserPoolRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createUserPoolRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateUserPoolRequest> request = null;
+        Response<CreateUserPoolResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateUserPoolRequestMarshaller().marshall(createUserPoolRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateUserPoolResult, JsonUnmarshallerContext> unmarshaller = new CreateUserPoolResultJsonUnmarshaller();
+            JsonResponseHandler<CreateUserPoolResult> responseHandler = new JsonResponseHandler<CreateUserPoolResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2737,6 +3229,60 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<DescribeUserImportJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeUserImportJobResultJsonUnmarshaller();
             JsonResponseHandler<DescribeUserImportJobResult> responseHandler = new JsonResponseHandler<DescribeUserImportJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the configuration information and metadata of the specified user
+     * pool.
+     * </p>
+     * 
+     * @param describeUserPoolRequest <p>
+     *            Represents the request to describe the user pool.
+     *            </p>
+     * @return describeUserPoolResult The response from the DescribeUserPool
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserPoolTaggingException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DescribeUserPoolResult describeUserPool(DescribeUserPoolRequest describeUserPoolRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeUserPoolRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeUserPoolRequest> request = null;
+        Response<DescribeUserPoolResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeUserPoolRequestMarshaller().marshall(describeUserPoolRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeUserPoolResult, JsonUnmarshallerContext> unmarshaller = new DescribeUserPoolResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeUserPoolResult> responseHandler = new JsonResponseHandler<DescribeUserPoolResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3913,6 +4459,57 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
+     * Lists the user pools associated with an AWS account.
+     * </p>
+     * 
+     * @param listUserPoolsRequest <p>
+     *            Represents the request to list user pools.
+     *            </p>
+     * @return listUserPoolsResult The response from the ListUserPools service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListUserPoolsResult listUserPools(ListUserPoolsRequest listUserPoolsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listUserPoolsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListUserPoolsRequest> request = null;
+        Response<ListUserPoolsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListUserPoolsRequestMarshaller().marshall(listUserPoolsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListUserPoolsResult, JsonUnmarshallerContext> unmarshaller = new ListUserPoolsResultJsonUnmarshaller();
+            JsonResponseHandler<ListUserPoolsResult> responseHandler = new JsonResponseHandler<ListUserPoolsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the users in the Amazon Cognito user pool.
      * </p>
      * 
@@ -4957,6 +5554,66 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<UpdateUserAttributesResult, JsonUnmarshallerContext> unmarshaller = new UpdateUserAttributesResultJsonUnmarshaller();
             JsonResponseHandler<UpdateUserAttributesResult> responseHandler = new JsonResponseHandler<UpdateUserAttributesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified user pool with the specified attributes. If you
+     * don't provide a value for an attribute, it will be set to the default
+     * value. You can get a list of the current user pool settings with .
+     * </p>
+     * 
+     * @param updateUserPoolRequest <p>
+     *            Represents the request to update the user pool.
+     *            </p>
+     * @return updateUserPoolResult The response from the UpdateUserPool service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ConcurrentModificationException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
+     * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws UserPoolTaggingException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateUserPoolResult updateUserPool(UpdateUserPoolRequest updateUserPoolRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateUserPoolRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateUserPoolRequest> request = null;
+        Response<UpdateUserPoolResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateUserPoolRequestMarshaller().marshall(updateUserPoolRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateUserPoolResult, JsonUnmarshallerContext> unmarshaller = new UpdateUserPoolResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateUserPoolResult> responseHandler = new JsonResponseHandler<UpdateUserPoolResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

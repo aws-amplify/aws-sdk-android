@@ -80,21 +80,21 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was created.
+     * The time, in seconds since the epoch, when the job was created.
      * </p>
      */
     private java.util.Date createdAt;
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was last updated.
+     * The time, in seconds since the epoch, when the job was last updated.
      * </p>
      */
     private java.util.Date lastUpdatedAt;
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job completed.
+     * The time, in seconds since the epoch, when the job completed.
      * </p>
      */
     private java.util.Date completedAt;
@@ -517,12 +517,11 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was created.
+     * The time, in seconds since the epoch, when the job was created.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job was
-     *         created.
+     *         The time, in seconds since the epoch, when the job was created.
      *         </p>
      */
     public java.util.Date getCreatedAt() {
@@ -531,11 +530,11 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was created.
+     * The time, in seconds since the epoch, when the job was created.
      * </p>
      *
      * @param createdAt <p>
-     *            The time, in milliseconds since the epoch, when the job was
+     *            The time, in seconds since the epoch, when the job was
      *            created.
      *            </p>
      */
@@ -545,14 +544,14 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was created.
+     * The time, in seconds since the epoch, when the job was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param createdAt <p>
-     *            The time, in milliseconds since the epoch, when the job was
+     *            The time, in seconds since the epoch, when the job was
      *            created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -565,11 +564,11 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was last updated.
+     * The time, in seconds since the epoch, when the job was last updated.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job was last
+     *         The time, in seconds since the epoch, when the job was last
      *         updated.
      *         </p>
      */
@@ -579,12 +578,12 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was last updated.
+     * The time, in seconds since the epoch, when the job was last updated.
      * </p>
      *
      * @param lastUpdatedAt <p>
-     *            The time, in milliseconds since the epoch, when the job was
-     *            last updated.
+     *            The time, in seconds since the epoch, when the job was last
+     *            updated.
      *            </p>
      */
     public void setLastUpdatedAt(java.util.Date lastUpdatedAt) {
@@ -593,15 +592,15 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job was last updated.
+     * The time, in seconds since the epoch, when the job was last updated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastUpdatedAt <p>
-     *            The time, in milliseconds since the epoch, when the job was
-     *            last updated.
+     *            The time, in seconds since the epoch, when the job was last
+     *            updated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -613,12 +612,11 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job completed.
+     * The time, in seconds since the epoch, when the job completed.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job
-     *         completed.
+     *         The time, in seconds since the epoch, when the job completed.
      *         </p>
      */
     public java.util.Date getCompletedAt() {
@@ -627,12 +625,11 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job completed.
+     * The time, in seconds since the epoch, when the job completed.
      * </p>
      *
      * @param completedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            completed.
+     *            The time, in seconds since the epoch, when the job completed.
      *            </p>
      */
     public void setCompletedAt(java.util.Date completedAt) {
@@ -641,15 +638,14 @@ public class JobSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job completed.
+     * The time, in seconds since the epoch, when the job completed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            completed.
+     *            The time, in seconds since the epoch, when the job completed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

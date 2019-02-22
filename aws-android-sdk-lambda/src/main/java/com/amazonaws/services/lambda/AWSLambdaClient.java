@@ -41,10 +41,10 @@ import com.amazonaws.services.lambda.model.transform.*;
  * <p>
  * This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
  * provides additional information. For the service overview, see <a
- * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
- * Lambda</a>, and for information about how the service works, see <a
- * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
- * >AWS Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
+ * Lambda</a>, and for information about how the service works, see <a href=
+ * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
+ * Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
  * </p>
  */
 public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda {
@@ -306,27 +306,27 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
 
     /**
      * <p>
-     * Invokes a Lambda function. You can invoke a function synchronously and
-     * wait for the response, or asynchronously. To invoke a function
+     * Invokes a Lambda function. You can invoke a function synchronously (and
+     * wait for the response), or asynchronously. To invoke a function
      * asynchronously, set <code>InvocationType</code> to <code>Event</code>.
      * </p>
      * <p>
      * For synchronous invocation, details about the function response,
      * including errors, are included in the response body and headers. For
      * either invocation type, you can find more information in the <a href=
-     * "http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
+     * "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
      * >execution log</a> and <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
-     * record function errors for asynchronous invocations, configure your
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>.
+     * To record function errors for asynchronous invocations, configure your
      * function with a <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead letter
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead letter
      * queue</a>.
      * </p>
      * <p>
-     * The status code in the API response does not reflect function errors.
+     * The status code in the API response doesn't reflect function errors.
      * Error codes are reserved for errors that prevent your function from
      * executing, such as permissions errors, <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
      * errors</a>, or issues with your function's code and configuration. For
      * example, Lambda returns <code>TooManyRequestsException</code> if
      * executing the function would cause you to exceed a concurrency limit at
@@ -335,10 +335,10 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
      * </p>
      * <p>
-     * For functions with a long timeout, your client may be disconnected during
-     * synchronous invocation while it waits for a response. Configure your HTTP
-     * client, SDK, firewall, proxy, or operating system to allow for long
-     * connections with timeout or keep-alive settings.
+     * For functions with a long timeout, your client might be disconnected
+     * during synchronous invocation while it waits for a response. Configure
+     * your HTTP client, SDK, firewall, proxy, or operating system to allow for
+     * long connections with timeout or keep-alive settings.
      * </p>
      * <p>
      * This operation requires permission for the

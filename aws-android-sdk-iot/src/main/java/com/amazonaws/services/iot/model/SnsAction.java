@@ -44,8 +44,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -151,8 +151,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -166,8 +166,8 @@ public class SnsAction implements Serializable {
      *         should be parsed and relevant platform-specific bits of the
      *         payload should be extracted. To read more about SNS message
      *         formats, see <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     *         >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
+     *         "https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     *         >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
      *         refer to their official documentation.
      *         </p>
      * @see MessageFormat
@@ -183,8 +183,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -198,8 +198,8 @@ public class SnsAction implements Serializable {
      *            payload should be parsed and relevant platform-specific bits
      *            of the payload should be extracted. To read more about SNS
      *            message formats, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     *            >http
+     *            "https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     *            >https
      *            ://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
      *            refer to their official documentation.
      *            </p>
@@ -216,8 +216,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -234,8 +234,8 @@ public class SnsAction implements Serializable {
      *            payload should be parsed and relevant platform-specific bits
      *            of the payload should be extracted. To read more about SNS
      *            message formats, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     *            >http
+     *            "https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     *            >https
      *            ://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
      *            refer to their official documentation.
      *            </p>
@@ -255,8 +255,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -270,8 +270,8 @@ public class SnsAction implements Serializable {
      *            payload should be parsed and relevant platform-specific bits
      *            of the payload should be extracted. To read more about SNS
      *            message formats, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     *            >http
+     *            "https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     *            >https
      *            ://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
      *            refer to their official documentation.
      *            </p>
@@ -288,8 +288,8 @@ public class SnsAction implements Serializable {
      * uses this setting to determine if the payload should be parsed and
      * relevant platform-specific bits of the payload should be extracted. To
      * read more about SNS message formats, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     * >http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
+     * href="https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     * >https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to
      * their official documentation.
      * </p>
      * <p>
@@ -306,8 +306,8 @@ public class SnsAction implements Serializable {
      *            payload should be parsed and relevant platform-specific bits
      *            of the payload should be extracted. To read more about SNS
      *            message formats, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
-     *            >http
+     *            "https://docs.aws.amazon.com/sns/latest/dg/json-formats.html"
+     *            >https
      *            ://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a>
      *            refer to their official documentation.
      *            </p>

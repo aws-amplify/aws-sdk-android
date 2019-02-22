@@ -36,24 +36,22 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * queued.
+     * The time, in seconds since the epoch, when the job execution was queued.
      * </p>
      */
     private java.util.Date queuedAt;
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution
-     * started.
+     * The time, in seconds since the epoch, when the job execution started.
      * </p>
      */
     private java.util.Date startedAt;
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * last updated.
+     * The time, in seconds since the epoch, when the job execution was last
+     * updated.
      * </p>
      */
     private java.util.Date lastUpdatedAt;
@@ -171,13 +169,12 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * queued.
+     * The time, in seconds since the epoch, when the job execution was queued.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job execution
-     *         was queued.
+     *         The time, in seconds since the epoch, when the job execution was
+     *         queued.
      *         </p>
      */
     public java.util.Date getQueuedAt() {
@@ -186,13 +183,12 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * queued.
+     * The time, in seconds since the epoch, when the job execution was queued.
      * </p>
      *
      * @param queuedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution was queued.
+     *            The time, in seconds since the epoch, when the job execution
+     *            was queued.
      *            </p>
      */
     public void setQueuedAt(java.util.Date queuedAt) {
@@ -201,16 +197,15 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * queued.
+     * The time, in seconds since the epoch, when the job execution was queued.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queuedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution was queued.
+     *            The time, in seconds since the epoch, when the job execution
+     *            was queued.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -222,12 +217,11 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution
-     * started.
+     * The time, in seconds since the epoch, when the job execution started.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job execution
+     *         The time, in seconds since the epoch, when the job execution
      *         started.
      *         </p>
      */
@@ -237,13 +231,12 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution
-     * started.
+     * The time, in seconds since the epoch, when the job execution started.
      * </p>
      *
      * @param startedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution started.
+     *            The time, in seconds since the epoch, when the job execution
+     *            started.
      *            </p>
      */
     public void setStartedAt(java.util.Date startedAt) {
@@ -252,16 +245,15 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution
-     * started.
+     * The time, in seconds since the epoch, when the job execution started.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution started.
+     *            The time, in seconds since the epoch, when the job execution
+     *            started.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -273,13 +265,13 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * last updated.
+     * The time, in seconds since the epoch, when the job execution was last
+     * updated.
      * </p>
      *
      * @return <p>
-     *         The time, in milliseconds since the epoch, when the job execution
-     *         was last updated.
+     *         The time, in seconds since the epoch, when the job execution was
+     *         last updated.
      *         </p>
      */
     public java.util.Date getLastUpdatedAt() {
@@ -288,13 +280,13 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * last updated.
+     * The time, in seconds since the epoch, when the job execution was last
+     * updated.
      * </p>
      *
      * @param lastUpdatedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution was last updated.
+     *            The time, in seconds since the epoch, when the job execution
+     *            was last updated.
      *            </p>
      */
     public void setLastUpdatedAt(java.util.Date lastUpdatedAt) {
@@ -303,16 +295,16 @@ public class JobExecutionSummary implements Serializable {
 
     /**
      * <p>
-     * The time, in milliseconds since the epoch, when the job execution was
-     * last updated.
+     * The time, in seconds since the epoch, when the job execution was last
+     * updated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastUpdatedAt <p>
-     *            The time, in milliseconds since the epoch, when the job
-     *            execution was last updated.
+     *            The time, in seconds since the epoch, when the job execution
+     *            was last updated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

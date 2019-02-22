@@ -32,13 +32,13 @@ import com.amazonaws.services.iot.model.*;
  * </p>
  * <p>
  * For more information about how AWS IoT works, see the <a href=
- * "http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
  * </p>
  * <p>
  * For information about how to use the credentials provider for AWS IoT, see <a
  * href=
- * "http://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html"
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html"
  * >Authorizing Direct Calls to AWS Services</a>.
  * </p>
  **/
@@ -903,7 +903,7 @@ public interface AWSIot {
      * <note>
      * <p>
      * This is a control plane operation. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
@@ -939,7 +939,7 @@ public interface AWSIot {
      * <note>
      * <p>
      * This is a control plane operation. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
@@ -3003,7 +3003,7 @@ public interface AWSIot {
      * <p>
      * Lists the policies attached to the specified principal. If you use an
      * Cognito identity, the ID must be in <a href=
-     * "http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax"
+     * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax"
      * >AmazonCognito Identity format</a>.
      * </p>
      * <p>

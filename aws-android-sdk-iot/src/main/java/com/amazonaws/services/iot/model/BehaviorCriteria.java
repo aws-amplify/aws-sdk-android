@@ -26,7 +26,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,7 +45,7 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * Use this to specify the period of time over which the behavior is
+     * Use this to specify the time duration over which the behavior is
      * evaluated, for those criteria which have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>).
      * </p>
@@ -55,7 +55,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +65,7 @@ public class BehaviorCriteria implements Serializable {
      *
      * @return <p>
      *         The operator that relates the thing measured (<code>metric</code>
-     *         ) to the criteria (<code>value</code>).
+     *         ) to the criteria (containing a <code>value</code>.
      *         </p>
      * @see ComparisonOperator
      */
@@ -76,7 +76,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,8 @@ public class BehaviorCriteria implements Serializable {
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
-     *            <code>metric</code>) to the criteria (<code>value</code>).
+     *            <code>metric</code>) to the criteria (containing a
+     *            <code>value</code>.
      *            </p>
      * @see ComparisonOperator
      */
@@ -97,7 +98,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,7 +111,8 @@ public class BehaviorCriteria implements Serializable {
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
-     *            <code>metric</code>) to the criteria (<code>value</code>).
+     *            <code>metric</code>) to the criteria (containing a
+     *            <code>value</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -124,7 +126,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -134,7 +136,8 @@ public class BehaviorCriteria implements Serializable {
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
-     *            <code>metric</code>) to the criteria (<code>value</code>).
+     *            <code>metric</code>) to the criteria (containing a
+     *            <code>value</code>.
      *            </p>
      * @see ComparisonOperator
      */
@@ -145,7 +148,7 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
-     * criteria (<code>value</code>).
+     * criteria (containing a <code>value</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +161,8 @@ public class BehaviorCriteria implements Serializable {
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
-     *            <code>metric</code>) to the criteria (<code>value</code>).
+     *            <code>metric</code>) to the criteria (containing a
+     *            <code>value</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -216,13 +220,13 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * Use this to specify the period of time over which the behavior is
+     * Use this to specify the time duration over which the behavior is
      * evaluated, for those criteria which have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>).
      * </p>
      *
      * @return <p>
-     *         Use this to specify the period of time over which the behavior is
+     *         Use this to specify the time duration over which the behavior is
      *         evaluated, for those criteria which have a time dimension (for
      *         example, <code>NUM_MESSAGES_SENT</code>).
      *         </p>
@@ -233,13 +237,13 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * Use this to specify the period of time over which the behavior is
+     * Use this to specify the time duration over which the behavior is
      * evaluated, for those criteria which have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>).
      * </p>
      *
      * @param durationSeconds <p>
-     *            Use this to specify the period of time over which the behavior
+     *            Use this to specify the time duration over which the behavior
      *            is evaluated, for those criteria which have a time dimension
      *            (for example, <code>NUM_MESSAGES_SENT</code>).
      *            </p>
@@ -250,7 +254,7 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * Use this to specify the period of time over which the behavior is
+     * Use this to specify the time duration over which the behavior is
      * evaluated, for those criteria which have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>).
      * </p>
@@ -259,7 +263,7 @@ public class BehaviorCriteria implements Serializable {
      * together.
      *
      * @param durationSeconds <p>
-     *            Use this to specify the period of time over which the behavior
+     *            Use this to specify the time duration over which the behavior
      *            is evaluated, for those criteria which have a time dimension
      *            (for example, <code>NUM_MESSAGES_SENT</code>).
      *            </p>

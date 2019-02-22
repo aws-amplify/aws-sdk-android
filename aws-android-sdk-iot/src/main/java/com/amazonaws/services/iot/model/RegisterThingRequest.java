@@ -28,7 +28,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      */
@@ -37,7 +37,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The parameters for provisioning a thing. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      */
@@ -46,13 +46,13 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      *
      * @return <p>
      *         The provisioning template. See <a href=
-     *         "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *         >Programmatic Provisioning</a> for more information.
      *         </p>
      */
@@ -63,13 +63,13 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      *
      * @param templateBody <p>
      *            The provisioning template. See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *            >Programmatic Provisioning</a> for more information.
      *            </p>
      */
@@ -80,7 +80,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      * <p>
@@ -89,7 +89,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param templateBody <p>
      *            The provisioning template. See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *            >Programmatic Provisioning</a> for more information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -103,13 +103,13 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The parameters for provisioning a thing. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      *
      * @return <p>
      *         The parameters for provisioning a thing. See <a href=
-     *         "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *         >Programmatic Provisioning</a> for more information.
      *         </p>
      */
@@ -120,13 +120,13 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The parameters for provisioning a thing. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      *
      * @param parameters <p>
      *            The parameters for provisioning a thing. See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *            >Programmatic Provisioning</a> for more information.
      *            </p>
      */
@@ -137,7 +137,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The parameters for provisioning a thing. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      * <p>
@@ -146,7 +146,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param parameters <p>
      *            The parameters for provisioning a thing. See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      *            >Programmatic Provisioning</a> for more information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -160,7 +160,7 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The parameters for provisioning a thing. See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
      * >Programmatic Provisioning</a> for more information.
      * </p>
      * <p>

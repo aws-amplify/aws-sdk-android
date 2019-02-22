@@ -1,5 +1,27 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.1)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fixed a bug that cause `changePassword(String, String, Callback)` to return error when successful. The error returned was null and will now call `onResult(Void)`
+
+### Enhancements
+
+* **Amazon Cognito Identity Provider**
+  * The Amazon Cognito Identity Provider SDK now supports all Amazon Cognito Identity Provider APIs, including "CreateUserPool", "DescribeUserPool", "UpdateUserPool", "ListUserPools", "AdminEnableUser", "AdminDisableUser", "AdminConfirmRegisterUser", "AdminResetUserPassword", "AdminGetUser", "AdminUpdateUserAttributes", "AdminDeleteUserAttributes", "AdminDeleteUser". All admin APIs require developer credentials. Note that by using admin APIs, you are inherently dealing with privileged functions that could result in data loss, if improperly used.
+  * Fixed `initiateUserAuthentication()` to respect `runInBackground` flag for network calls. See [pr #702](https://github.com/aws-amplify/aws-sdk-android/pull/702)
+
+* **AWS Core Runtime**
+  * Add templated callback structure for async methods across SDKs. Internal `ReturningRunnable` added to facilitate support for synchronous and asynchronous methods.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS IoT
+  * Amazon Lambda
+
 ## [Release 2.12.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.0)
 
 ### Enhancements

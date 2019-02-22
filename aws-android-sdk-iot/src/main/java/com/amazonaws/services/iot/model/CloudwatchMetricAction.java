@@ -54,7 +54,7 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * The <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      * >metric unit</a> supported by CloudWatch.
      * </p>
      */
@@ -63,7 +63,7 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * An optional <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      * >Unix timestamp</a>.
      * </p>
      */
@@ -252,13 +252,13 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * The <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      * >metric unit</a> supported by CloudWatch.
      * </p>
      *
      * @return <p>
      *         The <a href=
-     *         "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *         "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      *         >metric unit</a> supported by CloudWatch.
      *         </p>
      */
@@ -269,13 +269,13 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * The <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      * >metric unit</a> supported by CloudWatch.
      * </p>
      *
      * @param metricUnit <p>
      *            The <a href=
-     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      *            >metric unit</a> supported by CloudWatch.
      *            </p>
      */
@@ -286,7 +286,7 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * The <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      * >metric unit</a> supported by CloudWatch.
      * </p>
      * <p>
@@ -295,7 +295,7 @@ public class CloudwatchMetricAction implements Serializable {
      *
      * @param metricUnit <p>
      *            The <a href=
-     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit"
      *            >metric unit</a> supported by CloudWatch.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -309,13 +309,13 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * An optional <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      * >Unix timestamp</a>.
      * </p>
      *
      * @return <p>
      *         An optional <a href=
-     *         "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *         "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      *         >Unix timestamp</a>.
      *         </p>
      */
@@ -326,13 +326,13 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * An optional <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      * >Unix timestamp</a>.
      * </p>
      *
      * @param metricTimestamp <p>
      *            An optional <a href=
-     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      *            >Unix timestamp</a>.
      *            </p>
      */
@@ -343,7 +343,7 @@ public class CloudwatchMetricAction implements Serializable {
     /**
      * <p>
      * An optional <a href=
-     * "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      * >Unix timestamp</a>.
      * </p>
      * <p>
@@ -352,7 +352,7 @@ public class CloudwatchMetricAction implements Serializable {
      *
      * @param metricTimestamp <p>
      *            An optional <a href=
-     *            "http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp"
      *            >Unix timestamp</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
