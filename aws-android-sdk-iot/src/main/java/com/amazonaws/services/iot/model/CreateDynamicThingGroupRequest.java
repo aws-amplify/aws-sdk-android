@@ -65,7 +65,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      * >Query Syntax</a> for information about query string syntax.
      * </p>
      * <p>
@@ -290,7 +290,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      * >Query Syntax</a> for information about query string syntax.
      * </p>
      * <p>
@@ -302,7 +302,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         <p>
      *         See <a href=
-     *         "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      *         >Query Syntax</a> for information about query string syntax.
      *         </p>
      */
@@ -316,7 +316,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      * >Query Syntax</a> for information about query string syntax.
      * </p>
      * <p>
@@ -328,7 +328,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      *            >Query Syntax</a> for information about query string syntax.
      *            </p>
      */
@@ -342,7 +342,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * See <a href=
-     * "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      * >Query Syntax</a> for information about query string syntax.
      * </p>
      * <p>
@@ -357,7 +357,7 @@ public class CreateDynamicThingGroupRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            See <a href=
-     *            "http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
      *            >Query Syntax</a> for information about query string syntax.
      *            </p>
      * @return A reference to this updated object so that method calls can be

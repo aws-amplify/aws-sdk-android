@@ -250,6 +250,68 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Deletes a user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDeleteUserRequest <p>
+     *            Represents the request to delete a user as an administrator.
+     *            </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    void adminDeleteUser(AdminDeleteUserRequest adminDeleteUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes the user attributes in a user pool as an administrator. Works on
+     * any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDeleteUserAttributesRequest <p>
+     *            Represents the request to delete user attributes as an
+     *            administrator.
+     *            </p>
+     * @return adminDeleteUserAttributesResult The response from the
+     *         AdminDeleteUserAttributes service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminDeleteUserAttributesResult adminDeleteUserAttributes(
+            AdminDeleteUserAttributesRequest adminDeleteUserAttributesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Disables the user from signing in with the specified external (SAML or
      * social) identity provider. If the user to disable is a Cognito User Pools
      * native username + password user, they are not permitted to use their
@@ -319,6 +381,68 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Disables the specified user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminDisableUserRequest <p>
+     *            Represents the request to disable any user as an
+     *            administrator.
+     *            </p>
+     * @return adminDisableUserResult The response from the AdminDisableUser
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminDisableUserResult adminDisableUser(AdminDisableUserRequest adminDisableUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Enables the specified user as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminEnableUserRequest <p>
+     *            Represents the request that enables the user as an
+     *            administrator.
+     *            </p>
+     * @return adminEnableUserResult The response from the AdminEnableUser
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminEnableUserResult adminEnableUser(AdminEnableUserRequest adminEnableUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Forgets the device, as an administrator.
      * </p>
      * <p>
@@ -374,6 +498,38 @@ public interface AmazonCognitoIdentityProvider {
      *             data in the request, or a server side issue.
      */
     AdminGetDeviceResult adminGetDevice(AdminGetDeviceRequest adminGetDeviceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the specified user by user name in a user pool as an administrator.
+     * Works on any user.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminGetUserRequest <p>
+     *            Represents the request to get the specified user as an
+     *            administrator.
+     *            </p>
+     * @return adminGetUserResult The response from the AdminGetUser service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminGetUserResult adminGetUser(AdminGetUserRequest adminGetUserRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -587,6 +743,58 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Resets the specified user's password in a user pool as an administrator.
+     * Works on any user.
+     * </p>
+     * <p>
+     * When a developer calls this API, the current password is invalidated, so
+     * it must be changed. If a user tries to sign in after the API is called,
+     * the app will get a PasswordResetRequiredException exception back and
+     * should direct the user down the flow to reset the password, which is the
+     * same as the forgot password flow. In addition, if the user pool has phone
+     * verification selected and a verified phone number exists for the user, or
+     * if email verification is selected and a verified email exists for the
+     * user, calling this API will also result in sending a message to the end
+     * user with the code to change their password.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminResetUserPasswordRequest <p>
+     *            Represents the request to reset a user's password as an
+     *            administrator.
+     *            </p>
+     * @return adminResetUserPasswordResult The response from the
+     *         AdminResetUserPassword service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws NotAuthorizedException
+     * @throws InvalidLambdaResponseException
+     * @throws TooManyRequestsException
+     * @throws LimitExceededException
+     * @throws UserNotFoundException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminResetUserPasswordResult adminResetUserPassword(
+            AdminResetUserPasswordRequest adminResetUserPasswordRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Responds to an authentication challenge, as an administrator.
      * </p>
      * <p>
@@ -753,6 +961,52 @@ public interface AmazonCognitoIdentityProvider {
      */
     AdminUpdateDeviceStatusResult adminUpdateDeviceStatus(
             AdminUpdateDeviceStatusRequest adminUpdateDeviceStatusRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified user's attributes, including developer attributes,
+     * as an administrator. Works on any user.
+     * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
+     * In addition to updating user attributes, this API can also be used to
+     * mark phone and email as verified.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminUpdateUserAttributesRequest <p>
+     *            Represents the request to update the user's attributes as an
+     *            administrator.
+     *            </p>
+     * @return adminUpdateUserAttributesResult The response from the
+     *         AdminUpdateUserAttributes service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws AliasExistsException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminUpdateUserAttributesResult adminUpdateUserAttributes(
+            AdminUpdateUserAttributesRequest adminUpdateUserAttributesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1067,6 +1321,37 @@ public interface AmazonCognitoIdentityProvider {
     CreateUserImportJobResult createUserImportJob(
             CreateUserImportJobRequest createUserImportJobRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new Amazon Cognito user pool and sets the password policy for
+     * the pool.
+     * </p>
+     * 
+     * @param createUserPoolRequest <p>
+     *            Represents the request to create a user pool.
+     *            </p>
+     * @return createUserPoolResult The response from the CreateUserPool service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws LimitExceededException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws NotAuthorizedException
+     * @throws UserPoolTaggingException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    CreateUserPoolResult createUserPool(CreateUserPoolRequest createUserPoolRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -1432,6 +1717,34 @@ public interface AmazonCognitoIdentityProvider {
      */
     DescribeUserImportJobResult describeUserImportJob(
             DescribeUserImportJobRequest describeUserImportJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns the configuration information and metadata of the specified user
+     * pool.
+     * </p>
+     * 
+     * @param describeUserPoolRequest <p>
+     *            Represents the request to describe the user pool.
+     *            </p>
+     * @return describeUserPoolResult The response from the DescribeUserPool
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserPoolTaggingException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    DescribeUserPoolResult describeUserPool(DescribeUserPoolRequest describeUserPoolRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2045,6 +2358,31 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Lists the user pools associated with an AWS account.
+     * </p>
+     * 
+     * @param listUserPoolsRequest <p>
+     *            Represents the request to list user pools.
+     *            </p>
+     * @return listUserPoolsResult The response from the ListUserPools service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ListUserPoolsResult listUserPools(ListUserPoolsRequest listUserPoolsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the users in the Amazon Cognito user pool.
      * </p>
      * 
@@ -2614,6 +2952,40 @@ public interface AmazonCognitoIdentityProvider {
     UpdateUserAttributesResult updateUserAttributes(
             UpdateUserAttributesRequest updateUserAttributesRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified user pool with the specified attributes. If you
+     * don't provide a value for an attribute, it will be set to the default
+     * value. You can get a list of the current user pool settings with .
+     * </p>
+     * 
+     * @param updateUserPoolRequest <p>
+     *            Represents the request to update the user pool.
+     *            </p>
+     * @return updateUserPoolResult The response from the UpdateUserPool service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ConcurrentModificationException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UserImportInProgressException
+     * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws UserPoolTaggingException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    UpdateUserPoolResult updateUserPool(UpdateUserPoolRequest updateUserPoolRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

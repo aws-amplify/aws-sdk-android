@@ -48,7 +48,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -198,7 +198,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -210,7 +210,7 @@ public class S3Action implements Serializable {
      * @return <p>
      *         The Amazon S3 canned ACL that controls access to the object
      *         identified by the object key. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      *         >S3 canned ACLs</a>.
      *         </p>
      * @see CannedAccessControlList
@@ -223,7 +223,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -236,7 +236,7 @@ public class S3Action implements Serializable {
      *            The Amazon S3 canned ACL that controls access to the object
      *            identified by the object key. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      *            >S3 canned ACLs</a>.
      *            </p>
      * @see CannedAccessControlList
@@ -249,7 +249,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -265,7 +265,7 @@ public class S3Action implements Serializable {
      *            The Amazon S3 canned ACL that controls access to the object
      *            identified by the object key. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      *            >S3 canned ACLs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -281,7 +281,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -294,7 +294,7 @@ public class S3Action implements Serializable {
      *            The Amazon S3 canned ACL that controls access to the object
      *            identified by the object key. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      *            >S3 canned ACLs</a>.
      *            </p>
      * @see CannedAccessControlList
@@ -307,7 +307,7 @@ public class S3Action implements Serializable {
      * <p>
      * The Amazon S3 canned ACL that controls access to the object identified by
      * the object key. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      * >S3 canned ACLs</a>.
      * </p>
      * <p>
@@ -323,7 +323,7 @@ public class S3Action implements Serializable {
      *            The Amazon S3 canned ACL that controls access to the object
      *            identified by the object key. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl"
      *            >S3 canned ACLs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -21,26 +21,26 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Invokes a Lambda function. You can invoke a function synchronously and wait
- * for the response, or asynchronously. To invoke a function asynchronously, set
- * <code>InvocationType</code> to <code>Event</code>.
+ * Invokes a Lambda function. You can invoke a function synchronously (and wait
+ * for the response), or asynchronously. To invoke a function asynchronously,
+ * set <code>InvocationType</code> to <code>Event</code>.
  * </p>
  * <p>
  * For synchronous invocation, details about the function response, including
  * errors, are included in the response body and headers. For either invocation
  * type, you can find more information in the <a href=
- * "http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
+ * "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
  * >execution log</a> and <a
- * href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
  * record function errors for asynchronous invocations, configure your function
- * with a <a href="http://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead
+ * with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead
  * letter queue</a>.
  * </p>
  * <p>
- * The status code in the API response does not reflect function errors. Error
+ * The status code in the API response doesn't reflect function errors. Error
  * codes are reserved for errors that prevent your function from executing, such
  * as permissions errors, <a
- * href="http://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
  * errors</a>, or issues with your function's code and configuration. For
  * example, Lambda returns <code>TooManyRequestsException</code> if executing
  * the function would cause you to exceed a concurrency limit at either the
@@ -48,7 +48,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
  * </p>
  * <p>
- * For functions with a long timeout, your client may be disconnected during
+ * For functions with a long timeout, your client might be disconnected during
  * synchronous invocation while it waits for a response. Configure your HTTP
  * client, SDK, firewall, proxy, or operating system to allow for long
  * connections with timeout or keep-alive settings.
@@ -116,8 +116,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -153,7 +153,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * JSON that you want to provide to your Lambda function as input.
+     * The JSON that you want to provide to your Lambda function as input.
      * </p>
      */
     private java.nio.ByteBuffer payload;
@@ -422,8 +422,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -453,8 +453,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         <p>
      *         <code>Event</code> - Invoke the function asynchronously. Send
      *         events that fail multiple times to the function's dead-letter
-     *         queue (if configured). The API response only includes a status
-     *         code.
+     *         queue (if it's configured). The API response only includes a
+     *         status code.
      *         </p>
      *         </li>
      *         <li>
@@ -486,8 +486,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -517,8 +517,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured). The API response only includes a status
-     *            code.
+     *            queue (if it's configured). The API response only includes a
+     *            status code.
      *            </p>
      *            </li>
      *            <li>
@@ -550,8 +550,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -584,8 +584,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured). The API response only includes a status
-     *            code.
+     *            queue (if it's configured). The API response only includes a
+     *            status code.
      *            </p>
      *            </li>
      *            <li>
@@ -620,8 +620,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -651,8 +651,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured). The API response only includes a status
-     *            code.
+     *            queue (if it's configured). The API response only includes a
+     *            status code.
      *            </p>
      *            </li>
      *            <li>
@@ -684,8 +684,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <li>
      * <p>
      * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if configured).
-     * The API response only includes a status code.
+     * fail multiple times to the function's dead-letter queue (if it's
+     * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
@@ -718,8 +718,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <p>
      *            <code>Event</code> - Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if configured). The API response only includes a status
-     *            code.
+     *            queue (if it's configured). The API response only includes a
+     *            status code.
      *            </p>
      *            </li>
      *            <li>
@@ -893,11 +893,12 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * JSON that you want to provide to your Lambda function as input.
+     * The JSON that you want to provide to your Lambda function as input.
      * </p>
      *
      * @return <p>
-     *         JSON that you want to provide to your Lambda function as input.
+     *         The JSON that you want to provide to your Lambda function as
+     *         input.
      *         </p>
      */
     public java.nio.ByteBuffer getPayload() {
@@ -906,11 +907,11 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * JSON that you want to provide to your Lambda function as input.
+     * The JSON that you want to provide to your Lambda function as input.
      * </p>
      *
      * @param payload <p>
-     *            JSON that you want to provide to your Lambda function as
+     *            The JSON that you want to provide to your Lambda function as
      *            input.
      *            </p>
      */
@@ -920,14 +921,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * JSON that you want to provide to your Lambda function as input.
+     * The JSON that you want to provide to your Lambda function as input.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param payload <p>
-     *            JSON that you want to provide to your Lambda function as
+     *            The JSON that you want to provide to your Lambda function as
      *            input.
      *            </p>
      * @return A reference to this updated object so that method calls can be

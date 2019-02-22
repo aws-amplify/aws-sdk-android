@@ -71,7 +71,7 @@ public class InternalCallback<R> implements Callback<R> {
         switch (mode) {
             case Callback:
             case Async:
-                if (result != null)
+                if (e == null)
                     userCallback.onResult(result);
                 else
                     userCallback.onError(e);

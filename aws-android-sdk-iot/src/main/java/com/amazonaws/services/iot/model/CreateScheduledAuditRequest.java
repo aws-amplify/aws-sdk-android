@@ -88,6 +88,13 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
      * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
      * determined by the system.
@@ -579,6 +586,80 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the scheduled audit.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the scheduled audit.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the scheduled audit.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateScheduledAuditRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the scheduled audit.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateScheduledAuditRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -598,7 +679,9 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
         if (getTargetCheckNames() != null)
             sb.append("targetCheckNames: " + getTargetCheckNames() + ",");
         if (getScheduledAuditName() != null)
-            sb.append("scheduledAuditName: " + getScheduledAuditName());
+            sb.append("scheduledAuditName: " + getScheduledAuditName() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -615,6 +698,7 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
                 + ((getTargetCheckNames() == null) ? 0 : getTargetCheckNames().hashCode());
         hashCode = prime * hashCode
                 + ((getScheduledAuditName() == null) ? 0 : getScheduledAuditName().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -653,6 +737,10 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getScheduledAuditName() != null
                 && other.getScheduledAuditName().equals(this.getScheduledAuditName()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

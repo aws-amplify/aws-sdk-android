@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * This is a control plane operation. See <a href=
- * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
  * >Authorization</a> for information about authorizing control plane actions.
  * </p>
  * </note>

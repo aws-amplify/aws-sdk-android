@@ -20,18 +20,17 @@ import java.io.Serializable;
 public class InvokeResult implements Serializable {
     /**
      * <p>
-     * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResponse</code> invocation type this status code will be
-     * 200. For the <code>Event</code> invocation type this status code will be
-     * 202. For the <code>DryRun</code> invocation type the status code will be
-     * 204.
+     * The HTTP status code is in the 200 range for a successful request. For
+     * the <code>RequestResponse</code> invocation type, this status code is
+     * 200. For the <code>Event</code> invocation type, this status code is 202.
+     * For the <code>DryRun</code> invocation type, the status code is 204.
      * </p>
      */
     private Integer statusCode;
 
     /**
      * <p>
-     * If present, indicates that an error occured during function execution.
+     * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
      * <ul>
@@ -43,7 +42,7 @@ public class InvokeResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * <code>Unhandled</code> - The runtime didn't handle the error. For
      * example, the function ran out of memory or timed out.
      * </p>
      * </li>
@@ -53,7 +52,7 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The last 4 KB of the execution log, base64 encoded.
+     * The last 4 KB of the execution log, which is base64 encoded.
      * </p>
      */
     private String logResult;
@@ -68,7 +67,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The version of the function that executed. When you invoke a function
-     * with an alias, indicates which version the alias resolved to.
+     * with an alias, this indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,19 +78,18 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResponse</code> invocation type this status code will be
-     * 200. For the <code>Event</code> invocation type this status code will be
-     * 202. For the <code>DryRun</code> invocation type the status code will be
-     * 204.
+     * The HTTP status code is in the 200 range for a successful request. For
+     * the <code>RequestResponse</code> invocation type, this status code is
+     * 200. For the <code>Event</code> invocation type, this status code is 202.
+     * For the <code>DryRun</code> invocation type, the status code is 204.
      * </p>
      *
      * @return <p>
-     *         The HTTP status code will be in the 200 range for successful
-     *         request. For the <code>RequestResponse</code> invocation type
-     *         this status code will be 200. For the <code>Event</code>
-     *         invocation type this status code will be 202. For the
-     *         <code>DryRun</code> invocation type the status code will be 204.
+     *         The HTTP status code is in the 200 range for a successful
+     *         request. For the <code>RequestResponse</code> invocation type,
+     *         this status code is 200. For the <code>Event</code> invocation
+     *         type, this status code is 202. For the <code>DryRun</code>
+     *         invocation type, the status code is 204.
      *         </p>
      */
     public Integer getStatusCode() {
@@ -100,20 +98,18 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResponse</code> invocation type this status code will be
-     * 200. For the <code>Event</code> invocation type this status code will be
-     * 202. For the <code>DryRun</code> invocation type the status code will be
-     * 204.
+     * The HTTP status code is in the 200 range for a successful request. For
+     * the <code>RequestResponse</code> invocation type, this status code is
+     * 200. For the <code>Event</code> invocation type, this status code is 202.
+     * For the <code>DryRun</code> invocation type, the status code is 204.
      * </p>
      *
      * @param statusCode <p>
-     *            The HTTP status code will be in the 200 range for successful
-     *            request. For the <code>RequestResponse</code> invocation type
-     *            this status code will be 200. For the <code>Event</code>
-     *            invocation type this status code will be 202. For the
-     *            <code>DryRun</code> invocation type the status code will be
-     *            204.
+     *            The HTTP status code is in the 200 range for a successful
+     *            request. For the <code>RequestResponse</code> invocation type,
+     *            this status code is 200. For the <code>Event</code> invocation
+     *            type, this status code is 202. For the <code>DryRun</code>
+     *            invocation type, the status code is 204.
      *            </p>
      */
     public void setStatusCode(Integer statusCode) {
@@ -122,23 +118,21 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResponse</code> invocation type this status code will be
-     * 200. For the <code>Event</code> invocation type this status code will be
-     * 202. For the <code>DryRun</code> invocation type the status code will be
-     * 204.
+     * The HTTP status code is in the 200 range for a successful request. For
+     * the <code>RequestResponse</code> invocation type, this status code is
+     * 200. For the <code>Event</code> invocation type, this status code is 202.
+     * For the <code>DryRun</code> invocation type, the status code is 204.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param statusCode <p>
-     *            The HTTP status code will be in the 200 range for successful
-     *            request. For the <code>RequestResponse</code> invocation type
-     *            this status code will be 200. For the <code>Event</code>
-     *            invocation type this status code will be 202. For the
-     *            <code>DryRun</code> invocation type the status code will be
-     *            204.
+     *            The HTTP status code is in the 200 range for a successful
+     *            request. For the <code>RequestResponse</code> invocation type,
+     *            this status code is 200. For the <code>Event</code> invocation
+     *            type, this status code is 202. For the <code>DryRun</code>
+     *            invocation type, the status code is 204.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -150,7 +144,7 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * If present, indicates that an error occured during function execution.
+     * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
      * <ul>
@@ -162,14 +156,14 @@ public class InvokeResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * <code>Unhandled</code> - The runtime didn't handle the error. For
      * example, the function ran out of memory or timed out.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         If present, indicates that an error occured during function
+     *         If present, indicates that an error occurred during function
      *         execution. Details about the error are included in the response
      *         payload.
      *         </p>
@@ -182,8 +176,8 @@ public class InvokeResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Unhandled</code> - The runtime did not handle the error.
-     *         For example, the function ran out of memory or timed out.
+     *         <code>Unhandled</code> - The runtime didn't handle the error. For
+     *         example, the function ran out of memory or timed out.
      *         </p>
      *         </li>
      *         </ul>
@@ -194,7 +188,7 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * If present, indicates that an error occured during function execution.
+     * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
      * <ul>
@@ -206,14 +200,14 @@ public class InvokeResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * <code>Unhandled</code> - The runtime didn't handle the error. For
      * example, the function ran out of memory or timed out.
      * </p>
      * </li>
      * </ul>
      *
      * @param functionError <p>
-     *            If present, indicates that an error occured during function
+     *            If present, indicates that an error occurred during function
      *            execution. Details about the error are included in the
      *            response payload.
      *            </p>
@@ -226,7 +220,7 @@ public class InvokeResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Unhandled</code> - The runtime did not handle the error.
+     *            <code>Unhandled</code> - The runtime didn't handle the error.
      *            For example, the function ran out of memory or timed out.
      *            </p>
      *            </li>
@@ -238,7 +232,7 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * If present, indicates that an error occured during function execution.
+     * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
      * <ul>
@@ -250,7 +244,7 @@ public class InvokeResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Unhandled</code> - The runtime did not handle the error. For
+     * <code>Unhandled</code> - The runtime didn't handle the error. For
      * example, the function ran out of memory or timed out.
      * </p>
      * </li>
@@ -260,7 +254,7 @@ public class InvokeResult implements Serializable {
      * together.
      *
      * @param functionError <p>
-     *            If present, indicates that an error occured during function
+     *            If present, indicates that an error occurred during function
      *            execution. Details about the error are included in the
      *            response payload.
      *            </p>
@@ -273,7 +267,7 @@ public class InvokeResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Unhandled</code> - The runtime did not handle the error.
+     *            <code>Unhandled</code> - The runtime didn't handle the error.
      *            For example, the function ran out of memory or timed out.
      *            </p>
      *            </li>
@@ -288,11 +282,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The last 4 KB of the execution log, base64 encoded.
+     * The last 4 KB of the execution log, which is base64 encoded.
      * </p>
      *
      * @return <p>
-     *         The last 4 KB of the execution log, base64 encoded.
+     *         The last 4 KB of the execution log, which is base64 encoded.
      *         </p>
      */
     public String getLogResult() {
@@ -301,11 +295,11 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The last 4 KB of the execution log, base64 encoded.
+     * The last 4 KB of the execution log, which is base64 encoded.
      * </p>
      *
      * @param logResult <p>
-     *            The last 4 KB of the execution log, base64 encoded.
+     *            The last 4 KB of the execution log, which is base64 encoded.
      *            </p>
      */
     public void setLogResult(String logResult) {
@@ -314,14 +308,14 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
-     * The last 4 KB of the execution log, base64 encoded.
+     * The last 4 KB of the execution log, which is base64 encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param logResult <p>
-     *            The last 4 KB of the execution log, base64 encoded.
+     *            The last 4 KB of the execution log, which is base64 encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -379,7 +373,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The version of the function that executed. When you invoke a function
-     * with an alias, indicates which version the alias resolved to.
+     * with an alias, this indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -388,7 +382,7 @@ public class InvokeResult implements Serializable {
      *
      * @return <p>
      *         The version of the function that executed. When you invoke a
-     *         function with an alias, indicates which version the alias
+     *         function with an alias, this indicates which version the alias
      *         resolved to.
      *         </p>
      */
@@ -399,7 +393,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The version of the function that executed. When you invoke a function
-     * with an alias, indicates which version the alias resolved to.
+     * with an alias, this indicates which version the alias resolved to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -408,7 +402,7 @@ public class InvokeResult implements Serializable {
      *
      * @param executedVersion <p>
      *            The version of the function that executed. When you invoke a
-     *            function with an alias, indicates which version the alias
+     *            function with an alias, this indicates which version the alias
      *            resolved to.
      *            </p>
      */
@@ -419,7 +413,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The version of the function that executed. When you invoke a function
-     * with an alias, indicates which version the alias resolved to.
+     * with an alias, this indicates which version the alias resolved to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -431,7 +425,7 @@ public class InvokeResult implements Serializable {
      *
      * @param executedVersion <p>
      *            The version of the function that executed. When you invoke a
-     *            function with an alias, indicates which version the alias
+     *            function with an alias, this indicates which version the alias
      *            resolved to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
