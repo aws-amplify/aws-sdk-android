@@ -617,9 +617,19 @@ workflows:
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
+      - release_javadoc:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
       - release_s3:
           requires:
             - build
+            - release_javadoc
           filters:
             branches:
               ignore: /.*/
