@@ -17,6 +17,22 @@ commands:
               circleci step halt
             fi
 
+  generate_gradle_wrapper:
+    description: >-
+      Downloads and install gradle 4.10.2
+    steps:
+      - run:
+          name: Download gradle zip
+          command: |
+            cd ~
+            wget https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
+            unzip gradle-4.10.2-bin.zip
+      - run:
+          name: Generate wrapper
+          command: |
+            cd ~/code # This is a pre-defined location
+            ~/gradle-4.10.2/bin/gradle wrapper
+
   configure_aws:
     description: >-
       install aws cli and configure android aws release profile
@@ -148,9 +164,11 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - generate_gradle_wrapper
       - run:
           name: build the whole project
-          command: bash gradlew build -x test
+          command: |
+            bash gradlew build -x test
       - run:
           name: copy libs
           command: |
@@ -169,6 +187,7 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - checkout
+      - generate_gradle_wrapper
       - run:
           name: run unit tests
           command: |
@@ -443,6 +462,7 @@ jobs:
       - run:
           name: run integration tests
           command: |
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
       - run:
@@ -455,7 +475,7 @@ jobs:
             else
                 echo "There are test failures"
                 exit 1
-            fi       
+            fi
       - store_artifacts:
           path: "~/test_results"
   uitest:
@@ -493,6 +513,7 @@ jobs:
           name: run sample ui test
           command: |
             cd aws-sdk-android-samples/S3TransferUtilitySample
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             bash gradlew connectedAndroidTest
       - store_artifacts:
           path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
