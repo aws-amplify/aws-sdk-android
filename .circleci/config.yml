@@ -457,7 +457,10 @@ jobs:
       - run:
           name: Configure test information
           command: |
-            aws s3 cp s3://android-circleci-payload/testinformation/testinformation.json testinformation.json 
+            aws s3 cp s3://android-circleci-payload/testinformation/testinformation.json testinformation.json
+            aws s3 cp s3://android-circleci-payload/testconfiguration.json testconfiguration.json
+            cp testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            cat aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
             python3  CircleciScripts/replace_testinformation.py $(pwd) testinformation.json 
       - run:
           name: run integration tests
