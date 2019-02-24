@@ -9,7 +9,7 @@ test_results = sys.argv[1]
 root = sys.argv[2]
 credentials = sys.argv[3]
 testmodules =  ["aws-android-sdk-sqs-test", "aws-android-sdk-transcribe-test", "aws-android-sdk-translate-test",
-                "aws-android-sdk-iot-test", "aws-android-sdk-mobile-client"]
+                "aws-android-sdk-iot-test"]
 
 runcommand('echo "export testresult=0" >> $BASH_ENV')  
 runcommand("rm -rf {0}".format(test_results))
