@@ -1,4 +1,4 @@
-from functions import replacefiles
+from utils import replacefiles
 import demjson
 import sys
 

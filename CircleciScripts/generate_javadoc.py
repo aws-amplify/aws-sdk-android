@@ -3,7 +3,7 @@ import os
 import sys
 import demjson
 import glob
-from functions import runcommand
+from utils import runcommand
 
 def getCommandline(dest, root, modules, packages, sourcefiles, subpackages,excludes, groups, otheroptions, otherargs):
 

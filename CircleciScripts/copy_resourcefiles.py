@@ -1,6 +1,6 @@
 import os
 import sys
-from functions import runcommand
+from utils import runcommand
 from shutil import copyfile
 
 root = sys.argv[1]
