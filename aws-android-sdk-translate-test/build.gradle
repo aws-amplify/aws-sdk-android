@@ -22,11 +22,13 @@ android {
         }
     }
 
+    test {
+    exclude 'TranslateIntegrationTestBase.java'
+    }
+
 }
 
-test {
-    exclude 'TranslateIntegrationTestBase.java'
-}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
