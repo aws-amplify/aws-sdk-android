@@ -1,7 +1,7 @@
 import os
 import sys
-from functions import getmodules
-from functions import runcommand
+from utils import getmodules
+from utils import runcommand
 from shutil import copyfile
 from pathlib import Path
 root = sys.argv[1]

@@ -1,7 +1,7 @@
 import os
 import sys
 import datetime
-from functions import runcommand
+from utils import runcommand
 
 awsprofile = sys.argv[1]
 distribution_id = sys.argv[2]
