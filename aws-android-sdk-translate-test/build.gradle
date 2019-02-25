@@ -22,10 +22,6 @@ android {
         }
     }
 
-    test {
-    exclude 'TranslateIntegrationTestBase.java'
-    }
-
 }
 
 
