@@ -467,6 +467,7 @@ jobs:
           command: |
             aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
+            cat awsconfiguration.json
             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
       - run:
           name : check integration test result 
