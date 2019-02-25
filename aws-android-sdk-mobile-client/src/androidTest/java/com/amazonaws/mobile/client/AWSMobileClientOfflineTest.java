@@ -3,6 +3,7 @@ package com.amazonaws.mobile.client;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 
 import com.amazonaws.mobile.config.AWSConfiguration;
 
@@ -12,31 +13,22 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
  * Userpool and identity pool were create with Amplify CLI 0.1.23 Default configuration
  */
+@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
-    public static final String EMAIL = "somebody@email.com";
-    public static final String BLURRED_EMAIL = "b***@a***.com";
-    public static final String USERNAME = "somebody";
-    public static final String PASSWORD = "1234Password!";
-    public static final String IDENTITY_ID = "redacted";
-    public static final String NEW_PASSWORD = "new1234Password!";
-    public static final int THROTTLED_DELAY = 5000;
-
 
     Context appContext;
     AWSMobileClient auth;

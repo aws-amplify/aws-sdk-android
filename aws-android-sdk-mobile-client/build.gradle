@@ -65,6 +65,7 @@ dependencies {
     androidTestImplementation(project(':aws-android-sdk-auth-userpools')) {
         exclude group: "com.google.android", module: "android"
     }
+    androidTestImplementation project(":aws-android-sdk-testutils")
 
     // Optional dependencies
     compileOnly project(':aws-android-sdk-auth-ui')

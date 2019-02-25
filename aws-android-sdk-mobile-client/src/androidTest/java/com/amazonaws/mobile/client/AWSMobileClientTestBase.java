@@ -3,16 +3,24 @@ package com.amazonaws.mobile.client;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
-import android.support.test.runner.AndroidJUnit4;
+import android.support.test.InstrumentationRegistry;
 import android.util.Base64;
 
+import com.amazonaws.testutils.AWSTestBase;
 import com.amazonaws.util.StringUtils;
 
-import org.junit.runner.RunWith;
-import org.junit.Test;
+import org.json.JSONObject;
 
-@RunWith(AndroidJUnit4.class)
-public class AWSMobileClientTestBase {
+public class AWSMobileClientTestBase extends AWSTestBase {
+
+    /** Package name in testconfiguration.json */
+    protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
+            getResources().getString(R.string.package_name);
+
+    public static JSONObject getPackageConfigure()  {
+        return getPackageConfigure(PACKAGE_NAME);
+    }
+
     public static void setWifi(final Context appContext, final boolean wifiState) {
         WifiManager wifiManager = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
         wifiManager.setWifiEnabled(wifiState);
@@ -50,10 +58,4 @@ public class AWSMobileClientTestBase {
         String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
         return validAccessToken;
     }
-    //This is need for CircleCI to run the test suite
-    @Test
-    public void empty()
-    {
-        
-    }    
 }

@@ -2,6 +2,7 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -19,6 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +29,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -41,14 +41,12 @@ import static org.junit.Assert.fail;
 /**
  * Userpool and identity pool were create with Amplify CLI 0.1.23 Default configuration
  */
+@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    public static final String EMAIL = "somebody@email.com";
     public static final String BLURRED_EMAIL = "b***@a***.com";
-    public static final String USERNAME = "somebody";
     public static final String PASSWORD = "1234Password!";
-    public static final String IDENTITY_ID = "redacted";
     public static final String NEW_PASSWORD = "new1234Password!";
     public static final int THROTTLED_DELAY = 5000;
 
@@ -127,8 +125,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test(expected = com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException.class)
     public void testSignUp() throws Exception {
         final HashMap<String, String> userAttributes = new HashMap<String, String>();
-        userAttributes.put("email", EMAIL);
-        final String username = USERNAME + System.currentTimeMillis();
+        userAttributes.put("email", getPackageConfigure().getString("email"));
+        final String username = getPackageConfigure().getString("username") + System.currentTimeMillis();
         final SignUpResult signUpResult = auth.signUp(username, PASSWORD, userAttributes, null);
         if (signUpResult.getConfirmationState()) {
             // Done
@@ -164,7 +162,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         };
         auth.addUserStateListener(listener);
 
-        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -173,10 +171,10 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         assertTrue("isSignedIn is true", auth.isSignedIn());
 
-        assertEquals(USERNAME, auth.getUsername());
+        assertEquals(getPackageConfigure().getString("username"), auth.getUsername());
 
         // Test identity id hasn't changed
-        assertEquals(IDENTITY_ID, auth.getIdentityId());
+        assertEquals(getPackageConfigure().getString("identity_pool_id"), auth.getIdentityId());
 
         // Check credentials are available
         final AWSCredentials credentials = auth.getCredentials();
@@ -198,13 +196,13 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         // Check one attribute
         final Map<String, String> userAttributes = auth.getUserAttributes();
-        assertEquals(EMAIL, userAttributes.get("email"));
+        assertEquals(getPackageConfigure().getString("email"), userAttributes.get("email"));
         stateNotificationLatch.await(5, TimeUnit.SECONDS);
 
         UserStateDetails userStateDetails = userState.get();
         assertEquals(userStateDetails.getUserState(), UserState.SIGNED_IN);
         Map<String, String> details = userStateDetails.getDetails();
-        assertNotEquals(IDENTITY_ID, details.toString());
+        assertNotEquals(getPackageConfigure().getString("identity_pool_id"), details.toString());
     }
 
     @Test
@@ -219,7 +217,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     case SIGNED_OUT_FEDERATED_TOKENS_INVALID:
                         try {
                             hasWaited.set(true);
-                            auth.signIn(USERNAME, PASSWORD, null);
+                            auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
                         } catch (Exception e) {
                             e.printStackTrace();
                             fail("Sign-in failed, but not expected.");
@@ -253,7 +251,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                                 fail("Multiple calls to state change");
                             }
                             hasWaited.set(true);
-                            auth.signIn(USERNAME, PASSWORD, null);
+                            auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
                         } catch (Exception e) {
                             e.printStackTrace();
                             fail("Sign-in failed, but not expected.");
@@ -275,7 +273,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testSignOut() throws Exception {
-        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -354,14 +352,14 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.addUserStateListener(listenerB);
         assertEquals(2, auth.listeners.size());
         auth.removeUserStateListener(listenerA);
-        auth.signIn(USERNAME, PASSWORD, null);
+        auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
         countDownLatch.await(5, TimeUnit.SECONDS);
         assertFalse(triggered.get());
     }
     @Ignore("This test case may cause crash on some emulators")
     @Test
     public void testGetTokensStress() throws Exception {
-        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -413,7 +411,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testGetCredentialsStress() throws Exception {
-        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
