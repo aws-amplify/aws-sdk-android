@@ -1,7 +1,7 @@
-from functions import runcommand
-from functions import runtest
-from functions import TestTypes
-from functions import getmodules
+from utils import runcommand
+from utils import runtest
+from utils import TestTypes
+from utils import getmodules
 import sys
 import os
 

@@ -1,6 +1,6 @@
 import os
 import sys
-from functions import runcommand
+from utils import runcommand
 
 user =  sys.argv[1]
 token =  sys.argv[2]

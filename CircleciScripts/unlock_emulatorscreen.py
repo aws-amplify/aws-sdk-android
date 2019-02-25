@@ -1,4 +1,4 @@
-from functions import runcommand
+from utils import runcommand
 import time 
 
 ncount = 0 

@@ -1,5 +1,5 @@
-from functions import getmodules
-from functions import replacefiles
+from utils import getmodules
+from utils import replacefiles
 import sys
 import os
 
