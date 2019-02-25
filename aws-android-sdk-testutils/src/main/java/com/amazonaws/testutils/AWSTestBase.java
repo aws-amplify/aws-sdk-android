@@ -46,10 +46,7 @@ import java.util.Scanner;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
-import org.junit.runner.RunWith;
-import android.support.test.runner.AndroidJUnit4;
 
-@RunWith(AndroidJUnit4.class)
 public abstract class AWSTestBase {
 
     public static class JSONConfiguration  {
