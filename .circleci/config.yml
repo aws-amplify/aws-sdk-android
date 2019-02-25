@@ -596,7 +596,6 @@ workflows:
               only:
                 - master
                 - develop
-                - integrationTestBranch
 
       - uitest:
           requires:
