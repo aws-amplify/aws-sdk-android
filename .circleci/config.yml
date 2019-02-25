@@ -590,6 +590,7 @@ workflows:
   build_test:
     jobs:
       - build
+      - unittest
       - integrationtest:
           filters:
             branches:
