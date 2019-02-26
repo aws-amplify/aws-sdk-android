@@ -17,7 +17,6 @@ package com.amazonaws.mobileconnectors.iot;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
@@ -44,7 +43,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.security.KeyStore;
@@ -56,7 +54,6 @@ import java.util.concurrent.CountDownLatch;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(AndroidJUnit4.class)
 public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     private static final Integer ONE_TWENTY_KB = 120000;

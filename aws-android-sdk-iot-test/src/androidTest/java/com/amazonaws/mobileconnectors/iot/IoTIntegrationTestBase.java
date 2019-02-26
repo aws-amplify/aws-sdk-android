@@ -22,7 +22,7 @@ import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONObject;
 
-public class IoTIntegrationTestBase extends AWSTestBase {
+public abstract class IoTIntegrationTestBase extends AWSTestBase {
 
     /** Package name in testconfiguration.json */
     protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().

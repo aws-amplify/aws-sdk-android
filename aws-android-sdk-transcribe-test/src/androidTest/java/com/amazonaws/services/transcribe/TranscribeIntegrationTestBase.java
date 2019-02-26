@@ -25,7 +25,7 @@ import org.junit.Before;
 
 import java.io.IOException;
 
-public class TranscribeIntegrationTestBase extends AWSTestBase {
+public abstract class TranscribeIntegrationTestBase extends AWSTestBase {
 
     /** The Transcribe client for all tests to use */
     protected static AmazonTranscribeClient transcribeClient;
