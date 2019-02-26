@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">aws-android-sdk-apigateway-test</string>
+    <string name="package_name">apigateway</string>
+</resources>
