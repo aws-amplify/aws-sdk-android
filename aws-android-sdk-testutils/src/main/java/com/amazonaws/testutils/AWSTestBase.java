@@ -30,6 +30,7 @@ import com.amazonaws.util.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
+import org.junit.runner.RunWith;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,8 +46,10 @@ import java.util.Scanner;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
+@RunWith(AndroidJUnit4.class)
 public abstract class AWSTestBase {
 
     public static class JSONConfiguration  {
