@@ -20,7 +20,7 @@ import org.junit.Before;
 
 import java.io.IOException;
 
-public class TranslateIntegrationTestBase extends AWSTestBase {
+public abstract class TranslateIntegrationTestBase extends AWSTestBase {
 
     /** The Translate client for all tests to use */
     protected static AmazonTranslateClient translateClient;
