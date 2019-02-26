@@ -6,6 +6,7 @@ test_results = sys.argv[1]
 root = sys.argv[2]
 credentials = sys.argv[3]
 testmodules =  ["aws-android-sdk-autoscaling-test",
+                "aws-android-sdk-cloudwatch-test",
                 "aws-android-sdk-iot-test",
                 "aws-android-sdk-kinesis-test",
                 "aws-android-sdk-mobile-client",
