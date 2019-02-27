@@ -24,7 +24,6 @@ import com.amazonaws.services.s3.internal.crypto.CryptoTestUtils;
 import com.amazonaws.testutils.AWSTestBase;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -40,7 +39,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Integration test for testing the {@link GeneratePreSignedURLRequest} class
+ * Integration test for testing the GeneratePreSignedURLRequest class
  *
  */
 public class GeneratePresignedUrlRequestIntegrationTest extends AWSTestBase {
@@ -60,9 +59,6 @@ public class GeneratePresignedUrlRequestIntegrationTest extends AWSTestBase {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-	    // This sets up the credentials from the credentials
-	    // chain retrieving the AWS Secret Access Key and Access Key
-	    // from the odin material set for the sdk.
 	    setUpCredentials();			
 	    s3Client = new AmazonS3Client(credentials);
 	    s3Client.setRegion(Region.getRegion(Regions.US_WEST_2));
