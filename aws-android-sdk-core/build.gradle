@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 
     api "com.google.code.gson:gson:2.2.4"
     api "com.google.android:android:2.3.3"

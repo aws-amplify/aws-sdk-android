@@ -164,7 +164,7 @@ public class AuthClient {
 
         // Look for cached tokens
         AuthUserSession session =
-                LocalDataManager.getCachedSession(context, pool.getAppId(), userId, pool.getScopes());
+                LocalDataManager.getCachedSession(pool.awsKeyValueStore, context, pool.getAppId(), userId, pool.getScopes());
 
         // Check if the session is valid and returns tokens
         if (session.isValidForThreshold()) {
@@ -195,7 +195,7 @@ public class AuthClient {
      * </p>
      */
     public void signOut() {
-        LocalDataManager.clearCache(context, pool.getAppId(), userId);
+        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
         launchSignOut(pool.getSignOutRedirectUri());
     }
 
@@ -205,7 +205,7 @@ public class AuthClient {
     @SuppressWarnings("checkstyle:hiddenfield")
     public boolean isAuthenticated() {
         AuthUserSession session =
-                LocalDataManager.getCachedSession(context, pool.getAppId(), userId, pool.getScopes());
+                LocalDataManager.getCachedSession(pool.awsKeyValueStore, context, pool.getAppId(), userId, pool.getScopes());
         return session.isValidForThreshold();
     }
 
@@ -271,8 +271,8 @@ public class AuthClient {
                         uri.getQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_STATE);
 
                 if (callbackState != null) {
-                    Set<String> tokenScopes = LocalDataManager.getCachedScopes(context, callbackState);
-                    String proofKeyPlain = LocalDataManager.getCachedProofKey(context, callbackState);
+                    Set<String> tokenScopes = LocalDataManager.getCachedScopes(pool.awsKeyValueStore, context, callbackState);
+                    String proofKeyPlain = LocalDataManager.getCachedProofKey(pool.awsKeyValueStore, context, callbackState);
 
                     if (proofKeyPlain == null) {
                         // The state value is unknown, exit.
@@ -302,7 +302,7 @@ public class AuthClient {
                             userId = session.getUsername();
 
                             // Cache tokens if successful
-                            LocalDataManager.cacheSession(context, pool.getAppId(), userId, session, tokenScopes);
+                            LocalDataManager.cacheSession(pool.awsKeyValueStore, context, pool.getAppId(), userId, session, tokenScopes);
 
                             // Return tokens
                             returnCallback = new Runnable() {
@@ -382,7 +382,7 @@ public class AuthClient {
                     final String username = refreshedSession.getUsername();
 
                     // Cache session
-                    LocalDataManager.cacheSession(context, pool.getAppId(), username, refreshedSession, pool.getScopes());
+                    LocalDataManager.cacheSession(pool.awsKeyValueStore, context, pool.getAppId(), username, refreshedSession, pool.getScopes());
 
                     // Return tokens
                     returnCallback = new Runnable() {
@@ -513,7 +513,7 @@ public class AuthClient {
         }
 
         final Uri fqdn = builder.build();
-        LocalDataManager.cacheState(context, state, proofKey, tokenScopes);
+        LocalDataManager.cacheState(pool.awsKeyValueStore, context, state, proofKey, tokenScopes);
         launchCustomTabs(fqdn);
     }
 

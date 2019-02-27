@@ -1,5 +1,24 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.3)
+
+### Enhancements
+
+* **AWS Core**
+  * The `SharedPreferences` used by `CognitoCachingCredentialsProvider` is now encrypted. 
+  * Added a method `CognitoCachingCredentialsProvider.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **Amazon CognitoIdentityProvider**
+  * The `SharedPreferences` used by `CognitoUserPool` is now encrypted. 
+  * Added a method `CognitoUserPool.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **Amazon CognitoAuth**
+  * The `SharedPreferences` used by `Auth` is now encrypted. 
+  * Added a method `Auth.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **AWSMobileClient**
+  * The `SharedPreferences` used by `AWSMobileClient` is now encrypted.
+
 ## [Release 2.12.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.2)
 
 ### Misc. Updates
