@@ -17,6 +17,7 @@ package com.amazonaws.services.kinesisvideoarchivedmedia;
 
 import android.util.Log;
 
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.Test;
 
@@ -38,8 +39,8 @@ public class KinesisVideoArchivedMediaIntegrationTest extends KinesisVideoArchiv
     }
 
     @Test
-    public void testGetHLSStreamingSessionURL() {
-        String endpoint = "https://b-647daf39.kinesisvideo.us-west-2.amazonaws.com";
+    public void testGetHLSStreamingSessionURL() throws JSONException {
+        String endpoint = getPackageConfigure().getString("endpoint");
 
         try {
             // URL construction checks for malformed URL
