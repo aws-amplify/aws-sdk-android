@@ -1,11 +1,11 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.support.test.InstrumentationRegistry;
 import android.util.Base64;
 
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.testutils.AWSTestBase;
 import com.amazonaws.util.StringUtils;
 
@@ -26,23 +26,27 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         wifiManager.setWifiEnabled(wifiState);
     }
 
-    public static void setTokensDirectly(final Context appContext, final String providerKey, final String token, final String identityId) {
-        SharedPreferences sharedPreferences = appContext.getSharedPreferences(AWSMobileClient.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
-        sharedPreferences.edit()
-                .putString(AWSMobileClient.PROVIDER_KEY, providerKey)
-                .putString(AWSMobileClient.TOKEN_KEY, token)
-                .putString(AWSMobileClient.IDENTITY_ID_KEY, identityId)
-                .apply();
+    public static void setTokensDirectly(final Context appContext,
+                                         final String providerKey,
+                                         final String token,
+                                         final String identityId) {
+        final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(appContext,
+                "CognitoIdentityProviderCache",
+                true);
+        awsKeyValueStore.put(AWSMobileClient.PROVIDER_KEY, providerKey);
+        awsKeyValueStore.put(AWSMobileClient.TOKEN_KEY, token);
+        awsKeyValueStore.put(AWSMobileClient.IDENTITY_ID_KEY, identityId);
     }
 
     public static void writeUserpoolsTokens(final Context appContext, final String clientId, final String username, final long expiryFromNow) {
         // Store tokens in shared preferences
-        SharedPreferences sharedPreferences =
-                appContext.getSharedPreferences("CognitoIdentityProviderCache", Context.MODE_PRIVATE);
+        final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(appContext,
+                "CognitoIdentityProviderCache",
+                true);
         String storeFieldPrefix = "CognitoIdentityProvider." + clientId + "." + username + ".";
-        sharedPreferences.edit().putString(storeFieldPrefix + "idToken", getValidJWT(expiryFromNow)).commit();
-        sharedPreferences.edit().putString(storeFieldPrefix +"accessToken", getValidJWT(expiryFromNow)).commit();
-        sharedPreferences.edit().putString(storeFieldPrefix +"refreshToken", "DummyRefresh").commit();
+        awsKeyValueStore.put(storeFieldPrefix + "idToken", getValidJWT(expiryFromNow));
+        awsKeyValueStore.put(storeFieldPrefix + "accessToken", getValidJWT(expiryFromNow));
+        awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
     }
 
     // Create valid access tokens
