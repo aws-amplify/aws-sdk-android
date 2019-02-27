@@ -7,6 +7,7 @@ root = sys.argv[2]
 credentials = sys.argv[3]
 testmodules =  ["aws-android-sdk-apigateway-test",
                 "aws-android-sdk-autoscaling-test",
+                "aws-android-sdk-comprehend-test",
                 "aws-android-sdk-iot-test",
                 "aws-android-sdk-kinesis-test",
                 "aws-android-sdk-mobile-client",
