@@ -30,12 +30,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.robolectric:robolectric:3.8"
+    api (project(":aws-android-sdk-core")){
+        exclude group: "com.google.android", module: "android"
+    }
+
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation project(":aws-android-sdk-testutils")
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    api project(":aws-android-sdk-core")
-
-    testImplementation project(":aws-android-sdk-kinesisvideo")
 }
