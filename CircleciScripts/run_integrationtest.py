@@ -18,6 +18,7 @@ testmodules =  ["aws-android-sdk-apigateway-test",
                 "aws-android-sdk-rekognition-test",
                 "aws-android-sdk-polly-test",
                 "aws-android-sdk-sqs-test",
+                "aws-android-sdk-ses-test",
                 "aws-android-sdk-transcribe-test",
                 "aws-android-sdk-translate-test",
                ]
