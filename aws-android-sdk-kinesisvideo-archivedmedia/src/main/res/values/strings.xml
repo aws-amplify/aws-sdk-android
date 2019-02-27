@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">aws-android-sdk-kinesisvideo-archivedmedia-test</string>
+    <string name="package_name">kinesis-video-archivedmedia</string>
+</resources>
