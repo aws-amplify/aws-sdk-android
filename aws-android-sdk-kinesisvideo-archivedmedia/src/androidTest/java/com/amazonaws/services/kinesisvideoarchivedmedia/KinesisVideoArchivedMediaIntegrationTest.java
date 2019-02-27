@@ -61,8 +61,6 @@ public class KinesisVideoArchivedMediaIntegrationTest extends KinesisVideoArchiv
             );
         } catch (AmazonClientException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
-            Log.e("Message", e.getMessage());
             // Nothing will be streaming during the test
             // This error differentiates between another that says stream does not exist
             assertTrue("Exception should have said no fragments are found",
