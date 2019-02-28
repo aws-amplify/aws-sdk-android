@@ -38,7 +38,7 @@ import org.junit.Test;
 /**
  * Integration tests for the SQS message attributes.
  */
-public class MessageAttributesIntegrationTest extends IntegrationTestBase {
+public class MessageAttributesIntegrationTest extends SQSIntegrationTestBase {
 
     private static final String MESSAGE_BODY = "message-body-" + System.currentTimeMillis();
     private static final String queueName = "android-sdk-message-attributes-integ-test-queue-"
