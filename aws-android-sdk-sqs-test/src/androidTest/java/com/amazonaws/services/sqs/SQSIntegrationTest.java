@@ -65,8 +65,8 @@ import java.util.Map.Entry;
 /**
  * Integration tests for the SQS Java client.
  */
-public class SqsIntegrationTest extends IntegrationTestBase {
-    public static final String TAG = SqsIntegrationTest.class.getSimpleName();
+public class SQSIntegrationTest extends SQSIntegrationTestBase {
+    public static final String TAG = SQSIntegrationTest.class.getSimpleName();
 
     private static final String ATTRIBUTE_VALUE = "42";
     private static final String ATTRIBUTE_NAME = "VisibilityTimeout";
