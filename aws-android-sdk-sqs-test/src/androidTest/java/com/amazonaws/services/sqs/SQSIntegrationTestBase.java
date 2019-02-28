@@ -15,10 +15,7 @@
 
 package com.amazonaws.services.sqs;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import org.json.JSONObject;
-import org.junit.runner.RunWith;
 import org.junit.BeforeClass;
 
 import java.io.IOException;
@@ -38,12 +35,11 @@ import com.amazonaws.services.sqs.model.MessageAttributeValue;
  *
  */
 
-@RunWith(AndroidJUnit4.class)
-abstract public class IntegrationTestBase extends AWSTestBase{
+abstract public class SQSIntegrationTestBase extends AWSTestBase{
 
     public static final String PACKAGE_NAME = "sqs";
 
-    public static final String TAG = IntegrationTestBase.class.getSimpleName();
+    public static final String TAG = SQSIntegrationTestBase.class.getSimpleName();
     /** The SQS client for all tests to use */
     protected static AmazonSQSAsyncClient sqsClient;
 

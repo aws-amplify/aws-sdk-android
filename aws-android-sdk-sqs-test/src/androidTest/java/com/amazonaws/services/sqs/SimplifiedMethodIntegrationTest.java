@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class SimplifiedMethodIntegrationTest extends IntegrationTestBase {
+public class SimplifiedMethodIntegrationTest extends SQSIntegrationTestBase {
     private final static String QUEUE_NAME = "android-integration-test-" + System.currentTimeMillis();
     private static final String ATTRIBUTE_VALUE = "42";
     private static final String ATTRIBUTE_NAME = "VisibilityTimeout";

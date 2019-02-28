@@ -105,11 +105,7 @@ public abstract class SESIntegrationTestBase extends AWSTestBase {
 		EMAIL_TO_VERIFY = getPackageConfigure().getString("ios_test_email");
 
 		if (DESTINATION == null) {
-			DESTINATION = System.getProperty("user.name").equals("webuser") ? HUDSON_EMAIL_LIST
-					: System.getProperty("user.name") + "@amazon.com";
-			if ("nobody@amazon.com".equalsIgnoreCase(DESTINATION)) {
-				DESTINATION = HUDSON_EMAIL_LIST;
-			}
+			DESTINATION = HUDSON_EMAIL_LIST;
 			SOURCE = DESTINATION;
 		}
 		System.out.println("Destination for test: " + DESTINATION);
