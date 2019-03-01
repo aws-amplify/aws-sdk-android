@@ -616,9 +616,25 @@ workflows:
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
 
+      - unittest:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+      - release_maven:
+          requires:
+            - unittest
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
       - release_javadoc:
           requires:
-            - build
+            - unittest
           filters:
             branches:
               ignore: /.*/
@@ -629,6 +645,7 @@ workflows:
           requires:
             - build
             - release_javadoc
+            - release_maven
           filters:
             branches:
               ignore: /.*/
@@ -637,13 +654,12 @@ workflows:
 
       - release_tag:
           requires:
-            - build
+            - release_s3
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - bump_sampleapp_version:
           requires:
             - release_tag
@@ -652,7 +668,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - bump_applifydocs_version:
           requires:
             - release_tag
