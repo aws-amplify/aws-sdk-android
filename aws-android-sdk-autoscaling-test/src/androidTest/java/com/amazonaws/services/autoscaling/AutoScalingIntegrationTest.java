@@ -71,6 +71,7 @@ import com.amazonaws.services.sns.model.CreateTopicRequest;
 import com.amazonaws.services.sns.model.DeleteTopicRequest;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.apache.commons.codec.binary.Base64;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -250,7 +251,7 @@ public class AutoScalingIntegrationTest extends AutoScalingIntegrationTestBase {
      * Tests that we can create, describe, set desired capacity and delete
      * autoscaling groups.
      */
-    @Test
+    @Ignore
     public void testAutoScalingGroupOperations() throws Exception {
         autoScalingGroupName = "android-integ-test-scaling-group-" + new Date().getTime();
         launchConfigurationName = "android-integ-test-launch-configuration-" + new Date().getTime();

@@ -22,7 +22,7 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DynamoDBMapperIntegrationTestBase extends DynamoDBIntegrationTestBase {
+public abstract class DynamoDBMapperIntegrationTestBase extends DynamoDBIntegrationTestBase {
 
     public static void setUpMapperTestBase() {
         DynamoDBTestBase.setUpTestBase();
