@@ -34,7 +34,7 @@ import org.junit.BeforeClass;
 
 import java.util.Set;
 
-public class MapperSaveConfigTestBase extends DynamoDBIntegrationTestBase {
+public abstract class MapperSaveConfigTestBase extends DynamoDBIntegrationTestBase {
 
     protected static DynamoDBMapper dynamoMapper;
 

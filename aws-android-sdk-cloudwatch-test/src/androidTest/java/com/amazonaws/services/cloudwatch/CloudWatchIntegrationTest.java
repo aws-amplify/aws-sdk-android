@@ -46,6 +46,7 @@ import com.amazonaws.services.cloudwatch.model.SetAlarmStateRequest;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -96,7 +97,7 @@ public class CloudWatchIntegrationTest extends CloudWatchIntegrationTestBase {
      * Tests that we can call the GetMetricStatistics operation and correctly
      * understand the response.
      */
-    @Test
+    @Ignore
     public void testGetMetricStatistics() throws Exception {
         String measureName = "CPUUtilization";
 
