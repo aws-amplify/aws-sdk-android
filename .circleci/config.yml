@@ -597,6 +597,7 @@ workflows:
               only:
                 - master
                 - develop
+                - s3-test-fixes
 
       - uitest:
           requires:
