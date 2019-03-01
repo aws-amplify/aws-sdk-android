@@ -15,10 +15,14 @@
 
 package com.amazonaws.services.s3;
 
+import android.util.Log;
+
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.testutils.util.RandomTempFile;
+
+import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Test;
@@ -43,6 +47,8 @@ import java.util.concurrent.Future;
  */
 public class MultiThreadedDownloadIntegrationTest extends S3IntegrationTestBase {
 
+    private static final String TAG = MultiThreadedDownloadIntegrationTest.class.getSimpleName();
+
     /** The total number of GET object requests made to Amazon S3 */
     private static final int TOTAL_REQUESTS = 1000;
 
@@ -63,10 +69,14 @@ public class MultiThreadedDownloadIntegrationTest extends S3IntegrationTestBase 
         try {
             s3.deleteObject(bucketName, key);
         } catch (Exception e) {
+            Log.e(TAG, "Error in deleting the object: " + key);
+            Assert.assertTrue("Error in deleting the object: " + key, false);
         }
         try {
             s3.deleteBucket(bucketName);
         } catch (Exception e) {
+            Log.e(TAG, "Error in deleting the bucket: " + bucketName);
+            Assert.assertTrue("Error in deleting the bucket: " + bucketName, false);
         }
     }
 
