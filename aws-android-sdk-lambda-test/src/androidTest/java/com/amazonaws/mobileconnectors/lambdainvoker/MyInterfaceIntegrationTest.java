@@ -27,7 +27,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.robolectric.shadows.ShadowLog;
 
 import java.util.Locale;
 
@@ -45,9 +44,6 @@ public class MyInterfaceIntegrationTest extends AWSTestBase {
                 provider);
         LambdaDataBinder dataBinder = new LambdaJsonBinder();
         myInterface = factory.build(MyInterface.class, dataBinder);
-
-        // redirect Android log
-        ShadowLog.stream = System.out;
     }
 
     @After
