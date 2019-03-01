@@ -597,6 +597,7 @@ workflows:
               only:
                 - master
                 - develop
+                - ddb-mapper-test-fixes
 
       - uitest:
           requires:
