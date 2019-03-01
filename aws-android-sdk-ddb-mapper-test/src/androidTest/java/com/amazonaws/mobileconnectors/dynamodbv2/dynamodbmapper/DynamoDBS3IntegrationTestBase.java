@@ -32,7 +32,7 @@ import org.junit.BeforeClass;
 
 import java.util.Iterator;
 
-public class DynamoDBS3IntegrationTestBase extends DynamoDBIntegrationTestBase {
+public abstract class DynamoDBS3IntegrationTestBase extends DynamoDBIntegrationTestBase {
     public static final String WEST_BUCKET = "android-dynamo-s3-integ-test-west";
     public static final String EAST_BUCKET = "android-dynamo-s3-integ-test-east";
 
