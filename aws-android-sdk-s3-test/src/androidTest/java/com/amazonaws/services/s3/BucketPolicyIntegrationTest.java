@@ -15,6 +15,8 @@
 
 package com.amazonaws.services.s3;
 
+import android.support.test.InstrumentationRegistry;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -27,6 +29,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.InputStream;
+
 /**
  * Integration tests for S3 bucket policy operations.
  */
@@ -36,7 +40,7 @@ public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
     private final String bucketName = "java-bucket-policy-integ-test-" + System.currentTimeMillis();
 
     /** Path to the sample policy for this test */
-    private static final String POLICY_FILE = "/com/amazonaws/services/s3/samplePolicy.json";
+    private static final String POLICY_FILE = "samplePolicy.json";
 
     /** Create bucket and wait for creation */
     @Before
@@ -58,7 +62,8 @@ public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
     /** Tests that we can get/put/delete bucket policies. */
     @Test
     public void testBucketPolicies() throws Exception {
-        String policyText = IOUtils.toString(getClass().getResourceAsStream(POLICY_FILE));
+        InputStream policyInputStream = InstrumentationRegistry.getContext().getResources().getAssets().open(POLICY_FILE);
+        String policyText = IOUtils.toString(policyInputStream);
         policyText = replace(policyText, "@BUCKET_NAME@", bucketName);
 
         // Verify that no policy exists yet
