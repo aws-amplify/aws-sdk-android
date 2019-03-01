@@ -11,7 +11,7 @@ import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
 
-public class AWSMobileClientTestBase extends AWSTestBase {
+public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
     /** Package name in testconfiguration.json */
     protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
