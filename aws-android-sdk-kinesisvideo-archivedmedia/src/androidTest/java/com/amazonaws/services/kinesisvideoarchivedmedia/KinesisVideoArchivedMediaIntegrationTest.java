@@ -15,8 +15,6 @@
 
 package com.amazonaws.services.kinesisvideoarchivedmedia;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.junit.After;
 import org.junit.Test;
