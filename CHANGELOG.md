@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.2)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon S3
+
 ## [Release 2.12.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.1)
 
 ### Bug Fixes
