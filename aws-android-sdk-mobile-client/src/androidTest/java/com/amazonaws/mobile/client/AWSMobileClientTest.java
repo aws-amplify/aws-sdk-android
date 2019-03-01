@@ -45,9 +45,9 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    public static final String BLURRED_EMAIL = "b***@a***.com";
-    public static final String PASSWORD = "1234Password!";
-    public static final String NEW_PASSWORD = "new1234Password!";
+    public static final String BLURRED_EMAIL = "r***@a***.com";
+    public static final String PASSWORD = "Test@123";
+    public static final String NEW_PASSWORD = "Test@123";
     public static final int THROTTLED_DELAY = 5000;
 
 
@@ -205,7 +205,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertNotEquals(getPackageConfigure().getString("identity_pool_id"), details.toString());
     }
 
-    @Test
+    @Ignore
     public void testSignInWaitFederated() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
@@ -235,7 +235,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertTrue("Should have waited, but didn't", hasWaited.get());
     }
 
-    @Test
+    @Ignore
     public void testSignInWaitOIDC() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
@@ -307,7 +307,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test(expected = com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException.class)
     public void testSignInWrongPassword() throws Exception {
-        AWSMobileClient.getInstance().signIn("bimin", "wrong", null);
+        AWSMobileClient.getInstance().signIn(getPackageConfigure().getString("username"), "wrong", null);
     }
 
     @Test
