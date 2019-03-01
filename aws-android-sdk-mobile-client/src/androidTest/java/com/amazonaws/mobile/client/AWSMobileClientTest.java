@@ -174,7 +174,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals(getPackageConfigure().getString("username"), auth.getUsername());
 
         // Test identity id hasn't changed
-        assertEquals(getPackageConfigure().getString("identity_pool_id"), auth.getIdentityId());
+        assertEquals(getPackageConfigure().getString("identity_id"), auth.getIdentityId());
 
         // Check credentials are available
         final AWSCredentials credentials = auth.getCredentials();
@@ -202,7 +202,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         UserStateDetails userStateDetails = userState.get();
         assertEquals(userStateDetails.getUserState(), UserState.SIGNED_IN);
         Map<String, String> details = userStateDetails.getDetails();
-        assertNotEquals(getPackageConfigure().getString("identity_pool_id"), details.toString());
+        assertNotEquals(getPackageConfigure().getString("identity_id"), details.toString());
     }
 
     @Ignore
