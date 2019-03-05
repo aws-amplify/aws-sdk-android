@@ -162,6 +162,11 @@ public class AWSIotMqttManager {
      */
     private boolean metricsIsEnabled = true;
 
+    /** User-specified map of additional values to be passed as components of
+     * username for the connection in addition to SDK and Version
+     */
+    private Map<String, String> usernameFields;
+
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
@@ -209,6 +214,24 @@ public class AWSIotMqttManager {
 
     /** Override value for System.currentTimeInMillis.  Used for unit testing reconnect logic. */
     private Long unitTestMillisOverride;
+
+    /**
+     * Sets the usernameFields map.
+     *
+     * @param usernameFields usernameFields map
+     */
+    public void setUsernameFields(Map<String, String> usernameFields) {
+        this.usernameFields = usernameFields;
+    }
+
+    /**
+     * Returns the usernameFields map
+     *
+     * @return usernameFields map
+     */
+    public Map<String, String> getUsernameFields() {
+        return usernameFields;
+    }
 
     /**
      * Return the customer specific endpoint prefix.
@@ -799,7 +822,7 @@ public class AWSIotMqttManager {
     /**
      * Connect to the MQTT service.
      *
-     * @param options        MQTT connect options containing a TLS socket factory for authentication.
+     * @param options MQTT connect options containing a TLS socket factory for authentication.
      */
     private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
@@ -808,7 +831,14 @@ public class AWSIotMqttManager {
         options.setKeepAliveInterval(userKeepAlive);
 
         if (isMetricsEnabled()) {
-            options.setUserName("?SDK=Android&Version=" + SDK_VERSION);
+            StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+
+            // Append each of the user-specified key-value pair to the username field for the connection
+            for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
+                username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
+            }
+
+            options.setUserName(username.toString());
         }
         LOGGER.info("metrics collection is " + 
             (isMetricsEnabled() ? "enabled" : "disabled") + 

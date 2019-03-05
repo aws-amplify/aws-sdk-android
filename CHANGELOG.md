@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.3)
+
+### Enhancements
+
+* **AWS IoT**
+  * AWSIotMqttManager now exposes an API `setUsernameFields` for clients to pass additional key-value pairs which are appended to the username used for connection.
+
 ## [Release 2.12.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.2)
 
 ### Misc. Updates
