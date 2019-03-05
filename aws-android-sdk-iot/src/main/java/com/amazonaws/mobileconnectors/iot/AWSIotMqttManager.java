@@ -833,9 +833,11 @@ public class AWSIotMqttManager {
         if (isMetricsEnabled()) {
             StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
-            // Append each of the user-specified key-value pair to the username field for the connection
-            for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
-                username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
+            if (usernameFields != null) {
+                // Append each of the user-specified key-value pair to the username field for the connection
+                for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
+                    username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
+                }
             }
 
             options.setUserName(username.toString());
