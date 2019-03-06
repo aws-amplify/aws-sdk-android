@@ -12,8 +12,8 @@ public class FederatedSignInOptions {
         return builder.customRoleARN;
     }
 
-    public String getIdentityId() {
-        return builder.identityId;
+    public String getCognitoIdentityId() {
+        return builder.cognitoIdentityId;
     }
 
     /**
@@ -27,12 +27,12 @@ public class FederatedSignInOptions {
 
     public static class Builder {
         private String customRoleARN;
-        private String identityId;
+        private String cognitoIdentityId;
 
         public Builder() { }
 
-        public Builder identityId(final String identityId) {
-            this.identityId = identityId;
+        public Builder cognitoIdentityId(final String cognitoIdentityId) {
+            this.cognitoIdentityId = cognitoIdentityId;
             return this;
         }
 

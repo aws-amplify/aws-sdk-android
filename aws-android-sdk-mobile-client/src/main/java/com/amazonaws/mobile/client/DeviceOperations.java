@@ -1,6 +1,8 @@
 package com.amazonaws.mobile.client;
 
 import com.amazonaws.mobile.client.internal.ReturningRunnable;
+import com.amazonaws.mobile.client.results.Device;
+import com.amazonaws.mobile.client.results.ListDevicesResult;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
@@ -10,7 +12,6 @@ import com.amazonaws.services.cognitoidentityprovider.model.ForgetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.GetDeviceResult;
 import com.amazonaws.services.cognitoidentityprovider.model.ListDevicesRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.ListDevicesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateDeviceStatusRequest;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class DeviceOperations {
      *
      * @return a device list with a pagination token to retrieve more if applicable
      */
-    public DeviceList list() throws Exception {
+    public ListDevicesResult list() throws Exception {
         return _listDevices(60, null).await();
     }
 
@@ -93,7 +94,7 @@ public class DeviceOperations {
      *
      * @return a device list with a pagination token to retrieve more if applicable
      */
-    public void list(final Callback<DeviceList> callback) {
+    public void list(final Callback<ListDevicesResult> callback) {
         _listDevices(60, null).async(callback);
     }
 
@@ -105,7 +106,7 @@ public class DeviceOperations {
      *                        page of results.
      * @return
      */
-    public DeviceList list(final Integer limit, final String paginationToken) throws Exception {
+    public ListDevicesResult list(final Integer limit, final String paginationToken) throws Exception {
         return _listDevices(limit, paginationToken).await();
     }
 
@@ -119,26 +120,26 @@ public class DeviceOperations {
      */
     public void list(final Integer limit,
                      final String paginationToken,
-                     Callback<DeviceList> callback) {
+                     Callback<ListDevicesResult> callback) {
         _listDevices(limit, paginationToken).async(callback);
     }
 
-    private ReturningRunnable<DeviceList> _listDevices(final Integer limit,
-                                                       final String paginationToken) {
-        return new ReturningRunnable<DeviceList>() {
+    private ReturningRunnable<ListDevicesResult> _listDevices(final Integer limit,
+                                                              final String paginationToken) {
+        return new ReturningRunnable<ListDevicesResult>() {
             @Override
-            public DeviceList run() throws Exception {
+            public ListDevicesResult run() throws Exception {
                 final ListDevicesRequest listDevicesRequest = new ListDevicesRequest();
                 listDevicesRequest.setAccessToken(mobileClient.getTokens().getAccessToken().getTokenString());
                 listDevicesRequest.setLimit(limit);
                 listDevicesRequest.setPaginationToken(paginationToken);
-                final ListDevicesResult listDevicesResult =
+                final com.amazonaws.services.cognitoidentityprovider.model.ListDevicesResult listDevicesResult =
                         userpoolLL.listDevices(listDevicesRequest);
                 final ArrayList<Device> devices = new ArrayList<Device>(limit);
                 for (DeviceType deviceType : listDevicesResult.getDevices()) {
                     devices.add(marshallDeviceTypeToDevice(deviceType));
                 }
-                return new DeviceList(devices, listDevicesResult.getPaginationToken());
+                return new ListDevicesResult(devices, listDevicesResult.getPaginationToken());
             }
         };
     }
@@ -160,7 +161,7 @@ public class DeviceOperations {
      * @param rememberDevice true to set the device as remembered, false otherwise
      * @throws Exception
      */
-    public void updateDeviceStatus(final boolean rememberDevice) throws Exception {
+    public void updateStatus(final boolean rememberDevice) throws Exception {
         _rememberDevice(null, rememberDevice).await();
     }
 
@@ -170,7 +171,7 @@ public class DeviceOperations {
      * @param rememberDevice true to set the device as remembered, false otherwise
      * @throws Exception
      */
-    public void updateDeviceStatus(final boolean rememberDevice, final Callback<Void> callback) {
+    public void updateStatus(final boolean rememberDevice, final Callback<Void> callback) {
         _rememberDevice(null, rememberDevice).async(callback);
     }
 
@@ -180,11 +181,11 @@ public class DeviceOperations {
      * @param rememberDevice true to set the device as remembered, false otherwise
      * @throws Exception
      */
-    public void updateDeviceStatus(final String deviceKey, final boolean rememberDevice) throws Exception {
+    public void updateStatus(final String deviceKey, final boolean rememberDevice) throws Exception {
         _rememberDevice(deviceKey, rememberDevice).await();
     }
 
-    public void updateDeviceStatus(final String deviceKey, final boolean rememberDevice, final Callback<Void> callback) {
+    public void updateStatus(final String deviceKey, final boolean rememberDevice, final Callback<Void> callback) {
         _rememberDevice(deviceKey, rememberDevice).async(callback);
     }
 
@@ -211,7 +212,7 @@ public class DeviceOperations {
 
     /**
      * Forget the current device. The device will no longer be tracked.
-     * Note: Calling {@link #updateDeviceStatus(boolean)} after {@link #forget()} will fail.
+     * Note: Calling {@link #updateStatus(boolean)} after {@link #forget()} will fail.
      * The user needs to sign-out and sign-in again to be able to update the device status.
      */
     public void forget() throws Exception {
@@ -220,7 +221,7 @@ public class DeviceOperations {
 
     /**
      * Forget the current device. The device will no longer be tracked.
-     * Note: Calling {@link #updateDeviceStatus(boolean)} after {@link #forget()} will fail.
+     * Note: Calling {@link #updateStatus(boolean)} after {@link #forget()} will fail.
      * The user needs to sign-out and sign-in again to be able to update the device status.
      */
     public void forget(final Callback<Void> callback) {
@@ -229,7 +230,7 @@ public class DeviceOperations {
 
     /**
      * Forget the device identified by the deviceKey. The device will no longer be tracked.
-     * Note: Calling {@link #updateDeviceStatus(boolean)} after {@link #forget()} will fail.
+     * Note: Calling {@link #updateStatus(boolean)} after {@link #forget()} will fail.
      * The user needs to sign-out and sign-in again to be able to update the device status.
      *
      * @param deviceKey the device identifier
@@ -240,7 +241,7 @@ public class DeviceOperations {
 
     /**
      * Forget the device identified by the deviceKey. The device will no longer be tracked.
-     * Note: Calling {@link #updateDeviceStatus(boolean)} after {@link #forget()} will fail.
+     * Note: Calling {@link #updateStatus(boolean)} after {@link #forget()} will fail.
      * The user needs to sign-out and sign-in again to be able to update the device status.
      *
      * @param deviceKey the device identifier

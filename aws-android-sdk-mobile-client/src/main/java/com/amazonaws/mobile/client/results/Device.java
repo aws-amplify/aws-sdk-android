@@ -1,4 +1,4 @@
-package com.amazonaws.mobile.client;
+package com.amazonaws.mobile.client.results;
 
 import java.util.Date;
 import java.util.Map;
@@ -8,14 +8,14 @@ public class Device {
     private final Map<String, String> attributes;
     private final Date createDate;
     private final Date lastModifiedDate;
-    private final Date lastAccessedDate;
+    private final Date lastAuthenticatedDate;
 
-    public Device(String deviceKey, Map<String, String> attributes, Date createDate, Date lastModifiedDate, Date lastAccessedDate) {
+    public Device(String deviceKey, Map<String, String> attributes, Date createDate, Date lastModifiedDate, Date lastAuthenticatedDate) {
         this.deviceKey = deviceKey;
         this.attributes = attributes;
         this.createDate = createDate;
         this.lastModifiedDate = lastModifiedDate;
-        this.lastAccessedDate = lastAccessedDate;
+        this.lastAuthenticatedDate = lastAuthenticatedDate;
     }
 
     public String getDeviceKey() {
@@ -34,8 +34,8 @@ public class Device {
         return lastModifiedDate;
     }
 
-    public Date getLastAccessedDate() {
-        return lastAccessedDate;
+    public Date getLastAuthenticatedDate() {
+        return lastAuthenticatedDate;
     }
 
 }
