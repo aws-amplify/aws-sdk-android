@@ -30,6 +30,10 @@ public class SignInUIOptions {
         return builder.nextActivityClass;
     }
 
+    public HostedUIOptions getHostedUIOptions() {
+        return builder.hostedUIOptions;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -39,6 +43,7 @@ public class SignInUIOptions {
         private Integer backgroundColor;
         private boolean canCancel;
         private Class<? extends Activity> nextActivityClass;
+        private HostedUIOptions hostedUIOptions;
 
         public Builder() { }
 
@@ -59,6 +64,11 @@ public class SignInUIOptions {
 
         public Builder nextActivity(final Class<? extends Activity> nextActivityClass) {
             this.nextActivityClass = nextActivityClass;
+            return this;
+        }
+
+        public Builder hostedUIOptions(final HostedUIOptions hostedUIOptions) {
+            this.hostedUIOptions = hostedUIOptions;
             return this;
         }
 

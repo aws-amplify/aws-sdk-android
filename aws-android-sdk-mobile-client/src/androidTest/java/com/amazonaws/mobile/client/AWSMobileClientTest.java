@@ -123,7 +123,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     .withLimit(60);
             listUsersResult = getUserpoolLL().listUsers(listUsersRequest);
             for (UserType user : listUsersResult.getUsers()) {
-                if (USERNAME.equals(user.getUsername())) {
+                if (USERNAME.equals(user.getUsername())
+                    || "bimin".equals(user.getUsername())) {
                     // This user is saved to test the identity id permanence
                     continue;
                 }
@@ -481,7 +482,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         final String token = response.getToken();
 
         FederatedSignInOptions options =
-                FederatedSignInOptions.builder().identityId(identityId).build();
+                FederatedSignInOptions.builder().cognitoIdentityId(identityId).build();
 
         UserStateDetails userStateDetails =
                 auth.federatedSignIn(IdentityProvider.DEVELOPER.toString(), token, options);
@@ -601,14 +602,14 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         for (int i = 0; i < 2; ++i) {
             assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
-            auth.getDeviceOperations().updateDeviceStatus(true);
+            auth.getDeviceOperations().updateStatus(true);
             final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
             assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
 
             checkDeviceAttribute(deviceKey, auth.getUsername(), "dev:device_remembered_status",
                     DeviceRememberedStatusType.Remembered.toString());
 
-            auth.getDeviceOperations().updateDeviceStatus(false);
+            auth.getDeviceOperations().updateStatus(false);
 
             try {
                 auth.getDeviceOperations().get();
@@ -626,7 +627,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.signIn(username, PASSWORD, null);
 
         assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
-        auth.getDeviceOperations().updateDeviceStatus(true);
+        auth.getDeviceOperations().updateStatus(true);
         final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
         assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
 
@@ -634,14 +635,14 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
         try {
-            auth.getDeviceOperations().updateDeviceStatus(true);
+            auth.getDeviceOperations().updateStatus(true);
             fail("Expected ResourceNotFoundException: Device does not exist.");
         } catch (ResourceNotFoundException e) { }
 
         auth.signOut();
 
         auth.signIn(username, PASSWORD, null);
-        auth.getDeviceOperations().updateDeviceStatus(true);
+        auth.getDeviceOperations().updateStatus(true);
         assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
     }
 

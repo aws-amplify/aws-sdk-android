@@ -1,12 +1,12 @@
-package com.amazonaws.mobile.client;
+package com.amazonaws.mobile.client.results;
 
 import java.util.List;
 
-public class DeviceList {
+public class ListDevicesResult {
     private List<Device> devices;
     private String paginationToken;
 
-    public DeviceList(List<Device> devices, String paginationToken) {
+    public ListDevicesResult(List<Device> devices, String paginationToken) {
         this.devices = devices;
         this.paginationToken = paginationToken;
     }
