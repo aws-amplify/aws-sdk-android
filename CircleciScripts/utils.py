@@ -8,6 +8,7 @@ from enum import Enum
 from collections import namedtuple
 import re
 import platform
+import time 
 
 TestType  = namedtuple('TestType', ['value', 'testAction', 'displayString'])
 class TestTypes(Enum):
@@ -45,10 +46,32 @@ def runcommand(command, timeout=0,pipein=None, pipeout =  None, logcommandline =
     exit_code = process.wait()    
     return exit_code
 
+def getFailedTestcases(indexHtml):
+    content = open(indexHtml, 'r').read() 
+    #Notice  it seems andriod integration test runner has a bug. </html> is missing from index.html 
+    if not content.endswith("</html>"):
+        content += "</html>"
+    root = ET.XML(content) 
+    # root = tree.getroot() 
 
-def runtest(module, testtype, results):
+    failedtests = set()
+    for failure in root.findall(".//td[@class='failures']"):  
+        a = failure.find('a')
+        if a is None:
+            continue
+        failedhref = a.get('href')
+        index = failedhref.find(".html#")
+        if index > 0 :
+            classname = failedhref[:index]
+            methodname = failedhref[index+6:]
+            failedtest = classname + "#" + methodname
+            print(failedtest)
+            failedtests.add(failedtest)
+         
+    return failedtests     
 
-    
+
+def runtest(module, testtype, results, ignoreFailures = None):
     testcommand = "bash gradlew {0}:{1} ".format(module, testtype.testAction)
     print("Running {0} for {1} .......".format(testtype.displayString, module))   
     exit_code = runcommand(testcommand)   
@@ -56,9 +79,47 @@ def runtest(module, testtype, results):
     runcommand('mkdir -p "{0}"'.format(dest))
     source = "{0}/build/reports/*".format(module)             
     if runcommand("cp -rf {0} {1}".format(source,dest)) != 0 :
+        print("Failed to copy test result")
         return 1
     if exit_code != 0 :    
         print("test failed for {0}".format(module))
+
+        if testtype == TestTypes.IntegrationTest:
+            retrytimes = 3 
+            indexHtml = os.path.join(module , "build/reports/androidTests/connected/index.html")
+            failedtests = getFailedTestcases(indexHtml)           
+            if failedtests: 
+                failedretrytests = set()
+                for failedtest in failedtests:  
+                    time.sleep(10)
+                    single_exit_code = 1               
+                    for retry in range(retrytimes):        
+                        print("retry running failed test {0}  for {1} times".format(failedtest, retry + 1))      
+                        testcommand = "bash gradlew {0}:{1} -Pandroid.testInstrumentationRunnerArguments.class={2}".format(module, testtype.testAction, failedtest)
+                        single_exit_code = runcommand(testcommand)   
+                        if single_exit_code == 0 : 
+                            break
+                    if single_exit_code != 0 :
+                        print("retry cannot resolve failed test {0}".format(failedtest))
+                        failedretrytests.add(failedtest)
+
+                if failedretrytests :   
+                    print("Failed tests that cannot be resolved by retry: ", failedretrytests)         
+                    if ignoreFailures is not None:
+                        ignoreFailures = set(ignoreFailures)
+                        if failedretrytests.issubset(ignoreFailures):
+                            print("All failed test cases can be ignored")
+                            exit_code = 0 
+                        else :
+                            print("Unable ignore failures: ", failedretrytests - ignoreFailures)  
+                else:  
+                    print("All failed test cases can be resolved by retry")
+                    exit_code = 0 
+            else:
+                print("exit_code is not 0, but cannot get failed test cases from index.html")
+
+    print("exit_code:", exit_code)
+    if exit_code != 0:
         runcommand('echo "export testresult=1" >> $BASH_ENV')  
 
     return 0
