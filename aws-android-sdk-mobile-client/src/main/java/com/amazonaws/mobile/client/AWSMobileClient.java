@@ -2738,17 +2738,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                     if (isConfigurationKeyPresent(USER_POOLS)) {
                         authUIConfigBuilder.userPools(true);
-                        identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
                     }
 
                     if (isConfigurationKeyPresent(FACEBOOK)) {
                         authUIConfigBuilder.signInButton(FacebookButton.class);
-                        identityManager.addSignInProvider(FacebookSignInProvider.class);
                     }
 
                     if (isConfigurationKeyPresent(GOOGLE)) {
                         authUIConfigBuilder.signInButton(GoogleButton.class);
-                        identityManager.addSignInProvider(GoogleSignInProvider.class);
                     }
 
                     Class<? extends Activity> nextActivityClass =
