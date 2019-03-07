@@ -9,7 +9,7 @@ credentials = sys.argv[3]
 testmodules =  ["aws-android-sdk-apigateway-test",
                 "aws-android-sdk-autoscaling-test",
                 "aws-android-sdk-cognitoidentityprovider-test",
-                "aws-android-sdk-cognitoauth-test",
+                "aws-android-sdk-cognitoauth",
                 "aws-android-sdk-core-test",
                 "aws-android-sdk-cloudwatch-test",
                 "aws-android-sdk-elb-test",
