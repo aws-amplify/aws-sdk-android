@@ -50,7 +50,6 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public static final String NEW_PASSWORD = "Test@123";
     public static final int THROTTLED_DELAY = 5000;
 
-
     Context appContext;
     AWSMobileClient auth;
     UserStateListener listener;

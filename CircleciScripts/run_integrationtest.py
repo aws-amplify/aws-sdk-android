@@ -6,8 +6,11 @@ test_results = sys.argv[1]
 root = sys.argv[2]
 credentials = sys.argv[3]
 
-testmodules =  ["aws-android-sdk-apigateway-test",
+testmodules =  ["aws-android-sdk-core-test",
+                "aws-android-sdk-apigateway-test",
                 "aws-android-sdk-autoscaling-test",
+                "aws-android-sdk-cognitoidentityprovider-test",
+                "aws-android-sdk-cognitoauth",
                 "aws-android-sdk-cloudwatch-test",
                 "aws-android-sdk-elb-test",
                 "aws-android-sdk-ddb-test",

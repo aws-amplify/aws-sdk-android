@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2016 Amazon.com,
+ *  Copyright 2013-2019 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -18,9 +18,9 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
@@ -45,6 +45,9 @@ public final class CognitoDeviceHelper {
     private static final String COGNITO_DEVICE_KEY = "DeviceKey";
     private static final String COGNITO_DEVICE_GROUP_KEY = "DeviceGroupKey";
     private static final String COGNITO_DEVICE_SECRET = "DeviceSecret";
+
+    private static final Object LOCK = new Object();
+
     /**
      * Default pagination limit.
      */
@@ -53,7 +56,65 @@ public final class CognitoDeviceHelper {
     static deviceSRP srpCalculator = null;
 
     /**
-     * Uses the Android class {@link android.os.build} to return the model of
+     * Reference to utility that provides access to SharedPreferences.
+     */
+    static Map<String, AWSKeyValueStore> awsKeyValueStoreMap = new HashMap<String, AWSKeyValueStore>();
+
+    /**
+     * flag that indicates if the persistence is enabled or not.
+     */
+    private static boolean isPersistenceEnabled = true;
+
+    /**
+     * Set the flag that indicates if the persistence is enabled or not.
+     * @param isPersistenceEnabled flag that indicates if the persistence is enabled or not.
+     */
+    public static void setPersistenceEnabled(boolean isPersistenceEnabled) {
+        synchronized (LOCK) {
+            try {
+                CognitoDeviceHelper.isPersistenceEnabled = isPersistenceEnabled;
+                for (String sharedPreferencesName : awsKeyValueStoreMap.keySet()) {
+                    AWSKeyValueStore awsKeyValueStore = awsKeyValueStoreMap.get(sharedPreferencesName);
+                    awsKeyValueStore.setPersistenceEnabled(isPersistenceEnabled);
+                }
+            } catch (Exception ex) {
+                LOGGER.error("Error in setting the isPersistenceEnabled flag in the key-value store.", ex);
+            }
+        }
+    }
+
+    /**
+     * Retrieve an instance of AWSKeyValueStore for the sharedPreferencesName.
+     *
+     * @param context application context
+     * @param username username of current authenticated user
+     * @param userPoolId identifier of the cognito userpool
+     * @return the instance of utility that provides access to SharedPreferences.
+     */
+    private static AWSKeyValueStore getAWSKeyValueStore(Context context,
+                                                        String username,
+                                                        String userPoolId) {
+        synchronized (LOCK) {
+            try {
+                final String sharedPreferencesName = getDeviceDetailsCacheForUser(username, userPoolId);
+                if (awsKeyValueStoreMap.containsKey(sharedPreferencesName)) {
+                    return awsKeyValueStoreMap.get(sharedPreferencesName);
+                } else {
+                    AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(context,
+                            sharedPreferencesName,
+                            isPersistenceEnabled);
+                    awsKeyValueStoreMap.put(sharedPreferencesName, awsKeyValueStore);
+                    return awsKeyValueStore;
+                }
+            } catch (Exception ex) {
+                LOGGER.error("Error in retrieving the persistent store.", ex);
+                return null;
+            }
+        }
+    }
+
+    /**
+     * Uses the Android class {@link android.os.Build} to return the model of
      * the android device.
      *
      * @return Device model name, which is also the name of the device.
@@ -73,9 +134,9 @@ public final class CognitoDeviceHelper {
      */
     public static String getDeviceKey(String username, String userPoolId, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            if (cipCachedDeviceDetails != null && cipCachedDeviceDetails.contains(COGNITO_DEVICE_KEY)) {
-                return cipCachedDeviceDetails.getString(COGNITO_DEVICE_KEY, null);
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            if (awsKeyValueStore != null && awsKeyValueStore.contains(COGNITO_DEVICE_KEY)) {
+                return awsKeyValueStore.get(COGNITO_DEVICE_KEY);
             }
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
@@ -94,9 +155,9 @@ public final class CognitoDeviceHelper {
      */
     public static String getDeviceSecret(String username, String userPoolId, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            if (cipCachedDeviceDetails != null && cipCachedDeviceDetails.contains(COGNITO_DEVICE_SECRET)) {
-                return cipCachedDeviceDetails.getString(COGNITO_DEVICE_SECRET, null);
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            if (awsKeyValueStore != null && awsKeyValueStore.contains(COGNITO_DEVICE_SECRET)) {
+                return awsKeyValueStore.get(COGNITO_DEVICE_SECRET);
             }
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
@@ -115,9 +176,9 @@ public final class CognitoDeviceHelper {
      */
     public static String getDeviceGroupKey(String username, String userPoolId, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            if (cipCachedDeviceDetails != null && cipCachedDeviceDetails.contains(COGNITO_DEVICE_GROUP_KEY)) {
-                return cipCachedDeviceDetails.getString(COGNITO_DEVICE_GROUP_KEY, null);
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            if (awsKeyValueStore != null && awsKeyValueStore.contains(COGNITO_DEVICE_GROUP_KEY)) {
+                return awsKeyValueStore.get(COGNITO_DEVICE_GROUP_KEY);
             }
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
@@ -134,10 +195,13 @@ public final class CognitoDeviceHelper {
      * @param deviceKey         REQUIRED: Cognito assigned device key.
      * @param context           REQUIRED: App context, needed to access device datastore.
      */
-    public static void cacheDeviceKey(String username, String userPoolId, String deviceKey, Context context) {
+    public static void cacheDeviceKey(String username,
+                                      String userPoolId,
+                                      String deviceKey,
+                                      Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            cipCachedDeviceDetails.edit().putString(COGNITO_DEVICE_KEY, deviceKey).apply();
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            awsKeyValueStore.put(COGNITO_DEVICE_KEY, deviceKey);
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
         }
@@ -154,8 +218,8 @@ public final class CognitoDeviceHelper {
      */
     public static void cacheDeviceVerifier(String username, String userPoolId, String deviceSecret, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            cipCachedDeviceDetails.edit().putString(COGNITO_DEVICE_SECRET, deviceSecret).apply();
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            awsKeyValueStore.put(COGNITO_DEVICE_SECRET, deviceSecret);
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
         }
@@ -172,8 +236,8 @@ public final class CognitoDeviceHelper {
      */
     public static void cacheDeviceGroupKey(String username, String userPoolId, String deviceGroupKey, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            cipCachedDeviceDetails.edit().putString(COGNITO_DEVICE_GROUP_KEY, deviceGroupKey).apply();
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            awsKeyValueStore.put(COGNITO_DEVICE_GROUP_KEY, deviceGroupKey);
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
         }
@@ -188,8 +252,8 @@ public final class CognitoDeviceHelper {
      */
     public static void clearCachedDevice(String username, String userPoolId, Context context) {
         try {
-            final SharedPreferences cipCachedDeviceDetails = context.getSharedPreferences(getDeviceDetailsCacheForUser(username, userPoolId), 0);
-            cipCachedDeviceDetails.edit().clear().apply();
+            final AWSKeyValueStore awsKeyValueStore = getAWSKeyValueStore(context, username, userPoolId);
+            awsKeyValueStore.clear();
         } catch (final Exception e) {
             LOGGER.error("Error accessing SharedPreferences", e);
         }
