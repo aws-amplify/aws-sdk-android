@@ -6,7 +6,7 @@
   <artifactId>aws-android-sdk-pom</artifactId>
   <packaging>pom</packaging>
   <name>AWS SDK for Android</name>
-  <version>2.12.2</version>
+  <version>2.12.3</version>
   <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS’ cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
 

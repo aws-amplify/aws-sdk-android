@@ -11,14 +11,14 @@
     <parent>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-android-sdk-pom</artifactId>
-        <version>2.12.2</version>
+        <version>2.12.3</version>
     </parent>
     <dependencies>
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-android-sdk-core</artifactId>
             <optional>false</optional>
-            <version>2.12.2</version>
+            <version>2.12.3</version>
         </dependency>
     </dependencies>
     <build>
