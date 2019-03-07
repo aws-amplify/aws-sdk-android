@@ -32,11 +32,8 @@ final class TimingInfoUnmodifiable extends TimingInfo {
         super(startEpochTimeMilli, startTimeNano, endTimeNano);
     }
 
-    /**
-     * Always throws {@link UnsupportedOperationException}.
-     */
     @Override
-    public void setEndTime(long _) {
+    public void setEndTime(long endTime) {
         throw new UnsupportedOperationException();
     }
 
@@ -44,7 +41,7 @@ final class TimingInfoUnmodifiable extends TimingInfo {
      * Always throws {@link UnsupportedOperationException}.
      */
     @Override
-    public void setEndTimeNano(long _) {
+    public void setEndTimeNano(long endTimeNano) {
         throw new UnsupportedOperationException();
     }
 

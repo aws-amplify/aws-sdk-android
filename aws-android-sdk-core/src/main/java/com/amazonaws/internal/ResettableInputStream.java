@@ -134,11 +134,11 @@ public class ResettableInputStream extends ReleasableInputStream {
      * {@link ResettableInputStream#disableClose()}, so that the release method
      * becomes the only way to truly close the opened file.
      *
-     * @param _
+     * @param position
      *            ignored
      */
     @Override
-    public void mark(int _) {
+    public void mark(int position) {
         abortIfNeeded();
         try {
             markPos = fileChannel.position();

@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 
     api "com.google.code.gson:gson:2.2.4"
     api "com.google.android:android:2.3.3"
@@ -12,6 +12,26 @@ dependencies {
     testImplementation "org.apache.commons:commons-io:1.3.2"
     testImplementation "joda-time:joda-time:2.0"
 }
+
+// This task is to create a symbolic link to android-23.jar
+// which is used only for compilation. Once the symbolic link
+// is created, AWSCore has a compile only dependency on the
+// jar linked by this symbolic link.
+
+// The minSdkVersion of AWSCore is still API Level 10. AWSCore
+// uses API introduced in API Level 23 which will be executed
+// only on device running an API Level of 23 and above.
+
+// gradle task can only have one commandLine.
+// The following command (is idempotent)
+// removes the libs folder, creates libs folder and
+// creates a symbolic link to android-23.jar.
+task myTask(type:Exec) {
+    workingDir '.'
+    commandLine 'sh', '-c', "rm -rf libs && mkdir libs && ln -s $System.env.ANDROID_HOME/platforms/android-23/android.jar libs/android-23.jar"
+}
+
+compileJava.dependsOn(myTask)
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"

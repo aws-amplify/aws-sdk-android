@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2016 Amazon.com,
+ *  Copyright 2013-2019 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -18,15 +18,18 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoDeviceHelper;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoSecretHash;
 import com.amazonaws.regions.Regions;
@@ -67,6 +70,8 @@ import java.util.Map;
  * On a user-pool new user's can sign-up and create new {@link CognitoUser}.
  */
 public class CognitoUserPool {
+
+    private static final Log logger = LogFactory.getLog(CognitoUserPool.class);
     /**
      * Cognito Your Identity Pool ID
      */
@@ -99,7 +104,7 @@ public class CognitoUserPool {
     private String secretHash;
 
     /**
-     *
+     * Pinpoint Endpoint Id
      */
     private String pinpointEndpointId;
 
@@ -107,6 +112,22 @@ public class CognitoUserPool {
      * This flag indicates if the data collection is allowed. This is enabled by default.
      */
     private boolean advancedSecurityDataCollectionFlag = true;
+
+    /**
+     * This flag indicates if the tokens are being cached on the device in SharedPreferences.
+     * This is enabled by default.
+     */
+    private boolean isPersistenceEnabled = true;
+
+    /**
+     * This is the key of the namespace in SharedPreferences where the tokens are being cached.
+     */
+    private static final String DEFAULT_SHARED_PREFERENCES_NAME = "CognitoIdentityProviderCache";
+
+    /**
+     * Reference to the store which manages secure storage of tokens.
+     */
+    AWSKeyValueStore awsKeyValueStore;
 
     /**
      * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
@@ -156,6 +177,8 @@ public class CognitoUserPool {
      */
     public CognitoUserPool(Context context, AWSConfiguration awsConfiguration) {
         try {
+            initialize(context);
+
             final JSONObject userPoolConfiguration = awsConfiguration.optJsonObject("CognitoUserPool");
             this.context = context;
             this.userPoolId = userPoolConfiguration.getString("PoolId");
@@ -239,6 +262,7 @@ public class CognitoUserPool {
      * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, ClientConfiguration clientConfiguration, Regions region, String pinpointAppId) {
+        initialize(context);
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;
@@ -277,12 +301,20 @@ public class CognitoUserPool {
      * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId) {
+        initialize(context);
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.client = client;
         this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
+    }
+
+    private void initialize(final Context context) {
+        this.awsKeyValueStore = new AWSKeyValueStore(context,
+                DEFAULT_SHARED_PREFERENCES_NAME,
+                isPersistenceEnabled);
+        CognitoDeviceHelper.setPersistenceEnabled(isPersistenceEnabled);
     }
 
     /**
@@ -312,6 +344,16 @@ public class CognitoUserPool {
      */
     public void setAdvancedSecurityDataCollectionFlag(boolean isEnabled) {
         this.advancedSecurityDataCollectionFlag = isEnabled;
+    }
+
+    /**
+     * Enable or disable persistence
+     * @param isPersistenceEnabled flag if true indicates tokens are persisted.
+     */
+    public void setPersistenceEnabled(boolean isPersistenceEnabled) {
+        this.isPersistenceEnabled = isPersistenceEnabled;
+        awsKeyValueStore.setPersistenceEnabled(this.isPersistenceEnabled);
+        CognitoDeviceHelper.setPersistenceEnabled(isPersistenceEnabled);
     }
 
     /**
@@ -439,13 +481,10 @@ public class CognitoUserPool {
      * @return An instance of the {@link CognitoUser} for last authenticated, cached on this device
      */
     public CognitoUser getCurrentUser() {
-        final SharedPreferences csiCachedTokens = context
-                .getSharedPreferences("CognitoIdentityProviderCache", 0);
-
         final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
-        if (csiCachedTokens.contains(csiLastUserKey)) {
-            return getUser(csiCachedTokens.getString(csiLastUserKey, null));
+        if (awsKeyValueStore.contains(csiLastUserKey)) {
+            return getUser(awsKeyValueStore.get(csiLastUserKey));
         } else {
             return getUser();
         }
@@ -486,8 +525,8 @@ public class CognitoUserPool {
     }
 
     /**
-     * Returns the current Pinpoint endpoint id.
-     * @return current pinpoint endpoint id.
+     * Returns the current Pinpoint app id.
+     * @return current pinpoint app id.
      */
     protected String getPinpointEndpointId() {
         return pinpointEndpointId;
