@@ -154,20 +154,6 @@ commands:
             echo "content:$content"
             python3 ../CircleciScripts/create_pullrequest.py  "${GITHUB_BUMPVERSION_USER}" "${GITHUB_BUMPVERSION_TOKEN}" "$title" "$content" "master" "${GITHUB_BUMPVERSION_USER}:bump_version" ${bumpversion_repo_user} ${bumpversion_repo_name}
 
-  setup_android_platform23:
-    description: >-
-      Setup Android Platform 23
-    steps:
-      - run: 
-          name: download android platform 23
-          command: |
-            sudo yes | sdkmanager "platforms;android-23"
-      - run:
-          name: create_symbolink
-          command: |
-            cd ~/code # ~/code holds aws-sdk-android repository
-            # create a symlink to android-23.jar so AWS Core would compile
-            ln -s ${ANDROID_HOME}/platforms/android-23/android.jar aws-android-sdk-core/libs/android-23.jar
 
 jobs:
   build:
@@ -179,7 +165,6 @@ jobs:
     steps:
       - checkout
       - generate_gradle_wrapper
-      - setup_android_platform23
       - run:
           name: build the whole project
           command: |
@@ -203,7 +188,6 @@ jobs:
     steps:
       - checkout
       - generate_gradle_wrapper
-      - setup_android_platform23
       - run:
           name: run unit tests
           command: |
@@ -336,7 +320,7 @@ jobs:
       - run:
           name: Install Android build tools
           command: |
-            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-23" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
+            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
             /usr/local/bin/sdkmanager --update
       - run:
           name: Install GPG
@@ -387,7 +371,6 @@ jobs:
     steps:
       - checkout
       - configure_aws
-      - setup_android_platform23
       - set_enviroment_variables
       - run:
           name: Copy SDK resource files
@@ -455,7 +438,6 @@ jobs:
     steps:
       - checkout
       - configure_aws
-      - setup_android_platform23
       - run: 
           name: install python3-pip
           command: |
