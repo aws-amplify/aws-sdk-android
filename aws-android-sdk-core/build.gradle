@@ -21,9 +21,14 @@ dependencies {
 // The minSdkVersion of AWSCore is still API Level 10. AWSCore
 // uses API introduced in API Level 23 which will be executed
 // only on device running an API Level of 23 and above.
+
+// gradle task can only have one commandLine.
+// The following command (is idempotent)
+// removes the libs folder, creates libs folder and
+// creates a symbolic link to android-23.jar.
 task myTask(type:Exec) {
     workingDir '.'
-    commandLine 'ln', '-s', "$System.env.ANDROID_HOME/platforms/android-23/android.jar", 'libs/android-23.jar'
+    commandLine 'sh', '-c', "rm -rf libs && mkdir libs && ln -s $System.env.ANDROID_HOME/platforms/android-23/android.jar libs/android-23.jar"
 }
 
 compileJava.dependsOn(myTask)
