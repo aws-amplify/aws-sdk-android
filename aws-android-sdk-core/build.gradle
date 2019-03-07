@@ -13,5 +13,20 @@ dependencies {
     testImplementation "joda-time:joda-time:2.0"
 }
 
+// This task is to create a symbolic link to android-23.jar
+// which is used only for compilation. Once the symbolic link
+// is created, AWSCore has a compile only dependency on the
+// jar linked by this symbolic link.
+
+// The minSdkVersion of AWSCore is still API Level 10. AWSCore
+// uses API introduced in API Level 23 which will be executed
+// only on device running an API Level of 23 and above.
+task myTask(type:Exec) {
+    workingDir '.'
+    commandLine 'ln', '-s', "$System.env.ANDROID_HOME/platforms/android-23/android.jar", 'libs/android-23.jar'
+}
+
+compileJava.dependsOn(myTask)
+
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
