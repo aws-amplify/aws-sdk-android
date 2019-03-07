@@ -364,12 +364,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             return;
                         }
 
-                        // Read persistence key from the awsconfiguration.json and set the flag
+                        awsConfiguration = awsConfig;
+
+                        // Read Persistence key from the awsconfiguration.json and set the flag
                         // appropriately.
                         try {
                             if (awsConfiguration.optJsonObject("Auth") != null &&
                                     awsConfiguration.optJsonObject("Auth").has("Persistence")) {
-                                mIsPersistenceEnabled = awsConfig
+                                mIsPersistenceEnabled = awsConfiguration
                                         .optJsonObject("Auth")
                                         .getBoolean("Persistence");
                             }
@@ -381,7 +383,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                         mContext = context.getApplicationContext();
                         mStore = new AWSMobileClientStore(AWSMobileClient.this);
-                        awsConfiguration = awsConfig;
 
                         final IdentityManager identityManager = new IdentityManager(mContext);
                         identityManager.enableFederation(false);

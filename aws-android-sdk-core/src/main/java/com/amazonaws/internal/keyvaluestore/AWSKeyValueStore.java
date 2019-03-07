@@ -159,21 +159,21 @@ public class AWSKeyValueStore {
                     return null;
                 }
 
-                // If the version of data stored mismatches with the version of the store,
-                // return null.
-                final int keyValueStoreVersion = Integer.parseInt(
-                        sharedPreferences
-                                .getString(actualKey + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
-                if (keyValueStoreVersion != AWS_KEY_VALUE_STORE_VERSION) {
-                    logger.error("The version of the data read from SharedPreferences for " +
-                            key + " does not match the version of the store.");
-                    return null;
-                }
-
-                // Read from store -> Base64 decode -> decrypt -> convert to string
-                final String encryptedData = sharedPreferences.getString(actualKey, null);
-                byte[] iv = getInitializationVector(actualKey);
                 try {
+                    // If the version of data stored mismatches with the version of the store,
+                    // return null.
+                    final int keyValueStoreVersion = Integer.parseInt(
+                            sharedPreferences
+                                    .getString(actualKey + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+                    if (keyValueStoreVersion != AWS_KEY_VALUE_STORE_VERSION) {
+                        logger.error("The version of the data read from SharedPreferences for " +
+                                key + " does not match the version of the store.");
+                        return null;
+                    }
+
+                    // Read from store -> Base64 decode -> decrypt -> convert to string
+                    final String encryptedData = sharedPreferences.getString(actualKey, null);
+                    byte[] iv = getInitializationVector(actualKey);
                     String decryptedDataInString = decrypt(apiLevel >= ANDROID_API_LEVEL_23
                             ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv)
                             : new IvParameterSpec(iv), encryptedData);
