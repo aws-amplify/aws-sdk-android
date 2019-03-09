@@ -12,7 +12,7 @@
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
-    <version>2.12.2</version>
+    <version>2.12.3</version>
   </parent>
 
   <dependencies>
@@ -62,7 +62,14 @@
       <artifactId>easymock</artifactId>
       <version>3.1</version>
       <scope>test</scope>
-    </dependency>  
+    </dependency>
+    <dependency>
+        <groupId>android</groupId>
+        <artifactId>android</artifactId>
+        <version>6.0</version>
+        <scope>system</scope>
+        <systemPath>${env.ANDROID_HOME}/platforms/android-23/android.jar</systemPath>
+    </dependency>   
   </dependencies>
 
   <build>

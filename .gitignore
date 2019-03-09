@@ -72,3 +72,10 @@ target/
 
 #python comile
 __pycache__/
+
+# Credentials
+**/testconfiguration.json
+**/awsconfiguration.json
+
+# AWSCoreRuntime libs
+aws-android-sdk-core/libs

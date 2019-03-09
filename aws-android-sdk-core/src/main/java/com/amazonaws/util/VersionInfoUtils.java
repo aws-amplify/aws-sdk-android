@@ -26,7 +26,7 @@ public class VersionInfoUtils {
     private static final int DEFAULT_STRING_LENGTH = 128;
 
     /** SDK version info */
-    private static volatile String version = "2.12.2";
+    private static volatile String version = "2.12.3";
                                                                 // changed build
                                                                 // logic
 

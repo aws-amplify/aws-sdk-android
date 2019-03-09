@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2018 Amazon.com, Inc. or its affiliates.
+ * Copyright 2017-2019 Amazon.com, Inc. or its affiliates.
  * All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,6 @@ package com.amazonaws.mobile.client;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,6 +31,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResult;
@@ -147,7 +147,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Federation into this identity pool
      */
     CognitoCachingCredentialsProvider cognitoIdentity;
-    private CognitoUserPool userpool;
+    /**
+     * Object that encapuslates the high-level Cognito UserPools client
+     */
+    CognitoUserPool userpool;
     private String userpoolsLoginKey;
     Context mContext;
     Map<String, String> mFederatedLoginsMap;
@@ -199,6 +202,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
     AWSMobileClientStore mStore;
+
+    /**
+     * Flag that indicates if the tokens would be persisted in SharedPreferences.
+     * By default, this is set to true. If set to false, the tokens would be
+     * kept in memory.
+     */
+    boolean mIsPersistenceEnabled = true;
 
     /**
      * Constructor invoked by getInstance.
@@ -353,13 +363,31 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             callback.onResult(getUserStateDetails(true));
                             return;
                         }
+
+                        awsConfiguration = awsConfig;
+
+                        // Read Persistence key from the awsconfiguration.json and set the flag
+                        // appropriately.
+                        try {
+                            if (awsConfiguration.optJsonObject("Auth") != null &&
+                                    awsConfiguration.optJsonObject("Auth").has("Persistence")) {
+                                mIsPersistenceEnabled = awsConfiguration
+                                        .optJsonObject("Auth")
+                                        .getBoolean("Persistence");
+                            }
+                        } catch (final Exception ex) {
+                            // If reading from awsconfiguration.json fails, invoke callback.
+                            callback.onError(new RuntimeException("Failed to initialize AWSMobileClient; please check your awsconfiguration.json", ex));
+                            return;
+                        }
+
                         mContext = context.getApplicationContext();
                         mStore = new AWSMobileClientStore(AWSMobileClient.this);
-                        awsConfiguration = awsConfig;
 
                         final IdentityManager identityManager = new IdentityManager(mContext);
                         identityManager.enableFederation(false);
                         identityManager.setConfiguration(awsConfiguration);
+                        identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                         IdentityManager.setDefaultIdentityManager(identityManager);
                         registerConfigSignInProviders();
                         identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
@@ -398,6 +426,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 && awsConfig.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
                             try {
                                 cognitoIdentity = new CognitoCachingCredentialsProvider(mContext, awsConfiguration);
+                                cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
                             } catch (Exception e) {
                                 callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
                                 return;
@@ -409,6 +438,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             try {
                                 userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
                                 userpool = new CognitoUserPool(mContext, awsConfiguration);
+                                userpool.setPersistenceEnabled(mIsPersistenceEnabled);
                             } catch (Exception e) {
                                 callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
                                 return;
@@ -2487,11 +2517,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 }
 
 class AWSMobileClientStore {
-    private final SharedPreferences mSharedPreferences;
-    ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
+    AWSKeyValueStore mAWSKeyValueStore;
+
+    private ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
 
     AWSMobileClientStore(AWSMobileClient client) {
-        mSharedPreferences = client.mContext.getSharedPreferences(AWSMobileClient.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
+        mAWSKeyValueStore = new AWSKeyValueStore(client.mContext,
+                AWSMobileClient.SHARED_PREFERENCES_KEY,
+                client.mIsPersistenceEnabled);
     }
 
     Map<String, String> get(final String... keys) {
@@ -2499,7 +2532,7 @@ class AWSMobileClientStore {
             mReadWriteLock.readLock().lock();
             HashMap<String, String> attributes = new HashMap<String, String>();
             for (String key : keys) {
-                attributes.put(key, mSharedPreferences.getString(key, null));
+                attributes.put(key, mAWSKeyValueStore.get(key));
             }
             return attributes;
         } finally {
@@ -2510,7 +2543,7 @@ class AWSMobileClientStore {
     String get(final String key) {
         try {
             mReadWriteLock.readLock().lock();
-            return mSharedPreferences.getString(key, null);
+            return mAWSKeyValueStore.get(key);
         } finally {
             mReadWriteLock.readLock().unlock();
         }
@@ -2519,11 +2552,9 @@ class AWSMobileClientStore {
     void set(final Map<String, String> attributes) {
         try {
             mReadWriteLock.writeLock().lock();
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
             for (String key : attributes.keySet()) {
-                editor.putString(key, attributes.get(key));
+                mAWSKeyValueStore.put(key, attributes.get(key));
             }
-            editor.commit();
         } finally {
             mReadWriteLock.writeLock().unlock();
         }
@@ -2532,15 +2563,13 @@ class AWSMobileClientStore {
     void set(final String key, final String value) {
         try {
             mReadWriteLock.writeLock().lock();
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(key, value);
-            editor.commit();
+            mAWSKeyValueStore.put(key, value);
         } finally {
             mReadWriteLock.writeLock().unlock();
         }
     }
 
     void clear() {
-        mSharedPreferences.edit().clear().commit();
+        mAWSKeyValueStore.clear();
     }
 }

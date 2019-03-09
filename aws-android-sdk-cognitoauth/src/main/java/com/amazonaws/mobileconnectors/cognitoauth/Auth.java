@@ -22,8 +22,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidParameterException;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
+import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
 import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 
 import org.json.JSONObject;
@@ -64,6 +66,11 @@ public final class Auth {
      * Bundle containing customization flags for chrome custom tab
      */
     private final Bundle customTabExtras;
+
+    /**
+     * Reference to the store that manages secure storage of tokens
+     */
+    AWSKeyValueStore awsKeyValueStore;
 
     /**
      * This identifies the settings for additional userPool features.
@@ -107,7 +114,13 @@ public final class Auth {
     private AuthClient user;
 
     /**
-     * It enables user context data collection for frontline.
+     * Flag indicating if the tokens will be cached on device.
+     * By default, this is enabled.
+     */
+    private boolean isPersistenceEnabled = true;
+
+    /**
+     * It enables user context data collection.
      */
     public void setAdvancedSecurityDataCollection(boolean isEnabled) {
             this.advancedSecurityDataCollectionFlag = isEnabled;
@@ -119,6 +132,15 @@ public final class Auth {
      */
     public boolean isAdvancedSecurityDataCollectionEnabled() {
         return advancedSecurityDataCollectionFlag;
+    }
+
+    /**
+     * Enable or disable persistence
+     * @param isPersistenceEnabled flag if true indicates tokens are persisted.
+     */
+    public void setPersistenceEnabled(boolean isPersistenceEnabled) {
+        this.isPersistenceEnabled = isPersistenceEnabled;
+        awsKeyValueStore.setPersistenceEnabled(this.isPersistenceEnabled);
     }
 
     /**
@@ -150,7 +172,8 @@ public final class Auth {
                  final boolean advancedSecurityDataCollectionFlag,
                  final String identityProvider,
                  final String idpIdentifier,
-                 final Bundle customTabExtras) {
+                 final Bundle customTabExtras,
+                 final boolean isPersistenceEnabled) {
         this.context = context;
         this.appWebDomain = appWebDomain;
         this.appId = appId;
@@ -165,6 +188,10 @@ public final class Auth {
         this.identityProvider = identityProvider;
         this.idpIdentifier = idpIdentifier;
         this.customTabExtras = customTabExtras;
+        this.isPersistenceEnabled = isPersistenceEnabled;
+        this.awsKeyValueStore = new AWSKeyValueStore(context,
+                ClientConstants.APP_LOCAL_CACHE,
+                this.isPersistenceEnabled);
         getCurrentUser();
     }
 
@@ -241,13 +268,24 @@ public final class Auth {
         private boolean mAdvancedSecurityDataCollectionFlag = true;
 
         /**
+         * Flag indicating if the tokens will be cached on device.
+         * By default, this is enabled.
+         */
+        private boolean mIsCachingEnabled = true;
+
+        public Builder setPersistenceEnabled(boolean isPersistenceEnabled) {
+            this.mIsCachingEnabled = isPersistenceEnabled;
+            return this;
+        }
+
+        /**
          * Sets flag to enable user context data collection. By
          * default, the flag is set to true.
          * <p>
          *     Flag identifying if user context data should be collected for
          *     advanced security evaluation.
          * </p>
-         * @param flag value for data collection
+         * @param advancedSecurityDataCollectionFlag value for data collection
          * @return A reference to this builder.
          */
         public Builder setAdvancedSecurityDataCollection(final boolean advancedSecurityDataCollectionFlag) {
@@ -444,7 +482,8 @@ public final class Auth {
                     this.mAdvancedSecurityDataCollectionFlag,
                     this.mIdentityProvider,
                     this.mIdpIdentifier,
-                    this.mCustomTabsExtras);
+                    this.mCustomTabsExtras,
+                    this.mIsCachingEnabled);
         }
 
 
@@ -512,7 +551,7 @@ public final class Auth {
      * the device.
      */
     public Auth getCurrentUser() {
-        this.user.setUsername(LocalDataManager.getLastAuthUser(context, appId));
+        this.user.setUsername(LocalDataManager.getLastAuthUser(awsKeyValueStore, context, appId));
         return this;
     }
 

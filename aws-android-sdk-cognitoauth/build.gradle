@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'devicefarm'
 
 android {
     compileSdkVersion 27
@@ -31,9 +32,28 @@ dependencies {
 
     implementation "com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0"
     implementation "com.android.support:customtabs:25.4.0"
+    api (project(':aws-android-sdk-core')) {
+        exclude group: "com.google.android", module: "android"
+    }
 
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation project(':aws-android-sdk-testutils')
 }
+
+devicefarm {
+
+    // Required. The Project must already exist. You can create a project in the AWS console.
+    projectName "AWSAndroidKeyStoreTester"
+
+    // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
+    authentication {
+        accessKey "$System.env.DEVICEFARM_ACCESS_KEY"
+        secretKey "$System.env.DEVICEFARM_SECRET_KEY"
+    }
+
+    devicePool "AWSAndroidKeyStoreTesterPool"
+}
+
