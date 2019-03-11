@@ -173,6 +173,8 @@ public class AWSIotMqttManager {
      */
     private final String endpoint;
 
+    protected static int portNumber = 8883;
+
     /**
      * Turning on/off metrics collection. By default metrics collection is enabled.
      * Client must call this to set metrics collection to false before calling connect in order to turn
@@ -669,6 +671,13 @@ public class AWSIotMqttManager {
         needResubscribe = true;
     }
 
+    public void connectWithALPN(KeyStore keystore,
+                        final AWSIotMqttClientStatusCallback statusCallback) {
+        this.portNumber = 443;
+        connect(keystore, statusCallback);
+
+    }
+
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
      * using certificate and private key in keystore. Keystore should be created
@@ -701,10 +710,10 @@ public class AWSIotMqttManager {
         }
 
         if (endpoint != null) {
-            mqttBrokerURL = String.format("ssl://%s:8883", endpoint);
+            mqttBrokerURL = String.format("ssl://%s:" + portNumber, endpoint);
         } else if (accountEndpointPrefix != null) {
             mqttBrokerURL = String
-                    .format("ssl://%s.iot.%s.%s:8883", accountEndpointPrefix, region.getName(),
+                    .format("ssl://%s.iot.%s.%s:" + portNumber, accountEndpointPrefix, region.getName(),
                             region.getDomain());
         } else {
             throw new IllegalStateException("No valid endpoint information is available. " +

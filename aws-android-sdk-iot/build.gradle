@@ -5,6 +5,7 @@ dependencies {
 
     api project(":aws-android-sdk-core")
     implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
+    implementation "org.conscrypt:conscrypt-openjdk-uber:1.0.1"
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.robolectric:robolectric:2.4"

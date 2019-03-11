@@ -19,13 +19,17 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
+import java.security.Security;
 import java.security.UnrecoverableKeyException;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
+import org.conscrypt.Conscrypt;
+import org.conscrypt.OpenSSLProvider;
 
 /**
  * AWSIoTSslUtility Utility class for creating an SSL Socket Factory from
@@ -52,11 +56,23 @@ final class AWSIotSslUtility {
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.
      */
+    protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
+    private static final String TLS_V_1_2 = "TLSv1.2";
+
     public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore)
             throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
             KeyManagementException {
 
-        SSLContext context = SSLContext.getInstance("TLSv1.2");
+        Security.addProvider(new OpenSSLProvider());
+        SSLContext context;
+
+        try {
+            // Attempt to use Conscrypt
+            context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
+        } catch (NoSuchProviderException e) {
+            // Fallback to system SSLContext
+            context = SSLContext.getInstance(TLS_V_1_2);
+        }
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory
                 .getDefaultAlgorithm());
