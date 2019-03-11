@@ -366,6 +366,7 @@ public class EventRecorder {
 
         if (endpoint == null) {
             log.warn("Endpoint profile is null, failed to submit events.");
+            batchIdsAndSizeToDelete.clear();
             return;
         }
 
@@ -597,6 +598,7 @@ public class EventRecorder {
         event.withAppPackageName(appDetails.packageName())
                 .withAppTitle(appDetails.getAppTitle())
                 .withAppVersionCode(appDetails.versionCode())
+                .withAttributes(internalEvent.getAllAttributes())
                 .withClientSdkVersion(internalEvent.getSdkVersion())
                 .withEventType(internalEvent.getEventType())
                 .withMetrics(internalEvent.getAllMetrics())
