@@ -1,6 +1,6 @@
 {
   "Credentials" :{
-    "accessKey":"REPLACE-ME",
+    "accessKey":REPLACE-ME",
     "secretKey":"REPLACE-ME",
     "accountId":"REPLACE-ME"
   },
