@@ -109,19 +109,26 @@ public class AWSKeyValueStore {
                         Context.MODE_PRIVATE);
 
                 logger.info("Detected Android API Level = " + apiLevel);
+
                 if (apiLevel >= ANDROID_API_LEVEL_23) {
+                    //@apiLevel23Start
                     this.keyAlias = sharedPreferencesName + KEY_STORE_ALIAS_FOR_AES_SUFFIX;
                     logger.info("Using keyAlias = " + keyAlias);
                     keyProvider = new KeyProvider23();
                     encryptionKey = keyProvider.getKey(sharedPreferencesForEncryptionKey, keyAlias, context);
+                    //@apiLevel23End
                 } else if (apiLevel >= ANDROID_API_LEVEL_18) {
+                    //@apiLevel18Start
                     this.keyAlias = sharedPreferencesName + KEY_STORE_ALIAS_FOR_RSA_SUFFIX;
                     logger.info("Using keyAlias = " + keyAlias);
                     keyProvider = new KeyProvider18();
                     encryptionKey = keyProvider.getKey(sharedPreferencesForEncryptionKey, keyAlias, context);
+                    //@apiLevel18End
                 } else if (apiLevel >= ANDROID_API_LEVEL_10) {
+                    //@apiLevel10Start
                     keyProvider = new KeyProvider10();
                     encryptionKey = keyProvider.getKey(sharedPreferencesForEncryptionKey, null, context);
+                    //@apiLevel10End
                 } else {
                     logger.error("API Level " +
                             String.valueOf(Build.VERSION.SDK_INT) +
@@ -280,8 +287,8 @@ public class AWSKeyValueStore {
         Map<String, ?> map = sharedPreferences.getAll();
         for (String spKey : map.keySet()) {
             if (!spKey.endsWith(SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX) &&
-                    !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
-                    !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
+                !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
+                !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
 
                 // Check if its an instance of the dataType.
                 if (map.get(spKey) instanceof Long) {
