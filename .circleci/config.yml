@@ -1,5 +1,5 @@
 # Android CircleCI 2.0 configuration file
-#
+# 
 version: 2.1
 commands:
   quit_for_nominorversion:
@@ -439,7 +439,35 @@ jobs:
           command: |
             python3 CircleciScripts/cloudfront_invalidate.py android_sdk_release  "${android_distribution_id}" "latest/$sdkName.zip"
 
+  pre_integrationtest:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - run:
+          name: check environment variabe 
+          command: |
+              if [ "${SKIP_INTEGRATIONTEST}" == "TRUE" ]; then
+                echo "project enviroment variabe SKIP_INTEGRATIONTEST should not be TRUE at the moment, this will skip all integration tests"
+                exit 1
+              fi           
+
+  post_integrationtest:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - run:
+          name: prepare
+          command: echo "post_integrationtest"          
+
   integrationtest:
+    description: run integration tests
+    parameters:
+      testmodule:
+        type: string       
     working_directory: ~/code
     docker:
       # Android the primary container
@@ -447,6 +475,13 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
+      - run:
+          name: checkiftestcanskip 
+          command: |
+              if [ "${SKIP_INTEGRATIONTEST}" == "TRUE" ]; then
+                echo "project enviroment variabe SKIP_INTEGRATIONTEST is set with TRUE, skip all integration tests"
+                circleci step halt
+              fi          
       - checkout
       - configure_aws
       - setup_android_platform23
@@ -464,18 +499,18 @@ jobs:
       - run:
           name: install sdk
           command: |
-            sudo yes | sdkmanager "platforms;android-27"
+            sudo yes | sdkmanager "platforms;android-27"  
       - setup_emulator         
       - run:
           name: Configure test information
           command: |
             aws s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            aws s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json           
       - run:
           name: run integration tests
           command: |
             aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
-            echo "${ANDROID_TESTS_CREDENTIALS_JSON}"  | base64 -di   > awsconfiguration.json
-            python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)" "$(pwd)/awsconfiguration.json"
+            python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)"  "<< parameters.testmodule >>"
       - run:
           name : check integration test result 
           command : |
@@ -489,6 +524,8 @@ jobs:
             fi
       - store_artifacts:
           path: "~/test_results"
+      - store_artifacts:
+          path: logcat.log          
   uitest:
     working_directory: ~/code
     docker:
@@ -604,13 +641,269 @@ workflows:
     jobs:
       - build
       - unittest
+      - pre_integrationtest: 
+           filters:
+            branches:
+              only:
+                - master
+                - develop 
       - integrationtest:
+          name: apigateway
+          testmodule: aws-android-sdk-apigateway-test
+          requires:
+            - pre_integrationtest          
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: autoscaling
+          testmodule: aws-android-sdk-autoscaling-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: cloudwatch
+          testmodule: aws-android-sdk-cloudwatch-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: comprehend
+          testmodule: aws-android-sdk-comprehend-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: ddb-mapper
+          testmodule: aws-android-sdk-ddb-mapper-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: ddb
+          testmodule: aws-android-sdk-ddb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: elb
+          testmodule: aws-android-sdk-elb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: iot
+          testmodule: aws-android-sdk-iot-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+      - integrationtest:
+          name: kinesis
+          testmodule: aws-android-sdk-kinesis-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: lambda
+          testmodule: aws-android-sdk-lambda-test
+          requires:
+            - pre_integrationtest    
           filters:
             branches:
               only:
                 - master
                 - develop
 
+      - integrationtest:
+          name: polly
+          testmodule: aws-android-sdk-polly-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: rekognition
+          testmodule: aws-android-sdk-rekognition-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: s3
+          testmodule: aws-android-sdk-s3-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: sdb
+          testmodule: aws-android-sdk-sdb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop                                 
+      - integrationtest:
+          name: ses
+          testmodule: aws-android-sdk-ses-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop                                 
+      - integrationtest:
+          name: sns
+          testmodule: aws-android-sdk-sns-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+      - integrationtest:
+          name: sqs
+          testmodule: aws-android-sdk-sqs-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+
+      - integrationtest:
+          name: transcribe
+          testmodule: aws-android-sdk-transcribe-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+      - integrationtest:
+          name: translate
+          testmodule: aws-android-sdk-translate-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+      - integrationtest:
+          name: mobile-client
+          testmodule: aws-android-sdk-mobile-client
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+      # - integrationtest:
+      #     name: kinesisvideo
+      #     testmodule: aws-android-sdk-kinesisvideo
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop   
+      # - integrationtest:
+      #     name: machinelearning
+      #     testmodule: aws-android-sdk-machinelearning
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop         
+      - integrationtest:
+          name: kinesisvideo-archivedmedia
+          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop                    
+      - post_integrationtest:
+          requires:
+            - kinesisvideo-archivedmedia
+            # - kinesisvideo
+            - mobile-client
+            - translate
+            - transcribe
+            - sqs 
+            - sns
+            - ses
+            - sdb
+            - s3
+            - rekognition
+            # - polly
+            # - machinelearning
+            - lambda
+            - kinesis
+            - iot
+            - elb
+            - ddb
+            - ddb-mapper
+            - comprehend
+            - cloudwatch
+            - autoscaling
+            - apigateway              
       - uitest:
           requires:
             - build
@@ -619,7 +912,7 @@ workflows:
               only:
                 - master
                 - develop
-
+ 
   release_sdk:
     jobs:
       - build:
@@ -628,15 +921,274 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - unittest:
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
+      - pre_integrationtest:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:  
+          name: apigateway
+          testmodule: aws-android-sdk-apigateway-test
+          requires:
+            - pre_integrationtest          
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       - integrationtest:
+          name: autoscaling
+          testmodule: aws-android-sdk-autoscaling-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: cloudwatch
+          testmodule: aws-android-sdk-cloudwatch-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: comprehend
+          testmodule: aws-android-sdk-comprehend-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: ddb-mapper
+          testmodule: aws-android-sdk-ddb-mapper-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/ 
+      - integrationtest:
+          name: ddb
+          testmodule: aws-android-sdk-ddb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: elb
+          testmodule: aws-android-sdk-elb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: iot
+          testmodule: aws-android-sdk-iot-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+ 
+      - integrationtest:
+          name: kinesis
+          testmodule: aws-android-sdk-kinesis-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: lambda
+          testmodule: aws-android-sdk-lambda-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: polly
+          testmodule: aws-android-sdk-polly-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: rekognition
+          testmodule: aws-android-sdk-rekognition-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: s3
+          testmodule: aws-android-sdk-s3-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+      - integrationtest:
+          name: sdb
+          testmodule: aws-android-sdk-sdb-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                                
+      - integrationtest:
+          name: ses
+          testmodule: aws-android-sdk-ses-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                                
+      - integrationtest:
+          name: sns
+          testmodule: aws-android-sdk-sns-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: sqs
+          testmodule: aws-android-sdk-sqs-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: transcribe
+          testmodule: aws-android-sdk-transcribe-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: translate
+          testmodule: aws-android-sdk-translate-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: mobile-client
+          testmodule: aws-android-sdk-mobile-client
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      # - integrationtest:
+      #     name: kinesisvideo
+      #     testmodule: aws-android-sdk-kinesisvideo
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         ignore: /.*/
+      #       tags:
+      #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/   
+      # - integrationtest:
+      #     name: machinelearning
+      #     testmodule: aws-android-sdk-machinelearning 
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         ignore: /.*/
+      #       tags:
+      #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/         
+      - integrationtest:
+          name: kinesisvideo-archivedmedia
+          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                         
+      - post_integrationtest:
+          requires:
+            - kinesisvideo-archivedmedia
+            # - kinesisvideo
+            - mobile-client
+            - translate
+            - transcribe
+            - sqs 
+            - sns
+            - ses
+            - sdb
+            - s3
+            - rekognition
+            # - polly
+            # - machinelearning
+            - lambda
+            - kinesis
+            - iot
+            - elb
+            - ddb
+            - ddb-mapper
+            - comprehend
+            - cloudwatch
+            - autoscaling
+            - apigateway            
           filters:
             branches:
               ignore: /.*/
@@ -646,21 +1198,21 @@ workflows:
       - release_maven:
           requires:
             - unittest
+            - post_integrationtest
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - release_javadoc:
           requires:
             - unittest
+            - post_integrationtest
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - release_s3:
           requires:
             - build
@@ -671,7 +1223,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-
       - release_tag:
           requires:
             - release_s3
