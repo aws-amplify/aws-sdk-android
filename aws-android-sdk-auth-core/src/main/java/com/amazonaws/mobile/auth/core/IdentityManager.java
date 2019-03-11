@@ -19,7 +19,6 @@ package com.amazonaws.mobile.auth.core;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.amazonaws.ClientConfiguration;
@@ -30,6 +29,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.signin.AuthException;
 import com.amazonaws.mobile.auth.core.signin.CognitoAuthException;
 import com.amazonaws.mobile.auth.core.signin.ProviderAuthException;
@@ -42,9 +42,6 @@ import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -56,7 +53,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -157,6 +153,19 @@ public class IdentityManager {
      */
     private static final String EXPIRATION_KEY = "expirationDate";
 
+    /**
+     * Instance of AWSKeyValueStorageUtility that provides access
+     * to secure storage of credentials in SharedPreferences.
+     */
+    private AWSKeyValueStore awsKeyValueStore;
+
+    /**
+     * Flag if true indicates that secure storage is used to
+     * access information. Flag if false keeps the information
+     * in memory.
+     */
+    private boolean isPersistenceEnabled = true;
+
     boolean shouldFederate = true;
 
     /**
@@ -199,6 +208,7 @@ public class IdentityManager {
         this.awsConfiguration = null;
         this.clientConfiguration = null;
         this.credentialsProviderHolder = null;
+        this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
     /**
@@ -216,6 +226,7 @@ public class IdentityManager {
         this.clientConfiguration = new ClientConfiguration().withUserAgent(awsConfiguration.getUserAgent());
         this.credentialsProviderHolder = new AWSCredentialsProviderHolder();
         createCredentialsProvider(this.appContext, this.clientConfiguration);
+        this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
     /**
@@ -245,6 +256,7 @@ public class IdentityManager {
 
         this.credentialsProviderHolder = new AWSCredentialsProviderHolder();
         createCredentialsProvider(this.appContext, this.clientConfiguration);
+        this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
     /**
@@ -260,8 +272,24 @@ public class IdentityManager {
         this.clientConfiguration = clientConfiguration;
         this.credentialsProviderHolder = new AWSCredentialsProviderHolder();
         credentialsProviderHolder.setUnderlyingProvider(credentialsProvider);
+        this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
+    /**
+     * Set the flag that indicates if persistence is enabled or not.
+     * @param persistenceEnabled the flag that indicates if persistence is enabled or not.
+     */
+    public void setPersistenceEnabled(boolean persistenceEnabled) {
+        isPersistenceEnabled = persistenceEnabled;
+        this.awsKeyValueStore.setPersistenceEnabled(isPersistenceEnabled);
+    }
+
+    /**
+     * Set the flag that indicates if tokens will be
+     * federated into Cognito Identity pool
+     * @param enabled Flag that indicates if tokens will
+     *                be federated into Cognito Identity pool
+     */
     public void enableFederation(final boolean enabled) {
         shouldFederate = enabled;
     }
@@ -544,11 +572,8 @@ public class IdentityManager {
         credentialsProvider.refresh();
 
         // Set the expiration key of the Credentials Provider to 8 minutes, 30 seconds.
-        appContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-                  .edit()
-                  .putLong(credentialsProvider.getIdentityPoolId() + "." + EXPIRATION_KEY,
-                           System.currentTimeMillis() + (510 * 1000))
-                  .apply();
+        awsKeyValueStore.put(credentialsProvider.getIdentityPoolId() + "." + EXPIRATION_KEY,
+                String.valueOf(System.currentTimeMillis() + (510 * 1000)));
     }
 
     /**
@@ -904,9 +929,10 @@ public class IdentityManager {
             new AWSRefreshingCognitoIdentityProvider(null, poolId,
                 clientConfiguration, cognitoIdentityRegion);
 
-        credentialsProviderHolder.setUnderlyingProvider(
-            new CognitoCachingCredentialsProvider(context, refreshingCredentialsProvider,
-                    cognitoIdentityRegion, clientConfiguration));
+        final CognitoCachingCredentialsProvider cognitoCachingCredentialsProvider = new CognitoCachingCredentialsProvider(context, refreshingCredentialsProvider,
+                cognitoIdentityRegion, clientConfiguration);
+        cognitoCachingCredentialsProvider.setPersistenceEnabled(isPersistenceEnabled);
+        credentialsProviderHolder.setUnderlyingProvider(cognitoCachingCredentialsProvider);
     }
 
     /**

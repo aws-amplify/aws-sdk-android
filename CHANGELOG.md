@@ -1,5 +1,34 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.3)
+
+### Enhancements
+
+* **AWS Core**
+  * Persistence of client state including user credentials is now enabled and encrypted by default.
+  * Added a method `CognitoCachingCredentialsProvider.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **Amazon CognitoIdentityProvider**
+  * Persistence of client state including user credentials is now enabled and encrypted by default. 
+  * Added a method `CognitoUserPool.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **Amazon CognitoAuth**
+  * Persistence of client state including user credentials is now enabled and encrypted by default. 
+  * Added a method `Auth.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
+
+* **AWSMobileClient**
+  * Persistence of client state including user credentials is now enabled and encrypted by default.
+  * Added an option through `awsconfiguration.json` to disable persistence. **Note:** The Amplify CLI (as of March 8th 2019) does not support this configuration and will remove it when auto-generating the `awsconfiguration.json`.
+    ```
+    {
+      "Auth": {
+        "Default": {
+          "Persistence": false
+        }
+      }
+    }
+    ```
+
 ## [Release 2.12.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.2)
 
 ### Misc. Updates

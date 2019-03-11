@@ -6,6 +6,7 @@ test_results = sys.argv[1]
 root = sys.argv[2]
 testmodule =  sys.argv[3]
 
+
 ignored_failures_dict = {
 	'aws-android-sdk-ddb-mapper-test' : [
 		"com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.BinaryAttributesIntegrationTest#testUpdate" ,
@@ -22,7 +23,6 @@ ignored_failures_dict = {
 		"com.amazonaws.services.s3.CleanupBucketIntegrationTests#testCleanup"
 	]
 }
-
 print("module: ", testmodule)
 ignoreFailures = None 
 if testmodule in ignored_failures_dict:

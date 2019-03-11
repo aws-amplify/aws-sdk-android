@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2016 Amazon.com,
+ *  Copyright 2013-2019 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -18,7 +18,6 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
@@ -2117,10 +2116,6 @@ public class CognitoUser {
      */
     private void clearCachedTokens() {
         try {
-            // Clear all cached tokens.
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
-
             // Format "key" strings
             final String csiIdTokenKey = String.format("CognitoIdentityProvider.%s.%s.idToken",
                     clientId, userId);
@@ -2129,10 +2124,9 @@ public class CognitoUser {
             final String csiRefreshTokenKey = String
                     .format("CognitoIdentityProvider.%s.%s.refreshToken", clientId, userId);
 
-            final SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
-            cacheEdit.remove(csiIdTokenKey);
-            cacheEdit.remove(csiAccessTokenKey);
-            cacheEdit.remove(csiRefreshTokenKey).apply();
+            pool.awsKeyValueStore.remove(csiIdTokenKey);
+            pool.awsKeyValueStore.remove(csiAccessTokenKey);
+            pool.awsKeyValueStore.remove(csiRefreshTokenKey);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
             LOGGER.error("Error while deleting from SharedPreferences", e);
@@ -2148,9 +2142,6 @@ public class CognitoUser {
         CognitoUserSession userSession = new CognitoUserSession(null, null, null);
 
         try {
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
-
             // Format "key" strings
             final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".idToken";
@@ -2159,13 +2150,13 @@ public class CognitoUser {
             final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".refreshToken";
 
-            if (csiCachedTokens.contains(csiIdTokenKey)) {
+            if (pool.awsKeyValueStore.contains(csiIdTokenKey)) {
                 final CognitoIdToken csiCachedIdToken = new CognitoIdToken(
-                        csiCachedTokens.getString(csiIdTokenKey, null));
+                        pool.awsKeyValueStore.get(csiIdTokenKey));
                 final CognitoAccessToken csiCachedAccessToken = new CognitoAccessToken(
-                        csiCachedTokens.getString(csiAccessTokenKey, null));
+                        pool.awsKeyValueStore.get(csiAccessTokenKey));
                 final CognitoRefreshToken csiCachedRefreshToken = new CognitoRefreshToken(
-                        csiCachedTokens.getString(csiRefreshTokenKey, null));
+                        pool.awsKeyValueStore.get(csiRefreshTokenKey));
                 userSession = new CognitoUserSession(csiCachedIdToken, csiCachedAccessToken,
                         csiCachedRefreshToken);
             }
@@ -2183,9 +2174,6 @@ public class CognitoUser {
      */
     private void cacheTokens(CognitoUserSession session) {
         try {
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
-
             final String csiUserPoolId = pool.getUserPoolId();
 
             // Create keys to look for cached tokens
@@ -2198,12 +2186,10 @@ public class CognitoUser {
             final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
             // Store the data in Shared Preferences
-            final SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
-            cacheEdit.putString(csiIdTokenKey, session.getIdToken().getJWTToken());
-            cacheEdit.putString(csiAccessTokenKey, session.getAccessToken().getJWTToken());
-            cacheEdit.putString(csiRefreshTokenKey, session.getRefreshToken().getToken());
-            cacheEdit.putString(csiLastUserKey, userId).apply();
-
+            pool.awsKeyValueStore.put(csiIdTokenKey, session.getIdToken().getJWTToken());
+            pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken().getJWTToken());
+            pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken().getToken());
+            pool.awsKeyValueStore.put(csiLastUserKey, userId);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
             LOGGER.error("Error while writing to SharedPreferences.", e);
