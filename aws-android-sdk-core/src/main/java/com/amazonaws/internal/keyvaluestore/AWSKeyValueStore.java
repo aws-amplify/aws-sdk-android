@@ -1,3 +1,18 @@
+/**
+ * Copyright 2019-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *    http://aws.amazon.com/apache2.0
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+ * OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.amazonaws.internal.keyvaluestore;
 
 import android.content.Context;
@@ -258,14 +273,34 @@ public class AWSKeyValueStore {
     }
 
     /**
-     * Migrate all the keys except for the encryption metadata
+     * Migrate all the keys in the SharedPreferences namespace
+     * except for the encryption metadata
      */
     private void onMigrateFromNoEncryption() {
-        for (final String spKey: sharedPreferences.getAll().keySet()) {
+        Map<String, ?> map = sharedPreferences.getAll();
+        for (String spKey : map.keySet()) {
             if (!spKey.endsWith(SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX) &&
-                !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
-                !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
-                put(spKey, sharedPreferences.getString(spKey, null));
+                    !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
+                    !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
+
+                // Check if its an instance of the dataType.
+                if (map.get(spKey) instanceof Long) {
+                    Long longValue = sharedPreferences.getLong(spKey, 0);
+                    put(spKey, String.valueOf(longValue));
+                } else if (map.get(spKey) instanceof String) {
+                    put(spKey, sharedPreferences.getString(spKey, null));
+                } else if (map.get(spKey) instanceof Float) {
+                    Float floatValue = sharedPreferences.getFloat(spKey, 0);
+                    put(spKey, String.valueOf(floatValue));
+                } else if (map.get(spKey) instanceof Boolean) {
+                    Boolean booleanValue = sharedPreferences.getBoolean(spKey, false);
+                    put(spKey, String.valueOf(booleanValue));
+                } else if (map.get(spKey) instanceof Integer) {
+                    Integer intValue = sharedPreferences.getInt(spKey, 0);
+                    put(spKey, String.valueOf(intValue));
+                }
+
+                // Remove the key since key.encrypted is written.
                 sharedPreferences.edit().remove(spKey).apply();
             }
         }

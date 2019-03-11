@@ -1,4 +1,3 @@
-
 package com.amazonaws.services.s3;
 
 import com.amazonaws.regions.Region;
@@ -27,7 +26,7 @@ public class CleanupBucketIntegrationTests extends AWSTestBase {
     public void setup() throws FileNotFoundException, IOException {
         setUpCredentials();
         s3 = new AmazonS3Client(credentials);
-        s3.setRegion(Region.getRegion(Regions.US_WEST_2));
+        s3.setRegion(Region.getRegion(Regions.US_WEST_1));
     }
 
     @Test
@@ -58,7 +57,12 @@ public class CleanupBucketIntegrationTests extends AWSTestBase {
                     || bucket.getName().startsWith("java-get-object-integ-test")
                     || bucket.getName().startsWith("java-multiget-object-iteration-test")
                     || bucket.getName().startsWith("amazon-s3-client-integ-test")
-                    || bucket.getName().startsWith("android-sdk-mp-upload")) {
+                    || bucket.getName().startsWith("android-sdk-mp-upload")
+                    || bucket.getName().startsWith("java-sts-integ-test")
+                    || bucket.getName().startsWith("s3-low-level-presigned-url")
+                    || bucket.getName().startsWith("java-bucket-policy-integ-test")
+                    || bucket.getName().startsWith("copy-object-integ-test")
+                    || bucket.getName().startsWith("java-server-side-encryption-integ-test")) {
 
                 final String bucket_name = bucket.getName();
                 try {
