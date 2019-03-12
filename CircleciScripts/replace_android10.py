@@ -30,16 +30,15 @@ AWSKeyValueStoreFile = os.path.join(root,"aws-android-sdk-core/src/main/java/com
 newcontent = ""
 with open(AWSKeyValueStoreFile, 'r') as myfile:
     content = myfile.read() 
-    pattern = r'if\s*\(apiLevel >= ANDROID_API_LEVEL_23\)\s*\{[^\}]+\}\s*else if\s*\(apiLevel >= ANDROID_API_LEVEL_18\)\s*\{[^\}]+\}'
-    repl = r"if (apiLevel >= ANDROID_API_LEVEL_23) {}\r\n else if (apiLevel >= ANDROID_API_LEVEL_18) {}\r\n"     
-    newcontent = re.sub(pattern, repl, content)
-   
-    pattern = r'apiLevel\s*>=\s*ANDROID_API_LEVEL_23[^\?\(\)]+\?[^:]+:\s*new IvParameterSpec\(iv\)'
-    repl = r"new IvParameterSpec(iv)"
-    newcontent = re.sub(pattern, repl, newcontent)    
-    newcontent = re.sub(pattern, repl, newcontent)   
+    pattern = r'//@apiLevel23Start[.\s].//@apiLevel23End'
+    repl = r""
+    content = re.sub(pattern, repl, content)    
+  
+    pattern = r'//@apiLevel18Start[.\s].//@apiLevel18End'
+    repl = r""
+    content = re.sub(pattern, repl, content)    
 
 with open(AWSKeyValueStoreFile,"w") as myfile:
-    myfile.write(newcontent)
+    myfile.write(content)
   
 
