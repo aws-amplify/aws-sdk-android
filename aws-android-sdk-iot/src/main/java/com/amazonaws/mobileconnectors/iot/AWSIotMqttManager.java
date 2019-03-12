@@ -222,6 +222,30 @@ public class AWSIotMqttManager {
      */
     public void setUsernameFields(Map<String, String> usernameFields) {
         this.usernameFields = usernameFields;
+
+        StringBuilder username = getUsername();
+
+        if(username.length() > 225) {
+            throw new IllegalArgumentException("Total number of characters in username fields" +
+                    " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length()));
+        }
+    }
+
+    /**
+     * Utility method to return username from the usernameFields map
+     *
+     * @return username
+     */
+    private StringBuilder getUsername() {
+        StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+
+        if (usernameFields != null) {
+            // Append each of the user-specified key-value pair to the username field for the connection
+            for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
+                username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
+            }
+        }
+        return username;
     }
 
     /**
@@ -831,15 +855,7 @@ public class AWSIotMqttManager {
         options.setKeepAliveInterval(userKeepAlive);
 
         if (isMetricsEnabled()) {
-            StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
-
-            if (usernameFields != null) {
-                // Append each of the user-specified key-value pair to the username field for the connection
-                for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
-                    username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
-                }
-            }
-
+            StringBuilder username = getUsername();
             options.setUserName(username.toString());
         }
         LOGGER.info("metrics collection is " + 
