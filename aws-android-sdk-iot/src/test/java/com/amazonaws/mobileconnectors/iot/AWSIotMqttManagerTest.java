@@ -95,7 +95,7 @@ public class AWSIotMqttManagerTest {
         usernameFields.put("AFRSDK", "Android");
         usernameFields.put("AFRSDKVersion", "1.0.0");
         usernameFields.put("AFRLibVersion", "1.4.1");
-        testClient.setUsernameFields(usernameFields);
+        testClient.setUserMetaData(usernameFields);
 
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
@@ -108,7 +108,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(100L, (long)testClient.getOfflinePublishQueueBound());
         assertEquals(TEST_ENDPOINT_PREFIX, testClient.getAccountEndpointPrefix());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
-        assertNotNull(testClient.getUsernameFields());
+        assertNotNull(testClient.userMetaData);
 
 
         testClient.setAutoReconnect(false);

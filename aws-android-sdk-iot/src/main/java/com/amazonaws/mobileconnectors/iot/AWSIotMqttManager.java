@@ -165,7 +165,7 @@ public class AWSIotMqttManager {
     /** User-specified map of additional values to be passed as components of
      * username for the connection in addition to SDK and Version
      */
-    private Map<String, String> usernameFields;
+    Map<String, String> userMetaData;
 
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
@@ -216,12 +216,12 @@ public class AWSIotMqttManager {
     private Long unitTestMillisOverride;
 
     /**
-     * Sets the usernameFields map.
+     * Sets the userMetaData map.
      *
-     * @param usernameFields usernameFields map
+     * @param userMetaData userMetaData map
      */
-    public void setUsernameFields(Map<String, String> usernameFields) {
-        this.usernameFields = usernameFields;
+    public void setUserMetaData(Map<String, String> userMetaData) {
+        this.userMetaData = userMetaData;
 
         StringBuilder username = getUsername();
 
@@ -232,29 +232,20 @@ public class AWSIotMqttManager {
     }
 
     /**
-     * Utility method to return username from the usernameFields map
+     * Utility method to return username from the userMetaData map
      *
      * @return username
      */
     private StringBuilder getUsername() {
         StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
-        if (usernameFields != null) {
+        if (userMetaData != null) {
             // Append each of the user-specified key-value pair to the username field for the connection
-            for (Map.Entry<String, String> usernameField : usernameFields.entrySet()) {
+            for (Map.Entry<String, String> usernameField : userMetaData.entrySet()) {
                 username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
             }
         }
         return username;
-    }
-
-    /**
-     * Returns the usernameFields map
-     *
-     * @return usernameFields map
-     */
-    public Map<String, String> getUsernameFields() {
-        return usernameFields;
     }
 
     /**
