@@ -223,9 +223,9 @@ public class AWSIotMqttManager {
     public void addUserMetaData(Map<String, String> userMetaData) {
         this.userMetaData = userMetaData;
 
-        StringBuilder username = getUsername();
+        StringBuilder userMetadata = getUserMetaData();
 
-        if(username.length() > 225) {
+        if(userMetadata.length() > 225) {
             throw new IllegalArgumentException("Total number of characters in username fields" +
                     " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length()));
         }
@@ -236,16 +236,16 @@ public class AWSIotMqttManager {
      *
      * @return username
      */
-    private StringBuilder getUsername() {
-        StringBuilder username = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+    private StringBuilder getUserMetaData() {
+        StringBuilder userMetaData = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
-        if (userMetaData != null) {
+        if (this.userMetaData != null) {
             // Append each of the user-specified key-value pair to the username field for the connection
-            for (Map.Entry<String, String> usernameField : userMetaData.entrySet()) {
-                username.append("&" + usernameField.getKey() + "=" + usernameField.getValue());
+            for (Map.Entry<String, String> metaData : this.userMetaData.entrySet()) {
+                userMetaData.append("&" + metaData.getKey() + "=" + metaData.getValue());
             }
         }
-        return username;
+        return userMetaData;
     }
 
     /**
@@ -845,8 +845,9 @@ public class AWSIotMqttManager {
         options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
+        // Setup userName if metrics are enabled. We use the connection username as metadata for metrics calculation.
         if (isMetricsEnabled()) {
-            StringBuilder username = getUsername();
+            StringBuilder username = getUserMetaData();
             options.setUserName(username.toString());
         }
         LOGGER.info("metrics collection is " + 
