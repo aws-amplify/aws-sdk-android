@@ -108,7 +108,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(100L, (long)testClient.getOfflinePublishQueueBound());
         assertEquals(TEST_ENDPOINT_PREFIX, testClient.getAccountEndpointPrefix());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
-        assertNotNull(testClient.userMetaData);
+        assertNotNull(testClient.userMetaDataMap);
 
 
         testClient.setAutoReconnect(false);

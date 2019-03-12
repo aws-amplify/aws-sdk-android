@@ -165,7 +165,10 @@ public class AWSIotMqttManager {
     /** User-specified map of additional values to be passed as components of
      * username for the connection in addition to SDK and Version
      */
-    Map<String, String> userMetaData;
+    Map<String, String> userMetaDataMap;
+
+    /** User metadata string. */
+    private String userMetaData;
 
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
@@ -218,34 +221,25 @@ public class AWSIotMqttManager {
     /**
      * Sets the userMetaData map.
      *
-     * @param userMetaData userMetaData map
+     * @param userMetaDataMap userMetaData map
      */
-    public void addUserMetaData(Map<String, String> userMetaData) {
-        this.userMetaData = userMetaData;
+    public void addUserMetaData(Map<String, String> userMetaDataMap) {
+        this.userMetaDataMap = userMetaDataMap;
 
-        StringBuilder userMetadata = getUserMetaData();
+        StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
-        if(userMetadata.length() > 225) {
-            throw new IllegalArgumentException("Total number of characters in username fields" +
-                    " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length()));
-        }
-    }
-
-    /**
-     * Utility method to return username from the userMetaData map
-     *
-     * @return username
-     */
-    private StringBuilder getUserMetaData() {
-        StringBuilder userMetaData = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
-
-        if (this.userMetaData != null) {
+        if (this.userMetaDataMap != null) {
             // Append each of the user-specified key-value pair to the username field for the connection
-            for (Map.Entry<String, String> metaData : this.userMetaData.entrySet()) {
-                userMetaData.append("&" + metaData.getKey() + "=" + metaData.getValue());
+            for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
+                userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
             }
         }
-        return userMetaData;
+
+        if(userMetadata.length() > 255) {
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in username fields" +
+                    " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length())));
+            this.userMetaData = userMetadata.substring(0, 255);
+        }
     }
 
     /**
@@ -847,8 +841,7 @@ public class AWSIotMqttManager {
 
         // Setup userName if metrics are enabled. We use the connection username as metadata for metrics calculation.
         if (isMetricsEnabled()) {
-            StringBuilder username = getUserMetaData();
-            options.setUserName(username.toString());
+            options.setUserName(userMetaData);
         }
         LOGGER.info("metrics collection is " + 
             (isMetricsEnabled() ? "enabled" : "disabled") + 
