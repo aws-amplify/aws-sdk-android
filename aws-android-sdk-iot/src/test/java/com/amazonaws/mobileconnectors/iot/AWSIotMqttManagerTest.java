@@ -91,11 +91,11 @@ public class AWSIotMqttManagerTest {
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
 
         // Set username fields
-        Map<String, String> usernameFields = new HashMap<String, String>();
-        usernameFields.put("AFRSDK", "Android");
-        usernameFields.put("AFRSDKVersion", "1.0.0");
-        usernameFields.put("AFRLibVersion", "1.4.1");
-        testClient.addUserMetaData(usernameFields);
+        Map<String, String> userMetaData = new HashMap<String, String>();
+        userMetaData.put("AFRSDK", "Android");
+        userMetaData.put("AFRSDKVersion", "1.0.0");
+        userMetaData.put("AFRLibVersion", "1.4.1");
+        testClient.addUserMetaData(userMetaData);
 
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
