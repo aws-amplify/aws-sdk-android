@@ -173,8 +173,6 @@ public class AWSIotMqttManager {
      */
     private final String endpoint;
 
-    protected static int portNumber = 8883;
-
     /**
      * Turning on/off metrics collection. By default metrics collection is enabled.
      * Client must call this to set metrics collection to false before calling connect in order to turn
@@ -671,16 +669,26 @@ public class AWSIotMqttManager {
         needResubscribe = true;
     }
 
-    public void connectWithALPN(KeyStore keystore,
-                        final AWSIotMqttClientStatusCallback statusCallback) {
-        this.portNumber = 443;
-        connect(keystore, statusCallback);
-
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on port 443. Keystore should be created
+     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * expected by the underlying socket helper library.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    public void connectUsingALPN(KeyStore keyStore,
+                                 final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 443, statusCallback);
     }
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore. Keystore should be created
+     * using certificate and private key in keystore on port 8883. Keystore should be created
      * using IotKeystoreHelper to setup the certificate and key aliases as
      * expected by the underlying socket helper library.
      *
@@ -691,6 +699,21 @@ public class AWSIotMqttManager {
      *            status.
      */
     public void connect(KeyStore keyStore, final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 8883, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on the specified port.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param portNumber the client port, either 8883 or 443
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    private void connect(KeyStore keyStore, int portNumber, final AWSIotMqttClientStatusCallback statusCallback) {
 
         if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
             throw new UnsupportedOperationException(

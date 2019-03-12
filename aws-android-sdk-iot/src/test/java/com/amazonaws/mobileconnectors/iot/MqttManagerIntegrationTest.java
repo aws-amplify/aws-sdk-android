@@ -307,7 +307,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
         // retrieve the keystore
         KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
-        mqttManager.connectWithALPN(ks, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connectUsingALPN(ks, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
