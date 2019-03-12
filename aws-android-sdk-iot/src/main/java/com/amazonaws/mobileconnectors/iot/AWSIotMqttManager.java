@@ -220,7 +220,7 @@ public class AWSIotMqttManager {
      *
      * @param userMetaData userMetaData map
      */
-    public void setUserMetaData(Map<String, String> userMetaData) {
+    public void addUserMetaData(Map<String, String> userMetaData) {
         this.userMetaData = userMetaData;
 
         StringBuilder username = getUsername();

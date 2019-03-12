@@ -95,7 +95,7 @@ public class AWSIotMqttManagerTest {
         usernameFields.put("AFRSDK", "Android");
         usernameFields.put("AFRSDKVersion", "1.0.0");
         usernameFields.put("AFRLibVersion", "1.4.1");
-        testClient.setUserMetaData(usernameFields);
+        testClient.addUserMetaData(usernameFields);
 
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
