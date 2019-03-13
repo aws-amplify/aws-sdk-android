@@ -204,6 +204,23 @@ public class AuthClient {
     }
 
     /**
+     * Signs-out a user.
+     * <p>
+     *     Clears cached tokens for the user. Launches the sign-out Cognito web end-point to
+     *     clear all Cognito Auth cookies stored by Chrome.
+     * </p>
+     *
+     * @param clearLocalTokensOnly true if signs out the user from the client,
+     *                             but the session may still be alive from the browser.
+     */
+    public void signOut(final boolean clearLocalTokensOnly) {
+        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+        if (!clearLocalTokensOnly) {
+            launchSignOut(pool.getSignOutRedirectUri());
+        }
+    }
+
+    /**
      * @return {@code true} if valid tokens are available for the user.
      */
     @SuppressWarnings("checkstyle:hiddenfield")
