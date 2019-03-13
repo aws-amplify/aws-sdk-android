@@ -3,6 +3,7 @@ package com.amazonaws.mobileconnectors.iot;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.AmazonClientException;
@@ -27,6 +28,8 @@ import java.io.File;
 import java.security.KeyPair;
 import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @RunWith(RobolectricTestRunner.class)
@@ -87,6 +90,13 @@ public class AWSIotMqttManagerTest {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
 
+        // Set user metadata
+        Map<String, String> userMetaData = new HashMap<String, String>();
+        userMetaData.put("AFRSDK", "Android");
+        userMetaData.put("AFRSDKVersion", "1.0.0");
+        userMetaData.put("AFRLibVersion", "1.4.1");
+        testClient.addUserMetaData(userMetaData);
+
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
         assertEquals(4, testClient.getMinReconnectRetryTime());
@@ -98,6 +108,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(100L, (long)testClient.getOfflinePublishQueueBound());
         assertEquals(TEST_ENDPOINT_PREFIX, testClient.getAccountEndpointPrefix());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+        assertNotNull(testClient.userMetaData);
 
 
         testClient.setAutoReconnect(false);
@@ -130,7 +141,7 @@ public class AWSIotMqttManagerTest {
     @Test
     public void testCreateClientWithEndpoint() throws Exception {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
-                "ABCDEFG.iot.us-east-1.amazonaws.com");
+                TEST_ENDPOINT);
 
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
@@ -178,12 +189,12 @@ public class AWSIotMqttManagerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateClientWithEndpointNullClientId() throws Exception {
-        AWSIotMqttManager testClient = new AWSIotMqttManager(null, "ABCDEFG.iot.us-east-1.amazonaws.com");
+        AWSIotMqttManager testClient = new AWSIotMqttManager(null, TEST_ENDPOINT);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testCreateClientWithEndpointEmptyClientId() throws Exception {
-        AWSIotMqttManager testClient = new AWSIotMqttManager("", "ABCDEFG.iot.us-east-1.amazonaws.com");
+        AWSIotMqttManager testClient = new AWSIotMqttManager("", TEST_ENDPOINT);
     }
 
     @Test(expected = IllegalArgumentException.class)

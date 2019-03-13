@@ -864,7 +864,7 @@ public class MqttManagerIntegrationTest extends IntegrationTestBase {
      */
     @Ignore
     @Test
-    public void mqttPersistantSession() throws Exception {
+    public void mqttPersistentSession() throws Exception {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
