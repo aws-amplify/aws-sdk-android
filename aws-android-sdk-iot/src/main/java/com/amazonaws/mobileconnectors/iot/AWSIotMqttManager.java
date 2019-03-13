@@ -220,6 +220,7 @@ public class AWSIotMqttManager {
      */
     public void addUserMetaData(Map<String, String> userMetaDataMap) {
         StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+        int baseLength = userMetadata.length();
 
         if (userMetaDataMap != null) {
             // Append each of the user-specified key-value pair to the user metadata for the connection
@@ -230,7 +231,7 @@ public class AWSIotMqttManager {
 
         if(userMetadata.length() > 255) {
             LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
-                    " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length())));
+                    " cannot exceed " + (255 - baseLength)));
             this.userMetaData = userMetadata.substring(0, 255);
         } else {
             this.userMetaData = userMetadata.toString();
