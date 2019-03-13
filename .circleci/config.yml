@@ -215,8 +215,7 @@ jobs:
             python3 CircleciScripts/replace_android10.py "$(pwd)"
             rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider18.java
             rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider23.java
-            difference=$(git diff)
-            echo "$difference"
+            cat aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/AWSKeyValueStore.java
       - run:
           name: build the whole project
           command: |
