@@ -1112,6 +1112,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         mCognitoUserSession = null;
         if (userpool != null) {
             userpool.getCurrentUser().signOut();
+            userpool.getUser().signOut();
         }
         if (cognitoIdentity != null) {
             cognitoIdentity.clear();
@@ -1127,7 +1128,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            hostedUI.signOut(true);
+            if (hostedUI != null) {
+                hostedUI.signOut(true);
+            }
             hostedUI = null;
         }
         mStore.set(HOSTED_UI_KEY, hostedUIJSON);

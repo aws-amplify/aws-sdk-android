@@ -75,13 +75,22 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public static final String BLURRED_EMAIL = "s***@e***.com";
     public static final String USERNAME = "somebody";
     public static final String PASSWORD = "1234Password!";
-    public static final String IDENTITY_ID = "redacted-mobile-client-identity-id";
+    public static String IDENTITY_ID;
     public static final String NEW_PASSWORD = "new1234Password!";
     public static final int THROTTLED_DELAY = 5000;
 
-    static BasicAWSCredentials adminCreds = new BasicAWSCredentials("redacted-mobile-client-cognito-admin-access-key"
-            , "redacted-mobile-client-cognito-admin-secret-key");
+    static BasicAWSCredentials adminCreds;
     static AmazonCognitoIdentityProvider userpoolLL;
+
+    static {
+        try {
+            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
+                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
+            IDENTITY_ID = getPackageConfigure().getString("identity_id");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // Populated from awsconfiguration.json
     static Regions clientRegion = Regions.US_WEST_2;
@@ -134,6 +143,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     DeleteUserRequest deleteUserRequest = new DeleteUserRequest()
                             .withAccessToken(AWSMobileClient.getInstance().getTokens().getAccessToken().getTokenString());
                     getUserpoolLL().deleteUser(deleteUserRequest);
+                    AWSMobileClient.getInstance().signOut();
                 } catch (Exception e) {
                     Log.e(TAG, "deleteAllUsers: Some error trying to delete user", e);
                 }
@@ -144,6 +154,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
+
         final CountDownLatch latch = new CountDownLatch(1);
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
             @Override
@@ -188,6 +199,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public void after() {
         auth.removeUserStateListener(listener);
         auth.listeners.clear();
+        auth.signOut();
     }
 
     @Test
@@ -340,7 +352,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertTrue("Should have waited, but didn't", hasWaited.get());
     }
 
-    @Ignore
+    @Test
     public void testSignInWaitOIDC() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);

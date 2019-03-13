@@ -61,7 +61,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
         try {
-            assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
+            assertEquals("us-west-2", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
         } catch (JSONException e) {
             e.printStackTrace();
             fail(e.getMessage());
@@ -89,7 +89,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
-        assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
+        assertEquals("us-west-2", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
 
         assertEquals("com.amazonaws.mobile.client.test", appContext.getPackageName());
     }
@@ -100,7 +100,7 @@ public class AWSMobileClientOfflineTest extends AWSMobileClientTestBase {
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
         try {
-            assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
+            assertEquals("us-west-2", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
         } catch (JSONException e) {
             e.printStackTrace();
             fail(e.getMessage());
