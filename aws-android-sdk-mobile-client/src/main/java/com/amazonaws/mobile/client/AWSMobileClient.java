@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -444,62 +443,53 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     protected Runnable _initialize(final Context context, final AWSConfiguration awsConfig, final Callback<UserStateDetails> callback) {
         return new Runnable() {
             public void run() {
-                try {
-                    synchronized (initLockObject) {
-                        if (mContext != null) {
-                            callback.onResult(getUserStateDetails(true));
-                            return;
+                synchronized (initLockObject) {
+                    if (mContext != null) {
+                        callback.onResult(getUserStateDetails(true));
+                        return;
+                    }
+
+                    awsConfiguration = awsConfig;
+
+                    // Read Persistence key from the awsconfiguration.json and set the flag
+                    // appropriately.
+                    try {
+                        if (awsConfiguration.optJsonObject("Auth") != null &&
+                                awsConfiguration.optJsonObject("Auth").has("Persistence")) {
+                            mIsPersistenceEnabled = awsConfiguration
+                                    .optJsonObject("Auth")
+                                    .getBoolean("Persistence");
                         }
+                    } catch (final Exception ex) {
+                        // If reading from awsconfiguration.json fails, invoke callback.
+                        callback.onError(new RuntimeException("Failed to initialize AWSMobileClient; please check your awsconfiguration.json", ex));
+                        return;
+                    }
 
-                        awsConfiguration = awsConfig;
+                    mContext = context.getApplicationContext();
+                    mStore = new AWSMobileClientStore(AWSMobileClient.this);
 
-                        // Read Persistence key from the awsconfiguration.json and set the flag
-                        // appropriately.
-                        try {
-                            if (awsConfiguration.optJsonObject("Auth") != null &&
-                                    awsConfiguration.optJsonObject("Auth").has("Persistence")) {
-                                mIsPersistenceEnabled = awsConfiguration
-                                        .optJsonObject("Auth")
-                                        .getBoolean("Persistence");
-                            }
-                        } catch (final Exception ex) {
-                            // If reading from awsconfiguration.json fails, invoke callback.
-                            callback.onError(new RuntimeException("Failed to initialize AWSMobileClient; please check your awsconfiguration.json", ex));
-                            return;
-                        }
-
-                        mContext = context.getApplicationContext();
-                        mStore = new AWSMobileClientStore(AWSMobileClient.this);
-
-                        final IdentityManager identityManager = new IdentityManager(mContext);
-                        identityManager.enableFederation(false);
-                        identityManager.setConfiguration(awsConfiguration);
-                        identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
-                        IdentityManager.setDefaultIdentityManager(identityManager);
-                        registerConfigSignInProviders();
-                        identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
-                            @Override
-                            public void onUserSignedIn() {
-                                Log.d(TAG, "onUserSignedIn: Updating user state from drop-in UI");
-                                signInState = SignInState.DONE;
-                                com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider = identityManager.getCurrentIdentityProvider();
-                                String token = currentIdentityProvider.getToken();
-                                String providerKey = currentIdentityProvider.getCognitoLoginKey();
-                                federatedSignInWithoutAssigningState(providerKey, token, new Callback<UserStateDetails>() {
-                                    @Override
-                                    public void onResult(UserStateDetails result) {
-                                        setUserState(getUserStateDetails(false));
-                                        showSignInWaitLatch.countDown();
-                                    }
-
-                                    @Override
-                                    public void onError(Exception e) {
-                                        Log.w(TAG, "onError: User sign-in had errors from drop-in UI", e);
-                                        setUserState(getUserStateDetails(false));
-                                        showSignInWaitLatch.countDown();
-                                    }
-                                });
-                            }
+                    final IdentityManager identityManager = new IdentityManager(mContext);
+                    identityManager.enableFederation(false);
+                    identityManager.setConfiguration(awsConfiguration);
+                    identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
+                    IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders();
+                    identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
+                        @Override
+                        public void onUserSignedIn() {
+                            Log.d(TAG, "onUserSignedIn: Updating user state from drop-in UI");
+                            signInState = SignInState.DONE;
+                            com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider = identityManager.getCurrentIdentityProvider();
+                            String token = currentIdentityProvider.getToken();
+                            String providerKey = currentIdentityProvider.getCognitoLoginKey();
+                            federatedSignInWithoutAssigningState(providerKey, token, new Callback<UserStateDetails>() {
+                                @Override
+                                public void onResult(UserStateDetails result) {
+                                    Log.d(TAG, "onResult: showSignIn federated");
+                                    setUserState(getUserStateDetails(false));
+                                    getSignInUILatch().countDown();
+                                }
 
                                 @Override
                                 public void onError(Exception e) {
@@ -509,6 +499,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 }
                             });
                         }
+
+                        @Override
+                        public void onUserSignedOut() {
+                            Log.d(TAG, "onUserSignedOut: Updating user state from drop-in UI");
+                            setUserState(getUserStateDetails(false));
+                            showSignInWaitLatch.countDown();
+                        }
+                    });
 
                     if (awsConfiguration.optJsonObject("CredentialsProvider") != null
                             && awsConfiguration.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
@@ -1129,7 +1127,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            LocalDataManager.clearCacheAll(mContext);
+            hostedUI.signOut(true);
             hostedUI = null;
         }
         mStore.set(HOSTED_UI_KEY, hostedUIJSON);
