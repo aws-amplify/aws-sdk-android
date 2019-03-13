@@ -196,9 +196,11 @@ public class AWSKeyValueStore {
                     // Read from store -> Base64 decode -> decrypt -> convert to string
                     final String encryptedData = sharedPreferences.getString(actualKey, null);
                     byte[] iv = getInitializationVector(actualKey);
-                    String decryptedDataInString = decrypt(apiLevel >= ANDROID_API_LEVEL_23
-                            ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv)
-                            : new IvParameterSpec(iv), encryptedData);
+                    String decryptedDataInString = decrypt(
+                            //@apiLevel23Start
+                            apiLevel >= ANDROID_API_LEVEL_23 ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv) :
+                            //@apiLevel23End
+                            new IvParameterSpec(iv), encryptedData);
                     cache.put(key, decryptedDataInString);
                     return decryptedDataInString;
                 } catch (Exception ex) {
@@ -233,9 +235,11 @@ public class AWSKeyValueStore {
                 try {
                     // Encrypt
                     byte[] iv = generateInitializationVector();
-                    String encryptedData = encrypt(apiLevel >= ANDROID_API_LEVEL_23
-                            ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv)
-                            : new IvParameterSpec(iv), value);
+                    String encryptedData = encrypt(
+                            //@apiLevel23Start
+                            apiLevel >= ANDROID_API_LEVEL_23 ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv) :
+                            //@apiLevel23End
+                            new IvParameterSpec(iv), value);
 
                     // Persist
                     sharedPreferences
