@@ -230,6 +230,7 @@ public class OAuth2Client {
                 mError = uri.getQueryParameter("error");
                 mErrorDescription = uri.getQueryParameter("error_description");
                 mErrorUriString = uri.getQueryParameter("error_uri");
+                mAuthorizeOrSignOutRedirectReceived = true;
 
                 if (mError != null) {
                     if (mAuthorizeCallback != null) {
@@ -258,6 +259,7 @@ public class OAuth2Client {
                     && uri.getAuthority().equals(signOutRedirectUri.getAuthority())
                     && uri.getPath().equals(signOutRedirectUri.getPath())
                     && uri.getQueryParameterNames().containsAll(signOutRedirectUri.getQueryParameterNames())) {
+                mAuthorizeOrSignOutRedirectReceived = true;
                 if (mSignOutCallback != null) {
                     mSignOutCallback.onResult(null);
                     mSignOutCallback = null;
