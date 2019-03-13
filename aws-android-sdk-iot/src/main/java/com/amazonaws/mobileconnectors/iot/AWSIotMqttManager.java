@@ -222,14 +222,14 @@ public class AWSIotMqttManager {
         StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
         if (userMetaDataMap != null) {
-            // Append each of the user-specified key-value pair to the username field for the connection
+            // Append each of the user-specified key-value pair to the user metadata for the connection
             for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
                 userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
             }
         }
 
         if(userMetadata.length() > 255) {
-            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in username fields" +
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
                     " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length())));
             this.userMetaData = userMetadata.substring(0, 255);
         } else {
