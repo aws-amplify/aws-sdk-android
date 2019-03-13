@@ -690,7 +690,17 @@ public final class Auth {
      * </p>
      */
     public void signOut() {
-        this.user.signOut();
+        this.user.signOut(false);
+    }
+
+    /**
+     * Sign out with options.
+     *
+     * @param clearLocalTokensOnly true if signs out the user from the client,
+     *                             but the session may still be alive from the browser.
+     */
+    public void signOut(final boolean clearLocalTokensOnly) {
+        this.user.signOut(clearLocalTokensOnly);
     }
 
     /**
