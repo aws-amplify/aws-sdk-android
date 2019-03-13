@@ -90,7 +90,7 @@ public class AWSIotMqttManagerTest {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
 
-        // Set username fields
+        // Set user metadata
         Map<String, String> userMetaData = new HashMap<String, String>();
         userMetaData.put("AFRSDK", "Android");
         userMetaData.put("AFRSDKVersion", "1.0.0");
