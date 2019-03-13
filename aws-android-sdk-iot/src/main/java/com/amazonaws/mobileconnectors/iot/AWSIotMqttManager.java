@@ -162,13 +162,8 @@ public class AWSIotMqttManager {
      */
     private boolean metricsIsEnabled = true;
 
-    /** User-specified map of additional values to be passed as components of
-     * username for the connection in addition to SDK and Version
-     */
-    Map<String, String> userMetaDataMap;
-
     /** User metadata string. */
-    private String userMetaData;
+    String userMetaData;
 
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
@@ -224,13 +219,11 @@ public class AWSIotMqttManager {
      * @param userMetaDataMap userMetaData map
      */
     public void addUserMetaData(Map<String, String> userMetaDataMap) {
-        this.userMetaDataMap = userMetaDataMap;
-
         StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
 
-        if (this.userMetaDataMap != null) {
+        if (userMetaDataMap != null) {
             // Append each of the user-specified key-value pair to the username field for the connection
-            for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
                 userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
             }
         }
@@ -239,6 +232,8 @@ public class AWSIotMqttManager {
             LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in username fields" +
                     " cannot exceed " + (255 - ("?SDK=Android&Version=" + SDK_VERSION).length())));
             this.userMetaData = userMetadata.substring(0, 255);
+        } else {
+            this.userMetaData = userMetadata.toString();
         }
     }
 
