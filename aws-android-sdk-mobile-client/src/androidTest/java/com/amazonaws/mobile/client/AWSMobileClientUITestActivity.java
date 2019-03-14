@@ -67,7 +67,7 @@ public class AWSMobileClientUITestActivity extends AppCompatActivity {
         if (activityIntent.getData() != null &&
                 "awsmobileclient".equals(activityIntent.getData().getScheme())) {
             intents.add(activityIntent);
-//            auth.handleIntent(activityIntent);
+//            auth.handleAuthResponse(activityIntent);
         }
     }
 }

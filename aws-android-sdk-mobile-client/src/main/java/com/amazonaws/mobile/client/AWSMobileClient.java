@@ -451,6 +451,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                     awsConfiguration = awsConfig;
 
+                    mIsPersistenceEnabled = true; // Default value
                     // Read Persistence key from the awsconfiguration.json and set the flag
                     // appropriately.
                     try {
@@ -565,6 +566,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             if (hostedUIJSON.has("TokenURI")) {
                                 Log.d(TAG, "initialize: OAuth2 client detected");
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
+                                mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
                             } else {
                                 Log.d(TAG, "initialize: Cognito HostedUI client detected");
                                 final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
@@ -578,6 +580,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 }
 
                                 hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+                                        .setPersistenceEnabled(mIsPersistenceEnabled)
                                         .setAuthHandler(new AuthHandler() {
                                             @Override
                                             public void onSuccess(AuthUserSession session) {
@@ -1130,6 +1133,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             }
             if (hostedUI != null) {
                 hostedUI.signOut(true);
+            }
+            if (mOAuth2Client != null) {
+                mOAuth2Client.signOut();
             }
             hostedUI = null;
         }
@@ -2358,7 +2364,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 //        };
 //    }
 
-    public boolean handleIntent(final Intent intent) {
+    public boolean handleAuthResponse(final Intent intent) {
         if (hostedUI != null) {
             hostedUI.getTokens(intent.getData());
             return true;
@@ -2637,18 +2643,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                 mStore.set(SIGN_IN_MODE, SignInMode.HOSTED_UI.toString());
 
-                hostedUI = new Auth.Builder()
-                        .setApplicationContext(mContext)
-                        .setUserPoolId(hostedUIJSONConfigured.getUserPoolId())
-                        .setAppClientId(hostedUIJSONConfigured.getAppId())
-                        .setAppClientSecret(hostedUIJSONConfigured.getAppSecret())
-                        .setAppCognitoWebDomain(hostedUIJSONConfigured.getAppWebDomain())
-                        .setSignInRedirect(hostedUIJSONConfigured.getSignInRedirectUri())
-                        .setSignOutRedirect(hostedUIJSONConfigured.getSignOutRedirectUri())
-                        .setScopes(scopes != null ? scopes : hostedUIJSONConfigured.getScopes())
-                        .setAdvancedSecurityDataCollection(false)
-                        .setIdentityProvider(identityProvider != null ? identityProvider : hostedUIJSONConfigured.getIdentityProvider())
-                        .setIdpIdentifier(idpIdentifier != null ? idpIdentifier : hostedUIJSONConfigured.getIdpIdentifier())
+                Auth.Builder hostedUIBuilder = null;
+                try {
+                    hostedUIBuilder = getHostedUI(hostedUIJSON);
+                } catch (JSONException e) {
+                    throw new RuntimeException("Failed to construct HostedUI from awsconfiguration.json", e);
+                }
+
+                hostedUIBuilder
+                        .setPersistenceEnabled(mIsPersistenceEnabled)
                         .setAuthHandler(new AuthHandler() {
                             boolean hasSucceededOnce = false;
 
@@ -2660,18 +2663,18 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     federatedSignInWithoutAssigningState(userpoolsLoginKey,
                                             session.getIdToken().getJWTToken(),
                                             new Callback<UserStateDetails>() {
-                                        @Override
-                                        public void onResult(UserStateDetails result) {
-                                            Log.d(TAG, "onResult: Federation from the Hosted UI " +
-                                                    "succeeded");
-                                        }
+                                                @Override
+                                                public void onResult(UserStateDetails result) {
+                                                    Log.d(TAG, "onResult: Federation from the Hosted UI " +
+                                                            "succeeded");
+                                                }
 
-                                        @Override
-                                        public void onError(Exception e) {
-                                            Log.e(TAG, "onError: Federation from the Hosted UI " +
-                                                    "failed", e);
-                                        }
-                                    });
+                                                @Override
+                                                public void onError(Exception e) {
+                                                    Log.e(TAG, "onError: Federation from the Hosted UI " +
+                                                            "failed", e);
+                                                }
+                                            });
                                 }
                                 new Thread(new Runnable() {
                                     @Override
@@ -2703,8 +2706,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     }
                                 }).start();
                             }
-                        })
-                        .build();
+                        });
+                if (scopes != null) {
+                    hostedUIBuilder.setScopes(scopes);
+                }
+                if (identityProvider != null) {
+                    hostedUIBuilder.setIdentityProvider(identityProvider);
+                }
+                if (idpIdentifier != null) {
+                    hostedUIBuilder.setIdpIdentifier(idpIdentifier);
+                }
+                hostedUI = hostedUIBuilder.build();
                 hostedUI.getSession();
             }
         };
