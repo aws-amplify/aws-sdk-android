@@ -58,7 +58,7 @@ public class OAuth2Client {
     final CustomTabsServiceConnection mCustomTabsServiceConnection;
     final Context mContext;
     private final OAuth2ClientStore mStore;
-    boolean mIsPersistenceEnabled;
+    boolean mIsPersistenceEnabled = true;
     CustomTabsClient mCustomTabsClient;
     CustomTabsSession mCustomTabsSession;
     CustomTabsCallback mCustomTabsCallback;
