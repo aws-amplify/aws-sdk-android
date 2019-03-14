@@ -26,8 +26,8 @@
 
   <repositories>
     <repository>
-      <id>android-support</id>
-      <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
+      <id>google-maven</id>
+      <url>https://maven.google.com</url>
     </repository>
   </repositories>
 
