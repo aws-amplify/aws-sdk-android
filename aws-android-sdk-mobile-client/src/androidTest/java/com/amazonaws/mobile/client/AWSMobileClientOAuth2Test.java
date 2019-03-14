@@ -71,7 +71,7 @@ public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
     }
 
     @Test
-    public void testShowSignInAuth0() throws InterruptedException, JSONException {
+    public void testShowSignInSignOutAuth0() throws InterruptedException, JSONException {
         AWSMobileClientUITestActivity.intents.clear();
         assert auth.getConfiguration().optJsonObject("Auth").getJSONObject("OAuth").has("AppClientId");
 //        assertNull(auth.getConfiguration().optJsonObject("CognitoUserPool"));
@@ -116,15 +116,14 @@ public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
             Thread.sleep(500);
         }
         Log.e(TAG, "testShowSignInAuth0: intent != 0");
-        auth.handleIntent(AWSMobileClientUITestActivity.intents.get(0));
+        auth.handleAuthResponse(AWSMobileClientUITestActivity.intents.get(0));
         signInLatch.await();
 
         assertNotNull(auth.getCredentials());
         assertNotNull(auth.getIdentityId());
-    }
 
-    @Test
-    public void testSignOutAuth0() throws Exception {
+        /// Sign-out of same session
+
         AWSMobileClientUITestActivity.intents.clear();
         final CountDownLatch latch = new CountDownLatch(1);
         auth.signOut(SignOutOptions.builder().invalidateTokens(true).build(), new Callback<Void>() {
@@ -145,7 +144,7 @@ public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
             Thread.sleep(500);
         }
         Log.e(TAG, "testShowSignInAuth0: intent != 0");
-        auth.handleIntent(AWSMobileClientUITestActivity.intents.get(0));
+        auth.handleAuthResponse(AWSMobileClientUITestActivity.intents.get(0));
         latch.await();
         assertEquals(UserState.SIGNED_OUT, auth.currentUserState().getUserState());
         Log.e(TAG, "before: Finished sign-out and other before activities");

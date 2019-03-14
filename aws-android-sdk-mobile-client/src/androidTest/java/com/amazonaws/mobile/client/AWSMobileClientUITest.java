@@ -162,10 +162,11 @@ public class AWSMobileClientUITest extends AWSMobileClientTestBase {
             Thread.sleep(50);
         }
         Log.e(TAG, "testShowSignInAuth0: intent != 0");
-        auth.handleIntent(AWSMobileClientUITestActivity.intents.get(0));
+        auth.handleAuthResponse(AWSMobileClientUITestActivity.intents.get(0));
         signInLatch.await();
 
         assertNotNull(auth.getTokens());
+        auth.signOut();
     }
 
     private UiObject2 waitForObject(BySelector selector, boolean failIfNotFound) throws InterruptedException {
