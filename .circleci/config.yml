@@ -188,6 +188,38 @@ jobs:
           key: Libs-{{ .Revision }}
           paths:
             - lib
+  build_api10:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - generate_gradle_wrapper
+      - run:
+          name: download android-10
+          command:
+            sudo yes | sdkmanager "platforms;android-10"
+      - run:
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip            
+      - run:
+          name: install json parser
+          command: sudo pip3 install demjson           
+      - run:
+          name: update code for api10
+          command: |
+            python3 CircleciScripts/replace_android10.py "$(pwd)"
+            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider18.java
+            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider23.java
+            cat aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/AWSKeyValueStore.java
+      - run:
+          name: build the whole project
+          command: |
+            bash gradlew :aws-android-sdk-core:build  -x test
 
   unittest:
     working_directory: ~/code
@@ -640,6 +672,7 @@ workflows:
   build_test:
     jobs:
       - build
+      - build_api10
       - unittest
       - pre_integrationtest: 
            filters:
@@ -916,6 +949,12 @@ workflows:
   release_sdk:
     jobs:
       - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - build_api10:
           filters:
             branches:
               ignore: /.*/
@@ -1199,6 +1238,7 @@ workflows:
           requires:
             - unittest
             - post_integrationtest
+            - build_api10
           filters:
             branches:
               ignore: /.*/
