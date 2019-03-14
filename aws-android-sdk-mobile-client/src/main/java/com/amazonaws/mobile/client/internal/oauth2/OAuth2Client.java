@@ -13,6 +13,7 @@ import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.util.Log;
 
+import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthClientException;
@@ -57,10 +58,10 @@ public class OAuth2Client {
     final CustomTabsServiceConnection mCustomTabsServiceConnection;
     final Context mContext;
     private final OAuth2ClientStore mStore;
+    boolean mIsPersistenceEnabled;
     CustomTabsClient mCustomTabsClient;
     CustomTabsSession mCustomTabsSession;
     CustomTabsCallback mCustomTabsCallback;
-    boolean mBrowserSessionEnded;
     PKCEMode mPKCEMode;
     Callback<AuthorizeResponse> mAuthorizeCallback;
     String mState;
@@ -113,6 +114,11 @@ public class OAuth2Client {
         }
     }
 
+    public void setPersistenceEnabled(final boolean isPersistenceEnabled) {
+        mIsPersistenceEnabled = isPersistenceEnabled;
+        mStore.setPersistenceEnabled(isPersistenceEnabled);
+    }
+
     public void signOut(final Uri signOutUri, final Callback<Void> callback) {
         this.mSignOutCallback = callback;
         final String redirectUri = signOutUri.getQueryParameter("redirect_uri");
@@ -122,6 +128,18 @@ public class OAuth2Client {
         mStore.set(SIGN_OUT_REDIRECT_URI_KEY, redirectUri);
         Uri.parse(redirectUri);
         open(signOutUri);
+    }
+
+    public void signOut() {
+        mStore.clear();
+        mSignOutCallback = null;
+        mAuthorizeCallback = null;
+        mPKCEMode = PKCEMode.S256;
+        mState = null;
+        mClientId = null;
+        mError = null;
+        mErrorDescription = null;
+        mErrorUriString = null;
     }
 
     public enum PKCEMode {
@@ -370,26 +388,22 @@ public class OAuth2Client {
 }
 
 class OAuth2ClientStore {
-    private final SharedPreferences mSharedPreferences;
+    private final AWSKeyValueStore mKeyValueStore;
     ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
 
     OAuth2ClientStore(OAuth2Client client) {
-        mSharedPreferences =
-                client.mContext.getSharedPreferences(OAuth2Client.SHARED_PREFERENCES_KEY,
-                        Context.MODE_PRIVATE);
+        mKeyValueStore = new AWSKeyValueStore(client.mContext, OAuth2Client.SHARED_PREFERENCES_KEY, client.mIsPersistenceEnabled);
     }
 
     void set(final OAuth2Tokens tokens) {
         try {
             mReadWriteLock.writeLock().lock();
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(TokenResponseFields.ACCESS_TOKEN.toString(), tokens.getAccessToken());
-            editor.putString(TokenResponseFields.ID_TOKEN.toString(), tokens.getIdToken());
-            editor.putString(TokenResponseFields.REFRESH_TOKEN.toString(), tokens.getRefreshToken());
-            editor.putString(TokenResponseFields.EXPIRES_IN.toString(), tokens.getExpiresIn() == null ? null :
+            mKeyValueStore.put(TokenResponseFields.ACCESS_TOKEN.toString(), tokens.getAccessToken());
+            mKeyValueStore.put(TokenResponseFields.ID_TOKEN.toString(), tokens.getIdToken());
+            mKeyValueStore.put(TokenResponseFields.REFRESH_TOKEN.toString(), tokens.getRefreshToken());
+            mKeyValueStore.put(TokenResponseFields.EXPIRES_IN.toString(), tokens.getExpiresIn() == null ? null :
                     tokens.getExpiresIn().toString());
-            editor.putLong(CREATE_DATE, tokens.getCreateDate());
-            editor.apply();
+            mKeyValueStore.put(CREATE_DATE, tokens.getCreateDate().toString());
         } finally {
             mReadWriteLock.writeLock().unlock();
         }
@@ -402,16 +416,16 @@ class OAuth2ClientStore {
     OAuth2Tokens getTokens() {
         try {
             mReadWriteLock.readLock().lock();
-            final String expires_in = mSharedPreferences.getString(TokenResponseFields.EXPIRES_IN.toString(), null);
+            final String expires_in = mKeyValueStore.get(TokenResponseFields.EXPIRES_IN.toString());
             final Long expiresIn = expires_in == null ? null : Long.decode(expires_in);
             return new OAuth2Tokens(
-                    mSharedPreferences.getString(TokenResponseFields.ACCESS_TOKEN.toString(), null),
-                    mSharedPreferences.getString(TokenResponseFields.ID_TOKEN.toString(), null),
-                    mSharedPreferences.getString(TokenResponseFields.REFRESH_TOKEN.toString(), null),
-                    mSharedPreferences.getString(TokenResponseFields.TOKEN_TYPE.toString(), null),
+                    mKeyValueStore.get(TokenResponseFields.ACCESS_TOKEN.toString()),
+                    mKeyValueStore.get(TokenResponseFields.ID_TOKEN.toString()),
+                    mKeyValueStore.get(TokenResponseFields.REFRESH_TOKEN.toString()),
+                    mKeyValueStore.get(TokenResponseFields.TOKEN_TYPE.toString()),
                     expiresIn,
-                    mSharedPreferences.getLong(CREATE_DATE, 0),
-                    mSharedPreferences.getString(TokenResponseFields.SCOPES.toString(), null));
+                    Long.valueOf(mKeyValueStore.get(CREATE_DATE)),
+                    mKeyValueStore.get(TokenResponseFields.SCOPES.toString()));
         } finally {
             mReadWriteLock.readLock().unlock();
         }
@@ -422,7 +436,7 @@ class OAuth2ClientStore {
             mReadWriteLock.readLock().lock();
             HashMap<String, String> attributes = new HashMap<String, String>();
             for (String key : keys) {
-                attributes.put(key, mSharedPreferences.getString(key, null));
+                attributes.put(key, mKeyValueStore.get(key));
             }
             return attributes;
         } finally {
@@ -433,7 +447,7 @@ class OAuth2ClientStore {
     String get(final String key) {
         try {
             mReadWriteLock.readLock().lock();
-            return mSharedPreferences.getString(key, null);
+            return mKeyValueStore.get(key);
         } finally {
             mReadWriteLock.readLock().unlock();
         }
@@ -442,11 +456,9 @@ class OAuth2ClientStore {
     void set(final Map<String, String> attributes) {
         try {
             mReadWriteLock.writeLock().lock();
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
             for (String key : attributes.keySet()) {
-                editor.putString(key, attributes.get(key));
+                mKeyValueStore.put(key, attributes.get(key));
             }
-            editor.apply();
         } finally {
             mReadWriteLock.writeLock().unlock();
         }
@@ -455,16 +467,18 @@ class OAuth2ClientStore {
     void set(final String key, final String value) {
         try {
             mReadWriteLock.writeLock().lock();
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(key, value);
-            editor.apply();
+            mKeyValueStore.put(key, value);
         } finally {
             mReadWriteLock.writeLock().unlock();
         }
     }
 
     void clear() {
-        mSharedPreferences.edit().clear().apply();
+        mKeyValueStore.clear();
+    }
+
+    public void setPersistenceEnabled(boolean isPersistenceEnabled) {
+        mKeyValueStore.setPersistenceEnabled(isPersistenceEnabled);
     }
 }
 
