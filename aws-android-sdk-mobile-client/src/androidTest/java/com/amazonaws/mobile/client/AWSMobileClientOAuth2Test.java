@@ -14,6 +14,7 @@ import com.amazonaws.regions.Regions;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -70,6 +71,7 @@ public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
         auth.signOut();
     }
 
+    @Ignore("Full automation of this scenario is not supported, manual intervention is needed")
     @Test
     public void testShowSignInSignOutAuth0() throws InterruptedException, JSONException {
         AWSMobileClientUITestActivity.intents.clear();
