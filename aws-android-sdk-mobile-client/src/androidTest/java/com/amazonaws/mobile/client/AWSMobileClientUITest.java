@@ -14,6 +14,7 @@ import com.amazonaws.regions.Regions;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -113,6 +114,7 @@ public class AWSMobileClientUITest extends AWSMobileClientTestBase {
         assertNotNull(auth.getTokens().getAccessToken());
     }
 
+    @Ignore("Full automation of this scenario is not supported, manual intervention is needed")
     @Test
     public void testShowSignInHostedUIWithUserpools() throws Exception {
         auth.signOut();
