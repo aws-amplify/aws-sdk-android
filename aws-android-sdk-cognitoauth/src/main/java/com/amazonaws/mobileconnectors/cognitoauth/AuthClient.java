@@ -485,7 +485,10 @@ public class AuthClient {
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_REDIRECT_URI, redirectUri);
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId());
         httpBodyParams.put(ClientConstants.HTTP_REQUEST_REFRESH_TOKEN, session.getRefreshToken().getToken());
-        httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, getUserContextData());
+        final String userContextData = getUserContextData();
+        if (userContextData != null) {
+            httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, userContextData);
+        }
         return  httpBodyParams;
     }
 
