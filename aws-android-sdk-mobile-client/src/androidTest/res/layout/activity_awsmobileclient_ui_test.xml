@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:id="@+id/drop_in_ui"
+        android:text="Drop-in UI"
+        android:onClick="showDropInUI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/hosted_ui"
+        android:text="Hosted UI"
+        android:onClick="showHostedUI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/sign_out"
+        android:text="sign-out"
+        android:onClick="signOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

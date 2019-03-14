@@ -1,5 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.5)
+
+### New Features
+
+* **AWS Mobile Client**
+  * Added support for SAML in `federatedSignIn()`.
+  * Added support for developer authenticated identities in `federatedSignIn()`. See [issue #577](https://github.com/aws-amplify/aws-sdk-android/issues/577)
+  * Added support Cognito Hosted UI in `showSignIn()`.
+  * Added support to use OAuth 2.0 provider like `Auth0` in `showSignIn()`. Federation for AWS credentials requires OpenID support from the provider.
+  * Added support for global sign out.
+  * Added support for device features which include `list`, `get`, `updateStatus` and `forget`. These APIs are available through `getDeviceOperations()`.
+
+* **Amazon Cognito Identity Provider**
+  * Fixed threading issues to ensure callbacks are made from main looper when `xInBackground()` method variants are used. See [issue #722](https://github.com/aws-amplify/aws-sdk-android/issues/722)
+
+* **Amazon Cognito Auth**
+  * Fixed erroneous user cancelled error when redirecting back to app. See [issue #328](https://github.com/aws-amplify/aws-sdk-android/issues/328)
+
 ## [Release 2.12.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.4)
 
 * **AWS Core**

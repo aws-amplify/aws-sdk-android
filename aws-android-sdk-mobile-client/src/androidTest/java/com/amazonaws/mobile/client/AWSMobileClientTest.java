@@ -6,6 +6,9 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.mobile.client.results.ForgotPasswordResult;
+import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
 import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.SignUpResult;
@@ -13,8 +16,29 @@ import com.amazonaws.mobile.client.results.Token;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
 import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
+import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperIdentityRequest;
+import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperIdentityResult;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminConfirmSignUpRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult;
+import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
+import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.DeviceRememberedStatusType;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
+import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
+import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
+import com.amazonaws.services.cognitoidentityprovider.model.UserType;
+import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -25,7 +49,9 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -45,18 +71,90 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    public static final String BLURRED_EMAIL = "r***@a***.com";
-    public static final String PASSWORD = "Test@123";
-    public static final String NEW_PASSWORD = "Test@123";
+    public static final String EMAIL = "somebody@email.com";
+    public static final String BLURRED_EMAIL = "s***@e***.com";
+    public static final String USERNAME = "somebody";
+    public static final String PASSWORD = "1234Password!";
+    public static String IDENTITY_ID;
+    public static final String NEW_PASSWORD = "new1234Password!";
     public static final int THROTTLED_DELAY = 5000;
+
+    static BasicAWSCredentials adminCreds;
+    static AmazonCognitoIdentityProvider userpoolLL;
+
+    static {
+        try {
+            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
+                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
+            IDENTITY_ID = getPackageConfigure().getString("identity_id");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Populated from awsconfiguration.json
+    static Regions clientRegion = Regions.US_WEST_2;
+    static String userPoolId;
+    static String identityPoolId;
 
     Context appContext;
     AWSMobileClient auth;
     UserStateListener listener;
+    String username;
+
+    public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
+        if (userpoolLL == null) {
+            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
+            userpoolLL.setRegion(Region.getRegion(clientRegion));
+        }
+        return userpoolLL;
+    }
+
+    public static void createUser(final AWSMobileClient auth,
+                                  final String userpoolId,
+                                  final String username,
+                                  final String password,
+                                  final String email) throws Exception {
+        HashMap<String, String> userAttributes = new HashMap<String, String>();
+        userAttributes.put("email", email);
+        auth.signUp(username, password, userAttributes,null);
+
+        AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
+        adminConfirmSignUpRequest.withUsername(username).withUserPoolId(userpoolId);
+        getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
+    }
+
+    public static void deleteAllUsers(final String userpoolId) {
+        ListUsersResult listUsersResult;
+        do {
+            ListUsersRequest listUsersRequest = new ListUsersRequest()
+                    .withUserPoolId(userpoolId)
+                    .withLimit(60);
+            listUsersResult = getUserpoolLL().listUsers(listUsersRequest);
+            for (UserType user : listUsersResult.getUsers()) {
+                if (USERNAME.equals(user.getUsername())
+                    || "bimin".equals(user.getUsername())) {
+                    // This user is saved to test the identity id permanence
+                    continue;
+                }
+                try {
+                    Log.d(TAG, "deleteAllUsers: " + user.getUsername());
+                    AWSMobileClient.getInstance().signIn(user.getUsername(), PASSWORD, null);
+                    DeleteUserRequest deleteUserRequest = new DeleteUserRequest()
+                            .withAccessToken(AWSMobileClient.getInstance().getTokens().getAccessToken().getTokenString());
+                    getUserpoolLL().deleteUser(deleteUserRequest);
+                    AWSMobileClient.getInstance().signOut();
+                } catch (Exception e) {
+                    Log.e(TAG, "deleteAllUsers: Some error trying to delete user", e);
+                }
+            }
+        } while (listUsersResult.getPaginationToken() != null);
+    }
 
     @BeforeClass
-    public static void setup() throws Exception {
+    public static void beforeClass() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
+
         final CountDownLatch latch = new CountDownLatch(1);
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
             @Override
@@ -73,26 +171,35 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         final AWSConfiguration awsConfiguration = AWSMobileClient.getInstance().getConfiguration();
 
-        assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
-        try {
-            assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+        JSONObject userPoolConfig = awsConfiguration.optJsonObject("CognitoUserPool");
+        assertNotNull(userPoolConfig);
+        clientRegion = Regions.fromName(userPoolConfig.getString("Region"));
+        userPoolId = userPoolConfig.getString("PoolId");
+
+        JSONObject identityPoolConfig =
+                awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
+                        "CognitoIdentity").getJSONObject("Default");
+        assertNotNull(identityPoolConfig);
+        identityPoolId = identityPoolConfig.getString("PoolId");
+
+        deleteAllUsers(userPoolId);
     }
 
     @Before
-    public void cleanUp() {
+    public void before() throws Exception {
         appContext = InstrumentationRegistry.getTargetContext();
         auth = AWSMobileClient.getInstance();
         auth.signOut();
+
+        username = "testUser" + System.currentTimeMillis() + new Random().nextInt();
+        createUser(auth, userPoolId, username, PASSWORD, EMAIL);
     }
 
     @After
-    public void cleanAfter() {
+    public void after() {
         auth.removeUserStateListener(listener);
         auth.listeners.clear();
+        auth.signOut();
     }
 
     @Test
@@ -103,7 +210,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
-        assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
+        assertEquals("us-west-2", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
 
         assertEquals("com.amazonaws.mobile.client.test", appContext.getPackageName());
     }
@@ -114,7 +221,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
         try {
-            assertEquals("us-east-1", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
+            assertEquals("us-west-2", awsConfiguration.optJsonObject("CognitoUserPool").getString("Region"));
         } catch (JSONException e) {
             e.printStackTrace();
             fail(e.getMessage());
@@ -123,9 +230,12 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test(expected = com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException.class)
     public void testSignUp() throws Exception {
+        final String username = "testUser" + System.currentTimeMillis() + new Random().nextInt();
+        assertNotEquals("generated usernames are the same", this.username, username);
+
         final HashMap<String, String> userAttributes = new HashMap<String, String>();
-        userAttributes.put("email", getPackageConfigure().getString("email"));
-        final String username = getPackageConfigure().getString("username") + System.currentTimeMillis();
+        userAttributes.put("email", EMAIL);
+
         final SignUpResult signUpResult = auth.signUp(username, PASSWORD, userAttributes, null);
         if (signUpResult.getConfirmationState()) {
             // Done
@@ -141,10 +251,6 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         } else {
             fail("Cannot support MFA in tests");
         }
-
-        // Cleanup user, however needs admin action to delete
-//        final CognitoUserPool userPool = new CognitoUserPool(appContext, new AWSConfiguration(appContext));
-//        userPool.getUser(username).deleteUser(...);
     }
 
     @Test
@@ -161,7 +267,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         };
         auth.addUserStateListener(listener);
 
-        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -170,10 +276,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         assertTrue("isSignedIn is true", auth.isSignedIn());
 
-        assertEquals(getPackageConfigure().getString("username"), auth.getUsername());
-
-        // Test identity id hasn't changed
-        assertEquals(getPackageConfigure().getString("identity_id"), auth.getIdentityId());
+        assertEquals(username, auth.getUsername());
 
         // Check credentials are available
         final AWSCredentials credentials = auth.getCredentials();
@@ -204,7 +307,22 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertNotEquals(getPackageConfigure().getString("identity_id"), details.toString());
     }
 
-    @Ignore
+    @Test
+    public void testIdentityId() throws Exception {
+        try {
+            createUser(AWSMobileClient.getInstance(), userPoolId, USERNAME, PASSWORD, EMAIL);
+            fail("The user should already exist in the userpool. Otherwise this test cannot determine whether the identity id was changed.");
+        } catch (UsernameExistsException e) {
+            // If the person exists, this is expected.
+        }
+
+        auth.signIn(USERNAME, PASSWORD, null);
+        // Populate the identity id
+        auth.getCredentials();
+        assertEquals("Identity id should not change between SDK releases", IDENTITY_ID, auth.getIdentityId());
+    }
+
+    @Test
     public void testSignInWaitFederated() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
@@ -234,7 +352,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertTrue("Should have waited, but didn't", hasWaited.get());
     }
 
-    @Ignore
+    @Test
     public void testSignInWaitOIDC() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
@@ -250,7 +368,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                                 fail("Multiple calls to state change");
                             }
                             hasWaited.set(true);
-                            auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+                            auth.signIn(username, PASSWORD, null);
                         } catch (Exception e) {
                             e.printStackTrace();
                             fail("Sign-in failed, but not expected.");
@@ -272,7 +390,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testSignOut() throws Exception {
-        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -351,14 +469,45 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.addUserStateListener(listenerB);
         assertEquals(2, auth.listeners.size());
         auth.removeUserStateListener(listenerA);
-        auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+        auth.signIn(username, PASSWORD, null);
         countDownLatch.await(5, TimeUnit.SECONDS);
         assertFalse(triggered.get());
     }
+
+    @Test
+    public void testFederatedSignInWithDeveloperAuthenticatedIdentities() throws Exception {
+        AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(adminCreds);
+        identityClient.setRegion(Region.getRegion("us-west-2"));
+
+        GetOpenIdTokenForDeveloperIdentityRequest request =
+                new GetOpenIdTokenForDeveloperIdentityRequest();
+        request.setIdentityPoolId(identityPoolId);
+
+        HashMap<String,String> logins = new HashMap<String, String>();
+        logins.put("foo.bar","john.doe");
+        request.setLogins(logins);
+
+        GetOpenIdTokenForDeveloperIdentityResult response =
+                identityClient.getOpenIdTokenForDeveloperIdentity(request);
+
+        final String identityId = response.getIdentityId();
+        final String token = response.getToken();
+
+        FederatedSignInOptions options =
+                FederatedSignInOptions.builder().cognitoIdentityId(identityId).build();
+
+        UserStateDetails userStateDetails =
+                auth.federatedSignIn(IdentityProvider.DEVELOPER.toString(), token, options);
+
+        assertEquals(UserState.SIGNED_IN, userStateDetails.getUserState());
+
+        assertNotNull("Credentials from federated sign-in should not be null", auth.getCredentials());
+    }
+
     @Ignore("This test case may cause crash on some emulators")
     @Test
     public void testGetTokensStress() throws Exception {
-        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -410,7 +559,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testGetCredentialsStress() throws Exception {
-        final SignInResult signInResult = auth.signIn(getPackageConfigure().getString("username"), PASSWORD, null);
+        final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
         } else {
@@ -457,6 +606,132 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         for (Thread t : threads) {
             t.join();
         }
+    }
+
+    @Test
+    public void testRememberDevice() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+
+        for (int i = 0; i < 2; ++i) {
+            assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+            auth.getDeviceOperations().updateStatus(true);
+            final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
+            assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+
+            checkDeviceAttribute(deviceKey, auth.getUsername(), "dev:device_remembered_status",
+                    DeviceRememberedStatusType.Remembered.toString());
+
+            auth.getDeviceOperations().updateStatus(false);
+
+            try {
+                auth.getDeviceOperations().get();
+                fail("Expected the device not the be found because it is not remembered");
+            } catch (ResourceNotFoundException e) {
+            }
+
+            checkDeviceAttribute(deviceKey, auth.getUsername(), "dev:device_remembered_status",
+                    DeviceRememberedStatusType.Not_remembered.toString());
+        }
+    }
+
+    @Test
+    public void testForgetDevice() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+
+        assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+        auth.getDeviceOperations().updateStatus(true);
+        final String deviceKey = auth.getDeviceOperations().get().getDeviceKey();
+        assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+
+        auth.getDeviceOperations().forget();
+
+        assertEquals(0, auth.getDeviceOperations().list().getDevices().size());
+        try {
+            auth.getDeviceOperations().updateStatus(true);
+            fail("Expected ResourceNotFoundException: Device does not exist.");
+        } catch (ResourceNotFoundException e) { }
+
+        auth.signOut();
+
+        auth.signIn(username, PASSWORD, null);
+        auth.getDeviceOperations().updateStatus(true);
+        assertEquals(1, auth.getDeviceOperations().list().getDevices().size());
+    }
+
+    /**
+     * Utility function that calls admin API to check the certain device attribute values.
+     *
+     * @param deviceKey the device that holds the attributes to be checked
+     * @param username the user that has the device
+     * @param attributeName the name of the attribute that will be checked
+     * @param attributeValue the value the named attribute should be set to when checked
+     * @throws Exception any error that occurs performing this operation
+     */
+    private void checkDeviceAttribute(final String deviceKey,
+                                      final String username,
+                                      final String attributeName,
+                                      final String attributeValue) throws Exception {
+        final AdminGetDeviceRequest adminGetDeviceRequest = new AdminGetDeviceRequest()
+                .withDeviceKey(deviceKey)
+                .withUsername(username)
+                .withUserPoolId(userPoolId);
+        final AdminGetDeviceResult adminGetDeviceResult =
+                getUserpoolLL().adminGetDevice(adminGetDeviceRequest);
+
+        final List<AttributeType> deviceAttributes =
+                adminGetDeviceResult.getDevice().getDeviceAttributes();
+        for (AttributeType attributeType : deviceAttributes) {
+            if (attributeType.getName().equals(attributeName)) {
+                assertEquals(attributeValue, attributeType.getValue());
+                return;
+            }
+        }
+    }
+
+    @Test
+    public void testGlobalSignOut() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        auth.getUserAttributes();
+
+        final String accessTokenA = auth.getTokens().getAccessToken().getTokenString();
+        final String idTokenA = auth.getTokens().getIdToken().getTokenString();
+        final String refreshTokenA = auth.getTokens().getRefreshToken().getTokenString();
+        final String clientId = auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId");
+
+        auth.signOut();
+
+        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
+        auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
+
+        auth.getUserAttributes();
+
+        auth.signOut(SignOutOptions.builder().signOutGlobally(true).build());
+
+        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
+        auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
+
+        try {
+            auth.getUserAttributes();
+            fail("Global sign-out should make the access token invalid");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testForgotPassword() throws Exception {
+        // USERNAME user is a confirmed account with a confirmed email
+        final ForgotPasswordResult forgotPasswordResult = auth.forgotPassword(USERNAME);
+        assertEquals(ForgotPasswordState.CONFIRMATION_CODE, forgotPasswordResult.getState());
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void testForgotPasswordWithNewUser() throws Exception {
+        // username user is a confirmed account without a confirmed email or phone
+        final ForgotPasswordResult forgotPasswordResult = auth.forgotPassword(username);
+        assertEquals(ForgotPasswordState.CONFIRMATION_CODE, forgotPasswordResult.getState());
     }
 
 }

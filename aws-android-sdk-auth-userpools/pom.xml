@@ -21,13 +21,13 @@
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
-    <version>2.12.4</version>
+    <version>2.12.5</version>
   </parent>
 
   <repositories>
     <repository>
-      <id>android-support</id>
-      <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
+      <id>google-maven</id>
+      <url>https://maven.google.com</url>
     </repository>
   </repositories>
 
@@ -36,14 +36,14 @@
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
       <optional>false</optional>
-      <version>2.12.4</version>
+      <version>2.12.5</version>
     </dependency>
     
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-auth-core</artifactId>
       <optional>false</optional>
-      <version>2.12.4</version>
+      <version>2.12.5</version>
       <type>aar</type>
     </dependency>
 

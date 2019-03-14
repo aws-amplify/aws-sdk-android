@@ -162,6 +162,9 @@ public class AWSIotMqttManager {
      */
     private boolean metricsIsEnabled = true;
 
+    /** User metadata string. */
+    String userMetaData;
+
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
@@ -209,6 +212,36 @@ public class AWSIotMqttManager {
 
     /** Override value for System.currentTimeInMillis.  Used for unit testing reconnect logic. */
     private Long unitTestMillisOverride;
+
+    /**
+     * Sets the userMetaData map.
+     *
+     * @param userMetaDataMap userMetaData map
+     */
+    public void addUserMetaData(Map<String, String> userMetaDataMap) {
+        StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+        int baseLength = userMetadata.length();
+
+        if (userMetaDataMap != null) {
+            // Append each of the user-specified key-value pair to the user metadata for the connection
+
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+                if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                } else {
+                    LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
+                }
+            }
+        }
+
+        if(userMetadata.length() > 255) {
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
+                    " cannot exceed " + (255 - baseLength)));
+            this.userMetaData = userMetadata.substring(0, 255);
+        } else {
+            this.userMetaData = userMetadata.toString();
+        }
+    }
 
     /**
      * Return the customer specific endpoint prefix.
@@ -799,7 +832,7 @@ public class AWSIotMqttManager {
     /**
      * Connect to the MQTT service.
      *
-     * @param options        MQTT connect options containing a TLS socket factory for authentication.
+     * @param options MQTT connect options containing a TLS socket factory for authentication.
      */
     private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
@@ -807,8 +840,9 @@ public class AWSIotMqttManager {
         options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
+        // Setup userName if metrics are enabled. We use the connection username as metadata for metrics calculation.
         if (isMetricsEnabled()) {
-            options.setUserName("?SDK=Android&Version=" + SDK_VERSION);
+            options.setUserName(userMetaData);
         }
         LOGGER.info("metrics collection is " + 
             (isMetricsEnabled() ? "enabled" : "disabled") + 

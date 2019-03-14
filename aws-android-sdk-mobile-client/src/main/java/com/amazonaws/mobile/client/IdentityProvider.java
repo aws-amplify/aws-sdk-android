@@ -24,7 +24,9 @@ public enum IdentityProvider {
     AMAZON("www.amazon.com"),
     FACEBOOK("graph.facebook.com"),
     GOOGLE("accounts.google.com"),
-    TWITTER("api.twitter.com");
+    TWITTER("api.twitter.com"),
+    DEVELOPER("cognito-identity.amazonaws.com"),
+    ;
 
     private final String key;
 
@@ -34,5 +36,14 @@ public enum IdentityProvider {
 
     public String toString() {
         return this.key;
+    }
+
+    /**
+     * Utility comparison for the String value of the enum
+     * @param other The String that is being compared to the IdentityProvider's string value
+     * @return
+     */
+    public boolean equals(final String other) {
+        return key.equals(other);
     }
 }
