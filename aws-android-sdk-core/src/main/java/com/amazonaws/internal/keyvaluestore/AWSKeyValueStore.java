@@ -109,7 +109,10 @@ public class AWSKeyValueStore {
 
     public void setPersistenceEnabled(boolean isPersistenceEnabled) {
         synchronized (LOCK) {
-            if (isPersistenceEnabled && !this.isPersistenceEnabled) {
+            boolean previousIsPersistenceEnabled = this.isPersistenceEnabled;
+            this.isPersistenceEnabled = isPersistenceEnabled;
+            // Transitioning from false to true for isPersistenceEnabled
+            if (isPersistenceEnabled && !previousIsPersistenceEnabled) {
                 this.sharedPreferences = context.getSharedPreferences(sharedPreferencesName,
                         Context.MODE_PRIVATE);
                 this.sharedPreferencesForEncryptionKey = context.getSharedPreferences(
@@ -153,14 +156,13 @@ public class AWSKeyValueStore {
                 logger.info("Persistence is disabled. Data will be accessed from memory.");
             }
 
+            // Transitioning from true to false for isPersistenceEnabled
             // Clear the data stored in SharedPreferences.
-            if (!isPersistenceEnabled && this.isPersistenceEnabled) {
+            if (!isPersistenceEnabled && previousIsPersistenceEnabled) {
                 sharedPreferences.edit()
                         .clear()
                         .apply();
             }
-
-            this.isPersistenceEnabled = isPersistenceEnabled;
         }
     }
 
