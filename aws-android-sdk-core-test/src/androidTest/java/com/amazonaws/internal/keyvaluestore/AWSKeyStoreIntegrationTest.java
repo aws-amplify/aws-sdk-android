@@ -28,6 +28,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
+
+import java.util.Map;
 
 @RunWith(AndroidJUnit4.class)
 public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
@@ -181,9 +184,16 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
                 .apply();
         assertEquals(value, sharedPreferences.getString(key, null));
 
+        Map<String, ?> map = sharedPreferences.getAll();
+        for (String spKey : map.keySet()) {
+            Log.d(TAG, "spKey = " + spKey + "; value = " + map.get(spKey));
+        }
+
         AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
                 sharedPreferencesName,
                 true);
+
+        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
 
         assertNull(sharedPreferences.getString(key, null));
         assertNotNull(sharedPreferences.getString(
@@ -204,6 +214,8 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
         AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
                 sharedPreferencesName,
                 true);
+
+        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
         assertEquals(value, keyStore2.get(key));
     }
 
@@ -243,5 +255,100 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
                 true);
         keyStore2.setPersistenceEnabled(false);
         assertEquals(keyStore1.get(key), keyStore2.get(key));
+    }
+
+    @Test
+    public void testGetSetPersistenceSwitchTrueToFalse() {
+        // Have existing state
+        final String sharedPreferencesName = "my.shared.preferences";
+        final String key = "access-key";
+        final String value = "a-dummy-access-key";
+
+        SharedPreferences sharedPreferences = InstrumentationRegistry
+                .getTargetContext()
+                .getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().commit();
+
+        sharedPreferences.edit()
+                .putString(key, value)
+                .apply();
+        assertEquals(value, sharedPreferences.getString(key, null));
+
+        Map<String, ?> map = sharedPreferences.getAll();
+        for (String spKey : map.keySet()) {
+            Log.d(TAG, "spKey = " + spKey + "; value = " + map.get(spKey));
+        }
+
+        // Migrate from SharedPreferences to AWSKeyValueStore
+        AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+                sharedPreferencesName,
+                true);
+
+        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
+
+        assertNull(sharedPreferences.getString(key, null));
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+
+        assertNotNull(keyStore.get(key));
+        keyStore.put(key, value);
+        assertEquals(value, keyStore.get(key));
+
+        keyStore.clear();
+        keyStore.put(key, value);
+        assertEquals(value, keyStore.get(key));
+
+        // Toggle the switch from true to false
+        keyStore.setPersistenceEnabled(false);
+        assertEquals(0, sharedPreferences.getAll().size());
+        assertNotNull(keyStore.get(key));
+    }
+
+    @Test
+    public void testGetSetPersistenceSwitchFalseToTrue() {
+        final String sharedPreferencesName = "my.shared.preferences";
+        final String key = "access-key";
+        final String value = "a-dummy-access-key";
+
+        SharedPreferences sharedPreferences = InstrumentationRegistry
+                .getTargetContext()
+                .getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().commit();
+
+        // Migrate from SharedPreferences to AWSKeyValueStore
+        AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+                sharedPreferencesName,
+                false);
+
+        assertNull(sharedPreferences.getString(key, null));
+        assertNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
+        assertNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+        assertNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+
+        keyStore.put(key, value);
+        assertEquals(value, keyStore.get(key));
+
+        keyStore.clear();
+        keyStore.put(key, value);
+        assertEquals(value, keyStore.get(key));
+
+        // Toggle the switch from false to true
+        keyStore.setPersistenceEnabled(true);
+        keyStore.put(key, value);
+        assertNotNull(keyStore.get(key));
+
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+        assertNotNull(sharedPreferences.getString(
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
     }
 }

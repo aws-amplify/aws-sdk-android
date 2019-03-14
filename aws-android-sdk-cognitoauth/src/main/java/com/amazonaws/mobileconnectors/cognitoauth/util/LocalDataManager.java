@@ -370,7 +370,7 @@ public final class LocalDataManager {
      * @param key Required: The mapped key.
      * @return Cached scopes.
      */
-    public static Set<String> getCachedScopes (final Context context, final String key) {
+    public static Set<String> getCachedScopes(final Context context, final String key) {
         Set<String> cachedSet = new HashSet<String>();
         try {
             SharedPreferences localCache =
@@ -476,6 +476,18 @@ public final class LocalDataManager {
             awsKeyValueStore.remove(lastAuthUserKey);
         } catch (Exception e) {
             Log.e(TAG, "Failed while writing to SharedPreferences", e);
+        }
+    }
+
+    /*
+     * Clears all cached tokens for everyone
+     * @param context Required: The host application {@link Context}.
+     */
+    public static void clearCacheAll(final AWSKeyValueStore awsKeyValueStore) {
+        try {
+            awsKeyValueStore.clear();
+        } catch (Exception e) {
+            Log.e(TAG, "Failed while clearing data from SharedPreferences", e);
         }
     }
 
