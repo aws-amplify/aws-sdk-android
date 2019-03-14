@@ -224,8 +224,11 @@ public class AWSIotMqttManager {
 
         if (userMetaDataMap != null) {
             // Append each of the user-specified key-value pair to the user metadata for the connection
+            LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
             for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
-                userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                }
             }
         }
 
