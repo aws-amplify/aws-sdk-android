@@ -42,8 +42,10 @@ public class AWSKeyValueStore {
     // In-memory store operates on the key passed in and does not use the suffixes.
     private Map<String, String> cache;
 
-    boolean isPersistenceEnabled = true;
+    boolean isPersistenceEnabled;
+    Context context;
     SharedPreferences sharedPreferences;
+    final String sharedPreferencesName;
     SharedPreferences sharedPreferencesForEncryptionKey;
 
     private KeyProvider keyProvider;
@@ -96,12 +98,18 @@ public class AWSKeyValueStore {
                             final String sharedPreferencesName,
                             final boolean isPersistenceEnabled) {
         synchronized (LOCK) {
-            this.isPersistenceEnabled = isPersistenceEnabled;
             this.secureRandom = new SecureRandom();
             this.cache = getCacheForKey(sharedPreferencesName);
+            this.sharedPreferencesName = sharedPreferencesName;
             this.apiLevel = Build.VERSION.SDK_INT;
+            this.context = context;
+            setPersistenceEnabled(isPersistenceEnabled);
+        }
+    }
 
-            if (this.isPersistenceEnabled) {
+    public void setPersistenceEnabled(boolean isPersistenceEnabled) {
+        synchronized (LOCK) {
+            if (isPersistenceEnabled && !this.isPersistenceEnabled) {
                 this.sharedPreferences = context.getSharedPreferences(sharedPreferencesName,
                         Context.MODE_PRIVATE);
                 this.sharedPreferencesForEncryptionKey = context.getSharedPreferences(
@@ -141,22 +149,18 @@ public class AWSKeyValueStore {
                         "sharedPreferences = " + sharedPreferencesName);
 
                 onMigrateFromNoEncryption();
-            } else {
+            } else if (!isPersistenceEnabled) {
                 logger.info("Persistence is disabled. Data will be accessed from memory.");
             }
-        }
-    }
-
-    public void setPersistenceEnabled(boolean isPersistenceEnabled) {
-        synchronized (LOCK) {
-            this.isPersistenceEnabled = isPersistenceEnabled;
 
             // Clear the data stored in SharedPreferences.
-            if (!isPersistenceEnabled) {
+            if (!isPersistenceEnabled && this.isPersistenceEnabled) {
                 sharedPreferences.edit()
                         .clear()
                         .apply();
             }
+
+            this.isPersistenceEnabled = isPersistenceEnabled;
         }
     }
 
