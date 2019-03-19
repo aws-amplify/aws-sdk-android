@@ -47,6 +47,10 @@ commands:
             aws configure --profile android_sdk_release set region us-east-1
             echo -e "[android_sdk_release]\naws_access_key_id=${AWS_ACCESS_KEY_ID_ANDROID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_ANDROID}\n" >> ~/.aws/credentials
 
+            aws configure --profile android_sdk_test set region us-east-1
+            echo -e "[android_sdk_test]\naws_access_key_id=${AWS_ACCESS_KEY_ID_TEST}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_TEST}\n" >> ~/.aws/credentials
+           
+
   set_enviroment_variables:
     description: >-
       set environment variables
@@ -552,6 +556,14 @@ jobs:
               -H "Accept: application/json" \
               -d "$parameters" \
               "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
+      - checkout
+      - configure_aws
+      - run:
+          name: clean up aws server 
+          command: |
+            set +e
+            bash CircleciScripts/cleanup_aws.sh
+
   post_integrationtest:
     docker:
       - image: circleci/android:api-27-alpha
