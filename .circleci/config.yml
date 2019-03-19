@@ -789,8 +789,11 @@ jobs:
               exit 1
             fi 
             echo "release_version=[$release_version]"          
-            bumpversion_repo_user=aws-amplify
-            bumpversion_repo_name=aws-sdk-android
+            bumpversion_repo_user=${CIRCLE_PROJECT_USERNAME}
+            bumpversion_repo_name=${CIRCLE_PROJECT_REPONAME}
+            echo "bumpversion_repo_user:$bumpversion_repo_user"
+            echo "bumpversion_repo_name:$bumpversion_repo_name"
+            
             bump_version_message="[bump version $release_version]"
             bump_version_pr_title="[bump version $release_version]"
             target_branch=develop
