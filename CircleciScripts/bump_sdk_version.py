@@ -3,7 +3,7 @@ from utils import getmodules
 from utils import replacefiles
 import sys
 import os
-def bump_pomxml(filename, newsdkversion, newasfversion):
+def bump_pomxml(filename, newsdkversion):
     tree = etree.parse(filename)
     root = tree.getroot()
     namespaces = root.nsmap
@@ -20,7 +20,7 @@ def bump_pomxml(filename, newsdkversion, newasfversion):
     for dependency in root.findall("./dependencies/dependency[{0}]".format(groupIdFilter), namespaces):
         newversion = newsdkversion
         if dependency.find("artifactId",namespaces).text == "aws-android-sdk-cognitoidentityprovider-asf":
-            newversion = newasfversion
+            continue
         dependencyVersion = dependency.find("version", namespaces)
         if dependencyVersion is not None:
             dependencyVersion.text = newversion
@@ -34,7 +34,7 @@ def bump_pomxml(filename, newsdkversion, newasfversion):
 
 root = sys.argv[1]
 newsdkversion = sys.argv[2]
-newasfversion = sys.argv[3]
+ 
 
 #replace version number in pom.xml
 modules = getmodules(root)
@@ -42,7 +42,7 @@ modules.append('') # add root pom.xml
 for module in modules:
     pomfile = os.path.join(root,module, "pom.xml")
     if os.path.isfile(pomfile):
-        bump_pomxml(pomfile, newsdkversion, newasfversion)
+        bump_pomxml(pomfile, newsdkversion)
 
 
 #define which files whose version number should be replaced and how to replace
