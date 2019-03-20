@@ -61,6 +61,14 @@ replaces = [
             "aws-android-sdk-core/src/main/java/com/amazonaws/util/VersionInfoUtils.java"
         ]       
     } ,  
+    {
+        "match" : '".*", VersionInfoUtils.getVersion', 
+        "replace" : '"[version]", VersionInfoUtils.getVersion',
+        "files" : [
+            "aws-android-sdk-core/src/test/java/com/amazonaws/util/VersionInfoUtilsTest.java"
+        ]       
+    } ,
+
 ]
 
 #replace version number in other files

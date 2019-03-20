@@ -76,6 +76,12 @@ commands:
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
             echo "export release_type=$release_type" >> $BASH_ENV
 
+            pre_name=$(echo "${CIRCLE_SHA1}" | cut -c1-5)
+            override_test_varaible_name=OVERRIDE_TEST_${pre_name}
+            echo "export override_test_varaible_name=$override_test_varaible_name" >> $BASH_ENV   
+            
+
+
   setup_emulator:
     description: >-
       setup emulator
@@ -199,7 +205,9 @@ commands:
       - run:
           name: checkiftestcanoverrided 
           command: |
-              if [ "${OVERRIDE_TEST}" == "TRUE" ]; then
+              echo "override_test_varaible_name=$override_test_varaible_name"
+              override_test_value=$(eval "echo $"${override_test_varaible_name}"")
+              if [ "${override_test_value}" == "TRUE" ]; then
                 echo "project enviroment variabe OVERRIDE_TEST is set with TRUE, skip all tests"
                 circleci step halt
               fi    
@@ -547,15 +555,21 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - skip_job_if_required
+      - set_enviroment_variables
       - run:
           name: reset OVERRIDE_TEST environment variabe 
           command: |
-            parameters='{"name":"OVERRIDE_TEST","value":"FALSE"}'
-            curl -X POST \
-              -H "Content-type: application/json" \
-              -H "Accept: application/json" \
-              -d "$parameters" \
-              "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
+            echo "override_test_varaible_name=$override_test_varaible_name"
+            override_test_value=$(eval "echo $"${override_test_varaible_name}"")
+            if ! [ -z "$override_test_varaible_name" ]
+            then
+              parameters='{"name":"${override_test_varaible_name}","value":"FALSE"}'
+              curl -X POST \
+                -H "Content-type: application/json" \
+                -H "Accept: application/json" \
+                -d "$parameters" \
+                "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
+            fi
       - checkout
       - configure_aws
       - run:
@@ -588,6 +602,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - skip_job_if_required
+      - set_enviroment_variables
       - override_test_job
       - checkout
       - skip_job_if_triggered_by_circleci      
@@ -809,7 +824,7 @@ jobs:
           name: bump version
           command: |
             cp -R ${bumpversion_repo_name}/CircleciScripts/ CircleciScripts/
-            python3 CircleciScripts/bump_sdk_version.py "$(pwd)/${bumpversion_repo_name}" $release_version 1.0.0
+            python3 CircleciScripts/bump_sdk_version.py "$(pwd)/${bumpversion_repo_name}" $release_version
       - bump_version_post
 
   merge_to_master:
