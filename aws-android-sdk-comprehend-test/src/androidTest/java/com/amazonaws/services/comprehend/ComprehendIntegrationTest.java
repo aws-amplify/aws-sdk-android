@@ -31,7 +31,7 @@ public class ComprehendIntegrationTest extends AWSTestBase {
     /** The Comprehend client for all tests to use */
     protected static AmazonComprehendClient comprehendClient;
 
-    private static final String ENGLISH_TEXT = "Sun sometimes shines in Seattle";
+    private static final String ENGLISH_TEXT = "Sun sometimes shines in Seattle!!";
 
     private static final String SPANISH_TEXT = "Sun a veces brilla en Seattle";
 
