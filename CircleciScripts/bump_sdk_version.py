@@ -51,7 +51,8 @@ replaces = [
         "match" : 'fabric-version=.*', 
         "replace" : 'fabric-version=[version]',
         "files" : [
-            "aws-android-sdk-cognito/src/main/resources/fabric/com.amazonaws.aws-android-sdk-cognito.properties"
+            "aws-android-sdk-cognito/src/main/resources/fabric/com.amazonaws.aws-android-sdk-cognito.properties",
+            "aws-android-sdk-core/src/main/resources/fabric/com.amazonaws.aws-android-sdk-core.properties"
         ]       
     } ,
     {

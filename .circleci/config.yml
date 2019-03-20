@@ -76,7 +76,7 @@ commands:
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
             echo "export release_type=$release_type" >> $BASH_ENV
 
-            pre_name=$(echo "${CIRCLE_SHA1}" | cut -c1-5)
+            pre_name=$(echo "${CIRCLE_SHA1}" | cut -c1-7)
             override_test_varaible_name=OVERRIDE_TEST_${pre_name}
             echo "export override_test_varaible_name=$override_test_varaible_name" >> $BASH_ENV   
             
@@ -213,7 +213,7 @@ commands:
               fi    
   skip_job_if_required:
     description: >-
-      skip the test job for ciecleci script test
+      skip job unless required
     steps:
       - run:
           name: checkifjobcanskip 
@@ -557,13 +557,17 @@ jobs:
       - skip_job_if_required
       - set_enviroment_variables
       - run:
-          name: reset OVERRIDE_TEST environment variabe 
+          name: get ovrride test variabe name 
           command: |
             echo "override_test_varaible_name=$override_test_varaible_name"
+      - run:
+          name: reset OVERRIDE_TEST environment variabe 
+          command: |
             override_test_value=$(eval "echo $"${override_test_varaible_name}"")
-            if ! [ -z "$override_test_varaible_name" ]
+            if ! [ -z "$override_test_value" ]
             then
-              parameters='{"name":"${override_test_varaible_name}","value":"FALSE"}'
+               echo "reset  ${override_test_varaible_name} value"
+              parameters='{"name":"'${override_test_varaible_name}'","value":"FALSE"}'
               curl -X POST \
                 -H "Content-type: application/json" \
                 -H "Accept: application/json" \
