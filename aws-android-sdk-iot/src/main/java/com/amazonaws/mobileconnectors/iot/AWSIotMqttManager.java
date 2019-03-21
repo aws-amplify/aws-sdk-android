@@ -162,7 +162,10 @@ public class AWSIotMqttManager {
      */
     private boolean metricsIsEnabled = true;
 
-    /** User metadata string. */
+    /**
+     * User metadata string. getVersion method returns the SDK version that will be sent in
+     * the mqtt connect message if metrics collection is enabled.
+     */
     String userMetaData = "?SDK=Android&Version=" + VersionInfoUtils.getVersion();
 
     /**
