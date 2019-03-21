@@ -211,7 +211,7 @@ commands:
                 echo "project enviroment variabe OVERRIDE_TEST is set with TRUE, skip all tests"
                 circleci step halt
               fi    
-  skip_job_unless_required:
+  skip_job_if_required:
     description: >-
       skip job unless required
     steps:
@@ -239,7 +239,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - generate_gradle_wrapper
       - setup_android_platform23
@@ -264,7 +264,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required      
+      - skip_job_if_required      
       - checkout
       - generate_gradle_wrapper
       - run:
@@ -299,7 +299,7 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - override_test_job
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - skip_job_if_triggered_by_circleci
       - generate_gradle_wrapper
@@ -327,7 +327,7 @@ jobs:
     docker:
       - image:  circleci/golang:1.11
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - set_enviroment_variables
       - run:
@@ -346,7 +346,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - set_enviroment_variables
       - run:
@@ -423,7 +423,7 @@ jobs:
     macos:
       xcode: "10.1.0"  # Xcode version number does not matter here, we just need a MacOS image
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - configure_aws
       - set_enviroment_variables
@@ -488,7 +488,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - configure_aws
       - set_enviroment_variables
@@ -554,7 +554,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - set_enviroment_variables
       - run:
           name: get ovrride test variabe name 
@@ -588,7 +588,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - run:
           name: prepare
           command: echo "post_integrationtest"          
@@ -605,7 +605,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - set_enviroment_variables
       - override_test_job
       - checkout
@@ -663,7 +663,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - set_enviroment_variables
-      - skip_job_unless_required
+      - skip_job_if_required
       - override_test_job      
       - checkout
       - skip_job_if_triggered_by_circleci      
@@ -710,7 +710,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - set_enviroment_variables
       - quit_for_nominorversion
       - checkout  
@@ -743,7 +743,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - set_enviroment_variables
       - quit_for_nominorversion
       - checkout  
@@ -774,7 +774,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - set_enviroment_variables
       - checkout  
       - run: 
@@ -838,7 +838,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - set_enviroment_variables
       - run:
@@ -871,7 +871,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_unless_required
+      - skip_job_if_required
       - checkout
       - set_enviroment_variables
       - run:
