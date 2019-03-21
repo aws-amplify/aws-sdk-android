@@ -13,6 +13,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.VersionInfoUtils;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -90,6 +91,8 @@ public class AWSIotMqttManagerTest {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
 
+        // UserMetaData field before setting additional metadata
+        assertEquals(testClient.userMetaData, "?SDK=Android&Version=" + VersionInfoUtils.getVersion());
         // Set user metadata
         Map<String, String> userMetaData = new HashMap<String, String>();
         userMetaData.put("AFRSDK", "Android");
@@ -108,7 +111,8 @@ public class AWSIotMqttManagerTest {
         assertEquals(100L, (long)testClient.getOfflinePublishQueueBound());
         assertEquals(TEST_ENDPOINT_PREFIX, testClient.getAccountEndpointPrefix());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
-        assertNotNull(testClient.userMetaData);
+        assertEquals(testClient.userMetaData, "?SDK=Android&Version=" + VersionInfoUtils.getVersion() +
+                "&AFRSDK=Android&AFRSDKVersion=1.0.0&AFRLibVersion=1.4.1");
 
 
         testClient.setAutoReconnect(false);
