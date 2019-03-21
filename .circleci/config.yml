@@ -662,6 +662,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
+      - set_enviroment_variables
       - skip_job_if_required
       - override_test_job      
       - checkout
