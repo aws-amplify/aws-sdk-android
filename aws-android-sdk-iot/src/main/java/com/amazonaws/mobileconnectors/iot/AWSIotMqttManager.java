@@ -162,18 +162,16 @@ public class AWSIotMqttManager {
      */
     private boolean metricsIsEnabled = true;
 
-    /** User metadata string. */
-    String userMetaData;
+    /**
+     * User metadata string. getVersion method returns the SDK version that will be sent in
+     * the mqtt connect message if metrics collection is enabled.
+     */
+    String userMetaData = "?SDK=Android&Version=" + VersionInfoUtils.getVersion();
 
     /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
     private final String endpoint;
-
-    /**
-     * The SDK version that will be sent in the mqtt connect message if metrics collection is enabled.
-     */
-    private static final String SDK_VERSION = VersionInfoUtils.getVersion();
 
     /**
      * Turning on/off metrics collection. By default metrics collection is enabled.
@@ -219,7 +217,7 @@ public class AWSIotMqttManager {
      * @param userMetaDataMap userMetaData map
      */
     public void addUserMetaData(Map<String, String> userMetaDataMap) {
-        StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + SDK_VERSION);
+        StringBuilder userMetadata = new StringBuilder(this.userMetaData);
         int baseLength = userMetadata.length();
 
         if (userMetaDataMap != null) {
