@@ -1092,7 +1092,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
 
       - integrationtest:
           name: transcribe
