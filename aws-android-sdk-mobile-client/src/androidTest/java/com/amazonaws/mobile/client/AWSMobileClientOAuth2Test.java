@@ -71,7 +71,7 @@ public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
         auth.signOut();
     }
 
-    @Ignore("Full automation of this scenario is not supported, manual intervention is needed")
+    @Ignore("Full automation of this scenario is not supported, manual intervention is needed.")
     @Test
     public void testShowSignInSignOutAuth0() throws InterruptedException, JSONException {
         AWSMobileClientUITestActivity.intents.clear();
