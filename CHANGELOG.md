@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
+
+### Misc. Updates
+
+* **AWS IoT**
+  * Fixed an internal SDK usage metrics tracker.
+
 ## [Release 2.12.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.5)
 
 ### New Features
