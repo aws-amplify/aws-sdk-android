@@ -921,7 +921,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -932,6 +933,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: autoscaling
           testmodule: aws-android-sdk-autoscaling-test
@@ -942,6 +944,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: cloudwatch
           testmodule: aws-android-sdk-cloudwatch-test
@@ -951,7 +954,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop              
+                - develop
+                - iot-alpn-support             
       - integrationtest:
           name: comprehend
           testmodule: aws-android-sdk-comprehend-test
@@ -962,6 +966,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: ddb-mapper
           testmodule: aws-android-sdk-ddb-mapper-test
@@ -972,6 +977,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: ddb
           testmodule: aws-android-sdk-ddb-test
@@ -982,6 +988,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: elb
           testmodule: aws-android-sdk-elb-test
@@ -992,6 +999,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: iot
           testmodule: aws-android-sdk-iot-test
@@ -1001,7 +1009,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: kinesis
           testmodule: aws-android-sdk-kinesis-test
@@ -1012,6 +1021,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: lambda
           testmodule: aws-android-sdk-lambda-test
@@ -1034,6 +1044,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: rekognition
           testmodule: aws-android-sdk-rekognition-test
@@ -1044,6 +1055,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: s3
           testmodule: aws-android-sdk-s3-test
@@ -1054,6 +1066,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: sdb
           testmodule: aws-android-sdk-sdb-test
@@ -1063,7 +1076,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop                                 
+                - develop
+                - iot-alpn-support                                
       - integrationtest:
           name: ses
           testmodule: aws-android-sdk-ses-test
@@ -1073,7 +1087,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop                                 
+                - develop
+                - iot-alpn-support                                
       - integrationtest:
           name: sns
           testmodule: aws-android-sdk-sns-test
@@ -1083,7 +1098,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: sqs
           testmodule: aws-android-sdk-sqs-test
@@ -1094,7 +1110,7 @@ workflows:
               only:
                 - master
                 - develop
-
+                - iot-alpn-support
       - integrationtest:
           name: transcribe
           testmodule: aws-android-sdk-transcribe-test
@@ -1104,7 +1120,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: translate
           testmodule: aws-android-sdk-translate-test
@@ -1114,7 +1131,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
@@ -1124,7 +1142,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: CognitoIdentityProvider
           testmodule: aws-android-sdk-cognitoidentityprovider-test
@@ -1134,7 +1153,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: Core
           testmodule: aws-android-sdk-core-test
@@ -1144,7 +1164,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
+                - iot-alpn-support
       - integrationtest:
           name: CognitoAuth
           testmodule: aws-android-sdk-cognitoauth
@@ -1154,7 +1175,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop              
+                - develop
+                - iot-alpn-support             
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
@@ -1184,7 +1206,8 @@ workflows:
             branches:
               only:
                 - master
-                - develop                    
+                - develop
+                - iot-alpn-support
       - post_integrationtest:
           requires:
             - kinesisvideo-archivedmedia
