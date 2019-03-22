@@ -1,13 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-android-sdk-pom</artifactId>
   <packaging>pom</packaging>
   <name>AWS SDK for Android</name>
-  <version>2.12.5</version>
-  <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS’ cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
+  <version>2.12.6</version>
+  <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS&#8217; cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
 
   <properties>
@@ -134,7 +132,7 @@
 				<format>html</format>
 				<format>xml</format>
 			</formats>
-			<check />
+			<check/>
 		</configuration>
          </plugin>
       </plugins>
