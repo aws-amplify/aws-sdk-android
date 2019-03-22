@@ -182,21 +182,35 @@ commands:
             # This is required becaused AWSCore has a compileOnly
             # dependency on API Level 23.
             sudo yes | sdkmanager "platforms;android-23"
-  skip_job_if_triggered_by_circleci:
+  skip_test_job:
     description: >-
-      skip the job if release process is triggered by circleci
+      check if the test job can be skipped
     steps:
       - run:
-          name: check commit messange and halt job
+          name: skip the test job if the release process is triggered by circleci
           command: |
-            currentcommit="${CIRCLE_SHA1}"
-            commitmessage=$(git log --pretty=oneline ${currentcommit} | grep ${currentcommit})
-            echo $commitmessage
-            if [[ "$commitlog" =~ .*"Trigger release from circleci".* ]] 
-            then
-               echo "The release is triggered by circleci. skip the job"
+            skipflag=$(echo "${SKIPTEST_FOR_RELEASE}") |  tr '[:upper:]' '[:lower:]' 
+            if ! [ -z "${CIRCLE_TAG}" ]  && [ "$skipflag" == "true" ]
+            then 
+              tagmessage="git show ${CIRCLE_TAG}"
+              echo $tagmessage
+              if [[ "$tagmessage" =~ .*"Trigger release from circleci".* ]] 
+              then
+                 echo "The release is triggered by circleci. skip the job"
+                 circleci step halt
+              fi
+            fi
+      - run:
+          name: skip the test job if this is merged from develop by circleci
+          command: |
+            skipflag=$(echo "${SKIPTEST_FOR_MASTER}") |  tr '[:upper:]' '[:lower:]' 
+            commitmessage=$(git log --format=%B -n 1 ${CIRCLE_SHA1})
+            if [ "$skipflag" == "true" ] && [[ "$commitmessage" =~ .*"[Merge develop to master by circleci]".* ]] 
+            then 
+               echo "This is merged from develop by circleci. skip the test job"
                circleci step halt
             fi
+
 
   override_test_job:
     description: >-
@@ -207,7 +221,8 @@ commands:
           command: |
               echo "override_test_varaible_name=$override_test_varaible_name"
               override_test_value=$(eval "echo $"${override_test_varaible_name}"")
-              if [ "${override_test_value}" == "TRUE" ]; then
+              override_test_value=$(echo "${override_test_value" |  tr '[:upper:]' '[:lower:])
+              if [ "${override_test_value}" == "true" ]; then
                 echo "project enviroment variabe OVERRIDE_TEST is set with TRUE, skip all tests"
                 circleci step halt
               fi    
@@ -301,7 +316,7 @@ jobs:
       - override_test_job
       - skip_job_if_required
       - checkout
-      - skip_job_if_triggered_by_circleci
+      - skip_test_job
       - generate_gradle_wrapper
       - setup_android_platform23
       - run:
@@ -609,7 +624,7 @@ jobs:
       - set_enviroment_variables
       - override_test_job
       - checkout
-      - skip_job_if_triggered_by_circleci      
+      - skip_test_job
       - configure_aws
       - setup_android_platform23
       - run: 
@@ -666,7 +681,7 @@ jobs:
       - skip_job_if_required
       - override_test_job      
       - checkout
-      - skip_job_if_triggered_by_circleci      
+      - skip_test_job
       - configure_aws     
       - setup_android_platform23
       - run:
@@ -1197,7 +1212,7 @@ workflows:
             - sdb
             - s3
             - rekognition
-            # - polly
+            - polly
             # - machinelearning
             - lambda
             - kinesis
@@ -1208,10 +1223,15 @@ workflows:
             - comprehend
             - cloudwatch
             - autoscaling
-            - apigateway              
+            - apigateway
+            - CognitoAuth
+            - Core
+            - CognitoIdentityProvider
+            - uitest
       - uitest:
           requires:
             - build
+            - pre_integrationtest
           filters:
             branches:
               only:
@@ -1219,6 +1239,7 @@ workflows:
                 - develop
       - merge_to_master:
           requires:
+            - build_api10
             - build       
             - unittest
             - post_integrationtest
@@ -1228,6 +1249,7 @@ workflows:
                 - develop        
       - prepare_release_sdk:
           requires:
+            - build_api10
             - build       
             - unittest
             - post_integrationtest
@@ -1535,7 +1557,7 @@ workflows:
             - sdb
             - s3
             - rekognition
-            # - polly
+            - polly
             # - machinelearning
             - lambda
             - kinesis
@@ -1546,7 +1568,10 @@ workflows:
             - comprehend
             - cloudwatch
             - autoscaling
-            - apigateway            
+            - apigateway
+            - CognitoAuth
+            - Core
+            - CognitoIdentityProvider
           filters:
             branches:
               ignore: /.*/
