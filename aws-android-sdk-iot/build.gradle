@@ -31,12 +31,12 @@ dependencies {
     }
 
     implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
-    implementation 'org.conscrypt:conscrypt-android:2.0.0'
+    implementation "org.conscrypt:conscrypt-android:2.0.0"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:4.12"
     testImplementation "org.robolectric:robolectric:2.4"
     testImplementation "org.mockito:mockito-all:1.10.5"
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
     androidTestImplementation project(":aws-android-sdk-testutils")
 }
