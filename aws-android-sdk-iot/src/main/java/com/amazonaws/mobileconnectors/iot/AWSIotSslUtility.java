@@ -36,10 +36,35 @@ import org.conscrypt.OpenSSLProvider;
  */
 final class AWSIotSslUtility {
 
+    protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
+    private static final String TLS_V_1_2 = "TLSv1.2";
+    protected static int portNumber = 8883;
+
     /**
      * Utility class.
      */
     private AWSIotSslUtility() {
+    }
+
+    /**
+     * Creates a socket factory given a keystore and a portNumber.
+     *
+     * @param keyStore keystore containing a certificate and private key for
+     *            used in creating a secured socket.
+     * @param portNum Port number used for connecting to Iot
+     * @return a socket factory for use in creating a secured socket.
+     * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
+     * @throws UnrecoverableKeyException when the private key cannot be
+     *             recovered. Ususally a bad keystore password.
+     * @throws KeyStoreException when keystore cannot be created.
+     * @throws KeyManagementException when SSL context cannot be created by key
+     *             manager.
+     */
+    protected static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNum)
+            throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
+            KeyManagementException {
+        portNumber = portNum;
+        return getSocketFactoryWithKeyStore(keyStore);
     }
 
     /**
@@ -55,21 +80,22 @@ final class AWSIotSslUtility {
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.
      */
-    protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
-    private static final String TLS_V_1_2 = "TLSv1.2";
-
     public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore)
             throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
             KeyManagementException {
 
-        Security.addProvider(new OpenSSLProvider());
         SSLContext context;
 
-        try {
-            // Attempt to use Conscrypt
-            context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
-        } catch (NoSuchProviderException e) {
-            // Fallback to system SSLContext
+        if (portNumber == 443) {
+            try {
+                // Attempt to use Conscrypt
+                Security.addProvider(new OpenSSLProvider());
+                context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
+            } catch (NoSuchProviderException e) {
+                // Fallback to system SSLContext
+                context = SSLContext.getInstance(TLS_V_1_2);
+            }
+        } else {
             context = SSLContext.getInstance(TLS_V_1_2);
         }
 

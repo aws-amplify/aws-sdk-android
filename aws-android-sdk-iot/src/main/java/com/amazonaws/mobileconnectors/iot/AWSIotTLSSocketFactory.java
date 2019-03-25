@@ -25,6 +25,7 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
 import static com.amazonaws.mobileconnectors.iot.AWSIotSslUtility.ALPN_EXTENSION;
+import static com.amazonaws.mobileconnectors.iot.AWSIotSslUtility.portNumber;
 
 /**
  * AWS IoT TLS Socket Factory An extenstion to SSLSocketFactory to enable TLS
@@ -109,7 +110,7 @@ class AWSIotTLSSocketFactory extends SSLSocketFactory {
             ((SSLSocket) socket).setEnabledProtocols(new String[] {
                 "TLSv1.2"
             });
-            if (Conscrypt.isConscrypt((SSLSocket) socket)) {
+            if (portNumber == 443 && Conscrypt.isConscrypt((SSLSocket) socket)) {
                 Conscrypt.setApplicationProtocols((SSLSocket) socket, ALPN_EXTENSION);
             }
         }

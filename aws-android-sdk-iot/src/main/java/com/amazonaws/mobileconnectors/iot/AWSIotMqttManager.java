@@ -751,7 +751,7 @@ public class AWSIotMqttManager {
                 mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
             }
 
-            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore);
+            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber);
             final MqttConnectOptions options = new MqttConnectOptions();
 
             if (mqttLWT != null) {

@@ -29,7 +29,6 @@ dependencies {
     api (project(":aws-android-sdk-core")){
         exclude group: "com.google.android", module: "android"
     }
-
     implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
     implementation "org.conscrypt:conscrypt-android:2.0.0"
 
