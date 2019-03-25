@@ -187,6 +187,15 @@ commands:
       check if the test job can be skipped
     steps:
       - run:
+          name: skip the test job if commit message require skipping tests
+          command: |
+            commitmessage=$(git log --format=%B -n 1 ${CIRCLE_SHA1})
+            if [[ "$commitmessage" =~ .*"[skip test]".* ]] 
+            then 
+               echo "skip the test job required from commit message"
+               circleci step halt
+            fi        
+      - run:
           name: skip the test job if the release process is triggered by circleci
           command: |
             skipflag=$(echo "${SKIPTEST_FOR_RELEASE}") |  tr '[:upper:]' '[:lower:]' 
@@ -211,7 +220,6 @@ commands:
                circleci step halt
             fi
 
-
   override_test_job:
     description: >-
       skip the test job is project variabe OVERRIDE_TEST is set with TRUE
@@ -221,8 +229,9 @@ commands:
           command: |
               echo "override_test_varaible_name=$override_test_varaible_name"
               override_test_value=$(eval "echo $"${override_test_varaible_name}"")
-              override_test_value=$(echo "${override_test_value" |  tr '[:upper:]' '[:lower:])
-              if [ "${override_test_value}" == "true" ]; then
+              override_test_value=$(echo "${override_test_value}" |  tr '[:upper:]' '[:lower:]')
+              if [ "${override_test_value}" == "true" ]
+              then
                 echo "project enviroment variabe OVERRIDE_TEST is set with TRUE, skip all tests"
                 circleci step halt
               fi    
@@ -313,6 +322,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
+      - set_enviroment_variables
       - override_test_job
       - skip_job_if_required
       - checkout
@@ -624,7 +634,7 @@ jobs:
       - set_enviroment_variables
       - override_test_job
       - checkout
-      - skip_test_job
+      - skip_test_job      
       - configure_aws
       - setup_android_platform23
       - run: 
@@ -681,7 +691,7 @@ jobs:
       - skip_job_if_required
       - override_test_job      
       - checkout
-      - skip_test_job
+      - skip_test_job      
       - configure_aws     
       - setup_android_platform23
       - run:
