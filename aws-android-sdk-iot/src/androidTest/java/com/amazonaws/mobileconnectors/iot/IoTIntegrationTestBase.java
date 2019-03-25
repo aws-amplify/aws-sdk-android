@@ -17,7 +17,7 @@ package com.amazonaws.mobileconnectors.iot;
 
 import android.support.test.InstrumentationRegistry;
 
-import com.amazonaws.iottest.R;
+import com.amazonaws.iot.R;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONObject;

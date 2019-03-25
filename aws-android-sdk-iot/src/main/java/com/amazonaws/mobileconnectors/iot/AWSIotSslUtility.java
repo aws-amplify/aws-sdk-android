@@ -28,7 +28,6 @@ import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
-import org.conscrypt.Conscrypt;
 import org.conscrypt.OpenSSLProvider;
 
 /**
