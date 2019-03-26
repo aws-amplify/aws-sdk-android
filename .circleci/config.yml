@@ -922,6 +922,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -1002,6 +1003,7 @@ workflows:
               only:
                 - master
                 - develop
+                - iot-alpn-support
       - integrationtest:
           name: kinesis
           testmodule: aws-android-sdk-kinesis-test
