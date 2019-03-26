@@ -420,6 +420,59 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
+    public void mqttCertConnectDisconnectConnectWithALPN() throws Exception {
+
+        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
+        final ArrayList<String> messages = new ArrayList<String>();
+
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-c-reconnect", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        mqttManager.setAutoReconnect(true);
+
+        // save certificate and private key in a keystore
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
+                this.certResult.getCertificatePem(),
+                this.certResult.getKeyPair().getPrivateKey(),
+                KEYSTORE_PATH,
+                KEYSTORE_NAME,
+                KEYSTORE_PASSWORD);
+
+        // retrieve the keystore
+        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(this.certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        AWSIotMqttClientStatusCallback callback = new AWSIotMqttClientStatusCallback() {
+            @Override
+            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                statuses.add(status);
+            }
+        };
+
+        // Connect
+        mqttManager.connectUsingALPN(ks, callback);
+
+        // Wait for the operation
+        Thread.sleep(3000);
+
+        // Disconnect
+        mqttManager.disconnect();
+
+        // Wait for the operation
+        Thread.sleep(3000);
+
+        // Connect
+        mqttManager.connectUsingALPN(ks, callback);
+
+        // Wait for the operation
+        Thread.sleep(3000);
+
+        // verify connection events emitted
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost, statuses.get(2));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(3));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(4));
+
+    }
+
+    @Test
     public void mqttCertificateWithALPNReconnect() throws Exception {
         mqttCertReconnect(true);
     }
