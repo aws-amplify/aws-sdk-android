@@ -420,6 +420,11 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
+    public void mqttCertificateWithALPNReconnect() throws Exception {
+        mqttCertReconnect(true);
+    }
+
+    @Test
     public void mqttCertificateQos1WithCallbacks() throws Exception {
 
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
@@ -514,6 +519,10 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void mqttCertificateReconnect() throws Exception {
+        mqttCertReconnect(false);
+    }
+
+    public void mqttCertReconnect(final boolean alpnFLag) throws Exception {
 
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
@@ -531,13 +540,18 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // retrieve the keystore
         KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(this.certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
-        // connect to AWS IoT using keystore
-        mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
+        AWSIotMqttClientStatusCallback callback = new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
             }
-        });
+        };
+        // connect to AWS IoT using keystore
+        if (alpnFLag) {
+            mqttManager.connectUsingALPN(ks, callback);
+        } else {
+            mqttManager.connect(ks, callback);
+        }
 
         // wait for connection
         Thread.sleep(3000);
