@@ -21,22 +21,22 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response PutEventsResult
+ * JSON unmarshaller for response ListTagsForResourceResult
  */
-public class PutEventsResultJsonUnmarshaller implements
-        Unmarshaller<PutEventsResult, JsonUnmarshallerContext> {
+public class ListTagsForResourceResultJsonUnmarshaller implements
+        Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> {
 
-    public PutEventsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        PutEventsResult putEventsResult = new PutEventsResult();
+    public ListTagsForResourceResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        ListTagsForResourceResult listTagsForResourceResult = new ListTagsForResourceResult();
 
-        return putEventsResult;
+        return listTagsForResourceResult;
     }
 
-    private static PutEventsResultJsonUnmarshaller instance;
+    private static ListTagsForResourceResultJsonUnmarshaller instance;
 
-    public static PutEventsResultJsonUnmarshaller getInstance() {
+    public static ListTagsForResourceResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new PutEventsResultJsonUnmarshaller();
+            instance = new ListTagsForResourceResultJsonUnmarshaller();
         return instance;
     }
 }
