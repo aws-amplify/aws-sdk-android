@@ -27,8 +27,10 @@ public class DescribeLoadBalancersResult implements Serializable {
 
     /**
      * <p>
-     * The token to use when requesting the next set of items. If there are no
-     * additional items to return, the string is empty.
+     * A string that indicates that the response contains more items than can be
+     * returned in a single response. To receive additional items, specify this
+     * string for the <code>NextToken</code> value when requesting the next set
+     * of items. This value is null when there are no more items to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,8 +116,10 @@ public class DescribeLoadBalancersResult implements Serializable {
 
     /**
      * <p>
-     * The token to use when requesting the next set of items. If there are no
-     * additional items to return, the string is empty.
+     * A string that indicates that the response contains more items than can be
+     * returned in a single response. To receive additional items, specify this
+     * string for the <code>NextToken</code> value when requesting the next set
+     * of items. This value is null when there are no more items to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,8 +127,11 @@ public class DescribeLoadBalancersResult implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The token to use when requesting the next set of items. If there
-     *         are no additional items to return, the string is empty.
+     *         A string that indicates that the response contains more items
+     *         than can be returned in a single response. To receive additional
+     *         items, specify this string for the <code>NextToken</code> value
+     *         when requesting the next set of items. This value is null when
+     *         there are no more items to return.
      *         </p>
      */
     public String getNextToken() {
@@ -133,8 +140,10 @@ public class DescribeLoadBalancersResult implements Serializable {
 
     /**
      * <p>
-     * The token to use when requesting the next set of items. If there are no
-     * additional items to return, the string is empty.
+     * A string that indicates that the response contains more items than can be
+     * returned in a single response. To receive additional items, specify this
+     * string for the <code>NextToken</code> value when requesting the next set
+     * of items. This value is null when there are no more items to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,8 +151,12 @@ public class DescribeLoadBalancersResult implements Serializable {
      * <br/>
      *
      * @param nextToken <p>
-     *            The token to use when requesting the next set of items. If
-     *            there are no additional items to return, the string is empty.
+     *            A string that indicates that the response contains more items
+     *            than can be returned in a single response. To receive
+     *            additional items, specify this string for the
+     *            <code>NextToken</code> value when requesting the next set of
+     *            items. This value is null when there are no more items to
+     *            return.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -152,8 +165,10 @@ public class DescribeLoadBalancersResult implements Serializable {
 
     /**
      * <p>
-     * The token to use when requesting the next set of items. If there are no
-     * additional items to return, the string is empty.
+     * A string that indicates that the response contains more items than can be
+     * returned in a single response. To receive additional items, specify this
+     * string for the <code>NextToken</code> value when requesting the next set
+     * of items. This value is null when there are no more items to return.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -164,8 +179,12 @@ public class DescribeLoadBalancersResult implements Serializable {
      * <br/>
      *
      * @param nextToken <p>
-     *            The token to use when requesting the next set of items. If
-     *            there are no additional items to return, the string is empty.
+     *            A string that indicates that the response contains more items
+     *            than can be returned in a single response. To receive
+     *            additional items, specify this string for the
+     *            <code>NextToken</code> value when requesting the next set of
+     *            items. This value is null when there are no more items to
+     *            return.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

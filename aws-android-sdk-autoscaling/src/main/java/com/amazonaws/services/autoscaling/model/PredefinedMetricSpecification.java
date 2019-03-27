@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Configures a predefined metric for a target tracking policy.
+ * Represents a predefined metric for a target tracking scaling policy to use
+ * with Amazon EC2 Auto Scaling.
  * </p>
  */
 public class PredefinedMetricSpecification implements Serializable {
@@ -61,7 +62,8 @@ public class PredefinedMetricSpecification implements Serializable {
      * <li>
      * <p>
      * <code>ALBRequestCountPerTarget</code> - Number of requests completed per
-     * target in an Application Load Balancer target group.
+     * target in an Application Load Balancer or a Network Load Balancer target
+     * group.
      * </p>
      * </li>
      * </ul>
@@ -217,7 +219,8 @@ public class PredefinedMetricSpecification implements Serializable {
      * <li>
      * <p>
      * <code>ALBRequestCountPerTarget</code> - Number of requests completed per
-     * target in an Application Load Balancer target group.
+     * target in an Application Load Balancer or a Network Load Balancer target
+     * group.
      * </p>
      * </li>
      * </ul>
@@ -268,8 +271,8 @@ public class PredefinedMetricSpecification implements Serializable {
      *         <li>
      *         <p>
      *         <code>ALBRequestCountPerTarget</code> - Number of requests
-     *         completed per target in an Application Load Balancer target
-     *         group.
+     *         completed per target in an Application Load Balancer or a Network
+     *         Load Balancer target group.
      *         </p>
      *         </li>
      *         </ul>
@@ -320,7 +323,8 @@ public class PredefinedMetricSpecification implements Serializable {
      * <li>
      * <p>
      * <code>ALBRequestCountPerTarget</code> - Number of requests completed per
-     * target in an Application Load Balancer target group.
+     * target in an Application Load Balancer or a Network Load Balancer target
+     * group.
      * </p>
      * </li>
      * </ul>
@@ -371,8 +375,8 @@ public class PredefinedMetricSpecification implements Serializable {
      *            <li>
      *            <p>
      *            <code>ALBRequestCountPerTarget</code> - Number of requests
-     *            completed per target in an Application Load Balancer target
-     *            group.
+     *            completed per target in an Application Load Balancer or a
+     *            Network Load Balancer target group.
      *            </p>
      *            </li>
      *            </ul>
@@ -425,7 +429,8 @@ public class PredefinedMetricSpecification implements Serializable {
      * <li>
      * <p>
      * <code>ALBRequestCountPerTarget</code> - Number of requests completed per
-     * target in an Application Load Balancer target group.
+     * target in an Application Load Balancer or a Network Load Balancer target
+     * group.
      * </p>
      * </li>
      * </ul>
@@ -479,8 +484,8 @@ public class PredefinedMetricSpecification implements Serializable {
      *            <li>
      *            <p>
      *            <code>ALBRequestCountPerTarget</code> - Number of requests
-     *            completed per target in an Application Load Balancer target
-     *            group.
+     *            completed per target in an Application Load Balancer or a
+     *            Network Load Balancer target group.
      *            </p>
      *            </li>
      *            </ul>

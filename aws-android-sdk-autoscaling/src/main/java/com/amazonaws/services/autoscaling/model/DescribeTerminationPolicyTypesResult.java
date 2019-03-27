@@ -24,10 +24,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
      * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
-     * <code>AllocationStrategy</code>. Currently, the
-     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
-     * policies are only supported for Auto Scaling groups with
-     * <a>MixedInstancesPolicy</a>.
+     * <code>AllocationStrategy</code>.
      * </p>
      */
     private java.util.List<String> terminationPolicyTypes = new java.util.ArrayList<String>();
@@ -38,10 +35,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
      * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
-     * <code>AllocationStrategy</code>. Currently, the
-     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
-     * policies are only supported for Auto Scaling groups with
-     * <a>MixedInstancesPolicy</a>.
+     * <code>AllocationStrategy</code>.
      * </p>
      *
      * @return <p>
@@ -51,10 +45,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      *         <code>NewestInstance</code>,
      *         <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
      *         <code>OldestLaunchTemplate</code>, and
-     *         <code>AllocationStrategy</code>. Currently, the
-     *         <code>OldestLaunchTemplate</code> and
-     *         <code>AllocationStrategy</code> policies are only supported for
-     *         Auto Scaling groups with <a>MixedInstancesPolicy</a>.
+     *         <code>AllocationStrategy</code>.
      *         </p>
      */
     public java.util.List<String> getTerminationPolicyTypes() {
@@ -67,10 +58,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
      * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
-     * <code>AllocationStrategy</code>. Currently, the
-     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
-     * policies are only supported for Auto Scaling groups with
-     * <a>MixedInstancesPolicy</a>.
+     * <code>AllocationStrategy</code>.
      * </p>
      *
      * @param terminationPolicyTypes <p>
@@ -80,10 +68,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
      *            <code>OldestLaunchTemplate</code>, and
-     *            <code>AllocationStrategy</code>. Currently, the
-     *            <code>OldestLaunchTemplate</code> and
-     *            <code>AllocationStrategy</code> policies are only supported
-     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
+     *            <code>AllocationStrategy</code>.
      *            </p>
      */
     public void setTerminationPolicyTypes(java.util.Collection<String> terminationPolicyTypes) {
@@ -101,10 +86,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
      * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
-     * <code>AllocationStrategy</code>. Currently, the
-     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
-     * policies are only supported for Auto Scaling groups with
-     * <a>MixedInstancesPolicy</a>.
+     * <code>AllocationStrategy</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -117,10 +99,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
      *            <code>OldestLaunchTemplate</code>, and
-     *            <code>AllocationStrategy</code>. Currently, the
-     *            <code>OldestLaunchTemplate</code> and
-     *            <code>AllocationStrategy</code> policies are only supported
-     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
+     *            <code>AllocationStrategy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -143,10 +122,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>,
      * <code>Default</code>, <code>OldestLaunchTemplate</code>, and
-     * <code>AllocationStrategy</code>. Currently, the
-     * <code>OldestLaunchTemplate</code> and <code>AllocationStrategy</code>
-     * policies are only supported for Auto Scaling groups with
-     * <a>MixedInstancesPolicy</a>.
+     * <code>AllocationStrategy</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -159,10 +135,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, <code>Default</code>,
      *            <code>OldestLaunchTemplate</code>, and
-     *            <code>AllocationStrategy</code>. Currently, the
-     *            <code>OldestLaunchTemplate</code> and
-     *            <code>AllocationStrategy</code> policies are only supported
-     *            for Auto Scaling groups with <a>MixedInstancesPolicy</a>.
+     *            <code>AllocationStrategy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -53,7 +53,7 @@ public class DescribeLoadBalancerTargetGroupsRequest extends AmazonWebServiceReq
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 100 and the maximum value is 100.
+     * is <code>100</code> and the maximum value is <code>100</code>.
      * </p>
      */
     private Integer maxRecords;
@@ -185,12 +185,13 @@ public class DescribeLoadBalancerTargetGroupsRequest extends AmazonWebServiceReq
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 100 and the maximum value is 100.
+     * is <code>100</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @return <p>
      *         The maximum number of items to return with this call. The default
-     *         value is 100 and the maximum value is 100.
+     *         value is <code>100</code> and the maximum value is
+     *         <code>100</code>.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -200,12 +201,13 @@ public class DescribeLoadBalancerTargetGroupsRequest extends AmazonWebServiceReq
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 100 and the maximum value is 100.
+     * is <code>100</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 100 and the maximum value is 100.
+     *            default value is <code>100</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -215,7 +217,7 @@ public class DescribeLoadBalancerTargetGroupsRequest extends AmazonWebServiceReq
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 100 and the maximum value is 100.
+     * is <code>100</code> and the maximum value is <code>100</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -223,7 +225,8 @@ public class DescribeLoadBalancerTargetGroupsRequest extends AmazonWebServiceReq
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 100 and the maximum value is 100.
+     *            default value is <code>100</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

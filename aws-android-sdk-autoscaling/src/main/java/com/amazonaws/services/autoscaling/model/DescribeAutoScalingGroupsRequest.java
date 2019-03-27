@@ -28,9 +28,13 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
         Serializable {
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. Each name can be a maximum of 1600
+     * characters. By default, you can only specify up to 50 names. You can
+     * optionally increase this limit using the <code>MaxRecords</code>
+     * parameter.
+     * </p>
+     * <p>
+     * If you omit this parameter, all Auto Scaling groups are described.
      * </p>
      */
     private java.util.List<String> autoScalingGroupNames = new java.util.ArrayList<String>();
@@ -50,22 +54,31 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      */
     private Integer maxRecords;
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. Each name can be a maximum of 1600
+     * characters. By default, you can only specify up to 50 names. You can
+     * optionally increase this limit using the <code>MaxRecords</code>
+     * parameter.
+     * </p>
+     * <p>
+     * If you omit this parameter, all Auto Scaling groups are described.
      * </p>
      *
      * @return <p>
-     *         The names of the Auto Scaling groups. You can specify up to
-     *         <code>MaxRecords</code> names. If you omit this parameter, all
-     *         Auto Scaling groups are described.
+     *         The names of the Auto Scaling groups. Each name can be a maximum
+     *         of 1600 characters. By default, you can only specify up to 50
+     *         names. You can optionally increase this limit using the
+     *         <code>MaxRecords</code> parameter.
+     *         </p>
+     *         <p>
+     *         If you omit this parameter, all Auto Scaling groups are
+     *         described.
      *         </p>
      */
     public java.util.List<String> getAutoScalingGroupNames() {
@@ -74,15 +87,24 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. Each name can be a maximum of 1600
+     * characters. By default, you can only specify up to 50 names. You can
+     * optionally increase this limit using the <code>MaxRecords</code>
+     * parameter.
+     * </p>
+     * <p>
+     * If you omit this parameter, all Auto Scaling groups are described.
      * </p>
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. Each name can be a
+     *            maximum of 1600 characters. By default, you can only specify
+     *            up to 50 names. You can optionally increase this limit using
+     *            the <code>MaxRecords</code> parameter.
+     *            </p>
+     *            <p>
+     *            If you omit this parameter, all Auto Scaling groups are
+     *            described.
      *            </p>
      */
     public void setAutoScalingGroupNames(java.util.Collection<String> autoScalingGroupNames) {
@@ -96,18 +118,27 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. Each name can be a maximum of 1600
+     * characters. By default, you can only specify up to 50 names. You can
+     * optionally increase this limit using the <code>MaxRecords</code>
+     * parameter.
+     * </p>
+     * <p>
+     * If you omit this parameter, all Auto Scaling groups are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. Each name can be a
+     *            maximum of 1600 characters. By default, you can only specify
+     *            up to 50 names. You can optionally increase this limit using
+     *            the <code>MaxRecords</code> parameter.
+     *            </p>
+     *            <p>
+     *            If you omit this parameter, all Auto Scaling groups are
+     *            described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,18 +157,27 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. Each name can be a maximum of 1600
+     * characters. By default, you can only specify up to 50 names. You can
+     * optionally increase this limit using the <code>MaxRecords</code>
+     * parameter.
+     * </p>
+     * <p>
+     * If you omit this parameter, all Auto Scaling groups are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. Each name can be a
+     *            maximum of 1600 characters. By default, you can only specify
+     *            up to 50 names. You can optionally increase this limit using
+     *            the <code>MaxRecords</code> parameter.
+     *            </p>
+     *            <p>
+     *            If you omit this parameter, all Auto Scaling groups are
+     *            described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -214,12 +254,13 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @return <p>
      *         The maximum number of items to return with this call. The default
-     *         value is 50 and the maximum value is 100.
+     *         value is <code>50</code> and the maximum value is
+     *         <code>100</code>.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -229,12 +270,13 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 50 and the maximum value is 100.
+     *            default value is <code>50</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -244,7 +286,7 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -252,7 +294,8 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 50 and the maximum value is 100.
+     *            default value is <code>50</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
