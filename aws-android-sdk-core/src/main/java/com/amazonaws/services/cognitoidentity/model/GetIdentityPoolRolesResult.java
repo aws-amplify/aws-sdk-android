@@ -48,7 +48,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      * How users for a specific identity provider are to mapped to roles. This
      * is a String-to-<a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      */
     private java.util.Map<String, RoleMapping> roleMappings;
@@ -202,7 +202,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      * How users for a specific identity provider are to mapped to roles. This
      * is a String-to-<a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      *
      * @return <p>
@@ -210,7 +210,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      *         roles. This is a String-to-<a>RoleMapping</a> object map. The
      *         string identifies the identity provider, for example,
      *         "graph.facebook.com" or
-     *         "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *         "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *         .
      *         </p>
      */
@@ -223,7 +223,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      * How users for a specific identity provider are to mapped to roles. This
      * is a String-to-<a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      *
      * @param roleMappings <p>
@@ -231,7 +231,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      *            roles. This is a String-to-<a>RoleMapping</a> object map. The
      *            string identifies the identity provider, for example,
      *            "graph.facebook.com" or
-     *            "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *            "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *            .
      *            </p>
      */
@@ -244,7 +244,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      * How users for a specific identity provider are to mapped to roles. This
      * is a String-to-<a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -255,7 +255,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      *            roles. This is a String-to-<a>RoleMapping</a> object map. The
      *            string identifies the identity provider, for example,
      *            "graph.facebook.com" or
-     *            "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *            "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -272,7 +272,7 @@ public class GetIdentityPoolRolesResult implements Serializable {
      * How users for a specific identity provider are to mapped to roles. This
      * is a String-to-<a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * The method adds a new key-value pair into RoleMappings parameter, and
