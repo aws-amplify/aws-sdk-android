@@ -20,6 +20,9 @@ import org.json.JSONObject;
 import org.junit.Before;
 
 import java.io.IOException;
+
+import com.amazonaws.services.kinesisvideo.AWSKinesisVideo;
+import com.amazonaws.services.kinesisvideo.AWSKinesisVideoClient;
 import com.amazonaws.testutils.AWSTestBase;
 
 public abstract class KinesisVideoArchivedMediaIntegrationTestBase extends AWSTestBase {
@@ -27,6 +30,8 @@ public abstract class KinesisVideoArchivedMediaIntegrationTestBase extends AWSTe
     /** Package name in testconfiguration.json */
     protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
             getResources().getString(R.string.package_name);
+
+    protected static AWSKinesisVideo kvClient;
 
     public static JSONObject getPackageConfigure()  {
         return getPackageConfigure(PACKAGE_NAME);
@@ -39,5 +44,6 @@ public abstract class KinesisVideoArchivedMediaIntegrationTestBase extends AWSTe
     @Before
     public void setUp() throws IOException {
         setUpCredentials();
+        kvClient = new AWSKinesisVideoClient(credentials);
     }
 }
