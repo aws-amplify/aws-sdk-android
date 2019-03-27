@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,6 +106,18 @@ public class RegionTest {
         final ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(5);
         final AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, null, conf);
+        assertNotNull(asc);
+        assertSame(asc.conf, conf);
+        assertNull(asc.provider);
+    }
+
+    @Test
+    public void testEUNorth1() {
+        final Region euNorth1 = Region.getRegion(Regions.EU_NORTH_1);
+        assertNotNull(euNorth1);
+        final ClientConfiguration conf = new ClientConfiguration();
+        conf.setConnectionTimeout(5);
+        final AmazonServiceClient asc = euNorth1.createClient(AmazonServiceClient.class, null, conf);
         assertNotNull(asc);
         assertSame(asc.conf, conf);
         assertNull(asc.provider);
