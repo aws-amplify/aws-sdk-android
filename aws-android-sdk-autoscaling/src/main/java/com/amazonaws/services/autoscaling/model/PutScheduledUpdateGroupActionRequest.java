@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html"
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html"
  * >Scheduled Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
@@ -66,8 +66,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
+     * UTC/GMT only and in quotes (for example,
+     * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
      * If you specify <code>Recurrence</code> and <code>StartTime</code>, Amazon
@@ -91,9 +92,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The recurring schedule for this action, in Unix cron syntax format. For
-     * more information about this format, see <a
-     * href="http://crontab.org">Crontab</a>.
+     * The recurring schedule for this action, in Unix cron syntax format. This
+     * format consists of five fields separated by white spaces: [Minute] [Hour]
+     * [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
+     * (for example, <code>"30 0 1 1,6,12 *"</code>). For more information about
+     * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -291,8 +294,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
+     * UTC/GMT only and in quotes (for example,
+     * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
      * If you specify <code>Recurrence</code> and <code>StartTime</code>, Amazon
@@ -305,9 +309,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * </p>
      *
      * @return <p>
-     *         The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
-     *         format in UTC/GMT only (for example,
-     *         <code>2014-06-01T00:00:00Z</code>).
+     *         The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format
+     *         in UTC/GMT only and in quotes (for example,
+     *         <code>"2019-06-01T00:00:00Z"</code>).
      *         </p>
      *         <p>
      *         If you specify <code>Recurrence</code> and <code>StartTime</code>
@@ -325,8 +329,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
+     * UTC/GMT only and in quotes (for example,
+     * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
      * If you specify <code>Recurrence</code> and <code>StartTime</code>, Amazon
@@ -339,9 +344,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * </p>
      *
      * @param startTime <p>
-     *            The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
-     *            format in UTC/GMT only (for example,
-     *            <code>2014-06-01T00:00:00Z</code>).
+     *            The time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     *            format in UTC/GMT only and in quotes (for example,
+     *            <code>"2019-06-01T00:00:00Z"</code>).
      *            </p>
      *            <p>
      *            If you specify <code>Recurrence</code> and
@@ -360,8 +365,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in
-     * UTC/GMT only (for example, <code>2014-06-01T00:00:00Z</code>).
+     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
+     * UTC/GMT only and in quotes (for example,
+     * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
      * If you specify <code>Recurrence</code> and <code>StartTime</code>, Amazon
@@ -377,9 +383,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * together.
      *
      * @param startTime <p>
-     *            The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ"
-     *            format in UTC/GMT only (for example,
-     *            <code>2014-06-01T00:00:00Z</code>).
+     *            The time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     *            format in UTC/GMT only and in quotes (for example,
+     *            <code>"2019-06-01T00:00:00Z"</code>).
      *            </p>
      *            <p>
      *            If you specify <code>Recurrence</code> and
@@ -452,9 +458,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The recurring schedule for this action, in Unix cron syntax format. For
-     * more information about this format, see <a
-     * href="http://crontab.org">Crontab</a>.
+     * The recurring schedule for this action, in Unix cron syntax format. This
+     * format consists of five fields separated by white spaces: [Minute] [Hour]
+     * [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
+     * (for example, <code>"30 0 1 1,6,12 *"</code>). For more information about
+     * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -464,8 +472,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *
      * @return <p>
      *         The recurring schedule for this action, in Unix cron syntax
-     *         format. For more information about this format, see <a
-     *         href="http://crontab.org">Crontab</a>.
+     *         format. This format consists of five fields separated by white
+     *         spaces: [Minute] [Hour] [Day_of_Month] [Month_of_Year]
+     *         [Day_of_Week]. The value must be in quotes (for example,
+     *         <code>"30 0 1 1,6,12 *"</code>). For more information about this
+     *         format, see <a href="http://crontab.org">Crontab</a>.
      *         </p>
      */
     public String getRecurrence() {
@@ -474,9 +485,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The recurring schedule for this action, in Unix cron syntax format. For
-     * more information about this format, see <a
-     * href="http://crontab.org">Crontab</a>.
+     * The recurring schedule for this action, in Unix cron syntax format. This
+     * format consists of five fields separated by white spaces: [Minute] [Hour]
+     * [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
+     * (for example, <code>"30 0 1 1,6,12 *"</code>). For more information about
+     * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -486,8 +499,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *
      * @param recurrence <p>
      *            The recurring schedule for this action, in Unix cron syntax
-     *            format. For more information about this format, see <a
-     *            href="http://crontab.org">Crontab</a>.
+     *            format. This format consists of five fields separated by white
+     *            spaces: [Minute] [Hour] [Day_of_Month] [Month_of_Year]
+     *            [Day_of_Week]. The value must be in quotes (for example,
+     *            <code>"30 0 1 1,6,12 *"</code>). For more information about
+     *            this format, see <a href="http://crontab.org">Crontab</a>.
      *            </p>
      */
     public void setRecurrence(String recurrence) {
@@ -496,9 +512,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The recurring schedule for this action, in Unix cron syntax format. For
-     * more information about this format, see <a
-     * href="http://crontab.org">Crontab</a>.
+     * The recurring schedule for this action, in Unix cron syntax format. This
+     * format consists of five fields separated by white spaces: [Minute] [Hour]
+     * [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
+     * (for example, <code>"30 0 1 1,6,12 *"</code>). For more information about
+     * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -511,8 +529,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *
      * @param recurrence <p>
      *            The recurring schedule for this action, in Unix cron syntax
-     *            format. For more information about this format, see <a
-     *            href="http://crontab.org">Crontab</a>.
+     *            format. This format consists of five fields separated by white
+     *            spaces: [Minute] [Hour] [Day_of_Month] [Month_of_Year]
+     *            [Day_of_Week]. The value must be in quotes (for example,
+     *            <code>"30 0 1 1,6,12 *"</code>). For more information about
+     *            this format, see <a href="http://crontab.org">Crontab</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

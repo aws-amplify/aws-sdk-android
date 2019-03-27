@@ -21,7 +21,7 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of groups allowed for your AWS account. The default
-     * limit is 20 per region.
+     * limit is 200 per region.
      * </p>
      */
     private Integer maxNumberOfAutoScalingGroups;
@@ -29,7 +29,7 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of launch configurations allowed for your AWS account.
-     * The default limit is 100 per region.
+     * The default limit is 200 per region.
      * </p>
      */
     private Integer maxNumberOfLaunchConfigurations;
@@ -51,12 +51,12 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of groups allowed for your AWS account. The default
-     * limit is 20 per region.
+     * limit is 200 per region.
      * </p>
      *
      * @return <p>
      *         The maximum number of groups allowed for your AWS account. The
-     *         default limit is 20 per region.
+     *         default limit is 200 per region.
      *         </p>
      */
     public Integer getMaxNumberOfAutoScalingGroups() {
@@ -66,12 +66,12 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of groups allowed for your AWS account. The default
-     * limit is 20 per region.
+     * limit is 200 per region.
      * </p>
      *
      * @param maxNumberOfAutoScalingGroups <p>
      *            The maximum number of groups allowed for your AWS account. The
-     *            default limit is 20 per region.
+     *            default limit is 200 per region.
      *            </p>
      */
     public void setMaxNumberOfAutoScalingGroups(Integer maxNumberOfAutoScalingGroups) {
@@ -81,7 +81,7 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of groups allowed for your AWS account. The default
-     * limit is 20 per region.
+     * limit is 200 per region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,7 +89,7 @@ public class DescribeAccountLimitsResult implements Serializable {
      *
      * @param maxNumberOfAutoScalingGroups <p>
      *            The maximum number of groups allowed for your AWS account. The
-     *            default limit is 20 per region.
+     *            default limit is 200 per region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -103,12 +103,12 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of launch configurations allowed for your AWS account.
-     * The default limit is 100 per region.
+     * The default limit is 200 per region.
      * </p>
      *
      * @return <p>
      *         The maximum number of launch configurations allowed for your AWS
-     *         account. The default limit is 100 per region.
+     *         account. The default limit is 200 per region.
      *         </p>
      */
     public Integer getMaxNumberOfLaunchConfigurations() {
@@ -118,12 +118,12 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of launch configurations allowed for your AWS account.
-     * The default limit is 100 per region.
+     * The default limit is 200 per region.
      * </p>
      *
      * @param maxNumberOfLaunchConfigurations <p>
      *            The maximum number of launch configurations allowed for your
-     *            AWS account. The default limit is 100 per region.
+     *            AWS account. The default limit is 200 per region.
      *            </p>
      */
     public void setMaxNumberOfLaunchConfigurations(Integer maxNumberOfLaunchConfigurations) {
@@ -133,7 +133,7 @@ public class DescribeAccountLimitsResult implements Serializable {
     /**
      * <p>
      * The maximum number of launch configurations allowed for your AWS account.
-     * The default limit is 100 per region.
+     * The default limit is 200 per region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +141,7 @@ public class DescribeAccountLimitsResult implements Serializable {
      *
      * @param maxNumberOfLaunchConfigurations <p>
      *            The maximum number of launch configurations allowed for your
-     *            AWS account. The default limit is 100 per region.
+     *            AWS account. The default limit is 200 per region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

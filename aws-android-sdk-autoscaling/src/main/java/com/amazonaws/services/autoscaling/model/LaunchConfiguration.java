@@ -83,8 +83,12 @@ public class LaunchConfiguration implements Serializable {
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter can only be used if you are launching EC2-Classic
      * instances. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -97,11 +101,17 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if you specify
-     * a ClassicLink-enabled VPC, and cannot be used otherwise. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Conditional: This parameter is required if you specify a
+     * ClassicLink-enabled VPC, and cannot be used otherwise.
      * </p>
      */
     private java.util.List<String> classicLinkVPCSecurityGroups = new java.util.ArrayList<String>();
@@ -550,8 +560,12 @@ public class LaunchConfiguration implements Serializable {
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter can only be used if you are launching EC2-Classic
      * instances. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -564,9 +578,12 @@ public class LaunchConfiguration implements Serializable {
      *         instances to. This parameter can only be used if you are
      *         launching EC2-Classic instances. For more information, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *         >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *         >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *         Instances</i> and <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *         >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2
+     *         Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getClassicLinkVPCId() {
@@ -578,8 +595,12 @@ public class LaunchConfiguration implements Serializable {
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter can only be used if you are launching EC2-Classic
      * instances. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -592,9 +613,12 @@ public class LaunchConfiguration implements Serializable {
      *            instances to. This parameter can only be used if you are
      *            launching EC2-Classic instances. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
+     *            EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setClassicLinkVPCId(String classicLinkVPCId) {
@@ -606,8 +630,12 @@ public class LaunchConfiguration implements Serializable {
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
      * to. This parameter can only be used if you are launching EC2-Classic
      * instances. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -623,9 +651,12 @@ public class LaunchConfiguration implements Serializable {
      *            instances to. This parameter can only be used if you are
      *            launching EC2-Classic instances. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
+     *            EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -638,21 +669,32 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if you specify
-     * a ClassicLink-enabled VPC, and cannot be used otherwise. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Conditional: This parameter is required if you specify a
+     * ClassicLink-enabled VPC, and cannot be used otherwise.
      * </p>
      *
      * @return <p>
      *         The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. This parameter is required if you
-     *         specify a ClassicLink-enabled VPC, and cannot be used otherwise.
-     *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *         >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *         Guide</i>.
+     *         <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *         >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *         Instances</i> and <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *         >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2
+     *         Auto Scaling User Guide</i>.
+     *         </p>
+     *         <p>
+     *         Conditional: This parameter is required if you specify a
+     *         ClassicLink-enabled VPC, and cannot be used otherwise.
      *         </p>
      */
     public java.util.List<String> getClassicLinkVPCSecurityGroups() {
@@ -662,21 +704,33 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if you specify
-     * a ClassicLink-enabled VPC, and cannot be used otherwise. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Conditional: This parameter is required if you specify a
+     * ClassicLink-enabled VPC, and cannot be used otherwise.
      * </p>
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. This parameter is required
-     *            if you specify a ClassicLink-enabled VPC, and cannot be used
-     *            otherwise. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *            Guide</i>.
+     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
+     *            EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            Conditional: This parameter is required if you specify a
+     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      */
     public void setClassicLinkVPCSecurityGroups(
@@ -693,11 +747,17 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if you specify
-     * a ClassicLink-enabled VPC, and cannot be used otherwise. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Conditional: This parameter is required if you specify a
+     * ClassicLink-enabled VPC, and cannot be used otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -705,12 +765,18 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. This parameter is required
-     *            if you specify a ClassicLink-enabled VPC, and cannot be used
-     *            otherwise. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *            Guide</i>.
+     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
+     *            EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            Conditional: This parameter is required if you specify a
+     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -730,11 +796,17 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. This parameter is required if you specify
-     * a ClassicLink-enabled VPC, and cannot be used otherwise. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
+     * and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Conditional: This parameter is required if you specify a
+     * ClassicLink-enabled VPC, and cannot be used otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -742,12 +814,18 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. This parameter is required
-     *            if you specify a ClassicLink-enabled VPC, and cannot be used
-     *            otherwise. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
-     *            >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User
-     *            Guide</i>.
+     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+     *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
+     *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
+     *            EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            Conditional: This parameter is required if you specify a
+     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
