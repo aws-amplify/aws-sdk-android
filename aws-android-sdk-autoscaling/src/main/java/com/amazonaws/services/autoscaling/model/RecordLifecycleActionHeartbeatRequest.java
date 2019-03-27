@@ -64,7 +64,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ol>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
  * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */

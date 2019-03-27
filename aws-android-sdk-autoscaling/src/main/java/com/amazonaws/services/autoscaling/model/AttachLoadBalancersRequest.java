@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * group.
  * </p>
  * <p>
- * To attach an Application Load Balancer instead, see
- * <a>AttachLoadBalancerTargetGroups</a>.
+ * To attach an Application Load Balancer or a Network Load Balancer instead,
+ * see <a>AttachLoadBalancerTargetGroups</a>.
  * </p>
  * <p>
  * To describe the load balancers for an Auto Scaling group, use
@@ -35,9 +35,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
- * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon EC2
- * Auto Scaling User Guide</i>.
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+ * >Attaching a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon
+ * EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {
