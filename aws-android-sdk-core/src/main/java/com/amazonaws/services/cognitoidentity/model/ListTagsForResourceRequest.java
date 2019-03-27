@@ -21,79 +21,86 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an identity pool. Once a pool is deleted, users will not be able to
- * authenticate with the pool.
+ * Lists the tags that are assigned to an Amazon Cognito identity pool.
  * </p>
  * <p>
- * You must use AWS Developer credentials to call this API.
+ * A tag is a label that you can apply to identity pools to categorize and
+ * manage them in different ways, such as by purpose, owner, environment, or
+ * other criteria.
+ * </p>
+ * <p>
+ * You can use this action up to 10 times per second, per account.
  * </p>
  */
-public class DeleteIdentityPoolRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * An identity pool ID in the format REGION:GUID.
+     * The Amazon Resource Name (ARN) of the identity pool that the tags are
+     * assigned to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Length: </b>20 - 2048<br/>
      */
-    private String identityPoolId;
+    private String resourceArn;
 
     /**
      * <p>
-     * An identity pool ID in the format REGION:GUID.
+     * The Amazon Resource Name (ARN) of the identity pool that the tags are
+     * assigned to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         An identity pool ID in the format REGION:GUID.
+     *         The Amazon Resource Name (ARN) of the identity pool that the tags
+     *         are assigned to.
      *         </p>
      */
-    public String getIdentityPoolId() {
-        return identityPoolId;
+    public String getResourceArn() {
+        return resourceArn;
     }
 
     /**
      * <p>
-     * An identity pool ID in the format REGION:GUID.
+     * The Amazon Resource Name (ARN) of the identity pool that the tags are
+     * assigned to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Length: </b>20 - 2048<br/>
      *
-     * @param identityPoolId <p>
-     *            An identity pool ID in the format REGION:GUID.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the identity pool that the
+     *            tags are assigned to.
      *            </p>
      */
-    public void setIdentityPoolId(String identityPoolId) {
-        this.identityPoolId = identityPoolId;
+    public void setResourceArn(String resourceArn) {
+        this.resourceArn = resourceArn;
     }
 
     /**
      * <p>
-     * An identity pool ID in the format REGION:GUID.
+     * The Amazon Resource Name (ARN) of the identity pool that the tags are
+     * assigned to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 55<br/>
-     * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
+     * <b>Length: </b>20 - 2048<br/>
      *
-     * @param identityPoolId <p>
-     *            An identity pool ID in the format REGION:GUID.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the identity pool that the
+     *            tags are assigned to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteIdentityPoolRequest withIdentityPoolId(String identityPoolId) {
-        this.identityPoolId = identityPoolId;
+    public ListTagsForResourceRequest withResourceArn(String resourceArn) {
+        this.resourceArn = resourceArn;
         return this;
     }
 
@@ -108,8 +115,8 @@ public class DeleteIdentityPoolRequest extends AmazonWebServiceRequest implement
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getIdentityPoolId() != null)
-            sb.append("IdentityPoolId: " + getIdentityPoolId());
+        if (getResourceArn() != null)
+            sb.append("ResourceArn: " + getResourceArn());
         sb.append("}");
         return sb.toString();
     }
@@ -120,7 +127,7 @@ public class DeleteIdentityPoolRequest extends AmazonWebServiceRequest implement
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getIdentityPoolId() == null) ? 0 : getIdentityPoolId().hashCode());
+                + ((getResourceArn() == null) ? 0 : getResourceArn().hashCode());
         return hashCode;
     }
 
@@ -131,14 +138,14 @@ public class DeleteIdentityPoolRequest extends AmazonWebServiceRequest implement
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteIdentityPoolRequest == false)
+        if (obj instanceof ListTagsForResourceRequest == false)
             return false;
-        DeleteIdentityPoolRequest other = (DeleteIdentityPoolRequest) obj;
+        ListTagsForResourceRequest other = (ListTagsForResourceRequest) obj;
 
-        if (other.getIdentityPoolId() == null ^ this.getIdentityPoolId() == null)
+        if (other.getResourceArn() == null ^ this.getResourceArn() == null)
             return false;
-        if (other.getIdentityPoolId() != null
-                && other.getIdentityPoolId().equals(this.getIdentityPoolId()) == false)
+        if (other.getResourceArn() != null
+                && other.getResourceArn().equals(this.getResourceArn()) == false)
             return false;
         return true;
     }
