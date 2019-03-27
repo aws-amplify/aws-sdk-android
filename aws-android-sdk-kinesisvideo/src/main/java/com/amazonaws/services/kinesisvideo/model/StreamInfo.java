@@ -65,7 +65,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      */
     private String mediaType;
 
@@ -302,7 +302,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @return <p>
      *         The <code>MediaType</code> of the stream.
@@ -319,7 +319,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @param mediaType <p>
      *            The <code>MediaType</code> of the stream.
@@ -339,7 +339,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @param mediaType <p>
      *            The <code>MediaType</code> of the stream.

@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * value is optional) that you can define and assign to AWS resources. If you
  * specify a tag that already exists, the tag value is replaced with the value
  * that you specify in the request. For more information, see <a href=
- * "http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
+ * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
  * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
  * User Guide</i>.
  * </p>
