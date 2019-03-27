@@ -896,8 +896,8 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_if_required
-      - checkout
+      - skip_job_if_required 
+      - checkout 
       - set_enviroment_variables
       - run:
           name: trigger release_sdk if curremt commit is a bump version
@@ -936,6 +936,44 @@ jobs:
             content="${CIRCLE_BRANCH}" 
             python3 ./CircleciScripts/create_pullrequest.py  "${GITHUB_USER}" "${GITHUB_TOKEN}" "$title" "$content" "$target_branch" "${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}" ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME}
 
+  check_packges_on_maven:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - skip_job_if_required
+      - run:
+          name: check if can be skipped 
+          command: |
+              skip_flag=$(echo "${SKIP_CHECKMAVEN}" |  tr '[:upper:]' '[:lower:]')
+              if [ "${skip_flag}" == "true" ]
+              then
+                echo "skip current job"
+                circleci step halt
+              fi         
+      - checkout
+      - set_enviroment_variables
+      - run: 
+          name: install python3-pip
+          command: |
+            ls ./CircleciScripts
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson     
+      - run: 
+          name: Install requests
+          command: sudo pip3 install requests                
+      - run:
+          name: check packages on maven
+          command: |
+            release_version="3.0.0"
+            python3 ./CircleciScripts/check_packages_on_maven.py "${release_version}"
+            
+
+
 workflows:
   version: 2
   bump_sdk_version:
@@ -946,6 +984,7 @@ workflows:
               only: bump_sdk_version          
   build_test:
     jobs:
+      - check_packges_on_maven
       - build:
           filters:
             branches:
@@ -1620,6 +1659,17 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - check_packges_on_maven:
+          requires:
+            - release_maven
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+
+
+
       - release_javadoc:
           requires:
             - unittest
@@ -1633,7 +1683,7 @@ workflows:
           requires:
             - build
             - release_javadoc
-            - release_maven
+            - check_packges_on_maven
           filters:
             branches:
               ignore: /.*/
