@@ -919,6 +919,23 @@ jobs:
               git push --tags -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
             fi
 
+  create_pullrequest_for_modelupdate:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - skip_job_if_required
+      - checkout
+      - set_enviroment_variables
+      - run:
+          name: create pull request
+          command: |
+            target_branch="develop"
+            title=${CIRCLE_BRANCH}       
+            content="${CIRCLE_BRANCH}" 
+            python3 ./CircleciScripts/create_pullrequest.py  "${GITHUB_USER}" "${GITHUB_TOKEN}" "$title" "$content" "$target_branch" "${GITHUB_USER}:${CIRCLE_BRANCH}" ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME}
+
 workflows:
   version: 2
   bump_sdk_version:
@@ -938,9 +955,14 @@ workflows:
             branches:
               ignore: bump_sdk_version                  
       - unittest:
-           filters:
+          filters:
             branches:
-              ignore: bump_sdk_version     
+              ignore: bump_sdk_version
+      - create_pullrequest_for_modelupdate:
+          filters:
+            branches:
+              only:
+                - /^models-update-.+$/      
       - pre_integrationtest: 
            filters:
             branches:
