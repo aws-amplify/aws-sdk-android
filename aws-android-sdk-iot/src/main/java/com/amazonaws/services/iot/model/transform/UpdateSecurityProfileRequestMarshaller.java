@@ -99,6 +99,34 @@ public class UpdateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (updateSecurityProfileRequest.getAdditionalMetricsToRetain() != null) {
+                java.util.List<String> additionalMetricsToRetain = updateSecurityProfileRequest
+                        .getAdditionalMetricsToRetain();
+                jsonWriter.name("additionalMetricsToRetain");
+                jsonWriter.beginArray();
+                for (String additionalMetricsToRetainItem : additionalMetricsToRetain) {
+                    if (additionalMetricsToRetainItem != null) {
+                        jsonWriter.value(additionalMetricsToRetainItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateSecurityProfileRequest.getDeleteBehaviors() != null) {
+                Boolean deleteBehaviors = updateSecurityProfileRequest.getDeleteBehaviors();
+                jsonWriter.name("deleteBehaviors");
+                jsonWriter.value(deleteBehaviors);
+            }
+            if (updateSecurityProfileRequest.getDeleteAlertTargets() != null) {
+                Boolean deleteAlertTargets = updateSecurityProfileRequest.getDeleteAlertTargets();
+                jsonWriter.name("deleteAlertTargets");
+                jsonWriter.value(deleteAlertTargets);
+            }
+            if (updateSecurityProfileRequest.getDeleteAdditionalMetricsToRetain() != null) {
+                Boolean deleteAdditionalMetricsToRetain = updateSecurityProfileRequest
+                        .getDeleteAdditionalMetricsToRetain();
+                jsonWriter.name("deleteAdditionalMetricsToRetain");
+                jsonWriter.value(deleteAdditionalMetricsToRetain);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

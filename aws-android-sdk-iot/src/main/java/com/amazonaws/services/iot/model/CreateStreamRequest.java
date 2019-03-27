@@ -74,6 +74,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
+     * Metadata which can be used to manage streams.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * The stream ID.
      * </p>
      * <p>
@@ -321,6 +328,80 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage streams.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage streams.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage streams.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage streams.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage streams.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage streams.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateStreamRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage streams.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage streams.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateStreamRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -338,7 +419,9 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
         if (getFiles() != null)
             sb.append("files: " + getFiles() + ",");
         if (getRoleArn() != null)
-            sb.append("roleArn: " + getRoleArn());
+            sb.append("roleArn: " + getRoleArn() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -353,6 +436,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getFiles() == null) ? 0 : getFiles().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -383,6 +467,10 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
         if (other.getRoleArn() == null ^ this.getRoleArn() == null)
             return false;
         if (other.getRoleArn() != null && other.getRoleArn().equals(this.getRoleArn()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

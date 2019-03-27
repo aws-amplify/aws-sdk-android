@@ -21,13 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The query search index.
+ * Gets statistics about things that match the specified query.
  * </p>
  */
-public class SearchIndexRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetStatisticsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The search index name.
+     * The name of the index to search. The default value is
+     * <code>AWS_Things</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +39,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The query used to search. You can specify "*" for the query string to get
+     * the count of all indexed things in your AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,32 +50,25 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
-     * </p>
-     */
-    private String nextToken;
-
-    /**
-     * <p>
-     * The maximum number of results to return at one time.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Length: </b>1 - <br/>
      */
-    private Integer maxResults;
+    private String aggregationField;
 
     /**
      * <p>
-     * The query version.
+     * The version of the query used to search.
      * </p>
      */
     private String queryVersion;
 
     /**
      * <p>
-     * The search index name.
+     * The name of the index to search. The default value is
+     * <code>AWS_Things</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,7 +76,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The search index name.
+     *         The name of the index to search. The default value is
+     *         <code>AWS_Things</code>.
      *         </p>
      */
     public String getIndexName() {
@@ -90,7 +86,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search index name.
+     * The name of the index to search. The default value is
+     * <code>AWS_Things</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +95,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The search index name.
+     *            The name of the index to search. The default value is
+     *            <code>AWS_Things</code>.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -107,7 +105,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search index name.
+     * The name of the index to search. The default value is
+     * <code>AWS_Things</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,26 +117,30 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The search index name.
+     *            The name of the index to search. The default value is
+     *            <code>AWS_Things</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchIndexRequest withIndexName(String indexName) {
+    public GetStatisticsRequest withIndexName(String indexName) {
         this.indexName = indexName;
         return this;
     }
 
     /**
      * <p>
-     * The search query string.
+     * The query used to search. You can specify "*" for the query string to get
+     * the count of all indexed things in your AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The search query string.
+     *         The query used to search. You can specify "*" for the query
+     *         string to get the count of all indexed things in your AWS
+     *         account.
      *         </p>
      */
     public String getQueryString() {
@@ -146,14 +149,17 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The query used to search. You can specify "*" for the query string to get
+     * the count of all indexed things in your AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The search query string.
+     *            The query used to search. You can specify "*" for the query
+     *            string to get the count of all indexed things in your AWS
+     *            account.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -162,7 +168,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The query used to search. You can specify "*" for the query string to get
+     * the count of all indexed things in your AWS account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -172,128 +179,79 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The search query string.
+     *            The query used to search. You can specify "*" for the query
+     *            string to get the count of all indexed things in your AWS
+     *            account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchIndexRequest withQueryString(String queryString) {
+    public GetStatisticsRequest withQueryString(String queryString) {
         this.queryString = queryString;
         return this;
     }
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
-     * </p>
-     *
-     * @return <p>
-     *         The token used to get the next set of results, or null if there
-     *         are no additional results.
-     *         </p>
-     */
-    public String getNextToken() {
-        return nextToken;
-    }
-
-    /**
-     * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
-     * </p>
-     *
-     * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
-     *            </p>
-     */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
-    }
-
-    /**
-     * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchIndexRequest withNextToken(String nextToken) {
-        this.nextToken = nextToken;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The maximum number of results to return at one time.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The maximum number of results to return at one time.
+     *         The aggregation field name. Currently not supported.
      *         </p>
      */
-    public Integer getMaxResults() {
-        return maxResults;
+    public String getAggregationField() {
+        return aggregationField;
     }
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     * @param aggregationField <p>
+     *            The aggregation field name. Currently not supported.
      *            </p>
      */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public void setAggregationField(String aggregationField) {
+        this.aggregationField = aggregationField;
     }
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 500<br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     * @param aggregationField <p>
+     *            The aggregation field name. Currently not supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchIndexRequest withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public GetStatisticsRequest withAggregationField(String aggregationField) {
+        this.aggregationField = aggregationField;
         return this;
     }
 
     /**
      * <p>
-     * The query version.
+     * The version of the query used to search.
      * </p>
      *
      * @return <p>
-     *         The query version.
+     *         The version of the query used to search.
      *         </p>
      */
     public String getQueryVersion() {
@@ -302,11 +260,11 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The query version.
+     * The version of the query used to search.
      * </p>
      *
      * @param queryVersion <p>
-     *            The query version.
+     *            The version of the query used to search.
      *            </p>
      */
     public void setQueryVersion(String queryVersion) {
@@ -315,19 +273,19 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The query version.
+     * The version of the query used to search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queryVersion <p>
-     *            The query version.
+     *            The version of the query used to search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchIndexRequest withQueryVersion(String queryVersion) {
+    public GetStatisticsRequest withQueryVersion(String queryVersion) {
         this.queryVersion = queryVersion;
         return this;
     }
@@ -347,10 +305,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
             sb.append("indexName: " + getIndexName() + ",");
         if (getQueryString() != null)
             sb.append("queryString: " + getQueryString() + ",");
-        if (getNextToken() != null)
-            sb.append("nextToken: " + getNextToken() + ",");
-        if (getMaxResults() != null)
-            sb.append("maxResults: " + getMaxResults() + ",");
+        if (getAggregationField() != null)
+            sb.append("aggregationField: " + getAggregationField() + ",");
         if (getQueryVersion() != null)
             sb.append("queryVersion: " + getQueryVersion());
         sb.append("}");
@@ -365,8 +321,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
         hashCode = prime * hashCode
                 + ((getQueryString() == null) ? 0 : getQueryString().hashCode());
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode
+                + ((getAggregationField() == null) ? 0 : getAggregationField().hashCode());
         hashCode = prime * hashCode
                 + ((getQueryVersion() == null) ? 0 : getQueryVersion().hashCode());
         return hashCode;
@@ -379,9 +335,9 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
         if (obj == null)
             return false;
 
-        if (obj instanceof SearchIndexRequest == false)
+        if (obj instanceof GetStatisticsRequest == false)
             return false;
-        SearchIndexRequest other = (SearchIndexRequest) obj;
+        GetStatisticsRequest other = (GetStatisticsRequest) obj;
 
         if (other.getIndexName() == null ^ this.getIndexName() == null)
             return false;
@@ -393,15 +349,10 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
         if (other.getQueryString() != null
                 && other.getQueryString().equals(this.getQueryString()) == false)
             return false;
-        if (other.getNextToken() == null ^ this.getNextToken() == null)
+        if (other.getAggregationField() == null ^ this.getAggregationField() == null)
             return false;
-        if (other.getNextToken() != null
-                && other.getNextToken().equals(this.getNextToken()) == false)
-            return false;
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
-            return false;
-        if (other.getMaxResults() != null
-                && other.getMaxResults().equals(this.getMaxResults()) == false)
+        if (other.getAggregationField() != null
+                && other.getAggregationField().equals(this.getAggregationField()) == false)
             return false;
         if (other.getQueryVersion() == null ^ this.getQueryVersion() == null)
             return false;
