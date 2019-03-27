@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.7)
+
+### Bug Fixes
+
+* **AWS Core**
+  * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
