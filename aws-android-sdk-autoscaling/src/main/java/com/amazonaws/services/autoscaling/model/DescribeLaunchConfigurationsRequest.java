@@ -49,7 +49,7 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      */
     private Integer maxRecords;
@@ -205,12 +205,13 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @return <p>
      *         The maximum number of items to return with this call. The default
-     *         value is 50 and the maximum value is 100.
+     *         value is <code>50</code> and the maximum value is
+     *         <code>100</code>.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -220,12 +221,13 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 50 and the maximum value is 100.
+     *            default value is <code>50</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -235,7 +237,7 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The maximum number of items to return with this call. The default value
-     * is 50 and the maximum value is 100.
+     * is <code>50</code> and the maximum value is <code>100</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -243,7 +245,8 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default value is 50 and the maximum value is 100.
+     *            default value is <code>50</code> and the maximum value is
+     *            <code>100</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

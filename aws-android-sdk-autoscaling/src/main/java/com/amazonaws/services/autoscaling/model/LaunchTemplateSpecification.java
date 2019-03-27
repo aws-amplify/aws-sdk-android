@@ -24,8 +24,8 @@ import java.io.Serializable;
  * <p>
  * The launch template that is specified must be configured for use with an Auto
  * Scaling group. For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html"
- * >Creating a Launch Template for an Auto Scaling group</a> in the <i>Amazon
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html"
+ * >Creating a Launch Template for an Auto Scaling Group</a> in the <i>Amazon
  * EC2 Auto Scaling User Guide</i>.
  * </p>
  */

@@ -29,7 +29,7 @@ public class LaunchTemplateOverrides implements Serializable {
      * </p>
      * <p>
      * For information about available instance types, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      * >Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide.</i>
      * </p>
@@ -47,7 +47,7 @@ public class LaunchTemplateOverrides implements Serializable {
      * </p>
      * <p>
      * For information about available instance types, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      * >Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide.</i>
      * </p>
@@ -62,7 +62,7 @@ public class LaunchTemplateOverrides implements Serializable {
      *         </p>
      *         <p>
      *         For information about available instance types, see <a href=
-     *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      *         >Available Instance Types</a> in the <i>Amazon Elastic Compute
      *         Cloud User Guide.</i>
      *         </p>
@@ -77,7 +77,7 @@ public class LaunchTemplateOverrides implements Serializable {
      * </p>
      * <p>
      * For information about available instance types, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      * >Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide.</i>
      * </p>
@@ -92,7 +92,7 @@ public class LaunchTemplateOverrides implements Serializable {
      *            </p>
      *            <p>
      *            For information about available instance types, see <a href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      *            >Available Instance Types</a> in the <i>Amazon Elastic Compute
      *            Cloud User Guide.</i>
      *            </p>
@@ -107,7 +107,7 @@ public class LaunchTemplateOverrides implements Serializable {
      * </p>
      * <p>
      * For information about available instance types, see <a href=
-     * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      * >Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide.</i>
      * </p>
@@ -125,7 +125,7 @@ public class LaunchTemplateOverrides implements Serializable {
      *            </p>
      *            <p>
      *            For information about available instance types, see <a href=
-     *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
      *            >Available Instance Types</a> in the <i>Amazon Elastic Compute
      *            Cloud User Guide.</i>
      *            </p>

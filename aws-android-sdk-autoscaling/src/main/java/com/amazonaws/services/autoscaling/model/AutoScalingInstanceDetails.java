@@ -61,10 +61,7 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
-     * The lifecycle state for the instance. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
-     * Guide</i>.
+     * The lifecycle state for the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -299,10 +296,7 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
-     * The lifecycle state for the instance. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
-     * Guide</i>.
+     * The lifecycle state for the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -311,11 +305,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The lifecycle state for the instance. For more information, see
-     *         <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     *         >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling
-     *         User Guide</i>.
+     *         The lifecycle state for the instance.
      *         </p>
      */
     public String getLifecycleState() {
@@ -324,10 +314,7 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
-     * The lifecycle state for the instance. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
-     * Guide</i>.
+     * The lifecycle state for the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -336,11 +323,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * <br/>
      *
      * @param lifecycleState <p>
-     *            The lifecycle state for the instance. For more information,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     *            >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling
-     *            User Guide</i>.
+     *            The lifecycle state for the instance.
      *            </p>
      */
     public void setLifecycleState(String lifecycleState) {
@@ -349,10 +332,7 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
-     * The lifecycle state for the instance. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
-     * Guide</i>.
+     * The lifecycle state for the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -364,11 +344,7 @@ public class AutoScalingInstanceDetails implements Serializable {
      * <br/>
      *
      * @param lifecycleState <p>
-     *            The lifecycle state for the instance. For more information,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
-     *            >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling
-     *            User Guide</i>.
+     *            The lifecycle state for the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

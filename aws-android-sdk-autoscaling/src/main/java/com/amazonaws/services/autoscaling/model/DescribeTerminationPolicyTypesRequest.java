@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html"
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html"
  * >Controlling Which Auto Scaling Instances Terminate During Scale In</a> in
  * the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>

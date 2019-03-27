@@ -35,13 +35,12 @@ public class InstancesDistribution implements Serializable {
      * </p>
      * <p>
      * The only valid value is <code>prioritized</code>, which is also the
-     * default value. This strategy uses the order of instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a> to define the launch
-     * priority of each instance type. The first instance type in the array is
-     * prioritized higher than the last. If all your On-Demand capacity cannot
-     * be fulfilled using your highest priority instance, then the Auto Scaling
-     * groups launches the remaining capacity using the second priority instance
-     * type, and so on.
+     * default value. This strategy uses the order of instance type overrides
+     * for the <a>LaunchTemplate</a> to define the launch priority of each
+     * instance type. The first instance type in the array is prioritized higher
+     * than the last. If all your On-Demand capacity cannot be fulfilled using
+     * your highest priority instance, then the Auto Scaling groups launches the
+     * remaining capacity using the second priority instance type, and so on.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,10 +56,10 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is 0. If you leave this parameter set to 0, On-Demand
-     * Instances are launched as a percentage of the Auto Scaling group's
-     * desired capacity, per the <b>OnDemandPercentageAboveBaseCapacity</b>
-     * setting.
+     * The default value is <code>0</code>. If you leave this parameter set to
+     * <code>0</code>, On-Demand Instances are launched as a percentage of the
+     * Auto Scaling group's desired capacity, per the
+     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      * </p>
      */
     private Integer onDemandBaseCapacity;
@@ -68,12 +67,12 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <b>OnDemandBaseCapacity</b>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The range is 0–100. The default value is 100. If you leave this parameter
-     * set to 100, the percentages are 100% for On-Demand Instances and 0% for
-     * Spot Instances.
+     * The range is 0–100. The default value is <code>100</code>. If you leave
+     * this parameter set to <code>100</code>, the percentages are 100% for
+     * On-Demand Instances and 0% for Spot Instances.
      * </p>
      */
     private Integer onDemandPercentageAboveBaseCapacity;
@@ -98,8 +97,8 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a>.
+     * pools are determined from the different instance types in the Overrides
+     * array of <a>LaunchTemplate</a>.
      * </p>
      * <p>
      * The range is 1–20 and the default is 2.
@@ -110,12 +109,16 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The maximum price per unit hour that you are willing to pay for a Spot
-     * Instance. If you leave this value blank (which is the default), the
-     * maximum Spot price is set at the On-Demand price.
+     * Instance. If you leave the value of this parameter blank (which is the
+     * default), the maximum Spot price is set at the On-Demand price.
+     * </p>
+     * <p>
+     * To remove a value that you previously set, include the parameter but
+     * leave the value blank.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>0 - 255<br/>
      */
     private String spotMaxPrice;
 
@@ -125,13 +128,12 @@ public class InstancesDistribution implements Serializable {
      * </p>
      * <p>
      * The only valid value is <code>prioritized</code>, which is also the
-     * default value. This strategy uses the order of instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a> to define the launch
-     * priority of each instance type. The first instance type in the array is
-     * prioritized higher than the last. If all your On-Demand capacity cannot
-     * be fulfilled using your highest priority instance, then the Auto Scaling
-     * groups launches the remaining capacity using the second priority instance
-     * type, and so on.
+     * default value. This strategy uses the order of instance type overrides
+     * for the <a>LaunchTemplate</a> to define the launch priority of each
+     * instance type. The first instance type in the array is prioritized higher
+     * than the last. If all your On-Demand capacity cannot be fulfilled using
+     * your highest priority instance, then the Auto Scaling groups launches the
+     * remaining capacity using the second priority instance type, and so on.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,14 +146,13 @@ public class InstancesDistribution implements Serializable {
      *         </p>
      *         <p>
      *         The only valid value is <code>prioritized</code>, which is also
-     *         the default value. This strategy uses the order of instance types
-     *         in the <b>Overrides</b> array of <a>LaunchTemplate</a> to define
-     *         the launch priority of each instance type. The first instance
-     *         type in the array is prioritized higher than the last. If all
-     *         your On-Demand capacity cannot be fulfilled using your highest
-     *         priority instance, then the Auto Scaling groups launches the
-     *         remaining capacity using the second priority instance type, and
-     *         so on.
+     *         the default value. This strategy uses the order of instance type
+     *         overrides for the <a>LaunchTemplate</a> to define the launch
+     *         priority of each instance type. The first instance type in the
+     *         array is prioritized higher than the last. If all your On-Demand
+     *         capacity cannot be fulfilled using your highest priority
+     *         instance, then the Auto Scaling groups launches the remaining
+     *         capacity using the second priority instance type, and so on.
      *         </p>
      */
     public String getOnDemandAllocationStrategy() {
@@ -164,13 +165,12 @@ public class InstancesDistribution implements Serializable {
      * </p>
      * <p>
      * The only valid value is <code>prioritized</code>, which is also the
-     * default value. This strategy uses the order of instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a> to define the launch
-     * priority of each instance type. The first instance type in the array is
-     * prioritized higher than the last. If all your On-Demand capacity cannot
-     * be fulfilled using your highest priority instance, then the Auto Scaling
-     * groups launches the remaining capacity using the second priority instance
-     * type, and so on.
+     * default value. This strategy uses the order of instance type overrides
+     * for the <a>LaunchTemplate</a> to define the launch priority of each
+     * instance type. The first instance type in the array is prioritized higher
+     * than the last. If all your On-Demand capacity cannot be fulfilled using
+     * your highest priority instance, then the Auto Scaling groups launches the
+     * remaining capacity using the second priority instance type, and so on.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,13 +184,13 @@ public class InstancesDistribution implements Serializable {
      *            <p>
      *            The only valid value is <code>prioritized</code>, which is
      *            also the default value. This strategy uses the order of
-     *            instance types in the <b>Overrides</b> array of
-     *            <a>LaunchTemplate</a> to define the launch priority of each
-     *            instance type. The first instance type in the array is
-     *            prioritized higher than the last. If all your On-Demand
-     *            capacity cannot be fulfilled using your highest priority
-     *            instance, then the Auto Scaling groups launches the remaining
-     *            capacity using the second priority instance type, and so on.
+     *            instance type overrides for the <a>LaunchTemplate</a> to
+     *            define the launch priority of each instance type. The first
+     *            instance type in the array is prioritized higher than the
+     *            last. If all your On-Demand capacity cannot be fulfilled using
+     *            your highest priority instance, then the Auto Scaling groups
+     *            launches the remaining capacity using the second priority
+     *            instance type, and so on.
      *            </p>
      */
     public void setOnDemandAllocationStrategy(String onDemandAllocationStrategy) {
@@ -203,13 +203,12 @@ public class InstancesDistribution implements Serializable {
      * </p>
      * <p>
      * The only valid value is <code>prioritized</code>, which is also the
-     * default value. This strategy uses the order of instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a> to define the launch
-     * priority of each instance type. The first instance type in the array is
-     * prioritized higher than the last. If all your On-Demand capacity cannot
-     * be fulfilled using your highest priority instance, then the Auto Scaling
-     * groups launches the remaining capacity using the second priority instance
-     * type, and so on.
+     * default value. This strategy uses the order of instance type overrides
+     * for the <a>LaunchTemplate</a> to define the launch priority of each
+     * instance type. The first instance type in the array is prioritized higher
+     * than the last. If all your On-Demand capacity cannot be fulfilled using
+     * your highest priority instance, then the Auto Scaling groups launches the
+     * remaining capacity using the second priority instance type, and so on.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -226,13 +225,13 @@ public class InstancesDistribution implements Serializable {
      *            <p>
      *            The only valid value is <code>prioritized</code>, which is
      *            also the default value. This strategy uses the order of
-     *            instance types in the <b>Overrides</b> array of
-     *            <a>LaunchTemplate</a> to define the launch priority of each
-     *            instance type. The first instance type in the array is
-     *            prioritized higher than the last. If all your On-Demand
-     *            capacity cannot be fulfilled using your highest priority
-     *            instance, then the Auto Scaling groups launches the remaining
-     *            capacity using the second priority instance type, and so on.
+     *            instance type overrides for the <a>LaunchTemplate</a> to
+     *            define the launch priority of each instance type. The first
+     *            instance type in the array is prioritized higher than the
+     *            last. If all your On-Demand capacity cannot be fulfilled using
+     *            your highest priority instance, then the Auto Scaling groups
+     *            launches the remaining capacity using the second priority
+     *            instance type, and so on.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -249,10 +248,10 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is 0. If you leave this parameter set to 0, On-Demand
-     * Instances are launched as a percentage of the Auto Scaling group's
-     * desired capacity, per the <b>OnDemandPercentageAboveBaseCapacity</b>
-     * setting.
+     * The default value is <code>0</code>. If you leave this parameter set to
+     * <code>0</code>, On-Demand Instances are launched as a percentage of the
+     * Auto Scaling group's desired capacity, per the
+     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      * </p>
      *
      * @return <p>
@@ -261,10 +260,10 @@ public class InstancesDistribution implements Serializable {
      *         provisioned first as your group scales.
      *         </p>
      *         <p>
-     *         The default value is 0. If you leave this parameter set to 0,
-     *         On-Demand Instances are launched as a percentage of the Auto
-     *         Scaling group's desired capacity, per the
-     *         <b>OnDemandPercentageAboveBaseCapacity</b> setting.
+     *         The default value is <code>0</code>. If you leave this parameter
+     *         set to <code>0</code>, On-Demand Instances are launched as a
+     *         percentage of the Auto Scaling group's desired capacity, per the
+     *         <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *         </p>
      */
     public Integer getOnDemandBaseCapacity() {
@@ -278,10 +277,10 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is 0. If you leave this parameter set to 0, On-Demand
-     * Instances are launched as a percentage of the Auto Scaling group's
-     * desired capacity, per the <b>OnDemandPercentageAboveBaseCapacity</b>
-     * setting.
+     * The default value is <code>0</code>. If you leave this parameter set to
+     * <code>0</code>, On-Demand Instances are launched as a percentage of the
+     * Auto Scaling group's desired capacity, per the
+     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      * </p>
      *
      * @param onDemandBaseCapacity <p>
@@ -290,10 +289,11 @@ public class InstancesDistribution implements Serializable {
      *            provisioned first as your group scales.
      *            </p>
      *            <p>
-     *            The default value is 0. If you leave this parameter set to 0,
-     *            On-Demand Instances are launched as a percentage of the Auto
-     *            Scaling group's desired capacity, per the
-     *            <b>OnDemandPercentageAboveBaseCapacity</b> setting.
+     *            The default value is <code>0</code>. If you leave this
+     *            parameter set to <code>0</code>, On-Demand Instances are
+     *            launched as a percentage of the Auto Scaling group's desired
+     *            capacity, per the
+     *            <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *            </p>
      */
     public void setOnDemandBaseCapacity(Integer onDemandBaseCapacity) {
@@ -307,10 +307,10 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is 0. If you leave this parameter set to 0, On-Demand
-     * Instances are launched as a percentage of the Auto Scaling group's
-     * desired capacity, per the <b>OnDemandPercentageAboveBaseCapacity</b>
-     * setting.
+     * The default value is <code>0</code>. If you leave this parameter set to
+     * <code>0</code>, On-Demand Instances are launched as a percentage of the
+     * Auto Scaling group's desired capacity, per the
+     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -322,10 +322,11 @@ public class InstancesDistribution implements Serializable {
      *            provisioned first as your group scales.
      *            </p>
      *            <p>
-     *            The default value is 0. If you leave this parameter set to 0,
-     *            On-Demand Instances are launched as a percentage of the Auto
-     *            Scaling group's desired capacity, per the
-     *            <b>OnDemandPercentageAboveBaseCapacity</b> setting.
+     *            The default value is <code>0</code>. If you leave this
+     *            parameter set to <code>0</code>, On-Demand Instances are
+     *            launched as a percentage of the Auto Scaling group's desired
+     *            capacity, per the
+     *            <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -338,23 +339,23 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <b>OnDemandBaseCapacity</b>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The range is 0–100. The default value is 100. If you leave this parameter
-     * set to 100, the percentages are 100% for On-Demand Instances and 0% for
-     * Spot Instances.
+     * The range is 0–100. The default value is <code>100</code>. If you leave
+     * this parameter set to <code>100</code>, the percentages are 100% for
+     * On-Demand Instances and 0% for Spot Instances.
      * </p>
      *
      * @return <p>
      *         Controls the percentages of On-Demand Instances and Spot
      *         Instances for your additional capacity beyond
-     *         <b>OnDemandBaseCapacity</b>.
+     *         <code>OnDemandBaseCapacity</code>.
      *         </p>
      *         <p>
-     *         The range is 0–100. The default value is 100. If you leave this
-     *         parameter set to 100, the percentages are 100% for On-Demand
-     *         Instances and 0% for Spot Instances.
+     *         The range is 0–100. The default value is <code>100</code>. If you
+     *         leave this parameter set to <code>100</code>, the percentages are
+     *         100% for On-Demand Instances and 0% for Spot Instances.
      *         </p>
      */
     public Integer getOnDemandPercentageAboveBaseCapacity() {
@@ -364,23 +365,24 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <b>OnDemandBaseCapacity</b>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The range is 0–100. The default value is 100. If you leave this parameter
-     * set to 100, the percentages are 100% for On-Demand Instances and 0% for
-     * Spot Instances.
+     * The range is 0–100. The default value is <code>100</code>. If you leave
+     * this parameter set to <code>100</code>, the percentages are 100% for
+     * On-Demand Instances and 0% for Spot Instances.
      * </p>
      *
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <b>OnDemandBaseCapacity</b>.
+     *            <code>OnDemandBaseCapacity</code>.
      *            </p>
      *            <p>
-     *            The range is 0–100. The default value is 100. If you leave
-     *            this parameter set to 100, the percentages are 100% for
-     *            On-Demand Instances and 0% for Spot Instances.
+     *            The range is 0–100. The default value is <code>100</code>. If
+     *            you leave this parameter set to <code>100</code>, the
+     *            percentages are 100% for On-Demand Instances and 0% for Spot
+     *            Instances.
      *            </p>
      */
     public void setOnDemandPercentageAboveBaseCapacity(Integer onDemandPercentageAboveBaseCapacity) {
@@ -390,12 +392,12 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <b>OnDemandBaseCapacity</b>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The range is 0–100. The default value is 100. If you leave this parameter
-     * set to 100, the percentages are 100% for On-Demand Instances and 0% for
-     * Spot Instances.
+     * The range is 0–100. The default value is <code>100</code>. If you leave
+     * this parameter set to <code>100</code>, the percentages are 100% for
+     * On-Demand Instances and 0% for Spot Instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -404,12 +406,13 @@ public class InstancesDistribution implements Serializable {
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <b>OnDemandBaseCapacity</b>.
+     *            <code>OnDemandBaseCapacity</code>.
      *            </p>
      *            <p>
-     *            The range is 0–100. The default value is 100. If you leave
-     *            this parameter set to 100, the percentages are 100% for
-     *            On-Demand Instances and 0% for Spot Instances.
+     *            The range is 0–100. The default value is <code>100</code>. If
+     *            you leave this parameter set to <code>100</code>, the
+     *            percentages are 100% for On-Demand Instances and 0% for Spot
+     *            Instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -516,8 +519,8 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a>.
+     * pools are determined from the different instance types in the Overrides
+     * array of <a>LaunchTemplate</a>.
      * </p>
      * <p>
      * The range is 1–20 and the default is 2.
@@ -526,7 +529,7 @@ public class InstancesDistribution implements Serializable {
      * @return <p>
      *         The number of Spot pools to use to allocate your Spot capacity.
      *         The Spot pools are determined from the different instance types
-     *         in the <b>Overrides</b> array of <a>LaunchTemplate</a>.
+     *         in the Overrides array of <a>LaunchTemplate</a>.
      *         </p>
      *         <p>
      *         The range is 1–20 and the default is 2.
@@ -539,8 +542,8 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a>.
+     * pools are determined from the different instance types in the Overrides
+     * array of <a>LaunchTemplate</a>.
      * </p>
      * <p>
      * The range is 1–20 and the default is 2.
@@ -549,7 +552,7 @@ public class InstancesDistribution implements Serializable {
      * @param spotInstancePools <p>
      *            The number of Spot pools to use to allocate your Spot
      *            capacity. The Spot pools are determined from the different
-     *            instance types in the <b>Overrides</b> array of
+     *            instance types in the Overrides array of
      *            <a>LaunchTemplate</a>.
      *            </p>
      *            <p>
@@ -563,8 +566,8 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the
-     * <b>Overrides</b> array of <a>LaunchTemplate</a>.
+     * pools are determined from the different instance types in the Overrides
+     * array of <a>LaunchTemplate</a>.
      * </p>
      * <p>
      * The range is 1–20 and the default is 2.
@@ -576,7 +579,7 @@ public class InstancesDistribution implements Serializable {
      * @param spotInstancePools <p>
      *            The number of Spot pools to use to allocate your Spot
      *            capacity. The Spot pools are determined from the different
-     *            instance types in the <b>Overrides</b> array of
+     *            instance types in the Overrides array of
      *            <a>LaunchTemplate</a>.
      *            </p>
      *            <p>
@@ -593,17 +596,26 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The maximum price per unit hour that you are willing to pay for a Spot
-     * Instance. If you leave this value blank (which is the default), the
-     * maximum Spot price is set at the On-Demand price.
+     * Instance. If you leave the value of this parameter blank (which is the
+     * default), the maximum Spot price is set at the On-Demand price.
+     * </p>
+     * <p>
+     * To remove a value that you previously set, include the parameter but
+     * leave the value blank.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>0 - 255<br/>
      *
      * @return <p>
      *         The maximum price per unit hour that you are willing to pay for a
-     *         Spot Instance. If you leave this value blank (which is the
-     *         default), the maximum Spot price is set at the On-Demand price.
+     *         Spot Instance. If you leave the value of this parameter blank
+     *         (which is the default), the maximum Spot price is set at the
+     *         On-Demand price.
+     *         </p>
+     *         <p>
+     *         To remove a value that you previously set, include the parameter
+     *         but leave the value blank.
      *         </p>
      */
     public String getSpotMaxPrice() {
@@ -613,18 +625,26 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The maximum price per unit hour that you are willing to pay for a Spot
-     * Instance. If you leave this value blank (which is the default), the
-     * maximum Spot price is set at the On-Demand price.
+     * Instance. If you leave the value of this parameter blank (which is the
+     * default), the maximum Spot price is set at the On-Demand price.
+     * </p>
+     * <p>
+     * To remove a value that you previously set, include the parameter but
+     * leave the value blank.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>0 - 255<br/>
      *
      * @param spotMaxPrice <p>
      *            The maximum price per unit hour that you are willing to pay
-     *            for a Spot Instance. If you leave this value blank (which is
-     *            the default), the maximum Spot price is set at the On-Demand
-     *            price.
+     *            for a Spot Instance. If you leave the value of this parameter
+     *            blank (which is the default), the maximum Spot price is set at
+     *            the On-Demand price.
+     *            </p>
+     *            <p>
+     *            To remove a value that you previously set, include the
+     *            parameter but leave the value blank.
      *            </p>
      */
     public void setSpotMaxPrice(String spotMaxPrice) {
@@ -634,21 +654,29 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * The maximum price per unit hour that you are willing to pay for a Spot
-     * Instance. If you leave this value blank (which is the default), the
-     * maximum Spot price is set at the On-Demand price.
+     * Instance. If you leave the value of this parameter blank (which is the
+     * default), the maximum Spot price is set at the On-Demand price.
+     * </p>
+     * <p>
+     * To remove a value that you previously set, include the parameter but
+     * leave the value blank.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>0 - 255<br/>
      *
      * @param spotMaxPrice <p>
      *            The maximum price per unit hour that you are willing to pay
-     *            for a Spot Instance. If you leave this value blank (which is
-     *            the default), the maximum Spot price is set at the On-Demand
-     *            price.
+     *            for a Spot Instance. If you leave the value of this parameter
+     *            blank (which is the default), the maximum Spot price is set at
+     *            the On-Demand price.
+     *            </p>
+     *            <p>
+     *            To remove a value that you previously set, include the
+     *            parameter but leave the value blank.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
