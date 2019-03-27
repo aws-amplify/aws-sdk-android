@@ -114,7 +114,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      */
     private String mediaType;
 
@@ -430,7 +430,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @return <p>
      *         The stream's media type. Use <code>MediaType</code> to specify
@@ -470,7 +470,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @param mediaType <p>
      *            The stream's media type. Use <code>MediaType</code> to specify
@@ -514,7 +514,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
+     * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*<br/>
      *
      * @param mediaType <p>
      *            The stream's media type. Use <code>MediaType</code> to specify

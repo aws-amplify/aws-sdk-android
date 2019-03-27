@@ -302,7 +302,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * </p>
      * <p>
      * For information about how the service works, see <a href=
-     * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-it-works.html"
+     * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-it-works.html"
      * >How it Works</a>.
      * </p>
      * <p>
@@ -319,6 +319,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws InvalidDeviceException
      * @throws InvalidArgumentException
      * @throws ClientLimitExceededException
+     * @throws TagsPerResourceExceededLimitException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -385,6 +386,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws InvalidArgumentException
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
+     * @throws VersionMismatchException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -645,7 +647,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * value is optional) that you can define and assign to AWS resources. If
      * you specify a tag that already exists, the tag value is replaced with the
      * value that you specify in the request. For more information, see <a href=
-     * "http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
+     * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
      * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
      * User Guide</i>.
      * </p>
