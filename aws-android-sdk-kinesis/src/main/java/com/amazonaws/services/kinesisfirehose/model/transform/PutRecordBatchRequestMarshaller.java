@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.zip.GZIPOutputStream;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
@@ -56,10 +55,8 @@ public class PutRecordBatchRequestMarshaller implements
         String uriResourcePath = "/";
         request.setResourcePath(uriResourcePath);
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            GZIPOutputStream gos = new GZIPOutputStream(baos, 8192);
-            Writer writer = new OutputStreamWriter(gos, StringUtils.UTF8);
-            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(writer);
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
             if (putRecordBatchRequest.getDeliveryStreamName() != null) {
@@ -80,14 +77,11 @@ public class PutRecordBatchRequestMarshaller implements
             }
 
             jsonWriter.endObject();
-            jsonWriter.flush();
-            gos.finish();
-            writer.close();
-
-            byte[] content = baos.toByteArray();
-            request.setContent(new ByteArrayInputStream(content));
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
             request.addHeader("Content-Length", Integer.toString(content.length));
-            request.addHeader("Content-Encoding", "gzip");
         } catch (Throwable t) {
             throw new AmazonClientException(
                     "Unable to marshall request to JSON: " + t.getMessage(), t);
