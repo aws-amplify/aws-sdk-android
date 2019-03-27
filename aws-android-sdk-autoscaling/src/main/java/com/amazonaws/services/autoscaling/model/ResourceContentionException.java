@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * You already have a pending update to an Auto Scaling resource (for example, a
- * group, instance, or load balancer).
+ * You already have a pending update to an Amazon EC2 Auto Scaling resource (for
+ * example, an Auto Scaling group, instance, or load balancer).
  * </p>
  */
 public class ResourceContentionException extends AmazonServiceException {

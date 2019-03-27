@@ -61,7 +61,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
+     * The policy type. The valid values are <code>SimpleScaling</code> and
      * <code>StepScaling</code>.
      * </p>
      * <p>
@@ -75,7 +75,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. Valid values are <code>ChangeInCapacity</code>,
+     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
@@ -132,7 +132,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.
      * </p>
      * <p>
@@ -160,7 +160,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy.
      * </p>
      */
     private TargetTrackingConfiguration targetTrackingConfiguration;
@@ -347,7 +347,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
+     * The policy type. The valid values are <code>SimpleScaling</code> and
      * <code>StepScaling</code>.
      * </p>
      * <p>
@@ -357,8 +357,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The policy type. Valid values are <code>SimpleScaling</code> and
-     *         <code>StepScaling</code>.
+     *         The policy type. The valid values are <code>SimpleScaling</code>
+     *         and <code>StepScaling</code>.
      *         </p>
      */
     public String getPolicyType() {
@@ -367,7 +367,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
+     * The policy type. The valid values are <code>SimpleScaling</code> and
      * <code>StepScaling</code>.
      * </p>
      * <p>
@@ -377,8 +377,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. Valid values are <code>SimpleScaling</code>
-     *            and <code>StepScaling</code>.
+     *            The policy type. The valid values are
+     *            <code>SimpleScaling</code> and <code>StepScaling</code>.
      *            </p>
      */
     public void setPolicyType(String policyType) {
@@ -387,7 +387,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
+     * The policy type. The valid values are <code>SimpleScaling</code> and
      * <code>StepScaling</code>.
      * </p>
      * <p>
@@ -400,8 +400,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. Valid values are <code>SimpleScaling</code>
-     *            and <code>StepScaling</code>.
+     *            The policy type. The valid values are
+     *            <code>SimpleScaling</code> and <code>StepScaling</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -414,7 +414,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. Valid values are <code>ChangeInCapacity</code>,
+     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
@@ -425,9 +425,9 @@ public class ScalingPolicy implements Serializable {
      *
      * @return <p>
      *         The adjustment type, which specifies how
-     *         <code>ScalingAdjustment</code> is interpreted. Valid values are
-     *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
-     *         <code>PercentChangeInCapacity</code>.
+     *         <code>ScalingAdjustment</code> is interpreted. The valid values
+     *         are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>,
+     *         and <code>PercentChangeInCapacity</code>.
      *         </p>
      */
     public String getAdjustmentType() {
@@ -437,7 +437,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. Valid values are <code>ChangeInCapacity</code>,
+     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
@@ -448,9 +448,10 @@ public class ScalingPolicy implements Serializable {
      *
      * @param adjustmentType <p>
      *            The adjustment type, which specifies how
-     *            <code>ScalingAdjustment</code> is interpreted. Valid values
-     *            are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>,
-     *            and <code>PercentChangeInCapacity</code>.
+     *            <code>ScalingAdjustment</code> is interpreted. The valid
+     *            values are <code>ChangeInCapacity</code>,
+     *            <code>ExactCapacity</code>, and
+     *            <code>PercentChangeInCapacity</code>.
      *            </p>
      */
     public void setAdjustmentType(String adjustmentType) {
@@ -460,7 +461,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. Valid values are <code>ChangeInCapacity</code>,
+     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
@@ -474,9 +475,10 @@ public class ScalingPolicy implements Serializable {
      *
      * @param adjustmentType <p>
      *            The adjustment type, which specifies how
-     *            <code>ScalingAdjustment</code> is interpreted. Valid values
-     *            are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>,
-     *            and <code>PercentChangeInCapacity</code>.
+     *            <code>ScalingAdjustment</code> is interpreted. The valid
+     *            values are <code>ChangeInCapacity</code>,
+     *            <code>ExactCapacity</code>, and
+     *            <code>PercentChangeInCapacity</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -804,7 +806,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.
      * </p>
      * <p>
@@ -814,8 +816,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The aggregation type for the CloudWatch metrics. Valid values are
-     *         <code>Minimum</code>, <code>Maximum</code>, and
+     *         The aggregation type for the CloudWatch metrics. The valid values
+     *         are <code>Minimum</code>, <code>Maximum</code>, and
      *         <code>Average</code>.
      *         </p>
      */
@@ -825,7 +827,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.
      * </p>
      * <p>
@@ -835,8 +837,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param metricAggregationType <p>
-     *            The aggregation type for the CloudWatch metrics. Valid values
-     *            are <code>Minimum</code>, <code>Maximum</code>, and
+     *            The aggregation type for the CloudWatch metrics. The valid
+     *            values are <code>Minimum</code>, <code>Maximum</code>, and
      *            <code>Average</code>.
      *            </p>
      */
@@ -846,7 +848,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.
      * </p>
      * <p>
@@ -859,8 +861,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param metricAggregationType <p>
-     *            The aggregation type for the CloudWatch metrics. Valid values
-     *            are <code>Minimum</code>, <code>Maximum</code>, and
+     *            The aggregation type for the CloudWatch metrics. The valid
+     *            values are <code>Minimum</code>, <code>Maximum</code>, and
      *            <code>Average</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -998,11 +1000,11 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy.
      * </p>
      *
      * @return <p>
-     *         A target tracking policy.
+     *         A target tracking scaling policy.
      *         </p>
      */
     public TargetTrackingConfiguration getTargetTrackingConfiguration() {
@@ -1011,11 +1013,11 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy.
      * </p>
      *
      * @param targetTrackingConfiguration <p>
-     *            A target tracking policy.
+     *            A target tracking scaling policy.
      *            </p>
      */
     public void setTargetTrackingConfiguration(
@@ -1025,14 +1027,14 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetTrackingConfiguration <p>
-     *            A target tracking policy.
+     *            A target tracking scaling policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
