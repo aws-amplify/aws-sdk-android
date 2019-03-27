@@ -38,7 +38,11 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The device name exposed to the EC2 instance (for example,
-     * <code>/dev/sdh</code> or <code>xvdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>). For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     * >Device Naming on Linux Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +137,11 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The device name exposed to the EC2 instance (for example,
-     * <code>/dev/sdh</code> or <code>xvdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>). For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     * >Device Naming on Linux Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,7 +151,11 @@ public class BlockDeviceMapping implements Serializable {
      *
      * @return <p>
      *         The device name exposed to the EC2 instance (for example,
-     *         <code>/dev/sdh</code> or <code>xvdh</code>).
+     *         <code>/dev/sdh</code> or <code>xvdh</code>). For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     *         >Device Naming on Linux Instances</a> in the <i>Amazon EC2 User
+     *         Guide for Linux Instances</i>.
      *         </p>
      */
     public String getDeviceName() {
@@ -153,7 +165,11 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The device name exposed to the EC2 instance (for example,
-     * <code>/dev/sdh</code> or <code>xvdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>). For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     * >Device Naming on Linux Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +179,11 @@ public class BlockDeviceMapping implements Serializable {
      *
      * @param deviceName <p>
      *            The device name exposed to the EC2 instance (for example,
-     *            <code>/dev/sdh</code> or <code>xvdh</code>).
+     *            <code>/dev/sdh</code> or <code>xvdh</code>). For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     *            >Device Naming on Linux Instances</a> in the <i>Amazon EC2
+     *            User Guide for Linux Instances</i>.
      *            </p>
      */
     public void setDeviceName(String deviceName) {
@@ -173,7 +193,11 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The device name exposed to the EC2 instance (for example,
-     * <code>/dev/sdh</code> or <code>xvdh</code>).
+     * <code>/dev/sdh</code> or <code>xvdh</code>). For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     * >Device Naming on Linux Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -186,7 +210,11 @@ public class BlockDeviceMapping implements Serializable {
      *
      * @param deviceName <p>
      *            The device name exposed to the EC2 instance (for example,
-     *            <code>/dev/sdh</code> or <code>xvdh</code>).
+     *            <code>/dev/sdh</code> or <code>xvdh</code>). For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+     *            >Device Naming on Linux Instances</a> in the <i>Amazon EC2
+     *            User Guide for Linux Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

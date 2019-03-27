@@ -26,13 +26,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * existing parameter not changed in an update to an existing policy is not
  * changed in this update request.
  * </p>
- * <p>
- * If you exceed your maximum limit of step adjustments, which by default is 20
- * per region, the call fails. For information about updating this limit, see <a
- * href
- * ="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS
- * Service Limits</a> in the <i>Amazon Web Services General Reference</i>.
- * </p>
  */
 public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -84,7 +77,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -125,7 +118,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * removes from the current capacity.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>SimpleScaling</code> and not supported otherwise.
      * </p>
      */
@@ -143,7 +136,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      */
@@ -174,8 +167,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * alarm breach.
      * </p>
      * <p>
-     * This parameter is required if the policy type is <code>StepScaling</code>
-     * and not supported otherwise.
+     * Conditional: This parameter is required if the policy type is
+     * <code>StepScaling</code> and not supported otherwise.
      * </p>
      */
     private java.util.List<StepAdjustment> stepAdjustments = new java.util.ArrayList<StepAdjustment>();
@@ -195,10 +188,11 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy. Includes support for predefined or
+     * customized metrics.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>TargetTrackingScaling</code> and not supported otherwise.
      * </p>
      */
@@ -410,7 +404,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -430,7 +424,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      *         >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
      *         Guide</i>.
      *         </p>
@@ -450,7 +444,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -470,7 +464,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      *            >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
      *            </p>
@@ -490,7 +484,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -513,7 +507,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
      *            >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
      *            </p>
@@ -679,7 +673,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * removes from the current capacity.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>SimpleScaling</code> and not supported otherwise.
      * </p>
      *
@@ -689,7 +683,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         negative number removes from the current capacity.
      *         </p>
      *         <p>
-     *         This parameter is required if the policy type is
+     *         Conditional: This parameter is required if the policy type is
      *         <code>SimpleScaling</code> and not supported otherwise.
      *         </p>
      */
@@ -704,7 +698,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * removes from the current capacity.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>SimpleScaling</code> and not supported otherwise.
      * </p>
      *
@@ -714,7 +708,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            while a negative number removes from the current capacity.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>SimpleScaling</code> and not supported otherwise.
      *            </p>
      */
@@ -729,7 +723,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * removes from the current capacity.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>SimpleScaling</code> and not supported otherwise.
      * </p>
      * <p>
@@ -742,7 +736,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            while a negative number removes from the current capacity.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>SimpleScaling</code> and not supported otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -765,7 +759,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      *
@@ -781,7 +775,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      *         >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
      *         Guide</i>.
      *         </p>
@@ -802,7 +796,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      *
@@ -818,7 +812,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
      *            </p>
@@ -839,7 +833,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -858,7 +852,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
      *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
      *            </p>
@@ -978,8 +972,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * alarm breach.
      * </p>
      * <p>
-     * This parameter is required if the policy type is <code>StepScaling</code>
-     * and not supported otherwise.
+     * Conditional: This parameter is required if the policy type is
+     * <code>StepScaling</code> and not supported otherwise.
      * </p>
      *
      * @return <p>
@@ -987,7 +981,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         of the alarm breach.
      *         </p>
      *         <p>
-     *         This parameter is required if the policy type is
+     *         Conditional: This parameter is required if the policy type is
      *         <code>StepScaling</code> and not supported otherwise.
      *         </p>
      */
@@ -1001,8 +995,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * alarm breach.
      * </p>
      * <p>
-     * This parameter is required if the policy type is <code>StepScaling</code>
-     * and not supported otherwise.
+     * Conditional: This parameter is required if the policy type is
+     * <code>StepScaling</code> and not supported otherwise.
      * </p>
      *
      * @param stepAdjustments <p>
@@ -1010,7 +1004,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            size of the alarm breach.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>StepScaling</code> and not supported otherwise.
      *            </p>
      */
@@ -1029,8 +1023,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * alarm breach.
      * </p>
      * <p>
-     * This parameter is required if the policy type is <code>StepScaling</code>
-     * and not supported otherwise.
+     * Conditional: This parameter is required if the policy type is
+     * <code>StepScaling</code> and not supported otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1041,7 +1035,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            size of the alarm breach.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>StepScaling</code> and not supported otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1063,8 +1057,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * alarm breach.
      * </p>
      * <p>
-     * This parameter is required if the policy type is <code>StepScaling</code>
-     * and not supported otherwise.
+     * Conditional: This parameter is required if the policy type is
+     * <code>StepScaling</code> and not supported otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1075,7 +1069,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            size of the alarm breach.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>StepScaling</code> and not supported otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1175,18 +1169,20 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy. Includes support for predefined or
+     * customized metrics.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>TargetTrackingScaling</code> and not supported otherwise.
      * </p>
      *
      * @return <p>
-     *         A target tracking policy.
+     *         A target tracking scaling policy. Includes support for predefined
+     *         or customized metrics.
      *         </p>
      *         <p>
-     *         This parameter is required if the policy type is
+     *         Conditional: This parameter is required if the policy type is
      *         <code>TargetTrackingScaling</code> and not supported otherwise.
      *         </p>
      */
@@ -1196,18 +1192,20 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy. Includes support for predefined or
+     * customized metrics.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>TargetTrackingScaling</code> and not supported otherwise.
      * </p>
      *
      * @param targetTrackingConfiguration <p>
-     *            A target tracking policy.
+     *            A target tracking scaling policy. Includes support for
+     *            predefined or customized metrics.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>TargetTrackingScaling</code> and not supported
      *            otherwise.
      *            </p>
@@ -1219,10 +1217,11 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * A target tracking policy.
+     * A target tracking scaling policy. Includes support for predefined or
+     * customized metrics.
      * </p>
      * <p>
-     * This parameter is required if the policy type is
+     * Conditional: This parameter is required if the policy type is
      * <code>TargetTrackingScaling</code> and not supported otherwise.
      * </p>
      * <p>
@@ -1230,10 +1229,11 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * together.
      *
      * @param targetTrackingConfiguration <p>
-     *            A target tracking policy.
+     *            A target tracking scaling policy. Includes support for
+     *            predefined or customized metrics.
      *            </p>
      *            <p>
-     *            This parameter is required if the policy type is
+     *            Conditional: This parameter is required if the policy type is
      *            <code>TargetTrackingScaling</code> and not supported
      *            otherwise.
      *            </p>

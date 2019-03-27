@@ -21,12 +21,7 @@ import java.io.Serializable;
  * <p>
  * Describes a lifecycle hook, which tells Amazon EC2 Auto Scaling that you want
  * to perform an action whenever it launches instances or whenever it terminates
- * instances.
- * </p>
- * <p>
- * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
- * >Lifecycle Hooks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+ * instances. Used in response to <a>DescribeLifecycleHooks</a>.
  * </p>
  */
 public class LifecycleHook implements Serializable {
@@ -102,8 +97,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Amazon EC2 Auto
-     * Scaling sends a message to the notification target.
+     * Additional information that is included any time Amazon EC2 Auto Scaling
+     * sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,8 +112,8 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
      * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
-     * performs the default action. You can prevent the lifecycle hook from
-     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     * performs the action that you specified in the <code>DefaultResult</code>
+     * parameter.
      * </p>
      */
     private Integer heartbeatTimeout;
@@ -136,9 +131,8 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * Defines the action the Auto Scaling group should take when the lifecycle
-     * hook timeout elapses or if an unexpected failure occurs. The valid values
-     * are <code>CONTINUE</code> and <code>ABANDON</code>. The default value is
-     * <code>CONTINUE</code>.
+     * hook timeout elapses or if an unexpected failure occurs. The possible
+     * values are <code>CONTINUE</code> and <code>ABANDON</code>.
      * </p>
      */
     private String defaultResult;
@@ -526,8 +520,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Amazon EC2 Auto
-     * Scaling sends a message to the notification target.
+     * Additional information that is included any time Amazon EC2 Auto Scaling
+     * sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -536,8 +530,8 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         Additional information that you want to include any time Amazon
-     *         EC2 Auto Scaling sends a message to the notification target.
+     *         Additional information that is included any time Amazon EC2 Auto
+     *         Scaling sends a message to the notification target.
      *         </p>
      */
     public String getNotificationMetadata() {
@@ -546,8 +540,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Amazon EC2 Auto
-     * Scaling sends a message to the notification target.
+     * Additional information that is included any time Amazon EC2 Auto Scaling
+     * sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -556,9 +550,8 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationMetadata <p>
-     *            Additional information that you want to include any time
-     *            Amazon EC2 Auto Scaling sends a message to the notification
-     *            target.
+     *            Additional information that is included any time Amazon EC2
+     *            Auto Scaling sends a message to the notification target.
      *            </p>
      */
     public void setNotificationMetadata(String notificationMetadata) {
@@ -567,8 +560,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Amazon EC2 Auto
-     * Scaling sends a message to the notification target.
+     * Additional information that is included any time Amazon EC2 Auto Scaling
+     * sends a message to the notification target.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -580,9 +573,8 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationMetadata <p>
-     *            Additional information that you want to include any time
-     *            Amazon EC2 Auto Scaling sends a message to the notification
-     *            target.
+     *            Additional information that is included any time Amazon EC2
+     *            Auto Scaling sends a message to the notification target.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -596,16 +588,15 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
      * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
-     * performs the default action. You can prevent the lifecycle hook from
-     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     * performs the action that you specified in the <code>DefaultResult</code>
+     * parameter.
      * </p>
      *
      * @return <p>
      *         The maximum time, in seconds, that can elapse before the
      *         lifecycle hook times out. If the lifecycle hook times out, Amazon
-     *         EC2 Auto Scaling performs the default action. You can prevent the
-     *         lifecycle hook from timing out by calling
-     *         <a>RecordLifecycleActionHeartbeat</a>.
+     *         EC2 Auto Scaling performs the action that you specified in the
+     *         <code>DefaultResult</code> parameter.
      *         </p>
      */
     public Integer getHeartbeatTimeout() {
@@ -616,16 +607,15 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
      * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
-     * performs the default action. You can prevent the lifecycle hook from
-     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     * performs the action that you specified in the <code>DefaultResult</code>
+     * parameter.
      * </p>
      *
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
      *            lifecycle hook times out. If the lifecycle hook times out,
-     *            Amazon EC2 Auto Scaling performs the default action. You can
-     *            prevent the lifecycle hook from timing out by calling
-     *            <a>RecordLifecycleActionHeartbeat</a>.
+     *            Amazon EC2 Auto Scaling performs the action that you specified
+     *            in the <code>DefaultResult</code> parameter.
      *            </p>
      */
     public void setHeartbeatTimeout(Integer heartbeatTimeout) {
@@ -636,8 +626,8 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
      * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
-     * performs the default action. You can prevent the lifecycle hook from
-     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     * performs the action that you specified in the <code>DefaultResult</code>
+     * parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -646,9 +636,8 @@ public class LifecycleHook implements Serializable {
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
      *            lifecycle hook times out. If the lifecycle hook times out,
-     *            Amazon EC2 Auto Scaling performs the default action. You can
-     *            prevent the lifecycle hook from timing out by calling
-     *            <a>RecordLifecycleActionHeartbeat</a>.
+     *            Amazon EC2 Auto Scaling performs the action that you specified
+     *            in the <code>DefaultResult</code> parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -724,16 +713,15 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * Defines the action the Auto Scaling group should take when the lifecycle
-     * hook timeout elapses or if an unexpected failure occurs. The valid values
-     * are <code>CONTINUE</code> and <code>ABANDON</code>. The default value is
-     * <code>CONTINUE</code>.
+     * hook timeout elapses or if an unexpected failure occurs. The possible
+     * values are <code>CONTINUE</code> and <code>ABANDON</code>.
      * </p>
      *
      * @return <p>
      *         Defines the action the Auto Scaling group should take when the
      *         lifecycle hook timeout elapses or if an unexpected failure
-     *         occurs. The valid values are <code>CONTINUE</code> and
-     *         <code>ABANDON</code>. The default value is <code>CONTINUE</code>.
+     *         occurs. The possible values are <code>CONTINUE</code> and
+     *         <code>ABANDON</code>.
      *         </p>
      */
     public String getDefaultResult() {
@@ -743,17 +731,15 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * Defines the action the Auto Scaling group should take when the lifecycle
-     * hook timeout elapses or if an unexpected failure occurs. The valid values
-     * are <code>CONTINUE</code> and <code>ABANDON</code>. The default value is
-     * <code>CONTINUE</code>.
+     * hook timeout elapses or if an unexpected failure occurs. The possible
+     * values are <code>CONTINUE</code> and <code>ABANDON</code>.
      * </p>
      *
      * @param defaultResult <p>
      *            Defines the action the Auto Scaling group should take when the
      *            lifecycle hook timeout elapses or if an unexpected failure
-     *            occurs. The valid values are <code>CONTINUE</code> and
-     *            <code>ABANDON</code>. The default value is
-     *            <code>CONTINUE</code>.
+     *            occurs. The possible values are <code>CONTINUE</code> and
+     *            <code>ABANDON</code>.
      *            </p>
      */
     public void setDefaultResult(String defaultResult) {
@@ -763,9 +749,8 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * Defines the action the Auto Scaling group should take when the lifecycle
-     * hook timeout elapses or if an unexpected failure occurs. The valid values
-     * are <code>CONTINUE</code> and <code>ABANDON</code>. The default value is
-     * <code>CONTINUE</code>.
+     * hook timeout elapses or if an unexpected failure occurs. The possible
+     * values are <code>CONTINUE</code> and <code>ABANDON</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -774,9 +759,8 @@ public class LifecycleHook implements Serializable {
      * @param defaultResult <p>
      *            Defines the action the Auto Scaling group should take when the
      *            lifecycle hook timeout elapses or if an unexpected failure
-     *            occurs. The valid values are <code>CONTINUE</code> and
-     *            <code>ABANDON</code>. The default value is
-     *            <code>CONTINUE</code>.
+     *            occurs. The possible values are <code>CONTINUE</code> and
+     *            <code>ABANDON</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
