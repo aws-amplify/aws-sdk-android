@@ -35,63 +35,47 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateStreamRequest
+ * JSON request marshaller for GetStatisticsRequest
  */
-public class CreateStreamRequestMarshaller implements
-        Marshaller<Request<CreateStreamRequest>, CreateStreamRequest> {
+public class GetStatisticsRequestMarshaller implements
+        Marshaller<Request<GetStatisticsRequest>, GetStatisticsRequest> {
 
-    public Request<CreateStreamRequest> marshall(CreateStreamRequest createStreamRequest) {
-        if (createStreamRequest == null) {
+    public Request<GetStatisticsRequest> marshall(GetStatisticsRequest getStatisticsRequest) {
+        if (getStatisticsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(CreateStreamRequest)");
+                    "Invalid argument passed to marshall(GetStatisticsRequest)");
         }
 
-        Request<CreateStreamRequest> request = new DefaultRequest<CreateStreamRequest>(
-                createStreamRequest, "AWSIot");
+        Request<GetStatisticsRequest> request = new DefaultRequest<GetStatisticsRequest>(
+                getStatisticsRequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/streams/{streamId}";
-        uriResourcePath = uriResourcePath.replace(
-                "{streamId}",
-                (createStreamRequest.getStreamId() == null) ? "" : StringUtils
-                        .fromString(createStreamRequest.getStreamId()));
+        String uriResourcePath = "/indices/statistics";
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createStreamRequest.getDescription() != null) {
-                String description = createStreamRequest.getDescription();
-                jsonWriter.name("description");
-                jsonWriter.value(description);
+            if (getStatisticsRequest.getIndexName() != null) {
+                String indexName = getStatisticsRequest.getIndexName();
+                jsonWriter.name("indexName");
+                jsonWriter.value(indexName);
             }
-            if (createStreamRequest.getFiles() != null) {
-                java.util.List<StreamFile> files = createStreamRequest.getFiles();
-                jsonWriter.name("files");
-                jsonWriter.beginArray();
-                for (StreamFile filesItem : files) {
-                    if (filesItem != null) {
-                        StreamFileJsonMarshaller.getInstance().marshall(filesItem, jsonWriter);
-                    }
-                }
-                jsonWriter.endArray();
+            if (getStatisticsRequest.getQueryString() != null) {
+                String queryString = getStatisticsRequest.getQueryString();
+                jsonWriter.name("queryString");
+                jsonWriter.value(queryString);
             }
-            if (createStreamRequest.getRoleArn() != null) {
-                String roleArn = createStreamRequest.getRoleArn();
-                jsonWriter.name("roleArn");
-                jsonWriter.value(roleArn);
+            if (getStatisticsRequest.getAggregationField() != null) {
+                String aggregationField = getStatisticsRequest.getAggregationField();
+                jsonWriter.name("aggregationField");
+                jsonWriter.value(aggregationField);
             }
-            if (createStreamRequest.getTags() != null) {
-                java.util.List<Tag> tags = createStreamRequest.getTags();
-                jsonWriter.name("tags");
-                jsonWriter.beginArray();
-                for (Tag tagsItem : tags) {
-                    if (tagsItem != null) {
-                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
-                    }
-                }
-                jsonWriter.endArray();
+            if (getStatisticsRequest.getQueryVersion() != null) {
+                String queryVersion = getStatisticsRequest.getQueryVersion();
+                jsonWriter.name("queryVersion");
+                jsonWriter.value(queryVersion);
             }
 
             jsonWriter.endObject();

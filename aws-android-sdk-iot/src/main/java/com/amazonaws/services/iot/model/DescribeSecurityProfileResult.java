@@ -65,6 +65,15 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's <code>behaviors</code> but
+     * it is also retained for any metric specified here.
+     * </p>
+     */
+    private java.util.List<String> additionalMetricsToRetain;
+
+    /**
+     * <p>
      * The version of the security profile. A new version is generated whenever
      * the security profile is updated.
      * </p>
@@ -421,6 +430,103 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's <code>behaviors</code> but
+     * it is also retained for any metric specified here.
+     * </p>
+     *
+     * @return <p>
+     *         A list of metrics whose data is retained (stored). By default,
+     *         data is retained for any metric used in the profile's
+     *         <code>behaviors</code> but it is also retained for any metric
+     *         specified here.
+     *         </p>
+     */
+    public java.util.List<String> getAdditionalMetricsToRetain() {
+        return additionalMetricsToRetain;
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's <code>behaviors</code> but
+     * it is also retained for any metric specified here.
+     * </p>
+     *
+     * @param additionalMetricsToRetain <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            <code>behaviors</code> but it is also retained for any metric
+     *            specified here.
+     *            </p>
+     */
+    public void setAdditionalMetricsToRetain(java.util.Collection<String> additionalMetricsToRetain) {
+        if (additionalMetricsToRetain == null) {
+            this.additionalMetricsToRetain = null;
+            return;
+        }
+
+        this.additionalMetricsToRetain = new java.util.ArrayList<String>(additionalMetricsToRetain);
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's <code>behaviors</code> but
+     * it is also retained for any metric specified here.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalMetricsToRetain <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            <code>behaviors</code> but it is also retained for any metric
+     *            specified here.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeSecurityProfileResult withAdditionalMetricsToRetain(
+            String... additionalMetricsToRetain) {
+        if (getAdditionalMetricsToRetain() == null) {
+            this.additionalMetricsToRetain = new java.util.ArrayList<String>(
+                    additionalMetricsToRetain.length);
+        }
+        for (String value : additionalMetricsToRetain) {
+            this.additionalMetricsToRetain.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's <code>behaviors</code> but
+     * it is also retained for any metric specified here.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalMetricsToRetain <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            <code>behaviors</code> but it is also retained for any metric
+     *            specified here.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeSecurityProfileResult withAdditionalMetricsToRetain(
+            java.util.Collection<String> additionalMetricsToRetain) {
+        setAdditionalMetricsToRetain(additionalMetricsToRetain);
+        return this;
+    }
+
+    /**
+     * <p>
      * The version of the security profile. A new version is generated whenever
      * the security profile is updated.
      * </p>
@@ -581,6 +687,8 @@ public class DescribeSecurityProfileResult implements Serializable {
             sb.append("behaviors: " + getBehaviors() + ",");
         if (getAlertTargets() != null)
             sb.append("alertTargets: " + getAlertTargets() + ",");
+        if (getAdditionalMetricsToRetain() != null)
+            sb.append("additionalMetricsToRetain: " + getAdditionalMetricsToRetain() + ",");
         if (getVersion() != null)
             sb.append("version: " + getVersion() + ",");
         if (getCreationDate() != null)
@@ -607,6 +715,10 @@ public class DescribeSecurityProfileResult implements Serializable {
         hashCode = prime * hashCode + ((getBehaviors() == null) ? 0 : getBehaviors().hashCode());
         hashCode = prime * hashCode
                 + ((getAlertTargets() == null) ? 0 : getAlertTargets().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAdditionalMetricsToRetain() == null) ? 0 : getAdditionalMetricsToRetain()
+                        .hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
@@ -652,6 +764,12 @@ public class DescribeSecurityProfileResult implements Serializable {
             return false;
         if (other.getAlertTargets() != null
                 && other.getAlertTargets().equals(this.getAlertTargets()) == false)
+            return false;
+        if (other.getAdditionalMetricsToRetain() == null
+                ^ this.getAdditionalMetricsToRetain() == null)
+            return false;
+        if (other.getAdditionalMetricsToRetain() != null
+                && other.getAdditionalMetricsToRetain().equals(this.getAdditionalMetricsToRetain()) == false)
             return false;
         if (other.getVersion() == null ^ this.getVersion() == null)
             return false;
