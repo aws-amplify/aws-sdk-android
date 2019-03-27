@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019- Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -422,6 +422,25 @@ class RegionDefaults {
         updateRegion(region, "sns", "sns.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+
+        region = new Region("eu-north-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.eu-north-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+
         return ret;
     }
 
