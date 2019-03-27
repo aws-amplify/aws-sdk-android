@@ -17,81 +17,62 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
  * <p>
- * Lists the principals associated with the specified thing. A principal can be
- * X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
- * or federated identities.
+ * A map of key-value pairs for all supported statistics. Currently, only count
+ * is supported.
  * </p>
  */
-public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implements Serializable {
+public class Statistics implements Serializable {
     /**
      * <p>
-     * The name of the thing.
+     * The count of things that match the query.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
-    private String thingName;
+    private Integer count;
 
     /**
      * <p>
-     * The name of the thing.
+     * The count of things that match the query.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the thing.
+     *         The count of things that match the query.
      *         </p>
      */
-    public String getThingName() {
-        return thingName;
+    public Integer getCount() {
+        return count;
     }
 
     /**
      * <p>
-     * The name of the thing.
+     * The count of things that match the query.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param thingName <p>
-     *            The name of the thing.
+     * @param count <p>
+     *            The count of things that match the query.
      *            </p>
      */
-    public void setThingName(String thingName) {
-        this.thingName = thingName;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     /**
      * <p>
-     * The name of the thing.
+     * The count of things that match the query.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param thingName <p>
-     *            The name of the thing.
+     * @param count <p>
+     *            The count of things that match the query.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListThingPrincipalsRequest withThingName(String thingName) {
-        this.thingName = thingName;
+    public Statistics withCount(Integer count) {
+        this.count = count;
         return this;
     }
 
@@ -106,8 +87,8 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getThingName() != null)
-            sb.append("thingName: " + getThingName());
+        if (getCount() != null)
+            sb.append("count: " + getCount());
         sb.append("}");
         return sb.toString();
     }
@@ -117,7 +98,7 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode + ((getCount() == null) ? 0 : getCount().hashCode());
         return hashCode;
     }
 
@@ -128,14 +109,13 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
         if (obj == null)
             return false;
 
-        if (obj instanceof ListThingPrincipalsRequest == false)
+        if (obj instanceof Statistics == false)
             return false;
-        ListThingPrincipalsRequest other = (ListThingPrincipalsRequest) obj;
+        Statistics other = (Statistics) obj;
 
-        if (other.getThingName() == null ^ this.getThingName() == null)
+        if (other.getCount() == null ^ this.getCount() == null)
             return false;
-        if (other.getThingName() != null
-                && other.getThingName().equals(this.getThingName()) == false)
+        if (other.getCount() != null && other.getCount().equals(this.getCount()) == false)
             return false;
         return true;
     }

@@ -45,6 +45,18 @@ class BehaviorCriteriaJsonUnmarshaller implements
             } else if (name.equals("durationSeconds")) {
                 behaviorCriteria.setDurationSeconds(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("consecutiveDatapointsToAlarm")) {
+                behaviorCriteria.setConsecutiveDatapointsToAlarm(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("consecutiveDatapointsToClear")) {
+                behaviorCriteria.setConsecutiveDatapointsToClear(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("statisticalThreshold")) {
+                behaviorCriteria.setStatisticalThreshold(StatisticalThresholdJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

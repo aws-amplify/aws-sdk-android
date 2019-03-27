@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ThingConnectivity implements Serializable {
     /**
      * <p>
-     * True if the thing is connected to the AWS IoT service, false if it is not
+     * True if the thing is connected to the AWS IoT service; false if it is not
      * connected.
      * </p>
      */
@@ -34,20 +34,20 @@ public class ThingConnectivity implements Serializable {
     /**
      * <p>
      * The epoch time (in milliseconds) when the thing last connected or
-     * disconnected. Note that if the thing has been disconnected for more than
-     * a few weeks, the time value can be missing.
+     * disconnected. If the thing has been disconnected for more than a few
+     * weeks, the time value might be missing.
      * </p>
      */
     private Long timestamp;
 
     /**
      * <p>
-     * True if the thing is connected to the AWS IoT service, false if it is not
+     * True if the thing is connected to the AWS IoT service; false if it is not
      * connected.
      * </p>
      *
      * @return <p>
-     *         True if the thing is connected to the AWS IoT service, false if
+     *         True if the thing is connected to the AWS IoT service; false if
      *         it is not connected.
      *         </p>
      */
@@ -57,12 +57,12 @@ public class ThingConnectivity implements Serializable {
 
     /**
      * <p>
-     * True if the thing is connected to the AWS IoT service, false if it is not
+     * True if the thing is connected to the AWS IoT service; false if it is not
      * connected.
      * </p>
      *
      * @return <p>
-     *         True if the thing is connected to the AWS IoT service, false if
+     *         True if the thing is connected to the AWS IoT service; false if
      *         it is not connected.
      *         </p>
      */
@@ -72,12 +72,12 @@ public class ThingConnectivity implements Serializable {
 
     /**
      * <p>
-     * True if the thing is connected to the AWS IoT service, false if it is not
+     * True if the thing is connected to the AWS IoT service; false if it is not
      * connected.
      * </p>
      *
      * @param connected <p>
-     *            True if the thing is connected to the AWS IoT service, false
+     *            True if the thing is connected to the AWS IoT service; false
      *            if it is not connected.
      *            </p>
      */
@@ -87,7 +87,7 @@ public class ThingConnectivity implements Serializable {
 
     /**
      * <p>
-     * True if the thing is connected to the AWS IoT service, false if it is not
+     * True if the thing is connected to the AWS IoT service; false if it is not
      * connected.
      * </p>
      * <p>
@@ -95,7 +95,7 @@ public class ThingConnectivity implements Serializable {
      * together.
      *
      * @param connected <p>
-     *            True if the thing is connected to the AWS IoT service, false
+     *            True if the thing is connected to the AWS IoT service; false
      *            if it is not connected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -109,14 +109,14 @@ public class ThingConnectivity implements Serializable {
     /**
      * <p>
      * The epoch time (in milliseconds) when the thing last connected or
-     * disconnected. Note that if the thing has been disconnected for more than
-     * a few weeks, the time value can be missing.
+     * disconnected. If the thing has been disconnected for more than a few
+     * weeks, the time value might be missing.
      * </p>
      *
      * @return <p>
      *         The epoch time (in milliseconds) when the thing last connected or
-     *         disconnected. Note that if the thing has been disconnected for
-     *         more than a few weeks, the time value can be missing.
+     *         disconnected. If the thing has been disconnected for more than a
+     *         few weeks, the time value might be missing.
      *         </p>
      */
     public Long getTimestamp() {
@@ -126,14 +126,14 @@ public class ThingConnectivity implements Serializable {
     /**
      * <p>
      * The epoch time (in milliseconds) when the thing last connected or
-     * disconnected. Note that if the thing has been disconnected for more than
-     * a few weeks, the time value can be missing.
+     * disconnected. If the thing has been disconnected for more than a few
+     * weeks, the time value might be missing.
      * </p>
      *
      * @param timestamp <p>
      *            The epoch time (in milliseconds) when the thing last connected
-     *            or disconnected. Note that if the thing has been disconnected
-     *            for more than a few weeks, the time value can be missing.
+     *            or disconnected. If the thing has been disconnected for more
+     *            than a few weeks, the time value might be missing.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -143,8 +143,8 @@ public class ThingConnectivity implements Serializable {
     /**
      * <p>
      * The epoch time (in milliseconds) when the thing last connected or
-     * disconnected. Note that if the thing has been disconnected for more than
-     * a few weeks, the time value can be missing.
+     * disconnected. If the thing has been disconnected for more than a few
+     * weeks, the time value might be missing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,8 +152,8 @@ public class ThingConnectivity implements Serializable {
      *
      * @param timestamp <p>
      *            The epoch time (in milliseconds) when the thing last connected
-     *            or disconnected. Note that if the thing has been disconnected
-     *            for more than a few weeks, the time value can be missing.
+     *            or disconnected. If the thing has been disconnected for more
+     *            than a few weeks, the time value might be missing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

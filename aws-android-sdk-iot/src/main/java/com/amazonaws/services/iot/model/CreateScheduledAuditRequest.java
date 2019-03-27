@@ -77,6 +77,13 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Metadata which can be used to manage the scheduled audit.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * The name you want to give to the scheduled audit. (Max. 128 chars)
      * </p>
      * <p>
@@ -85,13 +92,6 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String scheduledAuditName;
-
-    /**
-     * <p>
-     * Metadata which can be used to manage the scheduled audit.
-     * </p>
-     */
-    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -527,66 +527,6 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The name you want to give to the scheduled audit. (Max. 128 chars)
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
-     *
-     * @return <p>
-     *         The name you want to give to the scheduled audit. (Max. 128
-     *         chars)
-     *         </p>
-     */
-    public String getScheduledAuditName() {
-        return scheduledAuditName;
-    }
-
-    /**
-     * <p>
-     * The name you want to give to the scheduled audit. (Max. 128 chars)
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
-     *
-     * @param scheduledAuditName <p>
-     *            The name you want to give to the scheduled audit. (Max. 128
-     *            chars)
-     *            </p>
-     */
-    public void setScheduledAuditName(String scheduledAuditName) {
-        this.scheduledAuditName = scheduledAuditName;
-    }
-
-    /**
-     * <p>
-     * The name you want to give to the scheduled audit. (Max. 128 chars)
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
-     *
-     * @param scheduledAuditName <p>
-     *            The name you want to give to the scheduled audit. (Max. 128
-     *            chars)
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateScheduledAuditRequest withScheduledAuditName(String scheduledAuditName) {
-        this.scheduledAuditName = scheduledAuditName;
-        return this;
-    }
-
-    /**
-     * <p>
      * Metadata which can be used to manage the scheduled audit.
      * </p>
      *
@@ -660,6 +600,66 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The name you want to give to the scheduled audit. (Max. 128 chars)
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @return <p>
+     *         The name you want to give to the scheduled audit. (Max. 128
+     *         chars)
+     *         </p>
+     */
+    public String getScheduledAuditName() {
+        return scheduledAuditName;
+    }
+
+    /**
+     * <p>
+     * The name you want to give to the scheduled audit. (Max. 128 chars)
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param scheduledAuditName <p>
+     *            The name you want to give to the scheduled audit. (Max. 128
+     *            chars)
+     *            </p>
+     */
+    public void setScheduledAuditName(String scheduledAuditName) {
+        this.scheduledAuditName = scheduledAuditName;
+    }
+
+    /**
+     * <p>
+     * The name you want to give to the scheduled audit. (Max. 128 chars)
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param scheduledAuditName <p>
+     *            The name you want to give to the scheduled audit. (Max. 128
+     *            chars)
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateScheduledAuditRequest withScheduledAuditName(String scheduledAuditName) {
+        this.scheduledAuditName = scheduledAuditName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -678,10 +678,10 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
             sb.append("dayOfWeek: " + getDayOfWeek() + ",");
         if (getTargetCheckNames() != null)
             sb.append("targetCheckNames: " + getTargetCheckNames() + ",");
-        if (getScheduledAuditName() != null)
-            sb.append("scheduledAuditName: " + getScheduledAuditName() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getScheduledAuditName() != null)
+            sb.append("scheduledAuditName: " + getScheduledAuditName());
         sb.append("}");
         return sb.toString();
     }
@@ -696,9 +696,9 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode + ((getDayOfWeek() == null) ? 0 : getDayOfWeek().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetCheckNames() == null) ? 0 : getTargetCheckNames().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getScheduledAuditName() == null) ? 0 : getScheduledAuditName().hashCode());
-        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -733,14 +733,14 @@ public class CreateScheduledAuditRequest extends AmazonWebServiceRequest impleme
         if (other.getTargetCheckNames() != null
                 && other.getTargetCheckNames().equals(this.getTargetCheckNames()) == false)
             return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
         if (other.getScheduledAuditName() == null ^ this.getScheduledAuditName() == null)
             return false;
         if (other.getScheduledAuditName() != null
                 && other.getScheduledAuditName().equals(this.getScheduledAuditName()) == false)
-            return false;
-        if (other.getTags() == null ^ this.getTags() == null)
-            return false;
-        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }
