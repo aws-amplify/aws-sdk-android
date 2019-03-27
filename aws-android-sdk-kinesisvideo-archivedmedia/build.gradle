@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 11
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,14 +25,19 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api (project(":aws-android-sdk-core")){
+    api (project(":aws-android-sdk-core")) {
         exclude group: "com.google.android", module: "android"
     }
+    implementation project(":aws-android-sdk-kinesisvideo")
 
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation project(":aws-android-sdk-testutils")
