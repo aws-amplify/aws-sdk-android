@@ -575,7 +575,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         mqttCertReconnect(false);
     }
 
-    public void mqttCertReconnect(final boolean alpnFLag) throws Exception {
+    public void mqttCertReconnect(final boolean alpnFlag) throws Exception {
 
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
@@ -600,7 +600,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             }
         };
         // connect to AWS IoT using keystore
-        if (alpnFLag) {
+        if (alpnFlag) {
             mqttManager.connectUsingALPN(ks, callback);
         } else {
             mqttManager.connect(ks, callback);

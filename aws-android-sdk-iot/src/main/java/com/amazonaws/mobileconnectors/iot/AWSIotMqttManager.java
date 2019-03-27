@@ -733,11 +733,11 @@ public class AWSIotMqttManager {
         }
 
         if (endpoint != null) {
-            mqttBrokerURL = String.format("ssl://%s:" + portNumber, endpoint);
+            mqttBrokerURL = String.format("ssl://%s:%d", endpoint, portNumber);
         } else if (accountEndpointPrefix != null) {
             mqttBrokerURL = String
-                    .format("ssl://%s.iot.%s.%s:" + portNumber, accountEndpointPrefix, region.getName(),
-                            region.getDomain());
+                    .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
+                            region.getDomain(),portNumber);
         } else {
             throw new IllegalStateException("No valid endpoint information is available. " +
                 "Please pass in a valid endpoint in AWSIotMqttManager.");

@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
+
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -39,6 +42,7 @@ final class AWSIotSslUtility {
     protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
     private static final String TLS_V_1_2 = "TLSv1.2";
     protected static int portNumber = 8883;
+    private static final Log LOGGER = LogFactory.getLog(AWSIotSslUtility.class);
 
     /**
      * Utility class.
@@ -60,7 +64,7 @@ final class AWSIotSslUtility {
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.
      */
-    protected static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNum)
+    protected synchronized static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNum)
             throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
             KeyManagementException {
         portNumber = portNum;
@@ -93,6 +97,7 @@ final class AWSIotSslUtility {
                 context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
             } catch (NoSuchProviderException e) {
                 // Fallback to system SSLContext
+                LOGGER.debug("Conscrypt provider not found. Falling back to the default security provider.");
                 context = SSLContext.getInstance(TLS_V_1_2);
             }
         } else {
