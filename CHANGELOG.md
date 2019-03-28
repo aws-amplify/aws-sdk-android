@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.12.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.7)
+
+### Enhancements
+
+* **AWS IoT**
+  * AWS IoT SDK for Android now supports MQTT over TLS with X.509 client certificate authentication on port 443. Previously this combination of protocol and authentication mechanism was only supported on port 8883. `connectUsingALPN()` method allows developers to connect to AWS IoT using client certificate authentication on port 443. Please look at https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works/ for more details.
+  * **Breaking Change:** Please note that the type of aws-android-sdk-iot artifact is being changed from `jar` to an `aar`. Also note that `aar` artifacts needs to be explicitly specified in the dependency as `implementation ("com.amazonaws:aws-android-sdk-iot:2.12.+@aar") { transitive =true }` on some of the older versions of gradle. 
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
