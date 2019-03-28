@@ -22,6 +22,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.services.kinesisvideo.model.APIName;
+import com.amazonaws.services.kinesisvideo.model.ComparisonOperator;
+import com.amazonaws.services.kinesisvideo.model.CreateStreamRequest;
+import com.amazonaws.services.kinesisvideo.model.CreateStreamResult;
+import com.amazonaws.services.kinesisvideo.model.DeleteStreamRequest;
+import com.amazonaws.services.kinesisvideo.model.GetDataEndpointRequest;
+import com.amazonaws.services.kinesisvideo.model.GetDataEndpointResult;
+import com.amazonaws.services.kinesisvideo.model.ListStreamsRequest;
+import com.amazonaws.services.kinesisvideo.model.ListStreamsResult;
+import com.amazonaws.services.kinesisvideo.model.StreamInfo;
+import com.amazonaws.services.kinesisvideo.model.StreamNameCondition;
 import com.amazonaws.services.kinesisvideoarchivedmedia.model.GetHLSStreamingSessionURLRequest;
 import com.amazonaws.services.kinesisvideoarchivedmedia.model.GetHLSStreamingSessionURLResult;
 import com.amazonaws.services.kinesisvideoarchivedmedia.model.PlaybackMode;
@@ -30,15 +41,45 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class KinesisVideoArchivedMediaIntegrationTest extends KinesisVideoArchivedMediaIntegrationTestBase {
-    private static final String streamName = "kinesisvideoarchivedmedia-integration-test-do-not-delete";
+    private static final String streamPrefix = "kinesisvideoarchivedmedia-integration-test-";
 
     @After
     public void tearDown() {
+        String currentNextToken = null;
+
+        do {
+            ListStreamsResult listStreamsResult = kvClient.listStreams(new ListStreamsRequest()
+                    .withStreamNameCondition(new StreamNameCondition()
+                            .withComparisonOperator(ComparisonOperator.BEGINS_WITH)
+                            .withComparisonValue(streamPrefix))
+                    .withNextToken(currentNextToken));
+            currentNextToken = listStreamsResult.getNextToken();
+
+            for (StreamInfo info : listStreamsResult.getStreamInfoList()) {
+                if (info.getStreamName().startsWith(streamPrefix)) {
+                    kvClient.deleteStream(new DeleteStreamRequest()
+                            .withStreamARN(info.getStreamARN()));
+                }
+            }
+        } while (currentNextToken != null);
     }
 
     @Test
-    public void testGetHLSStreamingSessionURL() throws JSONException {
-        String endpoint = getPackageConfigure().getString("endpoint");
+    public void testGetHLSStreamingSessionURL() {
+
+        String streamName = streamPrefix + System.currentTimeMillis();
+
+        CreateStreamResult createStreamResult = kvClient.createStream(new CreateStreamRequest()
+                .withStreamName(streamName)
+                .withDataRetentionInHours(2)
+                .withDeviceName("integration-test-device")
+                .withMediaType("video/h264"));
+
+        GetDataEndpointResult dataEndpoint = kvClient.getDataEndpoint(new GetDataEndpointRequest()
+                .withStreamName(streamName)
+                .withAPIName(APIName.GET_HLS_STREAMING_SESSION_URL));
+
+        String endpoint = dataEndpoint.getDataEndpoint();
 
         try {
             // URL construction checks for malformed URL

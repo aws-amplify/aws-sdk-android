@@ -4,6 +4,9 @@ import demjson
 import time 
 import sys
 import os
+import datetime
+import utils
+
 packagelist = {
     'aws-android-sdk-rekognition', 
     'aws-android-sdk-cloudwatch', 
@@ -68,19 +71,32 @@ def IsAllPackageAvailableOnMaven(version):
         print ("available package list with version {0} : {1}".format(version,available_packagelist))
     else:
         print ("not packages are available on maven with version {0}".format(version))
-        return False
+        return (False, packagelist)
     not_available_packagelist = packagelist - available_packagelist
     if not_available_packagelist:
         print("packages with version {0} that are not available: {1}".format(version,not_available_packagelist))
-        return False
+        return (False , not_available_packagelist)
     else:
         print("all packages with version {0} are available".format(version))
-        return True
+        return (True, not_available_packagelist)
 
 version = sys.argv[1]
-
-while not IsAllPackageAvailableOnMaven(version):
-    time.sleep(300)
+starttime = datetime.datetime.now()
+ready, not_available_packagelist = IsAllPackageAvailableOnMaven(version)
+if not ready:
+    # send email 
+    email_from = "sdechunq@amazon.com"
+    email_to = "sdechunq@amazon.com"
+    destination ='{{ "ToAddresses":  ["{0}"] }}'.format(email_to)
+    title = "Android SDK on Maven borken"
+    body = "Android SDKs {0} are still not available on maven. Below packages are not found on maven: {1}".format(version, not_available_packagelist)
+    message = '{{"Subject": {{"Data": "{0}","Charset": "UTF-8" }},"Body": {{ "Text": {{ "Data": "{1}", "Charset": "UTF-8" }} }} }}'.format(title, body)
+    profile = 'circleci-info'
+    sendemail_command ="aws ses send-email --from '{0}' --destination '{1}' --message '{2}' --profile {3}".format(email_from, destination, message, profile)
+    rn = utils.runcommand(sendemail_command)
+    if rn != 0 :
+        print("Failed to send alarm email")
+        exit(1)
 
 print("Done!")
 
