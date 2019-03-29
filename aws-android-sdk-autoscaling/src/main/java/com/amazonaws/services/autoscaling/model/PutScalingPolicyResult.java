@@ -37,7 +37,7 @@ public class PutScalingPolicyResult implements Serializable {
 
     /**
      * <p>
-     * The CloudWatch alarms created for the target tracking policy.
+     * The CloudWatch alarms created for the target tracking scaling policy.
      * </p>
      */
     private java.util.List<Alarm> alarms = new java.util.ArrayList<Alarm>();
@@ -104,11 +104,12 @@ public class PutScalingPolicyResult implements Serializable {
 
     /**
      * <p>
-     * The CloudWatch alarms created for the target tracking policy.
+     * The CloudWatch alarms created for the target tracking scaling policy.
      * </p>
      *
      * @return <p>
-     *         The CloudWatch alarms created for the target tracking policy.
+     *         The CloudWatch alarms created for the target tracking scaling
+     *         policy.
      *         </p>
      */
     public java.util.List<Alarm> getAlarms() {
@@ -117,11 +118,12 @@ public class PutScalingPolicyResult implements Serializable {
 
     /**
      * <p>
-     * The CloudWatch alarms created for the target tracking policy.
+     * The CloudWatch alarms created for the target tracking scaling policy.
      * </p>
      *
      * @param alarms <p>
-     *            The CloudWatch alarms created for the target tracking policy.
+     *            The CloudWatch alarms created for the target tracking scaling
+     *            policy.
      *            </p>
      */
     public void setAlarms(java.util.Collection<Alarm> alarms) {
@@ -135,14 +137,15 @@ public class PutScalingPolicyResult implements Serializable {
 
     /**
      * <p>
-     * The CloudWatch alarms created for the target tracking policy.
+     * The CloudWatch alarms created for the target tracking scaling policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param alarms <p>
-     *            The CloudWatch alarms created for the target tracking policy.
+     *            The CloudWatch alarms created for the target tracking scaling
+     *            policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -159,14 +162,15 @@ public class PutScalingPolicyResult implements Serializable {
 
     /**
      * <p>
-     * The CloudWatch alarms created for the target tracking policy.
+     * The CloudWatch alarms created for the target tracking scaling policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param alarms <p>
-     *            The CloudWatch alarms created for the target tracking policy.
+     *            The CloudWatch alarms created for the target tracking scaling
+     *            policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -69,6 +69,11 @@ public class DescribeIdentityPoolResultJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("IdentityPoolTags")) {
+                describeIdentityPoolResult.setIdentityPoolTags(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

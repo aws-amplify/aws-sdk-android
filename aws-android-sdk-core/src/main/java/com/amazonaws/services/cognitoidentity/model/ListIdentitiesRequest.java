@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the identities in a pool.
+ * Lists the identities in an identity pool.
  * </p>
  * <p>
  * You must use AWS Developer credentials to call this API.

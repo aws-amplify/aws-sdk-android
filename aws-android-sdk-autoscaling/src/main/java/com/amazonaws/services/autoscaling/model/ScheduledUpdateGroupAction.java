@@ -69,8 +69,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin. This date and
-     * time can be up to one month in the future.
+     * The date and time that the action is scheduled to begin.
      * </p>
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
@@ -82,8 +81,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end. This date and time
-     * can be up to one month in the future.
+     * The date and time that the action is scheduled to end.
      * </p>
      */
     private java.util.Date endTime;
@@ -348,8 +346,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin. This date and
-     * time can be up to one month in the future.
+     * The date and time that the action is scheduled to begin.
      * </p>
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
@@ -358,8 +355,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time that the action is scheduled to begin. This
-     *         date and time can be up to one month in the future.
+     *         The date and time that the action is scheduled to begin.
      *         </p>
      *         <p>
      *         When <code>StartTime</code> and <code>EndTime</code> are
@@ -373,8 +369,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin. This date and
-     * time can be up to one month in the future.
+     * The date and time that the action is scheduled to begin.
      * </p>
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
@@ -383,8 +378,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * </p>
      *
      * @param startTime <p>
-     *            The date and time that the action is scheduled to begin. This
-     *            date and time can be up to one month in the future.
+     *            The date and time that the action is scheduled to begin.
      *            </p>
      *            <p>
      *            When <code>StartTime</code> and <code>EndTime</code> are
@@ -398,8 +392,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin. This date and
-     * time can be up to one month in the future.
+     * The date and time that the action is scheduled to begin.
      * </p>
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
@@ -411,8 +404,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * together.
      *
      * @param startTime <p>
-     *            The date and time that the action is scheduled to begin. This
-     *            date and time can be up to one month in the future.
+     *            The date and time that the action is scheduled to begin.
      *            </p>
      *            <p>
      *            When <code>StartTime</code> and <code>EndTime</code> are
@@ -429,13 +421,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end. This date and time
-     * can be up to one month in the future.
+     * The date and time that the action is scheduled to end.
      * </p>
      *
      * @return <p>
-     *         The date and time that the action is scheduled to end. This date
-     *         and time can be up to one month in the future.
+     *         The date and time that the action is scheduled to end.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -444,13 +434,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end. This date and time
-     * can be up to one month in the future.
+     * The date and time that the action is scheduled to end.
      * </p>
      *
      * @param endTime <p>
-     *            The date and time that the action is scheduled to end. This
-     *            date and time can be up to one month in the future.
+     *            The date and time that the action is scheduled to end.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -459,16 +447,14 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end. This date and time
-     * can be up to one month in the future.
+     * The date and time that the action is scheduled to end.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endTime <p>
-     *            The date and time that the action is scheduled to end. This
-     *            date and time can be up to one month in the future.
+     *            The date and time that the action is scheduled to end.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
