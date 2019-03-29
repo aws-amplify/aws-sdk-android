@@ -936,24 +936,42 @@ jobs:
             content="${CIRCLE_BRANCH}" 
             python3 ./CircleciScripts/create_pullrequest.py  "${GITHUB_USER}" "${GITHUB_TOKEN}" "$title" "$content" "$target_branch" "${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}" ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME}
 
+  verify_pullrequest:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps :
+      - run :
+          name : check branch name 
+          command : 
+            echo "branch name=${CIRCLE_BRANCH}"
+            echo "PR=${CIRCLE_PR_NUMBER}"
 workflows:
   version: 2
   bump_sdk_version:
     jobs:
+      - verify_pullrequest
       - bump_sdk_version:
           filters:
             branches:
-              only: bump_sdk_version          
+              only: |
+                - bump_sdk_version  
+                - checkprbase        
   build_test:
     jobs:
       - build:
           filters:
             branches:
-              ignore: bump_sdk_version     
+              ignore: |
+                - bump_sdk_version     
+                - checkprbase
       - build_api10:
           filters:
             branches:
-              ignore: bump_sdk_version                  
+              ignore: |
+                - bump_sdk_version      
+                - checkprbase            
       - unittest:
           filters:
             branches:
