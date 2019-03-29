@@ -144,7 +144,7 @@ commands:
     steps:
       - run: 
           name: stage changes
-          command: |
+          command: |  
             cd ${bumpversion_repo_name}
             git config --local user.name "${GITHUB_BUMPVERSION_USER}"
             gitstatus=$(git status)
