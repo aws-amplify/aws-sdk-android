@@ -43,6 +43,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -770,6 +771,8 @@ public class AWSIotMqttManager {
         } catch (final KeyStoreException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final UnrecoverableKeyException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final NoSuchProviderException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final MqttException e) {
             throw new AmazonClientException("An error occured in the MQTT client.", e);

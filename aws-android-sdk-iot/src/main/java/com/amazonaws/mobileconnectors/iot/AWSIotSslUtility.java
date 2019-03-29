@@ -15,9 +15,6 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import com.amazonaws.logging.Log;
-import com.amazonaws.logging.LogFactory;
-
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -41,8 +38,6 @@ final class AWSIotSslUtility {
 
     protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
     private static final String TLS_V_1_2 = "TLSv1.2";
-    protected static int portNumber = 8883;
-    private static final Log LOGGER = LogFactory.getLog(AWSIotSslUtility.class);
 
     /**
      * Utility class.
@@ -55,7 +50,7 @@ final class AWSIotSslUtility {
      *
      * @param keyStore keystore containing a certificate and private key for
      *            used in creating a secured socket.
-     * @param portNum Port number used for connecting to Iot
+     * @param portNumber Port number used for connecting to Iot
      * @return a socket factory for use in creating a secured socket.
      * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
      * @throws UnrecoverableKeyException when the private key cannot be
@@ -64,42 +59,15 @@ final class AWSIotSslUtility {
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.
      */
-    protected synchronized static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNum)
+    public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNumber)
             throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
-            KeyManagementException {
-        portNumber = portNum;
-        return getSocketFactoryWithKeyStore(keyStore);
-    }
-
-    /**
-     * Creates a socket factory given a keystore.
-     *
-     * @param keyStore keystore containing a certificate and private key for
-     *            used in creating a secured socket.
-     * @return a socket factory for use in creating a secured socket.
-     * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
-     * @throws UnrecoverableKeyException when the private key cannot be
-     *             recovered. Ususally a bad keystore password.
-     * @throws KeyStoreException when keystore cannot be created.
-     * @throws KeyManagementException when SSL context cannot be created by key
-     *             manager.
-     */
-    public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore)
-            throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
-            KeyManagementException {
-
+            KeyManagementException, NoSuchProviderException {
         SSLContext context;
 
         if (portNumber == 443) {
-            try {
-                // Attempt to use Conscrypt
-                Security.addProvider(new OpenSSLProvider());
-                context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
-            } catch (NoSuchProviderException e) {
-                // Fallback to system SSLContext
-                LOGGER.debug("Conscrypt provider not found. Falling back to the default security provider.");
-                context = SSLContext.getInstance(TLS_V_1_2);
-            }
+            // Use Conscrypt as security provider
+            Security.addProvider(new OpenSSLProvider());
+            context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
         } else {
             context = SSLContext.getInstance(TLS_V_1_2);
         }
