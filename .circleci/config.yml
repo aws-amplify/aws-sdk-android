@@ -1221,19 +1221,19 @@ workflows:
       #         only:
       #           - master
       #           - develop         
-      - integrationtest:
-          name: kinesisvideo-archivedmedia
-          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
-          requires:
-            - pre_integrationtest    
-          filters:
-            branches:
-              only:
-                - master
-                - develop                    
+      # - integrationtest:
+      #     name: kinesisvideo-archivedmedia
+      #     testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop                    
       - post_integrationtest:
           requires:
-            - kinesisvideo-archivedmedia
+            # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
             - translate
@@ -1566,19 +1566,19 @@ workflows:
       #         ignore: /.*/
       #       tags:
       #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/         
-      - integrationtest:
-          name: kinesisvideo-archivedmedia
-          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
-          requires:
-            - pre_integrationtest    
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                         
+      # - integrationtest:
+      #     name: kinesisvideo-archivedmedia
+      #     testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         ignore: /.*/
+      #       tags:
+      #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                         
       - post_integrationtest:
           requires:
-            - kinesisvideo-archivedmedia
+            # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
             - translate
