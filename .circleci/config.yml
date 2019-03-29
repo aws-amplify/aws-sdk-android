@@ -936,6 +936,17 @@ jobs:
             content="${CIRCLE_BRANCH}" 
             python3 ./CircleciScripts/create_pullrequest.py  "${GITHUB_USER}" "${GITHUB_TOKEN}" "$title" "$content" "$target_branch" "${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}" ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME}
 
+  verify_pullrequest:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps :
+      - run :
+          name : check branch name 
+          command : |
+            echo "branch name=${CIRCLE_BRANCH}"
+            echo "PR=${CIRCLE_PR_NUMBER}"
 workflows:
   version: 2
   bump_sdk_version:
@@ -943,17 +954,23 @@ workflows:
       - bump_sdk_version:
           filters:
             branches:
-              only: bump_sdk_version          
+              only:  
+                - bump_sdk_version           
   build_test:
     jobs:
+      - verify_pullrequest:
+          filters:
+            branches:
+              only:  
+                 - /^pull\/.+$/           
       - build:
           filters:
             branches:
-              ignore: bump_sdk_version     
+              ignore: bump_sdk_version
       - build_api10:
           filters:
             branches:
-              ignore: bump_sdk_version                  
+              ignore: bump_sdk_version           
       - unittest:
           filters:
             branches:
@@ -1221,19 +1238,19 @@ workflows:
       #         only:
       #           - master
       #           - develop         
-      - integrationtest:
-          name: kinesisvideo-archivedmedia
-          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
-          requires:
-            - pre_integrationtest    
-          filters:
-            branches:
-              only:
-                - master
-                - develop                    
+      # - integrationtest:
+      #     name: kinesisvideo-archivedmedia
+      #     testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop                    
       - post_integrationtest:
           requires:
-            - kinesisvideo-archivedmedia
+            # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
             - translate
@@ -1566,19 +1583,19 @@ workflows:
       #         ignore: /.*/
       #       tags:
       #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/         
-      - integrationtest:
-          name: kinesisvideo-archivedmedia
-          testmodule: aws-android-sdk-kinesisvideo-archivedmedia
-          requires:
-            - pre_integrationtest    
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                         
+      # - integrationtest:
+      #     name: kinesisvideo-archivedmedia
+      #     testmodule: aws-android-sdk-kinesisvideo-archivedmedia
+      #     requires:
+      #       - pre_integrationtest    
+      #     filters:
+      #       branches:
+      #         ignore: /.*/
+      #       tags:
+      #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                         
       - post_integrationtest:
           requires:
-            - kinesisvideo-archivedmedia
+            # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
             - translate
