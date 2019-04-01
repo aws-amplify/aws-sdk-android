@@ -182,10 +182,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The cost allocation tags for the user pool. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     * >Adding Cost Allocation Tags to Your User Pool</a>
+     * The tag keys and values to assign to the user pool. A tag is a label that
+     * you can use to categorize and manage user pools in different ways, such
+     * as by purpose, owner, environment, or other criteria.
      * </p>
      */
     private java.util.Map<String, String> userPoolTags;
@@ -1259,17 +1258,16 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The cost allocation tags for the user pool. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     * >Adding Cost Allocation Tags to Your User Pool</a>
+     * The tag keys and values to assign to the user pool. A tag is a label that
+     * you can use to categorize and manage user pools in different ways, such
+     * as by purpose, owner, environment, or other criteria.
      * </p>
      *
      * @return <p>
-     *         The cost allocation tags for the user pool. For more information,
-     *         see <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     *         >Adding Cost Allocation Tags to Your User Pool</a>
+     *         The tag keys and values to assign to the user pool. A tag is a
+     *         label that you can use to categorize and manage user pools in
+     *         different ways, such as by purpose, owner, environment, or other
+     *         criteria.
      *         </p>
      */
     public java.util.Map<String, String> getUserPoolTags() {
@@ -1278,17 +1276,16 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The cost allocation tags for the user pool. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     * >Adding Cost Allocation Tags to Your User Pool</a>
+     * The tag keys and values to assign to the user pool. A tag is a label that
+     * you can use to categorize and manage user pools in different ways, such
+     * as by purpose, owner, environment, or other criteria.
      * </p>
      *
      * @param userPoolTags <p>
-     *            The cost allocation tags for the user pool. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     *            >Adding Cost Allocation Tags to Your User Pool</a>
+     *            The tag keys and values to assign to the user pool. A tag is a
+     *            label that you can use to categorize and manage user pools in
+     *            different ways, such as by purpose, owner, environment, or
+     *            other criteria.
      *            </p>
      */
     public void setUserPoolTags(java.util.Map<String, String> userPoolTags) {
@@ -1297,20 +1294,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The cost allocation tags for the user pool. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     * >Adding Cost Allocation Tags to Your User Pool</a>
+     * The tag keys and values to assign to the user pool. A tag is a label that
+     * you can use to categorize and manage user pools in different ways, such
+     * as by purpose, owner, environment, or other criteria.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userPoolTags <p>
-     *            The cost allocation tags for the user pool. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     *            >Adding Cost Allocation Tags to Your User Pool</a>
+     *            The tag keys and values to assign to the user pool. A tag is a
+     *            label that you can use to categorize and manage user pools in
+     *            different ways, such as by purpose, owner, environment, or
+     *            other criteria.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1322,10 +1318,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The cost allocation tags for the user pool. For more information, see <a
-     * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html"
-     * >Adding Cost Allocation Tags to Your User Pool</a>
+     * The tag keys and values to assign to the user pool. A tag is a label that
+     * you can use to categorize and manage user pools in different ways, such
+     * as by purpose, owner, environment, or other criteria.
      * </p>
      * <p>
      * The method adds a new key-value pair into UserPoolTags parameter, and
