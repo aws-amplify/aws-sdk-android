@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.amazon.aws.amazonfreertossdk">
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <!-- initiate device discovery and manipulate bluetooth settings -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- allow scan BLE -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+</manifest>
