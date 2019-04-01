@@ -82,6 +82,11 @@ class EntitiesDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("DataAccessRoleArn");
             jsonWriter.value(dataAccessRoleArn);
         }
+        if (entitiesDetectionJobProperties.getVolumeKmsKeyId() != null) {
+            String volumeKmsKeyId = entitiesDetectionJobProperties.getVolumeKmsKeyId();
+            jsonWriter.name("VolumeKmsKeyId");
+            jsonWriter.value(volumeKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

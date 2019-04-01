@@ -31,6 +31,11 @@ class OutputDataConfigJsonMarshaller {
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
         }
+        if (outputDataConfig.getKmsKeyId() != null) {
+            String kmsKeyId = outputDataConfig.getKmsKeyId();
+            jsonWriter.name("KmsKeyId");
+            jsonWriter.value(kmsKeyId);
+        }
         jsonWriter.endObject();
     }
 
