@@ -93,6 +93,11 @@ public class StartSentimentDetectionJobRequestMarshaller implements
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (startSentimentDetectionJobRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = startSentimentDetectionJobRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -26,8 +26,8 @@ public class CreateEntityRecognizerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      */
     private String entityRecognizerArn;
 
@@ -39,8 +39,8 @@ public class CreateEntityRecognizerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) that identifies the entity
@@ -59,8 +59,8 @@ public class CreateEntityRecognizerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param entityRecognizerArn <p>
      *            The Amazon Resource Name (ARN) that identifies the entity
@@ -82,8 +82,8 @@ public class CreateEntityRecognizerResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param entityRecognizerArn <p>
      *            The Amazon Resource Name (ARN) that identifies the entity

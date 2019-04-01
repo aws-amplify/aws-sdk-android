@@ -75,6 +75,9 @@ class EntityRecognizerPropertiesJsonUnmarshaller implements
                 entityRecognizerProperties.setDataAccessRoleArn(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VolumeKmsKeyId")) {
+                entityRecognizerProperties.setVolumeKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -82,6 +82,32 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
 
     /**
      * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt data on the storage volume attached to the ML compute
+     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
+     * either of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     */
+    private String volumeKmsKeyId;
+
+    /**
+     * <p>
      * Specifies the format and location of the input data for the job.
      * </p>
      *
@@ -382,6 +408,158 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
     }
 
     /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt data on the storage volume attached to the ML compute
+     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
+     * either of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @return <p>
+     *         ID for the AWS Key Management Service (KMS) key that Amazon
+     *         Comprehend uses to encrypt data on the storage volume attached to
+     *         the ML compute instance(s) that process the analysis job. The
+     *         VolumeKmsKeyId can be either of the following formats:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Resource Name (ARN) of a KMS Key:
+     *         <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getVolumeKmsKeyId() {
+        return volumeKmsKeyId;
+    }
+
+    /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt data on the storage volume attached to the ML compute
+     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
+     * either of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @param volumeKmsKeyId <p>
+     *            ID for the AWS Key Management Service (KMS) key that Amazon
+     *            Comprehend uses to encrypt data on the storage volume attached
+     *            to the ML compute instance(s) that process the analysis job.
+     *            The VolumeKmsKeyId can be either of the following formats:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID:
+     *            <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setVolumeKmsKeyId(String volumeKmsKeyId) {
+        this.volumeKmsKeyId = volumeKmsKeyId;
+    }
+
+    /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt data on the storage volume attached to the ML compute
+     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
+     * either of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @param volumeKmsKeyId <p>
+     *            ID for the AWS Key Management Service (KMS) key that Amazon
+     *            Comprehend uses to encrypt data on the storage volume attached
+     *            to the ML compute instance(s) that process the analysis job.
+     *            The VolumeKmsKeyId can be either of the following formats:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID:
+     *            <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDominantLanguageDetectionJobRequest withVolumeKmsKeyId(String volumeKmsKeyId) {
+        this.volumeKmsKeyId = volumeKmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -401,7 +579,9 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
         if (getJobName() != null)
             sb.append("JobName: " + getJobName() + ",");
         if (getClientRequestToken() != null)
-            sb.append("ClientRequestToken: " + getClientRequestToken());
+            sb.append("ClientRequestToken: " + getClientRequestToken() + ",");
+        if (getVolumeKmsKeyId() != null)
+            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -420,6 +600,8 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
         hashCode = prime * hashCode + ((getJobName() == null) ? 0 : getJobName().hashCode());
         hashCode = prime * hashCode
                 + ((getClientRequestToken() == null) ? 0 : getClientRequestToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
         return hashCode;
     }
 
@@ -457,6 +639,11 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
             return false;
         if (other.getClientRequestToken() != null
                 && other.getClientRequestToken().equals(this.getClientRequestToken()) == false)
+            return false;
+        if (other.getVolumeKmsKeyId() == null ^ this.getVolumeKmsKeyId() == null)
+            return false;
+        if (other.getVolumeKmsKeyId() != null
+                && other.getVolumeKmsKeyId().equals(this.getVolumeKmsKeyId()) == false)
             return false;
         return true;
     }

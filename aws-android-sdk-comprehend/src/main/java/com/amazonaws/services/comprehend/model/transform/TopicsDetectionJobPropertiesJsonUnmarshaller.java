@@ -67,6 +67,13 @@ class TopicsDetectionJobPropertiesJsonUnmarshaller implements
                 topicsDetectionJobProperties.setNumberOfTopics(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DataAccessRoleArn")) {
+                topicsDetectionJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("VolumeKmsKeyId")) {
+                topicsDetectionJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

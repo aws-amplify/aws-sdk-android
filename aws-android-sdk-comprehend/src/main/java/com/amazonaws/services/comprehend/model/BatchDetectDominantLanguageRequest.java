@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Determines the dominant language of the input text for a batch of documents.
  * For a list of languages that Amazon Comprehend can detect, see <a
- * href="http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
+ * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
  * >Amazon Comprehend Supported Languages</a>.
  * </p>
  */
