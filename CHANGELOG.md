@@ -14,6 +14,13 @@
 * **AWS Core**
   * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
 
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS Autoscaling
+  * Amazon Cognito Identity
+  * Amazon Kinesis Video
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
