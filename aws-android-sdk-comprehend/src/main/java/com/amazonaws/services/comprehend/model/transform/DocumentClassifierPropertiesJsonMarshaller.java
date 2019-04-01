@@ -84,6 +84,11 @@ class DocumentClassifierPropertiesJsonMarshaller {
             jsonWriter.name("DataAccessRoleArn");
             jsonWriter.value(dataAccessRoleArn);
         }
+        if (documentClassifierProperties.getVolumeKmsKeyId() != null) {
+            String volumeKmsKeyId = documentClassifierProperties.getVolumeKmsKeyId();
+            jsonWriter.name("VolumeKmsKeyId");
+            jsonWriter.value(volumeKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

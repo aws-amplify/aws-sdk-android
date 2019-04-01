@@ -90,6 +90,12 @@ public class StartDominantLanguageDetectionJobRequestMarshaller
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (startDominantLanguageDetectionJobRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = startDominantLanguageDetectionJobRequest
+                        .getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

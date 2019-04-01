@@ -99,6 +99,11 @@ public class StartEntitiesDetectionJobRequestMarshaller implements
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (startEntitiesDetectionJobRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = startEntitiesDetectionJobRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
