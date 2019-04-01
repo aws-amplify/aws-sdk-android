@@ -119,7 +119,6 @@ public class AmazonFreeRTOSManager {
     private int mTotalPackets = 0;
     private int mPacketCount = 1;
 
-    private byte[] mValueWritten;
     private static Semaphore mutex = new Semaphore(1);
     /**
      * Construct an AmazonFreeRTOSManager instance.
@@ -614,19 +613,10 @@ public class AmazonFreeRTOSManager {
             public void onCharacteristicWrite(BluetoothGatt gatt,
                                               BluetoothGattCharacteristic characteristic,
                                               int status) {
-                byte[] value = characteristic.getValue();
                 Log.d(TAG, "onCharacteristicWrite for: "
                         + uuidToName.get(characteristic.getUuid().toString())
-                        + "; status: " + (status == 0 ? "Success" : status) + "; value: " + bytesToHexString(value));
-                if (!Arrays.equals(value, mValueWritten)) {
-                    Log.e(TAG, "values don't match! must abort write transaction!");
-                   // mBluetoothGatt.abortReliableWrite();
-                } else {
-                    //if(mBluetoothGatt.executeReliableWrite()) {
-                        processNextBleCommand();
-//                    } else {
-//                        Log.e(TAG, "Failed to execute reliable write!");
-//                    }
+                        + "; status: " + (status == 0 ? "Success" : status));
+                 processNextBleCommand();
                 }
             }
         };
@@ -959,14 +949,8 @@ public class AmazonFreeRTOSManager {
             characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
             Log.d(TAG, "<-<-<- Writing to characteristic: " + uuidToName.get(characteristicUuid)
                     + "  with data: " + bytesToHexString(value));
-            mValueWritten = value;
-//            if (!mBluetoothGatt.beginReliableWrite()){
-//                Log.e(TAG, "Failed to initiate reliable write!");
-//            }
             characteristic.setValue(value);
-            if (!mBluetoothGatt.writeCharacteristic(characteristic)){
-                Log.e(TAG, "Failed to write characteristic!");
-            }
+            mBluetoothGatt.writeCharacteristic(characteristic);
         }
     }
 
