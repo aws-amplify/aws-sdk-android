@@ -94,6 +94,11 @@ public class StartKeyPhrasesDetectionJobRequestMarshaller implements
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (startKeyPhrasesDetectionJobRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = startKeyPhrasesDetectionJobRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
