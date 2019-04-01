@@ -103,6 +103,13 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * Metadata which can be used to manage updates.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * The ID of the OTA update to be created.
      * </p>
      * <p>
@@ -713,6 +720,80 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage updates.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage updates.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage updates.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage updates.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage updates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage updates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateOTAUpdateRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage updates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage updates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateOTAUpdateRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -738,7 +819,9 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
         if (getRoleArn() != null)
             sb.append("roleArn: " + getRoleArn() + ",");
         if (getAdditionalParameters() != null)
-            sb.append("additionalParameters: " + getAdditionalParameters());
+            sb.append("additionalParameters: " + getAdditionalParameters() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -763,6 +846,7 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode
                 + ((getAdditionalParameters() == null) ? 0 : getAdditionalParameters().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -815,6 +899,10 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
             return false;
         if (other.getAdditionalParameters() != null
                 && other.getAdditionalParameters().equals(this.getAdditionalParameters()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

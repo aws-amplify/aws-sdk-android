@@ -49,7 +49,7 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A boolean value that specifies if the CA certificate is set to active.
+     * A boolean value that specifies if the certificate is set to active.
      * </p>
      */
     private Boolean setAsActive;
@@ -178,11 +178,11 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A boolean value that specifies if the CA certificate is set to active.
+     * A boolean value that specifies if the certificate is set to active.
      * </p>
      *
      * @return <p>
-     *         A boolean value that specifies if the CA certificate is set to
+     *         A boolean value that specifies if the certificate is set to
      *         active.
      *         </p>
      */
@@ -192,11 +192,11 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A boolean value that specifies if the CA certificate is set to active.
+     * A boolean value that specifies if the certificate is set to active.
      * </p>
      *
      * @return <p>
-     *         A boolean value that specifies if the CA certificate is set to
+     *         A boolean value that specifies if the certificate is set to
      *         active.
      *         </p>
      */
@@ -206,11 +206,11 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A boolean value that specifies if the CA certificate is set to active.
+     * A boolean value that specifies if the certificate is set to active.
      * </p>
      *
      * @param setAsActive <p>
-     *            A boolean value that specifies if the CA certificate is set to
+     *            A boolean value that specifies if the certificate is set to
      *            active.
      *            </p>
      */
@@ -220,14 +220,14 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A boolean value that specifies if the CA certificate is set to active.
+     * A boolean value that specifies if the certificate is set to active.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param setAsActive <p>
-     *            A boolean value that specifies if the CA certificate is set to
+     *            A boolean value that specifies if the certificate is set to
      *            active.
      *            </p>
      * @return A reference to this updated object so that method calls can be

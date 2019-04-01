@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the things associated with the specified principal.
+ * Lists the things associated with the specified principal. A principal can be
+ * X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
+ * or federated identities.
  * </p>
  */
 public class ListPrincipalThingsRequest extends AmazonWebServiceRequest implements Serializable {

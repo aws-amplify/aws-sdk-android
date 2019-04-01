@@ -17,81 +17,63 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
-/**
- * <p>
- * Lists the principals associated with the specified thing. A principal can be
- * X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
- * or federated identities.
- * </p>
- */
-public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetStatisticsResult implements Serializable {
     /**
      * <p>
-     * The name of the thing.
+     * The statistics returned by the Fleet Indexing service based on the query
+     * and aggregation field.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
-    private String thingName;
+    private Statistics statistics;
 
     /**
      * <p>
-     * The name of the thing.
+     * The statistics returned by the Fleet Indexing service based on the query
+     * and aggregation field.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the thing.
+     *         The statistics returned by the Fleet Indexing service based on
+     *         the query and aggregation field.
      *         </p>
      */
-    public String getThingName() {
-        return thingName;
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     /**
      * <p>
-     * The name of the thing.
+     * The statistics returned by the Fleet Indexing service based on the query
+     * and aggregation field.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param thingName <p>
-     *            The name of the thing.
+     * @param statistics <p>
+     *            The statistics returned by the Fleet Indexing service based on
+     *            the query and aggregation field.
      *            </p>
      */
-    public void setThingName(String thingName) {
-        this.thingName = thingName;
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
     }
 
     /**
      * <p>
-     * The name of the thing.
+     * The statistics returned by the Fleet Indexing service based on the query
+     * and aggregation field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param thingName <p>
-     *            The name of the thing.
+     * @param statistics <p>
+     *            The statistics returned by the Fleet Indexing service based on
+     *            the query and aggregation field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListThingPrincipalsRequest withThingName(String thingName) {
-        this.thingName = thingName;
+    public GetStatisticsResult withStatistics(Statistics statistics) {
+        this.statistics = statistics;
         return this;
     }
 
@@ -106,8 +88,8 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getThingName() != null)
-            sb.append("thingName: " + getThingName());
+        if (getStatistics() != null)
+            sb.append("statistics: " + getStatistics());
         sb.append("}");
         return sb.toString();
     }
@@ -117,7 +99,7 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode + ((getStatistics() == null) ? 0 : getStatistics().hashCode());
         return hashCode;
     }
 
@@ -128,14 +110,14 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
         if (obj == null)
             return false;
 
-        if (obj instanceof ListThingPrincipalsRequest == false)
+        if (obj instanceof GetStatisticsResult == false)
             return false;
-        ListThingPrincipalsRequest other = (ListThingPrincipalsRequest) obj;
+        GetStatisticsResult other = (GetStatisticsResult) obj;
 
-        if (other.getThingName() == null ^ this.getThingName() == null)
+        if (other.getStatistics() == null ^ this.getStatistics() == null)
             return false;
-        if (other.getThingName() != null
-                && other.getThingName().equals(this.getThingName()) == false)
+        if (other.getStatistics() != null
+                && other.getStatistics().equals(this.getStatistics()) == false)
             return false;
         return true;
     }
