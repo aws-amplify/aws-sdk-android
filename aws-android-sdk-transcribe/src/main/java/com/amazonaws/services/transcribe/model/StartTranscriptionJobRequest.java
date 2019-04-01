@@ -45,7 +45,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      */
     private String languageCode;
 
@@ -89,6 +89,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
+     * </p>
+     * <p>
+     * Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket. You can't
+     * specify your own encryption key.
      * </p>
      * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
@@ -187,7 +192,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -205,7 +210,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -227,7 +232,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -249,7 +254,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -271,7 +276,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -502,6 +507,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
+     * Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket. You can't
+     * specify your own encryption key.
+     * </p>
+     * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
      * generates a pre-signed URL, a shareable URL that provides secure access
      * to your transcription, and returns it in the
@@ -524,6 +534,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         files in the bucket. For more information, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
      *         >Permissions Required for IAM User Roles</a>.
+     *         </p>
+     *         <p>
+     *         Amazon Transcribe uses the default Amazon S3 key for server-side
+     *         encryption of transcripts that are placed in your S3 bucket. You
+     *         can't specify your own encryption key.
      *         </p>
      *         <p>
      *         If you don't set the <code>OutputBucketName</code>, Amazon
@@ -552,6 +567,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
+     * Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket. You can't
+     * specify your own encryption key.
+     * </p>
+     * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
      * generates a pre-signed URL, a shareable URL that provides secure access
      * to your transcription, and returns it in the
@@ -575,6 +595,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            bucket. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
      *            >Permissions Required for IAM User Roles</a>.
+     *            </p>
+     *            <p>
+     *            Amazon Transcribe uses the default Amazon S3 key for
+     *            server-side encryption of transcripts that are placed in your
+     *            S3 bucket. You can't specify your own encryption key.
      *            </p>
      *            <p>
      *            If you don't set the <code>OutputBucketName</code>, Amazon
@@ -603,6 +628,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
+     * Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket. You can't
+     * specify your own encryption key.
+     * </p>
+     * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
      * generates a pre-signed URL, a shareable URL that provides secure access
      * to your transcription, and returns it in the
@@ -629,6 +659,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            bucket. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
      *            >Permissions Required for IAM User Roles</a>.
+     *            </p>
+     *            <p>
+     *            Amazon Transcribe uses the default Amazon S3 key for
+     *            server-side encryption of transcripts that are placed in your
+     *            S3 bucket. You can't specify your own encryption key.
      *            </p>
      *            <p>
      *            If you don't set the <code>OutputBucketName</code>, Amazon
