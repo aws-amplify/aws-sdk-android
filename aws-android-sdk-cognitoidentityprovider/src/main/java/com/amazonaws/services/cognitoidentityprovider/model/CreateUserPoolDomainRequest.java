@@ -60,7 +60,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * <p>
      * For more information about the hosted domain and custom domains, see <a
      * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      * >Configuring a User Pool Domain</a>.
      * </p>
      */
@@ -193,7 +193,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * <p>
      * For more information about the hosted domain and custom domains, see <a
      * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      * >Configuring a User Pool Domain</a>.
      * </p>
      *
@@ -209,7 +209,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         For more information about the hosted domain and custom domains,
      *         see <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      *         >Configuring a User Pool Domain</a>.
      *         </p>
      */
@@ -230,7 +230,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * <p>
      * For more information about the hosted domain and custom domains, see <a
      * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      * >Configuring a User Pool Domain</a>.
      * </p>
      *
@@ -246,7 +246,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            For more information about the hosted domain and custom
      *            domains, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      *            >Configuring a User Pool Domain</a>.
      *            </p>
      */
@@ -267,7 +267,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      * <p>
      * For more information about the hosted domain and custom domains, see <a
      * href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      * >Configuring a User Pool Domain</a>.
      * </p>
      * <p>
@@ -286,7 +286,7 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            For more information about the hosted domain and custom
      *            domains, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
      *            >Configuring a User Pool Domain</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
