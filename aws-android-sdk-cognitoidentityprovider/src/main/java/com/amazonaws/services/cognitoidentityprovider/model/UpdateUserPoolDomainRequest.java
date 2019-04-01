@@ -58,7 +58,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about adding a custom domain to your user pool, see <a
  * href=
- * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"
  * >Using Your Own Domain for the Hosted UI</a>.
  * </p>
  */
