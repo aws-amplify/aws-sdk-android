@@ -88,6 +88,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("LanguageCode");
                 jsonWriter.value(languageCode);
             }
+            if (createDocumentClassifierRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = createDocumentClassifierRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -39,6 +39,9 @@ class OutputDataConfigJsonUnmarshaller implements
             if (name.equals("S3Uri")) {
                 outputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KmsKeyId")) {
+                outputDataConfig.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
