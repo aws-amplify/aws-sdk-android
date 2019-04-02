@@ -92,7 +92,7 @@ public class KeyProvider18 implements KeyProvider {
                 }
             } catch (Exception ex) {
                 logger.error("Error in getting the key.", ex);
-                return null;
+                throw new IllegalStateException(ex);
             }
         }
     }

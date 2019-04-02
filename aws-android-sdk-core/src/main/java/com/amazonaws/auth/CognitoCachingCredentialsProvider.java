@@ -431,6 +431,7 @@ public class CognitoCachingCredentialsProvider
             registerIdentityChangedListener(listener);
         } catch (Exception ex) {
             Log.e(TAG, "Error in initializing the CognitoCachingCredentialsProvider. " + ex);
+            throw new IllegalStateException("Error in initializing the CognitoCachingCredentialsProvider. ", ex);
         }
     }
 
