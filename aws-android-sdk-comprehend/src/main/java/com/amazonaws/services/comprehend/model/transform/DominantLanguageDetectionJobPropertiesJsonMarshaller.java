@@ -75,6 +75,11 @@ class DominantLanguageDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("DataAccessRoleArn");
             jsonWriter.value(dataAccessRoleArn);
         }
+        if (dominantLanguageDetectionJobProperties.getVolumeKmsKeyId() != null) {
+            String volumeKmsKeyId = dominantLanguageDetectionJobProperties.getVolumeKmsKeyId();
+            jsonWriter.name("VolumeKmsKeyId");
+            jsonWriter.value(volumeKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

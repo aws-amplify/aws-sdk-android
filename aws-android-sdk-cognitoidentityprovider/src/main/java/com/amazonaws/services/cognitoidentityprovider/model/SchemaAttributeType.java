@@ -62,7 +62,7 @@ public class SchemaAttributeType implements Serializable {
      * through an identity provider. If an attribute is immutable, Amazon
      * Cognito throws an error when it attempts to update the attribute. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
      */
@@ -314,7 +314,7 @@ public class SchemaAttributeType implements Serializable {
      * through an identity provider. If an attribute is immutable, Amazon
      * Cognito throws an error when it attempts to update the attribute. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
      *
@@ -328,7 +328,7 @@ public class SchemaAttributeType implements Serializable {
      *         your application through an identity provider. If an attribute is
      *         immutable, Amazon Cognito throws an error when it attempts to
      *         update the attribute. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
      *         </p>
@@ -348,7 +348,7 @@ public class SchemaAttributeType implements Serializable {
      * through an identity provider. If an attribute is immutable, Amazon
      * Cognito throws an error when it attempts to update the attribute. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
      *
@@ -362,7 +362,7 @@ public class SchemaAttributeType implements Serializable {
      *         your application through an identity provider. If an attribute is
      *         immutable, Amazon Cognito throws an error when it attempts to
      *         update the attribute. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
      *         </p>
@@ -382,7 +382,7 @@ public class SchemaAttributeType implements Serializable {
      * through an identity provider. If an attribute is immutable, Amazon
      * Cognito throws an error when it attempts to update the attribute. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
      *
@@ -397,7 +397,7 @@ public class SchemaAttributeType implements Serializable {
      *            provider. If an attribute is immutable, Amazon Cognito throws
      *            an error when it attempts to update the attribute. For more
      *            information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *            >Specifying Identity Provider Attribute Mappings for Your User
      *            Pool</a>.
      *            </p>
@@ -417,7 +417,7 @@ public class SchemaAttributeType implements Serializable {
      * through an identity provider. If an attribute is immutable, Amazon
      * Cognito throws an error when it attempts to update the attribute. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
      * <p>
@@ -435,7 +435,7 @@ public class SchemaAttributeType implements Serializable {
      *            provider. If an attribute is immutable, Amazon Cognito throws
      *            an error when it attempts to update the attribute. For more
      *            information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *            >Specifying Identity Provider Attribute Mappings for Your User
      *            Pool</a>.
      *            </p>

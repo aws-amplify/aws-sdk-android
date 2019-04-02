@@ -25,6 +25,7 @@ import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperId
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminConfirmSignUpRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminDeleteUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
@@ -34,6 +35,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterExce
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
+import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
 import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
 
@@ -137,16 +139,29 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                     // This user is saved to test the identity id permanence
                     continue;
                 }
-                try {
-                    Log.d(TAG, "deleteAllUsers: " + user.getUsername());
-                    AWSMobileClient.getInstance().signIn(user.getUsername(), PASSWORD, null);
-                    DeleteUserRequest deleteUserRequest = new DeleteUserRequest()
-                            .withAccessToken(AWSMobileClient.getInstance().getTokens().getAccessToken().getTokenString());
-                    getUserpoolLL().deleteUser(deleteUserRequest);
-                    AWSMobileClient.getInstance().signOut();
-                } catch (Exception e) {
-                    Log.e(TAG, "deleteAllUsers: Some error trying to delete user", e);
-                }
+                boolean retryConfirmSignUp = false;
+                do {
+                    try {
+                        Log.d(TAG, "deleteAllUsers: " + user.getUsername());
+                        getUserpoolLL().adminDeleteUser(new AdminDeleteUserRequest().withUsername(user.getUsername()).withUserPoolId(userpoolId));
+                    } catch (UserNotConfirmedException e) {
+                        if (!retryConfirmSignUp) {
+                            AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
+                            adminConfirmSignUpRequest.withUsername(user.getUsername()).withUserPoolId(userpoolId);
+                            getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
+                            retryConfirmSignUp = true;
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            }
+                        } else {
+                            retryConfirmSignUp = false;
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "deleteAllUsers: Some error trying to delete user", e);
+                    }
+                } while (retryConfirmSignUp);
             }
         } while (listUsersResult.getPaginationToken() != null);
     }
@@ -428,8 +443,12 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     }
 
     @Test
-    public void testFederate() {
-
+    public void testFederatedSignInFail() {
+        try {
+            auth.federatedSignIn(IdentityProvider.GOOGLE.toString(), "fakeToken");
+        } catch (Exception e) {
+            assertEquals("Error in federating the token.", e.getMessage());
+        }
     }
 
     // Changing a password tends to have a rate limit that exceeds test timeout

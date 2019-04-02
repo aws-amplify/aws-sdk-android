@@ -87,6 +87,11 @@ public class CreateEntityRecognizerRequestMarshaller implements
                 jsonWriter.name("LanguageCode");
                 jsonWriter.value(languageCode);
             }
+            if (createEntityRecognizerRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = createEntityRecognizerRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

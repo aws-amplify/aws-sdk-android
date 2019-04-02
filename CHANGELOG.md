@@ -8,10 +8,34 @@
   * AWS IoT SDK for Android now supports MQTT over TLS with X.509 client certificate authentication on port 443. Previously this combination of protocol and authentication mechanism was only supported on port 8883. `connectUsingALPN()` method allows developers to connect to AWS IoT using client certificate authentication on port 443. Please look at [this blog](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works/) for more details.
   * **Breaking Change:** Please note that the type of aws-android-sdk-iot artifact is being changed from a`jar` to an `aar`. Also note that the `aar` artifacts needs to be explicitly specified in the dependency as `implementation ("com.amazonaws:aws-android-sdk-iot:2.12.+@aar") { transitive =true }` on some of the older versions of gradle.
 
+### Enhancements
+
+* **AWS Mobile Client**
+  * Updated `federatedSignIn()` method to contact the service immediately to validate tokens. The `signIn()` method will also attempt to federated immediately when applicable. See [issue #800](https://github.com/aws-amplify/aws-sdk-android/issues/800)
+  * Fix Google or Facebook refresh when using the drop-in UI. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809), [issue #700](https://github.com/aws-amplify/aws-sdk-android/issues/700)
+  * Annotated methods that are designed to be called from UI thread or from a background thread with @AnyThread and @WorkerThread, respectively.
+
 ### Bug Fixes
 
 * **AWS Core**
   * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
+  * Fixed a bug where a stringSet stored in `SharedPreferences` cannot be migrated to the `AWSKeyValueStore`.
+  * Propagate the exception when loading/creating the encryption key fails while trying to persist data through `AWSKeyValueStore`.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS Autoscaling
+  * Amazon Cognito Identity
+  * Amazon Cognito Identity Provider
+  * Amazon Comprehend
+  * Amazon Kinesis Video
+
+* **AWS IoT**
+  * Fixed the timestamp used for signing requests to AWS IoT by accounting for the offset specified in `SDKGlobalConfiguration`. See [issue #814](https://github.com/aws-amplify/aws-sdk-android/issues/814)
+
+* **Amazon Lex**
+  * Set user-specified `RequestAttributes` for the `PostContentRequest` sent to Amazon Lex bots. See [issue #801](https://github.com/aws-amplify/aws-sdk-android/issues/801)
 
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 

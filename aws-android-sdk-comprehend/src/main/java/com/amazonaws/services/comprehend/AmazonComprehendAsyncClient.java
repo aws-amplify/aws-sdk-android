@@ -265,7 +265,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * Determines the dominant language of the input text for a batch of
      * documents. For a list of languages that Amazon Comprehend can detect, see
      * <a href=
-     * "http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
      * >Amazon Comprehend Supported Languages</a>.
      * </p>
      * 
@@ -300,7 +300,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * Determines the dominant language of the input text for a batch of
      * documents. For a list of languages that Amazon Comprehend can detect, see
      * <a href=
-     * "http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
      * >Amazon Comprehend Supported Languages</a>.
      * </p>
      * 
@@ -662,6 +662,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -700,6 +701,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -744,6 +746,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -779,6 +782,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -1587,7 +1591,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * Determines the dominant language of the input text. For a list of
      * languages that Amazon Comprehend can detect, see <a href=
-     * "http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
      * >Amazon Comprehend Supported Languages</a>.
      * </p>
      * 
@@ -1620,7 +1624,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * Determines the dominant language of the input text. For a list of
      * languages that Amazon Comprehend can detect, see <a href=
-     * "http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html"
      * >Amazon Comprehend Supported Languages</a>.
      * </p>
      * 
@@ -2546,6 +2550,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2579,6 +2584,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2619,6 +2625,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Amazon Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2650,6 +2657,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Amazon Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2698,6 +2706,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2737,6 +2746,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * @throws TooManyRequestsException
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2777,6 +2787,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2808,6 +2819,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2848,6 +2860,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2879,6 +2892,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2920,6 +2934,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2952,6 +2967,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

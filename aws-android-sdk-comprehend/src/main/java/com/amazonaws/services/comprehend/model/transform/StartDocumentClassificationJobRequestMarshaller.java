@@ -96,6 +96,11 @@ public class StartDocumentClassificationJobRequestMarshaller
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (startDocumentClassificationJobRequest.getVolumeKmsKeyId() != null) {
+                String volumeKmsKeyId = startDocumentClassificationJobRequest.getVolumeKmsKeyId();
+                jsonWriter.name("VolumeKmsKeyId");
+                jsonWriter.value(volumeKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

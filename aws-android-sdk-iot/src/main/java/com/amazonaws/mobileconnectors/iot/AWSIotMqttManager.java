@@ -21,6 +21,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
@@ -830,7 +831,7 @@ public class AWSIotMqttManager {
                 try {
                     final String mqttWebSocketURL = signer.getSignedUrl(endpointWithHttpPort, 
                         clientCredentialsProvider.getCredentials(),
-                        System.currentTimeMillis());
+                        System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * MILLIS_IN_ONE_SECOND);
 
                     final MqttConnectOptions options = new MqttConnectOptions();
 
