@@ -62,7 +62,7 @@ class KeyProvider23 implements KeyProvider {
                 }
             } catch (Exception ex) {
                 logger.error("Error in accessing the Android KeyStore.", ex);
-                return null;
+                throw new IllegalStateException(ex);
             }
         }
     }

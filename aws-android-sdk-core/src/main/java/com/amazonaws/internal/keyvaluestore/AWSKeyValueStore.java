@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 
+import com.amazonaws.auth.policy.actions.SecurityTokenServiceActions;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 import com.amazonaws.util.Base64;
@@ -27,7 +28,9 @@ import java.security.Key;
 import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
@@ -315,6 +318,17 @@ public class AWSKeyValueStore {
                 } else if (map.get(spKey) instanceof Integer) {
                     Integer intValue = sharedPreferences.getInt(spKey, 0);
                     put(spKey, String.valueOf(intValue));
+                } else if (map.get(spKey) instanceof Set) {
+                    Set<String> stringSet = (Set<String>) map.get(spKey);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    Iterator<String> setIterator = stringSet.iterator();
+                    while (setIterator.hasNext())  {
+                        stringBuilder.append(setIterator.next());
+                        if (setIterator.hasNext()) {
+                            stringBuilder.append(",");
+                        }
+                    }
+                    put(spKey, stringBuilder.toString());
                 }
 
                 // Remove the key since key.encrypted is written.
