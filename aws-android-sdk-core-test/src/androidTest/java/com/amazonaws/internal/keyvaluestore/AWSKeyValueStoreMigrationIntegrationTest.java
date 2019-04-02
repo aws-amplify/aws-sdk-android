@@ -36,24 +36,29 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @RunWith(AndroidJUnit4.class)
 public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTestBase {
 
     private static String TAG = CognitoCachingCredentialsProviderIntegrationTest.class.getSimpleName();
+    private static SharedPreferences sharedPreferencesForAuth;
+    private static final String SHARED_PREFERENCES_NAME = "com.amazonaws.android.auth";
 
     private ArrayList<CognitoCachingCredentialsProvider> credentialsProviders =new ArrayList<CognitoCachingCredentialsProvider>();
     private CognitoCachingCredentialsProvider credentialsProvider;
 
-    private static SharedPreferences sharedPreferencesForAuth;
     private String identityPoolId;
     private long time;
+    private Set<String> stringSet;
 
     @BeforeClass
     public static void setupBeforeClass() {
         sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
-                .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE);
+                .getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
     @AfterClass
@@ -68,12 +73,14 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
     public void setUp() throws Exception {
         time = System.currentTimeMillis();
         identityPoolId = getPackageConfigure().getString("identity_pool_id");
+        stringSet = new HashSet<>(Arrays.asList("openid", "profile", "email"));
         sharedPreferencesForAuth.edit()
                 .putString(identityPoolId + ".accessKey" , "accessKey")
                 .putString(identityPoolId + ".secretKey" , "secretKey")
                 .putString(identityPoolId + ".sessionToken" , "sessionToken")
                 .putString(identityPoolId + ".identityId" , "identityId")
                 .putLong(identityPoolId + ".expirationDate" , time)
+                .putStringSet("stringSet", stringSet)
                 .commit();
     }
 
@@ -89,7 +96,7 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
 
     @Test
     public void testCachedAWSCredentialsMigration() throws Exception {
-        Log.d(TAG, "SharedPreferences contents before migration for com.amazonaws.android.auth => " +
+        Log.d(TAG, "SharedPreferences contents before migration for " + SHARED_PREFERENCES_NAME + "=> " +
                 sharedPreferencesForAuth.getAll().toString());
 
         assertEquals("accessKey", sharedPreferencesForAuth.getString(identityPoolId + ".accessKey", null));
@@ -97,6 +104,7 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
         assertEquals("sessionToken", sharedPreferencesForAuth.getString(identityPoolId + ".sessionToken", null));
         assertEquals("identityId", sharedPreferencesForAuth.getString(identityPoolId + ".identityId", null));
         assertEquals(time, sharedPreferencesForAuth.getLong(identityPoolId + ".expirationDate", 0));
+        assertEquals(stringSet, sharedPreferencesForAuth.getStringSet("stringSet", null));
 
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 InstrumentationRegistry.getTargetContext(),
@@ -105,10 +113,11 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
         credentialsProviders.add(credentialsProvider);
 
         AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
-                "com.amazonaws.android.auth",
+                SHARED_PREFERENCES_NAME,
                 true);
+        assertNotNull(awsKeyValueStore);
 
-        Log.d(TAG, "SharedPreferences contents after migration for com.amazonaws.android.auth => " +
+        Log.d(TAG, "SharedPreferences contents after migration for " + SHARED_PREFERENCES_NAME + " => " +
                 sharedPreferencesForAuth.getAll().toString());
 
         assertEquals("accessKey", awsKeyValueStore.get(identityPoolId + ".accessKey"));
@@ -116,6 +125,8 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
         assertEquals("sessionToken", awsKeyValueStore.get(identityPoolId + ".sessionToken"));
         assertEquals("identityId", awsKeyValueStore.get(identityPoolId + ".identityId"));
         assertEquals(String.valueOf(time), awsKeyValueStore.get(identityPoolId + ".expirationDate"));
+        assertNotNull(awsKeyValueStore.get("stringSet"));
+        verifyStringSet();
 
         credentialsProvider.clearCredentials();
         credentialsProvider.clear();
@@ -129,6 +140,13 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
 
         verifySharedPreferencesContents();
         verifyCredentialsProviderClear();
+    }
+
+    private void verifyStringSet() {
+        assertNotNull(sharedPreferencesForAuth.getString("stringSet.encrypted", null));
+        assertNotNull(sharedPreferencesForAuth.getString("stringSet.encrypted.iv", null));
+        assertNotNull(sharedPreferencesForAuth.getString("stringSet.encrypted.keyvaluestoreversion", null));
+        assertNull(sharedPreferencesForAuth.getString("stringSet", null));
     }
 
     private void verifySharedPreferencesContents() {
