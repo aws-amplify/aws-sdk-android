@@ -6,7 +6,7 @@
 
 * **AWS Mobile Client**
   * Updated `federatedSignIn()` method to contact the service immediately to validate tokens. The `signIn()` method will also attempt to federated immediately when applicable. See [issue #800](https://github.com/aws-amplify/aws-sdk-android/issues/800)
-  * Fix Google or Facebook refresh when using the drop-in UI. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809), [issue #700](https://github.com/aws-amplify/aws-sdk-android/issues/700)
+  * Fix Google or Facebook refresh when using the drop-in UI. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809), [issue #700](https://github.com/aws-amplify/aws-sdk-android/issues/700).
   * Annotated methods that are designed to be called from UI thread or from a background thread with @AnyThread and @WorkerThread, respectively.
 
 ### Bug Fixes
