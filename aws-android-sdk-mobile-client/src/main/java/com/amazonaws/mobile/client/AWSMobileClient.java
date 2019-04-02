@@ -26,6 +26,8 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.annotation.AnyThread;
+import android.support.annotation.WorkerThread;
 import android.support.customtabs.CustomTabsCallback;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
@@ -106,6 +108,7 @@ import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvi
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
 import com.amazonaws.util.StringUtils;
+import com.google.android.gms.common.annotation.KeepName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -388,10 +391,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return AWSCredentials obtained from Cognito Identity
      * @throws Exception
      */
+    @WorkerThread
     public AWSCredentials getAWSCredentials() throws Exception {
         return _getAWSCredentials().await();
     }
 
+    @AnyThread
     public void getAWSCredentials(final Callback<AWSCredentials> callback) {
         _getAWSCredentials().async(callback);
     }
@@ -405,6 +410,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    @AnyThread
     public String getIdentityId() {
         if (isLegacyMode()) {
             return IdentityManager.getDefaultIdentityManager().getCachedUserID();
@@ -426,11 +432,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return mIsLegacyMode;
     }
 
+    @AnyThread
     public void initialize(final Context context, final Callback<UserStateDetails> callback) {
         final Context applicationContext = context.getApplicationContext();
         initialize(applicationContext, new AWSConfiguration(applicationContext), callback);
     }
 
+    @AnyThread
     public void initialize(final Context context, final AWSConfiguration awsConfig, final Callback<UserStateDetails> callback) {
         final InternalCallback internalCallback = new InternalCallback<UserStateDetails>(callback);
         internalCallback.async(_initialize(context, awsConfig, internalCallback));
@@ -440,16 +448,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return showSignInWaitLatch;
     }
 
-    protected Runnable _initialize(final Context context, final AWSConfiguration awsConfig, final Callback<UserStateDetails> callback) {
+    protected Runnable _initialize(final Context context, final AWSConfiguration awsConfiguration, final Callback<UserStateDetails> callback) {
         return new Runnable() {
             public void run() {
                 synchronized (initLockObject) {
-                    if (mContext != null) {
+                    if (AWSMobileClient.this.awsConfiguration != null) {
                         callback.onResult(getUserStateDetails(true));
                         return;
                     }
-
-                    awsConfiguration = awsConfig;
 
                     mIsPersistenceEnabled = true; // Default value
                     // Read Persistence key from the awsconfiguration.json and set the flag
@@ -612,6 +618,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     }
 
                     final UserStateDetails userStateDetails = getUserStateDetails(true);
+
+                    AWSMobileClient.this.awsConfiguration = awsConfiguration;
+
                     callback.onResult(userStateDetails);
                     setUserState(userStateDetails);
                 }
@@ -686,6 +695,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      *
      * @return a handle for device operations
      */
+    @AnyThread
     public DeviceOperations getDeviceOperations() {
         if (mDeviceOperations == null) {
             throw new AmazonClientException("Please check if userpools is configured.");
@@ -698,6 +708,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Doing this fails all pending operations that were
      * waiting for sign-in.
      */
+    @AnyThread
     public void releaseSignInWait() {
         if (mSignedOutWaitLatch != null) {
             mSignedOutWaitLatch.countDown();
@@ -763,6 +774,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Returns the signed-in user's username obtained from the access token.
      * @return signed-in user's username
      */
+    @AnyThread
     public String getUsername() {
         try {
             if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
@@ -774,14 +786,51 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
     }
 
+    /**
+     * Performs a check on the current UserState. When online, this method will attempt to
+     * refresh tokens when they expired. Failing a refresh may cause the UserState to change.
+     *
+     * @return details about the user's state
+     */
+    @WorkerThread
     public UserStateDetails currentUserState() {
-        return getUserStateDetails(false);
+        try {
+            return _currentUserState().await();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to retrieve user state.", e);
+        }
     }
 
     /**
-     * Adds a listener to be notified of state changes
+     * Performs a check on the current UserState. When online, this method will attempt to
+     * refresh tokens when they expired. Failing a refresh may cause the UserState to change.
+     *
+     * @return details about the user's state
+     */
+    @AnyThread
+    public void currentUserState(final Callback<UserStateDetails> callback) {
+        _currentUserState().async(callback);
+    }
+
+    ReturningRunnable<UserStateDetails> _currentUserState() {
+        return new ReturningRunnable<UserStateDetails>() {
+            @Override
+            public UserStateDetails run() throws Exception {
+                return getUserStateDetails(false);
+            }
+        };
+    }
+
+    /**
+     * Adds a listener to be notified of state changes.
+     * When encountering SIGNED_OUT_FEDERATED_TOKENS_INVALID
+     * or SIGNED_OUT_USER_POOLS_TOKENS_INVALID
+     * {@link #releaseSignInWait()} or any form of sign-in can be called
+     * to prevent blocking {@link #getCredentials()}, {@link #getTokens()}, or other methods
+     * requiring a sign-in.
      * @param listener
      */
+    @AnyThread
     public void addUserStateListener(final UserStateListener listener) {
         synchronized (listeners) {
             listeners.add(listener);
@@ -794,6 +843,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param listener
      * @return true if removed
      */
+    @AnyThread
     public boolean removeUserStateListener(final UserStateListener listener) {
         synchronized (listeners) {
             int index = listeners.indexOf(listener);
@@ -809,6 +859,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return userpoolsLoginKey;
     }
 
+    /**
+     * A variant of {@link #currentUserState()} that simplifies the output to a boolean.
+     * True if SIGNED_IN, SIGNED_OUT_USER_POOLS_TOKENS_INVALID, SIGNED_OUT_FEDERATED_TOKENS_INVALID.
+     * False if GUEST, SIGNED_OUT.
+     *
+     * @return see above
+     */
+    @AnyThread
     public boolean isSignedIn() {
         final UserStateDetails userStateDetails = getUserStateDetails(true);
         switch (userStateDetails.getUserState()) {
@@ -903,16 +961,32 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             try {
                 if (!federationEnabled) {
                     // Do nothing, you are signed-in by having the token
-                }
-                // If token has already been federated
-                else if (hasFederatedToken(providerKey, token)) {
-                    Log.d(TAG, "getUserStateDetails: token already federated just fetch credentials");
-                    if (cognitoIdentity != null) {
-                        cognitoIdentity.getCredentials();
-                    }
                 } else {
-                    federateWithCognitoIdentity(providerKey, token);
+                    // Attempt to refresh the token if it matches drop-in UI
+                    String refreshedToken = token;
+                    final com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider =
+                            IdentityManager.getDefaultIdentityManager().getCurrentIdentityProvider();
+                    if (currentIdentityProvider != null && providerKey.equals(currentIdentityProvider.getCognitoLoginKey())) {
+                        refreshedToken = currentIdentityProvider.refreshToken();
+                        Log.i(TAG, "Token was refreshed using drop-in UI internal mechanism");
+                    }
+
+                    if (refreshedToken == null) {
+                        Log.i(TAG, "Token used for federation has become null");
+                        return new UserStateDetails(UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID, details);
+                    }
+
+                    // If token has already been federated
+                    if (hasFederatedToken(providerKey, refreshedToken)) {
+                        Log.d(TAG, "getUserStateDetails: token already federated just fetch credentials");
+                        if (cognitoIdentity != null) {
+                            cognitoIdentity.getCredentials();
+                        }
+                    } else {
+                        federateWithCognitoIdentity(providerKey, token);
+                    }
                 }
+
                 return new UserStateDetails(UserState.SIGNED_IN, details);
             } catch (Exception e) {
                 Log.w(TAG, "Failed to federate the tokens.", e);
@@ -992,6 +1066,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return hasFederatedToken;
     }
 
+    @AnyThread
     public void signIn(final String username,
                        final String password,
                        final Map<String, String> validationData,
@@ -1001,6 +1076,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_signIn(username, password, validationData, internalCallback));
     }
 
+    @WorkerThread
     public SignInResult signIn(final String username,
                                final String password,
                                final Map<String, String> validationData) throws Exception {
@@ -1035,17 +1111,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             try {
                                 if (isFederationEnabled()) {
-                                    federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken(), new Callback<UserStateDetails>() {
-                                        @Override
-                                        public void onResult(UserStateDetails result) {
-                                            // Ignore because the result does not matter until getAWSCredentials is called
-                                        }
-
-                                        @Override
-                                        public void onError(Exception e) {
-                                            // Ignore because the result does not matter until getAWSCredentials is called
-                                        }
-                                    });
+                                    federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken());
                                 }
 
                                 releaseSignInWait();
@@ -1111,6 +1177,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /**
      * Clears local tokens so that the client is in a signed-out state.
      */
+    @AnyThread
     public void signOut() {
         mCognitoUserSession = null;
         if (userpool != null) {
@@ -1155,6 +1222,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * </pre>
      * @param signOutOptions options
      */
+    @WorkerThread
     public void signOut(final SignOutOptions signOutOptions) throws Exception {
         _signOut(signOutOptions).await();
     }
@@ -1170,6 +1238,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * </pre>
      * @param signOutOptions options
      */
+    @AnyThread
     public void signOut(final SignOutOptions signOutOptions, final Callback<Void> callback) {
         _signOut(signOutOptions).async(callback);
     }
@@ -1239,6 +1308,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
+    @AnyThread
     public void federatedSignIn(final String providerKey,
                                 final String token,
                                 final Callback<UserStateDetails> callback) {
@@ -1255,6 +1325,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
+    @WorkerThread
     public UserStateDetails federatedSignIn(final String providerKey, final String token) throws Exception {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
         return internalCallback.await(_federatedSignIn(providerKey, token, null, internalCallback, true));
@@ -1269,6 +1340,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
+    @AnyThread
     public void federatedSignIn(final String providerKey,
                                 final String token,
                                 final FederatedSignInOptions options,
@@ -1286,6 +1358,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
+    @WorkerThread
     public UserStateDetails federatedSignIn(final String providerKey,
                                 final String token,
                                 final FederatedSignInOptions options) throws Exception {
@@ -1352,20 +1425,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                     UserStateDetails userStateDetails = getUserStateDetails(true);
 
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                federateWithCognitoIdentity(providerKey, token);
-                            } catch (Exception e) {
-                                Log.w(TAG, "Failed to federate with Cognito Identity in the background", e);
-                            }
-                        }
-                    }).start();
+                    federateWithCognitoIdentity(providerKey, token);
 
                     callback.onResult(userStateDetails);
                     end(userStateDetails);
                 } catch (final Exception exception) {
+                    HashMap<String, String> details = new HashMap<String, String>();
+                    details.put(PROVIDER_KEY, null);
+                    details.put(TOKEN_KEY, null);
+                    details.put(FEDERATION_ENABLED_KEY, null);
+                    details.put(IDENTITY_ID_KEY, null);
+                    details.put(CUSTOM_ROLE_ARN_KEY, null);
+                    mStore.set(details);
+
                     callback.onError(new RuntimeException("Error in federating the token.", exception));
                     return;
                 }
@@ -1412,6 +1484,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return tokens from Cognito Userpools
      * @throws Exception
      */
+    @WorkerThread
     public Tokens getTokens() throws Exception {
         final InternalCallback<Tokens> internalCallback = new InternalCallback<Tokens>();
         return internalCallback.await(_getTokens(internalCallback, true));
@@ -1424,6 +1497,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return tokens from Cognito Userpools
      * @throws Exception
      */
+    @AnyThread
     public void getTokens(final Callback<Tokens> callback) {
         final InternalCallback<Tokens> internalCallback = new InternalCallback<Tokens>(callback);
         internalCallback.async(_getTokens(internalCallback, true));
@@ -1555,6 +1629,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param validationData optional, set of data to validate the sign-up request
      * @param callback callback
      */
+    @AnyThread
     public void signUp(final String username,
                        final String password,
                        final Map<String, String> userAttributes,
@@ -1576,6 +1651,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return result of the operation, potentially with next steps
      * @throws Exception
      */
+    @WorkerThread
     public SignUpResult signUp(final String username,
                                final String password,
                                final Map<String, String> userAttributes,
@@ -1630,6 +1706,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signUpChallengeResponse
      * @param callback
      */
+    @AnyThread
     public void confirmSignUp(final String username,
                               final String signUpChallengeResponse,
                               final Callback<SignUpResult> callback) {
@@ -1638,6 +1715,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmSignUp(username, signUpChallengeResponse, internalCallback));
     }
 
+    /**
+     * Confirm the sign-up request with follow-up information
+     *
+     * @param username
+     * @param signUpChallengeResponse
+     */
+    @WorkerThread
     public SignUpResult confirmSignUp(final String username,
                                       final String signUpChallengeResponse) throws Exception {
 
@@ -1671,12 +1755,29 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param username
+     * @param callback
+     */
+    @AnyThread
     public void resendSignUp(final String username,
                              final Callback<SignUpResult> callback) {
         final InternalCallback internalCallback = new InternalCallback<SignUpResult>(callback);
         internalCallback.async(_resendSignUp(username, internalCallback));
     }
 
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param username
+     */
+    @WorkerThread
     public SignUpResult resendSignUp(final String username) throws Exception {
         final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
         return internalCallback.await(_resendSignUp(username, internalCallback));
@@ -1710,6 +1811,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    @AnyThread
     public void forgotPassword(final String username,
                                final Callback<ForgotPasswordResult> callback) {
 
@@ -1717,6 +1819,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_forgotPassword(username, internalCallback));
     }
 
+    @WorkerThread
     public ForgotPasswordResult forgotPassword(final String username) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
@@ -1759,6 +1862,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    /**
+     * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
+     * that the service may request.
+     *
+     * @param password
+     * @param forgotPasswordChallengeResponse
+     * @param callback
+     */
+    @AnyThread
     public void confirmForgotPassword(final String password,
                                       final String forgotPasswordChallengeResponse,
                                       final Callback<ForgotPasswordResult> callback) {
@@ -1767,6 +1879,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse, internalCallback));
     }
 
+    /**
+     * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
+     * that the service may request.
+     *
+     * @param password
+     * @param forgotPasswordChallengeResponse
+     */
+    @WorkerThread
     public ForgotPasswordResult confirmForgotPassword(final String password,
                                                       final String forgotPasswordChallengeResponse) throws Exception {
 
@@ -1795,6 +1915,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    @AnyThread
     public void changePassword(final String oldPassword,
                                final String newPassword,
                                final Callback<Void> callback) {
@@ -1803,6 +1924,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_changePassword(oldPassword, newPassword, internalCallback));
     }
 
+    @WorkerThread
     public void changePassword(final String oldPassword,
                                final String newPassword) throws Exception {
 
@@ -1836,6 +1958,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    @AnyThread
     public void confirmSignIn(final String signInChallengeResponse,
                               final Callback<SignInResult> callback) {
 
@@ -1843,6 +1966,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
     }
 
+    @WorkerThread
     public SignInResult confirmSignIn(final String signInChallengeResponse) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
@@ -1898,6 +2022,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signInChallengeResponse obtained from user
      * @param callback callback
      */
+    @AnyThread
     public void confirmSignIn(final Map<String, String> signInChallengeResponse,
                               final Callback<SignInResult> callback) {
 
@@ -1913,6 +2038,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return the result containing next steps or done.
      * @throws Exception
      */
+    @WorkerThread
     public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
@@ -1962,11 +2088,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    @AnyThread
     public void getUserAttributes(final Callback<Map<String, String>> callback) {
         InternalCallback<Map<String, String>> internalCallback = new InternalCallback<Map<String, String>>(callback);
         internalCallback.async(_getUserAttributes(internalCallback));
     }
 
+    @WorkerThread
     public Map<String, String> getUserAttributes() throws Exception {
         InternalCallback<Map<String, String>> internalCallback = new InternalCallback<Map<String, String>>();
         return internalCallback.await(_getUserAttributes(internalCallback));
@@ -2002,6 +2130,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param userAttributes the attributes i.e. email
      * @param callback verification delivery information
      */
+    @AnyThread
     public void updateUserAttributes(final Map<String, String> userAttributes,
                                      final Callback<List<UserCodeDeliveryDetails>> callback) {
 
@@ -2016,6 +2145,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return verification delivery information
      * @throws Exception
      */
+    @WorkerThread
     public List<UserCodeDeliveryDetails> updateUserAttributes(final Map<String, String> userAttributes) throws Exception {
 
         InternalCallback<List<UserCodeDeliveryDetails>> internalCallback = new InternalCallback<List<UserCodeDeliveryDetails>>();
@@ -2068,6 +2198,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param attributeName i.e. email
      * @param callback verification delivery information
      */
+    @AnyThread
     public void verifyUserAttribute(final String attributeName,
                                     final Callback<UserCodeDeliveryDetails> callback) {
 
@@ -2081,6 +2212,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return verification delivery information
      * @throws Exception
      */
+    @WorkerThread
     public UserCodeDeliveryDetails verifyUserAttribute(final String attributeName) throws Exception {
 
         InternalCallback<UserCodeDeliveryDetails> internalCallback = new InternalCallback<UserCodeDeliveryDetails>();
@@ -2126,6 +2258,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @param callback callback
      */
+    @AnyThread
     public void confirmUpdateUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse,
                                      final Callback<Void> callback) {
@@ -2140,6 +2273,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @throws Exception
      */
+    @WorkerThread
     public void confirmUpdateUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse) throws Exception {
 
@@ -2153,6 +2287,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @param callback callback
      */
+    @AnyThread
     public void confirmVerifyUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse,
                                      final Callback<Void> callback) {
@@ -2167,6 +2302,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @throws Exception
      */
+    @WorkerThread
     public void confirmVerifyUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse) throws Exception {
 
@@ -2364,6 +2500,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 //        };
 //    }
 
+    /**
+     * Pass in the Intent from the OAuth 2.0 exchange from {@link #showSignIn(Activity)}
+     *
+     * @param intent
+     * @return true if the intent was accepted.
+     */
+    @AnyThread
     public boolean handleAuthResponse(final Intent intent) {
         if (hostedUI != null) {
             hostedUI.getTokens(intent.getData());
@@ -2380,6 +2523,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      * @param callback callback with UserStateDetails at end of operation
      */
+    @AnyThread
     public void showSignIn(final Activity callingActivity,
                            final Callback<UserStateDetails> callback) { //SignInUIOptions
 
@@ -2391,6 +2535,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Shows a sign-in UI for user's to sign-in, sign-up, forgot password, create account
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      */
+    @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity) throws Exception {
 
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
@@ -2402,6 +2547,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signInUIOptions Override any default configuration with your preferences.
      * @param callback callback with UserStateDetails at end of operation
      */
+    @AnyThread
     public void showSignIn(final Activity callingActivity,
                            final SignInUIOptions signInUIOptions,
                            final Callback<UserStateDetails> callback) { //SignInUIOptions
@@ -2415,6 +2561,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      * @param signInUIOptions Override any default configuration with your preferences.
      */
+    @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity,
                                        final SignInUIOptions signInUIOptions) throws Exception {
 
@@ -2601,7 +2748,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 } else {
                     mStore.set(FEDERATION_ENABLED_KEY, "true");
                 }
-                mStore.set(SIGN_IN_MODE, SignInMode.HOSTED_UI.toString());
 
                 if (hostedUIOptions.getSignOutQueryParameters() != null) {
                     try {
