@@ -28,6 +28,9 @@
 * **AWS IoT**
   * Fixed the timestamp used for signing requests to AWS IoT by accounting for the offset specified in `SDKGlobalConfiguration`. See [issue #814](https://github.com/aws-amplify/aws-sdk-android/issues/814)
 
+* **Amazon Lex**
+  * Set user-specified `RequestAttributes` for the `PostContentRequest` sent to Amazon Lex bots. See [issue #801](https://github.com/aws-amplify/aws-sdk-android/issues/801)
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
