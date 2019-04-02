@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 
-import com.amazonaws.auth.policy.actions.SecurityTokenServiceActions;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 import com.amazonaws.util.Base64;
