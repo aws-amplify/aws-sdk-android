@@ -121,6 +121,11 @@ public class CreateLexServiceRequest {
 
         request.setSessionAttributes(mapToBase64(newSessionAttributes));
 
+        // Set the request attributes
+        if (requestAttributes != null) {
+            request.setRequestAttributes(mapToBase64(requestAttributes));
+        }
+
         if (interactionConfig.getUserId() == null || interactionConfig.getUserId().isEmpty()) {
             final CognitoCredentialsProvider cognitoCredentialsProvider = (CognitoCredentialsProvider) credentialsProvider;
             request.setUserId(cognitoCredentialsProvider.getIdentityId());
