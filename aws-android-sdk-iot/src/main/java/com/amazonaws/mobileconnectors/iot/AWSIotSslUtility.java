@@ -19,25 +19,19 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
-import java.security.Security;
 import java.security.UnrecoverableKeyException;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
-import org.conscrypt.OpenSSLProvider;
 
 /**
  * AWSIoTSslUtility Utility class for creating an SSL Socket Factory from
  * certs/keys in keystore.
  */
 final class AWSIotSslUtility {
-
-    protected static final String[] ALPN_EXTENSION = {"x-amzn-mqtt-ca"};
-    private static final String TLS_V_1_2 = "TLSv1.2";
 
     /**
      * Utility class.
@@ -46,11 +40,10 @@ final class AWSIotSslUtility {
     }
 
     /**
-     * Creates a socket factory given a keystore and a portNumber.
+     * Creates a socket factory given a keystore.
      *
      * @param keyStore keystore containing a certificate and private key for
      *            used in creating a secured socket.
-     * @param portNumber Port number used for connecting to Iot
      * @return a socket factory for use in creating a secured socket.
      * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
      * @throws UnrecoverableKeyException when the private key cannot be
@@ -59,18 +52,11 @@ final class AWSIotSslUtility {
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.
      */
-    public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore, int portNumber)
+    public static SSLSocketFactory getSocketFactoryWithKeyStore(KeyStore keyStore)
             throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
-            KeyManagementException, NoSuchProviderException {
-        SSLContext context;
+            KeyManagementException {
 
-        if (portNumber == 443) {
-            // Use Conscrypt as security provider
-            Security.addProvider(new OpenSSLProvider());
-            context = SSLContext.getInstance(TLS_V_1_2, "Conscrypt");
-        } else {
-            context = SSLContext.getInstance(TLS_V_1_2);
-        }
+        SSLContext context = SSLContext.getInstance("TLSv1.2");
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory
                 .getDefaultAlgorithm());
