@@ -22,6 +22,7 @@
   * AWS Autoscaling
   * Amazon Cognito Identity
   * Amazon Cognito Identity Provider
+  * Amazon Comprehend
   * Amazon Kinesis Video
 
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
