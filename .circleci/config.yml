@@ -968,7 +968,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -998,7 +998,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop              
+                - develop
       - integrationtest:
           name: comprehend
           testmodule: aws-android-sdk-comprehend-test
@@ -1041,14 +1041,14 @@ workflows:
                 - develop
       - integrationtest:
           name: iot
-          testmodule: aws-android-sdk-iot-test
+          testmodule: aws-android-sdk-iot
           requires:
             - pre_integrationtest    
           filters:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: kinesis
           testmodule: aws-android-sdk-kinesis-test
@@ -1069,7 +1069,6 @@ workflows:
               only:
                 - master
                 - develop
-
       - integrationtest:
           name: polly
           testmodule: aws-android-sdk-polly-test
@@ -1109,7 +1108,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop                                 
+                - develop
       - integrationtest:
           name: ses
           testmodule: aws-android-sdk-ses-test
@@ -1119,7 +1118,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop                                 
+                - develop
       - integrationtest:
           name: sns
           testmodule: aws-android-sdk-sns-test
@@ -1129,7 +1128,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: sqs
           testmodule: aws-android-sdk-sqs-test
@@ -1139,8 +1138,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
-
+                - develop
       - integrationtest:
           name: transcribe
           testmodule: aws-android-sdk-transcribe-test
@@ -1150,7 +1148,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: translate
           testmodule: aws-android-sdk-translate-test
@@ -1160,7 +1158,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
@@ -1170,7 +1168,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: CognitoIdentityProvider
           testmodule: aws-android-sdk-cognitoidentityprovider-test
@@ -1180,7 +1178,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: Core
           testmodule: aws-android-sdk-core-test
@@ -1190,7 +1188,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop 
+                - develop
       - integrationtest:
           name: CognitoAuth
           testmodule: aws-android-sdk-cognitoauth
@@ -1200,7 +1198,7 @@ workflows:
             branches:
               only:
                 - master
-                - develop              
+                - develop
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
@@ -1220,7 +1218,7 @@ workflows:
       #       branches:
       #         only:
       #           - master
-      #           - develop         
+      #           - develop
       # - integrationtest:
       #     name: kinesisvideo-archivedmedia
       #     testmodule: aws-android-sdk-kinesisvideo-archivedmedia
@@ -1230,7 +1228,7 @@ workflows:
       #       branches:
       #         only:
       #           - master
-      #           - develop                    
+      #           - develop
       - post_integrationtest:
           requires:
             # - kinesisvideo-archivedmedia
@@ -1387,7 +1385,7 @@ workflows:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
       - integrationtest:
           name: iot
-          testmodule: aws-android-sdk-iot-test
+          testmodule: aws-android-sdk-iot
           requires:
             - pre_integrationtest    
           filters:

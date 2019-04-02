@@ -44,6 +44,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -672,7 +673,24 @@ public class AWSIotMqttManager {
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore. Keystore should be created
+     * using certificate and private key in keystore on port 443. Keystore should be created
+     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * expected by the underlying socket helper library.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    public void connectUsingALPN(KeyStore keyStore,
+                                 final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 443, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on port 8883. Keystore should be created
      * using IotKeystoreHelper to setup the certificate and key aliases as
      * expected by the underlying socket helper library.
      *
@@ -683,6 +701,21 @@ public class AWSIotMqttManager {
      *            status.
      */
     public void connect(KeyStore keyStore, final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 8883, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on the specified port.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param portNumber the client port, either 8883 or 443
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    private void connect(KeyStore keyStore, int portNumber, final AWSIotMqttClientStatusCallback statusCallback) {
 
         if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
             throw new UnsupportedOperationException(
@@ -702,11 +735,11 @@ public class AWSIotMqttManager {
         }
 
         if (endpoint != null) {
-            mqttBrokerURL = String.format("ssl://%s:8883", endpoint);
+            mqttBrokerURL = String.format("ssl://%s:%d", endpoint, portNumber);
         } else if (accountEndpointPrefix != null) {
             mqttBrokerURL = String
-                    .format("ssl://%s.iot.%s.%s:8883", accountEndpointPrefix, region.getName(),
-                            region.getDomain());
+                    .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
+                            region.getDomain(),portNumber);
         } else {
             throw new IllegalStateException("No valid endpoint information is available. " +
                 "Please pass in a valid endpoint in AWSIotMqttManager.");
@@ -720,7 +753,7 @@ public class AWSIotMqttManager {
                 mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
             }
 
-            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore);
+            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber);
             final MqttConnectOptions options = new MqttConnectOptions();
 
             if (mqttLWT != null) {
@@ -739,6 +772,8 @@ public class AWSIotMqttManager {
         } catch (final KeyStoreException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final UnrecoverableKeyException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final NoSuchProviderException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final MqttException e) {
             throw new AmazonClientException("An error occured in the MQTT client.", e);
