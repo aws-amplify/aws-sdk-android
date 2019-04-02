@@ -7,6 +7,9 @@
 * **AWS Core**
   * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
 
+* **AWS IoT**
+  * Fixed the timestamp used for signing requests to AWS IoT by accounting for the offset specified in `SDKGlobalConfiguration`. See [issue #814](https://github.com/aws-amplify/aws-sdk-android/issues/814)
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
