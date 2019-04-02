@@ -13,6 +13,8 @@
 
 * **AWS Core**
   * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
+  * Fixed a bug where a stringSet stored in `SharedPreferences` cannot be migrated to the `AWSKeyValueStore`.
+  * Propagate the exception when loading/creating the encryption key fails while trying to persist data through `AWSKeyValueStore`.
 
 ### Misc. Updates
 
