@@ -1,21 +1,41 @@
-apply plugin: 'java-library'
+apply plugin: 'com.android.library'
 
+android {
+    compileSdkVersion 27
+
+
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(":aws-android-sdk-core")
+    api (project(":aws-android-sdk-core")){
+        exclude group: "com.google.android", module: "android"
+    }
     implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
+    implementation "org.conscrypt:conscrypt-android:2.0.0"
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.robolectric:robolectric:2.4"
     testImplementation "org.mockito:mockito-all:1.10.5"
+    androidTestImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation project(":aws-android-sdk-testutils")
 }
-test {
-
-    if (project.hasProperty('excludeTests')) { 
-        exclude project.property('excludeTests')
-        //exclude '**/*IntegrationTest.class'
-    }
-}
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
