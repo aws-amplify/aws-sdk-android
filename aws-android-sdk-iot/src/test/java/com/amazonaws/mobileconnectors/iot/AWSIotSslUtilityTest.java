@@ -69,7 +69,7 @@ public class AWSIotSslUtilityTest {
         KeyStore testKeystore = KeyStore.getInstance(KeyStore.getDefaultType());
         testKeystore.load(fis,
                 AWSIotKeystoreHelper.AWS_IOT_INTERNAL_KEYSTORE_PASSWORD.toCharArray());
-        SSLSocketFactory factory = AWSIotSslUtility.getSocketFactoryWithKeyStore(testKeystore, 8883);
+        SSLSocketFactory factory = AWSIotSslUtility.getSocketFactoryWithKeyStore(testKeystore);
         assertTrue(factory instanceof AWSIotTLSSocketFactory);
     }
 }
