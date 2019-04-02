@@ -7,6 +7,9 @@
 * **AWS Core**
   * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
 
+* **Amazon Lex**
+  * Set user-specified `RequestAttributes` for the `PostContentRequest` sent to Amazon Lex bots. See [issue #801](https://github.com/aws-amplify/aws-sdk-android/issues/801)
+
 ## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
 
 ### Misc. Updates
