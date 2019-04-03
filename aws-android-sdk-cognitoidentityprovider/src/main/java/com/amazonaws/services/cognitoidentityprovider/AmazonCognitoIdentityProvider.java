@@ -2304,6 +2304,40 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Lists the tags that are assigned to an Amazon Cognito user pool.
+     * </p>
+     * <p>
+     * A tag is a label that you can apply to user pools to categorize and
+     * manage them in different ways, such as by purpose, owner, environment, or
+     * other criteria.
+     * </p>
+     * <p>
+     * You can use this action up to 10 times per second, per account.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon Cognito
+     *         Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the user import jobs.
      * </p>
      * 
@@ -2772,6 +2806,76 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * Assigns a set of tags to an Amazon Cognito user pool. A tag is a label
+     * that you can use to categorize and manage user pools in different ways,
+     * such as by purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * Each tag consists of a key and value, both of which you define. A key is
+     * a general category for more specific values. For example, if you have two
+     * versions of a user pool, one for testing and another for production, you
+     * might assign an <code>Environment</code> tag key to both user pools. The
+     * value of this key might be <code>Test</code> for one user pool and
+     * <code>Production</code> for the other.
+     * </p>
+     * <p>
+     * Tags are useful for cost tracking and access control. You can activate
+     * your tags so that they appear on the Billing and Cost Management console,
+     * where you can track the costs associated with your user pools. In an IAM
+     * policy, you can constrain permissions for user pools based on specific
+     * tags or tag values.
+     * </p>
+     * <p>
+     * You can use this action up to 5 times per second, per account. A user
+     * pool can have as many as 50 tags.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the specified tags from an Amazon Cognito user pool. You can use
+     * this action up to 5 times per second, per account
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides the feedback for an authentication event whether it was from a
      * valid user or not. This feedback is used for improving the risk
      * evaluation decision for the user pool as part of Amazon Cognito advanced
@@ -3060,7 +3164,7 @@ public interface AmazonCognitoIdentityProvider {
      * <p>
      * For more information about adding a custom domain to your user pool, see
      * <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"
      * >Using Your Own Domain for the Hosted UI</a>.
      * </p>
      * 

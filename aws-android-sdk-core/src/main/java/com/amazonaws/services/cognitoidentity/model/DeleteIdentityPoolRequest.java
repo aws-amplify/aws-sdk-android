@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a user pool. Once a pool is deleted, users will not be able to
+ * Deletes an identity pool. Once a pool is deleted, users will not be able to
  * authenticate with the pool.
  * </p>
  * <p>

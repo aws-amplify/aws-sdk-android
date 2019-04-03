@@ -82,6 +82,17 @@ public class CreateStreamRequestMarshaller implements
                 jsonWriter.name("roleArn");
                 jsonWriter.value(roleArn);
             }
+            if (createStreamRequest.getTags() != null) {
+                java.util.List<Tag> tags = createStreamRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

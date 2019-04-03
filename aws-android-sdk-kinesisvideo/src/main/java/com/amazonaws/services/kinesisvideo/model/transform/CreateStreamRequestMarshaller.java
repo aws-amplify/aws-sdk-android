@@ -82,6 +82,19 @@ public class CreateStreamRequestMarshaller implements
                 jsonWriter.name("DataRetentionInHours");
                 jsonWriter.value(dataRetentionInHours);
             }
+            if (createStreamRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createStreamRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

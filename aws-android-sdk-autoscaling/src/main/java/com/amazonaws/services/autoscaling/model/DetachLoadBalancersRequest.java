@@ -26,7 +26,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * This operation detaches only Classic Load Balancers. If you have Application
- * Load Balancers, use <a>DetachLoadBalancerTargetGroups</a> instead.
+ * Load Balancers or Network Load Balancers, use
+ * <a>DetachLoadBalancerTargetGroups</a> instead.
  * </p>
  * <p>
  * When you detach a load balancer, it enters the <code>Removing</code> state

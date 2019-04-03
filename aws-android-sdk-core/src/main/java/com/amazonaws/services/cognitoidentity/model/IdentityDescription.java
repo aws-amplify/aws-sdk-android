@@ -36,8 +36,7 @@ public class IdentityDescription implements Serializable {
 
     /**
      * <p>
-     * A set of optional name-value pairs that map provider names to provider
-     * tokens.
+     * The provider names.
      * </p>
      */
     private java.util.List<String> logins;
@@ -115,13 +114,11 @@ public class IdentityDescription implements Serializable {
 
     /**
      * <p>
-     * A set of optional name-value pairs that map provider names to provider
-     * tokens.
+     * The provider names.
      * </p>
      *
      * @return <p>
-     *         A set of optional name-value pairs that map provider names to
-     *         provider tokens.
+     *         The provider names.
      *         </p>
      */
     public java.util.List<String> getLogins() {
@@ -130,13 +127,11 @@ public class IdentityDescription implements Serializable {
 
     /**
      * <p>
-     * A set of optional name-value pairs that map provider names to provider
-     * tokens.
+     * The provider names.
      * </p>
      *
      * @param logins <p>
-     *            A set of optional name-value pairs that map provider names to
-     *            provider tokens.
+     *            The provider names.
      *            </p>
      */
     public void setLogins(java.util.Collection<String> logins) {
@@ -150,16 +145,14 @@ public class IdentityDescription implements Serializable {
 
     /**
      * <p>
-     * A set of optional name-value pairs that map provider names to provider
-     * tokens.
+     * The provider names.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param logins <p>
-     *            A set of optional name-value pairs that map provider names to
-     *            provider tokens.
+     *            The provider names.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -176,16 +169,14 @@ public class IdentityDescription implements Serializable {
 
     /**
      * <p>
-     * A set of optional name-value pairs that map provider names to provider
-     * tokens.
+     * The provider names.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param logins <p>
-     *            A set of optional name-value pairs that map provider names to
-     *            provider tokens.
+     *            The provider names.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

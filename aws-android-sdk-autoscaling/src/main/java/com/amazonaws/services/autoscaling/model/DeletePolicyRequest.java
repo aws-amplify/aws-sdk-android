@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified Auto Scaling policy.
+ * Deletes the specified scaling policy.
  * </p>
  * <p>
  * Deleting a policy deletes the underlying alarm action, but does not delete

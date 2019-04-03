@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Enables group metrics for the specified Auto Scaling group. For more
  * information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html"
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html"
  * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Amazon EC2
  * Auto Scaling User Guide</i>.
  * </p>

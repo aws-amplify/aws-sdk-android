@@ -19,14 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A provider representing an Amazon Cognito Identity User Pool and its client
- * ID.
+ * A provider representing an Amazon Cognito user pool and its client ID.
  * </p>
  */
 public class CognitoIdentityProvider implements Serializable {
     /**
      * <p>
-     * The provider name for an Amazon Cognito Identity User Pool. For example,
+     * The provider name for an Amazon Cognito user pool. For example,
      * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * <p>
@@ -38,7 +37,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The client ID for the Amazon Cognito Identity User Pool.
+     * The client ID for the Amazon Cognito user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,12 +51,23 @@ public class CognitoIdentityProvider implements Serializable {
      * TRUE if server-side token validation is enabled for the identity
      * provider’s token.
      * </p>
+     * <p>
+     * Once you set <code>ServerSideTokenCheck</code> to TRUE for an identity
+     * pool, that identity pool will check with the integrated user pools to
+     * make sure that the user has not been globally signed out or deleted
+     * before the identity pool provides an OIDC token or AWS credentials for
+     * the user.
+     * </p>
+     * <p>
+     * If the user is signed out or deleted, the identity pool will return a 400
+     * Not Authorized error.
+     * </p>
      */
     private Boolean serverSideTokenCheck;
 
     /**
      * <p>
-     * The provider name for an Amazon Cognito Identity User Pool. For example,
+     * The provider name for an Amazon Cognito user pool. For example,
      * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * <p>
@@ -66,8 +76,7 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w._:/-]+<br/>
      *
      * @return <p>
-     *         The provider name for an Amazon Cognito Identity User Pool. For
-     *         example,
+     *         The provider name for an Amazon Cognito user pool. For example,
      *         <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
      *         .
      *         </p>
@@ -78,7 +87,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The provider name for an Amazon Cognito Identity User Pool. For example,
+     * The provider name for an Amazon Cognito user pool. For example,
      * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * <p>
@@ -87,8 +96,8 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w._:/-]+<br/>
      *
      * @param providerName <p>
-     *            The provider name for an Amazon Cognito Identity User Pool.
-     *            For example,
+     *            The provider name for an Amazon Cognito user pool. For
+     *            example,
      *            <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
      *            .
      *            </p>
@@ -99,7 +108,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The provider name for an Amazon Cognito Identity User Pool. For example,
+     * The provider name for an Amazon Cognito user pool. For example,
      * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * <p>
@@ -111,8 +120,8 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w._:/-]+<br/>
      *
      * @param providerName <p>
-     *            The provider name for an Amazon Cognito Identity User Pool.
-     *            For example,
+     *            The provider name for an Amazon Cognito user pool. For
+     *            example,
      *            <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
      *            .
      *            </p>
@@ -126,7 +135,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The client ID for the Amazon Cognito Identity User Pool.
+     * The client ID for the Amazon Cognito user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -134,7 +143,7 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w_]+<br/>
      *
      * @return <p>
-     *         The client ID for the Amazon Cognito Identity User Pool.
+     *         The client ID for the Amazon Cognito user pool.
      *         </p>
      */
     public String getClientId() {
@@ -143,7 +152,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The client ID for the Amazon Cognito Identity User Pool.
+     * The client ID for the Amazon Cognito user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -151,7 +160,7 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w_]+<br/>
      *
      * @param clientId <p>
-     *            The client ID for the Amazon Cognito Identity User Pool.
+     *            The client ID for the Amazon Cognito user pool.
      *            </p>
      */
     public void setClientId(String clientId) {
@@ -160,7 +169,7 @@ public class CognitoIdentityProvider implements Serializable {
 
     /**
      * <p>
-     * The client ID for the Amazon Cognito Identity User Pool.
+     * The client ID for the Amazon Cognito user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,7 +180,7 @@ public class CognitoIdentityProvider implements Serializable {
      * <b>Pattern: </b>[\w_]+<br/>
      *
      * @param clientId <p>
-     *            The client ID for the Amazon Cognito Identity User Pool.
+     *            The client ID for the Amazon Cognito user pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -186,10 +195,32 @@ public class CognitoIdentityProvider implements Serializable {
      * TRUE if server-side token validation is enabled for the identity
      * provider’s token.
      * </p>
+     * <p>
+     * Once you set <code>ServerSideTokenCheck</code> to TRUE for an identity
+     * pool, that identity pool will check with the integrated user pools to
+     * make sure that the user has not been globally signed out or deleted
+     * before the identity pool provides an OIDC token or AWS credentials for
+     * the user.
+     * </p>
+     * <p>
+     * If the user is signed out or deleted, the identity pool will return a 400
+     * Not Authorized error.
+     * </p>
      *
      * @return <p>
      *         TRUE if server-side token validation is enabled for the identity
      *         provider’s token.
+     *         </p>
+     *         <p>
+     *         Once you set <code>ServerSideTokenCheck</code> to TRUE for an
+     *         identity pool, that identity pool will check with the integrated
+     *         user pools to make sure that the user has not been globally
+     *         signed out or deleted before the identity pool provides an OIDC
+     *         token or AWS credentials for the user.
+     *         </p>
+     *         <p>
+     *         If the user is signed out or deleted, the identity pool will
+     *         return a 400 Not Authorized error.
      *         </p>
      */
     public Boolean isServerSideTokenCheck() {
@@ -201,10 +232,32 @@ public class CognitoIdentityProvider implements Serializable {
      * TRUE if server-side token validation is enabled for the identity
      * provider’s token.
      * </p>
+     * <p>
+     * Once you set <code>ServerSideTokenCheck</code> to TRUE for an identity
+     * pool, that identity pool will check with the integrated user pools to
+     * make sure that the user has not been globally signed out or deleted
+     * before the identity pool provides an OIDC token or AWS credentials for
+     * the user.
+     * </p>
+     * <p>
+     * If the user is signed out or deleted, the identity pool will return a 400
+     * Not Authorized error.
+     * </p>
      *
      * @return <p>
      *         TRUE if server-side token validation is enabled for the identity
      *         provider’s token.
+     *         </p>
+     *         <p>
+     *         Once you set <code>ServerSideTokenCheck</code> to TRUE for an
+     *         identity pool, that identity pool will check with the integrated
+     *         user pools to make sure that the user has not been globally
+     *         signed out or deleted before the identity pool provides an OIDC
+     *         token or AWS credentials for the user.
+     *         </p>
+     *         <p>
+     *         If the user is signed out or deleted, the identity pool will
+     *         return a 400 Not Authorized error.
      *         </p>
      */
     public Boolean getServerSideTokenCheck() {
@@ -216,10 +269,32 @@ public class CognitoIdentityProvider implements Serializable {
      * TRUE if server-side token validation is enabled for the identity
      * provider’s token.
      * </p>
+     * <p>
+     * Once you set <code>ServerSideTokenCheck</code> to TRUE for an identity
+     * pool, that identity pool will check with the integrated user pools to
+     * make sure that the user has not been globally signed out or deleted
+     * before the identity pool provides an OIDC token or AWS credentials for
+     * the user.
+     * </p>
+     * <p>
+     * If the user is signed out or deleted, the identity pool will return a 400
+     * Not Authorized error.
+     * </p>
      *
      * @param serverSideTokenCheck <p>
      *            TRUE if server-side token validation is enabled for the
      *            identity provider’s token.
+     *            </p>
+     *            <p>
+     *            Once you set <code>ServerSideTokenCheck</code> to TRUE for an
+     *            identity pool, that identity pool will check with the
+     *            integrated user pools to make sure that the user has not been
+     *            globally signed out or deleted before the identity pool
+     *            provides an OIDC token or AWS credentials for the user.
+     *            </p>
+     *            <p>
+     *            If the user is signed out or deleted, the identity pool will
+     *            return a 400 Not Authorized error.
      *            </p>
      */
     public void setServerSideTokenCheck(Boolean serverSideTokenCheck) {
@@ -232,12 +307,34 @@ public class CognitoIdentityProvider implements Serializable {
      * provider’s token.
      * </p>
      * <p>
+     * Once you set <code>ServerSideTokenCheck</code> to TRUE for an identity
+     * pool, that identity pool will check with the integrated user pools to
+     * make sure that the user has not been globally signed out or deleted
+     * before the identity pool provides an OIDC token or AWS credentials for
+     * the user.
+     * </p>
+     * <p>
+     * If the user is signed out or deleted, the identity pool will return a 400
+     * Not Authorized error.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param serverSideTokenCheck <p>
      *            TRUE if server-side token validation is enabled for the
      *            identity provider’s token.
+     *            </p>
+     *            <p>
+     *            Once you set <code>ServerSideTokenCheck</code> to TRUE for an
+     *            identity pool, that identity pool will check with the
+     *            integrated user pools to make sure that the user has not been
+     *            globally signed out or deleted before the identity pool
+     *            provides an OIDC token or AWS credentials for the user.
+     *            </p>
+     *            <p>
+     *            If the user is signed out or deleted, the identity pool will
+     *            return a 400 Not Authorized error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -110,8 +110,8 @@ public class GoogleSignInProvider implements SignInProvider, SignInPermissionsHa
 
     /**
      * Constructor. Builds the Google Api Client.
-     * @param context context.
-     * @param configuration the AWS Configuration.
+     * @param activityContext context.
+     * @param awsConfig the AWS Configuration.
      */
     @Override
     public void initialize(@NonNull final Context activityContext, 

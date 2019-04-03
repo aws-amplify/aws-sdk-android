@@ -85,8 +85,8 @@ starttime = datetime.datetime.now()
 ready, not_available_packagelist = IsAllPackageAvailableOnMaven(version)
 if not ready:
     # send email 
-    email_from = "sdechunq@amazon.com"
-    email_to = "sdechunq@amazon.com"
+    email_from = "aws-mobile-sdk-dev@amazon.com"
+    email_to = "aws-mobile-sdk-dev@amazon.com"
     destination ='{{ "ToAddresses":  ["{0}"] }}'.format(email_to)
     title = "Android SDK on Maven borken"
     body = "Android SDKs {0} are still not available on maven. Below packages are not found on maven: {1}".format(version, not_available_packagelist)

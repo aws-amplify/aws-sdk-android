@@ -111,7 +111,7 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An array of Amazon Cognito Identity user pools and their client IDs.
+     * An array of Amazon Cognito user pools and their client IDs.
      * </p>
      */
     private java.util.List<CognitoIdentityProvider> cognitoIdentityProviders;
@@ -123,6 +123,15 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * </p>
      */
     private java.util.List<String> samlProviderARNs;
+
+    /**
+     * <p>
+     * Tags to assign to the identity pool. A tag is a label that you can apply
+     * to identity pools to categorize and manage them in different ways, such
+     * as by purpose, owner, environment, or other criteria.
+     * </p>
+     */
+    private java.util.Map<String, String> identityPoolTags;
 
     /**
      * <p>
@@ -513,12 +522,11 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An array of Amazon Cognito Identity user pools and their client IDs.
+     * An array of Amazon Cognito user pools and their client IDs.
      * </p>
      *
      * @return <p>
-     *         An array of Amazon Cognito Identity user pools and their client
-     *         IDs.
+     *         An array of Amazon Cognito user pools and their client IDs.
      *         </p>
      */
     public java.util.List<CognitoIdentityProvider> getCognitoIdentityProviders() {
@@ -527,12 +535,11 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An array of Amazon Cognito Identity user pools and their client IDs.
+     * An array of Amazon Cognito user pools and their client IDs.
      * </p>
      *
      * @param cognitoIdentityProviders <p>
-     *            An array of Amazon Cognito Identity user pools and their
-     *            client IDs.
+     *            An array of Amazon Cognito user pools and their client IDs.
      *            </p>
      */
     public void setCognitoIdentityProviders(
@@ -548,15 +555,14 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An array of Amazon Cognito Identity user pools and their client IDs.
+     * An array of Amazon Cognito user pools and their client IDs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cognitoIdentityProviders <p>
-     *            An array of Amazon Cognito Identity user pools and their
-     *            client IDs.
+     *            An array of Amazon Cognito user pools and their client IDs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -575,15 +581,14 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An array of Amazon Cognito Identity user pools and their client IDs.
+     * An array of Amazon Cognito user pools and their client IDs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cognitoIdentityProviders <p>
-     *            An array of Amazon Cognito Identity user pools and their
-     *            client IDs.
+     *            An array of Amazon Cognito user pools and their client IDs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -678,6 +683,106 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
     }
 
     /**
+     * <p>
+     * Tags to assign to the identity pool. A tag is a label that you can apply
+     * to identity pools to categorize and manage them in different ways, such
+     * as by purpose, owner, environment, or other criteria.
+     * </p>
+     *
+     * @return <p>
+     *         Tags to assign to the identity pool. A tag is a label that you
+     *         can apply to identity pools to categorize and manage them in
+     *         different ways, such as by purpose, owner, environment, or other
+     *         criteria.
+     *         </p>
+     */
+    public java.util.Map<String, String> getIdentityPoolTags() {
+        return identityPoolTags;
+    }
+
+    /**
+     * <p>
+     * Tags to assign to the identity pool. A tag is a label that you can apply
+     * to identity pools to categorize and manage them in different ways, such
+     * as by purpose, owner, environment, or other criteria.
+     * </p>
+     *
+     * @param identityPoolTags <p>
+     *            Tags to assign to the identity pool. A tag is a label that you
+     *            can apply to identity pools to categorize and manage them in
+     *            different ways, such as by purpose, owner, environment, or
+     *            other criteria.
+     *            </p>
+     */
+    public void setIdentityPoolTags(java.util.Map<String, String> identityPoolTags) {
+        this.identityPoolTags = identityPoolTags;
+    }
+
+    /**
+     * <p>
+     * Tags to assign to the identity pool. A tag is a label that you can apply
+     * to identity pools to categorize and manage them in different ways, such
+     * as by purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param identityPoolTags <p>
+     *            Tags to assign to the identity pool. A tag is a label that you
+     *            can apply to identity pools to categorize and manage them in
+     *            different ways, such as by purpose, owner, environment, or
+     *            other criteria.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateIdentityPoolRequest withIdentityPoolTags(
+            java.util.Map<String, String> identityPoolTags) {
+        this.identityPoolTags = identityPoolTags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags to assign to the identity pool. A tag is a label that you can apply
+     * to identity pools to categorize and manage them in different ways, such
+     * as by purpose, owner, environment, or other criteria.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into IdentityPoolTags parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into IdentityPoolTags.
+     * @param value The corresponding value of the entry to be added into
+     *            IdentityPoolTags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateIdentityPoolRequest addIdentityPoolTagsEntry(String key, String value) {
+        if (null == this.identityPoolTags) {
+            this.identityPoolTags = new java.util.HashMap<String, String>();
+        }
+        if (this.identityPoolTags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.identityPoolTags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into IdentityPoolTags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreateIdentityPoolRequest clearIdentityPoolTagsEntries() {
+        this.identityPoolTags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -702,7 +807,9 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
         if (getCognitoIdentityProviders() != null)
             sb.append("CognitoIdentityProviders: " + getCognitoIdentityProviders() + ",");
         if (getSamlProviderARNs() != null)
-            sb.append("SamlProviderARNs: " + getSamlProviderARNs());
+            sb.append("SamlProviderARNs: " + getSamlProviderARNs() + ",");
+        if (getIdentityPoolTags() != null)
+            sb.append("IdentityPoolTags: " + getIdentityPoolTags());
         sb.append("}");
         return sb.toString();
     }
@@ -735,6 +842,8 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getSamlProviderARNs() == null) ? 0 : getSamlProviderARNs().hashCode());
+        hashCode = prime * hashCode
+                + ((getIdentityPoolTags() == null) ? 0 : getIdentityPoolTags().hashCode());
         return hashCode;
     }
 
@@ -787,6 +896,11 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
             return false;
         if (other.getSamlProviderARNs() != null
                 && other.getSamlProviderARNs().equals(this.getSamlProviderARNs()) == false)
+            return false;
+        if (other.getIdentityPoolTags() == null ^ this.getIdentityPoolTags() == null)
+            return false;
+        if (other.getIdentityPoolTags() != null
+                && other.getIdentityPoolTags().equals(this.getIdentityPoolTags()) == false)
             return false;
         return true;
     }

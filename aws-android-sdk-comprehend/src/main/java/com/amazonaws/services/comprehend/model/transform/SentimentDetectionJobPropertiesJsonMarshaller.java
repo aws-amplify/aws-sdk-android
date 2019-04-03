@@ -77,6 +77,11 @@ class SentimentDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("DataAccessRoleArn");
             jsonWriter.value(dataAccessRoleArn);
         }
+        if (sentimentDetectionJobProperties.getVolumeKmsKeyId() != null) {
+            String volumeKmsKeyId = sentimentDetectionJobProperties.getVolumeKmsKeyId();
+            jsonWriter.name("VolumeKmsKeyId");
+            jsonWriter.value(volumeKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

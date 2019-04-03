@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
  * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
  * Scaling User Guide</i>.
  * </p>
