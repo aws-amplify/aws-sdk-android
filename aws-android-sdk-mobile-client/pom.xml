@@ -39,6 +39,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-annotations</artifactId>
+      <version>27.1.1</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
       <optional>false</optional>
