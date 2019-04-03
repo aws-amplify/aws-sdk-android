@@ -27,6 +27,11 @@ public class SegmentResponse implements Serializable {
     private String applicationId;
 
     /**
+     * The arn for the segment.
+     */
+    private String arn;
+
+    /**
      * The date and time when the segment was created.
      */
     private String creationDate;
@@ -77,6 +82,11 @@ public class SegmentResponse implements Serializable {
     private String segmentType;
 
     /**
+     * The Tags for the segment.
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
      * The segment version number.
      */
     private Integer version;
@@ -113,6 +123,39 @@ public class SegmentResponse implements Serializable {
      */
     public SegmentResponse withApplicationId(String applicationId) {
         this.applicationId = applicationId;
+        return this;
+    }
+
+    /**
+     * The arn for the segment.
+     *
+     * @return The arn for the segment.
+     */
+    public String getArn() {
+        return arn;
+    }
+
+    /**
+     * The arn for the segment.
+     *
+     * @param arn The arn for the segment.
+     */
+    public void setArn(String arn) {
+        this.arn = arn;
+    }
+
+    /**
+     * The arn for the segment.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param arn The arn for the segment.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentResponse withArn(String arn) {
+        this.arn = arn;
         return this;
     }
 
@@ -504,6 +547,72 @@ public class SegmentResponse implements Serializable {
     }
 
     /**
+     * The Tags for the segment.
+     *
+     * @return The Tags for the segment.
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * The Tags for the segment.
+     *
+     * @param tags The Tags for the segment.
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * The Tags for the segment.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The Tags for the segment.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentResponse withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * The Tags for the segment.
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentResponse addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SegmentResponse cleartagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * The segment version number.
      *
      * @return The segment version number.
@@ -549,6 +658,8 @@ public class SegmentResponse implements Serializable {
         sb.append("{");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
+        if (getArn() != null)
+            sb.append("Arn: " + getArn() + ",");
         if (getCreationDate() != null)
             sb.append("CreationDate: " + getCreationDate() + ",");
         if (getDimensions() != null)
@@ -565,6 +676,8 @@ public class SegmentResponse implements Serializable {
             sb.append("SegmentGroups: " + getSegmentGroups() + ",");
         if (getSegmentType() != null)
             sb.append("SegmentType: " + getSegmentType() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags() + ",");
         if (getVersion() != null)
             sb.append("Version: " + getVersion());
         sb.append("}");
@@ -578,6 +691,7 @@ public class SegmentResponse implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode());
@@ -591,6 +705,7 @@ public class SegmentResponse implements Serializable {
                 + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentType() == null) ? 0 : getSegmentType().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
         return hashCode;
     }
@@ -610,6 +725,10 @@ public class SegmentResponse implements Serializable {
             return false;
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
+            return false;
+        if (other.getArn() == null ^ this.getArn() == null)
+            return false;
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
             return false;
         if (other.getCreationDate() == null ^ this.getCreationDate() == null)
             return false;
@@ -648,6 +767,10 @@ public class SegmentResponse implements Serializable {
             return false;
         if (other.getSegmentType() != null
                 && other.getSegmentType().equals(this.getSegmentType()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getVersion() == null ^ this.getVersion() == null)
             return false;

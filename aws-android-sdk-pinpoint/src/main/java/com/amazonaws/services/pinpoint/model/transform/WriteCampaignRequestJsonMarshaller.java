@@ -91,6 +91,19 @@ class WriteCampaignRequestJsonMarshaller {
             jsonWriter.name("SegmentVersion");
             jsonWriter.value(segmentVersion);
         }
+        if (writeCampaignRequest.getTags() != null) {
+            java.util.Map<String, String> tags = writeCampaignRequest.getTags();
+            jsonWriter.name("tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
         if (writeCampaignRequest.getTreatmentDescription() != null) {
             String treatmentDescription = writeCampaignRequest.getTreatmentDescription();
             jsonWriter.name("TreatmentDescription");
