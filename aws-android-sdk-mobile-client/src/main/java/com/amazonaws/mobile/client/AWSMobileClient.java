@@ -481,7 +481,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
-                    registerConfigSignInProviders();
+                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -565,7 +565,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         }
                     }
 
-                    JSONObject hostedUIJSON = getHostedUIJSON();
+                    JSONObject hostedUIJSON = getHostedUIJSON(awsConfiguration);
                     if (hostedUIJSON != null) {
                         try {
                             // Pre-warm the Custom Tabs based on
@@ -617,10 +617,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
-                    final UserStateDetails userStateDetails = getUserStateDetails(true);
-
                     AWSMobileClient.this.awsConfiguration = awsConfiguration;
 
+                    final UserStateDetails userStateDetails = getUserStateDetails(true);
                     callback.onResult(userStateDetails);
                     setUserState(userStateDetails);
                 }
@@ -629,6 +628,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     JSONObject getHostedUIJSONFromJSON() {
+        return getHostedUIJSONFromJSON(this.awsConfiguration);
+    }
+
+    JSONObject getHostedUIJSONFromJSON(final AWSConfiguration awsConfig) {
         final JSONObject mobileClientJSON = awsConfiguration.optJsonObject("Auth");
         if (mobileClientJSON != null && mobileClientJSON.has("OAuth")) {
             try {
@@ -643,8 +646,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     JSONObject getHostedUIJSON() {
+        return getHostedUIJSON(this.awsConfiguration);
+    }
+
+    JSONObject getHostedUIJSON(final AWSConfiguration awsConfig) {
         try {
-            JSONObject hostedUIJSONFromJSON = getHostedUIJSONFromJSON();
+            JSONObject hostedUIJSONFromJSON = getHostedUIJSONFromJSON(awsConfig);
             if (hostedUIJSONFromJSON == null) {
                 return null;
             }
@@ -3147,18 +3154,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * AWSConfiguration.
      */
     private void registerConfigSignInProviders() {
+        registerConfigSignInProviders(this.awsConfiguration);
+    }
+
+    /**
+     * Register the SignInProvider and permissions based on the
+     * AWSConfiguration.
+     */
+    private void registerConfigSignInProviders(final AWSConfiguration awsConfig) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS)) {
+        if (isConfigurationKeyPresent(USER_POOLS, awsConfig)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(FACEBOOK)) {
+        if (isConfigurationKeyPresent(FACEBOOK, awsConfig)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(GOOGLE)) {
+        if (isConfigurationKeyPresent(GOOGLE, awsConfig)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
     }
@@ -3169,8 +3184,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param configurationKey The key for SignIn in AWSConfiguration
      */
     private boolean isConfigurationKeyPresent(final String configurationKey) {
+        return isConfigurationKeyPresent(configurationKey, this.awsConfiguration);
+    }
+
+    /**
+     * Check if the AWSConfiguration has the specified key.
+     *
+     * @param configurationKey The key for SignIn in AWSConfiguration
+     */
+    private boolean isConfigurationKeyPresent(final String configurationKey, final AWSConfiguration awsConfig) {
         try {
-            JSONObject jsonObject = this.awsConfiguration.optJsonObject(configurationKey);
+            JSONObject jsonObject = awsConfig.optJsonObject(configurationKey);
             if (configurationKey.equals(GOOGLE)) {
                 return jsonObject != null && jsonObject.getString(GOOGLE_WEBAPP_CONFIG_KEY) != null;
             } else {
