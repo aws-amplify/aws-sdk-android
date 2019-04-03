@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.1)
+
+## Bug Fixes
+
+* **Amazon S3**
+  * Fix an issue where the transfer state is not set to `WAITING_FOR_NETWORK` when the network disconnects. See [issue #616](https://github.com/aws-amplify/aws-sdk-android/issues/616)
+
 ## [Release 2.13.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.0)
 
 ### Enhancements
