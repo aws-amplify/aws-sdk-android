@@ -58,8 +58,8 @@ class KeyProvider10 implements KeyProvider {
                     return secretKey;
                 }
             } catch (Exception ex) {
-                logger.error("Error occurred while getting the key." + ex);
-                return null;
+                logger.error("Error in loading the key from keystore.");
+                throw new IllegalStateException(ex);
             }
         }
     }

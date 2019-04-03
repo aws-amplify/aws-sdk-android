@@ -128,6 +128,21 @@ public class CreateIdentityPoolRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createIdentityPoolRequest.getIdentityPoolTags() != null) {
+                java.util.Map<String, String> identityPoolTags = createIdentityPoolRequest
+                        .getIdentityPoolTags();
+                jsonWriter.name("IdentityPoolTags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> identityPoolTagsEntry : identityPoolTags
+                        .entrySet()) {
+                    String identityPoolTagsValue = identityPoolTagsEntry.getValue();
+                    if (identityPoolTagsValue != null) {
+                        jsonWriter.name(identityPoolTagsEntry.getKey());
+                        jsonWriter.value(identityPoolTagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

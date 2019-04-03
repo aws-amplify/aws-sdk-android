@@ -75,7 +75,7 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the AWS IoT service.
      * </p>
      */
     private ThingConnectivity connectivity;
@@ -442,12 +442,11 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the AWS IoT service.
      * </p>
      *
      * @return <p>
-     *         Indicates whether or not the thing is connected to the AWS IoT
-     *         service.
+     *         Indicates whether the thing is connected to the AWS IoT service.
      *         </p>
      */
     public ThingConnectivity getConnectivity() {
@@ -456,11 +455,11 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the AWS IoT service.
      * </p>
      *
      * @param connectivity <p>
-     *            Indicates whether or not the thing is connected to the AWS IoT
+     *            Indicates whether the thing is connected to the AWS IoT
      *            service.
      *            </p>
      */
@@ -470,14 +469,14 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the AWS IoT service.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param connectivity <p>
-     *            Indicates whether or not the thing is connected to the AWS IoT
+     *            Indicates whether the thing is connected to the AWS IoT
      *            service.
      *            </p>
      * @return A reference to this updated object so that method calls can be

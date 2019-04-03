@@ -109,7 +109,7 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The retention period, in hours. The value you specify replaces the
-     * current value.
+     * current value. The maximum value for this parameter is 87600 (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -421,7 +421,7 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The retention period, in hours. The value you specify replaces the
-     * current value.
+     * current value. The maximum value for this parameter is 87600 (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -429,7 +429,8 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      *
      * @return <p>
      *         The retention period, in hours. The value you specify replaces
-     *         the current value.
+     *         the current value. The maximum value for this parameter is 87600
+     *         (ten years).
      *         </p>
      */
     public Integer getDataRetentionChangeInHours() {
@@ -439,7 +440,7 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The retention period, in hours. The value you specify replaces the
-     * current value.
+     * current value. The maximum value for this parameter is 87600 (ten years).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -447,7 +448,8 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      *
      * @param dataRetentionChangeInHours <p>
      *            The retention period, in hours. The value you specify replaces
-     *            the current value.
+     *            the current value. The maximum value for this parameter is
+     *            87600 (ten years).
      *            </p>
      */
     public void setDataRetentionChangeInHours(Integer dataRetentionChangeInHours) {
@@ -457,7 +459,7 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The retention period, in hours. The value you specify replaces the
-     * current value.
+     * current value. The maximum value for this parameter is 87600 (ten years).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -468,7 +470,8 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      *
      * @param dataRetentionChangeInHours <p>
      *            The retention period, in hours. The value you specify replaces
-     *            the current value.
+     *            the current value. The maximum value for this parameter is
+     *            87600 (ten years).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

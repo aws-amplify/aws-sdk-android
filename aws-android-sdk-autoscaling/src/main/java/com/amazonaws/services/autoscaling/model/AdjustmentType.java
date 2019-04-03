@@ -21,11 +21,6 @@ import java.io.Serializable;
  * <p>
  * Describes a policy adjustment type.
  * </p>
- * <p>
- * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
- * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
- * </p>
  */
 public class AdjustmentType implements Serializable {
     /**

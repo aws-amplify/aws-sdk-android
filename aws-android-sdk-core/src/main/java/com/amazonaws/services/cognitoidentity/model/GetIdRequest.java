@@ -65,8 +65,10 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito Identity Provider:
-     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     * Amazon Cognito user pool:
+     * <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     * , for example,
+     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * </li>
      * <li>
@@ -221,8 +223,10 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito Identity Provider:
-     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     * Amazon Cognito user pool:
+     * <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     * , for example,
+     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * </li>
      * <li>
@@ -260,8 +264,11 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      *         </li>
      *         <li>
      *         <p>
-     *         Amazon Cognito Identity Provider:
+     *         Amazon Cognito user pool:
+     *         <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     *         , for example,
      *         <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     *         .
      *         </p>
      *         </li>
      *         <li>
@@ -304,8 +311,10 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito Identity Provider:
-     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     * Amazon Cognito user pool:
+     * <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     * , for example,
+     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * </li>
      * <li>
@@ -343,8 +352,11 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito Identity Provider:
+     *            Amazon Cognito user pool:
+     *            <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     *            , for example,
      *            <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     *            .
      *            </p>
      *            </li>
      *            <li>
@@ -387,8 +399,10 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito Identity Provider:
-     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     * Amazon Cognito user pool:
+     * <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     * , for example,
+     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * </li>
      * <li>
@@ -429,8 +443,11 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito Identity Provider:
+     *            Amazon Cognito user pool:
+     *            <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     *            , for example,
      *            <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     *            .
      *            </p>
      *            </li>
      *            <li>
@@ -476,8 +493,10 @@ public class GetIdRequest extends AmazonWebServiceRequest implements Serializabl
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito Identity Provider:
-     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>
+     * Amazon Cognito user pool:
+     * <code>cognito-idp.&lt;region&gt;.amazonaws.com/&lt;YOUR_USER_POOL_ID&gt;</code>
+     * , for example,
+     * <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.
      * </p>
      * </li>
      * <li>

@@ -79,8 +79,7 @@ public class DescribeIdentityPoolResult implements Serializable {
 
     /**
      * <p>
-     * A list representing an Amazon Cognito Identity User Pool and its client
-     * ID.
+     * A list representing an Amazon Cognito user pool and its client ID.
      * </p>
      */
     private java.util.List<CognitoIdentityProvider> cognitoIdentityProviders;
@@ -92,6 +91,16 @@ public class DescribeIdentityPoolResult implements Serializable {
      * </p>
      */
     private java.util.List<String> samlProviderARNs;
+
+    /**
+     * <p>
+     * The tags that are assigned to the identity pool. A tag is a label that
+     * you can apply to identity pools to categorize and manage them in
+     * different ways, such as by purpose, owner, environment, or other
+     * criteria.
+     * </p>
+     */
+    private java.util.Map<String, String> identityPoolTags;
 
     /**
      * <p>
@@ -488,13 +497,12 @@ public class DescribeIdentityPoolResult implements Serializable {
 
     /**
      * <p>
-     * A list representing an Amazon Cognito Identity User Pool and its client
-     * ID.
+     * A list representing an Amazon Cognito user pool and its client ID.
      * </p>
      *
      * @return <p>
-     *         A list representing an Amazon Cognito Identity User Pool and its
-     *         client ID.
+     *         A list representing an Amazon Cognito user pool and its client
+     *         ID.
      *         </p>
      */
     public java.util.List<CognitoIdentityProvider> getCognitoIdentityProviders() {
@@ -503,13 +511,12 @@ public class DescribeIdentityPoolResult implements Serializable {
 
     /**
      * <p>
-     * A list representing an Amazon Cognito Identity User Pool and its client
-     * ID.
+     * A list representing an Amazon Cognito user pool and its client ID.
      * </p>
      *
      * @param cognitoIdentityProviders <p>
-     *            A list representing an Amazon Cognito Identity User Pool and
-     *            its client ID.
+     *            A list representing an Amazon Cognito user pool and its client
+     *            ID.
      *            </p>
      */
     public void setCognitoIdentityProviders(
@@ -525,16 +532,15 @@ public class DescribeIdentityPoolResult implements Serializable {
 
     /**
      * <p>
-     * A list representing an Amazon Cognito Identity User Pool and its client
-     * ID.
+     * A list representing an Amazon Cognito user pool and its client ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cognitoIdentityProviders <p>
-     *            A list representing an Amazon Cognito Identity User Pool and
-     *            its client ID.
+     *            A list representing an Amazon Cognito user pool and its client
+     *            ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -553,16 +559,15 @@ public class DescribeIdentityPoolResult implements Serializable {
 
     /**
      * <p>
-     * A list representing an Amazon Cognito Identity User Pool and its client
-     * ID.
+     * A list representing an Amazon Cognito user pool and its client ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cognitoIdentityProviders <p>
-     *            A list representing an Amazon Cognito Identity User Pool and
-     *            its client ID.
+     *            A list representing an Amazon Cognito user pool and its client
+     *            ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -657,6 +662,110 @@ public class DescribeIdentityPoolResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The tags that are assigned to the identity pool. A tag is a label that
+     * you can apply to identity pools to categorize and manage them in
+     * different ways, such as by purpose, owner, environment, or other
+     * criteria.
+     * </p>
+     *
+     * @return <p>
+     *         The tags that are assigned to the identity pool. A tag is a label
+     *         that you can apply to identity pools to categorize and manage
+     *         them in different ways, such as by purpose, owner, environment,
+     *         or other criteria.
+     *         </p>
+     */
+    public java.util.Map<String, String> getIdentityPoolTags() {
+        return identityPoolTags;
+    }
+
+    /**
+     * <p>
+     * The tags that are assigned to the identity pool. A tag is a label that
+     * you can apply to identity pools to categorize and manage them in
+     * different ways, such as by purpose, owner, environment, or other
+     * criteria.
+     * </p>
+     *
+     * @param identityPoolTags <p>
+     *            The tags that are assigned to the identity pool. A tag is a
+     *            label that you can apply to identity pools to categorize and
+     *            manage them in different ways, such as by purpose, owner,
+     *            environment, or other criteria.
+     *            </p>
+     */
+    public void setIdentityPoolTags(java.util.Map<String, String> identityPoolTags) {
+        this.identityPoolTags = identityPoolTags;
+    }
+
+    /**
+     * <p>
+     * The tags that are assigned to the identity pool. A tag is a label that
+     * you can apply to identity pools to categorize and manage them in
+     * different ways, such as by purpose, owner, environment, or other
+     * criteria.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param identityPoolTags <p>
+     *            The tags that are assigned to the identity pool. A tag is a
+     *            label that you can apply to identity pools to categorize and
+     *            manage them in different ways, such as by purpose, owner,
+     *            environment, or other criteria.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeIdentityPoolResult withIdentityPoolTags(
+            java.util.Map<String, String> identityPoolTags) {
+        this.identityPoolTags = identityPoolTags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The tags that are assigned to the identity pool. A tag is a label that
+     * you can apply to identity pools to categorize and manage them in
+     * different ways, such as by purpose, owner, environment, or other
+     * criteria.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into IdentityPoolTags parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into IdentityPoolTags.
+     * @param value The corresponding value of the entry to be added into
+     *            IdentityPoolTags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeIdentityPoolResult addIdentityPoolTagsEntry(String key, String value) {
+        if (null == this.identityPoolTags) {
+            this.identityPoolTags = new java.util.HashMap<String, String>();
+        }
+        if (this.identityPoolTags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.identityPoolTags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into IdentityPoolTags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DescribeIdentityPoolResult clearIdentityPoolTagsEntries() {
+        this.identityPoolTags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -683,7 +792,9 @@ public class DescribeIdentityPoolResult implements Serializable {
         if (getCognitoIdentityProviders() != null)
             sb.append("CognitoIdentityProviders: " + getCognitoIdentityProviders() + ",");
         if (getSamlProviderARNs() != null)
-            sb.append("SamlProviderARNs: " + getSamlProviderARNs());
+            sb.append("SamlProviderARNs: " + getSamlProviderARNs() + ",");
+        if (getIdentityPoolTags() != null)
+            sb.append("IdentityPoolTags: " + getIdentityPoolTags());
         sb.append("}");
         return sb.toString();
     }
@@ -718,6 +829,8 @@ public class DescribeIdentityPoolResult implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getSamlProviderARNs() == null) ? 0 : getSamlProviderARNs().hashCode());
+        hashCode = prime * hashCode
+                + ((getIdentityPoolTags() == null) ? 0 : getIdentityPoolTags().hashCode());
         return hashCode;
     }
 
@@ -775,6 +888,11 @@ public class DescribeIdentityPoolResult implements Serializable {
             return false;
         if (other.getSamlProviderARNs() != null
                 && other.getSamlProviderARNs().equals(this.getSamlProviderARNs()) == false)
+            return false;
+        if (other.getIdentityPoolTags() == null ^ this.getIdentityPoolTags() == null)
+            return false;
+        if (other.getIdentityPoolTags() != null
+                && other.getIdentityPoolTags().equals(this.getIdentityPoolTags()) == false)
             return false;
         return true;
     }

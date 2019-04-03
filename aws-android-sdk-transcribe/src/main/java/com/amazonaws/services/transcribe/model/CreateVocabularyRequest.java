@@ -45,7 +45,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      */
     private String languageCode;
 
@@ -55,6 +55,37 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      */
     private java.util.List<String> phrases;
+
+    /**
+     * <p>
+     * The S3 location of the text file that contains the definition of the
+     * custom vocabulary. The URI must be in the same region as the API endpoint
+     * that you are calling. The general form is
+     * </p>
+     * <p>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * </p>
+     * <p>
+     * For more information about S3 object names, see <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     * </p>
+     * <p>
+     * For more information about custom vocabularies, see <a href=
+     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * >Custom Vocabularies</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     */
+    private String vocabularyFileUri;
 
     /**
      * <p>
@@ -126,7 +157,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -144,7 +175,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -165,7 +196,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -186,7 +217,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -207,7 +238,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT
+     * fr-FR, it-IT, ko-KR
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -296,6 +327,186 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * The S3 location of the text file that contains the definition of the
+     * custom vocabulary. The URI must be in the same region as the API endpoint
+     * that you are calling. The general form is
+     * </p>
+     * <p>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * </p>
+     * <p>
+     * For more information about S3 object names, see <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     * </p>
+     * <p>
+     * For more information about custom vocabularies, see <a href=
+     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * >Custom Vocabularies</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @return <p>
+     *         The S3 location of the text file that contains the definition of
+     *         the custom vocabulary. The URI must be in the same region as the
+     *         API endpoint that you are calling. The general form is
+     *         </p>
+     *         <p>
+     *         <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         </p>
+     *         <p>
+     *         For example:
+     *         </p>
+     *         <p>
+     *         <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *         </p>
+     *         <p>
+     *         For more information about S3 object names, see <a href=
+     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         For more information about custom vocabularies, see <a href=
+     *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *         >Custom Vocabularies</a>.
+     *         </p>
+     */
+    public String getVocabularyFileUri() {
+        return vocabularyFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 location of the text file that contains the definition of the
+     * custom vocabulary. The URI must be in the same region as the API endpoint
+     * that you are calling. The general form is
+     * </p>
+     * <p>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * </p>
+     * <p>
+     * For more information about S3 object names, see <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     * </p>
+     * <p>
+     * For more information about custom vocabularies, see <a href=
+     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * >Custom Vocabularies</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @param vocabularyFileUri <p>
+     *            The S3 location of the text file that contains the definition
+     *            of the custom vocabulary. The URI must be in the same region
+     *            as the API endpoint that you are calling. The general form is
+     *            </p>
+     *            <p>
+     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *            </p>
+     *            <p>
+     *            For more information about S3 object names, see <a href=
+     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            For more information about custom vocabularies, see <a href=
+     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            >Custom Vocabularies</a>.
+     *            </p>
+     */
+    public void setVocabularyFileUri(String vocabularyFileUri) {
+        this.vocabularyFileUri = vocabularyFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 location of the text file that contains the definition of the
+     * custom vocabulary. The URI must be in the same region as the API endpoint
+     * that you are calling. The general form is
+     * </p>
+     * <p>
+     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * </p>
+     * <p>
+     * For more information about S3 object names, see <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     * </p>
+     * <p>
+     * For more information about custom vocabularies, see <a href=
+     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * >Custom Vocabularies</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     *
+     * @param vocabularyFileUri <p>
+     *            The S3 location of the text file that contains the definition
+     *            of the custom vocabulary. The URI must be in the same region
+     *            as the API endpoint that you are calling. The general form is
+     *            </p>
+     *            <p>
+     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *            </p>
+     *            <p>
+     *            For more information about S3 object names, see <a href=
+     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            For more information about custom vocabularies, see <a href=
+     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            >Custom Vocabularies</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateVocabularyRequest withVocabularyFileUri(String vocabularyFileUri) {
+        this.vocabularyFileUri = vocabularyFileUri;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -311,7 +522,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getPhrases() != null)
-            sb.append("Phrases: " + getPhrases());
+            sb.append("Phrases: " + getPhrases() + ",");
+        if (getVocabularyFileUri() != null)
+            sb.append("VocabularyFileUri: " + getVocabularyFileUri());
         sb.append("}");
         return sb.toString();
     }
@@ -326,6 +539,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode + ((getPhrases() == null) ? 0 : getPhrases().hashCode());
+        hashCode = prime * hashCode
+                + ((getVocabularyFileUri() == null) ? 0 : getVocabularyFileUri().hashCode());
         return hashCode;
     }
 
@@ -353,6 +568,11 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         if (other.getPhrases() == null ^ this.getPhrases() == null)
             return false;
         if (other.getPhrases() != null && other.getPhrases().equals(this.getPhrases()) == false)
+            return false;
+        if (other.getVocabularyFileUri() == null ^ this.getVocabularyFileUri() == null)
+            return false;
+        if (other.getVocabularyFileUri() != null
+                && other.getVocabularyFileUri().equals(this.getVocabularyFileUri()) == false)
             return false;
         return true;
     }

@@ -120,6 +120,17 @@ public class CreateOTAUpdateRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createOTAUpdateRequest.getTags() != null) {
+                java.util.List<Tag> tags = createOTAUpdateRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
