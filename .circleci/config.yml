@@ -240,7 +240,19 @@ commands:
       skip job unless required
     steps:
       - run:
-          name: checkifjobcanskip 
+          name: skip_job_from_enviroment_variable
+          command: |
+              varaible_name=SKIP_JOB_${CIRCLE_JOB}
+              
+              skipjob_flag=$(eval "echo $"${varaible_name}"")
+              skipjob_flag=$(echo "${skipjob_flag}" |  tr '[:upper:]' '[:lower:]')
+              if [ "${skipjob_flag}" == "true" ]
+              then
+                echo "skip current job as ${varaible_name} is set in project environment variabes"
+                circleci step halt
+              fi             
+      - run:
+          name: skip_job_required_by_develops 
           command: |
             echo "check if job can be skipped"
             # # we can add script here to halt a job for circleci script test
@@ -896,8 +908,8 @@ jobs:
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      - skip_job_if_required
-      - checkout
+      - skip_job_if_required 
+      - checkout 
       - set_enviroment_variables
       - run:
           name: trigger release_sdk if curremt commit is a bump version
@@ -936,8 +948,48 @@ jobs:
             content="${CIRCLE_BRANCH}" 
             python3 ./CircleciScripts/create_pullrequest.py  "${GITHUB_USER}" "${GITHUB_TOKEN}" "$title" "$content" "$target_branch" "${CIRCLE_PROJECT_USERNAME}:${CIRCLE_BRANCH}" ${CIRCLE_PROJECT_USERNAME} ${CIRCLE_PROJECT_REPONAME}
 
+  check_sdk_on_maven:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - skip_job_if_required      
+      - checkout
+      - set_enviroment_variables
+      - run: 
+          name: install python3-pip
+          command: |
+            ls ./CircleciScripts
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson     
+      - run: 
+          name: Install requests
+          command: sudo pip3 install requests                
+      - run:
+          name: check packages on maven
+          command: |
+            latest_release_tag=$(git describe --abbrev=0 --tags)
+            latest_release_version=$(echo "$latest_release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
+            python3 ./CircleciScripts/check_sdk_on_maven.py "${latest_release_version}" ${ALARM_EMAIL_FROM} ${ALARM_EMAIL_TO}
+            
 workflows:
   version: 2
+  check_sdk_on_maven:
+    triggers:
+      - schedule:
+        # run the job on 8am pacific time every day
+          cron: "0 15 * * *"
+          filters:
+            branches:
+              only:
+                - master      
+    jobs:
+      - check_sdk_on_maven  
+
   bump_sdk_version:
     jobs:
       - bump_sdk_version:
