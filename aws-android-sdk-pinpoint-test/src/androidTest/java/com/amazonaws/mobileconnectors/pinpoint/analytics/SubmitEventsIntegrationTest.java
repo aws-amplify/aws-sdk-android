@@ -63,10 +63,11 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
     @Before
     public void setUp() throws Exception {
         appContext = InstrumentationRegistry.getTargetContext();
+        appContext.deleteDatabase("awspinpoint.db");
 
         wifiManager = (WifiManager) InstrumentationRegistry
                 .getContext().getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(true);
+        assertTrue(wifiManager.setWifiEnabled(true));
 
         appId = getPackageConfigure("pinpoint")
                 .getString("AppId");
@@ -87,7 +88,7 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
 
     @After
     public void tearDown() {
-        wifiManager.setWifiEnabled(true);
+        assertTrue(wifiManager.setWifiEnabled(true));
         pinpointManager.getAnalyticsClient().closeDB();
         appContext.deleteDatabase("awspinpoint.db");
     }
@@ -124,12 +125,12 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
         }
         pinpointManager.getSessionClient().stopSession();
 
-        pinpointManager.getAnalyticsClient().submitEvents();
-
-        Log.d(TAG, "Events in database after calling submitEvents() before waiting: " +
+        Log.d(TAG, "Events in database after calling submitEvents() before submitting: " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
 
         assertEquals(12, pinpointManager.getAnalyticsClient().getAllEvents().size());
+
+        pinpointManager.getAnalyticsClient().submitEvents();
 
         long timeSleptSoFar = 0;
         while (timeSleptSoFar < TimeUnit.SECONDS.toMillis(60)) {
@@ -144,13 +145,12 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
             }
         }
 
-        Log.d(TAG, "Events in database after calling submitEvents() after waiting: " +
+        Log.d(TAG, "Events in database after calling submitEvents() after submitting: " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
 
         assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());
     }
 
-    @Test
     public void testSubmitEventsNetworkDisconnectAndReconnect() {
         Log.d(TAG, "Events in database before calling recordEvent(): " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
@@ -172,30 +172,34 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
         // the events in the database and not delete them.
         assertTrue(wifiManager.setWifiEnabled(false));
         try {
-            sleep(3000);
+            sleep(10000);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        pinpointManager.getAnalyticsClient().submitEvents();
-
-        Log.d(TAG, "Events in database after calling submitEvents() before waiting: " +
+        Log.d(TAG, "Events in database after calling submitEvents() before submitting: " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
 
         assertEquals(12, pinpointManager.getAnalyticsClient().getAllEvents().size());
 
+        pinpointManager.getAnalyticsClient().submitEvents();
 
         // Set Wifi Network offline
         // Once network comes back online, submitEvents again and make
         // sure events are being removed from the local database.
         assertTrue(wifiManager.setWifiEnabled(true));
         try {
-            sleep(3000);
+            sleep(10000);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         pinpointManager.getAnalyticsClient().submitEvents();
+        try {
+            sleep(5000);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         long timeSleptSoFar = 0;
         while (timeSleptSoFar < TimeUnit.SECONDS.toMillis(60)) {
@@ -210,7 +214,7 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
             }
         }
 
-        Log.d(TAG, "Events in database after calling submitEvents() after waiting: " +
+        Log.d(TAG, "Events in database after calling submitEvents() after submitting: " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
 
         assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());

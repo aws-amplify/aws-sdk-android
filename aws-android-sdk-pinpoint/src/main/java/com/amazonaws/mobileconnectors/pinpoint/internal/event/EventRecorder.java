@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
@@ -393,7 +395,15 @@ public class EventRecorder {
 
             // If the error is not a retryable error, delete the events from the local database.
             // Else if the error is a retryable error, keep the events in the local database.
-            if (!isRetryable(errorCode)) {
+            if (isRetryable(errorCode)) {
+                log.error(
+                        String.format("AmazonServiceException: Unable to successfully deliver events to server. " +
+                                        "Events will be saved, error is likely recoverable. " +
+                                        "Response Status code: %s, Response Error Code: %s",
+                                amazonServiceException.getStatusCode(), amazonServiceException.getErrorCode()),
+                        amazonServiceException);
+                batchIdsAndSizeToDelete.clear();
+            } else {
                 log.error(
                         String.format(Locale.getDefault(), "Failed to submit events to EventService: statusCode: " +
                                 amazonServiceException.getStatusCode() + " errorCode: ", errorCode),
@@ -402,21 +412,24 @@ public class EventRecorder {
                         String.format(Locale.getDefault(), "Failed submission of %d events, events will be " +
                                 "removed from the local database. ", eventArray.length()),
                         amazonServiceException);
+            }
+        } catch (final AmazonClientException amazonClientException) {
+            // For UnknownHostException when network is not available, keep the events
+            // in the local database.
+            // For all other client exceptions occurred during submit events,
+            // log the exception and delete the events in the local database.
+            if (amazonClientException.getCause() != null &&
+                amazonClientException.getCause() instanceof UnknownHostException) {
+                log.error("UnknownHostException: Unable to successfully deliver events to server. " +
+                        "Events will be saved, error likely recoverable." +
+                        amazonClientException.getMessage(), amazonClientException);
+                batchIdsAndSizeToDelete.clear();
             } else {
                 log.error(
-                        String.format("Unable to successfully deliver events to server. " +
-                                        "Events will be saved, error is likely recoverable. " +
-                                        "Response Status code: %s, Response Error Code: %s",
-                                amazonServiceException.getStatusCode(), amazonServiceException.getErrorCode()),
-                        amazonServiceException);
-                batchIdsAndSizeToDelete.clear();
+                        String.format(Locale.getDefault(), "Failed submission of %d events, events will be " +
+                        "removed from the local database. ", eventArray.length()),
+                        amazonClientException);
             }
-        } catch (final Exception exception) {
-            // For all other exceptions occurred during submit events such as network being
-            // offline, keep the events in the local database.
-            log.error("Unable to successfully deliver events to server. " +
-                    "Events will be saved, error likely recoverable." + exception.getMessage(), exception);
-            batchIdsAndSizeToDelete.clear();
         }
     }
 
@@ -474,8 +487,8 @@ public class EventRecorder {
 
     private boolean isRetryable(String responseCode) {
         if (responseCode.equalsIgnoreCase("ValidationException") ||
-                responseCode.equalsIgnoreCase("SerializationException") ||
-                responseCode.equalsIgnoreCase("BadRequestException")) {
+            responseCode.equalsIgnoreCase("SerializationException") ||
+            responseCode.equalsIgnoreCase("BadRequestException")) {
             return false;
         }
         return true;
