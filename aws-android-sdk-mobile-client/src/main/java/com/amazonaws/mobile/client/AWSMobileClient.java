@@ -49,6 +49,7 @@ import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResult;
 import com.amazonaws.mobile.auth.core.StartupAuthResultHandler;
+import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProvider;
 import com.amazonaws.mobile.auth.facebook.FacebookButton;
 import com.amazonaws.mobile.auth.facebook.FacebookSignInProvider;
@@ -971,10 +972,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 } else {
                     // Attempt to refresh the token if it matches drop-in UI
                     String refreshedToken = token;
-                    final com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider =
-                            IdentityManager.getDefaultIdentityManager().getCurrentIdentityProvider();
-                    if (currentIdentityProvider != null && providerKey.equals(currentIdentityProvider.getCognitoLoginKey())) {
-                        refreshedToken = currentIdentityProvider.refreshToken();
+                    final SignInProvider previouslySignedInProvider =
+                            SignInManager.getInstance(mContext).getPreviouslySignedInProvider();
+                    if (previouslySignedInProvider != null && providerKey.equals(previouslySignedInProvider.getCognitoLoginKey())) {
+                        refreshedToken = previouslySignedInProvider.getToken();
                         Log.i(TAG, "Token was refreshed using drop-in UI internal mechanism");
                     }
 
@@ -990,7 +991,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             cognitoIdentity.getCredentials();
                         }
                     } else {
-                        federateWithCognitoIdentity(providerKey, token);
+                        federateWithCognitoIdentity(providerKey, refreshedToken);
                     }
                 }
 
@@ -1197,6 +1198,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         if (IdentityManager.getDefaultIdentityManager() != null) {
             IdentityManager.getDefaultIdentityManager().signOut();
         }
+        mFederatedLoginsMap.clear();
         mStore.clear();
         String hostedUIJSON = null;
         if (awsConfiguration.optJsonObject("Auth") != null && awsConfiguration.optJsonObject("Auth").has("OAuth")) {
