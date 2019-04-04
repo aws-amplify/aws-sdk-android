@@ -51,8 +51,10 @@ public class KinesisVideoIntegrationTest extends KinesisVideoIntegrationTestBase
             currentNextToken = listStreamsResult.getNextToken();
 
             for (StreamInfo info : listStreamsResult.getStreamInfoList()) {
-                kvClient.deleteStream(new DeleteStreamRequest()
-                        .withStreamARN(info.getStreamARN()));
+                if (info.getStreamName().startsWith(streamPrefix)) {
+                    kvClient.deleteStream(new DeleteStreamRequest()
+                            .withStreamARN(info.getStreamARN()));
+                }
             }
         } while (currentNextToken != null);
     }

@@ -1,5 +1,100 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.1)
+
+### Enhancements
+
+* **AWS Mobile Client**
+  * Updated Google or Facebook refresh when using the drop-in UI. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809), [issue #700](https://github.com/aws-amplify/aws-sdk-android/issues/700).
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fixed an issue where the transfer state is not set to `WAITING_FOR_NETWORK` when the network disconnects. See [issue #616](https://github.com/aws-amplify/aws-sdk-android/issues/616)
+
+* **AWS Mobile Client**
+  * Fixed a bug that caused repetitive sign-in using the drop-in UI to the same provider to not federate the correct credentials. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809)
+
+## [Release 2.13.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.0)
+
+### Enhancements
+
+* **AWS IoT**
+  * AWS IoT SDK for Android now supports MQTT over TLS with X.509 client certificate authentication on port 443. Previously this combination of protocol and authentication mechanism was only supported on port 8883. `connectUsingALPN()` method allows developers to connect to AWS IoT using client certificate authentication on port 443. Please look at [this blog](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works/) for more details.
+  * **Breaking Change:** Please note that the type of aws-android-sdk-iot artifact is being changed from a`jar` to an `aar`. Also note that the `aar` artifacts needs to be explicitly specified in the dependency as `implementation ("com.amazonaws:aws-android-sdk-iot:2.12.+@aar") { transitive =true }` on some of the older versions of gradle.
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fixed a bug when initializing drop-in UI that caused the Facebook, Google, or Userpools provider to not be instantiated.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS IoT
+  * Amazon Transcribe
+
+## [Release 2.12.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.7)
+
+### Enhancements
+
+* **AWS Mobile Client**
+  * Updated `federatedSignIn()` method to contact the service immediately to validate tokens. The `signIn()` method will also attempt to federated immediately when applicable. See [issue #800](https://github.com/aws-amplify/aws-sdk-android/issues/800)
+  * Fix Google or Facebook refresh when using the drop-in UI. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809), [issue #700](https://github.com/aws-amplify/aws-sdk-android/issues/700).
+  * Annotated methods that are designed to be called from UI thread or from a background thread with @AnyThread and @WorkerThread, respectively.
+
+### Bug Fixes
+
+* **AWS Core**
+  * Fixed support for EU (Stockholm) region - `eu-north-1` by adding to `RegionDefaults`. See [issue #797](https://github.com/aws-amplify/aws-sdk-android/issues/797)
+  * Fixed a bug where a stringSet stored in `SharedPreferences` cannot be migrated to the `AWSKeyValueStore`.
+  * Propagate the exception when loading/creating the encryption key fails while trying to persist data through `AWSKeyValueStore`.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS Autoscaling
+  * Amazon Cognito Identity
+  * Amazon Cognito Identity Provider
+  * Amazon Comprehend
+  * Amazon Kinesis Video
+
+* **AWS IoT**
+  * Fixed the timestamp used for signing requests to AWS IoT by accounting for the offset specified in `SDKGlobalConfiguration`. See [issue #814](https://github.com/aws-amplify/aws-sdk-android/issues/814)
+
+* **Amazon Lex**
+  * Set user-specified `RequestAttributes` for the `PostContentRequest` sent to Amazon Lex bots. See [issue #801](https://github.com/aws-amplify/aws-sdk-android/issues/801)
+
+## [Release 2.12.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.6)
+
+### Misc. Updates
+
+* **AWS IoT**
+  * Fixed an internal SDK usage metrics tracker.
+
+## [Release 2.12.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.5)
+
+### New Features
+
+* **AWS Mobile Client**
+  * Added support for SAML in `federatedSignIn()`.
+  * Added support for developer authenticated identities in `federatedSignIn()`. See [issue #577](https://github.com/aws-amplify/aws-sdk-android/issues/577)
+  * Added support Cognito Hosted UI in `showSignIn()`.
+  * Added support to use OAuth 2.0 provider like `Auth0` in `showSignIn()`. Federation for AWS credentials requires OpenID support from the provider.
+  * Added support for global sign out.
+  * Added support for device features which include `list`, `get`, `updateStatus` and `forget`. These APIs are available through `getDeviceOperations()`.
+
+* **Amazon Cognito Identity Provider**
+  * Fixed threading issues to ensure callbacks are made from main looper when `xInBackground()` method variants are used. See [issue #722](https://github.com/aws-amplify/aws-sdk-android/issues/722)
+
+* **Amazon Cognito Auth**
+  * Fixed erroneous user cancelled error when redirecting back to app. See [issue #328](https://github.com/aws-amplify/aws-sdk-android/issues/328)
+
+## [Release 2.12.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.4)
+
+* **AWS Core**
+  * Fixed a crash in initializing `CognitoCachingCredentialsProvider` while migrating the data stored under `expirationDate`.
+
 ## [Release 2.12.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.12.3)
 
 ### Enhancements

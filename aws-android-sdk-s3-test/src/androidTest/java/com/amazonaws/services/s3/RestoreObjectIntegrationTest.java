@@ -65,7 +65,7 @@ public class RestoreObjectIntegrationTest extends S3IntegrationTestBase {
             fail();
         } catch (AmazonServiceException e) {
             assertTrue(e.getMessage().contains(
-                    "Restore is not allowed, as object's storage class is not GLACIER"));
+                    "Restore is not allowed for the object's current storage class"));
         }
 
         ObjectMetadata metadata = s3.getObjectMetadata(bucketName, key);

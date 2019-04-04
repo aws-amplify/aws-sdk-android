@@ -95,6 +95,18 @@ public class CreateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createSecurityProfileRequest.getAdditionalMetricsToRetain() != null) {
+                java.util.List<String> additionalMetricsToRetain = createSecurityProfileRequest
+                        .getAdditionalMetricsToRetain();
+                jsonWriter.name("additionalMetricsToRetain");
+                jsonWriter.beginArray();
+                for (String additionalMetricsToRetainItem : additionalMetricsToRetain) {
+                    if (additionalMetricsToRetainItem != null) {
+                        jsonWriter.value(additionalMetricsToRetainItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (createSecurityProfileRequest.getTags() != null) {
                 java.util.List<Tag> tags = createSecurityProfileRequest.getTags();
                 jsonWriter.name("tags");

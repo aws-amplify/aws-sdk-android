@@ -19,6 +19,7 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
@@ -769,8 +770,80 @@ public class CognitoUser {
      * @return {@link Runnable} for the next step in user authentication.
      */
     public Runnable initiateUserAuthentication(final AuthenticationDetails authenticationDetails,
-            final AuthenticationHandler callback, final boolean runInBackground) {
-        final Runnable task = _initiateUserAuthentication(authenticationDetails, callback, runInBackground);
+                                               final AuthenticationHandler callback,
+                                               final boolean runInBackground) {
+        final AuthenticationHandler internalCallback = new AuthenticationHandler() {
+            @Override
+            public void onSuccess(final CognitoUserSession userSession, final CognitoDevice newDevice) {
+                if (runInBackground) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onSuccess(userSession, newDevice);
+                        }
+                    });
+                } else {
+                    callback.onSuccess(userSession, newDevice);
+                }
+            }
+
+            @Override
+            public void getAuthenticationDetails(final AuthenticationContinuation authenticationContinuation, final String userId) {
+                if (runInBackground) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.getAuthenticationDetails(authenticationContinuation, userId);
+                        }
+                    });
+                } else {
+                    callback.getAuthenticationDetails(authenticationContinuation, userId);
+                }
+            }
+
+            @Override
+            public void getMFACode(final MultiFactorAuthenticationContinuation continuation) {
+                if (runInBackground) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.getMFACode(continuation);
+                        }
+                    });
+                } else {
+                    callback.getMFACode(continuation);
+                }
+            }
+
+            @Override
+            public void authenticationChallenge(final ChallengeContinuation continuation) {
+                if (runInBackground) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.authenticationChallenge(continuation);
+                        }
+                    });
+                } else {
+                    callback.authenticationChallenge(continuation);
+                }
+            }
+
+            @Override
+            public void onFailure(final Exception exception) {
+                if (runInBackground) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFailure(exception);
+                        }
+                    });
+                } else {
+                    callback.onFailure(exception);
+                }
+            }
+        };
+        final Runnable task = _initiateUserAuthentication(authenticationDetails, internalCallback, runInBackground);
         if (runInBackground) {
             return new Runnable() {
                 @Override
@@ -2339,18 +2412,21 @@ public class CognitoUser {
                     updateInternalUsername(initiateAuthResult.getChallengeParameters());
                     if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
                             .equals(initiateAuthResult.getChallengeName())) {
-                        if (authenticationDetails.getPassword() != null) {
-                            final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
-                                    initiateAuthResult.getChallengeParameters(),
-                                    authenticationDetails.getPassword(),
-                                    initiateAuthResult.getChallengeName(),
-                                    initiateAuthResult.getSession(),
-                                    authenticationHelper
-                            );
-                            respondToChallenge(challengeRequest, callback, runInBackground).run();
+                        if (authenticationDetails.getPassword() == null) {
+                            throw new IllegalStateException("Failed to find password in " +
+                                    "authentication details to response to PASSWORD_VERIFIER challenge");
                         }
+                        final RespondToAuthChallengeRequest challengeRequest = userSrpAuthRequest(
+                                initiateAuthResult.getChallengeParameters(),
+                                authenticationDetails.getPassword(),
+                                initiateAuthResult.getChallengeName(),
+                                initiateAuthResult.getSession(),
+                                authenticationHelper
+                        );
+                        respondToChallenge(challengeRequest, callback, runInBackground).run();
+                    } else {
+                        handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground).run();
                     }
-                    handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground).run();
                 } catch (final ResourceNotFoundException rna) {
                     final CognitoUser cognitoUser = CognitoUser.this;
                     if (rna.getMessage().contains("Device")) {
@@ -2408,8 +2484,9 @@ public class CognitoUser {
                                 authenticationHelper
                         );
                         respondToChallenge(challengeRequest, callback, runInBackground).run();
+                    } else {
+                        handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground).run();
                     }
-                    handleChallenge(initiateAuthResult, authenticationDetails, callback, runInBackground).run();
                 } catch (final Exception e) {
                     callback.onFailure(e);
                 }

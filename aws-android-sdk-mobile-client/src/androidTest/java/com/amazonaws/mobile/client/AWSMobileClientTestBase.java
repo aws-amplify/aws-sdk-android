@@ -31,7 +31,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
                                          final String token,
                                          final String identityId) {
         final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(appContext,
-                "CognitoIdentityProviderCache",
+                AWSMobileClient.SHARED_PREFERENCES_KEY,
                 true);
         awsKeyValueStore.put(AWSMobileClient.PROVIDER_KEY, providerKey);
         awsKeyValueStore.put(AWSMobileClient.TOKEN_KEY, token);
@@ -47,6 +47,33 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         awsKeyValueStore.put(storeFieldPrefix + "idToken", getValidJWT(expiryFromNow));
         awsKeyValueStore.put(storeFieldPrefix + "accessToken", getValidJWT(expiryFromNow));
         awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
+    }
+
+    public static void writeUserpoolsTokens(final Context appContext,
+                                            final String clientId,
+                                            final String userId,
+                                            final String accessToken,
+                                            final String idToken,
+                                            final String refreshToken) {
+        final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(
+                appContext,
+                "CognitoIdentityProviderCache",
+                true);
+
+        // Create keys to look for cached tokens
+        final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".idToken";
+        final String csiAccessTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".accessToken";
+        final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
+                + ".refreshToken";
+        final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
+
+        // Store the data in Shared Preferences
+        awsKeyValueStore.put(csiAccessTokenKey, accessToken);
+        awsKeyValueStore.put(csiIdTokenKey, idToken);
+        awsKeyValueStore.put(csiRefreshTokenKey, refreshToken);
+        awsKeyValueStore.put(csiLastUserKey, userId);
     }
 
     // Create valid access tokens

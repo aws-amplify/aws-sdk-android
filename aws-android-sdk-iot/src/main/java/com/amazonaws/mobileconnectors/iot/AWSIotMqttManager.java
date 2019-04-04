@@ -21,6 +21,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
@@ -43,6 +44,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -163,14 +165,15 @@ public class AWSIotMqttManager {
     private boolean metricsIsEnabled = true;
 
     /**
+     * User metadata string. getVersion method returns the SDK version that will be sent in
+     * the mqtt connect message if metrics collection is enabled.
+     */
+    String userMetaData = "?SDK=Android&Version=" + VersionInfoUtils.getVersion();
+
+    /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
     private final String endpoint;
-
-    /**
-     * The SDK version that will be sent in the mqtt connect message if metrics collection is enabled.
-     */
-    private static final String SDK_VERSION = VersionInfoUtils.getVersion();
 
     /**
      * Turning on/off metrics collection. By default metrics collection is enabled.
@@ -209,6 +212,36 @@ public class AWSIotMqttManager {
 
     /** Override value for System.currentTimeInMillis.  Used for unit testing reconnect logic. */
     private Long unitTestMillisOverride;
+
+    /**
+     * Sets the userMetaData map.
+     *
+     * @param userMetaDataMap userMetaData map
+     */
+    public void addUserMetaData(Map<String, String> userMetaDataMap) {
+        StringBuilder userMetadata = new StringBuilder(this.userMetaData);
+        int baseLength = userMetadata.length();
+
+        if (userMetaDataMap != null) {
+            // Append each of the user-specified key-value pair to the user metadata for the connection
+
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+                if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                } else {
+                    LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
+                }
+            }
+        }
+
+        if(userMetadata.length() > 255) {
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
+                    " cannot exceed " + (255 - baseLength)));
+            this.userMetaData = userMetadata.substring(0, 255);
+        } else {
+            this.userMetaData = userMetadata.toString();
+        }
+    }
 
     /**
      * Return the customer specific endpoint prefix.
@@ -640,7 +673,24 @@ public class AWSIotMqttManager {
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore. Keystore should be created
+     * using certificate and private key in keystore on port 443. Keystore should be created
+     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * expected by the underlying socket helper library.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    public void connectUsingALPN(KeyStore keyStore,
+                                 final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 443, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on port 8883. Keystore should be created
      * using IotKeystoreHelper to setup the certificate and key aliases as
      * expected by the underlying socket helper library.
      *
@@ -651,6 +701,21 @@ public class AWSIotMqttManager {
      *            status.
      */
     public void connect(KeyStore keyStore, final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 8883, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on the specified port.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param portNumber the client port, either 8883 or 443
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    private void connect(KeyStore keyStore, int portNumber, final AWSIotMqttClientStatusCallback statusCallback) {
 
         if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
             throw new UnsupportedOperationException(
@@ -670,11 +735,11 @@ public class AWSIotMqttManager {
         }
 
         if (endpoint != null) {
-            mqttBrokerURL = String.format("ssl://%s:8883", endpoint);
+            mqttBrokerURL = String.format("ssl://%s:%d", endpoint, portNumber);
         } else if (accountEndpointPrefix != null) {
             mqttBrokerURL = String
-                    .format("ssl://%s.iot.%s.%s:8883", accountEndpointPrefix, region.getName(),
-                            region.getDomain());
+                    .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
+                            region.getDomain(),portNumber);
         } else {
             throw new IllegalStateException("No valid endpoint information is available. " +
                 "Please pass in a valid endpoint in AWSIotMqttManager.");
@@ -688,7 +753,7 @@ public class AWSIotMqttManager {
                 mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
             }
 
-            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore);
+            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber);
             final MqttConnectOptions options = new MqttConnectOptions();
 
             if (mqttLWT != null) {
@@ -707,6 +772,8 @@ public class AWSIotMqttManager {
         } catch (final KeyStoreException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final UnrecoverableKeyException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final NoSuchProviderException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final MqttException e) {
             throw new AmazonClientException("An error occured in the MQTT client.", e);
@@ -764,7 +831,7 @@ public class AWSIotMqttManager {
                 try {
                     final String mqttWebSocketURL = signer.getSignedUrl(endpointWithHttpPort, 
                         clientCredentialsProvider.getCredentials(),
-                        System.currentTimeMillis());
+                        System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * MILLIS_IN_ONE_SECOND);
 
                     final MqttConnectOptions options = new MqttConnectOptions();
 
@@ -799,7 +866,7 @@ public class AWSIotMqttManager {
     /**
      * Connect to the MQTT service.
      *
-     * @param options        MQTT connect options containing a TLS socket factory for authentication.
+     * @param options MQTT connect options containing a TLS socket factory for authentication.
      */
     private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
@@ -807,8 +874,9 @@ public class AWSIotMqttManager {
         options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
+        // Setup userName if metrics are enabled. We use the connection username as metadata for metrics calculation.
         if (isMetricsEnabled()) {
-            options.setUserName("?SDK=Android&Version=" + SDK_VERSION);
+            options.setUserName(userMetaData);
         }
         LOGGER.info("metrics collection is " + 
             (isMetricsEnabled() ? "enabled" : "disabled") + 

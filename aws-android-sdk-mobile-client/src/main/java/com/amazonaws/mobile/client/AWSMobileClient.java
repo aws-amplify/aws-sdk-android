@@ -19,23 +19,37 @@ package com.amazonaws.mobile.client;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.support.annotation.AnyThread;
+import android.support.annotation.WorkerThread;
+import android.support.customtabs.CustomTabsCallback;
+import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.customtabs.CustomTabsServiceConnection;
+import android.support.customtabs.CustomTabsSession;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.auth.AWSAbstractCognitoIdentityProvider;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
+import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResult;
 import com.amazonaws.mobile.auth.core.StartupAuthResultHandler;
+import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProvider;
 import com.amazonaws.mobile.auth.facebook.FacebookButton;
 import com.amazonaws.mobile.auth.facebook.FacebookSignInProvider;
@@ -45,6 +59,10 @@ import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
 import com.amazonaws.mobile.auth.ui.SignInUI;
 import com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider;
 import com.amazonaws.mobile.client.internal.InternalCallback;
+import com.amazonaws.mobile.client.internal.ReturningRunnable;
+import com.amazonaws.mobile.client.internal.oauth2.AuthorizeResponse;
+import com.amazonaws.mobile.client.internal.oauth2.OAuth2Client;
+import com.amazonaws.mobile.client.internal.oauth2.OAuth2Tokens;
 import com.amazonaws.mobile.client.results.ForgotPasswordResult;
 import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -54,6 +72,12 @@ import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
 import com.amazonaws.mobile.config.AWSConfigurable;
 import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.cognitoauth.Auth;
+import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
+import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
+import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
+import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
+import com.amazonaws.mobileconnectors.cognitoauth.util.Pkce;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
@@ -75,16 +99,32 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetail
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
+import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
+import com.amazonaws.util.StringUtils;
+import com.google.android.gms.common.annotation.KeepName;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -92,26 +132,34 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * {@code AWSMobileClient} is a high-level SDK client that
- * initilalizes the SDK, fetches Cognito Identity and
- * creates other SDK client instances.
+ * The AWSMobileClient provides client APIs and building blocks for developers who want to create
+ * user authentication experiences. This includes declarative methods for performing
+ * authentication actions, a simple “drop-in auth” UI for performing common tasks, automatic
+ * token and credentials management, and state tracking with notifications for performing
+ * workflows in your application when users have authenticated.
  *
+ * The following demonstrates a simple sample usage inside of MainActivity.java onCreate method.
  * <pre>
- *  To initialize the SDK, invoke the {@link #initialize(Context)}
- *  method:
- *
- *  AWSMobileClient.getInstance().initialize(this);
- *
- *  To get a callback when the initalize is successful, invoke the
- *  {@link #initialize(Context, AWSStartupHandler)} method.
- *
- *  AWSMobileClient.getInstance().initalize(this, new AWSStartupHandler() {
- *      @Override
- *      public void onComplete(AWSStartupResult awsStartupResult) {
- *          // Initialize is complete.
- *      }
- *  });
- *
+ * {@code
+ * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+ *     public void onResult(UserStateDetails userStateDetails) {
+ *         switch (userStateDetails.getUserState()) {
+ *             case SIGNED_IN:
+ *                 break;
+ *             case SIGNED_OUT:
+ *                 try {
+ *                     AWSMobileClient.getInstance().showSignIn(MainActivity.this);
+ *                 } catch (Exception e) {
+ *                     Log.e("TAG", "", e);
+ *                 }
+ *                 break;
+ *             default:
+ *                 Log.w("Unhandled state see UserState for a list of states");
+ *                 break;
+ *         }
+ *     }
+ * })
+ * }
  * </pre>
  */
 public final class AWSMobileClient implements AWSCredentialsProvider {
@@ -119,11 +167,18 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Log Tag.
      */
     private static final String TAG = AWSMobileClient.class.getSimpleName();
+    public static final String USER_AGENT = "AWSMobileClient";
 
     static final String SHARED_PREFERENCES_KEY = "com.amazonaws.mobile.client";
     static final String PROVIDER_KEY = "provider";
     static final String TOKEN_KEY = "token";
-    static final String IDENTITY_ID_KEY = "identityId";
+    static final String IDENTITY_ID_KEY = "cognitoIdentityId";
+    static final String SIGN_IN_MODE = "signInMode";
+    public static final String HOSTED_UI_KEY = "hostedUI";
+
+    /// This value is a boolean stored as a String 'true' 'false'
+    static final String FEDERATION_ENABLED_KEY = "isFederationEnabled";
+    private static final String CUSTOM_ROLE_ARN_KEY = "customRoleArn";
     /**
      * Configuration keys for SignInProviders in awsconfiguration.json.
      */
@@ -151,7 +206,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Object that encapuslates the high-level Cognito UserPools client
      */
     CognitoUserPool userpool;
-    private String userpoolsLoginKey;
+    String userpoolsLoginKey;
     Context mContext;
     Map<String, String> mFederatedLoginsMap;
     private UserStateDetails userStateDetails;
@@ -202,6 +257,45 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
     AWSMobileClientStore mStore;
+    AWSMobileClientCognitoIdentityProvider provider;
+    DeviceOperations mDeviceOperations;
+    AmazonCognitoIdentityProvider userpoolLL;
+    private Auth hostedUIJSONConfigured;
+    private Auth hostedUI;
+    OAuth2Client mOAuth2Client;
+    String mUserPoolPoolId;
+
+    enum SignInMode {
+        SIGN_IN("0"),
+        FEDERATED_SIGN_IN("1"),
+        HOSTED_UI("2"),
+        OAUTH2("3"),
+        UNKNOWN("-1"),
+        ;
+
+        String encode;
+
+        SignInMode(final String encode) {
+            this.encode = encode;
+        }
+
+        public String toString() {
+            return encode;
+        }
+
+        static SignInMode fromString(final String str) {
+            if ("0".equals(str)) {
+                return SIGN_IN;
+            } else if ("1".equals(str)) {
+                return FEDERATED_SIGN_IN;
+            } else if ("2".equals(str)) {
+                return HOSTED_UI;
+            } else if ("3".equals(str)) {
+                return OAUTH2;
+            }
+            return UNKNOWN;
+        }
+    }
 
     /**
      * Flag that indicates if the tokens would be persisted in SharedPreferences.
@@ -298,31 +392,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return AWSCredentials obtained from Cognito Identity
      * @throws Exception
      */
+    @WorkerThread
     public AWSCredentials getAWSCredentials() throws Exception {
-        final InternalCallback<AWSCredentials> internalCallback = new InternalCallback<AWSCredentials>();
-        return internalCallback.await(_getAWSCredentials(internalCallback));
+        return _getAWSCredentials().await();
     }
 
+    @AnyThread
     public void getAWSCredentials(final Callback<AWSCredentials> callback) {
-        final InternalCallback internalCallback = new InternalCallback<AWSCredentials>(callback);
-        internalCallback.async(_getAWSCredentials(internalCallback));
+        _getAWSCredentials().async(callback);
     }
 
-    private Runnable _getAWSCredentials(final Callback<AWSCredentials> callback) {
-        return new Runnable() {
+    private ReturningRunnable<AWSCredentials> _getAWSCredentials() {
+        return new ReturningRunnable<AWSCredentials>() {
             @Override
-            public void run() {
-                AWSCredentials credentials = null;
-                try {
-                    credentials = getCredentials();
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
-                callback.onResult(credentials);
+            public AWSCredentials run() {
+                return getCredentials();
             }
         };
     }
 
+    @AnyThread
     public String getIdentityId() {
         if (isLegacyMode()) {
             return IdentityManager.getDefaultIdentityManager().getCachedUserID();
@@ -344,122 +433,282 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return mIsLegacyMode;
     }
 
+    @AnyThread
     public void initialize(final Context context, final Callback<UserStateDetails> callback) {
         final Context applicationContext = context.getApplicationContext();
         initialize(applicationContext, new AWSConfiguration(applicationContext), callback);
     }
 
+    @AnyThread
     public void initialize(final Context context, final AWSConfiguration awsConfig, final Callback<UserStateDetails> callback) {
         final InternalCallback internalCallback = new InternalCallback<UserStateDetails>(callback);
         internalCallback.async(_initialize(context, awsConfig, internalCallback));
     }
 
-    protected Runnable _initialize(final Context context, final AWSConfiguration awsConfig, final Callback<UserStateDetails> callback) {
+    CountDownLatch getSignInUILatch() {
+        return showSignInWaitLatch;
+    }
+
+    protected Runnable _initialize(final Context context, final AWSConfiguration awsConfiguration, final Callback<UserStateDetails> callback) {
         return new Runnable() {
             public void run() {
-                try {
-                    synchronized (initLockObject) {
-                        if (mContext != null) {
-                            callback.onResult(getUserStateDetails(true));
-                            return;
-                        }
-
-                        awsConfiguration = awsConfig;
-
-                        // Read Persistence key from the awsconfiguration.json and set the flag
-                        // appropriately.
-                        try {
-                            if (awsConfiguration.optJsonObject("Auth") != null &&
-                                    awsConfiguration.optJsonObject("Auth").has("Persistence")) {
-                                mIsPersistenceEnabled = awsConfiguration
-                                        .optJsonObject("Auth")
-                                        .getBoolean("Persistence");
-                            }
-                        } catch (final Exception ex) {
-                            // If reading from awsconfiguration.json fails, invoke callback.
-                            callback.onError(new RuntimeException("Failed to initialize AWSMobileClient; please check your awsconfiguration.json", ex));
-                            return;
-                        }
-
-                        mContext = context.getApplicationContext();
-                        mStore = new AWSMobileClientStore(AWSMobileClient.this);
-
-                        final IdentityManager identityManager = new IdentityManager(mContext);
-                        identityManager.enableFederation(false);
-                        identityManager.setConfiguration(awsConfiguration);
-                        identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
-                        IdentityManager.setDefaultIdentityManager(identityManager);
-                        registerConfigSignInProviders();
-                        identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
-                            @Override
-                            public void onUserSignedIn() {
-                                Log.d(TAG, "onUserSignedIn: Updating user state from drop-in UI");
-                                signInState = SignInState.DONE;
-                                com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider = identityManager.getCurrentIdentityProvider();
-                                String token = currentIdentityProvider.getToken();
-                                String providerKey = currentIdentityProvider.getCognitoLoginKey();
-                                federatedSignInWithoutAssigningState(providerKey, token, new Callback<UserStateDetails>() {
-                                    @Override
-                                    public void onResult(UserStateDetails result) {
-                                        setUserState(getUserStateDetails(false));
-                                        showSignInWaitLatch.countDown();
-                                    }
-
-                                    @Override
-                                    public void onError(Exception e) {
-                                        Log.w(TAG, "onError: User sign-in had errors from drop-in UI", e);
-                                        setUserState(getUserStateDetails(false));
-                                        showSignInWaitLatch.countDown();
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void onUserSignedOut() {
-                                Log.d(TAG, "onUserSignedOut: Updating user state from drop-in UI");
-                                setUserState(getUserStateDetails(false));
-                                showSignInWaitLatch.countDown();
-                            }
-                        });
-
-                        if (awsConfiguration.optJsonObject("CredentialsProvider") != null
-                                && awsConfig.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
-                            try {
-                                cognitoIdentity = new CognitoCachingCredentialsProvider(mContext, awsConfiguration);
-                                cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
-                            } catch (Exception e) {
-                                callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
-                                return;
-                            }
-                        }
-
-                        final JSONObject userPoolJSON = awsConfiguration.optJsonObject("CognitoUserPool");
-                        if (userPoolJSON != null) {
-                            try {
-                                userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
-                                userpool = new CognitoUserPool(mContext, awsConfiguration);
-                                userpool.setPersistenceEnabled(mIsPersistenceEnabled);
-                            } catch (Exception e) {
-                                callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
-                                return;
-                            }
-                        }
-
-                        if (cognitoIdentity == null && userpool == null) {
-                            callback.onError(new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
-                                    " At least one must be present to use AWSMobileClient."));
-                            return;
-                        }
-
-                        final UserStateDetails userStateDetails = getUserStateDetails(true);
-                        callback.onResult(userStateDetails);
-                        setUserState(userStateDetails);
+                synchronized (initLockObject) {
+                    if (AWSMobileClient.this.awsConfiguration != null) {
+                        callback.onResult(getUserStateDetails(true));
+                        return;
                     }
-                } catch (RuntimeException e) {
-                    callback.onError(e);
+
+                    mIsPersistenceEnabled = true; // Default value
+                    // Read Persistence key from the awsconfiguration.json and set the flag
+                    // appropriately.
+                    try {
+                        if (awsConfiguration.optJsonObject("Auth") != null &&
+                                awsConfiguration.optJsonObject("Auth").has("Persistence")) {
+                            mIsPersistenceEnabled = awsConfiguration
+                                    .optJsonObject("Auth")
+                                    .getBoolean("Persistence");
+                        }
+                    } catch (final Exception ex) {
+                        // If reading from awsconfiguration.json fails, invoke callback.
+                        callback.onError(new RuntimeException("Failed to initialize AWSMobileClient; please check your awsconfiguration.json", ex));
+                        return;
+                    }
+
+                    mContext = context.getApplicationContext();
+                    mStore = new AWSMobileClientStore(AWSMobileClient.this);
+
+                    final IdentityManager identityManager = new IdentityManager(mContext);
+                    identityManager.enableFederation(false);
+                    identityManager.setConfiguration(awsConfiguration);
+                    identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
+                    IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders(awsConfiguration);
+                    identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
+                        @Override
+                        public void onUserSignedIn() {
+                            Log.d(TAG, "onUserSignedIn: Updating user state from drop-in UI");
+                            signInState = SignInState.DONE;
+                            com.amazonaws.mobile.auth.core.IdentityProvider currentIdentityProvider = identityManager.getCurrentIdentityProvider();
+                            String token = currentIdentityProvider.getToken();
+                            String providerKey = currentIdentityProvider.getCognitoLoginKey();
+                            federatedSignInWithoutAssigningState(providerKey, token, new Callback<UserStateDetails>() {
+                                @Override
+                                public void onResult(UserStateDetails result) {
+                                    Log.d(TAG, "onResult: showSignIn federated");
+                                    setUserState(getUserStateDetails(false));
+                                    getSignInUILatch().countDown();
+                                }
+
+                                @Override
+                                public void onError(Exception e) {
+                                    Log.w(TAG, "onError: User sign-in had errors from drop-in UI", e);
+                                    setUserState(getUserStateDetails(false));
+                                    getSignInUILatch().countDown();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onUserSignedOut() {
+                            Log.d(TAG, "onUserSignedOut: Updating user state from drop-in UI");
+                            setUserState(getUserStateDetails(false));
+                            showSignInWaitLatch.countDown();
+                        }
+                    });
+
+                    if (awsConfiguration.optJsonObject("CredentialsProvider") != null
+                            && awsConfiguration.optJsonObject("CredentialsProvider").optJSONObject("CognitoIdentity") != null) {
+                        try {
+                            JSONObject identityPoolJSON = awsConfiguration.optJsonObject(
+                                    "CredentialsProvider").getJSONObject("CognitoIdentity").getJSONObject(awsConfiguration.getConfiguration());
+                            final String poolId = identityPoolJSON.getString("PoolId");
+                            final String regionStr = identityPoolJSON.getString("Region");
+                            final ClientConfiguration clientConfig = new ClientConfiguration();
+                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            AmazonCognitoIdentityClient cibClient =
+                                    new AmazonCognitoIdentityClient(new AnonymousAWSCredentials());
+                            cibClient.setRegion(Region.getRegion(regionStr));
+                            provider = new AWSMobileClientCognitoIdentityProvider(
+                                    null, poolId, cibClient);
+                            cognitoIdentity = new CognitoCachingCredentialsProvider(
+                                    mContext, provider, Regions.fromName(regionStr));
+                            cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
+                        } catch (Exception e) {
+                            callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
+                            return;
+                        }
+                    }
+
+                    final JSONObject userPoolJSON = awsConfiguration.optJsonObject("CognitoUserPool");
+                    if (userPoolJSON != null) {
+                        try {
+                            mUserPoolPoolId = userPoolJSON.getString("PoolId");
+                            final String clientId = userPoolJSON.getString("AppClientId");
+                            final String clientSecret = userPoolJSON.optString("AppClientSecret");
+                            final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
+
+                            final ClientConfiguration clientConfig = new ClientConfiguration();
+                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            userpoolLL =
+                                    new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
+                            userpoolLL.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
+
+                            userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
+
+                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId);
+                            userpool.setPersistenceEnabled(mIsPersistenceEnabled);
+
+                            mDeviceOperations = new DeviceOperations(AWSMobileClient.this, userpoolLL);
+
+                        } catch (Exception e) {
+                            callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
+                            return;
+                        }
+                    }
+
+                    JSONObject hostedUIJSON = getHostedUIJSON(awsConfiguration);
+                    if (hostedUIJSON != null) {
+                        try {
+                            // Pre-warm the Custom Tabs based on
+                            if (hostedUIJSON.has("TokenURI")) {
+                                Log.d(TAG, "initialize: OAuth2 client detected");
+                                mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
+                                mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
+                            } else {
+                                Log.d(TAG, "initialize: Cognito HostedUI client detected");
+                                final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
+                                final Set<String> scopes = new HashSet<String>();
+                                for (int i = 0; i < scopesJSONArray.length(); i++) {
+                                    scopes.add(scopesJSONArray.getString(i));
+                                }
+
+                                if (mUserPoolPoolId == null) {
+                                    throw new IllegalStateException("User pool Id must be available through user pool setting");
+                                }
+
+                                hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+                                        .setPersistenceEnabled(mIsPersistenceEnabled)
+                                        .setAuthHandler(new AuthHandler() {
+                                            @Override
+                                            public void onSuccess(AuthUserSession session) {
+                                                // Ignored because this is used to pre-warm the session
+                                            }
+
+                                            @Override
+                                            public void onSignout() {
+                                                // Ignored because this is used to pre-warm the session
+                                            }
+
+                                            @Override
+                                            public void onFailure(Exception e) {
+                                                // Ignored because this is used to pre-warm the session
+                                            }
+                                        })
+                                        .build();
+                            }
+                        } catch (Exception e) {
+                            callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
+                        }
+                    }
+
+                    if (cognitoIdentity == null && userpool == null) {
+                        callback.onError(new RuntimeException(
+                                "Neither Cognito Identity or Cognito UserPool was used." +
+                                " At least one must be present to use AWSMobileClient."));
+                        return;
+                    }
+
+                    AWSMobileClient.this.awsConfiguration = awsConfiguration;
+
+                    final UserStateDetails userStateDetails = getUserStateDetails(true);
+                    callback.onResult(userStateDetails);
+                    setUserState(userStateDetails);
                 }
             }
         };
+    }
+
+    JSONObject getHostedUIJSONFromJSON() {
+        return getHostedUIJSONFromJSON(this.awsConfiguration);
+    }
+
+    JSONObject getHostedUIJSONFromJSON(final AWSConfiguration awsConfig) {
+        final JSONObject mobileClientJSON = awsConfiguration.optJsonObject("Auth");
+        if (mobileClientJSON != null && mobileClientJSON.has("OAuth")) {
+            try {
+                JSONObject hostedUIJSONFromJSON = mobileClientJSON.getJSONObject("OAuth");
+
+                return hostedUIJSONFromJSON;
+            } catch (Exception e) {
+                Log.w(TAG, "getHostedUIJSONFromJSON: Failed to read config", e);
+            }
+        }
+        return null;
+    }
+
+    JSONObject getHostedUIJSON() {
+        return getHostedUIJSON(this.awsConfiguration);
+    }
+
+    JSONObject getHostedUIJSON(final AWSConfiguration awsConfig) {
+        try {
+            JSONObject hostedUIJSONFromJSON = getHostedUIJSONFromJSON(awsConfig);
+            if (hostedUIJSONFromJSON == null) {
+                return null;
+            }
+
+            final String hostedUIString = mStore.get(HOSTED_UI_KEY);
+            JSONObject hostedUIJSON = null;
+            try {
+                hostedUIJSON = new JSONObject(hostedUIString);
+            } catch (Exception e) {
+                Log.w(TAG,
+                        "Failed to parse HostedUI settings from store. Defaulting to awsconfiguration.json", e);
+            }
+            if (hostedUIJSON == null && hostedUIJSONFromJSON != null) {
+                hostedUIJSON = new JSONObject(hostedUIJSONFromJSON.toString());
+                mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
+            }
+            return hostedUIJSON;
+        } catch (Exception e) {
+            Log.d(TAG, "getHostedUIJSON: Failed to read config", e);
+        }
+        return null;
+    }
+
+    Auth.Builder getHostedUI(final JSONObject hostedUIJSON) throws JSONException {
+        final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
+        final Set<String> scopes = new HashSet<String>();
+        for (int i = 0; i < scopesJSONArray.length(); i++) {
+            scopes.add(scopesJSONArray.getString(i));
+        }
+
+        return new Auth.Builder()
+                .setApplicationContext(mContext)
+                .setUserPoolId(mUserPoolPoolId)
+                .setAppClientId(hostedUIJSON.getString("AppClientId"))
+                .setAppClientSecret(hostedUIJSON.optString("AppClientSecret", null))
+                .setAppCognitoWebDomain(hostedUIJSON.getString("WebDomain"))
+                .setSignInRedirect(hostedUIJSON.getString("SignInRedirectURI"))
+                .setSignOutRedirect(hostedUIJSON.getString("SignOutRedirectURI"))
+                .setScopes(scopes)
+                .setAdvancedSecurityDataCollection(false)
+                .setIdentityProvider(hostedUIJSON.optString("IdentityProvider"))
+                .setIdpIdentifier(hostedUIJSON.optString("IdpIdentifier"));
+    }
+
+    /**
+     * Retrieve a handle to perform device related operations.
+     * This is only available for Cognito User Pools and it must be configured in the client.
+     *
+     * @return a handle for device operations
+     */
+    @AnyThread
+    public DeviceOperations getDeviceOperations() {
+        if (mDeviceOperations == null) {
+            throw new AmazonClientException("Please check if userpools is configured.");
+        }
+        return mDeviceOperations;
     }
 
     /**
@@ -467,6 +716,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Doing this fails all pending operations that were
      * waiting for sign-in.
      */
+    @AnyThread
     public void releaseSignInWait() {
         if (mSignedOutWaitLatch != null) {
             mSignedOutWaitLatch.countDown();
@@ -532,6 +782,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Returns the signed-in user's username obtained from the access token.
      * @return signed-in user's username
      */
+    @AnyThread
     public String getUsername() {
         try {
             if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
@@ -543,14 +794,51 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
     }
 
+    /**
+     * Performs a check on the current UserState. When online, this method will attempt to
+     * refresh tokens when they expired. Failing a refresh may cause the UserState to change.
+     *
+     * @return details about the user's state
+     */
+    @WorkerThread
     public UserStateDetails currentUserState() {
-        return getUserStateDetails(false);
+        try {
+            return _currentUserState().await();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to retrieve user state.", e);
+        }
     }
 
     /**
-     * Adds a listener to be notified of state changes
+     * Performs a check on the current UserState. When online, this method will attempt to
+     * refresh tokens when they expired. Failing a refresh may cause the UserState to change.
+     *
+     * @return details about the user's state
+     */
+    @AnyThread
+    public void currentUserState(final Callback<UserStateDetails> callback) {
+        _currentUserState().async(callback);
+    }
+
+    ReturningRunnable<UserStateDetails> _currentUserState() {
+        return new ReturningRunnable<UserStateDetails>() {
+            @Override
+            public UserStateDetails run() throws Exception {
+                return getUserStateDetails(false);
+            }
+        };
+    }
+
+    /**
+     * Adds a listener to be notified of state changes.
+     * When encountering SIGNED_OUT_FEDERATED_TOKENS_INVALID
+     * or SIGNED_OUT_USER_POOLS_TOKENS_INVALID
+     * {@link #releaseSignInWait()} or any form of sign-in can be called
+     * to prevent blocking {@link #getCredentials()}, {@link #getTokens()}, or other methods
+     * requiring a sign-in.
      * @param listener
      */
+    @AnyThread
     public void addUserStateListener(final UserStateListener listener) {
         synchronized (listeners) {
             listeners.add(listener);
@@ -563,6 +851,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param listener
      * @return true if removed
      */
+    @AnyThread
     public boolean removeUserStateListener(final UserStateListener listener) {
         synchronized (listeners) {
             int index = listeners.indexOf(listener);
@@ -578,8 +867,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return userpoolsLoginKey;
     }
 
+    /**
+     * A variant of {@link #currentUserState()} that simplifies the output to a boolean.
+     * True if SIGNED_IN, SIGNED_OUT_USER_POOLS_TOKENS_INVALID, SIGNED_OUT_FEDERATED_TOKENS_INVALID.
+     * False if GUEST, SIGNED_OUT.
+     *
+     * @return see above
+     */
+    @AnyThread
     public boolean isSignedIn() {
-        final UserStateDetails userStateDetails = getUserStateDetails(false);
+        final UserStateDetails userStateDetails = getUserStateDetails(true);
         switch (userStateDetails.getUserState()) {
             case SIGNED_IN:
             case SIGNED_OUT_USER_POOLS_TOKENS_INVALID:
@@ -593,6 +890,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
     }
 
+    /**
+     * This method checks the current state of the user.
+     * If the user's session is determined to be expired, then the {@link UserStateListener} will be
+     * notified with @{@link UserState#SIGNED_OUT_USER_POOLS_TOKENS_INVALID} or
+     * @{link UserState#SIGNED_OUT_FEDERATED_TOKENS_INVALID}.
+     * @return true if user is signed-in, false otherwise
+     */
     protected boolean waitForSignIn() {
         try {
             mWaitForSignInLock.lock();
@@ -629,7 +933,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
     /**
      * Has side-effect of attempting to alert developer to try and sign-in user
-     * when required to be signed-in
+     * when required to be signed-in and will mutate the user's state.
      *
      * @param offlineCheck true, will determine if the tokens are expired or the credentials are expired and block for refresh
      * @return the current state of the user
@@ -638,7 +942,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         final Map<String, String> details = getSignInDetailsMap();
         final String providerKey = details.get(PROVIDER_KEY);
         final String token = details.get(TOKEN_KEY);
+        final SignInMode signInMode = getSignInMode();
         final String identityId = _getCachedIdentityId();
+
+        final boolean federationEnabled = isFederationEnabled();
         Log.d(TAG, "Inspecting user state details");
 
         final boolean hasUsefulToken = providerKey != null && token != null;
@@ -660,15 +967,34 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         if (hasUsefulToken && !userpoolsLoginKey.equals(providerKey)) {
             // TODO enhancement: check if token is expired
             try {
-                // If token has already been federated
-                if (hasFederatedToken(providerKey, token)) {
-                    Log.d(TAG, "getUserStateDetails: token already federated just fetch credentials");
-                    if (cognitoIdentity != null) {
-                        cognitoIdentity.getCredentials();
-                    }
+                if (!federationEnabled) {
+                    // Do nothing, you are signed-in by having the token
                 } else {
-                    federateWithCognitoIdentity(providerKey, token);
+                    // Attempt to refresh the token if it matches drop-in UI
+                    String refreshedToken = token;
+                    final SignInProvider previouslySignedInProvider =
+                            SignInManager.getInstance(mContext).getPreviouslySignedInProvider();
+                    if (previouslySignedInProvider != null && providerKey.equals(previouslySignedInProvider.getCognitoLoginKey())) {
+                        refreshedToken = previouslySignedInProvider.getToken();
+                        Log.i(TAG, "Token was refreshed using drop-in UI internal mechanism");
+                    }
+
+                    if (refreshedToken == null) {
+                        Log.i(TAG, "Token used for federation has become null");
+                        return new UserStateDetails(UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID, details);
+                    }
+
+                    // If token has already been federated
+                    if (hasFederatedToken(providerKey, refreshedToken)) {
+                        Log.d(TAG, "getUserStateDetails: token already federated just fetch credentials");
+                        if (cognitoIdentity != null) {
+                            cognitoIdentity.getCredentials();
+                        }
+                    } else {
+                        federateWithCognitoIdentity(providerKey, refreshedToken);
+                    }
                 }
+
                 return new UserStateDetails(UserState.SIGNED_IN, details);
             } catch (Exception e) {
                 Log.w(TAG, "Failed to federate the tokens.", e);
@@ -685,8 +1011,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 tokens = getTokens(false);
                 idToken = tokens.getIdToken().getTokenString();
                 details.put(TOKEN_KEY, idToken);
+                if (!federationEnabled) {
+                    // Do nothing, you are signed-in by having the token
+                }
                 // If token has already been federated
-                if (hasFederatedToken(providerKey, idToken)) {
+                else if (hasFederatedToken(providerKey, idToken)) {
                     try {
                         if (cognitoIdentity != null) {
                             cognitoIdentity.getCredentials();
@@ -720,6 +1049,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
     }
 
+    boolean isFederationEnabled() {
+        final String federationEnabledString = mStore.get(FEDERATION_ENABLED_KEY);
+        final boolean federationEnabled;
+        if (federationEnabledString != null) {
+            federationEnabled = federationEnabledString.equals("true");
+        } else {
+            federationEnabled = true;
+        }
+        return federationEnabled;
+    }
+
+    SignInMode getSignInMode() {
+        return SignInMode.fromString(mStore.get(SIGN_IN_MODE));
+    }
+
     private boolean hasFederatedToken(final String providerKey,
                                       final String token) {
         if (token == null || token.isEmpty()) {
@@ -730,6 +1074,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return hasFederatedToken;
     }
 
+    @AnyThread
     public void signIn(final String username,
                        final String password,
                        final Map<String, String> validationData,
@@ -739,6 +1084,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_signIn(username, password, validationData, internalCallback));
     }
 
+    @WorkerThread
     public SignInResult signIn(final String username,
                                final String password,
                                final Map<String, String> validationData) throws Exception {
@@ -772,17 +1118,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             }
 
                             try {
-                                federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken(), new Callback<UserStateDetails>() {
-                                    @Override
-                                    public void onResult(UserStateDetails result) {
-                                        // Ignore because the result does not matter until getAWSCredentials is called
-                                    }
-
-                                    @Override
-                                    public void onError(Exception e) {
-                                        // Ignore because the result does not matter until getAWSCredentials is called
-                                    }
-                                });
+                                if (isFederationEnabled()) {
+                                    federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken());
+                                }
 
                                 releaseSignInWait();
                             } catch (Exception e) {
@@ -844,10 +1182,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    /**
+     * Clears local tokens so that the client is in a signed-out state.
+     */
+    @AnyThread
     public void signOut() {
         mCognitoUserSession = null;
         if (userpool != null) {
             userpool.getCurrentUser().signOut();
+            userpool.getUser().signOut();
         }
         if (cognitoIdentity != null) {
             cognitoIdentity.clear();
@@ -855,9 +1198,114 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         if (IdentityManager.getDefaultIdentityManager() != null) {
             IdentityManager.getDefaultIdentityManager().signOut();
         }
+        mFederatedLoginsMap.clear();
         mStore.clear();
+        String hostedUIJSON = null;
+        if (awsConfiguration.optJsonObject("Auth") != null && awsConfiguration.optJsonObject("Auth").has("OAuth")) {
+            try {
+                hostedUIJSON = awsConfiguration.optJsonObject("Auth").getJSONObject("OAuth").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (hostedUI != null) {
+                hostedUI.signOut(true);
+            }
+            if (mOAuth2Client != null) {
+                mOAuth2Client.signOut();
+            }
+            hostedUI = null;
+        }
+        mStore.set(HOSTED_UI_KEY, hostedUIJSON);
         setUserState(getUserStateDetails(false));
         releaseSignInWait();
+    }
+
+    /**
+     * Sign-out the user with more options.
+     * <pre>
+     * {@code
+     * SignOutOptions.builder()
+     *                  .signOutGlobally(true) // Sign-out user from all sessions across devices
+     *                  .build();
+     * }
+     * </pre>
+     * @param signOutOptions options
+     */
+    @WorkerThread
+    public void signOut(final SignOutOptions signOutOptions) throws Exception {
+        _signOut(signOutOptions).await();
+    }
+
+    /**
+     * Sign-out the user with more options.
+     * <pre>
+     * {@code
+     * SignOutOptions.builder()
+     *                  .signOutGlobally(true) // Sign-out user from all sessions across devices
+     *                  .build();
+     * }
+     * </pre>
+     * @param signOutOptions options
+     */
+    @AnyThread
+    public void signOut(final SignOutOptions signOutOptions, final Callback<Void> callback) {
+        _signOut(signOutOptions).async(callback);
+    }
+
+    private ReturningRunnable<Void> _signOut(final SignOutOptions signOutOptions) {
+        return new ReturningRunnable<Void>() {
+            @Override
+            public Void run() throws Exception {
+                if (signOutOptions.isSignOutGlobally()) {
+                    final GlobalSignOutRequest globalSignOutRequest = new GlobalSignOutRequest();
+                    globalSignOutRequest.setAccessToken(getTokens().getAccessToken().getTokenString());
+
+                    userpoolLL.globalSignOut(globalSignOutRequest);
+                }
+                if (signOutOptions.isInvalidateTokens()) {
+                    if (hostedUI != null) {
+                        hostedUI.signOut();
+                    } else if (mOAuth2Client != null) {
+                        final CountDownLatch latch = new CountDownLatch(1);
+                        final JSONObject hostedUIJSON = getHostedUIJSON();
+                        final String signOutUriString = hostedUIJSON.getString("SignOutURI");
+                        final Uri.Builder uriBuilder = Uri.parse(signOutUriString).buildUpon();
+                        if (getHostedUIJSON().optString("SignOutRedirectURI", null) != null) {
+                            uriBuilder.appendQueryParameter("redirect_uri", getHostedUIJSON().getString(
+                                    "SignOutRedirectURI"));
+                        }
+                        final JSONObject signOutQueryParametersJSON = hostedUIJSON.getJSONObject(
+                                "SignOutQueryParameters");
+                        if (signOutQueryParametersJSON != null) {
+                            final Iterator<String> keysIterator = signOutQueryParametersJSON.keys();
+                            while (keysIterator.hasNext()) {
+                                String key = keysIterator.next();
+                                uriBuilder.appendQueryParameter(key, signOutQueryParametersJSON.getString(key));
+                            }
+                        }
+                        final Exception[] signOutError = new Exception[1];
+                        mOAuth2Client.signOut(uriBuilder.build(), new Callback<Void>() {
+                            @Override
+                            public void onResult(Void result) {
+                                latch.countDown();
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                signOutError[0] = e;
+                                latch.countDown();
+                            }
+                        });
+                        latch.await();
+                        if (signOutError[0] != null) {
+                            throw signOutError[0];
+                        }
+                    }
+                }
+                signOut();
+                return null;
+            }
+        };
     }
 
     /**
@@ -869,11 +1317,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
+    @AnyThread
     public void federatedSignIn(final String providerKey,
                                 final String token,
                                 final Callback<UserStateDetails> callback) {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
-        internalCallback.async(_federatedSignIn(providerKey, token, internalCallback, true));
+        internalCallback.async(_federatedSignIn(providerKey, token, null, internalCallback, true));
     }
 
     /**
@@ -885,36 +1334,88 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
      * @param token       the JWT token vended by the third-party
      */
-    public void federatedSignIn(final String providerKey, final String token) throws Exception {
+    @WorkerThread
+    public UserStateDetails federatedSignIn(final String providerKey, final String token) throws Exception {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
-        internalCallback.await(_federatedSignIn(providerKey, token, internalCallback, true));
+        return internalCallback.await(_federatedSignIn(providerKey, token, null, internalCallback, true));
+    }
+
+    /**
+     * Federate tokens from custom identity providers by providing the
+     * logins key and token
+     * <p>
+     * The logins key can be specified with {@link IdentityProvider#AMAZON#toString()}
+     *
+     * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
+     * @param token       the JWT token vended by the third-party
+     */
+    @AnyThread
+    public void federatedSignIn(final String providerKey,
+                                final String token,
+                                final FederatedSignInOptions options,
+                                final Callback<UserStateDetails> callback) {
+        InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
+        internalCallback.async(_federatedSignIn(providerKey, token, options, internalCallback, true));
+    }
+
+    /**
+     * Federate tokens from custom identity providers by providing the
+     * logins key and token
+     * <p>
+     * The logins key can be specified with {@link IdentityProvider#AMAZON}
+     *
+     * @param providerKey Custom provider key i.e. Google sign-in's key is accounts.google.com
+     * @param token       the JWT token vended by the third-party
+     */
+    @WorkerThread
+    public UserStateDetails federatedSignIn(final String providerKey,
+                                final String token,
+                                final FederatedSignInOptions options) throws Exception {
+        InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
+        return internalCallback.await(_federatedSignIn(providerKey, token, options, internalCallback, true));
     }
 
     protected void federatedSignInWithoutAssigningState(final String providerKey, final String token) throws Exception {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
-        internalCallback.await(_federatedSignIn(providerKey, token, internalCallback, false));
+        internalCallback.await(_federatedSignIn(providerKey, token, null, internalCallback, false));
     }
 
     protected void federatedSignInWithoutAssigningState(final String providerKey,
                                                         final String token,
                                                         final Callback<UserStateDetails> callback) {
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>(callback);
-        internalCallback.async(_federatedSignIn(providerKey, token, internalCallback, false));
+        internalCallback.async(_federatedSignIn(providerKey, token, null, internalCallback, false));
     }
 
     private Runnable _federatedSignIn(final String providerKey,
                                       final String token,
+                                      final FederatedSignInOptions options,
                                       final Callback<UserStateDetails> callback,
                                       final boolean assignState) {
 
         final Map<String, String> loginsMap = new HashMap<String, String>();
-        loginsMap.put(providerKey, token);
+        try {
+            loginsMap.put(providerKey, token);
 
-        Log.d(TAG, String.format("_federatedSignIn: Putting provider and token in store"));
-        HashMap<String, String> details = new HashMap<String, String>();
-        details.put(PROVIDER_KEY, providerKey);
-        details.put(TOKEN_KEY, token);
-        mStore.set(details);
+            Log.d(TAG, String.format("_federatedSignIn: Putting provider and token in store"));
+            HashMap<String, String> details = new HashMap<String, String>();
+            details.put(PROVIDER_KEY, providerKey);
+            details.put(TOKEN_KEY, token);
+            details.put(FEDERATION_ENABLED_KEY, "true");
+            if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+                if (options == null) {
+                    callback.onError(new Exception("Developer authenticated identities require the" +
+                            "identity id to be specified in FederatedSignInOptions"));
+                }
+                details.put(IDENTITY_ID_KEY, options.getCognitoIdentityId());
+            }
+            if (options != null && !StringUtils.isBlank(options.getCustomRoleARN())) {
+                details.put(CUSTOM_ROLE_ARN_KEY, options.getCustomRoleARN());
+            }
+            mStore.set(details);
+        } catch (Exception e) {
+            callback.onError(e);
+        }
 
         return new Runnable() {
             @Override
@@ -930,22 +1431,22 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         cognitoIdentity.clear();
                         cognitoIdentity.setLogins(loginsMap);
                     }
+
                     UserStateDetails userStateDetails = getUserStateDetails(true);
 
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                federateWithCognitoIdentity(providerKey, token);
-                            } catch (Exception e) {
-                                Log.w(TAG, "Failed to federate with Cognito Identity in the background", e);
-                            }
-                        }
-                    }).start();
+                    federateWithCognitoIdentity(providerKey, token);
 
                     callback.onResult(userStateDetails);
                     end(userStateDetails);
                 } catch (final Exception exception) {
+                    HashMap<String, String> details = new HashMap<String, String>();
+                    details.put(PROVIDER_KEY, null);
+                    details.put(TOKEN_KEY, null);
+                    details.put(FEDERATION_ENABLED_KEY, null);
+                    details.put(IDENTITY_ID_KEY, null);
+                    details.put(CUSTOM_ROLE_ARN_KEY, null);
+                    mStore.set(details);
+
                     callback.onError(new RuntimeException("Error in federating the token.", exception));
                     return;
                 }
@@ -963,11 +1464,22 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                                final String token) {
         synchronized (federateWithCognitoIdentityLockObject) {
             if (!hasFederatedToken(providerKey, token)) {
+                if (IdentityProvider.DEVELOPER.equals(providerKey)) {
+                    provider.setDeveloperAuthenticated(mStore.get(IDENTITY_ID_KEY), token);
+                } else {
+                    provider.setNotDeveloperAuthenticated();
+                }
+
+                final String customRoleArn = mStore.get(CUSTOM_ROLE_ARN_KEY);
+                if (!StringUtils.isBlank(customRoleArn)) {
+                    cognitoIdentity.setCustomRoleArn(customRoleArn);
+                }
+
                 HashMap<String, String> logins = new HashMap<String, String>();
                 logins.put(providerKey, token);
                 cognitoIdentity.setLogins(logins);
                 cognitoIdentity.refresh();
-                // Ensure identityId and credentials can be retrieved.
+                // Ensure cognitoIdentityId and credentials can be retrieved.
                 mStore.set(IDENTITY_ID_KEY, cognitoIdentity.getIdentityId());
                 mFederatedLoginsMap = cognitoIdentity.getLogins();
             }
@@ -981,6 +1493,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return tokens from Cognito Userpools
      * @throws Exception
      */
+    @WorkerThread
     public Tokens getTokens() throws Exception {
         final InternalCallback<Tokens> internalCallback = new InternalCallback<Tokens>();
         return internalCallback.await(_getTokens(internalCallback, true));
@@ -993,6 +1506,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return tokens from Cognito Userpools
      * @throws Exception
      */
+    @AnyThread
     public void getTokens(final Callback<Tokens> callback) {
         final InternalCallback<Tokens> internalCallback = new InternalCallback<Tokens>(callback);
         internalCallback.async(_getTokens(internalCallback, true));
@@ -1023,6 +1537,46 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
                 if (!isUserpoolsSignedIn()) {
                     callback.onError(new Exception("You must be signed-in with Cognito Userpools to be able to use getTokens"));
+                }
+
+                if (getSignInMode().equals(SignInMode.HOSTED_UI)) {
+//                    final AuthUserSession cachedSession =
+//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
+//                            LocalDataManager.getLastAuthUser(mContext,
+//                                    hostedUIJSONConfigured.getAppId()),
+//                            hostedUI.getScopes());
+//                    callback.onResult(new Tokens(
+//                            cachedSession.getAccessToken().getJWTToken(),
+//                            cachedSession.getIdToken().getJWTToken(),
+//                            cachedSession.getRefreshToken().getToken()
+//                    ));
+//                    return;
+
+                    hostedUI.setAuthHandler(new AuthHandler() {
+                        @Override
+                        public void onSuccess(AuthUserSession session) {
+                            callback.onResult(new Tokens(
+                                    session.getAccessToken().getJWTToken(),
+                                    session.getIdToken().getJWTToken(),
+                                    session.getRefreshToken().getToken()
+                            ));
+                        }
+
+                        @Override
+                        public void onSignout() {
+                            callback.onError(new Exception("No cached session."));
+                        }
+
+                        @Override
+                        public void onFailure(Exception e) {
+                            callback.onError(new Exception("No cached session.", e));
+                        }
+                    });
+                    hostedUI.getSession(false);
+                    return;
+                } else if (getSignInMode().equals(SignInMode.OAUTH2)) {
+                    callback.onError(new Exception("Tokens are not supported for OAuth2"));
+                    return;
                 }
 
                 try {
@@ -1084,6 +1638,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param validationData optional, set of data to validate the sign-up request
      * @param callback callback
      */
+    @AnyThread
     public void signUp(final String username,
                        final String password,
                        final Map<String, String> userAttributes,
@@ -1105,6 +1660,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return result of the operation, potentially with next steps
      * @throws Exception
      */
+    @WorkerThread
     public SignUpResult signUp(final String username,
                                final String password,
                                final Map<String, String> userAttributes,
@@ -1128,30 +1684,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     cognitoUserAttr.addAttribute(key, userAttributes.get(key));
                 }
 
-                try {
-                    userpool.signUp(username, password, cognitoUserAttr, validationData, new SignUpHandler() {
-                        @Override
-                        public void onSuccess(final CognitoUser user,
-                                              final boolean signUpConfirmationState,
-                                              final CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+                userpool.signUp(username, password, cognitoUserAttr, validationData, new SignUpHandler() {
+                    @Override
+                    public void onSuccess(final CognitoUser user,
+                                          final boolean signUpConfirmationState,
+                                          final CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
 
-                            signUpUser = user;
-                            UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
-                                    cognitoUserCodeDeliveryDetails.getDestination(),
-                                    cognitoUserCodeDeliveryDetails.getDeliveryMedium(),
-                                    cognitoUserCodeDeliveryDetails.getAttributeName()
-                            );
-                            callback.onResult(new SignUpResult(signUpConfirmationState, userCodeDeliveryDetails));
-                        }
+                        signUpUser = user;
+                        UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
+                                cognitoUserCodeDeliveryDetails.getDestination(),
+                                cognitoUserCodeDeliveryDetails.getDeliveryMedium(),
+                                cognitoUserCodeDeliveryDetails.getAttributeName()
+                        );
+                        callback.onResult(new SignUpResult(signUpConfirmationState, userCodeDeliveryDetails));
+                    }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
@@ -1163,6 +1715,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signUpChallengeResponse
      * @param callback
      */
+    @AnyThread
     public void confirmSignUp(final String username,
                               final String signUpChallengeResponse,
                               final Callback<SignUpResult> callback) {
@@ -1171,6 +1724,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmSignUp(username, signUpChallengeResponse, internalCallback));
     }
 
+    /**
+     * Confirm the sign-up request with follow-up information
+     *
+     * @param username
+     * @param signUpChallengeResponse
+     */
+    @WorkerThread
     public SignUpResult confirmSignUp(final String username,
                                       final String signUpChallengeResponse) throws Exception {
 
@@ -1185,35 +1745,48 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    userpool.getUser(username).confirmSignUp(signUpChallengeResponse, true, new GenericHandler() {
-                        @Override
-                        public void onSuccess() {
-                            callback.onResult(new SignUpResult(
-                                    true,
-                                    null
-                            ));
-                            signUpUser = null;
-                        }
+                userpool.getUser(username).confirmSignUp(signUpChallengeResponse, true, new GenericHandler() {
+                    @Override
+                    public void onSuccess() {
+                        callback.onResult(new SignUpResult(
+                                true,
+                                null
+                        ));
+                        signUpUser = null;
+                    }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
 
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param username
+     * @param callback
+     */
+    @AnyThread
     public void resendSignUp(final String username,
                              final Callback<SignUpResult> callback) {
         final InternalCallback internalCallback = new InternalCallback<SignUpResult>(callback);
         internalCallback.async(_resendSignUp(username, internalCallback));
     }
 
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param username
+     */
+    @WorkerThread
     public SignUpResult resendSignUp(final String username) throws Exception {
         final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
         return internalCallback.await(_resendSignUp(username, internalCallback));
@@ -1224,33 +1797,30 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    userpool.getUser(username).resendConfirmationCodeInBackground(new VerificationHandler() {
-                        @Override
-                        public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
-                            UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
-                                    verificationCodeDeliveryMedium.getDestination(),
-                                    verificationCodeDeliveryMedium.getDeliveryMedium(),
-                                    verificationCodeDeliveryMedium.getAttributeName()
-                            );
-                            callback.onResult(new SignUpResult(
-                                    false,
-                                    userCodeDeliveryDetails
-                            ));
-                        }
+                userpool.getUser(username).resendConfirmationCodeInBackground(new VerificationHandler() {
+                    @Override
+                    public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
+                        UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
+                                verificationCodeDeliveryMedium.getDestination(),
+                                verificationCodeDeliveryMedium.getDeliveryMedium(),
+                                verificationCodeDeliveryMedium.getAttributeName()
+                        );
+                        callback.onResult(new SignUpResult(
+                                false,
+                                userCodeDeliveryDetails
+                        ));
+                    }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
 
+    @AnyThread
     public void forgotPassword(final String username,
                                final Callback<ForgotPasswordResult> callback) {
 
@@ -1258,6 +1828,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_forgotPassword(username, internalCallback));
     }
 
+    @WorkerThread
     public ForgotPasswordResult forgotPassword(final String username) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
@@ -1270,40 +1841,45 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    forgotPasswordCallback = new InternalCallback<ForgotPasswordResult>(callback);
-                    userpool.getUser(username).forgotPasswordInBackground(new ForgotPasswordHandler() {
-                        @Override
-                        public void onSuccess() {
-                            forgotPasswordCallback
-                                    .onResult(new ForgotPasswordResult(ForgotPasswordState.DONE));
-                        }
+                forgotPasswordCallback = new InternalCallback<ForgotPasswordResult>(callback);
+                userpool.getUser(username).forgotPasswordInBackground(new ForgotPasswordHandler() {
+                    @Override
+                    public void onSuccess() {
+                        forgotPasswordCallback
+                                .onResult(new ForgotPasswordResult(ForgotPasswordState.DONE));
+                    }
 
-                        @Override
-                        public void getResetCode(ForgotPasswordContinuation continuation) {
-                            forgotPasswordContinuation = continuation;
-                            ForgotPasswordResult result = new ForgotPasswordResult(ForgotPasswordState.CONFIRMATION_CODE);
-                            CognitoUserCodeDeliveryDetails parameters = continuation.getParameters();
-                            result.setParameters(new UserCodeDeliveryDetails(
-                                    parameters.getDestination(),
-                                    parameters.getDeliveryMedium(),
-                                    parameters.getAttributeName())
-                            );
-                            forgotPasswordCallback.onResult(result);
-                        }
+                    @Override
+                    public void getResetCode(ForgotPasswordContinuation continuation) {
+                        forgotPasswordContinuation = continuation;
+                        ForgotPasswordResult result = new ForgotPasswordResult(ForgotPasswordState.CONFIRMATION_CODE);
+                        CognitoUserCodeDeliveryDetails parameters = continuation.getParameters();
+                        result.setParameters(new UserCodeDeliveryDetails(
+                                parameters.getDestination(),
+                                parameters.getDeliveryMedium(),
+                                parameters.getAttributeName())
+                        );
+                        forgotPasswordCallback.onResult(result);
+                    }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            forgotPasswordCallback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        forgotPasswordCallback.onError(exception);
+                    }
+                });
             }
         };
     }
 
+    /**
+     * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
+     * that the service may request.
+     *
+     * @param password
+     * @param forgotPasswordChallengeResponse
+     * @param callback
+     */
+    @AnyThread
     public void confirmForgotPassword(final String password,
                                       final String forgotPasswordChallengeResponse,
                                       final Callback<ForgotPasswordResult> callback) {
@@ -1312,6 +1888,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse, internalCallback));
     }
 
+    /**
+     * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
+     * that the service may request.
+     *
+     * @param password
+     * @param forgotPasswordChallengeResponse
+     */
+    @WorkerThread
     public ForgotPasswordResult confirmForgotPassword(final String password,
                                                       final String forgotPasswordChallengeResponse) throws Exception {
 
@@ -1331,19 +1915,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     return;
                 }
 
-                try {
-                    forgotPasswordContinuation.setPassword(password);
-                    forgotPasswordContinuation.setVerificationCode(forgotPasswordChallengeResponse);
+                forgotPasswordContinuation.setPassword(password);
+                forgotPasswordContinuation.setVerificationCode(forgotPasswordChallengeResponse);
 
-                    forgotPasswordCallback = new InternalCallback<ForgotPasswordResult>(callback);
-                    forgotPasswordContinuation.continueTask();
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                forgotPasswordCallback = new InternalCallback<ForgotPasswordResult>(callback);
+                forgotPasswordContinuation.continueTask();
             }
         };
     }
 
+    @AnyThread
     public void changePassword(final String oldPassword,
                                final String newPassword,
                                final Callback<Void> callback) {
@@ -1352,6 +1933,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_changePassword(oldPassword, newPassword, internalCallback));
     }
 
+    @WorkerThread
     public void changePassword(final String oldPassword,
                                final String newPassword) throws Exception {
 
@@ -1366,29 +1948,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    userpool.getCurrentUser().changePassword(
-                            oldPassword,
-                            newPassword,
-                            new GenericHandler() {
-                                @Override
-                                public void onSuccess() {
-                                    callback.onResult(null);
-                                }
-
-                                @Override
-                                public void onFailure(Exception exception) {
-                                    callback.onError(exception);
-                                }
+                userpool.getCurrentUser().changePassword(
+                        oldPassword,
+                        newPassword,
+                        new GenericHandler() {
+                            @Override
+                            public void onSuccess() {
+                                callback.onResult(null);
                             }
-                    );
-                } catch (final Exception e) {
-                    callback.onError(e);
-                }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
+                        }
+                );
             }
         };
     }
 
+    @AnyThread
     public void confirmSignIn(final String signInChallengeResponse,
                               final Callback<SignInResult> callback) {
 
@@ -1396,6 +1975,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
     }
 
+    @WorkerThread
     public SignInResult confirmSignIn(final String signInChallengeResponse) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
@@ -1415,34 +1995,30 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     return;
                 }
 
-                try {
-                    final CognitoIdentityProviderContinuation detectedContinuation;
-                    switch (signInState) {
-                        case SMS_MFA:
-                            signInMfaContinuation.setMfaCode(signInChallengeResponse);
-                            detectedContinuation = signInMfaContinuation;
-                            signInCallback = new InternalCallback<SignInResult>(callback);
-                            break;
-                        case NEW_PASSWORD_REQUIRED:
-                            ((NewPasswordContinuation) signInChallengeContinuation)
-                                    .setPassword(signInChallengeResponse);
-                            detectedContinuation = signInChallengeContinuation;
-                            signInCallback = new InternalCallback<SignInResult>(callback);
-                            break;
-                        case DONE:
-                            callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
-                            return;
-                        default:
-                            callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                    "please file a feature request"));
-                            return;
-                    }
+                final CognitoIdentityProviderContinuation detectedContinuation;
+                switch (signInState) {
+                    case SMS_MFA:
+                        signInMfaContinuation.setMfaCode(signInChallengeResponse);
+                        detectedContinuation = signInMfaContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case NEW_PASSWORD_REQUIRED:
+                        ((NewPasswordContinuation) signInChallengeContinuation)
+                                .setPassword(signInChallengeResponse);
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case DONE:
+                        callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
+                        return;
+                    default:
+                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                "please file a feature request"));
+                        return;
+                }
 
-                    if (detectedContinuation != null) {
-                        detectedContinuation.continueTask();
-                    }
-                } catch (Exception e) {
-                    callback.onError(e);
+                if (detectedContinuation != null) {
+                    detectedContinuation.continueTask();
                 }
             }
         };
@@ -1455,6 +2031,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signInChallengeResponse obtained from user
      * @param callback callback
      */
+    @AnyThread
     public void confirmSignIn(final Map<String, String> signInChallengeResponse,
                               final Callback<SignInResult> callback) {
 
@@ -1470,6 +2047,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return the result containing next steps or done.
      * @throws Exception
      */
+    @WorkerThread
     public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
@@ -1488,46 +2066,44 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     return;
                 }
 
-                try {
-                    final CognitoIdentityProviderContinuation detectedContinuation;
-                    switch (signInState) {
-                        case SMS_MFA:
-                        case NEW_PASSWORD_REQUIRED:
-                            callback.onError(new IllegalStateException(
-                                    "Please use confirmSignIn(String, Callback) " +
-                                            "for SMS_MFA and NEW_PASSWORD_REQUIRED challenges"));
-                        case CUSTOM_CHALLENGE:
-                            for (final String key : signInChallengeResponse.keySet()) {
-                                signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
-                            }
-                            detectedContinuation = signInChallengeContinuation;
-                            signInCallback = new InternalCallback<SignInResult>(callback);
-                            break;
-                        case DONE:
-                            detectedContinuation = null;
-                            Log.d(TAG, "confirmSignIn called after signIn has succeeded");
-                            break;
-                        default:
-                            callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                    "please file a feature request"));
-                            return;
-                    }
+                final CognitoIdentityProviderContinuation detectedContinuation;
+                switch (signInState) {
+                    case SMS_MFA:
+                    case NEW_PASSWORD_REQUIRED:
+                        callback.onError(new IllegalStateException(
+                                "Please use confirmSignIn(String, Callback) " +
+                                        "for SMS_MFA and NEW_PASSWORD_REQUIRED challenges"));
+                    case CUSTOM_CHALLENGE:
+                        for (final String key : signInChallengeResponse.keySet()) {
+                            signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
+                        }
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case DONE:
+                        detectedContinuation = null;
+                        Log.d(TAG, "confirmSignIn called after signIn has succeeded");
+                        break;
+                    default:
+                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                "please file a feature request"));
+                        return;
+                }
 
-                    if (detectedContinuation != null) {
-                        detectedContinuation.continueTask();
-                    }
-                } catch (IllegalStateException e) {
-                    callback.onError(e);
+                if (detectedContinuation != null) {
+                    detectedContinuation.continueTask();
                 }
             }
         };
     }
 
+    @AnyThread
     public void getUserAttributes(final Callback<Map<String, String>> callback) {
         InternalCallback<Map<String, String>> internalCallback = new InternalCallback<Map<String, String>>(callback);
         internalCallback.async(_getUserAttributes(internalCallback));
     }
 
+    @WorkerThread
     public Map<String, String> getUserAttributes() throws Exception {
         InternalCallback<Map<String, String>> internalCallback = new InternalCallback<Map<String, String>>();
         return internalCallback.await(_getUserAttributes(internalCallback));
@@ -1537,26 +2113,22 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (!waitForSignIn()) {
-                        callback.onError(new Exception("Operation requires a signed-in state"));
-                        return;
+                if (!waitForSignIn()) {
+                    callback.onError(new Exception("Operation requires a signed-in state"));
+                    return;
+                }
+
+                userpool.getCurrentUser().getDetails(new GetDetailsHandler() {
+                    @Override
+                    public void onSuccess(CognitoUserDetails cognitoUserDetails) {
+                        callback.onResult(cognitoUserDetails.getAttributes().getAttributes());
                     }
 
-                    userpool.getCurrentUser().getDetails(new GetDetailsHandler() {
-                        @Override
-                        public void onSuccess(CognitoUserDetails cognitoUserDetails) {
-                            callback.onResult(cognitoUserDetails.getAttributes().getAttributes());
-                        }
-
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
@@ -1567,6 +2139,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param userAttributes the attributes i.e. email
      * @param callback verification delivery information
      */
+    @AnyThread
     public void updateUserAttributes(final Map<String, String> userAttributes,
                                      final Callback<List<UserCodeDeliveryDetails>> callback) {
 
@@ -1581,6 +2154,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return verification delivery information
      * @throws Exception
      */
+    @WorkerThread
     public List<UserCodeDeliveryDetails> updateUserAttributes(final Map<String, String> userAttributes) throws Exception {
 
         InternalCallback<List<UserCodeDeliveryDetails>> internalCallback = new InternalCallback<List<UserCodeDeliveryDetails>>();
@@ -1605,29 +2179,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     }
                 }
 
-                try {
-                    userpool.getCurrentUser().updateAttributes(cognitoUserAttributes, new UpdateAttributesHandler() {
-                        @Override
-                        public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
-                            final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
-                            for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
-                                list.add(new UserCodeDeliveryDetails(
-                                        details.getDestination(),
-                                        details.getDeliveryMedium(),
-                                        details.getAttributeName()
-                                ));
-                            }
-                            callback.onResult(list);
+                userpool.getCurrentUser().updateAttributes(cognitoUserAttributes, new UpdateAttributesHandler() {
+                    @Override
+                    public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
+                        final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
+                        for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
+                            list.add(new UserCodeDeliveryDetails(
+                                    details.getDestination(),
+                                    details.getDeliveryMedium(),
+                                    details.getAttributeName()
+                            ));
                         }
+                        callback.onResult(list);
+                    }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
-                        }
-                    });
-                } catch (Exception e) {
-                    callback.onError(e);
-                }
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
@@ -1637,6 +2207,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param attributeName i.e. email
      * @param callback verification delivery information
      */
+    @AnyThread
     public void verifyUserAttribute(final String attributeName,
                                     final Callback<UserCodeDeliveryDetails> callback) {
 
@@ -1650,6 +2221,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return verification delivery information
      * @throws Exception
      */
+    @WorkerThread
     public UserCodeDeliveryDetails verifyUserAttribute(final String attributeName) throws Exception {
 
         InternalCallback<UserCodeDeliveryDetails> internalCallback = new InternalCallback<UserCodeDeliveryDetails>();
@@ -1662,33 +2234,29 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (!waitForSignIn()) {
-                        callback.onError(new Exception("Operation requires a signed-in state"));
-                        return;
-                    }
-
-                    userpool.getCurrentUser().getAttributeVerificationCodeInBackground(
-                            attributeName,
-                            new VerificationHandler() {
-                                @Override
-                                public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
-                                    callback.onResult(new UserCodeDeliveryDetails(
-                                            verificationCodeDeliveryMedium.getDestination(),
-                                            verificationCodeDeliveryMedium.getDeliveryMedium(),
-                                            verificationCodeDeliveryMedium.getAttributeName())
-                                    );
-                                }
-
-                                @Override
-                                public void onFailure(Exception exception) {
-                                    callback.onError(exception);
-                                }
-                            }
-                    );
-                } catch (Exception e) {
-                    callback.onError(e);
+                if (!waitForSignIn()) {
+                    callback.onError(new Exception("Operation requires a signed-in state"));
+                    return;
                 }
+
+                userpool.getCurrentUser().getAttributeVerificationCodeInBackground(
+                        attributeName,
+                        new VerificationHandler() {
+                            @Override
+                            public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
+                                callback.onResult(new UserCodeDeliveryDetails(
+                                        verificationCodeDeliveryMedium.getDestination(),
+                                        verificationCodeDeliveryMedium.getDeliveryMedium(),
+                                        verificationCodeDeliveryMedium.getAttributeName())
+                                );
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
+                        }
+                );
             }
         };
     }
@@ -1699,6 +2267,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @param callback callback
      */
+    @AnyThread
     public void confirmUpdateUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse,
                                      final Callback<Void> callback) {
@@ -1713,6 +2282,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @throws Exception
      */
+    @WorkerThread
     public void confirmUpdateUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse) throws Exception {
 
@@ -1726,6 +2296,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @param callback callback
      */
+    @AnyThread
     public void confirmVerifyUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse,
                                      final Callback<Void> callback) {
@@ -1740,6 +2311,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param updateUserAttributeChallengeResponse i.e. 123456
      * @throws Exception
      */
+    @WorkerThread
     public void confirmVerifyUserAttribute(final String attributeName,
                                      final String updateUserAttributeChallengeResponse) throws Exception {
 
@@ -1754,30 +2326,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (!waitForSignIn()) {
-                        callback.onError(new Exception("Operation requires a signed-in state"));
-                        return;
-                    }
-
-                    userpool.getCurrentUser().verifyAttribute(
-                            attributeName,
-                            updateUserAttributeChallengeResponse,
-                            new GenericHandler() {
-                                @Override
-                                public void onSuccess() {
-                                    callback.onResult(null);
-                                }
-
-                                @Override
-                                public void onFailure(Exception exception) {
-                                    callback.onError(exception);
-                                }
-                            }
-                    );
-                } catch (Exception e) {
-                    callback.onError(e);
+                if (!waitForSignIn()) {
+                    callback.onError(new Exception("Operation requires a signed-in state"));
+                    return;
                 }
+
+                userpool.getCurrentUser().verifyAttribute(
+                        attributeName,
+                        updateUserAttributeChallengeResponse,
+                        new GenericHandler() {
+                            @Override
+                            public void onSuccess() {
+                                callback.onResult(null);
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
+                        }
+                );
             }
         };
     }
@@ -1942,10 +2510,29 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 //    }
 
     /**
+     * Pass in the Intent from the OAuth 2.0 exchange from {@link #showSignIn(Activity)}
+     *
+     * @param intent
+     * @return true if the intent was accepted.
+     */
+    @AnyThread
+    public boolean handleAuthResponse(final Intent intent) {
+        if (hostedUI != null) {
+            hostedUI.getTokens(intent.getData());
+            return true;
+        }
+        if (mOAuth2Client != null && mOAuth2Client.handleRedirect(intent.getData())) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Shows a sign-in UI for user's to sign-in, sign-up, forgot password, create account
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      * @param callback callback with UserStateDetails at end of operation
      */
+    @AnyThread
     public void showSignIn(final Activity callingActivity,
                            final Callback<UserStateDetails> callback) { //SignInUIOptions
 
@@ -1957,6 +2544,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Shows a sign-in UI for user's to sign-in, sign-up, forgot password, create account
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      */
+    @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity) throws Exception {
 
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
@@ -1968,6 +2556,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param signInUIOptions Override any default configuration with your preferences.
      * @param callback callback with UserStateDetails at end of operation
      */
+    @AnyThread
     public void showSignIn(final Activity callingActivity,
                            final SignInUIOptions signInUIOptions,
                            final Callback<UserStateDetails> callback) { //SignInUIOptions
@@ -1981,6 +2570,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param callingActivity The activity that the sign-in screen will be shown on top of.
      * @param signInUIOptions Override any default configuration with your preferences.
      */
+    @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity,
                                        final SignInUIOptions signInUIOptions) throws Exception {
 
@@ -1989,6 +2579,305 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private Runnable _showSignIn(final Activity callingActivity,
+                                 final SignInUIOptions signInUIOptions,
+                                 final Callback<UserStateDetails> callback) {
+        if (signInUIOptions.getHostedUIOptions() != null) {
+            final JSONObject hostedUIJSON = getHostedUIJSON();
+            if (hostedUIJSON == null) {
+                return new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onError(new Exception("showSignIn called with HostedUI options in awsconfiguration.json"));
+                    }
+                };
+            }
+            if (hostedUIJSON.optString("TokenURI", null) != null) {
+                return _showSignInOAuth2UI(callingActivity, signInUIOptions, callback);
+            } else {
+                return _showSignInHostedUI(callingActivity, signInUIOptions, callback);
+            }
+        }
+        return _showSignInDropInUI(callingActivity, signInUIOptions, callback);
+    }
+
+    private Runnable _showSignInOAuth2UI(final Activity callingActivity,
+                                         final SignInUIOptions signInUIOptions,
+                                         final Callback<UserStateDetails> callback) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                final HostedUIOptions hostedUIOptions = signInUIOptions.getHostedUIOptions();
+
+                // Reset settings to JSON
+                JSONObject hostedUIJSON = getHostedUIJSONFromJSON();
+                if (hostedUIJSON == null) {
+                    callback.onError(new Exception("Could not create OAuth configuration object"));
+                }
+
+                if (hostedUIOptions.getFederationEnabled() != null) {
+                    mStore.set(FEDERATION_ENABLED_KEY, hostedUIOptions.getFederationEnabled() ? "true" : "false");
+                } else {
+                    mStore.set(FEDERATION_ENABLED_KEY, "true");
+                }
+                mStore.set(SIGN_IN_MODE, SignInMode.OAUTH2.toString());
+
+                if (isFederationEnabled() && hostedUIOptions.getFederationProviderName() == null) {
+                    throw new IllegalArgumentException("OAuth flow requires a federation provider name if federation is enabled.");
+                }
+
+                if (hostedUIOptions.getSignOutQueryParameters() != null) {
+                    try {
+                        JSONObject signOutParams = new JSONObject();
+                        for (Map.Entry<String, String> e : hostedUIOptions.getSignOutQueryParameters().entrySet()) {
+                            signOutParams.put(e.getKey(), e.getValue());
+                        }
+                        hostedUIJSON.put("SignOutQueryParameters", signOutParams);
+                    } catch (JSONException e1) {
+                        callback.onError(new Exception("Failed to construct sign-out query parameters", e1));
+                        return;
+                    }
+                }
+                if (hostedUIOptions.getTokenQueryParameters() != null) {
+                    try {
+                    JSONObject tokenParams = new JSONObject();
+                    for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
+                            tokenParams.put(e.getKey(), e.getValue());
+                    }
+                    hostedUIJSON.put("TokenQueryParameters", tokenParams);
+                    } catch (JSONException e1) {
+                        callback.onError(new Exception("Failed to construct token query parameters", e1));
+                        return;
+                    }
+                }
+
+                mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
+
+                Uri.Builder authorizeUriBuilder;
+                try {
+                    authorizeUriBuilder = Uri.parse(hostedUIJSON.getString("SignInURI")).buildUpon();
+                    if (hostedUIOptions.getSignInQueryParameters() != null) {
+                        for (Map.Entry<String, String> e : hostedUIOptions.getSignInQueryParameters().entrySet()) {
+                            authorizeUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
+                        }
+                    }
+                    authorizeUriBuilder.appendQueryParameter("redirect_uri", hostedUIJSON.getString("SignInRedirectURI"));
+                    authorizeUriBuilder.appendQueryParameter("scopes", hostedUIJSON.getJSONArray("Scopes").join(" "));
+                    authorizeUriBuilder.appendQueryParameter("client_id", hostedUIJSON.getString("AppClientId"));
+                } catch (Exception e) {
+                    throw new RuntimeException("Failed to construct authorization url for OAuth", e);
+                }
+
+                Uri.Builder tokensUriBuilder;
+                final Map<String, String> tokensBody = new HashMap<String, String>();
+                try {
+                    tokensUriBuilder = Uri.parse(hostedUIJSON.getString("TokenURI")).buildUpon();
+                    if (hostedUIOptions.getSignInQueryParameters() != null) {
+                        for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
+                            tokensUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
+                        }
+                    }
+                    tokensBody.put("client_id", hostedUIJSON.getString("AppClientId"));
+                    tokensBody.put("redirect_uri", hostedUIJSON.getString("SignInRedirectURI"));
+                } catch (Exception e) {
+                    throw new RuntimeException("Failed to construct tokens url for OAuth", e);
+                }
+                final Uri tokensUri = tokensUriBuilder.build();
+
+                mOAuth2Client.authorize(authorizeUriBuilder.build(), new Callback<AuthorizeResponse>() {
+                    @Override
+                    public void onResult(AuthorizeResponse result) {
+                        Log.i(TAG, "onResult: OAuth2 callback occurred, exchanging code for token");
+                        mOAuth2Client.requestTokens(tokensUri, new HashMap<String, String>(), tokensBody, result.getCode(), new Callback<OAuth2Tokens>() {
+                            @Override
+                            public void onResult(OAuth2Tokens result) {
+                                if (isFederationEnabled()) {
+                                    federatedSignInWithoutAssigningState(
+                                            hostedUIOptions.getFederationProviderName(),
+                                            result.getIdToken(),// TODO verify id token is correct, this would mean OAuth support requires scope openid
+                                            new Callback<UserStateDetails>() {
+                                                @Override
+                                                public void onResult(UserStateDetails result) {
+                                                    final UserStateDetails userStateDetails =
+                                                            getUserStateDetails(false);
+                                                    callback.onResult(userStateDetails);
+                                                    setUserState(userStateDetails);
+                                                }
+
+                                                @Override
+                                                public void onError(Exception e) {
+                                                    final UserStateDetails userStateDetails =
+                                                            getUserStateDetails(false);
+                                                    callback.onResult(userStateDetails);
+                                                    setUserState(userStateDetails);
+                                                }
+                                            });
+                                } else {
+                                    final UserStateDetails userStateDetails =
+                                            getUserStateDetails(false);
+                                    callback.onResult(userStateDetails);
+                                    setUserState(userStateDetails);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                callback.onError(e);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        callback.onError(e);
+                    }
+                });
+            }
+        };
+    }
+
+    private Runnable _showSignInHostedUI(final Activity callingActivity,
+                                 final SignInUIOptions signInUIOptions,
+                                 final Callback<UserStateDetails> callback) {
+        return new Runnable() {
+            @Override
+            public void run() {
+
+                final HostedUIOptions hostedUIOptions = signInUIOptions.getHostedUIOptions();
+
+                // Reset settings to JSON
+                JSONObject hostedUIJSON = null;
+                try {
+                    hostedUIJSON = new JSONObject(getHostedUIJSONFromJSON().toString());
+                } catch (JSONException e) {
+                    callback.onError(new Exception("Could not create OAuth configuration object", e));
+                }
+
+                if (hostedUIOptions.getFederationEnabled() != null) {
+                    mStore.set(FEDERATION_ENABLED_KEY, hostedUIOptions.getFederationEnabled() ? "true" : "false");
+                } else {
+                    mStore.set(FEDERATION_ENABLED_KEY, "true");
+                }
+
+                if (hostedUIOptions.getSignOutQueryParameters() != null) {
+                    try {
+                        JSONObject signOutParams = new JSONObject();
+                        for (Map.Entry<String, String> e : hostedUIOptions.getSignOutQueryParameters().entrySet()) {
+                            signOutParams.put(e.getKey(), e.getValue());
+                        }
+                        hostedUIJSON.put("SignOutQueryParameters", signOutParams);
+                    } catch (JSONException e1) {
+                        callback.onError(new Exception("Failed to construct sign-out query parameters", e1));
+                        return;
+                    }
+                }
+                if (hostedUIOptions.getTokenQueryParameters() != null) {
+                    try {
+                        JSONObject tokenParams = new JSONObject();
+                        for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
+                            tokenParams.put(e.getKey(), e.getValue());
+                        }
+                        hostedUIJSON.put("TokenQueryParameters", tokenParams);
+                    } catch (JSONException e1) {
+                        callback.onError(new Exception("Failed to construct token query parameters", e1));
+                        return;
+                    }
+                }
+
+                mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
+
+                final HashSet<String> scopes;
+                if (hostedUIOptions.getScopes() != null) {
+                    scopes = new HashSet<String>();
+                    Collections.addAll(scopes, hostedUIOptions.getScopes());
+                } else {
+                    scopes = null;
+                }
+
+                final String identityProvider = hostedUIOptions.getIdentityProvider();
+                final String idpIdentifier = hostedUIOptions.getIdpIdentifier();
+
+                mStore.set(SIGN_IN_MODE, SignInMode.HOSTED_UI.toString());
+
+                Auth.Builder hostedUIBuilder = null;
+                try {
+                    hostedUIBuilder = getHostedUI(hostedUIJSON);
+                } catch (JSONException e) {
+                    throw new RuntimeException("Failed to construct HostedUI from awsconfiguration.json", e);
+                }
+
+                hostedUIBuilder
+                        .setPersistenceEnabled(mIsPersistenceEnabled)
+                        .setAuthHandler(new AuthHandler() {
+                            boolean hasSucceededOnce = false;
+
+                            @Override
+                            public void onSuccess(AuthUserSession session) {
+                                Log.d(TAG, "onSuccess: HostedUI signed-in");
+                                hasSucceededOnce = true;
+                                if (isFederationEnabled()) {
+                                    federatedSignInWithoutAssigningState(userpoolsLoginKey,
+                                            session.getIdToken().getJWTToken(),
+                                            new Callback<UserStateDetails>() {
+                                                @Override
+                                                public void onResult(UserStateDetails result) {
+                                                    Log.d(TAG, "onResult: Federation from the Hosted UI " +
+                                                            "succeeded");
+                                                }
+
+                                                @Override
+                                                public void onError(Exception e) {
+                                                    Log.e(TAG, "onError: Federation from the Hosted UI " +
+                                                            "failed", e);
+                                                }
+                                            });
+                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final UserStateDetails userStateDetails =
+                                                getUserStateDetails(false);
+                                        callback.onResult(userStateDetails);
+                                        setUserState(userStateDetails);
+                                    }
+                                }).start();
+                            }
+
+                            @Override
+                            public void onSignout() {
+                                Log.d(TAG, "onSignout: HostedUI signed-out");
+                            }
+
+                            @Override
+                            public void onFailure(final Exception e) {
+                                if (hasSucceededOnce) {
+                                    Log.d(TAG, "onFailure: Ignoring failure because HostedUI " +
+                                            "has signaled success at least once.");
+                                    return;
+                                }
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback.onError(e);
+                                    }
+                                }).start();
+                            }
+                        });
+                if (scopes != null) {
+                    hostedUIBuilder.setScopes(scopes);
+                }
+                if (identityProvider != null) {
+                    hostedUIBuilder.setIdentityProvider(identityProvider);
+                }
+                if (idpIdentifier != null) {
+                    hostedUIBuilder.setIdpIdentifier(idpIdentifier);
+                }
+                hostedUI = hostedUIBuilder.build();
+                hostedUI.getSession();
+            }
+        };
+    }
+
+    private Runnable _showSignInDropInUI(final Activity callingActivity,
                                  final SignInUIOptions signInUIOptions,
                                  final Callback<UserStateDetails> callback) {
 
@@ -2017,17 +2906,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                     if (isConfigurationKeyPresent(USER_POOLS)) {
                         authUIConfigBuilder.userPools(true);
-                        identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
                     }
 
                     if (isConfigurationKeyPresent(FACEBOOK)) {
                         authUIConfigBuilder.signInButton(FacebookButton.class);
-                        identityManager.addSignInProvider(FacebookSignInProvider.class);
                     }
 
                     if (isConfigurationKeyPresent(GOOGLE)) {
                         authUIConfigBuilder.signInButton(GoogleButton.class);
-                        identityManager.addSignInProvider(GoogleSignInProvider.class);
                     }
 
                     Class<? extends Activity> nextActivityClass =
@@ -2042,6 +2928,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     showSignInWaitLatch = new CountDownLatch(1);
                     try {
                         showSignInWaitLatch.await();
+                        callback.onResult(getUserStateDetails(false));
                         Log.d(TAG, "run: showSignIn completed");
                     } catch (InterruptedException e) {
                         callback.onError(e);
@@ -2269,18 +3156,26 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * AWSConfiguration.
      */
     private void registerConfigSignInProviders() {
+        registerConfigSignInProviders(this.awsConfiguration);
+    }
+
+    /**
+     * Register the SignInProvider and permissions based on the
+     * AWSConfiguration.
+     */
+    private void registerConfigSignInProviders(final AWSConfiguration awsConfig) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS)) {
+        if (isConfigurationKeyPresent(USER_POOLS, awsConfig)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(FACEBOOK)) {
+        if (isConfigurationKeyPresent(FACEBOOK, awsConfig)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(GOOGLE)) {
+        if (isConfigurationKeyPresent(GOOGLE, awsConfig)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
     }
@@ -2291,8 +3186,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param configurationKey The key for SignIn in AWSConfiguration
      */
     private boolean isConfigurationKeyPresent(final String configurationKey) {
+        return isConfigurationKeyPresent(configurationKey, this.awsConfiguration);
+    }
+
+    /**
+     * Check if the AWSConfiguration has the specified key.
+     *
+     * @param configurationKey The key for SignIn in AWSConfiguration
+     */
+    private boolean isConfigurationKeyPresent(final String configurationKey, final AWSConfiguration awsConfig) {
         try {
-            JSONObject jsonObject = this.awsConfiguration.optJsonObject(configurationKey);
+            JSONObject jsonObject = awsConfig.optJsonObject(configurationKey);
             if (configurationKey.equals(GOOGLE)) {
                 return jsonObject != null && jsonObject.getString(GOOGLE_WEBAPP_CONFIG_KEY) != null;
             } else {
@@ -2572,4 +3476,194 @@ class AWSMobileClientStore {
     void clear() {
         mAWSKeyValueStore.clear();
     }
+}
+
+/**
+ * A duplicate class of AWSEnhancedCognitoIdentityProvider that provides the ability to
+ * branch into developer authenticated identities.
+ */
+class AWSMobileClientCognitoIdentityProvider extends AWSAbstractCognitoIdentityProvider {
+
+    boolean isDeveloperAuthenticated;
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId) {
+        this(accountId, identityPoolId, new ClientConfiguration());
+    }
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     * @param clientConfiguration the configuration to apply to service clients
+     *            created
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId,
+                                              ClientConfiguration clientConfiguration) {
+        this(accountId, identityPoolId, new AmazonCognitoIdentityClient
+                (new AnonymousAWSCredentials(), clientConfiguration));
+    }
+
+    /**
+     * An extension of the AbstractCognitoProvider that is used to communicate
+     * with Cognito.
+     *
+     * @param accountId the account id of the developer
+     * @param identityPoolId the identity pool id of the app/user in question
+     * @param cibClient the cib client which will be used to contact the cib
+     *            back end
+     */
+    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId,
+                                              AmazonCognitoIdentity cibClient) {
+        super(accountId, identityPoolId, cibClient);
+    }
+
+    @Override
+    protected String getUserAgent() {
+        return "AWSMobileClient";
+    }
+
+    /**
+     * Internal method that switches the flow of the {@link com.amazonaws.auth.CognitoCredentialsProvider}
+     * to be the developer authenticated flow.
+     *
+     * @param identityId provided by user upstream
+     * @param token provided by user upstream
+     */
+    void setDeveloperAuthenticated(final String identityId,
+                                   final String token) {
+        super.setIdentityId(identityId);
+        super.setToken(token);
+        isDeveloperAuthenticated = true;
+    }
+
+    /**
+     * Internal method that switches the flow of the {@link com.amazonaws.auth.CognitoCredentialsProvider}
+     * to be the Cognito authenticated flow.
+     */
+    void setNotDeveloperAuthenticated() {
+        isDeveloperAuthenticated = false;
+    }
+
+    @Override
+    public String getProviderName() {
+        return "Cognito";
+    }
+
+    @Override
+    public String refresh() {
+        if (isDeveloperAuthenticated) {
+            // The identity id is already set in the setDeveloperAuthenticated call
+            return this.token;
+        } else {
+            getIdentityId();
+            return null;
+        }
+    }
+
+}
+
+class OAuth2Utils {
+    private final Context mContext;
+    private final Uri mSignInRedirectUri;
+    private CustomTabsServiceConnection mCustomTabsServiceConnection;
+    private CustomTabsClient mCustomTabsClient;
+    private CustomTabsSession mCustomTabsSession;
+    private CustomTabsCallback customTabsCallback;
+    private String mState;
+    private String mError;
+    private String mErrorDescription;
+
+    OAuth2Utils(final Context context, final Uri signInRedirectUri) {
+        this.mContext = context;
+        this.mSignInRedirectUri = signInRedirectUri;
+        customTabsCallback = new CustomTabsCallback();
+    }
+
+    void preWarm() {
+        // Warm up custom tabs for faster launch
+        mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
+            @Override
+            public void onCustomTabsServiceConnected(final ComponentName name, final CustomTabsClient client) {
+                mCustomTabsClient = client;
+                mCustomTabsClient.warmup(0L);
+                mCustomTabsSession = mCustomTabsClient.newSession(customTabsCallback);
+            }
+
+            @Override
+            public void onServiceDisconnected(final ComponentName name) {
+                mCustomTabsClient = null;
+            }
+        };
+        CustomTabsClient.bindCustomTabsService(mContext,
+                ClientConstants.CHROME_PACKAGE, mCustomTabsServiceConnection);
+    }
+
+    void authorize(final String webDomain, final String clientId, final Map<String, String> queryParameterMap) {
+        mState = Pkce.generateRandom();
+        final Uri.Builder builder = Uri.parse(webDomain).buildUpon();
+        for (Map.Entry<String, String> entry : queryParameterMap.entrySet()) {
+            builder.appendQueryParameter(entry.getKey(), entry.getValue());
+        }
+        if (!queryParameterMap.containsKey("code")) {
+            builder.appendQueryParameter("response_type", "code");
+        }
+        if (!queryParameterMap.containsKey("client_id")) {
+            if (clientId != null) {
+                builder.appendQueryParameter("client_id", clientId);
+            } else {
+                throw new IllegalArgumentException("Client id must be specified for an authorization request.");
+            }
+        }
+        builder.appendQueryParameter("state", mState);
+        navigate(builder.build());
+    }
+
+    /**
+     * Opens the CustomTabs browser to the specified URI
+     * @param uri
+     */
+    void navigate(Uri uri) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+        CustomTabsIntent mCustomTabsIntent = builder.build();
+        mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
+        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mCustomTabsIntent.launchUrl(mContext, uri);
+    }
+
+    boolean parse(Uri uri) {
+        // Read the redirect URI for a code
+        if (uri.getScheme().equals(mSignInRedirectUri.getScheme())
+                && uri.getAuthority().equals(mSignInRedirectUri.getAuthority())
+                && uri.getPath().equals(mSignInRedirectUri.getPath())
+                && uri.getQueryParameterNames().containsAll(mSignInRedirectUri.getQueryParameterNames())) {
+            final String code = uri.getQueryParameter("code");
+            final String state = uri.getQueryParameter("state");
+            if (!mState.equals(state)) {
+                return false;
+            }
+            mError = uri.getQueryParameter("error");
+            mErrorDescription = uri.getQueryParameter("error_description");
+
+            if (mError != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Uri exchangeCode(String uri) {
+        // Call XXXX/token to exchange code for access token
+        return null;
+    }
+
 }

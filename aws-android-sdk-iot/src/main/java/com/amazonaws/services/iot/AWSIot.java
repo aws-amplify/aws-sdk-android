@@ -311,7 +311,9 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Attaches the specified principal to the specified thing.
+     * Attaches the specified principal to the specified thing. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param attachThingPrincipalRequest <p>
@@ -898,7 +900,10 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Creates a thing record in the registry.
+     * Creates a thing record in the registry. If this call is made multiple
+     * times using the same thing name and configuration, the call will succeed.
+     * If this call is made with the same thing name but different configuration
+     * a <code>ResourceAlreadyExistsException</code> is thrown.
      * </p>
      * <note>
      * <p>
@@ -2194,7 +2199,9 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Detaches the specified principal from the specified thing.
+     * Detaches the specified principal from the specified thing. A principal
+     * can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * <note>
      * <p>
@@ -2485,6 +2492,34 @@ public interface AWSIot {
     GetRegistrationCodeResult getRegistrationCode(
             GetRegistrationCodeRequest getRegistrationCodeRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets statistics about things that match the specified query.
+     * </p>
+     * 
+     * @param getStatisticsRequest
+     * @return getStatisticsResult The response from the GetStatistics service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws InvalidAggregationException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetStatisticsResult getStatistics(GetStatisticsRequest getStatisticsRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -3037,7 +3072,9 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the things associated with the specified principal.
+     * Lists the things associated with the specified principal. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param listPrincipalThingsRequest <p>
@@ -3309,7 +3346,9 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the principals associated with the specified thing.
+     * Lists the principals associated with the specified thing. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param listThingPrincipalsRequest <p>

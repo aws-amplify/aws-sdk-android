@@ -71,6 +71,16 @@ class TopicsDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("NumberOfTopics");
             jsonWriter.value(numberOfTopics);
         }
+        if (topicsDetectionJobProperties.getDataAccessRoleArn() != null) {
+            String dataAccessRoleArn = topicsDetectionJobProperties.getDataAccessRoleArn();
+            jsonWriter.name("DataAccessRoleArn");
+            jsonWriter.value(dataAccessRoleArn);
+        }
+        if (topicsDetectionJobProperties.getVolumeKmsKeyId() != null) {
+            String volumeKmsKeyId = topicsDetectionJobProperties.getVolumeKmsKeyId();
+            jsonWriter.name("VolumeKmsKeyId");
+            jsonWriter.value(volumeKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

@@ -99,6 +99,7 @@ public class AuthClient {
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private CustomTabsServiceConnection mCustomTabsServiceConnection;
+    private volatile boolean receivedCodeTabShouldBeHidden;
 
     /**
      * Constructs {@link AuthClient} with no user name.
@@ -152,8 +153,9 @@ public class AuthClient {
      *     To exchange the code for tokens, the {@link Auth#getTokens(Uri)} method will use the
      *     state in the redirect uri to fetch the stored proof-key.
      * </p>
+     * @param showSignInIfExpired true if the web UI should launch when the session is expired
      */
-    protected void getSession() {
+    protected void getSession(final boolean showSignInIfExpired) {
         try {
             proofKey = Pkce.generateRandom();
             proofKeyHash = Pkce.generateHash(proofKey);
@@ -175,8 +177,10 @@ public class AuthClient {
         // Try refreshing the tokens
         if (session.getRefreshToken() != null && session.getRefreshToken().getToken() != null) {
             refreshSession(session, pool.getSignInRedirectUri(), pool.getScopes(), userHandler);
-        } else {
+        } else if (showSignInIfExpired) {
             launchCognitoAuth(pool.getSignInRedirectUri(), pool.getScopes());
+        } else {
+            userHandler.onFailure(new Exception("No cached session"));
         }
     }
 
@@ -200,6 +204,23 @@ public class AuthClient {
     }
 
     /**
+     * Signs-out a user.
+     * <p>
+     *     Clears cached tokens for the user. Launches the sign-out Cognito web end-point to
+     *     clear all Cognito Auth cookies stored by Chrome.
+     * </p>
+     *
+     * @param clearLocalTokensOnly true if signs out the user from the client,
+     *                             but the session may still be alive from the browser.
+     */
+    public void signOut(final boolean clearLocalTokensOnly) {
+        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+        if (!clearLocalTokensOnly) {
+            launchSignOut(pool.getSignOutRedirectUri());
+        }
+    }
+
+    /**
      * @return {@code true} if valid tokens are available for the user.
      */
     @SuppressWarnings("checkstyle:hiddenfield")
@@ -218,6 +239,8 @@ public class AuthClient {
         if (uri == null) {
             return;
         }
+        // The flag
+        receivedCodeTabShouldBeHidden = true;
         getTokens(uri, userHandler);
     }
 
@@ -462,7 +485,10 @@ public class AuthClient {
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_REDIRECT_URI, redirectUri);
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId());
         httpBodyParams.put(ClientConstants.HTTP_REQUEST_REFRESH_TOKEN, session.getRefreshToken().getToken());
-        httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, getUserContextData());
+        final String userContextData = getUserContextData();
+        if (userContextData != null) {
+            httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, userContextData);
+        }
         return  httpBodyParams;
     }
 
@@ -538,6 +564,8 @@ public class AuthClient {
      */
     private void launchCustomTabs(final Uri uri) {
     	try {
+            receivedCodeTabShouldBeHidden = false;
+
 	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
@@ -590,7 +618,11 @@ public class AuthClient {
         public void onNavigationEvent(final int navigationEvent, final Bundle extras) {
             super.onNavigationEvent(navigationEvent, extras);
             if (navigationEvent == ClientConstants.CHROME_NAVIGATION_CANCELLED) {
-                userHandler.onFailure(new AuthNavigationException("user cancelled"));
+                Log.i("AuthClient", "customTab hidden callback");
+                if (!receivedCodeTabShouldBeHidden) {
+                    userHandler.onFailure(new AuthNavigationException("user cancelled"));
+                    receivedCodeTabShouldBeHidden = false;
+                }
             }
         }
     };

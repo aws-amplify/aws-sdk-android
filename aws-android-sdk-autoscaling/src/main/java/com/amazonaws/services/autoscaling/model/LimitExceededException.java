@@ -19,9 +19,9 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * You have already reached a limit for your Auto Scaling resources (for
- * example, groups, launch configurations, or lifecycle hooks). For more
- * information, see <a>DescribeAccountLimits</a>.
+ * You have already reached a limit for your Amazon EC2 Auto Scaling resources
+ * (for example, Auto Scaling groups, launch configurations, or lifecycle
+ * hooks). For more information, see <a>DescribeAccountLimits</a>.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {

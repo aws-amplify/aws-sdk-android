@@ -80,6 +80,11 @@ public class CreateVocabularyRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createVocabularyRequest.getVocabularyFileUri() != null) {
+                String vocabularyFileUri = createVocabularyRequest.getVocabularyFileUri();
+                jsonWriter.name("VocabularyFileUri");
+                jsonWriter.value(vocabularyFileUri);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

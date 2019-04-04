@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * Describes an adjustment based on the difference between the value of the
  * aggregated CloudWatch metric and the breach threshold that you've defined for
- * the alarm.
+ * the alarm. Used in combination with <a>PutScalingPolicy</a>.
  * </p>
  * <p>
  * For the following examples, suppose that you have an alarm with a breach

@@ -650,7 +650,36 @@ public final class Auth {
      * </p>
      */
     public void getSession() {
-        this.user.getSession();
+        this.user.getSession(true);
+    }
+
+    /**
+     * Use this method to get tokens for a user, the tokens are returned though the callback.
+     * {@link AuthHandler#onSuccess(AuthUserSession)}.
+     * <p>
+     *     If a username is available, this method looks for valid cached tokens on the device.
+     *     If the cached token have expired and the refresh token (if available) is used to get new
+     *     tokens.
+     *     If valid tokens are not available locally or if the username is not set, Cognito Auth's
+     *     web interface is launched on Chrome Custom Tabs. The user credentials will be required to
+     *     authenticate.
+     *     <b>Note</b>: This SDK uses OAuth Code-Grant flow with PKCE, for authentication. To get
+     *     tokens after successful user authentication, the Amazom Cognito Auth returns the
+     *     authentication code through the redirect uri. Call {@link Auth#getTokens(Uri)} to
+     *     get tokens from the authentication code. <i>Uri</i> is the redirect uri with the
+     *     authentication code.
+     * </p>
+     */
+    public void getSession(final boolean launchWebUIIfExpired) {
+        this.user.getSession(launchWebUIIfExpired);
+    }
+
+    /**
+     * Reset the AuthHandler on the client.
+     * @param authHandler
+     */
+    public void setAuthHandler(final AuthHandler authHandler) {
+        this.user.setUserHandler(authHandler);
     }
 
     /**
@@ -661,7 +690,17 @@ public final class Auth {
      * </p>
      */
     public void signOut() {
-        this.user.signOut();
+        this.user.signOut(false);
+    }
+
+    /**
+     * Sign out with options.
+     *
+     * @param clearLocalTokensOnly true if signs out the user from the client,
+     *                             but the session may still be alive from the browser.
+     */
+    public void signOut(final boolean clearLocalTokensOnly) {
+        this.user.signOut(clearLocalTokensOnly);
     }
 
     /**

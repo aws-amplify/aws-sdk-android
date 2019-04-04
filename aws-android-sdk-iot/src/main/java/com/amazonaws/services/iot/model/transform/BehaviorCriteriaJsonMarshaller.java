@@ -41,6 +41,24 @@ class BehaviorCriteriaJsonMarshaller {
             jsonWriter.name("durationSeconds");
             jsonWriter.value(durationSeconds);
         }
+        if (behaviorCriteria.getConsecutiveDatapointsToAlarm() != null) {
+            Integer consecutiveDatapointsToAlarm = behaviorCriteria
+                    .getConsecutiveDatapointsToAlarm();
+            jsonWriter.name("consecutiveDatapointsToAlarm");
+            jsonWriter.value(consecutiveDatapointsToAlarm);
+        }
+        if (behaviorCriteria.getConsecutiveDatapointsToClear() != null) {
+            Integer consecutiveDatapointsToClear = behaviorCriteria
+                    .getConsecutiveDatapointsToClear();
+            jsonWriter.name("consecutiveDatapointsToClear");
+            jsonWriter.value(consecutiveDatapointsToClear);
+        }
+        if (behaviorCriteria.getStatisticalThreshold() != null) {
+            StatisticalThreshold statisticalThreshold = behaviorCriteria.getStatisticalThreshold();
+            jsonWriter.name("statisticalThreshold");
+            StatisticalThresholdJsonMarshaller.getInstance().marshall(statisticalThreshold,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

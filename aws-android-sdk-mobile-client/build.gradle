@@ -5,7 +5,8 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 15
+        // READ: The minimum SDK is 15, but for the UI tests to run, this is 23
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -47,8 +48,29 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     //noinspection GradleCompatible
+
+    androidTestImplementation 'com.android.support:appcompat-v7:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+
+    // Optional dependencies
+    androidTestImplementation (project(':aws-android-sdk-auth-ui')) {
+        exclude group: "com.google.android", module: "android"
+    }
+    androidTestImplementation (project(':aws-android-sdk-auth-facebook')) {
+        exclude group: "com.google.android", module: "android"
+    }
+    androidTestImplementation (project(':aws-android-sdk-auth-google')) {
+        exclude group: "com.google.android", module: "android"
+    }
+    androidTestImplementation (project(':aws-android-sdk-auth-userpools')) {
+        exclude group: "com.google.android", module: "android"
+    }
+    androidTestImplementation (project(':aws-android-sdk-cognitoauth')) {
+        exclude group: "com.google.android", module: "android"
+    }
 
     implementation 'com.android.support:support-compat:27.1.1'
 
@@ -72,4 +94,6 @@ dependencies {
     compileOnly project(':aws-android-sdk-auth-facebook')
     compileOnly project(':aws-android-sdk-auth-google')
     compileOnly project(':aws-android-sdk-auth-userpools')
+    compileOnly project(':aws-android-sdk-cognitoauth')
+    compileOnly "com.android.support:customtabs:25.4.0"
 }

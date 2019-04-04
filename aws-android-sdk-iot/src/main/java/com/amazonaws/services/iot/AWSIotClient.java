@@ -282,6 +282,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new IndexNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidAggregationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidQueryExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidResponseExceptionUnmarshaller());
@@ -703,7 +704,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Attaches the specified principal to the specified thing.
+     * Attaches the specified principal to the specified thing. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param attachThingPrincipalRequest <p>
@@ -1787,7 +1790,10 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Creates a thing record in the registry.
+     * Creates a thing record in the registry. If this call is made multiple
+     * times using the same thing name and configuration, the call will succeed.
+     * If this call is made with the same thing name but different configuration
+     * a <code>ResourceAlreadyExistsException</code> is thrown.
      * </p>
      * <note>
      * <p>
@@ -4343,7 +4349,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Detaches the specified principal from the specified thing.
+     * Detaches the specified principal from the specified thing. A principal
+     * can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * <note>
      * <p>
@@ -4906,6 +4914,60 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<GetRegistrationCodeResult, JsonUnmarshallerContext> unmarshaller = new GetRegistrationCodeResultJsonUnmarshaller();
             JsonResponseHandler<GetRegistrationCodeResult> responseHandler = new JsonResponseHandler<GetRegistrationCodeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets statistics about things that match the specified query.
+     * </p>
+     * 
+     * @param getStatisticsRequest
+     * @return getStatisticsResult The response from the GetStatistics service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws InvalidAggregationException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public GetStatisticsResult getStatistics(GetStatisticsRequest getStatisticsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getStatisticsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetStatisticsRequest> request = null;
+        Response<GetStatisticsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetStatisticsRequestMarshaller().marshall(getStatisticsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetStatisticsResult, JsonUnmarshallerContext> unmarshaller = new GetStatisticsResultJsonUnmarshaller();
+            JsonResponseHandler<GetStatisticsResult> responseHandler = new JsonResponseHandler<GetStatisticsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6031,7 +6093,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Lists the things associated with the specified principal.
+     * Lists the things associated with the specified principal. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param listPrincipalThingsRequest <p>
@@ -6597,7 +6661,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Lists the principals associated with the specified thing.
+     * Lists the principals associated with the specified thing. A principal can
+     * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
+     * identities or federated identities.
      * </p>
      * 
      * @param listThingPrincipalsRequest <p>
