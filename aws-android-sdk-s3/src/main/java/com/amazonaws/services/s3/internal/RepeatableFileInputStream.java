@@ -34,7 +34,7 @@ import java.io.InputStream;
  * unlimited number of times, without any limitation on when a repeat can occur.
  */
 public class RepeatableFileInputStream extends SdkInputStream {
-    private static final Log log = LogFactory.getLog(RepeatableFileInputStream.class);
+    private static final Log log = LogFactory.getLog("RepeatableFIS");
 
     private final File file;
     private FileInputStream fis = null;
