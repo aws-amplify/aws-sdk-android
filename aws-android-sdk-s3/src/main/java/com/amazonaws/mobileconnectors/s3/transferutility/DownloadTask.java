@@ -113,13 +113,13 @@ class DownloadTask implements Callable<Boolean> {
             updater.updateState(download.id, TransferState.COMPLETED);
             return true;
         } catch (final Exception e) {
-            // we dont need to update progress listener
+            // No need to update the progress listener.
             if (TransferState.CANCELED.equals(download.state)) {
                 LOGGER.info("Transfer is " + download.state);
                 return false;
             }
 
-            // pause
+            // Reset the progress when the transfer is paused.
             if (TransferState.PAUSED.equals(download.state)) {
                 LOGGER.info("Transfer is " + download.state);
                 ProgressEvent resetEvent = new ProgressEvent(0);
@@ -132,26 +132,31 @@ class DownloadTask implements Callable<Boolean> {
             // because of a race condition in the network or OS.
             // interrupted and if its due to network drop, reset progress and
             // update state to WAITING_FOR_NETWORK.
-            if (RetryUtils.isInterrupted(e)) {
-                // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
-                try {
-                    if (TransferNetworkLossHandler.getInstance() != null && 
-                        !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
-                        LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
-                        /*
-                         * Network connection is being interrupted. Moving the TransferState to
-                         * WAITING_FOR_NETWORK till the network availability resumes.
-                         */
-                        updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
-                        LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
-                        ProgressEvent resetEvent = new ProgressEvent(0);
-                        resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
-                        progressListener.progressChanged(new ProgressEvent(0));
-                        return false;
-                    }
-                } catch (TransferUtilityException transferUtilityException) {
-                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
+
+            // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
+            try {
+                if (TransferNetworkLossHandler.getInstance() != null &&
+                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                    LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
+                    /*
+                     * Network connection is being interrupted. Moving the TransferState to
+                     * WAITING_FOR_NETWORK till the network availability resumes.
+                     */
+                    updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
+                    LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                    ProgressEvent resetEvent = new ProgressEvent(0);
+                    resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+                    progressListener.progressChanged(new ProgressEvent(0));
+                    return false;
                 }
+            } catch (TransferUtilityException transferUtilityException) {
+                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
+            }
+
+            if (RetryUtils.isInterrupted(e)) {
+                LOGGER.info("Transfer is interrupted. " + e);
+                updater.updateState(download.id, TransferState.FAILED);
+                return false;
             }
 
             // In other cases, set the transfer state to FAILED.
