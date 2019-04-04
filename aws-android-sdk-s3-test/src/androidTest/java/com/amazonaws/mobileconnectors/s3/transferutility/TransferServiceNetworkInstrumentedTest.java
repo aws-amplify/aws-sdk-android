@@ -40,7 +40,6 @@ import static junit.framework.TestCase.assertTrue;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
 public class TransferServiceNetworkInstrumentedTest extends TransferUtilityTestBase {
 
     private static final String LOG_TAG = TransferServiceNetworkInstrumentedTest.class.getSimpleName();
@@ -67,7 +66,6 @@ public class TransferServiceNetworkInstrumentedTest extends TransferUtilityTestB
         setWifiNetwork(appContext, true);
     }
 
-    @Test
     public void testMultiPartUploadWithNetworkReconnect() throws Exception {
         Log.d(LOG_TAG, "testUploadWithNetworkDisconnect " + MULTIPART_FILE_SIZE + " begin.");
 
@@ -85,7 +83,6 @@ public class TransferServiceNetworkInstrumentedTest extends TransferUtilityTestB
         Log.d(LOG_TAG, "testUploadWithNetworkDisconnect " + MULTIPART_FILE_SIZE + " end.");
     }
 
-    @Test
     public void testDownloadWithNetworkReconnect() throws Exception {
         Log.d(LOG_TAG, "testDownloadWithNetworkReconnect " + MULTIPART_FILE_SIZE + " begin.");
 
