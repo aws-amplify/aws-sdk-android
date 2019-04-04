@@ -1257,7 +1257,6 @@ workflows:
             - CognitoAuth
             - Core
             - CognitoIdentityProvider
-            - uitest
       - uitest:
           requires:
             - build
