@@ -46,6 +46,7 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-mobile-client/aws-android-sdk-mobile-client.iml" filepath="$PROJECT_DIR$/aws-android-sdk-mobile-client/aws-android-sdk-mobile-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-mobileanalytics/aws-android-sdk-mobileanalytics.iml" filepath="$PROJECT_DIR$/aws-android-sdk-mobileanalytics/aws-android-sdk-mobileanalytics.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-pinpoint/aws-android-sdk-pinpoint.iml" filepath="$PROJECT_DIR$/aws-android-sdk-pinpoint/aws-android-sdk-pinpoint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-pinpoint-test/aws-android-sdk-pinpoint-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-pinpoint-test/aws-android-sdk-pinpoint-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-polly/aws-android-sdk-polly.iml" filepath="$PROJECT_DIR$/aws-android-sdk-polly/aws-android-sdk-polly.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-polly-test/aws-android-sdk-polly-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-polly-test/aws-android-sdk-polly-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-rekognition/aws-android-sdk-rekognition.iml" filepath="$PROJECT_DIR$/aws-android-sdk-rekognition/aws-android-sdk-rekognition.iml" />
