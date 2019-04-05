@@ -11,6 +11,7 @@
 
 * **Amazon S3**
   * Fixed an issue where the transfer state is not set to `WAITING_FOR_NETWORK` when the network disconnects. See [issue #616](https://github.com/aws-amplify/aws-sdk-android/issues/616)
+  * Shorten `RepeatableFileInputStream` log tag to be within the 23 character limit imposed by android on certain API Levels. See [issue #787](https://github.com/aws-amplify/aws-sdk-android/issues/787)
 
 * **AWS Mobile Client**
   * Fixed a bug that caused repetitive sign-in using the drop-in UI to the same provider to not federate the correct credentials. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809)
