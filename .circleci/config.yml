@@ -891,6 +891,8 @@ jobs:
             git status
             git clean -fd
             git status
+            git push https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+            git status
             commitlog=$(git log master -20)
             currentcommit="${CIRCLE_SHA1}"
             echo "currentcommit=$currentcommit"
