@@ -16,7 +16,7 @@
   * Fixed a bug that caused repetitive sign-in using the drop-in UI to the same provider to not federate the correct credentials. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809)
 
 * **Amazon Cognito Auth**
-  * Fixed a bug that cause `isAuthenticated()` to return false after sign-in when no scopes were requested. See [issue #813](https://github.com/aws-amplify/aws-sdk-android/issues/813)
+  * Fixed a bug that caused `isAuthenticated()` to return false after sign-in when no scopes were requested. See [issue #813](https://github.com/aws-amplify/aws-sdk-android/issues/813)
 
 * **Amazon Pinpoint**
   * Fix a bug where the image that is part of a push notification is persisted in the subsequent notifications.
