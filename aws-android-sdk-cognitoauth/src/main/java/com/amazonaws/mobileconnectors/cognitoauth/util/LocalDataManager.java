@@ -26,6 +26,7 @@ import com.amazonaws.mobileconnectors.cognitoauth.tokens.AccessToken;
 import com.amazonaws.mobileconnectors.cognitoauth.tokens.IdToken;
 import com.amazonaws.mobileconnectors.cognitoauth.tokens.RefreshToken;
 import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
+import com.amazonaws.util.StringUtils;
 
 import java.security.InvalidParameterException;
 import java.util.Arrays;
@@ -504,7 +505,12 @@ public final class LocalDataManager {
     }
 
     static Set<String> setFromString(String str) {
+        final HashSet<String> stringSet = new HashSet<>();
+        if (StringUtils.isBlank(str)) {
+            return stringSet;
+        }
         String[] stringArray = str.split(",");
-        return new HashSet<String>(Arrays.asList(stringArray));
+        stringSet.addAll(Arrays.asList(stringArray));
+        return stringSet;
     }
 }
