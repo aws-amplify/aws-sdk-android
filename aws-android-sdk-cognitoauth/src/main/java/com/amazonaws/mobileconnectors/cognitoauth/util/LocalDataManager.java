@@ -505,7 +505,7 @@ public final class LocalDataManager {
     }
 
     static Set<String> setFromString(String str) {
-        final HashSet<String> stringSet = new HashSet<>();
+        final HashSet<String> stringSet = new HashSet<String>();
         if (StringUtils.isBlank(str)) {
             return stringSet;
         }

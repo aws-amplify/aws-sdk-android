@@ -618,7 +618,7 @@ public class AuthClient {
         public void onNavigationEvent(final int navigationEvent, final Bundle extras) {
             super.onNavigationEvent(navigationEvent, extras);
             if (navigationEvent == ClientConstants.CHROME_NAVIGATION_CANCELLED) {
-                Log.i("AuthClient", "customTab hidden callback");
+                Log.i("AuthClient", "customTab hidden callback, code has already been received: " + receivedCodeTabShouldBeHidden);
                 if (!receivedCodeTabShouldBeHidden) {
                     userHandler.onFailure(new AuthNavigationException("user cancelled"));
                     receivedCodeTabShouldBeHidden = false;

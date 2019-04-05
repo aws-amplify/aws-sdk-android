@@ -214,7 +214,52 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
                     setFromString("email,profile,openid"));
 
             printSharedPreferencesKeys();
-            verifySharedPreferencesForCachedState(auth.awsKeyValueStore);
+            verifySharedPreferencesForCachedState(auth.awsKeyValueStore, "proofKey", "email,profile,openid");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            assertTrue("Error occurred" + ex, false);
+        }
+    }
+
+    @Test
+    public void testCognitoAuthCachedStateForNoScopes() {
+        printSharedPreferencesKeys();
+
+        try {
+            Auth.Builder builder = new Auth.Builder();
+            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
+                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
+                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
+                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+                    .setApplicationContext(InstrumentationRegistry.getTargetContext())
+                    .setAdvancedSecurityDataCollection(true)
+                    .setScopes(new HashSet<String>())
+                    .setAuthHandler(new AuthHandler() {
+                        @Override
+                        public void onSuccess(AuthUserSession session) {
+
+                        }
+
+                        @Override
+                        public void onSignout() {
+
+                        }
+
+                        @Override
+                        public void onFailure(Exception e) {
+
+                        }
+                    })
+                    .build();
+            assertNotNull(auth);
+
+            LocalDataManager.cacheState(auth.awsKeyValueStore, InstrumentationRegistry.getTargetContext(),
+                    "key",
+                    "proofKey",
+                    new HashSet<String>());
+
+            printSharedPreferencesKeys();
+            verifySharedPreferencesForCachedState(auth.awsKeyValueStore, "proofKey", null);
         } catch (Exception ex) {
             ex.printStackTrace();
             assertTrue("Error occurred" + ex, false);
@@ -358,13 +403,13 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
         assertNotNull(sharedPreferencesForAuth.getString(lastAuthUserKey, null));
     }
 
-    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore) {
+    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore, String proofKeyValue, String scopesValue) {
         assert sharedPreferencesForAuth.getAll().keySet().size() > 0;
         assert sharedPreferencesForAuthEncryptionMaterials.getAll().keySet().size() > 0;
 
-        assertEquals("proofKey",
+        assertEquals(proofKeyValue,
                 LocalDataManager.getCachedProofKey(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key"));
-        assertEquals(setFromString("email,profile,openid"),
+        assertEquals(scopesValue == null ? new HashSet<String>() : setFromString(scopesValue),
                 LocalDataManager.getCachedScopes(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key"));
     }
 
