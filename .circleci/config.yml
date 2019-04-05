@@ -882,10 +882,15 @@ jobs:
           name: merge change to master
           command: |
             git config --local user.name "${GITHUB_USER}"
+            git status
             git checkout master
+            git status
             git fetch origin
-            git reset origin/master
-            git checkout .
+            git status
+            git pull
+            git status
+            git clean -fd
+            git status
             commitlog=$(git log master -20)
             currentcommit="${CIRCLE_SHA1}"
             echo "currentcommit=$currentcommit"
@@ -897,10 +902,11 @@ jobs:
               echo "merge change from devlop to master"
               currentcommit="${CIRCLE_SHA1}"
               lastcommitmessage=$(git log --format=%B -n 1 ${currentcommit})
-
-              git merge  develop --no-edit --commit -m "[Merge develop to master by circleci] $lastcommitmessage"  
+              git status
+              git merge develop   
+              git status
               echo "push change"
-              git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+              git push https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
             fi
 
 
