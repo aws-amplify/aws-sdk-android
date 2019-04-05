@@ -34,8 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-@RunWith(AndroidJUnit4.class)
-public abstract class TransferUtilityTestBase extends AWSTestBase {
+public class TransferUtilityTestBase extends AWSTestBase {
 
     protected static Context appContext;
     protected static CognitoCachingCredentialsProvider sCredProvider;
