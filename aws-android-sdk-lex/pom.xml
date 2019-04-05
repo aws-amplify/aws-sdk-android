@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-android-sdk-pom</artifactId>
-        <version>2.13.0</version>
+        <version>2.13.1</version>
     </parent>
 
    <!-- Component includes software under each of these licenses; this is not a choice of license -->
@@ -31,7 +31,7 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-android-sdk-core</artifactId>
             <optional>false</optional>
-            <version>2.13.0</version>
+            <version>2.13.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.android</groupId>
