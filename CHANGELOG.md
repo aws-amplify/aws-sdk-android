@@ -15,6 +15,9 @@
 * **AWS Mobile Client**
   * Fixed a bug that caused repetitive sign-in using the drop-in UI to the same provider to not federate the correct credentials. See [issue #809](https://github.com/aws-amplify/aws-sdk-android/issues/809)
 
+* **Amazon Cognito Auth**
+  * Fixed a bug that caused `isAuthenticated()` to return false after sign-in when no scopes were requested. See [issue #813](https://github.com/aws-amplify/aws-sdk-android/issues/813)
+
 * **Amazon Pinpoint**
   * Fix a bug where the image that is part of a push notification is persisted in the subsequent notifications.
   * Fix a bug where the events recorded and stored in the device will not be deleted when the network is not available. See [issue #773](https://github.com/aws-amplify/aws-sdk-android/issues/773). With this change, the events will be kept in the local database when there is a retryable error or device is offline. For all other exceptions during `submitEvents`, the exception is logged and the events will be removed from the local database.
