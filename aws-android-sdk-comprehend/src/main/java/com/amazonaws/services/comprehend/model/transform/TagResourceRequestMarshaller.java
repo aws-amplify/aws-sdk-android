@@ -35,21 +35,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateEntityRecognizerRequest
+ * JSON request marshaller for TagResourceRequest
  */
-public class CreateEntityRecognizerRequestMarshaller implements
-        Marshaller<Request<CreateEntityRecognizerRequest>, CreateEntityRecognizerRequest> {
+public class TagResourceRequestMarshaller implements
+        Marshaller<Request<TagResourceRequest>, TagResourceRequest> {
 
-    public Request<CreateEntityRecognizerRequest> marshall(
-            CreateEntityRecognizerRequest createEntityRecognizerRequest) {
-        if (createEntityRecognizerRequest == null) {
+    public Request<TagResourceRequest> marshall(TagResourceRequest tagResourceRequest) {
+        if (tagResourceRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(CreateEntityRecognizerRequest)");
+                    "Invalid argument passed to marshall(TagResourceRequest)");
         }
 
-        Request<CreateEntityRecognizerRequest> request = new DefaultRequest<CreateEntityRecognizerRequest>(
-                createEntityRecognizerRequest, "AmazonComprehend");
-        String target = "Comprehend_20171127.CreateEntityRecognizer";
+        Request<TagResourceRequest> request = new DefaultRequest<TagResourceRequest>(
+                tagResourceRequest, "AmazonComprehend");
+        String target = "Comprehend_20171127.TagResource";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -60,18 +59,13 @@ public class CreateEntityRecognizerRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createEntityRecognizerRequest.getRecognizerName() != null) {
-                String recognizerName = createEntityRecognizerRequest.getRecognizerName();
-                jsonWriter.name("RecognizerName");
-                jsonWriter.value(recognizerName);
+            if (tagResourceRequest.getResourceArn() != null) {
+                String resourceArn = tagResourceRequest.getResourceArn();
+                jsonWriter.name("ResourceArn");
+                jsonWriter.value(resourceArn);
             }
-            if (createEntityRecognizerRequest.getDataAccessRoleArn() != null) {
-                String dataAccessRoleArn = createEntityRecognizerRequest.getDataAccessRoleArn();
-                jsonWriter.name("DataAccessRoleArn");
-                jsonWriter.value(dataAccessRoleArn);
-            }
-            if (createEntityRecognizerRequest.getTags() != null) {
-                java.util.List<Tag> tags = createEntityRecognizerRequest.getTags();
+            if (tagResourceRequest.getTags() != null) {
+                java.util.List<Tag> tags = tagResourceRequest.getTags();
                 jsonWriter.name("Tags");
                 jsonWriter.beginArray();
                 for (Tag tagsItem : tags) {
@@ -80,28 +74,6 @@ public class CreateEntityRecognizerRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
-            }
-            if (createEntityRecognizerRequest.getInputDataConfig() != null) {
-                EntityRecognizerInputDataConfig inputDataConfig = createEntityRecognizerRequest
-                        .getInputDataConfig();
-                jsonWriter.name("InputDataConfig");
-                EntityRecognizerInputDataConfigJsonMarshaller.getInstance().marshall(
-                        inputDataConfig, jsonWriter);
-            }
-            if (createEntityRecognizerRequest.getClientRequestToken() != null) {
-                String clientRequestToken = createEntityRecognizerRequest.getClientRequestToken();
-                jsonWriter.name("ClientRequestToken");
-                jsonWriter.value(clientRequestToken);
-            }
-            if (createEntityRecognizerRequest.getLanguageCode() != null) {
-                String languageCode = createEntityRecognizerRequest.getLanguageCode();
-                jsonWriter.name("LanguageCode");
-                jsonWriter.value(languageCode);
-            }
-            if (createEntityRecognizerRequest.getVolumeKmsKeyId() != null) {
-                String volumeKmsKeyId = createEntityRecognizerRequest.getVolumeKmsKeyId();
-                jsonWriter.name("VolumeKmsKeyId");
-                jsonWriter.value(volumeKmsKeyId);
             }
 
             jsonWriter.endObject();
