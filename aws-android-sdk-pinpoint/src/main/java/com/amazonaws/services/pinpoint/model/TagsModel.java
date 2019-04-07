@@ -17,91 +17,47 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
-/**
- * Application Request.
- */
-public class CreateApplicationRequest implements Serializable {
+public class TagsModel implements Serializable {
     /**
-     * The display name of the application. Used in the Amazon Pinpoint console.
-     */
-    private String name;
-
-    /**
-     * The Tags for the app.
+     * The new value for the tags property for this object.
      */
     private java.util.Map<String, String> tags;
 
     /**
-     * The display name of the application. Used in the Amazon Pinpoint console.
+     * Returns the value of the tags property for this object.
      *
-     * @return The display name of the application. Used in the Amazon Pinpoint
-     *         console.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * The display name of the application. Used in the Amazon Pinpoint console.
-     *
-     * @param name The display name of the application. Used in the Amazon
-     *            Pinpoint console.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * The display name of the application. Used in the Amazon Pinpoint console.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param name The display name of the application. Used in the Amazon
-     *            Pinpoint console.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateApplicationRequest withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * The Tags for the app.
-     *
-     * @return The Tags for the app.
+     * @return The value of the tags property for this object.
      */
     public java.util.Map<String, String> getTags() {
         return tags;
     }
 
     /**
-     * The Tags for the app.
+     * Sets the value of tags
      *
-     * @param tags The Tags for the app.
+     * @param tags The new value for the tags property for this object.
      */
     public void setTags(java.util.Map<String, String> tags) {
         this.tags = tags;
     }
 
     /**
-     * The Tags for the app.
+     * Sets the value of the tags property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tags The Tags for the app.
+     * @param tags The new value for the tags property for this object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateApplicationRequest withTags(java.util.Map<String, String> tags) {
+    public TagsModel withTags(java.util.Map<String, String> tags) {
         this.tags = tags;
         return this;
     }
 
     /**
-     * The Tags for the app.
+     * Sets the value of the tags property for this object.
      * <p>
      * The method adds a new key-value pair into tags parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -111,7 +67,7 @@ public class CreateApplicationRequest implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateApplicationRequest addtagsEntry(String key, String value) {
+    public TagsModel addtagsEntry(String key, String value) {
         if (null == this.tags) {
             this.tags = new java.util.HashMap<String, String>();
         }
@@ -128,7 +84,7 @@ public class CreateApplicationRequest implements Serializable {
      * Returns a reference to this object so that method calls can be chained
      * together.
      */
-    public CreateApplicationRequest cleartagsEntries() {
+    public TagsModel cleartagsEntries() {
         this.tags = null;
         return this;
     }
@@ -144,8 +100,6 @@ public class CreateApplicationRequest implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getName() != null)
-            sb.append("Name: " + getName() + ",");
         if (getTags() != null)
             sb.append("tags: " + getTags());
         sb.append("}");
@@ -157,7 +111,6 @@ public class CreateApplicationRequest implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -169,14 +122,10 @@ public class CreateApplicationRequest implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof CreateApplicationRequest == false)
+        if (obj instanceof TagsModel == false)
             return false;
-        CreateApplicationRequest other = (CreateApplicationRequest) obj;
+        TagsModel other = (TagsModel) obj;
 
-        if (other.getName() == null ^ this.getName() == null)
-            return false;
-        if (other.getName() != null && other.getName().equals(this.getName()) == false)
-            return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)

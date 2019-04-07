@@ -19,30 +19,14 @@ import com.amazonaws.services.pinpoint.model.*;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO WriteSegmentRequest
+ * JSON marshaller for POJO TagsModel
  */
-class WriteSegmentRequestJsonMarshaller {
+class TagsModelJsonMarshaller {
 
-    public void marshall(WriteSegmentRequest writeSegmentRequest, AwsJsonWriter jsonWriter)
-            throws Exception {
+    public void marshall(TagsModel tagsModel, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (writeSegmentRequest.getDimensions() != null) {
-            SegmentDimensions dimensions = writeSegmentRequest.getDimensions();
-            jsonWriter.name("Dimensions");
-            SegmentDimensionsJsonMarshaller.getInstance().marshall(dimensions, jsonWriter);
-        }
-        if (writeSegmentRequest.getName() != null) {
-            String name = writeSegmentRequest.getName();
-            jsonWriter.name("Name");
-            jsonWriter.value(name);
-        }
-        if (writeSegmentRequest.getSegmentGroups() != null) {
-            SegmentGroupList segmentGroups = writeSegmentRequest.getSegmentGroups();
-            jsonWriter.name("SegmentGroups");
-            SegmentGroupListJsonMarshaller.getInstance().marshall(segmentGroups, jsonWriter);
-        }
-        if (writeSegmentRequest.getTags() != null) {
-            java.util.Map<String, String> tags = writeSegmentRequest.getTags();
+        if (tagsModel.getTags() != null) {
+            java.util.Map<String, String> tags = tagsModel.getTags();
             jsonWriter.name("tags");
             jsonWriter.beginObject();
             for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
@@ -57,11 +41,11 @@ class WriteSegmentRequestJsonMarshaller {
         jsonWriter.endObject();
     }
 
-    private static WriteSegmentRequestJsonMarshaller instance;
+    private static TagsModelJsonMarshaller instance;
 
-    public static WriteSegmentRequestJsonMarshaller getInstance() {
+    public static TagsModelJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new WriteSegmentRequestJsonMarshaller();
+            instance = new TagsModelJsonMarshaller();
         return instance;
     }
 }

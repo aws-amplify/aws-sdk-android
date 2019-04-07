@@ -79,6 +79,11 @@ public class WriteCampaignRequest implements Serializable {
     private Integer segmentVersion;
 
     /**
+     * The Tags for the campaign.
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
      * A custom description for the treatment.
      */
     private String treatmentDescription;
@@ -516,6 +521,72 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
+     * The Tags for the campaign.
+     *
+     * @return The Tags for the campaign.
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * The Tags for the campaign.
+     *
+     * @param tags The Tags for the campaign.
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * The Tags for the campaign.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The Tags for the campaign.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteCampaignRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * The Tags for the campaign.
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteCampaignRequest addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public WriteCampaignRequest cleartagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * A custom description for the treatment.
      *
      * @return A custom description for the treatment.
@@ -617,6 +688,8 @@ public class WriteCampaignRequest implements Serializable {
             sb.append("SegmentId: " + getSegmentId() + ",");
         if (getSegmentVersion() != null)
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -646,6 +719,7 @@ public class WriteCampaignRequest implements Serializable {
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -713,6 +787,10 @@ public class WriteCampaignRequest implements Serializable {
             return false;
         if (other.getSegmentVersion() != null
                 && other.getSegmentVersion().equals(this.getSegmentVersion()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;
