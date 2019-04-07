@@ -262,6 +262,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new BatchSizeLimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConcurrentModificationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidFilterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
@@ -273,6 +274,8 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
         jsonErrorUnmarshallers.add(new ResourceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextSizeLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyTagKeysExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyTagsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedLanguageExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
@@ -582,6 +585,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -639,6 +643,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -1866,6 +1871,57 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Lists all tags associated with a given Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -2622,6 +2678,109 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StopTrainingEntityRecognizerResult, JsonUnmarshallerContext> unmarshaller = new StopTrainingEntityRecognizerResultJsonUnmarshaller();
             JsonResponseHandler<StopTrainingEntityRecognizerResult> responseHandler = new JsonResponseHandler<StopTrainingEntityRecognizerResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Associates a specific tag with an Amazon Comprehend resource. A tag is a
+     * key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<TagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes a specific tag associated with an Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Comprehend.
+     * @throws TooManyTagKeysException
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<UntagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -55,6 +55,16 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * Tags to be associated with the entity recognizer being created. A tag is
+     * a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * Specifies the format and location of the input data. The S3 bucket
      * containing the input data must be located in the same region as the
      * entity recognizer being created.
@@ -249,6 +259,108 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      */
     public CreateEntityRecognizerRequest withDataAccessRoleArn(String dataAccessRoleArn) {
         this.dataAccessRoleArn = dataAccessRoleArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the entity recognizer being created. A tag is
+     * a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     *
+     * @return <p>
+     *         Tags to be associated with the entity recognizer being created. A
+     *         tag is a key-value pair that adds as a metadata to a resource
+     *         used by Amazon Comprehend. For example, a tag with "Sales" as the
+     *         key might be added to a resource to indicate its use by the sales
+     *         department.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the entity recognizer being created. A tag is
+     * a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     *
+     * @param tags <p>
+     *            Tags to be associated with the entity recognizer being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the entity recognizer being created. A tag is
+     * a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags to be associated with the entity recognizer being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the entity recognizer being created. A tag is
+     * a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags to be associated with the entity recognizer being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
         return this;
     }
 
@@ -647,6 +759,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             sb.append("RecognizerName: " + getRecognizerName() + ",");
         if (getDataAccessRoleArn() != null)
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
         if (getInputDataConfig() != null)
             sb.append("InputDataConfig: " + getInputDataConfig() + ",");
         if (getClientRequestToken() != null)
@@ -668,6 +782,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
                 + ((getRecognizerName() == null) ? 0 : getRecognizerName().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getInputDataConfig() == null) ? 0 : getInputDataConfig().hashCode());
         hashCode = prime * hashCode
@@ -699,6 +814,10 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getDataAccessRoleArn() != null
                 && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getInputDataConfig() == null ^ this.getInputDataConfig() == null)
             return false;
