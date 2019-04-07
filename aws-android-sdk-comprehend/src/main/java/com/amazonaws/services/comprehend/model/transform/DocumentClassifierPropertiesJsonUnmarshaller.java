@@ -68,6 +68,11 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
                         .setInputDataConfig(DocumentClassifierInputDataConfigJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("OutputDataConfig")) {
+                documentClassifierProperties
+                        .setOutputDataConfig(DocumentClassifierOutputDataConfigJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ClassifierMetadata")) {
                 documentClassifierProperties
                         .setClassifierMetadata(ClassifierMetadataJsonUnmarshaller.getInstance()
