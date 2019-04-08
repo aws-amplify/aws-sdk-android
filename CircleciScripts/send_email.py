@@ -48,15 +48,13 @@ def send_email(title, content,  fromaddress = None, toaddresses = None, contentf
         message['Body']['Text'] =  {
                     'Data': content 
                 }    
-    # session = boto3.session.Session(profile_name='default')
+
     client = boto3.client('ses', region_name='us-west-2')
-    # session = boto3.session.Session(profile_name='circleci-info')
-    # client = session.client('ses')
     response = client.send_email(
         Source = fromaddress,
         Destination = destination,
         Message = message
     )
     print(response)
-# send_email("", "", "", " one , two ")
+ 
 

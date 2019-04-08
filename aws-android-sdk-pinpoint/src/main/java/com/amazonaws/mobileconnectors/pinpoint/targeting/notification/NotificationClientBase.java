@@ -141,7 +141,6 @@ abstract class NotificationClientBase {
     private Method setPriorityMethod;
     private Method setSoundMethod;
     private Method createWithBitmapMethod;
-    private Bitmap notificationImage;
     private Class<?> appOpsClass = null;
     private Method checkOpNoThrowMethod = null;
     private Field opPostNotificationField = null;
@@ -559,6 +558,8 @@ abstract class NotificationClientBase {
 
     private Notification createNotification(final int iconResId, final String title, final String contentText, final String imageUrl,
                                             final String imageIconUrl, final String imageSmallIconUrl, final PendingIntent contentIntent) {
+        Bitmap notificationImage = null;
+
         log.info("Create Notification:" + title + ", Content:" + contentText);
         if (android.os.Build.VERSION.SDK_INT < ANDROID_JELLYBEAN) {
             return createLegacyNotification(iconResId, title, contentText, contentIntent);

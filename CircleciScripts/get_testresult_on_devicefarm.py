@@ -18,12 +18,9 @@ configure =  demjson.decode(jsonstring)
 
 project_arn =  configure['project_arn']
 project_runlink = configure['project_runlink']
-
  
-# session = boto3.session.Session(profile_name='default')
 client = boto3.client('devicefarm', region_name='us-west-2')
  
-
 module_result = namedtuple('module_result', 'name, result, total, passed, failed, warned, skipped, errored,  totalminutes')
 response = client.list_runs(arn = project_arn)
 resultlist = []
@@ -42,25 +39,19 @@ while True:
         totals += 1
         if run['result'] == "PASSED":
             passeds += 1
-        # testname = testname[:-len(tailtag)]
-        # if testname.endswith("-test"):
-        #     testname = testname[:-5]
         result = module_result(
         name = testname ,       
         result = run['result'] ,
-        total = int(run['counters']['total']) - 2 ,
-        passed = int(run['counters']['passed']) - 2 ,
+        total = int(run['counters']['total'])  ,
+        passed = int(run['counters']['passed'])   ,
         failed = run['counters']['failed'] ,
         warned = run['counters']['warned'] ,
         skipped = run['counters']['skipped'] ,    
         errored = run['counters']['errored'] ,  
         totalminutes = run['deviceMinutes']['total']
         )
-
-        # print(result)
         resultlist.append(result)
-        # if  name.endswith(tag):
-        #     print(run)
+
     if 'nextToken' in response:
         nextToken = response['nextToken']
         response = client.list_runs(arn = project_arn, nextToken = nextToken)
@@ -85,8 +76,6 @@ htmloutput +=  """<table border="0">
                 <th width="100">Total miniutes</th>
               </tr>
               """
-
-
 
 for result in resultlist:
     print(result)

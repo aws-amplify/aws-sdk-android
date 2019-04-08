@@ -26,7 +26,6 @@ testspec_arn = configure['testspec_arn']
 testmodulelist = configure['testmodulelist']
 
 
-# session = boto3.session.Session(profile_name='default')
 client = boto3.client('devicefarm', region_name='us-west-2')
  
 # clean up old uploads
@@ -72,6 +71,7 @@ for module in testmodulelist:
     if name.endswith('-test'):
         name = name[:-5]    
     print("#################### {0} ####################".format(name))
+    # build module for test
     command = "bash gradlew :{0}:assembleAndroidTest".format(module)
     rn = runcommand(command)
     if rn != 0 :
@@ -93,6 +93,7 @@ for module in testmodulelist:
                     )
             )
         continue
+    # create an upload for the test module
     response = client.create_upload(
         projectArn = project_arn,
         name='{0}-debug-androidTest-{1}.apk'.format(module, tag),
@@ -111,7 +112,7 @@ for module in testmodulelist:
         continue
 
     uploadurl = response['upload']['url']
-    # apkfile = "/Users/sdechunq/Documents/github/private/aws-sdk-android-personal/aws-android-sdk-sns-test/build/outputs/apk/androidTest/debug/aws-android-sdk-sns-test-debug-androidTest.apk"
+    #upload the test module
     uploadcommand = 'curl -T "{0}"  "{1}"'.format(apkfile, uploadurl)  
     rn = runcommand(uploadcommand)
     if rn != 0 :
@@ -138,7 +139,7 @@ for module in testmodulelist:
                     )
                 )
         continue;
-
+    #schedule an run for the test module
     response = client.schedule_run(
         projectArn = project_arn,
         appArn = dummy_apk_arn,
@@ -147,7 +148,6 @@ for module in testmodulelist:
         test={
             'type': 'INSTRUMENTATION',
             'testPackageArn': uploadarn,
-            # 'testSpecArn': testspec_arn
         }
     )
     print(response['run']['status'], response['run']['result'])

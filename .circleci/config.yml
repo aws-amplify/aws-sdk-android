@@ -882,9 +882,18 @@ jobs:
           name: merge change to master
           command: |
             git config --local user.name "${GITHUB_USER}"
+            git status
             git checkout master
-            git pull --rebase
-            commitlog=$(git log)
+            git status
+            git fetch origin
+            git status
+            git pull
+            git status
+            git clean -fd
+            git status
+            git push https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+            git status
+            commitlog=$(git log master -20)
             currentcommit="${CIRCLE_SHA1}"
             echo "currentcommit=$currentcommit"
             echo "$commitlog"
@@ -895,10 +904,11 @@ jobs:
               echo "merge change from devlop to master"
               currentcommit="${CIRCLE_SHA1}"
               lastcommitmessage=$(git log --format=%B -n 1 ${currentcommit})
-
-              git merge  develop --no-edit --commit -m "[Merge develop to master by circleci] $lastcommitmessage"  
+              git status
+              git merge develop   
+              git status
               echo "push change"
-              git push -q https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+              git push https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
             fi
 
 
@@ -974,24 +984,23 @@ jobs:
           command: |
             latest_release_tag=$(git describe --abbrev=0 --tags)
             latest_release_version=$(echo "$latest_release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
-            python3 ./CircleciScripts/check_sdk_on_maven.py "${latest_release_version}"
+            python3 ./CircleciScripts/check_sdk_on_maven.py "${latest_release_version}" ${ALARM_EMAIL_FROM} ${ALARM_EMAIL_TO}
             
-
   run_integrationtest_on_devicefarm:
     docker:
       - image: circleci/android:api-27-alpha
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
-      # - run:
-      #     name: quit if test already run for the last commit
-      #     command: |
-      #       echo "${LAST_RUN_COMMITID}:${CIRCLE_SHA1}"
-      #       if [ "${LAST_RUN_COMMITID}" == "${CIRCLE_SHA1}" ]
-      #       then
-      #         echo "integration test alrady run on device farm for last commit ${CIRCLE_SHA1}"
-      #         circleci step halt              
-      #       fi
+      - run:
+          name: quit if test already run for the last commit
+          command: |
+            echo "${LAST_RUN_COMMITID}:${CIRCLE_SHA1}"
+            if [ "${LAST_RUN_COMMITID}" == "${CIRCLE_SHA1}" ]
+            then
+              echo "integration test alrady run on device farm for last commit ${CIRCLE_SHA1}"
+              circleci step halt              
+            fi
       - skip_job_if_required
       - set_enviroment_variables
       - override_test_job
@@ -1081,13 +1090,10 @@ jobs:
 
 workflows:
   version: 2
-  testworkflow:
-    jobs:
-      - check_testresult_on_devicefarm
   check_sdk_on_maven:
     triggers:
       - schedule:
-        # run the job on 8am pacific time every day
+        # run the job at 8AM PST every day
           cron: "0 15 * * *"
           filters:
             branches:
@@ -1095,31 +1101,29 @@ workflows:
                 - master      
     jobs:
       - check_sdk_on_maven  
-
   run_integrationtest_on_devicefarm:
     triggers:
       - schedule:
-        # run the job on 8pm pacific time every day
+        # run the job at 8PM PST every day
           cron: "0 3 * * *"
           filters:
             branches:
               only:
-                - devicefarm      
+                - master      
     jobs:
       - run_integrationtest_on_devicefarm  
 
   check_testresult_on_devicefarm:
     triggers:
       - schedule:
-        # run the job on 8am pacific time every day
+        # run the job at 8AM PST every day
           cron: "0 15 * * *"
           filters:
             branches:
               only:
-                - devicefarm      
+                - master      
     jobs:
       - check_testresult_on_devicefarm    
-
   bump_sdk_version:
     jobs:
       - bump_sdk_version:
@@ -1439,7 +1443,6 @@ workflows:
             - CognitoAuth
             - Core
             - CognitoIdentityProvider
-            - uitest
       - uitest:
           requires:
             - build
