@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">testapp</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">aws-android-sdk-sqs-test</string>
+    <string name="package_name">sqs</string>
 </resources>
