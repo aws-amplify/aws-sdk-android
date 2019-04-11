@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -414,19 +415,18 @@ public class EventRecorder {
                         amazonServiceException);
             }
         } catch (final AmazonClientException amazonClientException) {
-            // For UnknownHostException when network is not available, keep the events
+            // When the AmazonClientException is retryable, keep the events
             // in the local database.
             // For all other client exceptions occurred during submit events,
             // log the exception and delete the events in the local database.
-            if (amazonClientException.getCause() != null &&
-                amazonClientException.getCause() instanceof UnknownHostException) {
-                log.error("UnknownHostException: Unable to successfully deliver events to server. " +
+            if (isClientExceptionRetryable(amazonClientException)) {
+                log.error("AmazonClientException: Unable to successfully deliver events to server. " +
                         "Events will be saved, error likely recoverable." +
                         amazonClientException.getMessage(), amazonClientException);
                 batchIdsAndSizeToDelete.clear();
             } else {
                 log.error(
-                        String.format(Locale.getDefault(), "Failed submission of %d events, events will be " +
+                        String.format(Locale.getDefault(), "AmazonClientException: Failed submission of %d events, events will be " +
                         "removed from the local database. ", eventArray.length()),
                         amazonClientException);
             }
@@ -492,6 +492,12 @@ public class EventRecorder {
             return false;
         }
         return true;
+    }
+
+    private boolean isClientExceptionRetryable(AmazonClientException amazonClientException) {
+        return amazonClientException.getCause() != null &&
+                (amazonClientException.getCause() instanceof UnknownHostException ||
+                 amazonClientException.getCause() instanceof SocketException);
     }
 
     /**
