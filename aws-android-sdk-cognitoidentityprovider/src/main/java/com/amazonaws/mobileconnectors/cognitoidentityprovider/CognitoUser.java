@@ -92,6 +92,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.SoftwareTokenMfaSett
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
+import com.amazonaws.services.cognitoidentityprovider.model.UserNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResponseType;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResult;
