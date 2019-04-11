@@ -951,8 +951,10 @@ public class CognitoUser {
                 } catch (final NotAuthorizedException nae) {
                     clearCachedTokens();
                     throw new CognitoNotAuthorizedException("User is not authenticated", nae);
-                } catch (final Exception e) {
+                } catch (final UserNotFoundException unfe) {
                     clearCachedTokens();
+                    throw new CognitoNotAuthorizedException("User does not exist", unfe);
+                }catch (final Exception e) {
                     throw new CognitoInternalErrorException("Failed to authenticate user", e);
                 }
             }
