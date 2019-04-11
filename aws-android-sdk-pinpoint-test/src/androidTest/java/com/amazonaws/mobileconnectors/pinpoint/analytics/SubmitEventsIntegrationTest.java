@@ -151,6 +151,7 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
         assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());
     }
 
+    @Test
     public void testSubmitEventsNetworkDisconnectAndReconnect() {
         Log.d(TAG, "Events in database before calling recordEvent(): " +
                 pinpointManager.getAnalyticsClient().getAllEvents().size());
