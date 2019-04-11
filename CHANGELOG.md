@@ -1,5 +1,10 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.2)
+
+* **Amazon Cognito Auth**
+  * Fixed erroneous user cancelled error when redirecting back to app. See [issue #328](https://github.com/aws-amplify/aws-sdk-android/issues/328), [issue #871](https://github.com/aws-amplify/aws-sdk-android/issues/871)
+
 ## [Release 2.13.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.1)
 
 ### Enhancements
