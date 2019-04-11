@@ -15,33 +15,48 @@
 
 package com.amazonaws.services.s3;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonClientException;
-
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.S3IntegrationTestBase;
-import com.amazonaws.services.s3.model.*;
-import com.amazonaws.services.s3.internal.*;
-import com.amazonaws.testutils.util.RandomTempFile;
+import com.amazonaws.services.s3.internal.Constants;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.GetObjectTaggingRequest;
+import com.amazonaws.services.s3.model.GetObjectTaggingResult;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.ObjectTagging;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
+import com.amazonaws.services.s3.model.SetObjectTaggingRequest;
+import com.amazonaws.services.s3.model.Tag;
+import com.amazonaws.util.Base64;
+import com.amazonaws.util.IOUtils;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static junit.framework.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Integration tests for AmazonS3Client -> ObjectMetadata.
@@ -50,9 +65,6 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
     private static final String bucketName = "amazon-s3-client-integ-test-" + new Date().getTime();
-
-    /** Bucket that has objects with key names containing special characters */
-    private static final String BUCKET_WITH_SPECIAL_CHARACTERS = "key-name-special-characters";
 
     /** The key used in these tests */
     private static final String key = "key";
@@ -69,6 +81,12 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     /** The metadata for the object. */
     private ObjectMetadata metadata;
 
+    /** KMS KeyId. */
+    private static String kmsKeyId;
+
+    /** Bucket with SSE - KMS enabled. */
+    private static String bucketWithSSEKMSEnabled;
+
     /**
      * Creates and initializes all the test resources needed for these tests.
      */
@@ -78,6 +96,10 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
         tempData = tempDataBuffer(1000);
 
         try {
+            bucketWithSSEKMSEnabled = getPackageConfigure("s3")
+                    .getString("bucket_with_sse_kms_enabled");
+            kmsKeyId = getPackageConfigure("s3")
+                    .getString("sse_kms_key_id");
             s3.createBucket(bucketName);
             waitForBucketCreation(bucketName);
         } catch (final Exception e) {
@@ -87,7 +109,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     }
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         try {
             deleteBucketAndAllContents(bucketName);
         } catch (final Exception e) {
@@ -215,5 +237,35 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
             assertEquals(object.getKey(), s3Object.getKey());
             assertNotNull(s3Object.getObjectContent());
         }
+    }
+
+    @Test
+    public void testUploadWithSSEKMSEnabled() throws Exception {
+        String dataString = "test";
+        byte[] dataBytes = dataString.getBytes(StandardCharsets.UTF_8);
+
+        ObjectMetadata metaData = new ObjectMetadata();
+        metaData.setContentType("text/plain");
+        metaData.setContentEncoding(StandardCharsets.UTF_8.name());
+        metaData.setContentLength(dataBytes.length);
+
+        AmazonS3Client amazonS3Client = new AmazonS3Client(credentials,
+                Region.getRegion(Regions.US_WEST_2));
+        PutObjectRequest putObjectRequest = new PutObjectRequest(
+                bucketWithSSEKMSEnabled,
+                "test",
+                new ByteArrayInputStream(dataBytes),
+                metaData)
+                .withSSEAwsKeyManagementParams(
+                        new SSEAwsKeyManagementParams(kmsKeyId));
+        PutObjectResult putObjectResult = amazonS3Client.putObject(putObjectRequest);
+        assertNotNull(putObjectResult);
+        assertNull(putObjectResult.getContentMd5());
+
+        S3Object object = amazonS3Client.getObject(bucketWithSSEKMSEnabled, "test");
+        String returnedContent = IOUtils.toString(object.getObjectContent());
+        assertEquals(returnedContent, dataString);
+
+        amazonS3Client.deleteObject(bucketWithSSEKMSEnabled, "test");
     }
 }
