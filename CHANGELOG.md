@@ -2,6 +2,11 @@
 
 ## [Release 2.13.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.2)
 
+### Enhancements
+
+* **AWS IoT**
+  * AWS IoT SDK for Android now supports connecting your devices to AWS IoT Core using Persistent Sessions. Please look at [this blog](https://aws.amazon.com/about-aws/whats-new/2019/01/aws-iot-core-now-enables-customers-to-store-messages-for-disconnected-devices/) for more details.
+
 ### Bug Fixes
 
 * **Amazon Cognito Auth**

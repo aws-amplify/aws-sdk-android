@@ -577,9 +577,7 @@ public class AWSIotMqttManager {
 
     /**
      * Set to true if the connection should be established with a clean session, false otherwise.
-     * By default, this is set to true. AWS IoT message broker currently does not support persistent sessions
-     * (connections made with the cleanSession flag set to false). Support for persistent sessions
-     * (setting cleanSesssion to false) may be supported in the future.
+     * By default, this is set to true.
      * @param cleanSession flag to establish a clean session
      */
     public void setCleanSession(boolean cleanSession) {
