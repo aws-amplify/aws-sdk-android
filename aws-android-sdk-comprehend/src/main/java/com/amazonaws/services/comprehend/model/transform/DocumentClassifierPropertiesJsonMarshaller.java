@@ -73,6 +73,13 @@ class DocumentClassifierPropertiesJsonMarshaller {
             DocumentClassifierInputDataConfigJsonMarshaller.getInstance().marshall(inputDataConfig,
                     jsonWriter);
         }
+        if (documentClassifierProperties.getOutputDataConfig() != null) {
+            DocumentClassifierOutputDataConfig outputDataConfig = documentClassifierProperties
+                    .getOutputDataConfig();
+            jsonWriter.name("OutputDataConfig");
+            DocumentClassifierOutputDataConfigJsonMarshaller.getInstance().marshall(
+                    outputDataConfig, jsonWriter);
+        }
         if (documentClassifierProperties.getClassifierMetadata() != null) {
             ClassifierMetadata classifierMetadata = documentClassifierProperties
                     .getClassifierMetadata();

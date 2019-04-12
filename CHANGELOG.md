@@ -7,6 +7,17 @@
 * **AWS IoT**
   * AWS IoT SDK for Android now supports connecting your devices to AWS IoT Core using Persistent Sessions. Please look at [this blog](https://aws.amazon.com/about-aws/whats-new/2019/01/aws-iot-core-now-enables-customers-to-store-messages-for-disconnected-devices/) for more details.
 
+### Bug Fixes
+
+* **Amazon Cognito Auth**
+  * Fixed erroneous user cancelled error when redirecting back to app. See [issue #328](https://github.com/aws-amplify/aws-sdk-android/issues/328), [issue #871](https://github.com/aws-amplify/aws-sdk-android/issues/871)
+
+* **Amazon S3**
+  * Fixed a bug where uploading a file using `AmazonS3Client.putObject(PutObjectRequest)` with `SSEAwsKeyManagementParams` fails with contentMD5 validation error. Now, the contentMd5 validation is skipped when a file is uploaded with `SSEAwsKeyManagementParams` through the `PutObjectRequest`.
+
+* **Amazon Pinpoint**
+  * Added `SocketException` to the list of client exceptions where the events submitted to Amazon Pinpoint will be saved in the local database. See [issue #773](https://github.com/aws-amplify/aws-sdk-android/issues/773).
+
 ## [Release 2.13.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.1)
 
 ### Enhancements

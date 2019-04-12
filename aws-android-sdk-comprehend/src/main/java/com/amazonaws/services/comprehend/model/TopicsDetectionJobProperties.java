@@ -106,7 +106,7 @@ public class TopicsDetectionJobProperties implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * role that grants Amazon Comprehend read access to your job data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -671,7 +671,7 @@ public class TopicsDetectionJobProperties implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * role that grants Amazon Comprehend read access to your job data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -680,8 +680,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the AWS Identity and Management
-     *         (IAM) role that grants Amazon Comprehend read access to your
-     *         input data.
+     *         (IAM) role that grants Amazon Comprehend read access to your job
+     *         data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -691,7 +691,7 @@ public class TopicsDetectionJobProperties implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * role that grants Amazon Comprehend read access to your job data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -701,7 +701,7 @@ public class TopicsDetectionJobProperties implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of the AWS Identity and
      *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            access to your job data.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -711,7 +711,7 @@ public class TopicsDetectionJobProperties implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * role that grants Amazon Comprehend read access to your job data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -724,7 +724,7 @@ public class TopicsDetectionJobProperties implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of the AWS Identity and
      *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            access to your job data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

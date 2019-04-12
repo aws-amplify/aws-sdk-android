@@ -31,7 +31,6 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-elb/aws-android-sdk-elb.iml" filepath="$PROJECT_DIR$/aws-android-sdk-elb/aws-android-sdk-elb.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-elb-test/aws-android-sdk-elb-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-elb-test/aws-android-sdk-elb-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-iot/aws-android-sdk-iot.iml" filepath="$PROJECT_DIR$/aws-android-sdk-iot/aws-android-sdk-iot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-iot-test/aws-android-sdk-iot-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-iot-test/aws-android-sdk-iot-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesis/aws-android-sdk-kinesis.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesis/aws-android-sdk-kinesis.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" />
