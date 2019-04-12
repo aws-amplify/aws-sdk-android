@@ -959,8 +959,8 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
      */
     @Test
     public void mqttPersistentSession() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList();
-        final List<String> messages = new ArrayList();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
+        final List<String> messages = new ArrayList<String>();
 
         String largeMessageString = new String("largeMessageBytes");
         final String topic = "sdk/test/integration/ws/reconnect";
