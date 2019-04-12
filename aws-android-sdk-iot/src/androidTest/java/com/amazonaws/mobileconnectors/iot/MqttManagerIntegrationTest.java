@@ -970,7 +970,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             endpointPrefix);
 
         mqttManager.setCleanSession(false);
-        mqttManager.setAutoReconnect(false);
+        mqttManager.setAutoReconnect(true);
 
         // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch = new CountDownLatch(1);
