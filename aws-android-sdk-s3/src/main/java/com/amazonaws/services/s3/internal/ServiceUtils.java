@@ -455,7 +455,14 @@ public class ServiceUtils {
             if (om != null && om.getSSEAlgorithm() != null) {
                 return true;
             }
-            return putObjectRequest.getSSECustomerKey() != null;
+            if (putObjectRequest.getSSECustomerKey() != null) {
+                return true;
+            }
+            if (putObjectRequest.getSSEAwsKeyManagementParams() != null &&
+                (putObjectRequest.getSSEAwsKeyManagementParams().getEncryption() != null ||
+                 putObjectRequest.getSSEAwsKeyManagementParams().getAwsKmsKeyId() != null)) {
+                return true;
+            }
         } else if (request instanceof UploadPartRequest) {
             final UploadPartRequest uploadPartRequest = (UploadPartRequest) request;
             return uploadPartRequest.getSSECustomerKey() != null;
