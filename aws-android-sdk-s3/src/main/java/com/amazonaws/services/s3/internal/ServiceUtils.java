@@ -459,7 +459,8 @@ public class ServiceUtils {
                 return true;
             }
             if (putObjectRequest.getSSEAwsKeyManagementParams() != null &&
-                putObjectRequest.getSSEAwsKeyManagementParams().getAwsKmsKeyId() != null) {
+                (putObjectRequest.getSSEAwsKeyManagementParams().getEncryption() != null ||
+                 putObjectRequest.getSSEAwsKeyManagementParams().getAwsKmsKeyId() != null)) {
                 return true;
             }
         } else if (request instanceof UploadPartRequest) {
