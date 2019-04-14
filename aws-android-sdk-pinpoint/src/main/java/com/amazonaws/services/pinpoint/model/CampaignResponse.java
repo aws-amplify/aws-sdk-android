@@ -32,6 +32,11 @@ public class CampaignResponse implements Serializable {
     private String applicationId;
 
     /**
+     * The arn for the campaign.
+     */
+    private String arn;
+
+    /**
      * The date the campaign was created in ISO 8601 format.
      */
     private String creationDate;
@@ -109,6 +114,11 @@ public class CampaignResponse implements Serializable {
      * only when all treatments have a status of COMPLETED.
      */
     private CampaignState state;
+
+    /**
+     * The Tags for the campaign.
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * A custom description for the treatment.
@@ -220,6 +230,39 @@ public class CampaignResponse implements Serializable {
      */
     public CampaignResponse withApplicationId(String applicationId) {
         this.applicationId = applicationId;
+        return this;
+    }
+
+    /**
+     * The arn for the campaign.
+     *
+     * @return The arn for the campaign.
+     */
+    public String getArn() {
+        return arn;
+    }
+
+    /**
+     * The arn for the campaign.
+     *
+     * @param arn The arn for the campaign.
+     */
+    public void setArn(String arn) {
+        this.arn = arn;
+    }
+
+    /**
+     * The arn for the campaign.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param arn The arn for the campaign.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse withArn(String arn) {
+        this.arn = arn;
         return this;
     }
 
@@ -766,6 +809,72 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
+     * The Tags for the campaign.
+     *
+     * @return The Tags for the campaign.
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * The Tags for the campaign.
+     *
+     * @param tags The Tags for the campaign.
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * The Tags for the campaign.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The Tags for the campaign.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * The Tags for the campaign.
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CampaignResponse cleartagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * A custom description for the treatment.
      *
      * @return A custom description for the treatment.
@@ -882,6 +991,8 @@ public class CampaignResponse implements Serializable {
             sb.append("AdditionalTreatments: " + getAdditionalTreatments() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
+        if (getArn() != null)
+            sb.append("Arn: " + getArn() + ",");
         if (getCreationDate() != null)
             sb.append("CreationDate: " + getCreationDate() + ",");
         if (getDefaultState() != null)
@@ -912,6 +1023,8 @@ public class CampaignResponse implements Serializable {
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
         if (getState() != null)
             sb.append("State: " + getState() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -931,6 +1044,7 @@ public class CampaignResponse implements Serializable {
                 + ((getAdditionalTreatments() == null) ? 0 : getAdditionalTreatments().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode
@@ -953,6 +1067,7 @@ public class CampaignResponse implements Serializable {
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -981,6 +1096,10 @@ public class CampaignResponse implements Serializable {
             return false;
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
+            return false;
+        if (other.getArn() == null ^ this.getArn() == null)
+            return false;
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
             return false;
         if (other.getCreationDate() == null ^ this.getCreationDate() == null)
             return false;
@@ -1049,6 +1168,10 @@ public class CampaignResponse implements Serializable {
         if (other.getState() == null ^ this.getState() == null)
             return false;
         if (other.getState() != null && other.getState().equals(this.getState()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

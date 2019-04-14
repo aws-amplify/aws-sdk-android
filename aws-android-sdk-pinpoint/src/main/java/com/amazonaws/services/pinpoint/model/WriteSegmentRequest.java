@@ -40,6 +40,11 @@ public class WriteSegmentRequest implements Serializable {
     private SegmentGroupList segmentGroups;
 
     /**
+     * The Tags for the segments.
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
      * The segment dimensions attributes.
      *
      * @return The segment dimensions attributes.
@@ -160,6 +165,72 @@ public class WriteSegmentRequest implements Serializable {
     }
 
     /**
+     * The Tags for the segments.
+     *
+     * @return The Tags for the segments.
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * The Tags for the segments.
+     *
+     * @param tags The Tags for the segments.
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * The Tags for the segments.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The Tags for the segments.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteSegmentRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * The Tags for the segments.
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteSegmentRequest addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public WriteSegmentRequest cleartagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -175,7 +246,9 @@ public class WriteSegmentRequest implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getSegmentGroups() != null)
-            sb.append("SegmentGroups: " + getSegmentGroups());
+            sb.append("SegmentGroups: " + getSegmentGroups() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -189,6 +262,7 @@ public class WriteSegmentRequest implements Serializable {
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -216,6 +290,10 @@ public class WriteSegmentRequest implements Serializable {
             return false;
         if (other.getSegmentGroups() != null
                 && other.getSegmentGroups().equals(this.getSegmentGroups()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

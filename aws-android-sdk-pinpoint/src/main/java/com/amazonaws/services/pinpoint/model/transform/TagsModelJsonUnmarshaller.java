@@ -21,33 +21,22 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO ApplicationResponse
+ * JSON unmarshaller for POJO TagsModel
  */
-class ApplicationResponseJsonUnmarshaller implements
-        Unmarshaller<ApplicationResponse, JsonUnmarshallerContext> {
+class TagsModelJsonUnmarshaller implements Unmarshaller<TagsModel, JsonUnmarshallerContext> {
 
-    public ApplicationResponse unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public TagsModel unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        ApplicationResponse applicationResponse = new ApplicationResponse();
+        TagsModel tagsModel = new TagsModel();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Arn")) {
-                applicationResponse.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Id")) {
-                applicationResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Name")) {
-                applicationResponse.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("tags")) {
-                applicationResponse.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
+            if (name.equals("tags")) {
+                tagsModel.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {
@@ -55,14 +44,14 @@ class ApplicationResponseJsonUnmarshaller implements
             }
         }
         reader.endObject();
-        return applicationResponse;
+        return tagsModel;
     }
 
-    private static ApplicationResponseJsonUnmarshaller instance;
+    private static TagsModelJsonUnmarshaller instance;
 
-    public static ApplicationResponseJsonUnmarshaller getInstance() {
+    public static TagsModelJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ApplicationResponseJsonUnmarshaller();
+            instance = new TagsModelJsonUnmarshaller();
         return instance;
     }
 }

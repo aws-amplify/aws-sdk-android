@@ -1325,6 +1325,23 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by
+     *         AmazonPinpoint.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
      * Returns information about the specified phone number.
      * 
      * @param phoneNumberValidateRequest
@@ -1464,6 +1481,32 @@ public interface AmazonPinpoint {
      */
     SendUsersMessagesResult sendUsersMessages(SendUsersMessagesRequest sendUsersMessagesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param tagResourceRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    void tagResource(TagResourceRequest tagResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * @param untagResourceRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    void untagResource(UntagResourceRequest untagResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * Update an ADM channel.
