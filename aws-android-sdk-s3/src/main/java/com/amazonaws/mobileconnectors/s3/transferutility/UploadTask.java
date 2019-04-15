@@ -88,10 +88,15 @@ class UploadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
-        if (!isNetworkHandlerRegisteredAndNetworkConnected()) {
-            LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-            updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-            return false;
+        try {
+            if (TransferNetworkLossHandler.getInstance() != null &&
+                !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
+                return false;	
+            }	
+        } catch (TransferUtilityException transferUtilityException) {	
+            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
         }
         
         updater.updateState(upload.id, TransferState.IN_PROGRESS);
