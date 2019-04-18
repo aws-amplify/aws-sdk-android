@@ -55,9 +55,13 @@ class KeyProvider23 implements KeyProvider {
                                     .setKeySize(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS) // 256-bit key
                                     .setRandomizedEncryptionRequired(false)
                                     .build());
-                    return generator.generateKey();
+                    Key key = generator.generateKey();
+
+                    logger.info("Generated the encryption key using Android KeyStore.");
+                    return key;
                 } else {
                     logger.debug("AndroidKeyStore contains keyAlias " + keyAlias);
+                    logger.debug("Loading the encryption key from Android KeyStore.");
                     return keyStore.getKey(keyAlias, null);
                 }
             } catch (Exception ex) {
