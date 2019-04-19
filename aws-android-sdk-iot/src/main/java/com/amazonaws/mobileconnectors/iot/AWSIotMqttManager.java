@@ -46,6 +46,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
@@ -171,6 +172,11 @@ public class AWSIotMqttManager {
     String userMetaData = "?SDK=Android&Version=" + VersionInfoUtils.getVersion();
 
     /**
+     * Map to store user metadata components.
+     */
+    Map<String, String> userMetaDataMap = new HashMap<String, String>();
+
+    /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
     private final String endpoint;
@@ -218,14 +224,18 @@ public class AWSIotMqttManager {
      *
      * @param userMetaDataMap userMetaData map
      */
-    public void addUserMetaData(Map<String, String> userMetaDataMap) {
-        StringBuilder userMetadata = new StringBuilder(this.userMetaData);
+    public void updateUserMetaData(Map<String, String> userMetaDataMap) {
+        StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + VersionInfoUtils.getVersion());
         int baseLength = userMetadata.length();
 
-        if (userMetaDataMap != null) {
-            // Append each of the user-specified key-value pair to the user metadata for the connection
+        // Update the meta data map
+        for(Map.Entry<String, String> metaData : userMetaDataMap.entrySet()){
+            this.userMetaDataMap.put(metaData.getKey(), metaData.getValue());
+        }
 
-            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+        if (this.userMetaDataMap != null) {
+            // Append each of the user-specified key-value pair to the user metadata for the connection
+            for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
                 if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
                     userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
                 } else {

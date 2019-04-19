@@ -97,8 +97,7 @@ public class AWSIotMqttManagerTest {
         Map<String, String> userMetaData = new HashMap<String, String>();
         userMetaData.put("AFRSDK", "Android");
         userMetaData.put("AFRSDKVersion", "1.0.0");
-        userMetaData.put("AFRLibVersion", "1.4.1");
-        testClient.addUserMetaData(userMetaData);
+        testClient.updateUserMetaData(userMetaData);
 
         assertEquals(true, testClient.isAutoReconnect());
         assertEquals(4, testClient.getReconnectTimeout());
@@ -112,8 +111,14 @@ public class AWSIotMqttManagerTest {
         assertEquals(TEST_ENDPOINT_PREFIX, testClient.getAccountEndpointPrefix());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
         assertEquals(testClient.userMetaData, "?SDK=Android&Version=" + VersionInfoUtils.getVersion() +
-                "&AFRSDK=Android&AFRSDKVersion=1.0.0&AFRLibVersion=1.4.1");
+                "&AFRSDK=Android&AFRSDKVersion=1.0.0");
 
+        userMetaData.put("AFRSDK", "Android");
+        userMetaData.put("AFRSDKVersion", "1.0.1");
+        userMetaData.put("AFRLibVersion", "1.4.1");
+        testClient.updateUserMetaData(userMetaData);
+        assertEquals(testClient.userMetaData, "?SDK=Android&Version=" + VersionInfoUtils.getVersion() +
+                "&AFRSDK=Android&AFRSDKVersion=1.0.1&AFRLibVersion=1.4.1");
 
         testClient.setAutoReconnect(false);
         testClient.setReconnectRetryLimits(64, 128);
