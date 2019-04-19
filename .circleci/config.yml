@@ -613,7 +613,7 @@ jobs:
             override_test_value=$(eval "echo $"${override_test_varaible_name}"")
             if ! [ -z "$override_test_value" ]
             then
-               echo "reset  ${override_test_varaible_name} value"
+              echo "reset  ${override_test_varaible_name} value"
               parameters='{"name":"'${override_test_varaible_name}'","value":"FALSE"}'
               curl -X POST \
                 -H "Content-type: application/json" \
@@ -997,12 +997,114 @@ jobs:
             latest_release_version=$(echo "$latest_release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
             python3 ./CircleciScripts/check_sdk_on_maven.py "${latest_release_version}" ${ALARM_EMAIL_FROM} ${ALARM_EMAIL_TO}
             
+  run_integrationtest_on_devicefarm:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - run:
+          name: quit if test already run for the last commit
+          command: |
+            echo "${LAST_RUN_COMMITID}:${CIRCLE_SHA1}"
+            if [ "${LAST_RUN_COMMITID}" == "${CIRCLE_SHA1}" ]
+            then
+              echo "integration test alrady run on device farm for last commit ${CIRCLE_SHA1}"
+              circleci step halt              
+            fi
+      - skip_job_if_required
+      - set_enviroment_variables
+      - override_test_job
+      - checkout
+      - skip_test_job      
+      - configure_aws
+      - setup_android_platform23
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml      
+      - run: 
+          name: Install Boto3
+          command: sudo pip3 install Boto3 
+      - run: 
+          name: Install markdown2
+          command: sudo pip3 install markdown2           
+      - run:
+          name: install sdk
+          command: |
+            sudo yes | sdkmanager "platforms;android-27"  
+      - run:
+          name: download devicefarm configure file
+          command: |
+            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
+            aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
+      - run:
+          name: Configure test information
+          command: |
+            aws s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            aws s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json                       
+      - run:
+          name: launch integration test on device farm
+          command: |
+            python3 CircleciScripts/runtest_on_devicefarm.py "$(pwd)" "$(pwd)/devicefarm_configure.json" "${CIRCLE_SHA1}"
+      - run:
+          name: set environment variables
+          command: |
+            parameters='{"name":"LAST_RUN_COMMITID","value":"'${CIRCLE_SHA1}'"}'
+            curl -X POST \
+              -H "Content-type: application/json" \
+              -H "Accept: application/json" \
+              -d "$parameters" \
+              "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
+  check_testresult_on_devicefarm:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx1024m
+    steps:
+      - set_enviroment_variables
+      - checkout  
+      - configure_aws
+      - run: 
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip     
+      - run: 
+          name: Install json parser
+          command: sudo pip3 install demjson
+      - run: 
+          name: Install lxml
+          command: sudo pip3 install lxml      
+      - run: 
+          name: Install Boto3
+          command: sudo pip3 install Boto3 
+      - run: 
+          name: Install markdown2
+          command: sudo pip3 install markdown2           
+      - run:
+          name: download devicefarm configure file
+          command: |
+            aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
+      - run:
+          name: check integration test result on device farm
+          command: |
+            python3 CircleciScripts/get_testresult_on_devicefarm.py "$(pwd)/devicefarm_configure.json" "${LAST_RUN_COMMITID}"
+
+
 workflows:
   version: 2
   check_sdk_on_maven:
     triggers:
       - schedule:
-        # run the job on 8am pacific time every day
+        # run the job at 8AM PST every day
           cron: "0 15 * * *"
           filters:
             branches:
@@ -1010,7 +1112,29 @@ workflows:
                 - master      
     jobs:
       - check_sdk_on_maven  
+  run_integrationtest_on_devicefarm:
+    triggers:
+      - schedule:
+        # run the job at 8PM PST every day
+          cron: "0 3 * * *"
+          filters:
+            branches:
+              only:
+                - master      
+    jobs:
+      - run_integrationtest_on_devicefarm  
 
+  check_testresult_on_devicefarm:
+    triggers:
+      - schedule:
+        # run the job at 8AM PST every day
+          cron: "0 15 * * *"
+          filters:
+            branches:
+              only:
+                - master      
+    jobs:
+      - check_testresult_on_devicefarm    
   bump_sdk_version:
     jobs:
       - bump_sdk_version:
