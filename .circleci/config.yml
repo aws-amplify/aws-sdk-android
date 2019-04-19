@@ -225,6 +225,15 @@ commands:
       skip the test job is project variabe OVERRIDE_TEST is set with TRUE
     steps:
       - run:
+          name: skip test in master
+          command: |
+              notskipflag=$(echo "${NOT_SKIPTESTINMASTER}" |  tr '[:upper:]' '[:lower:]')
+              if [ "${notskipflag}" != "true" ]  &&  [ "${CIRCLE_BRANCH}" == "master" ]
+              then 
+                echo "bypass test job in master"
+                circleci step halt
+              fi         
+      - run:
           name: checkiftestcanoverrided 
           command: |
               echo "override_test_varaible_name=$override_test_varaible_name"
@@ -592,6 +601,7 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - skip_job_if_required
+      - override_test_job
       - set_enviroment_variables
       - run:
           name: get ovrride test variabe name 
@@ -626,6 +636,7 @@ jobs:
       JVM_OPTS: -Xmx1024m
     steps:
       - skip_job_if_required
+      - override_test_job
       - run:
           name: prepare
           command: echo "post_integrationtest"          
