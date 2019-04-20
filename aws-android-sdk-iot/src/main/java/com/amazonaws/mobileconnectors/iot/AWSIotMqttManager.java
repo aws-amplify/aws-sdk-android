@@ -253,7 +253,7 @@ public class AWSIotMqttManager {
     }
 
     /**
-     * Sets the userMetaData map.
+     * This is an internal method.
      *
      * @param userMetaDataMap userMetaData map
      */
