@@ -220,6 +220,39 @@ public class AWSIotMqttManager {
     private Long unitTestMillisOverride;
 
     /**
+     * @deprecated This method is deprecated and will be deleted in a future release. Please use updateUserMetaData method instead.
+     *
+     * Sets the userMetaData map.
+     *
+     * @param userMetaDataMap userMetaData map
+     */
+    @Deprecated
+    public void addUserMetaData(Map<String, String> userMetaDataMap) {
+        StringBuilder userMetadata = new StringBuilder(this.userMetaData);
+        int baseLength = userMetadata.length();
+
+        if (userMetaDataMap != null) {
+            // Append each of the user-specified key-value pair to the user metadata for the connection
+
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+                if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                } else {
+                    LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
+                }
+            }
+        }
+
+        if(userMetadata.length() > 255) {
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
+                    " cannot exceed " + (255 - baseLength)));
+            this.userMetaData = userMetadata.substring(0, 255);
+        } else {
+            this.userMetaData = userMetadata.toString();
+        }
+    }
+
+    /**
      * Sets the userMetaData map.
      *
      * @param userMetaDataMap userMetaData map
@@ -229,18 +262,18 @@ public class AWSIotMqttManager {
         int baseLength = userMetadata.length();
 
         // Update the meta data map
-        for(Map.Entry<String, String> metaData : userMetaDataMap.entrySet()){
-            this.userMetaDataMap.put(metaData.getKey(), metaData.getValue());
+        if (userMetaDataMap != null) {
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+                this.userMetaDataMap.put(metaData.getKey(), metaData.getValue());
+            }
         }
 
-        if (this.userMetaDataMap != null) {
-            // Append each of the user-specified key-value pair to the user metadata for the connection
-            for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
-                if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
-                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
-                } else {
-                    LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
-                }
+        // Append each of the user-specified key-value pair to the user metadata for the connection
+        for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
+            if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+            } else {
+                LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
             }
         }
 
