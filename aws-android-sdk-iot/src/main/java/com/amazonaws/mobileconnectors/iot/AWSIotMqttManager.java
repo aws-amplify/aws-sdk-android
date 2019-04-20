@@ -220,7 +220,8 @@ public class AWSIotMqttManager {
     private Long unitTestMillisOverride;
 
     /**
-     * @deprecated This method is deprecated and will be deleted in a future release. Please use updateUserMetaData method instead.
+     * @deprecated Since 2.13.2 This method will be removed in the next minor version.
+     * Please use updateUserMetaData method instead.
      *
      * Sets the userMetaData map.
      *
