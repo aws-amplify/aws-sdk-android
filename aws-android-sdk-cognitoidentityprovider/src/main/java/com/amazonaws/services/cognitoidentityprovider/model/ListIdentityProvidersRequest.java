@@ -42,7 +42,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      */
     private Integer maxResults;
 
@@ -120,7 +120,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @return <p>
      *         The maximum number of identity providers to return.
@@ -136,7 +136,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
      *            The maximum number of identity providers to return.
@@ -155,7 +155,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 60<br/>
+     * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
      *            The maximum number of identity providers to return.
