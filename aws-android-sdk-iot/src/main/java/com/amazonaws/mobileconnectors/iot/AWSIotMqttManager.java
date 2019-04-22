@@ -46,6 +46,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
@@ -171,6 +172,11 @@ public class AWSIotMqttManager {
     String userMetaData = "?SDK=Android&Version=" + VersionInfoUtils.getVersion();
 
     /**
+     * Map to store user metadata components.
+     */
+    Map<String, String> userMetaDataMap = new HashMap<String, String>();
+
+    /**
      * This is your custom endpoint that allows you to connect to AWS IoT.
      */
     private final String endpoint;
@@ -214,10 +220,14 @@ public class AWSIotMqttManager {
     private Long unitTestMillisOverride;
 
     /**
+     * @deprecated Since 2.13.2 this method will be removed in the next minor version.
+     * Please use updateUserMetaData method instead.
+     *
      * Sets the userMetaData map.
      *
      * @param userMetaDataMap userMetaData map
      */
+    @Deprecated
     public void addUserMetaData(Map<String, String> userMetaDataMap) {
         StringBuilder userMetadata = new StringBuilder(this.userMetaData);
         int baseLength = userMetadata.length();
@@ -231,6 +241,45 @@ public class AWSIotMqttManager {
                 } else {
                     LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
                 }
+            }
+        }
+
+        if(userMetadata.length() > 255) {
+            LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
+                    " cannot exceed " + (255 - baseLength)));
+            this.userMetaData = userMetadata.substring(0, 255);
+        } else {
+            this.userMetaData = userMetadata.toString();
+        }
+    }
+
+    /**
+     * This is an internal method.
+     *
+     * @param userMetaDataMap userMetaData map
+     */
+    public void updateUserMetaData(Map<String, String> userMetaDataMap) {
+        StringBuilder userMetadata = new StringBuilder("?SDK=Android&Version=" + VersionInfoUtils.getVersion());
+        int baseLength = userMetadata.length();
+
+        // Update the meta data map
+        if (userMetaDataMap != null) {
+            for (Map.Entry<String, String> metaData : userMetaDataMap.entrySet()) {
+                this.userMetaDataMap.put(metaData.getKey(), metaData.getValue());
+            }
+        }
+
+        // Append each of the user-specified key-value pair to the user metadata for the connection
+        for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
+            if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
+                String metaDataValue = metaData.getValue();
+                if (metaDataValue == null || "".equals(metaDataValue)){
+                    userMetadata.append("&" + metaData.getKey());
+                } else {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                }
+            } else {
+                LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
             }
         }
 
