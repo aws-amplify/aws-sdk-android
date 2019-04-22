@@ -92,6 +92,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -416,6 +429,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,6 +476,20 @@ public class UserType implements Serializable {
      *         <li>
      *         <p>
      *         UNKNOWN - User status is not known.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         RESET_REQUIRED - User is confirmed, but the user must request a
+     *         code and reset his or her password before he or she can sign in.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
+     *         sign in using a temporary password, but on first sign-in, the
+     *         user must change his or her password to a new value before doing
+     *         anything else.
      *         </p>
      *         </li>
      *         </ul>
@@ -489,6 +529,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -523,6 +576,21 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            RESET_REQUIRED - User is confirmed, but the user must request
+     *            a code and reset his or her password before he or she can sign
+     *            in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
+     *            sign in using a temporary password, but on first sign-in, the
+     *            user must change his or her password to a new value before
+     *            doing anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -562,6 +630,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -599,6 +680,21 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            RESET_REQUIRED - User is confirmed, but the user must request
+     *            a code and reset his or her password before he or she can sign
+     *            in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
+     *            sign in using a temporary password, but on first sign-in, the
+     *            user must change his or her password to a new value before
+     *            doing anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -641,6 +737,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -675,6 +784,21 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            RESET_REQUIRED - User is confirmed, but the user must request
+     *            a code and reset his or her password before he or she can sign
+     *            in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
+     *            sign in using a temporary password, but on first sign-in, the
+     *            user must change his or her password to a new value before
+     *            doing anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -714,6 +838,19 @@ public class UserType implements Serializable {
      * UNKNOWN - User status is not known.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * RESET_REQUIRED - User is confirmed, but the user must request a code and
+     * reset his or her password before he or she can sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
+     * using a temporary password, but on first sign-in, the user must change
+     * his or her password to a new value before doing anything else.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -751,6 +888,21 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            RESET_REQUIRED - User is confirmed, but the user must request
+     *            a code and reset his or her password before he or she can sign
+     *            in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
+     *            sign in using a temporary password, but on first sign-in, the
+     *            user must change his or her password to a new value before
+     *            doing anything else.
      *            </p>
      *            </li>
      *            </ul>

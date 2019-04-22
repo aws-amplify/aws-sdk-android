@@ -1854,6 +1854,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws NotAuthorizedException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidEmailRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
