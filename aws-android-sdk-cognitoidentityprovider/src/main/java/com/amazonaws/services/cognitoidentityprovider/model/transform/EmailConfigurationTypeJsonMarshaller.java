@@ -36,6 +36,11 @@ class EmailConfigurationTypeJsonMarshaller {
             jsonWriter.name("ReplyToEmailAddress");
             jsonWriter.value(replyToEmailAddress);
         }
+        if (emailConfigurationType.getEmailSendingAccount() != null) {
+            String emailSendingAccount = emailConfigurationType.getEmailSendingAccount();
+            jsonWriter.name("EmailSendingAccount");
+            jsonWriter.value(emailSendingAccount);
+        }
         jsonWriter.endObject();
     }
 

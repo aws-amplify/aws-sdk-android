@@ -40,6 +40,14 @@ public class AdminCreateUserConfigType implements Serializable {
      * the <code>MessageAction</code> parameter. The default value for this
      * parameter is 7.
      * </p>
+     * <note>
+     * <p>
+     * If you set a value for <code>TemporaryPasswordValidityDays</code> in
+     * <code>PasswordPolicy</code>, that value will be used and
+     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
+     * pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
@@ -140,6 +148,14 @@ public class AdminCreateUserConfigType implements Serializable {
      * the <code>MessageAction</code> parameter. The default value for this
      * parameter is 7.
      * </p>
+     * <note>
+     * <p>
+     * If you set a value for <code>TemporaryPasswordValidityDays</code> in
+     * <code>PasswordPolicy</code>, that value will be used and
+     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
+     * pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
@@ -152,6 +168,14 @@ public class AdminCreateUserConfigType implements Serializable {
      *         <code>MessageAction</code> parameter. The default value for this
      *         parameter is 7.
      *         </p>
+     *         <note>
+     *         <p>
+     *         If you set a value for <code>TemporaryPasswordValidityDays</code>
+     *         in <code>PasswordPolicy</code>, that value will be used and
+     *         <code>UnusedAccountValidityDays</code> will be deprecated for
+     *         that user pool.
+     *         </p>
+     *         </note>
      */
     public Integer getUnusedAccountValidityDays() {
         return unusedAccountValidityDays;
@@ -165,6 +189,14 @@ public class AdminCreateUserConfigType implements Serializable {
      * the <code>MessageAction</code> parameter. The default value for this
      * parameter is 7.
      * </p>
+     * <note>
+     * <p>
+     * If you set a value for <code>TemporaryPasswordValidityDays</code> in
+     * <code>PasswordPolicy</code>, that value will be used and
+     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
+     * pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
@@ -177,6 +209,15 @@ public class AdminCreateUserConfigType implements Serializable {
      *            <code>MessageAction</code> parameter. The default value for
      *            this parameter is 7.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you set a value for
+     *            <code>TemporaryPasswordValidityDays</code> in
+     *            <code>PasswordPolicy</code>, that value will be used and
+     *            <code>UnusedAccountValidityDays</code> will be deprecated for
+     *            that user pool.
+     *            </p>
+     *            </note>
      */
     public void setUnusedAccountValidityDays(Integer unusedAccountValidityDays) {
         this.unusedAccountValidityDays = unusedAccountValidityDays;
@@ -190,6 +231,14 @@ public class AdminCreateUserConfigType implements Serializable {
      * the <code>MessageAction</code> parameter. The default value for this
      * parameter is 7.
      * </p>
+     * <note>
+     * <p>
+     * If you set a value for <code>TemporaryPasswordValidityDays</code> in
+     * <code>PasswordPolicy</code>, that value will be used and
+     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
+     * pool.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -205,6 +254,15 @@ public class AdminCreateUserConfigType implements Serializable {
      *            <code>MessageAction</code> parameter. The default value for
      *            this parameter is 7.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you set a value for
+     *            <code>TemporaryPasswordValidityDays</code> in
+     *            <code>PasswordPolicy</code>, that value will be used and
+     *            <code>UnusedAccountValidityDays</code> will be deprecated for
+     *            that user pool.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
