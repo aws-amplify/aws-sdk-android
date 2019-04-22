@@ -34,7 +34,7 @@ public class GetSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]{1,100}$<br/>
      */
     private String taskId;
 
@@ -44,7 +44,7 @@ public class GetSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]{1,100}$<br/>
      *
      * @return <p>
      *         The Amazon Polly generated identifier for a speech synthesis
@@ -61,7 +61,7 @@ public class GetSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]{1,100}$<br/>
      *
      * @param taskId <p>
      *            The Amazon Polly generated identifier for a speech synthesis
@@ -81,7 +81,7 @@ public class GetSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]{1,100}$<br/>
      *
      * @param taskId <p>
      *            The Amazon Polly generated identifier for a speech synthesis

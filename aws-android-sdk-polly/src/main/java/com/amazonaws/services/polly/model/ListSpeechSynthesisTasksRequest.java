@@ -43,6 +43,9 @@ public class ListSpeechSynthesisTasksRequest extends AmazonWebServiceRequest imp
      * The pagination token to use in the next request to continue the listing
      * of speech synthesis tasks.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
 
@@ -118,6 +121,9 @@ public class ListSpeechSynthesisTasksRequest extends AmazonWebServiceRequest imp
      * The pagination token to use in the next request to continue the listing
      * of speech synthesis tasks.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
      *         The pagination token to use in the next request to continue the
@@ -133,6 +139,9 @@ public class ListSpeechSynthesisTasksRequest extends AmazonWebServiceRequest imp
      * The pagination token to use in the next request to continue the listing
      * of speech synthesis tasks.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            The pagination token to use in the next request to continue
@@ -151,6 +160,9 @@ public class ListSpeechSynthesisTasksRequest extends AmazonWebServiceRequest imp
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            The pagination token to use in the next request to continue
