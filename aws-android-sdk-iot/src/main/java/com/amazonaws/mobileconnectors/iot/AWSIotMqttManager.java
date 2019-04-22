@@ -272,7 +272,12 @@ public class AWSIotMqttManager {
         // Append each of the user-specified key-value pair to the user metadata for the connection
         for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
             if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
-                userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                String metaDataValue = metaData.getValue();
+                if (metaDataValue == null || "".equals(metaDataValue)){
+                    userMetadata.append("&" + metaData.getKey());
+                } else {
+                    userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
+                }
             } else {
                 LOGGER.warn("Keynames 'SDK' and 'Version' are reserved and will be skipped");
             }
