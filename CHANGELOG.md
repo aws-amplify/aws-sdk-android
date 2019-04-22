@@ -1,5 +1,14 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Cognito Identity Provider
+  * Amazon Polly
+  * Amazon Transcribe
+
 ## [Release 2.13.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.2)
 
 ### Enhancements
