@@ -55,7 +55,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -80,6 +80,9 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <code>DescribeVoices</code> operation. If present, this indicates where
      * to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
 
@@ -91,7 +94,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -116,7 +119,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -144,7 +147,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -172,7 +175,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -200,7 +203,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
      * sv-SE, tr-TR
@@ -327,6 +330,9 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <code>DescribeVoices</code> operation. If present, this indicates where
      * to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
      *         An opaque pagination token returned from the previous
@@ -344,6 +350,9 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <code>DescribeVoices</code> operation. If present, this indicates where
      * to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from the previous
@@ -364,6 +373,9 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from the previous

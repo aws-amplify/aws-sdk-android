@@ -23,63 +23,64 @@ import java.util.Map;
  */
 public enum VoiceId {
 
-    Geraint("Geraint"),
-    Gwyneth("Gwyneth"),
-    Mads("Mads"),
-    Naja("Naja"),
-    Hans("Hans"),
-    Marlene("Marlene"),
-    Nicole("Nicole"),
-    Russell("Russell"),
+    Aditi("Aditi"),
     Amy("Amy"),
+    Astrid("Astrid"),
+    Bianca("Bianca"),
     Brian("Brian"),
+    Carla("Carla"),
+    Carmen("Carmen"),
+    Celine("Celine"),
+    Chantal("Chantal"),
+    Conchita("Conchita"),
+    Cristiano("Cristiano"),
+    Dora("Dora"),
     Emma("Emma"),
-    Raveena("Raveena"),
+    Enrique("Enrique"),
+    Ewa("Ewa"),
+    Filiz("Filiz"),
+    Geraint("Geraint"),
+    Giorgio("Giorgio"),
+    Gwyneth("Gwyneth"),
+    Hans("Hans"),
+    Ines("Ines"),
     Ivy("Ivy"),
+    Jacek("Jacek"),
+    Jan("Jan"),
     Joanna("Joanna"),
     Joey("Joey"),
     Justin("Justin"),
+    Karl("Karl"),
     Kendra("Kendra"),
     Kimberly("Kimberly"),
-    Matthew("Matthew"),
-    Salli("Salli"),
-    Conchita("Conchita"),
-    Enrique("Enrique"),
-    Miguel("Miguel"),
-    Penelope("Penelope"),
-    Chantal("Chantal"),
-    Celine("Celine"),
     Lea("Lea"),
-    Mathieu("Mathieu"),
-    Dora("Dora"),
-    Karl("Karl"),
-    Carla("Carla"),
-    Giorgio("Giorgio"),
-    Mizuki("Mizuki"),
     Liv("Liv"),
     Lotte("Lotte"),
-    Ruben("Ruben"),
-    Ewa("Ewa"),
-    Jacek("Jacek"),
-    Jan("Jan"),
-    Maja("Maja"),
-    Ricardo("Ricardo"),
-    Vitoria("Vitoria"),
-    Cristiano("Cristiano"),
-    Ines("Ines"),
-    Carmen("Carmen"),
-    Maxim("Maxim"),
-    Tatyana("Tatyana"),
-    Astrid("Astrid"),
-    Filiz("Filiz"),
-    Vicki("Vicki"),
-    Takumi("Takumi"),
-    Seoyeon("Seoyeon"),
-    Aditi("Aditi"),
-    Zhiyu("Zhiyu"),
-    Bianca("Bianca"),
     Lucia("Lucia"),
-    Mia("Mia");
+    Mads("Mads"),
+    Maja("Maja"),
+    Marlene("Marlene"),
+    Mathieu("Mathieu"),
+    Matthew("Matthew"),
+    Maxim("Maxim"),
+    Mia("Mia"),
+    Miguel("Miguel"),
+    Mizuki("Mizuki"),
+    Naja("Naja"),
+    Nicole("Nicole"),
+    Penelope("Penelope"),
+    Raveena("Raveena"),
+    Ricardo("Ricardo"),
+    Ruben("Ruben"),
+    Russell("Russell"),
+    Salli("Salli"),
+    Seoyeon("Seoyeon"),
+    Takumi("Takumi"),
+    Tatyana("Tatyana"),
+    Vicki("Vicki"),
+    Vitoria("Vitoria"),
+    Zeina("Zeina"),
+    Zhiyu("Zhiyu");
 
     private String value;
 
@@ -95,63 +96,64 @@ public enum VoiceId {
     private static final Map<String, VoiceId> enumMap;
     static {
         enumMap = new HashMap<String, VoiceId>();
-        enumMap.put("Geraint", Geraint);
-        enumMap.put("Gwyneth", Gwyneth);
-        enumMap.put("Mads", Mads);
-        enumMap.put("Naja", Naja);
-        enumMap.put("Hans", Hans);
-        enumMap.put("Marlene", Marlene);
-        enumMap.put("Nicole", Nicole);
-        enumMap.put("Russell", Russell);
+        enumMap.put("Aditi", Aditi);
         enumMap.put("Amy", Amy);
+        enumMap.put("Astrid", Astrid);
+        enumMap.put("Bianca", Bianca);
         enumMap.put("Brian", Brian);
+        enumMap.put("Carla", Carla);
+        enumMap.put("Carmen", Carmen);
+        enumMap.put("Celine", Celine);
+        enumMap.put("Chantal", Chantal);
+        enumMap.put("Conchita", Conchita);
+        enumMap.put("Cristiano", Cristiano);
+        enumMap.put("Dora", Dora);
         enumMap.put("Emma", Emma);
-        enumMap.put("Raveena", Raveena);
+        enumMap.put("Enrique", Enrique);
+        enumMap.put("Ewa", Ewa);
+        enumMap.put("Filiz", Filiz);
+        enumMap.put("Geraint", Geraint);
+        enumMap.put("Giorgio", Giorgio);
+        enumMap.put("Gwyneth", Gwyneth);
+        enumMap.put("Hans", Hans);
+        enumMap.put("Ines", Ines);
         enumMap.put("Ivy", Ivy);
+        enumMap.put("Jacek", Jacek);
+        enumMap.put("Jan", Jan);
         enumMap.put("Joanna", Joanna);
         enumMap.put("Joey", Joey);
         enumMap.put("Justin", Justin);
+        enumMap.put("Karl", Karl);
         enumMap.put("Kendra", Kendra);
         enumMap.put("Kimberly", Kimberly);
-        enumMap.put("Matthew", Matthew);
-        enumMap.put("Salli", Salli);
-        enumMap.put("Conchita", Conchita);
-        enumMap.put("Enrique", Enrique);
-        enumMap.put("Miguel", Miguel);
-        enumMap.put("Penelope", Penelope);
-        enumMap.put("Chantal", Chantal);
-        enumMap.put("Celine", Celine);
         enumMap.put("Lea", Lea);
-        enumMap.put("Mathieu", Mathieu);
-        enumMap.put("Dora", Dora);
-        enumMap.put("Karl", Karl);
-        enumMap.put("Carla", Carla);
-        enumMap.put("Giorgio", Giorgio);
-        enumMap.put("Mizuki", Mizuki);
         enumMap.put("Liv", Liv);
         enumMap.put("Lotte", Lotte);
-        enumMap.put("Ruben", Ruben);
-        enumMap.put("Ewa", Ewa);
-        enumMap.put("Jacek", Jacek);
-        enumMap.put("Jan", Jan);
-        enumMap.put("Maja", Maja);
-        enumMap.put("Ricardo", Ricardo);
-        enumMap.put("Vitoria", Vitoria);
-        enumMap.put("Cristiano", Cristiano);
-        enumMap.put("Ines", Ines);
-        enumMap.put("Carmen", Carmen);
-        enumMap.put("Maxim", Maxim);
-        enumMap.put("Tatyana", Tatyana);
-        enumMap.put("Astrid", Astrid);
-        enumMap.put("Filiz", Filiz);
-        enumMap.put("Vicki", Vicki);
-        enumMap.put("Takumi", Takumi);
-        enumMap.put("Seoyeon", Seoyeon);
-        enumMap.put("Aditi", Aditi);
-        enumMap.put("Zhiyu", Zhiyu);
-        enumMap.put("Bianca", Bianca);
         enumMap.put("Lucia", Lucia);
+        enumMap.put("Mads", Mads);
+        enumMap.put("Maja", Maja);
+        enumMap.put("Marlene", Marlene);
+        enumMap.put("Mathieu", Mathieu);
+        enumMap.put("Matthew", Matthew);
+        enumMap.put("Maxim", Maxim);
         enumMap.put("Mia", Mia);
+        enumMap.put("Miguel", Miguel);
+        enumMap.put("Mizuki", Mizuki);
+        enumMap.put("Naja", Naja);
+        enumMap.put("Nicole", Nicole);
+        enumMap.put("Penelope", Penelope);
+        enumMap.put("Raveena", Raveena);
+        enumMap.put("Ricardo", Ricardo);
+        enumMap.put("Ruben", Ruben);
+        enumMap.put("Russell", Russell);
+        enumMap.put("Salli", Salli);
+        enumMap.put("Seoyeon", Seoyeon);
+        enumMap.put("Takumi", Takumi);
+        enumMap.put("Tatyana", Tatyana);
+        enumMap.put("Vicki", Vicki);
+        enumMap.put("Vitoria", Vitoria);
+        enumMap.put("Zeina", Zeina);
+        enumMap.put("Zhiyu", Zhiyu);
     }
 
     /**
