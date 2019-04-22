@@ -34,6 +34,9 @@ public class ListLexiconsRequest extends AmazonWebServiceRequest implements Seri
      * <code>ListLexicons</code> operation. If present, indicates where to
      * continue the list of lexicons.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
 
@@ -43,6 +46,9 @@ public class ListLexiconsRequest extends AmazonWebServiceRequest implements Seri
      * <code>ListLexicons</code> operation. If present, indicates where to
      * continue the list of lexicons.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
      *         An opaque pagination token returned from previous
@@ -60,6 +66,9 @@ public class ListLexiconsRequest extends AmazonWebServiceRequest implements Seri
      * <code>ListLexicons</code> operation. If present, indicates where to
      * continue the list of lexicons.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from previous
@@ -80,6 +89,9 @@ public class ListLexiconsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from previous
