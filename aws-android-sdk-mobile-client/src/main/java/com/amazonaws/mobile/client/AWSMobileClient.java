@@ -482,7 +482,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
-                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -2891,6 +2890,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
+                    registerConfigSignInProviders();
+
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
                             .isBackgroundColorFullScreen(false);
@@ -2901,8 +2902,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     if (signInUIOptions.getBackgroundColor() != null) {
                         authUIConfigBuilder.backgroundColor(signInUIOptions.getBackgroundColor());
                     }
-
-                    final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
                     if (isConfigurationKeyPresent(USER_POOLS)) {
                         authUIConfigBuilder.userPools(true);
@@ -3156,26 +3155,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * AWSConfiguration.
      */
     private void registerConfigSignInProviders() {
-        registerConfigSignInProviders(this.awsConfiguration);
-    }
-
-    /**
-     * Register the SignInProvider and permissions based on the
-     * AWSConfiguration.
-     */
-    private void registerConfigSignInProviders(final AWSConfiguration awsConfig) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, awsConfig)) {
+        if (isConfigurationKeyPresent(USER_POOLS, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(FACEBOOK, awsConfig)) {
+        if (isConfigurationKeyPresent(FACEBOOK, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(GOOGLE, awsConfig)) {
+        if (isConfigurationKeyPresent(GOOGLE, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
     }
