@@ -1,5 +1,19 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix initialization NPE for Hosted UI feature. See [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
+
+### Enhancements
+
+* **AWS Mobile Client**
+  * Update logic to expose network related exceptions during API calls. The network related exceptions were not surfaced previously in API calls like getUserAttributes. Only the exceptions that conclusively indicate signed-out are used to trigger SIGNED_OUT_TOKENS_INVALID variants. See [issue #679](https://github.com/aws-amplify/aws-sdk-android/issues/679)
+  * Reduced logging of unfound dependencies for the Hosted UI feature when not used.
+  * Delay usage of drop-in UI dependencies until `showSignIn()` is called.
+
 ## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
 
 ### New Features
