@@ -76,7 +76,6 @@ import com.amazonaws.mobileconnectors.cognitoauth.Auth;
 import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
-import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import com.amazonaws.mobileconnectors.cognitoauth.util.Pkce;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
@@ -109,7 +108,6 @@ import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvi
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
 import com.amazonaws.util.StringUtils;
-import com.google.android.gms.common.annotation.KeepName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -574,36 +572,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
                                 mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
                             } else {
-                                Log.d(TAG, "initialize: Cognito HostedUI client detected");
-                                final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
-                                final Set<String> scopes = new HashSet<String>();
-                                for (int i = 0; i < scopesJSONArray.length(); i++) {
-                                    scopes.add(scopesJSONArray.getString(i));
-                                }
-
-                                if (mUserPoolPoolId == null) {
-                                    throw new IllegalStateException("User pool Id must be available through user pool setting");
-                                }
-
-                                hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
-                                        .setPersistenceEnabled(mIsPersistenceEnabled)
-                                        .setAuthHandler(new AuthHandler() {
-                                            @Override
-                                            public void onSuccess(AuthUserSession session) {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-
-                                            @Override
-                                            public void onSignout() {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-
-                                            @Override
-                                            public void onFailure(Exception e) {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-                                        })
-                                        .build();
+                                _initializeHostedUI(hostedUIJSON);
                             }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
@@ -627,12 +596,45 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    private void _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
+        Log.d(TAG, "initialize: Cognito HostedUI client detected");
+        final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
+        final Set<String> scopes = new HashSet<String>();
+        for (int i = 0; i < scopesJSONArray.length(); i++) {
+            scopes.add(scopesJSONArray.getString(i));
+        }
+
+        if (mUserPoolPoolId == null) {
+            throw new IllegalStateException("User pool Id must be available through user pool setting");
+        }
+
+        hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+                .setPersistenceEnabled(mIsPersistenceEnabled)
+                .setAuthHandler(new AuthHandler() {
+                    @Override
+                    public void onSuccess(AuthUserSession session) {
+                        // Ignored because this is used to pre-warm the session
+                    }
+
+                    @Override
+                    public void onSignout() {
+                        // Ignored because this is used to pre-warm the session
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        // Ignored because this is used to pre-warm the session
+                    }
+                })
+                .build();
+    }
+
     JSONObject getHostedUIJSONFromJSON() {
         return getHostedUIJSONFromJSON(this.awsConfiguration);
     }
 
     JSONObject getHostedUIJSONFromJSON(final AWSConfiguration awsConfig) {
-        final JSONObject mobileClientJSON = awsConfiguration.optJsonObject("Auth");
+        final JSONObject mobileClientJSON = awsConfig.optJsonObject("Auth");
         if (mobileClientJSON != null && mobileClientJSON.has("OAuth")) {
             try {
                 JSONObject hostedUIJSONFromJSON = mobileClientJSON.getJSONObject("OAuth");
@@ -1539,39 +1541,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
 
                 if (getSignInMode().equals(SignInMode.HOSTED_UI)) {
-//                    final AuthUserSession cachedSession =
-//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
-//                            LocalDataManager.getLastAuthUser(mContext,
-//                                    hostedUIJSONConfigured.getAppId()),
-//                            hostedUI.getScopes());
-//                    callback.onResult(new Tokens(
-//                            cachedSession.getAccessToken().getJWTToken(),
-//                            cachedSession.getIdToken().getJWTToken(),
-//                            cachedSession.getRefreshToken().getToken()
-//                    ));
-//                    return;
-
-                    hostedUI.setAuthHandler(new AuthHandler() {
-                        @Override
-                        public void onSuccess(AuthUserSession session) {
-                            callback.onResult(new Tokens(
-                                    session.getAccessToken().getJWTToken(),
-                                    session.getIdToken().getJWTToken(),
-                                    session.getRefreshToken().getToken()
-                            ));
-                        }
-
-                        @Override
-                        public void onSignout() {
-                            callback.onError(new Exception("No cached session."));
-                        }
-
-                        @Override
-                        public void onFailure(Exception e) {
-                            callback.onError(new Exception("No cached session.", e));
-                        }
-                    });
-                    hostedUI.getSession(false);
+                    _getHostedUITokens(callback);
                     return;
                 } else if (getSignInMode().equals(SignInMode.OAUTH2)) {
                     callback.onError(new Exception("Tokens are not supported for OAuth2"));
@@ -1625,6 +1595,42 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
             }
         };
+    }
+
+    private void _getHostedUITokens(final Callback<Tokens> callback) {
+        //                    final AuthUserSession cachedSession =
+//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
+//                            LocalDataManager.getLastAuthUser(mContext,
+//                                    hostedUIJSONConfigured.getAppId()),
+//                            hostedUI.getScopes());
+//                    callback.onResult(new Tokens(
+//                            cachedSession.getAccessToken().getJWTToken(),
+//                            cachedSession.getIdToken().getJWTToken(),
+//                            cachedSession.getRefreshToken().getToken()
+//                    ));
+//                    return;
+
+        hostedUI.setAuthHandler(new AuthHandler() {
+            @Override
+            public void onSuccess(AuthUserSession session) {
+                callback.onResult(new Tokens(
+                        session.getAccessToken().getJWTToken(),
+                        session.getIdToken().getJWTToken(),
+                        session.getRefreshToken().getToken()
+                ));
+            }
+
+            @Override
+            public void onSignout() {
+                callback.onError(new Exception("No cached session."));
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                callback.onError(new Exception("No cached session.", e));
+            }
+        });
+        hostedUI.getSession(false);
     }
 
     /**
