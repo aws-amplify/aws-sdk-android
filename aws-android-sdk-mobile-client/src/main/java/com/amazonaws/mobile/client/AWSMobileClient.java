@@ -91,6 +91,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Cogn
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
@@ -195,7 +196,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /**
      * AWSConfiguration object that represents the `awsconfiguration.json` file.
      */
-    private AWSConfiguration awsConfiguration;
+    AWSConfiguration awsConfiguration;
     /**
      * Federation into this identity pool
      */
@@ -899,25 +900,37 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return true if user is signed-in, false otherwise
      */
     protected boolean waitForSignIn() {
+        UserStateDetails userStateDetails = null;
         try {
             mWaitForSignInLock.lock();
             mSignedOutWaitLatch = new CountDownLatch(1);
-            final UserStateDetails userStateDetails = getUserStateDetails(false);
+            userStateDetails = getUserStateDetails(false);
             Log.d(TAG, "waitForSignIn: userState:" + userStateDetails.getUserState());
-            setUserState(userStateDetails);
             switch (userStateDetails.getUserState()) {
                 case SIGNED_IN:
+                    setUserState(userStateDetails);
                     return true;
                 case GUEST:
                 case SIGNED_OUT:
+                    setUserState(userStateDetails);
                     return false;
                 case SIGNED_OUT_USER_POOLS_TOKENS_INVALID:
                 case SIGNED_OUT_FEDERATED_TOKENS_INVALID:
-                    mSignedOutWaitLatch.await();
-                    return getUserStateDetails(false).getUserState().equals(UserState.SIGNED_IN);
+                    if (userStateDetails.getException() == null
+                    || isSignedOutRelatedException(userStateDetails.getException())) {
+                        // The service has returned an exception that indicates the user is not authorized
+                        // Ask for another sign-in
+                        setUserState(userStateDetails);
+                        mSignedOutWaitLatch.await();
+                        return getUserStateDetails(false).getUserState().equals(UserState.SIGNED_IN);
+                    } else {
+                        // The exception is non-conclusive whether the user is not authorized or
+                        // there was a network related issue. Throw the exception back to the API call.
+                        throw userStateDetails.getException();
+                    }
             }
         } catch (Exception e) {
-            Log.w(TAG, "Exception when waiting for sign-in", e);
+            throw new AmazonClientException("Operation requires a signed-in state", e);
         } finally {
             mWaitForSignInLock.unlock();
         }
@@ -999,15 +1012,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 return new UserStateDetails(UserState.SIGNED_IN, details);
             } catch (Exception e) {
                 Log.w(TAG, "Failed to federate the tokens.", e);
-                if (e instanceof NotAuthorizedException) {
-                    return new UserStateDetails(UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID, details);
-                } else {
-                    return new UserStateDetails(UserState.SIGNED_IN, details);
+                UserState userState = UserState.SIGNED_IN;
+                if (isSignedOutRelatedException(e)) {
+                    userState = UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID;
                 }
+
+                final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
+                userStateDetails.setException(e);
+                return userStateDetails;
             }
         } else if (hasUsefulToken && userpool != null) {
             Tokens tokens = null;
             String idToken = null;
+            Exception userpoolsException = null;
             try {
                 tokens = getTokens(false);
                 idToken = tokens.getIdToken().getTokenString();
@@ -1032,12 +1049,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             } catch (Exception e) {
                 Log.w(TAG, tokens == null ? "Tokens are invalid, please sign-in again." :
                         "Failed to federate the tokens", e);
+                userpoolsException = e;
             } finally {
-                if (tokens != null && idToken != null) {
-                    return new UserStateDetails(UserState.SIGNED_IN, details);
-                } else {
-                    return new UserStateDetails(UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID, details);
+                UserState userState = UserState.SIGNED_IN;
+                if (isSignedOutRelatedException(userpoolsException)) {
+                    userState = UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID;
                 }
+                final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
+                userStateDetails.setException(userpoolsException);
+                return userStateDetails;
             }
         } else {
             if (cognitoIdentity == null) {
@@ -1048,6 +1068,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 return new UserStateDetails(UserState.SIGNED_OUT, null);
             }
         }
+    }
+
+    boolean isSignedOutRelatedException(final Exception e) {
+        if (e == null) {
+            return false;
+        }
+        if (e instanceof NotAuthorizedException) {
+            return true;
+        }
+        if ("No cached session.".equals(e.getMessage()) && e.getCause() == null) {
+            return true;
+        }
+        return false;
     }
 
     boolean isFederationEnabled() {
