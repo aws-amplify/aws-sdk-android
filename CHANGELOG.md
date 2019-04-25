@@ -2,6 +2,11 @@
 
 ## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
 
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for `ap-east-1` - AP (Hong Kong) region.
+
 ### Misc. Updates
 
 * Model updates for the following services

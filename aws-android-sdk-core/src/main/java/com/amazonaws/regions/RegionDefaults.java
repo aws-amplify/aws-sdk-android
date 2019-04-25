@@ -441,6 +441,24 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.eu-north-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
+        region = new Region("ap-east-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+
         return ret;
     }
 
