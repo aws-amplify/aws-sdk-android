@@ -44,6 +44,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
                 "CognitoIdentityProviderCache",
                 true);
         String storeFieldPrefix = "CognitoIdentityProvider." + clientId + "." + username + ".";
+        awsKeyValueStore.put("CognitoIdentityProvider." + clientId + ".LastAuthUser", username);
         awsKeyValueStore.put(storeFieldPrefix + "idToken", getValidJWT(expiryFromNow));
         awsKeyValueStore.put(storeFieldPrefix + "accessToken", getValidJWT(expiryFromNow));
         awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
