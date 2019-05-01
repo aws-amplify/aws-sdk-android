@@ -23,8 +23,13 @@ import com.amazonaws.logging.LogFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.PasswordAuthentication;
 import java.net.ProtocolException;
+import java.net.Proxy;
+import java.net.SocketAddress;
 import java.net.URL;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
@@ -54,6 +59,7 @@ public class UrlHttpClient implements HttpClient {
     private static final int DEFAULT_BUFFER_SIZE = 1024;
     private static final int BUFFER_SIZE_MULTIPLIER = 8;
     private final ClientConfiguration config;
+    protected Proxy proxy = null;
 
     /**
      * Constructor.
@@ -66,7 +72,10 @@ public class UrlHttpClient implements HttpClient {
     @Override
     public HttpResponse execute(final HttpRequest request) throws IOException {
         final URL url = request.getUri().toURL();
-        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        // Apply proxy settings if specified
+        final HttpURLConnection connection = getConnection(url);
+
         final CurlBuilder curlBuilder = config.isCurlLogging()
                 ? new CurlBuilder(request.getUri().toURL()) : null;
 
@@ -83,6 +92,38 @@ public class UrlHttpClient implements HttpClient {
         }
 
         return createHttpResponse(request, connection);
+    }
+
+    HttpURLConnection getConnection(URL url) throws IOException {
+        if (config.getProxyHost() != null) {
+            SocketAddress socketAddress;
+            if (config.getProxyPort() != -1) {
+                socketAddress = new InetSocketAddress(config.getProxyHost(), config.getProxyPort());
+            } else {
+                socketAddress = new InetSocketAddress(config.getProxyHost(), 80);
+            }
+            proxy = new Proxy(Proxy.Type.HTTP, socketAddress);
+
+            if (config.getProxyUsername() != null && config.getProxyPassword() != null) {
+                Authenticator authenticator = new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return (new PasswordAuthentication(config.getProxyUsername(),
+                                config.getProxyPassword().toCharArray()));
+                    }
+                };
+                Authenticator.setDefault(authenticator);
+            }
+        }
+
+        final HttpURLConnection connection;
+        if (proxy != null) {
+            connection = (HttpURLConnection) url.openConnection(proxy);
+        } else {
+            connection = (HttpURLConnection) url.openConnection();
+        }
+
+        return connection;
     }
 
     @SuppressWarnings("checkstyle:emptyblock")

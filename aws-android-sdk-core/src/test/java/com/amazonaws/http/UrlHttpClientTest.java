@@ -17,16 +17,21 @@ package com.amazonaws.http;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.Protocol;
 import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.util.StringUtils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.littleshoot.proxy.HttpProxyServer;
+import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -54,11 +59,20 @@ public class UrlHttpClientTest {
 
     private ClientConfiguration conf;
     private MockUrlHttpClient client;
+    private HttpProxyServer server;
 
     @Before
     public void setup() {
         conf = new ClientConfiguration();
         client = new MockUrlHttpClient(conf);
+        server = DefaultHttpProxyServer.bootstrap()
+                        .withPort(8080)
+                        .start();
+    }
+
+    @After
+    public void tearDown() {
+        server.stop();
     }
 
     @Test
@@ -141,6 +155,36 @@ public class UrlHttpClientTest {
                         + dataString + "' https://www.test.com",
                 client.getLogList().get(0));
         */
+    }
+
+    @Test
+    public void testClientProxySettings() throws URISyntaxException, IOException {
+        conf.setCurlLogging(true);
+        final Map<String, String> headers = new HashMap<String, String>();
+        headers.put("key1", "value1");
+        headers.put("key2", "value2");
+
+        final HashSet<String> expectedCurlHeaders = new HashSet<String>();
+        for (final Map.Entry<String, String> entry : headers.entrySet()) {
+            expectedCurlHeaders.add("\"" + entry.getKey() + ":" + entry.getValue() + "\"");
+        }
+
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers,
+                null /* stream */);
+
+        conf.setProtocol(Protocol.HTTP);
+        conf.setProxyHost(server.getListenAddress().getHostName());
+        conf.setProxyPort(server.getListenAddress().getPort());
+
+        try {
+            client.execute(request);
+        } catch (final UnknownHostException exception) {
+            return;
+        }
+        assertNotNull(client.proxy);
+        assertEquals(client.proxy.address(), server.getListenAddress());
+        assertTrue("Expected UnknownHostException. UnknownHostException not thrown while executing the request.", true);
     }
 
     @Test
