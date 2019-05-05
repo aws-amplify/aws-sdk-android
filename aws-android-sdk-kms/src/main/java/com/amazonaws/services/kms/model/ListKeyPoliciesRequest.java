@@ -73,7 +73,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * 1000, inclusive. If you do not include a value, it defaults to 100.
      * </p>
      * <p>
-     * Currently only 1 policy can be attached to a key.
+     * Only one policy can be attached to a key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -299,7 +299,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * 1000, inclusive. If you do not include a value, it defaults to 100.
      * </p>
      * <p>
-     * Currently only 1 policy can be attached to a key.
+     * Only one policy can be attached to a key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -316,7 +316,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *         defaults to 100.
      *         </p>
      *         <p>
-     *         Currently only 1 policy can be attached to a key.
+     *         Only one policy can be attached to a key.
      *         </p>
      */
     public Integer getLimit() {
@@ -334,7 +334,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * 1000, inclusive. If you do not include a value, it defaults to 100.
      * </p>
      * <p>
-     * Currently only 1 policy can be attached to a key.
+     * Only one policy can be attached to a key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -352,7 +352,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            it defaults to 100.
      *            </p>
      *            <p>
-     *            Currently only 1 policy can be attached to a key.
+     *            Only one policy can be attached to a key.
      *            </p>
      */
     public void setLimit(Integer limit) {
@@ -370,7 +370,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * 1000, inclusive. If you do not include a value, it defaults to 100.
      * </p>
      * <p>
-     * Currently only 1 policy can be attached to a key.
+     * Only one policy can be attached to a key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -391,7 +391,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            it defaults to 100.
      *            </p>
      *            <p>
-     *            Currently only 1 policy can be attached to a key.
+     *            Only one policy can be attached to a key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

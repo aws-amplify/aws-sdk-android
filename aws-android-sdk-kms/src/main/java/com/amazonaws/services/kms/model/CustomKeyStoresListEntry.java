@@ -59,7 +59,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * The trust anchor certificate of the associated AWS CloudHSM cluster. When
      * you <a href=
-     * "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     * "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      * >initialize the cluster</a>, you create this certificate and save it in
      * the <code>customerCA.crt</code> file.
      * </p>
@@ -88,7 +88,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -120,6 +120,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -143,14 +151,15 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      */
     private String connectionErrorCode;
 
@@ -333,7 +342,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * The trust anchor certificate of the associated AWS CloudHSM cluster. When
      * you <a href=
-     * "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     * "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      * >initialize the cluster</a>, you create this certificate and save it in
      * the <code>customerCA.crt</code> file.
      * </p>
@@ -344,7 +353,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * @return <p>
      *         The trust anchor certificate of the associated AWS CloudHSM
      *         cluster. When you <a href=
-     *         "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     *         "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      *         >initialize the cluster</a>, you create this certificate and save
      *         it in the <code>customerCA.crt</code> file.
      *         </p>
@@ -357,7 +366,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * The trust anchor certificate of the associated AWS CloudHSM cluster. When
      * you <a href=
-     * "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     * "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      * >initialize the cluster</a>, you create this certificate and save it in
      * the <code>customerCA.crt</code> file.
      * </p>
@@ -368,7 +377,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * @param trustAnchorCertificate <p>
      *            The trust anchor certificate of the associated AWS CloudHSM
      *            cluster. When you <a href=
-     *            "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     *            "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      *            >initialize the cluster</a>, you create this certificate and
      *            save it in the <code>customerCA.crt</code> file.
      *            </p>
@@ -381,7 +390,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * The trust anchor certificate of the associated AWS CloudHSM cluster. When
      * you <a href=
-     * "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     * "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      * >initialize the cluster</a>, you create this certificate and save it in
      * the <code>customerCA.crt</code> file.
      * </p>
@@ -395,7 +404,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * @param trustAnchorCertificate <p>
      *            The trust anchor certificate of the associated AWS CloudHSM
      *            cluster. When you <a href=
-     *            "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+     *            "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
      *            >initialize the cluster</a>, you create this certificate and
      *            save it in the <code>customerCA.crt</code> file.
      *            </p>
@@ -426,7 +435,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -455,7 +464,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *         A value of <code>FAILED</code> indicates that an attempt to
      *         connect was unsuccessful. For help resolving a connection
      *         failure, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *         >Troubleshooting a Custom Key Store</a> in the <i>AWS Key
      *         Management Service Developer Guide</i>.
      *         </p>
@@ -484,7 +493,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -514,7 +523,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            A value of <code>FAILED</code> indicates that an attempt to
      *            connect was unsuccessful. For help resolving a connection
      *            failure, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting a Custom Key Store</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -543,7 +552,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -576,7 +585,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            A value of <code>FAILED</code> indicates that an attempt to
      *            connect was unsuccessful. For help resolving a connection
      *            failure, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting a Custom Key Store</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -608,7 +617,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -638,7 +647,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            A value of <code>FAILED</code> indicates that an attempt to
      *            connect was unsuccessful. For help resolving a connection
      *            failure, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting a Custom Key Store</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -667,7 +676,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * A value of <code>FAILED</code> indicates that an attempt to connect was
      * unsuccessful. For help resolving a connection failure, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting a Custom Key Store</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -700,7 +709,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            A value of <code>FAILED</code> indicates that an attempt to
      *            connect was unsuccessful. For help resolving a connection
      *            failure, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting a Custom Key Store</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -734,6 +743,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -757,14 +774,15 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      *
      * @return <p>
      *         Describes the connection error. Valid values are:
@@ -782,6 +800,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      *         CloudHSM cluster does not contain any active HSMs. To connect a
      *         custom key store to its AWS CloudHSM cluster, the cluster must
      *         contain at least one active HSM.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>INTERNAL_ERROR</code> - AWS KMS could not complete the
+     *         request due to an internal error. Retry the request. For
+     *         <code>ConnectCustomKeyStore</code> requests, disconnect the
+     *         custom key store before trying to connect again.
      *         </p>
      *         </li>
      *         <li>
@@ -810,7 +836,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *         </ul>
      *         <p>
      *         For help with connection failures, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *         >Troubleshooting Custom Key Stores</a> in the <i>AWS Key
      *         Management Service Developer Guide</i>.
      *         </p>
@@ -841,6 +867,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -864,14 +898,15 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. Valid values are:
@@ -889,6 +924,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            CloudHSM cluster does not contain any active HSMs. To connect
      *            a custom key store to its AWS CloudHSM cluster, the cluster
      *            must contain at least one active HSM.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INTERNAL_ERROR</code> - AWS KMS could not complete the
+     *            request due to an internal error. Retry the request. For
+     *            <code>ConnectCustomKeyStore</code> requests, disconnect the
+     *            custom key store before trying to connect again.
      *            </p>
      *            </li>
      *            <li>
@@ -917,7 +960,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            </ul>
      *            <p>
      *            For help with connection failures, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting Custom Key Stores</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -948,6 +991,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -971,7 +1022,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -981,7 +1032,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. Valid values are:
@@ -999,6 +1051,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            CloudHSM cluster does not contain any active HSMs. To connect
      *            a custom key store to its AWS CloudHSM cluster, the cluster
      *            must contain at least one active HSM.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INTERNAL_ERROR</code> - AWS KMS could not complete the
+     *            request due to an internal error. Retry the request. For
+     *            <code>ConnectCustomKeyStore</code> requests, disconnect the
+     *            custom key store before trying to connect again.
      *            </p>
      *            </li>
      *            <li>
@@ -1027,7 +1087,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            </ul>
      *            <p>
      *            For help with connection failures, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting Custom Key Stores</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -1061,6 +1121,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -1084,14 +1152,15 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. Valid values are:
@@ -1109,6 +1178,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            CloudHSM cluster does not contain any active HSMs. To connect
      *            a custom key store to its AWS CloudHSM cluster, the cluster
      *            must contain at least one active HSM.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INTERNAL_ERROR</code> - AWS KMS could not complete the
+     *            request due to an internal error. Retry the request. For
+     *            <code>ConnectCustomKeyStore</code> requests, disconnect the
+     *            custom key store before trying to connect again.
      *            </p>
      *            </li>
      *            <li>
@@ -1137,7 +1214,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            </ul>
      *            <p>
      *            For help with connection failures, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting Custom Key Stores</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
@@ -1168,6 +1245,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>INTERNAL_ERROR</code> - AWS KMS could not complete the request due
+     * to an internal error. Retry the request. For
+     * <code>ConnectCustomKeyStore</code> requests, disconnect the custom key
+     * store before trying to connect again.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>INVALID_CREDENTIALS</code> - AWS KMS does not have the correct
      * password for the <code>kmsuser</code> crypto user in the AWS CloudHSM
      * cluster.
@@ -1191,7 +1276,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </ul>
      * <p>
      * For help with connection failures, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      * >Troubleshooting Custom Key Stores</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
@@ -1201,7 +1286,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
-     * NETWORK_ERRORS, INSUFFICIENT_CLOUDHSM_HSMS, USER_LOCKED_OUT
+     * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
+     * USER_LOCKED_OUT
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. Valid values are:
@@ -1219,6 +1305,14 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            CloudHSM cluster does not contain any active HSMs. To connect
      *            a custom key store to its AWS CloudHSM cluster, the cluster
      *            must contain at least one active HSM.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INTERNAL_ERROR</code> - AWS KMS could not complete the
+     *            request due to an internal error. Retry the request. For
+     *            <code>ConnectCustomKeyStore</code> requests, disconnect the
+     *            custom key store before trying to connect again.
      *            </p>
      *            </li>
      *            <li>
@@ -1247,7 +1341,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            </ul>
      *            <p>
      *            For help with connection failures, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
      *            >Troubleshooting Custom Key Stores</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>

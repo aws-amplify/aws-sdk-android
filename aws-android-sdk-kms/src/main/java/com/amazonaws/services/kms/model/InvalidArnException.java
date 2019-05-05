@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because a specified ARN was not valid.
+ * The request was rejected because a specified ARN, or an ARN in a key policy,
+ * is not valid.
  * </p>
  */
 public class InvalidArnException extends AmazonServiceException {
