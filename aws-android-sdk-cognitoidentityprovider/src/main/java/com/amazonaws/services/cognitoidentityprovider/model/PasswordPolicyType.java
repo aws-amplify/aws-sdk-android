@@ -67,6 +67,15 @@ public class PasswordPolicyType implements Serializable {
     private Boolean requireSymbols;
 
     /**
+     * The new value for the temporaryPasswordValidityDays property for this
+     * object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 365<br/>
+     */
+    private Integer temporaryPasswordValidityDays;
+
+    /**
      * <p>
      * The minimum length of the password policy that you have set. Cannot be
      * less than 6.
@@ -403,6 +412,54 @@ public class PasswordPolicyType implements Serializable {
     }
 
     /**
+     * Returns the value of the temporaryPasswordValidityDays property for this
+     * object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 365<br/>
+     *
+     * @return The value of the temporaryPasswordValidityDays property for this
+     *         object.
+     */
+    public Integer getTemporaryPasswordValidityDays() {
+        return temporaryPasswordValidityDays;
+    }
+
+    /**
+     * Sets the value of temporaryPasswordValidityDays
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 365<br/>
+     *
+     * @param temporaryPasswordValidityDays The new value for the
+     *            temporaryPasswordValidityDays property for this object.
+     */
+    public void setTemporaryPasswordValidityDays(Integer temporaryPasswordValidityDays) {
+        this.temporaryPasswordValidityDays = temporaryPasswordValidityDays;
+    }
+
+    /**
+     * Sets the value of the temporaryPasswordValidityDays property for this
+     * object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 365<br/>
+     *
+     * @param temporaryPasswordValidityDays The new value for the
+     *            temporaryPasswordValidityDays property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PasswordPolicyType withTemporaryPasswordValidityDays(
+            Integer temporaryPasswordValidityDays) {
+        this.temporaryPasswordValidityDays = temporaryPasswordValidityDays;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -422,7 +479,9 @@ public class PasswordPolicyType implements Serializable {
         if (getRequireNumbers() != null)
             sb.append("RequireNumbers: " + getRequireNumbers() + ",");
         if (getRequireSymbols() != null)
-            sb.append("RequireSymbols: " + getRequireSymbols());
+            sb.append("RequireSymbols: " + getRequireSymbols() + ",");
+        if (getTemporaryPasswordValidityDays() != null)
+            sb.append("TemporaryPasswordValidityDays: " + getTemporaryPasswordValidityDays());
         sb.append("}");
         return sb.toString();
     }
@@ -442,6 +501,10 @@ public class PasswordPolicyType implements Serializable {
                 + ((getRequireNumbers() == null) ? 0 : getRequireNumbers().hashCode());
         hashCode = prime * hashCode
                 + ((getRequireSymbols() == null) ? 0 : getRequireSymbols().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTemporaryPasswordValidityDays() == null) ? 0
+                        : getTemporaryPasswordValidityDays().hashCode());
         return hashCode;
     }
 
@@ -480,6 +543,13 @@ public class PasswordPolicyType implements Serializable {
             return false;
         if (other.getRequireSymbols() != null
                 && other.getRequireSymbols().equals(this.getRequireSymbols()) == false)
+            return false;
+        if (other.getTemporaryPasswordValidityDays() == null
+                ^ this.getTemporaryPasswordValidityDays() == null)
+            return false;
+        if (other.getTemporaryPasswordValidityDays() != null
+                && other.getTemporaryPasswordValidityDays().equals(
+                        this.getTemporaryPasswordValidityDays()) == false)
             return false;
         return true;
     }
