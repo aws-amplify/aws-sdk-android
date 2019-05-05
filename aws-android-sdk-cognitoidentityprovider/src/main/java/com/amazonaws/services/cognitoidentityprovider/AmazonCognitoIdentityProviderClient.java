@@ -1645,6 +1645,57 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param adminSetUserPasswordRequest
+     * @return adminSetUserPasswordResult The response from the
+     *         AdminSetUserPassword service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InvalidPasswordException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminSetUserPasswordResult adminSetUserPassword(
+            AdminSetUserPasswordRequest adminSetUserPasswordRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminSetUserPasswordRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminSetUserPasswordRequest> request = null;
+        Response<AdminSetUserPasswordResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminSetUserPasswordRequestMarshaller()
+                        .marshall(adminSetUserPasswordRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminSetUserPasswordResult, JsonUnmarshallerContext> unmarshaller = new AdminSetUserPasswordResultJsonUnmarshaller();
+            JsonResponseHandler<AdminSetUserPasswordResult> responseHandler = new JsonResponseHandler<AdminSetUserPasswordResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Sets all the user settings for a specified user name. Works on any user.
      * </p>

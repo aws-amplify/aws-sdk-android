@@ -51,6 +51,12 @@ class PasswordPolicyTypeJsonMarshaller {
             jsonWriter.name("RequireSymbols");
             jsonWriter.value(requireSymbols);
         }
+        if (passwordPolicyType.getTemporaryPasswordValidityDays() != null) {
+            Integer temporaryPasswordValidityDays = passwordPolicyType
+                    .getTemporaryPasswordValidityDays();
+            jsonWriter.name("TemporaryPasswordValidityDays");
+            jsonWriter.value(temporaryPasswordValidityDays);
+        }
         jsonWriter.endObject();
     }
 
