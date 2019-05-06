@@ -22,12 +22,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets information about <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
  * >custom key stores</a> in the account and region.
  * </p>
  * <p>
  * This operation is part of the <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
  * >Custom Key Store feature</a> feature in AWS KMS, which combines the
  * convenience and extensive integration of AWS KMS with the isolation and
  * control of a single-tenant key store.
@@ -57,7 +57,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For help repairing your custom key store, see the <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore-html"
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html"
  * >Troubleshooting Custom Key Stores</a> topic in the <i>AWS Key Management
  * Service Developer Guide</i>.
  * </p>

@@ -29,14 +29,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about scheduling and canceling deletion of a CMK, see <a
  * href
- * ="http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"
  * >Deleting Customer Master Keys</a> in the <i>AWS Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
