@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>

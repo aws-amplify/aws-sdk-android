@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a display name for a customer master key (CMK). You can use an alias
- * to identify a CMK in selected operations, such as <a>Encrypt</a> and
- * <a>GenerateDataKey</a>.
+ * Creates a display name for a customer managed customer master key (CMK). You
+ * can use an alias to identify a CMK in selected operations, such as
+ * <a>Encrypt</a> and <a>GenerateDataKey</a>.
  * </p>
  * <p>
  * Each CMK can have multiple aliases, but each alias points to only one CMK.
@@ -38,11 +38,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * CMKs, use the <a>ListAliases</a> operation.
  * </p>
  * <p>
- * An alias must start with the word <code>alias</code> followed by a forward
- * slash (<code>alias/</code>). The alias name can contain only alphanumeric
- * characters, forward slashes (/), underscores (_), and dashes (-). Alias names
- * cannot begin with <code>aws</code>; that alias name prefix is reserved by
- * Amazon Web Services (AWS).
+ * The alias name must begin with <code>alias/</code> followed by a name, such
+ * as <code>alias/ExampleAlias</code>. It can contain only alphanumeric
+ * characters, forward slashes (/), underscores (_), and dashes (-). The alias
+ * name cannot begin with <code>alias/aws/</code>. The <code>alias/aws/</code>
+ * prefix is reserved for <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+ * >AWS managed CMKs</a>.
  * </p>
  * <p>
  * The alias and the CMK it is mapped to must be in the same AWS account and the
@@ -55,7 +57,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
@@ -63,9 +65,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateAliasRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * String that contains the display name. The name must start with the word
-     * "alias" followed by a forward slash (alias/). Aliases that begin with
-     * "alias/AWS" are reserved.
+     * Specifies the alias name. This value must begin with <code>alias/</code>
+     * followed by a name, such as <code>alias/ExampleAlias</code>. The alias
+     * name cannot begin with <code>alias/aws/</code>. The
+     * <code>alias/aws/</code> prefix is reserved for AWS managed CMKs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,31 +79,12 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK for which you are creating the alias. This value
-     * cannot be an alias.
-     * </p>
-     * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Key ARN:
-     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     * <a>DescribeKey</a>.
+     * Identifies the CMK to which the alias refers. Specify the key ID or the
+     * Amazon Resource Name (ARN) of the CMK. You cannot specify another alias.
+     * For help finding the key ID and ARN, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -110,9 +94,10 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * String that contains the display name. The name must start with the word
-     * "alias" followed by a forward slash (alias/). Aliases that begin with
-     * "alias/AWS" are reserved.
+     * Specifies the alias name. This value must begin with <code>alias/</code>
+     * followed by a name, such as <code>alias/ExampleAlias</code>. The alias
+     * name cannot begin with <code>alias/aws/</code>. The
+     * <code>alias/aws/</code> prefix is reserved for AWS managed CMKs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,9 +105,11 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @return <p>
-     *         String that contains the display name. The name must start with
-     *         the word "alias" followed by a forward slash (alias/). Aliases
-     *         that begin with "alias/AWS" are reserved.
+     *         Specifies the alias name. This value must begin with
+     *         <code>alias/</code> followed by a name, such as
+     *         <code>alias/ExampleAlias</code>. The alias name cannot begin with
+     *         <code>alias/aws/</code>. The <code>alias/aws/</code> prefix is
+     *         reserved for AWS managed CMKs.
      *         </p>
      */
     public String getAliasName() {
@@ -131,9 +118,10 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * String that contains the display name. The name must start with the word
-     * "alias" followed by a forward slash (alias/). Aliases that begin with
-     * "alias/AWS" are reserved.
+     * Specifies the alias name. This value must begin with <code>alias/</code>
+     * followed by a name, such as <code>alias/ExampleAlias</code>. The alias
+     * name cannot begin with <code>alias/aws/</code>. The
+     * <code>alias/aws/</code> prefix is reserved for AWS managed CMKs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,9 +129,11 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            String that contains the display name. The name must start
-     *            with the word "alias" followed by a forward slash (alias/).
-     *            Aliases that begin with "alias/AWS" are reserved.
+     *            Specifies the alias name. This value must begin with
+     *            <code>alias/</code> followed by a name, such as
+     *            <code>alias/ExampleAlias</code>. The alias name cannot begin
+     *            with <code>alias/aws/</code>. The <code>alias/aws/</code>
+     *            prefix is reserved for AWS managed CMKs.
      *            </p>
      */
     public void setAliasName(String aliasName) {
@@ -152,9 +142,10 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * String that contains the display name. The name must start with the word
-     * "alias" followed by a forward slash (alias/). Aliases that begin with
-     * "alias/AWS" are reserved.
+     * Specifies the alias name. This value must begin with <code>alias/</code>
+     * followed by a name, such as <code>alias/ExampleAlias</code>. The alias
+     * name cannot begin with <code>alias/aws/</code>. The
+     * <code>alias/aws/</code> prefix is reserved for AWS managed CMKs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,9 +156,11 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            String that contains the display name. The name must start
-     *            with the word "alias" followed by a forward slash (alias/).
-     *            Aliases that begin with "alias/AWS" are reserved.
+     *            Specifies the alias name. This value must begin with
+     *            <code>alias/</code> followed by a name, such as
+     *            <code>alias/ExampleAlias</code>. The alias name cannot begin
+     *            with <code>alias/aws/</code>. The <code>alias/aws/</code>
+     *            prefix is reserved for AWS managed CMKs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -179,62 +172,24 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK for which you are creating the alias. This value
-     * cannot be an alias.
-     * </p>
-     * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Key ARN:
-     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     * <a>DescribeKey</a>.
+     * Identifies the CMK to which the alias refers. Specify the key ID or the
+     * Amazon Resource Name (ARN) of the CMK. You cannot specify another alias.
+     * For help finding the key ID and ARN, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies the CMK for which you are creating the alias. This
-     *         value cannot be an alias.
-     *         </p>
-     *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     *         </p>
-     *         <p>
-     *         For example:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Key ARN:
-     *         <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         Identifies the CMK to which the alias refers. Specify the key ID
+     *         or the Amazon Resource Name (ARN) of the CMK. You cannot specify
+     *         another alias. For help finding the key ID and ARN, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     *         >Finding the Key ID and ARN</a> in the <i>AWS Key Management
+     *         Service Developer Guide</i>.
      *         </p>
      */
     public String getTargetKeyId() {
@@ -243,63 +198,25 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK for which you are creating the alias. This value
-     * cannot be an alias.
-     * </p>
-     * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Key ARN:
-     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     * <a>DescribeKey</a>.
+     * Identifies the CMK to which the alias refers. Specify the key ID or the
+     * Amazon Resource Name (ARN) of the CMK. You cannot specify another alias.
+     * For help finding the key ID and ARN, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            Identifies the CMK for which you are creating the alias. This
-     *            value cannot be an alias.
-     *            </p>
-     *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
-     *            </p>
-     *            <p>
-     *            For example:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Key ARN:
-     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            Identifies the CMK to which the alias refers. Specify the key
+     *            ID or the Amazon Resource Name (ARN) of the CMK. You cannot
+     *            specify another alias. For help finding the key ID and ARN,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     *            >Finding the Key ID and ARN</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
      */
     public void setTargetKeyId(String targetKeyId) {
@@ -308,31 +225,12 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK for which you are creating the alias. This value
-     * cannot be an alias.
-     * </p>
-     * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Key ARN:
-     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     * <a>DescribeKey</a>.
+     * Identifies the CMK to which the alias refers. Specify the key ID or the
+     * Amazon Resource Name (ARN) of the CMK. You cannot specify another alias.
+     * For help finding the key ID and ARN, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -342,32 +240,13 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            Identifies the CMK for which you are creating the alias. This
-     *            value cannot be an alias.
-     *            </p>
-     *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
-     *            </p>
-     *            <p>
-     *            For example:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Key ARN:
-     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            Identifies the CMK to which the alias refers. Specify the key
+     *            ID or the Amazon Resource Name (ARN) of the CMK. You cannot
+     *            specify another alias. For help finding the key ID and ARN,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
+     *            >Finding the Key ID and ARN</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

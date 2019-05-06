@@ -40,9 +40,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteAliasRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The alias to be deleted. The name must start with the word "alias"
-     * followed by a forward slash (alias/). Aliases that begin with "alias/aws"
-     * are reserved.
+     * The alias to be deleted. The alias name must begin with
+     * <code>alias/</code> followed by the alias name, such as
+     * <code>alias/ExampleAlias</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,9 +53,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The alias to be deleted. The name must start with the word "alias"
-     * followed by a forward slash (alias/). Aliases that begin with "alias/aws"
-     * are reserved.
+     * The alias to be deleted. The alias name must begin with
+     * <code>alias/</code> followed by the alias name, such as
+     * <code>alias/ExampleAlias</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,9 +63,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @return <p>
-     *         The alias to be deleted. The name must start with the word
-     *         "alias" followed by a forward slash (alias/). Aliases that begin
-     *         with "alias/aws" are reserved.
+     *         The alias to be deleted. The alias name must begin with
+     *         <code>alias/</code> followed by the alias name, such as
+     *         <code>alias/ExampleAlias</code>.
      *         </p>
      */
     public String getAliasName() {
@@ -74,9 +74,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The alias to be deleted. The name must start with the word "alias"
-     * followed by a forward slash (alias/). Aliases that begin with "alias/aws"
-     * are reserved.
+     * The alias to be deleted. The alias name must begin with
+     * <code>alias/</code> followed by the alias name, such as
+     * <code>alias/ExampleAlias</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,9 +84,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            The alias to be deleted. The name must start with the word
-     *            "alias" followed by a forward slash (alias/). Aliases that
-     *            begin with "alias/aws" are reserved.
+     *            The alias to be deleted. The alias name must begin with
+     *            <code>alias/</code> followed by the alias name, such as
+     *            <code>alias/ExampleAlias</code>.
      *            </p>
      */
     public void setAliasName(String aliasName) {
@@ -95,9 +95,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The alias to be deleted. The name must start with the word "alias"
-     * followed by a forward slash (alias/). Aliases that begin with "alias/aws"
-     * are reserved.
+     * The alias to be deleted. The alias name must begin with
+     * <code>alias/</code> followed by the alias name, such as
+     * <code>alias/ExampleAlias</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -108,9 +108,9 @@ public class DeleteAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            The alias to be deleted. The name must start with the word
-     *            "alias" followed by a forward slash (alias/). Aliases that
-     *            begin with "alias/aws" are reserved.
+     *            The alias to be deleted. The alias name must begin with
+     *            <code>alias/</code> followed by the alias name, such as
+     *            <code>alias/ExampleAlias</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
