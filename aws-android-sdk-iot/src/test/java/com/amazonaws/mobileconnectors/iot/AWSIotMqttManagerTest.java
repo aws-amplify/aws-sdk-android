@@ -1,12 +1,14 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
+import static junit.framework.Assert.fail;
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.async.Callback;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -15,6 +17,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
@@ -28,10 +31,13 @@ import org.robolectric.annotation.Config;
 import java.io.File;
 import java.security.KeyPair;
 import java.security.KeyStore;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, emulateSdk = 16, reportSdk = 16)
@@ -357,7 +363,31 @@ public class AWSIotMqttManagerTest {
         testClient.connect(testKeystore, csb);
         mockClient.mockConnectSuccess();
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
-        testClient.disconnect();
+        assertTrue(testClient.disconnect());
+        assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectSuccess();
+
+        assertEquals(2, mockClient.connectCalls);
+    }
+
+    @Test
+    public void testConnectDisconnectAsyncConnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setAutoReconnect(false);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectSuccess();
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+        disconnectAsync(testClient);
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
         testClient.connect(testKeystore, csb);
         mockClient.mockConnectSuccess();
@@ -700,7 +730,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // user disconnect
-        testClient.disconnect();
+        assertTrue(testClient.disconnect());
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
 
         // advance past reconnect time and ensure we don't attempt a reconnect
@@ -708,6 +738,51 @@ public class AWSIotMqttManagerTest {
         //assertEquals(2, mockClient.connectCalls);
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
     }
+
+    @Test
+    public void testUserDisconnectAsyncStopsAutoReconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setAutoReconnect(true);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper
+                .getIotKeystore(CERT_ID, KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        testClient.setUnitTestMillisOverride(1000L);
+        mockClient.mockConnectSuccess();
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+        assertEquals(1, mockClient.connectCalls);
+        mockClient.mockDisconnect();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        // make sure we wait for 4 seconds, still 1 after 3 seconds
+        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        testClient.setUnitTestMillisOverride(4000L);
+        assertEquals(1, mockClient.connectCalls);
+
+        // now past 4
+        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        testClient.setUnitTestMillisOverride(5100L);
+
+        //assertEquals(2, mockClient.connectCalls);
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        disconnectAsync(testClient);
+
+        assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+
+        // advance past reconnect time and ensure we don't attempt a reconnect
+        Robolectric.getUiThreadScheduler().advanceBy(10000);
+        //assertEquals(2, mockClient.connectCalls);
+        assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+    }
+
     /*
         Comment out these tests temporarily before we upgrade to Robolectric v3
         Without being able to advance background handler thread, below tests connection state change,
@@ -955,7 +1030,31 @@ public class AWSIotMqttManagerTest {
         mockClient.mockConnectSuccess();
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
 
-        testClient.disconnect();
+        assertTrue(testClient.disconnect());
+        assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+
+        assertEquals(1, mockClient.connectCalls);
+        assertEquals(1, mockClient.disconnectCalls);
+    }
+
+    @Test
+    public void testDisconnectAsync() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectSuccess();
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+
+        disconnectAsync(testClient);
+
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
 
         assertEquals(1, mockClient.connectCalls);
@@ -971,9 +1070,21 @@ public class AWSIotMqttManagerTest {
         testClient.setMqttClient(mockClient);
 
         mockClient.isConnected = false;
-        testClient.disconnect();
-
+        assertTrue(testClient.disconnect());
         assertEquals(0, mockClient.disconnectCalls);
+    }
+
+    @Test
+    public void testDisconnectAsyncWhenNotConnected() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        mockClient.isConnected = false;
+        disconnectAsync(testClient);
+        assertEquals(1, mockClient.disconnectCalls);
     }
 
     @Test(expected = AmazonClientException.class)
@@ -2590,6 +2701,29 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test(expected = AmazonClientException.class)
+    public void testPublishDisconnectedAsyncDisconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setOfflinePublishQueueBound(100);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper
+                .getIotKeystore(CERT_ID, KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectSuccess();
+        disconnectAsync(testClient);
+
+        testClient.publishString("test payload 0", "test/topic", AWSIotMqttQos.QOS0);
+
+        // we don't queue when Disconnected (user disconnect or auto-reconnect exhausted)
+        assertEquals(0, testClient.getMqttMessageQueue().size());
+    }
+
+    @Test(expected = AmazonClientException.class)
     public void testPublishConnecting() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
@@ -2631,6 +2765,34 @@ public class AWSIotMqttManagerTest {
         testClient.connect(testKeystore, csb);
         mockClient.mockConnectSuccess();
         testClient.disconnect();
+
+        testClient.publishString("test payload 0", "test/topic", AWSIotMqttQos.QOS0, mdcb, "TEST_TOKEN");
+
+        // we don't queue when Disconnected (user disconnect or auto-reconnect exhausted)
+        assertEquals(0, testClient.getMqttMessageQueue().size());
+        // callback not called
+        assertEquals(1, mdcb.statuses.size());
+        assertEquals(1, mdcb.userDatas.size());
+    }
+
+    @Test
+    public void testPublishWithCallbackDisconnectedWithAsyncDisconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setOfflinePublishQueueBound(100);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+        TestMessageDeliveryCallback mdcb = new TestMessageDeliveryCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper
+                .getIotKeystore(CERT_ID, KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        mockClient.mockConnectSuccess();
+
+        disconnectAsync(testClient);
 
         testClient.publishString("test payload 0", "test/topic", AWSIotMqttQos.QOS0, mdcb, "TEST_TOKEN");
 
@@ -3003,6 +3165,30 @@ public class AWSIotMqttManagerTest {
             assertEquals("test payload " + i,
                   new String(message.getMessage()));
             i++;
+        }
+    }
+
+    private void disconnectAsync(AWSIotMqttManager testClient) {
+        // user disconnect - async
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        testClient.disconnect(new Callback<IMqttToken>() {
+            @Override
+            public void onResult(IMqttToken result) {
+                assertNotNull("Token from disconnect attempt should not be null", result);
+                countDownLatch.countDown();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                fail("Error occurred while disconnecting." + e.getLocalizedMessage());
+                countDownLatch.countDown();
+            }
+        });
+
+        try {
+            countDownLatch.await(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            fail("Interrupted while waiting for disconnect attempt." + e.getLocalizedMessage());
         }
     }
 }

@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Fix an issue where the MqttClient is stuck disconnecting. See [issue #292](https://github.com/aws-amplify/aws-sdk-android/issues/292) for details.
+    * Introduced `MqttManager.disconnect(Callback<IMqttToken>)` now will do a disconnect asynchronously irrespective of the state of the MQTT connection. Use `MqttManager.disconnect(Callback<IMqttToken>)` instead of `MqttManager.disconnect()`.
+
+### Misc. Updates
+
+* **Model updates for the following services**
+  * Amazon Security Token Service (STS)
+
 ## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
 
 ### Bug Fixes

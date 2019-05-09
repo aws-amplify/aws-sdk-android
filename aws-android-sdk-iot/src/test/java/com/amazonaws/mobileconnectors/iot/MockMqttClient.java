@@ -46,7 +46,7 @@ public class MockMqttClient extends MqttAsyncClient {
     }
 
     public IMqttToken connect(MqttConnectOptions options, Object userContext,
-            IMqttActionListener callback) throws MqttException, MqttSecurityException {
+            IMqttActionListener callback) throws MqttException {
         if (throwsExceptionOnConnect && connectException != null) {
             throw connectException;
         }
@@ -61,6 +61,20 @@ public class MockMqttClient extends MqttAsyncClient {
             throw new MqttException(MqttException.REASON_CODE_CLIENT_EXCEPTION);
         }
         ++disconnectCalls;
+        isConnected = false;
+        return testToken;
+    }
+
+    public IMqttToken disconnect(long quiesceTimeout,
+                                 Object userContext,
+                                 IMqttActionListener callback) throws MqttException {
+        if (throwsExceptionOnDisconnect) {
+            throw new MqttException(MqttException.REASON_CODE_CLIENT_EXCEPTION);
+        }
+        ++disconnectCalls;
+        mockConnectionStatusCallback = callback;
+        mockConnectionStatusCallback.onSuccess(testToken);
+        isConnected = false;
         return testToken;
     }
 
@@ -131,6 +145,8 @@ public class MockMqttClient extends MqttAsyncClient {
 
     public void mockDisconnect() {
         isConnected = false;
-        mockCallback.connectionLost(new Exception("disconnect"));
+        if (mockCallback != null) {
+            mockCallback.connectionLost(new Exception("disconnect"));
+        }
     }
 }

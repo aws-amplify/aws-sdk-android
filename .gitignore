@@ -80,3 +80,6 @@ aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
 
 # AWSCoreRuntime libs
 aws-android-sdk-core/libs
+
+# IDEA files
+.idea/

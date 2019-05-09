@@ -22,6 +22,7 @@ import android.os.Looper;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.SDKGlobalConfiguration;
+import com.amazonaws.async.Callback;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
@@ -46,10 +47,14 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.SocketFactory;
 
@@ -823,7 +828,7 @@ public class AWSIotMqttManager {
         } catch (final NoSuchProviderException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final MqttException e) {
-            throw new AmazonClientException("An error occured in the MQTT client.", e);
+            throw new AmazonClientException("An error occurred in the MQTT client.", e);
         }
     }
 
@@ -997,25 +1002,9 @@ public class AWSIotMqttManager {
         }
     }
 
-    /**
-     * Disconnect from a mqtt client (close current MQTT session).
-     *
-     * @return true if disconnect finished with success.
-     */
     public boolean disconnect() {
         userDisconnect = true;
-        reset();
-        topicListeners.clear();
-        connectionState = MqttManagerConnectionState.Disconnected;
-        userConnectionCallback();
-        return true;
-    }
 
-    /**
-     * Disconnect the MQTT client. Issues a disconnect request if the client is
-     * connected.
-     */
-    void reset() {
         if (null != mqttClient) {
             if (mqttClient.isConnected()) {
                 try {
@@ -1023,6 +1012,51 @@ public class AWSIotMqttManager {
                 } catch (final MqttException e) {
                     throw new AmazonClientException("Client error when disconnecting.", e);
                 }
+            }
+        }
+
+        topicListeners.clear();
+        connectionState = MqttManagerConnectionState.Disconnected;
+        userConnectionCallback();
+        return true;
+    }
+
+    /**
+     * Disconnect from a MQTT client (close the current MQTT session).
+     *
+     * @param callback The callback is invoked with the result and error
+     *                 given by Paho MQTTClient.disconnect() method.
+     */
+    public void disconnect(final Callback<IMqttToken> callback) {
+        if (callback == null) {
+            throw new IllegalArgumentException("Callback cannot be null.");
+        }
+
+        userDisconnect = true;
+
+        if (null != mqttClient) {
+            try {
+                // Disconnect with 0 seconds quiesce timeout. On successful disconnect from Paho,
+                // clear the topic listeners, set the connection state to Disconnected. Invoke the
+                // connection callback if registered and invoke the disconnect callback.
+                // On any error in disconnect from Paho, invoke the callback with the appropriate error.
+                mqttClient.disconnect(0,null, new IMqttActionListener() {
+                    @Override
+                    public void onSuccess(IMqttToken asyncActionToken) {
+                        topicListeners.clear();
+                        connectionState = MqttManagerConnectionState.Disconnected;
+                        userConnectionCallback();
+                        callback.onResult(asyncActionToken);
+                    }
+
+                    @Override
+                    public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                        callback.onError(new AmazonClientException("Client error when disconnecting.", exception));
+                    }
+                });
+
+            } catch (final MqttException e) {
+                callback.onError(new AmazonClientException("Client error when disconnecting.", e));
             }
         }
     }
