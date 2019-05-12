@@ -29,13 +29,13 @@ public class GetFederationTokenResult implements Serializable {
      * The temporary security credentials, which include an access key ID, a
      * secret access key, and a security (or session) token.
      * </p>
+     * <note>
      * <p>
-     * <b>Note:</b> The size of the security token that STS APIs return is not
+     * The size of the security token that STS API operations return is not
      * fixed. We strongly recommend that you make no assumptions about the
-     * maximum size. As of this writing, the typical size is less than 4096
-     * bytes, but that can vary. Also, future updates to AWS might require
-     * larger sizes.
+     * maximum size.
      * </p>
+     * </note>
      */
     private Credentials credentials;
 
@@ -66,25 +66,25 @@ public class GetFederationTokenResult implements Serializable {
      * The temporary security credentials, which include an access key ID, a
      * secret access key, and a security (or session) token.
      * </p>
+     * <note>
      * <p>
-     * <b>Note:</b> The size of the security token that STS APIs return is not
+     * The size of the security token that STS API operations return is not
      * fixed. We strongly recommend that you make no assumptions about the
-     * maximum size. As of this writing, the typical size is less than 4096
-     * bytes, but that can vary. Also, future updates to AWS might require
-     * larger sizes.
+     * maximum size.
      * </p>
+     * </note>
      *
      * @return <p>
      *         The temporary security credentials, which include an access key
      *         ID, a secret access key, and a security (or session) token.
      *         </p>
+     *         <note>
      *         <p>
-     *         <b>Note:</b> The size of the security token that STS APIs return
-     *         is not fixed. We strongly recommend that you make no assumptions
-     *         about the maximum size. As of this writing, the typical size is
-     *         less than 4096 bytes, but that can vary. Also, future updates to
-     *         AWS might require larger sizes.
+     *         The size of the security token that STS API operations return is
+     *         not fixed. We strongly recommend that you make no assumptions
+     *         about the maximum size.
      *         </p>
+     *         </note>
      */
     public Credentials getCredentials() {
         return credentials;
@@ -95,26 +95,26 @@ public class GetFederationTokenResult implements Serializable {
      * The temporary security credentials, which include an access key ID, a
      * secret access key, and a security (or session) token.
      * </p>
+     * <note>
      * <p>
-     * <b>Note:</b> The size of the security token that STS APIs return is not
+     * The size of the security token that STS API operations return is not
      * fixed. We strongly recommend that you make no assumptions about the
-     * maximum size. As of this writing, the typical size is less than 4096
-     * bytes, but that can vary. Also, future updates to AWS might require
-     * larger sizes.
+     * maximum size.
      * </p>
+     * </note>
      *
      * @param credentials <p>
      *            The temporary security credentials, which include an access
      *            key ID, a secret access key, and a security (or session)
      *            token.
      *            </p>
+     *            <note>
      *            <p>
-     *            <b>Note:</b> The size of the security token that STS APIs
-     *            return is not fixed. We strongly recommend that you make no
-     *            assumptions about the maximum size. As of this writing, the
-     *            typical size is less than 4096 bytes, but that can vary. Also,
-     *            future updates to AWS might require larger sizes.
+     *            The size of the security token that STS API operations return
+     *            is not fixed. We strongly recommend that you make no
+     *            assumptions about the maximum size.
      *            </p>
+     *            </note>
      */
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
@@ -125,13 +125,13 @@ public class GetFederationTokenResult implements Serializable {
      * The temporary security credentials, which include an access key ID, a
      * secret access key, and a security (or session) token.
      * </p>
+     * <note>
      * <p>
-     * <b>Note:</b> The size of the security token that STS APIs return is not
+     * The size of the security token that STS API operations return is not
      * fixed. We strongly recommend that you make no assumptions about the
-     * maximum size. As of this writing, the typical size is less than 4096
-     * bytes, but that can vary. Also, future updates to AWS might require
-     * larger sizes.
+     * maximum size.
      * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -141,13 +141,13 @@ public class GetFederationTokenResult implements Serializable {
      *            key ID, a secret access key, and a security (or session)
      *            token.
      *            </p>
+     *            <note>
      *            <p>
-     *            <b>Note:</b> The size of the security token that STS APIs
-     *            return is not fixed. We strongly recommend that you make no
-     *            assumptions about the maximum size. As of this writing, the
-     *            typical size is less than 4096 bytes, but that can vary. Also,
-     *            future updates to AWS might require larger sizes.
+     *            The size of the security token that STS API operations return
+     *            is not fixed. We strongly recommend that you make no
+     *            assumptions about the maximum size.
      *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

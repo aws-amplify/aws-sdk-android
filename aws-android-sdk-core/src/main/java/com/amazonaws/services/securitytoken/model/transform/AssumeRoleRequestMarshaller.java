@@ -50,6 +50,21 @@ public class AssumeRoleRequestMarshaller implements
             String roleSessionName = assumeRoleRequest.getRoleSessionName();
             request.addParameter(prefix, StringUtils.fromString(roleSessionName));
         }
+        if (assumeRoleRequest.getPolicyArns() != null) {
+            prefix = "PolicyArns";
+            java.util.List<PolicyDescriptorType> policyArns = assumeRoleRequest.getPolicyArns();
+            int policyArnsIndex = 1;
+            String policyArnsPrefix = prefix;
+            for (PolicyDescriptorType policyArnsItem : policyArns) {
+                prefix = policyArnsPrefix + ".member." + policyArnsIndex;
+                if (policyArnsItem != null) {
+                    PolicyDescriptorTypeStaxMarshaller.getInstance().marshall(policyArnsItem,
+                            request, prefix + ".");
+                }
+                policyArnsIndex++;
+            }
+            prefix = policyArnsPrefix;
+        }
         if (assumeRoleRequest.getPolicy() != null) {
             prefix = "Policy";
             String policy = assumeRoleRequest.getPolicy();

@@ -22,24 +22,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns a set of temporary security credentials for users who have been
- * authenticated in a mobile or web application with a web identity provider,
- * such as Amazon Cognito, Login with Amazon, Facebook, Google, or any OpenID
- * Connect-compatible identity provider.
+ * authenticated in a mobile or web application with a web identity provider.
+ * Example providers include Amazon Cognito, Login with Amazon, Facebook,
+ * Google, or any OpenID Connect-compatible identity provider.
  * </p>
  * <note>
  * <p>
  * For mobile applications, we recommend that you use Amazon Cognito. You can
  * use Amazon Cognito with the <a href="http://aws.amazon.com/sdkforios/">AWS
- * SDK for iOS</a> and the <a href="http://aws.amazon.com/sdkforandroid/">AWS
- * SDK for Android</a> to uniquely identify a user and supply the user with a
+ * SDK for iOS Developer Guide</a> and the <a
+ * href="http://aws.amazon.com/sdkforandroid/">AWS SDK for Android Developer
+ * Guide</a> to uniquely identify a user. You can also supply the user with a
  * consistent identity throughout the lifetime of an application.
  * </p>
  * <p>
  * To learn more about Amazon Cognito, see <a href=
- * "http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/cognito-auth.html#d0e840"
- * >Amazon Cognito Overview</a> in the <i>AWS SDK for Android Developer
- * Guide</i> guide and <a href=
- * "http://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-auth.html#d0e664"
+ * "https://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/cognito-auth.html#d0e840"
+ * >Amazon Cognito Overview</a> in <i>AWS SDK for Android Developer Guide</i>
+ * and <a href=
+ * "https://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-auth.html#d0e664"
  * >Amazon Cognito Overview</a> in the <i>AWS SDK for iOS Developer Guide</i>.
  * </p>
  * </note>
@@ -47,21 +48,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Calling <code>AssumeRoleWithWebIdentity</code> does not require the use of
  * AWS security credentials. Therefore, you can distribute an application (for
  * example, on mobile devices) that requests temporary security credentials
- * without including long-term AWS credentials in the application, and without
- * deploying server-based proxy services that use long-term AWS credentials.
- * Instead, the identity of the caller is validated by using a token from the
- * web identity provider. For a comparison of
- * <code>AssumeRoleWithWebIdentity</code> with the other APIs that produce
- * temporary credentials, see <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
+ * without including long-term AWS credentials in the application. You also
+ * don't need to deploy server-based proxy services that use long-term AWS
+ * credentials. Instead, the identity of the caller is validated by using a
+ * token from the web identity provider. For a comparison of
+ * <code>AssumeRoleWithWebIdentity</code> with the other API operations that
+ * produce temporary credentials, see <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
  * >Requesting Temporary Security Credentials</a> and <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
- * >Comparing the AWS STS APIs</a> in the <i>IAM User Guide</i>.
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
+ * >Comparing the AWS STS API operations</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * The temporary security credentials returned by this API consist of an access
  * key ID, a secret access key, and a security token. Applications can use these
- * temporary security credentials to sign calls to AWS service APIs.
+ * temporary security credentials to sign calls to AWS service API operations.
  * </p>
  * <p>
  * By default, the temporary security credentials created by
@@ -71,36 +72,38 @@ import com.amazonaws.AmazonWebServiceRequest;
  * minutes) up to the maximum session duration setting for the role. This
  * setting can have a value from 1 hour to 12 hours. To learn how to view the
  * maximum value for your role, see <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
  * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM User
  * Guide</i>. The maximum session duration limit applies when you use the
  * <code>AssumeRole*</code> API operations or the <code>assume-role*</code> CLI
- * operations but does not apply when you use those operations to create a
- * console URL. For more information, see <a
- * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html"
+ * commands. However the limit does not apply when you use those operations to
+ * create a console URL. For more information, see <a
+ * href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html"
  * >Using IAM Roles</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * The temporary security credentials created by
  * <code>AssumeRoleWithWebIdentity</code> can be used to make API calls to any
- * AWS service with the following exception: you cannot call the STS service's
- * <code>GetFederationToken</code> or <code>GetSessionToken</code> APIs.
+ * AWS service with the following exception: you cannot call the STS
+ * <code>GetFederationToken</code> or <code>GetSessionToken</code> API
+ * operations.
  * </p>
  * <p>
- * Optionally, you can pass an IAM access policy to this operation. If you
- * choose not to pass a policy, the temporary security credentials that are
- * returned by the operation have the permissions that are defined in the access
- * policy of the role that is being assumed. If you pass a policy to this
- * operation, the temporary security credentials that are returned by the
- * operation have the permissions that are allowed by both the access policy of
- * the role that is being assumed, <i> <b>and</b> </i> the policy that you pass.
- * This gives you a way to further restrict the permissions for the resulting
- * temporary security credentials. You cannot use the passed policy to grant
- * permissions that are in excess of those allowed by the access policy of the
- * role that is being assumed. For more information, see <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
- * >Permissions for AssumeRole, AssumeRoleWithSAML, and
- * AssumeRoleWithWebIdentity</a> in the <i>IAM User Guide</i>.
+ * (Optional) You can pass inline or managed <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
+ * >session policies</a> to this operation. You can pass a single JSON policy
+ * document to use as an inline session policy. You can also specify up to 10
+ * managed policies to use as managed session policies. The plain text that you
+ * use for both inline and managed session policies shouldn't exceed 2048
+ * characters. Passing policies to this operation returns new temporary
+ * credentials. The resulting session's permissions are the intersection of the
+ * role's identity-based policy and the session policies. You can use the role's
+ * temporary credentials in subsequent AWS API calls to access resources in the
+ * account that owns the role. You cannot use session policies to grant more
+ * permissions than those allowed by the identity-based policy of the role that
+ * is being assumed. For more information, see <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+ * >Session Policies</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * Before your application can call <code>AssumeRoleWithWebIdentity</code>, you
@@ -130,9 +133,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual.html"
- * >Using Web Identity Federation APIs for Mobile Apps</a> and <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity"
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual.html"
+ * >Using Web Identity Federation API Operations for Mobile Apps</a> and <a
+ * href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity"
  * >Federation Through a Web-based Identity Provider</a>.
  * </p>
  * </li>
@@ -140,19 +144,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <a href=
  * "https://web-identity-federation-playground.s3.amazonaws.com/index.html"> Web
- * Identity Federation Playground</a>. This interactive website lets you walk
- * through the process of authenticating via Login with Amazon, Facebook, or
- * Google, getting temporary security credentials, and then using those
- * credentials to make a request to AWS.
+ * Identity Federation Playground</a>. Walk through the process of
+ * authenticating through Login with Amazon, Facebook, or Google, getting
+ * temporary security credentials, and then using those credentials to make a
+ * request to AWS.
  * </p>
  * </li>
  * <li>
  * <p>
- * <a href="http://aws.amazon.com/sdkforios/">AWS SDK for iOS</a> and <a
- * href="http://aws.amazon.com/sdkforandroid/">AWS SDK for Android</a>. These
- * toolkits contain sample apps that show how to invoke the identity providers,
- * and then how to use the information from these providers to get and use
- * temporary security credentials.
+ * <a href="http://aws.amazon.com/sdkforios/">AWS SDK for iOS Developer
+ * Guide</a> and <a href="http://aws.amazon.com/sdkforandroid/">AWS SDK for
+ * Android Developer Guide</a>. These toolkits contain sample apps that show how
+ * to invoke the identity providers, and then how to use the information from
+ * these providers to get and use temporary security credentials.
  * </p>
  * </li>
  * <li>
@@ -238,35 +242,72 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An IAM policy in JSON format.
+     * The Amazon Resource Names (ARNs) of the IAM managed policies that you
+     * want to use as managed session policies. The policies must exist in the
+     * same account as the role.
      * </p>
      * <p>
-     * The policy parameter is optional. If you pass a policy, the temporary
-     * security credentials that are returned by the operation have the
-     * permissions that are allowed by both the access policy of the role that
-     * is being assumed, <i> <b>and</b> </i> the policy that you pass. This
-     * gives you a way to further restrict the permissions for the resulting
-     * temporary security credentials. You cannot use the passed policy to grant
-     * permissions that are in excess of those allowed by the access policy of
-     * the role that is being assumed. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     * >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM User
-     * Guide</i>.
-     * </p>
-     * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters up to 2048 characters in length. The characters can
-     * be any ASCII character from the space character to the end of the valid
-     * character list ( -\u00FF). It can also include the tab ( ), linefeed ( ),
-     * and carriage return ( ) characters.
+     * This parameter is optional. You can provide up to 10 managed policy ARNs.
+     * However, the plain text that you use for both inline and managed session
+     * policies shouldn't exceed 2048 characters. For more information about
+     * ARNs, see <a href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     * Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS General
+     * Reference.
      * </p>
      * <note>
      * <p>
-     * The policy plain text must be 2048 bytes or shorter. However, an internal
-     * conversion compresses it into a packed binary format with a separate
-     * limit. The PackedPolicySize response element indicates by percentage how
-     * close to the upper size limit the policy is, with 100% equaling the
-     * maximum allowed size.
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
+     * </p>
+     * </note>
+     * <p>
+     * Passing policies to this operation returns new temporary credentials. The
+     * resulting session's permissions are the intersection of the role's
+     * identity-based policy and the session policies. You can use the role's
+     * temporary credentials in subsequent AWS API calls to access resources in
+     * the account that owns the role. You cannot use session policies to grant
+     * more permissions than those allowed by the identity-based policy of the
+     * role that is being assumed. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     */
+    private java.util.List<PolicyDescriptorType> policyArns;
+
+    /**
+     * <p>
+     * An IAM policy in JSON format that you want to use as an inline session
+     * policy.
+     * </p>
+     * <p>
+     * This parameter is optional. Passing policies to this operation returns
+     * new temporary credentials. The resulting session's permissions are the
+     * intersection of the role's identity-based policy and the session
+     * policies. You can use the role's temporary credentials in subsequent AWS
+     * API calls to access resources in the account that owns the role. You
+     * cannot use session policies to grant more permissions than those allowed
+     * by the identity-based policy of the role that is being assumed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * The plain text that you use for both inline and managed session policies
+     * shouldn't exceed 2048 characters. The JSON policy characters can be any
+     * ASCII character from the space character to the end of the valid
+     * character list ( through \u00FF). It can also include the tab ( ),
+     * linefeed ( ), and carriage return ( ) characters.
+     * </p>
+     * <note>
+     * <p>
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
      * </p>
      * </note>
      * <p>
@@ -285,12 +326,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * example, if you specify a session duration of 12 hours, but your
      * administrator set the maximum session duration to 6 hours, your operation
      * fails. To learn how to view the maximum value for your role, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
      * User Guide</i>.
      * </p>
      * <p>
-     * By default, the value is set to 3600 seconds.
+     * By default, the value is set to <code>3600</code> seconds.
      * </p>
      * <note>
      * <p>
@@ -299,7 +340,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * credentials. The request to the federation endpoint for a console sign-in
      * token takes a <code>SessionDuration</code> parameter that specifies the
      * maximum length of the console session. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      * >Creating a URL that Enables Federated Users to Access the AWS Management
      * Console</a> in the <i>IAM User Guide</i>.
      * </p>
@@ -697,35 +738,366 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An IAM policy in JSON format.
+     * The Amazon Resource Names (ARNs) of the IAM managed policies that you
+     * want to use as managed session policies. The policies must exist in the
+     * same account as the role.
      * </p>
      * <p>
-     * The policy parameter is optional. If you pass a policy, the temporary
-     * security credentials that are returned by the operation have the
-     * permissions that are allowed by both the access policy of the role that
-     * is being assumed, <i> <b>and</b> </i> the policy that you pass. This
-     * gives you a way to further restrict the permissions for the resulting
-     * temporary security credentials. You cannot use the passed policy to grant
-     * permissions that are in excess of those allowed by the access policy of
-     * the role that is being assumed. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     * >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM User
-     * Guide</i>.
-     * </p>
-     * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters up to 2048 characters in length. The characters can
-     * be any ASCII character from the space character to the end of the valid
-     * character list ( -\u00FF). It can also include the tab ( ), linefeed ( ),
-     * and carriage return ( ) characters.
+     * This parameter is optional. You can provide up to 10 managed policy ARNs.
+     * However, the plain text that you use for both inline and managed session
+     * policies shouldn't exceed 2048 characters. For more information about
+     * ARNs, see <a href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     * Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS General
+     * Reference.
      * </p>
      * <note>
      * <p>
-     * The policy plain text must be 2048 bytes or shorter. However, an internal
-     * conversion compresses it into a packed binary format with a separate
-     * limit. The PackedPolicySize response element indicates by percentage how
-     * close to the upper size limit the policy is, with 100% equaling the
-     * maximum allowed size.
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
+     * </p>
+     * </note>
+     * <p>
+     * Passing policies to this operation returns new temporary credentials. The
+     * resulting session's permissions are the intersection of the role's
+     * identity-based policy and the session policies. You can use the role's
+     * temporary credentials in subsequent AWS API calls to access resources in
+     * the account that owns the role. You cannot use session policies to grant
+     * more permissions than those allowed by the identity-based policy of the
+     * role that is being assumed. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Resource Names (ARNs) of the IAM managed policies that
+     *         you want to use as managed session policies. The policies must
+     *         exist in the same account as the role.
+     *         </p>
+     *         <p>
+     *         This parameter is optional. You can provide up to 10 managed
+     *         policy ARNs. However, the plain text that you use for both inline
+     *         and managed session policies shouldn't exceed 2048 characters.
+     *         For more information about ARNs, see <a
+     *         href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     *         Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     *         General Reference.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The characters in this parameter count towards the 2048 character
+     *         session policy guideline. However, an AWS conversion compresses
+     *         the session policies into a packed binary format that has a
+     *         separate limit. This is the enforced limit. The
+     *         <code>PackedPolicySize</code> response element indicates by
+     *         percentage how close the policy is to the upper size limit.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         Passing policies to this operation returns new temporary
+     *         credentials. The resulting session's permissions are the
+     *         intersection of the role's identity-based policy and the session
+     *         policies. You can use the role's temporary credentials in
+     *         subsequent AWS API calls to access resources in the account that
+     *         owns the role. You cannot use session policies to grant more
+     *         permissions than those allowed by the identity-based policy of
+     *         the role that is being assumed. For more information, see <a
+     *         href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *         >Session Policies</a> in the <i>IAM User Guide</i>.
+     *         </p>
+     */
+    public java.util.List<PolicyDescriptorType> getPolicyArns() {
+        return policyArns;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARNs) of the IAM managed policies that you
+     * want to use as managed session policies. The policies must exist in the
+     * same account as the role.
+     * </p>
+     * <p>
+     * This parameter is optional. You can provide up to 10 managed policy ARNs.
+     * However, the plain text that you use for both inline and managed session
+     * policies shouldn't exceed 2048 characters. For more information about
+     * ARNs, see <a href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     * Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS General
+     * Reference.
+     * </p>
+     * <note>
+     * <p>
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
+     * </p>
+     * </note>
+     * <p>
+     * Passing policies to this operation returns new temporary credentials. The
+     * resulting session's permissions are the intersection of the role's
+     * identity-based policy and the session policies. You can use the role's
+     * temporary credentials in subsequent AWS API calls to access resources in
+     * the account that owns the role. You cannot use session policies to grant
+     * more permissions than those allowed by the identity-based policy of the
+     * role that is being assumed. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     *
+     * @param policyArns <p>
+     *            The Amazon Resource Names (ARNs) of the IAM managed policies
+     *            that you want to use as managed session policies. The policies
+     *            must exist in the same account as the role.
+     *            </p>
+     *            <p>
+     *            This parameter is optional. You can provide up to 10 managed
+     *            policy ARNs. However, the plain text that you use for both
+     *            inline and managed session policies shouldn't exceed 2048
+     *            characters. For more information about ARNs, see <a
+     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     *            AWS General Reference.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The characters in this parameter count towards the 2048
+     *            character session policy guideline. However, an AWS conversion
+     *            compresses the session policies into a packed binary format
+     *            that has a separate limit. This is the enforced limit. The
+     *            <code>PackedPolicySize</code> response element indicates by
+     *            percentage how close the policy is to the upper size limit.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Passing policies to this operation returns new temporary
+     *            credentials. The resulting session's permissions are the
+     *            intersection of the role's identity-based policy and the
+     *            session policies. You can use the role's temporary credentials
+     *            in subsequent AWS API calls to access resources in the account
+     *            that owns the role. You cannot use session policies to grant
+     *            more permissions than those allowed by the identity-based
+     *            policy of the role that is being assumed. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            >Session Policies</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     */
+    public void setPolicyArns(java.util.Collection<PolicyDescriptorType> policyArns) {
+        if (policyArns == null) {
+            this.policyArns = null;
+            return;
+        }
+
+        this.policyArns = new java.util.ArrayList<PolicyDescriptorType>(policyArns);
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARNs) of the IAM managed policies that you
+     * want to use as managed session policies. The policies must exist in the
+     * same account as the role.
+     * </p>
+     * <p>
+     * This parameter is optional. You can provide up to 10 managed policy ARNs.
+     * However, the plain text that you use for both inline and managed session
+     * policies shouldn't exceed 2048 characters. For more information about
+     * ARNs, see <a href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     * Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS General
+     * Reference.
+     * </p>
+     * <note>
+     * <p>
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
+     * </p>
+     * </note>
+     * <p>
+     * Passing policies to this operation returns new temporary credentials. The
+     * resulting session's permissions are the intersection of the role's
+     * identity-based policy and the session policies. You can use the role's
+     * temporary credentials in subsequent AWS API calls to access resources in
+     * the account that owns the role. You cannot use session policies to grant
+     * more permissions than those allowed by the identity-based policy of the
+     * role that is being assumed. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param policyArns <p>
+     *            The Amazon Resource Names (ARNs) of the IAM managed policies
+     *            that you want to use as managed session policies. The policies
+     *            must exist in the same account as the role.
+     *            </p>
+     *            <p>
+     *            This parameter is optional. You can provide up to 10 managed
+     *            policy ARNs. However, the plain text that you use for both
+     *            inline and managed session policies shouldn't exceed 2048
+     *            characters. For more information about ARNs, see <a
+     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     *            AWS General Reference.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The characters in this parameter count towards the 2048
+     *            character session policy guideline. However, an AWS conversion
+     *            compresses the session policies into a packed binary format
+     *            that has a separate limit. This is the enforced limit. The
+     *            <code>PackedPolicySize</code> response element indicates by
+     *            percentage how close the policy is to the upper size limit.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Passing policies to this operation returns new temporary
+     *            credentials. The resulting session's permissions are the
+     *            intersection of the role's identity-based policy and the
+     *            session policies. You can use the role's temporary credentials
+     *            in subsequent AWS API calls to access resources in the account
+     *            that owns the role. You cannot use session policies to grant
+     *            more permissions than those allowed by the identity-based
+     *            policy of the role that is being assumed. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            >Session Policies</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssumeRoleWithWebIdentityRequest withPolicyArns(PolicyDescriptorType... policyArns) {
+        if (getPolicyArns() == null) {
+            this.policyArns = new java.util.ArrayList<PolicyDescriptorType>(policyArns.length);
+        }
+        for (PolicyDescriptorType value : policyArns) {
+            this.policyArns.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARNs) of the IAM managed policies that you
+     * want to use as managed session policies. The policies must exist in the
+     * same account as the role.
+     * </p>
+     * <p>
+     * This parameter is optional. You can provide up to 10 managed policy ARNs.
+     * However, the plain text that you use for both inline and managed session
+     * policies shouldn't exceed 2048 characters. For more information about
+     * ARNs, see <a href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     * Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS General
+     * Reference.
+     * </p>
+     * <note>
+     * <p>
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
+     * </p>
+     * </note>
+     * <p>
+     * Passing policies to this operation returns new temporary credentials. The
+     * resulting session's permissions are the intersection of the role's
+     * identity-based policy and the session policies. You can use the role's
+     * temporary credentials in subsequent AWS API calls to access resources in
+     * the account that owns the role. You cannot use session policies to grant
+     * more permissions than those allowed by the identity-based policy of the
+     * role that is being assumed. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param policyArns <p>
+     *            The Amazon Resource Names (ARNs) of the IAM managed policies
+     *            that you want to use as managed session policies. The policies
+     *            must exist in the same account as the role.
+     *            </p>
+     *            <p>
+     *            This parameter is optional. You can provide up to 10 managed
+     *            policy ARNs. However, the plain text that you use for both
+     *            inline and managed session policies shouldn't exceed 2048
+     *            characters. For more information about ARNs, see <a
+     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
+     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     *            AWS General Reference.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The characters in this parameter count towards the 2048
+     *            character session policy guideline. However, an AWS conversion
+     *            compresses the session policies into a packed binary format
+     *            that has a separate limit. This is the enforced limit. The
+     *            <code>PackedPolicySize</code> response element indicates by
+     *            percentage how close the policy is to the upper size limit.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Passing policies to this operation returns new temporary
+     *            credentials. The resulting session's permissions are the
+     *            intersection of the role's identity-based policy and the
+     *            session policies. You can use the role's temporary credentials
+     *            in subsequent AWS API calls to access resources in the account
+     *            that owns the role. You cannot use session policies to grant
+     *            more permissions than those allowed by the identity-based
+     *            policy of the role that is being assumed. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            >Session Policies</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssumeRoleWithWebIdentityRequest withPolicyArns(
+            java.util.Collection<PolicyDescriptorType> policyArns) {
+        setPolicyArns(policyArns);
+        return this;
+    }
+
+    /**
+     * <p>
+     * An IAM policy in JSON format that you want to use as an inline session
+     * policy.
+     * </p>
+     * <p>
+     * This parameter is optional. Passing policies to this operation returns
+     * new temporary credentials. The resulting session's permissions are the
+     * intersection of the role's identity-based policy and the session
+     * policies. You can use the role's temporary credentials in subsequent AWS
+     * API calls to access resources in the account that owns the role. You
+     * cannot use session policies to grant more permissions than those allowed
+     * by the identity-based policy of the role that is being assumed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * The plain text that you use for both inline and managed session policies
+     * shouldn't exceed 2048 characters. The JSON policy characters can be any
+     * ASCII character from the space character to the end of the valid
+     * character list ( through \u00FF). It can also include the tab ( ),
+     * linefeed ( ), and carriage return ( ) characters.
+     * </p>
+     * <note>
+     * <p>
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
      * </p>
      * </note>
      * <p>
@@ -734,37 +1106,38 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @return <p>
-     *         An IAM policy in JSON format.
+     *         An IAM policy in JSON format that you want to use as an inline
+     *         session policy.
      *         </p>
      *         <p>
-     *         The policy parameter is optional. If you pass a policy, the
-     *         temporary security credentials that are returned by the operation
-     *         have the permissions that are allowed by both the access policy
-     *         of the role that is being assumed, <i> <b>and</b> </i> the policy
-     *         that you pass. This gives you a way to further restrict the
-     *         permissions for the resulting temporary security credentials. You
-     *         cannot use the passed policy to grant permissions that are in
-     *         excess of those allowed by the access policy of the role that is
-     *         being assumed. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     *         >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM User
-     *         Guide</i>.
+     *         This parameter is optional. Passing policies to this operation
+     *         returns new temporary credentials. The resulting session's
+     *         permissions are the intersection of the role's identity-based
+     *         policy and the session policies. You can use the role's temporary
+     *         credentials in subsequent AWS API calls to access resources in
+     *         the account that owns the role. You cannot use session policies
+     *         to grant more permissions than those allowed by the
+     *         identity-based policy of the role that is being assumed. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *         >Session Policies</a> in the <i>IAM User Guide</i>.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters up to 2048 characters in length. The
+     *         The plain text that you use for both inline and managed session
+     *         policies shouldn't exceed 2048 characters. The JSON policy
      *         characters can be any ASCII character from the space character to
-     *         the end of the valid character list ( -\u00FF). It can also
-     *         include the tab ( ), linefeed ( ), and carriage return ( )
+     *         the end of the valid character list ( through \u00FF). It can
+     *         also include the tab ( ), linefeed ( ), and carriage return ( )
      *         characters.
      *         </p>
      *         <note>
      *         <p>
-     *         The policy plain text must be 2048 bytes or shorter. However, an
-     *         internal conversion compresses it into a packed binary format
-     *         with a separate limit. The PackedPolicySize response element
-     *         indicates by percentage how close to the upper size limit the
-     *         policy is, with 100% equaling the maximum allowed size.
+     *         The characters in this parameter count towards the 2048 character
+     *         session policy guideline. However, an AWS conversion compresses
+     *         the session policies into a packed binary format that has a
+     *         separate limit. This is the enforced limit. The
+     *         <code>PackedPolicySize</code> response element indicates by
+     *         percentage how close the policy is to the upper size limit.
      *         </p>
      *         </note>
      */
@@ -774,35 +1147,35 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An IAM policy in JSON format.
+     * An IAM policy in JSON format that you want to use as an inline session
+     * policy.
      * </p>
      * <p>
-     * The policy parameter is optional. If you pass a policy, the temporary
-     * security credentials that are returned by the operation have the
-     * permissions that are allowed by both the access policy of the role that
-     * is being assumed, <i> <b>and</b> </i> the policy that you pass. This
-     * gives you a way to further restrict the permissions for the resulting
-     * temporary security credentials. You cannot use the passed policy to grant
-     * permissions that are in excess of those allowed by the access policy of
-     * the role that is being assumed. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     * >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM User
-     * Guide</i>.
+     * This parameter is optional. Passing policies to this operation returns
+     * new temporary credentials. The resulting session's permissions are the
+     * intersection of the role's identity-based policy and the session
+     * policies. You can use the role's temporary credentials in subsequent AWS
+     * API calls to access resources in the account that owns the role. You
+     * cannot use session policies to grant more permissions than those allowed
+     * by the identity-based policy of the role that is being assumed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters up to 2048 characters in length. The characters can
-     * be any ASCII character from the space character to the end of the valid
-     * character list ( -\u00FF). It can also include the tab ( ), linefeed ( ),
-     * and carriage return ( ) characters.
+     * The plain text that you use for both inline and managed session policies
+     * shouldn't exceed 2048 characters. The JSON policy characters can be any
+     * ASCII character from the space character to the end of the valid
+     * character list ( through \u00FF). It can also include the tab ( ),
+     * linefeed ( ), and carriage return ( ) characters.
      * </p>
      * <note>
      * <p>
-     * The policy plain text must be 2048 bytes or shorter. However, an internal
-     * conversion compresses it into a packed binary format with a separate
-     * limit. The PackedPolicySize response element indicates by percentage how
-     * close to the upper size limit the policy is, with 100% equaling the
-     * maximum allowed size.
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
      * </p>
      * </note>
      * <p>
@@ -811,39 +1184,38 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            An IAM policy in JSON format.
+     *            An IAM policy in JSON format that you want to use as an inline
+     *            session policy.
      *            </p>
      *            <p>
-     *            The policy parameter is optional. If you pass a policy, the
-     *            temporary security credentials that are returned by the
-     *            operation have the permissions that are allowed by both the
-     *            access policy of the role that is being assumed, <i>
-     *            <b>and</b> </i> the policy that you pass. This gives you a way
-     *            to further restrict the permissions for the resulting
-     *            temporary security credentials. You cannot use the passed
-     *            policy to grant permissions that are in excess of those
-     *            allowed by the access policy of the role that is being
+     *            This parameter is optional. Passing policies to this operation
+     *            returns new temporary credentials. The resulting session's
+     *            permissions are the intersection of the role's identity-based
+     *            policy and the session policies. You can use the role's
+     *            temporary credentials in subsequent AWS API calls to access
+     *            resources in the account that owns the role. You cannot use
+     *            session policies to grant more permissions than those allowed
+     *            by the identity-based policy of the role that is being
      *            assumed. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     *            >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM
-     *            User Guide</i>.
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters up to 2048 characters in
-     *            length. The characters can be any ASCII character from the
-     *            space character to the end of the valid character list (
-     *            -\u00FF). It can also include the tab ( ), linefeed ( ), and
+     *            The plain text that you use for both inline and managed
+     *            session policies shouldn't exceed 2048 characters. The JSON
+     *            policy characters can be any ASCII character from the space
+     *            character to the end of the valid character list ( through
+     *            \u00FF). It can also include the tab ( ), linefeed ( ), and
      *            carriage return ( ) characters.
      *            </p>
      *            <note>
      *            <p>
-     *            The policy plain text must be 2048 bytes or shorter. However,
-     *            an internal conversion compresses it into a packed binary
-     *            format with a separate limit. The PackedPolicySize response
-     *            element indicates by percentage how close to the upper size
-     *            limit the policy is, with 100% equaling the maximum allowed
-     *            size.
+     *            The characters in this parameter count towards the 2048
+     *            character session policy guideline. However, an AWS conversion
+     *            compresses the session policies into a packed binary format
+     *            that has a separate limit. This is the enforced limit. The
+     *            <code>PackedPolicySize</code> response element indicates by
+     *            percentage how close the policy is to the upper size limit.
      *            </p>
      *            </note>
      */
@@ -853,35 +1225,35 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An IAM policy in JSON format.
+     * An IAM policy in JSON format that you want to use as an inline session
+     * policy.
      * </p>
      * <p>
-     * The policy parameter is optional. If you pass a policy, the temporary
-     * security credentials that are returned by the operation have the
-     * permissions that are allowed by both the access policy of the role that
-     * is being assumed, <i> <b>and</b> </i> the policy that you pass. This
-     * gives you a way to further restrict the permissions for the resulting
-     * temporary security credentials. You cannot use the passed policy to grant
-     * permissions that are in excess of those allowed by the access policy of
-     * the role that is being assumed. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     * >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM User
-     * Guide</i>.
+     * This parameter is optional. Passing policies to this operation returns
+     * new temporary credentials. The resulting session's permissions are the
+     * intersection of the role's identity-based policy and the session
+     * policies. You can use the role's temporary credentials in subsequent AWS
+     * API calls to access resources in the account that owns the role. You
+     * cannot use session policies to grant more permissions than those allowed
+     * by the identity-based policy of the role that is being assumed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters up to 2048 characters in length. The characters can
-     * be any ASCII character from the space character to the end of the valid
-     * character list ( -\u00FF). It can also include the tab ( ), linefeed ( ),
-     * and carriage return ( ) characters.
+     * The plain text that you use for both inline and managed session policies
+     * shouldn't exceed 2048 characters. The JSON policy characters can be any
+     * ASCII character from the space character to the end of the valid
+     * character list ( through \u00FF). It can also include the tab ( ),
+     * linefeed ( ), and carriage return ( ) characters.
      * </p>
      * <note>
      * <p>
-     * The policy plain text must be 2048 bytes or shorter. However, an internal
-     * conversion compresses it into a packed binary format with a separate
-     * limit. The PackedPolicySize response element indicates by percentage how
-     * close to the upper size limit the policy is, with 100% equaling the
-     * maximum allowed size.
+     * The characters in this parameter count towards the 2048 character session
+     * policy guideline. However, an AWS conversion compresses the session
+     * policies into a packed binary format that has a separate limit. This is
+     * the enforced limit. The <code>PackedPolicySize</code> response element
+     * indicates by percentage how close the policy is to the upper size limit.
      * </p>
      * </note>
      * <p>
@@ -893,39 +1265,38 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            An IAM policy in JSON format.
+     *            An IAM policy in JSON format that you want to use as an inline
+     *            session policy.
      *            </p>
      *            <p>
-     *            The policy parameter is optional. If you pass a policy, the
-     *            temporary security credentials that are returned by the
-     *            operation have the permissions that are allowed by both the
-     *            access policy of the role that is being assumed, <i>
-     *            <b>and</b> </i> the policy that you pass. This gives you a way
-     *            to further restrict the permissions for the resulting
-     *            temporary security credentials. You cannot use the passed
-     *            policy to grant permissions that are in excess of those
-     *            allowed by the access policy of the role that is being
+     *            This parameter is optional. Passing policies to this operation
+     *            returns new temporary credentials. The resulting session's
+     *            permissions are the intersection of the role's identity-based
+     *            policy and the session policies. You can use the role's
+     *            temporary credentials in subsequent AWS API calls to access
+     *            resources in the account that owns the role. You cannot use
+     *            session policies to grant more permissions than those allowed
+     *            by the identity-based policy of the role that is being
      *            assumed. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_assumerole.html"
-     *            >Permissions for AssumeRoleWithWebIdentity</a> in the <i>IAM
-     *            User Guide</i>.
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters up to 2048 characters in
-     *            length. The characters can be any ASCII character from the
-     *            space character to the end of the valid character list (
-     *            -\u00FF). It can also include the tab ( ), linefeed ( ), and
+     *            The plain text that you use for both inline and managed
+     *            session policies shouldn't exceed 2048 characters. The JSON
+     *            policy characters can be any ASCII character from the space
+     *            character to the end of the valid character list ( through
+     *            \u00FF). It can also include the tab ( ), linefeed ( ), and
      *            carriage return ( ) characters.
      *            </p>
      *            <note>
      *            <p>
-     *            The policy plain text must be 2048 bytes or shorter. However,
-     *            an internal conversion compresses it into a packed binary
-     *            format with a separate limit. The PackedPolicySize response
-     *            element indicates by percentage how close to the upper size
-     *            limit the policy is, with 100% equaling the maximum allowed
-     *            size.
+     *            The characters in this parameter count towards the 2048
+     *            character session policy guideline. However, an AWS conversion
+     *            compresses the session policies into a packed binary format
+     *            that has a separate limit. This is the enforced limit. The
+     *            <code>PackedPolicySize</code> response element indicates by
+     *            percentage how close the policy is to the upper size limit.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -945,12 +1316,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * example, if you specify a session duration of 12 hours, but your
      * administrator set the maximum session duration to 6 hours, your operation
      * fails. To learn how to view the maximum value for your role, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
      * User Guide</i>.
      * </p>
      * <p>
-     * By default, the value is set to 3600 seconds.
+     * By default, the value is set to <code>3600</code> seconds.
      * </p>
      * <note>
      * <p>
@@ -959,7 +1330,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * credentials. The request to the federation endpoint for a console sign-in
      * token takes a <code>SessionDuration</code> parameter that specifies the
      * maximum length of the console session. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      * >Creating a URL that Enables Federated Users to Access the AWS Management
      * Console</a> in the <i>IAM User Guide</i>.
      * </p>
@@ -977,12 +1348,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         session duration of 12 hours, but your administrator set the
      *         maximum session duration to 6 hours, your operation fails. To
      *         learn how to view the maximum value for your role, see <a href=
-     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      *         >View the Maximum Session Duration Setting for a Role</a> in the
      *         <i>IAM User Guide</i>.
      *         </p>
      *         <p>
-     *         By default, the value is set to 3600 seconds.
+     *         By default, the value is set to <code>3600</code> seconds.
      *         </p>
      *         <note>
      *         <p>
@@ -992,7 +1363,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         a console sign-in token takes a <code>SessionDuration</code>
      *         parameter that specifies the maximum length of the console
      *         session. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      *         >Creating a URL that Enables Federated Users to Access the AWS
      *         Management Console</a> in the <i>IAM User Guide</i>.
      *         </p>
@@ -1011,12 +1382,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * example, if you specify a session duration of 12 hours, but your
      * administrator set the maximum session duration to 6 hours, your operation
      * fails. To learn how to view the maximum value for your role, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
      * User Guide</i>.
      * </p>
      * <p>
-     * By default, the value is set to 3600 seconds.
+     * By default, the value is set to <code>3600</code> seconds.
      * </p>
      * <note>
      * <p>
@@ -1025,7 +1396,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * credentials. The request to the federation endpoint for a console sign-in
      * token takes a <code>SessionDuration</code> parameter that specifies the
      * maximum length of the console session. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      * >Creating a URL that Enables Federated Users to Access the AWS Management
      * Console</a> in the <i>IAM User Guide</i>.
      * </p>
@@ -1044,12 +1415,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            maximum session duration to 6 hours, your operation fails. To
      *            learn how to view the maximum value for your role, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      *            >View the Maximum Session Duration Setting for a Role</a> in
      *            the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            By default, the value is set to 3600 seconds.
+     *            By default, the value is set to <code>3600</code> seconds.
      *            </p>
      *            <note>
      *            <p>
@@ -1060,7 +1431,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            <code>SessionDuration</code> parameter that specifies the
      *            maximum length of the console session. For more information,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      *            >Creating a URL that Enables Federated Users to Access the AWS
      *            Management Console</a> in the <i>IAM User Guide</i>.
      *            </p>
@@ -1079,12 +1450,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * example, if you specify a session duration of 12 hours, but your
      * administrator set the maximum session duration to 6 hours, your operation
      * fails. To learn how to view the maximum value for your role, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
      * User Guide</i>.
      * </p>
      * <p>
-     * By default, the value is set to 3600 seconds.
+     * By default, the value is set to <code>3600</code> seconds.
      * </p>
      * <note>
      * <p>
@@ -1093,7 +1464,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * credentials. The request to the federation endpoint for a console sign-in
      * token takes a <code>SessionDuration</code> parameter that specifies the
      * maximum length of the console session. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      * >Creating a URL that Enables Federated Users to Access the AWS Management
      * Console</a> in the <i>IAM User Guide</i>.
      * </p>
@@ -1115,12 +1486,12 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            maximum session duration to 6 hours, your operation fails. To
      *            learn how to view the maximum value for your role, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
      *            >View the Maximum Session Duration Setting for a Role</a> in
      *            the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            By default, the value is set to 3600 seconds.
+     *            By default, the value is set to <code>3600</code> seconds.
      *            </p>
      *            <note>
      *            <p>
@@ -1131,7 +1502,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            <code>SessionDuration</code> parameter that specifies the
      *            maximum length of the console session. For more information,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
      *            >Creating a URL that Enables Federated Users to Access the AWS
      *            Management Console</a> in the <i>IAM User Guide</i>.
      *            </p>
@@ -1163,6 +1534,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
             sb.append("WebIdentityToken: " + getWebIdentityToken() + ",");
         if (getProviderId() != null)
             sb.append("ProviderId: " + getProviderId() + ",");
+        if (getPolicyArns() != null)
+            sb.append("PolicyArns: " + getPolicyArns() + ",");
         if (getPolicy() != null)
             sb.append("Policy: " + getPolicy() + ",");
         if (getDurationSeconds() != null)
@@ -1182,6 +1555,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
         hashCode = prime * hashCode
                 + ((getWebIdentityToken() == null) ? 0 : getWebIdentityToken().hashCode());
         hashCode = prime * hashCode + ((getProviderId() == null) ? 0 : getProviderId().hashCode());
+        hashCode = prime * hashCode + ((getPolicyArns() == null) ? 0 : getPolicyArns().hashCode());
         hashCode = prime * hashCode + ((getPolicy() == null) ? 0 : getPolicy().hashCode());
         hashCode = prime * hashCode
                 + ((getDurationSeconds() == null) ? 0 : getDurationSeconds().hashCode());
@@ -1217,6 +1591,11 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getProviderId() != null
                 && other.getProviderId().equals(this.getProviderId()) == false)
+            return false;
+        if (other.getPolicyArns() == null ^ this.getPolicyArns() == null)
+            return false;
+        if (other.getPolicyArns() != null
+                && other.getPolicyArns().equals(this.getPolicyArns()) == false)
             return false;
         if (other.getPolicy() == null ^ this.getPolicy() == null)
             return false;
