@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Security Token Service (STS)
+
 ## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
 
 ### Bug Fixes
