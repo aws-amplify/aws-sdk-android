@@ -40,7 +40,7 @@ public class FederatedUser implements Serializable {
      * The ARN that specifies the federated user that is associated with the
      * credentials. For more information about ARNs and how to use them in
      * policies, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      * >IAM Identifiers</a> in <i>Using IAM</i>.
      * </p>
      * <p>
@@ -72,7 +72,7 @@ public class FederatedUser implements Serializable {
      *            The ARN that specifies the federated user that is associated
      *            with the credentials. For more information about ARNs and how
      *            to use them in policies, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      *            >IAM Identifiers</a> in <i>Using IAM</i>.
      *            </p>
      */
@@ -149,7 +149,7 @@ public class FederatedUser implements Serializable {
      * The ARN that specifies the federated user that is associated with the
      * credentials. For more information about ARNs and how to use them in
      * policies, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      * >IAM Identifiers</a> in <i>Using IAM</i>.
      * </p>
      * <p>
@@ -162,7 +162,7 @@ public class FederatedUser implements Serializable {
      *         The ARN that specifies the federated user that is associated with
      *         the credentials. For more information about ARNs and how to use
      *         them in policies, see <a href=
-     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      *         >IAM Identifiers</a> in <i>Using IAM</i>.
      *         </p>
      */
@@ -175,7 +175,7 @@ public class FederatedUser implements Serializable {
      * The ARN that specifies the federated user that is associated with the
      * credentials. For more information about ARNs and how to use them in
      * policies, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      * >IAM Identifiers</a> in <i>Using IAM</i>.
      * </p>
      * <p>
@@ -188,7 +188,7 @@ public class FederatedUser implements Serializable {
      *            The ARN that specifies the federated user that is associated
      *            with the credentials. For more information about ARNs and how
      *            to use them in policies, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      *            >IAM Identifiers</a> in <i>Using IAM</i>.
      *            </p>
      */
@@ -201,7 +201,7 @@ public class FederatedUser implements Serializable {
      * The ARN that specifies the federated user that is associated with the
      * credentials. For more information about ARNs and how to use them in
      * policies, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      * >IAM Identifiers</a> in <i>Using IAM</i>.
      * </p>
      * <p>
@@ -217,7 +217,7 @@ public class FederatedUser implements Serializable {
      *            The ARN that specifies the federated user that is associated
      *            with the credentials. For more information about ARNs and how
      *            to use them in policies, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
      *            >IAM Identifiers</a> in <i>Using IAM</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
