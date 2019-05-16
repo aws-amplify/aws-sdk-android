@@ -2,6 +2,11 @@
 
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug where the `TransferListener` is not triggered when the preferred network type is not available. See [issue #958](https://github.com/aws-amplify/aws-sdk-android/issues/958) for details.
+
 ### Misc. Updates
 
 * Model updates for the following services
