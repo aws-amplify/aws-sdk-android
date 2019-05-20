@@ -75,6 +75,10 @@ class SentimentDetectionJobPropertiesJsonUnmarshaller implements
                 sentimentDetectionJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                sentimentDetectionJobProperties.setVpcConfig(VpcConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

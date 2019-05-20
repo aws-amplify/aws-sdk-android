@@ -103,6 +103,11 @@ public class CreateEntityRecognizerRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (createEntityRecognizerRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = createEntityRecognizerRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

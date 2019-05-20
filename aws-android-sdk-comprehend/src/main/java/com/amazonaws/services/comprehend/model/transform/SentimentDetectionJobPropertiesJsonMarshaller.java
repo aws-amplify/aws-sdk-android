@@ -82,6 +82,11 @@ class SentimentDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("VolumeKmsKeyId");
             jsonWriter.value(volumeKmsKeyId);
         }
+        if (sentimentDetectionJobProperties.getVpcConfig() != null) {
+            VpcConfig vpcConfig = sentimentDetectionJobProperties.getVpcConfig();
+            jsonWriter.name("VpcConfig");
+            VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

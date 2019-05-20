@@ -5,7 +5,9 @@
 ### Misc. Updates
 
 * Model updates for the following services
+  * Amazon Comprehend
   * Amazon Security Token Service (STS)
+  * Amazon Transcribe
 
 ## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
 
@@ -24,7 +26,7 @@
 ### Misc. Updates
 
 * Model updates for the following services
-  * Amazon Lambda
+  * AWS Lambda
 
 ## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
 

@@ -111,6 +111,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (createDocumentClassifierRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = createDocumentClassifierRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -104,6 +104,11 @@ public class StartEntitiesDetectionJobRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (startEntitiesDetectionJobRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = startEntitiesDetectionJobRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
