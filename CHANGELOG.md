@@ -2,6 +2,11 @@
 
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
+### Bug Fixes
+
+* **AWS Core Runtime**
+  * Fixed a bug where generating RSA keys for encryption of the credentials failed due to `setKeySize(int)` method not available in Android API level 18. See [issue #964](https://github.com/aws-amplify/aws-sdk-android/issues/964) for details.
+
 ### Misc. Updates
 
 * Model updates for the following services
