@@ -78,6 +78,9 @@ class EntitiesDetectionJobPropertiesJsonUnmarshaller implements
                 entitiesDetectionJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                entitiesDetectionJobProperties.setVpcConfig(VpcConfigJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
