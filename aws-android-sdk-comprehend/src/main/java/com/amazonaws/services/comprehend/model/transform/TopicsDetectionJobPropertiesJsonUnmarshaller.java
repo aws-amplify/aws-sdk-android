@@ -74,6 +74,9 @@ class TopicsDetectionJobPropertiesJsonUnmarshaller implements
             } else if (name.equals("VolumeKmsKeyId")) {
                 topicsDetectionJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                topicsDetectionJobProperties.setVpcConfig(VpcConfigJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

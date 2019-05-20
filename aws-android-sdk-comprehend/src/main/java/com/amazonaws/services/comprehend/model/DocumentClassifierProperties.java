@@ -166,6 +166,17 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
+     * Configuration parameters for a private Virtual Private Cloud (VPC)
+     * containing the resources you are using for your custom classifier. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     */
+    private VpcConfig vpcConfig;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) that identifies the document classifier.
      * </p>
      * <p>
@@ -1113,6 +1124,75 @@ public class DocumentClassifierProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * Configuration parameters for a private Virtual Private Cloud (VPC)
+     * containing the resources you are using for your custom classifier. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration parameters for a private Virtual Private Cloud
+     *         (VPC) containing the resources you are using for your custom
+     *         classifier. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *         >Amazon VPC</a>.
+     *         </p>
+     */
+    public VpcConfig getVpcConfig() {
+        return vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for a private Virtual Private Cloud (VPC)
+     * containing the resources you are using for your custom classifier. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for a private Virtual Private Cloud
+     *            (VPC) containing the resources you are using for your custom
+     *            classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     */
+    public void setVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for a private Virtual Private Cloud (VPC)
+     * containing the resources you are using for your custom classifier. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for a private Virtual Private Cloud
+     *            (VPC) containing the resources you are using for your custom
+     *            classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierProperties withVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1148,7 +1228,9 @@ public class DocumentClassifierProperties implements Serializable {
         if (getDataAccessRoleArn() != null)
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
         if (getVolumeKmsKeyId() != null)
-            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId());
+            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
+        if (getVpcConfig() != null)
+            sb.append("VpcConfig: " + getVpcConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -1181,6 +1263,7 @@ public class DocumentClassifierProperties implements Serializable {
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
+        hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         return hashCode;
     }
 
@@ -1256,6 +1339,11 @@ public class DocumentClassifierProperties implements Serializable {
             return false;
         if (other.getVolumeKmsKeyId() != null
                 && other.getVolumeKmsKeyId().equals(this.getVolumeKmsKeyId()) == false)
+            return false;
+        if (other.getVpcConfig() == null ^ this.getVpcConfig() == null)
+            return false;
+        if (other.getVpcConfig() != null
+                && other.getVpcConfig().equals(this.getVpcConfig()) == false)
             return false;
         return true;
     }

@@ -80,6 +80,11 @@ class DominantLanguageDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("VolumeKmsKeyId");
             jsonWriter.value(volumeKmsKeyId);
         }
+        if (dominantLanguageDetectionJobProperties.getVpcConfig() != null) {
+            VpcConfig vpcConfig = dominantLanguageDetectionJobProperties.getVpcConfig();
+            jsonWriter.name("VpcConfig");
+            VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
