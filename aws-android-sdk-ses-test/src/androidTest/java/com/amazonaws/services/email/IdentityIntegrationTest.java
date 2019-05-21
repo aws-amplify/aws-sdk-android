@@ -348,9 +348,7 @@ public class IdentityIntegrationTest extends SESIntegrationTestBase {
             assertTrue(attributes.getDkimTokens().size() == dkim.getDkimTokens().size());
 
             List verifyDomainResultTokens = dkim.getDkimTokens();
-            for (String token : attributes.getDkimTokens()) {
-                assertTrue(verifyDomainResultTokens.contains(token));
-            }
+            assertTrue(verifyDomainResultTokens.containsAll(verifyDomainResultTokens));
 
             try {
                 SetIdentityDkimEnabledResult setIdentityDkimEnabledResult = email.setIdentityDkimEnabled(new SetIdentityDkimEnabledRequest()
