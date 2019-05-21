@@ -298,8 +298,7 @@ public class IdentityIntegrationTest extends SESIntegrationTestBase {
 
             // Flip Feedback forwarding
             email.setIdentityFeedbackForwardingEnabled(new SetIdentityFeedbackForwardingEnabledRequest()
-                    .
-                    withIdentity(HUDSON_EMAIL_LIST).withForwardingEnabled(false));
+                    .withIdentity(HUDSON_EMAIL_LIST).withForwardingEnabled(false));
 
             // verify state of attributes
             attributes = email.getIdentityNotificationAttributes(getnot)
@@ -348,10 +347,12 @@ public class IdentityIntegrationTest extends SESIntegrationTestBase {
             assertTrue(attributes.getDkimTokens().size() == dkim.getDkimTokens().size());
 
             List verifyDomainResultTokens = dkim.getDkimTokens();
-            assertTrue(verifyDomainResultTokens.containsAll(verifyDomainResultTokens));
+            List attributeTokens = attributes.getDkimTokens();
+            assertTrue(verifyDomainResultTokens.containsAll(attributeTokens));
 
             try {
-                SetIdentityDkimEnabledResult setIdentityDkimEnabledResult = email.setIdentityDkimEnabled(new SetIdentityDkimEnabledRequest()
+                SetIdentityDkimEnabledResult setIdentityDkimEnabledResult =
+                        email.setIdentityDkimEnabled(new SetIdentityDkimEnabledRequest()
                         .withIdentity(testDomain));
                 assertNotNull(setIdentityDkimEnabledResult);
             } catch (AmazonServiceException exception) {
