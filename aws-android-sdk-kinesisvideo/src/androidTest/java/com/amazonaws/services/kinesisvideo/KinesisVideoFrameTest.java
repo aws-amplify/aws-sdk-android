@@ -6,9 +6,12 @@ import org.junit.Test;
 
 import java.nio.ByteBuffer;
 
+import android.support.test.runner.AndroidJUnit4;
+
 import static com.amazonaws.kinesisvideo.producer.FrameFlags.FRAME_FLAG_NONE;
 import static junit.framework.Assert.assertEquals;
 
+@RunWith(AndroidJUnit4.class)
 public class KinesisVideoFrameTest {
     @Test
     public void testTrailingZeroRemoved() {
