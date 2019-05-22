@@ -69,6 +69,9 @@ public class KinesisVideoFrame {
         mPresentationTs = presentationTs;
         mDuration = duration;
         mData = requireNonNull(data);
+        // In some devices encoder would generate frames with more than 3 trailing zeros
+        // which is not allowed by AnnexB specification
+        removeTrailingZeros();
     }
 
     public int getIndex() {
@@ -115,5 +118,14 @@ public class KinesisVideoFrame {
                 .append(", mFlags=").append(mFlags).append(", mDecodingTs=").append(mDecodingTs)
                 .append(", mPresentationTs=").append(mPresentationTs).append(", mDuration=").append(mDuration)
                 .append(", mData=").append(mData).append("}").toString();
+    }
+
+    private void removeTrailingZeros() {
+        for (int index = mData.limit() - 1; index > mData.position(); index--) {
+            if (mData.get(index) != 0) {
+                mData.limit(index + 1);
+                break;
+            }
+        }
     }
 }
