@@ -9,5 +9,5 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
- 
-<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="25" /></manifest>
+
+</manifest>

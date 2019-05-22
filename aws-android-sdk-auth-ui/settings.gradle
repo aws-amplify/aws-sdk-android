@@ -1,0 +1,18 @@
+include ':app'
+rootProject.name = 'aws-android-sdk-auth-ui'
+
+
+//include ':app', ':app/BT300Ctrl'
+
+//def includeProject(name) {
+//    def appProjectRoot = file(getRootProject().getProjectDir().getAbsolutePath())
+//}
+//    def workspaceRoot = appProjectRoot.getParentFile()
+
+//    if (new File(workspaceRoot.getAbsolutePath(), "${name}/build.gradle").exists()) {
+//        include ":${name}"
+//        project(":${name}").projectDir = new File(workspaceRoot.getAbsolutePath(), "${name}")
+//
+//        System.out.println("==> included ${name} with path " + project(":${name}").projectDir)
+//    }
+//}

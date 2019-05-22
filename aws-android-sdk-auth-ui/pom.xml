@@ -68,7 +68,7 @@
       <groupId>com.android.support</groupId>
       <artifactId>appcompat-v7</artifactId>
       <optional>true</optional>
-      <version>23.0.1</version>
+      <version>22.0.0</version>
       <type>aar</type>
     </dependency>
   </dependencies>
