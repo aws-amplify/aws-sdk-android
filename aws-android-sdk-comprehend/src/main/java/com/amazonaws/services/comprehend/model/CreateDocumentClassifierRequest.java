@@ -55,10 +55,28 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * Tags to be associated with the document classifier being created. A tag
+     * is a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * Specifies the format and location of the input data for the job.
      * </p>
      */
     private DocumentClassifierInputDataConfig inputDataConfig;
+
+    /**
+     * <p>
+     * Enables the addition of output results configuration parameters for
+     * custom classifier jobs.
+     * </p>
+     */
+    private DocumentClassifierOutputDataConfig outputDataConfig;
 
     /**
      * <p>
@@ -108,6 +126,17 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 2048<br/>
      */
     private String volumeKmsKeyId;
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     */
+    private VpcConfig vpcConfig;
 
     /**
      * <p>
@@ -234,6 +263,108 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * Tags to be associated with the document classifier being created. A tag
+     * is a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     *
+     * @return <p>
+     *         Tags to be associated with the document classifier being created.
+     *         A tag is a key-value pair that adds as a metadata to a resource
+     *         used by Amazon Comprehend. For example, a tag with "Sales" as the
+     *         key might be added to a resource to indicate its use by the sales
+     *         department.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the document classifier being created. A tag
+     * is a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     *
+     * @param tags <p>
+     *            Tags to be associated with the document classifier being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the document classifier being created. A tag
+     * is a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags to be associated with the document classifier being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags to be associated with the document classifier being created. A tag
+     * is a key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags to be associated with the document classifier being
+     *            created. A tag is a key-value pair that adds as a metadata to
+     *            a resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies the format and location of the input data for the job.
      * </p>
      *
@@ -277,6 +408,58 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     public CreateDocumentClassifierRequest withInputDataConfig(
             DocumentClassifierInputDataConfig inputDataConfig) {
         this.inputDataConfig = inputDataConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Enables the addition of output results configuration parameters for
+     * custom classifier jobs.
+     * </p>
+     *
+     * @return <p>
+     *         Enables the addition of output results configuration parameters
+     *         for custom classifier jobs.
+     *         </p>
+     */
+    public DocumentClassifierOutputDataConfig getOutputDataConfig() {
+        return outputDataConfig;
+    }
+
+    /**
+     * <p>
+     * Enables the addition of output results configuration parameters for
+     * custom classifier jobs.
+     * </p>
+     *
+     * @param outputDataConfig <p>
+     *            Enables the addition of output results configuration
+     *            parameters for custom classifier jobs.
+     *            </p>
+     */
+    public void setOutputDataConfig(DocumentClassifierOutputDataConfig outputDataConfig) {
+        this.outputDataConfig = outputDataConfig;
+    }
+
+    /**
+     * <p>
+     * Enables the addition of output results configuration parameters for
+     * custom classifier jobs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param outputDataConfig <p>
+     *            Enables the addition of output results configuration
+     *            parameters for custom classifier jobs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withOutputDataConfig(
+            DocumentClassifierOutputDataConfig outputDataConfig) {
+        this.outputDataConfig = outputDataConfig;
         return this;
     }
 
@@ -608,6 +791,75 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration parameters for an optional private Virtual Private
+     *         Cloud (VPC) containing the resources you are using for your
+     *         custom classifier. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *         >Amazon VPC</a>.
+     *         </p>
+     */
+    public VpcConfig getVpcConfig() {
+        return vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     */
+    public void setVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -622,14 +874,20 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             sb.append("DocumentClassifierName: " + getDocumentClassifierName() + ",");
         if (getDataAccessRoleArn() != null)
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
         if (getInputDataConfig() != null)
             sb.append("InputDataConfig: " + getInputDataConfig() + ",");
+        if (getOutputDataConfig() != null)
+            sb.append("OutputDataConfig: " + getOutputDataConfig() + ",");
         if (getClientRequestToken() != null)
             sb.append("ClientRequestToken: " + getClientRequestToken() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getVolumeKmsKeyId() != null)
-            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId());
+            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
+        if (getVpcConfig() != null)
+            sb.append("VpcConfig: " + getVpcConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -645,14 +903,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getInputDataConfig() == null) ? 0 : getInputDataConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getOutputDataConfig() == null) ? 0 : getOutputDataConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getClientRequestToken() == null) ? 0 : getClientRequestToken().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
+        hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         return hashCode;
     }
 
@@ -677,10 +939,19 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         if (other.getDataAccessRoleArn() != null
                 && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
             return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
         if (other.getInputDataConfig() == null ^ this.getInputDataConfig() == null)
             return false;
         if (other.getInputDataConfig() != null
                 && other.getInputDataConfig().equals(this.getInputDataConfig()) == false)
+            return false;
+        if (other.getOutputDataConfig() == null ^ this.getOutputDataConfig() == null)
+            return false;
+        if (other.getOutputDataConfig() != null
+                && other.getOutputDataConfig().equals(this.getOutputDataConfig()) == false)
             return false;
         if (other.getClientRequestToken() == null ^ this.getClientRequestToken() == null)
             return false;
@@ -696,6 +967,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getVolumeKmsKeyId() != null
                 && other.getVolumeKmsKeyId().equals(this.getVolumeKmsKeyId()) == false)
+            return false;
+        if (other.getVpcConfig() == null ^ this.getVpcConfig() == null)
+            return false;
+        if (other.getVpcConfig() != null
+                && other.getVpcConfig().equals(this.getVpcConfig()) == false)
             return false;
         return true;
     }

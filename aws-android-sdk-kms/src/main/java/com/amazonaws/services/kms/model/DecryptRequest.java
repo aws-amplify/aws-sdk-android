@@ -42,20 +42,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * Note that if a caller has been granted access permissions to all keys
- * (through, for example, IAM user policies that grant <code>Decrypt</code>
- * permission on all resources), then ciphertext encrypted by using keys in
- * other accounts where the key grants access to the caller can be decrypted. To
- * remedy this, we recommend that you do not grant <code>Decrypt</code> access
- * in an IAM user policy. Instead grant <code>Decrypt</code> access only in key
- * policies. If you must grant <code>Decrypt</code> access in an IAM user
- * policy, you should scope the resource to specific keys or to specific trusted
- * accounts.
+ * Whenever possible, use key policies to give users permission to call the
+ * Decrypt operation on the CMK, instead of IAM policies. Otherwise, you might
+ * create an IAM user policy that gives the user Decrypt permission on all CMKs.
+ * This user could decrypt ciphertext that was encrypted by CMKs in other
+ * accounts if the key policy for the cross-account CMK permits it. If you must
+ * use an IAM policy for <code>Decrypt</code> permissions, limit the user to
+ * particular CMKs or particular trusted accounts.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
@@ -76,7 +74,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      */
@@ -88,7 +86,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -154,7 +152,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      *
@@ -163,7 +161,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *         <a>Encrypt</a> function, it must be specified here or the
      *         decryption operation will fail. For more information, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *         >Encryption Context</a>.
      *         </p>
      */
@@ -176,7 +174,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      *
@@ -185,7 +183,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <a>Encrypt</a> function, it must be specified here or the
      *            decryption operation will fail. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a>.
      *            </p>
      */
@@ -198,7 +196,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -210,7 +208,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <a>Encrypt</a> function, it must be specified here or the
      *            decryption operation will fail. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -226,7 +224,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -268,7 +266,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -278,7 +276,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
@@ -293,7 +291,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -303,7 +301,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -323,7 +321,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -336,7 +334,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -359,7 +357,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -372,7 +370,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>

@@ -68,6 +68,11 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
                         .setInputDataConfig(DocumentClassifierInputDataConfigJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("OutputDataConfig")) {
+                documentClassifierProperties
+                        .setOutputDataConfig(DocumentClassifierOutputDataConfigJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ClassifierMetadata")) {
                 documentClassifierProperties
                         .setClassifierMetadata(ClassifierMetadataJsonUnmarshaller.getInstance()
@@ -78,6 +83,9 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("VolumeKmsKeyId")) {
                 documentClassifierProperties.setVolumeKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                documentClassifierProperties.setVpcConfig(VpcConfigJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

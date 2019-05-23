@@ -1,5 +1,75 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
+
+### Bug Fixes
+
+* **Amazon Kinesis Video Streams**
+  * Removed trailing zeroes from encoder output that caused 0x3200000d errors when frames contained more than 3 trailing zeroes. See AnnexB sepcification.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+  * Amazon Security Token Service (STS)
+  * Amazon Transcribe
+
+## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix initialization NPE for Hosted UI feature. See [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
+
+### Enhancements
+
+* **AWS Mobile Client**
+  * Update logic to expose network related exceptions during API calls. The network related exceptions were not surfaced previously in API calls like getUserAttributes. Only the exceptions that conclusively indicate signed-out are used to trigger SIGNED_OUT_TOKENS_INVALID variants. See [issue #679](https://github.com/aws-amplify/aws-sdk-android/issues/679)
+  * Reduced logging of unfound dependencies for the Hosted UI feature when not used.
+  * Delay usage of drop-in UI dependencies until `showSignIn()` is called.
+  
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS Lambda
+
+## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for `ap-east-1` - AP (Hong Kong) region.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Cognito Identity Provider
+  * Amazon Polly
+  * Amazon Transcribe
+
+## [Release 2.13.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.2)
+
+### Enhancements
+
+* **AWS IoT**
+  * AWS IoT SDK for Android now supports connecting your devices to AWS IoT Core using Persistent Sessions. Please look at [this blog](https://aws.amazon.com/about-aws/whats-new/2019/01/aws-iot-core-now-enables-customers-to-store-messages-for-disconnected-devices/) for more details.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+
+### Bug Fixes
+
+* **Amazon Cognito Auth**
+  * Fixed erroneous user cancelled error when redirecting back to app. See [issue #328](https://github.com/aws-amplify/aws-sdk-android/issues/328), [issue #871](https://github.com/aws-amplify/aws-sdk-android/issues/871)
+
+* **Amazon S3**
+  * Fixed a bug where uploading a file using `AmazonS3Client.putObject(PutObjectRequest)` with `SSEAwsKeyManagementParams` fails with contentMD5 validation error. Now, the contentMd5 validation is skipped when a file is uploaded with `SSEAwsKeyManagementParams` through the `PutObjectRequest`.
+
+* **Amazon Pinpoint**
+  * Added `SocketException` to the list of client exceptions where the events submitted to Amazon Pinpoint will be saved in the local database. See [issue #773](https://github.com/aws-amplify/aws-sdk-android/issues/773).
+
 ## [Release 2.13.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.1)
 
 ### Enhancements

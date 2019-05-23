@@ -42,6 +42,9 @@ class EmailConfigurationTypeJsonUnmarshaller implements
             } else if (name.equals("ReplyToEmailAddress")) {
                 emailConfigurationType.setReplyToEmailAddress(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EmailSendingAccount")) {
+                emailConfigurationType.setEmailSendingAccount(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

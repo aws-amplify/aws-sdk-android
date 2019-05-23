@@ -23,6 +23,9 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
      * An opaque pagination token returned from the previous List operation in
      * this request. If present, this indicates where to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
 
@@ -40,6 +43,9 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
      * An opaque pagination token returned from the previous List operation in
      * this request. If present, this indicates where to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
      *         An opaque pagination token returned from the previous List
@@ -56,6 +62,9 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
      * An opaque pagination token returned from the previous List operation in
      * this request. If present, this indicates where to continue the listing.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from the previous List
@@ -75,6 +84,9 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            An opaque pagination token returned from the previous List

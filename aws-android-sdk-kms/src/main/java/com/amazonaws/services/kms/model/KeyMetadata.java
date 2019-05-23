@@ -47,7 +47,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
-     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
      * </p>
@@ -84,9 +84,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,7 +101,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -149,7 +149,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * A unique identifier for the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> that contains the CMK. This value is present only
      * when the CMK is created in a custom key store.
      * </p>
@@ -163,7 +163,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The cluster ID of the AWS CloudHSM cluster that contains the key material
      * for the CMK. When you create a CMK in a <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, AWS KMS creates the key material for the CMK in
      * the associated AWS CloudHSM cluster. This value is present only when the
      * CMK is created in a custom key store.
@@ -188,9 +188,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -304,7 +305,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
-     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
      * </p>
@@ -315,7 +316,7 @@ public class KeyMetadata implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) of the CMK. For examples, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *         >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
      *         section of the <i>AWS General Reference</i>.
      *         </p>
@@ -327,7 +328,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
-     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
      * </p>
@@ -338,7 +339,7 @@ public class KeyMetadata implements Serializable {
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the CMK. For examples, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *            >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
      *            section of the <i>AWS General Reference</i>.
      *            </p>
@@ -350,7 +351,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
-     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
      * </p>
@@ -364,7 +365,7 @@ public class KeyMetadata implements Serializable {
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the CMK. For examples, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *            >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
      *            section of the <i>AWS General Reference</i>.
      *            </p>
@@ -547,19 +548,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         The cryptographic operations for which you can use the CMK.
-     *         Currently the only allowed value is <code>ENCRYPT_DECRYPT</code>,
-     *         which means you can use the CMK for the <a>Encrypt</a> and
-     *         <a>Decrypt</a> operations.
+     *         The cryptographic operations for which you can use the CMK. The
+     *         only valid value is <code>ENCRYPT_DECRYPT</code>, which means you
+     *         can use the CMK to encrypt and decrypt data.
      *         </p>
      * @see KeyUsageType
      */
@@ -569,9 +569,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -579,9 +579,8 @@ public class KeyMetadata implements Serializable {
      *
      * @param keyUsage <p>
      *            The cryptographic operations for which you can use the CMK.
-     *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
-     *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @see KeyUsageType
      */
@@ -591,9 +590,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -604,9 +603,8 @@ public class KeyMetadata implements Serializable {
      *
      * @param keyUsage <p>
      *            The cryptographic operations for which you can use the CMK.
-     *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
-     *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -619,9 +617,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -629,9 +627,8 @@ public class KeyMetadata implements Serializable {
      *
      * @param keyUsage <p>
      *            The cryptographic operations for which you can use the CMK.
-     *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
-     *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @see KeyUsageType
      */
@@ -641,9 +638,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK. Currently the
-     * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -654,9 +651,8 @@ public class KeyMetadata implements Serializable {
      *
      * @param keyUsage <p>
      *            The cryptographic operations for which you can use the CMK.
-     *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
-     *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -674,7 +670,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -689,7 +685,7 @@ public class KeyMetadata implements Serializable {
      *         <p>
      *         For more information about how key state affects the use of a
      *         CMK, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      *         >How Key State Affects the Use of a Customer Master Key</a> in
      *         the <i>AWS Key Management Service Developer Guide</i>.
      *         </p>
@@ -706,7 +702,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -721,7 +717,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      *            >How Key State Affects the Use of a Customer Master Key</a> in
      *            the <i>AWS Key Management Service Developer Guide</i>.
      *            </p>
@@ -738,7 +734,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -756,7 +752,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      *            >How Key State Affects the Use of a Customer Master Key</a> in
      *            the <i>AWS Key Management Service Developer Guide</i>.
      *            </p>
@@ -776,7 +772,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -791,7 +787,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      *            >How Key State Affects the Use of a Customer Master Key</a> in
      *            the <i>AWS Key Management Service Developer Guide</i>.
      *            </p>
@@ -808,7 +804,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
-     * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
      * Key Management Service Developer Guide</i>.
      * </p>
@@ -826,7 +822,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
      *            >How Key State Affects the Use of a Customer Master Key</a> in
      *            the <i>AWS Key Management Service Developer Guide</i>.
      *            </p>
@@ -1122,7 +1118,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * A unique identifier for the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> that contains the CMK. This value is present only
      * when the CMK is created in a custom key store.
      * </p>
@@ -1132,7 +1128,7 @@ public class KeyMetadata implements Serializable {
      *
      * @return <p>
      *         A unique identifier for the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a> that contains the CMK. This value is
      *         present only when the CMK is created in a custom key store.
      *         </p>
@@ -1144,7 +1140,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * A unique identifier for the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> that contains the CMK. This value is present only
      * when the CMK is created in a custom key store.
      * </p>
@@ -1154,7 +1150,7 @@ public class KeyMetadata implements Serializable {
      *
      * @param customKeyStoreId <p>
      *            A unique identifier for the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> that contains the CMK. This value is
      *            present only when the CMK is created in a custom key store.
      *            </p>
@@ -1166,7 +1162,7 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * A unique identifier for the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> that contains the CMK. This value is present only
      * when the CMK is created in a custom key store.
      * </p>
@@ -1179,7 +1175,7 @@ public class KeyMetadata implements Serializable {
      *
      * @param customKeyStoreId <p>
      *            A unique identifier for the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> that contains the CMK. This value is
      *            present only when the CMK is created in a custom key store.
      *            </p>
@@ -1195,7 +1191,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The cluster ID of the AWS CloudHSM cluster that contains the key material
      * for the CMK. When you create a CMK in a <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, AWS KMS creates the key material for the CMK in
      * the associated AWS CloudHSM cluster. This value is present only when the
      * CMK is created in a custom key store.
@@ -1207,7 +1203,7 @@ public class KeyMetadata implements Serializable {
      * @return <p>
      *         The cluster ID of the AWS CloudHSM cluster that contains the key
      *         material for the CMK. When you create a CMK in a <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a>, AWS KMS creates the key material for the
      *         CMK in the associated AWS CloudHSM cluster. This value is present
      *         only when the CMK is created in a custom key store.
@@ -1221,7 +1217,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The cluster ID of the AWS CloudHSM cluster that contains the key material
      * for the CMK. When you create a CMK in a <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, AWS KMS creates the key material for the CMK in
      * the associated AWS CloudHSM cluster. This value is present only when the
      * CMK is created in a custom key store.
@@ -1233,7 +1229,7 @@ public class KeyMetadata implements Serializable {
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the AWS CloudHSM cluster that contains the
      *            key material for the CMK. When you create a CMK in a <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>, AWS KMS creates the key material for
      *            the CMK in the associated AWS CloudHSM cluster. This value is
      *            present only when the CMK is created in a custom key store.
@@ -1247,7 +1243,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The cluster ID of the AWS CloudHSM cluster that contains the key material
      * for the CMK. When you create a CMK in a <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, AWS KMS creates the key material for the CMK in
      * the associated AWS CloudHSM cluster. This value is present only when the
      * CMK is created in a custom key store.
@@ -1262,7 +1258,7 @@ public class KeyMetadata implements Serializable {
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the AWS CloudHSM cluster that contains the
      *            key material for the CMK. When you create a CMK in a <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>, AWS KMS creates the key material for
      *            the CMK in the associated AWS CloudHSM cluster. This value is
      *            present only when the CMK is created in a custom key store.
@@ -1394,9 +1390,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -1405,10 +1402,10 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @return <p>
-     *         The CMK's manager. CMKs are either customer-managed or
-     *         AWS-managed. For more information about the difference, see <a
-     *         href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *         The manager of the CMK. CMKs in your AWS account are either
+     *         customer managed or AWS managed. For more information about the
+     *         difference, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *         >Customer Master Keys</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
      *         </p>
@@ -1420,9 +1417,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -1431,10 +1429,10 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            The manager of the CMK. CMKs in your AWS account are either
+     *            customer managed or AWS managed. For more information about
+     *            the difference, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -1446,9 +1444,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -1460,10 +1459,10 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            The manager of the CMK. CMKs in your AWS account are either
+     *            customer managed or AWS managed. For more information about
+     *            the difference, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -1478,9 +1477,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -1489,10 +1489,10 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            The manager of the CMK. CMKs in your AWS account are either
+     *            customer managed or AWS managed. For more information about
+     *            the difference, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -1504,9 +1504,10 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
-     * more information about the difference, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * The manager of the CMK. CMKs in your AWS account are either customer
+     * managed or AWS managed. For more information about the difference, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -1518,10 +1519,10 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            The manager of the CMK. CMKs in your AWS account are either
+     *            customer managed or AWS managed. For more information about
+     *            the difference, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>

@@ -98,6 +98,11 @@ public class StartSentimentDetectionJobRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (startSentimentDetectionJobRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = startSentimentDetectionJobRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

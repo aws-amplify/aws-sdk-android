@@ -71,12 +71,30 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("DataAccessRoleArn");
                 jsonWriter.value(dataAccessRoleArn);
             }
+            if (createDocumentClassifierRequest.getTags() != null) {
+                java.util.List<Tag> tags = createDocumentClassifierRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (createDocumentClassifierRequest.getInputDataConfig() != null) {
                 DocumentClassifierInputDataConfig inputDataConfig = createDocumentClassifierRequest
                         .getInputDataConfig();
                 jsonWriter.name("InputDataConfig");
                 DocumentClassifierInputDataConfigJsonMarshaller.getInstance().marshall(
                         inputDataConfig, jsonWriter);
+            }
+            if (createDocumentClassifierRequest.getOutputDataConfig() != null) {
+                DocumentClassifierOutputDataConfig outputDataConfig = createDocumentClassifierRequest
+                        .getOutputDataConfig();
+                jsonWriter.name("OutputDataConfig");
+                DocumentClassifierOutputDataConfigJsonMarshaller.getInstance().marshall(
+                        outputDataConfig, jsonWriter);
             }
             if (createDocumentClassifierRequest.getClientRequestToken() != null) {
                 String clientRequestToken = createDocumentClassifierRequest.getClientRequestToken();
@@ -92,6 +110,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 String volumeKmsKeyId = createDocumentClassifierRequest.getVolumeKmsKeyId();
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
+            }
+            if (createDocumentClassifierRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = createDocumentClassifierRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

@@ -31,6 +31,9 @@ public class DescribeVoicesResult implements Serializable {
      * of voices. <code>NextToken</code> is returned only if the response is
      * truncated.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
 
@@ -114,6 +117,9 @@ public class DescribeVoicesResult implements Serializable {
      * of voices. <code>NextToken</code> is returned only if the response is
      * truncated.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
      *         The pagination token to use in the next request to continue the
@@ -131,6 +137,9 @@ public class DescribeVoicesResult implements Serializable {
      * of voices. <code>NextToken</code> is returned only if the response is
      * truncated.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            The pagination token to use in the next request to continue
@@ -151,6 +160,9 @@ public class DescribeVoicesResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 4096<br/>
      *
      * @param nextToken <p>
      *            The pagination token to use in the next request to continue

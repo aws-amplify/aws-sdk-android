@@ -41,6 +41,7 @@ class KeyProvider10 implements KeyProvider {
             try {
                 // If SharedPreferences contains the key, load it.
                 if (sharedPreferences.contains(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)) {
+                    logger.debug("Loading the encryption key from SharedPreferences");
                     final String keyInStringFormat = sharedPreferences
                             .getString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY, null);
                     return new SecretKeySpec(Base64.decode(keyInStringFormat), AES_KEY_ALGORITHM);
@@ -55,6 +56,8 @@ class KeyProvider10 implements KeyProvider {
                             .putString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY,
                                     Base64.encodeAsString(secretKey.getEncoded()))
                             .apply();
+
+                    logger.info("Generated and saved the encryption key to SharedPreferences");
                     return secretKey;
                 }
             } catch (Exception ex) {

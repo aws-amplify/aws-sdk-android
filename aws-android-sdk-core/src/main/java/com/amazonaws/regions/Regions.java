@@ -53,6 +53,9 @@ public enum Regions {
     /** eu-north-1. */
     EU_NORTH_1("eu-north-1"),
 
+    /** ap-east-1. */
+    AP_EAST_1("ap-east-1"),
+
     /** ap-south-1. */
     AP_SOUTH_1("ap-south-1"),
 

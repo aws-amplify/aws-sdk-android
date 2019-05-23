@@ -34,17 +34,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>ReEncryptFrom</code> on the source CMK and once as
  * <code>ReEncryptTo</code> on the destination CMK. We recommend that you
  * include the <code>"kms:ReEncrypt*"</code> permission in your <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">key
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">key
  * policies</a> to permit reencryption from or to the CMK. This permission is
  * automatically included in the key policy when you create a CMK through the
- * console, but you must include it manually when you create a CMK
+ * console. But you must include it manually when you create a CMK
  * programmatically or when you set a key policy with the <a>PutKeyPolicy</a>
  * operation.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
@@ -74,9 +74,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -129,7 +129,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -286,9 +286,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -333,8 +333,8 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with "alias/". To specify a CMK in a different AWS account, you
-     *         must use the key ARN or alias ARN.
+     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -379,9 +379,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -426,8 +426,8 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -472,9 +472,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -522,8 +522,8 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -656,7 +656,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -666,7 +666,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
@@ -681,7 +681,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -691,7 +691,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -711,7 +711,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -724,7 +724,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -747,7 +747,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -760,7 +760,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>

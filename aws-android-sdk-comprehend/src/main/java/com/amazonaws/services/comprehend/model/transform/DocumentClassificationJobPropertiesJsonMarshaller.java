@@ -84,6 +84,11 @@ class DocumentClassificationJobPropertiesJsonMarshaller {
             jsonWriter.name("VolumeKmsKeyId");
             jsonWriter.value(volumeKmsKeyId);
         }
+        if (documentClassificationJobProperties.getVpcConfig() != null) {
+            VpcConfig vpcConfig = documentClassificationJobProperties.getVpcConfig();
+            jsonWriter.name("VpcConfig");
+            VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

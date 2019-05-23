@@ -73,6 +73,7 @@ public class KeyProvider18 implements KeyProvider {
 
                 // Check if SharedPreferences has the encrypted AES key
                 if (sharedPreferences.contains(ENCRYPTED_AES_KEY)) {
+                    logger.debug("Loading the encryption key from SharedPreferences");
                     String encryptedAesEncryptionKey = sharedPreferences
                             .getString(ENCRYPTED_AES_KEY, null);
                     return new SecretKeySpec(
@@ -88,6 +89,8 @@ public class KeyProvider18 implements KeyProvider {
                             .putString(ENCRYPTED_AES_KEY,
                                     Base64.encodeAsString(rsaEncrypt(keyAlias, aesEncryptionKey.getEncoded())))
                             .apply();
+
+                    logger.info("Generated and saved the encryption key to SharedPreferences");
                     return aesEncryptionKey;
                 }
             } catch (Exception ex) {

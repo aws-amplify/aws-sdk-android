@@ -32,7 +32,7 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * Clusters that share a backup history have the same cluster certificate. To
  * view the cluster certificate of a cluster, use the <a href=
- * "http://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html"
+ * "https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html"
  * >DescribeClusters</a> operation.
  * </p>
  */

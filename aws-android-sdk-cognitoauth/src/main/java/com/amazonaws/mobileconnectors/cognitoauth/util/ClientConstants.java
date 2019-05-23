@@ -24,6 +24,7 @@ package com.amazonaws.mobileconnectors.cognitoauth.util;
 @SuppressWarnings("checkstyle:javadocmethod")
 public abstract class ClientConstants {
     public static final String APP_LAST_AUTH_USER = "LastAuthUser";
+    public static final String APP_HAS_RECIEVED_REDIRECT = "HasReceivedRedirect";
     public static final String APP_LOCAL_CACHE = "CognitoIdentityProviderCache";
     public static final String APP_LOCAL_CACHE_KEY_PREFIX = "CognitoIdentityProvider";
     public static final String AUTH_RESPONSE_TYPE_CODE = "code";

@@ -76,7 +76,6 @@ import com.amazonaws.mobileconnectors.cognitoauth.Auth;
 import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
-import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import com.amazonaws.mobileconnectors.cognitoauth.util.Pkce;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
@@ -92,6 +91,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Cogn
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
@@ -109,7 +109,6 @@ import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvi
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
 import com.amazonaws.util.StringUtils;
-import com.google.android.gms.common.annotation.KeepName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -197,7 +196,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /**
      * AWSConfiguration object that represents the `awsconfiguration.json` file.
      */
-    private AWSConfiguration awsConfiguration;
+    AWSConfiguration awsConfiguration;
     /**
      * Federation into this identity pool
      */
@@ -482,7 +481,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
-                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -575,36 +573,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
                                 mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
                             } else {
-                                Log.d(TAG, "initialize: Cognito HostedUI client detected");
-                                final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
-                                final Set<String> scopes = new HashSet<String>();
-                                for (int i = 0; i < scopesJSONArray.length(); i++) {
-                                    scopes.add(scopesJSONArray.getString(i));
-                                }
-
-                                if (mUserPoolPoolId == null) {
-                                    throw new IllegalStateException("User pool Id must be available through user pool setting");
-                                }
-
-                                hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
-                                        .setPersistenceEnabled(mIsPersistenceEnabled)
-                                        .setAuthHandler(new AuthHandler() {
-                                            @Override
-                                            public void onSuccess(AuthUserSession session) {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-
-                                            @Override
-                                            public void onSignout() {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-
-                                            @Override
-                                            public void onFailure(Exception e) {
-                                                // Ignored because this is used to pre-warm the session
-                                            }
-                                        })
-                                        .build();
+                                _initializeHostedUI(hostedUIJSON);
                             }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
@@ -628,12 +597,45 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    private void _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
+        Log.d(TAG, "initialize: Cognito HostedUI client detected");
+        final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
+        final Set<String> scopes = new HashSet<String>();
+        for (int i = 0; i < scopesJSONArray.length(); i++) {
+            scopes.add(scopesJSONArray.getString(i));
+        }
+
+        if (mUserPoolPoolId == null) {
+            throw new IllegalStateException("User pool Id must be available through user pool setting");
+        }
+
+        hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+                .setPersistenceEnabled(mIsPersistenceEnabled)
+                .setAuthHandler(new AuthHandler() {
+                    @Override
+                    public void onSuccess(AuthUserSession session) {
+                        // Ignored because this is used to pre-warm the session
+                    }
+
+                    @Override
+                    public void onSignout() {
+                        // Ignored because this is used to pre-warm the session
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        // Ignored because this is used to pre-warm the session
+                    }
+                })
+                .build();
+    }
+
     JSONObject getHostedUIJSONFromJSON() {
         return getHostedUIJSONFromJSON(this.awsConfiguration);
     }
 
     JSONObject getHostedUIJSONFromJSON(final AWSConfiguration awsConfig) {
-        final JSONObject mobileClientJSON = awsConfiguration.optJsonObject("Auth");
+        final JSONObject mobileClientJSON = awsConfig.optJsonObject("Auth");
         if (mobileClientJSON != null && mobileClientJSON.has("OAuth")) {
             try {
                 JSONObject hostedUIJSONFromJSON = mobileClientJSON.getJSONObject("OAuth");
@@ -898,25 +900,37 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return true if user is signed-in, false otherwise
      */
     protected boolean waitForSignIn() {
+        UserStateDetails userStateDetails = null;
         try {
             mWaitForSignInLock.lock();
             mSignedOutWaitLatch = new CountDownLatch(1);
-            final UserStateDetails userStateDetails = getUserStateDetails(false);
+            userStateDetails = getUserStateDetails(false);
             Log.d(TAG, "waitForSignIn: userState:" + userStateDetails.getUserState());
-            setUserState(userStateDetails);
             switch (userStateDetails.getUserState()) {
                 case SIGNED_IN:
+                    setUserState(userStateDetails);
                     return true;
                 case GUEST:
                 case SIGNED_OUT:
+                    setUserState(userStateDetails);
                     return false;
                 case SIGNED_OUT_USER_POOLS_TOKENS_INVALID:
                 case SIGNED_OUT_FEDERATED_TOKENS_INVALID:
-                    mSignedOutWaitLatch.await();
-                    return getUserStateDetails(false).getUserState().equals(UserState.SIGNED_IN);
+                    if (userStateDetails.getException() == null
+                    || isSignedOutRelatedException(userStateDetails.getException())) {
+                        // The service has returned an exception that indicates the user is not authorized
+                        // Ask for another sign-in
+                        setUserState(userStateDetails);
+                        mSignedOutWaitLatch.await();
+                        return getUserStateDetails(false).getUserState().equals(UserState.SIGNED_IN);
+                    } else {
+                        // The exception is non-conclusive whether the user is not authorized or
+                        // there was a network related issue. Throw the exception back to the API call.
+                        throw userStateDetails.getException();
+                    }
             }
         } catch (Exception e) {
-            Log.w(TAG, "Exception when waiting for sign-in", e);
+            throw new AmazonClientException("Operation requires a signed-in state", e);
         } finally {
             mWaitForSignInLock.unlock();
         }
@@ -998,15 +1012,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 return new UserStateDetails(UserState.SIGNED_IN, details);
             } catch (Exception e) {
                 Log.w(TAG, "Failed to federate the tokens.", e);
-                if (e instanceof NotAuthorizedException) {
-                    return new UserStateDetails(UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID, details);
-                } else {
-                    return new UserStateDetails(UserState.SIGNED_IN, details);
+                UserState userState = UserState.SIGNED_IN;
+                if (isSignedOutRelatedException(e)) {
+                    userState = UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID;
                 }
+
+                final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
+                userStateDetails.setException(e);
+                return userStateDetails;
             }
         } else if (hasUsefulToken && userpool != null) {
             Tokens tokens = null;
             String idToken = null;
+            Exception userpoolsException = null;
             try {
                 tokens = getTokens(false);
                 idToken = tokens.getIdToken().getTokenString();
@@ -1031,12 +1049,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             } catch (Exception e) {
                 Log.w(TAG, tokens == null ? "Tokens are invalid, please sign-in again." :
                         "Failed to federate the tokens", e);
+                userpoolsException = e;
             } finally {
-                if (tokens != null && idToken != null) {
-                    return new UserStateDetails(UserState.SIGNED_IN, details);
-                } else {
-                    return new UserStateDetails(UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID, details);
+                UserState userState = UserState.SIGNED_IN;
+                if (isSignedOutRelatedException(userpoolsException)) {
+                    userState = UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID;
                 }
+                final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
+                userStateDetails.setException(userpoolsException);
+                return userStateDetails;
             }
         } else {
             if (cognitoIdentity == null) {
@@ -1047,6 +1068,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 return new UserStateDetails(UserState.SIGNED_OUT, null);
             }
         }
+    }
+
+    boolean isSignedOutRelatedException(final Exception e) {
+        if (e == null) {
+            return false;
+        }
+        if (e instanceof NotAuthorizedException) {
+            return true;
+        }
+        if ("No cached session.".equals(e.getMessage()) && e.getCause() == null) {
+            return true;
+        }
+        return false;
     }
 
     boolean isFederationEnabled() {
@@ -1540,39 +1574,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
 
                 if (getSignInMode().equals(SignInMode.HOSTED_UI)) {
-//                    final AuthUserSession cachedSession =
-//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
-//                            LocalDataManager.getLastAuthUser(mContext,
-//                                    hostedUIJSONConfigured.getAppId()),
-//                            hostedUI.getScopes());
-//                    callback.onResult(new Tokens(
-//                            cachedSession.getAccessToken().getJWTToken(),
-//                            cachedSession.getIdToken().getJWTToken(),
-//                            cachedSession.getRefreshToken().getToken()
-//                    ));
-//                    return;
-
-                    hostedUI.setAuthHandler(new AuthHandler() {
-                        @Override
-                        public void onSuccess(AuthUserSession session) {
-                            callback.onResult(new Tokens(
-                                    session.getAccessToken().getJWTToken(),
-                                    session.getIdToken().getJWTToken(),
-                                    session.getRefreshToken().getToken()
-                            ));
-                        }
-
-                        @Override
-                        public void onSignout() {
-                            callback.onError(new Exception("No cached session."));
-                        }
-
-                        @Override
-                        public void onFailure(Exception e) {
-                            callback.onError(new Exception("No cached session.", e));
-                        }
-                    });
-                    hostedUI.getSession(false);
+                    _getHostedUITokens(callback);
                     return;
                 } else if (getSignInMode().equals(SignInMode.OAUTH2)) {
                     callback.onError(new Exception("Tokens are not supported for OAuth2"));
@@ -1626,6 +1628,42 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
             }
         };
+    }
+
+    private void _getHostedUITokens(final Callback<Tokens> callback) {
+        //                    final AuthUserSession cachedSession =
+//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
+//                            LocalDataManager.getLastAuthUser(mContext,
+//                                    hostedUIJSONConfigured.getAppId()),
+//                            hostedUI.getScopes());
+//                    callback.onResult(new Tokens(
+//                            cachedSession.getAccessToken().getJWTToken(),
+//                            cachedSession.getIdToken().getJWTToken(),
+//                            cachedSession.getRefreshToken().getToken()
+//                    ));
+//                    return;
+
+        hostedUI.setAuthHandler(new AuthHandler() {
+            @Override
+            public void onSuccess(AuthUserSession session) {
+                callback.onResult(new Tokens(
+                        session.getAccessToken().getJWTToken(),
+                        session.getIdToken().getJWTToken(),
+                        session.getRefreshToken().getToken()
+                ));
+            }
+
+            @Override
+            public void onSignout() {
+                callback.onError(new Exception("No cached session."));
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                callback.onError(new Exception("No cached session.", e));
+            }
+        });
+        hostedUI.getSession(false);
     }
 
     /**
@@ -2891,6 +2929,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
+                    registerConfigSignInProviders();
+
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
                             .isBackgroundColorFullScreen(false);
@@ -2901,8 +2941,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     if (signInUIOptions.getBackgroundColor() != null) {
                         authUIConfigBuilder.backgroundColor(signInUIOptions.getBackgroundColor());
                     }
-
-                    final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
                     if (isConfigurationKeyPresent(USER_POOLS)) {
                         authUIConfigBuilder.userPools(true);
@@ -3156,26 +3194,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * AWSConfiguration.
      */
     private void registerConfigSignInProviders() {
-        registerConfigSignInProviders(this.awsConfiguration);
-    }
-
-    /**
-     * Register the SignInProvider and permissions based on the
-     * AWSConfiguration.
-     */
-    private void registerConfigSignInProviders(final AWSConfiguration awsConfig) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, awsConfig)) {
+        if (isConfigurationKeyPresent(USER_POOLS, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(FACEBOOK, awsConfig)) {
+        if (isConfigurationKeyPresent(FACEBOOK, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(GOOGLE, awsConfig)) {
+        if (isConfigurationKeyPresent(GOOGLE, this.awsConfiguration)
+                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
     }

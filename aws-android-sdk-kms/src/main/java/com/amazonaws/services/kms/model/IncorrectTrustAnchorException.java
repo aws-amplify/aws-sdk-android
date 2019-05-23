@@ -24,7 +24,7 @@ import com.amazonaws.AmazonServiceException;
  * </p>
  * <p>
  * When you <a href=
- * "http://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
+ * "https://docs.aws.amazon.com/cloudhsm/latest/userguide/initialize-cluster.html#sign-csr"
  * >initialize the cluster</a>, you create the trust anchor certificate and save
  * it in the <code>customerCA.crt</code> file.
  * </p>

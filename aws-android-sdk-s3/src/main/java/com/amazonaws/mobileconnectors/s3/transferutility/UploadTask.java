@@ -88,10 +88,15 @@ class UploadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
-        if (!isNetworkHandlerRegisteredAndNetworkConnected()) {
-            LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-            updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-            return false;
+        try {
+            if (TransferNetworkLossHandler.getInstance() != null &&
+                !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
+                return false;	
+            }	
+        } catch (TransferUtilityException transferUtilityException) {	
+            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
         }
         
         updater.updateState(upload.id, TransferState.IN_PROGRESS);
@@ -174,10 +179,15 @@ class UploadTask implements Callable<Boolean> {
                 isSuccess &= b;
             }
             if (!isSuccess) {
-                if (!isNetworkHandlerRegisteredAndNetworkConnected()) {
-                    LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-                    return false;
+                try {
+                    if (TransferNetworkLossHandler.getInstance() != null &&
+                        !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                        LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
+                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
+                        return false;	
+                    }	
+                } catch (TransferUtilityException transferUtilityException) {	
+                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
                 }
             }
         } catch (final Exception e) {
@@ -211,10 +221,15 @@ class UploadTask implements Callable<Boolean> {
                 }
             }
 
-            if (!isNetworkHandlerRegisteredAndNetworkConnected()) {
-                LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-                return false;
+            try {
+                if (TransferNetworkLossHandler.getInstance() != null &&
+                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                    LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
+                    return false;	
+                }	
+            } catch (TransferUtilityException transferUtilityException) {	
+                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
             }
 
             // interrupted due to reasons other than network.
@@ -465,16 +480,6 @@ class UploadTask implements Callable<Boolean> {
 
     private static CannedAccessControlList getCannedAclFromString(String cannedAcl) {
         return cannedAcl == null ? null : CANNED_ACL_MAP.get(cannedAcl);
-    }
-
-    private boolean isNetworkHandlerRegisteredAndNetworkConnected() {
-        try {
-            return TransferNetworkLossHandler.getInstance() != null  &&
-                    TransferNetworkLossHandler.getInstance().isNetworkConnected();
-        } catch (TransferUtilityException transferUtilityException) {
-            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
-            return false;
-        }
     }
 
     /**

@@ -51,6 +51,10 @@ class PasswordPolicyTypeJsonUnmarshaller implements
             } else if (name.equals("RequireSymbols")) {
                 passwordPolicyType.setRequireSymbols(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TemporaryPasswordValidityDays")) {
+                passwordPolicyType.setTemporaryPasswordValidityDays(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

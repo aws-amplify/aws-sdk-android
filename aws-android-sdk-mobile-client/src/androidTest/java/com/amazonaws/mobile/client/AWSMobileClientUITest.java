@@ -3,6 +3,7 @@ package com.amazonaws.mobile.client;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.BySelector;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
@@ -143,8 +144,8 @@ public class AWSMobileClientUITest extends AWSMobileClientTestBase {
         /// The UI automation code is not finalized, do the steps manually, the code will wait for
         /// success indicators
 
-//        final UiDevice uiDevice =
-//                UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        final UiDevice uiDevice =
+                UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 //        final UiObject2 acceptButton = waitForObject(By.text("Accept & continue"), false);
 //        if (acceptButton != null) {
 //            acceptButton.click();
@@ -153,13 +154,13 @@ public class AWSMobileClientUITest extends AWSMobileClientTestBase {
 //        if (noThanksButton != null) {
 //            noThanksButton.click();
 //        }
-//        try {
-//            uiDevice.findObjects(By.clazz("android.widget.EditText")).get(0).setText("somebody");
-//            uiDevice.findObjects(By.clazz("android.widget.EditText")).get(1).setText("1234Password!");
-//            uiDevice.findObject(By.text("Sign in")).click();
-//        } catch (Exception e) {
-//            Log.e(TAG, "testShowSignInHostedUIWithUserpools: the user may already be signed-in in the browser", e);
-//        }
+        try {
+            uiDevice.findObjects(By.clazz("android.widget.EditText")).get(0).setText("somebody");
+            uiDevice.findObjects(By.clazz("android.widget.EditText")).get(1).setText("1234Password!");
+            uiDevice.findObject(By.text("Sign in")).click();
+        } catch (Exception e) {
+            Log.e(TAG, "testShowSignInHostedUIWithUserpools: the user may already be signed-in in the browser", e);
+        }
         while (AWSMobileClientUITestActivity.intents.size() == 0) {
             Log.e(TAG, "testShowSignInAuth0: Waiting on intent");
             Thread.sleep(50);

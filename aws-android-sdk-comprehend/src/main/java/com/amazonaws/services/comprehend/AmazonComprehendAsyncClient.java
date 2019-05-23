@@ -659,6 +659,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -698,6 +699,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -743,6 +745,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -779,6 +782,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws ResourceInUseException
+     * @throws TooManyTagsException
      * @throws TooManyRequestsException
      * @throws ResourceLimitExceededException
      * @throws UnsupportedLanguageException
@@ -2467,6 +2471,75 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Lists all tags associated with a given Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                return listTagsForResource(listTagsForResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists all tags associated with a given Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest,
+            final AsyncHandler<ListTagsForResourceRequest, ListTagsForResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                ListTagsForResourceResult result = null;
+                try {
+                    result = listTagsForResource(listTagsForResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTagsForResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -3569,6 +3642,152 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(stopTrainingEntityRecognizerRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Associates a specific tag with an Amazon Comprehend resource. A tag is a
+     * key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                return tagResource(tagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Associates a specific tag with an Amazon Comprehend resource. A tag is a
+     * key-value pair that adds as a metadata to a resource used by Amazon
+     * Comprehend. For example, a tag with "Sales" as the key might be added to
+     * a resource to indicate its use by the sales department.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest,
+            final AsyncHandler<TagResourceRequest, TagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                TagResourceResult result = null;
+                try {
+                    result = tagResource(tagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(tagResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes a specific tag associated with an Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Comprehend.
+     * @throws TooManyTagKeysException
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                return untagResource(untagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes a specific tag associated with an Amazon Comprehend resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Comprehend.
+     * @throws TooManyTagKeysException
+     * @throws InvalidRequestException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest,
+            final AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                UntagResourceResult result = null;
+                try {
+                    result = untagResource(untagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(untagResourceRequest, result);
                 return result;
             }
         });

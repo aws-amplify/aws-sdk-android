@@ -23,6 +23,7 @@ import java.util.Map;
  */
 public enum LanguageCode {
 
+    Arb("arb"),
     CmnCN("cmn-CN"),
     CyGB("cy-GB"),
     DaDK("da-DK"),
@@ -66,6 +67,7 @@ public enum LanguageCode {
     private static final Map<String, LanguageCode> enumMap;
     static {
         enumMap = new HashMap<String, LanguageCode>();
+        enumMap.put("arb", Arb);
         enumMap.put("cmn-CN", CmnCN);
         enumMap.put("cy-GB", CyGB);
         enumMap.put("da-DK", DaDK);

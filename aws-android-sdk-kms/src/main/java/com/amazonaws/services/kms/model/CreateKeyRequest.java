@@ -21,42 +21,28 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a customer master key (CMK) in the caller's AWS account.
+ * Creates a customer managed <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+ * >customer master key</a> (CMK) in your AWS account.
  * </p>
  * <p>
- * You can use a CMK to encrypt small amounts of data (4 KiB or less) directly,
- * but CMKs are more commonly used to encrypt data keys, which are used to
- * encrypt raw data. For more information about data keys and the difference
- * between CMKs and data keys, see the following:
+ * You can use a CMK to encrypt small amounts of data (up to 4096 bytes)
+ * directly. But CMKs are more commonly used to encrypt the <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys"
+ * >data keys</a> that are used to encrypt data.
  * </p>
- * <ul>
- * <li>
  * <p>
- * The <a>GenerateDataKey</a> operation
- * </p>
- * </li>
- * <li>
- * <p>
- * <a href="http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">
- * AWS Key Management Service Concepts</a> in the <i>AWS Key Management Service
- * Developer Guide</i>
- * </p>
- * </li>
- * </ul>
- * <p>
- * If you plan to <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
- * >import key material</a>, use the <code>Origin</code> parameter with a value
- * of <code>EXTERNAL</code> to create a CMK with no key material.
+ * To create a CMK for imported key material, use the <code>Origin</code>
+ * parameter with a value of <code>EXTERNAL</code>.
  * </p>
  * <p>
  * To create a CMK in a <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
- * >custom key store</a>, use <code>CustomKeyStoreId</code> parameter to specify
- * the custom key store. You must also use the <code>Origin</code> parameter
- * with a value of <code>AWS_CLOUDHSM</code>. The AWS CloudHSM cluster that is
- * associated with the custom key store must have at least two active HSMs, each
- * in a different Availability Zone in the Region.
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+ * >custom key store</a>, use the <code>CustomKeyStoreId</code> parameter to
+ * specify the custom key store. You must also use the <code>Origin</code>
+ * parameter with a value of <code>AWS_CLOUDHSM</code>. The AWS CloudHSM cluster
+ * that is associated with the custom key store must have at least two active
+ * HSMs in different Availability Zones in the AWS Region.
  * </p>
  * <p>
  * You cannot use this operation to create a CMK in a different AWS account.
@@ -78,9 +64,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
      * request on the CMK. This reduces the risk that the CMK becomes
      * unmanageable. For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section of the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section of the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </li>
      * <li>
@@ -91,7 +77,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * might need to enforce a delay before including the new principal in a key
      * policy because the new principal might not be immediately visible to AWS
      * KMS. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
      * </p>
@@ -100,7 +86,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * If you do not provide a key policy, AWS KMS attaches a default key policy
      * to the CMK. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -130,10 +116,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,8 +128,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -155,14 +140,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -176,7 +161,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Creates the CMK in the specified <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and the key material in its associated AWS CloudHSM
      * cluster. To create a CMK in a custom key store, you must also specify the
      * <code>Origin</code> parameter with a value of <code>AWS_CLOUDHSM</code>.
@@ -194,7 +179,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * This operation is part of the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >Custom Key Store feature</a> feature in AWS KMS, which combines the
      * convenience and extensive integration of AWS KMS with the isolation and
      * control of a single-tenant key store.
@@ -216,9 +201,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </important>
      * <p>
@@ -261,9 +246,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
      * request on the CMK. This reduces the risk that the CMK becomes
      * unmanageable. For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section of the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section of the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </li>
      * <li>
@@ -274,7 +259,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * might need to enforce a delay before including the new principal in a key
      * policy because the new principal might not be immediately visible to AWS
      * KMS. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
      * </p>
@@ -283,7 +268,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * If you do not provide a key policy, AWS KMS attaches a default key policy
      * to the CMK. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -310,9 +295,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
      *         that the CMK becomes unmanageable. For more information, refer to
      *         the scenario in the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *         >Default Key Policy</a> section of the <i>AWS Key Management
-     *         Service Developer Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *         >Default Key Policy</a> section of the <i> <i>AWS Key Management
+     *         Service Developer Guide</i> </i>.
      *         </p>
      *         </li>
      *         <li>
@@ -324,7 +309,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         before including the new principal in a key policy because the
      *         new principal might not be immediately visible to AWS KMS. For
      *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *         >Changes that I make are not always immediately visible</a> in
      *         the <i>AWS Identity and Access Management User Guide</i>.
      *         </p>
@@ -333,7 +318,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         If you do not provide a key policy, AWS KMS attaches a default
      *         key policy to the CMK. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *         >Default Key Policy</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
      *         </p>
@@ -360,9 +345,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
      * request on the CMK. This reduces the risk that the CMK becomes
      * unmanageable. For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section of the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section of the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </li>
      * <li>
@@ -373,7 +358,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * might need to enforce a delay before including the new principal in a key
      * policy because the new principal might not be immediately visible to AWS
      * KMS. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
      * </p>
@@ -382,7 +367,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * If you do not provide a key policy, AWS KMS attaches a default key policy
      * to the CMK. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -410,9 +395,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
      *            that the CMK becomes unmanageable. For more information, refer
      *            to the scenario in the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section of the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *            >Default Key Policy</a> section of the <i> <i>AWS Key
+     *            Management Service Developer Guide</i> </i>.
      *            </p>
      *            </li>
      *            <li>
@@ -424,7 +409,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            delay before including the new principal in a key policy
      *            because the new principal might not be immediately visible to
      *            AWS KMS. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
      *            the <i>AWS Identity and Access Management User Guide</i>.
      *            </p>
@@ -433,7 +418,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            If you do not provide a key policy, AWS KMS attaches a default
      *            key policy to the CMK. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *            >Default Key Policy</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -460,9 +445,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
      * request on the CMK. This reduces the risk that the CMK becomes
      * unmanageable. For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section of the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section of the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </li>
      * <li>
@@ -473,7 +458,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * might need to enforce a delay before including the new principal in a key
      * policy because the new principal might not be immediately visible to AWS
      * KMS. For more information, see <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
      * </p>
@@ -482,7 +467,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * If you do not provide a key policy, AWS KMS attaches a default key policy
      * to the CMK. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -513,9 +498,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
      *            that the CMK becomes unmanageable. For more information, refer
      *            to the scenario in the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section of the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *            >Default Key Policy</a> section of the <i> <i>AWS Key
+     *            Management Service Developer Guide</i> </i>.
      *            </p>
      *            </li>
      *            <li>
@@ -527,7 +512,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            delay before including the new principal in a key policy
      *            because the new principal might not be immediately visible to
      *            AWS KMS. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
      *            the <i>AWS Identity and Access Management User Guide</i>.
      *            </p>
@@ -536,7 +521,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            If you do not provide a key policy, AWS KMS attaches a default
      *            key policy to the CMK. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *            >Default Key Policy</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -631,20 +616,18 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         The intended use of the CMK.
-     *         </p>
-     *         <p>
-     *         You can use CMKs only for symmetric encryption and decryption.
+     *         The cryptographic operations for which you can use the CMK. The
+     *         only valid value is <code>ENCRYPT_DECRYPT</code>, which means you
+     *         can use the CMK to encrypt and decrypt data.
      *         </p>
      * @see KeyUsageType
      */
@@ -654,20 +637,18 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The intended use of the CMK.
-     *            </p>
-     *            <p>
-     *            You can use CMKs only for symmetric encryption and decryption.
+     *            The cryptographic operations for which you can use the CMK.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @see KeyUsageType
      */
@@ -677,10 +658,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -690,10 +670,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The intended use of the CMK.
-     *            </p>
-     *            <p>
-     *            You can use CMKs only for symmetric encryption and decryption.
+     *            The cryptographic operations for which you can use the CMK.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -706,20 +685,18 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The intended use of the CMK.
-     *            </p>
-     *            <p>
-     *            You can use CMKs only for symmetric encryption and decryption.
+     *            The cryptographic operations for which you can use the CMK.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @see KeyUsageType
      */
@@ -729,10 +706,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The intended use of the CMK.
-     * </p>
-     * <p>
-     * You can use CMKs only for symmetric encryption and decryption.
+     * The cryptographic operations for which you can use the CMK. The only
+     * valid value is <code>ENCRYPT_DECRYPT</code>, which means you can use the
+     * CMK to encrypt and decrypt data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -742,10 +718,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The intended use of the CMK.
-     *            </p>
-     *            <p>
-     *            You can use CMKs only for symmetric encryption and decryption.
+     *            The cryptographic operations for which you can use the CMK.
+     *            The only valid value is <code>ENCRYPT_DECRYPT</code>, which
+     *            means you can use the CMK to encrypt and decrypt data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -758,8 +733,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -770,14 +745,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -787,7 +762,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
      *
      * @return <p>
-     *         The source of the CMK's key material. You cannot change the
+     *         The source of the key material for the CMK. You cannot change the
      *         origin after you create the CMK.
      *         </p>
      *         <p>
@@ -800,14 +775,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         material from your existing key management infrastructure. For
      *         more information about importing key material into AWS KMS, see
      *         <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      *         >Importing Key Material</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
      *         </p>
      *         <p>
      *         When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS
-     *         creates the CMK in a AWS KMS <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *         creates the CMK in an AWS KMS <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a> and creates its key material in the
      *         associated AWS CloudHSM cluster. You must also use the
      *         <code>CustomKeyStoreId</code> parameter to identify the custom
@@ -821,8 +796,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -833,14 +808,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -850,8 +825,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
      *
      * @param origin <p>
-     *            The source of the CMK's key material. You cannot change the
-     *            origin after you create the CMK.
+     *            The source of the key material for the CMK. You cannot change
+     *            the origin after you create the CMK.
      *            </p>
      *            <p>
      *            The default is <code>AWS_KMS</code>, which means AWS KMS
@@ -863,14 +838,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            material from your existing key management infrastructure. For
      *            more information about importing key material into AWS KMS,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      *            >Importing Key Material</a> in the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            <p>
      *            When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS
-     *            creates the CMK in a AWS KMS <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            creates the CMK in an AWS KMS <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and creates its key material in the
      *            associated AWS CloudHSM cluster. You must also use the
      *            <code>CustomKeyStoreId</code> parameter to identify the custom
@@ -884,8 +859,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -896,14 +871,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -916,8 +891,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
      *
      * @param origin <p>
-     *            The source of the CMK's key material. You cannot change the
-     *            origin after you create the CMK.
+     *            The source of the key material for the CMK. You cannot change
+     *            the origin after you create the CMK.
      *            </p>
      *            <p>
      *            The default is <code>AWS_KMS</code>, which means AWS KMS
@@ -929,14 +904,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            material from your existing key management infrastructure. For
      *            more information about importing key material into AWS KMS,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      *            >Importing Key Material</a> in the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            <p>
      *            When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS
-     *            creates the CMK in a AWS KMS <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            creates the CMK in an AWS KMS <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and creates its key material in the
      *            associated AWS CloudHSM cluster. You must also use the
      *            <code>CustomKeyStoreId</code> parameter to identify the custom
@@ -953,8 +928,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -965,14 +940,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -982,8 +957,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
      *
      * @param origin <p>
-     *            The source of the CMK's key material. You cannot change the
-     *            origin after you create the CMK.
+     *            The source of the key material for the CMK. You cannot change
+     *            the origin after you create the CMK.
      *            </p>
      *            <p>
      *            The default is <code>AWS_KMS</code>, which means AWS KMS
@@ -995,14 +970,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            material from your existing key management infrastructure. For
      *            more information about importing key material into AWS KMS,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      *            >Importing Key Material</a> in the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            <p>
      *            When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS
-     *            creates the CMK in a AWS KMS <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            creates the CMK in an AWS KMS <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and creates its key material in the
      *            associated AWS CloudHSM cluster. You must also use the
      *            <code>CustomKeyStoreId</code> parameter to identify the custom
@@ -1016,8 +991,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The source of the CMK's key material. You cannot change the origin after
-     * you create the CMK.
+     * The source of the key material for the CMK. You cannot change the origin
+     * after you create the CMK.
      * </p>
      * <p>
      * The default is <code>AWS_KMS</code>, which means AWS KMS creates the key
@@ -1028,14 +1003,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * without key material so that you can import key material from your
      * existing key management infrastructure. For more information about
      * importing key material into AWS KMS, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      * >Importing Key Material</a> in the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
      * When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS creates
-     * the CMK in a AWS KMS <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * the CMK in an AWS KMS <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and creates its key material in the associated AWS
      * CloudHSM cluster. You must also use the <code>CustomKeyStoreId</code>
      * parameter to identify the custom key store.
@@ -1048,8 +1023,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
      *
      * @param origin <p>
-     *            The source of the CMK's key material. You cannot change the
-     *            origin after you create the CMK.
+     *            The source of the key material for the CMK. You cannot change
+     *            the origin after you create the CMK.
      *            </p>
      *            <p>
      *            The default is <code>AWS_KMS</code>, which means AWS KMS
@@ -1061,14 +1036,14 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            material from your existing key management infrastructure. For
      *            more information about importing key material into AWS KMS,
      *            see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
      *            >Importing Key Material</a> in the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            <p>
      *            When the parameter value is <code>AWS_CLOUDHSM</code>, AWS KMS
-     *            creates the CMK in a AWS KMS <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            creates the CMK in an AWS KMS <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and creates its key material in the
      *            associated AWS CloudHSM cluster. You must also use the
      *            <code>CustomKeyStoreId</code> parameter to identify the custom
@@ -1086,7 +1061,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Creates the CMK in the specified <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and the key material in its associated AWS CloudHSM
      * cluster. To create a CMK in a custom key store, you must also specify the
      * <code>Origin</code> parameter with a value of <code>AWS_CLOUDHSM</code>.
@@ -1104,7 +1079,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * This operation is part of the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >Custom Key Store feature</a> feature in AWS KMS, which combines the
      * convenience and extensive integration of AWS KMS with the isolation and
      * control of a single-tenant key store.
@@ -1115,7 +1090,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @return <p>
      *         Creates the CMK in the specified <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a> and the key material in its associated AWS
      *         CloudHSM cluster. To create a CMK in a custom key store, you must
      *         also specify the <code>Origin</code> parameter with a value of
@@ -1133,7 +1108,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         This operation is part of the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >Custom Key Store feature</a> feature in AWS KMS, which combines
      *         the convenience and extensive integration of AWS KMS with the
      *         isolation and control of a single-tenant key store.
@@ -1146,7 +1121,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Creates the CMK in the specified <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and the key material in its associated AWS CloudHSM
      * cluster. To create a CMK in a custom key store, you must also specify the
      * <code>Origin</code> parameter with a value of <code>AWS_CLOUDHSM</code>.
@@ -1164,7 +1139,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * This operation is part of the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >Custom Key Store feature</a> feature in AWS KMS, which combines the
      * convenience and extensive integration of AWS KMS with the isolation and
      * control of a single-tenant key store.
@@ -1175,7 +1150,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param customKeyStoreId <p>
      *            Creates the CMK in the specified <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and the key material in its associated
      *            AWS CloudHSM cluster. To create a CMK in a custom key store,
      *            you must also specify the <code>Origin</code> parameter with a
@@ -1194,7 +1169,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            This operation is part of the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >Custom Key Store feature</a> feature in AWS KMS, which
      *            combines the convenience and extensive integration of AWS KMS
      *            with the isolation and control of a single-tenant key store.
@@ -1207,7 +1182,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Creates the CMK in the specified <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a> and the key material in its associated AWS CloudHSM
      * cluster. To create a CMK in a custom key store, you must also specify the
      * <code>Origin</code> parameter with a value of <code>AWS_CLOUDHSM</code>.
@@ -1225,7 +1200,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * This operation is part of the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >Custom Key Store feature</a> feature in AWS KMS, which combines the
      * convenience and extensive integration of AWS KMS with the isolation and
      * control of a single-tenant key store.
@@ -1239,7 +1214,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param customKeyStoreId <p>
      *            Creates the CMK in the specified <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a> and the key material in its associated
      *            AWS CloudHSM cluster. To create a CMK in a custom key store,
      *            you must also specify the <code>Origin</code> parameter with a
@@ -1258,7 +1233,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            This operation is part of the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >Custom Key Store feature</a> feature in AWS KMS, which
      *            combines the convenience and extensive integration of AWS KMS
      *            with the isolation and control of a single-tenant key store.
@@ -1282,9 +1257,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </important>
      * <p>
@@ -1308,9 +1283,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         For more information, refer to the scenario in the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *         >Default Key Policy</a> section in the <i>AWS Key Management
-     *         Service Developer Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *         >Default Key Policy</a> section in the <i> <i>AWS Key Management
+     *         Service Developer Guide</i> </i>.
      *         </p>
      *         </important>
      *         <p>
@@ -1338,9 +1313,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </important>
      * <p>
@@ -1364,9 +1339,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         For more information, refer to the scenario in the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *         >Default Key Policy</a> section in the <i>AWS Key Management
-     *         Service Developer Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *         >Default Key Policy</a> section in the <i> <i>AWS Key Management
+     *         Service Developer Guide</i> </i>.
      *         </p>
      *         </important>
      *         <p>
@@ -1394,9 +1369,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </important>
      * <p>
@@ -1420,9 +1395,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, refer to the scenario in the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *            >Default Key Policy</a> section in the <i> <i>AWS Key
+     *            Management Service Developer Guide</i> </i>.
      *            </p>
      *            </important>
      *            <p>
@@ -1450,9 +1425,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, refer to the scenario in the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     * >Default Key Policy</a> section in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * </important>
      * <p>
@@ -1479,9 +1454,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, refer to the scenario in the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
+     *            >Default Key Policy</a> section in the <i> <i>AWS Key
+     *            Management Service Developer Guide</i> </i>.
      *            </p>
      *            </important>
      *            <p>

@@ -92,6 +92,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.SoftwareTokenMfaSett
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
 import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
+import com.amazonaws.services.cognitoidentityprovider.model.UserNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResponseType;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResult;
@@ -951,7 +952,10 @@ public class CognitoUser {
                 } catch (final NotAuthorizedException nae) {
                     clearCachedTokens();
                     throw new CognitoNotAuthorizedException("User is not authenticated", nae);
-                } catch (final Exception e) {
+                } catch (final UserNotFoundException unfe) {
+                    clearCachedTokens();
+                    throw new CognitoNotAuthorizedException("User does not exist", unfe);
+                }catch (final Exception e) {
                     throw new CognitoInternalErrorException("Failed to authenticate user", e);
                 }
             }

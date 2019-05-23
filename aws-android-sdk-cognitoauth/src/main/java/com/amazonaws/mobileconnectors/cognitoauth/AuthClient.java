@@ -244,7 +244,7 @@ public class AuthClient {
             return;
         }
         // The flag
-        receivedCodeTabShouldBeHidden = true;
+        LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), true);
         getTokens(uri, userHandler);
     }
 
@@ -570,7 +570,7 @@ public class AuthClient {
      */
     private void launchCustomTabs(final Uri uri) {
     	try {
-            receivedCodeTabShouldBeHidden = false;
+            LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), false);
 
 	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 	        mCustomTabsIntent = builder.build();
@@ -625,10 +625,12 @@ public class AuthClient {
         public void onNavigationEvent(final int navigationEvent, final Bundle extras) {
             super.onNavigationEvent(navigationEvent, extras);
             if (navigationEvent == ClientConstants.CHROME_NAVIGATION_CANCELLED) {
-                Log.i("AuthClient", "customTab hidden callback, code has already been received: " + receivedCodeTabShouldBeHidden);
-                if (!receivedCodeTabShouldBeHidden) {
+                final boolean hasReceivedRedirect = LocalDataManager.hasReceivedRedirect(pool.awsKeyValueStore,
+                        context, pool.getAppId());
+                Log.i("AuthClient", "customTab hidden callback, code has already been received: " + hasReceivedRedirect);
+                if (!hasReceivedRedirect) {
                     userHandler.onFailure(new AuthNavigationException("user cancelled"));
-                    receivedCodeTabShouldBeHidden = false;
+                    LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), false);
                 }
             }
         }

@@ -194,10 +194,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * authorization code as the response. This code can be exchanged for access
      * tokens with the token endpoint.
      * </p>
-     * <p>
-     * Set to <code>token</code> to specify that the client should get the
-     * access token (and, optionally, ID token, based on scopes) directly.
-     * </p>
      */
     private java.util.List<String> allowedOAuthFlows;
 
@@ -1434,20 +1430,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * authorization code as the response. This code can be exchanged for access
      * tokens with the token endpoint.
      * </p>
-     * <p>
-     * Set to <code>token</code> to specify that the client should get the
-     * access token (and, optionally, ID token, based on scopes) directly.
-     * </p>
      *
      * @return <p>
      *         Set to <code>code</code> to initiate a code grant flow, which
      *         provides an authorization code as the response. This code can be
      *         exchanged for access tokens with the token endpoint.
-     *         </p>
-     *         <p>
-     *         Set to <code>token</code> to specify that the client should get
-     *         the access token (and, optionally, ID token, based on scopes)
-     *         directly.
      *         </p>
      */
     public java.util.List<String> getAllowedOAuthFlows() {
@@ -1460,20 +1447,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * authorization code as the response. This code can be exchanged for access
      * tokens with the token endpoint.
      * </p>
-     * <p>
-     * Set to <code>token</code> to specify that the client should get the
-     * access token (and, optionally, ID token, based on scopes) directly.
-     * </p>
      *
      * @param allowedOAuthFlows <p>
      *            Set to <code>code</code> to initiate a code grant flow, which
      *            provides an authorization code as the response. This code can
      *            be exchanged for access tokens with the token endpoint.
-     *            </p>
-     *            <p>
-     *            Set to <code>token</code> to specify that the client should
-     *            get the access token (and, optionally, ID token, based on
-     *            scopes) directly.
      *            </p>
      */
     public void setAllowedOAuthFlows(java.util.Collection<String> allowedOAuthFlows) {
@@ -1492,10 +1470,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * tokens with the token endpoint.
      * </p>
      * <p>
-     * Set to <code>token</code> to specify that the client should get the
-     * access token (and, optionally, ID token, based on scopes) directly.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -1503,11 +1477,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            Set to <code>code</code> to initiate a code grant flow, which
      *            provides an authorization code as the response. This code can
      *            be exchanged for access tokens with the token endpoint.
-     *            </p>
-     *            <p>
-     *            Set to <code>token</code> to specify that the client should
-     *            get the access token (and, optionally, ID token, based on
-     *            scopes) directly.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1529,10 +1498,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * tokens with the token endpoint.
      * </p>
      * <p>
-     * Set to <code>token</code> to specify that the client should get the
-     * access token (and, optionally, ID token, based on scopes) directly.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -1540,11 +1505,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            Set to <code>code</code> to initiate a code grant flow, which
      *            provides an authorization code as the response. This code can
      *            be exchanged for access tokens with the token endpoint.
-     *            </p>
-     *            <p>
-     *            Set to <code>token</code> to specify that the client should
-     *            get the access token (and, optionally, ID token, based on
-     *            scopes) directly.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

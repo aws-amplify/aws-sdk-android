@@ -47,6 +47,7 @@ import java.io.File;
 import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
@@ -955,38 +956,32 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
      * Now, Client-1 comes back, connects and subscribes to the topic and
      * checks if it can receive the message that Client-2 published.
      *
-     * This test is currently ignored because persistent session
-     * (cleanSession = false) is not yet implemented by AWS IoT.
-     *
-     * Please remove the @Ignore annotation when the feature is
-     * released by AWS IoT.
      */
-    @Ignore
     @Test
     public void mqttPersistentSession() throws Exception {
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
+        final List<String> messages = new ArrayList<String>();
 
         String largeMessageString = new String("largeMessageBytes");
         final String topic = "sdk/test/integration/ws/reconnect";
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("client-id-1", 
-            Region.getRegion(Regions.US_EAST_1), 
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("persistent-client-id-1",
+            Region.getRegion(Regions.US_EAST_1),
             endpointPrefix);
 
         mqttManager.setCleanSession(false);
-        mqttManager.setAutoReconnect(false);
+        mqttManager.setAutoReconnect(true);
 
-        // connect to AWS IoT using keystore
+        // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
                 if (status == AWSIotMqttClientStatus.Connecting) {
-                    System.out.println("Client client-id-1 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-1 connecton status: " + status);
                 } else if (status == AWSIotMqttClientStatus.Connected) {
-                    System.out.println("Client client-id-1 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-1 connecton status: " + status);
                     countDownLatch.countDown();
                 }
             }
@@ -999,12 +994,12 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         }
 
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic(topic, 
-            AWSIotMqttQos.QOS0, 
+        mqttManager.subscribeToTopic(topic,
+            AWSIotMqttQos.QOS1,
             new AWSIotMqttNewMessageCallback() {
                 @Override
                 public void onMessageArrived(String topic, byte[] data) {
-                    System.out.println("Client client-id-1 received a message on topic:" + topic);
+                    System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
                     messages.add(new String(data));
                 }
             });
@@ -1020,12 +1015,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
-        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager("client-id-2", 
-            Region.getRegion(Regions.US_EAST_1), 
+        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager("persistent-client-id-2",
+            Region.getRegion(Regions.US_EAST_1),
             endpointPrefix);
-
-        mqttManager2.setCleanSession(false);
-        mqttManager2.setAutoReconnect(false);
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch2 = new CountDownLatch(1);
@@ -1034,9 +1026,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
                 if (status == AWSIotMqttClientStatus.Connecting) {
-                    System.out.println("Client client-id-2 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-2 connecton status: " + status);
                 } else if (status == AWSIotMqttClientStatus.Connected) {
-                    System.out.println("Client client-id-2 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-2 connecton status: " + status);
                     countDownLatch2.countDown();
                 }
             }
@@ -1051,11 +1043,11 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         // publish large message
         mqttManager2.publishString(largeMessageString,
                 topic,
-                AWSIotMqttQos.QOS0,
+                AWSIotMqttQos.QOS1,
                 new AWSIotMqttMessageDeliveryCallback() {
                     @Override
                     public void statusChanged(MessageDeliveryStatus status, Object userData) {
-                        System.out.println("Client client-id-2 published a message. Status :" + status);
+                        System.out.println("Client persistent-client-id-2 published a message. Status :" + status);
                     }
                 }, null);
 
@@ -1065,23 +1057,16 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         mqttManager2.disconnect();
         Thread.sleep(3000);
 
-        mqttManager = new AWSIotMqttManager("client-id-1", 
-            Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix);
-
-        mqttManager.setCleanSession(false);
-        mqttManager.setAutoReconnect(true);
-
-        // connect to AWS IoT using keystore
+        // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch3 = new CountDownLatch(1);
         mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
                 if (status == AWSIotMqttClientStatus.Connecting) {
-                    System.out.println("Client client-id-1 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-1 connecton status: " + status);
                 } else if (status == AWSIotMqttClientStatus.Connected) {
-                    System.out.println("Client client-id-1 connecton status: " + status);
+                    System.out.println("Client persistent-client-id-1 connecton status: " + status);
                     countDownLatch3.countDown();
                 }
             }
@@ -1095,11 +1080,11 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // subscribe to MQTT topic
         mqttManager.subscribeToTopic(topic,
-                AWSIotMqttQos.QOS0,
+                AWSIotMqttQos.QOS1,
                 new AWSIotMqttNewMessageCallback() {
                     @Override
                     public void onMessageArrived(String topic, byte[] data) {
-                        System.out.println("Client client-id-1 received a message on topic:" + topic);
+                        System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
                         messages.add(new String(data));
                     }
                 });

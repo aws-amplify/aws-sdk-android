@@ -32,7 +32,10 @@ public enum LanguageCode {
     PtBR("pt-BR"),
     FrFR("fr-FR"),
     ItIT("it-IT"),
-    KoKR("ko-KR");
+    KoKR("ko-KR"),
+    EsES("es-ES"),
+    EnIN("en-IN"),
+    HiIN("hi-IN");
 
     private String value;
 
@@ -58,6 +61,9 @@ public enum LanguageCode {
         enumMap.put("fr-FR", FrFR);
         enumMap.put("it-IT", ItIT);
         enumMap.put("ko-KR", KoKR);
+        enumMap.put("es-ES", EsES);
+        enumMap.put("en-IN", EnIN);
+        enumMap.put("hi-IN", HiIN);
     }
 
     /**

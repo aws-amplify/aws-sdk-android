@@ -513,4 +513,35 @@ public final class LocalDataManager {
         stringSet.addAll(Arrays.asList(stringArray));
         return stringSet;
     }
+
+    public static void cacheHasReceivedRedirect(AWSKeyValueStore awsKeyValueStore, Context context, String clientId, boolean hasReceivedRedirect) {
+        if (context == null || clientId == null) {
+            throw new InvalidParameterException(
+                    "Application context, and application domain cannot be null");
+        }
+
+        try {
+            String hasReceivedRedirectKey = String.format(Locale.US, "%s.%s.%s",
+                    ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, ClientConstants.APP_HAS_RECIEVED_REDIRECT);
+            awsKeyValueStore.put(hasReceivedRedirectKey, hasReceivedRedirect ? "true" : "false");
+        } catch (Exception e) {
+            Log.e(TAG, "Failed while writing to SharedPreferences", e);
+        }
+    }
+
+    public static boolean hasReceivedRedirect(AWSKeyValueStore awsKeyValueStore, Context context, String clientId) {
+        if (context == null || clientId == null) {
+            throw new InvalidParameterException(
+                    "Application context, and application domain cannot be null");
+        }
+
+        try {
+            String hasReceivedRedirectKey = String.format(Locale.US, "%s.%s.%s",
+                    ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, ClientConstants.APP_HAS_RECIEVED_REDIRECT);
+            return "true".equals(awsKeyValueStore.get(hasReceivedRedirectKey));
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to read from SharedPreferences", e);
+        }
+        return false;
+    }
 }
