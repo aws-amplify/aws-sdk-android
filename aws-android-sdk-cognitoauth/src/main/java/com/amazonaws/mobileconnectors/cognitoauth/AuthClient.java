@@ -17,6 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoauth;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +30,6 @@ import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
@@ -39,6 +39,7 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpResponseParser;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
 import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpClient;
+import com.amazonaws.mobileconnectors.cognitoauth.util.CustomTabsHelper;
 import com.amazonaws.mobileconnectors.cognitoauth.util.Pkce;
 import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 
@@ -47,6 +48,8 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Local client for {@link Auth}.
@@ -99,6 +102,8 @@ public class AuthClient {
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private CustomTabsServiceConnection mCustomTabsServiceConnection;
+    private Boolean mCustomTabsServiceIsBound = false;
+    private volatile boolean receivedCodeTabShouldBeHidden;
 
     /**
      * Constructs {@link AuthClient} with no user name.
@@ -248,8 +253,10 @@ public class AuthClient {
      * Unbind {@link AuthClient#mCustomTabsServiceConnection}
      */
     public void unbindServiceConnection() {
-        if(mCustomTabsServiceConnection != null)
+        if(mCustomTabsServiceConnection != null && mCustomTabsServiceIsBound) {
             context.unbindService(mCustomTabsServiceConnection);
+            mCustomTabsServiceIsBound = false;
+        }
     }
 
     /**
@@ -569,13 +576,12 @@ public class AuthClient {
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
-	        mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+	        mCustomTabsIntent.intent.setPackage(CustomTabsHelper.getPackageNameToUse(context));
 	        mCustomTabsIntent.launchUrl(context, uri);
-    	} catch (final Exception e) {
-    		userHandler.onFailure(e);
-    	}
+        } catch (final Exception e) {
+            userHandler.onFailure(e);
+        }
     }
 
     private String getUserContextData() {
@@ -605,8 +611,10 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
-        boolean chromeState = CustomTabsClient.bindCustomTabsService(context,
-                ClientConstants.CHROME_PACKAGE, mCustomTabsServiceConnection);
+        if(CustomTabsHelper.getPackageNameToUse(context) != null) {
+            mCustomTabsServiceIsBound = CustomTabsClient.bindCustomTabsService(context,
+                    CustomTabsHelper.getPackageNameToUse(context), mCustomTabsServiceConnection);
+        }
     }
 
     /**
