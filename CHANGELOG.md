@@ -2,6 +2,11 @@
 
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
+### Bug Fixes
+
+* **Amazon Kinesis Video Streams**
+  * Removed trailing zeroes from encoder output that caused 0x3200000d errors when frames contained more than 3 trailing zeroes. See AnnexB sepcification.
+
 ### Misc. Updates
 
 * Model updates for the following services
