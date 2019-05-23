@@ -4,6 +4,9 @@
 
 ### Bug Fixes
 
+* **AWS Core Runtime**
+  * Fixed a bug where generating RSA keys for encryption of the credentials failed due to `setKeySize(int)` method not available in Android API level 18. See [issue #964](https://github.com/aws-amplify/aws-sdk-android/issues/964) for details.
+
 * **Amazon Kinesis Video Streams**
   * Removed trailing zeroes from encoder output that caused 0x3200000d errors when frames contained more than 3 trailing zeroes. See AnnexB sepcification.
 
