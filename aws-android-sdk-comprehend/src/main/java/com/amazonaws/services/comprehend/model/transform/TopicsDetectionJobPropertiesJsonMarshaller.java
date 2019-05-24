@@ -81,6 +81,11 @@ class TopicsDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("VolumeKmsKeyId");
             jsonWriter.value(volumeKmsKeyId);
         }
+        if (topicsDetectionJobProperties.getVpcConfig() != null) {
+            VpcConfig vpcConfig = topicsDetectionJobProperties.getVpcConfig();
+            jsonWriter.name("VpcConfig");
+            VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

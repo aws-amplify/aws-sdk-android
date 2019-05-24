@@ -1,3 +1,18 @@
+/**
+ * Copyright 2019-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *    http://aws.amazon.com/apache2.0
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+ * OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.amazonaws.internal.keyvaluestore;
 
 import android.content.Context;
@@ -8,19 +23,14 @@ import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 import com.amazonaws.util.Base64;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
 import java.security.Key;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -31,7 +41,8 @@ import javax.security.auth.x500.X500Principal;
  * It generates a AES 256-bit symmetric key which is
  * used to encrypt the data. It also generates a master
  * key using RSA provided by AndroidKeyStore and uses
- * the RSA key to encrypt the AES key.
+ * the RSA key to encrypt the AES key. The size of the
+ * RSA key is 2048 bits by default.
  *
  * Once the AES key is encrypted with the RSA key, the
  * encrypted AES key is stored in SharedPreferences.
@@ -52,7 +63,6 @@ public class KeyProvider18 implements KeyProvider {
     static final String KEY_ALGORITHM_RSA = "RSA";
     static final String CIPHER_RSA_MODE = "RSA/ECB/PKCS1Padding";
     static final String CIPHER_PROVIDER_NAME_FOR_RSA = "AndroidOpenSSL";
-    static final int RSA_KEY_SIZE = 2048;
 
     static final String ENCRYPTED_AES_KEY = "AesGcmNoPadding18-encrypted-encryption-key";
 
@@ -151,7 +161,6 @@ public class KeyProvider18 implements KeyProvider {
                     .setSerialNumber(BigInteger.TEN)
                     .setStartDate(start.getTime())
                     .setEndDate(end.getTime())
-                    .setKeySize(RSA_KEY_SIZE)
                     .build();
             KeyPairGenerator kpg = KeyPairGenerator.getInstance(
                     KEY_ALGORITHM_RSA,

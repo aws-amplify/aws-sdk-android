@@ -55,7 +55,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      */
     private String languageCode;
 
@@ -255,7 +255,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      *
      * @return <p>
      *         The language code for the input speech.
@@ -273,7 +273,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -294,7 +294,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -315,7 +315,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -336,7 +336,7 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
      *
      * @param languageCode <p>
      *            The language code for the input speech.

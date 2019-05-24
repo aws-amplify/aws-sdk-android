@@ -8,7 +8,7 @@ root = sys.argv[1]
 replaces = [
     {
         "match" : 'android-23', 
-        "replace" : 'android-10',
+        "replace" : 'android-18',
         "files" : [
             "aws-android-sdk-core/build.gradle"
         ]       
@@ -23,10 +23,6 @@ with open(AWSKeyValueStoreFile, 'r') as myfile:
     pattern = r'//@apiLevel23Start[\s\S]*?//@apiLevel23End'
     repl = r""
     newcontent = re.sub(pattern, repl, content)    
-    
-  
-    pattern = r'//@apiLevel18Start[\s\S]*?//@apiLevel18End'
-    repl = r""
-    newcontent = re.sub(pattern, repl, newcontent)    
+     
 with open(AWSKeyValueStoreFile,"w") as myfile:
     myfile.write(newcontent)

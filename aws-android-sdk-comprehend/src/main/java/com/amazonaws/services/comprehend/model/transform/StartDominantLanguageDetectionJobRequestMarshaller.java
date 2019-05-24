@@ -96,6 +96,11 @@ public class StartDominantLanguageDetectionJobRequestMarshaller
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (startDominantLanguageDetectionJobRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = startDominantLanguageDetectionJobRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

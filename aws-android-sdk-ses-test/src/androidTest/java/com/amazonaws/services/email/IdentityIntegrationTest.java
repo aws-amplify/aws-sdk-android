@@ -17,6 +17,7 @@ package com.amazonaws.services.email;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -36,6 +37,7 @@ import com.amazonaws.services.simpleemail.model.ListIdentitiesRequest;
 import com.amazonaws.services.simpleemail.model.ListIdentitiesResult;
 import com.amazonaws.services.simpleemail.model.NotificationType;
 import com.amazonaws.services.simpleemail.model.SetIdentityDkimEnabledRequest;
+import com.amazonaws.services.simpleemail.model.SetIdentityDkimEnabledResult;
 import com.amazonaws.services.simpleemail.model.SetIdentityFeedbackForwardingEnabledRequest;
 import com.amazonaws.services.simpleemail.model.SetIdentityNotificationTopicRequest;
 import com.amazonaws.services.simpleemail.model.VerifyDomainDkimRequest;
@@ -50,6 +52,7 @@ import com.amazonaws.services.sns.model.DeleteTopicRequest;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
 
 public class IdentityIntegrationTest extends SESIntegrationTestBase {
 
@@ -295,8 +298,7 @@ public class IdentityIntegrationTest extends SESIntegrationTestBase {
 
             // Flip Feedback forwarding
             email.setIdentityFeedbackForwardingEnabled(new SetIdentityFeedbackForwardingEnabledRequest()
-                    .
-                    withIdentity(HUDSON_EMAIL_LIST).withForwardingEnabled(false));
+                    .withIdentity(HUDSON_EMAIL_LIST).withForwardingEnabled(false));
 
             // verify state of attributes
             attributes = email.getIdentityNotificationAttributes(getnot)
@@ -344,23 +346,17 @@ public class IdentityIntegrationTest extends SESIntegrationTestBase {
             assertTrue(attributes.getDkimVerificationStatus().equals("Pending"));
             assertTrue(attributes.getDkimTokens().size() == dkim.getDkimTokens().size());
 
-            for (String token1 : attributes.getDkimTokens()) {
-                boolean found = false;
-                for (String token2 : dkim.getDkimTokens()) {
-                    if (token1.equals(token2)) {
-                        found = true;
-                        break;
-                    }
-                }
-                assertTrue(found);
-            }
+            List verifyDomainResultTokens = dkim.getDkimTokens();
+            List attributeTokens = attributes.getDkimTokens();
+            assertTrue(verifyDomainResultTokens.containsAll(attributeTokens));
 
             try {
-                email.setIdentityDkimEnabled(new SetIdentityDkimEnabledRequest()
+                SetIdentityDkimEnabledResult setIdentityDkimEnabledResult =
+                        email.setIdentityDkimEnabled(new SetIdentityDkimEnabledRequest()
                         .withIdentity(testDomain));
-                fail("Exception should have occurred during enable");
+                assertNotNull(setIdentityDkimEnabledResult);
             } catch (AmazonServiceException exception) {
-                // exception expected
+                fail("Exception encountered during enable");
             }
         } finally {
             // Delete domain from verified list.

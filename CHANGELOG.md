@@ -6,11 +6,19 @@
 
 * **Amazon S3**
   * Fix a bug where the `TransferListener` is not triggered when the preferred network type is not available. See [issue #958](https://github.com/aws-amplify/aws-sdk-android/issues/958) for details.
+  
+* **AWS Core Runtime**
+  * Fixed a bug where generating RSA keys for encryption of the credentials failed due to `setKeySize(int)` method not available in Android API level 18. See [issue #964](https://github.com/aws-amplify/aws-sdk-android/issues/964) for details.
+
+* **Amazon Kinesis Video Streams**
+  * Removed trailing zeroes from encoder output that caused 0x3200000d errors when frames contained more than 3 trailing zeroes. See AnnexB sepcification.
 
 ### Misc. Updates
 
 * Model updates for the following services
+  * Amazon Comprehend
   * Amazon Security Token Service (STS)
+  * Amazon Transcribe
 
 ## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
 
@@ -29,7 +37,7 @@
 ### Misc. Updates
 
 * Model updates for the following services
-  * Amazon Lambda
+  * AWS Lambda
 
 ## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
 
