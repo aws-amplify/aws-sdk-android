@@ -389,8 +389,11 @@ public class TransferUtility {
             file.delete();
         }
 
+        // Creating the observer before the job is submitted because the listener needs to be registered
+        // with TransferStatusUpdater when the job is being submitted.
+        TransferObserver transferObserver = new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
         submitTransferJob(TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        return transferObserver;
     }
 
     /**
@@ -551,8 +554,11 @@ public class TransferUtility {
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
+        // Creating the observer before the job is submitted because the listener needs to be registered
+        // with TransferStatusUpdater when the job is being submitted.
+        TransferObserver transferObserver = new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
         submitTransferJob(TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        return transferObserver;
     }
 
     /**
