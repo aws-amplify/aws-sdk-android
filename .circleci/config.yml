@@ -59,26 +59,26 @@ commands:
           name: set environment variables
           command: |
             sdkName=aws-android-sdk
-            echo "export sdkName=$sdkName" >> $BASH_ENV
+            echo "export sdkName='$sdkName'" >> $BASH_ENV
 
             release_bucket=${RELEASE_BUCKET}
-            echo "export release_bucket=$release_bucket" >> $BASH_ENV
+            echo "export release_bucket='$release_bucket'" >> $BASH_ENV
 
             release_tag=${CIRCLE_TAG}
-            echo "export release_tag=$release_tag" >> $BASH_ENV
+            echo "export release_tag='$release_tag'" >> $BASH_ENV
 
             release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
-            echo "export release_version=$release_version" >> $BASH_ENV
+            echo "export release_version='$release_version'" >> $BASH_ENV
 
             sdkNameWithVersion="$sdkName-$release_version"
-            echo "export sdkNameWithVersion=$sdkNameWithVersion" >> $BASH_ENV
+            echo "export sdkNameWithVersion='$sdkNameWithVersion'" >> $BASH_ENV
 
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
-            echo "export release_type=$release_type" >> $BASH_ENV
+            echo "export release_type='$release_type'" >> $BASH_ENV
 
             pre_name=$(echo "${CIRCLE_SHA1}" | cut -c1-7)
             override_test_varaible_name=OVERRIDE_TEST_${pre_name}
-            echo "export override_test_varaible_name=$override_test_varaible_name" >> $BASH_ENV   
+            echo "export override_test_varaible_name='$override_test_varaible_name'" >> $BASH_ENV
             
 
 
