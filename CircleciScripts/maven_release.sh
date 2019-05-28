@@ -12,9 +12,9 @@ localrepo="${HOME}/.m2"
 autoReleaseAfterClose=${AutoReleaseAfterClose}
 currentdir=$(pwd)
 gpg_homedir="${currentdir}/gpghome"
-sonatype_username=${SonatypeUsername}
-sonatype_password=${SonatypePassword}
-gpg_keyname=${GpgKeyname}
+sonatype_username="${SonatypeUsername}"
+sonatype_password="${SonatypePassword}"
+gpg_keyname="${GpgKeyname}"
 gpg_passphrase="${GpgPassphrase}"
 
 # Perm gen space is increased for maven command
