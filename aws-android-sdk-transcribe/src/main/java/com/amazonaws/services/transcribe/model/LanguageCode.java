@@ -35,7 +35,8 @@ public enum LanguageCode {
     KoKR("ko-KR"),
     EsES("es-ES"),
     EnIN("en-IN"),
-    HiIN("hi-IN");
+    HiIN("hi-IN"),
+    ArSA("ar-SA");
 
     private String value;
 
@@ -64,6 +65,7 @@ public enum LanguageCode {
         enumMap.put("es-ES", EsES);
         enumMap.put("en-IN", EnIN);
         enumMap.put("hi-IN", HiIN);
+        enumMap.put("ar-SA", ArSA);
     }
 
     /**
