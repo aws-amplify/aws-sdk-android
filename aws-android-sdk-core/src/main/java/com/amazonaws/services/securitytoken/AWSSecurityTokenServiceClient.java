@@ -47,18 +47,6 @@ import com.amazonaws.services.securitytoken.model.transform.*;
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html"
  * >Temporary Security Credentials</a>.
  * </p>
- * <note>
- * <p>
- * As an alternative to using the API, you can use one of the AWS SDKs, which
- * consist of libraries and sample code for various programming languages and
- * platforms (Java, Ruby, .NET, iOS, Android, etc.). The SDKs provide a
- * convenient way to create programmatic access to STS. For example, the SDKs
- * take care of cryptographically signing requests, managing errors, and
- * retrying requests automatically. For information about the AWS SDKs,
- * including how to download and install them, see the <a
- * href="http://aws.amazon.com/tools/">Tools for Amazon Web Services page</a>.
- * </p>
- * </note>
  * <p>
  * For information about setting up signatures and authorization through the
  * API, go to <a href=
@@ -108,14 +96,12 @@ import com.amazonaws.services.securitytoken.model.transform.*;
  * </p>
  * <p>
  * After you activate a Region for use with AWS STS, you can direct AWS STS API
- * calls to that Region. AWS STS recommends that you use both the
- * <code>setRegion</code> and <code>setEndpoint</code> methods to make calls to
- * a Regional endpoint. You can use the <code>setRegion</code> method alone for
- * manually enabled Regions, such as Asia Pacific (Hong Kong). In this case, the
- * calls are directed to the STS Regional endpoint. However, if you use the
- * <code>setRegion</code> method alone for Regions enabled by default, the calls
- * are directed to the global endpoint of <code>https://sts.amazonaws.com</code>
- * .
+ * calls to that Region. AWS STS recommends that you provide both the Region and
+ * endpoint when you make calls to a Regional endpoint. You can provide the
+ * Region alone for manually enabled Regions, such as Asia Pacific (Hong Kong).
+ * In this case, the calls are directed to the STS Regional endpoint. However,
+ * if you provide the Region alone for Regions enabled by default, the calls are
+ * directed to the global endpoint of <code>https://sts.amazonaws.com</code>.
  * </p>
  * <p>
  * To view the list of AWS STS endpoints and whether they are active by default,
@@ -220,16 +206,29 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * Constructs a new client to invoke service methods on
      * AWSSecurityTokenService using the specified AWS account credentials.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * {@code
+     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     *     @Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AWSSecurityTokenServiceClient client = new AWSSecurityTokenServiceClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     @Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * }
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -246,16 +245,29 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * AWSSecurityTokenService using the specified AWS account credentials and
      * client configuration options.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * {@code
+     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     *     @Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AWSSecurityTokenServiceClient client = new AWSSecurityTokenServiceClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     @Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * }
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -276,16 +288,29 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * AWSSecurityTokenService using the specified AWS account credentials
      * provider.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * {@code
+     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     *     @Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AWSSecurityTokenServiceClient client = new AWSSecurityTokenServiceClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     @Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * }
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -303,16 +328,29 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * AWSSecurityTokenService using the specified AWS account credentials
      * provider and client configuration options.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * {@code
+     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     *     @Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AWSSecurityTokenServiceClient client = new AWSSecurityTokenServiceClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     @Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * }
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -360,6 +398,30 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * Constructs a new client to invoke service methods on
      * AWSSecurityTokenService using the specified AWS account credentials
      * provider, client configuration options and request metric collector.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * {@code
+     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     *     @Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AWSSecurityTokenServiceClient client = new AWSSecurityTokenServiceClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     @Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * }
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -480,7 +542,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * cannot use session policies to grant more permissions than those allowed
      * by the identity-based policy of the role that is being assumed. For more
      * information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -669,7 +731,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * cannot use session policies to grant more permissions than those allowed
      * by the identity-based policy of the role that is being assumed. For more
      * information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -905,7 +967,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
      * You cannot use session policies to grant more permissions than those that
      * are defined in the permissions policy of the IAM user. For more
      * information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>. For information about
      * using <code>GetFederationToken</code> to create temporary security
      * credentials, see <a href=

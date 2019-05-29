@@ -104,7 +104,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * further restrict the permissions for a federated user. You cannot use session
  * policies to grant more permissions than those that are defined in the
  * permissions policy of the IAM user. For more information, see <a href=
- * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
  * >Session Policies</a> in the <i>IAM User Guide</i>. For information about
  * using <code>GetFederationToken</code> to create temporary security
  * credentials, see <a href=
@@ -160,7 +160,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -219,7 +219,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <note>
@@ -421,7 +421,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -473,7 +473,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         to grant more permissions than those that are defined in the
      *         permissions policy of the IAM user. For more information, see <a
      *         href=
-     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *         >Session Policies</a> in the <i>IAM User Guide</i>.
      *         </p>
      *         <p>
@@ -526,7 +526,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -578,7 +578,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies to grant more permissions than those that are
      *            defined in the permissions policy of the IAM user. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
@@ -631,7 +631,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -686,7 +686,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies to grant more permissions than those that are
      *            defined in the permissions policy of the IAM user. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
@@ -748,7 +748,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <note>
@@ -797,7 +797,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         to grant more permissions than those that are defined in the
      *         permissions policy of the IAM user. For more information, see <a
      *         href=
-     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *         >Session Policies</a> in the <i>IAM User Guide</i>.
      *         </p>
      *         <note>
@@ -848,7 +848,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <note>
@@ -897,7 +897,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies to grant more permissions than those that are
      *            defined in the permissions policy of the IAM user. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <note>
@@ -953,7 +953,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <note>
@@ -1005,7 +1005,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies to grant more permissions than those that are
      *            defined in the permissions policy of the IAM user. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <note>
@@ -1064,7 +1064,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * federated user. You cannot use session policies to grant more permissions
      * than those that are defined in the permissions policy of the IAM user.
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      * >Session Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <note>
@@ -1116,7 +1116,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies to grant more permissions than those that are
      *            defined in the permissions policy of the IAM user. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM/latest/UserGuide/access_policies.html#policies_session"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
      *            >Session Policies</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <note>
