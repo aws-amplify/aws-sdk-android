@@ -45,7 +45,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      */
     private String languageCode;
 
@@ -192,7 +192,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -210,7 +210,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -232,7 +232,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -254,7 +254,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -276,7 +276,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
