@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobile.config;
 
+
+import com.amazonaws.auth.CognitoCredentialsProvider;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -25,40 +28,55 @@ import static org.junit.Assert.fail;
 
 public class AWSConfigurationTest {
 
+    private static final String jsonString = "{\n" +
+            "  \"UserAgent\": \"aws-amplify-cli/0.1.0\",\n" +
+            "  \"Version\": \"1.0\",\n" +
+            "  \"IdentityManager\": {\n" +
+            "    \"Default\": {}\n" +
+            "  },\n" +
+            "  \"AppSync\": {\n" +
+            "    \"Default\": {\n" +
+            "      \"ApiUrl\": \"redacted\",\n" +
+            "      \"Region\": \"us-east-1\",\n" +
+            "      \"AuthMode\": \"API_KEY\",\n" +
+            "      \"ApiKey\": \"da2-xyz\",\n" +
+            "      \"ClientDatabasePrefix\": \"redacted\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"CredentialsProvider\": {\n" +
+            "    \"CognitoIdentity\": {\n" +
+            "      \"Default\": {\n" +
+            "        \"PoolId\": \"redacted\",\n" +
+            "        \"Region\": \"us-east-1\"\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
     @Test
     public void testAWSConfigurationWithJSONObject() {
-        JSONObject jsonObject;
         try {
-            jsonObject = new JSONObject("{\n" +
-                    "  \"UserAgent\": \"aws-amplify-cli/0.1.0\",\n" +
-                    "  \"Version\": \"1.0\",\n" +
-                    "  \"IdentityManager\": {\n" +
-                    "    \"Default\": {}\n" +
-                    "  },\n" +
-                    "  \"AppSync\": {\n" +
-                    "    \"Default\": {\n" +
-                    "      \"ApiUrl\": \"redacted\",\n" +
-                    "      \"Region\": \"redacted\",\n" +
-                    "      \"AuthMode\": \"API_KEY\",\n" +
-                    "      \"ApiKey\": \"da2-xyz\",\n" +
-                    "      \"ClientDatabasePrefix\": \"redacted\"\n" +
-                    "    }\n" +
-                    "  },\n" +
-                    "  \"CredentialsProvider\": {\n" +
-                    "    \"CognitoIdentity\": {\n" +
-                    "      \"Default\": {\n" +
-                    "        \"PoolId\": \"redacted\",\n" +
-                    "        \"Region\": \"redacted\"\n" +
-                    "      }\n" +
-                    "    }\n" +
-                    "  }\n" +
-                    "}");
+            JSONObject jsonObject = new JSONObject(jsonString);
 
             AWSConfiguration awsConfiguration = new AWSConfiguration(jsonObject);
             assertNotNull(awsConfiguration);
 
             assertNotNull(awsConfiguration.optJsonObject("AppSync"));
-            assertEquals("API_KEY", awsConfiguration.optJsonObject("AppSync").get("AuthMode"));
+            assertEquals("API_KEY", awsConfiguration.optJsonObject("AppSync").getString("AuthMode"));
+        } catch (JSONException e) {
+            fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
+        }
+    }
+
+    @Test
+    public void testCognitoCachingCredentialsProviderWithAWSConfiguration() {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            AWSConfiguration awsConfiguration = new AWSConfiguration(jsonObject);
+            assertNotNull(awsConfiguration);
+            CognitoCredentialsProvider cognitoCredentialsProvider = new CognitoCredentialsProvider(awsConfiguration);
+            assertNotNull(cognitoCredentialsProvider);
         } catch (JSONException e) {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
@@ -70,7 +88,7 @@ public class AWSConfigurationTest {
             JSONObject jsonObject = null;
             new AWSConfiguration(jsonObject);
             fail("No exception thrown when a null JSONObject is passed in.");
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals("JSONObject cannot be null.", e.getLocalizedMessage());
         }
     }
