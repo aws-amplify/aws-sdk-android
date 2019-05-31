@@ -125,19 +125,17 @@ public class AmazonSimpleEmailServiceClient extends AmazonWebServiceClient imple
      * instructions on how to enable {@link AWSMobileClient}.
      *
      * <pre>
-     * {@code
-     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-     *     @Override
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
      *         AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(AWSMobileClient.getInstance());
      *     }
      * 
-     *     @Override
+     *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
      *     }
      * });
-     * }
      * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
@@ -164,19 +162,17 @@ public class AmazonSimpleEmailServiceClient extends AmazonWebServiceClient imple
      * instructions on how to enable {@link AWSMobileClient}.
      *
      * <pre>
-     * {@code
-     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-     *     @Override
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
      *         AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(AWSMobileClient.getInstance());
      *     }
      * 
-     *     @Override
+     *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
      *     }
      * });
-     * }
      * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
@@ -207,19 +203,17 @@ public class AmazonSimpleEmailServiceClient extends AmazonWebServiceClient imple
      * instructions on how to enable {@link AWSMobileClient}.
      *
      * <pre>
-     * {@code
-     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-     *     @Override
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
      *         AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(AWSMobileClient.getInstance());
      *     }
      * 
-     *     @Override
+     *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
      *     }
      * });
-     * }
      * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
@@ -247,19 +241,17 @@ public class AmazonSimpleEmailServiceClient extends AmazonWebServiceClient imple
      * instructions on how to enable {@link AWSMobileClient}.
      *
      * <pre>
-     * {@code
-     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-     *     @Override
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
      *         AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(AWSMobileClient.getInstance());
      *     }
      * 
-     *     @Override
+     *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
      *     }
      * });
-     * }
      * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
@@ -318,19 +310,17 @@ public class AmazonSimpleEmailServiceClient extends AmazonWebServiceClient imple
      * instructions on how to enable {@link AWSMobileClient}.
      *
      * <pre>
-     * {@code
-     * AWSMobileClient.getInstance.initialize(getApplicationContext(), new Callback<UserStateDetails>() {
-     *     @Override
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
      *         AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(AWSMobileClient.getInstance());
      *     }
      * 
-     *     @Override
+     *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
      *     }
      * });
-     * }
      * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
