@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+  * Fixed a bug that caused more than 100 events to be batched together when submitting events. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977).
+
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
 ### Bug Fixes
