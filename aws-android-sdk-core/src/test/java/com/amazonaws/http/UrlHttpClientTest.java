@@ -175,7 +175,7 @@ public class UrlHttpClientTest {
         try {
             client.execute(request);
         } catch (final UnknownHostException exception) {
-            return;
+            throw exception;
         }
         assertNotNull(client.proxy);
         assertEquals(client.proxy.address(), server.getListenAddress());
