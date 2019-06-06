@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Add `AWSConfiguration(JSONObject)` constructor to construct a `AWSConfiguration` object from the configuration passed via a `JSONObject`.
+
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
 ### Bug Fixes
