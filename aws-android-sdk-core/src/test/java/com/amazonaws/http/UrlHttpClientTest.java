@@ -59,20 +59,11 @@ public class UrlHttpClientTest {
 
     private ClientConfiguration conf;
     private MockUrlHttpClient client;
-    private HttpProxyServer server;
 
     @Before
     public void setup() {
         conf = new ClientConfiguration();
         client = new MockUrlHttpClient(conf);
-        server = DefaultHttpProxyServer.bootstrap()
-                        .withPort(8080)
-                        .start();
-    }
-
-    @After
-    public void tearDown() {
-        server.stop();
     }
 
     @Test
@@ -159,6 +150,9 @@ public class UrlHttpClientTest {
 
     @Test
     public void testClientProxySettings() throws URISyntaxException, IOException {
+        HttpProxyServer server = DefaultHttpProxyServer.bootstrap()
+                .withPort(8080)
+                .start();
         conf.setCurlLogging(true);
         final Map<String, String> headers = new HashMap<String, String>();
         headers.put("key1", "value1");
@@ -176,6 +170,7 @@ public class UrlHttpClientTest {
         conf.setProtocol(Protocol.HTTP);
         conf.setProxyHost(server.getListenAddress().getHostName());
         conf.setProxyPort(server.getListenAddress().getPort());
+        client = new MockUrlHttpClient(conf);
 
         try {
             client.execute(request);
@@ -185,6 +180,7 @@ public class UrlHttpClientTest {
         assertNotNull(client.proxy);
         assertEquals(client.proxy.address(), server.getListenAddress());
         assertTrue("Expected UnknownHostException. UnknownHostException not thrown while executing the request.", true);
+        server.stop();
     }
 
     @Test

@@ -67,6 +67,28 @@ public class UrlHttpClient implements HttpClient {
      */
     public UrlHttpClient(ClientConfiguration config) {
         this.config = config;
+        if (config.getProxyHost() != null) {
+            SocketAddress socketAddress;
+            if (config.getProxyPort() != -1) {
+                socketAddress = new InetSocketAddress(config.getProxyHost(), config.getProxyPort());
+            } else {
+                socketAddress = new InetSocketAddress(config.getProxyHost(), 80);
+            }
+            proxy = new Proxy(Proxy.Type.HTTP, socketAddress);
+
+            if (config.getProxyUsername() != null && config.getProxyPassword() != null) {
+                final String proxyUsername = config.getProxyUsername();
+                final String proxyPassword = config.getProxyPassword();
+                Authenticator authenticator = new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return (new PasswordAuthentication(proxyUsername,
+                                proxyPassword.toCharArray()));
+                    }
+                };
+                Authenticator.setDefault(authenticator);
+            }
+        }
     }
 
     @Override
@@ -95,34 +117,12 @@ public class UrlHttpClient implements HttpClient {
     }
 
     HttpURLConnection getConnection(URL url) throws IOException {
-        if (config.getProxyHost() != null) {
-            SocketAddress socketAddress;
-            if (config.getProxyPort() != -1) {
-                socketAddress = new InetSocketAddress(config.getProxyHost(), config.getProxyPort());
-            } else {
-                socketAddress = new InetSocketAddress(config.getProxyHost(), 80);
-            }
-            proxy = new Proxy(Proxy.Type.HTTP, socketAddress);
-
-            if (config.getProxyUsername() != null && config.getProxyPassword() != null) {
-                Authenticator authenticator = new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return (new PasswordAuthentication(config.getProxyUsername(),
-                                config.getProxyPassword().toCharArray()));
-                    }
-                };
-                Authenticator.setDefault(authenticator);
-            }
-        }
-
         final HttpURLConnection connection;
         if (proxy != null) {
             connection = (HttpURLConnection) url.openConnection(proxy);
         } else {
             connection = (HttpURLConnection) url.openConnection();
         }
-
         return connection;
     }
 
