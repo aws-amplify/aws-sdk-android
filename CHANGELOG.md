@@ -7,6 +7,12 @@
 * **AWS Core Runtime**
   * Add `AWSConfiguration(JSONObject)` constructor to construct a `AWSConfiguration` object from the configuration passed via a `JSONObject`.
 
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Transcribe
+  
+
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
 ### Bug Fixes
