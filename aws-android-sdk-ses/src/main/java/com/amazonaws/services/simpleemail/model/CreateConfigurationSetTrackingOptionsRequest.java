@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * hosted on domains operated by Amazon SES. You can configure a subdomain of
  * your own to handle these events. For information about using custom domains,
  * see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -51,7 +51,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -118,7 +118,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -130,7 +130,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      *         >Configuring Custom Domains to Handle Open and Click Tracking</a>
      *         in the <i>Amazon SES Developer Guide</i>.
      *         </p>
@@ -147,7 +147,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -159,7 +159,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      *            >Configuring Custom Domains to Handle Open and Click
      *            Tracking</a> in the <i>Amazon SES Developer Guide</i>.
      *            </p>
@@ -176,7 +176,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -191,7 +191,7 @@ public class CreateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      *            >Configuring Custom Domains to Handle Open and Click
      *            Tracking</a> in the <i>Amazon SES Developer Guide</i>.
      *            </p>

@@ -34,7 +34,7 @@ import java.io.Serializable;
  * to publish email sending events to Amazon CloudWatch, Amazon Kinesis
  * Firehose, or Amazon Simple Notification Service (Amazon SNS). For information
  * about using configuration sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

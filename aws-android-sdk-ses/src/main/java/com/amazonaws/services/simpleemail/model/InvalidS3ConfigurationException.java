@@ -23,7 +23,7 @@ import com.amazonaws.AmazonServiceException;
  * invalid, or that Amazon SES could not publish to the bucket, possibly due to
  * permissions issues. For information about giving permissions, see the <a
  * href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
