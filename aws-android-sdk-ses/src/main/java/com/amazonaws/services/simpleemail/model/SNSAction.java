@@ -31,7 +31,7 @@ import java.io.Serializable;
  * SNS topic, you need to attach a policy to the topic to give Amazon SES
  * permissions to access it. For information about giving permissions, see the
  * <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <important>
@@ -44,7 +44,7 @@ import java.io.Serializable;
  * <p>
  * For information about using a receipt rule to publish an Amazon SNS
  * notification, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-sns.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-sns.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -55,7 +55,7 @@ public class SNSAction implements Serializable {
      * example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      */
@@ -80,7 +80,7 @@ public class SNSAction implements Serializable {
      * example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -89,7 +89,7 @@ public class SNSAction implements Serializable {
      *         An example of an Amazon SNS topic ARN is
      *         <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      *         information about Amazon SNS topics, see the <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
      *         </p>
      */
@@ -103,7 +103,7 @@ public class SNSAction implements Serializable {
      * example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -112,7 +112,7 @@ public class SNSAction implements Serializable {
      *            notify. An example of an Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      */
@@ -126,7 +126,7 @@ public class SNSAction implements Serializable {
      * example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      * <p>
@@ -138,7 +138,7 @@ public class SNSAction implements Serializable {
      *            notify. An example of an Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

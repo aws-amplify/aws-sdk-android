@@ -57,7 +57,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about creating DNS records using DKIM tokens, go to the
  * <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

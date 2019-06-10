@@ -21,43 +21,36 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a configuration set event destination. Configuration set event
- * destinations are associated with configuration sets, which enable you to
- * publish email sending events. For information about using configuration sets,
- * see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
- * >Amazon SES Developer Guide</a>.
- * </p>
- * <p>
- * You can execute this operation no more than once per second.
+ * Adds or updates the delivery options for a configuration set.
  * </p>
  */
-public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServiceRequest
-        implements Serializable {
+public class PutConfigurationSetDeliveryOptionsRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
-     * The name of the configuration set from which to delete the event
-     * destination.
+     * The name of the configuration set that you want to specify the delivery
+     * options for.
      * </p>
      */
     private String configurationSetName;
 
     /**
      * <p>
-     * The name of the event destination to delete.
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
      * </p>
      */
-    private String eventDestinationName;
+    private DeliveryOptions deliveryOptions;
 
     /**
      * <p>
-     * The name of the configuration set from which to delete the event
-     * destination.
+     * The name of the configuration set that you want to specify the delivery
+     * options for.
      * </p>
      *
      * @return <p>
-     *         The name of the configuration set from which to delete the event
-     *         destination.
+     *         The name of the configuration set that you want to specify the
+     *         delivery options for.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -66,13 +59,13 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The name of the configuration set from which to delete the event
-     * destination.
+     * The name of the configuration set that you want to specify the delivery
+     * options for.
      * </p>
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set from which to delete the
-     *            event destination.
+     *            The name of the configuration set that you want to specify the
+     *            delivery options for.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -81,21 +74,21 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The name of the configuration set from which to delete the event
-     * destination.
+     * The name of the configuration set that you want to specify the delivery
+     * options for.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set from which to delete the
-     *            event destination.
+     *            The name of the configuration set that you want to specify the
+     *            delivery options for.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteConfigurationSetEventDestinationRequest withConfigurationSetName(
+    public PutConfigurationSetDeliveryOptionsRequest withConfigurationSetName(
             String configurationSetName) {
         this.configurationSetName = configurationSetName;
         return this;
@@ -103,47 +96,53 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The name of the event destination to delete.
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
      * </p>
      *
      * @return <p>
-     *         The name of the event destination to delete.
+     *         Specifies whether messages that use the configuration set are
+     *         required to use Transport Layer Security (TLS).
      *         </p>
      */
-    public String getEventDestinationName() {
-        return eventDestinationName;
+    public DeliveryOptions getDeliveryOptions() {
+        return deliveryOptions;
     }
 
     /**
      * <p>
-     * The name of the event destination to delete.
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
      * </p>
      *
-     * @param eventDestinationName <p>
-     *            The name of the event destination to delete.
+     * @param deliveryOptions <p>
+     *            Specifies whether messages that use the configuration set are
+     *            required to use Transport Layer Security (TLS).
      *            </p>
      */
-    public void setEventDestinationName(String eventDestinationName) {
-        this.eventDestinationName = eventDestinationName;
+    public void setDeliveryOptions(DeliveryOptions deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
     }
 
     /**
      * <p>
-     * The name of the event destination to delete.
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventDestinationName <p>
-     *            The name of the event destination to delete.
+     * @param deliveryOptions <p>
+     *            Specifies whether messages that use the configuration set are
+     *            required to use Transport Layer Security (TLS).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteConfigurationSetEventDestinationRequest withEventDestinationName(
-            String eventDestinationName) {
-        this.eventDestinationName = eventDestinationName;
+    public PutConfigurationSetDeliveryOptionsRequest withDeliveryOptions(
+            DeliveryOptions deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
         return this;
     }
 
@@ -160,8 +159,8 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
         sb.append("{");
         if (getConfigurationSetName() != null)
             sb.append("ConfigurationSetName: " + getConfigurationSetName() + ",");
-        if (getEventDestinationName() != null)
-            sb.append("EventDestinationName: " + getEventDestinationName());
+        if (getDeliveryOptions() != null)
+            sb.append("DeliveryOptions: " + getDeliveryOptions());
         sb.append("}");
         return sb.toString();
     }
@@ -174,7 +173,7 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
         hashCode = prime * hashCode
                 + ((getConfigurationSetName() == null) ? 0 : getConfigurationSetName().hashCode());
         hashCode = prime * hashCode
-                + ((getEventDestinationName() == null) ? 0 : getEventDestinationName().hashCode());
+                + ((getDeliveryOptions() == null) ? 0 : getDeliveryOptions().hashCode());
         return hashCode;
     }
 
@@ -185,19 +184,19 @@ public class DeleteConfigurationSetEventDestinationRequest extends AmazonWebServ
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteConfigurationSetEventDestinationRequest == false)
+        if (obj instanceof PutConfigurationSetDeliveryOptionsRequest == false)
             return false;
-        DeleteConfigurationSetEventDestinationRequest other = (DeleteConfigurationSetEventDestinationRequest) obj;
+        PutConfigurationSetDeliveryOptionsRequest other = (PutConfigurationSetDeliveryOptionsRequest) obj;
 
         if (other.getConfigurationSetName() == null ^ this.getConfigurationSetName() == null)
             return false;
         if (other.getConfigurationSetName() != null
                 && other.getConfigurationSetName().equals(this.getConfigurationSetName()) == false)
             return false;
-        if (other.getEventDestinationName() == null ^ this.getEventDestinationName() == null)
+        if (other.getDeliveryOptions() == null ^ this.getDeliveryOptions() == null)
             return false;
-        if (other.getEventDestinationName() != null
-                && other.getEventDestinationName().equals(this.getEventDestinationName()) == false)
+        if (other.getDeliveryOptions() != null
+                && other.getDeliveryOptions().equals(this.getDeliveryOptions()) == false)
             return false;
         return true;
     }

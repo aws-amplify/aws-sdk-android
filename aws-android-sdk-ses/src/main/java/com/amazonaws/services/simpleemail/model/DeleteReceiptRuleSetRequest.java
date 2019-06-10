@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </note>
  * <p>
  * For information about managing receipt rule sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

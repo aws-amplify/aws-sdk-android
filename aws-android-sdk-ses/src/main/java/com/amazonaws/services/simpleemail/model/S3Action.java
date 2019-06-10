@@ -28,7 +28,7 @@ import java.io.Serializable;
  * key to encrypt your emails, or publish to an Amazon SNS topic of another
  * account, Amazon SES must have permission to access those resources. For
  * information about giving permissions, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <note>
@@ -40,7 +40,7 @@ import java.io.Serializable;
  * <p>
  * For information about specifying Amazon S3 actions in receipt rules, see the
  * <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-s3.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-s3.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -51,7 +51,7 @@ public class S3Action implements Serializable {
      * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      */
@@ -98,14 +98,14 @@ public class S3Action implements Serializable {
      * master key and ensure that you add a statement to your key's policy to
      * give Amazon SES permission to use it. For more information about giving
      * permissions, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
      * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
      * will not encrypt your emails.
      * </p>
@@ -121,7 +121,7 @@ public class S3Action implements Serializable {
      * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
      * for Ruby</a> only. For more information about client-side encryption
      * using AWS KMS master keys, see the <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -134,7 +134,7 @@ public class S3Action implements Serializable {
      * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -143,7 +143,7 @@ public class S3Action implements Serializable {
      *         saved to the Amazon S3 bucket. An example of an Amazon SNS topic
      *         ARN is <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>.
      *         For more information about Amazon SNS topics, see the <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
      *         </p>
      */
@@ -157,7 +157,7 @@ public class S3Action implements Serializable {
      * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -167,7 +167,7 @@ public class S3Action implements Serializable {
      *            topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      */
@@ -181,7 +181,7 @@ public class S3Action implements Serializable {
      * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      * <p>
@@ -194,7 +194,7 @@ public class S3Action implements Serializable {
      *            topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -335,14 +335,14 @@ public class S3Action implements Serializable {
      * master key and ensure that you add a statement to your key's policy to
      * give Amazon SES permission to use it. For more information about giving
      * permissions, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
      * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
      * will not encrypt your emails.
      * </p>
@@ -358,7 +358,7 @@ public class S3Action implements Serializable {
      * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
      * for Ruby</a> only. For more information about client-side encryption
      * using AWS KMS master keys, see the <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -388,14 +388,14 @@ public class S3Action implements Serializable {
      *         ARN of the master key and ensure that you add a statement to your
      *         key's policy to give Amazon SES permission to use it. For more
      *         information about giving permissions, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
      *         For more information about key policies, see the <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
      *         >AWS KMS Developer Guide</a>. If you do not specify a master key,
      *         Amazon SES will not encrypt your emails.
      *         </p>
@@ -412,7 +412,7 @@ public class S3Action implements Serializable {
      *         Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
      *         SDK for Ruby</a> only. For more information about client-side
      *         encryption using AWS KMS master keys, see the <a href=
-     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *         >Amazon S3 Developer Guide</a>.
      *         </p>
      *         </important>
@@ -446,14 +446,14 @@ public class S3Action implements Serializable {
      * master key and ensure that you add a statement to your key's policy to
      * give Amazon SES permission to use it. For more information about giving
      * permissions, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
      * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
      * will not encrypt your emails.
      * </p>
@@ -469,7 +469,7 @@ public class S3Action implements Serializable {
      * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
      * for Ruby</a> only. For more information about client-side encryption
      * using AWS KMS master keys, see the <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -499,14 +499,14 @@ public class S3Action implements Serializable {
      *            ARN of the master key and ensure that you add a statement to
      *            your key's policy to give Amazon SES permission to use it. For
      *            more information about giving permissions, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            For more information about key policies, see the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
      *            >AWS KMS Developer Guide</a>. If you do not specify a master
      *            key, Amazon SES will not encrypt your emails.
      *            </p>
@@ -524,7 +524,7 @@ public class S3Action implements Serializable {
      *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
      *            SDK for Ruby</a> only. For more information about client-side
      *            encryption using AWS KMS master keys, see the <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>
      *            </important>
@@ -558,14 +558,14 @@ public class S3Action implements Serializable {
      * master key and ensure that you add a statement to your key's policy to
      * give Amazon SES permission to use it. For more information about giving
      * permissions, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
      * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
      * will not encrypt your emails.
      * </p>
@@ -581,7 +581,7 @@ public class S3Action implements Serializable {
      * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
      * for Ruby</a> only. For more information about client-side encryption
      * using AWS KMS master keys, see the <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -614,14 +614,14 @@ public class S3Action implements Serializable {
      *            ARN of the master key and ensure that you add a statement to
      *            your key's policy to give Amazon SES permission to use it. For
      *            more information about giving permissions, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            For more information about key policies, see the <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
      *            >AWS KMS Developer Guide</a>. If you do not specify a master
      *            key, Amazon SES will not encrypt your emails.
      *            </p>
@@ -639,7 +639,7 @@ public class S3Action implements Serializable {
      *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
      *            SDK for Ruby</a> only. For more information about client-side
      *            encryption using AWS KMS master keys, see the <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>
      *            </important>

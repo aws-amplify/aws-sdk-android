@@ -17,24 +17,13 @@ package com.amazonaws.services.simpleemail.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
  * <p>
- * Returns the metadata and receipt rules for the receipt rule set that is
- * currently active.
- * </p>
- * <p>
- * For information about setting up receipt rule sets, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
- * >Amazon SES Developer Guide</a>.
- * </p>
- * <p>
- * You can execute this operation no more than once per second.
+ * An HTTP 200 response if the request succeeds, or an error message if the
+ * request fails.
  * </p>
  */
-public class DescribeActiveReceiptRuleSetRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class PutConfigurationSetDeliveryOptionsResult implements Serializable {
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
@@ -65,9 +54,9 @@ public class DescribeActiveReceiptRuleSetRequest extends AmazonWebServiceRequest
         if (obj == null)
             return false;
 
-        if (obj instanceof DescribeActiveReceiptRuleSetRequest == false)
+        if (obj instanceof PutConfigurationSetDeliveryOptionsResult == false)
             return false;
-        DescribeActiveReceiptRuleSetRequest other = (DescribeActiveReceiptRuleSetRequest) obj;
+        PutConfigurationSetDeliveryOptionsResult other = (PutConfigurationSetDeliveryOptionsResult) obj;
 
         return true;
     }
