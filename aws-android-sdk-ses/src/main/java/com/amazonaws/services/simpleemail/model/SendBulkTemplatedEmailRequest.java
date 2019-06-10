@@ -45,7 +45,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If your account is still in the Amazon SES sandbox, you may only send to
  * verified addresses or domains, or to email addresses associated with the
  * Amazon SES Mailbox Simulator. For more information, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
  * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
  * Guide.</i>
  * </p>
@@ -89,7 +89,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -97,7 +97,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -139,7 +139,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -185,7 +185,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -254,7 +254,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -262,7 +262,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -289,7 +289,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *         must be either individually verified with Amazon SES, or from a
      *         domain that has been verified with Amazon SES. For information
      *         about verifying identities, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <p>
@@ -297,7 +297,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *         permitted to do so by a sending authorization policy, then you
      *         must also specify the <code>SourceArn</code> parameter. For more
      *         information about sending authorization, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <note>
@@ -331,7 +331,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -339,7 +339,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -366,7 +366,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -374,7 +374,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -409,7 +409,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -417,7 +417,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -447,7 +447,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -455,7 +455,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -505,7 +505,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -529,7 +529,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -555,7 +555,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -579,7 +579,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -605,7 +605,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -632,7 +632,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -838,7 +838,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -862,7 +862,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -888,7 +888,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -912,7 +912,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -938,7 +938,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -965,7 +965,7 @@ public class SendBulkTemplatedEmailRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

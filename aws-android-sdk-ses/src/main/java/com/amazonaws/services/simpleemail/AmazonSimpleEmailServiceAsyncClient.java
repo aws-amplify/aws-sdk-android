@@ -38,15 +38,15 @@ import com.amazonaws.services.simpleemail.model.*;
  * href="https://aws.amazon.com/ses/">Amazon Simple Email Service</a> (Amazon
  * SES) API, version 2010-12-01. This document is best used in conjunction with
  * the <a
- * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
+ * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <note>
  * <p>
  * For a list of Amazon SES endpoints to use in service requests, see <a
- * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html"
+ * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html"
  * >Regions and Amazon SES</a> in the <a
- * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
+ * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * </note>
@@ -280,7 +280,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -291,7 +291,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a receipt rule set by cloning
      *            an existing one. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -326,7 +326,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -337,7 +337,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a receipt rule set by cloning
      *            an existing one. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -380,7 +380,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * Configuration sets enable you to publish email sending events. For
      * information about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -392,7 +392,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Configuration sets enable you to publish email sending events.
      *            For information about using configuration sets, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -426,7 +426,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * Configuration sets enable you to publish email sending events. For
      * information about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -438,7 +438,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Configuration sets enable you to publish email sending events.
      *            For information about using configuration sets, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -489,7 +489,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * An event destination is the AWS service to which Amazon SES publishes the
      * email sending events associated with a configuration set. For information
      * about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -503,7 +503,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            describes an AWS service in which Amazon SES publishes the
      *            email sending events associated with a configuration set. For
      *            information about using configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -548,7 +548,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * An event destination is the AWS service to which Amazon SES publishes the
      * email sending events associated with a configuration set. For information
      * about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -562,7 +562,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            describes an AWS service in which Amazon SES publishes the
      *            email sending events associated with a configuration set. For
      *            information about using configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -611,7 +611,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -653,7 +653,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -701,7 +701,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -746,7 +746,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -798,7 +798,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -809,7 +809,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a new IP address filter. You
      *            use IP address filters when you receive email with Amazon SES.
      *            For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -841,7 +841,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -852,7 +852,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a new IP address filter. You
      *            use IP address filters when you receive email with Amazon SES.
      *            For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -893,7 +893,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -904,7 +904,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -941,7 +941,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -952,7 +952,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -998,7 +998,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1009,7 +1009,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create an empty receipt rule set. You
      *            use receipt rule sets to receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1041,7 +1041,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1052,7 +1052,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to create an empty receipt rule set. You
      *            use receipt rule sets to receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1092,7 +1092,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Creates an email template. Email templates enable you to send
      * personalized email to one or more destinations in a single API operation.
      * For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1102,7 +1102,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param createTemplateRequest <p>
      *            Represents a request to create an email template. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1134,7 +1134,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Creates an email template. Email templates enable you to send
      * personalized email to one or more destinations in a single API operation.
      * For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1144,7 +1144,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param createTemplateRequest <p>
      *            Represents a request to create an email template. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1185,7 +1185,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Deletes a configuration set. Configuration sets enable you to publish
      * email sending events. For information about using configuration sets, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1197,7 +1197,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Configuration sets enable you to publish email sending events.
      *            For information about using configuration sets, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1227,7 +1227,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Deletes a configuration set. Configuration sets enable you to publish
      * email sending events. For information about using configuration sets, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1239,7 +1239,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Configuration sets enable you to publish email sending events.
      *            For information about using configuration sets, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1279,7 +1279,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * destinations are associated with configuration sets, which enable you to
      * publish email sending events. For information about using configuration
      * sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1292,7 +1292,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            associated with configuration sets, which enable you to
      *            publish email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1324,7 +1324,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * destinations are associated with configuration sets, which enable you to
      * publish email sending events. For information about using configuration
      * sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1337,7 +1337,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            associated with configuration sets, which enable you to
      *            publish email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1382,7 +1382,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -1430,7 +1430,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -1484,7 +1484,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -1525,7 +1525,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -1660,7 +1660,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1672,7 +1672,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            for an identity. Sending authorization is an Amazon SES
      *            feature that enables you to authorize other senders to use
      *            your identities. For information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1712,7 +1712,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1724,7 +1724,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            for an identity. Sending authorization is an Amazon SES
      *            feature that enables you to authorize other senders to use
      *            your identities. For information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1763,7 +1763,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1774,7 +1774,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to delete an IP address filter. You use
      *            IP address filters when you receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1804,7 +1804,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1815,7 +1815,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to delete an IP address filter. You use
      *            IP address filters when you receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1854,7 +1854,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1865,7 +1865,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to delete a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1896,7 +1896,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1907,7 +1907,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to delete a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -1953,7 +1953,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1965,7 +1965,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            the receipt rules it contains. You use receipt rule sets to
      *            receive email with Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2002,7 +2002,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2014,7 +2014,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            the receipt rules it contains. You use receipt rule sets to
      *            receive email with Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2059,7 +2059,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param deleteTemplateRequest <p>
      *            Represents a request to delete an email template. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2094,7 +2094,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param deleteTemplateRequest <p>
      *            Represents a request to delete an email template. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2208,7 +2208,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2220,7 +2220,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            for the receipt rule set that is currently active. You use
      *            receipt rule sets to receive email with Amazon SES. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2251,7 +2251,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2263,7 +2263,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            for the receipt rule set that is currently active. You use
      *            receipt rule sets to receive email with Amazon SES. For more
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2300,7 +2300,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * Returns the details of the specified configuration set. For information
      * about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2312,7 +2312,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            set. Configuration sets enable you to publish email sending
      *            events. For information about using configuration sets, see
      *            the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2341,7 +2341,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * Returns the details of the specified configuration set. For information
      * about using configuration sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2353,7 +2353,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            set. Configuration sets enable you to publish email sending
      *            events. For information about using configuration sets, see
      *            the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2393,7 +2393,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2404,7 +2404,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the details of a receipt rule.
      *            You use receipt rules to receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2436,7 +2436,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about setting up receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2447,7 +2447,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the details of a receipt rule.
      *            You use receipt rules to receive email with Amazon SES. For
      *            more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2488,7 +2488,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2499,7 +2499,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the details of a receipt rule
      *            set. You use receipt rule sets to receive email with Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2530,7 +2530,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -2541,7 +2541,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the details of a receipt rule
      *            set. You use receipt rule sets to receive email with Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2654,7 +2654,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -2696,7 +2696,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -2777,7 +2777,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -2788,7 +2788,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            signing, and whether Amazon SES successfully verified that
      *            these tokens were published. For more information about Easy
      *            DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2850,7 +2850,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -2861,7 +2861,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            signing, and whether Amazon SES successfully verified that
      *            these tokens were published. For more information about Easy
      *            DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2908,7 +2908,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the Amazon SES custom MAIL FROM
      *            attributes for a list of identities. For information about
      *            using a custom MAIL FROM domain, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2946,7 +2946,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the Amazon SES custom MAIL FROM
      *            attributes for a list of identities. For information about
      *            using a custom MAIL FROM domain, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -2991,7 +2991,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -2999,7 +2999,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the notification attributes for
      *            a list of identities you verified with Amazon SES. For
      *            information about Amazon SES notifications, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3035,7 +3035,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -3043,7 +3043,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to return the notification attributes for
      *            a list of identities you verified with Amazon SES. For
      *            information about Amazon SES notifications, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3093,7 +3093,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -3106,7 +3106,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            is an Amazon SES feature that enables you to authorize other
      *            senders to use your identities. For information, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3147,7 +3147,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -3160,7 +3160,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            is an Amazon SES feature that enables you to authorize other
      *            senders to use your identities. For information, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3228,7 +3228,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            status of a list of identities. For domain identities, this
      *            request also returns the verification token. For information
      *            about verifying identities with Amazon SES, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3287,7 +3287,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            status of a list of identities. For domain identities, this
      *            request also returns the verification token. For information
      *            about verifying identities with Amazon SES, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3538,7 +3538,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Provides a list of the configuration sets associated with your Amazon SES
      * account in the current AWS Region. For information about using
      * configuration sets, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -3557,7 +3557,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            with your AWS account. Configuration sets enable you to
      *            publish email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3586,7 +3586,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Provides a list of the configuration sets associated with your Amazon SES
      * account in the current AWS Region. For information about using
      * configuration sets, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -3605,7 +3605,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            with your AWS account. Configuration sets enable you to
      *            publish email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3646,7 +3646,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -3694,7 +3694,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -3841,7 +3841,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -3854,7 +3854,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            authorization is an Amazon SES feature that enables you to
      *            authorize other senders to use your identities. For
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3895,7 +3895,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -3908,7 +3908,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            authorization is an Amazon SES feature that enables you to
      *            authorize other senders to use your identities. For
      *            information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3948,7 +3948,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -3960,7 +3960,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            under your AWS account. You use IP address filters when you
      *            receive email with Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -3991,7 +3991,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4003,7 +4003,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            under your AWS account. You use IP address filters when you
      *            receive email with Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4046,7 +4046,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4057,7 +4057,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to list the receipt rule sets that exist
      *            under your AWS account. You use receipt rule sets to receive
      *            email with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4091,7 +4091,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4102,7 +4102,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to list the receipt rule sets that exist
      *            under your AWS account. You use receipt rule sets to receive
      *            email with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4273,6 +4273,79 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
 
     /**
      * <p>
+     * Adds or updates the delivery options for a configuration set.
+     * </p>
+     * 
+     * @param putConfigurationSetDeliveryOptionsRequest <p>
+     *            A request to modify the delivery options for a configuration
+     *            set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         PutConfigurationSetDeliveryOptions service method, as returned by
+     *         Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws InvalidDeliveryOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public Future<PutConfigurationSetDeliveryOptionsResult> putConfigurationSetDeliveryOptionsAsync(
+            final PutConfigurationSetDeliveryOptionsRequest putConfigurationSetDeliveryOptionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutConfigurationSetDeliveryOptionsResult>() {
+            public PutConfigurationSetDeliveryOptionsResult call() throws Exception {
+                return putConfigurationSetDeliveryOptions(putConfigurationSetDeliveryOptionsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds or updates the delivery options for a configuration set.
+     * </p>
+     * 
+     * @param putConfigurationSetDeliveryOptionsRequest <p>
+     *            A request to modify the delivery options for a configuration
+     *            set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         PutConfigurationSetDeliveryOptions service method, as returned by
+     *         Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws InvalidDeliveryOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public Future<PutConfigurationSetDeliveryOptionsResult> putConfigurationSetDeliveryOptionsAsync(
+            final PutConfigurationSetDeliveryOptionsRequest putConfigurationSetDeliveryOptionsRequest,
+            final AsyncHandler<PutConfigurationSetDeliveryOptionsRequest, PutConfigurationSetDeliveryOptionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<PutConfigurationSetDeliveryOptionsResult>() {
+            public PutConfigurationSetDeliveryOptionsResult call() throws Exception {
+                PutConfigurationSetDeliveryOptionsResult result = null;
+                try {
+                    result = putConfigurationSetDeliveryOptions(putConfigurationSetDeliveryOptionsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(putConfigurationSetDeliveryOptionsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Adds or updates a sending authorization policy for the specified identity
      * (an email address or a domain).
      * </p>
@@ -4286,7 +4359,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4298,7 +4371,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            policy for an identity. Sending authorization is an Amazon SES
      *            feature that enables you to authorize other senders to use
      *            your identities. For information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4338,7 +4411,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Sending authorization is a feature that enables an identity owner to
      * authorize other senders to use its identities. For information about
      * using sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4350,7 +4423,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            policy for an identity. Sending authorization is an Amazon SES
      *            feature that enables you to authorize other senders to use
      *            your identities. For information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4397,7 +4470,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4408,7 +4481,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to reorder the receipt rules within a
      *            receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4447,7 +4520,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4458,7 +4531,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to reorder the receipt rules within a
      *            receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4508,7 +4581,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For information about receiving email through Amazon SES, see the <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4554,7 +4627,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For information about receiving email through Amazon SES, see the <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -4620,7 +4693,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -4662,7 +4735,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to send a templated email to multiple
      *            destinations using Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4718,7 +4791,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -4760,7 +4833,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to send a templated email to multiple
      *            destinations using Amazon SES. For more information, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -4810,7 +4883,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * To use this operation, you must first create a custom verification email
      * template. For more information about creating and using custom
      * verification email templates, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -4859,7 +4932,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * To use this operation, you must first create a custom verification email
      * template. For more information about creating and using custom
      * verification email templates, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -4925,7 +4998,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -4962,7 +5035,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * against the maximum number of emails you can send in a 24-hour period
      * (your <i>sending quota</i>). For more information about sending quotas in
      * Amazon SES, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
      * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -4971,7 +5044,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendEmailRequest <p>
      *            Represents a request to send a single formatted email using
      *            Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-formatted.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-formatted.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the SendEmail
@@ -5017,7 +5090,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -5054,7 +5127,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * against the maximum number of emails you can send in a 24-hour period
      * (your <i>sending quota</i>). For more information about sending quotas in
      * Amazon SES, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
      * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -5063,7 +5136,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendEmailRequest <p>
      *            Represents a request to send a single formatted email using
      *            Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-formatted.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-formatted.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the SendEmail
@@ -5119,7 +5192,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <li>
      * <p>
      * You can only send email from <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >verified email addresses or domains</a>. If you try to send email from
      * an address that isn't verified, the operation results in an
      * "Email address not verified" error.
@@ -5128,11 +5201,11 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <li>
      * <p>
      * If your account is still in the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html"
      * >Amazon SES sandbox</a>, you can only send email to other verified
      * addresses in your account, or to addresses that are associated with the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html"
      * >Amazon SES mailbox simulator</a>.
      * </p>
      * </li>
@@ -5170,7 +5243,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * message (for example, if you use open and click tracking), 8-bit content
      * isn't preserved. For this reason, we highly recommend that you encode all
      * content that isn't 7-bit ASCII. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding"
      * >MIME Encoding</a> in the <i>Amazon SES Developer Guide</i>.
      * </p>
      * </li>
@@ -5229,7 +5302,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * parameter, Amazon SES will set the From and Return Path addresses to the
      * identity specified in <code>SourceIdentityArn</code>. For more
      * information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -5241,7 +5314,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * against the maximum number of emails you can send in a 24-hour period
      * (your <i>sending quota</i>). For more information about sending quotas in
      * Amazon SES, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
      * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -5251,7 +5324,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendRawEmailRequest <p>
      *            Represents a request to send a single raw email using Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5300,7 +5373,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <li>
      * <p>
      * You can only send email from <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >verified email addresses or domains</a>. If you try to send email from
      * an address that isn't verified, the operation results in an
      * "Email address not verified" error.
@@ -5309,11 +5382,11 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <li>
      * <p>
      * If your account is still in the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html"
      * >Amazon SES sandbox</a>, you can only send email to other verified
      * addresses in your account, or to addresses that are associated with the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html"
      * >Amazon SES mailbox simulator</a>.
      * </p>
      * </li>
@@ -5351,7 +5424,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * message (for example, if you use open and click tracking), 8-bit content
      * isn't preserved. For this reason, we highly recommend that you encode all
      * content that isn't 7-bit ASCII. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding"
      * >MIME Encoding</a> in the <i>Amazon SES Developer Guide</i>.
      * </p>
      * </li>
@@ -5410,7 +5483,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * parameter, Amazon SES will set the From and Return Path addresses to the
      * identity specified in <code>SourceIdentityArn</code>. For more
      * information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -5422,7 +5495,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * against the maximum number of emails you can send in a 24-hour period
      * (your <i>sending quota</i>). For more information about sending quotas in
      * Amazon SES, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
      * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -5432,7 +5505,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendRawEmailRequest <p>
      *            Represents a request to send a single raw email using Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5496,7 +5569,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -5540,7 +5613,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * For these reasons, we highly recommend that you set up Amazon SES to send
      * you notifications when Rendering Failure events occur. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Sending Personalized Email Using the Amazon SES API</a> in the <i>Amazon
      * Simple Email Service Developer Guide</i>.
      * </p>
@@ -5549,7 +5622,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendTemplatedEmailRequest <p>
      *            Represents a request to send a templated email using Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5605,7 +5678,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * If your account is still in the Amazon SES sandbox, you may only send to
      * verified addresses or domains, or to email addresses associated with the
      * Amazon SES Mailbox Simulator. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -5649,7 +5722,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * For these reasons, we highly recommend that you set up Amazon SES to send
      * you notifications when Rendering Failure events occur. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Sending Personalized Email Using the Amazon SES API</a> in the <i>Amazon
      * Simple Email Service Developer Guide</i>.
      * </p>
@@ -5658,7 +5731,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * @param sendTemplatedEmailRequest <p>
      *            Represents a request to send a templated email using Amazon
      *            SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5709,7 +5782,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -5720,7 +5793,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to set a receipt rule set as the active
      *            receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5757,7 +5830,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </note>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -5768,7 +5841,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to set a receipt rule set as the active
      *            receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5833,7 +5906,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For more information about Easy DKIM signing, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -5841,7 +5914,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to enable or disable Amazon SES Easy DKIM
      *            signing for an identity. For more information about setting up
      *            Easy DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5896,7 +5969,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For more information about Easy DKIM signing, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -5904,7 +5977,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to enable or disable Amazon SES Easy DKIM
      *            signing for an identity. For more information about setting up
      *            Easy DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -5957,7 +6030,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -5966,7 +6039,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            forwards you bounce and complaint notifications through email.
      *            For information about email feedback forwarding, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-email.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-email.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6010,7 +6083,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6019,7 +6092,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            forwards you bounce and complaint notifications through email.
      *            For information about email feedback forwarding, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-email.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-email.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6064,7 +6137,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6073,7 +6146,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            original email headers in the Amazon SNS notifications of a
      *            specified type. For information about notifications, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6110,7 +6183,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about using notifications with Amazon SES, see the
      * <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6119,7 +6192,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            original email headers in the Amazon SNS notifications of a
      *            specified type. For information about notifications, see the
      *            <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6165,7 +6238,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * record to your MAIL FROM domain's DNS settings. If you want your emails
      * to pass Sender Policy Framework (SPF) checks, you must also add or update
      * an SPF record. For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </important>
@@ -6178,7 +6251,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            custom MAIL FROM domain setup for a verified identity. For
      *            information about using a custom MAIL FROM domain, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6213,7 +6286,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * record to your MAIL FROM domain's DNS settings. If you want your emails
      * to pass Sender Policy Framework (SPF) checks, you must also add or update
      * an SPF record. For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </important>
@@ -6226,7 +6299,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            custom MAIL FROM domain setup for a verified identity. For
      *            information about using a custom MAIL FROM domain, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6274,7 +6347,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For more information about feedback notification, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6284,7 +6357,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            notifications for emails sent with that identity as the
      *            Source. For information about Amazon SES notifications, see
      *            the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6323,7 +6396,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For more information about feedback notification, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6333,7 +6406,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            notifications for emails sent with that identity as the
      *            Source. For information about Amazon SES notifications, see
      *            the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications-via-sns.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6372,7 +6445,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -6383,7 +6456,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to set the position of a receipt rule in
      *            a receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6415,7 +6488,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -6426,7 +6499,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to set the position of a receipt rule in
      *            a receipt rule set. You use receipt rule sets to receive email
      *            with Amazon SES. For more information, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6629,7 +6702,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * sending events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon
      * Simple Notification Service (Amazon SNS). For information about using
      * configuration sets, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -6649,7 +6722,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            configuration set. Configuration sets enable you to publish
      *            email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6685,7 +6758,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * sending events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon
      * Simple Notification Service (Amazon SNS). For information about using
      * configuration sets, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
      * Developer Guide.</i>
      * </p>
@@ -6705,7 +6778,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            configuration set. Configuration sets enable you to publish
      *            email sending events. For information about using
      *            configuration sets, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -6928,7 +7001,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -6970,7 +7043,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * hosted on domains operated by Amazon SES. You can configure a subdomain
      * of your own to handle these events. For information about using custom
      * domains, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * 
@@ -7018,7 +7091,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -7062,7 +7135,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * <p>
      * For more information about custom verification email templates, see <a
      * href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
      * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
      * Developer Guide</i>.
      * </p>
@@ -7113,7 +7186,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -7124,7 +7197,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to update a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7160,7 +7233,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * </p>
      * <p>
      * For information about managing receipt rules, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -7171,7 +7244,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to update a receipt rule. You use receipt
      *            rules to receive email with Amazon SES. For more information,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7215,7 +7288,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Updates an email template. Email templates enable you to send
      * personalized email to one or more destinations in a single API operation.
      * For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -7251,7 +7324,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Updates an email template. Email templates enable you to send
      * personalized email to one or more destinations in a single API operation.
      * For more information, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -7293,33 +7366,67 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
 
     /**
      * <p>
-     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
-     * character strings that represent your domain's identity. Using these
-     * tokens, you will need to create DNS CNAME records that point to DKIM
-     * public keys hosted by Amazon SES. Amazon Web Services will eventually
-     * detect that you have updated your DNS records; this detection process may
-     * take up to 72 hours. Upon successful detection, Amazon SES will be able
-     * to DKIM-sign email originating from that domain.
+     * Returns a set of DKIM tokens for a domain identity.
+     * </p>
+     * <important>
+     * <p>
+     * When you execute the <code>VerifyDomainDkim</code> operation, the domain
+     * that you specify is added to the list of identities that are associated
+     * with your account. This is true even if you haven't already associated
+     * the domain with your account by using the
+     * <code>VerifyDomainIdentity</code> operation. However, you can't send
+     * email from the domain until you either successfully <a href=
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
+     * >verify it</a> or you successfully <a href=
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     * >set up DKIM for it</a>.
+     * </p>
+     * </important>
+     * <p>
+     * You use the tokens that are generated by this operation to create CNAME
+     * records. When Amazon SES detects that you've added these records to the
+     * DNS configuration for a domain, you can start sending email from that
+     * domain. You can start sending email even if you haven't added the TXT
+     * record provided by the VerifyDomainIdentity operation to the DNS
+     * configuration for your domain. All email that you send from the domain is
+     * authenticated using DKIM.
+     * </p>
+     * <p>
+     * To create the CNAME records for DKIM authentication, use the following
+     * values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Name</b>: <i>token</i>._domainkey.<i>example.com</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Type</b>: CNAME
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Value</b>: <i>token</i>.dkim.amazonses.com
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * In the preceding example, replace <i>token</i> with one of the tokens
+     * that are generated when you execute this operation. Replace
+     * <i>example.com</i> with your domain. Repeat this process for each token
+     * that's generated by this operation.
      * </p>
      * <p>
      * You can execute this operation no more than once per second.
-     * </p>
-     * <p>
-     * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> operation.
-     * </p>
-     * <p>
-     * For more information about creating DNS records using DKIM tokens, go to
-     * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
-     * >Amazon SES Developer Guide</a>.
      * </p>
      * 
      * @param verifyDomainDkimRequest <p>
      *            Represents a request to generate the CNAME records needed to
      *            set up Easy DKIM with Amazon SES. For more information about
      *            setting up Easy DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7345,33 +7452,67 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
 
     /**
      * <p>
-     * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
-     * character strings that represent your domain's identity. Using these
-     * tokens, you will need to create DNS CNAME records that point to DKIM
-     * public keys hosted by Amazon SES. Amazon Web Services will eventually
-     * detect that you have updated your DNS records; this detection process may
-     * take up to 72 hours. Upon successful detection, Amazon SES will be able
-     * to DKIM-sign email originating from that domain.
+     * Returns a set of DKIM tokens for a domain identity.
+     * </p>
+     * <important>
+     * <p>
+     * When you execute the <code>VerifyDomainDkim</code> operation, the domain
+     * that you specify is added to the list of identities that are associated
+     * with your account. This is true even if you haven't already associated
+     * the domain with your account by using the
+     * <code>VerifyDomainIdentity</code> operation. However, you can't send
+     * email from the domain until you either successfully <a href=
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
+     * >verify it</a> or you successfully <a href=
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     * >set up DKIM for it</a>.
+     * </p>
+     * </important>
+     * <p>
+     * You use the tokens that are generated by this operation to create CNAME
+     * records. When Amazon SES detects that you've added these records to the
+     * DNS configuration for a domain, you can start sending email from that
+     * domain. You can start sending email even if you haven't added the TXT
+     * record provided by the VerifyDomainIdentity operation to the DNS
+     * configuration for your domain. All email that you send from the domain is
+     * authenticated using DKIM.
+     * </p>
+     * <p>
+     * To create the CNAME records for DKIM authentication, use the following
+     * values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Name</b>: <i>token</i>._domainkey.<i>example.com</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Type</b>: CNAME
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Value</b>: <i>token</i>.dkim.amazonses.com
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * In the preceding example, replace <i>token</i> with one of the tokens
+     * that are generated when you execute this operation. Replace
+     * <i>example.com</i> with your domain. Repeat this process for each token
+     * that's generated by this operation.
      * </p>
      * <p>
      * You can execute this operation no more than once per second.
-     * </p>
-     * <p>
-     * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> operation.
-     * </p>
-     * <p>
-     * For more information about creating DNS records using DKIM tokens, go to
-     * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
-     * >Amazon SES Developer Guide</a>.
      * </p>
      * 
      * @param verifyDomainDkimRequest <p>
      *            Represents a request to generate the CNAME records needed to
      *            set up Easy DKIM with Amazon SES. For more information about
      *            setting up Easy DKIM, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7409,7 +7550,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Adds a domain to the list of identities for your Amazon SES account in
      * the current AWS Region and attempts to verify it. For more information
      * about verifying domains, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -7422,7 +7563,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            and to generate the TXT records that you must publish to the
      *            DNS server of your domain to complete the verification. For
      *            information about domain verification, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7451,7 +7592,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      * Adds a domain to the list of identities for your Amazon SES account in
      * the current AWS Region and attempts to verify it. For more information
      * about verifying domains, see <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
      * Guide.</i>
      * </p>
@@ -7464,7 +7605,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            and to generate the TXT records that you must publish to the
      *            DNS server of your domain to complete the verification. For
      *            information about domain verification, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7507,7 +7648,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to begin email address verification with
      *            Amazon SES. For information about email address verification,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7542,7 +7683,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to begin email address verification with
      *            Amazon SES. For information about email address verification,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7590,7 +7731,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to begin email address verification with
      *            Amazon SES. For information about email address verification,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the
@@ -7629,7 +7770,7 @@ public class AmazonSimpleEmailServiceAsyncClient extends AmazonSimpleEmailServic
      *            Represents a request to begin email address verification with
      *            Amazon SES. For information about email address verification,
      *            see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A Java Future object containing the response from the

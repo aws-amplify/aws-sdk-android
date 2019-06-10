@@ -19,21 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that a resource could not be created because of service limits. For
- * a list of Amazon SES limits, see the <a
- * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html"
- * >Amazon SES Developer Guide</a>.
+ * Indicates that provided delivery option is invalid.
  * </p>
  */
-public class LimitExceededException extends AmazonServiceException {
+public class InvalidDeliveryOptionsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new LimitExceededException with the specified error message.
+     * Constructs a new InvalidDeliveryOptionsException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public LimitExceededException(String message) {
+    public InvalidDeliveryOptionsException(String message) {
         super(message);
     }
 }

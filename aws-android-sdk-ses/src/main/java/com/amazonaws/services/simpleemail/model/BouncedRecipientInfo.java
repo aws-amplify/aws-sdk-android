@@ -24,7 +24,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about receiving email through Amazon SES, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -42,7 +42,7 @@ public class BouncedRecipientInfo implements Serializable {
      * the identity that is associated with the sending authorization policy
      * that permits you to receive email for the recipient of the bounced email.
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -120,7 +120,7 @@ public class BouncedRecipientInfo implements Serializable {
      * the identity that is associated with the sending authorization policy
      * that permits you to receive email for the recipient of the bounced email.
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -130,7 +130,7 @@ public class BouncedRecipientInfo implements Serializable {
      *         authorization policy that permits you to receive email for the
      *         recipient of the bounced email. For more information about
      *         sending authorization, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -144,7 +144,7 @@ public class BouncedRecipientInfo implements Serializable {
      * the identity that is associated with the sending authorization policy
      * that permits you to receive email for the recipient of the bounced email.
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -154,7 +154,7 @@ public class BouncedRecipientInfo implements Serializable {
      *            authorization policy that permits you to receive email for the
      *            recipient of the bounced email. For more information about
      *            sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -168,7 +168,7 @@ public class BouncedRecipientInfo implements Serializable {
      * the identity that is associated with the sending authorization policy
      * that permits you to receive email for the recipient of the bounced email.
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -181,7 +181,7 @@ public class BouncedRecipientInfo implements Serializable {
      *            authorization policy that permits you to receive email for the
      *            recipient of the bounced email. For more information about
      *            sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

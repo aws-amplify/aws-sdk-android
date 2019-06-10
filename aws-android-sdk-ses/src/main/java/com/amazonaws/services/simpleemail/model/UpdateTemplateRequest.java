@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates an email template. Email templates enable you to send personalized
  * email to one or more destinations in a single API operation. For more
  * information, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

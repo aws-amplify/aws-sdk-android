@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For information about managing IP address filters, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
