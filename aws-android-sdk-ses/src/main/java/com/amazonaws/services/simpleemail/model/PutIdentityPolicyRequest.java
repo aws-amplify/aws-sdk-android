@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Sending authorization is a feature that enables an identity owner to
  * authorize other senders to use its identities. For information about using
  * sending authorization, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -76,7 +76,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -257,7 +257,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -271,7 +271,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *         <p>
      *         For information about the syntax of sending authorization
      *         policies, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -286,7 +286,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -300,7 +300,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *            <p>
      *            For information about the syntax of sending authorization
      *            policies, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -315,7 +315,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -332,7 +332,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *            <p>
      *            For information about the syntax of sending authorization
      *            policies, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

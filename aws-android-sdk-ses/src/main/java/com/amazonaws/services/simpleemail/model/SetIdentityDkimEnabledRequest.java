@@ -50,7 +50,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about Easy DKIM signing, go to the <a
- * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+ * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

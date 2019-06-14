@@ -5,8 +5,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        // READ: The minimum SDK is 15, but for the UI tests to run, this is 23
-        minSdkVersion 23
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

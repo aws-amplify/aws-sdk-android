@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * An event destination is the AWS service to which Amazon SES publishes the
  * email sending events associated with a configuration set. For information
  * about using configuration sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For information about setting up rule sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
