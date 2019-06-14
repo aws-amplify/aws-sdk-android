@@ -22,7 +22,7 @@ import java.io.Serializable;
  * Represents the details of a configuration set. Configuration sets enable you
  * to publish email sending events. For information about using configuration
  * sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -49,6 +49,14 @@ public class DescribeConfigurationSetResult implements Serializable {
      * </p>
      */
     private TrackingOptions trackingOptions;
+
+    /**
+     * <p>
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
+     * </p>
+     */
+    private DeliveryOptions deliveryOptions;
 
     /**
      * <p>
@@ -243,6 +251,57 @@ public class DescribeConfigurationSetResult implements Serializable {
 
     /**
      * <p>
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether messages that use the configuration set are
+     *         required to use Transport Layer Security (TLS).
+     *         </p>
+     */
+    public DeliveryOptions getDeliveryOptions() {
+        return deliveryOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
+     * </p>
+     *
+     * @param deliveryOptions <p>
+     *            Specifies whether messages that use the configuration set are
+     *            required to use Transport Layer Security (TLS).
+     *            </p>
+     */
+    public void setDeliveryOptions(DeliveryOptions deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
+    }
+
+    /**
+     * <p>
+     * Specifies whether messages that use the configuration set are required to
+     * use Transport Layer Security (TLS).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param deliveryOptions <p>
+     *            Specifies whether messages that use the configuration set are
+     *            required to use Transport Layer Security (TLS).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeConfigurationSetResult withDeliveryOptions(DeliveryOptions deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
+        return this;
+    }
+
+    /**
+     * <p>
      * An object that represents the reputation settings for the configuration
      * set.
      * </p>
@@ -309,6 +368,8 @@ public class DescribeConfigurationSetResult implements Serializable {
             sb.append("EventDestinations: " + getEventDestinations() + ",");
         if (getTrackingOptions() != null)
             sb.append("TrackingOptions: " + getTrackingOptions() + ",");
+        if (getDeliveryOptions() != null)
+            sb.append("DeliveryOptions: " + getDeliveryOptions() + ",");
         if (getReputationOptions() != null)
             sb.append("ReputationOptions: " + getReputationOptions());
         sb.append("}");
@@ -326,6 +387,8 @@ public class DescribeConfigurationSetResult implements Serializable {
                 + ((getEventDestinations() == null) ? 0 : getEventDestinations().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackingOptions() == null) ? 0 : getTrackingOptions().hashCode());
+        hashCode = prime * hashCode
+                + ((getDeliveryOptions() == null) ? 0 : getDeliveryOptions().hashCode());
         hashCode = prime * hashCode
                 + ((getReputationOptions() == null) ? 0 : getReputationOptions().hashCode());
         return hashCode;
@@ -356,6 +419,11 @@ public class DescribeConfigurationSetResult implements Serializable {
             return false;
         if (other.getTrackingOptions() != null
                 && other.getTrackingOptions().equals(this.getTrackingOptions()) == false)
+            return false;
+        if (other.getDeliveryOptions() == null ^ this.getDeliveryOptions() == null)
+            return false;
+        if (other.getDeliveryOptions() != null
+                && other.getDeliveryOptions().equals(this.getDeliveryOptions()) == false)
             return false;
         if (other.getReputationOptions() == null ^ this.getReputationOptions() == null)
             return false;

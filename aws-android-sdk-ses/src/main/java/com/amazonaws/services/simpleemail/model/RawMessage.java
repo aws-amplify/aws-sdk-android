@@ -50,7 +50,7 @@ public class RawMessage implements Serializable {
      * </important>
      * <p>
      * For more information, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -97,7 +97,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -132,7 +132,7 @@ public class RawMessage implements Serializable {
      * </important>
      * <p>
      * For more information, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -164,7 +164,7 @@ public class RawMessage implements Serializable {
      *         </important>
      *         <p>
      *         For more information, go to the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -199,7 +199,7 @@ public class RawMessage implements Serializable {
      * </important>
      * <p>
      * For more information, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -231,7 +231,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -266,7 +266,7 @@ public class RawMessage implements Serializable {
      * </important>
      * <p>
      * For more information, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -301,7 +301,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

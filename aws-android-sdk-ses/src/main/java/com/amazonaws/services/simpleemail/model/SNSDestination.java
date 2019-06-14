@@ -26,7 +26,7 @@ import java.io.Serializable;
  * Event destinations, such as Amazon SNS, are associated with configuration
  * sets, which enable you to publish email sending events. For information about
  * using configuration sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -37,7 +37,7 @@ public class SNSDestination implements Serializable {
      * published to. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      */
@@ -49,7 +49,7 @@ public class SNSDestination implements Serializable {
      * published to. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -58,7 +58,7 @@ public class SNSDestination implements Serializable {
      *         published to. An example of an Amazon SNS topic ARN is
      *         <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      *         information about Amazon SNS topics, see the <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
      *         </p>
      */
@@ -72,7 +72,7 @@ public class SNSDestination implements Serializable {
      * published to. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -81,7 +81,7 @@ public class SNSDestination implements Serializable {
      *            be published to. An example of an Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      */
@@ -95,7 +95,7 @@ public class SNSDestination implements Serializable {
      * published to. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      * <p>
@@ -107,7 +107,7 @@ public class SNSDestination implements Serializable {
      *            be published to. An example of an Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

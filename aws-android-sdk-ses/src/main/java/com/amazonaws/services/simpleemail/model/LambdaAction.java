@@ -28,13 +28,13 @@ import java.io.Serializable;
  * Amazon SNS topic of another account, Amazon SES must have permission to
  * access those resources. For information about giving permissions, see the <a
  * href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
  * For information about using AWS Lambda actions in receipt rules, see the <a
  * href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-lambda.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-lambda.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -45,7 +45,7 @@ public class LambdaAction implements Serializable {
      * Lambda action is taken. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      */
@@ -57,7 +57,7 @@ public class LambdaAction implements Serializable {
      * an AWS Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
      * more information about AWS Lambda, see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      */
@@ -71,7 +71,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -95,7 +95,7 @@ public class LambdaAction implements Serializable {
      * Lambda action is taken. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -105,7 +105,7 @@ public class LambdaAction implements Serializable {
      *         topic ARN is
      *         <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      *         information about Amazon SNS topics, see the <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
      *         </p>
      */
@@ -119,7 +119,7 @@ public class LambdaAction implements Serializable {
      * Lambda action is taken. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
@@ -129,7 +129,7 @@ public class LambdaAction implements Serializable {
      *            Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      */
@@ -143,7 +143,7 @@ public class LambdaAction implements Serializable {
      * Lambda action is taken. An example of an Amazon SNS topic ARN is
      * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
      * information about Amazon SNS topics, see the <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
+     * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      * <p>
@@ -156,7 +156,7 @@ public class LambdaAction implements Serializable {
      *            Amazon SNS topic ARN is
      *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
      *            more information about Amazon SNS topics, see the <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -173,7 +173,7 @@ public class LambdaAction implements Serializable {
      * an AWS Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
      * more information about AWS Lambda, see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      *
@@ -181,9 +181,9 @@ public class LambdaAction implements Serializable {
      *         The Amazon Resource Name (ARN) of the AWS Lambda function. An
      *         example of an AWS Lambda function ARN is
      *         <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
-     *         . For more information about AWS Lambda, see the <a
-     *         href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
-     *         >AWS Lambda Developer Guide</a>.
+     *         . For more information about AWS Lambda, see the <a href=
+     *         "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
+     *         Lambda Developer Guide</a>.
      *         </p>
      */
     public String getFunctionArn() {
@@ -196,7 +196,7 @@ public class LambdaAction implements Serializable {
      * an AWS Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
      * more information about AWS Lambda, see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      *
@@ -205,8 +205,8 @@ public class LambdaAction implements Serializable {
      *            example of an AWS Lambda function ARN is
      *            <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
      *            . For more information about AWS Lambda, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     *            Lambda Developer Guide</a>.
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+     *            >AWS Lambda Developer Guide</a>.
      *            </p>
      */
     public void setFunctionArn(String functionArn) {
@@ -219,7 +219,7 @@ public class LambdaAction implements Serializable {
      * an AWS Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
      * more information about AWS Lambda, see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <p>
@@ -231,8 +231,8 @@ public class LambdaAction implements Serializable {
      *            example of an AWS Lambda function ARN is
      *            <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
      *            . For more information about AWS Lambda, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     *            Lambda Developer Guide</a>.
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+     *            >AWS Lambda Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -250,7 +250,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -273,8 +273,8 @@ public class LambdaAction implements Serializable {
      *         of <code>Event</code> means that the function will be invoked
      *         asynchronously. The default value is <code>Event</code>. For
      *         information about AWS Lambda invocation types, see the <a href=
-     *         "http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     *         Lambda Developer Guide</a>.
+     *         "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     *         >AWS Lambda Developer Guide</a>.
      *         </p>
      *         <important>
      *         <p>
@@ -299,7 +299,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -323,7 +323,7 @@ public class LambdaAction implements Serializable {
      *            invoked asynchronously. The default value is
      *            <code>Event</code>. For information about AWS Lambda
      *            invocation types, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
      *            >AWS Lambda Developer Guide</a>.
      *            </p>
      *            <important>
@@ -349,7 +349,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -376,7 +376,7 @@ public class LambdaAction implements Serializable {
      *            invoked asynchronously. The default value is
      *            <code>Event</code>. For information about AWS Lambda
      *            invocation types, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
      *            >AWS Lambda Developer Guide</a>.
      *            </p>
      *            <important>
@@ -405,7 +405,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -429,7 +429,7 @@ public class LambdaAction implements Serializable {
      *            invoked asynchronously. The default value is
      *            <code>Event</code>. For information about AWS Lambda
      *            invocation types, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
      *            >AWS Lambda Developer Guide</a>.
      *            </p>
      *            <important>
@@ -455,7 +455,7 @@ public class LambdaAction implements Serializable {
      * means that the function will be invoked asynchronously. The default value
      * is <code>Event</code>. For information about AWS Lambda invocation types,
      * see the <a
-     * href="http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
      * Lambda Developer Guide</a>.
      * </p>
      * <important>
@@ -482,7 +482,7 @@ public class LambdaAction implements Serializable {
      *            invoked asynchronously. The default value is
      *            <code>Event</code>. For information about AWS Lambda
      *            invocation types, see the <a href=
-     *            "http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
      *            >AWS Lambda Developer Guide</a>.
      *            </p>
      *            <important>

@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * hosted on domains operated by Amazon SES. You can configure a subdomain of
  * your own to handle these events. For information about using custom domains,
  * see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <note>

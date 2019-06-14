@@ -38,7 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about using notifications with Amazon SES, see the <a
  * href
- * ="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
+ * ="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
