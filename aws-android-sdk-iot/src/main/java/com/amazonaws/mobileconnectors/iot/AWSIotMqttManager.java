@@ -1224,8 +1224,10 @@ public class AWSIotMqttManager {
                             subscriptionStatusCallback.onFailure(exception);
                         }
                     };
+                    mqttClient.subscribe(topic, qos.asInt(), null, mqttActionListener);
+                } else {
+                    mqttClient.subscribe(topic, qos.asInt());
                 }
-                mqttClient.subscribe(topic, qos.asInt(), null, mqttActionListener);
             } catch (final MqttException e) {
                 throw new AmazonClientException("Client error when subscribing.", e);
             }
