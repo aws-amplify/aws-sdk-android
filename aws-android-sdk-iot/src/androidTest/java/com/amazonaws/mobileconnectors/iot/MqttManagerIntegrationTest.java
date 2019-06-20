@@ -754,7 +754,6 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 messages.add(new String(data));
             }
         });
-
         // ensure subscription propagates
         Thread.sleep(2000);
         assertEquals("Subscription successful", sscb.subscriptionStatus);
