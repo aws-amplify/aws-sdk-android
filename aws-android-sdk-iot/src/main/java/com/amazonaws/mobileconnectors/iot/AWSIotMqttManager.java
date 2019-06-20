@@ -1211,9 +1211,8 @@ public class AWSIotMqttManager {
 
         if (null != mqttClient) {
             try {
-                IMqttActionListener mqttActionListener = null;
                 if (subscriptionStatusCallback != null) {
-                     mqttActionListener = new IMqttActionListener() {
+                    mqttClient.subscribe(topic, qos.asInt(), null, new IMqttActionListener() {
                         @Override
                         public void onSuccess(IMqttToken asyncActionToken) {
                             subscriptionStatusCallback.onSuccess();
@@ -1223,8 +1222,7 @@ public class AWSIotMqttManager {
                         public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                             subscriptionStatusCallback.onFailure(exception);
                         }
-                    };
-                    mqttClient.subscribe(topic, qos.asInt(), null, mqttActionListener);
+                    });
                 } else {
                     mqttClient.subscribe(topic, qos.asInt());
                 }
