@@ -755,10 +755,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             }
         });
 
-        assertNotNull(sscb.subscriptionStatus);
-
         // ensure subscription propagates
         Thread.sleep(2000);
+        assertEquals("Subscription successful", sscb.subscriptionStatus);
         // publish 20 messages
         for (int i=0; i<20; ++i) {
             mqttManager.publishString("integration test " + i, "sdk/test/integration/ws", AWSIotMqttQos.QOS0);
