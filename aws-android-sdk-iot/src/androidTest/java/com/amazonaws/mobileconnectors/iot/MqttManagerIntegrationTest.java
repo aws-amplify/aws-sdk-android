@@ -52,6 +52,7 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
@@ -704,6 +705,23 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals((int)ONE_TWENTY_KB, messages.get(0).length());
     }
 
+    /**
+     * Test Subscribe status callback
+     */
+    private class TestSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
+        String subscriptionStatus = null;
+
+        @Override
+        public void onSuccess() {
+            subscriptionStatus = "Subscription successful";
+        }
+
+        @Override
+        public void onFailure(Throwable exception) {
+            subscriptionStatus = "Subscription failed";
+        }
+    }
+
     @Test
     public void mqttWebSocket() throws Exception {
 
@@ -727,13 +745,18 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
+        TestSubscriptionStatusCallback sscb = new TestSubscriptionStatusCallback();
+
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic("sdk/test/integration/ws", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
+        mqttManager.subscribeToTopic("sdk/test/integration/ws", AWSIotMqttQos.QOS0, sscb, new AWSIotMqttNewMessageCallback() {
             @Override
             public void onMessageArrived(String topic, byte[] data) {
                 messages.add(new String(data));
             }
         });
+
+        assertNotNull(sscb.subscriptionStatus);
+
         // ensure subscription propagates
         Thread.sleep(2000);
         // publish 20 messages

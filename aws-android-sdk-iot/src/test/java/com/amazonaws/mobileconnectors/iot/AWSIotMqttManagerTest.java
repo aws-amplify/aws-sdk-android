@@ -1024,37 +1024,6 @@ public class AWSIotMqttManagerTest {
         assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
     }
 
-    @Test
-    public void testSubscribeToTopicWithSubsciptionStatusCallback() throws Exception {
-        MockMqttClient mockClient = new MockMqttClient();
-
-        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
-                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
-        testClient.setMqttClient(mockClient);
-
-        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
-                KEYSTORE_NAME, KEYSTORE_PASSWORD);
-        testClient.connect(testKeystore, null);
-
-        TestNewMessageCallback mcb = new TestNewMessageCallback();
-
-        TestSubscriptionStatusCallback sscb = new TestSubscriptionStatusCallback();
-
-        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
-
-        assertEquals(1, mockClient.subscribeCalls);
-        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
-        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
-
-        MqttMessage msg = new MqttMessage();
-        msg.setPayload("test payload".getBytes(StringUtils.UTF8));
-        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
-        assertNotNull(sscb.subscriptionStatus);
-
-        assertEquals(1, mcb.receivedMessages.size());
-        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testSubscribeToTopicNullTopic() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
@@ -2979,23 +2948,6 @@ public class AWSIotMqttManagerTest {
         @Override
         public void onMessageArrived(String topic, byte[] data) {
             receivedMessages.add(topic + new String(data, StringUtils.UTF8));
-        }
-    }
-
-    /**
-     * Test Subscribe status callback
-     */
-    private class TestSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
-        String subscriptionStatus = null;
-
-        @Override
-        public void onSuccess() {
-            subscriptionStatus = "Subscription successful";
-        }
-
-        @Override
-        public void onFailure(Throwable exception) {
-            subscriptionStatus = "Subscription failed";
         }
     }
 
