@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
+
 ## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
 
 ### New Features
