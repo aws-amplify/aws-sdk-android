@@ -124,6 +124,7 @@ public class InternalConfig {
         ret.put("AmazonTranslateClient", new HttpClientConfig("translate"));
         ret.put("AmazonComprehendClient", new HttpClientConfig("comprehend"));
         ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
+        ret.put("AmazonTextractClient", new HttpClientConfig("textract"));
         return ret;
     }
 
