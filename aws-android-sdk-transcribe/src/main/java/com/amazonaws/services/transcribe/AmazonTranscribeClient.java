@@ -110,7 +110,7 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
      *     public void onResult(final UserStateDetails details) {
      *         AmazonTranscribeClient client = new AmazonTranscribeClient(AWSMobileClient.getInstance());
      *     }
-     * 
+     *
      *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
