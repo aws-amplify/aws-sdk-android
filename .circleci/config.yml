@@ -1448,6 +1448,17 @@ workflows:
               only:
                 - master
                 - develop
+      - integrationtest:
+          name: sagemakerruntime
+          testmodule: aws-android-sdk-sagemaker-runtime-test
+          requires:
+          - pre_integrationtest
+          filters:
+            branches:
+              only:
+              - master
+              - develop
+              - SageMakerCircleCI
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
@@ -1506,6 +1517,7 @@ workflows:
             - CognitoAuth
             - Core
             - CognitoIdentityProvider
+            - sagemakerruntime
       - uitest:
           requires:
             - build
