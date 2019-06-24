@@ -13,26 +13,16 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model.transform;
-
-import static com.amazonaws.util.StringUtils.UTF8;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+package com.amazonaws.services.sagemakerruntime.model.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
 import com.amazonaws.http.HttpMethodName;
-import com.amazonaws.services.sagemakerrts.model.*;
+import com.amazonaws.services.sagemakerruntime.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
-import com.amazonaws.util.StringInputStream;
-import com.amazonaws.util.json.AwsJsonWriter;
-import com.amazonaws.util.json.JsonUtils;
 
 /**
  * JSON request marshaller for InvokeEndpointRequest

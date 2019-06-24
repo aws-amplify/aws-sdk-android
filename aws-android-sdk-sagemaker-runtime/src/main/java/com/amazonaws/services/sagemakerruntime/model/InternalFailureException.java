@@ -13,25 +13,25 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model;
+package com.amazonaws.services.sagemakerruntime.model;
 
 import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The service is unavailable. Try your call again.
+ * An internal failure occurred.
  * </p>
  */
-public class ServiceUnavailableException extends AmazonServiceException {
+public class InternalFailureException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ServiceUnavailableException with the specified error
+     * Constructs a new InternalFailureException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public ServiceUnavailableException(String message) {
+    public InternalFailureException(String message) {
         super(message);
     }
 }

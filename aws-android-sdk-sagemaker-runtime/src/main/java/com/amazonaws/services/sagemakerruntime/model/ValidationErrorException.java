@@ -13,25 +13,25 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model;
+package com.amazonaws.services.sagemakerruntime.model;
 
 import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * An internal failure occurred.
+ * Inspect your request and try again.
  * </p>
  */
-public class InternalFailureException extends AmazonServiceException {
+public class ValidationErrorException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new InternalFailureException with the specified error
+     * Constructs a new ValidationErrorException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public InternalFailureException(String message) {
+    public ValidationErrorException(String message) {
         super(message);
     }
 }

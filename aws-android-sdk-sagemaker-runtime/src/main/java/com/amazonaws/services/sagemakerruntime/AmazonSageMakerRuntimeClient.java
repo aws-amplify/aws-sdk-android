@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts;
+package com.amazonaws.services.sagemakerruntime;
 
 import java.util.*;
 
@@ -27,8 +27,8 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.*;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 
-import com.amazonaws.services.sagemakerrts.model.*;
-import com.amazonaws.services.sagemakerrts.model.transform.*;
+import com.amazonaws.services.sagemakerruntime.model.*;
+import com.amazonaws.services.sagemakerruntime.model.transform.*;
 
 /**
  * Client for accessing Amazon SageMaker Runtime Service. All service calls made
@@ -350,9 +350,9 @@ public class AmazonSageMakerRuntimeClient extends AmazonWebServiceClient impleme
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
-                "/com/amazonaws/services/sagemakerrts/request.handlers"));
+                "/com/amazonaws/services/sagemakerruntime/request.handlers"));
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
-                "/com/amazonaws/services/sagemakerrts/request.handler2s"));
+                "/com/amazonaws/services/sagemakerruntime/request.handler2s"));
     }
 
     private static ClientConfiguration adjustClientConfiguration(ClientConfiguration orig) {

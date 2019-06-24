@@ -13,25 +13,25 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model;
+package com.amazonaws.services.sagemakerruntime.model;
 
 import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Inspect your request and try again.
+ * The service is unavailable. Try your call again.
  * </p>
  */
-public class ValidationErrorException extends AmazonServiceException {
+public class ServiceUnavailableException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ValidationErrorException with the specified error
+     * Constructs a new ServiceUnavailableException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public ValidationErrorException(String message) {
+    public ServiceUnavailableException(String message) {
         super(message);
     }
 }

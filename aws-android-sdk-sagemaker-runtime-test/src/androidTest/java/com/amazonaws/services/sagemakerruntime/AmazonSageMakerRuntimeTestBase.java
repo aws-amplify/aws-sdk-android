@@ -1,4 +1,4 @@
-package com.amazonaws.services.sagemakerrts;
+package com.amazonaws.services.sagemakerruntime;
 
 import android.support.test.InstrumentationRegistry;
 
@@ -10,7 +10,7 @@ import com.amazonaws.sagemakertest.R;
 
 import java.io.IOException;
 
-public class AmazonSageMakerRTSTestBase extends AWSTestBase {
+public class AmazonSageMakerRuntimeTestBase extends AWSTestBase {
 
     /** The SageMaker Runtime client for all tests to use */
     protected static AmazonSageMakerRuntimeClient sageMakerRuntimeClient;

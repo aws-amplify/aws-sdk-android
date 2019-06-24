@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts;
+package com.amazonaws.services.sagemakerruntime;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -28,7 +28,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 
-import com.amazonaws.services.sagemakerrts.model.*;
+import com.amazonaws.services.sagemakerruntime.model.*;
 
 /**
  * Interface for accessing Amazon SageMaker Runtime Service asynchronously.

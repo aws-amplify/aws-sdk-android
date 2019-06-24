@@ -13,12 +13,10 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model.transform;
+package com.amazonaws.services.sagemakerruntime.model.transform;
 
-import com.amazonaws.services.sagemakerrts.model.*;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.services.sagemakerruntime.model.*;
 import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * JSON unmarshaller for response InvokeEndpointResult

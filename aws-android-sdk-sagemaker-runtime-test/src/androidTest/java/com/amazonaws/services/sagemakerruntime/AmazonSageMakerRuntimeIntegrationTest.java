@@ -1,9 +1,9 @@
-package com.amazonaws.services.sagemakerrts;
+package com.amazonaws.services.sagemakerruntime;
 
-import com.amazonaws.services.sagemakerrts.model.InvokeEndpointRequest;
-import com.amazonaws.services.sagemakerrts.model.InvokeEndpointResult;
-import com.amazonaws.services.sagemakerrts.model.ModelErrorException;
-import com.amazonaws.services.sagemakerrts.model.ValidationErrorException;
+import com.amazonaws.services.sagemakerruntime.model.InvokeEndpointRequest;
+import com.amazonaws.services.sagemakerruntime.model.InvokeEndpointResult;
+import com.amazonaws.services.sagemakerruntime.model.ModelErrorException;
+import com.amazonaws.services.sagemakerruntime.model.ValidationErrorException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-public class AmazonSageMakerRuntimeIntegrationTest extends AmazonSageMakerRTSTestBase {
+public class AmazonSageMakerRuntimeIntegrationTest extends AmazonSageMakerRuntimeTestBase {
 
     private ByteBuffer INPUT_FOR_7 = testImageBufferForValue_7();
     private static String WRONG_SAGEMAKER_ENDPOINT = "wrong-endpoint";

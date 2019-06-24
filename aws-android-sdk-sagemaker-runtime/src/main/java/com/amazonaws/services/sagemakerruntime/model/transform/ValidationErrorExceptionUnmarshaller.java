@@ -13,29 +13,29 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model.transform;
+package com.amazonaws.services.sagemakerruntime.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.sagemakerrts.model.ServiceUnavailableException;
+import com.amazonaws.services.sagemakerruntime.model.ValidationErrorException;
 
-public class ServiceUnavailableExceptionUnmarshaller extends JsonErrorUnmarshaller {
+public class ValidationErrorExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
-    public ServiceUnavailableExceptionUnmarshaller() {
-        super(ServiceUnavailableException.class);
+    public ValidationErrorExceptionUnmarshaller() {
+        super(ValidationErrorException.class);
     }
 
     @Override
     public boolean match(JsonErrorResponse error) throws Exception {
-        return error.getErrorCode().equals("ServiceUnavailable");
+        return error.getErrorCode().equals("ValidationError");
     }
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
 
-        ServiceUnavailableException e = (ServiceUnavailableException) super.unmarshall(error);
-        e.setErrorCode("ServiceUnavailable");
+        ValidationErrorException e = (ValidationErrorException) super.unmarshall(error);
+        e.setErrorCode("ValidationError");
 
         return e;
     }

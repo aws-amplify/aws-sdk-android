@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model;
+package com.amazonaws.services.sagemakerruntime.model;
 
 import com.amazonaws.AmazonServiceException;
 

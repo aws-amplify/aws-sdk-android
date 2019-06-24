@@ -13,12 +13,12 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.sagemakerrts.model.transform;
+package com.amazonaws.services.sagemakerruntime.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.sagemakerrts.model.InternalFailureException;
+import com.amazonaws.services.sagemakerruntime.model.InternalFailureException;
 
 public class InternalFailureExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
