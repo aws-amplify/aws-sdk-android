@@ -10,7 +10,7 @@ import com.amazonaws.sagemakertest.R;
 
 import java.io.IOException;
 
-public abstract class AmazonSageMakerRuntimeTestBase extends AWSTestBase {
+public class AmazonSageMakerRuntimeTestBase extends AWSTestBase {
 
     /** The SageMaker Runtime client for all tests to use */
     protected static AmazonSageMakerRuntimeClient sageMakerRuntimeClient;
