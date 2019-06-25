@@ -1218,7 +1218,6 @@ workflows:
               only:
                 - master
                 - develop
-                - SageMakerCircleCI
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -1459,7 +1458,6 @@ workflows:
               only:
               - master
               - develop
-              - SageMakerCircleCI
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
