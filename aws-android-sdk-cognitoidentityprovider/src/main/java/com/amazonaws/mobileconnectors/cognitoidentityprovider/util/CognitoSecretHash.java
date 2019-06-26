@@ -37,7 +37,7 @@ public final class CognitoSecretHash {
      * @param userId            REQUIRED: User ID
      * @param clientId          REQUIRED: Client ID
      * @param clientSecret      REQUIRED: Client secret
-     * @return  secret hash as a {@code String}, {@code null } if {@code clinetSecret if null}
+     * @return  secret hash as a {@code String}, {@code null } if {@code clientSecret} is {@code null}
      */
     public static String getSecretHash(String userId, String clientId, String clientSecret) {
         // Arguments userId and clientId have to be not-null.
