@@ -124,6 +124,8 @@ public class InternalConfig {
         ret.put("AmazonTranslateClient", new HttpClientConfig("translate"));
         ret.put("AmazonComprehendClient", new HttpClientConfig("comprehend"));
         ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
+        //signer uses the servicename 'sagemaker' for Sagemaker Runtime
+        ret.put("AmazonSageMakerRuntimeClient", new HttpClientConfig("sagemaker"));
         return ret;
     }
 

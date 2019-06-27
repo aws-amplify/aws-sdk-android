@@ -69,6 +69,7 @@
     <module>aws-android-sdk-sqs</module>
     <module>aws-android-sdk-transcribe</module>
     <module>aws-android-sdk-translate</module>
+    <module>aws-android-sdk-sagemaker-runtime</module>
   </modules>
 
   <developers>

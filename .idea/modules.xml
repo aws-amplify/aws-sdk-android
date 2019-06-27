@@ -52,6 +52,8 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-rekognition-test/aws-android-sdk-rekognition-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-rekognition-test/aws-android-sdk-rekognition-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-s3/aws-android-sdk-s3.iml" filepath="$PROJECT_DIR$/aws-android-sdk-s3/aws-android-sdk-s3.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-s3-test/aws-android-sdk-s3-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-s3-test/aws-android-sdk-s3-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-sagemaker-runtime/aws-android-sdk-sagemaker-runtime.iml" filepath="$PROJECT_DIR$/aws-android-sdk-sagemaker-runtime/aws-android-sdk-sagemaker-runtime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-sagemaker-runtime-test/aws-android-sdk-sagemaker-runtime-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-sagemaker-runtime-test/aws-android-sdk-sagemaker-runtime-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-sdb/aws-android-sdk-sdb.iml" filepath="$PROJECT_DIR$/aws-android-sdk-sdb/aws-android-sdk-sdb.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-sdb-test/aws-android-sdk-sdb-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-sdb-test/aws-android-sdk-sdb-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-ses/aws-android-sdk-ses.iml" filepath="$PROJECT_DIR$/aws-android-sdk-ses/aws-android-sdk-ses.iml" />
