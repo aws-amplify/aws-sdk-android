@@ -138,9 +138,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * workflows in your application when users have authenticated.
  *
  * The following demonstrates a simple sample usage inside of MainActivity.java onCreate method.
- * <pre>
- * {@code
- * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback<UserStateDetails>() {
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
  *     public void onResult(UserStateDetails userStateDetails) {
  *         switch (userStateDetails.getUserState()) {
  *             case SIGNED_IN:
