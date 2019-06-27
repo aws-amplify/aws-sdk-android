@@ -76,6 +76,7 @@ public class EventRecorder {
     static final String EVENT_ID = "event_id";
     static final String KEY_MAX_SUBMISSIONS_ALLOWED = "maxSubmissionAllowed";
     static final int DEFAULT_MAX_SUBMISSIONS_ALLOWED = 3;
+    static final int SERVICE_DEFINED_MAX_EVENTS_PER_BATCH = 100;
     private static final String USER_AGENT = PinpointManager.class.getName() + "/" + VersionInfoUtils.getVersion();
     private static int clippedEventLength = 10;
     private final static int MAX_EVENT_OPERATIONS = 1000;
@@ -256,7 +257,7 @@ public class EventRecorder {
      * @param idsAndSizeToDelete map of id and size of the event
      * @return an array of the events.
      */
-    private JSONArray getBatchOfEvents(final Cursor cursor,
+    JSONArray getBatchOfEvents(final Cursor cursor,
                                        final HashMap<Integer, Integer> idsAndSizeToDelete) {
         final JSONArray eventArray = new JSONArray();
         long currentRequestSize = 0;
@@ -272,7 +273,8 @@ public class EventRecorder {
                 currentRequestSize += eventLength;
                 eventArray.put(json);
             }
-            if (currentRequestSize > maxRequestSize) {
+            if (currentRequestSize > maxRequestSize
+                    || eventArray.length() >= SERVICE_DEFINED_MAX_EVENTS_PER_BATCH) {
                 break;
             }
         } while (cursor.moveToNext());

@@ -7,6 +7,9 @@
 * **Amazon S3**
   * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
 
+* **Amazon Pinpoint**
+  * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977).
+
 ## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
 
 ### New Features
@@ -18,7 +21,6 @@
 
 * Model updates for the following services
   * Amazon Transcribe
-  
 
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 
