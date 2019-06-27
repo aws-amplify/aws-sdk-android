@@ -31,9 +31,9 @@ class S3ClientReference {
     private static Map<Integer, AmazonS3> map = new ConcurrentHashMap<Integer, AmazonS3>();
 
     /**
-     * Insert the transferId and the corresponding {@link AmazonS3Client}
+     * Insert the transferId and the corresponding {@link com.amazonaws.services.s3.AmazonS3Client}
      * into the map. {@link TransferService} retrieves the
-     * {@link AmazonS3Client} based on the transferId.
+     * {@link com.amazonaws.services.s3.AmazonS3Client} based on the transferId.
      * 
      * @param transferId the id for the transfer record
      * @param s3 an AmazonS3 instance

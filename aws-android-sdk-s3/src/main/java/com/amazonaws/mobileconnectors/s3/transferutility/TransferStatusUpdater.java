@@ -27,10 +27,10 @@ import com.amazonaws.logging.LogFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -51,7 +51,8 @@ class TransferStatusUpdater {
     /**
      * A map of listeners.
      */
-    static final Map<Integer, List<TransferListener>> LISTENERS = new HashMap<Integer, List<TransferListener>>();
+    static final Map<Integer, List<TransferListener>> LISTENERS = new ConcurrentHashMap<Integer, List<TransferListener>>() {
+    };
 
     /**
      * A map of active transfers.
@@ -81,7 +82,7 @@ class TransferStatusUpdater {
     TransferStatusUpdater(TransferDBUtil dbUtilInstance) {
         dbUtil = dbUtilInstance;
         mainHandler = new Handler(Looper.getMainLooper());
-        transfers = new HashMap<Integer, TransferRecord>();
+        transfers = new ConcurrentHashMap<Integer, TransferRecord>();
     }
 
     /**
