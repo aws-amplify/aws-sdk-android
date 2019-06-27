@@ -43,7 +43,7 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class AmazonTextractInstrumentedTest extends AWSTestBase {
+public class AmazonTextractIntegrationTest extends AWSTestBase {
 
     private AmazonTextractClient textractClient;
 
@@ -73,6 +73,6 @@ public class AmazonTextractInstrumentedTest extends AWSTestBase {
         assertEquals(new Integer(1), result.getDocumentMetadata().getPages());
 
         List<Block> blocks = result.getBlocks();
-        assert result.getBlocks().size() > 0;
+        assert blocks.size() > 0;
     }
 }

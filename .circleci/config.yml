@@ -1877,6 +1877,7 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - textract
             - translate
             - transcribe
             - sqs 
