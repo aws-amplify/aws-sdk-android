@@ -24,8 +24,8 @@ import java.io.Serializable;
  * emails.
  * </p>
  * <p>
- * For more information, see <a
- * href="ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
  * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
  * <i>Amazon SES Developer Guide</i>.
  * </p>

@@ -45,7 +45,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If your account is still in the Amazon SES sandbox, you may only send to
  * verified addresses or domains, or to email addresses associated with the
  * Amazon SES Mailbox Simulator. For more information, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
  * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
  * Guide.</i>
  * </p>
@@ -88,7 +88,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For these reasons, we highly recommend that you set up Amazon SES to send you
  * notifications when Rendering Failure events occur. For more information, see
  * <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
  * >Sending Personalized Email Using the Amazon SES API</a> in the <i>Amazon
  * Simple Email Service Developer Guide</i>.
  * </p>
@@ -101,7 +101,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -109,7 +109,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -181,7 +181,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -205,7 +205,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -261,7 +261,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -269,7 +269,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -296,7 +296,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *         must be either individually verified with Amazon SES, or from a
      *         domain that has been verified with Amazon SES. For information
      *         about verifying identities, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <p>
@@ -304,7 +304,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *         permitted to do so by a sending authorization policy, then you
      *         must also specify the <code>SourceArn</code> parameter. For more
      *         information about sending authorization, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <note>
@@ -338,7 +338,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -346,7 +346,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -373,7 +373,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -381,7 +381,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -416,7 +416,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -424,7 +424,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -454,7 +454,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -462,7 +462,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -743,7 +743,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -767,7 +767,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -793,7 +793,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -817,7 +817,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -843,7 +843,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -870,7 +870,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -899,7 +899,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -923,7 +923,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -949,7 +949,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -973,7 +973,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -999,7 +999,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1026,7 +1026,7 @@ public class SendTemplatedEmailRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

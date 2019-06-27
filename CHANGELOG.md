@@ -1,11 +1,26 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
+## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
 
 ### Bug Fixes
 
+* **Amazon S3**
+  * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
+
 * **Amazon Pinpoint**
-  * Fixed a bug that caused more than 100 events to be batched together when submitting events. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977).
+  * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977).
+
+## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Add `AWSConfiguration(JSONObject)` constructor to construct a `AWSConfiguration` object from the configuration passed via a `JSONObject`.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Transcribe
 
 ## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
 

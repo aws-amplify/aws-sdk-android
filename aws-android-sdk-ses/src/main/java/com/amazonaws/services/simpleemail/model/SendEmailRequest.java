@@ -38,7 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If your account is still in the Amazon SES sandbox, you may only send to
  * verified addresses or domains, or to email addresses associated with the
  * Amazon SES Mailbox Simulator. For more information, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
  * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
  * Guide.</i>
  * </p>
@@ -74,7 +74,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * maximum number of emails you can send in a 24-hour period (your <i>sending
  * quota</i>). For more information about sending quotas in Amazon SES, see <a
  * href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
  * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES Developer
  * Guide.</i>
  * </p>
@@ -87,7 +87,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -95,7 +95,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -173,7 +173,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -197,7 +197,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -239,7 +239,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -247,7 +247,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -291,7 +291,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -299,7 +299,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -326,7 +326,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *         must be either individually verified with Amazon SES, or from a
      *         domain that has been verified with Amazon SES. For information
      *         about verifying identities, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <p>
@@ -334,7 +334,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *         permitted to do so by a sending authorization policy, then you
      *         must also specify the <code>SourceArn</code> parameter. For more
      *         information about sending authorization, see the <a href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         <note>
@@ -368,7 +368,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -376,7 +376,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -403,7 +403,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -411,7 +411,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -446,7 +446,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * either individually verified with Amazon SES, or from a domain that has
      * been verified with Amazon SES. For information about verifying
      * identities, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -454,7 +454,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * do so by a sending authorization policy, then you must also specify the
      * <code>SourceArn</code> parameter. For more information about sending
      * authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <note>
@@ -484,7 +484,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            address must be either individually verified with Amazon SES,
      *            or from a domain that has been verified with Amazon SES. For
      *            information about verifying identities, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <p>
@@ -492,7 +492,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            permitted to do so by a sending authorization policy, then you
      *            must also specify the <code>SourceArn</code> parameter. For
      *            more information about sending authorization, see the <a href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            <note>
@@ -811,7 +811,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -835,7 +835,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -861,7 +861,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -885,7 +885,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -911,7 +911,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -938,7 +938,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -967,7 +967,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -991,7 +991,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         For more information about sending authorization, see the <a
      *         href=
-     *         "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -1017,7 +1017,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -1041,7 +1041,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -1067,7 +1067,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information about sending authorization, see the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -1094,7 +1094,7 @@ public class SendEmailRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For more information about sending authorization, see the <a
      *            href=
-     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

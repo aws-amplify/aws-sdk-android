@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about custom verification email templates, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
  * >Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer
  * Guide</i>.
  * </p>

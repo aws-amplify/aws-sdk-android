@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Returns the details of the specified configuration set. For information about
  * using configuration sets, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

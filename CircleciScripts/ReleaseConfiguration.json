@@ -44,7 +44,8 @@
 		"aws-android-sdk-sqs",
 		"aws-android-sdk-transcribe",
 		"aws-android-sdk-translate",
-		"aws-android-sdk-mobileanalytics"
+		"aws-android-sdk-mobileanalytics",
+		"aws-android-sdk-sagemaker-runtime"
 		],
 		packages : [
 			"com.amazonaws",
@@ -295,6 +296,12 @@
 				packages : [ 
 					"com.amazonaws*" 
 				]  
+			},
+			{
+				title : "Amazon SageMaker Runtime" ,
+				packages : [
+					"${service.prefix}.sagemakerruntime*"
+				]
 			}
 		],
 		otheroptions :	{
