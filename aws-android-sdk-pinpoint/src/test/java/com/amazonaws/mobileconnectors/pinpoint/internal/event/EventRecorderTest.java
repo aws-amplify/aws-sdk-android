@@ -18,9 +18,12 @@ package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import com.amazonaws.logging.Log;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.services.pinpoint.model.BadRequestException;
 import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
@@ -31,6 +34,7 @@ import com.amazonaws.services.pinpoint.model.ItemResponse;
 import com.amazonaws.services.pinpoint.model.PutEventsResult;
 import com.amazonaws.services.pinpoint.model.PutEventsRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
@@ -40,6 +44,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.OngoingStubbing;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
@@ -60,6 +65,9 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
@@ -166,7 +174,7 @@ public class EventRecorderTest {
 
     @Test (expected=IllegalStateException.class)
     public void testReadEventFromCursorThrowsException() throws Exception {
-        final Log mockLog = Mockito.mock(Log.class);
+        final Log mockLog = mock(Log.class);
         Mockito.doThrow(new IllegalStateException()).when(mockLog)
             .error(Mockito.anyObject(), any(IllegalStateException.class));
         // Set static field to mock log. equivalent to: Whitebox.setInternalState(EventRecorder.class, "log", mockLog);
@@ -177,7 +185,7 @@ public class EventRecorderTest {
         modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
         field.set(null, mockLog);
 
-        final Cursor mockCursor = Mockito.mock(Cursor.class);
+        final Cursor mockCursor = mock(Cursor.class);
         when(mockCursor.getString(Mockito.anyInt()))
             .thenThrow(new IllegalStateException(
                 "Couldn't read row 794, col 2 from CursorWindow. Make sure the Cursor" +
@@ -204,6 +212,47 @@ public class EventRecorderTest {
         eventRecorder.processEvents();
         //not retryable, removed from db.
         assertTrue(dbUtil.queryAllEvents().getCount() == 0);
+    }
+
+    @Test
+    public void testProcessEvent_eventCount100() {
+        PinpointDBUtil dbUtil = mock(PinpointDBUtil.class);
+        PinpointContext pinpointContext = mock(PinpointContext.class);
+        EventRecorder eventRecorder = new EventRecorder(pinpointContext, dbUtil, mock(ExecutorService.class));
+
+        AndroidPreferencesConfiguration config = mock(AndroidPreferencesConfiguration.class);
+        when(pinpointContext.getConfiguration()).thenReturn(config);
+        when(config.optLong(any(String.class), any(Long.class))).thenReturn(5 * 1024 * 1024L);
+
+        Cursor cursor = mock(Cursor.class);
+
+        int numberOfEvents = 150; // Note: Due to API there are (numberOfEvents + 1) added
+        Boolean[] falseArray = new Boolean[numberOfEvents];
+        Arrays.fill(falseArray, false);
+        int sharedIdForAllEvents = 1;
+        Integer[] idArray = new Integer[numberOfEvents];
+        Arrays.fill(idArray, sharedIdForAllEvents);
+        int size = 2;
+        Integer[] sizeArray = new Integer[numberOfEvents];
+        Arrays.fill(sizeArray, size);
+        String[] jsonStringArray = new String[numberOfEvents];
+        String json = "{}";
+        Arrays.fill(jsonStringArray, json);
+
+        when(cursor.isNull(EventTable.COLUMN_INDEX.ID.getValue())).thenReturn(false, falseArray);
+        when(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue())).thenReturn(sharedIdForAllEvents, idArray);
+
+        when(cursor.isNull(EventTable.COLUMN_INDEX.SIZE.getValue())).thenReturn(false, falseArray);
+        when(cursor.getInt(EventTable.COLUMN_INDEX.SIZE.getValue())).thenReturn(size, sizeArray);
+
+        when(cursor.isNull(EventTable.COLUMN_INDEX.JSON.getValue())).thenReturn(false, falseArray);
+        when(cursor.getString(EventTable.COLUMN_INDEX.JSON.getValue())).thenReturn(json, jsonStringArray);
+
+        // Allows looping for next batch submit
+        when(cursor.moveToNext()).thenReturn(true).thenReturn(true).thenReturn(true);
+
+        JSONArray readArray = eventRecorder.getBatchOfEvents(cursor, new HashMap<Integer, Integer>());
+        assertEquals(EventRecorder.SERVICE_DEFINED_MAX_EVENTS_PER_BATCH, readArray.length());
     }
 
     @Test
