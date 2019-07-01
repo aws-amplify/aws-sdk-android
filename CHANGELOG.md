@@ -2,6 +2,11 @@
 
 ## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
 
+### New Features
+
+* **Amazon SageMaker**
+  * Amazon SageMaker provides every developer and data scientist with the ability to build, train, and deploy machine learning models quickly. Amazon SageMaker is a fully-managed service that covers the entire machine learning workflow to label and prepare your data, choose an algorithm, train the model, tune and optimize it for deployment, make predictions, and take action. Your models get to production faster with much less effort and lower cost. See [Amazon SageMaker Documentation](https://aws.amazon.com/sagemaker/) for more details.
+
 ### Bug Fixes
 
 * **Amazon S3**
