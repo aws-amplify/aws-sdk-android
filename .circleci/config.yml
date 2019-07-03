@@ -1409,6 +1409,16 @@ workflows:
                 - master
                 - develop
       - integrationtest:
+          name: textract
+          testmodule: aws-android-sdk-textract-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
           requires:
@@ -1493,6 +1503,7 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - textract
             - translate
             - transcribe
             - sqs 
@@ -1762,6 +1773,16 @@ workflows:
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       - integrationtest:
+          name: textract
+          testmodule: aws-android-sdk-textract-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
           name: translate
           testmodule: aws-android-sdk-translate-test
           requires:
@@ -1856,6 +1877,7 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - textract
             - translate
             - transcribe
             - sqs 
