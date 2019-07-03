@@ -9,6 +9,14 @@
   
 * **Amazon Textract**
   * Amazon Textract is a service that automatically extracts text and data from scanned documents. Amazon Textract goes beyond simple optical character recognition (OCR) to also identify the contents of fields in forms and information stored in tables. See [Amazon Textract Documentation](https://aws.amazon.com/textract/) for more details.
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
+
+* **Amazon Pinpoint**
+  * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977) for details.
   
 ### Misc. Updates
 
@@ -29,14 +37,6 @@
   * Amazon Simple Email Service (SES)
   * Amazon Transcribe
   * Amazon Translate
-
-### Bug Fixes
-
-* **Amazon S3**
-  * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
-
-* **Amazon Pinpoint**
-  * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977).
 
 ## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
 
