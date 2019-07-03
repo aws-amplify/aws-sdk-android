@@ -6,46 +6,47 @@
 			"javdoc.doctitle" : "AWS SDK for Android - $sdkVersion"
 		},
 		modules:[
-		"aws-android-sdk-apigateway-core",
-		"aws-android-sdk-auth-core",
-		"aws-android-sdk-auth-facebook",
-		"aws-android-sdk-auth-google",
-		// "aws-android-sdk-auth-ui",
-		"aws-android-sdk-auth-userpools",
-		"aws-android-sdk-autoscaling",
-		"aws-android-sdk-cloudwatch",
-		"aws-android-sdk-cognito",
-	//	"aws-android-sdk-cognitoauth",
-		"aws-android-sdk-cognitoidentityprovider",
-		"aws-android-sdk-comprehend",
-		"aws-android-sdk-core",
-		"aws-android-sdk-ddb",
-		"aws-android-sdk-ddb-document",
-		"aws-android-sdk-ddb-mapper",
-		"aws-android-sdk-ec2",
-		"aws-android-sdk-elb",
-		"aws-android-sdk-iot",
-		"aws-android-sdk-kinesis",
-		"aws-android-sdk-kinesisvideo",
-		"aws-android-sdk-kinesisvideo-archivedmedia",
-		"aws-android-sdk-kms",
-		"aws-android-sdk-lambda",
-		"aws-android-sdk-lex",
-		"aws-android-sdk-logs",
-		"aws-android-sdk-machinelearning",
-		"aws-android-sdk-mobile-client",
-		"aws-android-sdk-pinpoint",
-		"aws-android-sdk-polly",
-		"aws-android-sdk-rekognition",
-		"aws-android-sdk-s3",
-		"aws-android-sdk-sdb",
-		"aws-android-sdk-ses",
-		"aws-android-sdk-sns",
-		"aws-android-sdk-sqs",
-		"aws-android-sdk-transcribe",
-		"aws-android-sdk-translate",
-		"aws-android-sdk-mobileanalytics",
-		"aws-android-sdk-sagemaker-runtime"
+			"aws-android-sdk-apigateway-core",
+			"aws-android-sdk-auth-core",
+			"aws-android-sdk-auth-facebook",
+			"aws-android-sdk-auth-google",
+			// "aws-android-sdk-auth-ui",
+			"aws-android-sdk-auth-userpools",
+			"aws-android-sdk-autoscaling",
+			"aws-android-sdk-cloudwatch",
+			"aws-android-sdk-cognito",
+		    // "aws-android-sdk-cognitoauth",
+			"aws-android-sdk-cognitoidentityprovider",
+			"aws-android-sdk-comprehend",
+			"aws-android-sdk-core",
+			"aws-android-sdk-ddb",
+			"aws-android-sdk-ddb-document",
+			"aws-android-sdk-ddb-mapper",
+			"aws-android-sdk-ec2",
+			"aws-android-sdk-elb",
+			"aws-android-sdk-iot",
+			"aws-android-sdk-kinesis",
+			"aws-android-sdk-kinesisvideo",
+			"aws-android-sdk-kinesisvideo-archivedmedia",
+			"aws-android-sdk-kms",
+			"aws-android-sdk-lambda",
+			"aws-android-sdk-lex",
+			"aws-android-sdk-logs",
+			"aws-android-sdk-machinelearning",
+			"aws-android-sdk-mobile-client",
+			"aws-android-sdk-pinpoint",
+			"aws-android-sdk-polly",
+			"aws-android-sdk-rekognition",
+			"aws-android-sdk-s3",
+			"aws-android-sdk-sagemaker-runtime",
+			"aws-android-sdk-sdb",
+			"aws-android-sdk-ses",
+			"aws-android-sdk-sns",
+			"aws-android-sdk-sqs",
+			"aws-android-sdk-textract",
+			"aws-android-sdk-transcribe",
+			"aws-android-sdk-translate",
+			"aws-android-sdk-mobileanalytics"
 		],
 		packages : [
 			"com.amazonaws",
@@ -238,6 +239,12 @@
 					"${service.prefix}.rekognition*" 
 				]  
 			},
+			{
+				title : "Amazon SageMaker Runtime" ,
+				packages : [
+					"${service.prefix}.sagemakerruntime*"
+				]
+			},
 			{ 
 				title : "Amazon SNS" , 
 				packages : [ 
@@ -266,7 +273,14 @@
 				title : "Amazon SimpleDB" , 
 				packages : [ 
 					"${service.prefix}.simpledb*" 
-				]  },
+				]  
+			},
+			{ 
+				title : "Amazon Textract" , 
+				packages : [ 
+					"${service.prefix}.textract*" 
+				]  
+			},
 			{ 
 				title : "Amazon Transcribe" , 
 				packages : [ 
@@ -296,12 +310,6 @@
 				packages : [ 
 					"com.amazonaws*" 
 				]  
-			},
-			{
-				title : "Amazon SageMaker Runtime" ,
-				packages : [
-					"${service.prefix}.sagemakerruntime*"
-				]
 			}
 		],
 		otheroptions :	{

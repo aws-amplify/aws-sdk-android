@@ -126,6 +126,7 @@ public class InternalConfig {
         ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
         //signer uses the servicename 'sagemaker' for Sagemaker Runtime
         ret.put("AmazonSageMakerRuntimeClient", new HttpClientConfig("sagemaker"));
+        ret.put("AmazonTextractClient", new HttpClientConfig("textract"));
         return ret;
     }
 
