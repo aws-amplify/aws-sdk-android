@@ -9,6 +9,26 @@
   
 * **Amazon Textract**
   * Amazon Textract is a service that automatically extracts text and data from scanned documents. Amazon Textract goes beyond simple optical character recognition (OCR) to also identify the contents of fields in forms and information stored in tables. See [Amazon Textract Documentation](https://aws.amazon.com/textract/) for more details.
+  
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon AutoScaling
+  * Amazon Cognito Identity Pools
+  * Amazon Cognito UserPools
+  * Amazon Comprehend
+  * AWS IoT
+  * Amazon Key Management Service (KMS)
+  * Amazon Kinesis Firehose
+  * Amazon Kinesis Video
+  * AWS Lambda
+  * Amazon Lex
+  * Amazon Machine Learning
+  * Amazon Polly
+  * Amazon Security Token Service (STS)
+  * Amazon Simple Email Service (SES)
+  * Amazon Transcribe
+  * Amazon Translate
 
 ### Bug Fixes
 
