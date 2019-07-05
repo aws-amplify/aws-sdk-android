@@ -137,6 +137,8 @@ com.amazonaws.services.s3.model.inventory
 com.amazonaws.services.s3.model.lifecycle
 com.amazonaws.services.s3.model.metrics
 com.amazonaws.services.s3.util
+com.amazonaws.services.sagemakerruntime
+com.amazonaws.services.sagemakerruntime.model
 com.amazonaws.services.simpledb
 com.amazonaws.services.simpledb.model
 com.amazonaws.services.simpledb.util
@@ -148,6 +150,8 @@ com.amazonaws.services.sns.util
 com.amazonaws.services.sqs
 com.amazonaws.services.sqs.buffered
 com.amazonaws.services.sqs.model
+com.amazonaws.services.textract
+com.amazonaws.services.textract.model
 com.amazonaws.services.transcribe
 com.amazonaws.services.transcribe.model
 com.amazonaws.services.translate
