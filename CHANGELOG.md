@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Kinesis Video
+  - Amazon Rekognition
+    - **Breaking Change:** This SDK has been updated to the latest model after a long interval, and there have been several breaking changes in the
+      intervening time. Please review the [API documentation](https://aws-amplify.github.io/aws-sdk-android/docs/reference/index.html)
+      to see the latest API.
+
 ## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
 
 ### New Features
