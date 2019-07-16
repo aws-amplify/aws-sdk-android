@@ -21,48 +21,36 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Face
+ * JSON unmarshaller for POJO Parent
  */
-class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext> {
+class ParentJsonUnmarshaller implements Unmarshaller<Parent, JsonUnmarshallerContext> {
 
-    public Face unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public Parent unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Face face = new Face();
+        Parent parent = new Parent();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("FaceId")) {
-                face.setFaceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("BoundingBox")) {
-                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ImageId")) {
-                face.setImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ExternalImageId")) {
-                face.setExternalImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                face.setConfidence(FloatJsonUnmarshaller.getInstance()
+            if (name.equals("Name")) {
+                parent.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return face;
+        return parent;
     }
 
-    private static FaceJsonUnmarshaller instance;
+    private static ParentJsonUnmarshaller instance;
 
-    public static FaceJsonUnmarshaller getInstance() {
+    public static ParentJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new FaceJsonUnmarshaller();
+            instance = new ParentJsonUnmarshaller();
         return instance;
     }
 }

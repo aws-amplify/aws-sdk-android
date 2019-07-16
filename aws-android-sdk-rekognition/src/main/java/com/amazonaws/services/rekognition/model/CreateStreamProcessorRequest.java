@@ -36,11 +36,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * containing faces that you want to recognize. Use <code>Name</code> to assign
  * an identifier for the stream processor. You use <code>Name</code> to manage
  * the stream processor. For example, you can start processing the source video
- * by calling with the <code>Name</code> field.
+ * by calling <a>StartStreamProcessor</a> with the <code>Name</code> field.
  * </p>
  * <p>
- * After you have finished analyzing a streaming video, use to stop processing.
- * You can delete the stream processor by calling .
+ * After you have finished analyzing a streaming video, use
+ * <a>StopStreamProcessor</a> to stop processing. You can delete the stream
+ * processor by calling <a>DeleteStreamProcessor</a>.
  * </p>
  */
 public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implements Serializable {
@@ -66,8 +67,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * <p>
      * An identifier you assign to the stream processor. You can use
      * <code>Name</code> to manage the stream processor. For example, you can
-     * get the current status of the stream processor by calling .
-     * <code>Name</code> is idempotent.
+     * get the current status of the stream processor by calling
+     * <a>DescribeStreamProcessor</a>. <code>Name</code> is idempotent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,8 +92,7 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      */
     private String roleArn;
 
@@ -214,8 +214,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * <p>
      * An identifier you assign to the stream processor. You can use
      * <code>Name</code> to manage the stream processor. For example, you can
-     * get the current status of the stream processor by calling .
-     * <code>Name</code> is idempotent.
+     * get the current status of the stream processor by calling
+     * <a>DescribeStreamProcessor</a>. <code>Name</code> is idempotent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,7 +226,7 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      *         An identifier you assign to the stream processor. You can use
      *         <code>Name</code> to manage the stream processor. For example,
      *         you can get the current status of the stream processor by calling
-     *         . <code>Name</code> is idempotent.
+     *         <a>DescribeStreamProcessor</a>. <code>Name</code> is idempotent.
      *         </p>
      */
     public String getName() {
@@ -237,8 +237,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * <p>
      * An identifier you assign to the stream processor. You can use
      * <code>Name</code> to manage the stream processor. For example, you can
-     * get the current status of the stream processor by calling .
-     * <code>Name</code> is idempotent.
+     * get the current status of the stream processor by calling
+     * <a>DescribeStreamProcessor</a>. <code>Name</code> is idempotent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -249,7 +249,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      *            An identifier you assign to the stream processor. You can use
      *            <code>Name</code> to manage the stream processor. For example,
      *            you can get the current status of the stream processor by
-     *            calling . <code>Name</code> is idempotent.
+     *            calling <a>DescribeStreamProcessor</a>. <code>Name</code> is
+     *            idempotent.
      *            </p>
      */
     public void setName(String name) {
@@ -260,8 +261,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * <p>
      * An identifier you assign to the stream processor. You can use
      * <code>Name</code> to manage the stream processor. For example, you can
-     * get the current status of the stream processor by calling .
-     * <code>Name</code> is idempotent.
+     * get the current status of the stream processor by calling
+     * <a>DescribeStreamProcessor</a>. <code>Name</code> is idempotent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -275,7 +276,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      *            An identifier you assign to the stream processor. You can use
      *            <code>Name</code> to manage the stream processor. For example,
      *            you can get the current status of the stream processor by
-     *            calling . <code>Name</code> is idempotent.
+     *            calling <a>DescribeStreamProcessor</a>. <code>Name</code> is
+     *            idempotent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -348,8 +350,7 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @return <p>
      *         ARN of the IAM role that allows access to the stream processor.
@@ -365,8 +366,7 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @param roleArn <p>
      *            ARN of the IAM role that allows access to the stream
@@ -386,8 +386,7 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @param roleArn <p>
      *            ARN of the IAM role that allows access to the stream

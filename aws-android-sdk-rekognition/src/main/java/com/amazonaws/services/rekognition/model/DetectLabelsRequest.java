@@ -40,7 +40,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </note>
  * <p>
  * You pass the input image as base64-encoded image bytes or as a reference to
- * an image in an Amazon S3 bucket. If you use the Amazon CLI to call Amazon
+ * an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
  * Rekognition operations, passing image bytes is not supported. The image must
  * be either a PNG or JPEG formatted file.
  * </p>
@@ -48,7 +48,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For each object, scene, and concept the API returns one or more labels. Each
  * label provides the object name, and the level of confidence that the image
  * contains the object. For example, suppose the input image has a lighthouse,
- * the sea, and a rock. The response will include all three labels, one for each
+ * the sea, and a rock. The response includes all three labels, one for each
  * object.
  * </p>
  * <p>
@@ -83,7 +83,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * In response, the API returns an array of labels. In addition, the response
  * also includes the orientation correction. Optionally, you can specify
  * <code>MinConfidence</code> to control the confidence threshold for the labels
- * returned. The default is 50%. You can also add the <code>MaxLabels</code>
+ * returned. The default is 55%. You can also add the <code>MaxLabels</code>
  * parameter to limit the number of labels returned.
  * </p>
  * <note>
@@ -92,6 +92,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * facial details that the <a>DetectFaces</a> operation provides.
  * </p>
  * </note>
+ * <p>
+ * <code>DetectLabels</code> returns bounding boxes for instances of common
+ * object labels in an array of <a>Instance</a> objects. An
+ * <code>Instance</code> object contains a <a>BoundingBox</a> object, for the
+ * location of the label on the image. It also includes the confidence by which
+ * the bounding box was detected.
+ * </p>
+ * <p>
+ * <code>DetectLabels</code> also returns a hierarchical taxonomy of detected
+ * labels. For example, a detected car might be assigned the label <i>car</i>.
+ * The label <i>car</i> has two parent labels: <i>Vehicle</i> (its parent) and
+ * <i>Transportation</i> (its grandparent). The response returns the entire list
+ * of ancestors for a label. Each ancestor is a unique label in the response. In
+ * the previous example, <i>Car</i>, <i>Vehicle</i>, and <i>Transportation</i>
+ * are returned as unique labels in the response.
+ * </p>
  * <p>
  * This is a stateless API operation. That is, the operation does not persist
  * any data.
@@ -105,8 +121,15 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The input image as base64-encoded bytes or an S3 object. If you use the
-     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
-     * image bytes is not supported.
+     * AWS CLI to call Amazon Rekognition operations, passing image bytes is not
+     * supported. Images stored in an S3 Bucket do not need to be
+     * base64-encoded.
+     * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
      * </p>
      */
     private Image image;
@@ -130,7 +153,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 50 percent.
+     * labels with a confidence values greater than or equal to 55 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,7 +177,14 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * @param image <p>
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
-     *            passing base64-encoded image bytes is not supported.
+     *            passing image bytes is not supported. Images stored in an S3
+     *            Bucket do not need to be base64-encoded.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      */
     public DetectLabelsRequest(Image image) {
@@ -164,14 +194,28 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The input image as base64-encoded bytes or an S3 object. If you use the
-     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
-     * image bytes is not supported.
+     * AWS CLI to call Amazon Rekognition operations, passing image bytes is not
+     * supported. Images stored in an S3 Bucket do not need to be
+     * base64-encoded.
+     * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
      * </p>
      *
      * @return <p>
      *         The input image as base64-encoded bytes or an S3 object. If you
      *         use the AWS CLI to call Amazon Rekognition operations, passing
-     *         base64-encoded image bytes is not supported.
+     *         image bytes is not supported. Images stored in an S3 Bucket do
+     *         not need to be base64-encoded.
+     *         </p>
+     *         <p>
+     *         If you are using an AWS SDK to call Amazon Rekognition, you might
+     *         not need to base64-encode image bytes passed using the
+     *         <code>Bytes</code> field. For more information, see Images in the
+     *         Amazon Rekognition developer guide.
      *         </p>
      */
     public Image getImage() {
@@ -181,14 +225,28 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The input image as base64-encoded bytes or an S3 object. If you use the
-     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
-     * image bytes is not supported.
+     * AWS CLI to call Amazon Rekognition operations, passing image bytes is not
+     * supported. Images stored in an S3 Bucket do not need to be
+     * base64-encoded.
+     * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
      * </p>
      *
      * @param image <p>
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
-     *            passing base64-encoded image bytes is not supported.
+     *            passing image bytes is not supported. Images stored in an S3
+     *            Bucket do not need to be base64-encoded.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      */
     public void setImage(Image image) {
@@ -198,8 +256,15 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The input image as base64-encoded bytes or an S3 object. If you use the
-     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
-     * image bytes is not supported.
+     * AWS CLI to call Amazon Rekognition operations, passing image bytes is not
+     * supported. Images stored in an S3 Bucket do not need to be
+     * base64-encoded.
+     * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -208,7 +273,14 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * @param image <p>
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
-     *            passing base64-encoded image bytes is not supported.
+     *            passing image bytes is not supported. Images stored in an S3
+     *            Bucket do not need to be base64-encoded.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -289,7 +361,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 50 percent.
+     * labels with a confidence values greater than or equal to 55 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -303,7 +375,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *         <p>
      *         If <code>MinConfidence</code> is not specified, the operation
      *         returns labels with a confidence values greater than or equal to
-     *         50 percent.
+     *         55 percent.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -318,7 +390,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 50 percent.
+     * labels with a confidence values greater than or equal to 55 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -332,7 +404,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
-     *            to 50 percent.
+     *            to 55 percent.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -347,7 +419,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 50 percent.
+     * labels with a confidence values greater than or equal to 55 percent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -364,7 +436,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
-     *            to 50 percent.
+     *            to 55 percent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

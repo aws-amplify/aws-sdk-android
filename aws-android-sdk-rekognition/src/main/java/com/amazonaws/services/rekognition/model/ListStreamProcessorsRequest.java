@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a list of stream processors that you have created with .
+ * Gets a list of stream processors that you have created with
+ * <a>CreateStreamProcessor</a>.
  * </p>
  */
 public class ListStreamProcessorsRequest extends AmazonWebServiceRequest implements Serializable {

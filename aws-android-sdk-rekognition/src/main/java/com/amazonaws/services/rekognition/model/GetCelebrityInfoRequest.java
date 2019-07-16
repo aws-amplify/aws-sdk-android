@@ -22,9 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets the name and additional information about a celebrity based on his or
- * her Rekognition ID. The additional information is returned as an array of
- * URLs. If there is no additional information about the celebrity, this list is
- * empty.
+ * her Amazon Rekognition ID. The additional information is returned as an array
+ * of URLs. If there is no additional information about the celebrity, this list
+ * is empty.
  * </p>
  * <p>
  * For more information, see Recognizing Celebrities in an Image in the Amazon
@@ -39,7 +39,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The ID for the celebrity. You get the celebrity ID from a call to the
-     * operation, which recognizes celebrities in an image.
+     * <a>RecognizeCelebrities</a> operation, which recognizes celebrities in an
+     * image.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,7 +51,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The ID for the celebrity. You get the celebrity ID from a call to the
-     * operation, which recognizes celebrities in an image.
+     * <a>RecognizeCelebrities</a> operation, which recognizes celebrities in an
+     * image.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +60,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The ID for the celebrity. You get the celebrity ID from a call to
-     *         the operation, which recognizes celebrities in an image.
+     *         the <a>RecognizeCelebrities</a> operation, which recognizes
+     *         celebrities in an image.
      *         </p>
      */
     public String getId() {
@@ -68,7 +71,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The ID for the celebrity. You get the celebrity ID from a call to the
-     * operation, which recognizes celebrities in an image.
+     * <a>RecognizeCelebrities</a> operation, which recognizes celebrities in an
+     * image.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +80,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
      *
      * @param id <p>
      *            The ID for the celebrity. You get the celebrity ID from a call
-     *            to the operation, which recognizes celebrities in an image.
+     *            to the <a>RecognizeCelebrities</a> operation, which recognizes
+     *            celebrities in an image.
      *            </p>
      */
     public void setId(String id) {
@@ -86,7 +91,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The ID for the celebrity. You get the celebrity ID from a call to the
-     * operation, which recognizes celebrities in an image.
+     * <a>RecognizeCelebrities</a> operation, which recognizes celebrities in an
+     * image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -97,7 +103,8 @@ public class GetCelebrityInfoRequest extends AmazonWebServiceRequest implements 
      *
      * @param id <p>
      *            The ID for the celebrity. You get the celebrity ID from a call
-     *            to the operation, which recognizes celebrities in an image.
+     *            to the <a>RecognizeCelebrities</a> operation, which recognizes
+     *            celebrities in an image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

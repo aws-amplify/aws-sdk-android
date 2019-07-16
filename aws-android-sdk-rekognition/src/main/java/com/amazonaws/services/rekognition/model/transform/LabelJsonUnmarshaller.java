@@ -41,6 +41,15 @@ class LabelJsonUnmarshaller implements Unmarshaller<Label, JsonUnmarshallerConte
             } else if (name.equals("Confidence")) {
                 label.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Instances")) {
+                label.setInstances(new ListUnmarshaller<Instance>(InstanceJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Parents")) {
+                label.setParents(new ListUnmarshaller<Parent>(ParentJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -55,11 +55,6 @@ class VideoMetadataJsonMarshaller {
             jsonWriter.name("FrameWidth");
             jsonWriter.value(frameWidth);
         }
-        if (videoMetadata.getRotation() != null) {
-            Integer rotation = videoMetadata.getRotation();
-            jsonWriter.name("Rotation");
-            jsonWriter.value(rotation);
-        }
         jsonWriter.endObject();
     }
 

@@ -19,35 +19,37 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about where the text detected by <a>DetectText</a> is located on
- * an image.
+ * An instance of a label returned by Amazon Rekognition Image
+ * (<a>DetectLabels</a>) or by Amazon Rekognition Video
+ * (<a>GetLabelDetection</a>).
  * </p>
  */
-public class Geometry implements Serializable {
+public class Instance implements Serializable {
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
-     * the image.
+     * The position of the label instance on the image.
      * </p>
      */
     private BoundingBox boundingBox;
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * The confidence that Amazon Rekognition has in the accuracy of the
+     * bounding box.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 100<br/>
      */
-    private java.util.List<Point> polygon;
+    private Float confidence;
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
-     * the image.
+     * The position of the label instance on the image.
      * </p>
      *
      * @return <p>
-     *         An axis-aligned coarse representation of the detected text's
-     *         location on the image.
+     *         The position of the label instance on the image.
      *         </p>
      */
     public BoundingBox getBoundingBox() {
@@ -56,13 +58,11 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
-     * the image.
+     * The position of the label instance on the image.
      * </p>
      *
      * @param boundingBox <p>
-     *            An axis-aligned coarse representation of the detected text's
-     *            location on the image.
+     *            The position of the label instance on the image.
      *            </p>
      */
     public void setBoundingBox(BoundingBox boundingBox) {
@@ -71,100 +71,80 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
-     * the image.
+     * The position of the label instance on the image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param boundingBox <p>
-     *            An axis-aligned coarse representation of the detected text's
-     *            location on the image.
+     *            The position of the label instance on the image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public Geometry withBoundingBox(BoundingBox boundingBox) {
+    public Instance withBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
         return this;
     }
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * The confidence that Amazon Rekognition has in the accuracy of the
+     * bounding box.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         Within the bounding box, a fine-grained polygon around the
-     *         detected text.
+     *         The confidence that Amazon Rekognition has in the accuracy of the
+     *         bounding box.
      *         </p>
      */
-    public java.util.List<Point> getPolygon() {
-        return polygon;
+    public Float getConfidence() {
+        return confidence;
     }
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
-     * </p>
-     *
-     * @param polygon <p>
-     *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
-     *            </p>
-     */
-    public void setPolygon(java.util.Collection<Point> polygon) {
-        if (polygon == null) {
-            this.polygon = null;
-            return;
-        }
-
-        this.polygon = new java.util.ArrayList<Point>(polygon);
-    }
-
-    /**
-     * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * The confidence that Amazon Rekognition has in the accuracy of the
+     * bounding box.
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 100<br/>
      *
-     * @param polygon <p>
-     *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
+     * @param confidence <p>
+     *            The confidence that Amazon Rekognition has in the accuracy of
+     *            the bounding box.
      *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
      */
-    public Geometry withPolygon(Point... polygon) {
-        if (getPolygon() == null) {
-            this.polygon = new java.util.ArrayList<Point>(polygon.length);
-        }
-        for (Point value : polygon) {
-            this.polygon.add(value);
-        }
-        return this;
+    public void setConfidence(Float confidence) {
+        this.confidence = confidence;
     }
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * The confidence that Amazon Rekognition has in the accuracy of the
+     * bounding box.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 100<br/>
      *
-     * @param polygon <p>
-     *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
+     * @param confidence <p>
+     *            The confidence that Amazon Rekognition has in the accuracy of
+     *            the bounding box.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public Geometry withPolygon(java.util.Collection<Point> polygon) {
-        setPolygon(polygon);
+    public Instance withConfidence(Float confidence) {
+        this.confidence = confidence;
         return this;
     }
 
@@ -181,8 +161,8 @@ public class Geometry implements Serializable {
         sb.append("{");
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
-        if (getPolygon() != null)
-            sb.append("Polygon: " + getPolygon());
+        if (getConfidence() != null)
+            sb.append("Confidence: " + getConfidence());
         sb.append("}");
         return sb.toString();
     }
@@ -194,7 +174,7 @@ public class Geometry implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
-        hashCode = prime * hashCode + ((getPolygon() == null) ? 0 : getPolygon().hashCode());
+        hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
         return hashCode;
     }
 
@@ -205,18 +185,19 @@ public class Geometry implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof Geometry == false)
+        if (obj instanceof Instance == false)
             return false;
-        Geometry other = (Geometry) obj;
+        Instance other = (Instance) obj;
 
         if (other.getBoundingBox() == null ^ this.getBoundingBox() == null)
             return false;
         if (other.getBoundingBox() != null
                 && other.getBoundingBox().equals(this.getBoundingBox()) == false)
             return false;
-        if (other.getPolygon() == null ^ this.getPolygon() == null)
+        if (other.getConfidence() == null ^ this.getConfidence() == null)
             return false;
-        if (other.getPolygon() != null && other.getPolygon().equals(this.getPolygon()) == false)
+        if (other.getConfidence() != null
+                && other.getConfidence().equals(this.getConfidence()) == false)
             return false;
         return true;
     }

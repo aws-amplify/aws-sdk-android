@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Input face recognition parameters for an Amazon Rekognition stream processor.
- * <code>FaceRecognitionSettings</code> is a request parameter for .
+ * <code>FaceRecognitionSettings</code> is a request parameter for
+ * <a>CreateStreamProcessor</a>.
  * </p>
  */
 public class FaceSearchSettings implements Serializable {

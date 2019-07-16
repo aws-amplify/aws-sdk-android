@@ -35,6 +35,28 @@ class LabelJsonMarshaller {
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
+        if (label.getInstances() != null) {
+            java.util.List<Instance> instances = label.getInstances();
+            jsonWriter.name("Instances");
+            jsonWriter.beginArray();
+            for (Instance instancesItem : instances) {
+                if (instancesItem != null) {
+                    InstanceJsonMarshaller.getInstance().marshall(instancesItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (label.getParents() != null) {
+            java.util.List<Parent> parents = label.getParents();
+            jsonWriter.name("Parents");
+            jsonWriter.beginArray();
+            for (Parent parentsItem : parents) {
+                if (parentsItem != null) {
+                    ParentJsonMarshaller.getInstance().marshall(parentsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

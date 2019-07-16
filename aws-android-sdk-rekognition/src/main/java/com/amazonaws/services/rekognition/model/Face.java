@@ -76,14 +76,6 @@ public class Face implements Serializable {
     private Float confidence;
 
     /**
-     * The new value for the associationScore property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
-     */
-    private Float associationScore;
-
-    /**
      * <p>
      * Unique identifier that Amazon Rekognition assigns to the face.
      * </p>
@@ -365,50 +357,6 @@ public class Face implements Serializable {
     }
 
     /**
-     * Returns the value of the associationScore property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
-     *
-     * @return The value of the associationScore property for this object.
-     */
-    public Float getAssociationScore() {
-        return associationScore;
-    }
-
-    /**
-     * Sets the value of associationScore
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
-     *
-     * @param associationScore The new value for the associationScore property
-     *            for this object.
-     */
-    public void setAssociationScore(Float associationScore) {
-        this.associationScore = associationScore;
-    }
-
-    /**
-     * Sets the value of the associationScore property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
-     *
-     * @param associationScore The new value for the associationScore property
-     *            for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Face withAssociationScore(Float associationScore) {
-        this.associationScore = associationScore;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -428,9 +376,7 @@ public class Face implements Serializable {
         if (getExternalImageId() != null)
             sb.append("ExternalImageId: " + getExternalImageId() + ",");
         if (getConfidence() != null)
-            sb.append("Confidence: " + getConfidence() + ",");
-        if (getAssociationScore() != null)
-            sb.append("AssociationScore: " + getAssociationScore());
+            sb.append("Confidence: " + getConfidence());
         sb.append("}");
         return sb.toString();
     }
@@ -447,8 +393,6 @@ public class Face implements Serializable {
         hashCode = prime * hashCode
                 + ((getExternalImageId() == null) ? 0 : getExternalImageId().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
-        hashCode = prime * hashCode
-                + ((getAssociationScore() == null) ? 0 : getAssociationScore().hashCode());
         return hashCode;
     }
 
@@ -485,11 +429,6 @@ public class Face implements Serializable {
             return false;
         if (other.getConfidence() != null
                 && other.getConfidence().equals(this.getConfidence()) == false)
-            return false;
-        if (other.getAssociationScore() == null ^ this.getAssociationScore() == null)
-            return false;
-        if (other.getAssociationScore() != null
-                && other.getAssociationScore().equals(this.getAssociationScore()) == false)
             return false;
         return true;
     }
