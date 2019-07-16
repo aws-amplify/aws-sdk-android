@@ -42,6 +42,7 @@
     <module>aws-android-sdk-cognitoidentityprovider</module>
     <module>aws-android-sdk-cognitoauth</module>
     <module>aws-android-sdk-comprehend</module>
+    <module>aws-android-sdk-connect</module>
     <module>aws-android-sdk-core</module>
     <module>aws-android-sdk-ddb-mapper</module>
     <module>aws-android-sdk-ddb-document</module>

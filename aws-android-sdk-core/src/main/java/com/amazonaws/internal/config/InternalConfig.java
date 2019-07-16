@@ -127,6 +127,7 @@ public class InternalConfig {
         //signer uses the servicename 'sagemaker' for Sagemaker Runtime
         ret.put("AmazonSageMakerRuntimeClient", new HttpClientConfig("sagemaker"));
         ret.put("AmazonTextractClient", new HttpClientConfig("textract"));
+        ret.put("AmazonConnectClient", new HttpClientConfig("connect"));
         return ret;
     }
 
