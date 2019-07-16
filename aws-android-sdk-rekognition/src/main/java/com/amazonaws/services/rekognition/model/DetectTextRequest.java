@@ -31,10 +31,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * image must be either a .png or .jpeg formatted file.
  * </p>
  * <p>
- * The <code>DetectText</code> operation returns text in an array of elements,
- * <code>TextDetections</code>. Each <code>TextDetection</code> element provides
- * information about a single word or line of text that was detected in the
- * image.
+ * The <code>DetectText</code> operation returns text in an array of
+ * <a>TextDetection</a> elements, <code>TextDetections</code>. Each
+ * <code>TextDetection</code> element provides information about a single word
+ * or line of text that was detected in the image.
  * </p>
  * <p>
  * A word is one or more ISO basic latin script characters that are not
@@ -56,7 +56,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * or a word, use the <code>TextDetection</code> object <code>Type</code> field.
  * </p>
  * <p>
- * To be detected, text must be within +/- 30 degrees orientation of the
+ * To be detected, text must be within +/- 90 degrees orientation of the
  * horizontal axis.
  * </p>
  * <p>
@@ -71,6 +71,12 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
      * use the AWS CLI to call Amazon Rekognition operations, you can't pass
      * image bytes.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      */
     private Image image;
 
@@ -80,11 +86,23 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
      * use the AWS CLI to call Amazon Rekognition operations, you can't pass
      * image bytes.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @return <p>
      *         The input image as base64-encoded bytes or an Amazon S3 object.
      *         If you use the AWS CLI to call Amazon Rekognition operations, you
      *         can't pass image bytes.
+     *         </p>
+     *         <p>
+     *         If you are using an AWS SDK to call Amazon Rekognition, you might
+     *         not need to base64-encode image bytes passed using the
+     *         <code>Bytes</code> field. For more information, see Images in the
+     *         Amazon Rekognition developer guide.
      *         </p>
      */
     public Image getImage() {
@@ -97,11 +115,23 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
      * use the AWS CLI to call Amazon Rekognition operations, you can't pass
      * image bytes.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @param image <p>
      *            The input image as base64-encoded bytes or an Amazon S3
      *            object. If you use the AWS CLI to call Amazon Rekognition
      *            operations, you can't pass image bytes.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      */
     public void setImage(Image image) {
@@ -115,6 +145,12 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
      * image bytes.
      * </p>
      * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -122,6 +158,12 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
      *            The input image as base64-encoded bytes or an Amazon S3
      *            object. If you use the AWS CLI to call Amazon Rekognition
      *            operations, you can't pass image bytes.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

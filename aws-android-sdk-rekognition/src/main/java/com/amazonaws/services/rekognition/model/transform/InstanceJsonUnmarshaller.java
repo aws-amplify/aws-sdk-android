@@ -21,48 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Face
+ * JSON unmarshaller for POJO Instance
  */
-class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext> {
+class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshallerContext> {
 
-    public Face unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public Instance unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Face face = new Face();
+        Instance instance = new Instance();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("FaceId")) {
-                face.setFaceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("BoundingBox")) {
-                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ImageId")) {
-                face.setImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ExternalImageId")) {
-                face.setExternalImageId(StringJsonUnmarshaller.getInstance()
+            if (name.equals("BoundingBox")) {
+                instance.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                face.setConfidence(FloatJsonUnmarshaller.getInstance()
+                instance.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return face;
+        return instance;
     }
 
-    private static FaceJsonUnmarshaller instance;
+    private static InstanceJsonUnmarshaller instance;
 
-    public static FaceJsonUnmarshaller getInstance() {
+    public static InstanceJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new FaceJsonUnmarshaller();
+            instance = new InstanceJsonUnmarshaller();
         return instance;
     }
 }

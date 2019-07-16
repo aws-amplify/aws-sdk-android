@@ -21,48 +21,41 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Face
+ * JSON unmarshaller for POJO UnindexedFace
  */
-class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext> {
+class UnindexedFaceJsonUnmarshaller implements Unmarshaller<UnindexedFace, JsonUnmarshallerContext> {
 
-    public Face unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public UnindexedFace unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Face face = new Face();
+        UnindexedFace unindexedFace = new UnindexedFace();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("FaceId")) {
-                face.setFaceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("BoundingBox")) {
-                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ImageId")) {
-                face.setImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ExternalImageId")) {
-                face.setExternalImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                face.setConfidence(FloatJsonUnmarshaller.getInstance()
+            if (name.equals("Reasons")) {
+                unindexedFace.setReasons(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("FaceDetail")) {
+                unindexedFace.setFaceDetail(FaceDetailJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return face;
+        return unindexedFace;
     }
 
-    private static FaceJsonUnmarshaller instance;
+    private static UnindexedFaceJsonUnmarshaller instance;
 
-    public static FaceJsonUnmarshaller getInstance() {
+    public static UnindexedFaceJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new FaceJsonUnmarshaller();
+            instance = new UnindexedFaceJsonUnmarshaller();
         return instance;
     }
 }

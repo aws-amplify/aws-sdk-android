@@ -19,45 +19,30 @@ import com.amazonaws.services.rekognition.model.*;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO Face
+ * JSON marshaller for POJO Instance
  */
-class FaceJsonMarshaller {
+class InstanceJsonMarshaller {
 
-    public void marshall(Face face, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(Instance instance, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (face.getFaceId() != null) {
-            String faceId = face.getFaceId();
-            jsonWriter.name("FaceId");
-            jsonWriter.value(faceId);
-        }
-        if (face.getBoundingBox() != null) {
-            BoundingBox boundingBox = face.getBoundingBox();
+        if (instance.getBoundingBox() != null) {
+            BoundingBox boundingBox = instance.getBoundingBox();
             jsonWriter.name("BoundingBox");
             BoundingBoxJsonMarshaller.getInstance().marshall(boundingBox, jsonWriter);
         }
-        if (face.getImageId() != null) {
-            String imageId = face.getImageId();
-            jsonWriter.name("ImageId");
-            jsonWriter.value(imageId);
-        }
-        if (face.getExternalImageId() != null) {
-            String externalImageId = face.getExternalImageId();
-            jsonWriter.name("ExternalImageId");
-            jsonWriter.value(externalImageId);
-        }
-        if (face.getConfidence() != null) {
-            Float confidence = face.getConfidence();
+        if (instance.getConfidence() != null) {
+            Float confidence = instance.getConfidence();
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
         jsonWriter.endObject();
     }
 
-    private static FaceJsonMarshaller instance;
+    private static InstanceJsonMarshaller instance;
 
-    public static FaceJsonMarshaller getInstance() {
+    public static InstanceJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new FaceJsonMarshaller();
+            instance = new InstanceJsonMarshaller();
         return instance;
     }
 }

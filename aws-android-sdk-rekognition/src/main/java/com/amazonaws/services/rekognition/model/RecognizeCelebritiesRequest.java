@@ -29,28 +29,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>RecognizeCelebrities</code> returns the 100 largest faces in the image.
  * It lists recognized celebrities in the <code>CelebrityFaces</code> array and
  * unrecognized faces in the <code>UnrecognizedFaces</code> array.
- * <code>RecognizeCelebrities</code> doesn't return celebrities whose faces are
- * not amongst the largest 100 faces in the image.
+ * <code>RecognizeCelebrities</code> doesn't return celebrities whose faces
+ * aren't among the largest 100 faces in the image.
  * </p>
  * <p>
- * For each celebrity recognized, the <code>RecognizeCelebrities</code> returns
- * a <code>Celebrity</code> object. The <code>Celebrity</code> object contains
- * the celebrity name, ID, URL links to additional information, match
- * confidence, and a <code>ComparedFace</code> object that you can use to locate
- * the celebrity's face on the image.
+ * For each celebrity recognized, <code>RecognizeCelebrities</code> returns a
+ * <code>Celebrity</code> object. The <code>Celebrity</code> object contains the
+ * celebrity name, ID, URL links to additional information, match confidence,
+ * and a <code>ComparedFace</code> object that you can use to locate the
+ * celebrity's face on the image.
  * </p>
  * <p>
- * Rekognition does not retain information about which images a celebrity has
- * been recognized in. Your application must store this information and use the
- * <code>Celebrity</code> ID property as a unique identifier for the celebrity.
- * If you don't store the celebrity name or additional information URLs returned
- * by <code>RecognizeCelebrities</code>, you will need the ID to identify the
- * celebrity in a call to the operation.
+ * Amazon Rekognition doesn't retain information about which images a celebrity
+ * has been recognized in. Your application must store this information and use
+ * the <code>Celebrity</code> ID property as a unique identifier for the
+ * celebrity. If you don't store the celebrity name or additional information
+ * URLs returned by <code>RecognizeCelebrities</code>, you will need the ID to
+ * identify the celebrity in a call to the <a>GetCelebrityInfo</a> operation.
  * </p>
  * <p>
- * You pass the imput image either as base64-encoded image bytes or as a
- * reference to an image in an Amazon S3 bucket. If you use the Amazon CLI to
- * call Amazon Rekognition operations, passing image bytes is not supported. The
+ * You pass the input image either as base64-encoded image bytes or as a
+ * reference to an image in an Amazon S3 bucket. If you use the AWS CLI to call
+ * Amazon Rekognition operations, passing image bytes is not supported. The
  * image must be either a PNG or JPEG formatted file.
  * </p>
  * <p>
@@ -69,6 +69,12 @@ public class RecognizeCelebritiesRequest extends AmazonWebServiceRequest impleme
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      */
     private Image image;
 
@@ -78,11 +84,23 @@ public class RecognizeCelebritiesRequest extends AmazonWebServiceRequest impleme
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @return <p>
      *         The input image as base64-encoded bytes or an S3 object. If you
      *         use the AWS CLI to call Amazon Rekognition operations, passing
      *         base64-encoded image bytes is not supported.
+     *         </p>
+     *         <p>
+     *         If you are using an AWS SDK to call Amazon Rekognition, you might
+     *         not need to base64-encode image bytes passed using the
+     *         <code>Bytes</code> field. For more information, see Images in the
+     *         Amazon Rekognition developer guide.
      *         </p>
      */
     public Image getImage() {
@@ -95,11 +113,23 @@ public class RecognizeCelebritiesRequest extends AmazonWebServiceRequest impleme
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @param image <p>
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
      *            passing base64-encoded image bytes is not supported.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      */
     public void setImage(Image image) {
@@ -113,6 +143,12 @@ public class RecognizeCelebritiesRequest extends AmazonWebServiceRequest impleme
      * image bytes is not supported.
      * </p>
      * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -120,6 +156,12 @@ public class RecognizeCelebritiesRequest extends AmazonWebServiceRequest impleme
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
      *            passing base64-encoded image bytes is not supported.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

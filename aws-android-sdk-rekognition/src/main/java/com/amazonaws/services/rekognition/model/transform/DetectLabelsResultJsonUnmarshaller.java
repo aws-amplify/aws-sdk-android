@@ -41,6 +41,9 @@ public class DetectLabelsResultJsonUnmarshaller implements
             } else if (name.equals("OrientationCorrection")) {
                 detectLabelsResult.setOrientationCorrection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LabelModelVersion")) {
+                detectLabelsResult.setLabelModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

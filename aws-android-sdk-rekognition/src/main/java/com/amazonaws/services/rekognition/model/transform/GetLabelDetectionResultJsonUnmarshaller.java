@@ -51,18 +51,9 @@ public class GetLabelDetectionResultJsonUnmarshaller implements
                         LabelDetectionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("BillableDurationSeconds")) {
-                getLabelDetectionResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
+            } else if (name.equals("LabelModelVersion")) {
+                getLabelDetectionResult.setLabelModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("ErrorCode")) {
-                getLabelDetectionResult.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Warnings")) {
-                getLabelDetectionResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
