@@ -86,6 +86,16 @@ public class IndexFacesRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (indexFacesRequest.getMaxFaces() != null) {
+                Integer maxFaces = indexFacesRequest.getMaxFaces();
+                jsonWriter.name("MaxFaces");
+                jsonWriter.value(maxFaces);
+            }
+            if (indexFacesRequest.getQualityFilter() != null) {
+                String qualityFilter = indexFacesRequest.getQualityFilter();
+                jsonWriter.name("QualityFilter");
+                jsonWriter.value(qualityFilter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

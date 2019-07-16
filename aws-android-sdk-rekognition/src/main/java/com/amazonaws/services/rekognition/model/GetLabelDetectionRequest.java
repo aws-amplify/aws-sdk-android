@@ -22,18 +22,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets the label detection results of a Amazon Rekognition Video analysis
- * started by .
+ * started by <a>StartLabelDetection</a>.
  * </p>
  * <p>
- * The label detection operation is started by a call to which returns a job
- * identifier (<code>JobId</code>). When the label detection operation finishes,
- * Amazon Rekognition publishes a completion status to the Amazon Simple
- * Notification Service topic registered in the initial call to
- * <code>StartlabelDetection</code>. To get the results of the label detection
- * operation, first check that the status value published to the Amazon SNS
- * topic is <code>SUCCEEDED</code>. If so, call and pass the job identifier (
- * <code>JobId</code>) from the initial call to <code>StartLabelDetection</code>
- * .
+ * The label detection operation is started by a call to
+ * <a>StartLabelDetection</a> which returns a job identifier (<code>JobId</code>
+ * ). When the label detection operation finishes, Amazon Rekognition publishes
+ * a completion status to the Amazon Simple Notification Service topic
+ * registered in the initial call to <code>StartlabelDetection</code>. To get
+ * the results of the label detection operation, first check that the status
+ * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
+ * call <a>GetLabelDetection</a> and pass the job identifier (<code>JobId</code>
+ * ) from the initial call to <code>StartLabelDetection</code>.
  * </p>
  * <p>
  * <code>GetLabelDetection</code> returns an array of detected labels (
@@ -45,6 +45,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The labels returned include the label name, the percentage confidence in the
  * accuracy of the detected label, and the time the label was detected in the
  * video.
+ * </p>
+ * <p>
+ * The returned labels also include bounding box information for common objects,
+ * a hierarchical taxonomy of detected labels, and the version of the label
+ * model used for detection.
  * </p>
  * <p>
  * Use MaxResults parameter to limit the number of labels returned. If there are

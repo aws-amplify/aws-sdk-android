@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about a celebrity recognized by the operation.
+ * Provides information about a celebrity recognized by the
+ * <a>RecognizeCelebrities</a> operation.
  * </p>
  */
 public class Celebrity implements Serializable {
@@ -59,8 +60,8 @@ public class Celebrity implements Serializable {
 
     /**
      * <p>
-     * The confidence, in percentage, that Rekognition has that the recognized
-     * face is the celebrity.
+     * The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -310,16 +311,16 @@ public class Celebrity implements Serializable {
 
     /**
      * <p>
-     * The confidence, in percentage, that Rekognition has that the recognized
-     * face is the celebrity.
+     * The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         The confidence, in percentage, that Rekognition has that the
-     *         recognized face is the celebrity.
+     *         The confidence, in percentage, that Amazon Rekognition has that
+     *         the recognized face is the celebrity.
      *         </p>
      */
     public Float getMatchConfidence() {
@@ -328,16 +329,16 @@ public class Celebrity implements Serializable {
 
     /**
      * <p>
-     * The confidence, in percentage, that Rekognition has that the recognized
-     * face is the celebrity.
+     * The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @param matchConfidence <p>
-     *            The confidence, in percentage, that Rekognition has that the
-     *            recognized face is the celebrity.
+     *            The confidence, in percentage, that Amazon Rekognition has
+     *            that the recognized face is the celebrity.
      *            </p>
      */
     public void setMatchConfidence(Float matchConfidence) {
@@ -346,8 +347,8 @@ public class Celebrity implements Serializable {
 
     /**
      * <p>
-     * The confidence, in percentage, that Rekognition has that the recognized
-     * face is the celebrity.
+     * The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -357,8 +358,8 @@ public class Celebrity implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      *
      * @param matchConfidence <p>
-     *            The confidence, in percentage, that Rekognition has that the
-     *            recognized face is the celebrity.
+     *            The confidence, in percentage, that Amazon Rekognition has
+     *            that the recognized face is the celebrity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

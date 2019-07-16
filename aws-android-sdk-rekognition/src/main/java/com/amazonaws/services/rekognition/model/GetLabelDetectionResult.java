@@ -67,22 +67,12 @@ public class GetLabelDetectionResult implements Serializable {
     private java.util.List<LabelDetection> labels;
 
     /**
-     * The new value for the billableDurationSeconds property for this object.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * Version number of the label detection model that was used to detect
+     * labels.
+     * </p>
      */
-    private Integer billableDurationSeconds;
-
-    /**
-     * The new value for the errorCode property for this object.
-     */
-    private String errorCode;
-
-    /**
-     * The new value for the warnings property for this object.
-     */
-    private java.util.List<Warning> warnings;
+    private String labelModelVersion;
 
     /**
      * <p>
@@ -448,141 +438,53 @@ public class GetLabelDetectionResult implements Serializable {
     }
 
     /**
-     * Returns the value of the billableDurationSeconds property for this
-     * object.
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * Version number of the label detection model that was used to detect
+     * labels.
+     * </p>
      *
-     * @return The value of the billableDurationSeconds property for this
-     *         object.
+     * @return <p>
+     *         Version number of the label detection model that was used to
+     *         detect labels.
+     *         </p>
      */
-    public Integer getBillableDurationSeconds() {
-        return billableDurationSeconds;
+    public String getLabelModelVersion() {
+        return labelModelVersion;
     }
 
     /**
-     * Sets the value of billableDurationSeconds
      * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * Version number of the label detection model that was used to detect
+     * labels.
+     * </p>
      *
-     * @param billableDurationSeconds The new value for the
-     *            billableDurationSeconds property for this object.
+     * @param labelModelVersion <p>
+     *            Version number of the label detection model that was used to
+     *            detect labels.
+     *            </p>
      */
-    public void setBillableDurationSeconds(Integer billableDurationSeconds) {
-        this.billableDurationSeconds = billableDurationSeconds;
+    public void setLabelModelVersion(String labelModelVersion) {
+        this.labelModelVersion = labelModelVersion;
     }
 
     /**
-     * Sets the value of the billableDurationSeconds property for this object.
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
-     *
-     * @param billableDurationSeconds The new value for the
-     *            billableDurationSeconds property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetLabelDetectionResult withBillableDurationSeconds(Integer billableDurationSeconds) {
-        this.billableDurationSeconds = billableDurationSeconds;
-        return this;
-    }
-
-    /**
-     * Returns the value of the errorCode property for this object.
-     *
-     * @return The value of the errorCode property for this object.
-     */
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    /**
-     * Sets the value of errorCode
-     *
-     * @param errorCode The new value for the errorCode property for this
-     *            object.
-     */
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    /**
-     * Sets the value of the errorCode property for this object.
+     * Version number of the label detection model that was used to detect
+     * labels.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param errorCode The new value for the errorCode property for this
-     *            object.
+     * @param labelModelVersion <p>
+     *            Version number of the label detection model that was used to
+     *            detect labels.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetLabelDetectionResult withErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-        return this;
-    }
-
-    /**
-     * Returns the value of the warnings property for this object.
-     *
-     * @return The value of the warnings property for this object.
-     */
-    public java.util.List<Warning> getWarnings() {
-        return warnings;
-    }
-
-    /**
-     * Sets the value of warnings
-     *
-     * @param warnings The new value for the warnings property for this object.
-     */
-    public void setWarnings(java.util.Collection<Warning> warnings) {
-        if (warnings == null) {
-            this.warnings = null;
-            return;
-        }
-
-        this.warnings = new java.util.ArrayList<Warning>(warnings);
-    }
-
-    /**
-     * Sets the value of the warnings property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param warnings The new value for the warnings property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetLabelDetectionResult withWarnings(Warning... warnings) {
-        if (getWarnings() == null) {
-            this.warnings = new java.util.ArrayList<Warning>(warnings.length);
-        }
-        for (Warning value : warnings) {
-            this.warnings.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * Sets the value of the warnings property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param warnings The new value for the warnings property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetLabelDetectionResult withWarnings(java.util.Collection<Warning> warnings) {
-        setWarnings(warnings);
+    public GetLabelDetectionResult withLabelModelVersion(String labelModelVersion) {
+        this.labelModelVersion = labelModelVersion;
         return this;
     }
 
@@ -607,12 +509,8 @@ public class GetLabelDetectionResult implements Serializable {
             sb.append("NextToken: " + getNextToken() + ",");
         if (getLabels() != null)
             sb.append("Labels: " + getLabels() + ",");
-        if (getBillableDurationSeconds() != null)
-            sb.append("BillableDurationSeconds: " + getBillableDurationSeconds() + ",");
-        if (getErrorCode() != null)
-            sb.append("ErrorCode: " + getErrorCode() + ",");
-        if (getWarnings() != null)
-            sb.append("Warnings: " + getWarnings());
+        if (getLabelModelVersion() != null)
+            sb.append("LabelModelVersion: " + getLabelModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -629,12 +527,8 @@ public class GetLabelDetectionResult implements Serializable {
                 + ((getVideoMetadata() == null) ? 0 : getVideoMetadata().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getLabels() == null) ? 0 : getLabels().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getBillableDurationSeconds() == null) ? 0 : getBillableDurationSeconds()
-                        .hashCode());
-        hashCode = prime * hashCode + ((getErrorCode() == null) ? 0 : getErrorCode().hashCode());
-        hashCode = prime * hashCode + ((getWarnings() == null) ? 0 : getWarnings().hashCode());
+        hashCode = prime * hashCode
+                + ((getLabelModelVersion() == null) ? 0 : getLabelModelVersion().hashCode());
         return hashCode;
     }
 
@@ -673,19 +567,10 @@ public class GetLabelDetectionResult implements Serializable {
             return false;
         if (other.getLabels() != null && other.getLabels().equals(this.getLabels()) == false)
             return false;
-        if (other.getBillableDurationSeconds() == null ^ this.getBillableDurationSeconds() == null)
+        if (other.getLabelModelVersion() == null ^ this.getLabelModelVersion() == null)
             return false;
-        if (other.getBillableDurationSeconds() != null
-                && other.getBillableDurationSeconds().equals(this.getBillableDurationSeconds()) == false)
-            return false;
-        if (other.getErrorCode() == null ^ this.getErrorCode() == null)
-            return false;
-        if (other.getErrorCode() != null
-                && other.getErrorCode().equals(this.getErrorCode()) == false)
-            return false;
-        if (other.getWarnings() == null ^ this.getWarnings() == null)
-            return false;
-        if (other.getWarnings() != null && other.getWarnings().equals(this.getWarnings()) == false)
+        if (other.getLabelModelVersion() != null
+                && other.getLabelModelVersion().equals(this.getLabelModelVersion()) == false)
             return false;
         return true;
     }

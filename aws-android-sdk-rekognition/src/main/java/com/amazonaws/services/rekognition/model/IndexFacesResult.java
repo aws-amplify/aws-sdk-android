@@ -29,22 +29,43 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -53,11 +74,22 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * The version number of the face detection model that's associated with the
+     * input collection (<code>CollectionId</code>).
      * </p>
      */
     private String faceModelVersion;
+
+    /**
+     * <p>
+     * An array of faces that were detected in the image but weren't indexed.
+     * They weren't indexed because the quality filter identified them as low
+     * quality, or the <code>MaxFaces</code> request parameter filtered them
+     * out. To use the quality filter, you specify the
+     * <code>QualityFilter</code> request parameter.
+     * </p>
+     */
+    private java.util.List<UnindexedFace> unindexedFaces;
 
     /**
      * <p>
@@ -151,44 +183,87 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @return <p>
-     *         The orientation of the input image (counterclockwise direction).
-     *         If your application displays the image, you can use this value to
-     *         correct image orientation. The bounding box coordinates returned
-     *         in <code>FaceRecords</code> represent face locations before the
-     *         image orientation is corrected.
+     *         If your collection is associated with a face detection model
+     *         that's later than version 3.0, the value of
+     *         <code>OrientationCorrection</code> is always null and no
+     *         orientation information is returned.
      *         </p>
-     *         <note>
      *         <p>
-     *         If the input image is in jpeg format, it might contain
-     *         exchangeable image (Exif) metadata. If so, and the Exif metadata
-     *         populates the orientation field, the value of
-     *         <code>OrientationCorrection</code> is null and the bounding box
-     *         coordinates in <code>FaceRecords</code> represent face locations
-     *         after Exif metadata is used to correct the image orientation.
-     *         Images in .png format don't contain Exif metadata.
+     *         If your collection is associated with a face detection model
+     *         that's version 3.0 or earlier, the following applies:
      *         </p>
-     *         </note>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         If the input image is in .jpeg format, it might contain
+     *         exchangeable image file format (Exif) metadata that includes the
+     *         image's orientation. Amazon Rekognition uses this orientation
+     *         information to perform image correction - the bounding box
+     *         coordinates are translated to represent object locations after
+     *         the orientation information in the Exif metadata is used to
+     *         correct the image orientation. Images in .png format don't
+     *         contain Exif metadata. The value of
+     *         <code>OrientationCorrection</code> is null.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If the image doesn't contain orientation information in its Exif
+     *         metadata, Amazon Rekognition returns an estimated orientation
+     *         (ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition
+     *         doesn’t perform image correction for images. The bounding box
+     *         coordinates aren't translated and represent the object locations
+     *         before the image is rotated.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         Bounding box information is returned in the
+     *         <code>FaceRecords</code> array. You can get the version of the
+     *         face detection model by calling <a>DescribeCollection</a>.
+     *         </p>
      * @see OrientationCorrection
      */
     public String getOrientationCorrection() {
@@ -197,45 +272,87 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The orientation of the input image (counterclockwise
-     *            direction). If your application displays the image, you can
-     *            use this value to correct image orientation. The bounding box
-     *            coordinates returned in <code>FaceRecords</code> represent
-     *            face locations before the image orientation is corrected.
+     *            If your collection is associated with a face detection model
+     *            that's later than version 3.0, the value of
+     *            <code>OrientationCorrection</code> is always null and no
+     *            orientation information is returned.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the input image is in jpeg format, it might contain
-     *            exchangeable image (Exif) metadata. If so, and the Exif
-     *            metadata populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the bounding
-     *            box coordinates in <code>FaceRecords</code> represent face
-     *            locations after Exif metadata is used to correct the image
-     *            orientation. Images in .png format don't contain Exif
-     *            metadata.
+     *            If your collection is associated with a face detection model
+     *            that's version 3.0 or earlier, the following applies:
      *            </p>
-     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction - the
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata. The value of
+     *            <code>OrientationCorrection</code> is null.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the image doesn't contain orientation information in its
+     *            Exif metadata, Amazon Rekognition returns an estimated
+     *            orientation (ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270).
+     *            Amazon Rekognition doesn’t perform image correction for
+     *            images. The bounding box coordinates aren't translated and
+     *            represent the object locations before the image is rotated.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Bounding box information is returned in the
+     *            <code>FaceRecords</code> array. You can get the version of the
+     *            face detection model by calling <a>DescribeCollection</a>.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(String orientationCorrection) {
@@ -244,22 +361,43 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -268,24 +406,45 @@ public class IndexFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The orientation of the input image (counterclockwise
-     *            direction). If your application displays the image, you can
-     *            use this value to correct image orientation. The bounding box
-     *            coordinates returned in <code>FaceRecords</code> represent
-     *            face locations before the image orientation is corrected.
+     *            If your collection is associated with a face detection model
+     *            that's later than version 3.0, the value of
+     *            <code>OrientationCorrection</code> is always null and no
+     *            orientation information is returned.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the input image is in jpeg format, it might contain
-     *            exchangeable image (Exif) metadata. If so, and the Exif
-     *            metadata populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the bounding
-     *            box coordinates in <code>FaceRecords</code> represent face
-     *            locations after Exif metadata is used to correct the image
-     *            orientation. Images in .png format don't contain Exif
-     *            metadata.
+     *            If your collection is associated with a face detection model
+     *            that's version 3.0 or earlier, the following applies:
      *            </p>
-     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction - the
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata. The value of
+     *            <code>OrientationCorrection</code> is null.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the image doesn't contain orientation information in its
+     *            Exif metadata, Amazon Rekognition returns an estimated
+     *            orientation (ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270).
+     *            Amazon Rekognition doesn’t perform image correction for
+     *            images. The bounding box coordinates aren't translated and
+     *            represent the object locations before the image is rotated.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Bounding box information is returned in the
+     *            <code>FaceRecords</code> array. You can get the version of the
+     *            face detection model by calling <a>DescribeCollection</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -297,45 +456,87 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The orientation of the input image (counterclockwise
-     *            direction). If your application displays the image, you can
-     *            use this value to correct image orientation. The bounding box
-     *            coordinates returned in <code>FaceRecords</code> represent
-     *            face locations before the image orientation is corrected.
+     *            If your collection is associated with a face detection model
+     *            that's later than version 3.0, the value of
+     *            <code>OrientationCorrection</code> is always null and no
+     *            orientation information is returned.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the input image is in jpeg format, it might contain
-     *            exchangeable image (Exif) metadata. If so, and the Exif
-     *            metadata populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the bounding
-     *            box coordinates in <code>FaceRecords</code> represent face
-     *            locations after Exif metadata is used to correct the image
-     *            orientation. Images in .png format don't contain Exif
-     *            metadata.
+     *            If your collection is associated with a face detection model
+     *            that's version 3.0 or earlier, the following applies:
      *            </p>
-     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction - the
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata. The value of
+     *            <code>OrientationCorrection</code> is null.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the image doesn't contain orientation information in its
+     *            Exif metadata, Amazon Rekognition returns an estimated
+     *            orientation (ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270).
+     *            Amazon Rekognition doesn’t perform image correction for
+     *            images. The bounding box coordinates aren't translated and
+     *            represent the object locations before the image is rotated.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Bounding box information is returned in the
+     *            <code>FaceRecords</code> array. You can get the version of the
+     *            face detection model by calling <a>DescribeCollection</a>.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(OrientationCorrection orientationCorrection) {
@@ -344,22 +545,43 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the input image (counterclockwise direction). If your
-     * application displays the image, you can use this value to correct image
-     * orientation. The bounding box coordinates returned in
-     * <code>FaceRecords</code> represent face locations before the image
-     * orientation is corrected.
+     * If your collection is associated with a face detection model that's later
+     * than version 3.0, the value of <code>OrientationCorrection</code> is
+     * always null and no orientation information is returned.
      * </p>
-     * <note>
      * <p>
-     * If the input image is in jpeg format, it might contain exchangeable image
-     * (Exif) metadata. If so, and the Exif metadata populates the orientation
-     * field, the value of <code>OrientationCorrection</code> is null and the
-     * bounding box coordinates in <code>FaceRecords</code> represent face
-     * locations after Exif metadata is used to correct the image orientation.
-     * Images in .png format don't contain Exif metadata.
+     * If your collection is associated with a face detection model that's
+     * version 3.0 or earlier, the following applies:
      * </p>
-     * </note>
+     * <ul>
+     * <li>
+     * <p>
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction - the bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata. The value of <code>OrientationCorrection</code> is
+     * null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the image doesn't contain orientation information in its Exif
+     * metadata, Amazon Rekognition returns an estimated orientation (ROTATE_0,
+     * ROTATE_90, ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform
+     * image correction for images. The bounding box coordinates aren't
+     * translated and represent the object locations before the image is
+     * rotated.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Bounding box information is returned in the <code>FaceRecords</code>
+     * array. You can get the version of the face detection model by calling
+     * <a>DescribeCollection</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -368,24 +590,45 @@ public class IndexFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The orientation of the input image (counterclockwise
-     *            direction). If your application displays the image, you can
-     *            use this value to correct image orientation. The bounding box
-     *            coordinates returned in <code>FaceRecords</code> represent
-     *            face locations before the image orientation is corrected.
+     *            If your collection is associated with a face detection model
+     *            that's later than version 3.0, the value of
+     *            <code>OrientationCorrection</code> is always null and no
+     *            orientation information is returned.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the input image is in jpeg format, it might contain
-     *            exchangeable image (Exif) metadata. If so, and the Exif
-     *            metadata populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the bounding
-     *            box coordinates in <code>FaceRecords</code> represent face
-     *            locations after Exif metadata is used to correct the image
-     *            orientation. Images in .png format don't contain Exif
-     *            metadata.
+     *            If your collection is associated with a face detection model
+     *            that's version 3.0 or earlier, the following applies:
      *            </p>
-     *            </note>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction - the
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata. The value of
+     *            <code>OrientationCorrection</code> is null.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the image doesn't contain orientation information in its
+     *            Exif metadata, Amazon Rekognition returns an estimated
+     *            orientation (ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270).
+     *            Amazon Rekognition doesn’t perform image correction for
+     *            images. The bounding box coordinates aren't translated and
+     *            represent the object locations before the image is rotated.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Bounding box information is returned in the
+     *            <code>FaceRecords</code> array. You can get the version of the
+     *            face detection model by calling <a>DescribeCollection</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -397,13 +640,13 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * The version number of the face detection model that's associated with the
+     * input collection (<code>CollectionId</code>).
      * </p>
      *
      * @return <p>
-     *         Version number of the face detection model associated with the
-     *         input collection (<code>CollectionId</code>).
+     *         The version number of the face detection model that's associated
+     *         with the input collection (<code>CollectionId</code>).
      *         </p>
      */
     public String getFaceModelVersion() {
@@ -412,13 +655,14 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * The version number of the face detection model that's associated with the
+     * input collection (<code>CollectionId</code>).
      * </p>
      *
      * @param faceModelVersion <p>
-     *            Version number of the face detection model associated with the
-     *            input collection (<code>CollectionId</code>).
+     *            The version number of the face detection model that's
+     *            associated with the input collection (
+     *            <code>CollectionId</code>).
      *            </p>
      */
     public void setFaceModelVersion(String faceModelVersion) {
@@ -427,22 +671,132 @@ public class IndexFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * The version number of the face detection model that's associated with the
+     * input collection (<code>CollectionId</code>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceModelVersion <p>
-     *            Version number of the face detection model associated with the
-     *            input collection (<code>CollectionId</code>).
+     *            The version number of the face detection model that's
+     *            associated with the input collection (
+     *            <code>CollectionId</code>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public IndexFacesResult withFaceModelVersion(String faceModelVersion) {
         this.faceModelVersion = faceModelVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of faces that were detected in the image but weren't indexed.
+     * They weren't indexed because the quality filter identified them as low
+     * quality, or the <code>MaxFaces</code> request parameter filtered them
+     * out. To use the quality filter, you specify the
+     * <code>QualityFilter</code> request parameter.
+     * </p>
+     *
+     * @return <p>
+     *         An array of faces that were detected in the image but weren't
+     *         indexed. They weren't indexed because the quality filter
+     *         identified them as low quality, or the <code>MaxFaces</code>
+     *         request parameter filtered them out. To use the quality filter,
+     *         you specify the <code>QualityFilter</code> request parameter.
+     *         </p>
+     */
+    public java.util.List<UnindexedFace> getUnindexedFaces() {
+        return unindexedFaces;
+    }
+
+    /**
+     * <p>
+     * An array of faces that were detected in the image but weren't indexed.
+     * They weren't indexed because the quality filter identified them as low
+     * quality, or the <code>MaxFaces</code> request parameter filtered them
+     * out. To use the quality filter, you specify the
+     * <code>QualityFilter</code> request parameter.
+     * </p>
+     *
+     * @param unindexedFaces <p>
+     *            An array of faces that were detected in the image but weren't
+     *            indexed. They weren't indexed because the quality filter
+     *            identified them as low quality, or the <code>MaxFaces</code>
+     *            request parameter filtered them out. To use the quality
+     *            filter, you specify the <code>QualityFilter</code> request
+     *            parameter.
+     *            </p>
+     */
+    public void setUnindexedFaces(java.util.Collection<UnindexedFace> unindexedFaces) {
+        if (unindexedFaces == null) {
+            this.unindexedFaces = null;
+            return;
+        }
+
+        this.unindexedFaces = new java.util.ArrayList<UnindexedFace>(unindexedFaces);
+    }
+
+    /**
+     * <p>
+     * An array of faces that were detected in the image but weren't indexed.
+     * They weren't indexed because the quality filter identified them as low
+     * quality, or the <code>MaxFaces</code> request parameter filtered them
+     * out. To use the quality filter, you specify the
+     * <code>QualityFilter</code> request parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param unindexedFaces <p>
+     *            An array of faces that were detected in the image but weren't
+     *            indexed. They weren't indexed because the quality filter
+     *            identified them as low quality, or the <code>MaxFaces</code>
+     *            request parameter filtered them out. To use the quality
+     *            filter, you specify the <code>QualityFilter</code> request
+     *            parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IndexFacesResult withUnindexedFaces(UnindexedFace... unindexedFaces) {
+        if (getUnindexedFaces() == null) {
+            this.unindexedFaces = new java.util.ArrayList<UnindexedFace>(unindexedFaces.length);
+        }
+        for (UnindexedFace value : unindexedFaces) {
+            this.unindexedFaces.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of faces that were detected in the image but weren't indexed.
+     * They weren't indexed because the quality filter identified them as low
+     * quality, or the <code>MaxFaces</code> request parameter filtered them
+     * out. To use the quality filter, you specify the
+     * <code>QualityFilter</code> request parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param unindexedFaces <p>
+     *            An array of faces that were detected in the image but weren't
+     *            indexed. They weren't indexed because the quality filter
+     *            identified them as low quality, or the <code>MaxFaces</code>
+     *            request parameter filtered them out. To use the quality
+     *            filter, you specify the <code>QualityFilter</code> request
+     *            parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IndexFacesResult withUnindexedFaces(java.util.Collection<UnindexedFace> unindexedFaces) {
+        setUnindexedFaces(unindexedFaces);
         return this;
     }
 
@@ -462,7 +816,9 @@ public class IndexFacesResult implements Serializable {
         if (getOrientationCorrection() != null)
             sb.append("OrientationCorrection: " + getOrientationCorrection() + ",");
         if (getFaceModelVersion() != null)
-            sb.append("FaceModelVersion: " + getFaceModelVersion());
+            sb.append("FaceModelVersion: " + getFaceModelVersion() + ",");
+        if (getUnindexedFaces() != null)
+            sb.append("UnindexedFaces: " + getUnindexedFaces());
         sb.append("}");
         return sb.toString();
     }
@@ -479,6 +835,8 @@ public class IndexFacesResult implements Serializable {
                 + ((getOrientationCorrection() == null) ? 0 : getOrientationCorrection().hashCode());
         hashCode = prime * hashCode
                 + ((getFaceModelVersion() == null) ? 0 : getFaceModelVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getUnindexedFaces() == null) ? 0 : getUnindexedFaces().hashCode());
         return hashCode;
     }
 
@@ -507,6 +865,11 @@ public class IndexFacesResult implements Serializable {
             return false;
         if (other.getFaceModelVersion() != null
                 && other.getFaceModelVersion().equals(this.getFaceModelVersion()) == false)
+            return false;
+        if (other.getUnindexedFaces() == null ^ this.getUnindexedFaces() == null)
+            return false;
+        if (other.getUnindexedFaces() != null
+                && other.getUnindexedFaces().equals(this.getUnindexedFaces()) == false)
             return false;
         return true;
     }

@@ -33,8 +33,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * topic that you specify in <code>NotificationChannel</code>. To get the
  * results of the celebrity recognition analysis, first check that the status
  * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
- * call and pass the job identifier (<code>JobId</code>) from the initial call
- * to <code>StartCelebrityRecognition</code>.
+ * call <a>GetCelebrityRecognition</a> and pass the job identifier (
+ * <code>JobId</code>) from the initial call to
+ * <code>StartCelebrityRecognition</code>.
  * </p>
  * <p>
  * For more information, see Recognizing Celebrities in the Amazon Rekognition
@@ -72,11 +73,6 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
      * </p>
      */
     private NotificationChannel notificationChannel;
-
-    /**
-     * The new value for the enablePersonTracking property for this object.
-     */
-    private Boolean enablePersonTracking;
 
     /**
      * <p>
@@ -278,50 +274,6 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Returns the value of the enablePersonTracking property for this object.
-     *
-     * @return The value of the enablePersonTracking property for this object.
-     */
-    public Boolean isEnablePersonTracking() {
-        return enablePersonTracking;
-    }
-
-    /**
-     * Returns the value of the enablePersonTracking property for this object.
-     *
-     * @return The value of the enablePersonTracking property for this object.
-     */
-    public Boolean getEnablePersonTracking() {
-        return enablePersonTracking;
-    }
-
-    /**
-     * Sets the value of enablePersonTracking
-     *
-     * @param enablePersonTracking The new value for the enablePersonTracking
-     *            property for this object.
-     */
-    public void setEnablePersonTracking(Boolean enablePersonTracking) {
-        this.enablePersonTracking = enablePersonTracking;
-    }
-
-    /**
-     * Sets the value of the enablePersonTracking property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param enablePersonTracking The new value for the enablePersonTracking
-     *            property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public StartCelebrityRecognitionRequest withEnablePersonTracking(Boolean enablePersonTracking) {
-        this.enablePersonTracking = enablePersonTracking;
-        return this;
-    }
-
-    /**
      * <p>
      * Unique identifier you specify to identify the job in the completion
      * status published to the Amazon Simple Notification Service topic.
@@ -404,8 +356,6 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
             sb.append("ClientRequestToken: " + getClientRequestToken() + ",");
         if (getNotificationChannel() != null)
             sb.append("NotificationChannel: " + getNotificationChannel() + ",");
-        if (getEnablePersonTracking() != null)
-            sb.append("EnablePersonTracking: " + getEnablePersonTracking() + ",");
         if (getJobTag() != null)
             sb.append("JobTag: " + getJobTag());
         sb.append("}");
@@ -422,8 +372,6 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
                 + ((getClientRequestToken() == null) ? 0 : getClientRequestToken().hashCode());
         hashCode = prime * hashCode
                 + ((getNotificationChannel() == null) ? 0 : getNotificationChannel().hashCode());
-        hashCode = prime * hashCode
-                + ((getEnablePersonTracking() == null) ? 0 : getEnablePersonTracking().hashCode());
         hashCode = prime * hashCode + ((getJobTag() == null) ? 0 : getJobTag().hashCode());
         return hashCode;
     }
@@ -452,11 +400,6 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getNotificationChannel() != null
                 && other.getNotificationChannel().equals(this.getNotificationChannel()) == false)
-            return false;
-        if (other.getEnablePersonTracking() == null ^ this.getEnablePersonTracking() == null)
-            return false;
-        if (other.getEnablePersonTracking() != null
-                && other.getEnablePersonTracking().equals(this.getEnablePersonTracking()) == false)
             return false;
         if (other.getJobTag() == null ^ this.getJobTag() == null)
             return false;
