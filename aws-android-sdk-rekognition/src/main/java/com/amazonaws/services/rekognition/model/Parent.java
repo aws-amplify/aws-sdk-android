@@ -17,38 +17,26 @@ package com.amazonaws.services.rekognition.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
  * <p>
- * Stops a running stream processor that was created by
- * <a>CreateStreamProcessor</a>.
+ * A parent label for a label. A label can have 0, 1, or more parents.
  * </p>
  */
-public class StopStreamProcessorRequest extends AmazonWebServiceRequest implements Serializable {
+public class Parent implements Serializable {
     /**
      * <p>
-     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
+     * The name of the parent label.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      */
     private String name;
 
     /**
      * <p>
-     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
+     * The name of the parent label.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @return <p>
-     *         The name of a stream processor created by
-     *         <a>CreateStreamProcessor</a>.
+     *         The name of the parent label.
      *         </p>
      */
     public String getName() {
@@ -57,16 +45,11 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
+     * The name of the parent label.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param name <p>
-     *            The name of a stream processor created by
-     *            <a>CreateStreamProcessor</a>.
+     *            The name of the parent label.
      *            </p>
      */
     public void setName(String name) {
@@ -75,24 +58,19 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
+     * The name of the parent label.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param name <p>
-     *            The name of a stream processor created by
-     *            <a>CreateStreamProcessor</a>.
+     *            The name of the parent label.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StopStreamProcessorRequest withName(String name) {
+    public Parent withName(String name) {
         this.name = name;
         return this;
     }
@@ -130,9 +108,9 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
         if (obj == null)
             return false;
 
-        if (obj instanceof StopStreamProcessorRequest == false)
+        if (obj instanceof Parent == false)
             return false;
-        StopStreamProcessorRequest other = (StopStreamProcessorRequest) obj;
+        Parent other = (Parent) obj;
 
         if (other.getName() == null ^ this.getName() == null)
             return false;

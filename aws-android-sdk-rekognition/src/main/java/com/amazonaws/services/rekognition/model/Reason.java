@@ -13,26 +13,26 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.kinesisvideo.model;
+package com.amazonaws.services.rekognition.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * APIName
+ * Reason
  */
-public enum APIName {
+public enum Reason {
 
-    PUT_MEDIA("PUT_MEDIA"),
-    GET_MEDIA("GET_MEDIA"),
-    LIST_FRAGMENTS("LIST_FRAGMENTS"),
-    GET_MEDIA_FOR_FRAGMENT_LIST("GET_MEDIA_FOR_FRAGMENT_LIST"),
-    GET_HLS_STREAMING_SESSION_URL("GET_HLS_STREAMING_SESSION_URL"),
-    GET_DASH_STREAMING_SESSION_URL("GET_DASH_STREAMING_SESSION_URL");
+    EXCEEDS_MAX_FACES("EXCEEDS_MAX_FACES"),
+    EXTREME_POSE("EXTREME_POSE"),
+    LOW_BRIGHTNESS("LOW_BRIGHTNESS"),
+    LOW_SHARPNESS("LOW_SHARPNESS"),
+    LOW_CONFIDENCE("LOW_CONFIDENCE"),
+    SMALL_BOUNDING_BOX("SMALL_BOUNDING_BOX");
 
     private String value;
 
-    private APIName(String value) {
+    private Reason(String value) {
         this.value = value;
     }
 
@@ -41,24 +41,24 @@ public enum APIName {
         return value;
     }
 
-    private static final Map<String, APIName> enumMap;
+    private static final Map<String, Reason> enumMap;
     static {
-        enumMap = new HashMap<String, APIName>();
-        enumMap.put("PUT_MEDIA", PUT_MEDIA);
-        enumMap.put("GET_MEDIA", GET_MEDIA);
-        enumMap.put("LIST_FRAGMENTS", LIST_FRAGMENTS);
-        enumMap.put("GET_MEDIA_FOR_FRAGMENT_LIST", GET_MEDIA_FOR_FRAGMENT_LIST);
-        enumMap.put("GET_HLS_STREAMING_SESSION_URL", GET_HLS_STREAMING_SESSION_URL);
-        enumMap.put("GET_DASH_STREAMING_SESSION_URL", GET_DASH_STREAMING_SESSION_URL);
+        enumMap = new HashMap<String, Reason>();
+        enumMap.put("EXCEEDS_MAX_FACES", EXCEEDS_MAX_FACES);
+        enumMap.put("EXTREME_POSE", EXTREME_POSE);
+        enumMap.put("LOW_BRIGHTNESS", LOW_BRIGHTNESS);
+        enumMap.put("LOW_SHARPNESS", LOW_SHARPNESS);
+        enumMap.put("LOW_CONFIDENCE", LOW_CONFIDENCE);
+        enumMap.put("SMALL_BOUNDING_BOX", SMALL_BOUNDING_BOX);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return APIName corresponding to the value
+     * @return Reason corresponding to the value
      */
-    public static APIName fromValue(String value) {
+    public static Reason fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

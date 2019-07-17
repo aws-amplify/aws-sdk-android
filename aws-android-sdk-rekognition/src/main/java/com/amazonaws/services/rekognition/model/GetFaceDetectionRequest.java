@@ -22,18 +22,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets face detection results for a Amazon Rekognition Video analysis started
- * by .
+ * by <a>StartFaceDetection</a>.
  * </p>
  * <p>
  * Face detection with Amazon Rekognition Video is an asynchronous operation.
- * You start face detection by calling which returns a job identifier (
- * <code>JobId</code>). When the face detection operation finishes, Amazon
- * Rekognition Video publishes a completion status to the Amazon Simple
- * Notification Service topic registered in the initial call to
+ * You start face detection by calling <a>StartFaceDetection</a> which returns a
+ * job identifier (<code>JobId</code>). When the face detection operation
+ * finishes, Amazon Rekognition Video publishes a completion status to the
+ * Amazon Simple Notification Service topic registered in the initial call to
  * <code>StartFaceDetection</code>. To get the results of the face detection
  * operation, first check that the status value published to the Amazon SNS
- * topic is <code>SUCCEEDED</code>. If so, call and pass the job identifier (
- * <code>JobId</code>) from the initial call to <code>StartFaceDetection</code>.
+ * topic is <code>SUCCEEDED</code>. If so, call <a>GetFaceDetection</a> and pass
+ * the job identifier (<code>JobId</code>) from the initial call to
+ * <code>StartFaceDetection</code>.
  * </p>
  * <p>
  * <code>GetFaceDetection</code> returns an array of detected faces (

@@ -36,8 +36,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To get the results of the content moderation analysis, first check that the
  * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
- * so, call and pass the job identifier (<code>JobId</code>) from the initial
- * call to <code>StartContentModeration</code>.
+ * so, call <a>GetContentModeration</a> and pass the job identifier (
+ * <code>JobId</code>) from the initial call to
+ * <code>StartContentModeration</code>.
  * </p>
  * <p>
  * For more information, see Detecting Unsafe Content in the Amazon Rekognition
@@ -60,7 +61,9 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * certain Amazon Rekognition is that the moderated content is correctly
      * identified. 0 is the lowest confidence. 100 is the highest confidence.
      * Amazon Rekognition doesn't return any moderated content labels with a
-     * confidence level lower than this specified value.
+     * confidence level lower than this specified value. If you don't specify
+     * <code>MinConfidence</code>, <code>GetContentModeration</code> returns
+     * labels with confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,7 +163,9 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * certain Amazon Rekognition is that the moderated content is correctly
      * identified. 0 is the lowest confidence. 100 is the highest confidence.
      * Amazon Rekognition doesn't return any moderated content labels with a
-     * confidence level lower than this specified value.
+     * confidence level lower than this specified value. If you don't specify
+     * <code>MinConfidence</code>, <code>GetContentModeration</code> returns
+     * labels with confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,7 +178,9 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      *         content is correctly identified. 0 is the lowest confidence. 100
      *         is the highest confidence. Amazon Rekognition doesn't return any
      *         moderated content labels with a confidence level lower than this
-     *         specified value.
+     *         specified value. If you don't specify <code>MinConfidence</code>,
+     *         <code>GetContentModeration</code> returns labels with confidence
+     *         values greater than or equal to 50 percent.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -187,7 +194,9 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * certain Amazon Rekognition is that the moderated content is correctly
      * identified. 0 is the lowest confidence. 100 is the highest confidence.
      * Amazon Rekognition doesn't return any moderated content labels with a
-     * confidence level lower than this specified value.
+     * confidence level lower than this specified value. If you don't specify
+     * <code>MinConfidence</code>, <code>GetContentModeration</code> returns
+     * labels with confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -200,7 +209,10 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      *            moderated content is correctly identified. 0 is the lowest
      *            confidence. 100 is the highest confidence. Amazon Rekognition
      *            doesn't return any moderated content labels with a confidence
-     *            level lower than this specified value.
+     *            level lower than this specified value. If you don't specify
+     *            <code>MinConfidence</code>, <code>GetContentModeration</code>
+     *            returns labels with confidence values greater than or equal to
+     *            50 percent.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -214,7 +226,9 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * certain Amazon Rekognition is that the moderated content is correctly
      * identified. 0 is the lowest confidence. 100 is the highest confidence.
      * Amazon Rekognition doesn't return any moderated content labels with a
-     * confidence level lower than this specified value.
+     * confidence level lower than this specified value. If you don't specify
+     * <code>MinConfidence</code>, <code>GetContentModeration</code> returns
+     * labels with confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -230,7 +244,10 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      *            moderated content is correctly identified. 0 is the lowest
      *            confidence. 100 is the highest confidence. Amazon Rekognition
      *            doesn't return any moderated content labels with a confidence
-     *            level lower than this specified value.
+     *            level lower than this specified value. If you don't specify
+     *            <code>MinConfidence</code>, <code>GetContentModeration</code>
+     *            returns labels with confidence values greater than or equal to
+     *            50 percent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -13,26 +13,22 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.kinesisvideo.model;
+package com.amazonaws.services.rekognition.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * APIName
+ * Quality Filter
  */
-public enum APIName {
+public enum QualityFilter {
 
-    PUT_MEDIA("PUT_MEDIA"),
-    GET_MEDIA("GET_MEDIA"),
-    LIST_FRAGMENTS("LIST_FRAGMENTS"),
-    GET_MEDIA_FOR_FRAGMENT_LIST("GET_MEDIA_FOR_FRAGMENT_LIST"),
-    GET_HLS_STREAMING_SESSION_URL("GET_HLS_STREAMING_SESSION_URL"),
-    GET_DASH_STREAMING_SESSION_URL("GET_DASH_STREAMING_SESSION_URL");
+    NONE("NONE"),
+    AUTO("AUTO");
 
     private String value;
 
-    private APIName(String value) {
+    private QualityFilter(String value) {
         this.value = value;
     }
 
@@ -41,24 +37,20 @@ public enum APIName {
         return value;
     }
 
-    private static final Map<String, APIName> enumMap;
+    private static final Map<String, QualityFilter> enumMap;
     static {
-        enumMap = new HashMap<String, APIName>();
-        enumMap.put("PUT_MEDIA", PUT_MEDIA);
-        enumMap.put("GET_MEDIA", GET_MEDIA);
-        enumMap.put("LIST_FRAGMENTS", LIST_FRAGMENTS);
-        enumMap.put("GET_MEDIA_FOR_FRAGMENT_LIST", GET_MEDIA_FOR_FRAGMENT_LIST);
-        enumMap.put("GET_HLS_STREAMING_SESSION_URL", GET_HLS_STREAMING_SESSION_URL);
-        enumMap.put("GET_DASH_STREAMING_SESSION_URL", GET_DASH_STREAMING_SESSION_URL);
+        enumMap = new HashMap<String, QualityFilter>();
+        enumMap.put("NONE", NONE);
+        enumMap.put("AUTO", AUTO);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return APIName corresponding to the value
+     * @return QualityFilter corresponding to the value
      */
-    public static APIName fromValue(String value) {
+    public static QualityFilter fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

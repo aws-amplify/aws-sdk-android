@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class Landmark implements Serializable {
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,14 +33,16 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      */
     private String type;
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ratio of
-     * the width of the image. For example, if the images is 700x200 and the
+     * The x-coordinate from the top left of the landmark expressed as the ratio
+     * of the width of the image. For example, if the image is 700 x 200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      */
@@ -48,16 +50,16 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ratio of
-     * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
+     * The y-coordinate from the top left of the landmark expressed as the ratio
+     * of the height of the image. For example, if the image is 700 x 200 and
+     * the y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      */
     private Float y;
 
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,10 +67,12 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      *
      * @return <p>
-     *         Type of the landmark.
+     *         Type of landmark.
      *         </p>
      * @see LandmarkType
      */
@@ -78,7 +82,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,10 +90,12 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      *
      * @param type <p>
-     *            Type of the landmark.
+     *            Type of landmark.
      *            </p>
      * @see LandmarkType
      */
@@ -99,7 +105,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,10 +116,12 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      *
      * @param type <p>
-     *            Type of the landmark.
+     *            Type of landmark.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,7 +134,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -134,10 +142,12 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      *
      * @param type <p>
-     *            Type of the landmark.
+     *            Type of landmark.
      *            </p>
      * @see LandmarkType
      */
@@ -147,7 +157,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * Type of the landmark.
+     * Type of landmark.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,10 +168,12 @@ public class Landmark implements Serializable {
      * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
      * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
      * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
-     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil,
+     * upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight,
+     * upperJawlineRight
      *
      * @param type <p>
-     *            Type of the landmark.
+     *            Type of landmark.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -174,15 +186,15 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ratio of
-     * the width of the image. For example, if the images is 700x200 and the
+     * The x-coordinate from the top left of the landmark expressed as the ratio
+     * of the width of the image. For example, if the image is 700 x 200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
-     *         x-coordinate from the top left of the landmark expressed as the
-     *         ratio of the width of the image. For example, if the images is
-     *         700x200 and the x-coordinate of the landmark is at 350 pixels,
+     *         The x-coordinate from the top left of the landmark expressed as
+     *         the ratio of the width of the image. For example, if the image is
+     *         700 x 200 and the x-coordinate of the landmark is at 350 pixels,
      *         this value is 0.5.
      *         </p>
      */
@@ -192,15 +204,15 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ratio of
-     * the width of the image. For example, if the images is 700x200 and the
+     * The x-coordinate from the top left of the landmark expressed as the ratio
+     * of the width of the image. For example, if the image is 700 x 200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @param x <p>
-     *            x-coordinate from the top left of the landmark expressed as
-     *            the ratio of the width of the image. For example, if the
-     *            images is 700x200 and the x-coordinate of the landmark is at
+     *            The x-coordinate from the top left of the landmark expressed
+     *            as the ratio of the width of the image. For example, if the
+     *            image is 700 x 200 and the x-coordinate of the landmark is at
      *            350 pixels, this value is 0.5.
      *            </p>
      */
@@ -210,8 +222,8 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ratio of
-     * the width of the image. For example, if the images is 700x200 and the
+     * The x-coordinate from the top left of the landmark expressed as the ratio
+     * of the width of the image. For example, if the image is 700 x 200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      * <p>
@@ -219,9 +231,9 @@ public class Landmark implements Serializable {
      * together.
      *
      * @param x <p>
-     *            x-coordinate from the top left of the landmark expressed as
-     *            the ratio of the width of the image. For example, if the
-     *            images is 700x200 and the x-coordinate of the landmark is at
+     *            The x-coordinate from the top left of the landmark expressed
+     *            as the ratio of the width of the image. For example, if the
+     *            image is 700 x 200 and the x-coordinate of the landmark is at
      *            350 pixels, this value is 0.5.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -234,16 +246,16 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ratio of
-     * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
+     * The y-coordinate from the top left of the landmark expressed as the ratio
+     * of the height of the image. For example, if the image is 700 x 200 and
+     * the y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
-     *         y-coordinate from the top left of the landmark expressed as the
-     *         ratio of the height of the image. For example, if the images is
-     *         700x200 and the y-coordinate of the landmark is at 100 pixels,
-     *         this value is 0.5.
+     *         The y-coordinate from the top left of the landmark expressed as
+     *         the ratio of the height of the image. For example, if the image
+     *         is 700 x 200 and the y-coordinate of the landmark is at 100
+     *         pixels, this value is 0.5.
      *         </p>
      */
     public Float getY() {
@@ -252,15 +264,15 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ratio of
-     * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
+     * The y-coordinate from the top left of the landmark expressed as the ratio
+     * of the height of the image. For example, if the image is 700 x 200 and
+     * the y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @param y <p>
-     *            y-coordinate from the top left of the landmark expressed as
-     *            the ratio of the height of the image. For example, if the
-     *            images is 700x200 and the y-coordinate of the landmark is at
+     *            The y-coordinate from the top left of the landmark expressed
+     *            as the ratio of the height of the image. For example, if the
+     *            image is 700 x 200 and the y-coordinate of the landmark is at
      *            100 pixels, this value is 0.5.
      *            </p>
      */
@@ -270,18 +282,18 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ratio of
-     * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
+     * The y-coordinate from the top left of the landmark expressed as the ratio
+     * of the height of the image. For example, if the image is 700 x 200 and
+     * the y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param y <p>
-     *            y-coordinate from the top left of the landmark expressed as
-     *            the ratio of the height of the image. For example, if the
-     *            images is 700x200 and the y-coordinate of the landmark is at
+     *            The y-coordinate from the top left of the landmark expressed
+     *            as the ratio of the height of the image. For example, if the
+     *            image is 700 x 200 and the y-coordinate of the landmark is at
      *            100 pixels, this value is 0.5.
      *            </p>
      * @return A reference to this updated object so that method calls can be

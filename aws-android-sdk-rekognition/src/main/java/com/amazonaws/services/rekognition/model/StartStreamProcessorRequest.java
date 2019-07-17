@@ -22,8 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Starts processing a stream processor. You create a stream processor by
- * calling . To tell <code>StartStreamProcessor</code> which stream processor to
- * start, use the value of the <code>Name</code> field specified in the call to
+ * calling <a>CreateStreamProcessor</a>. To tell
+ * <code>StartStreamProcessor</code> which stream processor to start, use the
+ * value of the <code>Name</code> field specified in the call to
  * <code>CreateStreamProcessor</code>.
  * </p>
  */

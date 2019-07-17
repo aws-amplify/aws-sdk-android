@@ -1,11 +1,20 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.13.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.8)
+## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
 
 ### New Features
 
 * **Amazon Connect**
   * Amazon Connect is a self-service, cloud-based contact center service that makes it easy for any business to deliver better customer service at lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations. The self-service graphical interface in Amazon Connect makes it easy for non-technical users to design contact flows, manage agents, and track performance metrics – no specialized skills required. There are no up-front payments or long-term commitments and no infrastructure to manage with Amazon Connect; customers pay by the minute for Amazon Connect usage plus any associated telephony services.  See [Amazon Connect Documentation](https://aws.amazon.com/connect/) for more details.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Kinesis Video
+  - Amazon Rekognition
+    - **Breaking Change:** This SDK has been updated to the latest model after a long interval, and there have been several breaking changes in the
+      intervening time. Please review the [API documentation](https://aws-amplify.github.io/aws-sdk-android/docs/reference/index.html)
+      to see the latest API.
 
 ## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
 
