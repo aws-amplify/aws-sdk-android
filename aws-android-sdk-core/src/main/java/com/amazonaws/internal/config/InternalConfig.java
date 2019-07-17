@@ -109,24 +109,25 @@ public class InternalConfig {
         final Map<String, HttpClientConfig> ret = new HashMap<String, HttpClientConfig>();
         ret.put("AmazonCloudWatchClient", new HttpClientConfig("monitoring"));
         ret.put("AmazonCloudWatchLogsClient", new HttpClientConfig("logs"));
-        ret.put("AmazonSimpleDBClient", new HttpClientConfig("sdb"));
-        ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
-        ret.put("AWSSecurityTokenServiceClient", new HttpClientConfig("sts"));
         ret.put("AmazonCognitoIdentityClient", new HttpClientConfig("cognito-identity"));
         ret.put("AmazonCognitoIdentityProviderClient", new HttpClientConfig("cognito-idp"));
         ret.put("AmazonCognitoSyncClient", new HttpClientConfig("cognito-sync"));
+        ret.put("AmazonComprehendClient", new HttpClientConfig("comprehend"));
+        ret.put("AmazonConnectClient", new HttpClientConfig("connect"));
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
+        ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
         ret.put("AmazonLexRuntimeClient", new HttpClientConfig("runtime.lex"));
         ret.put("AmazonPinpointClient", new HttpClientConfig("mobiletargeting"));
         ret.put("AmazonPinpointAnalyticsClient", new HttpClientConfig("mobileanalytics"));
-        ret.put("AmazonTranscribeClient", new HttpClientConfig("transcribe"));
-        ret.put("AmazonTranslateClient", new HttpClientConfig("translate"));
-        ret.put("AmazonComprehendClient", new HttpClientConfig("comprehend"));
-        ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
         //signer uses the servicename 'sagemaker' for Sagemaker Runtime
         ret.put("AmazonSageMakerRuntimeClient", new HttpClientConfig("sagemaker"));
+        ret.put("AmazonSimpleDBClient", new HttpClientConfig("sdb"));
+        ret.put("AmazonSimpleEmailServiceClient", new HttpClientConfig("email"));
+        ret.put("AWSSecurityTokenServiceClient", new HttpClientConfig("sts"));
         ret.put("AmazonTextractClient", new HttpClientConfig("textract"));
+        ret.put("AmazonTranscribeClient", new HttpClientConfig("transcribe"));
+        ret.put("AmazonTranslateClient", new HttpClientConfig("translate"));
         return ret;
     }
 
