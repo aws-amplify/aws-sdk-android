@@ -1259,6 +1259,16 @@ workflows:
                 - master
                 - develop
       - integrationtest:
+          name: connect
+          testmodule: aws-android-sdk-connect-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
           name: ddb-mapper
           testmodule: aws-android-sdk-ddb-mapper-test
           requires:
@@ -1503,6 +1513,7 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - connect
             - textract
             - translate
             - transcribe
@@ -1624,6 +1635,16 @@ workflows:
       - integrationtest:
           name: comprehend
           testmodule: aws-android-sdk-comprehend-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: connect
+          testmodule: aws-android-sdk-connect-test
           requires:
             - pre_integrationtest    
           filters:
@@ -1877,6 +1898,7 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - connect
             - textract
             - translate
             - transcribe
