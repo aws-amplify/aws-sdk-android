@@ -26,8 +26,13 @@ import java.io.Serializable;
 public class Ebs implements Serializable {
     /**
      * <p>
-     * The ID of the snapshot. This parameter is optional if you specify a
-     * volume size.
+     * The snapshot ID of the volume to use.
+     * </p>
+     * <p>
+     * Conditional: This parameter is optional if you specify a volume size. If
+     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
+     * <code>VolumeSize</code> must be equal or greater than the size of the
+     * snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,10 +44,10 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The volume size, in GiB.
+     * The volume size, in Gibibytes (GiB).
      * </p>
      * <p>
-     * Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
+     * This can be a number from 1-1,024 for <code>standard</code>, 4-16,384 for
      * <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384 for
      * <code>st1</code> and <code>sc1</code>. If you specify a snapshot, the
      * volume size must be equal to or larger than the snapshot size.
@@ -84,8 +89,8 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the volume is deleted on instance termination. The
-     * default value is <code>true</code>.
+     * Indicates whether the volume is deleted on instance termination. For
+     * Amazon EC2 Auto Scaling, the default value is <code>true</code>.
      * </p>
      */
     private Boolean deleteOnTermination;
@@ -93,7 +98,8 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * The number of I/O operations per second (IOPS) to provision for the
-     * volume. For more information, see <a href=
+     * volume. The maximum ratio of IOPS to volume size (in GiB) is 50:1. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      * >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
      * Instances</i>.
@@ -112,23 +118,53 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * Specifies whether the volume should be encrypted. Encrypted EBS volumes
-     * must be attached to instances that support Amazon EBS encryption. Volumes
-     * that are created from encrypted snapshots are automatically encrypted.
-     * There is no way to create an encrypted volume from an unencrypted
-     * snapshot or an unencrypted volume from an encrypted snapshot. If your AMI
-     * uses encrypted volumes, you can only launch it on supported instance
-     * types. For more information, see <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     * >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for Linux
-     * Instances</i>.
+     * can only be attached to instances that support Amazon EBS encryption. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     * >Supported Instance Types</a>. If your AMI uses encrypted volumes, you
+     * can also only launch it on supported instance types.
+     * </p>
+     * <note>
+     * <p>
+     * If you are creating a volume from a snapshot, you cannot specify an
+     * encryption value. Volumes that are created from encrypted snapshots are
+     * automatically encrypted, and volumes that are created from unencrypted
+     * snapshots are automatically unencrypted. By default, encrypted snapshots
+     * use the AWS managed CMK that is used for EBS encryption, but you can
+     * specify a custom CMK when you create the snapshot. The ability to encrypt
+     * a snapshot during copying also allows you to apply a new CMK to an
+     * already-encrypted snapshot. Volumes restored from the resulting copy are
+     * only accessible using the new CMK.
+     * </p>
+     * <p>
+     * Enabling <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     * >encryption by default</a> results in all EBS volumes being encrypted
+     * with the AWS managed CMK or a customer managed CMK, whether or not the
+     * snapshot was encrypted.
+     * </p>
+     * </note>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     * >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2 User
+     * Guide for Linux Instances</i> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     * >Required CMK Key Policy for Use with Encrypted Volumes</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      */
     private Boolean encrypted;
 
     /**
      * <p>
-     * The ID of the snapshot. This parameter is optional if you specify a
-     * volume size.
+     * The snapshot ID of the volume to use.
+     * </p>
+     * <p>
+     * Conditional: This parameter is optional if you specify a volume size. If
+     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
+     * <code>VolumeSize</code> must be equal or greater than the size of the
+     * snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,8 +173,13 @@ public class Ebs implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ID of the snapshot. This parameter is optional if you specify
-     *         a volume size.
+     *         The snapshot ID of the volume to use.
+     *         </p>
+     *         <p>
+     *         Conditional: This parameter is optional if you specify a volume
+     *         size. If you specify both <code>SnapshotId</code> and
+     *         <code>VolumeSize</code>, <code>VolumeSize</code> must be equal or
+     *         greater than the size of the snapshot.
      *         </p>
      */
     public String getSnapshotId() {
@@ -147,8 +188,13 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The ID of the snapshot. This parameter is optional if you specify a
-     * volume size.
+     * The snapshot ID of the volume to use.
+     * </p>
+     * <p>
+     * Conditional: This parameter is optional if you specify a volume size. If
+     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
+     * <code>VolumeSize</code> must be equal or greater than the size of the
+     * snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -157,8 +203,13 @@ public class Ebs implements Serializable {
      * <br/>
      *
      * @param snapshotId <p>
-     *            The ID of the snapshot. This parameter is optional if you
-     *            specify a volume size.
+     *            The snapshot ID of the volume to use.
+     *            </p>
+     *            <p>
+     *            Conditional: This parameter is optional if you specify a
+     *            volume size. If you specify both <code>SnapshotId</code> and
+     *            <code>VolumeSize</code>, <code>VolumeSize</code> must be equal
+     *            or greater than the size of the snapshot.
      *            </p>
      */
     public void setSnapshotId(String snapshotId) {
@@ -167,8 +218,13 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The ID of the snapshot. This parameter is optional if you specify a
-     * volume size.
+     * The snapshot ID of the volume to use.
+     * </p>
+     * <p>
+     * Conditional: This parameter is optional if you specify a volume size. If
+     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
+     * <code>VolumeSize</code> must be equal or greater than the size of the
+     * snapshot.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -180,8 +236,13 @@ public class Ebs implements Serializable {
      * <br/>
      *
      * @param snapshotId <p>
-     *            The ID of the snapshot. This parameter is optional if you
-     *            specify a volume size.
+     *            The snapshot ID of the volume to use.
+     *            </p>
+     *            <p>
+     *            Conditional: This parameter is optional if you specify a
+     *            volume size. If you specify both <code>SnapshotId</code> and
+     *            <code>VolumeSize</code>, <code>VolumeSize</code> must be equal
+     *            or greater than the size of the snapshot.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -193,10 +254,10 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The volume size, in GiB.
+     * The volume size, in Gibibytes (GiB).
      * </p>
      * <p>
-     * Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
+     * This can be a number from 1-1,024 for <code>standard</code>, 4-16,384 for
      * <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384 for
      * <code>st1</code> and <code>sc1</code>. If you specify a snapshot, the
      * volume size must be equal to or larger than the snapshot size.
@@ -215,14 +276,14 @@ public class Ebs implements Serializable {
      * <b>Range: </b>1 - 16384<br/>
      *
      * @return <p>
-     *         The volume size, in GiB.
+     *         The volume size, in Gibibytes (GiB).
      *         </p>
      *         <p>
-     *         Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
-     *         <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384
-     *         for <code>st1</code> and <code>sc1</code>. If you specify a
-     *         snapshot, the volume size must be equal to or larger than the
-     *         snapshot size.
+     *         This can be a number from 1-1,024 for <code>standard</code>,
+     *         4-16,384 for <code>io1</code>, 1-16,384 for <code>gp2</code>, and
+     *         500-16,384 for <code>st1</code> and <code>sc1</code>. If you
+     *         specify a snapshot, the volume size must be equal to or larger
+     *         than the snapshot size.
      *         </p>
      *         <p>
      *         Default: If you create a volume from a snapshot and you don't
@@ -240,10 +301,10 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The volume size, in GiB.
+     * The volume size, in Gibibytes (GiB).
      * </p>
      * <p>
-     * Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
+     * This can be a number from 1-1,024 for <code>standard</code>, 4-16,384 for
      * <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384 for
      * <code>st1</code> and <code>sc1</code>. If you specify a snapshot, the
      * volume size must be equal to or larger than the snapshot size.
@@ -262,14 +323,14 @@ public class Ebs implements Serializable {
      * <b>Range: </b>1 - 16384<br/>
      *
      * @param volumeSize <p>
-     *            The volume size, in GiB.
+     *            The volume size, in Gibibytes (GiB).
      *            </p>
      *            <p>
-     *            Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
-     *            <code>io1</code>, 1-16,384 for <code>gp2</code>, and
-     *            500-16,384 for <code>st1</code> and <code>sc1</code>. If you
-     *            specify a snapshot, the volume size must be equal to or larger
-     *            than the snapshot size.
+     *            This can be a number from 1-1,024 for <code>standard</code>,
+     *            4-16,384 for <code>io1</code>, 1-16,384 for <code>gp2</code>,
+     *            and 500-16,384 for <code>st1</code> and <code>sc1</code>. If
+     *            you specify a snapshot, the volume size must be equal to or
+     *            larger than the snapshot size.
      *            </p>
      *            <p>
      *            Default: If you create a volume from a snapshot and you don't
@@ -287,10 +348,10 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * The volume size, in GiB.
+     * The volume size, in Gibibytes (GiB).
      * </p>
      * <p>
-     * Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
+     * This can be a number from 1-1,024 for <code>standard</code>, 4-16,384 for
      * <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384 for
      * <code>st1</code> and <code>sc1</code>. If you specify a snapshot, the
      * volume size must be equal to or larger than the snapshot size.
@@ -312,14 +373,14 @@ public class Ebs implements Serializable {
      * <b>Range: </b>1 - 16384<br/>
      *
      * @param volumeSize <p>
-     *            The volume size, in GiB.
+     *            The volume size, in Gibibytes (GiB).
      *            </p>
      *            <p>
-     *            Constraints: 1-1,024 for <code>standard</code>, 4-16,384 for
-     *            <code>io1</code>, 1-16,384 for <code>gp2</code>, and
-     *            500-16,384 for <code>st1</code> and <code>sc1</code>. If you
-     *            specify a snapshot, the volume size must be equal to or larger
-     *            than the snapshot size.
+     *            This can be a number from 1-1,024 for <code>standard</code>,
+     *            4-16,384 for <code>io1</code>, 1-16,384 for <code>gp2</code>,
+     *            and 500-16,384 for <code>st1</code> and <code>sc1</code>. If
+     *            you specify a snapshot, the volume size must be equal to or
+     *            larger than the snapshot size.
      *            </p>
      *            <p>
      *            Default: If you create a volume from a snapshot and you don't
@@ -457,13 +518,14 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the volume is deleted on instance termination. The
-     * default value is <code>true</code>.
+     * Indicates whether the volume is deleted on instance termination. For
+     * Amazon EC2 Auto Scaling, the default value is <code>true</code>.
      * </p>
      *
      * @return <p>
      *         Indicates whether the volume is deleted on instance termination.
-     *         The default value is <code>true</code>.
+     *         For Amazon EC2 Auto Scaling, the default value is
+     *         <code>true</code>.
      *         </p>
      */
     public Boolean isDeleteOnTermination() {
@@ -472,13 +534,14 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the volume is deleted on instance termination. The
-     * default value is <code>true</code>.
+     * Indicates whether the volume is deleted on instance termination. For
+     * Amazon EC2 Auto Scaling, the default value is <code>true</code>.
      * </p>
      *
      * @return <p>
      *         Indicates whether the volume is deleted on instance termination.
-     *         The default value is <code>true</code>.
+     *         For Amazon EC2 Auto Scaling, the default value is
+     *         <code>true</code>.
      *         </p>
      */
     public Boolean getDeleteOnTermination() {
@@ -487,13 +550,14 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the volume is deleted on instance termination. The
-     * default value is <code>true</code>.
+     * Indicates whether the volume is deleted on instance termination. For
+     * Amazon EC2 Auto Scaling, the default value is <code>true</code>.
      * </p>
      *
      * @param deleteOnTermination <p>
      *            Indicates whether the volume is deleted on instance
-     *            termination. The default value is <code>true</code>.
+     *            termination. For Amazon EC2 Auto Scaling, the default value is
+     *            <code>true</code>.
      *            </p>
      */
     public void setDeleteOnTermination(Boolean deleteOnTermination) {
@@ -502,8 +566,8 @@ public class Ebs implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the volume is deleted on instance termination. The
-     * default value is <code>true</code>.
+     * Indicates whether the volume is deleted on instance termination. For
+     * Amazon EC2 Auto Scaling, the default value is <code>true</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -511,7 +575,8 @@ public class Ebs implements Serializable {
      *
      * @param deleteOnTermination <p>
      *            Indicates whether the volume is deleted on instance
-     *            termination. The default value is <code>true</code>.
+     *            termination. For Amazon EC2 Auto Scaling, the default value is
+     *            <code>true</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -524,7 +589,8 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * The number of I/O operations per second (IOPS) to provision for the
-     * volume. For more information, see <a href=
+     * volume. The maximum ratio of IOPS to volume size (in GiB) is 50:1. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      * >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
      * Instances</i>.
@@ -540,7 +606,8 @@ public class Ebs implements Serializable {
      *
      * @return <p>
      *         The number of I/O operations per second (IOPS) to provision for
-     *         the volume. For more information, see <a href=
+     *         the volume. The maximum ratio of IOPS to volume size (in GiB) is
+     *         50:1. For more information, see <a href=
      *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      *         >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide for
      *         Linux Instances</i>.
@@ -558,7 +625,8 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * The number of I/O operations per second (IOPS) to provision for the
-     * volume. For more information, see <a href=
+     * volume. The maximum ratio of IOPS to volume size (in GiB) is 50:1. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      * >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
      * Instances</i>.
@@ -574,7 +642,8 @@ public class Ebs implements Serializable {
      *
      * @param iops <p>
      *            The number of I/O operations per second (IOPS) to provision
-     *            for the volume. For more information, see <a href=
+     *            for the volume. The maximum ratio of IOPS to volume size (in
+     *            GiB) is 50:1. For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      *            >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide
      *            for Linux Instances</i>.
@@ -593,7 +662,8 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * The number of I/O operations per second (IOPS) to provision for the
-     * volume. For more information, see <a href=
+     * volume. The maximum ratio of IOPS to volume size (in GiB) is 50:1. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      * >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
      * Instances</i>.
@@ -612,7 +682,8 @@ public class Ebs implements Serializable {
      *
      * @param iops <p>
      *            The number of I/O operations per second (IOPS) to provision
-     *            for the volume. For more information, see <a href=
+     *            for the volume. The maximum ratio of IOPS to volume size (in
+     *            GiB) is 50:1. For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html"
      *            >Amazon EBS Volume Types</a> in the <i>Amazon EC2 User Guide
      *            for Linux Instances</i>.
@@ -634,29 +705,79 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * Specifies whether the volume should be encrypted. Encrypted EBS volumes
-     * must be attached to instances that support Amazon EBS encryption. Volumes
-     * that are created from encrypted snapshots are automatically encrypted.
-     * There is no way to create an encrypted volume from an unencrypted
-     * snapshot or an unencrypted volume from an encrypted snapshot. If your AMI
-     * uses encrypted volumes, you can only launch it on supported instance
-     * types. For more information, see <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     * >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for Linux
-     * Instances</i>.
+     * can only be attached to instances that support Amazon EBS encryption. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     * >Supported Instance Types</a>. If your AMI uses encrypted volumes, you
+     * can also only launch it on supported instance types.
+     * </p>
+     * <note>
+     * <p>
+     * If you are creating a volume from a snapshot, you cannot specify an
+     * encryption value. Volumes that are created from encrypted snapshots are
+     * automatically encrypted, and volumes that are created from unencrypted
+     * snapshots are automatically unencrypted. By default, encrypted snapshots
+     * use the AWS managed CMK that is used for EBS encryption, but you can
+     * specify a custom CMK when you create the snapshot. The ability to encrypt
+     * a snapshot during copying also allows you to apply a new CMK to an
+     * already-encrypted snapshot. Volumes restored from the resulting copy are
+     * only accessible using the new CMK.
+     * </p>
+     * <p>
+     * Enabling <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     * >encryption by default</a> results in all EBS volumes being encrypted
+     * with the AWS managed CMK or a customer managed CMK, whether or not the
+     * snapshot was encrypted.
+     * </p>
+     * </note>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     * >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2 User
+     * Guide for Linux Instances</i> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     * >Required CMK Key Policy for Use with Encrypted Volumes</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
      *         Specifies whether the volume should be encrypted. Encrypted EBS
-     *         volumes must be attached to instances that support Amazon EBS
-     *         encryption. Volumes that are created from encrypted snapshots are
-     *         automatically encrypted. There is no way to create an encrypted
-     *         volume from an unencrypted snapshot or an unencrypted volume from
-     *         an encrypted snapshot. If your AMI uses encrypted volumes, you
-     *         can only launch it on supported instance types. For more
-     *         information, see <a href=
-     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     *         >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for
-     *         Linux Instances</i>.
+     *         volumes can only be attached to instances that support Amazon EBS
+     *         encryption. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     *         >Supported Instance Types</a>. If your AMI uses encrypted
+     *         volumes, you can also only launch it on supported instance types.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         If you are creating a volume from a snapshot, you cannot specify
+     *         an encryption value. Volumes that are created from encrypted
+     *         snapshots are automatically encrypted, and volumes that are
+     *         created from unencrypted snapshots are automatically unencrypted.
+     *         By default, encrypted snapshots use the AWS managed CMK that is
+     *         used for EBS encryption, but you can specify a custom CMK when
+     *         you create the snapshot. The ability to encrypt a snapshot during
+     *         copying also allows you to apply a new CMK to an
+     *         already-encrypted snapshot. Volumes restored from the resulting
+     *         copy are only accessible using the new CMK.
+     *         </p>
+     *         <p>
+     *         Enabling <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     *         >encryption by default</a> results in all EBS volumes being
+     *         encrypted with the AWS managed CMK or a customer managed CMK,
+     *         whether or not the snapshot was encrypted.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     *         >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2
+     *         User Guide for Linux Instances</i> and <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     *         >Required CMK Key Policy for Use with Encrypted Volumes</a> in
+     *         the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean isEncrypted() {
@@ -666,29 +787,79 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * Specifies whether the volume should be encrypted. Encrypted EBS volumes
-     * must be attached to instances that support Amazon EBS encryption. Volumes
-     * that are created from encrypted snapshots are automatically encrypted.
-     * There is no way to create an encrypted volume from an unencrypted
-     * snapshot or an unencrypted volume from an encrypted snapshot. If your AMI
-     * uses encrypted volumes, you can only launch it on supported instance
-     * types. For more information, see <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     * >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for Linux
-     * Instances</i>.
+     * can only be attached to instances that support Amazon EBS encryption. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     * >Supported Instance Types</a>. If your AMI uses encrypted volumes, you
+     * can also only launch it on supported instance types.
+     * </p>
+     * <note>
+     * <p>
+     * If you are creating a volume from a snapshot, you cannot specify an
+     * encryption value. Volumes that are created from encrypted snapshots are
+     * automatically encrypted, and volumes that are created from unencrypted
+     * snapshots are automatically unencrypted. By default, encrypted snapshots
+     * use the AWS managed CMK that is used for EBS encryption, but you can
+     * specify a custom CMK when you create the snapshot. The ability to encrypt
+     * a snapshot during copying also allows you to apply a new CMK to an
+     * already-encrypted snapshot. Volumes restored from the resulting copy are
+     * only accessible using the new CMK.
+     * </p>
+     * <p>
+     * Enabling <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     * >encryption by default</a> results in all EBS volumes being encrypted
+     * with the AWS managed CMK or a customer managed CMK, whether or not the
+     * snapshot was encrypted.
+     * </p>
+     * </note>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     * >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2 User
+     * Guide for Linux Instances</i> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     * >Required CMK Key Policy for Use with Encrypted Volumes</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
      *         Specifies whether the volume should be encrypted. Encrypted EBS
-     *         volumes must be attached to instances that support Amazon EBS
-     *         encryption. Volumes that are created from encrypted snapshots are
-     *         automatically encrypted. There is no way to create an encrypted
-     *         volume from an unencrypted snapshot or an unencrypted volume from
-     *         an encrypted snapshot. If your AMI uses encrypted volumes, you
-     *         can only launch it on supported instance types. For more
-     *         information, see <a href=
-     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     *         >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for
-     *         Linux Instances</i>.
+     *         volumes can only be attached to instances that support Amazon EBS
+     *         encryption. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     *         >Supported Instance Types</a>. If your AMI uses encrypted
+     *         volumes, you can also only launch it on supported instance types.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         If you are creating a volume from a snapshot, you cannot specify
+     *         an encryption value. Volumes that are created from encrypted
+     *         snapshots are automatically encrypted, and volumes that are
+     *         created from unencrypted snapshots are automatically unencrypted.
+     *         By default, encrypted snapshots use the AWS managed CMK that is
+     *         used for EBS encryption, but you can specify a custom CMK when
+     *         you create the snapshot. The ability to encrypt a snapshot during
+     *         copying also allows you to apply a new CMK to an
+     *         already-encrypted snapshot. Volumes restored from the resulting
+     *         copy are only accessible using the new CMK.
+     *         </p>
+     *         <p>
+     *         Enabling <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     *         >encryption by default</a> results in all EBS volumes being
+     *         encrypted with the AWS managed CMK or a customer managed CMK,
+     *         whether or not the snapshot was encrypted.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     *         >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2
+     *         User Guide for Linux Instances</i> and <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     *         >Required CMK Key Policy for Use with Encrypted Volumes</a> in
+     *         the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean getEncrypted() {
@@ -698,29 +869,80 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * Specifies whether the volume should be encrypted. Encrypted EBS volumes
-     * must be attached to instances that support Amazon EBS encryption. Volumes
-     * that are created from encrypted snapshots are automatically encrypted.
-     * There is no way to create an encrypted volume from an unencrypted
-     * snapshot or an unencrypted volume from an encrypted snapshot. If your AMI
-     * uses encrypted volumes, you can only launch it on supported instance
-     * types. For more information, see <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     * >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for Linux
-     * Instances</i>.
+     * can only be attached to instances that support Amazon EBS encryption. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     * >Supported Instance Types</a>. If your AMI uses encrypted volumes, you
+     * can also only launch it on supported instance types.
+     * </p>
+     * <note>
+     * <p>
+     * If you are creating a volume from a snapshot, you cannot specify an
+     * encryption value. Volumes that are created from encrypted snapshots are
+     * automatically encrypted, and volumes that are created from unencrypted
+     * snapshots are automatically unencrypted. By default, encrypted snapshots
+     * use the AWS managed CMK that is used for EBS encryption, but you can
+     * specify a custom CMK when you create the snapshot. The ability to encrypt
+     * a snapshot during copying also allows you to apply a new CMK to an
+     * already-encrypted snapshot. Volumes restored from the resulting copy are
+     * only accessible using the new CMK.
+     * </p>
+     * <p>
+     * Enabling <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     * >encryption by default</a> results in all EBS volumes being encrypted
+     * with the AWS managed CMK or a customer managed CMK, whether or not the
+     * snapshot was encrypted.
+     * </p>
+     * </note>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     * >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2 User
+     * Guide for Linux Instances</i> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     * >Required CMK Key Policy for Use with Encrypted Volumes</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @param encrypted <p>
      *            Specifies whether the volume should be encrypted. Encrypted
-     *            EBS volumes must be attached to instances that support Amazon
-     *            EBS encryption. Volumes that are created from encrypted
-     *            snapshots are automatically encrypted. There is no way to
-     *            create an encrypted volume from an unencrypted snapshot or an
-     *            unencrypted volume from an encrypted snapshot. If your AMI
-     *            uses encrypted volumes, you can only launch it on supported
-     *            instance types. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     *            >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for
-     *            Linux Instances</i>.
+     *            EBS volumes can only be attached to instances that support
+     *            Amazon EBS encryption. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     *            >Supported Instance Types</a>. If your AMI uses encrypted
+     *            volumes, you can also only launch it on supported instance
+     *            types.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If you are creating a volume from a snapshot, you cannot
+     *            specify an encryption value. Volumes that are created from
+     *            encrypted snapshots are automatically encrypted, and volumes
+     *            that are created from unencrypted snapshots are automatically
+     *            unencrypted. By default, encrypted snapshots use the AWS
+     *            managed CMK that is used for EBS encryption, but you can
+     *            specify a custom CMK when you create the snapshot. The ability
+     *            to encrypt a snapshot during copying also allows you to apply
+     *            a new CMK to an already-encrypted snapshot. Volumes restored
+     *            from the resulting copy are only accessible using the new CMK.
+     *            </p>
+     *            <p>
+     *            Enabling <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     *            >encryption by default</a> results in all EBS volumes being
+     *            encrypted with the AWS managed CMK or a customer managed CMK,
+     *            whether or not the snapshot was encrypted.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     *            >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon
+     *            EC2 User Guide for Linux Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     *            >Required CMK Key Policy for Use with Encrypted Volumes</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setEncrypted(Boolean encrypted) {
@@ -730,15 +952,40 @@ public class Ebs implements Serializable {
     /**
      * <p>
      * Specifies whether the volume should be encrypted. Encrypted EBS volumes
-     * must be attached to instances that support Amazon EBS encryption. Volumes
-     * that are created from encrypted snapshots are automatically encrypted.
-     * There is no way to create an encrypted volume from an unencrypted
-     * snapshot or an unencrypted volume from an encrypted snapshot. If your AMI
-     * uses encrypted volumes, you can only launch it on supported instance
-     * types. For more information, see <a href=
-     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     * >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for Linux
-     * Instances</i>.
+     * can only be attached to instances that support Amazon EBS encryption. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     * >Supported Instance Types</a>. If your AMI uses encrypted volumes, you
+     * can also only launch it on supported instance types.
+     * </p>
+     * <note>
+     * <p>
+     * If you are creating a volume from a snapshot, you cannot specify an
+     * encryption value. Volumes that are created from encrypted snapshots are
+     * automatically encrypted, and volumes that are created from unencrypted
+     * snapshots are automatically unencrypted. By default, encrypted snapshots
+     * use the AWS managed CMK that is used for EBS encryption, but you can
+     * specify a custom CMK when you create the snapshot. The ability to encrypt
+     * a snapshot during copying also allows you to apply a new CMK to an
+     * already-encrypted snapshot. Volumes restored from the resulting copy are
+     * only accessible using the new CMK.
+     * </p>
+     * <p>
+     * Enabling <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     * >encryption by default</a> results in all EBS volumes being encrypted
+     * with the AWS managed CMK or a customer managed CMK, whether or not the
+     * snapshot was encrypted.
+     * </p>
+     * </note>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     * >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon EC2 User
+     * Guide for Linux Instances</i> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     * >Required CMK Key Policy for Use with Encrypted Volumes</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -746,16 +993,42 @@ public class Ebs implements Serializable {
      *
      * @param encrypted <p>
      *            Specifies whether the volume should be encrypted. Encrypted
-     *            EBS volumes must be attached to instances that support Amazon
-     *            EBS encryption. Volumes that are created from encrypted
-     *            snapshots are automatically encrypted. There is no way to
-     *            create an encrypted volume from an unencrypted snapshot or an
-     *            unencrypted volume from an encrypted snapshot. If your AMI
-     *            uses encrypted volumes, you can only launch it on supported
-     *            instance types. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
-     *            >Amazon EBS Encryption</a> in the <i>Amazon EC2 User Guide for
-     *            Linux Instances</i>.
+     *            EBS volumes can only be attached to instances that support
+     *            Amazon EBS encryption. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances"
+     *            >Supported Instance Types</a>. If your AMI uses encrypted
+     *            volumes, you can also only launch it on supported instance
+     *            types.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            If you are creating a volume from a snapshot, you cannot
+     *            specify an encryption value. Volumes that are created from
+     *            encrypted snapshots are automatically encrypted, and volumes
+     *            that are created from unencrypted snapshots are automatically
+     *            unencrypted. By default, encrypted snapshots use the AWS
+     *            managed CMK that is used for EBS encryption, but you can
+     *            specify a custom CMK when you create the snapshot. The ability
+     *            to encrypt a snapshot during copying also allows you to apply
+     *            a new CMK to an already-encrypted snapshot. Volumes restored
+     *            from the resulting copy are only accessible using the new CMK.
+     *            </p>
+     *            <p>
+     *            Enabling <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default"
+     *            >encryption by default</a> results in all EBS volumes being
+     *            encrypted with the AWS managed CMK or a customer managed CMK,
+     *            whether or not the snapshot was encrypted.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html"
+     *            >Using Encryption with EBS-Backed AMIs</a> in the <i>Amazon
+     *            EC2 User Guide for Linux Instances</i> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html"
+     *            >Required CMK Key Policy for Use with Encrypted Volumes</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

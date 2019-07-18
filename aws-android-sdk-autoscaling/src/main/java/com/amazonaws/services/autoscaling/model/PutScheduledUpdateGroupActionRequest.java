@@ -66,8 +66,8 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
-     * UTC/GMT only and in quotes (for example,
+     * The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     * format in UTC/GMT only and in quotes (for example,
      * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
@@ -84,8 +84,8 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for the recurring schedule to end. Amazon EC2 Auto Scaling does
-     * not perform the action after this time.
+     * The date and time for the recurring schedule to end. Amazon EC2 Auto
+     * Scaling does not perform the action after this time.
      * </p>
      */
     private java.util.Date endTime;
@@ -99,6 +99,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -108,21 +113,22 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum size for the Auto Scaling group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      */
     private Integer minSize;
 
     /**
      * <p>
-     * The maximum size for the Auto Scaling group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      */
     private Integer maxSize;
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group.
      * </p>
      */
     private Integer desiredCapacity;
@@ -294,8 +300,8 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
-     * UTC/GMT only and in quotes (for example,
+     * The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     * format in UTC/GMT only and in quotes (for example,
      * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
@@ -309,9 +315,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * </p>
      *
      * @return <p>
-     *         The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format
-     *         in UTC/GMT only and in quotes (for example,
-     *         <code>"2019-06-01T00:00:00Z"</code>).
+     *         The date and time for this action to start, in
+     *         YYYY-MM-DDThh:mm:ssZ format in UTC/GMT only and in quotes (for
+     *         example, <code>"2019-06-01T00:00:00Z"</code>).
      *         </p>
      *         <p>
      *         If you specify <code>Recurrence</code> and <code>StartTime</code>
@@ -329,8 +335,8 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
-     * UTC/GMT only and in quotes (for example,
+     * The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     * format in UTC/GMT only and in quotes (for example,
      * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
@@ -344,9 +350,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * </p>
      *
      * @param startTime <p>
-     *            The time for this action to start, in YYYY-MM-DDThh:mm:ssZ
-     *            format in UTC/GMT only and in quotes (for example,
-     *            <code>"2019-06-01T00:00:00Z"</code>).
+     *            The date and time for this action to start, in
+     *            YYYY-MM-DDThh:mm:ssZ format in UTC/GMT only and in quotes (for
+     *            example, <code>"2019-06-01T00:00:00Z"</code>).
      *            </p>
      *            <p>
      *            If you specify <code>Recurrence</code> and
@@ -365,8 +371,8 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in
-     * UTC/GMT only and in quotes (for example,
+     * The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ
+     * format in UTC/GMT only and in quotes (for example,
      * <code>"2019-06-01T00:00:00Z"</code>).
      * </p>
      * <p>
@@ -383,9 +389,9 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * together.
      *
      * @param startTime <p>
-     *            The time for this action to start, in YYYY-MM-DDThh:mm:ssZ
-     *            format in UTC/GMT only and in quotes (for example,
-     *            <code>"2019-06-01T00:00:00Z"</code>).
+     *            The date and time for this action to start, in
+     *            YYYY-MM-DDThh:mm:ssZ format in UTC/GMT only and in quotes (for
+     *            example, <code>"2019-06-01T00:00:00Z"</code>).
      *            </p>
      *            <p>
      *            If you specify <code>Recurrence</code> and
@@ -407,13 +413,13 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for the recurring schedule to end. Amazon EC2 Auto Scaling does
-     * not perform the action after this time.
+     * The date and time for the recurring schedule to end. Amazon EC2 Auto
+     * Scaling does not perform the action after this time.
      * </p>
      *
      * @return <p>
-     *         The time for the recurring schedule to end. Amazon EC2 Auto
-     *         Scaling does not perform the action after this time.
+     *         The date and time for the recurring schedule to end. Amazon EC2
+     *         Auto Scaling does not perform the action after this time.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -422,13 +428,13 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for the recurring schedule to end. Amazon EC2 Auto Scaling does
-     * not perform the action after this time.
+     * The date and time for the recurring schedule to end. Amazon EC2 Auto
+     * Scaling does not perform the action after this time.
      * </p>
      *
      * @param endTime <p>
-     *            The time for the recurring schedule to end. Amazon EC2 Auto
-     *            Scaling does not perform the action after this time.
+     *            The date and time for the recurring schedule to end. Amazon
+     *            EC2 Auto Scaling does not perform the action after this time.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -437,16 +443,16 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The time for the recurring schedule to end. Amazon EC2 Auto Scaling does
-     * not perform the action after this time.
+     * The date and time for the recurring schedule to end. Amazon EC2 Auto
+     * Scaling does not perform the action after this time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endTime <p>
-     *            The time for the recurring schedule to end. Amazon EC2 Auto
-     *            Scaling does not perform the action after this time.
+     *            The date and time for the recurring schedule to end. Amazon
+     *            EC2 Auto Scaling does not perform the action after this time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -465,6 +471,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -477,6 +488,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *         [Day_of_Week]. The value must be in quotes (for example,
      *         <code>"30 0 1 1,6,12 *"</code>). For more information about this
      *         format, see <a href="http://crontab.org">Crontab</a>.
+     *         </p>
+     *         <p>
+     *         When <code>StartTime</code> and <code>EndTime</code> are
+     *         specified with <code>Recurrence</code>, they form the boundaries
+     *         of when the recurring action starts and stops.
      *         </p>
      */
     public String getRecurrence() {
@@ -492,6 +508,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -504,6 +525,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *            [Day_of_Week]. The value must be in quotes (for example,
      *            <code>"30 0 1 1,6,12 *"</code>). For more information about
      *            this format, see <a href="http://crontab.org">Crontab</a>.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
      *            </p>
      */
     public void setRecurrence(String recurrence) {
@@ -519,6 +545,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      * this format, see <a href="http://crontab.org">Crontab</a>.
      * </p>
      * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -535,6 +566,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
      *            <code>"30 0 1 1,6,12 *"</code>). For more information about
      *            this format, see <a href="http://crontab.org">Crontab</a>.
      *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -545,11 +581,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum size for the Auto Scaling group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The minimum size for the Auto Scaling group.
+     *         The minimum number of instances in the Auto Scaling group.
      *         </p>
      */
     public Integer getMinSize() {
@@ -558,11 +594,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum size for the Auto Scaling group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      *
      * @param minSize <p>
-     *            The minimum size for the Auto Scaling group.
+     *            The minimum number of instances in the Auto Scaling group.
      *            </p>
      */
     public void setMinSize(Integer minSize) {
@@ -571,14 +607,14 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum size for the Auto Scaling group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minSize <p>
-     *            The minimum size for the Auto Scaling group.
+     *            The minimum number of instances in the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -590,11 +626,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum size for the Auto Scaling group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The maximum size for the Auto Scaling group.
+     *         The maximum number of instances in the Auto Scaling group.
      *         </p>
      */
     public Integer getMaxSize() {
@@ -603,11 +639,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum size for the Auto Scaling group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      *
      * @param maxSize <p>
-     *            The maximum size for the Auto Scaling group.
+     *            The maximum number of instances in the Auto Scaling group.
      *            </p>
      */
     public void setMaxSize(Integer maxSize) {
@@ -616,14 +652,14 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum size for the Auto Scaling group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxSize <p>
-     *            The maximum size for the Auto Scaling group.
+     *            The maximum number of instances in the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -635,11 +671,13 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group.
      * </p>
      *
      * @return <p>
-     *         The number of EC2 instances that should be running in the group.
+     *         The number of EC2 instances that should be running in the Auto
+     *         Scaling group.
      *         </p>
      */
     public Integer getDesiredCapacity() {
@@ -648,12 +686,13 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group.
      * </p>
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group.
+     *            The number of EC2 instances that should be running in the Auto
+     *            Scaling group.
      *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
@@ -662,15 +701,16 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The number of EC2 instances that should be running in the Auto Scaling
+     * group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group.
+     *            The number of EC2 instances that should be running in the Auto
+     *            Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -69,26 +69,28 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin.
-     * </p>
-     * <p>
-     * When <code>StartTime</code> and <code>EndTime</code> are specified with
-     * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action starts and stops.
+     * The date and time in UTC for this action to start. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      */
     private java.util.Date startTime;
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end.
+     * The date and time in UTC for the recurring schedule to end. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      */
     private java.util.Date endTime;
 
     /**
      * <p>
-     * The recurring schedule for the action.
+     * The recurring schedule for the action, in Unix cron syntax format.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,14 +102,14 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The minimum size of the group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      */
     private Integer minSize;
 
     /**
      * <p>
-     * The maximum size of the group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      */
     private Integer maxSize;
@@ -346,21 +348,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin.
-     * </p>
-     * <p>
-     * When <code>StartTime</code> and <code>EndTime</code> are specified with
-     * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action starts and stops.
+     * The date and time in UTC for this action to start. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      *
      * @return <p>
-     *         The date and time that the action is scheduled to begin.
-     *         </p>
-     *         <p>
-     *         When <code>StartTime</code> and <code>EndTime</code> are
-     *         specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action starts and stops.
+     *         The date and time in UTC for this action to start. For example,
+     *         <code>"2019-06-01T00:00:00Z"</code>.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -369,21 +363,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin.
-     * </p>
-     * <p>
-     * When <code>StartTime</code> and <code>EndTime</code> are specified with
-     * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action starts and stops.
+     * The date and time in UTC for this action to start. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      *
      * @param startTime <p>
-     *            The date and time that the action is scheduled to begin.
-     *            </p>
-     *            <p>
-     *            When <code>StartTime</code> and <code>EndTime</code> are
-     *            specified with <code>Recurrence</code>, they form the
-     *            boundaries of when the recurring action starts and stops.
+     *            The date and time in UTC for this action to start. For
+     *            example, <code>"2019-06-01T00:00:00Z"</code>.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -392,24 +378,16 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to begin.
-     * </p>
-     * <p>
-     * When <code>StartTime</code> and <code>EndTime</code> are specified with
-     * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action starts and stops.
+     * The date and time in UTC for this action to start. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            The date and time that the action is scheduled to begin.
-     *            </p>
-     *            <p>
-     *            When <code>StartTime</code> and <code>EndTime</code> are
-     *            specified with <code>Recurrence</code>, they form the
-     *            boundaries of when the recurring action starts and stops.
+     *            The date and time in UTC for this action to start. For
+     *            example, <code>"2019-06-01T00:00:00Z"</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -421,11 +399,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end.
+     * The date and time in UTC for the recurring schedule to end. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      *
      * @return <p>
-     *         The date and time that the action is scheduled to end.
+     *         The date and time in UTC for the recurring schedule to end. For
+     *         example, <code>"2019-06-01T00:00:00Z"</code>.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -434,11 +414,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end.
+     * The date and time in UTC for the recurring schedule to end. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      *
      * @param endTime <p>
-     *            The date and time that the action is scheduled to end.
+     *            The date and time in UTC for the recurring schedule to end.
+     *            For example, <code>"2019-06-01T00:00:00Z"</code>.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -447,14 +429,16 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The date and time that the action is scheduled to end.
+     * The date and time in UTC for the recurring schedule to end. For example,
+     * <code>"2019-06-01T00:00:00Z"</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endTime <p>
-     *            The date and time that the action is scheduled to end.
+     *            The date and time in UTC for the recurring schedule to end.
+     *            For example, <code>"2019-06-01T00:00:00Z"</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -466,7 +450,12 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The recurring schedule for the action.
+     * The recurring schedule for the action, in Unix cron syntax format.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -475,7 +464,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The recurring schedule for the action.
+     *         The recurring schedule for the action, in Unix cron syntax
+     *         format.
+     *         </p>
+     *         <p>
+     *         When <code>StartTime</code> and <code>EndTime</code> are
+     *         specified with <code>Recurrence</code>, they form the boundaries
+     *         of when the recurring action starts and stops.
      *         </p>
      */
     public String getRecurrence() {
@@ -484,7 +479,12 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The recurring schedule for the action.
+     * The recurring schedule for the action, in Unix cron syntax format.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -493,7 +493,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @param recurrence <p>
-     *            The recurring schedule for the action.
+     *            The recurring schedule for the action, in Unix cron syntax
+     *            format.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
      *            </p>
      */
     public void setRecurrence(String recurrence) {
@@ -502,7 +508,12 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The recurring schedule for the action.
+     * The recurring schedule for the action, in Unix cron syntax format.
+     * </p>
+     * <p>
+     * When <code>StartTime</code> and <code>EndTime</code> are specified with
+     * <code>Recurrence</code>, they form the boundaries of when the recurring
+     * action starts and stops.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -514,7 +525,13 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @param recurrence <p>
-     *            The recurring schedule for the action.
+     *            The recurring schedule for the action, in Unix cron syntax
+     *            format.
+     *            </p>
+     *            <p>
+     *            When <code>StartTime</code> and <code>EndTime</code> are
+     *            specified with <code>Recurrence</code>, they form the
+     *            boundaries of when the recurring action starts and stops.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -526,11 +543,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The minimum size of the group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The minimum size of the group.
+     *         The minimum number of instances in the Auto Scaling group.
      *         </p>
      */
     public Integer getMinSize() {
@@ -539,11 +556,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The minimum size of the group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      *
      * @param minSize <p>
-     *            The minimum size of the group.
+     *            The minimum number of instances in the Auto Scaling group.
      *            </p>
      */
     public void setMinSize(Integer minSize) {
@@ -552,14 +569,14 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The minimum size of the group.
+     * The minimum number of instances in the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minSize <p>
-     *            The minimum size of the group.
+     *            The minimum number of instances in the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -571,11 +588,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The maximum size of the group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The maximum size of the group.
+     *         The maximum number of instances in the Auto Scaling group.
      *         </p>
      */
     public Integer getMaxSize() {
@@ -584,11 +601,11 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The maximum size of the group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      *
      * @param maxSize <p>
-     *            The maximum size of the group.
+     *            The maximum number of instances in the Auto Scaling group.
      *            </p>
      */
     public void setMaxSize(Integer maxSize) {
@@ -597,14 +614,14 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The maximum size of the group.
+     * The maximum number of instances in the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxSize <p>
-     *            The maximum size of the group.
+     *            The maximum number of instances in the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
