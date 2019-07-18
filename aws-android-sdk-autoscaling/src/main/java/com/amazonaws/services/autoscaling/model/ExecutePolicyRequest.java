@@ -56,7 +56,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * This parameter is not supported if the policy type is
-     * <code>StepScaling</code>.
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -223,7 +223,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * This parameter is not supported if the policy type is
-     * <code>StepScaling</code>.
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -237,7 +237,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         </p>
      *         <p>
      *         This parameter is not supported if the policy type is
-     *         <code>StepScaling</code>.
+     *         <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -257,7 +257,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * This parameter is not supported if the policy type is
-     * <code>StepScaling</code>.
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -271,7 +271,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         </p>
      *         <p>
      *         This parameter is not supported if the policy type is
-     *         <code>StepScaling</code>.
+     *         <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -291,7 +291,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * This parameter is not supported if the policy type is
-     * <code>StepScaling</code>.
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -305,7 +305,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            </p>
      *            <p>
      *            This parameter is not supported if the policy type is
-     *            <code>StepScaling</code>.
+     *            <code>StepScaling</code> or <code>TargetTrackingScaling</code>
+     *            .
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -325,7 +326,7 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * This parameter is not supported if the policy type is
-     * <code>StepScaling</code>.
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -342,7 +343,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            </p>
      *            <p>
      *            This parameter is not supported if the policy type is
-     *            <code>StepScaling</code>.
+     *            <code>StepScaling</code> or <code>TargetTrackingScaling</code>
+     *            .
      *            </p>
      *            <p>
      *            For more information, see <a href=

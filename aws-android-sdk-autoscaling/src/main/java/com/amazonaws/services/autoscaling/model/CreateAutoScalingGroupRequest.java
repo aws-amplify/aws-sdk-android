@@ -35,8 +35,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the Auto Scaling group. This name must be unique within the
-     * scope of your AWS account.
+     * The name of the Auto Scaling group. This name must be unique per Region
+     * per account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,14 +48,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. This parameter, a launch template,
-     * a mixed instances policy, or an EC2 instance must be specified.
+     * The name of the launch configuration.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
      * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * If you do not specify <code>LaunchConfigurationName</code>, you must
+     * specify one of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,9 +71,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. This parameter, a launch
-     * configuration, a mixed instances policy, or an EC2 instance must be
-     * specified.
+     * The launch template to use to launch instances.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -77,14 +79,28 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Creating an Auto Scaling Group Using a Launch Template</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * If you do not specify <code>LaunchTemplate</code>, you must specify one
+     * of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchConfigurationName</code>, or
+     * <code>MixedInstancesPolicy</code>.
+     * </p>
      */
     private LaunchTemplateSpecification launchTemplate;
 
     /**
      * <p>
-     * The mixed instances policy to use to launch instances. This parameter, a
-     * launch template, a launch configuration, or an EC2 instance must be
-     * specified.
+     * An embedded object that specifies a mixed instances policy. The required
+     * parameters must be specified. If optional parameters are unspecified,
+     * their default values are used.
+     * </p>
+     * <p>
+     * The policy includes parameters that not only define the distribution of
+     * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
+     * instances, and how the Auto Scaling group allocates instance types to
+     * fulfill On-Demand and Spot capacity, but also the parameters that specify
+     * the instance configuration information—the launch template and instance
+     * types.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -92,14 +108,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
      */
     private MixedInstancesPolicy mixedInstancesPolicy;
 
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. This parameter, a launch configuration, a launch template, or a
-     * mixed instances policy must be specified.
+     * group.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
@@ -112,6 +132,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html"
      * >Create an Auto Scaling Group Using an EC2 Instance</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,10 +162,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group. This
-     * number must be greater than or equal to the minimum size of the group and
-     * less than or equal to the maximum size of the group. If you do not
-     * specify a desired capacity, the default is the minimum size of the group.
+     * The number of Amazon EC2 instances that the Auto Scaling group attempts
+     * to maintain. This number must be greater than or equal to the minimum
+     * size of the group and less than or equal to the maximum size of the
+     * group. If you do not specify a desired capacity, the default is the
+     * minimum size of the group.
      * </p>
      */
     private Integer desiredCapacity;
@@ -173,14 +199,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more Classic Load Balancers. To specify an Application Load
-     * Balancer or a Network Load Balancer, use <code>TargetGroupARNs</code>
-     * instead.
+     * A list of Classic Load Balancers associated with this Auto Scaling group.
+     * For Application Load Balancers and Network Load Balancers, specify a list
+     * of target groups using the <code>TargetGroupARNs</code> property instead.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     * >Using a Load Balancer With an Auto Scaling Group</a> in the <i>Amazon
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      */
@@ -188,7 +214,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Names (ARN) of the target groups.
+     * The Amazon Resource Names (ARN) of the target groups to associate with
+     * the Auto Scaling group. Instances are registered as targets in a target
+     * group, and traffic is routed to the target group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      */
     private java.util.List<String> targetGroupARNs = new java.util.ArrayList<String>();
@@ -345,8 +379,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the Auto Scaling group. This name must be unique within the
-     * scope of your AWS account.
+     * The name of the Auto Scaling group. This name must be unique per Region
+     * per account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -355,8 +389,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the Auto Scaling group. This name must be unique
-     *         within the scope of your AWS account.
+     *         The name of the Auto Scaling group. This name must be unique per
+     *         Region per account.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -365,8 +399,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the Auto Scaling group. This name must be unique within the
-     * scope of your AWS account.
+     * The name of the Auto Scaling group. This name must be unique per Region
+     * per account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -376,7 +410,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param autoScalingGroupName <p>
      *            The name of the Auto Scaling group. This name must be unique
-     *            within the scope of your AWS account.
+     *            per Region per account.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -385,8 +419,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the Auto Scaling group. This name must be unique within the
-     * scope of your AWS account.
+     * The name of the Auto Scaling group. This name must be unique per Region
+     * per account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -399,7 +433,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param autoScalingGroupName <p>
      *            The name of the Auto Scaling group. This name must be unique
-     *            within the scope of your AWS account.
+     *            per Region per account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -411,14 +445,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. This parameter, a launch template,
-     * a mixed instances policy, or an EC2 instance must be specified.
+     * The name of the launch configuration.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
      * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * If you do not specify <code>LaunchConfigurationName</code>, you must
+     * specify one of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -427,15 +465,19 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the launch configuration. This parameter, a launch
-     *         template, a mixed instances policy, or an EC2 instance must be
-     *         specified.
+     *         The name of the launch configuration.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
      *         >Creating an Auto Scaling Group Using a Launch Configuration</a>
      *         in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         </p>
+     *         <p>
+     *         If you do not specify <code>LaunchConfigurationName</code>, you
+     *         must specify one of the following parameters:
+     *         <code>InstanceId</code>, <code>LaunchTemplate</code>, or
+     *         <code>MixedInstancesPolicy</code>.
      *         </p>
      */
     public String getLaunchConfigurationName() {
@@ -444,14 +486,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. This parameter, a launch template,
-     * a mixed instances policy, or an EC2 instance must be specified.
+     * The name of the launch configuration.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
      * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * If you do not specify <code>LaunchConfigurationName</code>, you must
+     * specify one of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -460,9 +506,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. This parameter, a launch
-     *            template, a mixed instances policy, or an EC2 instance must be
-     *            specified.
+     *            The name of the launch configuration.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -471,6 +515,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            Configuration</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
      *            </p>
+     *            <p>
+     *            If you do not specify <code>LaunchConfigurationName</code>,
+     *            you must specify one of the following parameters:
+     *            <code>InstanceId</code>, <code>LaunchTemplate</code>, or
+     *            <code>MixedInstancesPolicy</code>.
+     *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
@@ -478,14 +528,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. This parameter, a launch template,
-     * a mixed instances policy, or an EC2 instance must be specified.
+     * The name of the launch configuration.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
      * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * If you do not specify <code>LaunchConfigurationName</code>, you must
+     * specify one of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -497,9 +551,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. This parameter, a launch
-     *            template, a mixed instances policy, or an EC2 instance must be
-     *            specified.
+     *            The name of the launch configuration.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -507,6 +559,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            >Creating an Auto Scaling Group Using a Launch
      *            Configuration</a> in the <i>Amazon EC2 Auto Scaling User
      *            Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you do not specify <code>LaunchConfigurationName</code>,
+     *            you must specify one of the following parameters:
+     *            <code>InstanceId</code>, <code>LaunchTemplate</code>, or
+     *            <code>MixedInstancesPolicy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -518,9 +576,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. This parameter, a launch
-     * configuration, a mixed instances policy, or an EC2 instance must be
-     * specified.
+     * The launch template to use to launch instances.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -528,17 +584,27 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Creating an Auto Scaling Group Using a Launch Template</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * If you do not specify <code>LaunchTemplate</code>, you must specify one
+     * of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchConfigurationName</code>, or
+     * <code>MixedInstancesPolicy</code>.
+     * </p>
      *
      * @return <p>
-     *         The launch template to use to launch instances. This parameter, a
-     *         launch configuration, a mixed instances policy, or an EC2
-     *         instance must be specified.
+     *         The launch template to use to launch instances.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
      *         >Creating an Auto Scaling Group Using a Launch Template</a> in
      *         the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         </p>
+     *         <p>
+     *         If you do not specify <code>LaunchTemplate</code>, you must
+     *         specify one of the following parameters: <code>InstanceId</code>,
+     *         <code>LaunchConfigurationName</code>, or
+     *         <code>MixedInstancesPolicy</code>.
      *         </p>
      */
     public LaunchTemplateSpecification getLaunchTemplate() {
@@ -547,9 +613,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. This parameter, a launch
-     * configuration, a mixed instances policy, or an EC2 instance must be
-     * specified.
+     * The launch template to use to launch instances.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -557,17 +621,27 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Creating an Auto Scaling Group Using a Launch Template</a> in the
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * If you do not specify <code>LaunchTemplate</code>, you must specify one
+     * of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchConfigurationName</code>, or
+     * <code>MixedInstancesPolicy</code>.
+     * </p>
      *
      * @param launchTemplate <p>
-     *            The launch template to use to launch instances. This
-     *            parameter, a launch configuration, a mixed instances policy,
-     *            or an EC2 instance must be specified.
+     *            The launch template to use to launch instances.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
      *            >Creating an Auto Scaling Group Using a Launch Template</a> in
      *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you do not specify <code>LaunchTemplate</code>, you must
+     *            specify one of the following parameters:
+     *            <code>InstanceId</code>, <code>LaunchConfigurationName</code>,
+     *            or <code>MixedInstancesPolicy</code>.
      *            </p>
      */
     public void setLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
@@ -576,9 +650,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. This parameter, a launch
-     * configuration, a mixed instances policy, or an EC2 instance must be
-     * specified.
+     * The launch template to use to launch instances.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -587,19 +659,29 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
+     * If you do not specify <code>LaunchTemplate</code>, you must specify one
+     * of the following parameters: <code>InstanceId</code>,
+     * <code>LaunchConfigurationName</code>, or
+     * <code>MixedInstancesPolicy</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param launchTemplate <p>
-     *            The launch template to use to launch instances. This
-     *            parameter, a launch configuration, a mixed instances policy,
-     *            or an EC2 instance must be specified.
+     *            The launch template to use to launch instances.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
      *            >Creating an Auto Scaling Group Using a Launch Template</a> in
      *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you do not specify <code>LaunchTemplate</code>, you must
+     *            specify one of the following parameters:
+     *            <code>InstanceId</code>, <code>LaunchConfigurationName</code>,
+     *            or <code>MixedInstancesPolicy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -612,9 +694,17 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The mixed instances policy to use to launch instances. This parameter, a
-     * launch template, a launch configuration, or an EC2 instance must be
-     * specified.
+     * An embedded object that specifies a mixed instances policy. The required
+     * parameters must be specified. If optional parameters are unspecified,
+     * their default values are used.
+     * </p>
+     * <p>
+     * The policy includes parameters that not only define the distribution of
+     * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
+     * instances, and how the Auto Scaling group allocates instance types to
+     * fulfill On-Demand and Spot capacity, but also the parameters that specify
+     * the instance configuration information—the launch template and instance
+     * types.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -622,17 +712,34 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
      *
      * @return <p>
-     *         The mixed instances policy to use to launch instances. This
-     *         parameter, a launch template, a launch configuration, or an EC2
-     *         instance must be specified.
+     *         An embedded object that specifies a mixed instances policy. The
+     *         required parameters must be specified. If optional parameters are
+     *         unspecified, their default values are used.
+     *         </p>
+     *         <p>
+     *         The policy includes parameters that not only define the
+     *         distribution of On-Demand Instances and Spot Instances, the
+     *         maximum price to pay for Spot instances, and how the Auto Scaling
+     *         group allocates instance types to fulfill On-Demand and Spot
+     *         capacity, but also the parameters that specify the instance
+     *         configuration information—the launch template and instance types.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *         >Auto Scaling Groups with Multiple Instance Types and Purchase
      *         Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         </p>
+     *         <p>
+     *         You must specify one of the following parameters in your request:
+     *         <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>, <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
      *         </p>
      */
     public MixedInstancesPolicy getMixedInstancesPolicy() {
@@ -641,9 +748,17 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The mixed instances policy to use to launch instances. This parameter, a
-     * launch template, a launch configuration, or an EC2 instance must be
-     * specified.
+     * An embedded object that specifies a mixed instances policy. The required
+     * parameters must be specified. If optional parameters are unspecified,
+     * their default values are used.
+     * </p>
+     * <p>
+     * The policy includes parameters that not only define the distribution of
+     * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
+     * instances, and how the Auto Scaling group allocates instance types to
+     * fulfill On-Demand and Spot capacity, but also the parameters that specify
+     * the instance configuration information—the launch template and instance
+     * types.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -651,17 +766,37 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
+     * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
      *
      * @param mixedInstancesPolicy <p>
-     *            The mixed instances policy to use to launch instances. This
-     *            parameter, a launch template, a launch configuration, or an
-     *            EC2 instance must be specified.
+     *            An embedded object that specifies a mixed instances policy.
+     *            The required parameters must be specified. If optional
+     *            parameters are unspecified, their default values are used.
+     *            </p>
+     *            <p>
+     *            The policy includes parameters that not only define the
+     *            distribution of On-Demand Instances and Spot Instances, the
+     *            maximum price to pay for Spot instances, and how the Auto
+     *            Scaling group allocates instance types to fulfill On-Demand
+     *            and Spot capacity, but also the parameters that specify the
+     *            instance configuration information—the launch template and
+     *            instance types.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *            >Auto Scaling Groups with Multiple Instance Types and Purchase
      *            Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            You must specify one of the following parameters in your
+     *            request: <code>LaunchConfigurationName</code>,
+     *            <code>LaunchTemplate</code>, <code>InstanceId</code>, or
+     *            <code>MixedInstancesPolicy</code>.
      *            </p>
      */
     public void setMixedInstancesPolicy(MixedInstancesPolicy mixedInstancesPolicy) {
@@ -670,9 +805,17 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The mixed instances policy to use to launch instances. This parameter, a
-     * launch template, a launch configuration, or an EC2 instance must be
-     * specified.
+     * An embedded object that specifies a mixed instances policy. The required
+     * parameters must be specified. If optional parameters are unspecified,
+     * their default values are used.
+     * </p>
+     * <p>
+     * The policy includes parameters that not only define the distribution of
+     * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
+     * instances, and how the Auto Scaling group allocates instance types to
+     * fulfill On-Demand and Spot capacity, but also the parameters that specify
+     * the instance configuration information—the launch template and instance
+     * types.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -681,19 +824,39 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mixedInstancesPolicy <p>
-     *            The mixed instances policy to use to launch instances. This
-     *            parameter, a launch template, a launch configuration, or an
-     *            EC2 instance must be specified.
+     *            An embedded object that specifies a mixed instances policy.
+     *            The required parameters must be specified. If optional
+     *            parameters are unspecified, their default values are used.
+     *            </p>
+     *            <p>
+     *            The policy includes parameters that not only define the
+     *            distribution of On-Demand Instances and Spot Instances, the
+     *            maximum price to pay for Spot instances, and how the Auto
+     *            Scaling group allocates instance types to fulfill On-Demand
+     *            and Spot capacity, but also the parameters that specify the
+     *            instance configuration information—the launch template and
+     *            instance types.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *            >Auto Scaling Groups with Multiple Instance Types and Purchase
      *            Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            You must specify one of the following parameters in your
+     *            request: <code>LaunchConfigurationName</code>,
+     *            <code>LaunchTemplate</code>, <code>InstanceId</code>, or
+     *            <code>MixedInstancesPolicy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -707,8 +870,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. This parameter, a launch configuration, a launch template, or a
-     * mixed instances policy must be specified.
+     * group.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
@@ -723,6 +885,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -730,8 +897,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The ID of the instance used to create a launch configuration for
-     *         the group. This parameter, a launch configuration, a launch
-     *         template, or a mixed instances policy must be specified.
+     *         the group.
      *         </p>
      *         <p>
      *         When you specify an ID of an instance, Amazon EC2 Auto Scaling
@@ -745,6 +911,10 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         >Create an Auto Scaling Group Using an EC2 Instance</a> in the
      *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
+     *         <p>
+     *         You must specify one of the following parameters in your request:
+     *         <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>, <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     *         </p>
      */
     public String getInstanceId() {
         return instanceId;
@@ -753,8 +923,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. This parameter, a launch configuration, a launch template, or a
-     * mixed instances policy must be specified.
+     * group.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
@@ -769,6 +938,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 19<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -776,9 +950,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param instanceId <p>
      *            The ID of the instance used to create a launch configuration
-     *            for the group. This parameter, a launch configuration, a
-     *            launch template, or a mixed instances policy must be
-     *            specified.
+     *            for the group.
      *            </p>
      *            <p>
      *            When you specify an ID of an instance, Amazon EC2 Auto Scaling
@@ -792,6 +964,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            >Create an Auto Scaling Group Using an EC2 Instance</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
+     *            <p>
+     *            You must specify one of the following parameters in your
+     *            request: <code>LaunchConfigurationName</code>,
+     *            <code>LaunchTemplate</code>, <code>InstanceId</code>, or
+     *            <code>MixedInstancesPolicy</code>.
+     *            </p>
      */
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
@@ -800,8 +978,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. This parameter, a launch configuration, a launch template, or a
-     * mixed instances policy must be specified.
+     * group.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
@@ -814,6 +991,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html"
      * >Create an Auto Scaling Group Using an EC2 Instance</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * You must specify one of the following parameters in your request:
+     * <code>LaunchConfigurationName</code>, <code>LaunchTemplate</code>,
+     * <code>InstanceId</code>, or <code>MixedInstancesPolicy</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -826,9 +1008,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param instanceId <p>
      *            The ID of the instance used to create a launch configuration
-     *            for the group. This parameter, a launch configuration, a
-     *            launch template, or a mixed instances policy must be
-     *            specified.
+     *            for the group.
      *            </p>
      *            <p>
      *            When you specify an ID of an instance, Amazon EC2 Auto Scaling
@@ -841,6 +1021,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html"
      *            >Create an Auto Scaling Group Using an EC2 Instance</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     *            <p>
+     *            You must specify one of the following parameters in your
+     *            request: <code>LaunchConfigurationName</code>,
+     *            <code>LaunchTemplate</code>, <code>InstanceId</code>, or
+     *            <code>MixedInstancesPolicy</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -942,18 +1128,19 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group. This
-     * number must be greater than or equal to the minimum size of the group and
-     * less than or equal to the maximum size of the group. If you do not
-     * specify a desired capacity, the default is the minimum size of the group.
+     * The number of Amazon EC2 instances that the Auto Scaling group attempts
+     * to maintain. This number must be greater than or equal to the minimum
+     * size of the group and less than or equal to the maximum size of the
+     * group. If you do not specify a desired capacity, the default is the
+     * minimum size of the group.
      * </p>
      *
      * @return <p>
-     *         The number of EC2 instances that should be running in the group.
-     *         This number must be greater than or equal to the minimum size of
-     *         the group and less than or equal to the maximum size of the
-     *         group. If you do not specify a desired capacity, the default is
-     *         the minimum size of the group.
+     *         The number of Amazon EC2 instances that the Auto Scaling group
+     *         attempts to maintain. This number must be greater than or equal
+     *         to the minimum size of the group and less than or equal to the
+     *         maximum size of the group. If you do not specify a desired
+     *         capacity, the default is the minimum size of the group.
      *         </p>
      */
     public Integer getDesiredCapacity() {
@@ -962,18 +1149,20 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group. This
-     * number must be greater than or equal to the minimum size of the group and
-     * less than or equal to the maximum size of the group. If you do not
-     * specify a desired capacity, the default is the minimum size of the group.
+     * The number of Amazon EC2 instances that the Auto Scaling group attempts
+     * to maintain. This number must be greater than or equal to the minimum
+     * size of the group and less than or equal to the maximum size of the
+     * group. If you do not specify a desired capacity, the default is the
+     * minimum size of the group.
      * </p>
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group. This number must be greater than or equal to the
-     *            minimum size of the group and less than or equal to the
-     *            maximum size of the group. If you do not specify a desired
-     *            capacity, the default is the minimum size of the group.
+     *            The number of Amazon EC2 instances that the Auto Scaling group
+     *            attempts to maintain. This number must be greater than or
+     *            equal to the minimum size of the group and less than or equal
+     *            to the maximum size of the group. If you do not specify a
+     *            desired capacity, the default is the minimum size of the
+     *            group.
      *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
@@ -982,21 +1171,23 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group. This
-     * number must be greater than or equal to the minimum size of the group and
-     * less than or equal to the maximum size of the group. If you do not
-     * specify a desired capacity, the default is the minimum size of the group.
+     * The number of Amazon EC2 instances that the Auto Scaling group attempts
+     * to maintain. This number must be greater than or equal to the minimum
+     * size of the group and less than or equal to the maximum size of the
+     * group. If you do not specify a desired capacity, the default is the
+     * minimum size of the group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group. This number must be greater than or equal to the
-     *            minimum size of the group and less than or equal to the
-     *            maximum size of the group. If you do not specify a desired
-     *            capacity, the default is the minimum size of the group.
+     *            The number of Amazon EC2 instances that the Auto Scaling group
+     *            attempts to maintain. This number must be greater than or
+     *            equal to the minimum size of the group and less than or equal
+     *            to the maximum size of the group. If you do not specify a
+     *            desired capacity, the default is the minimum size of the
+     *            group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1220,26 +1411,27 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more Classic Load Balancers. To specify an Application Load
-     * Balancer or a Network Load Balancer, use <code>TargetGroupARNs</code>
-     * instead.
+     * A list of Classic Load Balancers associated with this Auto Scaling group.
+     * For Application Load Balancers and Network Load Balancers, specify a list
+     * of target groups using the <code>TargetGroupARNs</code> property instead.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     * >Using a Load Balancer With an Auto Scaling Group</a> in the <i>Amazon
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
-     *         One or more Classic Load Balancers. To specify an Application
-     *         Load Balancer or a Network Load Balancer, use
-     *         <code>TargetGroupARNs</code> instead.
+     *         A list of Classic Load Balancers associated with this Auto
+     *         Scaling group. For Application Load Balancers and Network Load
+     *         Balancers, specify a list of target groups using the
+     *         <code>TargetGroupARNs</code> property instead.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     *         >Using a Load Balancer With an Auto Scaling Group</a> in the
+     *         >Using a Load Balancer with an Auto Scaling Group</a> in the
      *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
@@ -1249,26 +1441,27 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more Classic Load Balancers. To specify an Application Load
-     * Balancer or a Network Load Balancer, use <code>TargetGroupARNs</code>
-     * instead.
+     * A list of Classic Load Balancers associated with this Auto Scaling group.
+     * For Application Load Balancers and Network Load Balancers, specify a list
+     * of target groups using the <code>TargetGroupARNs</code> property instead.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     * >Using a Load Balancer With an Auto Scaling Group</a> in the <i>Amazon
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @param loadBalancerNames <p>
-     *            One or more Classic Load Balancers. To specify an Application
-     *            Load Balancer or a Network Load Balancer, use
-     *            <code>TargetGroupARNs</code> instead.
+     *            A list of Classic Load Balancers associated with this Auto
+     *            Scaling group. For Application Load Balancers and Network Load
+     *            Balancers, specify a list of target groups using the
+     *            <code>TargetGroupARNs</code> property instead.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     *            >Using a Load Balancer With an Auto Scaling Group</a> in the
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
@@ -1283,14 +1476,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more Classic Load Balancers. To specify an Application Load
-     * Balancer or a Network Load Balancer, use <code>TargetGroupARNs</code>
-     * instead.
+     * A list of Classic Load Balancers associated with this Auto Scaling group.
+     * For Application Load Balancers and Network Load Balancers, specify a list
+     * of target groups using the <code>TargetGroupARNs</code> property instead.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     * >Using a Load Balancer With an Auto Scaling Group</a> in the <i>Amazon
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -1298,14 +1491,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param loadBalancerNames <p>
-     *            One or more Classic Load Balancers. To specify an Application
-     *            Load Balancer or a Network Load Balancer, use
-     *            <code>TargetGroupARNs</code> instead.
+     *            A list of Classic Load Balancers associated with this Auto
+     *            Scaling group. For Application Load Balancers and Network Load
+     *            Balancers, specify a list of target groups using the
+     *            <code>TargetGroupARNs</code> property instead.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     *            >Using a Load Balancer With an Auto Scaling Group</a> in the
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1323,14 +1517,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more Classic Load Balancers. To specify an Application Load
-     * Balancer or a Network Load Balancer, use <code>TargetGroupARNs</code>
-     * instead.
+     * A list of Classic Load Balancers associated with this Auto Scaling group.
+     * For Application Load Balancers and Network Load Balancers, specify a list
+     * of target groups using the <code>TargetGroupARNs</code> property instead.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     * >Using a Load Balancer With an Auto Scaling Group</a> in the <i>Amazon
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
@@ -1338,14 +1532,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param loadBalancerNames <p>
-     *            One or more Classic Load Balancers. To specify an Application
-     *            Load Balancer or a Network Load Balancer, use
-     *            <code>TargetGroupARNs</code> instead.
+     *            A list of Classic Load Balancers associated with this Auto
+     *            Scaling group. For Application Load Balancers and Network Load
+     *            Balancers, specify a list of target groups using the
+     *            <code>TargetGroupARNs</code> property instead.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
-     *            >Using a Load Balancer With an Auto Scaling Group</a> in the
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1359,11 +1554,27 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Names (ARN) of the target groups.
+     * The Amazon Resource Names (ARN) of the target groups to associate with
+     * the Auto Scaling group. Instances are registered as targets in a target
+     * group, and traffic is routed to the target group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Names (ARN) of the target groups.
+     *         The Amazon Resource Names (ARN) of the target groups to associate
+     *         with the Auto Scaling group. Instances are registered as targets
+     *         in a target group, and traffic is routed to the target group.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     *         >Using a Load Balancer with an Auto Scaling Group</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public java.util.List<String> getTargetGroupARNs() {
@@ -1372,11 +1583,28 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Names (ARN) of the target groups.
+     * The Amazon Resource Names (ARN) of the target groups to associate with
+     * the Auto Scaling group. Instances are registered as targets in a target
+     * group, and traffic is routed to the target group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      *
      * @param targetGroupARNs <p>
-     *            The Amazon Resource Names (ARN) of the target groups.
+     *            The Amazon Resource Names (ARN) of the target groups to
+     *            associate with the Auto Scaling group. Instances are
+     *            registered as targets in a target group, and traffic is routed
+     *            to the target group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setTargetGroupARNs(java.util.Collection<String> targetGroupARNs) {
@@ -1390,14 +1618,31 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Names (ARN) of the target groups.
+     * The Amazon Resource Names (ARN) of the target groups to associate with
+     * the Auto Scaling group. Instances are registered as targets in a target
+     * group, and traffic is routed to the target group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetGroupARNs <p>
-     *            The Amazon Resource Names (ARN) of the target groups.
+     *            The Amazon Resource Names (ARN) of the target groups to
+     *            associate with the Auto Scaling group. Instances are
+     *            registered as targets in a target group, and traffic is routed
+     *            to the target group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1414,14 +1659,31 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Names (ARN) of the target groups.
+     * The Amazon Resource Names (ARN) of the target groups to associate with
+     * the Auto Scaling group. Instances are registered as targets in a target
+     * group, and traffic is routed to the target group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     * >Using a Load Balancer with an Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetGroupARNs <p>
-     *            The Amazon Resource Names (ARN) of the target groups.
+     *            The Amazon Resource Names (ARN) of the target groups to
+     *            associate with the Auto Scaling group. Instances are
+     *            registered as targets in a target group, and traffic is routed
+     *            to the target group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html"
+     *            >Using a Load Balancer with an Auto Scaling Group</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
