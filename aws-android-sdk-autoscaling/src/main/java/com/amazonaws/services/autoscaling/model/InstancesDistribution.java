@@ -25,7 +25,8 @@ import java.io.Serializable;
  * <p>
  * The instances distribution specifies the distribution of On-Demand Instances
  * and Spot Instances, the maximum price to pay for Spot Instances, and how the
- * Auto Scaling group allocates instance types.
+ * Auto Scaling group allocates instance types to fulfill On-Demand and Spot
+ * capacity.
  * </p>
  */
 public class InstancesDistribution implements Serializable {
@@ -67,12 +68,13 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
+     * range is 0–100.
      * </p>
      * <p>
-     * The range is 0–100. The default value is <code>100</code>. If you leave
-     * this parameter set to <code>100</code>, the percentages are 100% for
-     * On-Demand Instances and 0% for Spot Instances.
+     * The default value is <code>100</code>. If you leave this parameter set to
+     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
+     * for Spot Instances.
      * </p>
      */
     private Integer onDemandPercentageAboveBaseCapacity;
@@ -98,10 +100,10 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
      * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>.
+     * array of <a>LaunchTemplate</a>. The range is 1–20.
      * </p>
      * <p>
-     * The range is 1–20 and the default is 2.
+     * The default value is <code>2</code>.
      * </p>
      */
     private Integer spotInstancePools;
@@ -339,23 +341,24 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
+     * range is 0–100.
      * </p>
      * <p>
-     * The range is 0–100. The default value is <code>100</code>. If you leave
-     * this parameter set to <code>100</code>, the percentages are 100% for
-     * On-Demand Instances and 0% for Spot Instances.
+     * The default value is <code>100</code>. If you leave this parameter set to
+     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
+     * for Spot Instances.
      * </p>
      *
      * @return <p>
      *         Controls the percentages of On-Demand Instances and Spot
      *         Instances for your additional capacity beyond
-     *         <code>OnDemandBaseCapacity</code>.
+     *         <code>OnDemandBaseCapacity</code>. The range is 0–100.
      *         </p>
      *         <p>
-     *         The range is 0–100. The default value is <code>100</code>. If you
-     *         leave this parameter set to <code>100</code>, the percentages are
-     *         100% for On-Demand Instances and 0% for Spot Instances.
+     *         The default value is <code>100</code>. If you leave this
+     *         parameter set to <code>100</code>, the percentages are 100% for
+     *         On-Demand Instances and 0% for Spot Instances.
      *         </p>
      */
     public Integer getOnDemandPercentageAboveBaseCapacity() {
@@ -365,24 +368,24 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
+     * range is 0–100.
      * </p>
      * <p>
-     * The range is 0–100. The default value is <code>100</code>. If you leave
-     * this parameter set to <code>100</code>, the percentages are 100% for
-     * On-Demand Instances and 0% for Spot Instances.
+     * The default value is <code>100</code>. If you leave this parameter set to
+     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
+     * for Spot Instances.
      * </p>
      *
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <code>OnDemandBaseCapacity</code>.
+     *            <code>OnDemandBaseCapacity</code>. The range is 0–100.
      *            </p>
      *            <p>
-     *            The range is 0–100. The default value is <code>100</code>. If
-     *            you leave this parameter set to <code>100</code>, the
-     *            percentages are 100% for On-Demand Instances and 0% for Spot
-     *            Instances.
+     *            The default value is <code>100</code>. If you leave this
+     *            parameter set to <code>100</code>, the percentages are 100%
+     *            for On-Demand Instances and 0% for Spot Instances.
      *            </p>
      */
     public void setOnDemandPercentageAboveBaseCapacity(Integer onDemandPercentageAboveBaseCapacity) {
@@ -392,12 +395,13 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
+     * range is 0–100.
      * </p>
      * <p>
-     * The range is 0–100. The default value is <code>100</code>. If you leave
-     * this parameter set to <code>100</code>, the percentages are 100% for
-     * On-Demand Instances and 0% for Spot Instances.
+     * The default value is <code>100</code>. If you leave this parameter set to
+     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
+     * for Spot Instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -406,13 +410,12 @@ public class InstancesDistribution implements Serializable {
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <code>OnDemandBaseCapacity</code>.
+     *            <code>OnDemandBaseCapacity</code>. The range is 0–100.
      *            </p>
      *            <p>
-     *            The range is 0–100. The default value is <code>100</code>. If
-     *            you leave this parameter set to <code>100</code>, the
-     *            percentages are 100% for On-Demand Instances and 0% for Spot
-     *            Instances.
+     *            The default value is <code>100</code>. If you leave this
+     *            parameter set to <code>100</code>, the percentages are 100%
+     *            for On-Demand Instances and 0% for Spot Instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -520,19 +523,20 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
      * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>.
+     * array of <a>LaunchTemplate</a>. The range is 1–20.
      * </p>
      * <p>
-     * The range is 1–20 and the default is 2.
+     * The default value is <code>2</code>.
      * </p>
      *
      * @return <p>
      *         The number of Spot pools to use to allocate your Spot capacity.
      *         The Spot pools are determined from the different instance types
-     *         in the Overrides array of <a>LaunchTemplate</a>.
+     *         in the Overrides array of <a>LaunchTemplate</a>. The range is
+     *         1–20.
      *         </p>
      *         <p>
-     *         The range is 1–20 and the default is 2.
+     *         The default value is <code>2</code>.
      *         </p>
      */
     public Integer getSpotInstancePools() {
@@ -543,20 +547,20 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
      * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>.
+     * array of <a>LaunchTemplate</a>. The range is 1–20.
      * </p>
      * <p>
-     * The range is 1–20 and the default is 2.
+     * The default value is <code>2</code>.
      * </p>
      *
      * @param spotInstancePools <p>
      *            The number of Spot pools to use to allocate your Spot
      *            capacity. The Spot pools are determined from the different
      *            instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>.
+     *            <a>LaunchTemplate</a>. The range is 1–20.
      *            </p>
      *            <p>
-     *            The range is 1–20 and the default is 2.
+     *            The default value is <code>2</code>.
      *            </p>
      */
     public void setSpotInstancePools(Integer spotInstancePools) {
@@ -567,10 +571,10 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot pools to use to allocate your Spot capacity. The Spot
      * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>.
+     * array of <a>LaunchTemplate</a>. The range is 1–20.
      * </p>
      * <p>
-     * The range is 1–20 and the default is 2.
+     * The default value is <code>2</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -580,10 +584,10 @@ public class InstancesDistribution implements Serializable {
      *            The number of Spot pools to use to allocate your Spot
      *            capacity. The Spot pools are determined from the different
      *            instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>.
+     *            <a>LaunchTemplate</a>. The range is 1–20.
      *            </p>
      *            <p>
-     *            The range is 1–20 and the default is 2.
+     *            The default value is <code>2</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
