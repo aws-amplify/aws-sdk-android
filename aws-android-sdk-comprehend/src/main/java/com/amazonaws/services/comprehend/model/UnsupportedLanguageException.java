@@ -21,8 +21,9 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * Amazon Comprehend can't process the language of the input text. For all
  * custom entity recognition APIs (such as <code>CreateEntityRecognizer</code>),
- * only English is accepted. For most other APIs, Amazon Comprehend accepts only
- * English or Spanish text.
+ * only English is accepted. For most other APIs, such as those for Custom
+ * Classification, Amazon Comprehend accepts text in all supported languages.
+ * For a list of supported languages, see <a>supported-languages</a>.
  * </p>
  */
 public class UnsupportedLanguageException extends AmazonServiceException {
