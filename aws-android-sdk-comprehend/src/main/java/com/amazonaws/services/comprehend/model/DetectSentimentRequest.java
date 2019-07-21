@@ -40,8 +40,10 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -111,17 +113,20 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
-     *         The language of the input documents. You can specify English
-     *         ("en") or Spanish ("es"). All documents must be in the same
-     *         language.
+     *         The language of the input documents. You can specify any of the
+     *         primary languages supported by Amazon Comprehend: German ("de"),
+     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     *         Portuguese ("pt"). All documents must be in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -131,17 +136,21 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @see LanguageCode
      */
@@ -151,8 +160,10 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -162,9 +173,11 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -177,17 +190,21 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @see LanguageCode
      */
@@ -197,8 +214,10 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -208,9 +227,11 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
