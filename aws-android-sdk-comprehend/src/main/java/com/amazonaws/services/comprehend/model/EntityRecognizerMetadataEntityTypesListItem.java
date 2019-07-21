@@ -34,6 +34,22 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
 
     /**
      * <p>
+     * Detailed information about the accuracy of the entity recognizer for a
+     * specific item on the list of entity types.
+     * </p>
+     */
+    private EntityTypesEvaluationMetrics evaluationMetrics;
+
+    /**
+     * <p>
+     * indicates the number of times the given entity name was seen in the
+     * training data.
+     * </p>
+     */
+    private Integer numberOfTrainMentions;
+
+    /**
+     * <p>
      * Type of entity from the list of entity types in the metadata of an entity
      * recognizer.
      * </p>
@@ -84,6 +100,110 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
     }
 
     /**
+     * <p>
+     * Detailed information about the accuracy of the entity recognizer for a
+     * specific item on the list of entity types.
+     * </p>
+     *
+     * @return <p>
+     *         Detailed information about the accuracy of the entity recognizer
+     *         for a specific item on the list of entity types.
+     *         </p>
+     */
+    public EntityTypesEvaluationMetrics getEvaluationMetrics() {
+        return evaluationMetrics;
+    }
+
+    /**
+     * <p>
+     * Detailed information about the accuracy of the entity recognizer for a
+     * specific item on the list of entity types.
+     * </p>
+     *
+     * @param evaluationMetrics <p>
+     *            Detailed information about the accuracy of the entity
+     *            recognizer for a specific item on the list of entity types.
+     *            </p>
+     */
+    public void setEvaluationMetrics(EntityTypesEvaluationMetrics evaluationMetrics) {
+        this.evaluationMetrics = evaluationMetrics;
+    }
+
+    /**
+     * <p>
+     * Detailed information about the accuracy of the entity recognizer for a
+     * specific item on the list of entity types.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param evaluationMetrics <p>
+     *            Detailed information about the accuracy of the entity
+     *            recognizer for a specific item on the list of entity types.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerMetadataEntityTypesListItem withEvaluationMetrics(
+            EntityTypesEvaluationMetrics evaluationMetrics) {
+        this.evaluationMetrics = evaluationMetrics;
+        return this;
+    }
+
+    /**
+     * <p>
+     * indicates the number of times the given entity name was seen in the
+     * training data.
+     * </p>
+     *
+     * @return <p>
+     *         indicates the number of times the given entity name was seen in
+     *         the training data.
+     *         </p>
+     */
+    public Integer getNumberOfTrainMentions() {
+        return numberOfTrainMentions;
+    }
+
+    /**
+     * <p>
+     * indicates the number of times the given entity name was seen in the
+     * training data.
+     * </p>
+     *
+     * @param numberOfTrainMentions <p>
+     *            indicates the number of times the given entity name was seen
+     *            in the training data.
+     *            </p>
+     */
+    public void setNumberOfTrainMentions(Integer numberOfTrainMentions) {
+        this.numberOfTrainMentions = numberOfTrainMentions;
+    }
+
+    /**
+     * <p>
+     * indicates the number of times the given entity name was seen in the
+     * training data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param numberOfTrainMentions <p>
+     *            indicates the number of times the given entity name was seen
+     *            in the training data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerMetadataEntityTypesListItem withNumberOfTrainMentions(
+            Integer numberOfTrainMentions) {
+        this.numberOfTrainMentions = numberOfTrainMentions;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -95,7 +215,11 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getType() != null)
-            sb.append("Type: " + getType());
+            sb.append("Type: " + getType() + ",");
+        if (getEvaluationMetrics() != null)
+            sb.append("EvaluationMetrics: " + getEvaluationMetrics() + ",");
+        if (getNumberOfTrainMentions() != null)
+            sb.append("NumberOfTrainMentions: " + getNumberOfTrainMentions());
         sb.append("}");
         return sb.toString();
     }
@@ -106,6 +230,11 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
+        hashCode = prime * hashCode
+                + ((getEvaluationMetrics() == null) ? 0 : getEvaluationMetrics().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNumberOfTrainMentions() == null) ? 0 : getNumberOfTrainMentions().hashCode());
         return hashCode;
     }
 
@@ -123,6 +252,16 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
         if (other.getType() == null ^ this.getType() == null)
             return false;
         if (other.getType() != null && other.getType().equals(this.getType()) == false)
+            return false;
+        if (other.getEvaluationMetrics() == null ^ this.getEvaluationMetrics() == null)
+            return false;
+        if (other.getEvaluationMetrics() != null
+                && other.getEvaluationMetrics().equals(this.getEvaluationMetrics()) == false)
+            return false;
+        if (other.getNumberOfTrainMentions() == null ^ this.getNumberOfTrainMentions() == null)
+            return false;
+        if (other.getNumberOfTrainMentions() != null
+                && other.getNumberOfTrainMentions().equals(this.getNumberOfTrainMentions()) == false)
             return false;
         return true;
     }

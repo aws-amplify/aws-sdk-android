@@ -32,6 +32,19 @@ class EntityRecognizerMetadataEntityTypesListItemJsonMarshaller {
             jsonWriter.name("Type");
             jsonWriter.value(type);
         }
+        if (entityRecognizerMetadataEntityTypesListItem.getEvaluationMetrics() != null) {
+            EntityTypesEvaluationMetrics evaluationMetrics = entityRecognizerMetadataEntityTypesListItem
+                    .getEvaluationMetrics();
+            jsonWriter.name("EvaluationMetrics");
+            EntityTypesEvaluationMetricsJsonMarshaller.getInstance().marshall(evaluationMetrics,
+                    jsonWriter);
+        }
+        if (entityRecognizerMetadataEntityTypesListItem.getNumberOfTrainMentions() != null) {
+            Integer numberOfTrainMentions = entityRecognizerMetadataEntityTypesListItem
+                    .getNumberOfTrainMentions();
+            jsonWriter.name("NumberOfTrainMentions");
+            jsonWriter.value(numberOfTrainMentions);
+        }
         jsonWriter.endObject();
     }
 
