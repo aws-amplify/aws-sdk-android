@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Comprehend
+
 ## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
 
 ### New Features
