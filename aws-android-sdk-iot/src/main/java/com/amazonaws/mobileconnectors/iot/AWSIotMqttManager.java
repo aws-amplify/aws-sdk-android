@@ -747,6 +747,22 @@ public class AWSIotMqttManager {
      *            function of callback will be called with new connection
      *            status.
      */
+    public void connect(KeyStore keyStore, final MqttConnectOptions connectOptions, final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 8883, connectOptions, statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on port 8883. Keystore should be created
+     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * expected by the underlying socket helper library.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
     public void connect(KeyStore keyStore, final AWSIotMqttClientStatusCallback statusCallback) {
         connect(keyStore, 8883, statusCallback);
     }
@@ -812,6 +828,81 @@ public class AWSIotMqttManager {
             options.setSocketFactory(clientSocketFactory);
 
             mqttConnect(options);
+        } catch (final NoSuchAlgorithmException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final KeyManagementException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final KeyStoreException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final UnrecoverableKeyException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final NoSuchProviderException e) {
+            throw new AWSIotCertificateException("A certificate error occurred.", e);
+        } catch (final MqttException e) {
+            throw new AmazonClientException("An error occured in the MQTT client.", e);
+        }
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on the specified port.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param portNumber the client port, either 8883 or 443
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    private void connect(KeyStore keyStore, int portNumber, final MqttConnectOptions connectOptions, final AWSIotMqttClientStatusCallback statusCallback) {
+
+        if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
+            throw new UnsupportedOperationException(
+                    "API Level 16+ required for TLS 1.2 Mutual Auth");
+        }
+
+        if (keyStore == null) {
+            throw new IllegalArgumentException("keyStore is null");
+        }
+
+        this.userStatusCallback = statusCallback;
+
+        // Do nothing if Connecting, Connected or Reconnecting
+        if (connectionState != MqttManagerConnectionState.Disconnected) {
+            userConnectionCallback();
+            return;
+        }
+
+        if (endpoint != null) {
+            mqttBrokerURL = String.format("ssl://%s:%d", endpoint, portNumber);
+        } else if (accountEndpointPrefix != null) {
+            mqttBrokerURL = String
+                    .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
+                            region.getDomain(),portNumber);
+        } else {
+            throw new IllegalStateException("No valid endpoint information is available. " +
+                    "Please pass in a valid endpoint in AWSIotMqttManager.");
+        }
+
+        isWebSocketClient = false;
+        LOGGER.debug("MQTT broker: " + mqttBrokerURL);
+
+        try {
+            if (mqttClient == null) {
+                mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
+            }
+
+            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber);
+
+            if (mqttLWT != null) {
+                connectOptions.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
+                        mqttLWT.getQos().asInt(), false);
+            }
+
+            clientSocketFactory = socketFactory;
+            connectOptions.setSocketFactory(clientSocketFactory);
+
+            mqttConnect(connectOptions);
         } catch (final NoSuchAlgorithmException e) {
             throw new AWSIotCertificateException("A certificate error occurred.", e);
         } catch (final KeyManagementException e) {
@@ -898,6 +989,90 @@ public class AWSIotMqttManager {
                     }
 
                     mqttConnect(options);
+
+                } catch (final MqttException e) {
+                    connectionState = MqttManagerConnectionState.Disconnected;
+                    userConnectionCallback(new AmazonClientException("An error occurred in the MQTT client.", e));
+                } catch (final Exception e) {
+                    connectionState = MqttManagerConnectionState.Disconnected;
+                    userConnectionCallback(e);
+                }
+            }
+        }, "Mqtt Connect Thread").start();
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using AWS credentials.
+     *
+     * @param credentialsProvider AWS credentialsProvider used to create a WebSocket connection to AWS IoT.
+     * @param connectOptions MQTT connectOptions that enable custom parameters on the connection.
+     * @param statusCallback When new MQTT session status is received the function of callback will
+     *                       be called with new connection status.
+     */
+    public void connect(AWSCredentialsProvider credentialsProvider, final MqttConnectOptions connectOptions,
+                        final AWSIotMqttClientStatusCallback statusCallback) {
+        clientCredentialsProvider = credentialsProvider;
+
+        if (credentialsProvider == null) {
+            throw new IllegalArgumentException("credentials provider cannot be null");
+        }
+
+        this.userStatusCallback = statusCallback;
+
+        // Do nothing if Connecting, Connected or Reconnecting
+        if (connectionState != MqttManagerConnectionState.Disconnected) {
+            userConnectionCallback();
+            return;
+        }
+
+        // create a thread as the credentials provider getCredentials() call may require
+        // a network call and will possibly block this connect() call
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                signer = new AWSIotWebSocketUrlSigner("iotdata");
+
+                String endpointWithHttpPort;
+
+                if (endpoint != null) {
+                    endpointWithHttpPort = String.format("%s:443", endpoint);
+                } else if (accountEndpointPrefix != null) {
+                    endpointWithHttpPort = String
+                            .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
+                                    region.getDomain());
+                } else {
+                    throw new IllegalStateException("No valid endpoint information is available. " +
+                            "Please pass in a valid endpoint in AWSIotMqttManager.");
+                }
+
+                isWebSocketClient = true;
+                LOGGER.debug("MQTT broker: " + endpointWithHttpPort);
+
+                try {
+                    final String mqttWebSocketURL = signer.getSignedUrl(endpointWithHttpPort,
+                            clientCredentialsProvider.getCredentials(),
+                            System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * MILLIS_IN_ONE_SECOND);
+
+
+
+                    // Specify the URL through the server URI array.  This is checked
+                    // at connect time and allows us to specify a new URL (with new
+                    // SigV4 parameters) for each connect.
+                    connectOptions.setServerURIs(new String[] {mqttWebSocketURL});
+
+                    if (mqttLWT != null) {
+                        connectOptions.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
+                                mqttLWT.getQos().asInt(), false);
+                    }
+
+                    if (mqttClient == null) {
+                        mqttClient = new MqttAsyncClient("wss://" + endpointWithHttpPort, mqttClientId,
+                                new MemoryPersistence());
+                    }
+
+                    mqttConnect(connectOptions);
 
                 } catch (final MqttException e) {
                     connectionState = MqttManagerConnectionState.Disconnected;
