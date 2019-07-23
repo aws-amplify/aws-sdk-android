@@ -38,6 +38,7 @@ import com.amazonaws.services.iot.model.DescribeEndpointResult;
 import com.amazonaws.services.iot.model.DetachPolicyRequest;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -66,6 +67,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     private static boolean initCompleted = false;
 
     private static AWSCredentialsProvider credentialsProvider;
+    private static MqttConnectOptions connectOptions;
     private static String endpointPrefix;
     private static AWSIotClient iotClient;
 
@@ -84,6 +86,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             KEYSTORE_PATH = appContext.getFilesDir().toString() + "/";
             System.out.println(KEYSTORE_PATH);
             credentialsProvider = new CognitoCachingCredentialsProvider(appContext, getPackageConfigure().getString("identity_pool_id"), Regions.US_EAST_1);
+            connectOptions = new MqttConnectOptions();
 
             iotClient = new AWSIotClient(credentialsProvider);
 
@@ -714,7 +717,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         mqttManager.setAutoReconnect(false);
         // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -767,7 +770,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         mqttManager.setAutoReconnect(true);
         // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -832,7 +835,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -880,7 +883,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch2 = new CountDownLatch(1);
-        mqttManager2.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager2.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -915,7 +918,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch3 = new CountDownLatch(1);
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -974,7 +977,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -1021,7 +1024,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch2 = new CountDownLatch(1);
-        mqttManager2.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager2.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -1059,7 +1062,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch3 = new CountDownLatch(1);
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(credentialsProvider, connectOptions, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
