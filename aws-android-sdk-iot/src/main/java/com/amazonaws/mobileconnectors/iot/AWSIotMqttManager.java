@@ -1,12 +1,12 @@
 /**
  * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at:
- *
- *    http://aws.amazon.com/apache2.0
- *
+ * <p>
+ * http://aws.amazon.com/apache2.0
+ * <p>
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
  * OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and
@@ -101,7 +101,7 @@ public class AWSIotMqttManager {
 
     /** MQTT client ID, used for both initial connection and reconnections. */
     private final String mqttClientId;
-    
+
     /** AWS IoT region hosting the MQTT service. */
     private final Region region;
 
@@ -195,6 +195,7 @@ public class AWSIotMqttManager {
     public boolean isMetricsEnabled() {
         return metricsIsEnabled;
     }
+
     /**
      * Holds client socket factory. Set upon initial connect then reused on
      * reconnect.
@@ -244,7 +245,7 @@ public class AWSIotMqttManager {
             }
         }
 
-        if(userMetadata.length() > 255) {
+        if (userMetadata.length() > 255) {
             LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
                     " cannot exceed " + (255 - baseLength)));
             this.userMetaData = userMetadata.substring(0, 255);
@@ -273,7 +274,7 @@ public class AWSIotMqttManager {
         for (Map.Entry<String, String> metaData : this.userMetaDataMap.entrySet()) {
             if (!(metaData.getKey().equals("SDK") || metaData.getKey().equals("Version"))) {
                 String metaDataValue = metaData.getValue();
-                if (metaDataValue == null || "".equals(metaDataValue)){
+                if (metaDataValue == null || "".equals(metaDataValue)) {
                     userMetadata.append("&" + metaData.getKey());
                 } else {
                     userMetadata.append("&" + metaData.getKey() + "=" + metaData.getValue());
@@ -283,7 +284,7 @@ public class AWSIotMqttManager {
             }
         }
 
-        if(userMetadata.length() > 255) {
+        if (userMetadata.length() > 255) {
             LOGGER.warn("Too many characters. User metadata was truncated.", new IllegalArgumentException("Total number of characters in user metadata" +
                     " cannot exceed " + (255 - baseLength)));
             this.userMetaData = userMetadata.substring(0, 255);
@@ -732,23 +733,27 @@ public class AWSIotMqttManager {
      */
     public void connectUsingALPN(KeyStore keyStore,
                                  final AWSIotMqttClientStatusCallback statusCallback) {
-        connect(keyStore, 443, statusCallback);
+        connect(keyStore, 443, new MqttConnectOptions(), statusCallback);
     }
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore on port 8883. Keystore should be created
+     * using certificate and private key in keystore on port 443. Keystore should be created
      * using IotKeystoreHelper to setup the certificate and key aliases as
      * expected by the underlying socket helper library.
      *
      * @param keyStore A keystore containing an keystore with a certificate and
      *            private key. Use IotKeystoreHelper to get keystore.
+     * @param connectOptions Custom connect options {@link MqttConnectOptions}
+     *            that allow modifying parameters to be used when connecting.
      * @param statusCallback When new MQTT session status is received the
      *            function of callback will be called with new connection
      *            status.
      */
-    public void connect(KeyStore keyStore, final MqttConnectOptions connectOptions, final AWSIotMqttClientStatusCallback statusCallback) {
-        connect(keyStore, 8883, connectOptions, statusCallback);
+    public void connectUsingALPN(KeyStore keyStore,
+                                 final MqttConnectOptions connectOptions,
+                                 final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 443, connectOptions, statusCallback);
     }
 
     /**
@@ -764,7 +769,27 @@ public class AWSIotMqttManager {
      *            status.
      */
     public void connect(KeyStore keyStore, final AWSIotMqttClientStatusCallback statusCallback) {
-        connect(keyStore, 8883, statusCallback);
+        connect(keyStore, 8883, new MqttConnectOptions(), statusCallback);
+    }
+
+    /**
+     * Initializes the MQTT session and connects to the specified MQTT server
+     * using certificate and private key in keystore on port 8883. Keystore should be created
+     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * expected by the underlying socket helper library.
+     *
+     * @param keyStore A keystore containing an keystore with a certificate and
+     *            private key. Use IotKeystoreHelper to get keystore.
+     * @param connectOptions Custom connect options {@link MqttConnectOptions}
+     *            that allow modifying parameters to be used when connecting.
+     * @param statusCallback When new MQTT session status is received the
+     *            function of callback will be called with new connection
+     *            status.
+     */
+    public void connect(KeyStore keyStore,
+                        final MqttConnectOptions connectOptions,
+                        final AWSIotMqttClientStatusCallback statusCallback) {
+        connect(keyStore, 8883, connectOptions, statusCallback);
     }
 
     /**
@@ -778,7 +803,9 @@ public class AWSIotMqttManager {
      *            function of callback will be called with new connection
      *            status.
      */
-    private void connect(KeyStore keyStore, int portNumber, final AWSIotMqttClientStatusCallback statusCallback) {
+    private void connect(KeyStore keyStore, int portNumber,
+                         final MqttConnectOptions connectOptions,
+                         final AWSIotMqttClientStatusCallback statusCallback) {
 
         if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
             throw new UnsupportedOperationException(
@@ -802,83 +829,7 @@ public class AWSIotMqttManager {
         } else if (accountEndpointPrefix != null) {
             mqttBrokerURL = String
                     .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
-                            region.getDomain(),portNumber);
-        } else {
-            throw new IllegalStateException("No valid endpoint information is available. " +
-                "Please pass in a valid endpoint in AWSIotMqttManager.");
-        }
-
-        isWebSocketClient = false;
-        LOGGER.debug("MQTT broker: " + mqttBrokerURL);
-
-        try {
-            if (mqttClient == null) {
-                mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
-            }
-
-            final SocketFactory socketFactory = AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber);
-            final MqttConnectOptions options = new MqttConnectOptions();
-
-            if (mqttLWT != null) {
-                options.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
-                        mqttLWT.getQos().asInt(), false);
-            }
-
-            clientSocketFactory = socketFactory;
-            options.setSocketFactory(clientSocketFactory);
-
-            mqttConnect(options);
-        } catch (final NoSuchAlgorithmException e) {
-            throw new AWSIotCertificateException("A certificate error occurred.", e);
-        } catch (final KeyManagementException e) {
-            throw new AWSIotCertificateException("A certificate error occurred.", e);
-        } catch (final KeyStoreException e) {
-            throw new AWSIotCertificateException("A certificate error occurred.", e);
-        } catch (final UnrecoverableKeyException e) {
-            throw new AWSIotCertificateException("A certificate error occurred.", e);
-        } catch (final NoSuchProviderException e) {
-            throw new AWSIotCertificateException("A certificate error occurred.", e);
-        } catch (final MqttException e) {
-            throw new AmazonClientException("An error occured in the MQTT client.", e);
-        }
-    }
-
-    /**
-     * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore on the specified port.
-     *
-     * @param keyStore A keystore containing an keystore with a certificate and
-     *            private key. Use IotKeystoreHelper to get keystore.
-     * @param portNumber the client port, either 8883 or 443
-     * @param statusCallback When new MQTT session status is received the
-     *            function of callback will be called with new connection
-     *            status.
-     */
-    private void connect(KeyStore keyStore, int portNumber, final MqttConnectOptions connectOptions, final AWSIotMqttClientStatusCallback statusCallback) {
-
-        if (Build.VERSION.SDK_INT < ANDROID_API_LEVEL_16) {
-            throw new UnsupportedOperationException(
-                    "API Level 16+ required for TLS 1.2 Mutual Auth");
-        }
-
-        if (keyStore == null) {
-            throw new IllegalArgumentException("keyStore is null");
-        }
-
-        this.userStatusCallback = statusCallback;
-
-        // Do nothing if Connecting, Connected or Reconnecting
-        if (connectionState != MqttManagerConnectionState.Disconnected) {
-            userConnectionCallback();
-            return;
-        }
-
-        if (endpoint != null) {
-            mqttBrokerURL = String.format("ssl://%s:%d", endpoint, portNumber);
-        } else if (accountEndpointPrefix != null) {
-            mqttBrokerURL = String
-                    .format("ssl://%s.iot.%s.%s:%d", accountEndpointPrefix, region.getName(),
-                            region.getDomain(),portNumber);
+                            region.getDomain(), portNumber);
         } else {
             throw new IllegalStateException("No valid endpoint information is available. " +
                     "Please pass in a valid endpoint in AWSIotMqttManager.");
@@ -927,90 +878,7 @@ public class AWSIotMqttManager {
      *                       be called with new connection status.
      */
     public void connect(AWSCredentialsProvider credentialsProvider,
-            final AWSIotMqttClientStatusCallback statusCallback) {
-        clientCredentialsProvider = credentialsProvider;
-
-        if (credentialsProvider == null) {
-            throw new IllegalArgumentException("credentials provider cannot be null");
-        }
-
-        this.userStatusCallback = statusCallback;
-
-        // Do nothing if Connecting, Connected or Reconnecting
-        if (connectionState != MqttManagerConnectionState.Disconnected) {
-            userConnectionCallback();
-            return;
-        }
-
-        // create a thread as the credentials provider getCredentials() call may require
-        // a network call and will possibly block this connect() call
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                signer = new AWSIotWebSocketUrlSigner("iotdata");
-
-                String endpointWithHttpPort;
-
-                if (endpoint != null) {
-                    endpointWithHttpPort = String.format("%s:443", endpoint);
-                } else if (accountEndpointPrefix != null) {
-                    endpointWithHttpPort = String
-                            .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
-                                    region.getDomain());
-                } else {
-                    throw new IllegalStateException("No valid endpoint information is available. " +
-                        "Please pass in a valid endpoint in AWSIotMqttManager.");
-                }
-
-                isWebSocketClient = true;
-                LOGGER.debug("MQTT broker: " + endpointWithHttpPort);
-
-                try {
-                    final String mqttWebSocketURL = signer.getSignedUrl(endpointWithHttpPort, 
-                        clientCredentialsProvider.getCredentials(),
-                        System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * MILLIS_IN_ONE_SECOND);
-
-                    final MqttConnectOptions options = new MqttConnectOptions();
-
-                    // Specify the URL through the server URI array.  This is checked
-                    // at connect time and allows us to specify a new URL (with new
-                    // SigV4 parameters) for each connect.
-                    options.setServerURIs(new String[] {mqttWebSocketURL});
-
-                    if (mqttLWT != null) {
-                        options.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
-                                mqttLWT.getQos().asInt(), false);
-                    }
-
-                    if (mqttClient == null) {
-                        mqttClient = new MqttAsyncClient("wss://" + endpointWithHttpPort, mqttClientId,
-                                new MemoryPersistence());
-                    }
-
-                    mqttConnect(options);
-
-                } catch (final MqttException e) {
-                    connectionState = MqttManagerConnectionState.Disconnected;
-                    userConnectionCallback(new AmazonClientException("An error occurred in the MQTT client.", e));
-                } catch (final Exception e) {
-                    connectionState = MqttManagerConnectionState.Disconnected;
-                    userConnectionCallback(e);
-                }
-            }
-        }, "Mqtt Connect Thread").start();
-    }
-
-    /**
-     * Initializes the MQTT session and connects to the specified MQTT server
-     * using AWS credentials.
-     *
-     * @param credentialsProvider AWS credentialsProvider used to create a WebSocket connection to AWS IoT.
-     * @param connectOptions MQTT connectOptions that enable custom parameters on the connection.
-     * @param statusCallback When new MQTT session status is received the function of callback will
-     *                       be called with new connection status.
-     */
-    public void connect(AWSCredentialsProvider credentialsProvider, final MqttConnectOptions connectOptions,
+                        final MqttConnectOptions connectOptions,
                         final AWSIotMqttClientStatusCallback statusCallback) {
         clientCredentialsProvider = credentialsProvider;
 
@@ -1056,11 +924,10 @@ public class AWSIotMqttManager {
                             System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * MILLIS_IN_ONE_SECOND);
 
 
-
                     // Specify the URL through the server URI array.  This is checked
                     // at connect time and allows us to specify a new URL (with new
                     // SigV4 parameters) for each connect.
-                    connectOptions.setServerURIs(new String[] {mqttWebSocketURL});
+                    connectOptions.setServerURIs(new String[]{mqttWebSocketURL});
 
                     if (mqttLWT != null) {
                         connectOptions.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
@@ -1100,9 +967,9 @@ public class AWSIotMqttManager {
         if (isMetricsEnabled()) {
             options.setUserName(userMetaData);
         }
-        LOGGER.info("metrics collection is " + 
-            (isMetricsEnabled() ? "enabled" : "disabled") + 
-            ", username: " + options.getUserName());
+        LOGGER.info("metrics collection is " +
+                (isMetricsEnabled() ? "enabled" : "disabled") +
+                ", username: " + options.getUserName());
 
         topicListeners.clear();
         mqttMessageQueue.clear();
@@ -1234,7 +1101,7 @@ public class AWSIotMqttManager {
                                     region.getDomain());
                 } else {
                     throw new IllegalStateException("No valid endpoint information is available. " +
-                        "Please pass in a valid endpoint in AWSIotMqttManager.");
+                            "Please pass in a valid endpoint in AWSIotMqttManager.");
                 }
 
                 try {
@@ -1314,7 +1181,7 @@ public class AWSIotMqttManager {
      */
     private boolean scheduleReconnect() {
         LOGGER.info("schedule Reconnect attempt " + autoReconnectsAttempted + " of " + maxAutoReconnectAttempts
-            + " in " + currentReconnectRetryTime + " seconds.");
+                + " in " + currentReconnectRetryTime + " seconds.");
         // schedule a reconnect if unlimited or if we haven't yet hit the limit
 
         if (maxAutoReconnectAttempts == -1 || autoReconnectsAttempted < maxAutoReconnectAttempts) {
@@ -1359,7 +1226,7 @@ public class AWSIotMqttManager {
      *            this topic for this subscription.
      */
     public void subscribeToTopic(String topic, AWSIotMqttQos qos,
-            AWSIotMqttNewMessageCallback callback) {
+                                 AWSIotMqttNewMessageCallback callback) {
 
         if (topic == null || topic.isEmpty()) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1452,7 +1319,7 @@ public class AWSIotMqttManager {
      *                 callback is invoked.
      */
     public void publishString(String str, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback cb, Object userData) {
+                              AWSIotMqttMessageDeliveryCallback cb, Object userData) {
 
         if (str == null) {
             throw new IllegalArgumentException("publish string is null");
@@ -1492,7 +1359,7 @@ public class AWSIotMqttManager {
      *                 callback is invoked.
      */
     public void publishData(byte[] data, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback callback, Object userData) {
+                            AWSIotMqttMessageDeliveryCallback callback, Object userData) {
 
         if (topic == null || topic.isEmpty()) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1572,8 +1439,8 @@ public class AWSIotMqttManager {
      */
     void publishMessagesFromQueue() {
         if (connectionState == MqttManagerConnectionState.Connected &&
-            mqttMessageQueue != null &&
-            !mqttMessageQueue.isEmpty()) {
+                mqttMessageQueue != null &&
+                !mqttMessageQueue.isEmpty()) {
             final AWSIotMqttQueueMessage message = mqttMessageQueue.poll();
             if (message != null) {
                 try {
