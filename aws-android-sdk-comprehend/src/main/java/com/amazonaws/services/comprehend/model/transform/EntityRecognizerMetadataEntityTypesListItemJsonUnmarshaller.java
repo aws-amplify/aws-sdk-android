@@ -41,6 +41,15 @@ class EntityRecognizerMetadataEntityTypesListItemJsonUnmarshaller implements
                 entityRecognizerMetadataEntityTypesListItem.setType(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EvaluationMetrics")) {
+                entityRecognizerMetadataEntityTypesListItem
+                        .setEvaluationMetrics(EntityTypesEvaluationMetricsJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("NumberOfTrainMentions")) {
+                entityRecognizerMetadataEntityTypesListItem
+                        .setNumberOfTrainMentions(IntegerJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

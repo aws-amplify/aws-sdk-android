@@ -59,26 +59,26 @@ commands:
           name: set environment variables
           command: |
             sdkName=aws-android-sdk
-            echo "export sdkName=$sdkName" >> $BASH_ENV
+            echo "export sdkName='$sdkName'" >> $BASH_ENV
 
             release_bucket=${RELEASE_BUCKET}
-            echo "export release_bucket=$release_bucket" >> $BASH_ENV
+            echo "export release_bucket='$release_bucket'" >> $BASH_ENV
 
             release_tag=${CIRCLE_TAG}
-            echo "export release_tag=$release_tag" >> $BASH_ENV
+            echo "export release_tag='$release_tag'" >> $BASH_ENV
 
             release_version=$(echo "$release_tag" | sed 's|.*v\([0-9\.]*\).*|\1|')
-            echo "export release_version=$release_version" >> $BASH_ENV
+            echo "export release_version='$release_version'" >> $BASH_ENV
 
             sdkNameWithVersion="$sdkName-$release_version"
-            echo "export sdkNameWithVersion=$sdkNameWithVersion" >> $BASH_ENV
+            echo "export sdkNameWithVersion='$sdkNameWithVersion'" >> $BASH_ENV
 
             release_type=$(echo "$release_tag" | sed 's|\(.*\)_v\([0-9\.]*\).*|\1|')
-            echo "export release_type=$release_type" >> $BASH_ENV
+            echo "export release_type='$release_type'" >> $BASH_ENV
 
             pre_name=$(echo "${CIRCLE_SHA1}" | cut -c1-7)
             override_test_varaible_name=OVERRIDE_TEST_${pre_name}
-            echo "export override_test_varaible_name=$override_test_varaible_name" >> $BASH_ENV   
+            echo "export override_test_varaible_name='$override_test_varaible_name'" >> $BASH_ENV
             
 
 
@@ -182,6 +182,16 @@ commands:
             # This is required becaused AWSCore has a compileOnly
             # dependency on API Level 23.
             sudo yes | sdkmanager "platforms;android-23"
+  setup_android_platform18:
+    description: >-
+      setup android platform 18
+    steps:
+      - run:
+          name: download android platform 18
+          command: |
+            # This is required becaused AWSCore has a compileOnly
+            # dependency on API Level 18.
+            sudo yes | sdkmanager "platforms;android-18"
   skip_test_job:
     description: >-
       check if the test job can be skipped
@@ -288,6 +298,7 @@ jobs:
       - checkout
       - generate_gradle_wrapper
       - setup_android_platform23
+      - setup_android_platform18
       - run:
           name: build the whole project
           command: |
@@ -334,7 +345,40 @@ jobs:
       - run:
           name: build the whole project
           command: |
-            bash gradlew :aws-android-sdk-core:build  -x test   
+            bash gradlew :aws-android-sdk-core:build  -x test
+
+  build_api18:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - skip_job_if_required      
+      - checkout
+      - generate_gradle_wrapper
+      - run:
+          name: download android-18
+          command:
+            sudo yes | sdkmanager "platforms;android-18"
+      - run:
+          name: install python3-pip
+          command: |
+            sudo apt-get update
+            sudo apt-get -y install python3-pip            
+      - run:
+          name: install json parser
+          command: sudo pip3 install demjson           
+      - run:
+          name: update code for API 18
+          command: |
+            python3 CircleciScripts/replace_android18.py "$(pwd)"
+            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider23.java
+            cat aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/AWSKeyValueStore.java
+      - run:
+          name: build the whole project
+          command: |
+            export ANDROID_API_LEVEL=18; bash gradlew :aws-android-sdk-core:build -x test
 
   unittest:
     working_directory: ~/code
@@ -350,6 +394,7 @@ jobs:
       - skip_test_job
       - generate_gradle_wrapper
       - setup_android_platform23
+      - setup_android_platform18
       - run:
           name: run unit tests
           command: |
@@ -485,7 +530,7 @@ jobs:
       - run:
           name: Install Android build tools
           command: |
-            sudo yes | /usr/local/bin/sdkmanager "platforms;android-21" "platforms;android-23" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
+            sudo yes | /usr/local/bin/sdkmanager "platforms;android-18" "platforms;android-21" "platforms;android-23" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
             /usr/local/bin/sdkmanager --update
       - run:
           name: Install GPG
@@ -660,6 +705,7 @@ jobs:
       - skip_test_job      
       - configure_aws
       - setup_android_platform23
+      - setup_android_platform18
       - run: 
           name: install python3-pip
           command: |
@@ -717,6 +763,7 @@ jobs:
       - skip_test_job      
       - configure_aws     
       - setup_android_platform23
+      - setup_android_platform18
       - run:
           name: checkout sample applications
           command: |
@@ -1019,6 +1066,7 @@ jobs:
       - skip_test_job      
       - configure_aws
       - setup_android_platform23
+      - setup_android_platform18
       - run: 
           name: install python3-pip
           command: |
@@ -1150,7 +1198,11 @@ workflows:
       - build_api10:
           filters:
             branches:
-              ignore: bump_sdk_version                  
+              ignore: bump_sdk_version
+      - build_api18:
+          filters:
+            branches:
+              ignore: bump_sdk_version                     
       - unittest:
           filters:
             branches:
@@ -1199,6 +1251,16 @@ workflows:
       - integrationtest:
           name: comprehend
           testmodule: aws-android-sdk-comprehend-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
+          name: connect
+          testmodule: aws-android-sdk-connect-test
           requires:
             - pre_integrationtest    
           filters:
@@ -1357,6 +1419,16 @@ workflows:
                 - master
                 - develop
       - integrationtest:
+          name: textract
+          testmodule: aws-android-sdk-textract-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
           requires:
@@ -1396,6 +1468,16 @@ workflows:
               only:
                 - master
                 - develop
+      - integrationtest:
+          name: sagemakerruntime
+          testmodule: aws-android-sdk-sagemaker-runtime-test
+          requires:
+          - pre_integrationtest
+          filters:
+            branches:
+              only:
+              - master
+              - develop
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
@@ -1431,6 +1513,8 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - connect
+            - textract
             - translate
             - transcribe
             - sqs 
@@ -1454,6 +1538,7 @@ workflows:
             - CognitoAuth
             - Core
             - CognitoIdentityProvider
+            - sagemakerruntime
       - uitest:
           requires:
             - build
@@ -1466,6 +1551,7 @@ workflows:
       - merge_to_master:
           requires:
             - build_api10
+            - build_api18
             - build       
             - unittest
             - post_integrationtest
@@ -1476,6 +1562,7 @@ workflows:
       - prepare_release_sdk:
           requires:
             - build_api10
+            - build_api18
             - build       
             - unittest
             - post_integrationtest
@@ -1496,7 +1583,13 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/              
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - build_api18:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/                
       - unittest:
           filters:
             branches:
@@ -1542,6 +1635,16 @@ workflows:
       - integrationtest:
           name: comprehend
           testmodule: aws-android-sdk-comprehend-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: connect
+          testmodule: aws-android-sdk-connect-test
           requires:
             - pre_integrationtest    
           filters:
@@ -1691,6 +1794,16 @@ workflows:
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       - integrationtest:
+          name: textract
+          testmodule: aws-android-sdk-textract-test
+          requires:
+            - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
           name: translate
           testmodule: aws-android-sdk-translate-test
           requires:
@@ -1739,7 +1852,17 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/              
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: sagemakerruntime
+          testmodule: aws-android-sdk-sagemaker-runtime-test
+          requires:
+          - pre_integrationtest
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       # - integrationtest:
       #     name: kinesisvideo
       #     testmodule: aws-android-sdk-kinesisvideo
@@ -1775,6 +1898,8 @@ workflows:
             # - kinesisvideo-archivedmedia
             # - kinesisvideo
             - mobile-client
+            - connect
+            - textract
             - translate
             - transcribe
             - sqs 
@@ -1798,6 +1923,7 @@ workflows:
             - CognitoAuth
             - Core
             - CognitoIdentityProvider
+            - sagemakerruntime
           filters:
             branches:
               ignore: /.*/
@@ -1809,6 +1935,7 @@ workflows:
             - unittest
             - post_integrationtest
             - build_api10
+            - build_api18
           filters:
             branches:
               ignore: /.*/

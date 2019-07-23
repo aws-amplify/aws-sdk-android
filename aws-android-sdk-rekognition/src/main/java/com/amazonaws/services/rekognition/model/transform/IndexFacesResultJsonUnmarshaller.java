@@ -44,6 +44,11 @@ public class IndexFacesResultJsonUnmarshaller implements
             } else if (name.equals("FaceModelVersion")) {
                 indexFacesResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UnindexedFaces")) {
+                indexFacesResult.setUnindexedFaces(new ListUnmarshaller<UnindexedFace>(
+                        UnindexedFaceJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

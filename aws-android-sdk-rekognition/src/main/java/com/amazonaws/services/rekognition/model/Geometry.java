@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about where text detected by is located on an image.
+ * Information about where the text detected by <a>DetectText</a> is located on
+ * an image.
  * </p>
  */
 public class Geometry implements Serializable {

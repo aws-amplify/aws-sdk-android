@@ -15,6 +15,12 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
+import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.PinpointDBUtil;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,16 +31,9 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.PinpointDBUtil;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -654,7 +653,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
 
     @Test(expected = IllegalArgumentException.class)
     public void createEvent_eventTypeTooLong_typeNameIsTruncated() {
-        AnalyticsEvent e = target
-                                   .createEvent("123456789012345678901234567890123456789012345678901234567890");
+        AnalyticsEvent e = target.createEvent(
+                "123456789012345678901234567890123456789012345678901234567890");
     }
+
 }

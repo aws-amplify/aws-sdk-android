@@ -47,7 +47,12 @@ public enum LandmarkType {
     MouthUp("mouthUp"),
     MouthDown("mouthDown"),
     LeftPupil("leftPupil"),
-    RightPupil("rightPupil");
+    RightPupil("rightPupil"),
+    UpperJawlineLeft("upperJawlineLeft"),
+    MidJawlineLeft("midJawlineLeft"),
+    ChinBottom("chinBottom"),
+    MidJawlineRight("midJawlineRight"),
+    UpperJawlineRight("upperJawlineRight");
 
     private String value;
 
@@ -88,6 +93,11 @@ public enum LandmarkType {
         enumMap.put("mouthDown", MouthDown);
         enumMap.put("leftPupil", LeftPupil);
         enumMap.put("rightPupil", RightPupil);
+        enumMap.put("upperJawlineLeft", UpperJawlineLeft);
+        enumMap.put("midJawlineLeft", MidJawlineLeft);
+        enumMap.put("chinBottom", ChinBottom);
+        enumMap.put("midJawlineRight", MidJawlineRight);
+        enumMap.put("upperJawlineRight", UpperJawlineRight);
     }
 
     /**

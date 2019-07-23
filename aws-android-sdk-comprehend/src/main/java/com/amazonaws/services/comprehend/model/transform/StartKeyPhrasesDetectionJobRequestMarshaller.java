@@ -99,6 +99,11 @@ public class StartKeyPhrasesDetectionJobRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (startKeyPhrasesDetectionJobRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = startKeyPhrasesDetectionJobRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

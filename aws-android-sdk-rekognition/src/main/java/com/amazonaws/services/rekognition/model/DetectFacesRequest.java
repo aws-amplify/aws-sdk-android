@@ -25,21 +25,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <code>DetectFaces</code> detects the 100 largest faces in the image. For each
- * face detected, the operation returns face details including a bounding box of
- * the face, a confidence value (that the bounding box contains a face), and a
- * fixed set of attributes such as facial landmarks (for example, coordinates of
- * eye and mouth), gender, presence of beard, sunglasses, etc.
+ * face detected, the operation returns face details. These details include a
+ * bounding box of the face, a confidence value (that the bounding box contains
+ * a face), and a fixed set of attributes such as facial landmarks (for example,
+ * coordinates of eye and mouth), gender, presence of beard, sunglasses, and so
+ * on.
  * </p>
  * <p>
  * The face-detection algorithm is most effective on frontal faces. For
- * non-frontal or obscured faces, the algorithm may not detect the faces or
+ * non-frontal or obscured faces, the algorithm might not detect the faces or
  * might detect faces with lower confidence.
  * </p>
  * <p>
  * You pass the input image either as base64-encoded image bytes or as a
- * reference to an image in an Amazon S3 bucket. If you use the Amazon CLI to
- * call Amazon Rekognition operations, passing image bytes is not supported. The
- * image must be either a PNG or JPEG formatted file.
+ * reference to an image in an Amazon S3 bucket. If you use the to call Amazon
+ * Rekognition operations, passing image bytes is not supported. The image must
+ * be either a PNG or JPEG formatted file.
  * </p>
  * <note>
  * <p>
@@ -59,6 +60,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      */
     private Image image;
 
@@ -69,9 +76,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * value for <code>Attributes</code> or if you specify
      * <code>["DEFAULT"]</code>, the API returns the following subset of facial
      * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
-     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
-     * you provide <code>["ALL"]</code>, all facial attributes are returned but
-     * the operation will take longer to complete.
+     * <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned, but
+     * the operation takes longer to complete.
      * </p>
      * <p>
      * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
@@ -99,6 +106,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            you use the AWS CLI to call Amazon Rekognition operations,
      *            passing base64-encoded image bytes is not supported.
      *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
+     *            </p>
      */
     public DetectFacesRequest(Image image) {
         setImage(image);
@@ -110,11 +123,23 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @return <p>
      *         The input image as base64-encoded bytes or an S3 object. If you
      *         use the AWS CLI to call Amazon Rekognition operations, passing
      *         base64-encoded image bytes is not supported.
+     *         </p>
+     *         <p>
+     *         If you are using an AWS SDK to call Amazon Rekognition, you might
+     *         not need to base64-encode image bytes passed using the
+     *         <code>Bytes</code> field. For more information, see Images in the
+     *         Amazon Rekognition developer guide.
      *         </p>
      */
     public Image getImage() {
@@ -127,11 +152,23 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
      * image bytes is not supported.
      * </p>
+     * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
      *
      * @param image <p>
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
      *            passing base64-encoded image bytes is not supported.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      */
     public void setImage(Image image) {
@@ -145,6 +182,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * image bytes is not supported.
      * </p>
      * <p>
+     * If you are using an AWS SDK to call Amazon Rekognition, you might not
+     * need to base64-encode image bytes passed using the <code>Bytes</code>
+     * field. For more information, see Images in the Amazon Rekognition
+     * developer guide.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -152,6 +195,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            The input image as base64-encoded bytes or an S3 object. If
      *            you use the AWS CLI to call Amazon Rekognition operations,
      *            passing base64-encoded image bytes is not supported.
+     *            </p>
+     *            <p>
+     *            If you are using an AWS SDK to call Amazon Rekognition, you
+     *            might not need to base64-encode image bytes passed using the
+     *            <code>Bytes</code> field. For more information, see Images in
+     *            the Amazon Rekognition developer guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,9 +217,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * value for <code>Attributes</code> or if you specify
      * <code>["DEFAULT"]</code>, the API returns the following subset of facial
      * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
-     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
-     * you provide <code>["ALL"]</code>, all facial attributes are returned but
-     * the operation will take longer to complete.
+     * <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned, but
+     * the operation takes longer to complete.
      * </p>
      * <p>
      * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
@@ -184,9 +233,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *         specify a value for <code>Attributes</code> or if you specify
      *         <code>["DEFAULT"]</code>, the API returns the following subset of
      *         facial attributes: <code>BoundingBox</code>,
-     *         <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>
+     *         <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>,
      *         and <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
-     *         all facial attributes are returned but the operation will take
+     *         all facial attributes are returned, but the operation takes
      *         longer to complete.
      *         </p>
      *         <p>
@@ -206,9 +255,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * value for <code>Attributes</code> or if you specify
      * <code>["DEFAULT"]</code>, the API returns the following subset of facial
      * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
-     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
-     * you provide <code>["ALL"]</code>, all facial attributes are returned but
-     * the operation will take longer to complete.
+     * <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned, but
+     * the operation takes longer to complete.
      * </p>
      * <p>
      * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
@@ -223,9 +272,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            you specify <code>["DEFAULT"]</code>, the API returns the
      *            following subset of facial attributes:
      *            <code>BoundingBox</code>, <code>Confidence</code>,
-     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Pose</code>, <code>Quality</code>, and
      *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
-     *            all facial attributes are returned but the operation will take
+     *            all facial attributes are returned, but the operation takes
      *            longer to complete.
      *            </p>
      *            <p>
@@ -250,9 +299,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * value for <code>Attributes</code> or if you specify
      * <code>["DEFAULT"]</code>, the API returns the following subset of facial
      * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
-     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
-     * you provide <code>["ALL"]</code>, all facial attributes are returned but
-     * the operation will take longer to complete.
+     * <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned, but
+     * the operation takes longer to complete.
      * </p>
      * <p>
      * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
@@ -270,9 +319,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            you specify <code>["DEFAULT"]</code>, the API returns the
      *            following subset of facial attributes:
      *            <code>BoundingBox</code>, <code>Confidence</code>,
-     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Pose</code>, <code>Quality</code>, and
      *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
-     *            all facial attributes are returned but the operation will take
+     *            all facial attributes are returned, but the operation takes
      *            longer to complete.
      *            </p>
      *            <p>
@@ -300,9 +349,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * value for <code>Attributes</code> or if you specify
      * <code>["DEFAULT"]</code>, the API returns the following subset of facial
      * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
-     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
-     * you provide <code>["ALL"]</code>, all facial attributes are returned but
-     * the operation will take longer to complete.
+     * <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned, but
+     * the operation takes longer to complete.
      * </p>
      * <p>
      * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
@@ -320,9 +369,9 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            you specify <code>["DEFAULT"]</code>, the API returns the
      *            following subset of facial attributes:
      *            <code>BoundingBox</code>, <code>Confidence</code>,
-     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Pose</code>, <code>Quality</code>, and
      *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
-     *            all facial attributes are returned but the operation will take
+     *            all facial attributes are returned, but the operation takes
      *            longer to complete.
      *            </p>
      *            <p>

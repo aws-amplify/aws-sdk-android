@@ -21,7 +21,7 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The request was rejected because a limit was exceeded. For more information,
  * see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/limits.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/limits.html"
  * >Limits</a> in the <i>AWS Key Management Service Developer Guide</i>.
  * </p>
  */

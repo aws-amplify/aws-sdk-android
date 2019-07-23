@@ -40,6 +40,10 @@ public class DetectModerationLabelsResultJsonUnmarshaller implements
                                 ModerationLabelJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("ModerationModelVersion")) {
+                detectModerationLabelsResult.setModerationModelVersion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

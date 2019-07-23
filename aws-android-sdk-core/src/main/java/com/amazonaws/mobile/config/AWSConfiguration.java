@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobile.config;
 
 import android.content.Context;
@@ -34,6 +35,31 @@ public class AWSConfiguration {
 
     private JSONObject mJSONObject;
     private String configName; // "Default" or something else like "Backup"
+
+    /**
+     * Construct an AWSConfiguration object based on the JSONObject passed in.
+     *
+     * @param jsonObject contains the configuration information
+     */
+    public AWSConfiguration(JSONObject jsonObject) {
+        this(jsonObject, DEFAULT);
+    }
+
+    /**
+     * Construct an AWSConfiguration object based on the JSONObject passed in.
+     *
+     * @param jsonObject contains the configuration information
+     * @param configName name of the configuration,
+     *                   "Default" or something else like "Backup"
+     */
+    public AWSConfiguration(JSONObject jsonObject, String configName) {
+        if (jsonObject == null) {
+            throw new IllegalArgumentException("JSONObject cannot be null.");
+        }
+
+        this.configName = configName;
+        this.mJSONObject = jsonObject;
+    }
 
     /**
      * Constructs an AWSConfiguration object

@@ -33,36 +33,35 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * To move encrypted data from one AWS region to another, you can use this
- * operation to encrypt in the new region the plaintext data key that was used
- * to encrypt the data in the original region. This provides you with an
- * encrypted copy of the data key that can be decrypted in the new region and
- * used there to decrypt the encrypted data.
+ * You can use the <code>Encrypt</code> operation to move encrypted data from
+ * one AWS region to another. In the first region, generate a data key and use
+ * the plaintext key to encrypt the data. Then, in the new region, call the
+ * <code>Encrypt</code> method on same plaintext data key. Now, you can safely
+ * move the encrypted data and encrypted data key to the new region, and decrypt
+ * in the new region when necessary.
  * </p>
  * </li>
  * </ul>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN or alias ARN in the value of the KeyId parameter.
+ * You don't need use this operation to encrypt a data key within a region. The
+ * <a>GenerateDataKey</a> and <a>GenerateDataKeyWithoutPlaintext</a> operations
+ * return an encrypted data key.
  * </p>
  * <p>
- * Unless you are moving encrypted data from one region to another, you don't
- * use this operation to encrypt a generated data key within a region. To get
- * data keys that are already encrypted, call the <a>GenerateDataKey</a> or
- * <a>GenerateDataKeyWithoutPlaintext</a> operation. Data keys don't need to be
- * encrypted again by calling <code>Encrypt</code>.
- * </p>
- * <p>
- * To encrypt data locally in your application, use the <a>GenerateDataKey</a>
- * operation to return a plaintext data encryption key and a copy of the key
- * encrypted under the CMK of your choosing.
+ * Also, you don't need to use this operation to encrypt data in your
+ * application. You can use the plaintext and encrypted data keys that the
+ * <code>GenerateDataKey</code> operation returns.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
+ * </p>
+ * <p>
+ * To perform this operation on a CMK in a different AWS account, specify the
+ * key ARN or alias ARN in the value of the KeyId parameter.
  * </p>
  */
 public class EncryptRequest extends AmazonWebServiceRequest implements Serializable {
@@ -72,9 +71,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -130,7 +129,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      */
@@ -142,7 +141,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -155,9 +154,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -201,8 +200,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with "alias/". To specify a CMK in a different AWS account, you
-     *         must use the key ARN or alias ARN.
+     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -247,9 +246,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -293,8 +292,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -339,9 +338,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -388,8 +387,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -491,7 +490,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      *
@@ -500,7 +499,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         for authenticated encryption. If used here, the same value must
      *         be supplied to the <code>Decrypt</code> API or decryption will
      *         fail. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *         >Encryption Context</a>.
      *         </p>
      */
@@ -514,7 +513,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      *
@@ -523,7 +522,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            used for authenticated encryption. If used here, the same
      *            value must be supplied to the <code>Decrypt</code> API or
      *            decryption will fail. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a>.
      *            </p>
      */
@@ -537,7 +536,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -549,7 +548,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            used for authenticated encryption. If used here, the same
      *            value must be supplied to the <code>Decrypt</code> API or
      *            decryption will fail. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -566,7 +565,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -608,7 +607,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -618,7 +617,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
@@ -633,7 +632,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -643,7 +642,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -663,7 +662,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -676,7 +675,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -699,7 +698,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -712,7 +711,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>

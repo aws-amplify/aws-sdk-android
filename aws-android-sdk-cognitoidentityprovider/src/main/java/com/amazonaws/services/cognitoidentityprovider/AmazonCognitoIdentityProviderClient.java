@@ -109,16 +109,28 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * AmazonCognitoIdentityProvider using the specified AWS account
      * credentials.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(
+     *                 AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -135,16 +147,28 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * AmazonCognitoIdentityProvider using the specified AWS account credentials
      * and client configuration options.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(
+     *                 AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -165,16 +189,28 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * AmazonCognitoIdentityProvider using the specified AWS account credentials
      * provider.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(
+     *                 AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -192,16 +228,28 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * AmazonCognitoIdentityProvider using the specified AWS account credentials
      * provider and client configuration options.
      * <p>
-     * If AWS session credentials are passed in, then those credentials will be
-     * used to authenticate requests. Otherwise, if AWS long-term credentials
-     * are passed in, then session management will be handled automatically by
-     * the SDK. Callers are encouraged to use long-term credentials and let the
-     * SDK handle starting and renewing sessions.
-     * <p>
-     * Automatically managed sessions will be shared among all clients that use
-     * the same credentials and service endpoint. To opt out of this behavior,
-     * explicitly provide an instance of {@link AWSCredentialsProvider} that
-     * returns {@link AWSSessionCredentials}.
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(
+     *                 AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -249,6 +297,29 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * Constructs a new client to invoke service methods on
      * AmazonCognitoIdentityProvider using the specified AWS account credentials
      * provider, client configuration options and request metric collector.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(
+     *                 AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -1633,6 +1704,57 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminSetUserMFAPreferenceResult, JsonUnmarshallerContext> unmarshaller = new AdminSetUserMFAPreferenceResultJsonUnmarshaller();
             JsonResponseHandler<AdminSetUserMFAPreferenceResult> responseHandler = new JsonResponseHandler<AdminSetUserMFAPreferenceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param adminSetUserPasswordRequest
+     * @return adminSetUserPasswordResult The response from the
+     *         AdminSetUserPassword service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InvalidPasswordException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminSetUserPasswordResult adminSetUserPassword(
+            AdminSetUserPasswordRequest adminSetUserPasswordRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminSetUserPasswordRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminSetUserPasswordRequest> request = null;
+        Response<AdminSetUserPasswordResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminSetUserPasswordRequestMarshaller()
+                        .marshall(adminSetUserPasswordRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminSetUserPasswordResult, JsonUnmarshallerContext> unmarshaller = new AdminSetUserPasswordResultJsonUnmarshaller();
+            JsonResponseHandler<AdminSetUserPasswordResult> responseHandler = new JsonResponseHandler<AdminSetUserPasswordResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

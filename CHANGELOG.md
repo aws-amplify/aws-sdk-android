@@ -1,5 +1,98 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Comprehend
+
+## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
+
+### New Features
+
+* **Amazon Connect**
+  * Amazon Connect is a self-service, cloud-based contact center service that makes it easy for any business to deliver better customer service at lower cost. Amazon Connect is based on the same contact center technology used by Amazon customer service associates around the world to power millions of customer conversations. The self-service graphical interface in Amazon Connect makes it easy for non-technical users to design contact flows, manage agents, and track performance metrics – no specialized skills required. There are no up-front payments or long-term commitments and no infrastructure to manage with Amazon Connect; customers pay by the minute for Amazon Connect usage plus any associated telephony services.  See [Amazon Connect Documentation](https://aws.amazon.com/connect/) for more details.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Kinesis Video
+  - Amazon Rekognition
+    - **Breaking Change:** This SDK has been updated to the latest model after a long interval, and there have been several breaking changes in the
+      intervening time. Please review the [API documentation](https://aws-amplify.github.io/aws-sdk-android/docs/reference/index.html)
+      to see the latest API.
+
+## [Release 2.13.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.7)
+
+### New Features
+
+* **Amazon SageMaker**
+  * Amazon SageMaker provides every developer and data scientist with the ability to build, train, and deploy machine learning models quickly. Amazon SageMaker is a fully-managed service that covers the entire machine learning workflow to label and prepare your data, choose an algorithm, train the model, tune and optimize it for deployment, make predictions, and take action. Your models get to production faster with much less effort and lower cost. See [Amazon SageMaker Documentation](https://aws.amazon.com/sagemaker/) for more details.
+  
+* **Amazon Textract**
+  * Amazon Textract is a service that automatically extracts text and data from scanned documents. Amazon Textract goes beyond simple optical character recognition (OCR) to also identify the contents of fields in forms and information stored in tables. See [Amazon Textract Documentation](https://aws.amazon.com/textract/) for more details.
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug where the `TransferNetworkLossHandler` crashes while pausing the on-going transfers when network connectivity goes offline. See [issue #777](https://github.com/aws-amplify/aws-sdk-android/issues/777) for details.
+
+* **Amazon Pinpoint**
+  * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977) for details.
+  
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon AutoScaling
+  * Amazon Cognito Identity Pools
+  * Amazon Cognito UserPools
+  * Amazon Comprehend
+  * AWS IoT
+  * Amazon Key Management Service (KMS)
+  * Amazon Kinesis Firehose
+  * Amazon Kinesis Video
+  * AWS Lambda
+  * Amazon Lex
+  * Amazon Machine Learning
+  * Amazon Polly
+  * Amazon Security Token Service (STS)
+  * Amazon Simple Email Service (SES)
+  * Amazon Transcribe
+  * Amazon Translate
+
+## [Release 2.13.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.6)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Add `AWSConfiguration(JSONObject)` constructor to construct a `AWSConfiguration` object from the configuration passed via a `JSONObject`.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Transcribe
+
+## [Release 2.13.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.5)
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug where the `TransferListener` is not triggered when the preferred network type is not available. See [issue #958](https://github.com/aws-amplify/aws-sdk-android/issues/958) for details.
+  
+* **AWS Core Runtime**
+  * Fixed a bug where generating RSA keys for encryption of the credentials failed due to `setKeySize(int)` method not available in Android API level 18. See [issue #964](https://github.com/aws-amplify/aws-sdk-android/issues/964) for details.
+
+* **Amazon Kinesis Video Streams**
+  * Removed trailing zeroes from encoder output that caused 0x3200000d errors when frames contained more than 3 trailing zeroes. See AnnexB sepcification.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+  * Amazon Security Token Service (STS)
+  * Amazon Transcribe
+
 ## [Release 2.13.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.4)
 
 ### Bug Fixes
@@ -17,7 +110,7 @@
 ### Misc. Updates
 
 * Model updates for the following services
-  * Amazon Lambda
+  * AWS Lambda
 
 ## [Release 2.13.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.13.3)
 

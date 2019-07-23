@@ -25,6 +25,7 @@ public enum ConfigurationSetAttribute {
 
     EventDestinations("eventDestinations"),
     TrackingOptions("trackingOptions"),
+    DeliveryOptions("deliveryOptions"),
     ReputationOptions("reputationOptions");
 
     private String value;
@@ -43,6 +44,7 @@ public enum ConfigurationSetAttribute {
         enumMap = new HashMap<String, ConfigurationSetAttribute>();
         enumMap.put("eventDestinations", EventDestinations);
         enumMap.put("trackingOptions", TrackingOptions);
+        enumMap.put("deliveryOptions", DeliveryOptions);
         enumMap.put("reputationOptions", ReputationOptions);
     }
 

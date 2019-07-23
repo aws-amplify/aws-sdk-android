@@ -19,9 +19,23 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Describes the specified collection. You can use
+ * <code>DescribeCollection</code> to get information, such as the number of
+ * faces indexed into a collection and the version of the model used by the
+ * collection for face detection.
+ * </p>
+ * <p>
+ * For more information, see Describing a Collection in the Amazon Rekognition
+ * Developer Guide.
+ * </p>
+ */
 public class DescribeCollectionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the collectionId property for this object.
+     * <p>
+     * The ID of the collection to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
@@ -30,34 +44,43 @@ public class DescribeCollectionRequest extends AmazonWebServiceRequest implement
     private String collectionId;
 
     /**
-     * Returns the value of the collectionId property for this object.
+     * <p>
+     * The ID of the collection to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
-     * @return The value of the collectionId property for this object.
+     * @return <p>
+     *         The ID of the collection to describe.
+     *         </p>
      */
     public String getCollectionId() {
         return collectionId;
     }
 
     /**
-     * Sets the value of collectionId
+     * <p>
+     * The ID of the collection to describe.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
-     * @param collectionId The new value for the collectionId property for this
-     *            object.
+     * @param collectionId <p>
+     *            The ID of the collection to describe.
+     *            </p>
      */
     public void setCollectionId(String collectionId) {
         this.collectionId = collectionId;
     }
 
     /**
-     * Sets the value of the collectionId property for this object.
+     * <p>
+     * The ID of the collection to describe.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -66,8 +89,9 @@ public class DescribeCollectionRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
-     * @param collectionId The new value for the collectionId property for this
-     *            object.
+     * @param collectionId <p>
+     *            The ID of the collection to describe.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

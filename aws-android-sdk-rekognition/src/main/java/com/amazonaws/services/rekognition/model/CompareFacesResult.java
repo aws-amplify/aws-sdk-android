@@ -46,23 +46,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -71,23 +72,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -329,47 +331,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @return <p>
-     *         The orientation of the source image (counterclockwise direction).
-     *         If your application displays the source image, you can use this
-     *         value to correct image orientation. The bounding box coordinates
-     *         returned in <code>SourceImageFace</code> represent the location
-     *         of the face before the image orientation is corrected.
+     *         The value of <code>SourceImageOrientationCorrection</code> is
+     *         always null.
      *         </p>
-     *         <note>
      *         <p>
-     *         If the source image is in .jpeg format, it might contain
-     *         exchangeable image (Exif) metadata that includes the image's
-     *         orientation. If the Exif metadata for the source image populates
-     *         the orientation field, the value of
-     *         <code>OrientationCorrection</code> is null and the
-     *         <code>SourceImageFace</code> bounding box coordinates represent
-     *         the location of the face after Exif metadata is used to correct
-     *         the orientation. Images in .png format don't contain Exif
-     *         metadata.
+     *         If the input image is in .jpeg format, it might contain
+     *         exchangeable image file format (Exif) metadata that includes the
+     *         image's orientation. Amazon Rekognition uses this orientation
+     *         information to perform image correction. The bounding box
+     *         coordinates are translated to represent object locations after
+     *         the orientation information in the Exif metadata is used to
+     *         correct the image orientation. Images in .png format don't
+     *         contain Exif metadata.
      *         </p>
-     *         </note>
+     *         <p>
+     *         Amazon Rekognition doesn’t perform image correction for images in
+     *         .png format and .jpeg images without orientation information in
+     *         the image Exif metadata. The bounding box coordinates aren't
+     *         translated and represent the object locations before the image is
+     *         rotated.
+     *         </p>
      * @see OrientationCorrection
      */
     public String getSourceImageOrientationCorrection() {
@@ -378,48 +382,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param sourceImageOrientationCorrection <p>
-     *            The orientation of the source image (counterclockwise
-     *            direction). If your application displays the source image, you
-     *            can use this value to correct image orientation. The bounding
-     *            box coordinates returned in <code>SourceImageFace</code>
-     *            represent the location of the face before the image
-     *            orientation is corrected.
+     *            The value of <code>SourceImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the source image is in .jpeg format, it might contain
-     *            exchangeable image (Exif) metadata that includes the image's
-     *            orientation. If the Exif metadata for the source image
-     *            populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the
-     *            <code>SourceImageFace</code> bounding box coordinates
-     *            represent the location of the face after Exif metadata is used
-     *            to correct the orientation. Images in .png format don't
-     *            contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setSourceImageOrientationCorrection(String sourceImageOrientationCorrection) {
@@ -428,23 +433,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -453,26 +459,26 @@ public class CompareFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param sourceImageOrientationCorrection <p>
-     *            The orientation of the source image (counterclockwise
-     *            direction). If your application displays the source image, you
-     *            can use this value to correct image orientation. The bounding
-     *            box coordinates returned in <code>SourceImageFace</code>
-     *            represent the location of the face before the image
-     *            orientation is corrected.
+     *            The value of <code>SourceImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the source image is in .jpeg format, it might contain
-     *            exchangeable image (Exif) metadata that includes the image's
-     *            orientation. If the Exif metadata for the source image
-     *            populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the
-     *            <code>SourceImageFace</code> bounding box coordinates
-     *            represent the location of the face after Exif metadata is used
-     *            to correct the orientation. Images in .png format don't
-     *            contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -485,48 +491,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param sourceImageOrientationCorrection <p>
-     *            The orientation of the source image (counterclockwise
-     *            direction). If your application displays the source image, you
-     *            can use this value to correct image orientation. The bounding
-     *            box coordinates returned in <code>SourceImageFace</code>
-     *            represent the location of the face before the image
-     *            orientation is corrected.
+     *            The value of <code>SourceImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the source image is in .jpeg format, it might contain
-     *            exchangeable image (Exif) metadata that includes the image's
-     *            orientation. If the Exif metadata for the source image
-     *            populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the
-     *            <code>SourceImageFace</code> bounding box coordinates
-     *            represent the location of the face after Exif metadata is used
-     *            to correct the orientation. Images in .png format don't
-     *            contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setSourceImageOrientationCorrection(
@@ -536,23 +543,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the source image (counterclockwise direction). If your
-     * application displays the source image, you can use this value to correct
-     * image orientation. The bounding box coordinates returned in
-     * <code>SourceImageFace</code> represent the location of the face before
-     * the image orientation is corrected.
+     * The value of <code>SourceImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the source image is in .jpeg format, it might contain exchangeable
-     * image (Exif) metadata that includes the image's orientation. If the Exif
-     * metadata for the source image populates the orientation field, the value
-     * of <code>OrientationCorrection</code> is null and the
-     * <code>SourceImageFace</code> bounding box coordinates represent the
-     * location of the face after Exif metadata is used to correct the
-     * orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -561,26 +569,26 @@ public class CompareFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param sourceImageOrientationCorrection <p>
-     *            The orientation of the source image (counterclockwise
-     *            direction). If your application displays the source image, you
-     *            can use this value to correct image orientation. The bounding
-     *            box coordinates returned in <code>SourceImageFace</code>
-     *            represent the location of the face before the image
-     *            orientation is corrected.
+     *            The value of <code>SourceImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the source image is in .jpeg format, it might contain
-     *            exchangeable image (Exif) metadata that includes the image's
-     *            orientation. If the Exif metadata for the source image
-     *            populates the orientation field, the value of
-     *            <code>OrientationCorrection</code> is null and the
-     *            <code>SourceImageFace</code> bounding box coordinates
-     *            represent the location of the face after Exif metadata is used
-     *            to correct the orientation. Images in .png format don't
-     *            contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -593,47 +601,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @return <p>
-     *         The orientation of the target image (in counterclockwise
-     *         direction). If your application displays the target image, you
-     *         can use this value to correct the orientation of the image. The
-     *         bounding box coordinates returned in <code>FaceMatches</code> and
-     *         <code>UnmatchedFaces</code> represent face locations before the
-     *         image orientation is corrected.
+     *         The value of <code>TargetImageOrientationCorrection</code> is
+     *         always null.
      *         </p>
-     *         <note>
      *         <p>
-     *         If the target image is in .jpg format, it might contain Exif
-     *         metadata that includes the orientation of the image. If the Exif
-     *         metadata for the target image populates the orientation field,
-     *         the value of <code>OrientationCorrection</code> is null and the
-     *         bounding box coordinates in <code>FaceMatches</code> and
-     *         <code>UnmatchedFaces</code> represent the location of the face
-     *         after Exif metadata is used to correct the orientation. Images in
-     *         .png format don't contain Exif metadata.
+     *         If the input image is in .jpeg format, it might contain
+     *         exchangeable image file format (Exif) metadata that includes the
+     *         image's orientation. Amazon Rekognition uses this orientation
+     *         information to perform image correction. The bounding box
+     *         coordinates are translated to represent object locations after
+     *         the orientation information in the Exif metadata is used to
+     *         correct the image orientation. Images in .png format don't
+     *         contain Exif metadata.
      *         </p>
-     *         </note>
+     *         <p>
+     *         Amazon Rekognition doesn’t perform image correction for images in
+     *         .png format and .jpeg images without orientation information in
+     *         the image Exif metadata. The bounding box coordinates aren't
+     *         translated and represent the object locations before the image is
+     *         rotated.
+     *         </p>
      * @see OrientationCorrection
      */
     public String getTargetImageOrientationCorrection() {
@@ -642,48 +652,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param targetImageOrientationCorrection <p>
-     *            The orientation of the target image (in counterclockwise
-     *            direction). If your application displays the target image, you
-     *            can use this value to correct the orientation of the image.
-     *            The bounding box coordinates returned in
-     *            <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     *            represent face locations before the image orientation is
-     *            corrected.
+     *            The value of <code>TargetImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the target image is in .jpg format, it might contain Exif
-     *            metadata that includes the orientation of the image. If the
-     *            Exif metadata for the target image populates the orientation
-     *            field, the value of <code>OrientationCorrection</code> is null
-     *            and the bounding box coordinates in <code>FaceMatches</code>
-     *            and <code>UnmatchedFaces</code> represent the location of the
-     *            face after Exif metadata is used to correct the orientation.
-     *            Images in .png format don't contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setTargetImageOrientationCorrection(String targetImageOrientationCorrection) {
@@ -692,23 +703,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -717,26 +729,26 @@ public class CompareFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param targetImageOrientationCorrection <p>
-     *            The orientation of the target image (in counterclockwise
-     *            direction). If your application displays the target image, you
-     *            can use this value to correct the orientation of the image.
-     *            The bounding box coordinates returned in
-     *            <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     *            represent face locations before the image orientation is
-     *            corrected.
+     *            The value of <code>TargetImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the target image is in .jpg format, it might contain Exif
-     *            metadata that includes the orientation of the image. If the
-     *            Exif metadata for the target image populates the orientation
-     *            field, the value of <code>OrientationCorrection</code> is null
-     *            and the bounding box coordinates in <code>FaceMatches</code>
-     *            and <code>UnmatchedFaces</code> represent the location of the
-     *            face after Exif metadata is used to correct the orientation.
-     *            Images in .png format don't contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -749,48 +761,49 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param targetImageOrientationCorrection <p>
-     *            The orientation of the target image (in counterclockwise
-     *            direction). If your application displays the target image, you
-     *            can use this value to correct the orientation of the image.
-     *            The bounding box coordinates returned in
-     *            <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     *            represent face locations before the image orientation is
-     *            corrected.
+     *            The value of <code>TargetImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the target image is in .jpg format, it might contain Exif
-     *            metadata that includes the orientation of the image. If the
-     *            Exif metadata for the target image populates the orientation
-     *            field, the value of <code>OrientationCorrection</code> is null
-     *            and the bounding box coordinates in <code>FaceMatches</code>
-     *            and <code>UnmatchedFaces</code> represent the location of the
-     *            face after Exif metadata is used to correct the orientation.
-     *            Images in .png format don't contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @see OrientationCorrection
      */
     public void setTargetImageOrientationCorrection(
@@ -800,23 +813,24 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * The orientation of the target image (in counterclockwise direction). If
-     * your application displays the target image, you can use this value to
-     * correct the orientation of the image. The bounding box coordinates
-     * returned in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent face locations before the image orientation is corrected.
+     * The value of <code>TargetImageOrientationCorrection</code> is always
+     * null.
      * </p>
-     * <note>
      * <p>
-     * If the target image is in .jpg format, it might contain Exif metadata
-     * that includes the orientation of the image. If the Exif metadata for the
-     * target image populates the orientation field, the value of
-     * <code>OrientationCorrection</code> is null and the bounding box
-     * coordinates in <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     * represent the location of the face after Exif metadata is used to correct
-     * the orientation. Images in .png format don't contain Exif metadata.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image file format (Exif) metadata that includes the image's orientation.
+     * Amazon Rekognition uses this orientation information to perform image
+     * correction. The bounding box coordinates are translated to represent
+     * object locations after the orientation information in the Exif metadata
+     * is used to correct the image orientation. Images in .png format don't
+     * contain Exif metadata.
      * </p>
-     * </note>
+     * <p>
+     * Amazon Rekognition doesn’t perform image correction for images in .png
+     * format and .jpeg images without orientation information in the image Exif
+     * metadata. The bounding box coordinates aren't translated and represent
+     * the object locations before the image is rotated.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -825,26 +839,26 @@ public class CompareFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param targetImageOrientationCorrection <p>
-     *            The orientation of the target image (in counterclockwise
-     *            direction). If your application displays the target image, you
-     *            can use this value to correct the orientation of the image.
-     *            The bounding box coordinates returned in
-     *            <code>FaceMatches</code> and <code>UnmatchedFaces</code>
-     *            represent face locations before the image orientation is
-     *            corrected.
+     *            The value of <code>TargetImageOrientationCorrection</code> is
+     *            always null.
      *            </p>
-     *            <note>
      *            <p>
-     *            If the target image is in .jpg format, it might contain Exif
-     *            metadata that includes the orientation of the image. If the
-     *            Exif metadata for the target image populates the orientation
-     *            field, the value of <code>OrientationCorrection</code> is null
-     *            and the bounding box coordinates in <code>FaceMatches</code>
-     *            and <code>UnmatchedFaces</code> represent the location of the
-     *            face after Exif metadata is used to correct the orientation.
-     *            Images in .png format don't contain Exif metadata.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image file format (Exif) metadata that includes
+     *            the image's orientation. Amazon Rekognition uses this
+     *            orientation information to perform image correction. The
+     *            bounding box coordinates are translated to represent object
+     *            locations after the orientation information in the Exif
+     *            metadata is used to correct the image orientation. Images in
+     *            .png format don't contain Exif metadata.
      *            </p>
-     *            </note>
+     *            <p>
+     *            Amazon Rekognition doesn’t perform image correction for images
+     *            in .png format and .jpeg images without orientation
+     *            information in the image Exif metadata. The bounding box
+     *            coordinates aren't translated and represent the object
+     *            locations before the image is rotated.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection

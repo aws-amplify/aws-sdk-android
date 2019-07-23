@@ -125,6 +125,11 @@ public class AbstractAmazonCognitoIdentityProvider implements AmazonCognitoIdent
     }
 
     @Override
+    public AdminSetUserPasswordResult adminSetUserPassword(AdminSetUserPasswordRequest adminSetUserPasswordRequest) throws AmazonClientException, AmazonServiceException {
+        return null;
+    }
+
+    @Override
     public AdminSetUserSettingsResult adminSetUserSettings(AdminSetUserSettingsRequest adminSetUserSettingsRequest) throws AmazonClientException, AmazonServiceException {
         return null;
     }

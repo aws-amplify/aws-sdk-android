@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds a domain to the list of identities for your Amazon SES account in the
  * current AWS Region and attempts to verify it. For more information about
  * verifying domains, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
  * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
  * Guide.</i>
  * </p>

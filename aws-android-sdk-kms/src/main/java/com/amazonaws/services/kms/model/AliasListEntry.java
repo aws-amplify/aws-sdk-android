@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class AliasListEntry implements Serializable {
     /**
      * <p>
-     * String that contains the alias.
+     * String that contains the alias. This value begins with
+     * <code>alias/</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,7 +57,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the alias.
+     * String that contains the alias. This value begins with
+     * <code>alias/</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,7 +66,8 @@ public class AliasListEntry implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @return <p>
-     *         String that contains the alias.
+     *         String that contains the alias. This value begins with
+     *         <code>alias/</code>.
      *         </p>
      */
     public String getAliasName() {
@@ -73,7 +76,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the alias.
+     * String that contains the alias. This value begins with
+     * <code>alias/</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,7 +85,8 @@ public class AliasListEntry implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            String that contains the alias.
+     *            String that contains the alias. This value begins with
+     *            <code>alias/</code>.
      *            </p>
      */
     public void setAliasName(String aliasName) {
@@ -90,7 +95,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the alias.
+     * String that contains the alias. This value begins with
+     * <code>alias/</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -101,7 +107,8 @@ public class AliasListEntry implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param aliasName <p>
-     *            String that contains the alias.
+     *            String that contains the alias. This value begins with
+     *            <code>alias/</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

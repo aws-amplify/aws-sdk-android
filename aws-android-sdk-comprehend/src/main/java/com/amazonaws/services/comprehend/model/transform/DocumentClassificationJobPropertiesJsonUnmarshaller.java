@@ -77,6 +77,10 @@ class DocumentClassificationJobPropertiesJsonUnmarshaller implements
                 documentClassificationJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                documentClassificationJobProperties.setVpcConfig(VpcConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

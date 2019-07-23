@@ -24,28 +24,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Returns a set of temporary credentials for an AWS account or IAM user. The
  * credentials consist of an access key ID, a secret access key, and a security
  * token. Typically, you use <code>GetSessionToken</code> if you want to use MFA
- * to protect programmatic calls to specific AWS APIs like Amazon EC2
+ * to protect programmatic calls to specific AWS API operations like Amazon EC2
  * <code>StopInstances</code>. MFA-enabled IAM users would need to call
  * <code>GetSessionToken</code> and submit an MFA code that is associated with
  * their MFA device. Using the temporary security credentials that are returned
- * from the call, IAM users can then make programmatic calls to APIs that
- * require MFA authentication. If you do not supply a correct MFA code, then the
- * API returns an access denied error. For a comparison of
- * <code>GetSessionToken</code> with the other APIs that produce temporary
- * credentials, see <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
+ * from the call, IAM users can then make programmatic calls to API operations
+ * that require MFA authentication. If you do not supply a correct MFA code,
+ * then the API returns an access denied error. For a comparison of
+ * <code>GetSessionToken</code> with the other API operations that produce
+ * temporary credentials, see <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
  * >Requesting Temporary Security Credentials</a> and <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
- * >Comparing the AWS STS APIs</a> in the <i>IAM User Guide</i>.
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
+ * >Comparing the AWS STS API operations</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
- * The <code>GetSessionToken</code> action must be called by using the long-term
- * AWS security credentials of the AWS account or an IAM user. Credentials that
- * are created by IAM users are valid for the duration that you specify, from
- * 900 seconds (15 minutes) up to a maximum of 129600 seconds (36 hours), with a
- * default of 43200 seconds (12 hours); credentials that are created by using
- * account credentials can range from 900 seconds (15 minutes) up to a maximum
- * of 3600 seconds (1 hour), with a default of 1 hour.
+ * The <code>GetSessionToken</code> operation must be called by using the
+ * long-term AWS security credentials of the AWS account root user or an IAM
+ * user. Credentials that are created by IAM users are valid for the duration
+ * that you specify. This duration can range from 900 seconds (15 minutes) up to
+ * a maximum of 129,600 seconds (36 hours), with a default of 43,200 seconds (12
+ * hours). Credentials based on account credentials can range from 900 seconds
+ * (15 minutes) up to 3,600 seconds (1 hour), with a default of 1 hour.
  * </p>
  * <p>
  * The temporary security credentials created by <code>GetSessionToken</code>
@@ -55,8 +55,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * You cannot call any IAM APIs unless MFA authentication information is
- * included in the request.
+ * You cannot call any IAM API operations unless MFA authentication information
+ * is included in the request.
  * </p>
  * </li>
  * <li>
@@ -68,26 +68,26 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ul>
  * <note>
  * <p>
- * We recommend that you do not call <code>GetSessionToken</code> with root
- * account credentials. Instead, follow our <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users"
+ * We recommend that you do not call <code>GetSessionToken</code> with AWS
+ * account root user credentials. Instead, follow our <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users"
  * >best practices</a> by creating one or more IAM users, giving them the
  * necessary permissions, and using IAM users for everyday interaction with AWS.
  * </p>
  * </note>
  * <p>
- * The permissions associated with the temporary security credentials returned
- * by <code>GetSessionToken</code> are based on the permissions associated with
- * account or IAM user whose credentials are used to call the action. If
- * <code>GetSessionToken</code> is called using root account credentials, the
- * temporary credentials have root account permissions. Similarly, if
- * <code>GetSessionToken</code> is called using the credentials of an IAM user,
- * the temporary credentials have the same permissions as the IAM user.
+ * The credentials that are returned by <code>GetSessionToken</code> are based
+ * on permissions associated with the user whose credentials were used to call
+ * the operation. If <code>GetSessionToken</code> is called using AWS account
+ * root user credentials, the temporary credentials have root user permissions.
+ * Similarly, if <code>GetSessionToken</code> is called using the credentials of
+ * an IAM user, the temporary credentials have the same permissions as the IAM
+ * user.
  * </p>
  * <p>
  * For more information about using <code>GetSessionToken</code> to create
  * temporary credentials, go to <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getsessiontoken"
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getsessiontoken"
  * >Temporary Credentials for Users in Untrusted Environments</a> in the <i>IAM
  * User Guide</i>.
  * </p>
@@ -97,9 +97,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The duration, in seconds, that the credentials should remain valid.
      * Acceptable durations for IAM user sessions range from 900 seconds (15
-     * minutes) to 129600 seconds (36 hours), with 43200 seconds (12 hours) as
+     * minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
      * the default. Sessions for AWS account owners are restricted to a maximum
-     * of 3600 seconds (one hour). If the duration is longer than one hour, the
+     * of 3,600 seconds (one hour). If the duration is longer than one hour, the
      * session for AWS account owners defaults to one hour.
      * </p>
      * <p>
@@ -120,7 +120,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The regex used to validated this parameter is a string of characters
+     * The regex used to validate this parameter is a string of characters
      * consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following
      * characters: =,.@:/-
@@ -136,10 +136,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The value provided by the MFA device, if MFA is required. If any policy
      * requires the IAM user to submit an MFA code, specify this value. If MFA
-     * authentication is required, and the user does not provide a code when
-     * requesting a set of temporary security credentials, the user will receive
-     * an "access denied" response when requesting resources that require MFA
-     * authentication.
+     * authentication is required, the user must provide a code when requesting
+     * a set of temporary security credentials. A user who fails to provide the
+     * code receives an "access denied" response when requesting resources that
+     * require MFA authentication.
      * </p>
      * <p>
      * The format for this parameter, as described by its regex pattern, is a
@@ -156,9 +156,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The duration, in seconds, that the credentials should remain valid.
      * Acceptable durations for IAM user sessions range from 900 seconds (15
-     * minutes) to 129600 seconds (36 hours), with 43200 seconds (12 hours) as
+     * minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
      * the default. Sessions for AWS account owners are restricted to a maximum
-     * of 3600 seconds (one hour). If the duration is longer than one hour, the
+     * of 3,600 seconds (one hour). If the duration is longer than one hour, the
      * session for AWS account owners defaults to one hour.
      * </p>
      * <p>
@@ -168,11 +168,11 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @return <p>
      *         The duration, in seconds, that the credentials should remain
      *         valid. Acceptable durations for IAM user sessions range from 900
-     *         seconds (15 minutes) to 129600 seconds (36 hours), with 43200
+     *         seconds (15 minutes) to 129,600 seconds (36 hours), with 43,200
      *         seconds (12 hours) as the default. Sessions for AWS account
-     *         owners are restricted to a maximum of 3600 seconds (one hour). If
-     *         the duration is longer than one hour, the session for AWS account
-     *         owners defaults to one hour.
+     *         owners are restricted to a maximum of 3,600 seconds (one hour).
+     *         If the duration is longer than one hour, the session for AWS
+     *         account owners defaults to one hour.
      *         </p>
      */
     public Integer getDurationSeconds() {
@@ -183,9 +183,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The duration, in seconds, that the credentials should remain valid.
      * Acceptable durations for IAM user sessions range from 900 seconds (15
-     * minutes) to 129600 seconds (36 hours), with 43200 seconds (12 hours) as
+     * minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
      * the default. Sessions for AWS account owners are restricted to a maximum
-     * of 3600 seconds (one hour). If the duration is longer than one hour, the
+     * of 3,600 seconds (one hour). If the duration is longer than one hour, the
      * session for AWS account owners defaults to one hour.
      * </p>
      * <p>
@@ -195,9 +195,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @param durationSeconds <p>
      *            The duration, in seconds, that the credentials should remain
      *            valid. Acceptable durations for IAM user sessions range from
-     *            900 seconds (15 minutes) to 129600 seconds (36 hours), with
-     *            43200 seconds (12 hours) as the default. Sessions for AWS
-     *            account owners are restricted to a maximum of 3600 seconds
+     *            900 seconds (15 minutes) to 129,600 seconds (36 hours), with
+     *            43,200 seconds (12 hours) as the default. Sessions for AWS
+     *            account owners are restricted to a maximum of 3,600 seconds
      *            (one hour). If the duration is longer than one hour, the
      *            session for AWS account owners defaults to one hour.
      *            </p>
@@ -210,9 +210,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The duration, in seconds, that the credentials should remain valid.
      * Acceptable durations for IAM user sessions range from 900 seconds (15
-     * minutes) to 129600 seconds (36 hours), with 43200 seconds (12 hours) as
+     * minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
      * the default. Sessions for AWS account owners are restricted to a maximum
-     * of 3600 seconds (one hour). If the duration is longer than one hour, the
+     * of 3,600 seconds (one hour). If the duration is longer than one hour, the
      * session for AWS account owners defaults to one hour.
      * </p>
      * <p>
@@ -225,9 +225,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @param durationSeconds <p>
      *            The duration, in seconds, that the credentials should remain
      *            valid. Acceptable durations for IAM user sessions range from
-     *            900 seconds (15 minutes) to 129600 seconds (36 hours), with
-     *            43200 seconds (12 hours) as the default. Sessions for AWS
-     *            account owners are restricted to a maximum of 3600 seconds
+     *            900 seconds (15 minutes) to 129,600 seconds (36 hours), with
+     *            43,200 seconds (12 hours) as the default. Sessions for AWS
+     *            account owners are restricted to a maximum of 3,600 seconds
      *            (one hour). If the duration is longer than one hour, the
      *            session for AWS account owners defaults to one hour.
      *            </p>
@@ -251,7 +251,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The regex used to validated this parameter is a string of characters
+     * The regex used to validate this parameter is a string of characters
      * consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following
      * characters: =,.@:/-
@@ -273,7 +273,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *         and viewing the user's security credentials.
      *         </p>
      *         <p>
-     *         The regex used to validated this parameter is a string of
+     *         The regex used to validate this parameter is a string of
      *         characters consisting of upper- and lower-case alphanumeric
      *         characters with no spaces. You can also include underscores or
      *         any of the following characters: =,.@:/-
@@ -295,7 +295,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The regex used to validated this parameter is a string of characters
+     * The regex used to validate this parameter is a string of characters
      * consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following
      * characters: =,.@:/-
@@ -318,7 +318,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            Console and viewing the user's security credentials.
      *            </p>
      *            <p>
-     *            The regex used to validated this parameter is a string of
+     *            The regex used to validate this parameter is a string of
      *            characters consisting of upper- and lower-case alphanumeric
      *            characters with no spaces. You can also include underscores or
      *            any of the following characters: =,.@:/-
@@ -340,7 +340,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The regex used to validated this parameter is a string of characters
+     * The regex used to validate this parameter is a string of characters
      * consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following
      * characters: =,.@:/-
@@ -366,7 +366,7 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            Console and viewing the user's security credentials.
      *            </p>
      *            <p>
-     *            The regex used to validated this parameter is a string of
+     *            The regex used to validate this parameter is a string of
      *            characters consisting of upper- and lower-case alphanumeric
      *            characters with no spaces. You can also include underscores or
      *            any of the following characters: =,.@:/-
@@ -383,10 +383,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The value provided by the MFA device, if MFA is required. If any policy
      * requires the IAM user to submit an MFA code, specify this value. If MFA
-     * authentication is required, and the user does not provide a code when
-     * requesting a set of temporary security credentials, the user will receive
-     * an "access denied" response when requesting resources that require MFA
-     * authentication.
+     * authentication is required, the user must provide a code when requesting
+     * a set of temporary security credentials. A user who fails to provide the
+     * code receives an "access denied" response when requesting resources that
+     * require MFA authentication.
      * </p>
      * <p>
      * The format for this parameter, as described by its regex pattern, is a
@@ -400,10 +400,11 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @return <p>
      *         The value provided by the MFA device, if MFA is required. If any
      *         policy requires the IAM user to submit an MFA code, specify this
-     *         value. If MFA authentication is required, and the user does not
-     *         provide a code when requesting a set of temporary security
-     *         credentials, the user will receive an "access denied" response
-     *         when requesting resources that require MFA authentication.
+     *         value. If MFA authentication is required, the user must provide a
+     *         code when requesting a set of temporary security credentials. A
+     *         user who fails to provide the code receives an "access denied"
+     *         response when requesting resources that require MFA
+     *         authentication.
      *         </p>
      *         <p>
      *         The format for this parameter, as described by its regex pattern,
@@ -418,10 +419,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The value provided by the MFA device, if MFA is required. If any policy
      * requires the IAM user to submit an MFA code, specify this value. If MFA
-     * authentication is required, and the user does not provide a code when
-     * requesting a set of temporary security credentials, the user will receive
-     * an "access denied" response when requesting resources that require MFA
-     * authentication.
+     * authentication is required, the user must provide a code when requesting
+     * a set of temporary security credentials. A user who fails to provide the
+     * code receives an "access denied" response when requesting resources that
+     * require MFA authentication.
      * </p>
      * <p>
      * The format for this parameter, as described by its regex pattern, is a
@@ -435,11 +436,11 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @param tokenCode <p>
      *            The value provided by the MFA device, if MFA is required. If
      *            any policy requires the IAM user to submit an MFA code,
-     *            specify this value. If MFA authentication is required, and the
-     *            user does not provide a code when requesting a set of
-     *            temporary security credentials, the user will receive an
-     *            "access denied" response when requesting resources that
-     *            require MFA authentication.
+     *            specify this value. If MFA authentication is required, the
+     *            user must provide a code when requesting a set of temporary
+     *            security credentials. A user who fails to provide the code
+     *            receives an "access denied" response when requesting resources
+     *            that require MFA authentication.
      *            </p>
      *            <p>
      *            The format for this parameter, as described by its regex
@@ -454,10 +455,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * <p>
      * The value provided by the MFA device, if MFA is required. If any policy
      * requires the IAM user to submit an MFA code, specify this value. If MFA
-     * authentication is required, and the user does not provide a code when
-     * requesting a set of temporary security credentials, the user will receive
-     * an "access denied" response when requesting resources that require MFA
-     * authentication.
+     * authentication is required, the user must provide a code when requesting
+     * a set of temporary security credentials. A user who fails to provide the
+     * code receives an "access denied" response when requesting resources that
+     * require MFA authentication.
      * </p>
      * <p>
      * The format for this parameter, as described by its regex pattern, is a
@@ -474,11 +475,11 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * @param tokenCode <p>
      *            The value provided by the MFA device, if MFA is required. If
      *            any policy requires the IAM user to submit an MFA code,
-     *            specify this value. If MFA authentication is required, and the
-     *            user does not provide a code when requesting a set of
-     *            temporary security credentials, the user will receive an
-     *            "access denied" response when requesting resources that
-     *            require MFA authentication.
+     *            specify this value. If MFA authentication is required, the
+     *            user must provide a code when requesting a set of temporary
+     *            security credentials. A user who fails to provide the code
+     *            receives an "access denied" response when requesting resources
+     *            that require MFA authentication.
      *            </p>
      *            <p>
      *            The format for this parameter, as described by its regex

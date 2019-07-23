@@ -92,8 +92,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -126,6 +128,17 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 2048<br/>
      */
     private String volumeKmsKeyId;
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     */
+    private VpcConfig vpcConfig;
 
     /**
      * <p>
@@ -517,17 +530,20 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
-     *         The language of the input documents. You can specify English
-     *         ("en") or Spanish ("es"). All documents must be in the same
-     *         language.
+     *         The language of the input documents. You can specify any of the
+     *         primary languages supported by Amazon Comprehend: German ("de"),
+     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     *         Portuguese ("pt"). All documents must be in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -537,17 +553,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @see LanguageCode
      */
@@ -557,8 +577,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -568,9 +590,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -583,17 +607,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @see LanguageCode
      */
@@ -603,8 +631,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
+     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -614,9 +644,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend: German
+     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *            ("it"), or Portuguese ("pt"). All documents must be in the
+     *            same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -780,6 +812,75 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration parameters for an optional private Virtual Private
+     *         Cloud (VPC) containing the resources you are using for your
+     *         custom classifier. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *         >Amazon VPC</a>.
+     *         </p>
+     */
+    public VpcConfig getVpcConfig() {
+        return vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     */
+    public void setVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom classifier.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom classifier. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -805,7 +906,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getVolumeKmsKeyId() != null)
-            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId());
+            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
+        if (getVpcConfig() != null)
+            sb.append("VpcConfig: " + getVpcConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -832,6 +935,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
+        hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         return hashCode;
     }
 
@@ -884,6 +988,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getVolumeKmsKeyId() != null
                 && other.getVolumeKmsKeyId().equals(this.getVolumeKmsKeyId()) == false)
+            return false;
+        if (other.getVpcConfig() == null ^ this.getVpcConfig() == null)
+            return false;
+        if (other.getVpcConfig() != null
+                && other.getVpcConfig().equals(this.getVpcConfig()) == false)
             return false;
         return true;
     }

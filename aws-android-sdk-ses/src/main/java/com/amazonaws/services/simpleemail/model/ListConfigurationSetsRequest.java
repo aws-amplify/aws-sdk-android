@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides a list of the configuration sets associated with your Amazon SES
  * account in the current AWS Region. For information about using configuration
  * sets, see <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
  * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
  * Developer Guide.</i>
  * </p>

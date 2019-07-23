@@ -22,17 +22,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets the celebrity recognition results for a Amazon Rekognition Video
- * analysis started by .
+ * analysis started by <a>StartCelebrityRecognition</a>.
  * </p>
  * <p>
  * Celebrity recognition in a video is an asynchronous operation. Analysis is
- * started by a call to which returns a job identifier (<code>JobId</code>).
- * When the celebrity recognition operation finishes, Amazon Rekognition Video
- * publishes a completion status to the Amazon Simple Notification Service topic
- * registered in the initial call to <code>StartCelebrityRecognition</code>. To
- * get the results of the celebrity recognition analysis, first check that the
- * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
- * so, call <code>GetCelebrityDetection</code> and pass the job identifier (
+ * started by a call to <a>StartCelebrityRecognition</a> which returns a job
+ * identifier (<code>JobId</code>). When the celebrity recognition operation
+ * finishes, Amazon Rekognition Video publishes a completion status to the
+ * Amazon Simple Notification Service topic registered in the initial call to
+ * <code>StartCelebrityRecognition</code>. To get the results of the celebrity
+ * recognition analysis, first check that the status value published to the
+ * Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
+ * <code>GetCelebrityDetection</code> and pass the job identifier (
  * <code>JobId</code>) from the initial call to
  * <code>StartCelebrityDetection</code>.
  * </p>
@@ -42,10 +43,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <code>GetCelebrityRecognition</code> returns detected celebrities and the
- * time(s) they are detected in an array (<code>Celebrities</code>) of objects.
- * Each <code>CelebrityRecognition</code> contains information about the
- * celebrity in a object and the time, <code>Timestamp</code>, the celebrity was
- * detected.
+ * time(s) they are detected in an array (<code>Celebrities</code>) of
+ * <a>CelebrityRecognition</a> objects. Each <code>CelebrityRecognition</code>
+ * contains information about the celebrity in a <a>CelebrityDetail</a> object
+ * and the time, <code>Timestamp</code>, the celebrity was detected.
  * </p>
  * <note>
  * <p>
@@ -66,7 +67,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The <code>CelebrityDetail</code> object includes the celebrity identifer and
  * additional information urls. If you don't store the additional information
- * urls, you can get them later by calling with the celebrity identifer.
+ * urls, you can get them later by calling <a>GetCelebrityInfo</a> with the
+ * celebrity identifer.
  * </p>
  * <p>
  * No information is returned for faces not recognized as celebrities.

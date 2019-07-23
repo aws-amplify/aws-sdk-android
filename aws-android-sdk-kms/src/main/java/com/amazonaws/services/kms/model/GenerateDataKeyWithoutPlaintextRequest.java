@@ -21,33 +21,37 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a data encryption key encrypted under a customer master key (CMK).
- * This operation is identical to <a>GenerateDataKey</a> but returns only the
- * encrypted copy of the data key.
+ * Generates a unique data key. This operation returns a data key that is
+ * encrypted under a customer master key (CMK) that you specify.
+ * <code>GenerateDataKeyWithoutPlaintext</code> is identical to
+ * <a>GenerateDataKey</a> except that returns only the encrypted copy of the
+ * data key.
  * </p>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN or alias ARN in the value of the KeyId parameter.
+ * Like <code>GenerateDataKey</code>,
+ * <code>GenerateDataKeyWithoutPlaintext</code> returns a unique data key for
+ * each request. The bytes in the key are not related to the caller or CMK that
+ * is used to encrypt the data key.
  * </p>
  * <p>
- * This operation is useful in a system that has multiple components with
- * different degrees of trust. For example, consider a system that stores
- * encrypted data in containers. Each container stores the encrypted data and an
- * encrypted copy of the data key. One component of the system, called the
- * <i>control plane</i>, creates new containers. When it creates a new
- * container, it uses this operation (
- * <code>GenerateDataKeyWithoutPlaintext</code>) to get an encrypted data key
- * and then stores it in the container. Later, a different component of the
- * system, called the <i>data plane</i>, puts encrypted data into the
- * containers. To do this, it passes the encrypted data key to the
- * <a>Decrypt</a> operation, then uses the returned plaintext data key to
- * encrypt data, and finally stores the encrypted data in the container. In this
- * system, the control plane never sees the plaintext data key.
+ * This operation is useful for systems that need to encrypt data at some point,
+ * but not immediately. When you need to encrypt the data, you call the
+ * <a>Decrypt</a> operation on the encrypted copy of the key.
+ * </p>
+ * <p>
+ * It's also useful in distributed systems with different levels of trust. For
+ * example, you might store encrypted data in containers. One component of your
+ * system creates new containers and stores an encrypted data key with each
+ * container. Then, a different component puts the data into the containers.
+ * That component first decrypts the data key, uses the plaintext data key to
+ * encrypt data, puts the encrypted data into the container, and then destroys
+ * the plaintext data key. In this system, the component that creates the
+ * containers never sees the plaintext data key.
  * </p>
  * <p>
  * The result of this operation varies with the key state of the CMK. For
  * details, see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
@@ -56,14 +60,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
         Serializable {
     /**
      * <p>
-     * The identifier of the customer master key (CMK) under which to generate
-     * and encrypt the data encryption key.
+     * The identifier of the customer master key (CMK) that encrypts the data
+     * key.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -109,7 +113,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -118,9 +122,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,10 +134,10 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key in bytes. For example, use the
-     * value 64 to generate a 512-bit data key (64 bytes is 512 bits). For
-     * common key lengths (128-bit and 256-bit symmetric keys), we recommend
-     * that you use the <code>KeySpec</code> field instead of this one.
+     * The length of the data key in bytes. For example, use the value 64 to
+     * generate a 512-bit data key (64 bytes is 512 bits). For common key
+     * lengths (128-bit and 256-bit symmetric keys), we recommend that you use
+     * the <code>KeySpec</code> field instead of this one.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,7 +151,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -156,14 +160,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the customer master key (CMK) under which to generate
-     * and encrypt the data encryption key.
+     * The identifier of the customer master key (CMK) that encrypts the data
+     * key.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -202,14 +206,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the customer master key (CMK) under which to
-     *         generate and encrypt the data encryption key.
+     *         The identifier of the customer master key (CMK) that encrypts the
+     *         data key.
      *         </p>
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with "alias/". To specify a CMK in a different AWS account, you
-     *         must use the key ARN or alias ARN.
+     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -250,14 +254,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the customer master key (CMK) under which to generate
-     * and encrypt the data encryption key.
+     * The identifier of the customer master key (CMK) that encrypts the data
+     * key.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -296,14 +300,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the customer master key (CMK) under which to
-     *            generate and encrypt the data encryption key.
+     *            The identifier of the customer master key (CMK) that encrypts
+     *            the data key.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -344,14 +348,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the customer master key (CMK) under which to generate
-     * and encrypt the data encryption key.
+     * The identifier of the customer master key (CMK) that encrypts the data
+     * key.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -393,14 +397,14 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the customer master key (CMK) under which to
-     *            generate and encrypt the data encryption key.
+     *            The identifier of the customer master key (CMK) that encrypts
+     *            the data key.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -448,7 +452,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -459,7 +463,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *         >Encryption Context</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
      *         </p>
@@ -474,7 +478,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -485,7 +489,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -500,7 +504,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -514,7 +518,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -533,7 +537,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -572,18 +576,18 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AES_256, AES_128
      *
      * @return <p>
-     *         The length of the data encryption key. Use <code>AES_128</code>
-     *         to generate a 128-bit symmetric key, or <code>AES_256</code> to
-     *         generate a 256-bit symmetric key.
+     *         The length of the data key. Use <code>AES_128</code> to generate
+     *         a 128-bit symmetric key, or <code>AES_256</code> to generate a
+     *         256-bit symmetric key.
      *         </p>
      * @see DataKeySpec
      */
@@ -593,18 +597,18 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AES_256, AES_128
      *
      * @param keySpec <p>
-     *            The length of the data encryption key. Use
-     *            <code>AES_128</code> to generate a 128-bit symmetric key, or
-     *            <code>AES_256</code> to generate a 256-bit symmetric key.
+     *            The length of the data key. Use <code>AES_128</code> to
+     *            generate a 128-bit symmetric key, or <code>AES_256</code> to
+     *            generate a 256-bit symmetric key.
      *            </p>
      * @see DataKeySpec
      */
@@ -614,9 +618,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -626,9 +630,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Allowed Values: </b>AES_256, AES_128
      *
      * @param keySpec <p>
-     *            The length of the data encryption key. Use
-     *            <code>AES_128</code> to generate a 128-bit symmetric key, or
-     *            <code>AES_256</code> to generate a 256-bit symmetric key.
+     *            The length of the data key. Use <code>AES_128</code> to
+     *            generate a 128-bit symmetric key, or <code>AES_256</code> to
+     *            generate a 256-bit symmetric key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -641,18 +645,18 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AES_256, AES_128
      *
      * @param keySpec <p>
-     *            The length of the data encryption key. Use
-     *            <code>AES_128</code> to generate a 128-bit symmetric key, or
-     *            <code>AES_256</code> to generate a 256-bit symmetric key.
+     *            The length of the data key. Use <code>AES_128</code> to
+     *            generate a 128-bit symmetric key, or <code>AES_256</code> to
+     *            generate a 256-bit symmetric key.
      *            </p>
      * @see DataKeySpec
      */
@@ -662,9 +666,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key. Use <code>AES_128</code> to
-     * generate a 128-bit symmetric key, or <code>AES_256</code> to generate a
-     * 256-bit symmetric key.
+     * The length of the data key. Use <code>AES_128</code> to generate a
+     * 128-bit symmetric key, or <code>AES_256</code> to generate a 256-bit
+     * symmetric key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -674,9 +678,9 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Allowed Values: </b>AES_256, AES_128
      *
      * @param keySpec <p>
-     *            The length of the data encryption key. Use
-     *            <code>AES_128</code> to generate a 128-bit symmetric key, or
-     *            <code>AES_256</code> to generate a 256-bit symmetric key.
+     *            The length of the data key. Use <code>AES_128</code> to
+     *            generate a 128-bit symmetric key, or <code>AES_256</code> to
+     *            generate a 256-bit symmetric key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -689,21 +693,21 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key in bytes. For example, use the
-     * value 64 to generate a 512-bit data key (64 bytes is 512 bits). For
-     * common key lengths (128-bit and 256-bit symmetric keys), we recommend
-     * that you use the <code>KeySpec</code> field instead of this one.
+     * The length of the data key in bytes. For example, use the value 64 to
+     * generate a 512-bit data key (64 bytes is 512 bits). For common key
+     * lengths (128-bit and 256-bit symmetric keys), we recommend that you use
+     * the <code>KeySpec</code> field instead of this one.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @return <p>
-     *         The length of the data encryption key in bytes. For example, use
-     *         the value 64 to generate a 512-bit data key (64 bytes is 512
-     *         bits). For common key lengths (128-bit and 256-bit symmetric
-     *         keys), we recommend that you use the <code>KeySpec</code> field
-     *         instead of this one.
+     *         The length of the data key in bytes. For example, use the value
+     *         64 to generate a 512-bit data key (64 bytes is 512 bits). For
+     *         common key lengths (128-bit and 256-bit symmetric keys), we
+     *         recommend that you use the <code>KeySpec</code> field instead of
+     *         this one.
      *         </p>
      */
     public Integer getNumberOfBytes() {
@@ -712,21 +716,21 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key in bytes. For example, use the
-     * value 64 to generate a 512-bit data key (64 bytes is 512 bits). For
-     * common key lengths (128-bit and 256-bit symmetric keys), we recommend
-     * that you use the <code>KeySpec</code> field instead of this one.
+     * The length of the data key in bytes. For example, use the value 64 to
+     * generate a 512-bit data key (64 bytes is 512 bits). For common key
+     * lengths (128-bit and 256-bit symmetric keys), we recommend that you use
+     * the <code>KeySpec</code> field instead of this one.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            The length of the data encryption key in bytes. For example,
-     *            use the value 64 to generate a 512-bit data key (64 bytes is
-     *            512 bits). For common key lengths (128-bit and 256-bit
-     *            symmetric keys), we recommend that you use the
-     *            <code>KeySpec</code> field instead of this one.
+     *            The length of the data key in bytes. For example, use the
+     *            value 64 to generate a 512-bit data key (64 bytes is 512
+     *            bits). For common key lengths (128-bit and 256-bit symmetric
+     *            keys), we recommend that you use the <code>KeySpec</code>
+     *            field instead of this one.
      *            </p>
      */
     public void setNumberOfBytes(Integer numberOfBytes) {
@@ -735,10 +739,10 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The length of the data encryption key in bytes. For example, use the
-     * value 64 to generate a 512-bit data key (64 bytes is 512 bits). For
-     * common key lengths (128-bit and 256-bit symmetric keys), we recommend
-     * that you use the <code>KeySpec</code> field instead of this one.
+     * The length of the data key in bytes. For example, use the value 64 to
+     * generate a 512-bit data key (64 bytes is 512 bits). For common key
+     * lengths (128-bit and 256-bit symmetric keys), we recommend that you use
+     * the <code>KeySpec</code> field instead of this one.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -748,11 +752,11 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            The length of the data encryption key in bytes. For example,
-     *            use the value 64 to generate a 512-bit data key (64 bytes is
-     *            512 bits). For common key lengths (128-bit and 256-bit
-     *            symmetric keys), we recommend that you use the
-     *            <code>KeySpec</code> field instead of this one.
+     *            The length of the data key in bytes. For example, use the
+     *            value 64 to generate a 512-bit data key (64 bytes is 512
+     *            bits). For common key lengths (128-bit and 256-bit symmetric
+     *            keys), we recommend that you use the <code>KeySpec</code>
+     *            field instead of this one.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -768,7 +772,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -778,7 +782,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
@@ -793,7 +797,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -803,7 +807,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -823,7 +827,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -836,7 +840,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
@@ -859,7 +863,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
@@ -872,7 +876,7 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
      *            >Grant Tokens</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>

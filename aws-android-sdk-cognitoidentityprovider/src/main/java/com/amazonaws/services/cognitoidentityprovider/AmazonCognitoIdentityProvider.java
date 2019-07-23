@@ -869,6 +869,30 @@ public interface AmazonCognitoIdentityProvider {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * @param adminSetUserPasswordRequest
+     * @return adminSetUserPasswordResult The response from the
+     *         AdminSetUserPassword service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws UserNotFoundException
+     * @throws InternalErrorException
+     * @throws TooManyRequestsException
+     * @throws InvalidParameterException
+     * @throws InvalidPasswordException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    AdminSetUserPasswordResult adminSetUserPassword(
+            AdminSetUserPasswordRequest adminSetUserPasswordRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
      * <p>
      * Sets all the user settings for a specified user name. Works on any user.
      * </p>

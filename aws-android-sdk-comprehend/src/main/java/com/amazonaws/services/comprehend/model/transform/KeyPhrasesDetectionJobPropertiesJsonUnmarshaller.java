@@ -75,6 +75,10 @@ class KeyPhrasesDetectionJobPropertiesJsonUnmarshaller implements
                 keyPhrasesDetectionJobProperties.setVolumeKmsKeyId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VpcConfig")) {
+                keyPhrasesDetectionJobProperties.setVpcConfig(VpcConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -97,6 +97,11 @@ public class StartTopicsDetectionJobRequestMarshaller implements
                 jsonWriter.name("VolumeKmsKeyId");
                 jsonWriter.value(volumeKmsKeyId);
             }
+            if (startTopicsDetectionJobRequest.getVpcConfig() != null) {
+                VpcConfig vpcConfig = startTopicsDetectionJobRequest.getVpcConfig();
+                jsonWriter.name("VpcConfig");
+                VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

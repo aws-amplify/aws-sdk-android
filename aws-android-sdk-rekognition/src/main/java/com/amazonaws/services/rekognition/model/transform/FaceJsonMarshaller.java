@@ -50,11 +50,6 @@ class FaceJsonMarshaller {
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
-        if (face.getAssociationScore() != null) {
-            Float associationScore = face.getAssociationScore();
-            jsonWriter.name("AssociationScore");
-            jsonWriter.value(associationScore);
-        }
         jsonWriter.endObject();
     }
 

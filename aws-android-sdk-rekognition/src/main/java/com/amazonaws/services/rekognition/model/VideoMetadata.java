@@ -77,14 +77,6 @@ public class VideoMetadata implements Serializable {
     private Long frameWidth;
 
     /**
-     * The new value for the rotation property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
-     */
-    private Integer rotation;
-
-    /**
      * <p>
      * Type of compression used in the analyzed video.
      * </p>
@@ -385,48 +377,6 @@ public class VideoMetadata implements Serializable {
     }
 
     /**
-     * Returns the value of the rotation property for this object.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
-     *
-     * @return The value of the rotation property for this object.
-     */
-    public Integer getRotation() {
-        return rotation;
-    }
-
-    /**
-     * Sets the value of rotation
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
-     *
-     * @param rotation The new value for the rotation property for this object.
-     */
-    public void setRotation(Integer rotation) {
-        this.rotation = rotation;
-    }
-
-    /**
-     * Sets the value of the rotation property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
-     *
-     * @param rotation The new value for the rotation property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public VideoMetadata withRotation(Integer rotation) {
-        this.rotation = rotation;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -448,9 +398,7 @@ public class VideoMetadata implements Serializable {
         if (getFrameHeight() != null)
             sb.append("FrameHeight: " + getFrameHeight() + ",");
         if (getFrameWidth() != null)
-            sb.append("FrameWidth: " + getFrameWidth() + ",");
-        if (getRotation() != null)
-            sb.append("Rotation: " + getRotation());
+            sb.append("FrameWidth: " + getFrameWidth());
         sb.append("}");
         return sb.toString();
     }
@@ -468,7 +416,6 @@ public class VideoMetadata implements Serializable {
         hashCode = prime * hashCode
                 + ((getFrameHeight() == null) ? 0 : getFrameHeight().hashCode());
         hashCode = prime * hashCode + ((getFrameWidth() == null) ? 0 : getFrameWidth().hashCode());
-        hashCode = prime * hashCode + ((getRotation() == null) ? 0 : getRotation().hashCode());
         return hashCode;
     }
 
@@ -510,10 +457,6 @@ public class VideoMetadata implements Serializable {
             return false;
         if (other.getFrameWidth() != null
                 && other.getFrameWidth().equals(this.getFrameWidth()) == false)
-            return false;
-        if (other.getRotation() == null ^ this.getRotation() == null)
-            return false;
-        if (other.getRotation() != null && other.getRotation().equals(this.getRotation()) == false)
             return false;
         return true;
     }

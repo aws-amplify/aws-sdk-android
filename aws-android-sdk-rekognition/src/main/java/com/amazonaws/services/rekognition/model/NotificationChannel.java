@@ -32,7 +32,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>(^arn:([a-z\d-]+):sns:.*:\w{12}:.+$)<br/>
+     * <b>Pattern: </b>(^arn:aws:sns:.*:\w{12}:.+$)<br/>
      */
     private String sNSTopicArn;
 
@@ -43,8 +43,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      */
     private String roleArn;
 
@@ -55,7 +54,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>(^arn:([a-z\d-]+):sns:.*:\w{12}:.+$)<br/>
+     * <b>Pattern: </b>(^arn:aws:sns:.*:\w{12}:.+$)<br/>
      *
      * @return <p>
      *         The Amazon SNS topic to which Amazon Rekognition to posts the
@@ -73,7 +72,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>(^arn:([a-z\d-]+):sns:.*:\w{12}:.+$)<br/>
+     * <b>Pattern: </b>(^arn:aws:sns:.*:\w{12}:.+$)<br/>
      *
      * @param sNSTopicArn <p>
      *            The Amazon SNS topic to which Amazon Rekognition to posts the
@@ -94,7 +93,7 @@ public class NotificationChannel implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>(^arn:([a-z\d-]+):sns:.*:\w{12}:.+$)<br/>
+     * <b>Pattern: </b>(^arn:aws:sns:.*:\w{12}:.+$)<br/>
      *
      * @param sNSTopicArn <p>
      *            The Amazon SNS topic to which Amazon Rekognition to posts the
@@ -115,8 +114,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @return <p>
      *         The ARN of an IAM role that gives Amazon Rekognition publishing
@@ -134,8 +132,7 @@ public class NotificationChannel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @param roleArn <p>
      *            The ARN of an IAM role that gives Amazon Rekognition
@@ -156,8 +153,7 @@ public class NotificationChannel implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+
-     * <br/>
+     * <b>Pattern: </b>arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+<br/>
      *
      * @param roleArn <p>
      *            The ARN of an IAM role that gives Amazon Rekognition

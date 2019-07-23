@@ -26,12 +26,14 @@ dependencies {
 // The following command (is idempotent)
 // removes the libs folder, creates libs folder and
 // creates a symbolic link to android-23.jar.
-task myTask(type:Exec) {
+task getApi23(type:Exec) {
+    print 'Creating a symlink for Android API Level 23.'
     workingDir '.'
     commandLine 'sh', '-c', "rm -rf libs && mkdir libs && ln -s $System.env.ANDROID_HOME/platforms/android-23/android.jar libs/android-23.jar"
 }
 
-compileJava.dependsOn(myTask)
+
+compileJava.dependsOn(getApi23)
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"

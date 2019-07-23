@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AWS Android SDK forAmazon Textract</string>
+    <string name="package_name">textract</string>
+</resources>

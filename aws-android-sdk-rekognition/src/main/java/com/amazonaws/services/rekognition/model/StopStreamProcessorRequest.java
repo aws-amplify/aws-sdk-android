@@ -21,13 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Stops a running stream processor that was created by .
+ * Stops a running stream processor that was created by
+ * <a>CreateStreamProcessor</a>.
  * </p>
  */
 public class StopStreamProcessorRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of a stream processor created by .
+     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +39,7 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of a stream processor created by .
+     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +47,8 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @return <p>
-     *         The name of a stream processor created by .
+     *         The name of a stream processor created by
+     *         <a>CreateStreamProcessor</a>.
      *         </p>
      */
     public String getName() {
@@ -55,7 +57,7 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of a stream processor created by .
+     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +65,8 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param name <p>
-     *            The name of a stream processor created by .
+     *            The name of a stream processor created by
+     *            <a>CreateStreamProcessor</a>.
      *            </p>
      */
     public void setName(String name) {
@@ -72,7 +75,7 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of a stream processor created by .
+     * The name of a stream processor created by <a>CreateStreamProcessor</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,7 +86,8 @@ public class StopStreamProcessorRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param name <p>
-     *            The name of a stream processor created by .
+     *            The name of a stream processor created by
+     *            <a>CreateStreamProcessor</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

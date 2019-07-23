@@ -123,6 +123,17 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom entity
+     * recognizer. For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     */
+    private VpcConfig vpcConfig;
+
+    /**
+     * <p>
      * The name given to the newly created recognizer. Recognizer names can be a
      * maximum of 256 characters. Alphanumeric characters, hyphens (-) and
      * underscores (_) are allowed. The name must be unique in the
@@ -745,6 +756,77 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom entity
+     * recognizer. For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration parameters for an optional private Virtual Private
+     *         Cloud (VPC) containing the resources you are using for your
+     *         custom entity recognizer. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *         >Amazon VPC</a>.
+     *         </p>
+     */
+    public VpcConfig getVpcConfig() {
+        return vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom entity
+     * recognizer. For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom entity recognizer. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     */
+    public void setVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for your custom entity
+     * recognizer. For more information, see <a href=
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     * >Amazon VPC</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcConfig <p>
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            your custom entity recognizer. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+     *            >Amazon VPC</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withVpcConfig(VpcConfig vpcConfig) {
+        this.vpcConfig = vpcConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -768,7 +850,9 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getVolumeKmsKeyId() != null)
-            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId());
+            sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
+        if (getVpcConfig() != null)
+            sb.append("VpcConfig: " + getVpcConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -791,6 +875,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
+        hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         return hashCode;
     }
 
@@ -838,6 +923,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getVolumeKmsKeyId() != null
                 && other.getVolumeKmsKeyId().equals(this.getVolumeKmsKeyId()) == false)
+            return false;
+        if (other.getVpcConfig() == null ^ this.getVpcConfig() == null)
+            return false;
+        if (other.getVpcConfig() != null
+                && other.getVpcConfig().equals(this.getVpcConfig()) == false)
             return false;
         return true;
     }

@@ -24,7 +24,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about receiving email through Amazon SES, see the <a href=
- * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
+ * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
