@@ -15,6 +15,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
@@ -258,7 +259,7 @@ public class AWSIotMqttManagerTest {
 
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
-        testClient.connect(new TestAwsCredentialsProvider(), csb);
+        testClient.connect(new TestAwsCredentialsProvider(), new TestMqttConnectOptions(), csb);
         Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
         mockClient.mockConnectSuccess();
 
@@ -520,7 +521,7 @@ public class AWSIotMqttManagerTest {
 
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
-        testClient.connect(new TestAwsCredentialsProvider(), csb);
+        testClient.connect(new TestAwsCredentialsProvider(), new TestMqttConnectOptions(), csb);
         Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
         mockClient.mockConnectSuccess();
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
@@ -919,7 +920,7 @@ public class AWSIotMqttManagerTest {
 
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
-        testClient.connect((AWSCredentialsProvider)null, csb);
+        testClient.connect((AWSCredentialsProvider)null, (MqttConnectOptions) null, csb);
     }
 
     @Config(manifest = Config.NONE, reportSdk = 15)
@@ -2987,6 +2988,10 @@ public class AWSIotMqttManagerTest {
         public void refresh() {
 
         }
+    }
+
+    private class TestMqttConnectOptions extends MqttConnectOptions {
+
     }
 
     /**
