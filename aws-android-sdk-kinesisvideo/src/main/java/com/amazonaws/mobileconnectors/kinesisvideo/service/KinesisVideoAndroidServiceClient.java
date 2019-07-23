@@ -192,7 +192,8 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
                 .withDeviceName(deviceName)
                 .withMediaType(contentType)
                 .withKmsKeyId(StringUtils.isBlank(kmsKeyId) ? null : kmsKeyId)
-                .withDataRetentionInHours((int) retentionPeriodInHours);
+                .withDataRetentionInHours((int) retentionPeriodInHours)
+                .withTags(null);
 
         log.debug("calling create stream: " + createStreamRequest.toString());
 
