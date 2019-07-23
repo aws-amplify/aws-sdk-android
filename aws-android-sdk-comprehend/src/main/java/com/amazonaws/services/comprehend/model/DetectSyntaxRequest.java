@@ -39,8 +39,10 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -110,16 +112,20 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
-     *         The language code of the input documents. You can specify English
-     *         ("en") or Spanish ("es").
+     *         The language code of the input documents. You can specify any of
+     *         the primary languages supported by Amazon Comprehend: German
+     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *         ("it"), or Portuguese ("pt").
      *         </p>
      * @see SyntaxLanguageCode
      */
@@ -129,16 +135,20 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language code of the input documents. You can specify
-     *            English ("en") or Spanish ("es").
+     *            The language code of the input documents. You can specify any
+     *            of the primary languages supported by Amazon Comprehend:
+     *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
+     *            Italian ("it"), or Portuguese ("pt").
      *            </p>
      * @see SyntaxLanguageCode
      */
@@ -148,8 +158,10 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -159,8 +171,10 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language code of the input documents. You can specify
-     *            English ("en") or Spanish ("es").
+     *            The language code of the input documents. You can specify any
+     *            of the primary languages supported by Amazon Comprehend:
+     *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
+     *            Italian ("it"), or Portuguese ("pt").
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -173,16 +187,20 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language code of the input documents. You can specify
-     *            English ("en") or Spanish ("es").
+     *            The language code of the input documents. You can specify any
+     *            of the primary languages supported by Amazon Comprehend:
+     *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
+     *            Italian ("it"), or Portuguese ("pt").
      *            </p>
      * @see SyntaxLanguageCode
      */
@@ -192,8 +210,10 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The language code of the input documents. You can specify English ("en")
-     * or Spanish ("es").
+     * The language code of the input documents. You can specify any of the
+     * primary languages supported by Amazon Comprehend: German ("de"), English
+     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
+     * ("pt").
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -203,8 +223,10 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language code of the input documents. You can specify
-     *            English ("en") or Spanish ("es").
+     *            The language code of the input documents. You can specify any
+     *            of the primary languages supported by Amazon Comprehend:
+     *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
+     *            Italian ("it"), or Portuguese ("pt").
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
