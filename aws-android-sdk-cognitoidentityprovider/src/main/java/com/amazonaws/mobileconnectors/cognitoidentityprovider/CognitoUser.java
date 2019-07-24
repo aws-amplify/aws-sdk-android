@@ -925,7 +925,7 @@ public class CognitoUser {
      * @return Valid, cached tokens {@link CognitoUserSession}. {@code null}
      *         otherwise.
      */
-    protected CognitoUserSession getCachedSession() {
+    public CognitoUserSession getCachedSession() {
         synchronized (GET_CACHED_SESSION_LOCK) {
             if (userId == null) {
                 throw new CognitoNotAuthorizedException("User-ID is null");
