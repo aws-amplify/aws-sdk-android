@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+
+## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
+
+### New Features
+
+ * **AWS Core Runtime**
+  * Added support for `me-south-1` - Middle East (Bahrain) region.
+
 ## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
 
 ### New Features
