@@ -1,18 +1,75 @@
 {
   "Credentials" :{
-    "accessKey":"REPLACE-ME",
-    "secretKey":"REPLACE-ME",
-    "accountId":"REPLACE-ME"
-  },
+    "accessKey":"AKIAWZPDUU4LT6LGBU5L",
+    "secretKey":"eLyp8ZTyNSNbuIMZ3BtKD1npMVd33sdgBsludirU",
+    "accountId":"467018229527"
+  } ,
   "Packages" :
   {
     "sqs" : {
-      "test_region" : "REPLACE-ME",
-      "queuename_prefix" :"REPLACE-ME",
-      "deadLetter_queuename_prefix" :"REPLACE-ME"
+      "test_region" : "us-east-1",
+      "queuename_prefix" :"java-sdk-integ-test-queue-",
+      "deadLetter_queuename_prefix" :"java-sdk-integ-test-dlq-"
+    },
+    "iot" : {
+      "identity_pool_id" : "us-east-1:85075f6e-c0e9-4977-9a14-2e2482c7151f"
+    },
+    "sns" : {
+      "platform_credential" : "AIzaSyD-4pBAk6M7eveE9dwRFyGv-cfYBPiHRmk",
+      "token" : "APA91bHXHl9bxaaNvHHWNXKwzzaeAjJnBP3g6ieaGta1aPMgrilr0H-QL4AxUZUJ-1mk0gnLpmeXF0Kg7-9fBXfXHTKzPGlCyT6E6oOfpdwLpcRMxQp5vCPFiFeru9oQylc22HvZSwQTDgmmw9WdNlXMerUPzmoX0w"
+    },
+    "kinesis" : {
+      "identity_pool_id" : "us-east-1:769afeba-c60d-4a46-aa8f-793757cc4a89"
     },
     "transcribe" : {
-      "media_file_uri" : "REPLACE-ME"
+      "media_file_uri" : "https://s3.amazonaws.com/transcribe-android-sdk-test/hello_amazon_transcribe.mp3"
+    },
+    "ses" : {
+      "ios_test_email" : "aws-dr-mobile-test-ios@amazon.com",
+      "android_test_email" : "aws-dr-mobile-test-android@amazon.com",
+      "hudson_email_list" : "aws-dr-tools-scripts@amazon.com"
+    },
+    "mobile_client" : {
+      "email" : "somebody@email.com",
+      "username" : "somebody",
+      "identity_id" : "us-west-2:edd8d214-49a5-4a30-8aa2-32f064bc4ad1",
+      "create_cognito_user_access_key" : "AKIAI4CV2FQV32AUKY6Q",
+      "create_cognito_user_secret_key" : "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"
+    },
+    "apigateway" : {
+      "endpoint_us_east_1" : "https://h33tgl5s2e.execute-api.us-east-1.amazonaws.com/prod",
+      "endpoint_us_east_2" : "https://4l1slvs31c.execute-api.us-west-2.amazonaws.com/prod",
+      "api_key" : "jWRcOzerej7nBaFlqVzUaaBHRXjOtLp576cqGEWR"
+    },
+    "elb" : {
+      "certificate_arn" : "arn:aws:iam::467018229527:server-certificate/test-cert-1"
+    },
+    "kinesis-video-archivedmedia" : {
+      "endpoint" : "https://b-647daf39.kinesisvideo.us-west-2.amazonaws.com"
+    },
+    "core" : {
+      "identity_pool_id" : "us-east-1:85075f6e-c0e9-4977-9a14-2e2482c7151f"
+    },
+    "cognitoauth": {
+      "AppClientId": "6huqslrve4drvfqtiv0sagiek4",
+      "WebDomain": "flabberghast.auth.us-west-2.amazoncognito.com",
+      "SignInRedirectURI": "awsmobileclient://callback",
+      "SignOutRedirectURI": "awsmobileclient://signOut",
+      "Scopes": [
+        "profile",
+        "openid",
+        "email"
+      ],
+      "Username": "boanoite"
+    },
+    "s3": {
+      "identity_pool_id" : "us-east-1:7e48c14b-8295-4f98-9fa0-e5fdbfad47f0",
+      "identity_pool_id_region" : "us-east-1",
+      "bucket": "transfer-utility-integration-test",
+      "bucket_region": "us-west-2",
+      "bucket_with_sse_kms_enabled": "sse-aws-kms-integ-test",
+      "bucket_with_sse_kms_region": "us-west-2",
+      "sse_kms_key_id": "cce0d221-e41f-4b8f-b83e-555e141f961e"
     }
   }
 }
