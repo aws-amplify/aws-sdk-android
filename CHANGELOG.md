@@ -1,5 +1,9 @@
 # Change Log - AWS SDK for Android
 
+### Bug Fixes
+* **Amazon Kinesis Video**
+  * Fixed a bug when CreateStreamRequest is initialized without setting Tags, auto-generated empty HashMap of Tags would cause ValidationException from Kinesis Video.
+
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
 ### Misc. Updates
