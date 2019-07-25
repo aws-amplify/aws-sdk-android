@@ -36,8 +36,7 @@ import java.net.URISyntaxException;
 public class AWS3SignerTest {
 
     /**
-     * A previously computed AWS3 HTTP authorization header from a Coral
-     * Explorer request.
+     * A previously computed AWS3 HTTP authorization header
      */
     private static final String EXPECTED_AUTHORIZATION_HEADER =
             "AWS3 AWSAccessKeyId=access,Algorithm=HmacSHA256," +

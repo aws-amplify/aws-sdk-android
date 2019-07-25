@@ -86,7 +86,6 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         log.trace("Parsing service response JSON");
 
         final String crc32Checksum = response.getHeaders().get("x-amz-crc32");
-        CRC32ChecksumCalculatingInputStream crc32ChecksumInputStream = null;
 
         // Get the raw content input stream to calculate the crc32 checksum on
         // gzipped data.
@@ -99,13 +98,21 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         log.debug("CRC32Checksum = " + crc32Checksum);
         log.debug("content encoding = " + response.getHeaders().get("Content-Encoding"));
 
+        boolean isGzipEncoded = "gzip".equals(response.getHeaders().get("Content-Encoding"));
+
+        CRC32ChecksumCalculatingInputStream checksumCalculatingInputStream = null;
+
+        // Handle various combinations of GZIP encoding and CRC checksums. Some services (e.g.,
+        // DynamoDB) return a checksum with gzip encoding, some do not. We'll also cover the case
+        // where a service returns a checksum for non-gzip encoding. The default case (not gzip
+        // encoded, no checksum) is already handled: we'll just operate on the raw content stream.
         if (crc32Checksum != null) {
-            crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
-            if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
-                content = new GZIPInputStream(crc32ChecksumInputStream);
-            } else {
-                content = crc32ChecksumInputStream;
-            }
+            checksumCalculatingInputStream = new CRC32ChecksumCalculatingInputStream(content);
+            content = checksumCalculatingInputStream;
+        }
+
+        if (isGzipEncoded) {
+            content = new GZIPInputStream(content);
         }
 
         final AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content,
@@ -118,9 +125,9 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
             final T result = responseUnmarshaller.unmarshall(unmarshallerContext);
 
-            if (crc32Checksum != null) {
+            if (checksumCalculatingInputStream != null) {
                 final long serverSideCRC = Long.parseLong(crc32Checksum);
-                final long clientSideCRC = crc32ChecksumInputStream.getCRC32Checksum();
+                final long clientSideCRC = checksumCalculatingInputStream.getCRC32Checksum();
                 if (clientSideCRC != serverSideCRC) {
                     throw new CRC32MismatchException(
                             "Client calculated crc32 checksum didn't match that calculated by server side");

@@ -341,13 +341,12 @@ public class PolicyReaderTest {
     }
 
     /**
-     * This test case was written as result of the following tt
+     * This test case was written as result of the tt0030871921 
      *
-     * @see https://tt.amazon.com/0030871921 When a service is mentioned in the
-     *      principal, we always try to figure out the service from
-     *      <code>com.amazonaws.auth.policy.Principal.Services</code> enum. For
-     *      new services introduced, if the enum is not updated, then the
-     *      parsing fails.
+     * When a service is mentioned in the principal, we always try to figure
+     * out the service from
+     * <code>com.amazonaws.auth.policy.Principal.Services</code> enum. For new
+     * services introduced, if the enum is not updated, then the parsing fails.
      */
     @Test
     public void testPrincipalWithServiceNotInServicesEnum() {
