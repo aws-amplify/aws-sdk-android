@@ -212,6 +212,8 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
 
     @Test
     public void testPutWithGzip() {
+        boolean wasGzipEnabled = recorder.getKinesisRecorderConfig().getClientConfiguration().isEnableGzip();
+
         recorder.getKinesisRecorderConfig().getClientConfiguration().setEnableGzip(true);
 
         // batch 25 records with 5 partition keys. A large payload is necessary to trigger a gzip
@@ -257,6 +259,9 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
             readRecordsFromKinesis(partitionKeys);
             assertTrue("Still missing records from shards.", dataRecordSet.isEmpty());
         }
+
+        recorder.getKinesisRecorderConfig().getClientConfiguration().setEnableGzip(wasGzipEnabled);
+
     }
 
     private List<Shard> getShardsAfterStreamIsReady(int numShards)

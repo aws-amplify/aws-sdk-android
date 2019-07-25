@@ -136,7 +136,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
             awsResponse.setResult(result);
 
-            final Map<String, String> metadata = new HashMap<>();
+            final Map<String, String> metadata = new HashMap<String, String>();
             metadata.put(ResponseMetadata.AWS_REQUEST_ID,
                     response.getHeaders().get("x-amzn-RequestId"));
             awsResponse.setResponseMetadata(new ResponseMetadata(metadata));
