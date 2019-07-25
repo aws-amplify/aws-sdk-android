@@ -210,6 +210,55 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
         		   streamName.equals(nextStream));
     }
 
+    @Test
+    public void testPutWithGzip() {
+        recorder.getKinesisRecorderConfig().getClientConfiguration().setEnableGzip(true);
+
+        // batch 25 records with 5 partition keys. A large payload is necessary to trigger a gzip
+        // encoded response from the service
+        int i = 0;
+        for (i = 0; i < 25; i++) {
+            String dataStr = DATA_STRING_PREFIX + DELIMITER + String.valueOf(i);
+            dataRecordSet.add(dataStr);
+            recorder.saveRecord(dataStr.getBytes(StringUtils.UTF8), STREAM_NAME);
+        }
+
+        recorder.submitAllRecords();
+
+        // submit one record
+        String parKey = "PartitionKey" + i;
+        String dataStr = DATA_STRING_PREFIX + DELIMITER + parKey;
+        dataRecordSet.add(dataStr);
+        recorder.saveRecord(dataStr.getBytes(StringUtils.UTF8), STREAM_NAME);
+
+        recorder.submitAllRecords();
+
+        try {
+            Log.d(TAG, "Sleeping for 10 seconds");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            Thread.interrupted();
+        }
+
+        Log.d(TAG, "Reading records");
+        Set partitionKeys = new HashSet();
+
+        readRecordsFromKinesis(partitionKeys);
+
+        if (!dataRecordSet.isEmpty()) {
+            Log.e(TAG, "Missing records from shards.");
+            Log.e(TAG, "Sleeping for 10 more seconds and trying again");
+            try {
+                Log.d(TAG, "Sleeping for 10 seconds");
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                Thread.interrupted();
+            }
+            readRecordsFromKinesis(partitionKeys);
+            assertTrue("Still missing records from shards.", dataRecordSet.isEmpty());
+        }
+    }
+
     private List<Shard> getShardsAfterStreamIsReady(int numShards)
             throws InterruptedException {
         long giveUpTimeMillis = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(45);
