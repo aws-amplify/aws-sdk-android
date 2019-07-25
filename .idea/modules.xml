@@ -17,7 +17,9 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-cognito/aws-android-sdk-cognito.iml" filepath="$PROJECT_DIR$/aws-android-sdk-cognito/aws-android-sdk-cognito.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-cognitoauth/aws-android-sdk-cognitoauth.iml" filepath="$PROJECT_DIR$/aws-android-sdk-cognitoauth/aws-android-sdk-cognitoauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-cognitoidentityprovider/aws-android-sdk-cognitoidentityprovider.iml" filepath="$PROJECT_DIR$/aws-android-sdk-cognitoidentityprovider/aws-android-sdk-cognitoidentityprovider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-cognitoidentityprovider-test/aws-android-sdk-cognitoidentityprovider-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-cognitoidentityprovider-test/aws-android-sdk-cognitoidentityprovider-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-comprehend/aws-android-sdk-comprehend.iml" filepath="$PROJECT_DIR$/aws-android-sdk-comprehend/aws-android-sdk-comprehend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-comprehend-test/aws-android-sdk-comprehend-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-comprehend-test/aws-android-sdk-comprehend-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connect/aws-android-sdk-connect.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connect/aws-android-sdk-connect.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connect-test/aws-android-sdk-connect-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connect-test/aws-android-sdk-connect-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-core/aws-android-sdk-core.iml" filepath="$PROJECT_DIR$/aws-android-sdk-core/aws-android-sdk-core.iml" />

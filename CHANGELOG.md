@@ -6,6 +6,11 @@
 
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
+### Bug Fixes
+
+- **AWS Core Runtime**
+  - Fixed response unmarshalling when response is gzip encoded without a CRC32 checksum. Also fixes bug decoding Kinesis responses with GZIP encoding.
+
 ### Misc. Updates
 
 - Model updates for the following services
