@@ -83,7 +83,7 @@ import java.nio.ByteBuffer;
  *    - mic drop
  */
 public class EncoderFrameSubmitter {
-
+    private static final long NS_IN_US = 1000;
     private static final long NS_IN_MS = 1000000;
     private static final int FROM_START = 0;
     private static final int NO_FLAGS = 0;
@@ -101,14 +101,14 @@ public class EncoderFrameSubmitter {
 
         // encoders are super sensitive to the timestamps, careful here
         final long timestamp = nanosSinceFirstFrame();
-        queueIntoInputImage(frameImageYUV420, timestamp, endOfStream);
+        queueIntoInputImage(frameImageYUV420, timestamp / NS_IN_US, endOfStream);
     }
 
     /**
      * TLDR: read the above javadoc for the class
      */
     private void queueIntoInputImage(final Image frameImageYUV420,
-                                     final long timestamp,
+                                     final long timestampInUS,
                                      final boolean endOfStream) {
 
         final int flags = endOfStream ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : NO_FLAGS;
@@ -126,7 +126,7 @@ public class EncoderFrameSubmitter {
                 inputBufferIndex,
                 FROM_START,
                 tmpBufferSize,
-                timestamp,
+                timestampInUS,
                 flags);
     }
 
