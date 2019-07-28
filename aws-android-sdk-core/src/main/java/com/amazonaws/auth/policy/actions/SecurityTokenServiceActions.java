@@ -31,6 +31,9 @@ public enum SecurityTokenServiceActions implements Action {
     /** Action for the AssumeRoleWithWebIdentity operation. */
     AssumeRoleWithWebIdentity("sts:AssumeRoleWithWebIdentity"),
 
+    /** Action for the GetAccessKeyInfo operation. */
+    GetAccessKeyInfo("sts:GetAccessKeyInfo"),
+
     /** Action for the GetCallerIdentity operation. */
     GetCallerIdentity("sts:GetCallerIdentity"),
 
