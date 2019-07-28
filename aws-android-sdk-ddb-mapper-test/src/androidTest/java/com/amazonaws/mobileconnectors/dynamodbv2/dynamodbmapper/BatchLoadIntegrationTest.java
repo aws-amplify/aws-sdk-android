@@ -20,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.ConsistentReads;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.SaveBehavior;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -169,7 +170,7 @@ public class BatchLoadIntegrationTest extends DynamoDBMapperIntegrationTestBase 
     }
 
     @Test
-    public void testBoudaryCases() {
+    public void testBoundaryCases() {
         // The request is an empty Map.
         Map<Class<?>, List<KeyPair>> itemsToGet = new HashMap<Class<?>, List<KeyPair>>();
         Map<String, List<Object>> response = null;
@@ -216,6 +217,41 @@ public class BatchLoadIntegrationTest extends DynamoDBMapperIntegrationTestBase 
             * NoOfRetries));
         }
     }
+
+    @Test
+    public void testGzippedResponse() throws InterruptedException {
+        ClientConfiguration clientConfiguration = new ClientConfiguration()
+                .withEnableGzip(true);
+        AmazonDynamoDBClient gzippingDynamo = new AmazonDynamoDBClient(credentials, clientConfiguration);
+        DynamoDBMapper gzippingMapper = new DynamoDBMapper(gzippingDynamo);
+
+        // To see whether batchGet can handle more than 100 items per request
+        final int numItems = 200;
+        List<NumberSetAttributeClass> objs = new ArrayList<NumberSetAttributeClass>();
+        List<KeyPair> keyPairs = new LinkedList<KeyPair>();
+        Class<?> clazz = null;
+        for (int i = 0; i < numItems; i++) {
+            NumberSetAttributeClass obj = getUniqueNumericObject();
+            objs.add(obj);
+            clazz = obj.getClass();
+            keyPairs.add(new KeyPair().withHashKey(obj.getKey()));
+        }
+
+        gzippingMapper.batchSave(objs);
+
+        Map<Class<?>, List<KeyPair>> itemsToGet = new HashMap<Class<?>, List<KeyPair>>();
+        Map<String, List<Object>> response = null;
+        itemsToGet.put(clazz, keyPairs);
+        response = gzippingMapper.batchLoad(itemsToGet);
+        List<Object> items = response.get(TABLE_NAME);
+        assertEquals(numItems, items.size());
+
+        for (Object item : items) {
+            objs.contains(item);
+        }
+        Thread.sleep(1000 * 10);
+    }
+
 
     private NumberSetAttributeClass getUniqueNumericObject() {
         NumberSetAttributeClass obj = new NumberSetAttributeClass();
