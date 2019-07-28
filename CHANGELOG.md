@@ -1,20 +1,19 @@
 # Change Log - AWS SDK for Android
 
-### Bug Fixes
-* **Amazon Kinesis Video**
-  * Fixed a bug when CreateStreamRequest is initialized without setting Tags, auto-generated empty HashMap of Tags would cause ValidationException from Kinesis Video.
-
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
 ### Bug Fixes
-
 - **AWS Core Runtime**
   - Fixed response unmarshalling when response is gzip encoded without a CRC32 checksum. Also fixes bug decoding Kinesis responses with GZIP encoding.
+- **Amazon Kinesis Video**
+  - Fixed a bug when CreateStreamRequest is initialized without setting Tags, auto-generated empty HashMap of Tags would cause ValidationException from Kinesis Video.
+  - Fixed incorrect timestamp unit for encoder input caused high bitrate issue for the stream.
 
 ### Misc. Updates
 
 - Model updates for the following services
   - Amazon Comprehend
+  - Amazon Security Token Service (STS)
 
 ## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
 
@@ -1676,4 +1675,3 @@ All documentation is now centralized at https://aws-amplify.github.io/
 ### Bug Fixes
 - **Amazon S3**: Fixed an issue that occurs when required headers are not properly signed. This issue affects S3 in two regions: Frankfurt (eu-central-1) and China (cn-north-1). [#42](https://github.com/aws/aws-sdk-android/issues/42)
 - **AWS Core Runtime Library**: Fixed an issue in Maven distribution where an incorrect version string is set in "User-Agent".
-1
