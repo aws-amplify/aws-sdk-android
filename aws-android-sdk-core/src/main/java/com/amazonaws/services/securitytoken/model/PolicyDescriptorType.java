@@ -28,9 +28,10 @@ public class PolicyDescriptorType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the IAM managed policy to use as a
      * session policy for the role. For more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
-     * Reference</i>.
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     * <i>AWS General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,9 +45,10 @@ public class PolicyDescriptorType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the IAM managed policy to use as a
      * session policy for the role. For more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
-     * Reference</i>.
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     * <i>AWS General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,10 +59,10 @@ public class PolicyDescriptorType implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) of the IAM managed policy to use
      *         as a session policy for the role. For more information about
-     *         ARNs, see <a
-     *         href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *         Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *         <i>AWS General Reference</i>.
+     *         ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *         >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in
+     *         the <i>AWS General Reference</i>.
      *         </p>
      */
     public String getArn() {
@@ -71,9 +73,10 @@ public class PolicyDescriptorType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the IAM managed policy to use as a
      * session policy for the role. For more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
-     * Reference</i>.
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     * <i>AWS General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,10 +87,10 @@ public class PolicyDescriptorType implements Serializable {
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the IAM managed policy to
      *            use as a session policy for the role. For more information
-     *            about ARNs, see <a
-     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *            <i>AWS General Reference</i>.
+     *            about ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
+     *            in the <i>AWS General Reference</i>.
      *            </p>
      */
     public void setArn(String arn) {
@@ -98,9 +101,10 @@ public class PolicyDescriptorType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the IAM managed policy to use as a
      * session policy for the role. For more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
-     * Reference</i>.
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
+     * <i>AWS General Reference</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -114,10 +118,10 @@ public class PolicyDescriptorType implements Serializable {
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the IAM managed policy to
      *            use as a session policy for the role. For more information
-     *            about ARNs, see <a
-     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *            <i>AWS General Reference</i>.
+     *            about ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
+     *            in the <i>AWS General Reference</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
