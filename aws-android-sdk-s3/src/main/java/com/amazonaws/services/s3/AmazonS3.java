@@ -114,15 +114,6 @@ public interface AmazonS3 extends S3DirectSpi {
 
     /**
      * <p>
-     * Returns the S3 client options for this client.
-     * </p>
-     *
-     * @return The S3 client options that this client has.
-     */
-    public S3ClientOptions getS3ClientOptions();
-
-    /**
-     * <p>
      * Changes the Amazon S3 storage class for a specified object. Amazon S3
      * offers multiple storage classes for developers' different needs.
      * </p>

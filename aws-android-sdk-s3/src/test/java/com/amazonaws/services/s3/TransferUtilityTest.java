@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.mobileconnectors.s3.transferutility;
+package com.amazonaws.services.s3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,8 +22,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.amazonaws.mobile.config.AWSConfiguration;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.S3ClientOptions;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.internal.Constants;
 
 import org.json.JSONException;
@@ -65,7 +64,6 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        S3ClientOptions clientOptions = S3ClientOptions.builder().build();
         AmazonS3Client s3 = new AmazonS3Client();
 
         TransferUtility.builder()
@@ -75,8 +73,8 @@ public class TransferUtilityTest {
                 .build();
 
         assertEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
-        assertTrue(s3.getS3ClientOptions().isPathStyleAccess());
-        assertTrue(s3.getS3ClientOptions().shouldSkipContentMd5Check());
+        assertTrue(s3.clientOptions.isPathStyleAccess());
+        assertTrue(s3.clientOptions.shouldSkipContentMd5Check());
     }
 
     /**
@@ -104,7 +102,6 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        S3ClientOptions clientOptions = S3ClientOptions.builder().build();
         AmazonS3Client s3 = new AmazonS3Client();
 
         TransferUtility.builder()
@@ -114,8 +111,8 @@ public class TransferUtilityTest {
                 .build();
 
         assertNotEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
-        assertFalse(s3.getS3ClientOptions().isPathStyleAccess());
-        assertFalse(s3.getS3ClientOptions().shouldSkipContentMd5Check());
+        assertFalse(s3.clientOptions.isPathStyleAccess());
+        assertFalse(s3.clientOptions.shouldSkipContentMd5Check());
     }
 
     /**
@@ -142,7 +139,6 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        S3ClientOptions clientOptions = S3ClientOptions.builder().build();
         AmazonS3Client s3 = new AmazonS3Client();
 
         TransferUtility.builder()
@@ -152,7 +148,7 @@ public class TransferUtilityTest {
                 .build();
 
         assertNotEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
-        assertFalse(s3.getS3ClientOptions().isPathStyleAccess());
-        assertFalse(s3.getS3ClientOptions().shouldSkipContentMd5Check());
+        assertFalse(s3.clientOptions.isPathStyleAccess());
+        assertFalse(s3.clientOptions.shouldSkipContentMd5Check());
     }
 }
