@@ -36,6 +36,7 @@ import com.amazonaws.services.iot.model.DeletePolicyRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointResult;
 import com.amazonaws.services.iot.model.DetachPolicyRequest;
+import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
 import org.junit.After;
@@ -1124,8 +1125,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             createPolicyRequest.setPolicyDocument(policyDocument);
             this.createPolicyResult = iotClient.createPolicy(createPolicyRequest);
         }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                    ex.getMessage().startsWith("Policy cannot be created - name already exists "));
+            assertEquals(ex.getClass(), ResourceAlreadyExistsException.class);
         }
 
         AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
@@ -1135,13 +1135,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     /**
-     * Detatch the policy from the certificate.
+     * Detach the policy from the certificate.
      * Delete the policy.
      * Update certificate status as inactive.
      * Delete the certificate.
      */
     private void deletePolicyAndCertificate() {
-        Log.d(TAG, "Detatching the policy from the certificate.");
+        Log.d(TAG, "Detaching the policy from the certificate.");
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
         detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
