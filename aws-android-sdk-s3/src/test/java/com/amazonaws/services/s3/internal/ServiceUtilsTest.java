@@ -24,6 +24,7 @@ import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
 import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.internal.ServiceUtils.RetryableS3DownloadTask;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -142,30 +143,35 @@ public class ServiceUtilsTest {
 
     @Test
     public void skipMd5CheckPerResponseTest() {
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().setSkipContentMd5Check(true).build();
         final ObjectMetadata metadata = new ObjectMetadata();
         metadata.setSSEAlgorithm(SSEAlgorithm.KMS.toString());
 
-        assertFalse(ServiceUtils.skipMd5CheckPerResponse(null));
-        assertTrue(ServiceUtils.skipMd5CheckPerResponse(metadata));
+        assertTrue(ServiceUtils.skipMd5CheckPerResponse(null, clientOptions));
+        assertFalse(ServiceUtils.skipMd5CheckPerResponse(null, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerResponse(metadata, null));
     }
 
     @Test
     public void skipMd5CheckPerRequestTest() throws Throwable {
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().setSkipContentMd5Check(true).build();
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null, clientOptions));
+
         System.setProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation", "true");
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null, null));
 
         System.clearProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation");
         GetObjectRequest getObjectRequest = new GetObjectRequest("bucket", "key");
         getObjectRequest.setRange(100);
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
 
         getObjectRequest = new GetObjectRequest("bucket", "key");
         getObjectRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
 
         getObjectRequest = new GetObjectRequest("bucket", "key");
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
 
         PutObjectRequest putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
@@ -173,24 +179,24 @@ public class ServiceUtilsTest {
         metadata.setSSEAlgorithm(SSEAlgorithm.KMS.toString());
         putObjectRequest.setMetadata(metadata);
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
 
         putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
         putObjectRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
 
         putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
 
         UploadPartRequest partRequest = new UploadPartRequest();
         partRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(partRequest));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(partRequest, null));
 
         partRequest = new UploadPartRequest();
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(partRequest));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(partRequest, null));
     }
 
     @Test

@@ -24,6 +24,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -418,7 +419,11 @@ public class ServiceUtils {
      * @return true if the specified response should skip MD5
      *         check on the requested object content.
      */
-    public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata) {
+    public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata, S3ClientOptions clientOptions) {
+        if (clientOptions != null && clientOptions.shouldSkipContentMd5Check()) {
+            return true;
+        }
+
         if (metadata == null) {
             return false;
         }
@@ -435,7 +440,11 @@ public class ServiceUtils {
      * @return true if the specified request should skip MD5
      *         check on the requested object content.
      */
-    public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request) {
+    public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request, S3ClientOptions clientOptions) {
+        if (clientOptions != null && clientOptions.shouldSkipContentMd5Check()) {
+            return true;
+        }
+
         if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null) {
             return true;
         }
