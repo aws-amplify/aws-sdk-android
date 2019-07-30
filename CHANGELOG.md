@@ -4,8 +4,8 @@
 
 ### New Features
 
- * **AWS Core Runtime**
-  * Added support for `me-south-1` - Middle East (Bahrain) region.
+- **AWS Core Runtime**
+  - Added support for `me-south-1` - Middle East (Bahrain) region.
 
 ### Bug Fixes
 - **AWS Core Runtime**
