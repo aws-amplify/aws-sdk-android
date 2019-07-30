@@ -24,6 +24,7 @@ import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
 import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.internal.ServiceUtils.RetryableS3DownloadTask;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -142,15 +143,20 @@ public class ServiceUtilsTest {
 
     @Test
     public void skipMd5CheckPerResponseTest() {
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().skipContentMd5Check(true).build();
         final ObjectMetadata metadata = new ObjectMetadata();
         metadata.setSSEAlgorithm(SSEAlgorithm.KMS.toString());
 
+        assertTrue(ServiceUtils.skipMd5CheckPerResponse(null, clientOptions));
         assertFalse(ServiceUtils.skipMd5CheckPerResponse(null));
         assertTrue(ServiceUtils.skipMd5CheckPerResponse(metadata));
     }
 
     @Test
     public void skipMd5CheckPerRequestTest() throws Throwable {
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().skipContentMd5Check(true).build();
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null, clientOptions));
+
         System.setProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation", "true");
         assertTrue(ServiceUtils.skipMd5CheckPerRequest(null));
 
