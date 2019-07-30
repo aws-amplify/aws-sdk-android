@@ -24,6 +24,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -419,6 +420,29 @@ public class ServiceUtils {
      *         check on the requested object content.
      */
     public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata) {
+        return skipMd5CheckPerResponse(metadata, null);
+    }
+
+    /**
+     * Based on the given metadata of an S3 response, Returns whether the
+     * specified request should skip MD5 check on the requested object content.
+     * Specifically, MD5 check should be skipped if either SSE-KMS or SSE-C is
+     * involved.
+     * <p>
+     * The reason is that when SSE-KMS or SSE-C is involved, the MD5 returned
+     * from the server side is the MD5 of the ciphertext, which will by
+     * definition mismatch the MD5 on the client side which is computed based on
+     * the plaintext.
+     * @param metadata the ObjectMetadata of an S3 response.
+     * @param clientOptions the S3 client options to see if check can be skipped
+     * @return true if the specified response should skip MD5
+     *         check on the requested object content.
+     */
+    public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata, S3ClientOptions clientOptions) {
+        if (clientOptions != null && clientOptions.isContentMd5CheckSkipped()) {
+            return true;
+        }
+
         if (metadata == null) {
             return false;
         }
@@ -436,6 +460,22 @@ public class ServiceUtils {
      *         check on the requested object content.
      */
     public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request) {
+        return skipMd5CheckPerRequest(request, null);
+    }
+
+    /**
+     * Returns whether the specified request should skip MD5 check on the
+     * requested object content.
+     * @param request the AmazonWebServiceRequest.
+     * @param clientOptions the S3 client options to see if check can be skipped
+     * @return true if the specified request should skip MD5
+     *         check on the requested object content.
+     */
+    public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request, S3ClientOptions clientOptions) {
+        if (clientOptions != null && clientOptions.isContentMd5CheckSkipped()) {
+            return true;
+        }
+
         if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null) {
             return true;
         }

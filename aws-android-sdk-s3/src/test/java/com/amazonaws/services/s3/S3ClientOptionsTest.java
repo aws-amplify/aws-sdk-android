@@ -22,10 +22,14 @@ import org.junit.Test;
 public class S3ClientOptionsTest {
     @Test
     public void testBuilder() {
-        S3ClientOptions options = S3ClientOptions.builder().setAccelerateModeEnabled(true)
-                .setPathStyleAccess(true).build();
+        S3ClientOptions options = S3ClientOptions.builder()
+                .setAccelerateModeEnabled(true)
+                .setPathStyleAccess(true)
+                .skipContentMd5Check(true)
+                .build();
         assertTrue(options.isAccelerateModeEnabled());
         assertTrue(options.isPathStyleAccess());
+        assertTrue(options.isContentMd5CheckSkipped());
     }
 }
 
