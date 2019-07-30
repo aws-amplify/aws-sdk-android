@@ -459,6 +459,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-east-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
+        // Support Middle East (Bahrain) `me-south-1` region
+        region = new Region("me-south-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.me-south-1.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.me-south-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.me-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+
         return ret;
     }
 
