@@ -281,7 +281,16 @@ public enum Region {
      * When using buckets in this region, you must set the client endpoint to
      * <code>s3.cn-northwest-1.amazonaws.com.cn</code>.
      */
-    CN_Ningxia("cn-northwest-1");
+    CN_Ningxia("cn-northwest-1"),
+
+    /**
+     * The Middle East (Bahrain) Region. This region uses Amazon S3 servers located in
+     * Bahrain.
+     * <p>
+     * When using buckets in this region, you must set the client endpoint to
+     * <code>s3.me-south-1.amazonaws.com</code>.
+     */
+    ME_Bahrain("me-south-1");
 
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
