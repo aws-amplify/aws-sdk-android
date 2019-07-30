@@ -91,7 +91,7 @@ public class S3ClientOptions {
          * @return this Builder instance that can be used for method chaining
          */
         @SuppressWarnings("checkstyle:hiddenfield")
-        public Builder setSkipContentMd5Check(boolean skipContentMd5Check) {
+        public Builder skipContentMd5Check(boolean skipContentMd5Check) {
             this.skipContentMd5Check = skipContentMd5Check;
             return this;
         }
@@ -262,7 +262,7 @@ public class S3ClientOptions {
      *
      * @return True if the client should always skip content MD5 check
      */
-    public boolean shouldSkipContentMd5Check() {
+    public boolean isContentMd5CheckSkipped() {
         return skipContentMd5Check;
     }
 
@@ -365,7 +365,7 @@ public class S3ClientOptions {
      *
      * @param skipContentMd5Check True to always skip content MD5 check
      */
-    public void setSkipContentMd5Check(boolean skipContentMd5Check) {
+    public void skipContentMd5Check(boolean skipContentMd5Check) {
         this.skipContentMd5Check = skipContentMd5Check;
     }
 

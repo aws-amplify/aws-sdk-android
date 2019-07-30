@@ -74,7 +74,7 @@ public class TransferUtilityTest {
 
         assertEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
         assertTrue(s3.clientOptions.isPathStyleAccess());
-        assertTrue(s3.clientOptions.shouldSkipContentMd5Check());
+        assertTrue(s3.clientOptions.isContentMd5CheckSkipped());
     }
 
     /**
@@ -112,7 +112,7 @@ public class TransferUtilityTest {
 
         assertNotEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
         assertFalse(s3.clientOptions.isPathStyleAccess());
-        assertFalse(s3.clientOptions.shouldSkipContentMd5Check());
+        assertFalse(s3.clientOptions.isContentMd5CheckSkipped());
     }
 
     /**
@@ -149,6 +149,6 @@ public class TransferUtilityTest {
 
         assertNotEquals(s3.getEndpoint(), Constants.LOCAL_TESTING_ENDPOINT);
         assertFalse(s3.clientOptions.isPathStyleAccess());
-        assertFalse(s3.clientOptions.shouldSkipContentMd5Check());
+        assertFalse(s3.clientOptions.isContentMd5CheckSkipped());
     }
 }

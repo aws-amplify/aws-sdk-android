@@ -275,8 +275,11 @@ public class TransferUtility {
                     if (canConnectToHTTPEndpoint) {
                         this.s3.setEndpoint(Constants.LOCAL_TESTING_ENDPOINT);
                         this.s3.setS3ClientOptions(S3ClientOptions.builder()
+                                // Prevents reformatting host address to accommodate AWS service hostname pattern
                                 .setPathStyleAccess(true)
-                                .setSkipContentMd5Check(true)
+                                // Skips data integrity check after each transfer because correct
+                                // hashing algorithm isn't yet implemented in local storage server
+                                .skipContentMd5Check(true)
                                 .build());
                     }
 

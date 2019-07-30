@@ -25,11 +25,11 @@ public class S3ClientOptionsTest {
         S3ClientOptions options = S3ClientOptions.builder()
                 .setAccelerateModeEnabled(true)
                 .setPathStyleAccess(true)
-                .setSkipContentMd5Check(true)
+                .skipContentMd5Check(true)
                 .build();
         assertTrue(options.isAccelerateModeEnabled());
         assertTrue(options.isPathStyleAccess());
-        assertTrue(options.shouldSkipContentMd5Check());
+        assertTrue(options.isContentMd5CheckSkipped());
     }
 }
 

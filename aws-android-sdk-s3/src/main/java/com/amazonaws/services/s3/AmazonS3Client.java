@@ -201,7 +201,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private static final RequestPaymentConfigurationXmlFactory requestPaymentConfigurationXmlFactory = new RequestPaymentConfigurationXmlFactory();
 
     /** S3 specific client configuration options */
-    S3ClientOptions clientOptions = new S3ClientOptions();
+    protected S3ClientOptions clientOptions = new S3ClientOptions();
 
     /** Provider for AWS credentials. */
     private final AWSCredentialsProvider awsCredentialsProvider;

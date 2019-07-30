@@ -715,7 +715,7 @@ public class TransferManager {
                                     // the data, since otherwise the checksum
                                     // won't match up.
                                     boolean performIntegrityCheck = true;
-                                    if (ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null)
+                                    if (ServiceUtils.skipMd5CheckPerRequest(getObjectRequest)
                                             || s3 instanceof AmazonS3EncryptionClient) {
                                         performIntegrityCheck = false;
                                     }

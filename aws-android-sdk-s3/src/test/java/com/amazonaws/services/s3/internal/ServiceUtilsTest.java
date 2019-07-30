@@ -143,35 +143,35 @@ public class ServiceUtilsTest {
 
     @Test
     public void skipMd5CheckPerResponseTest() {
-        final S3ClientOptions clientOptions = S3ClientOptions.builder().setSkipContentMd5Check(true).build();
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().skipContentMd5Check(true).build();
         final ObjectMetadata metadata = new ObjectMetadata();
         metadata.setSSEAlgorithm(SSEAlgorithm.KMS.toString());
 
         assertTrue(ServiceUtils.skipMd5CheckPerResponse(null, clientOptions));
-        assertFalse(ServiceUtils.skipMd5CheckPerResponse(null, null));
-        assertTrue(ServiceUtils.skipMd5CheckPerResponse(metadata, null));
+        assertFalse(ServiceUtils.skipMd5CheckPerResponse(null));
+        assertTrue(ServiceUtils.skipMd5CheckPerResponse(metadata));
     }
 
     @Test
     public void skipMd5CheckPerRequestTest() throws Throwable {
-        final S3ClientOptions clientOptions = S3ClientOptions.builder().setSkipContentMd5Check(true).build();
+        final S3ClientOptions clientOptions = S3ClientOptions.builder().skipContentMd5Check(true).build();
         assertTrue(ServiceUtils.skipMd5CheckPerRequest(null, clientOptions));
 
         System.setProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation", "true");
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(null));
 
         System.clearProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation");
         GetObjectRequest getObjectRequest = new GetObjectRequest("bucket", "key");
         getObjectRequest.setRange(100);
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
 
         getObjectRequest = new GetObjectRequest("bucket", "key");
         getObjectRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
 
         getObjectRequest = new GetObjectRequest("bucket", "key");
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, null));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(getObjectRequest));
 
         PutObjectRequest putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
@@ -179,24 +179,24 @@ public class ServiceUtilsTest {
         metadata.setSSEAlgorithm(SSEAlgorithm.KMS.toString());
         putObjectRequest.setMetadata(metadata);
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
 
         putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
         putObjectRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
 
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
 
         putObjectRequest = new PutObjectRequest("bucket", "key",
                 File.createTempFile("test", "test2"));
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest, null));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(putObjectRequest));
 
         UploadPartRequest partRequest = new UploadPartRequest();
         partRequest.setSSECustomerKey(new SSECustomerKey("testKey"));
-        assertTrue(ServiceUtils.skipMd5CheckPerRequest(partRequest, null));
+        assertTrue(ServiceUtils.skipMd5CheckPerRequest(partRequest));
 
         partRequest = new UploadPartRequest();
-        assertFalse(ServiceUtils.skipMd5CheckPerRequest(partRequest, null));
+        assertFalse(ServiceUtils.skipMd5CheckPerRequest(partRequest));
     }
 
     @Test
