@@ -61,8 +61,8 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -347,8 +347,8 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -357,8 +357,8 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The policy type. The valid values are <code>SimpleScaling</code>
-     *         and <code>StepScaling</code>.
+     *         The policy type. The valid values are <code>SimpleScaling</code>,
+     *         <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
      *         </p>
      */
     public String getPolicyType() {
@@ -367,8 +367,8 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -378,7 +378,8 @@ public class ScalingPolicy implements Serializable {
      *
      * @param policyType <p>
      *            The policy type. The valid values are
-     *            <code>SimpleScaling</code> and <code>StepScaling</code>.
+     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
+     *            <code>TargetTrackingScaling</code>.
      *            </p>
      */
     public void setPolicyType(String policyType) {
@@ -387,8 +388,8 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -401,7 +402,8 @@ public class ScalingPolicy implements Serializable {
      *
      * @param policyType <p>
      *            The policy type. The valid values are
-     *            <code>SimpleScaling</code> and <code>StepScaling</code>.
+     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
+     *            <code>TargetTrackingScaling</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

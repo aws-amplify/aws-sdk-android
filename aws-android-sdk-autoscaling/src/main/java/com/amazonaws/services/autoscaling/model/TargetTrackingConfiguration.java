@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class TargetTrackingConfiguration implements Serializable {
     /**
      * <p>
-     * A predefined metric. You can specify either a predefined metric or a
+     * A predefined metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      */
@@ -34,7 +34,7 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A customized metric. You can specify either a predefined metric or a
+     * A customized metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      */
@@ -53,19 +53,19 @@ public class TargetTrackingConfiguration implements Serializable {
      * disabled. If scaling in is disabled, the target tracking scaling policy
      * doesn't remove instances from the Auto Scaling group. Otherwise, the
      * target tracking scaling policy can remove instances from the Auto Scaling
-     * group. The default is disabled.
+     * group. The default is <code>false</code>.
      * </p>
      */
     private Boolean disableScaleIn;
 
     /**
      * <p>
-     * A predefined metric. You can specify either a predefined metric or a
+     * A predefined metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      *
      * @return <p>
-     *         A predefined metric. You can specify either a predefined metric
+     *         A predefined metric. You must specify either a predefined metric
      *         or a customized metric.
      *         </p>
      */
@@ -75,12 +75,12 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A predefined metric. You can specify either a predefined metric or a
+     * A predefined metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      *
      * @param predefinedMetricSpecification <p>
-     *            A predefined metric. You can specify either a predefined
+     *            A predefined metric. You must specify either a predefined
      *            metric or a customized metric.
      *            </p>
      */
@@ -91,7 +91,7 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A predefined metric. You can specify either a predefined metric or a
+     * A predefined metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      * <p>
@@ -99,7 +99,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * together.
      *
      * @param predefinedMetricSpecification <p>
-     *            A predefined metric. You can specify either a predefined
+     *            A predefined metric. You must specify either a predefined
      *            metric or a customized metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -113,12 +113,12 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A customized metric. You can specify either a predefined metric or a
+     * A customized metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      *
      * @return <p>
-     *         A customized metric. You can specify either a predefined metric
+     *         A customized metric. You must specify either a predefined metric
      *         or a customized metric.
      *         </p>
      */
@@ -128,12 +128,12 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A customized metric. You can specify either a predefined metric or a
+     * A customized metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      *
      * @param customizedMetricSpecification <p>
-     *            A customized metric. You can specify either a predefined
+     *            A customized metric. You must specify either a predefined
      *            metric or a customized metric.
      *            </p>
      */
@@ -144,7 +144,7 @@ public class TargetTrackingConfiguration implements Serializable {
 
     /**
      * <p>
-     * A customized metric. You can specify either a predefined metric or a
+     * A customized metric. You must specify either a predefined metric or a
      * customized metric.
      * </p>
      * <p>
@@ -152,7 +152,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * together.
      *
      * @param customizedMetricSpecification <p>
-     *            A customized metric. You can specify either a predefined
+     *            A customized metric. You must specify either a predefined
      *            metric or a customized metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -215,7 +215,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * disabled. If scaling in is disabled, the target tracking scaling policy
      * doesn't remove instances from the Auto Scaling group. Otherwise, the
      * target tracking scaling policy can remove instances from the Auto Scaling
-     * group. The default is disabled.
+     * group. The default is <code>false</code>.
      * </p>
      *
      * @return <p>
@@ -224,7 +224,7 @@ public class TargetTrackingConfiguration implements Serializable {
      *         tracking scaling policy doesn't remove instances from the Auto
      *         Scaling group. Otherwise, the target tracking scaling policy can
      *         remove instances from the Auto Scaling group. The default is
-     *         disabled.
+     *         <code>false</code>.
      *         </p>
      */
     public Boolean isDisableScaleIn() {
@@ -237,7 +237,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * disabled. If scaling in is disabled, the target tracking scaling policy
      * doesn't remove instances from the Auto Scaling group. Otherwise, the
      * target tracking scaling policy can remove instances from the Auto Scaling
-     * group. The default is disabled.
+     * group. The default is <code>false</code>.
      * </p>
      *
      * @return <p>
@@ -246,7 +246,7 @@ public class TargetTrackingConfiguration implements Serializable {
      *         tracking scaling policy doesn't remove instances from the Auto
      *         Scaling group. Otherwise, the target tracking scaling policy can
      *         remove instances from the Auto Scaling group. The default is
-     *         disabled.
+     *         <code>false</code>.
      *         </p>
      */
     public Boolean getDisableScaleIn() {
@@ -259,7 +259,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * disabled. If scaling in is disabled, the target tracking scaling policy
      * doesn't remove instances from the Auto Scaling group. Otherwise, the
      * target tracking scaling policy can remove instances from the Auto Scaling
-     * group. The default is disabled.
+     * group. The default is <code>false</code>.
      * </p>
      *
      * @param disableScaleIn <p>
@@ -268,7 +268,7 @@ public class TargetTrackingConfiguration implements Serializable {
      *            tracking scaling policy doesn't remove instances from the Auto
      *            Scaling group. Otherwise, the target tracking scaling policy
      *            can remove instances from the Auto Scaling group. The default
-     *            is disabled.
+     *            is <code>false</code>.
      *            </p>
      */
     public void setDisableScaleIn(Boolean disableScaleIn) {
@@ -281,7 +281,7 @@ public class TargetTrackingConfiguration implements Serializable {
      * disabled. If scaling in is disabled, the target tracking scaling policy
      * doesn't remove instances from the Auto Scaling group. Otherwise, the
      * target tracking scaling policy can remove instances from the Auto Scaling
-     * group. The default is disabled.
+     * group. The default is <code>false</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -293,7 +293,7 @@ public class TargetTrackingConfiguration implements Serializable {
      *            tracking scaling policy doesn't remove instances from the Auto
      *            Scaling group. Otherwise, the target tracking scaling policy
      *            can remove instances from the Auto Scaling group. The default
-     *            is disabled.
+     *            is <code>false</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

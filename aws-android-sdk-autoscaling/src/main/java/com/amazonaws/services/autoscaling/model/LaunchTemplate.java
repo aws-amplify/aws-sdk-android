@@ -40,8 +40,6 @@ public class LaunchTemplate implements Serializable {
      * <p>
      * Any parameters that you specify override the same parameters in the
      * launch template. Currently, the only supported override is instance type.
-     * </p>
-     * <p>
      * You must specify between 2 and 20 overrides.
      * </p>
      */
@@ -104,18 +102,13 @@ public class LaunchTemplate implements Serializable {
      * <p>
      * Any parameters that you specify override the same parameters in the
      * launch template. Currently, the only supported override is instance type.
-     * </p>
-     * <p>
      * You must specify between 2 and 20 overrides.
      * </p>
      *
      * @return <p>
      *         Any parameters that you specify override the same parameters in
      *         the launch template. Currently, the only supported override is
-     *         instance type.
-     *         </p>
-     *         <p>
-     *         You must specify between 2 and 20 overrides.
+     *         instance type. You must specify between 2 and 20 overrides.
      *         </p>
      */
     public java.util.List<LaunchTemplateOverrides> getOverrides() {
@@ -126,18 +119,13 @@ public class LaunchTemplate implements Serializable {
      * <p>
      * Any parameters that you specify override the same parameters in the
      * launch template. Currently, the only supported override is instance type.
-     * </p>
-     * <p>
      * You must specify between 2 and 20 overrides.
      * </p>
      *
      * @param overrides <p>
      *            Any parameters that you specify override the same parameters
      *            in the launch template. Currently, the only supported override
-     *            is instance type.
-     *            </p>
-     *            <p>
-     *            You must specify between 2 and 20 overrides.
+     *            is instance type. You must specify between 2 and 20 overrides.
      *            </p>
      */
     public void setOverrides(java.util.Collection<LaunchTemplateOverrides> overrides) {
@@ -153,8 +141,6 @@ public class LaunchTemplate implements Serializable {
      * <p>
      * Any parameters that you specify override the same parameters in the
      * launch template. Currently, the only supported override is instance type.
-     * </p>
-     * <p>
      * You must specify between 2 and 20 overrides.
      * </p>
      * <p>
@@ -164,10 +150,7 @@ public class LaunchTemplate implements Serializable {
      * @param overrides <p>
      *            Any parameters that you specify override the same parameters
      *            in the launch template. Currently, the only supported override
-     *            is instance type.
-     *            </p>
-     *            <p>
-     *            You must specify between 2 and 20 overrides.
+     *            is instance type. You must specify between 2 and 20 overrides.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -186,8 +169,6 @@ public class LaunchTemplate implements Serializable {
      * <p>
      * Any parameters that you specify override the same parameters in the
      * launch template. Currently, the only supported override is instance type.
-     * </p>
-     * <p>
      * You must specify between 2 and 20 overrides.
      * </p>
      * <p>
@@ -197,10 +178,7 @@ public class LaunchTemplate implements Serializable {
      * @param overrides <p>
      *            Any parameters that you specify override the same parameters
      *            in the launch template. Currently, the only supported override
-     *            is instance type.
-     *            </p>
-     *            <p>
-     *            You must specify between 2 and 20 overrides.
+     *            is instance type. You must specify between 2 and 20 overrides.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,6 +21,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
@@ -41,7 +42,9 @@ import com.amazonaws.services.kinesis.model.StreamDescription;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONException;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
@@ -60,65 +63,60 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
     // Constants for Kinesis tests
     private static final String DATA_STRING_PREFIX = "KinesisData";
     private static final String DELIMITER = "/";
+    private static final int NUM_SHARDS = 5;
 
-    // directory where Kinesis Recorder saves records
-    private File directory;
-    private static final String DIR_NAME = "KinesisRecorderDirectory";
     private static final String STREAM_NAME = "Android_" + TAG;
 
+    // directory where Kinesis Recorder saves records
+    private static final String DIR_NAME = "KinesisRecorderDirectory";
+    private File directory;
+
+    private AmazonKinesisClient client;
     private KinesisRecorder recorder;
-    private boolean initCompleted = false;
     private final Set<String> dataRecordSet = new HashSet<String>();
     private List<Shard> shards;
-    private AmazonKinesisClient client;
+
+    // Create the stream for our tests once
+    @BeforeClass
+    public static void createStream() throws InterruptedException, JSONException {
+        AmazonKinesisClient client = makeClient();
+
+        boolean streamIsCreated = false;
+        do {
+            try {
+                Log.d(TAG, "Creating stream, this may take some time");
+                client.createStream(STREAM_NAME, NUM_SHARDS);
+                streamIsCreated = true;
+                Log.d(TAG, "Stream is created.");
+            } catch (ResourceInUseException re) {
+                // if stream exists, try to delete it and create it again
+                Log.d(TAG, "Stream already exists. Deleting...");
+                waitUntilStreamIsDeleted(client);
+            }
+        } while (!streamIsCreated);
+
+    }
 
     @Before
     public void setup() throws InterruptedException, JSONException {
+        client = makeClient();
 
-        Context appContext = InstrumentationRegistry.getTargetContext();
-        if (!initCompleted) {
-            AWSCredentialsProvider provider = new CognitoCachingCredentialsProvider(appContext,
-                    getPackageConfigure().getString("identity_pool_id"), Regions.US_EAST_1);
-
-            client = new AmazonKinesisClient(provider);
-
-            int numShards = 5;
-
-            // Create the stream for our tests
-            boolean streamIsCreated = false;
-            do {
-                try {
-                    Log.d(TAG, "Creating stream, this may take some time");
-                    client.createStream(STREAM_NAME, numShards);
-                    Log.d(TAG, "Stream created, getting shards");
-                    shards = getShardsAfterStreamIsReady(numShards);
-                    streamIsCreated = true;
-                    Log.d(TAG, "Stream is created.");
-                } catch (ResourceInUseException re) {
-                    // if stream exists, try to delete it and create it again
-                    Log.d(TAG, "Stream already exists. Deleting...");
-                    waitUntilStreamIsDeleted();
-                } catch (LimitExceededException e) {
-                    Log.d(TAG, "limit exceeded, going to retry with less shards");
-                    if (numShards > 1) {
-                        numShards--;
-                    } else {
-                        throw e;
-                    }
-                }
-            } while (!streamIsCreated);
-
-            directory = new File(appContext.getApplicationContext().getFilesDir(), DIR_NAME);
-            directory.mkdir();
-            recorder = new KinesisRecorder(directory, Regions.US_EAST_1, provider);
-            initCompleted = true;
+        try {
+            shards = getShardsAfterStreamIsReady(client, NUM_SHARDS);
+        } catch (LimitExceededException e) {
+            Log.d(TAG, "limit exceeded, make sure test account hasn't exceeded shard limit");
+            throw e;
         }
+
+        directory = makeDirectory();
+        recorder = makeRecorder(directory, false);
     }
+
     @Test
     public void testPut() {
         // batch 5 records with 5 partition keys
         int i = 0;
-        for (i = 0; i < 5; i++) {
+        for (; i < 5; i++) {
             String dataStr = DATA_STRING_PREFIX + DELIMITER + String.valueOf(i);
             dataRecordSet.add(dataStr);
             recorder.saveRecord(dataStr.getBytes(StringUtils.UTF8), STREAM_NAME);
@@ -210,7 +208,127 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
         		   streamName.equals(nextStream));
     }
 
-    private List<Shard> getShardsAfterStreamIsReady(int numShards)
+    @Test
+    public void testPutWithGzip() {
+        boolean wasGzipEnabled = recorder.getKinesisRecorderConfig().getClientConfiguration().isEnableGzip();
+
+        recorder.getKinesisRecorderConfig().getClientConfiguration().setEnableGzip(true);
+
+        // batch 25 records with 5 partition keys. A large payload is necessary to trigger a gzip
+        // encoded response from the service
+        int i = 0;
+        for (i = 0; i < 25; i++) {
+            String dataStr = DATA_STRING_PREFIX + DELIMITER + String.valueOf(i);
+            dataRecordSet.add(dataStr);
+            recorder.saveRecord(dataStr.getBytes(StringUtils.UTF8), STREAM_NAME);
+        }
+
+        recorder.submitAllRecords();
+
+        // submit one record
+        String parKey = "PartitionKey" + i;
+        String dataStr = DATA_STRING_PREFIX + DELIMITER + parKey;
+        dataRecordSet.add(dataStr);
+        recorder.saveRecord(dataStr.getBytes(StringUtils.UTF8), STREAM_NAME);
+
+        recorder.submitAllRecords();
+
+        try {
+            Log.d(TAG, "Sleeping for 10 seconds");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            Thread.interrupted();
+        }
+
+        Log.d(TAG, "Reading records");
+        Set partitionKeys = new HashSet();
+
+        readRecordsFromKinesis(partitionKeys);
+
+        if (!dataRecordSet.isEmpty()) {
+            Log.e(TAG, "Missing records from shards.");
+            Log.e(TAG, "Sleeping for 10 more seconds and trying again");
+            try {
+                Log.d(TAG, "Sleeping for 10 seconds");
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                Thread.interrupted();
+            }
+            readRecordsFromKinesis(partitionKeys);
+            assertTrue("Still missing records from shards.", dataRecordSet.isEmpty());
+        }
+
+        recorder.getKinesisRecorderConfig().getClientConfiguration().setEnableGzip(wasGzipEnabled);
+
+    }
+
+    private void readRecordsFromKinesis(Set partitionKeys) {
+        for (Shard shard : shards) {
+            String shardId = shard.getShardId();
+            Log.d(TAG, "Reading from shard: " + shardId);
+
+            GetShardIteratorRequest getShardIterRq = new GetShardIteratorRequest();
+            getShardIterRq.setStreamName(STREAM_NAME);
+            getShardIterRq.setShardId(shardId);
+            getShardIterRq.setShardIteratorType(ShardIteratorType.TRIM_HORIZON);
+
+            GetShardIteratorResult getShardIterRslt = client.getShardIterator(getShardIterRq);
+
+            GetRecordsRequest getRecordsRq = new GetRecordsRequest();
+            getRecordsRq.setShardIterator(getShardIterRslt.getShardIterator());
+            getRecordsRq.setLimit(100);
+
+            GetRecordsResult getRecordResult = client.getRecords(getRecordsRq);
+
+            int currShardResultCount = 0;
+            for (Record r : getRecordResult.getRecords()) {
+                String recordStr = new String(r.getData().array(), StringUtils.UTF8);
+                ++currShardResultCount;
+                Log.d(TAG, "Retrieved a total of " + currShardResultCount + " records from shard "
+                        + shardId);
+                if (partitionKeys != null && dataRecordSet.contains(recordStr)) {
+                    String partitionKey = r.getPartitionKey();
+                    assertTrue("There are duplicated partition keys", !partitionKeys.contains(partitionKey));
+                    partitionKeys.add(partitionKey);
+                }
+                dataRecordSet.remove(recordStr);
+            }
+        }
+
+        assertTrue(dataRecordSet.isEmpty());
+    }
+
+    // Static utility methods
+
+    private static AmazonKinesisClient makeClient() throws JSONException {
+        AmazonKinesisClient client = new AmazonKinesisClient(makeCredentialsProvider());
+        return client;
+    }
+
+    private static KinesisRecorder makeRecorder(File directory, boolean gzipEnabled) throws JSONException {
+        KinesisRecorderConfig recorderConfig = new KinesisRecorderConfig();
+        recorderConfig.getClientConfiguration().setEnableGzip(gzipEnabled);
+        KinesisRecorder recorder = new KinesisRecorder(directory, Regions.US_EAST_1,
+                makeCredentialsProvider(), recorderConfig);
+        return recorder;
+    }
+
+    private static AWSCredentialsProvider makeCredentialsProvider() throws JSONException {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        String identityPoolId = getPackageConfigure().getString("identity_pool_id");
+        AWSCredentialsProvider provider = new CognitoCachingCredentialsProvider(appContext,
+                identityPoolId, Regions.US_EAST_1);
+        return provider;
+    }
+
+    private static File makeDirectory() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        File directory = new File(appContext.getApplicationContext().getFilesDir(), DIR_NAME);
+        directory.mkdir();
+        return directory;
+    }
+
+    private static List<Shard> getShardsAfterStreamIsReady(AmazonKinesisClient client, int numShards)
             throws InterruptedException {
         long giveUpTimeMillis = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(45);
         while (System.currentTimeMillis() < giveUpTimeMillis) {
@@ -227,7 +345,7 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
         return null;
     }
 
-    private boolean waitUntilStreamIsDeleted() {
+    private static boolean waitUntilStreamIsDeleted(AmazonKinesisClient client) {
         // delete stream
         int retries = 1;
         while (true) {
@@ -242,6 +360,7 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
                 }
             }
         }
+
         // wait till stream is deleted
         retries = 1;
         while (true) {
@@ -255,43 +374,13 @@ public class KinesisRecorderIntegrationTest extends KinesisRecorderIntegrationTe
                     return true;
                 }
             }
+
             retries++;
             if (retries > 30) {
                 throw new RuntimeException(
-                        "Stream still exists after deleting.  Consider refactoring incase of eventual consistency");
+                        "Stream still exists after deleting. Consider refactoring in case of eventual consistency");
             }
         }
     }
 
-    private void readRecordsFromKinesis(Set partitionKeys) {
-        for (Shard shard : shards) {
-            String shardId = shard.getShardId();
-            Log.d(TAG, "Reading from shard: " + shardId);
-            GetShardIteratorRequest getShardIterRq = new GetShardIteratorRequest();
-            getShardIterRq.setStreamName(STREAM_NAME);
-            getShardIterRq.setShardId(shardId);
-            getShardIterRq.setShardIteratorType(ShardIteratorType.TRIM_HORIZON);
-            GetShardIteratorResult getShardIterRslt = client.getShardIterator(getShardIterRq);
-            GetRecordsRequest getRecordsRq = new GetRecordsRequest();
-            getRecordsRq.setShardIterator(getShardIterRslt.getShardIterator());
-            getRecordsRq.setLimit(100);
-            GetRecordsResult getRecordResult = client.getRecords(getRecordsRq);
-            int currShardResultCount = 0;
-            for (Record r : getRecordResult.getRecords()) {
-                String recordStr = new String(r.getData().array(), StringUtils.UTF8);
-                ++currShardResultCount;
-                Log.d(TAG, "Retrieved a total of " + currShardResultCount + " records from shard "
-                        + shardId);
-                if(partitionKeys != null && dataRecordSet.contains(recordStr)) {
-                    String partitionKey = r.getPartitionKey();
-                    assertTrue("There are duplicated partition keys", !partitionKeys.contains(partitionKey));
-                    partitionKeys.add(partitionKey);
-                }
-                dataRecordSet.remove(recordStr);
-
-            }
-        }
-
-        assertTrue(dataRecordSet.isEmpty());
-    }
 }
