@@ -730,7 +730,6 @@ jobs:
       - run:
           name: run integration tests
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)"  "<< parameters.testmodule >>"
       - run:
           name : check integration test result 
@@ -789,7 +788,6 @@ jobs:
           name: run sample ui test
           command: |
             cd aws-sdk-android-samples/S3TransferUtilitySample
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             bash gradlew connectedAndroidTest
       - store_artifacts:
           path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
@@ -1091,7 +1089,6 @@ jobs:
       - run:
           name: download devicefarm configure file
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
       - run:
           name: Configure test information
