@@ -1194,6 +1194,8 @@ public class AWSIotMqttManager {
      * @param topic The topic to which to subscribe.
      * @param qos Quality of Service Level of the subscription.
      * @param subscriptionStatusCallback Callback that will be notified when the subscribe has completed.
+     *                                   Any exception encountered during the subscribe operation is reported on the callback
+     *                                   if avalialble, else AmazonClientException is thrown by this method.
      * @param callback Callback to be called when new message is received on this
      *                 topic for this subscription.
      */

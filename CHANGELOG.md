@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
- 
+
+## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
+
+### New Features
+
+- **AWS IoT**
+  - Added subscription status callback to the `subscribeToTopic()` method in `AWSIotMqttManager`. See [Issue#1005](https://github.com/aws-amplify/aws-sdk-android/issues/1005) for details.
+
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
 ### New Features
