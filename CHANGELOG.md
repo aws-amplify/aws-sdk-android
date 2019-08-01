@@ -24,6 +24,10 @@
 - Model updates for the following services
   - Amazon Polly
 
+### Bug Fixes
+- **Amazon S3**
+  - Shorten `AwsChunkedEncodingInputStream` log tag to be within the 23 character limit imposed by android on certain API Levels. See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
 ### New Features
