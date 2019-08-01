@@ -766,7 +766,7 @@ jobs:
       - run:
           name: checkout sample applications
           command: |
-            git clone https://github.com/sunchunqiang/aws-sdk-android-samples.git
+            git clone https://github.com/awslabs/aws-sdk-android-samples.git
       - restore_cache:
           key: Libs-{{ .Revision }}
       - run:
