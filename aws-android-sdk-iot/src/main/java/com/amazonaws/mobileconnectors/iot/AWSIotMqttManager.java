@@ -1185,6 +1185,23 @@ public class AWSIotMqttManager {
      */
     public void subscribeToTopic(String topic, AWSIotMqttQos qos,
             AWSIotMqttNewMessageCallback callback) {
+        subscribeToTopic(topic, qos, null, callback);
+    }
+
+    /**
+     * Subscribes to an MQTT topic
+     *
+     * @param topic The topic to which to subscribe.
+     * @param qos Quality of Service Level of the subscription.
+     * @param subscriptionStatusCallback Callback that will be notified when the subscribe has completed.
+     *                                   Any exception encountered during the subscribe operation is reported on the callback
+     *                                   if avalialble, else AmazonClientException is thrown by this method.
+     * @param callback Callback to be called when new message is received on this
+     *                 topic for this subscription.
+     */
+    public void subscribeToTopic(final String topic, final AWSIotMqttQos qos,
+                                 final AWSIotMqttSubscriptionStatusCallback subscriptionStatusCallback,
+                                 final AWSIotMqttNewMessageCallback callback) {
 
         if (topic == null || topic.isEmpty()) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1196,9 +1213,27 @@ public class AWSIotMqttManager {
 
         if (null != mqttClient) {
             try {
-                mqttClient.subscribe(topic, qos.asInt());
+                if (subscriptionStatusCallback != null) {
+                    mqttClient.subscribe(topic, qos.asInt(), null, new IMqttActionListener() {
+                        @Override
+                        public void onSuccess(IMqttToken asyncActionToken) {
+                            subscriptionStatusCallback.onSuccess();
+                        }
+
+                        @Override
+                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                            subscriptionStatusCallback.onFailure(exception);
+                        }
+                    });
+                } else {
+                    mqttClient.subscribe(topic, qos.asInt());
+                }
             } catch (final MqttException e) {
-                throw new AmazonClientException("Client error when subscribing.", e);
+                if(subscriptionStatusCallback != null) {
+                    subscriptionStatusCallback.onFailure(e);
+                } else {
+                    throw new AmazonClientException("Client error when subscribing.", e);
+                }
             }
             final AWSIotMqttTopic topicModel = new AWSIotMqttTopic(topic, qos, callback);
             topicListeners.put(topic, topicModel);
