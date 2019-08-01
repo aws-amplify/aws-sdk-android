@@ -18,7 +18,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
+import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 
 /**
  * Callback for user Sign-up.
@@ -29,11 +29,9 @@ public interface SignUpHandler {
      * Confirming the user may be required to activate the users account.
      *
      * @param user {@link CognitoUser}
-     * @param signUpConfirmationState will be {@code true} is the user has been confirmed,
-     *                                otherwise {@code false}.
-     * @param cognitoUserCodeDeliveryDetails REQUIRED: Indicates the medium and destination of the confirmation code.
+     * @param signUpResult The result of a sign up action.
      */
-    public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails);
+    public void onSuccess(CognitoUser user, SignUpResult signUpResult);
 
     /**
      * This method is called when user registration has failed.

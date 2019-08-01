@@ -1724,16 +1724,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 userpool.signUp(username, password, cognitoUserAttr, validationData, new SignUpHandler() {
                     @Override
                     public void onSuccess(final CognitoUser user,
-                                          final boolean signUpConfirmationState,
-                                          final CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+                                          final com.amazonaws.services.cognitoidentityprovider.model.SignUpResult signUpResult) {
 
                         signUpUser = user;
                         UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
-                                cognitoUserCodeDeliveryDetails.getDestination(),
-                                cognitoUserCodeDeliveryDetails.getDeliveryMedium(),
-                                cognitoUserCodeDeliveryDetails.getAttributeName()
+                                signUpResult.getCodeDeliveryDetails().getDestination(),
+                                signUpResult.getCodeDeliveryDetails().getDeliveryMedium(),
+                                signUpResult.getCodeDeliveryDetails().getAttributeName()
                         );
-                        callback.onResult(new SignUpResult(signUpConfirmationState, userCodeDeliveryDetails));
+                        callback.onResult(new SignUpResult(signUpResult.getUserConfirmed(), userCodeDeliveryDetails, signUpResult.getUserSub()));
                     }
 
                     @Override
