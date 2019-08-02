@@ -35,29 +35,42 @@ public class LogFactory {
      * @return logger
      */
     public static synchronized Log getLog(Class clazz) {
-        return getLog(clazz.getSimpleName());
+
+        String logTag = clazz.getSimpleName();
+        /** Truncate if length is greater than 23. This is to satisfy the restriction
+        imposed by android on API level 23 through 26 of maximum log tag length of 23. */
+        if (logTag.length() > 23) {
+            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
+            logTag  =logTag.substring(0, 23);
+        }
+        return getLog(logTag);
     }
 
     /**
      * Get the logger for the string tag
-     * @param string the string tag
+     * @param logTag the string tag
      *
      * @return logger
      */
-    public static synchronized Log getLog(final String string) {
-        Log log = logMap.get(string);
+    public static synchronized Log getLog(String logTag) {
+        if (logTag.length() > 23) {
+            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
+            logTag  = logTag.substring(0, 23);
+        }
+
+        Log log = logMap.get(logTag);
         if (log == null) {
             if (checkApacheCommonsLoggingExists()) {
                 try {
-                    log = new ApacheCommonsLogging(string);
-                    logMap.put(string, log);
+                    log = new ApacheCommonsLogging(logTag);
+                    logMap.put(logTag, log);
                 } catch (Exception e) {
                     android.util.Log.w(TAG, "Could not create log from " + APACHE_COMMONS_LOGGING_LOGFACTORY, e);
                 }
             }
             if (log == null) {
-                log = new AndroidLog(string);
-                logMap.put(string, log);
+                log = new AndroidLog(logTag);
+                logMap.put(logTag, log);
             }
         }
         return log;
