@@ -33,6 +33,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttribu
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
+import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.*;
 import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.getErrorMessageFromException;
@@ -120,13 +121,13 @@ public class SignUpActivity extends Activity {
         mUserPool.signUpInBackground(username, password, userAttributes, null,
                 new SignUpHandler() {
                     @Override
-                    public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+                    public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                         alertDialog.dismiss();
                         final Intent intent = new Intent();
                         intent.putExtra(USERNAME, username);
                         intent.putExtra(PASSWORD, password);
-                        intent.putExtra(IS_SIGN_UP_CONFIRMED, signUpConfirmationState);
-                        intent.putExtra(CONFIRMATION_DESTINATION, cognitoUserCodeDeliveryDetails.getDestination());
+                        intent.putExtra(IS_SIGN_UP_CONFIRMED, signUpResult.getUserConfirmed());
+                        intent.putExtra(CONFIRMATION_DESTINATION, signUpResult.getCodeDeliveryDetails().getDestination());
                         setResult(RESULT_OK, intent);
                         finish();
                     }
