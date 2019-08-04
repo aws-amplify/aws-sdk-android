@@ -55,6 +55,11 @@ class VoiceJsonUnmarshaller implements Unmarshaller<Voice, JsonUnmarshallerConte
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("SupportedEngines")) {
+                voice.setSupportedEngines(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

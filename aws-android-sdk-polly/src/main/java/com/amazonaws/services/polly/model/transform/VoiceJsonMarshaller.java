@@ -61,6 +61,17 @@ class VoiceJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (voice.getSupportedEngines() != null) {
+            java.util.List<String> supportedEngines = voice.getSupportedEngines();
+            jsonWriter.name("SupportedEngines");
+            jsonWriter.beginArray();
+            for (String supportedEnginesItem : supportedEngines) {
+                if (supportedEnginesItem != null) {
+                    jsonWriter.value(supportedEnginesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

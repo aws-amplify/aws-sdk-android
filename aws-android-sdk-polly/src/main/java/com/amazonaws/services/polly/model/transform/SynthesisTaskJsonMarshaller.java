@@ -25,6 +25,11 @@ class SynthesisTaskJsonMarshaller {
 
     public void marshall(SynthesisTask synthesisTask, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (synthesisTask.getEngine() != null) {
+            String engine = synthesisTask.getEngine();
+            jsonWriter.name("Engine");
+            jsonWriter.value(engine);
+        }
         if (synthesisTask.getTaskId() != null) {
             String taskId = synthesisTask.getTaskId();
             jsonWriter.name("TaskId");
