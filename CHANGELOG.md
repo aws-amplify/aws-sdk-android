@@ -5,7 +5,15 @@
 ### New Features
 
 - **AWS IoT**
-  - Added an overloaded version of `subscribeToTopic()` method, `public void subscribeToTopic(final String topic, final AWSIotMqttQos qos, final AWSIotMqttSubscriptionStatusCallback subscriptionStatusCallback, final AWSIotMqttNewMessageCallback callback);`, in `AWSIotMqttManager` which accepts subscription status callback to notify users of the status of subscription operation. See [Issue#1005](https://github.com/aws-amplify/aws-sdk-android/issues/1005) for details.
+  - Added an overloaded version of `subscribeToTopic()` method,
+    `public void subscribeToTopic(final String topic, final AWSIotMqttQos qos, final AWSIotMqttSubscriptionStatusCallback subscriptionStatusCallback, final AWSIotMqttNewMessageCallback callback);`,
+    in `AWSIotMqttManager` which accepts subscription status callback to notify users of the status of subscription operation.
+    See [Issue#1005](https://github.com/aws-amplify/aws-sdk-android/issues/1005) for details.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Polly
 
 ## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
 
