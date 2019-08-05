@@ -35,7 +35,10 @@ class SynthesisTaskJsonUnmarshaller implements Unmarshaller<SynthesisTask, JsonU
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("TaskId")) {
+            if (name.equals("Engine")) {
+                synthesisTask.setEngine(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TaskId")) {
                 synthesisTask.setTaskId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TaskStatus")) {

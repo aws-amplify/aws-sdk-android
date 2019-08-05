@@ -19,22 +19,21 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The language specified in the lexicon is unsupported. For a list of supported
- * languages, see <a href=
- * "https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html"
- * >Lexicon Attributes</a>.
+ * This engine is not compatible with the voice that you have designated. Choose
+ * a new voice that is compatible with the engine or change the engine and
+ * restart the operation.
  * </p>
  */
-public class UnsupportedPlsLanguageException extends AmazonServiceException {
+public class EngineNotSupportedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new UnsupportedPlsLanguageException with the specified error
+     * Constructs a new EngineNotSupportedException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public UnsupportedPlsLanguageException(String message) {
+    public EngineNotSupportedException(String message) {
         super(message);
     }
 }

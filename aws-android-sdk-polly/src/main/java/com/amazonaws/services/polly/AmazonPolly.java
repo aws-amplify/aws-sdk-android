@@ -102,7 +102,7 @@ public interface AmazonPolly {
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
+     * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
      * 
@@ -170,7 +170,7 @@ public interface AmazonPolly {
      * <p>
      * Returns the content of the specified pronunciation lexicon stored in an
      * AWS Region. For more information, see <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
+     * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
      * 
@@ -221,7 +221,7 @@ public interface AmazonPolly {
      * <p>
      * Returns a list of pronunciation lexicons stored in an AWS Region. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
+     * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
      * 
@@ -276,7 +276,7 @@ public interface AmazonPolly {
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
+     * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
      * 
@@ -323,6 +323,7 @@ public interface AmazonPolly {
      * @throws InvalidSampleRateException
      * @throws InvalidSnsTopicArnException
      * @throws InvalidSsmlException
+     * @throws EngineNotSupportedException
      * @throws LexiconNotFoundException
      * @throws ServiceFailureException
      * @throws MarksNotSupportedForFormatException
@@ -347,7 +348,7 @@ public interface AmazonPolly {
      * available with all the voices (for example, Cyrillic might not be read at
      * all by English voices) unless phoneme mapping is used. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html"
+     * "https://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html"
      * >How it Works</a>.
      * </p>
      * 
@@ -362,6 +363,7 @@ public interface AmazonPolly {
      * @throws MarksNotSupportedForFormatException
      * @throws SsmlMarksNotSupportedForTextTypeException
      * @throws LanguageNotSupportedException
+     * @throws EngineNotSupportedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

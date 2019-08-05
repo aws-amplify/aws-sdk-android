@@ -57,6 +57,16 @@ public class SynthesizeSpeechRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (synthesizeSpeechRequest.getEngine() != null) {
+                String engine = synthesizeSpeechRequest.getEngine();
+                jsonWriter.name("Engine");
+                jsonWriter.value(engine);
+            }
+            if (synthesizeSpeechRequest.getLanguageCode() != null) {
+                String languageCode = synthesizeSpeechRequest.getLanguageCode();
+                jsonWriter.name("LanguageCode");
+                jsonWriter.value(languageCode);
+            }
             if (synthesizeSpeechRequest.getLexiconNames() != null) {
                 java.util.List<String> lexiconNames = synthesizeSpeechRequest.getLexiconNames();
                 jsonWriter.name("LexiconNames");
@@ -104,11 +114,6 @@ public class SynthesizeSpeechRequestMarshaller implements
                 String voiceId = synthesizeSpeechRequest.getVoiceId();
                 jsonWriter.name("VoiceId");
                 jsonWriter.value(voiceId);
-            }
-            if (synthesizeSpeechRequest.getLanguageCode() != null) {
-                String languageCode = synthesizeSpeechRequest.getLanguageCode();
-                jsonWriter.name("LanguageCode");
-                jsonWriter.value(languageCode);
             }
 
             jsonWriter.endObject();
