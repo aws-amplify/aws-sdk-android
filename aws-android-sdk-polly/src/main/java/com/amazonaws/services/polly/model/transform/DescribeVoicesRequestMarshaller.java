@@ -51,6 +51,10 @@ public class DescribeVoicesRequestMarshaller implements
         request.setHttpMethod(HttpMethodName.GET);
 
         String uriResourcePath = "/v1/voices";
+        if (describeVoicesRequest.getEngine() != null) {
+            request.addParameter("Engine",
+                    StringUtils.fromString(describeVoicesRequest.getEngine()));
+        }
         if (describeVoicesRequest.getLanguageCode() != null) {
             request.addParameter("LanguageCode",
                     StringUtils.fromString(describeVoicesRequest.getLanguageCode()));

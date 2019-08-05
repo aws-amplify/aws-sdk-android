@@ -94,6 +94,14 @@ public class Voice implements Serializable {
 
     /**
      * <p>
+     * Specifies which engines (<code>standard</code> or <code>neural</code>)
+     * that are supported by a given voice.
+     * </p>
+     */
+    private java.util.List<String> supportedEngines;
+
+    /**
+     * <p>
      * Gender of the voice.
      * </p>
      * <p>
@@ -673,6 +681,88 @@ public class Voice implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies which engines (<code>standard</code> or <code>neural</code>)
+     * that are supported by a given voice.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies which engines (<code>standard</code> or
+     *         <code>neural</code>) that are supported by a given voice.
+     *         </p>
+     */
+    public java.util.List<String> getSupportedEngines() {
+        return supportedEngines;
+    }
+
+    /**
+     * <p>
+     * Specifies which engines (<code>standard</code> or <code>neural</code>)
+     * that are supported by a given voice.
+     * </p>
+     *
+     * @param supportedEngines <p>
+     *            Specifies which engines (<code>standard</code> or
+     *            <code>neural</code>) that are supported by a given voice.
+     *            </p>
+     */
+    public void setSupportedEngines(java.util.Collection<String> supportedEngines) {
+        if (supportedEngines == null) {
+            this.supportedEngines = null;
+            return;
+        }
+
+        this.supportedEngines = new java.util.ArrayList<String>(supportedEngines);
+    }
+
+    /**
+     * <p>
+     * Specifies which engines (<code>standard</code> or <code>neural</code>)
+     * that are supported by a given voice.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param supportedEngines <p>
+     *            Specifies which engines (<code>standard</code> or
+     *            <code>neural</code>) that are supported by a given voice.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Voice withSupportedEngines(String... supportedEngines) {
+        if (getSupportedEngines() == null) {
+            this.supportedEngines = new java.util.ArrayList<String>(supportedEngines.length);
+        }
+        for (String value : supportedEngines) {
+            this.supportedEngines.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies which engines (<code>standard</code> or <code>neural</code>)
+     * that are supported by a given voice.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param supportedEngines <p>
+     *            Specifies which engines (<code>standard</code> or
+     *            <code>neural</code>) that are supported by a given voice.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Voice withSupportedEngines(java.util.Collection<String> supportedEngines) {
+        setSupportedEngines(supportedEngines);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -694,7 +784,9 @@ public class Voice implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getAdditionalLanguageCodes() != null)
-            sb.append("AdditionalLanguageCodes: " + getAdditionalLanguageCodes());
+            sb.append("AdditionalLanguageCodes: " + getAdditionalLanguageCodes() + ",");
+        if (getSupportedEngines() != null)
+            sb.append("SupportedEngines: " + getSupportedEngines());
         sb.append("}");
         return sb.toString();
     }
@@ -715,6 +807,8 @@ public class Voice implements Serializable {
                 * hashCode
                 + ((getAdditionalLanguageCodes() == null) ? 0 : getAdditionalLanguageCodes()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getSupportedEngines() == null) ? 0 : getSupportedEngines().hashCode());
         return hashCode;
     }
 
@@ -755,6 +849,11 @@ public class Voice implements Serializable {
             return false;
         if (other.getAdditionalLanguageCodes() != null
                 && other.getAdditionalLanguageCodes().equals(this.getAdditionalLanguageCodes()) == false)
+            return false;
+        if (other.getSupportedEngines() == null ^ this.getSupportedEngines() == null)
+            return false;
+        if (other.getSupportedEngines() != null
+                && other.getSupportedEngines().equals(this.getSupportedEngines()) == false)
             return false;
         return true;
     }
