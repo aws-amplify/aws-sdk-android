@@ -23,10 +23,9 @@ public class CleanupBucketIntegrationTests extends AWSTestBase {
     private AmazonS3 s3;
 
     @Before
-    public void setup() throws FileNotFoundException, IOException {
+    public void setup() {
         setUpCredentials();
-        s3 = new AmazonS3Client(credentials);
-        s3.setRegion(Region.getRegion(Regions.US_WEST_1));
+        s3 = new AmazonS3Client(credentials, Region.getRegion(Regions.US_WEST_1));
     }
 
     @Test

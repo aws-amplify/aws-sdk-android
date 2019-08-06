@@ -23,6 +23,8 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.auth.STSSessionCredentialsProvider;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.internal.MD5DigestCalculatingInputStream;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
@@ -101,17 +103,6 @@ public class PresignedUrlIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testSpecialKeys() throws Exception {
-        // SigV2
-        System.clearProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY);
-        goTestSpecialKeys();
-
-        // SigV4
-        System.setProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY, "true");
-        goTestSpecialKeys();
-        System.clearProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY);
-    }
-
-    private void goTestSpecialKeys() throws Exception {
         List<String> keys = SpecialObjectKeyNameGenerator.initAllSpecialKeyNames();
 
         s3.setS3ClientOptions(new S3ClientOptions().withPathStyleAccess(false));
@@ -353,17 +344,12 @@ public class PresignedUrlIntegrationTest extends S3IntegrationTestBase {
         final String key = "presign-url-sts-test";
 
         STSSessionCredentialsProvider provider = new STSSessionCredentialsProvider(credentials);
-        AmazonS3Client s3WithSts = new AmazonS3Client(provider);
+        AmazonS3Client s3WithSts = new AmazonS3Client(provider,
+                Region.getRegion(Regions.US_WEST_2));
         s3WithSts.setEndpoint(S3_REGIONAL_ENDPOINT);
         s3WithSts.putObject(virtHostBucketName, key, file);
 
-        // SigV2
         testGetUrl(s3WithSts, virtHostBucketName, key);
-
-        // SigV4
-        System.setProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY, "true");
-        testGetUrl(s3WithSts, virtHostBucketName, key);
-        System.clearProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY);
     }
 
     /*
