@@ -997,6 +997,37 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testSubscribeToTopicWithSubscriptionCallback() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, null);
+
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+
+        TestAWSIotMqttSubscriptionStatusCallback sscb = new TestAWSIotMqttSubscriptionStatusCallback();
+
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
+
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(sscb.subscribed);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        MqttMessage msg = new MqttMessage();
+        msg.setPayload("test payload".getBytes(StringUtils.UTF8));
+        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+
+        assertEquals(1, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+    }
+
+    @Test
     public void testSubscribeToTopic() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
@@ -2948,6 +2979,20 @@ public class AWSIotMqttManagerTest {
         @Override
         public void onMessageArrived(String topic, byte[] data) {
             receivedMessages.add(topic + new String(data, StringUtils.UTF8));
+        }
+    }
+
+    private class TestAWSIotMqttSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
+        boolean subscribed;
+
+        @Override
+        public void onSuccess(){
+            subscribed = true;
+        }
+
+        @Override
+        public void onFailure(Throwable exception){
+            subscribed = false;
         }
     }
 

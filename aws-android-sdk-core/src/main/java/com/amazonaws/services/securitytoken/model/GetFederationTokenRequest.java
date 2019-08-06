@@ -200,9 +200,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * 10 managed policies to use as managed session policies. The plain text
      * that you use for both inline and managed session policies shouldn't
      * exceed 2048 characters. You can provide up to 10 managed policy ARNs. For
-     * more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the AWS General Reference.
+     * more information about ARNs, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     * General Reference.
      * </p>
      * <p>
      * This parameter is optional. However, if you do not pass any session
@@ -729,9 +730,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * 10 managed policies to use as managed session policies. The plain text
      * that you use for both inline and managed session policies shouldn't
      * exceed 2048 characters. You can provide up to 10 managed policy ARNs. For
-     * more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the AWS General Reference.
+     * more information about ARNs, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     * General Reference.
      * </p>
      * <p>
      * This parameter is optional. However, if you do not pass any session
@@ -776,10 +778,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         policies. The plain text that you use for both inline and managed
      *         session policies shouldn't exceed 2048 characters. You can
      *         provide up to 10 managed policy ARNs. For more information about
-     *         ARNs, see <a
-     *         href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *         Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
-     *         General Reference.
+     *         ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *         >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in
+     *         the AWS General Reference.
      *         </p>
      *         <p>
      *         This parameter is optional. However, if you do not pass any
@@ -829,9 +831,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * 10 managed policies to use as managed session policies. The plain text
      * that you use for both inline and managed session policies shouldn't
      * exceed 2048 characters. You can provide up to 10 managed policy ARNs. For
-     * more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the AWS General Reference.
+     * more information about ARNs, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     * General Reference.
      * </p>
      * <p>
      * This parameter is optional. However, if you do not pass any session
@@ -876,10 +879,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies. The plain text that you use for both inline
      *            and managed session policies shouldn't exceed 2048 characters.
      *            You can provide up to 10 managed policy ARNs. For more
-     *            information about ARNs, see <a
-     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *            AWS General Reference.
+     *            information about ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
+     *            in the AWS General Reference.
      *            </p>
      *            <p>
      *            This parameter is optional. However, if you do not pass any
@@ -934,9 +937,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * 10 managed policies to use as managed session policies. The plain text
      * that you use for both inline and managed session policies shouldn't
      * exceed 2048 characters. You can provide up to 10 managed policy ARNs. For
-     * more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the AWS General Reference.
+     * more information about ARNs, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     * General Reference.
      * </p>
      * <p>
      * This parameter is optional. However, if you do not pass any session
@@ -984,10 +988,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies. The plain text that you use for both inline
      *            and managed session policies shouldn't exceed 2048 characters.
      *            You can provide up to 10 managed policy ARNs. For more
-     *            information about ARNs, see <a
-     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *            AWS General Reference.
+     *            information about ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
+     *            in the AWS General Reference.
      *            </p>
      *            <p>
      *            This parameter is optional. However, if you do not pass any
@@ -1045,9 +1049,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * 10 managed policies to use as managed session policies. The plain text
      * that you use for both inline and managed session policies shouldn't
      * exceed 2048 characters. You can provide up to 10 managed policy ARNs. For
-     * more information about ARNs, see <a
-     * href="general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource
-     * Names (ARNs) and AWS Service Namespaces</a> in the AWS General Reference.
+     * more information about ARNs, see <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the AWS
+     * General Reference.
      * </p>
      * <p>
      * This parameter is optional. However, if you do not pass any session
@@ -1095,10 +1100,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            session policies. The plain text that you use for both inline
      *            and managed session policies shouldn't exceed 2048 characters.
      *            You can provide up to 10 managed policy ARNs. For more
-     *            information about ARNs, see <a
-     *            href="general/latest/gr/aws-arns-and-namespaces.html">Amazon
-     *            Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     *            AWS General Reference.
+     *            information about ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
+     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
+     *            in the AWS General Reference.
      *            </p>
      *            <p>
      *            This parameter is optional. However, if you do not pass any

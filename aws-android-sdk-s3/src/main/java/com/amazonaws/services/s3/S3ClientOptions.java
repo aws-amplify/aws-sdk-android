@@ -19,6 +19,8 @@ package com.amazonaws.services.s3;
  */
 public class S3ClientOptions {
 
+    /** The default setting for skipping content MD5 check */
+    public static final boolean DEFAULT_SKIP_CONTENT_MD5_CHECK = false;
     /** The default setting for use of path-style access */
     public static final boolean DEFAULT_PATH_STYLE_ACCESS = false;
     /** The default setting for use of chunked encoding */
@@ -30,6 +32,8 @@ public class S3ClientOptions {
     /** S3 dualstack endpoint is by default not enabled */
     public static final boolean DEFAULT_DUALSTACK_ENABLED = false;
 
+    /** Flag for skipping content MD5 check for local testing */
+    private boolean skipContentMd5Check;
     /** Flag for use of path-style access */
     private boolean pathStyleAccess;
     private final boolean chunkedEncodingDisabled;
@@ -48,6 +52,7 @@ public class S3ClientOptions {
      * Builder class for S3ClientOptions.
      */
     public static final class Builder {
+        private boolean skipContentMd5Check = DEFAULT_SKIP_CONTENT_MD5_CHECK;
         private boolean pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
         /** Flag for user of chunked encoding */
         private boolean chunkedEncodingDisabled = DEFAULT_CHUNKED_ENCODING_DISABLED;
@@ -63,11 +68,32 @@ public class S3ClientOptions {
          * @return S3ClientOptions instance.
          */
         public S3ClientOptions build() {
-            return new S3ClientOptions(pathStyleAccess,
+            return new S3ClientOptions(skipContentMd5Check,
+                    pathStyleAccess,
                     chunkedEncodingDisabled,
                     accelerateModeEnabled,
                     payloadSigningEnabled,
                     dualstackEnabled);
+        }
+
+        /**
+         * <p>
+         * Configures the client to skip content MD5 check for all requests
+         * and responses.
+         * </p>
+         * <p>
+         * Setting this flag will allow the client to disregard data transfer
+         * integrity check by bypassing content MD5 check for all requests
+         * and responses.
+         * </p>
+         *
+         * @param skipContentMd5Check True to always skip content MD5 check.
+         * @return this Builder instance that can be used for method chaining
+         */
+        @SuppressWarnings("checkstyle:hiddenfield")
+        public Builder skipContentMd5Check(boolean skipContentMd5Check) {
+            this.skipContentMd5Check = skipContentMd5Check;
+            return this;
         }
 
         /**
@@ -186,6 +212,7 @@ public class S3ClientOptions {
      */
     @Deprecated
     public S3ClientOptions() {
+        this.skipContentMd5Check = DEFAULT_SKIP_CONTENT_MD5_CHECK;
         this.pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
         this.chunkedEncodingDisabled = DEFAULT_CHUNKED_ENCODING_DISABLED;
         this.accelerateModeEnabled = DEFAULT_ACCELERATE_MODE_ENABLED;
@@ -200,6 +227,7 @@ public class S3ClientOptions {
      */
     @Deprecated
     public S3ClientOptions(S3ClientOptions other) {
+        this.skipContentMd5Check = other.skipContentMd5Check;
         this.pathStyleAccess = other.pathStyleAccess;
         this.chunkedEncodingDisabled = other.chunkedEncodingDisabled;
         this.accelerateModeEnabled = other.accelerateModeEnabled;
@@ -207,16 +235,35 @@ public class S3ClientOptions {
         this.dualstackEnabled = other.dualstackEnabled;
     }
 
-    private S3ClientOptions(boolean pathStyleAccess,
+    private S3ClientOptions(boolean skipContentMd5Check,
+            boolean pathStyleAccess,
             boolean chunkedEncodingDisabled,
             boolean accelerateModeEnabled,
             boolean payloadSigningEnabled,
             boolean dualstackEnabled) {
+        this.skipContentMd5Check = skipContentMd5Check;
         this.pathStyleAccess = pathStyleAccess;
         this.chunkedEncodingDisabled = chunkedEncodingDisabled;
         this.accelerateModeEnabled = accelerateModeEnabled;
         this.payloadSigningEnabled = payloadSigningEnabled;
         this.dualstackEnabled = dualstackEnabled;
+    }
+
+    /**
+     * <p>
+     * Returns whether the client skips content MD5 check for all requests
+     * and responses.
+     * </p>
+     * <p>
+     * Setting this flag will allow the client to disregard data transfer
+     * integrity check by bypassing content MD5 check for all requests and
+     * responses.
+     * </p>
+     *
+     * @return True if the client should always skip content MD5 check
+     */
+    public boolean isContentMd5CheckSkipped() {
+        return skipContentMd5Check;
     }
 
     /**
@@ -235,7 +282,7 @@ public class S3ClientOptions {
      * this flag will result in path-style access being used for all requests.
      * </p>
      *
-     * @return True is the client should always use path-style access
+     * @return True if the client should always use path-style access
      */
     public boolean isPathStyleAccess() {
         return pathStyleAccess;
@@ -305,6 +352,22 @@ public class S3ClientOptions {
         return payloadSigningEnabled;
     }
 
+    /**
+     * <p>
+     * Returns whether the client skips content MD5 check for all requests
+     * and responses.
+     * </p>
+     * <p>
+     * Setting this flag will allow the client to disregard data transfer
+     * integrity check by bypassing content MD5 check for all requests and
+     * responses.
+     * </p>
+     *
+     * @param skipContentMd5Check True to always skip content MD5 check
+     */
+    public void skipContentMd5Check(boolean skipContentMd5Check) {
+        this.skipContentMd5Check = skipContentMd5Check;
+    }
 
     /**
      * <p>

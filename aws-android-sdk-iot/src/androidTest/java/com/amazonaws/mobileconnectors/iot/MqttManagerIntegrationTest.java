@@ -36,11 +36,11 @@ import com.amazonaws.services.iot.model.DeletePolicyRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointResult;
 import com.amazonaws.services.iot.model.DetachPolicyRequest;
+import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -704,6 +704,23 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals((int)ONE_TWENTY_KB, messages.get(0).length());
     }
 
+    /**
+     * Test Subscribe status callback
+     */
+    private class TestSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
+        String subscriptionStatus = null;
+
+        @Override
+        public void onSuccess() {
+            subscriptionStatus = "Subscription successful";
+        }
+
+        @Override
+        public void onFailure(Throwable exception) {
+            subscriptionStatus = "Subscription failed";
+        }
+    }
+
     @Test
     public void mqttWebSocket() throws Exception {
 
@@ -727,8 +744,10 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
+        TestSubscriptionStatusCallback sscb = new TestSubscriptionStatusCallback();
+
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic("sdk/test/integration/ws", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
+        mqttManager.subscribeToTopic("sdk/test/integration/ws", AWSIotMqttQos.QOS0, sscb, new AWSIotMqttNewMessageCallback() {
             @Override
             public void onMessageArrived(String topic, byte[] data) {
                 messages.add(new String(data));
@@ -736,6 +755,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
         // ensure subscription propagates
         Thread.sleep(2000);
+        assertEquals("Subscription successful", sscb.subscriptionStatus);
         // publish 20 messages
         for (int i=0; i<20; ++i) {
             mqttManager.publishString("integration test " + i, "sdk/test/integration/ws", AWSIotMqttQos.QOS0);
@@ -1124,8 +1144,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             createPolicyRequest.setPolicyDocument(policyDocument);
             this.createPolicyResult = iotClient.createPolicy(createPolicyRequest);
         }  catch (Exception ex) {
-            assertTrue("Error in creating the policy. ",
-                    ex.getMessage().startsWith("Policy cannot be created - name already exists "));
+            assertEquals(ex.getClass(), ResourceAlreadyExistsException.class);
         }
 
         AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
@@ -1135,13 +1154,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     /**
-     * Detatch the policy from the certificate.
+     * Detach the policy from the certificate.
      * Delete the policy.
      * Update certificate status as inactive.
      * Delete the certificate.
      */
     private void deletePolicyAndCertificate() {
-        Log.d(TAG, "Detatching the policy from the certificate.");
+        Log.d(TAG, "Detaching the policy from the certificate.");
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
         detachPolicyRequest.setTarget(this.certResult.getCertificateArn());

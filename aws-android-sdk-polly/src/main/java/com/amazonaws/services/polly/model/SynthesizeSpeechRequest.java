@@ -25,100 +25,23 @@ import com.amazonaws.AmazonWebServiceRequest;
  * must be valid, well-formed SSML. Some alphabets might not be available with
  * all the voices (for example, Cyrillic might not be read at all by English
  * voices) unless phoneme mapping is used. For more information, see <a href=
- * "http://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html"
+ * "https://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html"
  * >How it Works</a>.
  * </p>
  */
 public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * List of one or more pronunciation lexicon names you want the service to
-     * apply during synthesis. Lexicons are applied only if the language of the
-     * lexicon is the same as the language of the voice. For information about
-     * storing lexicons, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     * >PutLexicon</a>.
-     * </p>
-     */
-    private java.util.List<String> lexiconNames;
-
-    /**
-     * <p>
-     * The format in which the returned output will be encoded. For audio
-     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
-     * be json.
-     * </p>
-     * <p>
-     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
-     * channel (mono), little-endian format.
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>standard, neural
      */
-    private String outputFormat;
-
-    /**
-     * <p>
-     * The audio frequency specified in Hz.
-     * </p>
-     * <p>
-     * The valid values for <code>mp3</code> and <code>ogg_vorbis</code> are
-     * "8000", "16000", and "22050". The default value is "22050".
-     * </p>
-     * <p>
-     * Valid values for <code>pcm</code> are "8000" and "16000" The default
-     * value is "16000".
-     * </p>
-     */
-    private String sampleRate;
-
-    /**
-     * <p>
-     * The type of speech marks returned for the input text.
-     * </p>
-     */
-    private java.util.List<String> speechMarkTypes;
-
-    /**
-     * <p>
-     * Input text to synthesize. If you specify <code>ssml</code> as the
-     * <code>TextType</code>, follow the SSML format for the input text.
-     * </p>
-     */
-    private String text;
-
-    /**
-     * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
-     */
-    private String textType;
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     */
-    private String voiceId;
+    private String engine;
 
     /**
      * <p>
@@ -150,116 +73,11 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * apply during synthesis. Lexicons are applied only if the language of the
      * lexicon is the same as the language of the voice. For information about
      * storing lexicons, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * href="https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
      * >PutLexicon</a>.
      * </p>
-     *
-     * @return <p>
-     *         List of one or more pronunciation lexicon names you want the
-     *         service to apply during synthesis. Lexicons are applied only if
-     *         the language of the lexicon is the same as the language of the
-     *         voice. For information about storing lexicons, see <a href=
-     *         "http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     *         >PutLexicon</a>.
-     *         </p>
      */
-    public java.util.List<String> getLexiconNames() {
-        return lexiconNames;
-    }
-
-    /**
-     * <p>
-     * List of one or more pronunciation lexicon names you want the service to
-     * apply during synthesis. Lexicons are applied only if the language of the
-     * lexicon is the same as the language of the voice. For information about
-     * storing lexicons, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     * >PutLexicon</a>.
-     * </p>
-     *
-     * @param lexiconNames <p>
-     *            List of one or more pronunciation lexicon names you want the
-     *            service to apply during synthesis. Lexicons are applied only
-     *            if the language of the lexicon is the same as the language of
-     *            the voice. For information about storing lexicons, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     *            >PutLexicon</a>.
-     *            </p>
-     */
-    public void setLexiconNames(java.util.Collection<String> lexiconNames) {
-        if (lexiconNames == null) {
-            this.lexiconNames = null;
-            return;
-        }
-
-        this.lexiconNames = new java.util.ArrayList<String>(lexiconNames);
-    }
-
-    /**
-     * <p>
-     * List of one or more pronunciation lexicon names you want the service to
-     * apply during synthesis. Lexicons are applied only if the language of the
-     * lexicon is the same as the language of the voice. For information about
-     * storing lexicons, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     * >PutLexicon</a>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param lexiconNames <p>
-     *            List of one or more pronunciation lexicon names you want the
-     *            service to apply during synthesis. Lexicons are applied only
-     *            if the language of the lexicon is the same as the language of
-     *            the voice. For information about storing lexicons, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     *            >PutLexicon</a>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SynthesizeSpeechRequest withLexiconNames(String... lexiconNames) {
-        if (getLexiconNames() == null) {
-            this.lexiconNames = new java.util.ArrayList<String>(lexiconNames.length);
-        }
-        for (String value : lexiconNames) {
-            this.lexiconNames.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * List of one or more pronunciation lexicon names you want the service to
-     * apply during synthesis. Lexicons are applied only if the language of the
-     * lexicon is the same as the language of the voice. For information about
-     * storing lexicons, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     * >PutLexicon</a>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param lexiconNames <p>
-     *            List of one or more pronunciation lexicon names you want the
-     *            service to apply during synthesis. Lexicons are applied only
-     *            if the language of the lexicon is the same as the language of
-     *            the voice. For information about storing lexicons, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
-     *            >PutLexicon</a>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SynthesizeSpeechRequest withLexiconNames(java.util.Collection<String> lexiconNames) {
-        setLexiconNames(lexiconNames);
-        return this;
-    }
+    private java.util.List<String> lexiconNames;
 
     /**
      * <p>
@@ -274,657 +92,195 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
-     *
-     * @return <p>
-     *         The format in which the returned output will be encoded. For
-     *         audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
-     *         marks, this will be json.
-     *         </p>
-     *         <p>
-     *         When pcm is used, the content returned is audio/pcm in a signed
-     *         16-bit, 1 channel (mono), little-endian format.
-     *         </p>
-     * @see OutputFormat
      */
-    public String getOutputFormat() {
-        return outputFormat;
-    }
-
-    /**
-     * <p>
-     * The format in which the returned output will be encoded. For audio
-     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
-     * be json.
-     * </p>
-     * <p>
-     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
-     * channel (mono), little-endian format.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
-     *
-     * @param outputFormat <p>
-     *            The format in which the returned output will be encoded. For
-     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
-     *            marks, this will be json.
-     *            </p>
-     *            <p>
-     *            When pcm is used, the content returned is audio/pcm in a
-     *            signed 16-bit, 1 channel (mono), little-endian format.
-     *            </p>
-     * @see OutputFormat
-     */
-    public void setOutputFormat(String outputFormat) {
-        this.outputFormat = outputFormat;
-    }
-
-    /**
-     * <p>
-     * The format in which the returned output will be encoded. For audio
-     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
-     * be json.
-     * </p>
-     * <p>
-     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
-     * channel (mono), little-endian format.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
-     *
-     * @param outputFormat <p>
-     *            The format in which the returned output will be encoded. For
-     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
-     *            marks, this will be json.
-     *            </p>
-     *            <p>
-     *            When pcm is used, the content returned is audio/pcm in a
-     *            signed 16-bit, 1 channel (mono), little-endian format.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see OutputFormat
-     */
-    public SynthesizeSpeechRequest withOutputFormat(String outputFormat) {
-        this.outputFormat = outputFormat;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The format in which the returned output will be encoded. For audio
-     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
-     * be json.
-     * </p>
-     * <p>
-     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
-     * channel (mono), little-endian format.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
-     *
-     * @param outputFormat <p>
-     *            The format in which the returned output will be encoded. For
-     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
-     *            marks, this will be json.
-     *            </p>
-     *            <p>
-     *            When pcm is used, the content returned is audio/pcm in a
-     *            signed 16-bit, 1 channel (mono), little-endian format.
-     *            </p>
-     * @see OutputFormat
-     */
-    public void setOutputFormat(OutputFormat outputFormat) {
-        this.outputFormat = outputFormat.toString();
-    }
-
-    /**
-     * <p>
-     * The format in which the returned output will be encoded. For audio
-     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
-     * be json.
-     * </p>
-     * <p>
-     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
-     * channel (mono), little-endian format.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
-     *
-     * @param outputFormat <p>
-     *            The format in which the returned output will be encoded. For
-     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
-     *            marks, this will be json.
-     *            </p>
-     *            <p>
-     *            When pcm is used, the content returned is audio/pcm in a
-     *            signed 16-bit, 1 channel (mono), little-endian format.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see OutputFormat
-     */
-    public SynthesizeSpeechRequest withOutputFormat(OutputFormat outputFormat) {
-        this.outputFormat = outputFormat.toString();
-        return this;
-    }
+    private String outputFormat;
 
     /**
      * <p>
      * The audio frequency specified in Hz.
      * </p>
      * <p>
-     * The valid values for <code>mp3</code> and <code>ogg_vorbis</code> are
-     * "8000", "16000", and "22050". The default value is "22050".
+     * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+     * "24000". The default value for standard voices is "22050". The default
+     * value for neural voices is "24000".
      * </p>
      * <p>
-     * Valid values for <code>pcm</code> are "8000" and "16000" The default
-     * value is "16000".
+     * Valid values for pcm are "8000" and "16000" The default value is "16000".
      * </p>
-     *
-     * @return <p>
-     *         The audio frequency specified in Hz.
-     *         </p>
-     *         <p>
-     *         The valid values for <code>mp3</code> and <code>ogg_vorbis</code>
-     *         are "8000", "16000", and "22050". The default value is "22050".
-     *         </p>
-     *         <p>
-     *         Valid values for <code>pcm</code> are "8000" and "16000" The
-     *         default value is "16000".
-     *         </p>
      */
-    public String getSampleRate() {
-        return sampleRate;
-    }
-
-    /**
-     * <p>
-     * The audio frequency specified in Hz.
-     * </p>
-     * <p>
-     * The valid values for <code>mp3</code> and <code>ogg_vorbis</code> are
-     * "8000", "16000", and "22050". The default value is "22050".
-     * </p>
-     * <p>
-     * Valid values for <code>pcm</code> are "8000" and "16000" The default
-     * value is "16000".
-     * </p>
-     *
-     * @param sampleRate <p>
-     *            The audio frequency specified in Hz.
-     *            </p>
-     *            <p>
-     *            The valid values for <code>mp3</code> and
-     *            <code>ogg_vorbis</code> are "8000", "16000", and "22050". The
-     *            default value is "22050".
-     *            </p>
-     *            <p>
-     *            Valid values for <code>pcm</code> are "8000" and "16000" The
-     *            default value is "16000".
-     *            </p>
-     */
-    public void setSampleRate(String sampleRate) {
-        this.sampleRate = sampleRate;
-    }
-
-    /**
-     * <p>
-     * The audio frequency specified in Hz.
-     * </p>
-     * <p>
-     * The valid values for <code>mp3</code> and <code>ogg_vorbis</code> are
-     * "8000", "16000", and "22050". The default value is "22050".
-     * </p>
-     * <p>
-     * Valid values for <code>pcm</code> are "8000" and "16000" The default
-     * value is "16000".
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param sampleRate <p>
-     *            The audio frequency specified in Hz.
-     *            </p>
-     *            <p>
-     *            The valid values for <code>mp3</code> and
-     *            <code>ogg_vorbis</code> are "8000", "16000", and "22050". The
-     *            default value is "22050".
-     *            </p>
-     *            <p>
-     *            Valid values for <code>pcm</code> are "8000" and "16000" The
-     *            default value is "16000".
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SynthesizeSpeechRequest withSampleRate(String sampleRate) {
-        this.sampleRate = sampleRate;
-        return this;
-    }
+    private String sampleRate;
 
     /**
      * <p>
      * The type of speech marks returned for the input text.
      * </p>
-     *
-     * @return <p>
-     *         The type of speech marks returned for the input text.
-     *         </p>
      */
-    public java.util.List<String> getSpeechMarkTypes() {
-        return speechMarkTypes;
-    }
-
-    /**
-     * <p>
-     * The type of speech marks returned for the input text.
-     * </p>
-     *
-     * @param speechMarkTypes <p>
-     *            The type of speech marks returned for the input text.
-     *            </p>
-     */
-    public void setSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
-        if (speechMarkTypes == null) {
-            this.speechMarkTypes = null;
-            return;
-        }
-
-        this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes);
-    }
-
-    /**
-     * <p>
-     * The type of speech marks returned for the input text.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param speechMarkTypes <p>
-     *            The type of speech marks returned for the input text.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SynthesizeSpeechRequest withSpeechMarkTypes(String... speechMarkTypes) {
-        if (getSpeechMarkTypes() == null) {
-            this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes.length);
-        }
-        for (String value : speechMarkTypes) {
-            this.speechMarkTypes.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The type of speech marks returned for the input text.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param speechMarkTypes <p>
-     *            The type of speech marks returned for the input text.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SynthesizeSpeechRequest withSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
-        setSpeechMarkTypes(speechMarkTypes);
-        return this;
-    }
+    private java.util.List<String> speechMarkTypes;
 
     /**
      * <p>
      * Input text to synthesize. If you specify <code>ssml</code> as the
      * <code>TextType</code>, follow the SSML format for the input text.
      * </p>
+     */
+    private String text;
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     */
+    private String textType;
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     */
+    private String voiceId;
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
      *
      * @return <p>
-     *         Input text to synthesize. If you specify <code>ssml</code> as the
-     *         <code>TextType</code>, follow the SSML format for the input text.
+     *         Specifies the engine (<code>standard</code> or
+     *         <code>neural</code>) for Amazon Polly to use when processing
+     *         input text for speech synthesis. Using a voice that is not
+     *         supported for the engine selected will result in an error.
      *         </p>
+     * @see Engine
      */
-    public String getText() {
-        return text;
+    public String getEngine() {
+        return engine;
     }
 
     /**
      * <p>
-     * Input text to synthesize. If you specify <code>ssml</code> as the
-     * <code>TextType</code>, follow the SSML format for the input text.
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
      *
-     * @param text <p>
-     *            Input text to synthesize. If you specify <code>ssml</code> as
-     *            the <code>TextType</code>, follow the SSML format for the
-     *            input text.
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) for Amazon Polly to use when processing
+     *            input text for speech synthesis. Using a voice that is not
+     *            supported for the engine selected will result in an error.
      *            </p>
+     * @see Engine
      */
-    public void setText(String text) {
-        this.text = text;
+    public void setEngine(String engine) {
+        this.engine = engine;
     }
 
     /**
      * <p>
-     * Input text to synthesize. If you specify <code>ssml</code> as the
-     * <code>TextType</code>, follow the SSML format for the input text.
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
      *
-     * @param text <p>
-     *            Input text to synthesize. If you specify <code>ssml</code> as
-     *            the <code>TextType</code>, follow the SSML format for the
-     *            input text.
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) for Amazon Polly to use when processing
+     *            input text for speech synthesis. Using a voice that is not
+     *            supported for the engine selected will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
+     * @see Engine
      */
-    public SynthesizeSpeechRequest withText(String text) {
-        this.text = text;
+    public SynthesizeSpeechRequest withEngine(String engine) {
+        this.engine = engine;
         return this;
     }
 
     /**
      * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
+     * <b>Allowed Values: </b>standard, neural
      *
-     * @return <p>
-     *         Specifies whether the input text is plain text or SSML. The
-     *         default value is plain text. For more information, see <a
-     *         href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *         SSML</a>.
-     *         </p>
-     * @see TextType
-     */
-    public String getTextType() {
-        return textType;
-    }
-
-    /**
-     * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
-     *
-     * @param textType <p>
-     *            Specifies whether the input text is plain text or SSML. The
-     *            default value is plain text. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *            SSML</a>.
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) for Amazon Polly to use when processing
+     *            input text for speech synthesis. Using a voice that is not
+     *            supported for the engine selected will result in an error.
      *            </p>
-     * @see TextType
+     * @see Engine
      */
-    public void setTextType(String textType) {
-        this.textType = textType;
+    public void setEngine(Engine engine) {
+        this.engine = engine.toString();
     }
 
     /**
      * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
+     * Amazon Polly to use when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will result
+     * in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
+     * <b>Allowed Values: </b>standard, neural
      *
-     * @param textType <p>
-     *            Specifies whether the input text is plain text or SSML. The
-     *            default value is plain text. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *            SSML</a>.
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) for Amazon Polly to use when processing
+     *            input text for speech synthesis. Using a voice that is not
+     *            supported for the engine selected will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see TextType
+     * @see Engine
      */
-    public SynthesizeSpeechRequest withTextType(String textType) {
-        this.textType = textType;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
-     *
-     * @param textType <p>
-     *            Specifies whether the input text is plain text or SSML. The
-     *            default value is plain text. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *            SSML</a>.
-     *            </p>
-     * @see TextType
-     */
-    public void setTextType(TextType textType) {
-        this.textType = textType.toString();
-    }
-
-    /**
-     * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
-     *
-     * @param textType <p>
-     *            Specifies whether the input text is plain text or SSML. The
-     *            default value is plain text. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *            SSML</a>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see TextType
-     */
-    public SynthesizeSpeechRequest withTextType(TextType textType) {
-        this.textType = textType.toString();
-        return this;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     *
-     * @return <p>
-     *         Voice ID to use for the synthesis. You can get a list of
-     *         available voice IDs by calling the <a href=
-     *         "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *         >DescribeVoices</a> operation.
-     *         </p>
-     * @see VoiceId
-     */
-    public String getVoiceId() {
-        return voiceId;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @see VoiceId
-     */
-    public void setVoiceId(String voiceId) {
-        this.voiceId = voiceId;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see VoiceId
-     */
-    public SynthesizeSpeechRequest withVoiceId(String voiceId) {
-        this.voiceId = voiceId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @see VoiceId
-     */
-    public void setVoiceId(VoiceId voiceId) {
-        this.voiceId = voiceId.toString();
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
-     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
-     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
-     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
-     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
-     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
-     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see VoiceId
-     */
-    public SynthesizeSpeechRequest withVoiceId(VoiceId voiceId) {
-        this.voiceId = voiceId.toString();
+    public SynthesizeSpeechRequest withEngine(Engine engine) {
+        this.engine = engine.toString();
         return this;
     }
 
@@ -1164,6 +520,791 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * List of one or more pronunciation lexicon names you want the service to
+     * apply during synthesis. Lexicons are applied only if the language of the
+     * lexicon is the same as the language of the voice. For information about
+     * storing lexicons, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * >PutLexicon</a>.
+     * </p>
+     *
+     * @return <p>
+     *         List of one or more pronunciation lexicon names you want the
+     *         service to apply during synthesis. Lexicons are applied only if
+     *         the language of the lexicon is the same as the language of the
+     *         voice. For information about storing lexicons, see <a href=
+     *         "https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     *         >PutLexicon</a>.
+     *         </p>
+     */
+    public java.util.List<String> getLexiconNames() {
+        return lexiconNames;
+    }
+
+    /**
+     * <p>
+     * List of one or more pronunciation lexicon names you want the service to
+     * apply during synthesis. Lexicons are applied only if the language of the
+     * lexicon is the same as the language of the voice. For information about
+     * storing lexicons, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * >PutLexicon</a>.
+     * </p>
+     *
+     * @param lexiconNames <p>
+     *            List of one or more pronunciation lexicon names you want the
+     *            service to apply during synthesis. Lexicons are applied only
+     *            if the language of the lexicon is the same as the language of
+     *            the voice. For information about storing lexicons, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     *            >PutLexicon</a>.
+     *            </p>
+     */
+    public void setLexiconNames(java.util.Collection<String> lexiconNames) {
+        if (lexiconNames == null) {
+            this.lexiconNames = null;
+            return;
+        }
+
+        this.lexiconNames = new java.util.ArrayList<String>(lexiconNames);
+    }
+
+    /**
+     * <p>
+     * List of one or more pronunciation lexicon names you want the service to
+     * apply during synthesis. Lexicons are applied only if the language of the
+     * lexicon is the same as the language of the voice. For information about
+     * storing lexicons, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * >PutLexicon</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lexiconNames <p>
+     *            List of one or more pronunciation lexicon names you want the
+     *            service to apply during synthesis. Lexicons are applied only
+     *            if the language of the lexicon is the same as the language of
+     *            the voice. For information about storing lexicons, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     *            >PutLexicon</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withLexiconNames(String... lexiconNames) {
+        if (getLexiconNames() == null) {
+            this.lexiconNames = new java.util.ArrayList<String>(lexiconNames.length);
+        }
+        for (String value : lexiconNames) {
+            this.lexiconNames.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * List of one or more pronunciation lexicon names you want the service to
+     * apply during synthesis. Lexicons are applied only if the language of the
+     * lexicon is the same as the language of the voice. For information about
+     * storing lexicons, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * >PutLexicon</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lexiconNames <p>
+     *            List of one or more pronunciation lexicon names you want the
+     *            service to apply during synthesis. Lexicons are applied only
+     *            if the language of the lexicon is the same as the language of
+     *            the voice. For information about storing lexicons, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     *            >PutLexicon</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withLexiconNames(java.util.Collection<String> lexiconNames) {
+        setLexiconNames(lexiconNames);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
+     * </p>
+     * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     *
+     * @return <p>
+     *         The format in which the returned output will be encoded. For
+     *         audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *         marks, this will be json.
+     *         </p>
+     *         <p>
+     *         When pcm is used, the content returned is audio/pcm in a signed
+     *         16-bit, 1 channel (mono), little-endian format.
+     *         </p>
+     * @see OutputFormat
+     */
+    public String getOutputFormat() {
+        return outputFormat;
+    }
+
+    /**
+     * <p>
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
+     * </p>
+     * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     *
+     * @param outputFormat <p>
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
+     *            </p>
+     * @see OutputFormat
+     */
+    public void setOutputFormat(String outputFormat) {
+        this.outputFormat = outputFormat;
+    }
+
+    /**
+     * <p>
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
+     * </p>
+     * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     *
+     * @param outputFormat <p>
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OutputFormat
+     */
+    public SynthesizeSpeechRequest withOutputFormat(String outputFormat) {
+        this.outputFormat = outputFormat;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
+     * </p>
+     * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     *
+     * @param outputFormat <p>
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
+     *            </p>
+     * @see OutputFormat
+     */
+    public void setOutputFormat(OutputFormat outputFormat) {
+        this.outputFormat = outputFormat.toString();
+    }
+
+    /**
+     * <p>
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
+     * </p>
+     * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
+     *
+     * @param outputFormat <p>
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OutputFormat
+     */
+    public SynthesizeSpeechRequest withOutputFormat(OutputFormat outputFormat) {
+        this.outputFormat = outputFormat.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The audio frequency specified in Hz.
+     * </p>
+     * <p>
+     * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+     * "24000". The default value for standard voices is "22050". The default
+     * value for neural voices is "24000".
+     * </p>
+     * <p>
+     * Valid values for pcm are "8000" and "16000" The default value is "16000".
+     * </p>
+     *
+     * @return <p>
+     *         The audio frequency specified in Hz.
+     *         </p>
+     *         <p>
+     *         The valid values for mp3 and ogg_vorbis are "8000", "16000",
+     *         "22050", and "24000". The default value for standard voices is
+     *         "22050". The default value for neural voices is "24000".
+     *         </p>
+     *         <p>
+     *         Valid values for pcm are "8000" and "16000" The default value is
+     *         "16000".
+     *         </p>
+     */
+    public String getSampleRate() {
+        return sampleRate;
+    }
+
+    /**
+     * <p>
+     * The audio frequency specified in Hz.
+     * </p>
+     * <p>
+     * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+     * "24000". The default value for standard voices is "22050". The default
+     * value for neural voices is "24000".
+     * </p>
+     * <p>
+     * Valid values for pcm are "8000" and "16000" The default value is "16000".
+     * </p>
+     *
+     * @param sampleRate <p>
+     *            The audio frequency specified in Hz.
+     *            </p>
+     *            <p>
+     *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
+     *            "22050", and "24000". The default value for standard voices is
+     *            "22050". The default value for neural voices is "24000".
+     *            </p>
+     *            <p>
+     *            Valid values for pcm are "8000" and "16000" The default value
+     *            is "16000".
+     *            </p>
+     */
+    public void setSampleRate(String sampleRate) {
+        this.sampleRate = sampleRate;
+    }
+
+    /**
+     * <p>
+     * The audio frequency specified in Hz.
+     * </p>
+     * <p>
+     * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+     * "24000". The default value for standard voices is "22050". The default
+     * value for neural voices is "24000".
+     * </p>
+     * <p>
+     * Valid values for pcm are "8000" and "16000" The default value is "16000".
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sampleRate <p>
+     *            The audio frequency specified in Hz.
+     *            </p>
+     *            <p>
+     *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
+     *            "22050", and "24000". The default value for standard voices is
+     *            "22050". The default value for neural voices is "24000".
+     *            </p>
+     *            <p>
+     *            Valid values for pcm are "8000" and "16000" The default value
+     *            is "16000".
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withSampleRate(String sampleRate) {
+        this.sampleRate = sampleRate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     *
+     * @return <p>
+     *         The type of speech marks returned for the input text.
+     *         </p>
+     */
+    public java.util.List<String> getSpeechMarkTypes() {
+        return speechMarkTypes;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     */
+    public void setSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        if (speechMarkTypes == null) {
+            this.speechMarkTypes = null;
+            return;
+        }
+
+        this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes);
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withSpeechMarkTypes(String... speechMarkTypes) {
+        if (getSpeechMarkTypes() == null) {
+            this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes.length);
+        }
+        for (String value : speechMarkTypes) {
+            this.speechMarkTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        setSpeechMarkTypes(speechMarkTypes);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Input text to synthesize. If you specify <code>ssml</code> as the
+     * <code>TextType</code>, follow the SSML format for the input text.
+     * </p>
+     *
+     * @return <p>
+     *         Input text to synthesize. If you specify <code>ssml</code> as the
+     *         <code>TextType</code>, follow the SSML format for the input text.
+     *         </p>
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * <p>
+     * Input text to synthesize. If you specify <code>ssml</code> as the
+     * <code>TextType</code>, follow the SSML format for the input text.
+     * </p>
+     *
+     * @param text <p>
+     *            Input text to synthesize. If you specify <code>ssml</code> as
+     *            the <code>TextType</code>, follow the SSML format for the
+     *            input text.
+     *            </p>
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * <p>
+     * Input text to synthesize. If you specify <code>ssml</code> as the
+     * <code>TextType</code>, follow the SSML format for the input text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param text <p>
+     *            Input text to synthesize. If you specify <code>ssml</code> as
+     *            the <code>TextType</code>, follow the SSML format for the
+     *            input text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @return <p>
+     *         Specifies whether the input text is plain text or SSML. The
+     *         default value is plain text. For more information, see <a
+     *         href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html"
+     *         >Using SSML</a>.
+     *         </p>
+     * @see TextType
+     */
+    public String getTextType() {
+        return textType;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @param textType <p>
+     *            Specifies whether the input text is plain text or SSML. The
+     *            default value is plain text. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     *            SSML</a>.
+     *            </p>
+     * @see TextType
+     */
+    public void setTextType(String textType) {
+        this.textType = textType;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @param textType <p>
+     *            Specifies whether the input text is plain text or SSML. The
+     *            default value is plain text. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     *            SSML</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TextType
+     */
+    public SynthesizeSpeechRequest withTextType(String textType) {
+        this.textType = textType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @param textType <p>
+     *            Specifies whether the input text is plain text or SSML. The
+     *            default value is plain text. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     *            SSML</a>.
+     *            </p>
+     * @see TextType
+     */
+    public void setTextType(TextType textType) {
+        this.textType = textType.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @param textType <p>
+     *            Specifies whether the input text is plain text or SSML. The
+     *            default value is plain text. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     *            SSML</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TextType
+     */
+    public SynthesizeSpeechRequest withTextType(TextType textType) {
+        this.textType = textType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     *
+     * @return <p>
+     *         Voice ID to use for the synthesis. You can get a list of
+     *         available voice IDs by calling the <a href=
+     *         "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *         >DescribeVoices</a> operation.
+     *         </p>
+     * @see VoiceId
+     */
+    public String getVoiceId() {
+        return voiceId;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @see VoiceId
+     */
+    public void setVoiceId(String voiceId) {
+        this.voiceId = voiceId;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VoiceId
+     */
+    public SynthesizeSpeechRequest withVoiceId(String voiceId) {
+        this.voiceId = voiceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @see VoiceId
+     */
+    public void setVoiceId(VoiceId voiceId) {
+        this.voiceId = voiceId.toString();
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Carla, Carmen,
+     * Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
+     * Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna, Joey,
+     * Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Mads, Maja,
+     * Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja, Nicole,
+     * Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon, Takumi,
+     * Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VoiceId
+     */
+    public SynthesizeSpeechRequest withVoiceId(VoiceId voiceId) {
+        this.voiceId = voiceId.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1174,6 +1315,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getEngine() != null)
+            sb.append("Engine: " + getEngine() + ",");
+        if (getLanguageCode() != null)
+            sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getLexiconNames() != null)
             sb.append("LexiconNames: " + getLexiconNames() + ",");
         if (getOutputFormat() != null)
@@ -1187,9 +1332,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
         if (getTextType() != null)
             sb.append("TextType: " + getTextType() + ",");
         if (getVoiceId() != null)
-            sb.append("VoiceId: " + getVoiceId() + ",");
-        if (getLanguageCode() != null)
-            sb.append("LanguageCode: " + getLanguageCode());
+            sb.append("VoiceId: " + getVoiceId());
         sb.append("}");
         return sb.toString();
     }
@@ -1199,6 +1342,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getEngine() == null) ? 0 : getEngine().hashCode());
+        hashCode = prime * hashCode
+                + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getLexiconNames() == null) ? 0 : getLexiconNames().hashCode());
         hashCode = prime * hashCode
@@ -1209,8 +1355,6 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode + ((getTextType() == null) ? 0 : getTextType().hashCode());
         hashCode = prime * hashCode + ((getVoiceId() == null) ? 0 : getVoiceId().hashCode());
-        hashCode = prime * hashCode
-                + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         return hashCode;
     }
 
@@ -1225,6 +1369,15 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
             return false;
         SynthesizeSpeechRequest other = (SynthesizeSpeechRequest) obj;
 
+        if (other.getEngine() == null ^ this.getEngine() == null)
+            return false;
+        if (other.getEngine() != null && other.getEngine().equals(this.getEngine()) == false)
+            return false;
+        if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
+            return false;
+        if (other.getLanguageCode() != null
+                && other.getLanguageCode().equals(this.getLanguageCode()) == false)
+            return false;
         if (other.getLexiconNames() == null ^ this.getLexiconNames() == null)
             return false;
         if (other.getLexiconNames() != null
@@ -1256,11 +1409,6 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
         if (other.getVoiceId() == null ^ this.getVoiceId() == null)
             return false;
         if (other.getVoiceId() != null && other.getVoiceId().equals(this.getVoiceId()) == false)
-            return false;
-        if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
-            return false;
-        if (other.getLanguageCode() != null
-                && other.getLanguageCode().equals(this.getLanguageCode()) == false)
             return false;
         return true;
     }
