@@ -86,8 +86,6 @@ public class PinpointManager {
 
             final AmazonPinpointClient targetingServiceClient = new AmazonPinpointClient(credentialsProvider, config.getClientConfiguration());
 
-            INTERNET_PERMISSION_VALIDATOR.validate(appContext);
-            ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR.validate(appContext);
             ENCODING_VALIDATOR.validate();
 
             this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDK_INFO, config);
