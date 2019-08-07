@@ -85,7 +85,12 @@ public class LogFactory {
      */
     private static String getTruncatedLogTag(String logTag) {
         if (logTag.length() > 23) {
-            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
+            if (checkApacheCommonsLoggingExists()) {
+                Log log = new ApacheCommonsLogging(TAG);
+                log.warn("Truncating log tag length as it exceed 23, the limit imposed by Android on certain API Levels");
+            } else {
+                android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by Android on certain API Levels");
+            }
             logTag  =logTag.substring(0, 23);
         }
 
