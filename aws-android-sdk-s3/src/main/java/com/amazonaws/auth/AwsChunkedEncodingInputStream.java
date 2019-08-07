@@ -66,7 +66,7 @@ public final class AwsChunkedEncodingInputStream extends SdkInputStream {
     private boolean isAtStart = true;
     private boolean isTerminating = false;
 
-    private static final Log log = LogFactory.getLog("AwsChunkedEIS");
+    private static final Log log = LogFactory.getLog(AwsChunkedEncodingInputStream.class);
 
     /**
      * A wrapper of InputStream that implements pseudo-chunked-encoding. Each
