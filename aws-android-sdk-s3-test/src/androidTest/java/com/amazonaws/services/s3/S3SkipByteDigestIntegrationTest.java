@@ -20,6 +20,8 @@ import static com.amazonaws.services.s3.internal.crypto.CryptoTestUtils.deleteBu
 import static com.amazonaws.services.s3.internal.crypto.CryptoTestUtils.tempBucketName;
 import static com.amazonaws.services.s3.internal.crypto.CryptoTestUtils.tryCreateBucket;
 
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.testutils.util.ConstantInputStream;
@@ -45,14 +47,15 @@ public class S3SkipByteDigestIntegrationTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        s3 = new AmazonS3Client(awsTestCredentials());
+        s3 = new AmazonS3Client(awsTestCredentials(), Region.getRegion(Regions.DEFAULT_REGION));
         tryCreateBucket(s3, TEST_BUCKET);
     }
 
     @AfterClass
     public static void cleanup() throws Exception {
         if (cleanup) {
-            final AmazonS3Client s3 = new AmazonS3Client(awsTestCredentials());
+            final AmazonS3Client s3 = new AmazonS3Client(awsTestCredentials(),
+                    Region.getRegion(Regions.DEFAULT_REGION));
             deleteBucketAndAllContents(s3, TEST_BUCKET);
         }
         s3.shutdown();

@@ -1,5 +1,14 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
+
+### Mis. Updates
+
+- **Breaking Changes**
+  - Removed deprecated SDKGlobalConfiguration options:
+    - `ENABLE_S3_SIGV4_SYSTEM_PROPERTY`
+    - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
+
 ## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
 
 ### New Features

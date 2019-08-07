@@ -94,8 +94,7 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
         tempData = tempDataBuffer(1000);
 
         STSSessionCredentialsProvider provider = new STSSessionCredentialsProvider(credentials);
-        s3 = new AmazonS3Client(provider);
-        s3.setRegion(Region.getRegion(Regions.US_WEST_2));
+        s3 = new AmazonS3Client(provider, Region.getRegion(Regions.US_WEST_2));
         s3.createBucket(bucketName);
 
         ObjectMetadata metadata = null;

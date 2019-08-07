@@ -134,7 +134,7 @@ private class S3Example extends AsyncTask<Void,Void,Void>{
                 Regions.SELECT_YOUR_REGION // Region enum
             );
 
-            AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider);
+            AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider, Regions.getRegion(Regions.SELECT_YOUR_REGION));
             File fileToUpload = YOUR_FILE;
             //(Replace "MY-BUCKET" with your S3 bucket name, and "MY-OBJECT-KEY" with whatever you would like to name the file in S3)
             PutObjectRequest putRequest = new PutObjectRequest("MY-BUCKET", "MY-OBJECT-KEY",
