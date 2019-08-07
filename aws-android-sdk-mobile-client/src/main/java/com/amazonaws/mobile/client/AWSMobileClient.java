@@ -1787,7 +1787,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         callback.onResult(new SignUpResult(
                                 true,
                                 null,
-                                ""
+                                null
                         ));
                         signUpUser = null;
                     }
@@ -1845,7 +1845,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         callback.onResult(new SignUpResult(
                                 false,
                                 userCodeDeliveryDetails,
-                                ""
+                                null
                         ));
                     }
 
