@@ -449,7 +449,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     @Ignore("causes a dns exception in some cases")
     @Test
     public void testNonUsRegionBucketNamesWithPeriods() {
-        final AmazonS3 regionalClient = new AmazonS3Client(credentials);
+        final AmazonS3 regionalClient = new AmazonS3Client(credentials, Region.getRegion(Regions.SA_EAST_1));
         regionalClient.setEndpoint("s3-sa-east-1.amazonaws.com");
         final String regionalBucketName = bucketName + ".with.periods.regional";
         try {
@@ -517,7 +517,8 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     public void testGetObjectWithClientSetToNullBeforeReadingFromInputStream()
             throws Exception {
 
-        AmazonS3 s3Local = new AmazonS3Client(credentials);
+        // Matches the default client set up in S3IntegrationTestBase
+        AmazonS3 s3Local = new AmazonS3Client(credentials, Region.getRegion(Regions.US_WEST_1));
 
         final S3Object obj = s3Local.getObject(bucketName, key);
 
@@ -559,9 +560,11 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testRequesterPays() throws InterruptedException {
 
-        final AmazonS3Client requester = new AmazonS3Client(
-                new PropertiesFileCredentialsProvider(
-                        requesterPaysCredentialsFilePath));
+        PropertiesFileCredentialsProvider requesterPaysCredentialsProvider =
+                new PropertiesFileCredentialsProvider(requesterPaysCredentialsFilePath);
+
+        final AmazonS3Client requester = new AmazonS3Client(requesterPaysCredentialsProvider,
+                Region.getRegion(Regions.DEFAULT_REGION));
 
         final Owner owner = requester.getS3AccountOwner();
         final String id = owner.getId();

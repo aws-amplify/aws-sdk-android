@@ -42,10 +42,8 @@ public abstract class DynamoDBS3IntegrationTestBase extends DynamoDBIntegrationT
     @BeforeClass
     public static void setUp() throws Exception {
         DynamoDBIntegrationTestBase.setUp();
-        s3East = new AmazonS3Client(credentials);
-        s3East.setRegion(Region.getRegion(Regions.US_EAST_1));
-        s3West = new AmazonS3Client(credentials);
-        s3West.setRegion(Region.getRegion(Regions.US_WEST_2));
+        s3East = new AmazonS3Client(credentials, Region.getRegion(Regions.US_EAST_1));
+        s3West = new AmazonS3Client(credentials, Region.getRegion(Regions.US_WEST_2));
 
         createBucket(s3East, EAST_BUCKET);
         createBucket(s3West, WEST_BUCKET);

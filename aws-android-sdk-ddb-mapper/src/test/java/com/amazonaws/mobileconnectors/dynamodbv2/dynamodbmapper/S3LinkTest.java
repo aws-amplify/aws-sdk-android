@@ -27,6 +27,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
 import com.amazonaws.metrics.RequestMetricCollector;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.AccessControlList;
@@ -63,9 +64,11 @@ public class S3LinkTest
     @Before
     public void setUp() {
         AWSCredentials credentials = new BasicAWSCredentials("mock", "mock");
+        StaticCredentialsProvider s3CredentialProvider = new StaticCredentialsProvider(credentials);
+
         mockDDB = EasyMock.createMock(AmazonDynamoDB.class);
         mockS3 = EasyMock.createMock(AmazonS3Client.class);
-        mapper = new DynamoDBMapper(mockDDB, new StaticCredentialsProvider(credentials));
+        mapper = new DynamoDBMapper(mockDDB, s3CredentialProvider);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -268,9 +271,13 @@ public class S3LinkTest
     @Test
     public void testGetURL() {
 
-        AmazonS3Client realS3 = new AmazonS3Client();
+        AWSCredentials credentials = new BasicAWSCredentials("mock", "mock");
+        StaticCredentialsProvider s3CredentialProvider = new StaticCredentialsProvider(credentials);
+        AmazonS3Client realS3 = new AmazonS3Client(s3CredentialProvider,
+                com.amazonaws.regions.Region.getRegion(Regions.US_WEST_2));
+
         mapper.getS3ClientCache().useClient(realS3);
-        S3Link link = mapper.createS3Link(bucket, key);
+        S3Link link = mapper.createS3Link(Region.US_West_2, bucket, key);
 
         URL createdURL = realS3.getUrl(bucket, key);
         URL retrievedURL = link.getUrl();
@@ -280,9 +287,13 @@ public class S3LinkTest
 
     @Test
     public void testGetTransferManager() {
-        AmazonS3Client realS3 = new AmazonS3Client();
+        AWSCredentials credentials = new BasicAWSCredentials("mock", "mock");
+        StaticCredentialsProvider s3CredentialProvider = new StaticCredentialsProvider(credentials);
+        AmazonS3Client realS3 = new AmazonS3Client(s3CredentialProvider,
+                com.amazonaws.regions.Region.getRegion(Regions.US_WEST_2));
+
         mapper.getS3ClientCache().useClient(realS3);
-        S3Link link = mapper.createS3Link(bucket, key);
+        S3Link link = mapper.createS3Link(Region.US_West_2, bucket, key);
 
         TransferManager tm = link.getTransferManager();
 

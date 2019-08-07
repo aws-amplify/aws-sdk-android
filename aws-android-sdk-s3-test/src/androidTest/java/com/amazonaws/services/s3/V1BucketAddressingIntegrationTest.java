@@ -19,6 +19,8 @@ import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
 import com.amazonaws.http.ExecutionContext;
 import com.amazonaws.http.HttpMethodName;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.internal.S3ErrorResponseHandler;
 import com.amazonaws.services.s3.internal.S3XmlResponseHandler;
@@ -118,7 +120,7 @@ public class V1BucketAddressingIntegrationTest extends S3IntegrationTestBase {
      */
     @SuppressWarnings("static-access")
     private void createV1AddressedBucket(String bucketName) throws Exception {
-        new AmazonS3Client(AWSTestBase.credentials) {
+        new AmazonS3Client(AWSTestBase.credentials, Region.getRegion(Regions.DEFAULT_REGION)) {
             public void createV1AddressedBucket(String bucketName) throws Exception {
                 final Request<Void> request = new DefaultRequest<Void>(
                         Constants.S3_SERVICE_DISPLAY_NAME);

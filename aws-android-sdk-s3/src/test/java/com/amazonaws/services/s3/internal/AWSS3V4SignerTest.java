@@ -51,17 +51,6 @@ import java.util.List;
 
 public class AWSS3V4SignerTest {
 
-    @Before
-    public void setup() {
-        System.setProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY, "true");
-
-    }
-
-    @After
-    public void teardown() {
-        System.clearProperty(SDKGlobalConfiguration.ENFORCE_S3_SIGV4_SYSTEM_PROPERTY);
-    }
-
     @Test
     public void testSignPutObject() throws URISyntaxException {
         final AWSS3V4Signer signer = new S3SignerWithDateOverride(new Date(1431115356859L));
