@@ -2,7 +2,16 @@
 
 ## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
-### Mis. Updates
+### New Features
+
+- **AWS Mobile Client**
+  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID)
+
+- **Amazon CognitoIdentityProvider**
+  - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
+  - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
+
+### Misc. Updates
 
 - **Breaking Changes**
   - Removed deprecated SDKGlobalConfiguration options:
