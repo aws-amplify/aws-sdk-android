@@ -25,7 +25,6 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.SDKInfo;
 import com.amazonaws.mobileconnectors.pinpoint.internal.validate.EncodingValidator;
-import com.amazonaws.mobileconnectors.pinpoint.internal.validate.PermissionValidator;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.DeviceTokenRegisteredHandler;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
@@ -52,9 +51,6 @@ public class PinpointManager {
     private static final String SDK_NAME = "aws-sdk-android";
     private static final SDKInfo SDK_INFO = new SDKInfo(SDK_NAME, SDK_VERSION);
     private static final Log log = LogFactory.getLog(PinpointManager.class);
-    private static final PermissionValidator INTERNET_PERMISSION_VALIDATOR = new PermissionValidator("android.permission.INTERNET");
-    private static final PermissionValidator ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR = new PermissionValidator(
-        "android.permission.ACCESS_NETWORK_STATE");
     private static final EncodingValidator ENCODING_VALIDATOR = new EncodingValidator("UTF-8");
 
     private final PinpointContext pinpointContext;
