@@ -35,15 +35,7 @@ public class LogFactory {
      * @return logger
      */
     public static synchronized Log getLog(Class clazz) {
-
-        String logTag = clazz.getSimpleName();
-        /** Truncate if length is greater than 23. This is to satisfy the restriction
-        imposed by android on API level 23 through 26 of maximum log tag length of 23. */
-        if (logTag.length() > 23) {
-            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
-            logTag  =logTag.substring(0, 23);
-        }
-        return getLog(logTag);
+        return getLog(getTruncatedLogTag(clazz.getSimpleName()));
     }
 
     /**
@@ -53,10 +45,7 @@ public class LogFactory {
      * @return logger
      */
     public static synchronized Log getLog(String logTag) {
-        if (logTag.length() > 23) {
-            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
-            logTag  = logTag.substring(0, 23);
-        }
+        logTag = getTruncatedLogTag(logTag);
 
         Log log = logMap.get(logTag);
         if (log == null) {
@@ -86,5 +75,20 @@ public class LogFactory {
             android.util.Log.e(TAG, ex.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Truncate log tag to be within 23 characters in length as required by Android on certain API levels.
+     *
+     * @param logTag Log tag to be truncated
+     * @return truncated log tag
+     */
+    private static String getTruncatedLogTag(String logTag) {
+        if (logTag.length() > 23) {
+            android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by android on certain API Levels");
+            logTag  =logTag.substring(0, 23);
+        }
+
+        return logTag;
     }
 }
