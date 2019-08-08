@@ -13,7 +13,6 @@
   - Removed deprecated SDKGlobalConfiguration options:
     - `ENABLE_S3_SIGV4_SYSTEM_PROPERTY`
     - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
-
 - Remove unused `mfaOption` property from `CognitoUserAttributes` class
 
 ### Bug Fixes
