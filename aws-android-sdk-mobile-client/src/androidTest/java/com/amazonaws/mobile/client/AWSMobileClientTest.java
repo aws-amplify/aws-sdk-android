@@ -260,6 +260,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());
         }
+        assertNotNull(signUpResult.getUserSub());
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         if (signInResult.getSignInState() == SignInState.DONE) {
             // Done
