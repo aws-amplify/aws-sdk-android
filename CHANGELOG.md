@@ -5,7 +5,7 @@
 ### Bug Fixes
 
 - **AWS Core Runtime**
-  - Update `LogFactory.getLog` tot automatically truncate the log tag to be within 23 character limit imposed by Android on certain API Levels. See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+  - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
 
 ### Mis. Updates
 
