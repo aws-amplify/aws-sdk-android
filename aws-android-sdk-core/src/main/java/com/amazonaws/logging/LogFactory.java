@@ -23,6 +23,11 @@ import java.util.HashMap;
  * for backwards compatibility.
  */
 public class LogFactory {
+
+    /**
+     * NOTE : Any changes to rename this class should ensure that this log tag is no longer than 23.
+     * Log tag longer than 23 will cause it to break on Android API level <= 23.
+     */
     private static final String TAG = LogFactory.class.getSimpleName();
     private static final String APACHE_COMMONS_LOGGING_LOGFACTORY = "org.apache.commons.logging.LogFactory";
 
