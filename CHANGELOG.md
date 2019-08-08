@@ -2,6 +2,11 @@
 
 ## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
+### Bug Fixes
+
+- **AWS Core Runtime**
+  - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+
 ### Mis. Updates
 
 - **Breaking Changes**
