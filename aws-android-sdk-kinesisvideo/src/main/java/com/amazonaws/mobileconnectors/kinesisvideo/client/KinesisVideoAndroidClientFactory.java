@@ -102,6 +102,26 @@ public final class KinesisVideoAndroidClientFactory {
         final KinesisVideoCredentialsProvider kinesisVideoCredentialsProvider =
                 new KinesisVideoCredentialsProviderImpl(awsCredentialsProvider, log);
 
+        return createKinesisVideoClient(context, regions,kinesisVideoCredentialsProvider);
+    }
+
+    /**
+     * Create KinesisVideo client.
+     *
+     * @param context Android context to use
+     * @param regions Regions object
+     * @param KinesisVideoCredentialsProvider Credentials provider
+     * @return
+     * @throws KinesisVideoException
+     */
+    public static KinesisVideoClient createKinesisVideoClient(final @NonNull Context context,
+                                                              final @NonNull Regions regions,
+                                                              final @NonNull KinesisVideoCredentialsProvider kinesisVideoCredentialsProvider)
+            throws KinesisVideoException {
+        final OutputChannel outputChannel = new AndroidLogOutputChannel();
+
+        final Log log = new Log(outputChannel, LogLevel.VERBOSE, LOG_TAG);
+
         final KinesisVideoClientConfiguration configuration = KinesisVideoClientConfiguration.builder()
                 .withRegion(regions.getName())
                 .withCredentialsProvider(kinesisVideoCredentialsProvider)
