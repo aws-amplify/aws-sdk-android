@@ -91,7 +91,7 @@ public class LogFactory {
             } else {
                 android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by Android on certain API Levels");
             }
-            logTag  =logTag.substring(0, 23);
+            logTag = logTag.substring(0, 23);
         }
 
         return logTag;
