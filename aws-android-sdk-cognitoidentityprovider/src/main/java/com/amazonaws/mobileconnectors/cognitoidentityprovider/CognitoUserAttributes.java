@@ -33,9 +33,6 @@ public class CognitoUserAttributes {
      */
     private Map<String, String> userAttributes;
 
-    // Multi-factor authentication options set for a user
-    private Map<String, String> mfaOptions;
-
     /**
      * Public constructor, creates an "empty container".
      * Use {@link CognitoUserAttributes#addAttribute(String, String)} method to add user attributes.
