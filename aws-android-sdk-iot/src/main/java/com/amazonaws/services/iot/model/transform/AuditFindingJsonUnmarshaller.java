@@ -35,7 +35,10 @@ class AuditFindingJsonUnmarshaller implements Unmarshaller<AuditFinding, JsonUnm
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("taskId")) {
+            if (name.equals("findingId")) {
+                auditFinding.setFindingId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("taskId")) {
                 auditFinding.setTaskId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("checkName")) {

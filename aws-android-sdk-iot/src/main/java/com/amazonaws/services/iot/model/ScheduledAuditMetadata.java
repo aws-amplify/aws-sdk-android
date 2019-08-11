@@ -43,7 +43,7 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -179,14 +179,14 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @return <p>
-     *         How often the scheduled audit takes place.
+     *         How often the scheduled audit occurs.
      *         </p>
      * @see AuditFrequency
      */
@@ -196,14 +196,14 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place.
+     *            How often the scheduled audit occurs.
      *            </p>
      * @see AuditFrequency
      */
@@ -213,7 +213,7 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -223,7 +223,7 @@ public class ScheduledAuditMetadata implements Serializable {
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place.
+     *            How often the scheduled audit occurs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -236,14 +236,14 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place.
+     *            How often the scheduled audit occurs.
      *            </p>
      * @see AuditFrequency
      */
@@ -253,7 +253,7 @@ public class ScheduledAuditMetadata implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place.
+     * How often the scheduled audit occurs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -263,7 +263,7 @@ public class ScheduledAuditMetadata implements Serializable {
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place.
+     *            How often the scheduled audit occurs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

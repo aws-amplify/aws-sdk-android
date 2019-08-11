@@ -48,7 +48,7 @@ public class ListAuditFindingsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information identifying the noncompliant resource.
      * </p>
      */
     private ResourceIdentifier resourceIdentifier;
@@ -204,11 +204,11 @@ public class ListAuditFindingsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information identifying the noncompliant resource.
      * </p>
      *
      * @return <p>
-     *         Information identifying the non-compliant resource.
+     *         Information identifying the noncompliant resource.
      *         </p>
      */
     public ResourceIdentifier getResourceIdentifier() {
@@ -217,11 +217,11 @@ public class ListAuditFindingsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information identifying the noncompliant resource.
      * </p>
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the non-compliant resource.
+     *            Information identifying the noncompliant resource.
      *            </p>
      */
     public void setResourceIdentifier(ResourceIdentifier resourceIdentifier) {
@@ -230,14 +230,14 @@ public class ListAuditFindingsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information identifying the noncompliant resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the non-compliant resource.
+     *            Information identifying the noncompliant resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -46,7 +46,7 @@ public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * If true, return child groups as well.
+     * If true, return child groups too.
      * </p>
      */
     private Boolean recursive;
@@ -160,11 +160,11 @@ public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * If true, return child groups as well.
+     * If true, return child groups too.
      * </p>
      *
      * @return <p>
-     *         If true, return child groups as well.
+     *         If true, return child groups too.
      *         </p>
      */
     public Boolean isRecursive() {
@@ -173,11 +173,11 @@ public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * If true, return child groups as well.
+     * If true, return child groups too.
      * </p>
      *
      * @return <p>
-     *         If true, return child groups as well.
+     *         If true, return child groups too.
      *         </p>
      */
     public Boolean getRecursive() {
@@ -186,11 +186,11 @@ public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * If true, return child groups as well.
+     * If true, return child groups too.
      * </p>
      *
      * @param recursive <p>
-     *            If true, return child groups as well.
+     *            If true, return child groups too.
      *            </p>
      */
     public void setRecursive(Boolean recursive) {
@@ -199,14 +199,14 @@ public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * If true, return child groups as well.
+     * If true, return child groups too.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param recursive <p>
-     *            If true, return child groups as well.
+     *            If true, return child groups too.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

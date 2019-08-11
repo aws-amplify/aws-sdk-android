@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about the resource that was non-compliant with the audit check.
+ * Information about the resource that was noncompliant with the audit check.
  * </p>
  */
 public class NonCompliantResource implements Serializable {
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,21 +36,21 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information that identifies the noncompliant resource.
      * </p>
      */
     private ResourceIdentifier resourceIdentifier;
 
     /**
      * <p>
-     * Additional information about the non-compliant resource.
+     * Other information about the noncompliant resource.
      * </p>
      */
     private java.util.Map<String, String> additionalInfo;
 
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +58,7 @@ public class NonCompliantResource implements Serializable {
      * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
      *
      * @return <p>
-     *         The type of the non-compliant resource.
+     *         The type of the noncompliant resource.
      *         </p>
      * @see ResourceType
      */
@@ -68,7 +68,7 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +76,7 @@ public class NonCompliantResource implements Serializable {
      * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
      *
      * @param resourceType <p>
-     *            The type of the non-compliant resource.
+     *            The type of the noncompliant resource.
      *            </p>
      * @see ResourceType
      */
@@ -86,7 +86,7 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -97,7 +97,7 @@ public class NonCompliantResource implements Serializable {
      * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
      *
      * @param resourceType <p>
-     *            The type of the non-compliant resource.
+     *            The type of the noncompliant resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -110,7 +110,7 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,7 +118,7 @@ public class NonCompliantResource implements Serializable {
      * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
      *
      * @param resourceType <p>
-     *            The type of the non-compliant resource.
+     *            The type of the noncompliant resource.
      *            </p>
      * @see ResourceType
      */
@@ -128,7 +128,7 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * The type of the non-compliant resource.
+     * The type of the noncompliant resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +139,7 @@ public class NonCompliantResource implements Serializable {
      * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
      *
      * @param resourceType <p>
-     *            The type of the non-compliant resource.
+     *            The type of the noncompliant resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -152,11 +152,11 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information that identifies the noncompliant resource.
      * </p>
      *
      * @return <p>
-     *         Information identifying the non-compliant resource.
+     *         Information that identifies the noncompliant resource.
      *         </p>
      */
     public ResourceIdentifier getResourceIdentifier() {
@@ -165,11 +165,11 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information that identifies the noncompliant resource.
      * </p>
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the non-compliant resource.
+     *            Information that identifies the noncompliant resource.
      *            </p>
      */
     public void setResourceIdentifier(ResourceIdentifier resourceIdentifier) {
@@ -178,14 +178,14 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the non-compliant resource.
+     * Information that identifies the noncompliant resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the non-compliant resource.
+     *            Information that identifies the noncompliant resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -197,11 +197,11 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the non-compliant resource.
+     * Other information about the noncompliant resource.
      * </p>
      *
      * @return <p>
-     *         Additional information about the non-compliant resource.
+     *         Other information about the noncompliant resource.
      *         </p>
      */
     public java.util.Map<String, String> getAdditionalInfo() {
@@ -210,11 +210,11 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the non-compliant resource.
+     * Other information about the noncompliant resource.
      * </p>
      *
      * @param additionalInfo <p>
-     *            Additional information about the non-compliant resource.
+     *            Other information about the noncompliant resource.
      *            </p>
      */
     public void setAdditionalInfo(java.util.Map<String, String> additionalInfo) {
@@ -223,14 +223,14 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the non-compliant resource.
+     * Other information about the noncompliant resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param additionalInfo <p>
-     *            Additional information about the non-compliant resource.
+     *            Other information about the noncompliant resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -242,7 +242,7 @@ public class NonCompliantResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the non-compliant resource.
+     * Other information about the noncompliant resource.
      * </p>
      * <p>
      * The method adds a new key-value pair into additionalInfo parameter, and

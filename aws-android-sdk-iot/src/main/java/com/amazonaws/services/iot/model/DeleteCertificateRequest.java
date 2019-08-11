@@ -24,8 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes the specified certificate.
  * </p>
  * <p>
- * A certificate cannot be deleted if it has a policy attached to it or if its
- * status is set to ACTIVE. To delete a certificate, first use the
+ * A certificate cannot be deleted if it has a policy or IoT thing attached to
+ * it or if its status is set to ACTIVE. To delete a certificate, first use the
  * <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the
  * <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.
  * </p>
@@ -45,7 +45,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Forces a certificate request to be deleted.
+     * Forces the deletion of a certificate if it is inactive and is not
+     * attached to an IoT thing.
      * </p>
      */
     private Boolean forceDelete;
@@ -115,11 +116,13 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Forces a certificate request to be deleted.
+     * Forces the deletion of a certificate if it is inactive and is not
+     * attached to an IoT thing.
      * </p>
      *
      * @return <p>
-     *         Forces a certificate request to be deleted.
+     *         Forces the deletion of a certificate if it is inactive and is not
+     *         attached to an IoT thing.
      *         </p>
      */
     public Boolean isForceDelete() {
@@ -128,11 +131,13 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Forces a certificate request to be deleted.
+     * Forces the deletion of a certificate if it is inactive and is not
+     * attached to an IoT thing.
      * </p>
      *
      * @return <p>
-     *         Forces a certificate request to be deleted.
+     *         Forces the deletion of a certificate if it is inactive and is not
+     *         attached to an IoT thing.
      *         </p>
      */
     public Boolean getForceDelete() {
@@ -141,11 +146,13 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Forces a certificate request to be deleted.
+     * Forces the deletion of a certificate if it is inactive and is not
+     * attached to an IoT thing.
      * </p>
      *
      * @param forceDelete <p>
-     *            Forces a certificate request to be deleted.
+     *            Forces the deletion of a certificate if it is inactive and is
+     *            not attached to an IoT thing.
      *            </p>
      */
     public void setForceDelete(Boolean forceDelete) {
@@ -154,14 +161,16 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Forces a certificate request to be deleted.
+     * Forces the deletion of a certificate if it is inactive and is not
+     * attached to an IoT thing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param forceDelete <p>
-     *            Forces a certificate request to be deleted.
+     *            Forces the deletion of a certificate if it is inactive and is
+     *            not attached to an IoT thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
