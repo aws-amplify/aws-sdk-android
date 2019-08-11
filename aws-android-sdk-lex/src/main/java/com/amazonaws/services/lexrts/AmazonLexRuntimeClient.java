@@ -375,6 +375,105 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Removes session information for a specified bot, alias, and user ID.
+     * </p>
+     * 
+     * @param deleteSessionRequest
+     * @return deleteSessionResult The response from the DeleteSession service
+     *         method, as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public DeleteSessionResult deleteSession(DeleteSessionRequest deleteSessionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteSessionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteSessionRequest> request = null;
+        Response<DeleteSessionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteSessionRequestMarshaller().marshall(deleteSessionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteSessionResult, JsonUnmarshallerContext> unmarshaller = new DeleteSessionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteSessionResult> responseHandler = new JsonResponseHandler<DeleteSessionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns session information for a specified bot, alias, and user ID.
+     * </p>
+     * 
+     * @param getSessionRequest
+     * @return getSessionResult The response from the GetSession service method,
+     *         as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetSessionResult getSession(GetSessionRequest getSessionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getSessionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetSessionRequest> request = null;
+        Response<GetSessionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetSessionRequestMarshaller().marshall(getSessionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetSessionResult, JsonUnmarshallerContext> unmarshaller = new GetSessionResultJsonUnmarshaller();
+            JsonResponseHandler<GetSessionResult> responseHandler = new JsonResponseHandler<GetSessionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Sends user input (text or speech) to Amazon Lex. Clients use this API to
      * send text and audio requests to Amazon Lex at runtime. Amazon Lex
      * interprets the user input using the machine learning model that it built
@@ -474,7 +573,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      * <p>
      * In addition, Amazon Lex also returns your application-specific
      * <code>sessionAttributes</code>. For more information, see <a
-     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
      * >Managing Conversation Context</a>.
      * </p>
      * 
@@ -531,8 +630,8 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Sends user input (text-only) to Amazon Lex. Client applications can use
-     * this API to send requests to Amazon Lex at runtime. Amazon Lex then
+     * Sends user input (text or SSML) to Amazon Lex. Client applications can
+     * use this API to send requests to Amazon Lex at runtime. Amazon Lex then
      * interprets the user input using the machine learning model it built for
      * the bot.
      * </p>
@@ -624,7 +723,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      * <p>
      * In addition, Amazon Lex also returns your application-specific
      * <code>sessionAttributes</code>. For more information, see <a
-     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
      * >Managing Conversation Context</a>.
      * </p>
      * 
@@ -665,6 +764,66 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<PostTextResult, JsonUnmarshallerContext> unmarshaller = new PostTextResultJsonUnmarshaller();
             JsonResponseHandler<PostTextResult> responseHandler = new JsonResponseHandler<PostTextResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new session or modifies an existing session with an Amazon Lex
+     * bot. Use this operation to enable your application to set the state of
+     * the bot.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/how-session-api.html"
+     * >Managing Sessions</a>.
+     * </p>
+     * 
+     * @param putSessionRequest
+     * @return putSessionResult The response from the PutSession service method,
+     *         as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws NotAcceptableException
+     * @throws DependencyFailedException
+     * @throws BadGatewayException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public PutSessionResult putSession(PutSessionRequest putSessionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putSessionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutSessionRequest> request = null;
+        Response<PutSessionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutSessionRequestMarshaller().marshall(putSessionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutSessionResult, JsonUnmarshallerContext> unmarshaller = new PutSessionResultJsonUnmarshaller();
+            JsonResponseHandler<PutSessionResult> responseHandler = new JsonResponseHandler<PutSessionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
