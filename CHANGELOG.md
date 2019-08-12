@@ -7,13 +7,16 @@
 - **AWS Core Runtime**
   - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
 
-### Mis. Updates
+### Misc. Updates
 
 - **Breaking Changes**
   - Removed deprecated SDKGlobalConfiguration options:
     - `ENABLE_S3_SIGV4_SYSTEM_PROPERTY`
     - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
 - Remove unused `mfaOption` property from `CognitoUserAttributes` class
+- Model updates for the following services
+  - AWS IoT
+  - Amazon Lex
 
 ### Bug Fixes
 
