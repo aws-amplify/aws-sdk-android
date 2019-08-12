@@ -42,6 +42,9 @@ class RepublishActionJsonUnmarshaller implements
             } else if (name.equals("topic")) {
                 republishAction.setTopic(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("qos")) {
+                republishAction.setQos(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
