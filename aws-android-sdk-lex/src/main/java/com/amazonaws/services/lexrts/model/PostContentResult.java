@@ -36,7 +36,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -70,7 +71,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -340,7 +341,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -358,7 +360,8 @@ public class PostContentResult implements Serializable {
      *
      * @return <p>
      *         Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *         detected from the user input during the conversation.
+     *         detected from the user input during the conversation. The field
+     *         is base-64 encoded.
      *         </p>
      *         <p>
      *         Amazon Lex creates a resolution list containing likely values for
@@ -381,7 +384,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -399,7 +403,8 @@ public class PostContentResult implements Serializable {
      *
      * @param slots <p>
      *            Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *            detected from the user input during the conversation.
+     *            detected from the user input during the conversation. The
+     *            field is base-64 encoded.
      *            </p>
      *            <p>
      *            Amazon Lex creates a resolution list containing likely values
@@ -424,7 +429,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -445,7 +451,8 @@ public class PostContentResult implements Serializable {
      *
      * @param slots <p>
      *            Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *            detected from the user input during the conversation.
+     *            detected from the user input during the conversation. The
+     *            field is base-64 encoded.
      *            </p>
      *            <p>
      *            Amazon Lex creates a resolution list containing likely values
@@ -529,7 +536,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -557,11 +564,11 @@ public class PostContentResult implements Serializable {
      *         <p>
      *         If the intent is not configured with a Lambda function, or if the
      *         Lambda function returned <code>Delegate</code> as the
-     *         <code>dialogAction.type</code> its response, Amazon Lex decides
-     *         on the next course of action and selects an appropriate message
-     *         from the bot's configuration based on the current interaction
-     *         context. For example, if Amazon Lex isn't able to understand user
-     *         input, it uses a clarification prompt message.
+     *         <code>dialogAction.type</code> in its response, Amazon Lex
+     *         decides on the next course of action and selects an appropriate
+     *         message from the bot's configuration based on the current
+     *         interaction context. For example, if Amazon Lex isn't able to
+     *         understand user input, it uses a clarification prompt message.
      *         </p>
      *         <p>
      *         When you create an intent you can assign messages to groups. When
@@ -588,7 +595,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -616,7 +623,7 @@ public class PostContentResult implements Serializable {
      *            <p>
      *            If the intent is not configured with a Lambda function, or if
      *            the Lambda function returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
      *            decides on the next course of action and selects an
      *            appropriate message from the bot's configuration based on the
      *            current interaction context. For example, if Amazon Lex isn't
@@ -648,7 +655,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -679,7 +686,7 @@ public class PostContentResult implements Serializable {
      *            <p>
      *            If the intent is not configured with a Lambda function, or if
      *            the Lambda function returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
      *            decides on the next course of action and selects an
      *            appropriate message from the bot's configuration based on the
      *            current interaction context. For example, if Amazon Lex isn't
