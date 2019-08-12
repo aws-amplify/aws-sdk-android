@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The group for which the policies will be listed.
+     * The group or principal for which the policies will be listed.
      * </p>
      */
     private String target;
@@ -61,11 +61,11 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group for which the policies will be listed.
+     * The group or principal for which the policies will be listed.
      * </p>
      *
      * @return <p>
-     *         The group for which the policies will be listed.
+     *         The group or principal for which the policies will be listed.
      *         </p>
      */
     public String getTarget() {
@@ -74,11 +74,11 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group for which the policies will be listed.
+     * The group or principal for which the policies will be listed.
      * </p>
      *
      * @param target <p>
-     *            The group for which the policies will be listed.
+     *            The group or principal for which the policies will be listed.
      *            </p>
      */
     public void setTarget(String target) {
@@ -87,14 +87,14 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group for which the policies will be listed.
+     * The group or principal for which the policies will be listed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param target <p>
-     *            The group for which the policies will be listed.
+     *            The group or principal for which the policies will be listed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

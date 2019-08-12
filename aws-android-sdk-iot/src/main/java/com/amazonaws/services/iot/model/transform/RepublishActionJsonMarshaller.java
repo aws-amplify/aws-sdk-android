@@ -36,6 +36,11 @@ class RepublishActionJsonMarshaller {
             jsonWriter.name("topic");
             jsonWriter.value(topic);
         }
+        if (republishAction.getQos() != null) {
+            Integer qos = republishAction.getQos();
+            jsonWriter.name("qos");
+            jsonWriter.value(qos);
+        }
         jsonWriter.endObject();
     }
 

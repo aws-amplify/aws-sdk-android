@@ -21,8 +21,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,10 +56,10 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * Which checks are performed during the scheduled audit. (Note that checks
-     * must be enabled for your account. (Use
+     * Which checks are performed during the scheduled audit. Checks must be
+     * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -87,8 +87,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,8 +96,8 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @return <p>
      *         How often the scheduled audit takes place. One of "DAILY",
-     *         "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each
-     *         audit is determined by the system.
+     *         "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit
+     *         is determined by the system.
      *         </p>
      * @see AuditFrequency
      */
@@ -108,8 +108,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,8 +117,8 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of
-     *            each audit is determined by the system.
+     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
+     *            audit is determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -129,8 +129,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,8 +141,8 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of
-     *            each audit is determined by the system.
+     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
+     *            audit is determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -156,8 +156,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,8 +165,8 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of
-     *            each audit is determined by the system.
+     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
+     *            audit is determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -177,8 +177,8 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
-     * determined by the system.
+     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
+     * the system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,8 +189,8 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of
-     *            each audit is determined by the system.
+     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
+     *            audit is determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -276,7 +276,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -284,7 +284,7 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @return <p>
      *         The day of the week on which the scheduled audit takes place. One
-     *         of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     *         of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      *         </p>
      * @see DayOfWeek
      */
@@ -295,7 +295,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -303,7 +303,7 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      *            </p>
      * @see DayOfWeek
      */
@@ -314,7 +314,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -325,7 +325,7 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -339,7 +339,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -347,7 +347,7 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      *            </p>
      * @see DayOfWeek
      */
@@ -358,7 +358,7 @@ public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -369,7 +369,7 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT".
+     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -382,19 +382,19 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * Which checks are performed during the scheduled audit. (Note that checks
-     * must be enabled for your account. (Use
+     * Which checks are performed during the scheduled audit. Checks must be
+     * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
      *
      * @return <p>
-     *         Which checks are performed during the scheduled audit. (Note that
-     *         checks must be enabled for your account. (Use
+     *         Which checks are performed during the scheduled audit. Checks
+     *         must be enabled for your account. (Use
      *         <code>DescribeAccountAuditConfiguration</code> to see the list of
-     *         all checks including those that are enabled or
+     *         all checks, including those that are enabled or use
      *         <code>UpdateAccountAuditConfiguration</code> to select which
      *         checks are enabled.)
      *         </p>
@@ -405,19 +405,19 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * Which checks are performed during the scheduled audit. (Note that checks
-     * must be enabled for your account. (Use
+     * Which checks are performed during the scheduled audit. Checks must be
+     * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
      *
      * @param targetCheckNames <p>
-     *            Which checks are performed during the scheduled audit. (Note
-     *            that checks must be enabled for your account. (Use
+     *            Which checks are performed during the scheduled audit. Checks
+     *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>
@@ -433,10 +433,10 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * Which checks are performed during the scheduled audit. (Note that checks
-     * must be enabled for your account. (Use
+     * Which checks are performed during the scheduled audit. Checks must be
+     * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -445,10 +445,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * together.
      *
      * @param targetCheckNames <p>
-     *            Which checks are performed during the scheduled audit. (Note
-     *            that checks must be enabled for your account. (Use
+     *            Which checks are performed during the scheduled audit. Checks
+     *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>
@@ -467,10 +467,10 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * Which checks are performed during the scheduled audit. (Note that checks
-     * must be enabled for your account. (Use
+     * Which checks are performed during the scheduled audit. Checks must be
+     * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -479,10 +479,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * together.
      *
      * @param targetCheckNames <p>
-     *            Which checks are performed during the scheduled audit. (Note
-     *            that checks must be enabled for your account. (Use
+     *            Which checks are performed during the scheduled audit. Checks
+     *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>

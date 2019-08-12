@@ -283,8 +283,8 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Associates a Device Defender security profile with a thing group or with
-     * this account. Each thing group or account can have up to five security
+     * Associates a Device Defender security profile with a thing group or this
+     * account. Each thing group or account can have up to five security
      * profiles associated with it.
      * </p>
      * 
@@ -338,6 +338,32 @@ public interface AWSIot {
     AttachThingPrincipalResult attachThingPrincipal(
             AttachThingPrincipalRequest attachThingPrincipalRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Cancels a mitigation action task that is in progress. If the task is not
+     * in progress, an InvalidRequestException occurs.
+     * </p>
+     * 
+     * @param cancelAuditMitigationActionsTaskRequest
+     * @return cancelAuditMitigationActionsTaskResult The response from the
+     *         CancelAuditMitigationActionsTask service method, as returned by
+     *         AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CancelAuditMitigationActionsTaskResult cancelAuditMitigationActionsTask(
+            CancelAuditMitigationActionsTaskRequest cancelAuditMitigationActionsTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -693,6 +719,33 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Defines an action that can be applied to audit findings by using
+     * StartAuditMitigationActionsTask. Each mitigation action can apply only
+     * one type of change.
+     * </p>
+     * 
+     * @param createMitigationActionRequest
+     * @return createMitigationActionResult The response from the
+     *         CreateMitigationAction service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateMitigationActionResult createMitigationAction(
+            CreateMitigationActionRequest createMitigationActionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates an AWS IoT OTAUpdate on a target group of things or groups.
      * </p>
      * 
@@ -825,6 +878,7 @@ public interface AWSIot {
      * @return createScheduledAuditResult The response from the
      *         CreateScheduledAudit service method, as returned by AWS IoT.
      * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
      * @throws ThrottlingException
      * @throws InternalFailureException
      * @throws LimitExceededException
@@ -1132,11 +1186,11 @@ public interface AWSIot {
      * Deletes the specified certificate.
      * </p>
      * <p>
-     * A certificate cannot be deleted if it has a policy attached to it or if
-     * its status is set to ACTIVE. To delete a certificate, first use the
-     * <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the
-     * <a>UpdateCertificate</a> API to set the certificate to the INACTIVE
-     * status.
+     * A certificate cannot be deleted if it has a policy or IoT thing attached
+     * to it or if its status is set to ACTIVE. To delete a certificate, first
+     * use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next,
+     * use the <a>UpdateCertificate</a> API to set the certificate to the
+     * INACTIVE status.
      * </p>
      * 
      * @param deleteCertificateRequest <p>
@@ -1239,6 +1293,29 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteJobExecution(DeleteJobExecutionRequest deleteJobExecutionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a defined mitigation action from your AWS account.
+     * </p>
+     * 
+     * @param deleteMitigationActionRequest
+     * @return deleteMitigationActionResult The response from the
+     *         DeleteMitigationAction service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteMitigationActionResult deleteMitigationAction(
+            DeleteMitigationActionRequest deleteMitigationActionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1646,6 +1723,60 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about a single audit finding. Properties include the
+     * reason for noncompliance, the severity of the issue, and when the audit
+     * that returned the finding was started.
+     * </p>
+     * 
+     * @param describeAuditFindingRequest
+     * @return describeAuditFindingResult The response from the
+     *         DescribeAuditFinding service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAuditFindingResult describeAuditFinding(
+            DescribeAuditFindingRequest describeAuditFindingRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about an audit mitigation task that is used to apply
+     * mitigation actions to a set of audit findings. Properties include the
+     * actions being applied, the audit checks to which they're being applied,
+     * the task status, and aggregated task statistics.
+     * </p>
+     * 
+     * @param describeAuditMitigationActionsTaskRequest
+     * @return describeAuditMitigationActionsTaskResult The response from the
+     *         DescribeAuditMitigationActionsTask service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAuditMitigationActionsTaskResult describeAuditMitigationActionsTask(
+            DescribeAuditMitigationActionsTaskRequest describeAuditMitigationActionsTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about a Device Defender audit.
      * </p>
      * 
@@ -1917,6 +2048,30 @@ public interface AWSIot {
     DescribeJobExecutionResult describeJobExecution(
             DescribeJobExecutionRequest describeJobExecutionRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a mitigation action.
+     * </p>
+     * 
+     * @param describeMitigationActionRequest
+     * @return describeMitigationActionResult The response from the
+     *         DescribeMitigationAction service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeMitigationActionResult describeMitigationAction(
+            DescribeMitigationActionRequest describeMitigationActionRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2646,6 +2801,55 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets the status of audit mitigation action tasks that were executed.
+     * </p>
+     * 
+     * @param listAuditMitigationActionsExecutionsRequest
+     * @return listAuditMitigationActionsExecutionsResult The response from the
+     *         ListAuditMitigationActionsExecutions service method, as returned
+     *         by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuditMitigationActionsExecutionsResult listAuditMitigationActionsExecutions(
+            ListAuditMitigationActionsExecutionsRequest listAuditMitigationActionsExecutionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a list of audit mitigation action tasks that match the specified
+     * filters.
+     * </p>
+     * 
+     * @param listAuditMitigationActionsTasksRequest
+     * @return listAuditMitigationActionsTasksResult The response from the
+     *         ListAuditMitigationActionsTasks service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuditMitigationActionsTasksResult listAuditMitigationActionsTasks(
+            ListAuditMitigationActionsTasksRequest listAuditMitigationActionsTasksRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the Device Defender audits that have been performed during a given
      * time period.
      * </p>
@@ -2895,6 +3099,30 @@ public interface AWSIot {
      */
     ListJobsResult listJobs(ListJobsRequest listJobsRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a list of all mitigation actions that match the specified filter
+     * criteria.
+     * </p>
+     * 
+     * @param listMitigationActionsRequest
+     * @return listMitigationActionsResult The response from the
+     *         ListMitigationActions service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListMitigationActionsResult listMitigationActions(
+            ListMitigationActionsRequest listMitigationActionsRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -3579,7 +3807,7 @@ public interface AWSIot {
      * <p>
      * Lists the Device Defender security profile violations discovered during
      * the given time period. You can use filters to limit the results to those
-     * alerts issued for a particular security profile, behavior or thing
+     * alerts issued for a particular security profile, behavior, or thing
      * (device).
      * </p>
      * 
@@ -3960,6 +4188,33 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void setV2LoggingOptions(SetV2LoggingOptionsRequest setV2LoggingOptionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Starts a task that applies a set of mitigation actions to the specified
+     * target.
+     * </p>
+     * 
+     * @param startAuditMitigationActionsTaskRequest
+     * @return startAuditMitigationActionsTaskResult The response from the
+     *         StartAuditMitigationActionsTask service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws TaskAlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    StartAuditMitigationActionsTaskResult startAuditMitigationActionsTask(
+            StartAuditMitigationActionsTaskRequest startAuditMitigationActionsTaskRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4421,6 +4676,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates the definition for the specified mitigation action.
+     * </p>
+     * 
+     * @param updateMitigationActionRequest
+     * @return updateMitigationActionResult The response from the
+     *         UpdateMitigationAction service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateMitigationActionResult updateMitigationAction(
+            UpdateMitigationActionRequest updateMitigationActionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates a role alias.
      * </p>
      * 
@@ -4446,7 +4725,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Updates a scheduled audit, including what checks are performed and how
+     * Updates a scheduled audit, including which checks are performed and how
      * often the audit takes place.
      * </p>
      * 

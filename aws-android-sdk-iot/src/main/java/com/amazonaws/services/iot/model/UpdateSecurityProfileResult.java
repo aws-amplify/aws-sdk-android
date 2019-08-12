@@ -66,7 +66,7 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the security profile's
-     * <code>behaviors</code> but it is also retained for any metric specified
+     * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
      */
@@ -425,14 +425,14 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the security profile's
-     * <code>behaviors</code> but it is also retained for any metric specified
+     * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
      *
      * @return <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the security profile's
-     *         <code>behaviors</code> but it is also retained for any metric
+     *         <code>behaviors</code>, but it is also retained for any metric
      *         specified here.
      *         </p>
      */
@@ -444,14 +444,14 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the security profile's
-     * <code>behaviors</code> but it is also retained for any metric specified
+     * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
      *
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the security profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      */
@@ -468,7 +468,7 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the security profile's
-     * <code>behaviors</code> but it is also retained for any metric specified
+     * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
      * <p>
@@ -478,7 +478,7 @@ public class UpdateSecurityProfileResult implements Serializable {
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the security profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -500,7 +500,7 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the security profile's
-     * <code>behaviors</code> but it is also retained for any metric specified
+     * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
      * <p>
@@ -510,7 +510,7 @@ public class UpdateSecurityProfileResult implements Serializable {
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the security profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be

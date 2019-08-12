@@ -36,14 +36,14 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the resource.
+     * Information that identifies the resource.
      * </p>
      */
     private ResourceIdentifier resourceIdentifier;
 
     /**
      * <p>
-     * Additional information about the resource.
+     * Other information about the resource.
      * </p>
      */
     private java.util.Map<String, String> additionalInfo;
@@ -152,11 +152,11 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the resource.
+     * Information that identifies the resource.
      * </p>
      *
      * @return <p>
-     *         Information identifying the resource.
+     *         Information that identifies the resource.
      *         </p>
      */
     public ResourceIdentifier getResourceIdentifier() {
@@ -165,11 +165,11 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the resource.
+     * Information that identifies the resource.
      * </p>
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the resource.
+     *            Information that identifies the resource.
      *            </p>
      */
     public void setResourceIdentifier(ResourceIdentifier resourceIdentifier) {
@@ -178,14 +178,14 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Information identifying the resource.
+     * Information that identifies the resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param resourceIdentifier <p>
-     *            Information identifying the resource.
+     *            Information that identifies the resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -197,11 +197,11 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the resource.
+     * Other information about the resource.
      * </p>
      *
      * @return <p>
-     *         Additional information about the resource.
+     *         Other information about the resource.
      *         </p>
      */
     public java.util.Map<String, String> getAdditionalInfo() {
@@ -210,11 +210,11 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the resource.
+     * Other information about the resource.
      * </p>
      *
      * @param additionalInfo <p>
-     *            Additional information about the resource.
+     *            Other information about the resource.
      *            </p>
      */
     public void setAdditionalInfo(java.util.Map<String, String> additionalInfo) {
@@ -223,14 +223,14 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the resource.
+     * Other information about the resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param additionalInfo <p>
-     *            Additional information about the resource.
+     *            Other information about the resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -242,7 +242,7 @@ public class RelatedResource implements Serializable {
 
     /**
      * <p>
-     * Additional information about the resource.
+     * Other information about the resource.
      * </p>
      * <p>
      * The method adds a new key-value pair into additionalInfo parameter, and

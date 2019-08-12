@@ -36,7 +36,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -47,7 +47,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -115,7 +115,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -123,8 +123,8 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, COMPLETED, FAILED, CANCELED
      *
      * @return <p>
-     *         The status of this audit: one of "IN_PROGRESS", "COMPLETED",
-     *         "FAILED" or "CANCELED".
+     *         The status of this audit. One of "IN_PROGRESS", "COMPLETED",
+     *         "FAILED", or "CANCELED".
      *         </p>
      * @see AuditTaskStatus
      */
@@ -134,7 +134,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -142,8 +142,8 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, COMPLETED, FAILED, CANCELED
      *
      * @param taskStatus <p>
-     *            The status of this audit: one of "IN_PROGRESS", "COMPLETED",
-     *            "FAILED" or "CANCELED".
+     *            The status of this audit. One of "IN_PROGRESS", "COMPLETED",
+     *            "FAILED", or "CANCELED".
      *            </p>
      * @see AuditTaskStatus
      */
@@ -153,7 +153,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -164,8 +164,8 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, COMPLETED, FAILED, CANCELED
      *
      * @param taskStatus <p>
-     *            The status of this audit: one of "IN_PROGRESS", "COMPLETED",
-     *            "FAILED" or "CANCELED".
+     *            The status of this audit. One of "IN_PROGRESS", "COMPLETED",
+     *            "FAILED", or "CANCELED".
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,7 +178,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -186,8 +186,8 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, COMPLETED, FAILED, CANCELED
      *
      * @param taskStatus <p>
-     *            The status of this audit: one of "IN_PROGRESS", "COMPLETED",
-     *            "FAILED" or "CANCELED".
+     *            The status of this audit. One of "IN_PROGRESS", "COMPLETED",
+     *            "FAILED", or "CANCELED".
      *            </p>
      * @see AuditTaskStatus
      */
@@ -197,7 +197,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The status of this audit: one of "IN_PROGRESS", "COMPLETED", "FAILED" or
+     * The status of this audit. One of "IN_PROGRESS", "COMPLETED", "FAILED", or
      * "CANCELED".
      * </p>
      * <p>
@@ -208,8 +208,8 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, COMPLETED, FAILED, CANCELED
      *
      * @param taskStatus <p>
-     *            The status of this audit: one of "IN_PROGRESS", "COMPLETED",
-     *            "FAILED" or "CANCELED".
+     *            The status of this audit. One of "IN_PROGRESS", "COMPLETED",
+     *            "FAILED", or "CANCELED".
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -222,7 +222,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -230,7 +230,7 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>ON_DEMAND_AUDIT_TASK, SCHEDULED_AUDIT_TASK
      *
      * @return <p>
-     *         The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     *         The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      *         "SCHEDULED_AUDIT_TASK".
      *         </p>
      * @see AuditTaskType
@@ -241,7 +241,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -249,7 +249,7 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>ON_DEMAND_AUDIT_TASK, SCHEDULED_AUDIT_TASK
      *
      * @param taskType <p>
-     *            The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     *            The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      *            "SCHEDULED_AUDIT_TASK".
      *            </p>
      * @see AuditTaskType
@@ -260,7 +260,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -271,7 +271,7 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>ON_DEMAND_AUDIT_TASK, SCHEDULED_AUDIT_TASK
      *
      * @param taskType <p>
-     *            The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     *            The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      *            "SCHEDULED_AUDIT_TASK".
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -285,7 +285,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -293,7 +293,7 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>ON_DEMAND_AUDIT_TASK, SCHEDULED_AUDIT_TASK
      *
      * @param taskType <p>
-     *            The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     *            The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      *            "SCHEDULED_AUDIT_TASK".
      *            </p>
      * @see AuditTaskType
@@ -304,7 +304,7 @@ public class AuditTaskMetadata implements Serializable {
 
     /**
      * <p>
-     * The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     * The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      * "SCHEDULED_AUDIT_TASK".
      * </p>
      * <p>
@@ -315,7 +315,7 @@ public class AuditTaskMetadata implements Serializable {
      * <b>Allowed Values: </b>ON_DEMAND_AUDIT_TASK, SCHEDULED_AUDIT_TASK
      *
      * @param taskType <p>
-     *            The type of this audit: one of "ON_DEMAND_AUDIT_TASK" or
+     *            The type of this audit. One of "ON_DEMAND_AUDIT_TASK" or
      *            "SCHEDULED_AUDIT_TASK".
      *            </p>
      * @return A reference to this updated object so that method calls can be

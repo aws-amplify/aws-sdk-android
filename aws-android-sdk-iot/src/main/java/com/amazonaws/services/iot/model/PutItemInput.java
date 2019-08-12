@@ -26,18 +26,18 @@ import java.io.Serializable;
 public class PutItemInput implements Serializable {
     /**
      * <p>
-     * The table where the message data will be written
+     * The table where the message data will be written.
      * </p>
      */
     private String tableName;
 
     /**
      * <p>
-     * The table where the message data will be written
+     * The table where the message data will be written.
      * </p>
      *
      * @return <p>
-     *         The table where the message data will be written
+     *         The table where the message data will be written.
      *         </p>
      */
     public String getTableName() {
@@ -46,11 +46,11 @@ public class PutItemInput implements Serializable {
 
     /**
      * <p>
-     * The table where the message data will be written
+     * The table where the message data will be written.
      * </p>
      *
      * @param tableName <p>
-     *            The table where the message data will be written
+     *            The table where the message data will be written.
      *            </p>
      */
     public void setTableName(String tableName) {
@@ -59,14 +59,14 @@ public class PutItemInput implements Serializable {
 
     /**
      * <p>
-     * The table where the message data will be written
+     * The table where the message data will be written.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tableName <p>
-     *            The table where the message data will be written
+     *            The table where the message data will be written.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
