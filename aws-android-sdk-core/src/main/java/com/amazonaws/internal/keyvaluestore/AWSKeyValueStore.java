@@ -53,10 +53,8 @@ public class AWSKeyValueStore {
     final String sharedPreferencesName;
     SharedPreferences sharedPreferencesForEncryptionMaterials;
 
-    KeyProvider23 keyProvider23;
     KeyProvider keyProvider;
     SecureRandom secureRandom;
-    String keyAlias;
     AWSKeyValueStoreUpgradeHelper awsKeyValueStoreUpgradeHelper;
 
     static final int ANDROID_API_LEVEL_23 = 23;
