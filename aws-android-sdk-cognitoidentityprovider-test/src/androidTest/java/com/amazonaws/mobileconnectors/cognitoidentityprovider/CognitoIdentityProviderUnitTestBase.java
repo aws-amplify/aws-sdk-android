@@ -16,6 +16,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Base64;
@@ -30,8 +31,14 @@ import com.amazonaws.util.StringUtils;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import java.security.KeyStore;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
+
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
 public abstract class CognitoIdentityProviderUnitTestBase extends AWSTestBase {

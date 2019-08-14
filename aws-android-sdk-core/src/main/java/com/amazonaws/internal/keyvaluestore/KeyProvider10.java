@@ -47,38 +47,68 @@ class KeyProvider10 implements KeyProvider {
     static final String SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY = "AesGcmNoPaddingEncryption10-encryption-key";
 
     private SecureRandom secureRandom = new SecureRandom();
+    private Context context;
+    private SharedPreferences sharedPreferences;
 
-    private static final Object LOCK = new Object();
+    public KeyProvider10(final Context context,
+                         final SharedPreferences sharedPreferences) {
+        this.context = context;
+        this.sharedPreferences = sharedPreferences;
+    }
+
+    /**
+     * Retrieves the key that is used for encrypting
+     * and decrypting data.
+     *
+     * @param keyAlias The alias of the key held in AndroidKeyStore
+     *                 if AndroidKeyStore is used for key generation.
+     * @return the symmetric key that can be used to encrypt and
+     * decrypt data.
+     */
+    @Override
+    public synchronized Key generateKey(String keyAlias) throws KeyNotGeneratedException {
+        try {
+            // Generate the key
+            KeyGenerator generator = KeyGenerator.getInstance(AES_KEY_ALGORITHM);
+            generator.init(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS, secureRandom);
+            final SecretKey secretKey = generator.generateKey();
+
+            // Save the key to SharedPreferences
+            sharedPreferences.edit()
+                    .putString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY,
+                            Base64.encodeAsString(secretKey.getEncoded()))
+                    .apply();
+
+            logger.info("Generated and saved the encryption key to SharedPreferences");
+            return secretKey;
+        } catch (Exception ex) {
+            logger.error("Error in loading the key from keystore.");
+            throw new KeyNotGeneratedException("Encryption key cannot be retrieved.", ex);
+        }
+    }
 
     @Override
-    public Key getKey(SharedPreferences sharedPreferences, String keyAlias, Context context) {
-        synchronized (LOCK) {
-            try {
-                // If SharedPreferences contains the key, load it.
-                if (sharedPreferences.contains(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)) {
-                    logger.debug("Loading the encryption key from SharedPreferences");
-                    final String keyInStringFormat = sharedPreferences
-                            .getString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY, null);
-                    return new SecretKeySpec(Base64.decode(keyInStringFormat), AES_KEY_ALGORITHM);
-                } else {
-                    // Generate the key
-                    KeyGenerator generator = KeyGenerator.getInstance(AES_KEY_ALGORITHM);
-                    generator.init(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS, secureRandom);
-                    final SecretKey secretKey = generator.generateKey();
-
-                    // Save the key to SharedPreferences
-                    sharedPreferences.edit()
-                            .putString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY,
-                                    Base64.encodeAsString(secretKey.getEncoded()))
-                            .apply();
-
-                    logger.info("Generated and saved the encryption key to SharedPreferences");
-                    return secretKey;
-                }
-            } catch (Exception ex) {
-                logger.error("Error in loading the key from keystore.");
-                throw new IllegalStateException(ex);
+    public synchronized Key retrieveKey(String keyAlias) throws KeyNotFoundException {
+        try {
+            // If SharedPreferences contains the key, load it.
+            if (sharedPreferences.contains(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)) {
+                logger.debug("Loading the encryption key from SharedPreferences");
+                final String keyInStringFormat = sharedPreferences
+                        .getString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY, null);
+                return new SecretKeySpec(Base64.decode(keyInStringFormat), AES_KEY_ALGORITHM);
+            } else {
+                throw new KeyNotFoundException("Encryption key cannot be found.");
             }
+        } catch (Exception ex) {
+            logger.error("Error in loading the key from keystore.");
+            throw new KeyNotFoundException("Encryption key cannot be found.");
         }
+    }
+
+    @Override
+    public synchronized void deleteKey(final String keyAlias) {
+        sharedPreferences.edit()
+                .remove(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)
+                .apply();
     }
 }

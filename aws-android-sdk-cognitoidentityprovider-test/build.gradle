@@ -41,7 +41,7 @@ dependencies {
 devicefarm {
 
     // Required. The Project must already exist. You can create a project in the AWS console.
-    projectName "AWSAndroidKeyStoreTester"
+    projectName "KeyStoreTester"
 
     // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
     authentication {
@@ -49,5 +49,5 @@ devicefarm {
         secretKey "$System.env.DEVICEFARM_SECRET_KEY"
     }
 
-    devicePool "AWSAndroidKeyStoreTesterPool"
+    devicePool "API 23 - 28 Pool"
 }

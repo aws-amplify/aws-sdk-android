@@ -79,15 +79,13 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
     // Create valid access tokens
     public static String getValidJWT(long expiryInSecs){
-        long epoch = System.currentTimeMillis()/1000L;
+        long epoch = System.currentTimeMillis() / 1000L;
         epoch = epoch + expiryInSecs;
         String accessToken_p1_Base64 = "eyJ0eXAiOiAiSldUIiwgImFsZyI6IlJTMjU2In0=";
         String accessToken_p3_Base64 = "e0VuY3J5cHRlZF9LZXl9";
         String accessToken_p2_Str = "{\"iss\": \"userPoolId\",\"sub\": \"my@email.com\",\"aud\": \"https:aws.cognito.com\",\"exp\": \"" + String.valueOf(epoch) + "\"}";
         byte[] accessToken_p2_UTF8 = accessToken_p2_Str.getBytes(StringUtils.UTF8);
-        //String accessToken_p2_Base64 = Base64.encodeToString(accessToken_p2_UTF8, Base64.DEFAULT);
         String accessToken_p2_Base64 = new String(Base64.encode(accessToken_p2_UTF8, Base64.DEFAULT));
-        String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
-        return validAccessToken;
+        return accessToken_p1_Base64 + "." + accessToken_p2_Base64 + "." + accessToken_p3_Base64;
     }
 }

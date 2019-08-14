@@ -95,7 +95,7 @@ public class CognitoCachingCredentialsProvider
 
     private static final String TAG = "CognitoCachingCredentialsProvider";
 
-    private AWSKeyValueStore awsKeyValueStore;
+    AWSKeyValueStore awsKeyValueStore;
 
     private final IdentityChangedListener listener = new IdentityChangedListener() {
         @Override
@@ -421,18 +421,13 @@ public class CognitoCachingCredentialsProvider
      * @param context the Android application context
      */
     private void initialize(Context context) {
-        try {
-            awsKeyValueStore = new AWSKeyValueStore(context,
-                    DEFAULT_SHAREDPREFERENCES_NAME,
-                    isPersistenceEnabled);
-            checkUpgrade();
-            this.identityId = getCachedIdentityId();
-            loadCachedCredentials();
-            registerIdentityChangedListener(listener);
-        } catch (Exception ex) {
-            Log.e(TAG, "Error in initializing the CognitoCachingCredentialsProvider. " + ex);
-            throw new IllegalStateException("Error in initializing the CognitoCachingCredentialsProvider. ", ex);
-        }
+        awsKeyValueStore = new AWSKeyValueStore(context,
+                DEFAULT_SHAREDPREFERENCES_NAME,
+                isPersistenceEnabled);
+        checkUpgrade();
+        this.identityId = getCachedIdentityId();
+        loadCachedCredentials();
+        registerIdentityChangedListener(listener);
     }
 
     /**

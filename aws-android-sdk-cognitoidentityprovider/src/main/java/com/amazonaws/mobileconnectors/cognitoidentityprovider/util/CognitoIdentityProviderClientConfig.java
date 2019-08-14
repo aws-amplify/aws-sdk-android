@@ -34,6 +34,9 @@ public final class CognitoIdentityProviderClientConfig {
      */
     private static final long REFRESH_THRESHOLD_MIN = 0;
 
+    /**
+     * Default threshold for refresh tokens, in milliseconds.
+     */
     private static final long REFRESH_THRESHOLD_DEFAULT = 300 * 1000;
 
     /**

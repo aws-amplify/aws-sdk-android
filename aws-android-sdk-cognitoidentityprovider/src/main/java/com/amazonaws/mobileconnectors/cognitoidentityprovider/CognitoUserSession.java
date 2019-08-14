@@ -24,6 +24,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefr
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoIdentityProviderClientConfig;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * This wraps all Cognito tokens for a user.
@@ -136,5 +137,15 @@ public class CognitoUserSession {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CognitoUserSession that = (CognitoUserSession) o;
+        return idToken.equals(that.idToken) &&
+                accessToken.equals(that.accessToken) &&
+                refreshToken.equals(that.refreshToken);
     }
 }
