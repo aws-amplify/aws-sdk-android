@@ -25,6 +25,11 @@ class AuditFindingJsonMarshaller {
 
     public void marshall(AuditFinding auditFinding, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (auditFinding.getFindingId() != null) {
+            String findingId = auditFinding.getFindingId();
+            jsonWriter.name("findingId");
+            jsonWriter.value(findingId);
+        }
         if (auditFinding.getTaskId() != null) {
             String taskId = auditFinding.getTaskId();
             jsonWriter.name("taskId");

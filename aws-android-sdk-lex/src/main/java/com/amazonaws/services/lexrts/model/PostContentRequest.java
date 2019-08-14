@@ -117,7 +117,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * In addition, Amazon Lex also returns your application-specific
  * <code>sessionAttributes</code>. For more information, see <a
- * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html">Managing
+ * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html">Managing
  * Conversation Context</a>.
  * </p>
  */
@@ -199,7 +199,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      */
@@ -224,7 +224,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      */
@@ -314,6 +314,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * header). For example, if you specify <code>audio/mpeg</code> as the
      * value, Amazon Lex returns speech in the MPEG format.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the value is <code>audio/pcm</code>, the speech returned is
+     * <code>audio/pcm</code> in 16-bit, little endian format.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The following are the accepted values:
      * </p>
@@ -756,7 +764,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      *
@@ -773,7 +781,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *         "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *         >Setting Session Attributes</a>.
      *         </p>
      */
@@ -795,7 +803,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      *
@@ -812,7 +820,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *            >Setting Session Attributes</a>.
      *            </p>
      */
@@ -834,7 +842,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      * <p>
@@ -854,7 +862,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *            >Setting Session Attributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -884,7 +892,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      *
@@ -906,7 +914,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *         "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *         >Setting Request Attributes</a>.
      *         </p>
      */
@@ -933,7 +941,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      *
@@ -955,7 +963,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *            >Setting Request Attributes</a>.
      *            </p>
      */
@@ -982,7 +990,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      * <p>
@@ -1007,7 +1015,7 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *            >Setting Request Attributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1412,6 +1420,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * header). For example, if you specify <code>audio/mpeg</code> as the
      * value, Amazon Lex returns speech in the MPEG format.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the value is <code>audio/pcm</code>, the speech returned is
+     * <code>audio/pcm</code> in 16-bit, little endian format.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The following are the accepted values:
      * </p>
@@ -1469,6 +1485,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *         <code>audio/mpeg</code> as the value, Amazon Lex returns speech
      *         in the MPEG format.
      *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If the value is <code>audio/pcm</code>, the speech returned is
+     *         <code>audio/pcm</code> in 16-bit, little endian format.
+     *         </p>
+     *         </li>
+     *         <li>
      *         <p>
      *         The following are the accepted values:
      *         </p>
@@ -1529,6 +1553,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * header). For example, if you specify <code>audio/mpeg</code> as the
      * value, Amazon Lex returns speech in the MPEG format.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the value is <code>audio/pcm</code>, the speech returned is
+     * <code>audio/pcm</code> in 16-bit, little endian format.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The following are the accepted values:
      * </p>
@@ -1586,6 +1618,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            specify <code>audio/mpeg</code> as the value, Amazon Lex
      *            returns speech in the MPEG format.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the value is <code>audio/pcm</code>, the speech returned is
+     *            <code>audio/pcm</code> in 16-bit, little endian format.
+     *            </p>
+     *            </li>
+     *            <li>
      *            <p>
      *            The following are the accepted values:
      *            </p>
@@ -1646,6 +1686,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      * header). For example, if you specify <code>audio/mpeg</code> as the
      * value, Amazon Lex returns speech in the MPEG format.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the value is <code>audio/pcm</code>, the speech returned is
+     * <code>audio/pcm</code> in 16-bit, little endian format.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The following are the accepted values:
      * </p>
@@ -1706,6 +1754,14 @@ public class PostContentRequest extends AmazonWebServiceRequest implements Seria
      *            specify <code>audio/mpeg</code> as the value, Amazon Lex
      *            returns speech in the MPEG format.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the value is <code>audio/pcm</code>, the speech returned is
+     *            <code>audio/pcm</code> in 16-bit, little endian format.
+     *            </p>
+     *            </li>
+     *            <li>
      *            <p>
      *            The following are the accepted values:
      *            </p>

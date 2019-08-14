@@ -1,20 +1,62 @@
 # Change Log - AWS SDK for Android
 
-### Bug Fixes
-* **Amazon Kinesis Video**
-  * Fixed a bug when CreateStreamRequest is initialized without setting Tags, auto-generated empty HashMap of Tags would cause ValidationException from Kinesis Video.
-
-## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
+## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
 ### Bug Fixes
 
 - **AWS Core Runtime**
+  - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+
+### Misc. Updates
+
+- **Breaking Changes**
+  - Removed deprecated SDKGlobalConfiguration options:
+    - `ENABLE_S3_SIGV4_SYSTEM_PROPERTY`
+    - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
+- Remove unused `mfaOption` property from `CognitoUserAttributes` class
+- Model updates for the following services
+  - AWS IoT
+  - Amazon Lex
+
+### Bug Fixes
+
+- **Amazon Pinpoint**
+  - Removed the check for INTERNET and ACCESS_NETWORK_STATE permissions while initializing `PinpointManager`. These are [normal permissions](https://developer.android.com/guide/topics/permissions/overview#normal_permissions) and therefore are not required to be checked before performing corresponding app-op. This changes Pinpoint SDK behavior to match that of our other SDKs where an `UnknownHostException` or a corresponding RuntimeException would be thrown if connectivity is not present when network calls are made by the SDK. This fixes [Issue#1092](https://github.com/aws-amplify/aws-sdk-android/issues/1092).
+
+## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
+
+### New Features
+
+- **AWS IoT**
+  - Added an overloaded version of `subscribeToTopic()` method,
+    `public void subscribeToTopic(final String topic, final AWSIotMqttQos qos, final AWSIotMqttSubscriptionStatusCallback subscriptionStatusCallback, final AWSIotMqttNewMessageCallback callback);`,
+    in `AWSIotMqttManager` which accepts subscription status callback to notify users of the status of subscription operation.
+    See [Issue#1005](https://github.com/aws-amplify/aws-sdk-android/issues/1005) for details.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Polly
+
+## [Release 2.14.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.1)
+
+### New Features
+
+- **AWS Core Runtime**
+  - Added support for `me-south-1` - Middle East (Bahrain) region.
+
+### Bug Fixes
+- **AWS Core Runtime**
   - Fixed response unmarshalling when response is gzip encoded without a CRC32 checksum. Also fixes bug decoding Kinesis responses with GZIP encoding.
+- **Amazon Kinesis Video**
+  - Fixed a bug when CreateStreamRequest is initialized without setting Tags, auto-generated empty HashMap of Tags would cause ValidationException from Kinesis Video.
+  - Fixed incorrect timestamp unit for encoder input caused high bitrate issue for the stream.
 
 ### Misc. Updates
 
 - Model updates for the following services
   - Amazon Comprehend
+  - Amazon Security Token Service (STS)
 
 ## [Release 2.14.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.0)
 
@@ -1676,4 +1718,3 @@ All documentation is now centralized at https://aws-amplify.github.io/
 ### Bug Fixes
 - **Amazon S3**: Fixed an issue that occurs when required headers are not properly signed. This issue affects S3 in two regions: Frankfurt (eu-central-1) and China (cn-north-1). [#42](https://github.com/aws/aws-sdk-android/issues/42)
 - **AWS Core Runtime Library**: Fixed an issue in Maven distribution where an incorrect version string is set in "User-Agent".
-1

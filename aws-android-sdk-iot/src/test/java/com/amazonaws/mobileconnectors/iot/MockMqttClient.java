@@ -21,6 +21,7 @@ public class MockMqttClient extends MqttAsyncClient {
     public boolean isConnected;
     public MqttCallback mockCallback;
     public IMqttActionListener mockConnectionStatusCallback;
+    public IMqttActionListener mockSubscriptionStatusCallback;
     public boolean throwsExceptionOnConnect;
     public MqttException connectException;
     public boolean throwsExceptionOnPublish;
@@ -99,6 +100,18 @@ public class MockMqttClient extends MqttAsyncClient {
         }
         ++subscribeCalls;
         mockSubscriptions.put(topicFilter, qos);
+        return testToken;
+    }
+
+    public IMqttToken subscribe(String topicFilter, int qos, Object userContext,
+                                IMqttActionListener callback) throws MqttException {
+        if (throwsExceptionOnSubscribe) {
+            throw new MqttException(MqttException.REASON_CODE_CLIENT_EXCEPTION);
+        }
+        ++subscribeCalls;
+        mockSubscriptionStatusCallback = callback;
+        mockSubscriptions.put(topicFilter, qos);
+        callback.onSuccess(testToken);
         return testToken;
     }
 

@@ -49,6 +49,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     */
+    private String engine;
+
+    /**
+     * <p>
      * The language identification tag (ISO 639 code for the language name-ISO
      * 3166 country code) for filtering the list of voices returned. If you
      * don't specify this optional parameter, all available voices are returned.
@@ -85,6 +96,118 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>0 - 4096<br/>
      */
     private String nextToken;
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     *
+     * @return <p>
+     *         Specifies the engine (<code>standard</code> or
+     *         <code>neural</code>) used by Amazon Polly when processing input
+     *         text for speech synthesis.
+     *         </p>
+     * @see Engine
+     */
+    public String getEngine() {
+        return engine;
+    }
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     *
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) used by Amazon Polly when processing
+     *            input text for speech synthesis.
+     *            </p>
+     * @see Engine
+     */
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     *
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) used by Amazon Polly when processing
+     *            input text for speech synthesis.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Engine
+     */
+    public DescribeVoicesRequest withEngine(String engine) {
+        this.engine = engine;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     *
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) used by Amazon Polly when processing
+     *            input text for speech synthesis.
+     *            </p>
+     * @see Engine
+     */
+    public void setEngine(Engine engine) {
+        this.engine = engine.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies the engine (<code>standard</code> or <code>neural</code>) used
+     * by Amazon Polly when processing input text for speech synthesis.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>standard, neural
+     *
+     * @param engine <p>
+     *            Specifies the engine (<code>standard</code> or
+     *            <code>neural</code>) used by Amazon Polly when processing
+     *            input text for speech synthesis.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Engine
+     */
+    public DescribeVoicesRequest withEngine(Engine engine) {
+        this.engine = engine.toString();
+        return this;
+    }
 
     /**
      * <p>
@@ -401,6 +524,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getEngine() != null)
+            sb.append("Engine: " + getEngine() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getIncludeAdditionalLanguageCodes() != null)
@@ -417,6 +542,7 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getEngine() == null) ? 0 : getEngine().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime
@@ -438,6 +564,10 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
             return false;
         DescribeVoicesRequest other = (DescribeVoicesRequest) obj;
 
+        if (other.getEngine() == null ^ this.getEngine() == null)
+            return false;
+        if (other.getEngine() != null && other.getEngine().equals(this.getEngine()) == false)
+            return false;
         if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
             return false;
         if (other.getLanguageCode() != null

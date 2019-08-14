@@ -21,7 +21,7 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The language specified in the lexicon is unsupported. For a list of supported
  * languages, see <a href=
- * "http://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html"
+ * "https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html"
  * >Lexicon Attributes</a>.
  * </p>
  */

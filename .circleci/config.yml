@@ -730,7 +730,6 @@ jobs:
       - run:
           name: run integration tests
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             python3 CircleciScripts/run_integrationtest.py "~/test_results" "$(pwd)"  "<< parameters.testmodule >>"
       - run:
           name : check integration test result 
@@ -747,56 +746,6 @@ jobs:
           path: "~/test_results"
       - store_artifacts:
           path: logcat.log     
-
-  uitest:
-    working_directory: ~/code
-    docker:
-      # Android the primary container
-      - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - set_enviroment_variables
-      - skip_job_if_required
-      - override_test_job      
-      - checkout
-      - skip_test_job      
-      - configure_aws     
-      - setup_android_platform23
-      - setup_android_platform18
-      - run:
-          name: checkout sample applications
-          command: |
-            git clone https://github.com/sunchunqiang/aws-sdk-android-samples.git
-      - restore_cache:
-          key: Libs-{{ .Revision }}
-      - run:
-          name: copy third party
-          command: |
-            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
-            unzip third-party.zip
-            cp third-party/**/*.jar  lib/
-      - run:
-          name: create aws configure json file
-          command :
-            echo "${S3SAMPLE_JSON}"  | base64 -di   > aws-sdk-android-samples/S3TransferUtilitySample/res/raw/awsconfiguration.json           
-      - run:
-          name: configure aws dependencies
-          command: |
-            python3 CircleciScripts/replace_awsdependencies.py "$(pwd)/aws-sdk-android-samples/S3TransferUtilitySample/build.gradle" "implementation fileTree(dir: '$(pwd)/lib', include: ['*.jar', '*.aar'])"
-      - setup_emulator         
-      - run:
-          name: run sample ui test
-          command: |
-            cd aws-sdk-android-samples/S3TransferUtilitySample
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
-            bash gradlew connectedAndroidTest
-      - store_artifacts:
-          path: "aws-sdk-android-samples/S3TransferUtilitySample/build/outputs"
-      - store_artifacts:
-          path: "aws-sdk-android-samples/S3TransferUtilitySample/build.gradle"
-      - store_artifacts:
-          path: logcat.log
 
   bump_sampleapp_version:
     working_directory: ~/code
@@ -1091,7 +1040,6 @@ jobs:
       - run:
           name: download devicefarm configure file
           command: |
-            aws s3 cp s3://android-circleci-payload/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
             aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
       - run:
           name: Configure test information
@@ -1539,15 +1487,6 @@ workflows:
             - Core
             - CognitoIdentityProvider
             - sagemakerruntime
-      - uitest:
-          requires:
-            - build
-            - pre_integrationtest
-          filters:
-            branches:
-              only:
-                - master
-                - develop
       - merge_to_master:
           requires:
             - build_api10

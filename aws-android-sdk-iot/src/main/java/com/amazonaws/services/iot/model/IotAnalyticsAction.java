@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Sends messge data to an AWS IoT Analytics channel.
+ * Sends message data to an AWS IoT Analytics channel.
  * </p>
  */
 public class IotAnalyticsAction implements Serializable {

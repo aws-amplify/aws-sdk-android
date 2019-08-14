@@ -838,9 +838,86 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Returns details about the IAM identity whose credentials are used to call
-     * the API.
+     * Returns the account identifier for the specified access key ID.
      * </p>
+     * <p>
+     * Access keys consist of two parts: an access key ID (for example,
+     * <code>AKIAIOSFODNN7EXAMPLE</code>) and a secret access key (for example,
+     * <code>wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</code>). For more
+     * information about access keys, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html"
+     * >Managing Access Keys for IAM Users</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * When you pass an access key ID to this operation, it returns the ID of
+     * the AWS account to which the keys belong. Access key IDs beginning with
+     * <code>AKIA</code> are long-term credentials for an IAM user or the AWS
+     * account root user. Access key IDs beginning with <code>ASIA</code> are
+     * temporary credentials that are created using STS operations. If the
+     * account in the response belongs to you, you can sign in as the root user
+     * and review your root user access keys. Then, you can pull a <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html"
+     * >credentials report</a> to learn which IAM user owns the keys. To learn
+     * who requested the temporary credentials for an <code>ASIA</code> access
+     * key, view the STS events in your <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html"
+     * >CloudTrail logs</a>.
+     * </p>
+     * <p>
+     * This operation does not indicate the state of the access key. The key
+     * might be active, inactive, or deleted. Active keys might not have
+     * permissions to perform an operation. Providing a deleted access key might
+     * return an error that the key doesn't exist.
+     * </p>
+     * 
+     * @param getAccessKeyInfoRequest
+     * @return getAccessKeyInfoResult The response from the GetAccessKeyInfo
+     *         service method, as returned by AWS Security Token Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Security Token Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetAccessKeyInfoResult getAccessKeyInfo(GetAccessKeyInfoRequest getAccessKeyInfoRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getAccessKeyInfoRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetAccessKeyInfoRequest> request = null;
+        Response<GetAccessKeyInfoResult> response = null;
+        try {
+            request = new GetAccessKeyInfoRequestMarshaller().marshall(getAccessKeyInfoRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetAccessKeyInfoResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns details about the IAM user or role whose credentials are used to
+     * call the operation.
+     * </p>
+     * <note>
+     * <p>
+     * No permissions are required to perform this operation. If an
+     * administrator adds a policy to your IAM user or role that explicitly
+     * denies access to the <code>sts:GetCallerIdentity</code> action, you can
+     * still perform this operation. Permissions are not required because the
+     * same information is returned when an IAM user or role is denied access.
+     * To view an example response, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_access-denied-delete-mfa"
+     * >I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</a>.
+     * </p>
+     * </note>
      * 
      * @param getCallerIdentityRequest
      * @return getCallerIdentityResult The response from the GetCallerIdentity
@@ -1208,9 +1285,21 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Returns details about the IAM identity whose credentials are used to call
-     * the API.
+     * Returns details about the IAM user or role whose credentials are used to
+     * call the operation.
      * </p>
+     * <note>
+     * <p>
+     * No permissions are required to perform this operation. If an
+     * administrator adds a policy to your IAM user or role that explicitly
+     * denies access to the <code>sts:GetCallerIdentity</code> action, you can
+     * still perform this operation. Permissions are not required because the
+     * same information is returned when an IAM user or role is denied access.
+     * To view an example response, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_access-denied-delete-mfa"
+     * >I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</a>.
+     * </p>
+     * </note>
      * 
      * @return getCallerIdentityResult The response from the GetCallerIdentity
      *         service method, as returned by AWS Security Token Service.

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Associates a Device Defender security profile with a thing group or with this
+ * Associates a Device Defender security profile with a thing group or this
  * account. Each thing group or account can have up to five security profiles
  * associated with it.
  * </p>

@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the Device Defender security profile violations discovered during the
  * given time period. You can use filters to limit the results to those alerts
- * issued for a particular security profile, behavior or thing (device).
+ * issued for a particular security profile, behavior, or thing (device).
  * </p>
  */
 public class ListViolationEventsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -48,7 +48,6 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
@@ -178,7 +177,6 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         A filter to limit results to those alerts caused by the specified
@@ -196,7 +194,6 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            A filter to limit results to those alerts caused by the
@@ -217,7 +214,6 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            A filter to limit results to those alerts caused by the

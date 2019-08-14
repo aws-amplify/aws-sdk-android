@@ -39,6 +39,16 @@ public class Constants {
     /** Service hostname for accessing dualstack accelerated S3 buckets */
     public static final String S3_ACCELERATE_DUALSTACK_HOSTNAME = "s3-accelerate.dualstack.amazonaws.com";
 
+    /** Parameter name to indicate permission to dangerously connect to HTTP endpoint */
+    public static final String LOCAL_TESTING_FLAG_NAME = "DangerouslyConnectToHTTPEndpointForTesting";
+
+    /**
+     * Default endpoint for the local S3 storage testing
+     *
+     * Android emulator uses 10.0.2.2 to connect to localhost instead of 127.0.0.1 (reserved for emulator itself)
+     */
+    public static final String LOCAL_TESTING_ENDPOINT = "http://10.0.2.2:20005";
+
     /** Dualstack qualifier for S3 */
     public static final String S3_DUALSTACK_QUALIFIER = "dualstack";
 

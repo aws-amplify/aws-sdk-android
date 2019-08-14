@@ -16,7 +16,6 @@
 package com.amazonaws.services.s3;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -67,78 +66,58 @@ public class DefaultSigningMethodTest {
         }
     }
 
-    /** Clear system properties */
-    @Before
-    @After
-    public void clearFlags() {
-        System.clearProperty("com.amazonaws.services.s3.enforceV4");
-        System.clearProperty("com.amazonaws.services.s3.enableV4");
-    }
-
     /**
-     * Tests that BJS endpoint always defaults to SigV4.
+     * Tests that BJS endpoint always defaults to SigV4. Remove this when we remove the no-arg
+     * constructor.
      */
     @Test
+    @Deprecated
     public void testBJSDefaultSigning() {
         final AmazonS3Client s3 = new AmazonS3Client();
         s3.setEndpoint("s3.cn-north-1.amazonaws.com.cn");
         assertSigV4WithRegion(s3, "cn-north-1");
-
-        // Using any of the system props should not affect the default
-        System.setProperty("com.amazonaws.services.s3.enforceV4", "true");
-        assertSigV4WithRegion(s3, "cn-north-1");
-        System.setProperty("com.amazonaws.services.s3.enableV4", "true");
-        assertSigV4WithRegion(s3, "cn-north-1");
     }
 
     /**
-     * Tests the behavior when using S3 standard endpoint with explicit region.
+     * Tests the behavior when using S3 standard endpoint with explicit region. Remove this when we
+     * remove the no-arg constructor.
      */
     @Test
+    @Deprecated
     public void testStandardEndpointWithRegionOverride() {
         final AmazonS3Client s3 = new AmazonS3Client();
-        // Explicitly setting a regionName, now it defaults to sigv2, but sigv4
-        // is allowed to be turned on by enforceV4.
+        // Explicitly setting a regionName
         s3.setEndpoint("s3.amazonaws.com", "s3", "us-west-1");
 
-        // Default to SigV2
+        // Default to SigV4 if providing region
         assertSigV4WithRegion(s3, "us-west-1");
-        // "Enforce" v4 signing should work.
-        System.setProperty("com.amazonaws.services.s3.enforceV4", "true");
-        assertSigV4WithRegion(s3, "us-west-1");
+
         s3.setEndpoint("s3.amazonaws.com", "s3", "eu-west-1");
         assertSigV4WithRegion(s3, "eu-west-1");
     }
 
     /**
-     * Tests that other endpoints always defaults to SigV2, and can be changed
-     * by system property.
+     * Tests that other endpoints always uses SigV4 if we override via system property
      */
     @Test
     public void testOtherRegionDefaultSigning() {
-        testSigV4WithRegionDefaultSigning("s3-external-1.amazonaws.com", "us-east-1");
-        testSigV4WithRegionDefaultSigning("s3-us-west-2.amazonaws.com", "us-west-2");
-        testSigV4WithRegionDefaultSigning("s3-us-west-1.amazonaws.com", "us-west-1");
-        testSigV4WithRegionDefaultSigning("s3-eu-west-1.amazonaws.com", "eu-west-1");
-        testSigV4WithRegionDefaultSigning("s3-ap-southeast-1.amazonaws.com", "ap-southeast-1");
-        testSigV4WithRegionDefaultSigning("s3-ap-southeast-2.amazonaws.com", "ap-southeast-2");
-        testSigV4WithRegionDefaultSigning("s3-ap-northeast-1.amazonaws.com", "ap-northeast-1");
-        testSigV4WithRegionDefaultSigning("s3-sa-east-1.amazonaws.com", "sa-east-1");
+        assertReturnsSigV4IfRegionProvided("s3-external-1.amazonaws.com", "us-east-1");
+        assertReturnsSigV4IfRegionProvided("s3-us-west-2.amazonaws.com", "us-west-2");
+        assertReturnsSigV4IfRegionProvided("s3-us-west-1.amazonaws.com", "us-west-1");
+        assertReturnsSigV4IfRegionProvided("s3-eu-west-1.amazonaws.com", "eu-west-1");
+        assertReturnsSigV4IfRegionProvided("s3-ap-southeast-1.amazonaws.com", "ap-southeast-1");
+        assertReturnsSigV4IfRegionProvided("s3-ap-southeast-2.amazonaws.com", "ap-southeast-2");
+        assertReturnsSigV4IfRegionProvided("s3-ap-northeast-1.amazonaws.com", "ap-northeast-1");
+        assertReturnsSigV4IfRegionProvided("s3-sa-east-1.amazonaws.com", "sa-east-1");
     }
 
-    private void testSigV4WithRegionDefaultSigning(String endpoint, String expectedRegionName) {
-        clearFlags();
+    /**
+     * Remove when we remove the no-arg AmazonS3Client constructor
+     */
+    @Deprecated
+    private void assertReturnsSigV4IfRegionProvided(String endpoint, String expectedRegionName) {
         final AmazonS3Client s3 = new AmazonS3Client();
         s3.setEndpoint(endpoint);
-        assertSigV4WithRegion(s3, expectedRegionName);
-
-        // Enforce SigV4 should change the default
-        System.setProperty("com.amazonaws.services.s3.enforceV4", "true");
-        assertSigV4WithRegion(s3, expectedRegionName);
-        clearFlags();
-
-        // Enable SigV4 should also work
-        System.setProperty("com.amazonaws.services.s3.enableV4", "true");
         assertSigV4WithRegion(s3, expectedRegionName);
     }
 
