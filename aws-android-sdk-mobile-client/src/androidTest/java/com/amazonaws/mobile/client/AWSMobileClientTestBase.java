@@ -6,10 +6,17 @@ import android.support.test.InstrumentationRegistry;
 import android.util.Base64;
 
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
+import com.amazonaws.mobile.client.results.Token;
+import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.testutils.AWSTestBase;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
+
+import java.util.Date;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
@@ -87,5 +94,17 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         byte[] accessToken_p2_UTF8 = accessToken_p2_Str.getBytes(StringUtils.UTF8);
         String accessToken_p2_Base64 = new String(Base64.encode(accessToken_p2_UTF8, Base64.DEFAULT));
         return accessToken_p1_Base64 + "." + accessToken_p2_Base64 + "." + accessToken_p3_Base64;
+    }
+
+    protected void verifyTokens(Tokens tokens) {
+        assertNotNull(tokens);
+        Token accessToken = tokens.getAccessToken();
+        assertNotNull(accessToken);
+        assertTrue("Access token should not be expired", accessToken.getExpiration().after(new Date()));
+        Token idToken = tokens.getIdToken();
+        assertNotNull(idToken);
+        assertTrue("Id token should not be expired", idToken.getExpiration().after(new Date()));
+        Token refreshToken = tokens.getRefreshToken();
+        assertNotNull(refreshToken);
     }
 }

@@ -27,7 +27,9 @@ import java.security.Key;
 import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
@@ -55,7 +57,6 @@ public class AWSKeyValueStore {
 
     KeyProvider keyProvider;
     SecureRandom secureRandom;
-    AWSKeyValueStoreUpgradeHelper awsKeyValueStoreUpgradeHelper;
 
     static final int ANDROID_API_LEVEL_23 = 23;
     static final int ANDROID_API_LEVEL_18 = 18;
@@ -96,7 +97,7 @@ public class AWSKeyValueStore {
      */
     static final String SHARED_PREFERENCES_ENCRYPTION_KEY_NAMESPACE_SUFFIX = ".encryptionkey";
 
-    static final AWSKeyValueStoreVersion CURRENT_AWS_KEY_VALUE_STORE_VERSION = AWSKeyValueStoreVersion.VERSION_1;
+    private static final int AWS_KEY_VALUE_STORE_VERSION = 1;
 
     private int apiLevel;
 
@@ -148,8 +149,7 @@ public class AWSKeyValueStore {
                 logger.info("Creating the AWSKeyValueStore with key for " +
                         "sharedPreferencesForData = " + sharedPreferencesName);
 
-                this.awsKeyValueStoreUpgradeHelper = new AWSKeyValueStoreUpgradeHelper(this);
-                this.awsKeyValueStoreUpgradeHelper.onUpgrade(AWSKeyValueStoreVersion.VERSION_0, AWSKeyValueStoreVersion.VERSION_1);
+                onMigrateFromNoEncryption();
             } else if (!isPersistenceEnabled) {
                 logger.info("Persistence is disabled. Data will be accessed from memory.");
             }
@@ -198,20 +198,23 @@ public class AWSKeyValueStore {
                 return null;
             }
 
-            // TODO If the key-value pair is not present in memory,
-            // retrieve it from the disk and return.
-
             // Retrieve the decryption key used for decrypting the data.
-            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey); // k becomes k.encrypted
 
-            // Get the keyAlias that identifies the encryption-key
+            // dataKey becomes dataKey.encrypted
+            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey);
+
+            // Get the encryption key alias
             String encryptionKeyAlias = getEncryptionKeyAlias();
 
             // Based on the encryption key alias, retrieve the encryption key
+            // If the encryption key cannot be retrieved, return null and
+            // the consumer of get would treat it as if this data is not present
+            // on the persistent store.
             Key decryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
             if (decryptionKey == null) {
                 logger.error("Error in retrieving the decryption key " +
-                        "used to decrypt the data from the persistent store.");
+                        "used to decrypt the data from the persistent store. " +
+                        "Returning null for the requested dataKey = " + dataKey);
                 return null;
             }
 
@@ -224,9 +227,10 @@ public class AWSKeyValueStore {
             try {
                 // If the version of data stored mismatches with the version of the store,
                 // return null.
-                final int keyValueStoreVersion = Integer.parseInt(sharedPreferencesForData
+                final int keyValueStoreVersion = Integer.parseInt(
+                        sharedPreferencesForData
                                 .getString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
-                if (!AWSKeyValueStoreVersion.fromInt(keyValueStoreVersion).equals(CURRENT_AWS_KEY_VALUE_STORE_VERSION)) {
+                if (keyValueStoreVersion != AWS_KEY_VALUE_STORE_VERSION) {
                     logger.error("The version of the data read from SharedPreferences for " +
                             dataKey + " does not match the version of the store.");
                     return null;
@@ -246,6 +250,8 @@ public class AWSKeyValueStore {
                 return decryptedDataInString;
             } catch (Exception ex) {
                 logger.error("Error in retrieving value for dataKey = " + dataKey, ex);
+
+                // Remove the dataKey and its associated value if there is an exception in decryption
                 remove(dataKey);
                 return null;
             }
@@ -285,19 +291,23 @@ public class AWSKeyValueStore {
                 return;
             }
 
-            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey); // dataKey becomes dataKey.encrypted
+            // dataKey becomes dataKey.encrypted
+            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey);
 
-            // Retrieve if there is an encryption key alias used. Else, generate a new one.
+            // Get the encryption key alias
             String encryptionKeyAlias = getEncryptionKeyAlias();
 
-            // Get an encryption key
+            // Based on the encryption key alias, retrieve the encryption key
+            // If the encryption key cannot be retrieved, create a new encryption key
+            // with the encryption key alias.
             Key encryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
             if (encryptionKey == null) {
                 // If the encryption key is null, create a new encryption key
                 encryptionKey = generateEncryptionKey(encryptionKeyAlias);
                 if (encryptionKey == null) {
                     logger.error("Error in generating or retrieving the encryption key " +
-                            "used to encrypt the data before storing.");
+                            "used to encrypt the data before storing. Skipping persisting the data " +
+                            "in the persistent store.");
                     return;
                 }
             }
@@ -316,7 +326,7 @@ public class AWSKeyValueStore {
                         .edit()
                         .putString(dataKeyInPersistentStore, encryptedData) // Data
                         .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_IV_SUFFIX, Base64.encodeAsString(iv)) // IV
-                        .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, String.valueOf(CURRENT_AWS_KEY_VALUE_STORE_VERSION.intValue())) // KeyValueStore Version
+                        .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, String.valueOf(AWS_KEY_VALUE_STORE_VERSION)) // KeyValueStore Version
                         .apply();
             } catch (Exception ex) {
                 logger.error("Error in storing value for dataKey = " + dataKey, ex);
@@ -490,6 +500,51 @@ public class AWSKeyValueStore {
                     " not supported by the SDK. " +
                     "Setting persistence to false.");
             this.isPersistenceEnabled = false;
+        }
+    }
+
+    /**
+     * Migrate all the keys in the SharedPreferences namespace
+     * except for the encryption metadata
+     */
+    private void onMigrateFromNoEncryption() {
+        Map<String, ?> map = sharedPreferencesForData.getAll();
+        for (String spKey : map.keySet()) {
+            if (!spKey.endsWith(SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX) &&
+                !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
+                !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
+
+                // Check if its an instance of the dataType.
+                if (map.get(spKey) instanceof Long) {
+                    Long longValue = sharedPreferencesForData.getLong(spKey, 0);
+                    put(spKey, String.valueOf(longValue));
+                } else if (map.get(spKey) instanceof String) {
+                    put(spKey, sharedPreferencesForData.getString(spKey, null));
+                } else if (map.get(spKey) instanceof Float) {
+                    Float floatValue = sharedPreferencesForData.getFloat(spKey, 0);
+                    put(spKey, String.valueOf(floatValue));
+                } else if (map.get(spKey) instanceof Boolean) {
+                    Boolean booleanValue = sharedPreferencesForData.getBoolean(spKey, false);
+                    put(spKey, String.valueOf(booleanValue));
+                } else if (map.get(spKey) instanceof Integer) {
+                    Integer intValue = sharedPreferencesForData.getInt(spKey, 0);
+                    put(spKey, String.valueOf(intValue));
+                } else if (map.get(spKey) instanceof Set) {
+                    Set<String> stringSet = (Set<String>) map.get(spKey);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    Iterator<String> setIterator = stringSet.iterator();
+                    while (setIterator.hasNext()) {
+                        stringBuilder.append(setIterator.next());
+                        if (setIterator.hasNext()) {
+                            stringBuilder.append(",");
+                        }
+                    }
+                    put(spKey, stringBuilder.toString());
+                }
+
+                // Remove the key since key.encrypted is written.
+                sharedPreferencesForData.edit().remove(spKey).apply();
+            }
         }
     }
 }

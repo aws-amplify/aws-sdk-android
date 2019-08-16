@@ -42,8 +42,7 @@ class KeyProvider23 implements KeyProvider {
 
     /**
      * If the SharedPreferences name is "com.amazonaws.android.auth", then the encryption key
-     * that is used to encrypt the data in {@link AWSKeyValueStoreVersion.VERSION_1} is stored in the alias
-     * "com.amazonaws.android.auth.aesKeyStoreAlias".
+     * that is used to encrypt the data is "com.amazonaws.android.auth.aesKeyStoreAlias".
      */
     static final String AWS_KEY_VALUE_STORE_VERSION_1_KEY_STORE_ALIAS_FOR_AES_SUFFIX = ".aesKeyStoreAlias";
 

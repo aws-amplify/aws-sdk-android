@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2019 Amazon.com,
+ *  Copyright 2013-2016 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -16,6 +16,8 @@
  */
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens;
+
+import java.util.Objects;
 
 /**
  * Base class for Cognito tokens.
@@ -35,13 +37,5 @@ public class CognitoUserToken {
 
     protected String getToken() {
         return token;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CognitoUserToken that = (CognitoUserToken) o;
-        return token.equals(that.token);
     }
 }
