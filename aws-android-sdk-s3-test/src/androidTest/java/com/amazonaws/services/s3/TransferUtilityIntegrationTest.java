@@ -71,6 +71,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
         }
 
         public void onError(int id, Exception ex) {
+            throw new RuntimeException(ex);
         }
     };
 

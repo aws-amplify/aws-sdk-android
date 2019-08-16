@@ -3671,6 +3671,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             populateRequestMetadata(request, initiateMultipartUploadRequest.objectMetadata);
         }
 
+        addHeaderIfNotNull(request, Headers.S3_TAGGING, urlEncodeTags(initiateMultipartUploadRequest.getTagging()));
+
         populateRequesterPaysHeader(request, initiateMultipartUploadRequest.isRequesterPays());
 
         // Populate the SSE-C parameters to the request header
@@ -3825,7 +3827,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         if (objectMetadata != null) {
             populateRequestMetadata(request, objectMetadata);
         }
-
         addHeaderIfNotNull(request, Headers.CONTENT_MD5, uploadPartRequest.getMd5Digest());
         request.addHeader(Headers.CONTENT_LENGTH, Long.toString(partSize));
         /*
@@ -4409,7 +4410,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 if (value != null) {
                     value = value.trim();
                 }
-                request.addHeader(Headers.S3_USER_METADATA_PREFIX + key, value);
+                if (!Headers.S3_TAGGING.equals(key)) {
+                    request.addHeader(Headers.S3_USER_METADATA_PREFIX + key, value);
+                }
             }
         }
     }
