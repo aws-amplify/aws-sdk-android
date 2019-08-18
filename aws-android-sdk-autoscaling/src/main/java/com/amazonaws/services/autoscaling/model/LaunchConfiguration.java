@@ -49,7 +49,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The ID of the Amazon Machine Image (AMI).
+     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,6 +71,12 @@ public class LaunchConfiguration implements Serializable {
      * The name of the key pair.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -73,7 +86,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The security groups to associate with the instances.
+     * A list that contains the security groups to assign to the instances in
+     * the Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
      * </p>
      */
     private java.util.List<String> securityGroups = new java.util.ArrayList<String>();
@@ -81,8 +101,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     * to. This parameter can only be used if you are launching EC2-Classic
-     * instances. For more information, see <a href=
+     * to.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -101,7 +123,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * <code>ClassicLinkVPCId</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -109,16 +134,19 @@ public class LaunchConfiguration implements Serializable {
      * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
-     * <p>
-     * Conditional: This parameter is required if you specify a
-     * ClassicLink-enabled VPC, and cannot be used otherwise.
-     * </p>
      */
     private java.util.List<String> classicLinkVPCSecurityGroups = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The user data available to the instances.
+     * The Base64-encoded user data to make available to the launched EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,6 +159,12 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The instance type for the instances.
+     * </p>
+     * <p>
+     * For information about available instance types, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * >Available Instance Types</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances.</i>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,6 +203,12 @@ public class LaunchConfiguration implements Serializable {
      * A block device mapping, which specifies the block devices for the
      * instance.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
      */
     private java.util.List<BlockDeviceMapping> blockDeviceMappings = new java.util.ArrayList<BlockDeviceMapping>();
 
@@ -177,12 +217,26 @@ public class LaunchConfiguration implements Serializable {
      * Controls whether instances in this group are launched with detailed (
      * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     * >Configure Monitoring for Auto Scaling Instances</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
+     * </p>
      */
     private InstanceMonitoring instanceMonitoring;
 
     /**
      * <p>
-     * The price to bid when launching Spot Instances.
+     * The maximum hourly price to be paid for any Spot Instance launched to
+     * fulfill the request. Spot Instances are launched when the price you
+     * specify exceeds the current Spot market price.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -192,8 +246,15 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the instance profile associated
-     * with the IAM role for the instance.
+     * The name or the Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance. The instance profile
+     * contains the IAM role.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >IAM Role for Applications That Run on Amazon EC2 Instances</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -212,16 +273,28 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether the instance is optimized for EBS I/O (<code>true</code>
-     * ) or not (<code>false</code>).
+     * Specifies whether the launch configuration is optimized for EBS I/O (
+     * <code>true</code>) or not (<code>false</code>).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      */
     private Boolean ebsOptimized;
 
     /**
      * <p>
-     * [EC2-VPC] Indicates whether to assign a public IP address to each
-     * instance.
+     * For Auto Scaling groups that are running in a VPC, specifies whether to
+     * assign a public IP address to the group's instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      */
     private Boolean associatePublicIpAddress;
@@ -230,8 +303,14 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The tenancy of the instance, either <code>default</code> or
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy
-     * runs in an isolated, single-tenant hardware and can only be launched into
-     * a VPC.
+     * runs on isolated, single-tenant hardware and can only be launched into a
+     * VPC.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     * >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,7 +442,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The ID of the Amazon Machine Image (AMI).
+     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -372,7 +458,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ID of the Amazon Machine Image (AMI).
+     *         The ID of the Amazon Machine Image (AMI) to use to launch your
+     *         EC2 instances.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *         >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     *         Instances</i>.
      *         </p>
      */
     public String getImageId() {
@@ -381,7 +474,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The ID of the Amazon Machine Image (AMI).
+     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -390,7 +490,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param imageId <p>
-     *            The ID of the Amazon Machine Image (AMI).
+     *            The ID of the Amazon Machine Image (AMI) to use to launch your
+     *            EC2 instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *            >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i>.
      *            </p>
      */
     public void setImageId(String imageId) {
@@ -399,7 +506,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The ID of the Amazon Machine Image (AMI).
+     * The ID of the Amazon Machine Image (AMI) to use to launch your EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     * >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -411,7 +525,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param imageId <p>
-     *            The ID of the Amazon Machine Image (AMI).
+     *            The ID of the Amazon Machine Image (AMI) to use to launch your
+     *            EC2 instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html"
+     *            >Finding an AMI</a> in the <i>Amazon EC2 User Guide for Linux
+     *            Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -426,6 +547,12 @@ public class LaunchConfiguration implements Serializable {
      * The name of the key pair.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -433,6 +560,12 @@ public class LaunchConfiguration implements Serializable {
      *
      * @return <p>
      *         The name of the key pair.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *         >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for
+     *         Linux Instances</i>.
      *         </p>
      */
     public String getKeyName() {
@@ -444,6 +577,12 @@ public class LaunchConfiguration implements Serializable {
      * The name of the key pair.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -451,6 +590,12 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param keyName <p>
      *            The name of the key pair.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *            >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for
+     *            Linux Instances</i>.
      *            </p>
      */
     public void setKeyName(String keyName) {
@@ -460,6 +605,12 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The name of the key pair.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     * >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -473,6 +624,12 @@ public class LaunchConfiguration implements Serializable {
      * @param keyName <p>
      *            The name of the key pair.
      *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html"
+     *            >Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for
+     *            Linux Instances</i>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -483,11 +640,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The security groups to associate with the instances.
+     * A list that contains the security groups to assign to the instances in
+     * the Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
      * </p>
      *
      * @return <p>
-     *         The security groups to associate with the instances.
+     *         A list that contains the security groups to assign to the
+     *         instances in the Auto Scaling group.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *         >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *         Private Cloud User Guide</i>.
      *         </p>
      */
     public java.util.List<String> getSecurityGroups() {
@@ -496,11 +667,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The security groups to associate with the instances.
+     * A list that contains the security groups to assign to the instances in
+     * the Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
      * </p>
      *
      * @param securityGroups <p>
-     *            The security groups to associate with the instances.
+     *            A list that contains the security groups to assign to the
+     *            instances in the Auto Scaling group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
      *            </p>
      */
     public void setSecurityGroups(java.util.Collection<String> securityGroups) {
@@ -514,14 +699,28 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The security groups to associate with the instances.
+     * A list that contains the security groups to assign to the instances in
+     * the Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityGroups <p>
-     *            The security groups to associate with the instances.
+     *            A list that contains the security groups to assign to the
+     *            instances in the Auto Scaling group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -538,14 +737,28 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The security groups to associate with the instances.
+     * A list that contains the security groups to assign to the instances in
+     * the Auto Scaling group.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     * >Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud
+     * User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityGroups <p>
-     *            The security groups to associate with the instances.
+     *            A list that contains the security groups to assign to the
+     *            instances in the Auto Scaling group.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html"
+     *            >Security Groups for Your VPC</a> in the <i>Amazon Virtual
+     *            Private Cloud User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -558,8 +771,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     * to. This parameter can only be used if you are launching EC2-Classic
-     * instances. For more information, see <a href=
+     * to.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -575,9 +790,10 @@ public class LaunchConfiguration implements Serializable {
      *
      * @return <p>
      *         The ID of a ClassicLink-enabled VPC to link your EC2-Classic
-     *         instances to. This parameter can only be used if you are
-     *         launching EC2-Classic instances. For more information, see <a
-     *         href=
+     *         instances to.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *         >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *         Instances</i> and <a href=
@@ -593,8 +809,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     * to. This parameter can only be used if you are launching EC2-Classic
-     * instances. For more information, see <a href=
+     * to.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -610,9 +828,10 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param classicLinkVPCId <p>
      *            The ID of a ClassicLink-enabled VPC to link your EC2-Classic
-     *            instances to. This parameter can only be used if you are
-     *            launching EC2-Classic instances. For more information, see <a
-     *            href=
+     *            instances to.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *            Instances</i> and <a href=
@@ -628,8 +847,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances
-     * to. This parameter can only be used if you are launching EC2-Classic
-     * instances. For more information, see <a href=
+     * to.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -648,9 +869,10 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param classicLinkVPCId <p>
      *            The ID of a ClassicLink-enabled VPC to link your EC2-Classic
-     *            instances to. This parameter can only be used if you are
-     *            launching EC2-Classic instances. For more information, see <a
-     *            href=
+     *            instances to.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *            Instances</i> and <a href=
@@ -669,7 +891,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * <code>ClassicLinkVPCId</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -677,24 +902,19 @@ public class LaunchConfiguration implements Serializable {
      * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
-     * <p>
-     * Conditional: This parameter is required if you specify a
-     * ClassicLink-enabled VPC, and cannot be used otherwise.
-     * </p>
      *
      * @return <p>
      *         The IDs of one or more security groups for the VPC specified in
-     *         <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     *         <code>ClassicLinkVPCId</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *         >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *         Instances</i> and <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
      *         >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2
      *         Auto Scaling User Guide</i>.
-     *         </p>
-     *         <p>
-     *         Conditional: This parameter is required if you specify a
-     *         ClassicLink-enabled VPC, and cannot be used otherwise.
      *         </p>
      */
     public java.util.List<String> getClassicLinkVPCSecurityGroups() {
@@ -704,7 +924,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * <code>ClassicLinkVPCId</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -712,25 +935,19 @@ public class LaunchConfiguration implements Serializable {
      * >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
-     * <p>
-     * Conditional: This parameter is required if you specify a
-     * ClassicLink-enabled VPC, and cannot be used otherwise.
-     * </p>
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
-     *            href=
+     *            in <code>ClassicLinkVPCId</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *            Instances</i> and <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
      *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
      *            EC2 Auto Scaling User Guide</i>.
-     *            </p>
-     *            <p>
-     *            Conditional: This parameter is required if you specify a
-     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      */
     public void setClassicLinkVPCSecurityGroups(
@@ -747,7 +964,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * <code>ClassicLinkVPCId</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -756,27 +976,21 @@ public class LaunchConfiguration implements Serializable {
      * Scaling User Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you specify a
-     * ClassicLink-enabled VPC, and cannot be used otherwise.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
-     *            href=
+     *            in <code>ClassicLinkVPCId</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *            Instances</i> and <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
      *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
      *            EC2 Auto Scaling User Guide</i>.
-     *            </p>
-     *            <p>
-     *            Conditional: This parameter is required if you specify a
-     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -796,7 +1010,10 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The IDs of one or more security groups for the VPC specified in
-     * <code>ClassicLinkVPCId</code>. For more information, see <a href=
+     * <code>ClassicLinkVPCId</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      * >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>
      * and <a href=
@@ -805,27 +1022,21 @@ public class LaunchConfiguration implements Serializable {
      * Scaling User Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you specify a
-     * ClassicLink-enabled VPC, and cannot be used otherwise.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param classicLinkVPCSecurityGroups <p>
      *            The IDs of one or more security groups for the VPC specified
-     *            in <code>ClassicLinkVPCId</code>. For more information, see <a
-     *            href=
+     *            in <code>ClassicLinkVPCId</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
      *            >ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux
      *            Instances</i> and <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-ClassicLink"
      *            >Linking EC2-Classic Instances to a VPC</a> in the <i>Amazon
      *            EC2 Auto Scaling User Guide</i>.
-     *            </p>
-     *            <p>
-     *            Conditional: This parameter is required if you specify a
-     *            ClassicLink-enabled VPC, and cannot be used otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -838,7 +1049,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The user data available to the instances.
+     * The Base64-encoded user data to make available to the launched EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -847,7 +1065,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The user data available to the instances.
+     *         The Base64-encoded user data to make available to the launched
+     *         EC2 instances.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *         >Instance Metadata and User Data</a> in the <i>Amazon EC2 User
+     *         Guide for Linux Instances</i>.
      *         </p>
      */
     public String getUserData() {
@@ -856,7 +1081,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The user data available to the instances.
+     * The Base64-encoded user data to make available to the launched EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -865,7 +1097,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param userData <p>
-     *            The user data available to the instances.
+     *            The Base64-encoded user data to make available to the launched
+     *            EC2 instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *            >Instance Metadata and User Data</a> in the <i>Amazon EC2 User
+     *            Guide for Linux Instances</i>.
      *            </p>
      */
     public void setUserData(String userData) {
@@ -874,7 +1113,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The user data available to the instances.
+     * The Base64-encoded user data to make available to the launched EC2
+     * instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     * >Instance Metadata and User Data</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -886,7 +1132,14 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param userData <p>
-     *            The user data available to the instances.
+     *            The Base64-encoded user data to make available to the launched
+     *            EC2 instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html"
+     *            >Instance Metadata and User Data</a> in the <i>Amazon EC2 User
+     *            Guide for Linux Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -901,6 +1154,12 @@ public class LaunchConfiguration implements Serializable {
      * The instance type for the instances.
      * </p>
      * <p>
+     * For information about available instance types, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * >Available Instance Types</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances.</i>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -908,6 +1167,12 @@ public class LaunchConfiguration implements Serializable {
      *
      * @return <p>
      *         The instance type for the instances.
+     *         </p>
+     *         <p>
+     *         For information about available instance types, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *         >Available Instance Types</a> in the <i>Amazon EC2 User Guide for
+     *         Linux Instances.</i>
      *         </p>
      */
     public String getInstanceType() {
@@ -919,6 +1184,12 @@ public class LaunchConfiguration implements Serializable {
      * The instance type for the instances.
      * </p>
      * <p>
+     * For information about available instance types, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * >Available Instance Types</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances.</i>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -926,6 +1197,12 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param instanceType <p>
      *            The instance type for the instances.
+     *            </p>
+     *            <p>
+     *            For information about available instance types, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            >Available Instance Types</a> in the <i>Amazon EC2 User Guide
+     *            for Linux Instances.</i>
      *            </p>
      */
     public void setInstanceType(String instanceType) {
@@ -935,6 +1212,12 @@ public class LaunchConfiguration implements Serializable {
     /**
      * <p>
      * The instance type for the instances.
+     * </p>
+     * <p>
+     * For information about available instance types, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     * >Available Instance Types</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances.</i>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -947,6 +1230,12 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param instanceType <p>
      *            The instance type for the instances.
+     *            </p>
+     *            <p>
+     *            For information about available instance types, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes"
+     *            >Available Instance Types</a> in the <i>Amazon EC2 User Guide
+     *            for Linux Instances.</i>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1081,10 +1370,22 @@ public class LaunchConfiguration implements Serializable {
      * A block device mapping, which specifies the block devices for the
      * instance.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
      *
      * @return <p>
      *         A block device mapping, which specifies the block devices for the
      *         instance.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *         >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for
+     *         Linux Instances</i>.
      *         </p>
      */
     public java.util.List<BlockDeviceMapping> getBlockDeviceMappings() {
@@ -1096,10 +1397,22 @@ public class LaunchConfiguration implements Serializable {
      * A block device mapping, which specifies the block devices for the
      * instance.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
      *
      * @param blockDeviceMappings <p>
      *            A block device mapping, which specifies the block devices for
      *            the instance.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for
+     *            Linux Instances</i>.
      *            </p>
      */
     public void setBlockDeviceMappings(java.util.Collection<BlockDeviceMapping> blockDeviceMappings) {
@@ -1117,12 +1430,24 @@ public class LaunchConfiguration implements Serializable {
      * instance.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blockDeviceMappings <p>
      *            A block device mapping, which specifies the block devices for
      *            the instance.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for
+     *            Linux Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1144,12 +1469,24 @@ public class LaunchConfiguration implements Serializable {
      * instance.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     * >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for Linux
+     * Instances</i>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blockDeviceMappings <p>
      *            A block device mapping, which specifies the block devices for
      *            the instance.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html"
+     *            >Block Device Mapping</a> in the <i>Amazon EC2 User Guide for
+     *            Linux Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1165,11 +1502,23 @@ public class LaunchConfiguration implements Serializable {
      * Controls whether instances in this group are launched with detailed (
      * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     * >Configure Monitoring for Auto Scaling Instances</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
+     * </p>
      *
      * @return <p>
      *         Controls whether instances in this group are launched with
      *         detailed (<code>true</code>) or basic (<code>false</code>)
      *         monitoring.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     *         >Configure Monitoring for Auto Scaling Instances</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public InstanceMonitoring getInstanceMonitoring() {
@@ -1181,11 +1530,23 @@ public class LaunchConfiguration implements Serializable {
      * Controls whether instances in this group are launched with detailed (
      * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     * >Configure Monitoring for Auto Scaling Instances</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
+     * </p>
      *
      * @param instanceMonitoring <p>
      *            Controls whether instances in this group are launched with
      *            detailed (<code>true</code>) or basic (<code>false</code>)
      *            monitoring.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     *            >Configure Monitoring for Auto Scaling Instances</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setInstanceMonitoring(InstanceMonitoring instanceMonitoring) {
@@ -1198,6 +1559,12 @@ public class LaunchConfiguration implements Serializable {
      * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     * >Configure Monitoring for Auto Scaling Instances</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -1205,6 +1572,12 @@ public class LaunchConfiguration implements Serializable {
      *            Controls whether instances in this group are launched with
      *            detailed (<code>true</code>) or basic (<code>false</code>)
      *            monitoring.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html#enable-as-instance-metrics"
+     *            >Configure Monitoring for Auto Scaling Instances</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1216,14 +1589,30 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The price to bid when launching Spot Instances.
+     * The maximum hourly price to be paid for any Spot Instance launched to
+     * fulfill the request. Spot Instances are launched when the price you
+     * specify exceeds the current Spot market price.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
      * @return <p>
-     *         The price to bid when launching Spot Instances.
+     *         The maximum hourly price to be paid for any Spot Instance
+     *         launched to fulfill the request. Spot Instances are launched when
+     *         the price you specify exceeds the current Spot market price.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     *         >Launching Spot Instances in Your Auto Scaling Group</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getSpotPrice() {
@@ -1232,14 +1621,31 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The price to bid when launching Spot Instances.
+     * The maximum hourly price to be paid for any Spot Instance launched to
+     * fulfill the request. Spot Instances are launched when the price you
+     * specify exceeds the current Spot market price.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
      * @param spotPrice <p>
-     *            The price to bid when launching Spot Instances.
+     *            The maximum hourly price to be paid for any Spot Instance
+     *            launched to fulfill the request. Spot Instances are launched
+     *            when the price you specify exceeds the current Spot market
+     *            price.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     *            >Launching Spot Instances in Your Auto Scaling Group</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setSpotPrice(String spotPrice) {
@@ -1248,7 +1654,15 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The price to bid when launching Spot Instances.
+     * The maximum hourly price to be paid for any Spot Instance launched to
+     * fulfill the request. Spot Instances are launched when the price you
+     * specify exceeds the current Spot market price.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1258,7 +1672,16 @@ public class LaunchConfiguration implements Serializable {
      * <b>Length: </b>1 - 255<br/>
      *
      * @param spotPrice <p>
-     *            The price to bid when launching Spot Instances.
+     *            The maximum hourly price to be paid for any Spot Instance
+     *            launched to fulfill the request. Spot Instances are launched
+     *            when the price you specify exceeds the current Spot market
+     *            price.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     *            >Launching Spot Instances in Your Auto Scaling Group</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1270,8 +1693,15 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the instance profile associated
-     * with the IAM role for the instance.
+     * The name or the Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance. The instance profile
+     * contains the IAM role.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >IAM Role for Applications That Run on Amazon EC2 Instances</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1280,8 +1710,15 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The name or Amazon Resource Name (ARN) of the instance profile
-     *         associated with the IAM role for the instance.
+     *         The name or the Amazon Resource Name (ARN) of the instance
+     *         profile associated with the IAM role for the instance. The
+     *         instance profile contains the IAM role.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     *         >IAM Role for Applications That Run on Amazon EC2 Instances</a>
+     *         in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getIamInstanceProfile() {
@@ -1290,8 +1727,15 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the instance profile associated
-     * with the IAM role for the instance.
+     * The name or the Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance. The instance profile
+     * contains the IAM role.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >IAM Role for Applications That Run on Amazon EC2 Instances</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1300,8 +1744,16 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param iamInstanceProfile <p>
-     *            The name or Amazon Resource Name (ARN) of the instance profile
-     *            associated with the IAM role for the instance.
+     *            The name or the Amazon Resource Name (ARN) of the instance
+     *            profile associated with the IAM role for the instance. The
+     *            instance profile contains the IAM role.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     *            >IAM Role for Applications That Run on Amazon EC2
+     *            Instances</a> in the <i>Amazon EC2 Auto Scaling User
+     *            Guide</i>.
      *            </p>
      */
     public void setIamInstanceProfile(String iamInstanceProfile) {
@@ -1310,8 +1762,15 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the instance profile associated
-     * with the IAM role for the instance.
+     * The name or the Amazon Resource Name (ARN) of the instance profile
+     * associated with the IAM role for the instance. The instance profile
+     * contains the IAM role.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >IAM Role for Applications That Run on Amazon EC2 Instances</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1323,8 +1782,16 @@ public class LaunchConfiguration implements Serializable {
      * <br/>
      *
      * @param iamInstanceProfile <p>
-     *            The name or Amazon Resource Name (ARN) of the instance profile
-     *            associated with the IAM role for the instance.
+     *            The name or the Amazon Resource Name (ARN) of the instance
+     *            profile associated with the IAM role for the instance. The
+     *            instance profile contains the IAM role.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     *            >IAM Role for Applications That Run on Amazon EC2
+     *            Instances</a> in the <i>Amazon EC2 Auto Scaling User
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1381,13 +1848,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether the instance is optimized for EBS I/O (<code>true</code>
-     * ) or not (<code>false</code>).
+     * Specifies whether the launch configuration is optimized for EBS I/O (
+     * <code>true</code>) or not (<code>false</code>).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      *
      * @return <p>
-     *         Controls whether the instance is optimized for EBS I/O (
-     *         <code>true</code>) or not (<code>false</code>).
+     *         Specifies whether the launch configuration is optimized for EBS
+     *         I/O (<code>true</code>) or not (<code>false</code>).
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *         >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User
+     *         Guide for Linux Instances</i>.
      *         </p>
      */
     public Boolean isEbsOptimized() {
@@ -1396,13 +1875,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether the instance is optimized for EBS I/O (<code>true</code>
-     * ) or not (<code>false</code>).
+     * Specifies whether the launch configuration is optimized for EBS I/O (
+     * <code>true</code>) or not (<code>false</code>).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      *
      * @return <p>
-     *         Controls whether the instance is optimized for EBS I/O (
-     *         <code>true</code>) or not (<code>false</code>).
+     *         Specifies whether the launch configuration is optimized for EBS
+     *         I/O (<code>true</code>) or not (<code>false</code>).
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *         >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User
+     *         Guide for Linux Instances</i>.
      *         </p>
      */
     public Boolean getEbsOptimized() {
@@ -1411,13 +1902,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether the instance is optimized for EBS I/O (<code>true</code>
-     * ) or not (<code>false</code>).
+     * Specifies whether the launch configuration is optimized for EBS I/O (
+     * <code>true</code>) or not (<code>false</code>).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      *
      * @param ebsOptimized <p>
-     *            Controls whether the instance is optimized for EBS I/O (
-     *            <code>true</code>) or not (<code>false</code>).
+     *            Specifies whether the launch configuration is optimized for
+     *            EBS I/O (<code>true</code>) or not (<code>false</code>).
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *            >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User
+     *            Guide for Linux Instances</i>.
      *            </p>
      */
     public void setEbsOptimized(Boolean ebsOptimized) {
@@ -1426,16 +1929,28 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether the instance is optimized for EBS I/O (<code>true</code>
-     * ) or not (<code>false</code>).
+     * Specifies whether the launch configuration is optimized for EBS I/O (
+     * <code>true</code>) or not (<code>false</code>).
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     * >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User Guide for
+     * Linux Instances</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ebsOptimized <p>
-     *            Controls whether the instance is optimized for EBS I/O (
-     *            <code>true</code>) or not (<code>false</code>).
+     *            Specifies whether the launch configuration is optimized for
+     *            EBS I/O (<code>true</code>) or not (<code>false</code>).
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html"
+     *            >Amazon EBS-Optimized Instances</a> in the <i>Amazon EC2 User
+     *            Guide for Linux Instances</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1447,13 +1962,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * [EC2-VPC] Indicates whether to assign a public IP address to each
-     * instance.
+     * For Auto Scaling groups that are running in a VPC, specifies whether to
+     * assign a public IP address to the group's instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
-     *         [EC2-VPC] Indicates whether to assign a public IP address to each
-     *         instance.
+     *         For Auto Scaling groups that are running in a VPC, specifies
+     *         whether to assign a public IP address to the group's instances.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon
+     *         EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean isAssociatePublicIpAddress() {
@@ -1462,13 +1989,25 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * [EC2-VPC] Indicates whether to assign a public IP address to each
-     * instance.
+     * For Auto Scaling groups that are running in a VPC, specifies whether to
+     * assign a public IP address to the group's instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
-     *         [EC2-VPC] Indicates whether to assign a public IP address to each
-     *         instance.
+     *         For Auto Scaling groups that are running in a VPC, specifies
+     *         whether to assign a public IP address to the group's instances.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon
+     *         EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean getAssociatePublicIpAddress() {
@@ -1477,13 +2016,26 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * [EC2-VPC] Indicates whether to assign a public IP address to each
-     * instance.
+     * For Auto Scaling groups that are running in a VPC, specifies whether to
+     * assign a public IP address to the group's instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      *
      * @param associatePublicIpAddress <p>
-     *            [EC2-VPC] Indicates whether to assign a public IP address to
-     *            each instance.
+     *            For Auto Scaling groups that are running in a VPC, specifies
+     *            whether to assign a public IP address to the group's
+     *            instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
@@ -1492,16 +2044,29 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * [EC2-VPC] Indicates whether to assign a public IP address to each
-     * instance.
+     * For Auto Scaling groups that are running in a VPC, specifies whether to
+     * assign a public IP address to the group's instances.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param associatePublicIpAddress <p>
-     *            [EC2-VPC] Indicates whether to assign a public IP address to
-     *            each instance.
+     *            For Auto Scaling groups that are running in a VPC, specifies
+     *            whether to assign a public IP address to the group's
+     *            instances.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1515,8 +2080,14 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The tenancy of the instance, either <code>default</code> or
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy
-     * runs in an isolated, single-tenant hardware and can only be launched into
-     * a VPC.
+     * runs on isolated, single-tenant hardware and can only be launched into a
+     * VPC.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     * >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1527,8 +2098,14 @@ public class LaunchConfiguration implements Serializable {
      * @return <p>
      *         The tenancy of the instance, either <code>default</code> or
      *         <code>dedicated</code>. An instance with <code>dedicated</code>
-     *         tenancy runs in an isolated, single-tenant hardware and can only
-     *         be launched into a VPC.
+     *         tenancy runs on isolated, single-tenant hardware and can only be
+     *         launched into a VPC.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     *         >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto Scaling
+     *         User Guide</i>.
      *         </p>
      */
     public String getPlacementTenancy() {
@@ -1539,8 +2116,14 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The tenancy of the instance, either <code>default</code> or
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy
-     * runs in an isolated, single-tenant hardware and can only be launched into
-     * a VPC.
+     * runs on isolated, single-tenant hardware and can only be launched into a
+     * VPC.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     * >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1551,8 +2134,14 @@ public class LaunchConfiguration implements Serializable {
      * @param placementTenancy <p>
      *            The tenancy of the instance, either <code>default</code> or
      *            <code>dedicated</code>. An instance with
-     *            <code>dedicated</code> tenancy runs in an isolated,
-     *            single-tenant hardware and can only be launched into a VPC.
+     *            <code>dedicated</code> tenancy runs on isolated, single-tenant
+     *            hardware and can only be launched into a VPC.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     *            >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto
+     *            Scaling User Guide</i>.
      *            </p>
      */
     public void setPlacementTenancy(String placementTenancy) {
@@ -1563,8 +2152,14 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The tenancy of the instance, either <code>default</code> or
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy
-     * runs in an isolated, single-tenant hardware and can only be launched into
-     * a VPC.
+     * runs on isolated, single-tenant hardware and can only be launched into a
+     * VPC.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     * >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1578,8 +2173,14 @@ public class LaunchConfiguration implements Serializable {
      * @param placementTenancy <p>
      *            The tenancy of the instance, either <code>default</code> or
      *            <code>dedicated</code>. An instance with
-     *            <code>dedicated</code> tenancy runs in an isolated,
-     *            single-tenant hardware and can only be launched into a VPC.
+     *            <code>dedicated</code> tenancy runs on isolated, single-tenant
+     *            hardware and can only be launched into a VPC.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html#as-vpc-tenancy"
+     *            >Instance Placement Tenancy</a> in the <i>Amazon EC2 Auto
+     *            Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
