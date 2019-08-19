@@ -17,8 +17,6 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens;
 
-import java.util.Objects;
-
 /**
  * Base class for Cognito tokens.
  */

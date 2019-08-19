@@ -32,13 +32,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation project(":aws-android-sdk-testutils")
-    androidTestImplementation "org.powermock:powermock-api-mockito:1.6.6"
 }
 
 devicefarm {
 
     // Required. The Project must already exist. You can create a project in the AWS console.
-    projectName "KeyStoreTester"
+    projectName "AWSAndroidKeyStoreTester"
 
     // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
     authentication {
@@ -46,5 +45,5 @@ devicefarm {
         secretKey "$System.env.DEVICEFARM_SECRET_KEY"
     }
 
-    devicePool "API 23 - 28 Pool"
+    devicePool "AWSAndroidKeyStoreTesterPool"
 }

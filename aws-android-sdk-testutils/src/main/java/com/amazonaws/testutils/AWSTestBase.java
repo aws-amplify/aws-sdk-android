@@ -428,6 +428,11 @@ public abstract class AWSTestBase {
                 .edit()
                 .clear()
                 .apply();
+        appContext.getSharedPreferences("com.amazonaws.mobile.client.encryptionkey",
+                Context.MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             try {
