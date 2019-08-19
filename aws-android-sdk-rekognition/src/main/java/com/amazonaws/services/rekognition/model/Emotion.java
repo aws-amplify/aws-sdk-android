@@ -31,7 +31,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      */
     private String type;
 
@@ -52,7 +52,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      *
      * @return <p>
      *         Type of emotion detected.
@@ -70,7 +70,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      *
      * @param type <p>
      *            Type of emotion detected.
@@ -91,7 +91,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      *
      * @param type <p>
      *            Type of emotion detected.
@@ -112,7 +112,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      *
      * @param type <p>
      *            Type of emotion detected.
@@ -133,7 +133,7 @@ public class Emotion implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>HAPPY, SAD, ANGRY, CONFUSED, DISGUSTED, SURPRISED,
-     * CALM, UNKNOWN
+     * CALM, UNKNOWN, FEAR
      *
      * @param type <p>
      *            Type of emotion detected.
