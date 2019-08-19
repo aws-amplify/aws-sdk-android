@@ -6,6 +6,8 @@
 
 - **AWS Core Runtime**
   - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+- **Amazon Pinpoint**
+  - Removed the check for INTERNET and ACCESS_NETWORK_STATE permissions while initializing `PinpointManager`. These are [normal permissions](https://developer.android.com/guide/topics/permissions/overview#normal_permissions) and therefore are not required to be checked before performing corresponding app-op. This changes Pinpoint SDK behavior to match that of our other SDKs where an `UnknownHostException` or a corresponding RuntimeException would be thrown if connectivity is not present when network calls are made by the SDK. This fixes [Issue#1092](https://github.com/aws-amplify/aws-sdk-android/issues/1092).
 
 ### Misc. Updates
 
@@ -17,11 +19,7 @@
 - Model updates for the following services
   - AWS IoT
   - Amazon Lex
-
-### Bug Fixes
-
-- **Amazon Pinpoint**
-  - Removed the check for INTERNET and ACCESS_NETWORK_STATE permissions while initializing `PinpointManager`. These are [normal permissions](https://developer.android.com/guide/topics/permissions/overview#normal_permissions) and therefore are not required to be checked before performing corresponding app-op. This changes Pinpoint SDK behavior to match that of our other SDKs where an `UnknownHostException` or a corresponding RuntimeException would be thrown if connectivity is not present when network calls are made by the SDK. This fixes [Issue#1092](https://github.com/aws-amplify/aws-sdk-android/issues/1092).
+  - Amazon Rekognition
 
 ## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
 
