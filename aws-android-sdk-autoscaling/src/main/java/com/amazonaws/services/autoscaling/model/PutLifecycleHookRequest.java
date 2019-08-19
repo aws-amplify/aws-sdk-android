@@ -56,8 +56,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * If you need more time, record the lifecycle action heartbeat to keep the
- * instance in a pending state using using
- * <a>RecordLifecycleActionHeartbeat</a>.
+ * instance in a pending state using <a>RecordLifecycleActionHeartbeat</a>.
  * </p>
  * </li>
  * <li>
