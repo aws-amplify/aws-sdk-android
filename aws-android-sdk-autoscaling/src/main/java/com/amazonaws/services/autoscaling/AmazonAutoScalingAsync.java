@@ -27,9 +27,9 @@ import com.amazonaws.services.autoscaling.model.*;
  * EC2 Auto Scaling</fullname>
  * <p>
  * Amazon EC2 Auto Scaling is designed to automatically launch or terminate EC2
- * instances based on user-defined policies, schedules, and health checks. Use
- * this service with AWS Auto Scaling, Amazon CloudWatch, and Elastic Load
- * Balancing.
+ * instances based on user-defined scaling policies, scheduled actions, and
+ * health checks. Use this service with AWS Auto Scaling, Amazon CloudWatch, and
+ * Elastic Load Balancing.
  * </p>
  * <p>
  * For more information, including information about granting IAM users required
@@ -2717,8 +2717,7 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
      * <li>
      * <p>
      * If you need more time, record the lifecycle action heartbeat to keep the
-     * instance in a pending state using using
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * instance in a pending state using <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      * </li>
      * <li>
@@ -2799,8 +2798,7 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
      * <li>
      * <p>
      * If you need more time, record the lifecycle action heartbeat to keep the
-     * instance in a pending state using using
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * instance in a pending state using <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      * </li>
      * <li>
@@ -2926,10 +2924,16 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
 
     /**
      * <p>
-     * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters to
-     * change. Any existing parameter not changed in an update to an existing
-     * policy is not changed in this update request.
+     * Creates or updates a scaling policy for an Auto Scaling group. To update
+     * an existing scaling policy, use the existing policy name and set the
+     * parameters to change. Any existing parameter not changed in an update to
+     * an existing policy is not changed in this update request.
+     * </p>
+     * <p>
+     * For more information about using scaling policies to scale your Auto
+     * Scaling group automatically, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param putScalingPolicyRequest
@@ -2953,10 +2957,16 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
 
     /**
      * <p>
-     * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters to
-     * change. Any existing parameter not changed in an update to an existing
-     * policy is not changed in this update request.
+     * Creates or updates a scaling policy for an Auto Scaling group. To update
+     * an existing scaling policy, use the existing policy name and set the
+     * parameters to change. Any existing parameter not changed in an update to
+     * an existing policy is not changed in this update request.
+     * </p>
+     * <p>
+     * For more information about using scaling policies to scale your Auto
+     * Scaling group automatically, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param putScalingPolicyRequest
@@ -3592,8 +3602,8 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
      * </p>
      * <p>
      * If you associate a new launch configuration or template with an Auto
-     * Scaling group, all new instances will get the updated configuration, but
-     * existing instances continue to run with the configuration that they were
+     * Scaling group, all new instances will get the updated configuration.
+     * Existing instances continue to run with the configuration that they were
      * originally launched with. When you update a group to specify a mixed
      * instances policy instead of a launch configuration or template, existing
      * instances may be replaced to match the new purchasing options that you
@@ -3674,8 +3684,8 @@ public interface AmazonAutoScalingAsync extends AmazonAutoScaling {
      * </p>
      * <p>
      * If you associate a new launch configuration or template with an Auto
-     * Scaling group, all new instances will get the updated configuration, but
-     * existing instances continue to run with the configuration that they were
+     * Scaling group, all new instances will get the updated configuration.
+     * Existing instances continue to run with the configuration that they were
      * originally launched with. When you update a group to specify a mixed
      * instances policy instead of a launch configuration or template, existing
      * instances may be replaced to match the new purchasing options that you

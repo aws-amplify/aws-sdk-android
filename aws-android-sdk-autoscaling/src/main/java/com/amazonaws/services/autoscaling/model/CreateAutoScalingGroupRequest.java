@@ -51,12 +51,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the launch configuration.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
-     * </p>
-     * <p>
      * If you do not specify <code>LaunchConfigurationName</code>, you must
      * specify one of the following parameters: <code>InstanceId</code>,
      * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
@@ -75,9 +69,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     * >Creating an Auto Scaling Group Using a Launch Template</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     * >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i>.
      * </p>
      * <p>
      * If you do not specify <code>LaunchTemplate</code>, you must specify one
@@ -97,13 +91,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The policy includes parameters that not only define the distribution of
      * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
-     * instances, and how the Auto Scaling group allocates instance types to
+     * Instances, and how the Auto Scaling group allocates instance types to
      * fulfill On-Demand and Spot capacity, but also the parameters that specify
      * the instance configuration information—the launch template and instance
      * types.
      * </p>
      * <p>
      * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     * >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i> and <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -258,9 +255,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     * >Health Checks for Auto Scaling Instances</a> in the <i>Amazon EC2 Auto
-     * Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     * >Health Check Grace Period</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * Conditional: This parameter is required if you are adding an
@@ -448,12 +445,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the launch configuration.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
-     * </p>
-     * <p>
      * If you do not specify <code>LaunchConfigurationName</code>, you must
      * specify one of the following parameters: <code>InstanceId</code>,
      * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
@@ -466,12 +457,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The name of the launch configuration.
-     *         </p>
-     *         <p>
-     *         For more information, see <a href=
-     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     *         >Creating an Auto Scaling Group Using a Launch Configuration</a>
-     *         in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
      *         If you do not specify <code>LaunchConfigurationName</code>, you
@@ -489,12 +474,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the launch configuration.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
-     * </p>
-     * <p>
      * If you do not specify <code>LaunchConfigurationName</code>, you must
      * specify one of the following parameters: <code>InstanceId</code>,
      * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
@@ -507,13 +486,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param launchConfigurationName <p>
      *            The name of the launch configuration.
-     *            </p>
-     *            <p>
-     *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     *            >Creating an Auto Scaling Group Using a Launch
-     *            Configuration</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
      *            </p>
      *            <p>
      *            If you do not specify <code>LaunchConfigurationName</code>,
@@ -531,12 +503,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * The name of the launch configuration.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     * >Creating an Auto Scaling Group Using a Launch Configuration</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
-     * </p>
-     * <p>
      * If you do not specify <code>LaunchConfigurationName</code>, you must
      * specify one of the following parameters: <code>InstanceId</code>,
      * <code>LaunchTemplate</code>, or <code>MixedInstancesPolicy</code>.
@@ -552,13 +518,6 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param launchConfigurationName <p>
      *            The name of the launch configuration.
-     *            </p>
-     *            <p>
-     *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg.html"
-     *            >Creating an Auto Scaling Group Using a Launch
-     *            Configuration</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
      *            </p>
      *            <p>
      *            If you do not specify <code>LaunchConfigurationName</code>,
@@ -580,9 +539,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     * >Creating an Auto Scaling Group Using a Launch Template</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     * >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i>.
      * </p>
      * <p>
      * If you do not specify <code>LaunchTemplate</code>, you must specify one
@@ -596,9 +555,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     *         >Creating an Auto Scaling Group Using a Launch Template</a> in
-     *         the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     *         >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto
+     *         Scaling API Reference</i>.
      *         </p>
      *         <p>
      *         If you do not specify <code>LaunchTemplate</code>, you must
@@ -617,9 +576,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     * >Creating an Auto Scaling Group Using a Launch Template</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     * >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i>.
      * </p>
      * <p>
      * If you do not specify <code>LaunchTemplate</code>, you must specify one
@@ -633,9 +592,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     *            >Creating an Auto Scaling Group Using a Launch Template</a> in
-     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     *            >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto
+     *            Scaling API Reference</i>.
      *            </p>
      *            <p>
      *            If you do not specify <code>LaunchTemplate</code>, you must
@@ -654,9 +613,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     * >Creating an Auto Scaling Group Using a Launch Template</a> in the
-     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     * >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i>.
      * </p>
      * <p>
      * If you do not specify <code>LaunchTemplate</code>, you must specify one
@@ -673,9 +632,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html"
-     *            >Creating an Auto Scaling Group Using a Launch Template</a> in
-     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html"
+     *            >LaunchTemplateSpecification</a> in the <i>Amazon EC2 Auto
+     *            Scaling API Reference</i>.
      *            </p>
      *            <p>
      *            If you do not specify <code>LaunchTemplate</code>, you must
@@ -701,13 +660,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The policy includes parameters that not only define the distribution of
      * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
-     * instances, and how the Auto Scaling group allocates instance types to
+     * Instances, and how the Auto Scaling group allocates instance types to
      * fulfill On-Demand and Spot capacity, but also the parameters that specify
      * the instance configuration information—the launch template and instance
      * types.
      * </p>
      * <p>
      * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     * >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i> and <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -726,13 +688,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         The policy includes parameters that not only define the
      *         distribution of On-Demand Instances and Spot Instances, the
-     *         maximum price to pay for Spot instances, and how the Auto Scaling
+     *         maximum price to pay for Spot Instances, and how the Auto Scaling
      *         group allocates instance types to fulfill On-Demand and Spot
      *         capacity, but also the parameters that specify the instance
      *         configuration information—the launch template and instance types.
      *         </p>
      *         <p>
      *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     *         >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling API
+     *         Reference</i> and <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *         >Auto Scaling Groups with Multiple Instance Types and Purchase
      *         Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -755,13 +720,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The policy includes parameters that not only define the distribution of
      * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
-     * instances, and how the Auto Scaling group allocates instance types to
+     * Instances, and how the Auto Scaling group allocates instance types to
      * fulfill On-Demand and Spot capacity, but also the parameters that specify
      * the instance configuration information—the launch template and instance
      * types.
      * </p>
      * <p>
      * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     * >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i> and <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -780,7 +748,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            The policy includes parameters that not only define the
      *            distribution of On-Demand Instances and Spot Instances, the
-     *            maximum price to pay for Spot instances, and how the Auto
+     *            maximum price to pay for Spot Instances, and how the Auto
      *            Scaling group allocates instance types to fulfill On-Demand
      *            and Spot capacity, but also the parameters that specify the
      *            instance configuration information—the launch template and
@@ -788,6 +756,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     *            >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling
+     *            API Reference</i> and <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *            >Auto Scaling Groups with Multiple Instance Types and Purchase
      *            Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -812,13 +783,16 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The policy includes parameters that not only define the distribution of
      * On-Demand Instances and Spot Instances, the maximum price to pay for Spot
-     * instances, and how the Auto Scaling group allocates instance types to
+     * Instances, and how the Auto Scaling group allocates instance types to
      * fulfill On-Demand and Spot capacity, but also the parameters that specify
      * the instance configuration information—the launch template and instance
      * types.
      * </p>
      * <p>
      * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     * >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling API
+     * Reference</i> and <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      * >Auto Scaling Groups with Multiple Instance Types and Purchase
      * Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -840,7 +814,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            The policy includes parameters that not only define the
      *            distribution of On-Demand Instances and Spot Instances, the
-     *            maximum price to pay for Spot instances, and how the Auto
+     *            maximum price to pay for Spot Instances, and how the Auto
      *            Scaling group allocates instance types to fulfill On-Demand
      *            and Spot capacity, but also the parameters that specify the
      *            instance configuration information—the launch template and
@@ -848,6 +822,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_MixedInstancesPolicy.html"
+     *            >MixedInstancesPolicy</a> in the <i>Amazon EC2 Auto Scaling
+     *            API Reference</i> and <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html"
      *            >Auto Scaling Groups with Multiple Instance Types and Purchase
      *            Options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -1826,9 +1803,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     * >Health Checks for Auto Scaling Instances</a> in the <i>Amazon EC2 Auto
-     * Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     * >Health Check Grace Period</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * Conditional: This parameter is required if you are adding an
@@ -1844,9 +1821,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     *         >Health Checks for Auto Scaling Instances</a> in the <i>Amazon
-     *         EC2 Auto Scaling User Guide</i>.
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     *         >Health Check Grace Period</a> in the <i>Amazon EC2 Auto Scaling
+     *         User Guide</i>.
      *         </p>
      *         <p>
      *         Conditional: This parameter is required if you are adding an
@@ -1866,9 +1843,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     * >Health Checks for Auto Scaling Instances</a> in the <i>Amazon EC2 Auto
-     * Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     * >Health Check Grace Period</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * Conditional: This parameter is required if you are adding an
@@ -1884,9 +1861,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     *            >Health Checks for Auto Scaling Instances</a> in the <i>Amazon
-     *            EC2 Auto Scaling User Guide</i>.
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     *            >Health Check Grace Period</a> in the <i>Amazon EC2 Auto
+     *            Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Conditional: This parameter is required if you are adding an
@@ -1906,9 +1883,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     * >Health Checks for Auto Scaling Instances</a> in the <i>Amazon EC2 Auto
-     * Scaling User Guide</i>.
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     * >Health Check Grace Period</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * Conditional: This parameter is required if you are adding an
@@ -1927,9 +1904,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
-     *            >Health Checks for Auto Scaling Instances</a> in the <i>Amazon
-     *            EC2 Auto Scaling User Guide</i>.
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period"
+     *            >Health Check Grace Period</a> in the <i>Amazon EC2 Auto
+     *            Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Conditional: This parameter is required if you are adding an

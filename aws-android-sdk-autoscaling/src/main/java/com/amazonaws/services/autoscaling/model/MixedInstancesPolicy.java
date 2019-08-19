@@ -28,11 +28,11 @@ import java.io.Serializable;
  * the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  * <p>
- * You can create a mixed instances policy for a new Auto Scaling group
- * (<a>CreateAutoScalingGroup</a>), or you can create it for an existing group
- * by updating the group (<a>UpdateAutoScalingGroup</a>) to specify
+ * You can create a mixed instances policy for a new Auto Scaling group, or you
+ * can create it for an existing group by updating the group to specify
  * <code>MixedInstancesPolicy</code> as the top-level parameter instead of a
- * launch configuration or template.
+ * launch configuration or template. For more information, see
+ * <a>CreateAutoScalingGroup</a> and <a>UpdateAutoScalingGroup</a>.
  * </p>
  */
 public class MixedInstancesPolicy implements Serializable {
