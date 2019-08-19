@@ -596,7 +596,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
-    private Auth _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
+    private void _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
         Log.d(TAG, "initialize: Cognito HostedUI client detected");
         final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
         final Set<String> scopes = new HashSet<String>();
