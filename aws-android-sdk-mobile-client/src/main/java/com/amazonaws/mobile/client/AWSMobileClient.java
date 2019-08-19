@@ -572,10 +572,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
                                 mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
                             } else {
-                                // When AWSMobileClient is being initialized, we will make both
-                                // hostedUIJSONConfigured and hostedUI point to the hostedUI
-                                // object constructed from awsconfiguration.json
-                                hostedUIJSONConfigured = _initializeHostedUI(hostedUIJSON);
+                                _initializeHostedUI(hostedUIJSON);
                             }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
@@ -611,7 +608,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             throw new IllegalStateException("User pool Id must be available through user pool setting");
         }
 
-        return getHostedUI(hostedUIJSON)
+        hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
                 .setPersistenceEnabled(mIsPersistenceEnabled)
                 .setAuthHandler(new AuthHandler() {
                     @Override
