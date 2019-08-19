@@ -81,13 +81,24 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * Indicates how to allocate Spot capacity across Spot pools.
+     * Indicates how to allocate instances across Spot Instance pools.
      * </p>
      * <p>
-     * The only valid value is <code>lowest-price</code>, which is also the
-     * default value. The Auto Scaling group selects the cheapest Spot pools and
-     * evenly allocates your Spot capacity across the number of Spot pools that
-     * you specify.
+     * If the allocation strategy is <code>lowest-price</code>, the Auto Scaling
+     * group launches instances using the Spot pools with the lowest price, and
+     * evenly allocates your instances across the number of Spot pools that you
+     * specify. If the allocation strategy is <code>capacity-optimized</code>,
+     * the Auto Scaling group launches instances using Spot pools that are
+     * optimally chosen based on the available Spot capacity.
+     * </p>
+     * <p>
+     * The default Spot allocation strategy for calls that you make through the
+     * API, the AWS CLI, or the AWS SDKs is <code>lowest-price</code>. The
+     * default Spot allocation strategy for the AWS Management Console is
+     * <code>capacity-optimized</code>.
+     * </p>
+     * <p>
+     * Valid values: <code>lowest-price</code> | <code>capacity-optimized</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,12 +109,14 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The number of Spot Instance pools across which to allocate your Spot
+     * Instances. The Spot pools are determined from the different instance
+     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The default value is <code>2</code>.
      * </p>
      * <p>
-     * The default value is <code>2</code>.
+     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
+     * .
      * </p>
      */
     private Integer spotInstancePools;
@@ -428,13 +441,24 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * Indicates how to allocate Spot capacity across Spot pools.
+     * Indicates how to allocate instances across Spot Instance pools.
      * </p>
      * <p>
-     * The only valid value is <code>lowest-price</code>, which is also the
-     * default value. The Auto Scaling group selects the cheapest Spot pools and
-     * evenly allocates your Spot capacity across the number of Spot pools that
-     * you specify.
+     * If the allocation strategy is <code>lowest-price</code>, the Auto Scaling
+     * group launches instances using the Spot pools with the lowest price, and
+     * evenly allocates your instances across the number of Spot pools that you
+     * specify. If the allocation strategy is <code>capacity-optimized</code>,
+     * the Auto Scaling group launches instances using Spot pools that are
+     * optimally chosen based on the available Spot capacity.
+     * </p>
+     * <p>
+     * The default Spot allocation strategy for calls that you make through the
+     * API, the AWS CLI, or the AWS SDKs is <code>lowest-price</code>. The
+     * default Spot allocation strategy for the AWS Management Console is
+     * <code>capacity-optimized</code>.
+     * </p>
+     * <p>
+     * Valid values: <code>lowest-price</code> | <code>capacity-optimized</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -442,13 +466,27 @@ public class InstancesDistribution implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         Indicates how to allocate Spot capacity across Spot pools.
+     *         Indicates how to allocate instances across Spot Instance pools.
      *         </p>
      *         <p>
-     *         The only valid value is <code>lowest-price</code>, which is also
-     *         the default value. The Auto Scaling group selects the cheapest
-     *         Spot pools and evenly allocates your Spot capacity across the
-     *         number of Spot pools that you specify.
+     *         If the allocation strategy is <code>lowest-price</code>, the Auto
+     *         Scaling group launches instances using the Spot pools with the
+     *         lowest price, and evenly allocates your instances across the
+     *         number of Spot pools that you specify. If the allocation strategy
+     *         is <code>capacity-optimized</code>, the Auto Scaling group
+     *         launches instances using Spot pools that are optimally chosen
+     *         based on the available Spot capacity.
+     *         </p>
+     *         <p>
+     *         The default Spot allocation strategy for calls that you make
+     *         through the API, the AWS CLI, or the AWS SDKs is
+     *         <code>lowest-price</code>. The default Spot allocation strategy
+     *         for the AWS Management Console is <code>capacity-optimized</code>
+     *         .
+     *         </p>
+     *         <p>
+     *         Valid values: <code>lowest-price</code> |
+     *         <code>capacity-optimized</code>
      *         </p>
      */
     public String getSpotAllocationStrategy() {
@@ -457,13 +495,24 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * Indicates how to allocate Spot capacity across Spot pools.
+     * Indicates how to allocate instances across Spot Instance pools.
      * </p>
      * <p>
-     * The only valid value is <code>lowest-price</code>, which is also the
-     * default value. The Auto Scaling group selects the cheapest Spot pools and
-     * evenly allocates your Spot capacity across the number of Spot pools that
-     * you specify.
+     * If the allocation strategy is <code>lowest-price</code>, the Auto Scaling
+     * group launches instances using the Spot pools with the lowest price, and
+     * evenly allocates your instances across the number of Spot pools that you
+     * specify. If the allocation strategy is <code>capacity-optimized</code>,
+     * the Auto Scaling group launches instances using Spot pools that are
+     * optimally chosen based on the available Spot capacity.
+     * </p>
+     * <p>
+     * The default Spot allocation strategy for calls that you make through the
+     * API, the AWS CLI, or the AWS SDKs is <code>lowest-price</code>. The
+     * default Spot allocation strategy for the AWS Management Console is
+     * <code>capacity-optimized</code>.
+     * </p>
+     * <p>
+     * Valid values: <code>lowest-price</code> | <code>capacity-optimized</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -471,13 +520,28 @@ public class InstancesDistribution implements Serializable {
      * <br/>
      *
      * @param spotAllocationStrategy <p>
-     *            Indicates how to allocate Spot capacity across Spot pools.
+     *            Indicates how to allocate instances across Spot Instance
+     *            pools.
      *            </p>
      *            <p>
-     *            The only valid value is <code>lowest-price</code>, which is
-     *            also the default value. The Auto Scaling group selects the
-     *            cheapest Spot pools and evenly allocates your Spot capacity
-     *            across the number of Spot pools that you specify.
+     *            If the allocation strategy is <code>lowest-price</code>, the
+     *            Auto Scaling group launches instances using the Spot pools
+     *            with the lowest price, and evenly allocates your instances
+     *            across the number of Spot pools that you specify. If the
+     *            allocation strategy is <code>capacity-optimized</code>, the
+     *            Auto Scaling group launches instances using Spot pools that
+     *            are optimally chosen based on the available Spot capacity.
+     *            </p>
+     *            <p>
+     *            The default Spot allocation strategy for calls that you make
+     *            through the API, the AWS CLI, or the AWS SDKs is
+     *            <code>lowest-price</code>. The default Spot allocation
+     *            strategy for the AWS Management Console is
+     *            <code>capacity-optimized</code>.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>lowest-price</code> |
+     *            <code>capacity-optimized</code>
      *            </p>
      */
     public void setSpotAllocationStrategy(String spotAllocationStrategy) {
@@ -486,13 +550,24 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * Indicates how to allocate Spot capacity across Spot pools.
+     * Indicates how to allocate instances across Spot Instance pools.
      * </p>
      * <p>
-     * The only valid value is <code>lowest-price</code>, which is also the
-     * default value. The Auto Scaling group selects the cheapest Spot pools and
-     * evenly allocates your Spot capacity across the number of Spot pools that
-     * you specify.
+     * If the allocation strategy is <code>lowest-price</code>, the Auto Scaling
+     * group launches instances using the Spot pools with the lowest price, and
+     * evenly allocates your instances across the number of Spot pools that you
+     * specify. If the allocation strategy is <code>capacity-optimized</code>,
+     * the Auto Scaling group launches instances using Spot pools that are
+     * optimally chosen based on the available Spot capacity.
+     * </p>
+     * <p>
+     * The default Spot allocation strategy for calls that you make through the
+     * API, the AWS CLI, or the AWS SDKs is <code>lowest-price</code>. The
+     * default Spot allocation strategy for the AWS Management Console is
+     * <code>capacity-optimized</code>.
+     * </p>
+     * <p>
+     * Valid values: <code>lowest-price</code> | <code>capacity-optimized</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -503,13 +578,28 @@ public class InstancesDistribution implements Serializable {
      * <br/>
      *
      * @param spotAllocationStrategy <p>
-     *            Indicates how to allocate Spot capacity across Spot pools.
+     *            Indicates how to allocate instances across Spot Instance
+     *            pools.
      *            </p>
      *            <p>
-     *            The only valid value is <code>lowest-price</code>, which is
-     *            also the default value. The Auto Scaling group selects the
-     *            cheapest Spot pools and evenly allocates your Spot capacity
-     *            across the number of Spot pools that you specify.
+     *            If the allocation strategy is <code>lowest-price</code>, the
+     *            Auto Scaling group launches instances using the Spot pools
+     *            with the lowest price, and evenly allocates your instances
+     *            across the number of Spot pools that you specify. If the
+     *            allocation strategy is <code>capacity-optimized</code>, the
+     *            Auto Scaling group launches instances using Spot pools that
+     *            are optimally chosen based on the available Spot capacity.
+     *            </p>
+     *            <p>
+     *            The default Spot allocation strategy for calls that you make
+     *            through the API, the AWS CLI, or the AWS SDKs is
+     *            <code>lowest-price</code>. The default Spot allocation
+     *            strategy for the AWS Management Console is
+     *            <code>capacity-optimized</code>.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>lowest-price</code> |
+     *            <code>capacity-optimized</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -521,22 +611,25 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The number of Spot Instance pools across which to allocate your Spot
+     * Instances. The Spot pools are determined from the different instance
+     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The default value is <code>2</code>.
      * </p>
      * <p>
-     * The default value is <code>2</code>.
+     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
+     * .
      * </p>
      *
      * @return <p>
-     *         The number of Spot pools to use to allocate your Spot capacity.
-     *         The Spot pools are determined from the different instance types
-     *         in the Overrides array of <a>LaunchTemplate</a>. The range is
-     *         1–20.
+     *         The number of Spot Instance pools across which to allocate your
+     *         Spot Instances. The Spot pools are determined from the different
+     *         instance types in the Overrides array of <a>LaunchTemplate</a>.
+     *         The range is 1–20. The default value is <code>2</code>.
      *         </p>
      *         <p>
-     *         The default value is <code>2</code>.
+     *         Valid only when the Spot allocation strategy is
+     *         <code>lowest-price</code>.
      *         </p>
      */
     public Integer getSpotInstancePools() {
@@ -545,22 +638,26 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The number of Spot Instance pools across which to allocate your Spot
+     * Instances. The Spot pools are determined from the different instance
+     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The default value is <code>2</code>.
      * </p>
      * <p>
-     * The default value is <code>2</code>.
+     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
+     * .
      * </p>
      *
      * @param spotInstancePools <p>
-     *            The number of Spot pools to use to allocate your Spot
-     *            capacity. The Spot pools are determined from the different
-     *            instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>. The range is 1–20.
+     *            The number of Spot Instance pools across which to allocate
+     *            your Spot Instances. The Spot pools are determined from the
+     *            different instance types in the Overrides array of
+     *            <a>LaunchTemplate</a>. The range is 1–20. The default value is
+     *            <code>2</code>.
      *            </p>
      *            <p>
-     *            The default value is <code>2</code>.
+     *            Valid only when the Spot allocation strategy is
+     *            <code>lowest-price</code>.
      *            </p>
      */
     public void setSpotInstancePools(Integer spotInstancePools) {
@@ -569,25 +666,29 @@ public class InstancesDistribution implements Serializable {
 
     /**
      * <p>
-     * The number of Spot pools to use to allocate your Spot capacity. The Spot
-     * pools are determined from the different instance types in the Overrides
-     * array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The number of Spot Instance pools across which to allocate your Spot
+     * Instances. The Spot pools are determined from the different instance
+     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
+     * The default value is <code>2</code>.
      * </p>
      * <p>
-     * The default value is <code>2</code>.
+     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
+     * .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param spotInstancePools <p>
-     *            The number of Spot pools to use to allocate your Spot
-     *            capacity. The Spot pools are determined from the different
-     *            instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>. The range is 1–20.
+     *            The number of Spot Instance pools across which to allocate
+     *            your Spot Instances. The Spot pools are determined from the
+     *            different instance types in the Overrides array of
+     *            <a>LaunchTemplate</a>. The range is 1–20. The default value is
+     *            <code>2</code>.
      *            </p>
      *            <p>
-     *            The default value is <code>2</code>.
+     *            Valid only when the Spot allocation strategy is
+     *            <code>lowest-price</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
