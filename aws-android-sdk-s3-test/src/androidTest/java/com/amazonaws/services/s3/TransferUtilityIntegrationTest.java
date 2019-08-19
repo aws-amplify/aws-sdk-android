@@ -35,10 +35,12 @@ import java.io.RandomAccessFile;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
 
@@ -71,7 +73,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
         }
 
         public void onError(int id, Exception ex) {
-            throw new RuntimeException(ex);
+            fail(ex.getMessage());
         }
     };
 
@@ -123,7 +125,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
         file = getRandomTempFile("small", 1000L);
         util.upload(bucketName, file.getName(), file, metadata)
                 .setTransferListener(listener);
-        latch.await();
+        latch.await(300, TimeUnit.SECONDS);
 
         List<Tag> tags = s3.getObjectTagging(new GetObjectTaggingRequest(
                 bucketName,
@@ -149,7 +151,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
         file = getRandomSparseFile("large", size);
         util.upload(bucketName, file.getName(), file, metadata)
                 .setTransferListener(listener);
-        latch.await();
+        latch.await(300, TimeUnit.SECONDS);
 
         List<Tag> tags = s3.getObjectTagging(new GetObjectTaggingRequest(
                 bucketName,
