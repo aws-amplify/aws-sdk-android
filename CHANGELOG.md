@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
+
+### Bug Fixes
+
+- **AWS Core Runtime**
+  - Fixed a bug where the data persisted by `CognitoCachingCredentialsProvider`, `CognitoUserPool`, `CognitoAuth` and `AWSMobileClient` cannot be retrieved successfully and resulted in an app crash due to the following scenarios:
+      * The encryption key used to encrypt the data is lost
+      * The encryption key used to encrypt the data is not recoverable
+      * A wrong encryption key is used to decrypt the data
+  - See [issue #937](https://github.com/aws-amplify/aws-sdk-android/issues/937), [issue #1108](https://github.com/aws-amplify/aws-sdk-android/issues/1108), [issue #1109](https://github.com/aws-amplify/aws-sdk-android/issues/1109), [issue #1115](https://github.com/aws-amplify/aws-sdk-android/issues/1115) for details.
+
 ## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
 ### Bug Fixes
