@@ -29,7 +29,8 @@ public enum EmotionName {
     CONFUSED("CONFUSED"),
     DISGUSTED("DISGUSTED"),
     SURPRISED("SURPRISED"),
-    CALM("CALM");
+    CALM("CALM"),
+    FEAR("FEAR");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum EmotionName {
         enumMap.put("DISGUSTED", DISGUSTED);
         enumMap.put("SURPRISED", SURPRISED);
         enumMap.put("CALM", CALM);
+        enumMap.put("FEAR", FEAR);
     }
 
     /**
