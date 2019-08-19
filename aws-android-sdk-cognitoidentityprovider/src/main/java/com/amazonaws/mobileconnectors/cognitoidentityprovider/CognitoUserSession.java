@@ -118,7 +118,7 @@ public class CognitoUserSession {
     }
 
     /**
-     * Returns true if this session for the threshold set in
+     * Returns true if this session is valid for the threshold set in
      * {@link CognitoIdentityProviderClientConfig#getRefreshThreshold}.
      *
      * Checks for the following conditions to determine if the session is valid:

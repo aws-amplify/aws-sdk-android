@@ -258,8 +258,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
-    Auth hostedUIJSONConfigured;
-    Auth hostedUI;
+    private Auth hostedUIJSONConfigured;
+    private Auth hostedUI;
     OAuth2Client mOAuth2Client;
     String mUserPoolPoolId;
 
