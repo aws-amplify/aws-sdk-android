@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2018 Amazon.com,
+ *  Copyright 2013-2019 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -59,6 +59,9 @@ public final class CognitoIdentityProviderClientConfig {
         refreshThreshold = threshold;
     }
 
+    /**
+     * @return the threshold for token refresh in milliseconds.
+     */
     public static long getRefreshThreshold() {
         return refreshThreshold;
     }

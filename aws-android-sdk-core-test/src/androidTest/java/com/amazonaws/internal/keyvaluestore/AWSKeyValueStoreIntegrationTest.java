@@ -430,9 +430,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
             KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
             keyStore.load(null);
 
-            KeyProvider23 keyProvider23 = new KeyProvider23(
-                    InstrumentationRegistry.getTargetContext(),
-                    awsKeyValueStore.sharedPreferencesForEncryptionMaterials);
+            KeyProvider23 keyProvider23 = new KeyProvider23();
             keyProvider23.generateKey("a");
         } catch (Exception ex) {
             ex.printStackTrace();

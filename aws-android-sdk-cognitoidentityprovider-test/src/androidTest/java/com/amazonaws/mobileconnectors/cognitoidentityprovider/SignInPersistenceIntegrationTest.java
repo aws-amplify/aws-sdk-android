@@ -183,24 +183,26 @@ public class SignInPersistenceIntegrationTest extends CognitoUserPoolsIntegratio
         CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
         verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
 
+        // Expire the token for client-side validation.
         String idTokenExpired = expireJWTToken(userSessionBeforeTokenExpired.getIdToken().getJWTToken(), 3600);
         String accessTokenExpired = expireJWTToken(userSessionBeforeTokenExpired.getAccessToken().getJWTToken(), 3600);
 
+        // Construct a session using the expired objects and persist them on disk.
         CognitoUserSession expiredSession = new CognitoUserSession(
                 new CognitoIdToken(idTokenExpired),
                 new CognitoAccessToken(accessTokenExpired),
                 userSessionBeforeTokenExpired.getRefreshToken());
         cognitoUser.cacheTokens(expiredSession);
 
+        // Set to null to mimic app restartability
         cognitoUser = null;
         cognitoUserPool = null;
 
+        // Now, create new CognitoUserPool and CognitoUser objects and retrieve
+        // the cached session which will refresh the expired tokens.
         cognitoUserPool = createCognitoUserPool();
         cognitoUser = cognitoUserPool.getUser(getUserName());
-        verifyCognitoUserSessionForSignedOutUser();
-
-        CognitoUserSession userSessionAfterTokenExpired = super.signIn();
-        verifyCognitoUserSessionForSignedInUser(userSessionAfterTokenExpired);
+        verifyCognitoUserSessionForSignedInUser(cognitoUser.getCachedSession());
     }
 
     @Test
@@ -238,7 +240,7 @@ public class SignInPersistenceIntegrationTest extends CognitoUserPoolsIntegratio
     }
 
     @Test
-    public void testNoRefreshToken() {
+    public void testNoTokens() {
         // SignIn the user.
         CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
         verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
@@ -260,6 +262,112 @@ public class SignInPersistenceIntegrationTest extends CognitoUserPoolsIntegratio
 
         CognitoUserSession userSessionAfterTokenExpired = super.signIn();
         verifyCognitoUserSessionForSignedInUser(userSessionAfterTokenExpired);
+    }
+
+    @Test
+    public void testNoIdToken() {
+        // SignIn the user.
+        CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
+        verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
+
+        CognitoUserSession expiredSession = new CognitoUserSession(
+                null,
+                userSessionBeforeTokenExpired.getAccessToken(),
+                userSessionBeforeTokenExpired.getRefreshToken());
+        cognitoUser.cacheTokens(expiredSession);
+
+        cognitoUser = null;
+        cognitoUserPool = null;
+
+        cognitoUserPool = createCognitoUserPool();
+        cognitoUser = cognitoUserPool.getUser(getUserName());
+        verifyCognitoUserSessionForSignedInUser(cognitoUser.getCachedSession());
+    }
+
+    @Test
+    public void testNoAccessToken() {
+        // SignIn the user.
+        CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
+        verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
+
+        CognitoUserSession expiredSession = new CognitoUserSession(
+                userSessionBeforeTokenExpired.getIdToken(),
+                null,
+                userSessionBeforeTokenExpired.getRefreshToken());
+        cognitoUser.cacheTokens(expiredSession);
+
+        cognitoUser = null;
+        cognitoUserPool = null;
+
+        cognitoUserPool = createCognitoUserPool();
+        cognitoUser = cognitoUserPool.getUser(getUserName());
+
+        CognitoUserSession cognitoUserSession = cognitoUser.getCachedSession();
+        assertNotNull(cognitoUserSession);
+
+        CognitoUserSession userSessionAfterNoAccessToken = super.signIn();
+        verifyCognitoUserSessionForSignedInUser(userSessionAfterNoAccessToken);
+    }
+
+    @Test
+    public void testIdAndAccessTokenAreValidNoRefreshToken() throws Exception {
+        // SignIn the user.
+        CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
+        verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
+
+        CognitoUserSession expiredSession = new CognitoUserSession(
+                userSessionBeforeTokenExpired.getIdToken(),
+                userSessionBeforeTokenExpired.getAccessToken(),
+                null);
+        cognitoUser.cacheTokens(expiredSession);
+
+        cognitoUser = null;
+        cognitoUserPool = null;
+
+        cognitoUserPool = createCognitoUserPool();
+        cognitoUser = cognitoUserPool.getUser(getUserName());
+
+        CognitoUserSession userSession = cognitoUser.getCachedSession();
+
+        assertNotNull(userSession);
+
+        assertEquals(getUserName(), userSession.getUsername());
+        assertTrue(userSession.isValid());
+        assertTrue(userSession.isValidForThreshold());
+
+        assertNotNull(userSession.getAccessToken());
+        assertNotNull(userSession.getAccessToken().getExpiration());
+        assertNotNull(userSession.getAccessToken().getJWTToken());
+        assertNotNull(userSession.getAccessToken().getUsername());
+        assertEquals(getUserName(), userSession.getAccessToken().getUsername());
+
+        assertNotNull(userSession.getIdToken());
+        assertNotNull(userSession.getIdToken().getExpiration());
+        assertNotNull(userSession.getIdToken().getJWTToken());
+    }
+
+    @Test
+    public void testIdAndAccessTokenExpiredAndNoRefreshToken() {
+        // SignIn the user.
+        CognitoUserSession userSessionBeforeTokenExpired = super.signIn();
+        verifyCognitoUserSessionForSignedInUser(userSessionBeforeTokenExpired);
+
+        // Expire the token for client-side validation.
+        String idTokenExpired = expireJWTToken(userSessionBeforeTokenExpired.getIdToken().getJWTToken(), 3600);
+        String accessTokenExpired = expireJWTToken(userSessionBeforeTokenExpired.getAccessToken().getJWTToken(), 3600);
+
+        CognitoUserSession expiredSession = new CognitoUserSession(
+                new CognitoIdToken(idTokenExpired),
+                new CognitoAccessToken(accessTokenExpired),
+                null);
+        cognitoUser.cacheTokens(expiredSession);
+
+        cognitoUser = null;
+        cognitoUserPool = null;
+
+        cognitoUserPool = createCognitoUserPool();
+        cognitoUser = cognitoUserPool.getUser(getUserName());
+        verifyCognitoUserSessionForSignedOutUser();
     }
 
     private void verifyCognitoUserSessionForSignedInUser(final CognitoUserSession userSession) {
@@ -290,7 +398,7 @@ public class SignInPersistenceIntegrationTest extends CognitoUserPoolsIntegratio
     private void verifyCognitoUserSessionForSignedOutUser() {
         try {
             cognitoUser.getCachedSession();
-            fail("Error in verifying the Cognito User Session for the signed-out user. ");
+            fail("Error in verifying the Cognito User Session for the signed-out user.");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

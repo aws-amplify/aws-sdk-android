@@ -576,7 +576,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 // hostedUIJSONConfigured and hostedUI point to the hostedUI
                                 // object constructed from awsconfiguration.json
                                 hostedUIJSONConfigured = _initializeHostedUI(hostedUIJSON);
-                                hostedUI = _initializeHostedUI(hostedUIJSON);
                             }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
@@ -1250,7 +1249,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             if (mOAuth2Client != null) {
                 mOAuth2Client.signOut();
             }
-            // hostedUI = null;
+            hostedUI = null;
         }
         mStore.set(HOSTED_UI_KEY, hostedUIJSON);
         setUserState(getUserStateDetails(false));
@@ -1634,12 +1633,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
-        if (hostedUI == null) {
-            callback.onError(new Exception("HostedUI is not initialized. Please" +
-                    " initialize it by calling AWSMobileClient.getInstance().initialize()"));
-            return;
-        }
-
         hostedUI.setAuthHandler(new AuthHandler() {
             @Override
             public void onSuccess(AuthUserSession session) {

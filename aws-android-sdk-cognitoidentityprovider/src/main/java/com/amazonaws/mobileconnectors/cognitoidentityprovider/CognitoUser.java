@@ -937,16 +937,16 @@ public class CognitoUser {
                 }
             }
 
-            final CognitoUserSession cachedTokens = readCachedTokens();
+            final CognitoUserSession cognitoUserSessionFromStore = readCachedTokens();
 
-            if (cachedTokens.isValidForThreshold()) {
-                cipSession = cachedTokens;
+            if (cognitoUserSessionFromStore.isValidForThreshold()) {
+                cipSession = cognitoUserSessionFromStore;
                 return cipSession;
             }
 
-            if (cachedTokens.getRefreshToken() != null) {
+            if (cognitoUserSessionFromStore.getRefreshToken() != null) {
                 try {
-                    cipSession = refreshSession(cachedTokens);
+                    cipSession = refreshSession(cognitoUserSessionFromStore);
                     cacheTokens(cipSession);
                     return cipSession;
                 } catch (final NotAuthorizedException nae) {
@@ -2227,32 +2227,42 @@ public class CognitoUser {
             final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".refreshToken";
 
+            CognitoIdToken csiCachedIdToken = null;
+            CognitoAccessToken csiCachedAccessToken = null;
+            CognitoRefreshToken csiCachedRefreshToken = null;
+
             if (pool.awsKeyValueStore.contains(csiIdTokenKey)) {
-                CognitoIdToken csiCachedIdToken = null;
                 String idToken = pool.awsKeyValueStore.get(csiIdTokenKey);
                 if (idToken != null) {
                     csiCachedIdToken = new CognitoIdToken(idToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiIdTokenKey + " is null.");
                 }
+            }
 
-                CognitoAccessToken csiCachedAccessToken = null;
+            if (pool.awsKeyValueStore.contains(csiAccessTokenKey)) {
                 String accessToken = pool.awsKeyValueStore.get(csiAccessTokenKey);
                 if (accessToken != null) {
                     csiCachedAccessToken = new CognitoAccessToken(accessToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiAccessTokenKey + " is null.");
                 }
+            }
 
-                CognitoRefreshToken csiCachedRefreshToken = null;
+            if (pool.awsKeyValueStore.contains(csiRefreshTokenKey)) {
                 String refreshToken = pool.awsKeyValueStore.get(csiRefreshTokenKey);
                 if (refreshToken != null) {
                     csiCachedRefreshToken = new CognitoRefreshToken(refreshToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiRefreshTokenKey + " is null.");
                 }
-
-                userSession = new CognitoUserSession(csiCachedIdToken, csiCachedAccessToken,
-                        csiCachedRefreshToken);
-                return userSession;
             }
+
+            userSession = new CognitoUserSession(csiCachedIdToken,
+                    csiCachedAccessToken,
+                    csiCachedRefreshToken);
         } catch (final Exception e) {
-            // Logging exception, this is not a fatal error
-            LOGGER.error("Error while reading the tokens from the persistent store SharedPreferences", e);
+            LOGGER.error("Error while reading the tokens from the persistent store.", e);
         }
         return userSession;
     }

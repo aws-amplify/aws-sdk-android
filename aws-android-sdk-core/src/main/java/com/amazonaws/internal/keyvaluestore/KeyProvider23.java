@@ -15,8 +15,6 @@
 
 package com.amazonaws.internal.keyvaluestore;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
@@ -36,32 +34,15 @@ class KeyProvider23 implements KeyProvider {
 
     private static final Log logger = LogFactory.getLog(KeyProvider23.class);
 
-    static final String AES_KEY_ALGORITHM = "AES";
-    static final int CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS = 256;
-    static final String ANDROID_KEY_STORE_NAME = "AndroidKeyStore";
+    private static final String AES_KEY_ALGORITHM = "AES";
+    private static final int CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS = 256;
+    private static final String ANDROID_KEY_STORE_NAME = "AndroidKeyStore";
 
     /**
      * If the SharedPreferences name is "com.amazonaws.android.auth", then the encryption key
      * that is used to encrypt the data is "com.amazonaws.android.auth.aesKeyStoreAlias".
      */
     static final String AWS_KEY_VALUE_STORE_VERSION_1_KEY_STORE_ALIAS_FOR_AES_SUFFIX = ".aesKeyStoreAlias";
-
-    private Context context;
-    private SharedPreferences sharedPreferences;
-
-    /**
-     * Construct the KeyProvider object for Android API levels
-     * 23 through 28.
-     *
-     * @param context Android application context
-     * @param sharedPreferences reference to SharedPreferences
-     *                          which holds the encryption key
-     */
-    public KeyProvider23(final Context context,
-                         final SharedPreferences sharedPreferences) {
-        this.context = context;
-        this.sharedPreferences = sharedPreferences;
-    }
 
     @Override
     public synchronized Key retrieveKey(final String keyAlias) throws KeyNotFoundException {
@@ -78,16 +59,16 @@ class KeyProvider23 implements KeyProvider {
                 if (key != null) {
                     return key;
                 } else {
-                    throw new KeyNotFoundException("Key identified by the alias: " +
-                            keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME);
+                    throw new KeyNotFoundException("Key is null even though the keyAlias: " +
+                            keyAlias + " is present in " + ANDROID_KEY_STORE_NAME);
                 }
             } else {
-                throw new KeyNotFoundException("Key identified by the alias: " +
-                        keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME);
+                throw new KeyNotFoundException(ANDROID_KEY_STORE_NAME + " does not " +
+                        "contain the keyAlias: " + keyAlias);
             }
         } catch (Exception ex) {
-            throw new KeyNotFoundException("Key identified by the alias: " +
-                    keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME, ex);
+            throw new KeyNotFoundException("Error occurred while accessing " + ANDROID_KEY_STORE_NAME +
+                    " to retrieve the key for keyAlias: " + keyAlias, ex);
         }
     }
 
@@ -103,22 +84,26 @@ class KeyProvider23 implements KeyProvider {
                 KeyGenerator generator = KeyGenerator.getInstance(
                         AES_KEY_ALGORITHM,
                         ANDROID_KEY_STORE_NAME);
+
+                // setRandomizedEncryptionRequired(false) because Randomized Encryption
+                // does not work consistently in API levels 23-28.
                 generator.init(
                         new KeyGenParameterSpec.Builder(keyAlias,
                                 KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                                .setBlockModes(KeyProperties.BLOCK_MODE_GCM) // GCM Mode
-                                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE) // NoPadding
-                                .setKeySize(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS) // 256-bit key
+                                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                                .setKeySize(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS)
                                 .setRandomizedEncryptionRequired(false)
                                 .build());
-                logger.info("Generated the encryption key using Android KeyStore.");
-                return generator.generateKey();
+                Key key = generator.generateKey();
+                logger.info("Generated the encryption key identified by the keyAlias: " +
+                        keyAlias + " using " + ANDROID_KEY_STORE_NAME);
+                return key;
             } else {
-                throw new KeyNotGeneratedException("Key already exists for the alias: " +
+                throw new KeyNotGeneratedException("Key already exists for the keyAlias: " +
                         keyAlias + " in " + ANDROID_KEY_STORE_NAME);
             }
         } catch (Exception ex) {
-            logger.error("Error in accessing the Android KeyStore.", ex);
             throw new KeyNotGeneratedException("Cannot generate a key for alias: " +
                     keyAlias + " in " + ANDROID_KEY_STORE_NAME, ex);
         }

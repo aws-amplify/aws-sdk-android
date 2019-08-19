@@ -12,11 +12,6 @@ import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.Token;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.config.AWSConfiguration;
-import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
-import com.amazonaws.mobileconnectors.cognitoauth.tokens.AccessToken;
-import com.amazonaws.mobileconnectors.cognitoauth.tokens.IdToken;
-import com.amazonaws.mobileconnectors.cognitoauth.tokens.RefreshToken;
-import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
@@ -43,11 +38,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.amazonaws.mobile.client.AWSMobileClient.FEDERATION_ENABLED_KEY;
-import static com.amazonaws.mobile.client.AWSMobileClient.HOSTED_UI_KEY;
-import static com.amazonaws.mobile.client.AWSMobileClient.PROVIDER_KEY;
-import static com.amazonaws.mobile.client.AWSMobileClient.SIGN_IN_MODE;
-import static com.amazonaws.mobile.client.AWSMobileClient.TOKEN_KEY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -375,50 +365,6 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
         assertNotNull(identityIdAfterSecondSignIn);
 
         assertEquals(identityId, identityIdAfterSecondSignIn);
-    }
-
-    @Test
-    public void testHostedUI() throws Exception {
-        initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
-
-        // Store a HostedUI session: token, username and app client id
-        AWSMobileClient awsMobileClient = AWSMobileClient.getInstance();
-        assertNotNull(awsMobileClient.hostedUIJSONConfigured);
-        assertNotNull(awsMobileClient.hostedUI);
-
-        AuthUserSession authUserSession = new AuthUserSession(
-                new IdToken("idToken"),
-                new AccessToken("accessToken"),
-                new RefreshToken("refreshToken"));
-        LocalDataManager.cacheSession(awsMobileClient.mStore.mAWSKeyValueStore, InstrumentationRegistry.getTargetContext(),
-                getPackageConfigure("cognitoauth").getString("AppClientId"),
-                getPackageConfigure("cognitoauth").getString("Username"),
-                authUserSession,
-                null);
-
-        // Set the AWSMobileClient metadata that is specific to HostedUI
-        awsMobileClient.mStore.set(FEDERATION_ENABLED_KEY, "true");
-        awsMobileClient.mStore.set(HOSTED_UI_KEY, "dummyJson");
-        awsMobileClient.mStore.set(SIGN_IN_MODE, AWSMobileClient.SignInMode.HOSTED_UI.toString());
-        awsMobileClient.mStore.set(PROVIDER_KEY, awsMobileClient.userpoolsLoginKey);
-        awsMobileClient.mStore.set(TOKEN_KEY, "dummyToken");
-
-        try {
-            awsMobileClient.getTokens();
-        } catch (Exception ex) {
-            assertEquals("No cached session.", ex.getMessage());
-        }
-
-        initializeAWSMobileClient(appContext, UserState.SIGNED_IN);
-        awsMobileClient = AWSMobileClient.getInstance();
-        assertNotNull(awsMobileClient.hostedUIJSONConfigured);
-        assertNotNull(awsMobileClient.hostedUI);
-
-        try {
-            awsMobileClient.getTokens();
-        } catch (Exception ex) {
-            assertEquals("No cached session.", ex.getMessage());
-        }
     }
 
     private void signInAndVerifySignIn() {

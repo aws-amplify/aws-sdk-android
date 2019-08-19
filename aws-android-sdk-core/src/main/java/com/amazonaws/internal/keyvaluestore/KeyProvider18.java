@@ -85,7 +85,7 @@ public class KeyProvider18 implements KeyProvider {
      * @param sharedPreferences reference to SharedPreferences
      *                          which holds the encryption key
      */
-    public KeyProvider18(final Context context,
+    KeyProvider18(final Context context,
                          final SharedPreferences sharedPreferences) {
         this.context = context;
         this.sharedPreferences = sharedPreferences;
@@ -124,13 +124,13 @@ public class KeyProvider18 implements KeyProvider {
 
             return decryptCipher.doFinal(encryptedData);
         } catch (Exception ex) {
-            logger.error("Exception occurred while decrypting data. " + ex.getMessage());
+            logger.error("Exception occurred while decrypting the encrypted AES key. ", ex);
             return null;
         }
     }
 
     @Override
-    public synchronized Key generateKey(final String keyAlias) throws KeyNotGeneratedException {
+    public synchronized Key generateKey(final String rsaKeyAlias) throws KeyNotGeneratedException {
         try {
             // K1 - Generate the RSA key from the keystore.
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
@@ -140,8 +140,8 @@ public class KeyProvider18 implements KeyProvider {
             Calendar end = Calendar.getInstance();
             end.add(Calendar.YEAR, 30);
             KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(context)
-                    .setAlias(keyAlias)
-                    .setSubject(new X500Principal("CN=" + keyAlias))
+                    .setAlias(rsaKeyAlias)
+                    .setSubject(new X500Principal("CN=" + rsaKeyAlias))
                     .setSerialNumber(BigInteger.TEN)
                     .setStartDate(start.getTime())
                     .setEndDate(end.getTime())
@@ -151,24 +151,54 @@ public class KeyProvider18 implements KeyProvider {
                     ANDROID_KEY_STORE_NAME);
             kpg.initialize(spec);
             kpg.generateKeyPair();
+        } catch (Exception ex) {
+            throw new KeyNotGeneratedException("Error in generating the RSA Encryption key for " +
+                    "the rsaKeyAlias: " + rsaKeyAlias + " in " + ANDROID_KEY_STORE_NAME, ex);
+        }
 
+        try {
             // K2 - Generate the AES Data Encryption key
             this.secureRandom = new SecureRandom();
             KeyGenerator generator = KeyGenerator.getInstance(KEY_ALGORITHM_AES);
             generator.init(CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS, secureRandom);
             SecretKey aesEncryptionKey = generator.generateKey();
+            if (aesEncryptionKey == null) {
+                throw new KeyNotGeneratedException("Error in generating the AES encryption key " +
+                        "for the alias: " + ENCRYPTED_AES_KEY);
+            }
 
             // Encrypt K2 using K1
+            byte[] aesEncryptionKeyInBytes = aesEncryptionKey.getEncoded();
+            if (aesEncryptionKeyInBytes == null || aesEncryptionKeyInBytes.length == 0) {
+                throw new KeyNotGeneratedException("Error in generating the AES encryption key " +
+                        "for the alias: " + ENCRYPTED_AES_KEY);
+            }
+
+            byte[] rsaEncryptedAESKeyInBytes = rsaEncrypt(rsaKeyAlias, aesEncryptionKeyInBytes);
+            if (rsaEncryptedAESKeyInBytes == null || rsaEncryptedAESKeyInBytes.length == 0) {
+                throw new KeyNotGeneratedException("Error in RSA encrypting the AES encryption key " +
+                        "for the AES keyAlias: " + ENCRYPTED_AES_KEY + " using the rsaKeyAlias: " +
+                        rsaKeyAlias);
+            }
+
+            String base64EncodedStringOfEncryptedAESKey = Base64.encodeAsString(rsaEncryptedAESKeyInBytes);
+            if (base64EncodedStringOfEncryptedAESKey == null) {
+                throw new KeyNotGeneratedException("Error in Base64 encoding of the Encrypted AES " +
+                        "key for the AES keyAlias: " + ENCRYPTED_AES_KEY + " using the rsaKeyAlias: " +
+                        rsaKeyAlias);
+            }
+
             sharedPreferences.edit()
                     .putString(ENCRYPTED_AES_KEY,
-                            Base64.encodeAsString(rsaEncrypt(keyAlias, aesEncryptionKey.getEncoded())))
+                            base64EncodedStringOfEncryptedAESKey)
                     .apply();
 
-            logger.info("Generated and saved the encryption key to SharedPreferences");
+            logger.info("Generated and saved the Encrypted AES encryption key for the AES keyAlias: " +
+                    ENCRYPTED_AES_KEY + " to SharedPreferences.");
             return aesEncryptionKey;
         } catch (Exception ex) {
-            throw new KeyNotGeneratedException("Key already exists for the alias: " +
-                    keyAlias + " in " + ANDROID_KEY_STORE_NAME);
+            throw new KeyNotGeneratedException("Error in generating the AES key and RSA encrypting the " +
+                    "AES key using the rsaKeyAlias: " + rsaKeyAlias + " in " + ANDROID_KEY_STORE_NAME, ex);
         }
     }
 
@@ -179,42 +209,67 @@ public class KeyProvider18 implements KeyProvider {
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
             keyStore.load(null);
 
+            // Check AndroidKeyStore for the RSA Key
             if (!keyStore.containsAlias(keyAlias)) {
-                throw new KeyNotFoundException("Key identified by the alias: " +
+                throw new KeyNotFoundException("The RSA Key identified by the alias: " +
                         keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME);
             }
 
-            // Check if SharedPreferences has the encrypted AES key
+            // Check SharedPreferences for the encrypted AES key
             if (sharedPreferences.contains(ENCRYPTED_AES_KEY)) {
                 logger.debug("Loading the encryption key from SharedPreferences");
                 String encryptedAesEncryptionKey = sharedPreferences
                         .getString(ENCRYPTED_AES_KEY, null);
-                return new SecretKeySpec(
-                        rsaDecrypt(keyAlias, Base64.decode(encryptedAesEncryptionKey)),
-                        KEY_ALGORITHM_AES);
+                if (encryptedAesEncryptionKey == null) {
+                    throw new KeyNotFoundException("Unable to retrieve the encrypted AES Key identified by " +
+                            ENCRYPTED_AES_KEY + " from the SharedPreferences.");
+                }
+
+                byte[] base64DecodedKey = Base64.decode(encryptedAesEncryptionKey);
+                if (base64DecodedKey == null || base64DecodedKey.length == 0) {
+                    throw new KeyNotFoundException("Unable to Base64 decode the encrypted AES key " +
+                            "identified by: " + ENCRYPTED_AES_KEY);
+                }
+
+                byte[] aesKey = rsaDecrypt(keyAlias, base64DecodedKey);
+                if (aesKey == null || aesKey.length == 0) {
+                    throw new KeyNotFoundException("Unable to RSA decrypt the encrypted AES key " +
+                            "identified by: " + ENCRYPTED_AES_KEY + " using the RSA key " +
+                            "identified by keyAlias: " + keyAlias);
+                }
+
+                return new SecretKeySpec(aesKey, KEY_ALGORITHM_AES);
             } else {
-                throw new KeyNotFoundException("Key identified by the alias: " +
-                        keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME);
+                throw new KeyNotFoundException("SharedPreferences does not " +
+                        "have the key for keyAlias: " + ENCRYPTED_AES_KEY);
             }
         } catch (Exception ex) {
-            throw new KeyNotFoundException("Key identified by the alias: " +
-                    keyAlias + " cannot be found in " + ANDROID_KEY_STORE_NAME);
+            throw new KeyNotFoundException("Error occurred while accessing " + ANDROID_KEY_STORE_NAME +
+                    " to retrieve the key for keyAlias: " + keyAlias, ex);
         }
     }
 
     @Override
     public synchronized void deleteKey(final String keyAlias) {
         try {
+            // Delete the encrypted AES key
             sharedPreferences.edit()
                     .remove(ENCRYPTED_AES_KEY)
                     .apply();
+        } catch (Exception ex) {
+            logger.error("Error in deleting the encrypted AES key identified by " +
+                    ENCRYPTED_AES_KEY + " from SharedPreferences.", ex);
+        }
 
+        try {
+            // Delete the RSA key from the AndroidKeyStore
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
             keyStore.load(null);
 
             keyStore.deleteEntry(keyAlias);
         } catch (Exception ex) {
-            logger.error("Error in deleting the key." + ex);
+            logger.error("Error in deleting the RSA Key identified by the keyAlias: " +
+                    keyAlias + " from " + ANDROID_KEY_STORE_NAME, ex);
         }
     }
 }

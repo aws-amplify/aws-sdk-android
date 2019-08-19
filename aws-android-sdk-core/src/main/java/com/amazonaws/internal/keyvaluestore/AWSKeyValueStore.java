@@ -47,25 +47,28 @@ public class AWSKeyValueStore {
     static Map<String, HashMap<String, String>> cacheFactory = new HashMap<String, HashMap<String, String>>();
 
     // In-memory store operates on the key passed in and does not use the suffixes.
-    Map<String, String> cache;
+    private Map<String, String> cache;
 
-    boolean isPersistenceEnabled;
+    private boolean isPersistenceEnabled;
     Context context;
     SharedPreferences sharedPreferencesForData;
-    final String sharedPreferencesName;
+    private final String sharedPreferencesName;
     SharedPreferences sharedPreferencesForEncryptionMaterials;
 
     KeyProvider keyProvider;
-    SecureRandom secureRandom;
 
-    static final int ANDROID_API_LEVEL_23 = 23;
-    static final int ANDROID_API_LEVEL_18 = 18;
-    static final int ANDROID_API_LEVEL_10 = 10;
+    // Making this instance variable because creation of
+    // SecureRandom is expensive.
+    private SecureRandom secureRandom;
 
-    static final String CIPHER_AES_GCM_NOPADDING = "AES/GCM/NoPadding";
-    static final int CIPHER_AES_GCM_NOPADDING_IV_LENGTH_IN_BYTES = 12;
-    static final int CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS = 128;
-    static final String CHARSET_NAME = "UTF-8";
+    private static final int ANDROID_API_LEVEL_23 = 23;
+    private static final int ANDROID_API_LEVEL_18 = 18;
+    private static final int ANDROID_API_LEVEL_10 = 10;
+
+    private static final String CIPHER_AES_GCM_NOPADDING = "AES/GCM/NoPadding";
+    private static final int CIPHER_AES_GCM_NOPADDING_IV_LENGTH_IN_BYTES = 12;
+    private static final int CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS = 128;
+    private static final String CHARSET_NAME = "UTF-8";
 
     /**
      * The data key in SharedPreferences will have this suffix.
@@ -131,6 +134,14 @@ public class AWSKeyValueStore {
         setPersistenceEnabled(isPersistenceEnabled);
     }
 
+    /**
+     * Enable or disable persistence.
+     *
+     * Setting isPersistenceEnabled to false will clear the data
+     * persisted on SharedPreferences.
+     *
+     * @param isPersistenceEnabled flag that indicates persistence
+     */
     public synchronized void setPersistenceEnabled(boolean isPersistenceEnabled) {
         try {
             boolean previousIsPersistenceEnabled = this.isPersistenceEnabled;
@@ -162,7 +173,7 @@ public class AWSKeyValueStore {
                         .apply();
             }
         } catch (Exception ex) {
-            logger.error("Error in enabling persistence for Cognito UserPools. " + ex);
+            logger.error("Error in enabling persistence for " + sharedPreferencesName, ex);
         }
     }
 
@@ -170,15 +181,15 @@ public class AWSKeyValueStore {
      * Check if there is a key-value pair for the key
      * passed in.
      *
-     * @param key that identifies the key-value pair.
+     * @param dataKey that identifies the key-value pair.
      * @return true if a key-value pair exists for the key
      *         passed in.
      */
-    public synchronized boolean contains(final String key) {
+    public synchronized boolean contains(final String dataKey) {
         if (isPersistenceEnabled) {
-            return sharedPreferencesForData.contains(getKeyUsedInPersistentStore(key));
+            return sharedPreferencesForData.contains(getDataKeyUsedInPersistentStore(dataKey));
         } else {
-            return cache.containsKey(key);
+            return cache.containsKey(dataKey);
         }
     }
 
@@ -193,70 +204,67 @@ public class AWSKeyValueStore {
      * @return the value corresponding to the key.
      */
     public synchronized String get(final String dataKey) {
-        if (isPersistenceEnabled) {
-            if (dataKey == null) {
-                return null;
-            }
+        if (dataKey == null) {
+            return null;
+        }
 
-            // Retrieve the decryption key used for decrypting the data.
-
-            // dataKey becomes dataKey.encrypted
-            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey);
-
-            // Get the encryption key alias
-            String encryptionKeyAlias = getEncryptionKeyAlias();
-
-            // Based on the encryption key alias, retrieve the encryption key
-            // If the encryption key cannot be retrieved, return null and
-            // the consumer of get would treat it as if this data is not present
-            // on the persistent store.
-            Key decryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
-            if (decryptionKey == null) {
-                logger.error("Error in retrieving the decryption key " +
-                        "used to decrypt the data from the persistent store. " +
-                        "Returning null for the requested dataKey = " + dataKey);
-                return null;
-            }
-
-            // If the key-value pair is not found in the SharedPreferences,
-            // return null.
-            if (!sharedPreferencesForData.contains(dataKeyInPersistentStore)) {
-                return null;
-            }
-
-            try {
-                // If the version of data stored mismatches with the version of the store,
-                // return null.
-                final int keyValueStoreVersion = Integer.parseInt(
-                        sharedPreferencesForData
-                                .getString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
-                if (keyValueStoreVersion != AWS_KEY_VALUE_STORE_VERSION) {
-                    logger.error("The version of the data read from SharedPreferences for " +
-                            dataKey + " does not match the version of the store.");
-                    return null;
-                }
-
-                // Read from the SharedPreferences and decrypt
-                final String encryptedData = sharedPreferencesForData.getString(dataKeyInPersistentStore, null);
-                byte[] iv = getInitializationVector(dataKeyInPersistentStore);
-                String decryptedDataInString = decrypt(decryptionKey,
-                        //@apiLevel23Start
-                        apiLevel >= ANDROID_API_LEVEL_23 ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv) :
-                        //@apiLevel23End
-                        new IvParameterSpec(iv), encryptedData);
-
-                // Update the in-memory cache after read from disk.
-                cache.put(dataKey, decryptedDataInString);
-                return decryptedDataInString;
-            } catch (Exception ex) {
-                logger.error("Error in retrieving value for dataKey = " + dataKey, ex);
-
-                // Remove the dataKey and its associated value if there is an exception in decryption
-                remove(dataKey);
-                return null;
-            }
-        } else {
+        if (!isPersistenceEnabled) {
             return cache.get(dataKey);
+        }
+
+        // Retrieve the decryption key used for decrypting the data.
+
+        // dataKey becomes dataKey.encrypted
+        String dataKeyInPersistentStore = getDataKeyUsedInPersistentStore(dataKey);
+
+        String encryptionKeyAlias = getEncryptionKeyAlias();
+
+        // Based on the encryption key alias, retrieve the encryption key
+        // If the encryption key cannot be retrieved, return null and
+        // the consumer of get would treat it as if this data is not present
+        // on the persistent store.
+        Key decryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
+        if (decryptionKey == null) {
+            logger.error("Error in retrieving the decryption key " +
+                    "used to decrypt the data from the persistent store. " +
+                    "Returning null for the requested dataKey = " + dataKey);
+            return null;
+        }
+
+        // If the key-value pair is not found in the SharedPreferences,
+        // return null.
+        if (!sharedPreferencesForData.contains(dataKeyInPersistentStore)) {
+            return null;
+        }
+
+        try {
+            // If the version of data stored mismatches with the version of the store,
+            // return null.
+            final int keyValueStoreVersion = Integer.parseInt(
+                    sharedPreferencesForData
+                            .getString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+            if (keyValueStoreVersion != AWS_KEY_VALUE_STORE_VERSION) {
+                logger.error("The version of the data read from SharedPreferences for " +
+                        dataKey + " does not match the version of the store.");
+                return null;
+            }
+
+            // Read from the SharedPreferences and decrypt
+            final String encryptedData = sharedPreferencesForData.getString(dataKeyInPersistentStore, null);
+
+            String decryptedDataInString = decrypt(decryptionKey,
+                    getInitializationVector(dataKeyInPersistentStore),
+                    encryptedData);
+
+            // Update the in-memory cache after read from disk.
+            cache.put(dataKey, decryptedDataInString);
+            return decryptedDataInString;
+        } catch (Exception ex) {
+            logger.error("Error in retrieving value for dataKey = " + dataKey, ex);
+
+            // Remove the dataKey and its associated value if there is an exception in decryption
+            remove(dataKey);
+            return null;
         }
     }
 
@@ -275,62 +283,72 @@ public class AWSKeyValueStore {
      */
     public synchronized void put(final String dataKey, final String value) {
         if (dataKey == null) {
-            throw new IllegalArgumentException("Key cannot be null");
+            logger.error("dataKey is null.");
+            return;
         }
 
         // Irrespective of persistence is enabled or not, store in memory.
         cache.put(dataKey, value);
+        if (!isPersistenceEnabled) {
+            return;
+        }
 
         // Persistence
         // Convert string to bytes -> Encrypt -> Base64 encode -> Store
-        if (isPersistenceEnabled) {
-            if (value == null) {
-                logger.debug("Value is null. Removing the data, IV and version from SharedPreferences");
-                cache.remove(dataKey);
-                remove(dataKey);
+        if (value == null) {
+            logger.debug("Value is null. Removing the data, IV and version from SharedPreferences");
+            cache.remove(dataKey);
+            remove(dataKey);
+            return;
+        }
+
+        // dataKey becomes dataKey.encrypted
+        String dataKeyInPersistentStore = getDataKeyUsedInPersistentStore(dataKey);
+
+        String encryptionKeyAlias = getEncryptionKeyAlias();
+
+        // Based on the encryption key alias, retrieve the encryption key
+        // If the encryption key cannot be retrieved, create a new encryption key
+        // with the encryption key alias.
+        Key encryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
+        if (encryptionKey == null) {
+            // If the encryption key is null, create a new encryption key
+            logger.warn("No encryption key found for encryptionKeyAlias: " + encryptionKeyAlias);
+            encryptionKey = generateEncryptionKey(encryptionKeyAlias);
+            if (encryptionKey == null) {
+                logger.error("Error in generating the encryption key for encryptionKeyAlias: " +
+                        encryptionKeyAlias + " used to encrypt the data before storing. " +
+                        "Skipping persisting the data in the persistent store.");
                 return;
             }
+        }
 
-            // dataKey becomes dataKey.encrypted
-            String dataKeyInPersistentStore = getKeyUsedInPersistentStore(dataKey);
-
-            // Get the encryption key alias
-            String encryptionKeyAlias = getEncryptionKeyAlias();
-
-            // Based on the encryption key alias, retrieve the encryption key
-            // If the encryption key cannot be retrieved, create a new encryption key
-            // with the encryption key alias.
-            Key encryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
-            if (encryptionKey == null) {
-                // If the encryption key is null, create a new encryption key
-                encryptionKey = generateEncryptionKey(encryptionKeyAlias);
-                if (encryptionKey == null) {
-                    logger.error("Error in generating or retrieving the encryption key " +
-                            "used to encrypt the data before storing. Skipping persisting the data " +
-                            "in the persistent store.");
-                    return;
-                }
+        try {
+            // Encrypt
+            byte[] iv = generateInitializationVector();
+            if (iv == null) {
+                throw new Exception("The generated IV for dataKey = " + dataKey +" is null.");
             }
 
-            try {
-                // Encrypt
-                byte[] iv = generateInitializationVector();
-                String encryptedData = encrypt(encryptionKey,
-                        //@apiLevel23Start
-                        apiLevel >= ANDROID_API_LEVEL_23 ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv) :
-                        //@apiLevel23End
-                        new IvParameterSpec(iv), value);
+            String base64EncodedEncryptedString = encrypt(encryptionKey,
+                    getAlgorithmParameterSpecForIV(iv),
+                    value);
 
-                // Persist
-                sharedPreferencesForData
-                        .edit()
-                        .putString(dataKeyInPersistentStore, encryptedData) // Data
-                        .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_IV_SUFFIX, Base64.encodeAsString(iv)) // IV
-                        .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, String.valueOf(AWS_KEY_VALUE_STORE_VERSION)) // KeyValueStore Version
-                        .apply();
-            } catch (Exception ex) {
-                logger.error("Error in storing value for dataKey = " + dataKey, ex);
+            // Persist
+            String base64EncodedIV = Base64.encodeAsString(iv);
+            if (base64EncodedIV == null) {
+                throw new Exception("Error in Base64 encoding the IV for dataKey = " + dataKey);
             }
+
+            sharedPreferencesForData
+                    .edit()
+                    .putString(dataKeyInPersistentStore, base64EncodedEncryptedString) // Data
+                    .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_IV_SUFFIX, base64EncodedIV) // IV
+                    .putString(dataKeyInPersistentStore + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, String.valueOf(AWS_KEY_VALUE_STORE_VERSION)) // KeyValueStore Version
+                    .apply();
+        } catch (Exception ex) {
+            logger.error("Error in storing value for dataKey = " + dataKey +
+                    ". This data has not been stored in the persistent store.", ex);
         }
     }
 
@@ -341,14 +359,14 @@ public class AWSKeyValueStore {
      * remove(key) will remove from in-memory and
      * the persistent store if isPersistenceEnabled is true.
      *
-     * @param key identifies the key-value pair to be removed
+     * @param dataKey identifies the key-value pair to be removed
      */
-    public synchronized void remove(String key) {
+    public synchronized void remove(String dataKey) {
         // Irrespective of persistence is enabled or not, mutate in memory.
-        cache.remove(key);
+        cache.remove(dataKey);
 
         if (isPersistenceEnabled) {
-            final String keyUsedInPersistentStore = getKeyUsedInPersistentStore(key);
+            final String keyUsedInPersistentStore = getDataKeyUsedInPersistentStore(dataKey);
 
             sharedPreferencesForData.edit()
                     .remove(keyUsedInPersistentStore)
@@ -374,6 +392,16 @@ public class AWSKeyValueStore {
         }
     }
 
+    /**
+     * Encrypt the data using the encryptionKey and ivSpec. After successful
+     * encryption of data, Base64 encode the encrypted data and return the
+     * base64 encoded string.
+     *
+     * @param encryptionKey key used to encrypt the data
+     * @param ivSpec spec that wraps the initialization vector used in encryption
+     * @param data data to be encrypted in string
+     * @return base64 encoded string of the encrypted data.
+     */
     private String encrypt(Key encryptionKey, AlgorithmParameterSpec ivSpec, String data) {
         try {
             Cipher cipher = Cipher.getInstance(CIPHER_AES_GCM_NOPADDING);
@@ -388,7 +416,19 @@ public class AWSKeyValueStore {
         }
     }
 
-    private String decrypt(Key decryptionKey, AlgorithmParameterSpec ivSpec, String encryptedData) {
+    /**
+     * Decrypt the data using the decryptionKey and ivSpec. After successful
+     * decryption of data, Base64 decode the encrypted data and decrypt it
+     * and return the raw data in string format.
+     *
+     * @param decryptionKey key used to encrypt the data
+     * @param ivSpec spec that wraps the initialization vector used in encryption
+     * @param encryptedData data to be decrypted
+     * @return raw data in string format
+     */
+    private String decrypt(final Key decryptionKey,
+                           final AlgorithmParameterSpec ivSpec,
+                           final String encryptedData) {
         try {
             byte[] encryptedDecodedData = Base64.decode(encryptedData);
             Cipher cipher = Cipher.getInstance(CIPHER_AES_GCM_NOPADDING);
@@ -403,15 +443,24 @@ public class AWSKeyValueStore {
         }
     }
 
-    private byte[] getInitializationVector(final String keyOfDataInSharedPreferences) {
+    private AlgorithmParameterSpec getInitializationVector(final String keyOfDataInSharedPreferences) throws Exception {
         final String keyOfIV = keyOfDataInSharedPreferences + SHARED_PREFERENCES_IV_SUFFIX;
 
-        // If IV is present, load it
-        if (sharedPreferencesForData.contains(keyOfIV)) {
-            return Base64.decode(sharedPreferencesForData.getString(keyOfIV, null));
+        if (!sharedPreferencesForData.contains(keyOfIV)) {
+            throw new Exception("Initialization vector for " + keyOfDataInSharedPreferences + " is missing from the SharedPreferences.");
         }
 
-        return null;
+        String initializationVectorInString = sharedPreferencesForData.getString(keyOfIV, null);
+        if (initializationVectorInString == null) {
+            throw new Exception("Cannot read the initialization vector for " + keyOfDataInSharedPreferences + " from SharedPreferences.");
+        }
+
+        byte[] base64DecodedIV = Base64.decode(initializationVectorInString);
+        if (base64DecodedIV == null || base64DecodedIV.length == 0) {
+            throw new Exception("Cannot base64 decode the initialization vector for " + keyOfDataInSharedPreferences + " read from SharedPreferences.");
+        }
+
+        return getAlgorithmParameterSpecForIV(base64DecodedIV);
     }
 
     private byte[] generateInitializationVector() {
@@ -421,16 +470,26 @@ public class AWSKeyValueStore {
         return initializationVector;
     }
 
+    private AlgorithmParameterSpec getAlgorithmParameterSpecForIV(byte[] iv) {
+        return
+            //@apiLevel23Start
+            apiLevel >= ANDROID_API_LEVEL_23 ? new GCMParameterSpec(CIPHER_AES_GCM_NOPADDING_TAG_LENGTH_LENGTH_IN_BITS, iv) :
+            //@apiLevel23End
+            new IvParameterSpec(iv);
+    }
+
     private synchronized Key retrieveEncryptionKey(final String encryptionKeyAlias) {
         try {
             return keyProvider.retrieveKey(encryptionKeyAlias);
         } catch (KeyNotFoundException keyNotFoundException) {
+            logger.error(keyNotFoundException);
             // When Key cannot be retrieved, any existing encrypted data
             // cannot be decrypted successfully. Hence, deleting all the
             // existing encrypted data stored in SharedPreferences
             // and any in-memory state stored in the cacheFactory.
 
             // Clears the encryption keys if stored on SharedPreferences
+            logger.info("Deleting the encryption key identified by the keyAlias: " + encryptionKeyAlias);
             keyProvider.deleteKey(encryptionKeyAlias);
             return null;
         }
@@ -448,7 +507,7 @@ public class AWSKeyValueStore {
         }
     }
 
-    private String getKeyUsedInPersistentStore(final String key) {
+    private String getDataKeyUsedInPersistentStore(final String key) {
         if (key == null) {
             return null;
         }
@@ -481,10 +540,14 @@ public class AWSKeyValueStore {
         return null;
     }
 
-    void initKeyProviderBasedOnAPILevel() {
+    /**
+     * Create an instance of the KeyProvider implementation
+     * based on the Android API Level.
+     */
+    private void initKeyProviderBasedOnAPILevel() {
         if (apiLevel >= ANDROID_API_LEVEL_23) {
             //@apiLevel23Start
-            keyProvider = new KeyProvider23(context, sharedPreferencesForEncryptionMaterials);
+            keyProvider = new KeyProvider23();
             //@apiLevel23End
         } else if (apiLevel >= ANDROID_API_LEVEL_18) {
             //@apiLevel18Start
@@ -492,7 +555,7 @@ public class AWSKeyValueStore {
             //@apiLevel18End
         } else if (apiLevel >= ANDROID_API_LEVEL_10) {
             //@apiLevel10Start
-            keyProvider = new KeyProvider10(context, sharedPreferencesForEncryptionMaterials);
+            keyProvider = new KeyProvider10(sharedPreferencesForEncryptionMaterials);
             //@apiLevel10End
         } else {
             logger.error("API Level " +
@@ -509,28 +572,28 @@ public class AWSKeyValueStore {
      */
     private void onMigrateFromNoEncryption() {
         Map<String, ?> map = sharedPreferencesForData.getAll();
-        for (String spKey : map.keySet()) {
-            if (!spKey.endsWith(SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX) &&
-                !spKey.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
-                !spKey.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
+        for (String keyOfUnencryptedData : map.keySet()) {
+            if (!keyOfUnencryptedData.endsWith(SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX) &&
+                !keyOfUnencryptedData.endsWith(SHARED_PREFERENCES_IV_SUFFIX) &&
+                !keyOfUnencryptedData.endsWith(SHARED_PREFERENCES_STORE_VERSION_SUFFIX)) {
 
                 // Check if its an instance of the dataType.
-                if (map.get(spKey) instanceof Long) {
-                    Long longValue = sharedPreferencesForData.getLong(spKey, 0);
-                    put(spKey, String.valueOf(longValue));
-                } else if (map.get(spKey) instanceof String) {
-                    put(spKey, sharedPreferencesForData.getString(spKey, null));
-                } else if (map.get(spKey) instanceof Float) {
-                    Float floatValue = sharedPreferencesForData.getFloat(spKey, 0);
-                    put(spKey, String.valueOf(floatValue));
-                } else if (map.get(spKey) instanceof Boolean) {
-                    Boolean booleanValue = sharedPreferencesForData.getBoolean(spKey, false);
-                    put(spKey, String.valueOf(booleanValue));
-                } else if (map.get(spKey) instanceof Integer) {
-                    Integer intValue = sharedPreferencesForData.getInt(spKey, 0);
-                    put(spKey, String.valueOf(intValue));
-                } else if (map.get(spKey) instanceof Set) {
-                    Set<String> stringSet = (Set<String>) map.get(spKey);
+                if (map.get(keyOfUnencryptedData) instanceof Long) {
+                    Long longValue = sharedPreferencesForData.getLong(keyOfUnencryptedData, 0);
+                    put(keyOfUnencryptedData, String.valueOf(longValue));
+                } else if (map.get(keyOfUnencryptedData) instanceof String) {
+                    put(keyOfUnencryptedData, sharedPreferencesForData.getString(keyOfUnencryptedData, null));
+                } else if (map.get(keyOfUnencryptedData) instanceof Float) {
+                    Float floatValue = sharedPreferencesForData.getFloat(keyOfUnencryptedData, 0);
+                    put(keyOfUnencryptedData, String.valueOf(floatValue));
+                } else if (map.get(keyOfUnencryptedData) instanceof Boolean) {
+                    Boolean booleanValue = sharedPreferencesForData.getBoolean(keyOfUnencryptedData, false);
+                    put(keyOfUnencryptedData, String.valueOf(booleanValue));
+                } else if (map.get(keyOfUnencryptedData) instanceof Integer) {
+                    Integer intValue = sharedPreferencesForData.getInt(keyOfUnencryptedData, 0);
+                    put(keyOfUnencryptedData, String.valueOf(intValue));
+                } else if (map.get(keyOfUnencryptedData) instanceof Set) {
+                    Set<String> stringSet = (Set<String>) map.get(keyOfUnencryptedData);
                     StringBuilder stringBuilder = new StringBuilder();
                     Iterator<String> setIterator = stringSet.iterator();
                     while (setIterator.hasNext()) {
@@ -539,11 +602,11 @@ public class AWSKeyValueStore {
                             stringBuilder.append(",");
                         }
                     }
-                    put(spKey, stringBuilder.toString());
+                    put(keyOfUnencryptedData, stringBuilder.toString());
                 }
 
                 // Remove the key since key.encrypted is written.
-                sharedPreferencesForData.edit().remove(spKey).apply();
+                sharedPreferencesForData.edit().remove(keyOfUnencryptedData).apply();
             }
         }
     }
