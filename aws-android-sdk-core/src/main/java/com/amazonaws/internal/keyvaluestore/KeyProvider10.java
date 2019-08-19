@@ -77,7 +77,7 @@ class KeyProvider10 implements KeyProvider {
 
             String base64EncodedStringOfEncryptedAESKey = Base64.encodeAsString(aesEncryptionKeyInBytes);
             if (base64EncodedStringOfEncryptedAESKey == null) {
-                throw new KeyNotGeneratedException("Error in Base64 encoding of the AES encryption" +
+                throw new KeyNotGeneratedException("Error in Base64 encoding of the AES encryption " +
                         "key for the aesEncryptionKeyAlias: " + aesEncryptionKeyAlias);
             }
 
