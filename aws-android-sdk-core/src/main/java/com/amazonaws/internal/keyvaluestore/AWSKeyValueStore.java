@@ -469,7 +469,7 @@ public class AWSKeyValueStore {
             //@apiLevel18End
         } else if (apiLevel >= ANDROID_API_LEVEL_10) {
             //@apiLevel10Start
-            return KeyProvider10.SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY;
+            return KeyProvider10.KEY_ALIAS;
             //@apiLevel10End
         } else {
             logger.error("API Level " +

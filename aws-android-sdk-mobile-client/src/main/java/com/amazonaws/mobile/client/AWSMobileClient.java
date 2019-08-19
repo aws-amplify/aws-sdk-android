@@ -258,8 +258,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
-    private Auth hostedUIJSONConfigured;
-    private Auth hostedUI;
+    Auth hostedUIJSONConfigured;
+    Auth hostedUI;
     OAuth2Client mOAuth2Client;
     String mUserPoolPoolId;
 
@@ -572,7 +572,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
                                 mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
                             } else {
-                                _initializeHostedUI(hostedUIJSON);
+                                // When AWSMobileClient is being initialized, we will make both
+                                // hostedUIJSONConfigured and hostedUI point to the hostedUI
+                                // object constructed from awsconfiguration.json
+                                hostedUIJSONConfigured = _initializeHostedUI(hostedUIJSON);
+                                hostedUI = _initializeHostedUI(hostedUIJSON);
                             }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize OAuth, please check your awsconfiguration.json", e));
@@ -596,7 +600,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
-    private void _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
+    private Auth _initializeHostedUI(JSONObject hostedUIJSON) throws JSONException {
         Log.d(TAG, "initialize: Cognito HostedUI client detected");
         final JSONArray scopesJSONArray = hostedUIJSON.getJSONArray("Scopes");
         final Set<String> scopes = new HashSet<String>();
@@ -608,7 +612,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             throw new IllegalStateException("User pool Id must be available through user pool setting");
         }
 
-        hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+        return getHostedUI(hostedUIJSON)
                 .setPersistenceEnabled(mIsPersistenceEnabled)
                 .setAuthHandler(new AuthHandler() {
                     @Override
@@ -1246,7 +1250,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             if (mOAuth2Client != null) {
                 mOAuth2Client.signOut();
             }
-            hostedUI = null;
+            // hostedUI = null;
         }
         mStore.set(HOSTED_UI_KEY, hostedUIJSON);
         setUserState(getUserStateDetails(false));
@@ -1630,6 +1634,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
+        if (hostedUI == null) {
+            callback.onError(new Exception("HostedUI is not initialized. Please" +
+                    " initialize it by calling AWSMobileClient.getInstance().initialize()"));
+            return;
+        }
+
         hostedUI.setAuthHandler(new AuthHandler() {
             @Override
             public void onSuccess(AuthUserSession session) {

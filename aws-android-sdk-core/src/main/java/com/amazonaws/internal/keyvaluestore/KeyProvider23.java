@@ -49,19 +49,21 @@ class KeyProvider23 implements KeyProvider {
     private Context context;
     private SharedPreferences sharedPreferences;
 
+    /**
+     * Construct the KeyProvider object for Android API levels
+     * 23 through 28.
+     *
+     * @param context Android application context
+     * @param sharedPreferences reference to SharedPreferences
+     *                          which holds the encryption key
+     */
     public KeyProvider23(final Context context,
                          final SharedPreferences sharedPreferences) {
         this.context = context;
         this.sharedPreferences = sharedPreferences;
     }
 
-    /**
-     * Retrieves the key that is used for encrypting
-     * and decrypting data.
-     *
-     * @return the symmetric key that can be used to encrypt and
-     * decrypt data.
-     */
+    @Override
     public synchronized Key retrieveKey(final String keyAlias) throws KeyNotFoundException {
         try {
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
@@ -89,10 +91,7 @@ class KeyProvider23 implements KeyProvider {
         }
     }
 
-    /**
-     * Generate the key that is used for encrypting
-     * and decrypting data.
-     */
+    @Override
     public synchronized Key generateKey(final String keyAlias) throws KeyNotGeneratedException {
         try {
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);
@@ -125,10 +124,7 @@ class KeyProvider23 implements KeyProvider {
         }
     }
 
-    /**
-     * Delete the key for the keyAlias from the
-     * Android KeyStore.
-     */
+    @Override
     public synchronized void deleteKey(final String keyAlias) {
         try {
             KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE_NAME);

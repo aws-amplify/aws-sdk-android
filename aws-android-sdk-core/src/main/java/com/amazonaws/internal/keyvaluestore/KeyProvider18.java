@@ -68,7 +68,7 @@ public class KeyProvider18 implements KeyProvider {
 
     /**
      * If the SharedPreferences name is "com.amazonaws.android.auth", then the encryption key
-     * that is used to encrypt the data in keyvaluestoreversion 1 is stored in the alias
+     * that is used to encrypt the data is stored in the alias
      * "com.amazonaws.android.auth.rsaKeyStoreAlias".
      */
     static final String AWS_KEY_VALUE_STORE_VERSION_1_KEY_STORE_ALIAS_FOR_RSA_SUFFIX = ".rsaKeyStoreAlias";
@@ -77,6 +77,14 @@ public class KeyProvider18 implements KeyProvider {
     private Context context;
     private SharedPreferences sharedPreferences;
 
+    /**
+     * Construct the KeyProvider object for Android API levels
+     * 18 through 22.
+     *
+     * @param context Android application context
+     * @param sharedPreferences reference to SharedPreferences
+     *                          which holds the encryption key
+     */
     public KeyProvider18(final Context context,
                          final SharedPreferences sharedPreferences) {
         this.context = context;
@@ -121,15 +129,6 @@ public class KeyProvider18 implements KeyProvider {
         }
     }
 
-    /**
-     * Retrieves the key that is used for encrypting
-     * and decrypting data.
-     *
-     * @param keyAlias The alias of the key held in AndroidKeyStore
-     *                 if AndroidKeyStore is used for key generation.
-     * @return the symmetric key that can be used to encrypt and
-     * decrypt data.
-     */
     @Override
     public synchronized Key generateKey(final String keyAlias) throws KeyNotGeneratedException {
         try {

@@ -14,9 +14,12 @@ import com.amazonaws.util.StringUtils;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.concurrent.CountDownLatch;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
@@ -106,5 +109,31 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         assertTrue("Id token should not be expired", idToken.getExpiration().after(new Date()));
         Token refreshToken = tokens.getRefreshToken();
         assertNotNull(refreshToken);
+    }
+
+    protected void initializeAWSMobileClient(final Context appContext,
+                                             final UserState userState) {
+        // Expect the UserState to be SIGNED_OUT
+        final CountDownLatch waitForAWSMobileClientToBeInitialized = new CountDownLatch(1);
+        AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
+            @Override
+            public void onResult(UserStateDetails result) {
+                assertEquals(userState,
+                        result.getUserState());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                fail(e.getMessage());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+        });
+
+        try {
+            waitForAWSMobileClientToBeInitialized.await();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

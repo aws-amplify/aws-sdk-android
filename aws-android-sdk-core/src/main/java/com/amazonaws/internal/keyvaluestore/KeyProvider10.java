@@ -33,10 +33,6 @@ import javax.crypto.spec.SecretKeySpec;
  * This provider is used on API Levels 10 through 17.
  * It generates a AES 256-bit symmetric key and
  * stores it in a SharedPreferences.
- *
- * For subsequent calls to getKey, if a key is present
- * in SharedPreferences, load and use the key, otherwise
- * generate a new key.
  */
 class KeyProvider10 implements KeyProvider {
 
@@ -44,29 +40,28 @@ class KeyProvider10 implements KeyProvider {
 
     static final String AES_KEY_ALGORITHM = "AES";
     static final int CIPHER_AES_GCM_NOPADDING_KEY_LENGTH_IN_BITS = 256;
-    static final String SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY = "AesGcmNoPaddingEncryption10-encryption-key";
+    static final String KEY_ALIAS = "AesGcmNoPaddingEncryption10-encryption-key";
 
     private SecureRandom secureRandom = new SecureRandom();
     private Context context;
     private SharedPreferences sharedPreferences;
 
+    /**
+     * Construct the KeyProvider object for Android API levels
+     * 10 through 17.
+     *
+     * @param context Android application context
+     * @param sharedPreferences reference to SharedPreferences
+     *                          which holds the encryption key
+     */
     public KeyProvider10(final Context context,
                          final SharedPreferences sharedPreferences) {
         this.context = context;
         this.sharedPreferences = sharedPreferences;
     }
 
-    /**
-     * Retrieves the key that is used for encrypting
-     * and decrypting data.
-     *
-     * @param keyAlias The alias of the key held in AndroidKeyStore
-     *                 if AndroidKeyStore is used for key generation.
-     * @return the symmetric key that can be used to encrypt and
-     * decrypt data.
-     */
     @Override
-    public synchronized Key generateKey(String keyAlias) throws KeyNotGeneratedException {
+    public synchronized Key generateKey(final String keyAlias) throws KeyNotGeneratedException {
         try {
             // Generate the key
             KeyGenerator generator = KeyGenerator.getInstance(AES_KEY_ALGORITHM);
@@ -75,7 +70,7 @@ class KeyProvider10 implements KeyProvider {
 
             // Save the key to SharedPreferences
             sharedPreferences.edit()
-                    .putString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY,
+                    .putString(keyAlias,
                             Base64.encodeAsString(secretKey.getEncoded()))
                     .apply();
 
@@ -88,13 +83,13 @@ class KeyProvider10 implements KeyProvider {
     }
 
     @Override
-    public synchronized Key retrieveKey(String keyAlias) throws KeyNotFoundException {
+    public synchronized Key retrieveKey(final String keyAlias) throws KeyNotFoundException {
         try {
             // If SharedPreferences contains the key, load it.
-            if (sharedPreferences.contains(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)) {
+            if (sharedPreferences.contains(keyAlias)) {
                 logger.debug("Loading the encryption key from SharedPreferences");
                 final String keyInStringFormat = sharedPreferences
-                        .getString(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY, null);
+                        .getString(keyAlias, null);
                 return new SecretKeySpec(Base64.decode(keyInStringFormat), AES_KEY_ALGORITHM);
             } else {
                 throw new KeyNotFoundException("Encryption key cannot be found.");
@@ -108,7 +103,7 @@ class KeyProvider10 implements KeyProvider {
     @Override
     public synchronized void deleteKey(final String keyAlias) {
         sharedPreferences.edit()
-                .remove(SHARED_PREFERENCES_KEY_NAME_FOR_ENCRYPTION_KEY)
+                .remove(keyAlias)
                 .apply();
     }
 }
