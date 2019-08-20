@@ -26,6 +26,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -90,6 +91,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
                 .commit();
 
         AWSKeyValueStore.cacheFactory.clear();
+        deleteAllEncryptionKeys();
     }
 
     @Test
@@ -342,6 +344,173 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
                 Regions.US_EAST_1);
         assertNotNull(cccp2.getCachedIdentityId());
         assertEquals(identityId, cccp2.getCachedIdentityId());
+    }
+
+    @Test
+    public void testPartialDataLossInAWSCredentials() {
+        // Makes a network call to get credentials and saves it to local persistence store
+        AWSSessionCredentials awsSessionCredentialsFromNetwork = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        AWSSessionCredentials awsSessionCredentialsFromCache = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+
+        sharedPreferencesForAuth.edit()
+                .remove(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted")
+                .apply();
+
+        awsSessionCredentialsFromNetwork = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        awsSessionCredentialsFromCache = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+    }
+
+    @Test
+    public void testEncryptionKeyLossInAWSCredentials_WhileAppIsInMemory() {
+        // Makes a network call to get credentials and saves it to local persistence store
+        AWSSessionCredentials awsSessionCredentialsFromNetwork = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        AWSSessionCredentials awsSessionCredentialsFromCache = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+
+        deleteAllEncryptionKeys();
+
+        awsSessionCredentialsFromNetwork = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        awsSessionCredentialsFromCache = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+    }
+
+    @Test
+    public void testEncryptionKeyLossInAWSCredentials_WhileAppIsInClosed() throws Exception {
+        // Makes a network call to get credentials and saves it to local persistence store
+        AWSSessionCredentials awsSessionCredentialsFromNetwork = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        AWSSessionCredentials awsSessionCredentialsFromCache = credentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+
+        deleteAllEncryptionKeys();
+
+        CognitoCachingCredentialsProvider newCredentialsProvider = new CognitoCachingCredentialsProvider(
+                InstrumentationRegistry.getTargetContext(),
+                getPackageConfigure().getString("identity_pool_id"),
+                Regions.US_EAST_1);
+
+        awsSessionCredentialsFromNetwork = newCredentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromNetwork);
+
+        awsSessionCredentialsFromCache = newCredentialsProvider.getCredentials();
+        verifyAWSCredentials(awsSessionCredentialsFromCache);
+
+        assertTrue(compareAWSSessionCredentials(awsSessionCredentialsFromNetwork, awsSessionCredentialsFromCache));
+    }
+
+    @Test
+    public void testDataLossInGetIdentityId() {
+        // Makes a network call to get credentials and saves it to local persistence store
+        String identityIdFromNetwork = credentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        String identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+
+        sharedPreferencesForAuth.edit()
+                .remove(credentialsProvider.getIdentityPoolId() + ".identityId.encrypted")
+                .apply();
+
+        identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNull(identityIdFromCache);
+
+        identityIdFromNetwork = credentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+    }
+
+    @Test
+    public void testEncryptionKeyLossInGetIdentityId_WhileAppIsInMemory() {
+        // Makes a network call to get credentials and saves it to local persistence store
+        String identityIdFromNetwork = credentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        String identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+
+        deleteAllEncryptionKeys();
+
+        identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNull(identityIdFromCache);
+
+        identityIdFromNetwork = credentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+    }
+
+    @Test
+    public void testEncryptionKeyLossInGetIdentityId_WhileAppIsClosed() throws Exception {
+        // Makes a network call to get credentials and saves it to local persistence store
+        String identityIdFromNetwork = credentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        String identityIdFromCache = credentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+
+        deleteAllEncryptionKeys();
+
+        CognitoCachingCredentialsProvider newCredentialsProvider = new CognitoCachingCredentialsProvider(
+                InstrumentationRegistry.getTargetContext(),
+                getPackageConfigure().getString("identity_pool_id"),
+                Regions.US_EAST_1);
+        identityIdFromCache = newCredentialsProvider.getCachedIdentityId();
+        assertNull(identityIdFromCache);
+
+        identityIdFromNetwork = newCredentialsProvider.getIdentityId();
+        assertNotNull(identityIdFromNetwork);
+
+        identityIdFromCache = newCredentialsProvider.getCachedIdentityId();
+        assertNotNull(identityIdFromCache);
+
+        assertEquals(identityIdFromNetwork, identityIdFromCache);
+    }
+
+    private boolean compareAWSSessionCredentials(AWSSessionCredentials a, AWSSessionCredentials b) {
+        return a.getAWSAccessKeyId().equals(b.getAWSAccessKeyId()) &&
+                a.getAWSSecretKey().equals(b.getAWSSecretKey()) &&
+                a.getSessionToken().equals(b.getSessionToken());
+    }
+
+    private void verifyAWSCredentials(AWSSessionCredentials awsSessionCredentialsFromNetwork) {
+        assertNotNull(awsSessionCredentialsFromNetwork);
+        assertNotNull(awsSessionCredentialsFromNetwork.getAWSAccessKeyId());
+        assertNotNull(awsSessionCredentialsFromNetwork.getAWSSecretKey());
+        assertNotNull(awsSessionCredentialsFromNetwork.getSessionToken());
     }
 
     private void verifySharedPreferencesContents() {

@@ -16,10 +16,13 @@
 package com.amazonaws.internal.keyvaluestore;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX;
+import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -30,139 +33,149 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
+import java.security.Key;
+import java.security.KeyStore;
 import java.util.Map;
 
 @RunWith(AndroidJUnit4.class)
-public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
+public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
 
-    private static AWSKeyValueStore keyStore;
+    private static AWSKeyValueStore awsKeyValueStore;
 
     private static final String DEFAULT_SHARED_PREFERENCES_NAME = "com.amazonaws.android.auth";
 
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+    @Before
+    public void setUp() {
+        awsKeyValueStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
     }
 
     @After
     public void tearDown() {
-        keyStore.clear();
+        awsKeyValueStore.clear();
+        deleteAllEncryptionKeys();
+    }
+
+    @Test
+    public void testEncryptionKeyGeneration() {
+        final String dataKey = "my-data-key";
+        final Key encryptionKey = awsKeyValueStore.generateEncryptionKey(dataKey);
+        assertNotNull(encryptionKey);
     }
 
     @Test
     public void testGetSet() {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
     }
 
     @Test
     public void testGetSetUpdate() {
         final String key = "access-key";
         String accessKey = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
 
         accessKey = "b-dummy-access-key";
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
     }
 
     @Test
     public void testGetSetUpdates() {
         final String key = "access-key";
         String accessKey = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
 
         accessKey = "b-dummy-access-key";
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
 
-        keyStore.put(key, null);
-        assertEquals(null, keyStore.get(key));
-        assertNull(keyStore.get(key));
+        awsKeyValueStore.put(key, null);
+        assertEquals(null, awsKeyValueStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
 
         accessKey = "c-dummy-access-key";
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
 
         accessKey = "d-dummy-access-key";
-        keyStore.put(key, accessKey);
-        assertEquals(accessKey, keyStore.get(key));
+        awsKeyValueStore.put(key, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(key));
     }
 
     @Test
     public void testGetSetRemoveGetSet() {
         final String keyForAccessKey = "access-key";
         String accessKey = "a-dummy-access-key";
-        assertNull(keyStore.get(keyForAccessKey));
-        keyStore.put(keyForAccessKey, accessKey);
-        assertEquals(accessKey, keyStore.get(keyForAccessKey));
+        assertNull(awsKeyValueStore.get(keyForAccessKey));
+        awsKeyValueStore.put(keyForAccessKey, accessKey);
+        assertEquals(accessKey, awsKeyValueStore.get(keyForAccessKey));
 
         final String keyForSecretAccessKey = "secret-access-key";
         String secretAccessKey = "a-dummy-secret-access-key";
-        assertNull(keyStore.get(keyForSecretAccessKey));
-        keyStore.put(keyForSecretAccessKey, secretAccessKey);
-        assertEquals(secretAccessKey, keyStore.get(keyForSecretAccessKey));
+        assertNull(awsKeyValueStore.get(keyForSecretAccessKey));
+        awsKeyValueStore.put(keyForSecretAccessKey, secretAccessKey);
+        assertEquals(secretAccessKey, awsKeyValueStore.get(keyForSecretAccessKey));
 
-        keyStore.remove(keyForAccessKey);
-        assertNull(keyStore.get(keyForAccessKey));
-        assertNotNull(keyStore.get(keyForSecretAccessKey));
-        assertEquals(secretAccessKey, keyStore.get(keyForSecretAccessKey));
+        awsKeyValueStore.remove(keyForAccessKey);
+        assertNull(awsKeyValueStore.get(keyForAccessKey));
+        assertNotNull(awsKeyValueStore.get(keyForSecretAccessKey));
+        assertEquals(secretAccessKey, awsKeyValueStore.get(keyForSecretAccessKey));
 
-        keyStore.clear();
-        assertNull(keyStore.get(keyForAccessKey));
-        assertNull(keyStore.get(keyForSecretAccessKey));
+        awsKeyValueStore.clear();
+        assertNull(awsKeyValueStore.get(keyForAccessKey));
+        assertNull(awsKeyValueStore.get(keyForSecretAccessKey));
     }
 
     @Test
     public void testGetSetNull() {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
 
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
 
-        keyStore.put(key, null);
-        assertNull(keyStore.get(key));
+        awsKeyValueStore.put(key, null);
+        assertNull(awsKeyValueStore.get(key));
 
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
     }
 
     @Test
     public void testGetSetPersistence() {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
 
-        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyValueStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
-        assertEquals(value, keyStore2.get(key));
+        assertEquals(value, keyValueStore2.get(key));
     }
 
     @Test
     public void testGetSetPersistenceWithClear() {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
-        assertNull(keyStore.get(key));
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
 
-        keyStore.clear();
-        keyStore.put(key, value);
-        assertEquals(value, keyStore.get(key));
+        awsKeyValueStore.clear();
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
 
         AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
@@ -193,15 +206,15 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
                 sharedPreferencesName,
                 true);
 
-        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
+        Log.d(TAG, "sharedPreferencesForData = " + sharedPreferences.getAll().toString());
 
         assertNull(sharedPreferences.getString(key, null));
         assertNotNull(sharedPreferences.getString(
                 key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_IV_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
 
         assertNotNull(keyStore.get(key));
         keyStore.put(key, value);
@@ -215,7 +228,7 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
                 sharedPreferencesName,
                 true);
 
-        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
+        Log.d(TAG, "sharedPreferencesForData = " + sharedPreferences.getAll().toString());
         assertEquals(value, keyStore2.get(key));
     }
 
@@ -284,15 +297,15 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
                 sharedPreferencesName,
                 true);
 
-        Log.d(TAG, "sharedPreferences = " + sharedPreferences.getAll().toString());
+        Log.d(TAG, "sharedPreferencesForData = " + sharedPreferences.getAll().toString());
 
         assertNull(sharedPreferences.getString(key, null));
         assertNotNull(sharedPreferences.getString(
                 key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_IV_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
 
         assertNotNull(keyStore.get(key));
         keyStore.put(key, value);
@@ -328,9 +341,9 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
         assertNull(sharedPreferences.getString(
                 key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
         assertNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_IV_SUFFIX, null));
         assertNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
 
         keyStore.put(key, value);
         assertEquals(value, keyStore.get(key));
@@ -347,8 +360,84 @@ public class AWSKeyStoreIntegrationTest extends CoreIntegrationTestBase {
         assertNotNull(sharedPreferences.getString(
                 key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_IV_SUFFIX, null));
         assertNotNull(sharedPreferences.getString(
-                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+                key + AWSKeyValueStore.SHARED_PREFERENCES_DATA_IDENTIFIER_SUFFIX + SHARED_PREFERENCES_STORE_VERSION_SUFFIX, null));
+    }
+
+    @Test
+    public void testCRUDLifeCycle1() {
+        // Get (Read), Put (Create), Put (Update),
+        // Remove (Delete), Put (Create), Clear
+        final String key = "access-key";
+        final String value = "a-dummy-access-key";
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, value);
+        assertEquals(value, awsKeyValueStore.get(key));
+
+        final String newValue = "b-dummy-access-key";
+        awsKeyValueStore.put(key, newValue);
+        assertEquals(newValue, awsKeyValueStore.get(key));
+
+        awsKeyValueStore.remove(key);
+        assertNull(awsKeyValueStore.get(key));
+        awsKeyValueStore.put(key, newValue);
+        assertEquals(newValue, awsKeyValueStore.get(key));
+
+        awsKeyValueStore.clear();
+        assertNull(awsKeyValueStore.get(key));
+    }
+
+    @Test
+    public void testCRUDLifeCycle2() {
+        // loop { Get (Read), Put (Create), Get (Read) }
+        // Remove one item, Get for remaining will return correct data
+        // loop { Put (Update/Create), Get (Read)
+        for (int iterator = 1; iterator <= 10; iterator++) {
+            final String key = "access-key-" + iterator;
+            final String value = "a-dummy-access-key-" + iterator;
+            assertNull(awsKeyValueStore.get(key));
+            awsKeyValueStore.put(key, value);
+            assertEquals(value, awsKeyValueStore.get(key));
+        }
+
+        awsKeyValueStore.remove("access-key-" + 10);
+        for (int iterator = 1; iterator <= 9; iterator++) {
+            assertEquals("a-dummy-access-key-" + iterator,
+                    awsKeyValueStore.get("access-key-" + iterator));
+        }
+
+        assertNull(awsKeyValueStore.get("access-key-" + 10));
+        awsKeyValueStore.put("access-key-" + 10,
+                "a-dummy-access-key-" + 10);
+
+        for (int iterator = 1; iterator <= 10; iterator++) {
+            assertEquals("a-dummy-access-key-" + iterator,
+                    awsKeyValueStore.get("access-key-" + iterator));
+        }
+
+        awsKeyValueStore.clear();
+        for (int iterator = 1; iterator <= 10; iterator++) {
+            assertNull(awsKeyValueStore.get("access-key-" + iterator));
+        }
+    }
+
+    @Test
+    public void benchmarkKeyStoreOperations() {
+        long begin = System.nanoTime();
+
+        try {
+            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+
+            KeyProvider23 keyProvider23 = new KeyProvider23();
+            keyProvider23.generateKey("a");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        long end = System.nanoTime();
+
+        Log.d(TAG, "KeyStore load: " + String.valueOf(end - begin));
     }
 }

@@ -38,9 +38,9 @@ import com.amazonaws.regions.Regions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AWSKeyStoreNoCachingIntegrationTest  extends CoreIntegrationTestBase {
+public class AWSKeyValueStoreNoCachingIntegrationTest extends CoreIntegrationTestBase {
 
-    private static String TAG = AWSKeyStoreNoCachingIntegrationTest.class.getSimpleName();
+    private static String TAG = AWSKeyValueStoreNoCachingIntegrationTest.class.getSimpleName();
 
     private List<CognitoCachingCredentialsProvider> credentialsProviders;
 
@@ -88,6 +88,7 @@ public class AWSKeyStoreNoCachingIntegrationTest  extends CoreIntegrationTestBas
                 .commit();
 
         AWSKeyValueStore.cacheFactory.clear();
+        deleteAllEncryptionKeys();
     }
 
     @Test

@@ -15,30 +15,48 @@
 
 package com.amazonaws.internal.keyvaluestore;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import java.security.Key;
 
 /**
- * The interface that manages the creation
+ * The interface that manages the generation
  * and retrieval of key used for encrypting
- * and decrypting data stored in SharedPreferences.
+ * and decrypting data.
  */
 interface KeyProvider {
     /**
-     * Retrieves the key that is used for encrypting
-     * and decrypting data.
+     * Generate the encryption key that is used for encrypting
+     * and decrypting data. The encryption key will be identified
+     * by a keyAlias.
      *
-     * @param sharedPreferences The SharedPreferences instance where
-     *                          the encryption key will be persisted.
-     * @param keyAlias The alias of the key held in AndroidKeyStore
-     *                 if AndroidKeyStore is used for key generation.
-     * @param context The Android application context
-     * @return the symmetric key that can be used to encrypt and
+     * @param keyAlias String that identifies the encryption key.
+     * @return the key that can be used to encrypt and
      *          decrypt data.
+     * @throws KeyNotGeneratedException when the encryption key
+     *          cannot be generated successfully. The caller of this method is
+     *          expected to handle this exception appropriately.
      */
-    Key getKey(SharedPreferences sharedPreferences,
-               String keyAlias,
-               Context context);
+    Key generateKey(final String keyAlias) throws KeyNotGeneratedException;
+
+    /**
+     * Retrieve the encryption key that is used for encrypting
+     * and decrypting data. The encryption key will be identified
+     * by a keyAlias.
+     *
+     * @param keyAlias String that identifies the encryption key.
+     * @return the key that can be used to encrypt and
+     *          decrypt data.
+     * @throws KeyNotFoundException when the encryption key
+     *          cannot be found. The caller of this method is
+     *          expected to handle this exception appropriately.
+     */
+    Key retrieveKey(final String keyAlias) throws KeyNotFoundException;
+
+    /**
+     * Delete the encryption key that is used for encrypting
+     * and decrypting data. The encryption key will be identified
+     * by a keyAlias.
+     *
+     * @param keyAlias String that identifies the encryption key.
+     */
+    void deleteKey(final String keyAlias);
 }

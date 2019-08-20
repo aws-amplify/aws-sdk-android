@@ -937,16 +937,16 @@ public class CognitoUser {
                 }
             }
 
-            final CognitoUserSession cachedTokens = readCachedTokens();
+            final CognitoUserSession cognitoUserSessionFromStore = readCachedTokens();
 
-            if (cachedTokens.isValidForThreshold()) {
-                cipSession = cachedTokens;
+            if (cognitoUserSessionFromStore.isValidForThreshold()) {
+                cipSession = cognitoUserSessionFromStore;
                 return cipSession;
             }
 
-            if (cachedTokens.getRefreshToken() != null) {
+            if (cognitoUserSessionFromStore.getRefreshToken() != null) {
                 try {
-                    cipSession = refreshSession(cachedTokens);
+                    cipSession = refreshSession(cognitoUserSessionFromStore);
                     cacheTokens(cipSession);
                     return cipSession;
                 } catch (final NotAuthorizedException nae) {
@@ -955,7 +955,7 @@ public class CognitoUser {
                 } catch (final UserNotFoundException unfe) {
                     clearCachedTokens();
                     throw new CognitoNotAuthorizedException("User does not exist", unfe);
-                }catch (final Exception e) {
+                } catch (final Exception e) {
                     throw new CognitoInternalErrorException("Failed to authenticate user", e);
                 }
             }
@@ -2227,19 +2227,42 @@ public class CognitoUser {
             final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".refreshToken";
 
+            CognitoIdToken csiCachedIdToken = null;
+            CognitoAccessToken csiCachedAccessToken = null;
+            CognitoRefreshToken csiCachedRefreshToken = null;
+
             if (pool.awsKeyValueStore.contains(csiIdTokenKey)) {
-                final CognitoIdToken csiCachedIdToken = new CognitoIdToken(
-                        pool.awsKeyValueStore.get(csiIdTokenKey));
-                final CognitoAccessToken csiCachedAccessToken = new CognitoAccessToken(
-                        pool.awsKeyValueStore.get(csiAccessTokenKey));
-                final CognitoRefreshToken csiCachedRefreshToken = new CognitoRefreshToken(
-                        pool.awsKeyValueStore.get(csiRefreshTokenKey));
-                userSession = new CognitoUserSession(csiCachedIdToken, csiCachedAccessToken,
-                        csiCachedRefreshToken);
+                String idToken = pool.awsKeyValueStore.get(csiIdTokenKey);
+                if (idToken != null) {
+                    csiCachedIdToken = new CognitoIdToken(idToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiIdTokenKey + " is null.");
+                }
             }
+
+            if (pool.awsKeyValueStore.contains(csiAccessTokenKey)) {
+                String accessToken = pool.awsKeyValueStore.get(csiAccessTokenKey);
+                if (accessToken != null) {
+                    csiCachedAccessToken = new CognitoAccessToken(accessToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiAccessTokenKey + " is null.");
+                }
+            }
+
+            if (pool.awsKeyValueStore.contains(csiRefreshTokenKey)) {
+                String refreshToken = pool.awsKeyValueStore.get(csiRefreshTokenKey);
+                if (refreshToken != null) {
+                    csiCachedRefreshToken = new CognitoRefreshToken(refreshToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiRefreshTokenKey + " is null.");
+                }
+            }
+
+            userSession = new CognitoUserSession(csiCachedIdToken,
+                    csiCachedAccessToken,
+                    csiCachedRefreshToken);
         } catch (final Exception e) {
-            // Logging exception, this is not a fatal error
-            LOGGER.error("Error while reading SharedPreferences", e);
+            LOGGER.error("Error while reading the tokens from the persistent store.", e);
         }
         return userSession;
     }
@@ -2249,10 +2272,8 @@ public class CognitoUser {
      *
      * @param session REQUIRED: Tokens to be cached.
      */
-    private void cacheTokens(CognitoUserSession session) {
+    void cacheTokens(CognitoUserSession session) {
         try {
-            final String csiUserPoolId = pool.getUserPoolId();
-
             // Create keys to look for cached tokens
             final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".idToken";
@@ -2263,9 +2284,11 @@ public class CognitoUser {
             final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
             // Store the data in Shared Preferences
-            pool.awsKeyValueStore.put(csiIdTokenKey, session.getIdToken().getJWTToken());
-            pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken().getJWTToken());
-            pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken().getToken());
+            if (session != null) {
+                pool.awsKeyValueStore.put(csiIdTokenKey, session.getIdToken() != null ? session.getIdToken().getJWTToken() : null);
+                pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken() != null ? session.getAccessToken().getJWTToken() : null);
+                pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken() != null ? session.getRefreshToken().getToken() : null);
+            }
             pool.awsKeyValueStore.put(csiLastUserKey, userId);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error

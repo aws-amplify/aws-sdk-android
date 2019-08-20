@@ -15,6 +15,7 @@
 
 package com.amazonaws.testutils;
 
+import static junit.framework.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -39,18 +40,23 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Scanner;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 @RunWith(AndroidJUnit4.class)
 public abstract class AWSTestBase {
+
+    protected static final String TEST_CONFIGURATION_FILENAME = "testconfiguration.json";
 
     public static class JSONConfiguration  {
         private JSONObject mJSONObject ;
@@ -63,7 +69,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get credentails from testconfiguration.json, please check that it is correctly formed.",
+                        "Failed to get credentials from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
                         je);
             }
         }
@@ -73,7 +79,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get Packages from testconfiguration.json, please check that it is correctly formed.",
+                        "Failed to get Packages from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
                         je);
             }
          }
@@ -83,7 +89,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get package configuration from testconfiguration.json for " + packageName,
+                        "Failed to get package configuration from " + TEST_CONFIGURATION_FILENAME + " + packageName",
                         je);
             }
         }
@@ -94,7 +100,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get accessKey from testconfiguration.json, please check that it is correctly formed.",
+                        "Failed to get accessKey from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
                         je);
             }
         }
@@ -104,7 +110,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get secretKey from testconfiguration.json, please check that it is correctly formed.",
+                        "Failed to get secretKey from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
                         je);
             }
         }  
@@ -114,7 +120,7 @@ public abstract class AWSTestBase {
             }
             catch (JSONException je) {
                 throw new RuntimeException(
-                        "Failed to get accountId from testconfiguration.json, please check that it is correctly formed.",
+                        "Failed to get accountId from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
                         je);
             }
         }
@@ -135,7 +141,7 @@ public abstract class AWSTestBase {
                 accessKey =  getAccessKey();
                 secretAccessKey = getSecretKey();
             } catch (Exception e) {
-                Log.e(TAG, "Failed to get credentails");
+                Log.e(TAG, "Failed to get credentials");
                 e.printStackTrace();
             }
             return new BasicAWSCredentials(accessKey , secretAccessKey );
@@ -173,7 +179,7 @@ public abstract class AWSTestBase {
                 mJSONConfiguration  = new JSONConfiguration(new JSONObject(sb.toString()));
             } catch (Exception je) {
                 throw new RuntimeException(
-                        "Failed to read testconfiguration.json please check that it is correctly formed.",
+                        "Failed to read " + TEST_CONFIGURATION_FILENAME + " please check that it is correctly formed.",
                         je);
             }
         }
@@ -410,4 +416,40 @@ public abstract class AWSTestBase {
         assertTrue(e.getServiceName().startsWith("Amazon"));
     }
 
+    protected void deleteAllEncryptionKeys() {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        appContext.getSharedPreferences("com.amazonaws.android.auth.encryptionkey",
+                Context.MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+        appContext.getSharedPreferences("CognitoIdentityProviderCache.encryptionkey",
+                Context.MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+        appContext.getSharedPreferences("com.amazonaws.mobile.client.encryptionkey",
+                Context.MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            try {
+                KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+                keyStore.load(null);
+
+                Enumeration<String> keyAliases = keyStore.aliases();
+                while (keyAliases.hasMoreElements()) {
+                    final String keyAlias = keyAliases.nextElement();
+                    junit.framework.Assert.assertTrue(keyStore.containsAlias(keyAlias));
+                    keyStore.deleteEntry(keyAlias);
+                    assertFalse(keyStore.containsAlias(keyAlias));
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                fail("Error in deleting encryption keys from the Android KeyStore.");
+            }
+        }
+    }
 }
