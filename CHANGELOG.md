@@ -5,11 +5,24 @@
 ### Bug Fixes
 
 - **AWS Core Runtime**
-  - Fixed a bug where the data persisted by `CognitoCachingCredentialsProvider`, `CognitoUserPool`, `CognitoAuth` and `AWSMobileClient` cannot be retrieved successfully and resulted in an app crash due to the following scenarios:
-      * The encryption key used to encrypt the data is lost
-      * The encryption key used to encrypt the data is not recoverable
-      * A wrong encryption key is used to decrypt the data
-  - See [issue #937](https://github.com/aws-amplify/aws-sdk-android/issues/937), [issue #1108](https://github.com/aws-amplify/aws-sdk-android/issues/1108), [issue #1109](https://github.com/aws-amplify/aws-sdk-android/issues/1109), [issue #1115](https://github.com/aws-amplify/aws-sdk-android/issues/1115) for details.
+  - Fixed a bug where encrypted authentication data persisted by the SDK could not be recovered due to:
+      * The encryption key being removed
+      * The encryption key being replaced
+      * The encryption key not being recoverable by the OS
+
+    These conditions formerly resulted in an app crash. Now, the errors are logged (without logging sensitive data) and the decryption attempt returns `null`, as if the data simply isn't present in the persistent store.
+
+    Classes affected:
+    - `CognitoCachingCredentialsProvider`
+    - `CognitoUserPool`
+    - `CognitoAuth`
+    - `AWSMobileClient`
+
+    For more detail, see issues:
+    - [#937](https://github.com/aws-amplify/aws-sdk-android/issues/937)
+    - [#1108](https://github.com/aws-amplify/aws-sdk-android/issues/1108)
+    - [#1109](https://github.com/aws-amplify/aws-sdk-android/issues/1109)
+    - [#1115](https://github.com/aws-amplify/aws-sdk-android/issues/1115)
 
 ## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
