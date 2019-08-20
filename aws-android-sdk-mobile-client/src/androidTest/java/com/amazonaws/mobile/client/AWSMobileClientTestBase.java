@@ -6,10 +6,20 @@ import android.support.test.InstrumentationRegistry;
 import android.util.Base64;
 
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
+import com.amazonaws.mobile.client.results.Token;
+import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.testutils.AWSTestBase;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.concurrent.CountDownLatch;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
@@ -79,15 +89,51 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
     // Create valid access tokens
     public static String getValidJWT(long expiryInSecs){
-        long epoch = System.currentTimeMillis()/1000L;
+        long epoch = System.currentTimeMillis() / 1000L;
         epoch = epoch + expiryInSecs;
         String accessToken_p1_Base64 = "eyJ0eXAiOiAiSldUIiwgImFsZyI6IlJTMjU2In0=";
         String accessToken_p3_Base64 = "e0VuY3J5cHRlZF9LZXl9";
         String accessToken_p2_Str = "{\"iss\": \"userPoolId\",\"sub\": \"my@email.com\",\"aud\": \"https:aws.cognito.com\",\"exp\": \"" + String.valueOf(epoch) + "\"}";
         byte[] accessToken_p2_UTF8 = accessToken_p2_Str.getBytes(StringUtils.UTF8);
-        //String accessToken_p2_Base64 = Base64.encodeToString(accessToken_p2_UTF8, Base64.DEFAULT);
         String accessToken_p2_Base64 = new String(Base64.encode(accessToken_p2_UTF8, Base64.DEFAULT));
-        String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
-        return validAccessToken;
+        return accessToken_p1_Base64 + "." + accessToken_p2_Base64 + "." + accessToken_p3_Base64;
+    }
+
+    protected void verifyTokens(Tokens tokens) {
+        assertNotNull(tokens);
+        Token accessToken = tokens.getAccessToken();
+        assertNotNull(accessToken);
+        assertTrue("Access token should not be expired", accessToken.getExpiration().after(new Date()));
+        Token idToken = tokens.getIdToken();
+        assertNotNull(idToken);
+        assertTrue("Id token should not be expired", idToken.getExpiration().after(new Date()));
+        Token refreshToken = tokens.getRefreshToken();
+        assertNotNull(refreshToken);
+    }
+
+    protected void initializeAWSMobileClient(final Context appContext,
+                                             final UserState userState) {
+        // Expect the UserState to be SIGNED_OUT
+        final CountDownLatch waitForAWSMobileClientToBeInitialized = new CountDownLatch(1);
+        AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
+            @Override
+            public void onResult(UserStateDetails result) {
+                assertEquals(userState,
+                        result.getUserState());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                fail(e.getMessage());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+        });
+
+        try {
+            waitForAWSMobileClientToBeInitialized.await();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

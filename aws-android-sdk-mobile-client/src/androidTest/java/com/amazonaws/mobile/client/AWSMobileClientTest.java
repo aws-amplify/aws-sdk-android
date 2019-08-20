@@ -1,3 +1,20 @@
+/*
+ * Copyright 2019 Amazon.com, Inc. or its affiliates.
+ * All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
@@ -29,7 +46,6 @@ import com.amazonaws.services.cognitoidentityprovider.model.AdminDeleteUserReque
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
-import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.DeviceRememberedStatusType;
 import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
@@ -67,7 +83,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
- * Userpool and identity pool were create with Amplify CLI 0.1.23 Default configuration
+ * Amazon Cognito UserPools and Amazon Cognito Identity Pools
+ * were created with Amplify CLI 0.1.23 - Default configuration.
  */
 @RunWith(AndroidJUnit4.class)
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
@@ -215,10 +232,17 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.removeUserStateListener(listener);
         auth.listeners.clear();
         auth.signOut();
+
+        appContext.getSharedPreferences(AWSMobileClient.SHARED_PREFERENCES_KEY,
+                Context.MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+        deleteAllEncryptionKeys();
     }
 
     @Test
-    public void useAppContext() throws Exception {
+    public void testAWSConfigurationForCognitoUserPool() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
@@ -231,7 +255,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     }
 
     @Test
-    public void testGetConfiguration() throws JSONException {
+    public void testGetConfiguration() {
         final AWSConfiguration awsConfiguration = AWSMobileClient.getInstance().getConfiguration();
 
         assertNotNull(awsConfiguration.optJsonObject("CognitoUserPool"));
@@ -261,11 +285,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
             assertEquals("EMAIL", details.getDeliveryMedium());
         }
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
-        if (signInResult.getSignInState() == SignInState.DONE) {
-            // Done
-        } else {
-            fail("Cannot support MFA in tests");
-        }
+        assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
     }
 
     @Test
@@ -283,11 +303,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.addUserStateListener(listener);
 
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
-        if (signInResult.getSignInState() == SignInState.DONE) {
-            // Done
-        } else {
-            fail("Cannot support MFA in tests");
-        }
+        assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
 
         assertTrue("isSignedIn is true", auth.isSignedIn());
 
@@ -406,11 +422,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test
     public void testSignOut() throws Exception {
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
-        if (signInResult.getSignInState() == SignInState.DONE) {
-            // Done
-        } else {
-            fail("Cannot support MFA in tests");
-        }
+        assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
 
         AWSCredentials credentials1 = auth.getCredentials();
         auth.signOut();
@@ -527,11 +539,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test
     public void testGetTokensStress() throws Exception {
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
-        if (signInResult.getSignInState() == SignInState.DONE) {
-            // Done
-        } else {
-            fail("Cannot support MFA in tests");
-        }
+        assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
+
         auth.addUserStateListener(new UserStateListener() {
             @Override
             public void onUserStateChanged(UserStateDetails details) {
@@ -579,11 +588,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test
     public void testGetCredentialsStress() throws Exception {
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
-        if (signInResult.getSignInState() == SignInState.DONE) {
-            // Done
-        } else {
-            fail("Cannot support MFA in tests");
-        }
+        assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
+
         auth.addUserStateListener(new UserStateListener() {
             @Override
             public void onUserStateChanged(UserStateDetails details) {
@@ -684,12 +690,11 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
      * @param username the user that has the device
      * @param attributeName the name of the attribute that will be checked
      * @param attributeValue the value the named attribute should be set to when checked
-     * @throws Exception any error that occurs performing this operation
      */
     private void checkDeviceAttribute(final String deviceKey,
                                       final String username,
                                       final String attributeName,
-                                      final String attributeValue) throws Exception {
+                                      final String attributeValue) {
         final AdminGetDeviceRequest adminGetDeviceRequest = new AdminGetDeviceRequest()
                 .withDeviceKey(deviceKey)
                 .withUsername(username)
@@ -753,4 +758,33 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals(ForgotPasswordState.CONFIRMATION_CODE, forgotPasswordResult.getState());
     }
 
+    @Test
+    public void testAWSMobileClientInitialize() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+
+        // Expect the UserState to be SIGNED_IN
+        final CountDownLatch waitForAWSMobileClientToBeInitialized = new CountDownLatch(1);
+        AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
+            @Override
+            public void onResult(UserStateDetails result) {
+                assertEquals(UserState.SIGNED_IN,
+                        result.getUserState());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                fail(e.getMessage());
+                waitForAWSMobileClientToBeInitialized.countDown();
+            }
+        });
+
+        try {
+            waitForAWSMobileClientToBeInitialized.await(30, TimeUnit.SECONDS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        verifyTokens(auth.getTokens());
+    }
 }
