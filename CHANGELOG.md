@@ -1,5 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
+
+### Bug Fixes
+
+- **Amazon S3**
+  - Fixed a bug where multi-part uploads via `TransferUtility` would fail to propagate tags to `Amazon S3` from the `UserMetadata` passed through the `ObjectMetadata`. See [Issue#541](https://github.com/aws-amplify/aws-sdk-android/issues/541).
+  - The following code should now attach a tag for both single-part and multi-part uploads:
+  
+	```java
+	ObjectMetadata metadata = new ObjectMetadata();
+	metadata.addUserMetadata(Headers.S3_TAGGING, "key=value");
+	TransferObserver observer = transferUtility.upload(
+		file.getName(),
+		file,
+		metadata
+	);
+	```
+
 ## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
 
 ### Bug Fixes
