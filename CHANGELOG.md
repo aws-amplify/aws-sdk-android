@@ -55,10 +55,10 @@
     - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
 - Remove unused `mfaOption` property from `CognitoUserAttributes` class
 - Model updates for the following services
+  - Amazon AutoScaling
   - AWS IoT
   - Amazon Lex
   - Amazon Rekognition
-  - Amazon AutoScaling
 
 ## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
 
