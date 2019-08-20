@@ -378,7 +378,8 @@ class UploadTask implements Callable<Boolean> {
                 .withCannedACL(putObjectRequest.getCannedAcl())
                 .withObjectMetadata(putObjectRequest.getMetadata())
                 .withSSEAwsKeyManagementParams(
-                                putObjectRequest.getSSEAwsKeyManagementParams());
+                                putObjectRequest.getSSEAwsKeyManagementParams())
+                .withTagging(putObjectRequest.getTagging());
         TransferUtility
                 .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
         return s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();

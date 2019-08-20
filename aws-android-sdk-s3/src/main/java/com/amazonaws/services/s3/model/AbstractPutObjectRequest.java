@@ -701,14 +701,32 @@ public abstract class AbstractPutObjectRequest extends AmazonWebServiceRequest i
         return t;
     }
 
+    /**
+     * Gets the object tagging associated with this request.
+     *
+     * @return Object tagging attached to this request
+     */
     public ObjectTagging getTagging() {
         return tagging;
     }
 
+    /**
+     * Attaches object tagging to this request.
+     *
+     * @param tagging Object tagging to attach
+     */
     public void setTagging(ObjectTagging tagging) {
         this.tagging = tagging;
     }
 
+    /**
+     * Sets tagging for this request. Returns the updated request object
+     * so that additional method calls can be chained together.
+     *
+     * @param tagSet Object tagging to be attached to this request
+     * @return This updated request object so that additional method calls can
+     *         be chained together.
+     */
     public <T extends AbstractPutObjectRequest> T withTagging(ObjectTagging tagSet) {
         setTagging(tagSet);
         @SuppressWarnings("unchecked")
