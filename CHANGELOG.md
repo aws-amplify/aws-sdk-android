@@ -38,6 +38,7 @@
   - AWS IoT
   - Amazon Lex
   - Amazon Rekognition
+  - Amazon AutoScaling
 
 ## [Release 2.14.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.14.2)
 
