@@ -4,6 +4,26 @@
 
 ### Bug Fixes
 
+- **AWS Core Runtime**
+  - Fixed a bug where encrypted authentication data persisted by the SDK could not be recovered due to:
+      * The encryption key being removed
+      * The encryption key being replaced
+      * The encryption key not being recoverable by the OS
+
+    These conditions formerly resulted in an app crash. Now, the errors are logged (without logging sensitive data) and the decryption attempt returns `null`, as if the data simply isn't present in the persistent store.
+
+    Classes affected:
+    - `CognitoCachingCredentialsProvider`
+    - `CognitoUserPool`
+    - `CognitoAuth`
+    - `AWSMobileClient`
+
+    For more detail, see issues:
+    - [#937](https://github.com/aws-amplify/aws-sdk-android/issues/937)
+    - [#1108](https://github.com/aws-amplify/aws-sdk-android/issues/1108)
+    - [#1109](https://github.com/aws-amplify/aws-sdk-android/issues/1109)
+    - [#1115](https://github.com/aws-amplify/aws-sdk-android/issues/1115)
+
 - **Amazon S3**
   - Fixed a bug where multi-part uploads via `TransferUtility` would fail to propagate tags to `Amazon S3` from the `UserMetadata` passed through the `ObjectMetadata`. See [Issue#541](https://github.com/aws-amplify/aws-sdk-android/issues/541).
   - The following code should now attach a tag for both single-part and multi-part uploads:
