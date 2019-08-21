@@ -16,28 +16,21 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.test.InstrumentationRegistry;
-import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONObject;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
 
 public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
@@ -47,6 +40,10 @@ public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
     private String userName;
     private String password;
     private String userEmail;
+    protected static final int TIMEOUT_IN_SECONDS = 60;
+
+    private CognitoUserPool customAuthUserPool;
+    protected String customAuthUsername;
 
     private JSONObject getPackageConfigure()  {
         return getPackageConfigure("CognitoUserPools");
@@ -62,7 +59,13 @@ public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
             cognitoUserPool = new CognitoUserPool(appContext,
                     getPackageConfigure().getString("UserPoolId"),
                     getPackageConfigure().getString("AppClientId"),
-                    getPackageConfigure().getString("AppClientSecret"));
+                    getPackageConfigure().getString("AppClientSecret"), Regions.US_EAST_1);
+
+            customAuthUsername = getPackageConfigure().getString("customAuthUserName");
+            customAuthUserPool = new CognitoUserPool(appContext,
+                    getPackageConfigure().getString("customAuthPoolId"),
+                    getPackageConfigure().getString("customAuthAppClientId"),
+                    getPackageConfigure().getString("customAuthAppClientSecret"), Regions.US_EAST_1);
         } catch (Exception ex) {
             fail("Error in reading CognitoUserPools test configuration. Please check " + super.TEST_CONFIGURATION_FILENAME + " file."
                     + ex);
@@ -118,7 +121,7 @@ public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
         });
 
         try {
-            signInLatch.await(60, TimeUnit.SECONDS);
+            signInLatch.await(TIMEOUT_IN_SECONDS, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -146,6 +149,11 @@ public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
 
     public CognitoUserPool getUserPool() {
         return cognitoUserPool;
+    }
+
+
+    public CognitoUserPool getCustomAuthUserPool() {
+        return customAuthUserPool;
     }
 
     public CognitoUser getUser() {
