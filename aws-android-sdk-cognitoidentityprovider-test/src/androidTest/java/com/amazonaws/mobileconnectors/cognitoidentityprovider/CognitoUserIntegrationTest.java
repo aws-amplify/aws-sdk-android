@@ -73,6 +73,7 @@ public class CognitoUserIntegrationTest extends CognitoUserPoolsIntegrationTestB
             @Override
             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                 final HashMap<String, String> authParameters = new HashMap<>();
+                // This is a passwordless flow, hance passing a dummy password.
                 AuthenticationDetails authenticationDetails = new AuthenticationDetails(customAuthUsername, "", authParameters, null);
                 authenticationContinuation.setAuthenticationDetails(authenticationDetails);
                 authenticationContinuation.continueTask();
@@ -108,7 +109,7 @@ public class CognitoUserIntegrationTest extends CognitoUserPoolsIntegrationTestB
         }
 
         assertEquals(1, userSessions.size());
-
+        // Verify that the sign-in was successful
         verifyCognitoUserSessionForSignedInUser(userSessions.get(0));
     }
 
