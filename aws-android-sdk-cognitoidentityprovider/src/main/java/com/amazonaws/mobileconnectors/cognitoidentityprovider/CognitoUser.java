@@ -2650,7 +2650,8 @@ public class CognitoUser {
             };
         } else {
             final ChallengeContinuation challengeContinuation = new ChallengeContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
+                    cognitoUser, context, usernameInternal, clientId,
+                    CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret), challenge,
                     runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
