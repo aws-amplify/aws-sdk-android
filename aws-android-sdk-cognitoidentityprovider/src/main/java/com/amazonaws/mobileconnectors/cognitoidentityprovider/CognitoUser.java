@@ -648,22 +648,36 @@ public class CognitoUser {
     }
 
     /**
-     * Returns a valid tokens for a user through the callback method. Runs in
-     * background.
-     * {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
-     * .
+     * getSession orchestrates the SignIn flow with Amazon Cognito UserPools.
+     *
      * <p>
-     * Tokens are passed as instance of {@link CognitoUserSession}. Call this
-     * method to get valid tokens for a user. This method returns any valid
-     * cached tokens for the user. If no valid cached tokens are available this
-     * method initiates the process to authenticate the user and get tokens from
-     * Cognito Identity Provider service. Implement the interface
-     * {@link AuthenticationHandler} and pass it as callback to this method.
-     * This method uses the callback to interact with application at different
-     * stages of the authentication process. Continuation objects are used when
-     * the authentication process requires more data to continue. See
-     * {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
-     * for details on continuation objects.
+     *     This method is asynchronous and performs network operations
+     *     on a background thread.
+     * </p>
+     *
+     * <p>
+     *     1) Read the tokens (Id, Access and Refresh) that are cached on the device.
+     *      1.1) If the Id and Access tokens are present and they are valid, the
+     *          {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}.
+     *          will be called with a {@link CognitoUserSession} that has references to the valid tokens.
+     *          This means that the user is signed-in.
+     *      1.2) If the Id and Access tokens are expired, and if there is a valid refresh token,
+     *          a network call is made to get new Id and Access tokens.
+     *          If valid Id and Access tokens are retrieved, they are cached on the device
+     *          and {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
+     *          will be called with a {@link CognitoUserSession} that has references to the valid
+     *          tokens. This means that the user is signed-in.
+     *
+     *     2) If there are no valid tokens cached on the device, the callback method
+     *          {@link AuthenticationHandler#getAuthenticationDetails(AuthenticationContinuation, String)}
+     *          will be called where the {@link AuthenticationDetails} will need to be supplied
+     *          to continue the SignIn operation. See
+     *          {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
+     *          for details on continuation objects.
+     *
+     *     3) In all other error scenarios, {@link AuthenticationHandler#onFailure(Exception)} will
+     *          be called with the type and message of the exception and it is the responsibility of
+     *          the caller to handle the exceptions appropriately.
      * </p>
      *
      * @param callback REQUIRED: {@link AuthenticationHandler} callback
@@ -713,24 +727,37 @@ public class CognitoUser {
     }
 
     /**
-     * Returns a valid tokens for a user through the callback method. Runs in
-     * background.
-     * {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
-     * .
+     * getSession orchestrates the SignIn flow with Amazon Cognito UserPools.
+     *
      * <p>
-     * Tokens are passed as instance of {@link CognitoUserSession}. Call this
-     * method to get valid tokens for a user. This method returns any valid
-     * cached tokens for the user. If no valid cached tokens are available this
-     * method initiates the process to authenticate the user and get tokens from
-     * Cognito Identity Provider service. Implement the interface
-     * {@link AuthenticationHandler} and pass it as callback to this method.
-     * This method uses the callback to interact with application at different
-     * stages of the authentication process. Continuation objects are used when
-     * the authentication process requires more data to continue. See
-     * {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
-     * for details on continuation objects. <b>Note:</b> This method will
-     * perform network operations. Calling this method in applications' main
-     * thread will cause Android to throw NetworkOnMainThreadException.
+     *     This method is synchronous and performs network operations
+     *     on the same thread in which the method is called.  Calling this
+     *     method in the MainThread will result in {@link android.os.NetworkOnMainThreadException}
+     * </p>
+     *
+     * <p>
+     *     1) Read the tokens (Id, Access and Refresh) that are cached on the device.
+     *      1.1) If the Id and Access tokens are present and they are valid, the
+     *          {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}.
+     *          will be called with a {@link CognitoUserSession} that has references to the valid tokens.
+     *          This means that the user is signed-in.
+     *      1.2) If the Id and Access tokens are expired, and if there is a valid refresh token,
+     *          a network call is made to get new Id and Access tokens.
+     *          If valid Id and Access tokens are retrieved, they are cached on the device
+     *          and {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
+     *          will be called with a {@link CognitoUserSession} that has references to the valid
+     *          tokens. This means that the user is signed-in.
+     *
+     *     2) If there are no valid tokens cached on the device, the callback method
+     *          {@link AuthenticationHandler#getAuthenticationDetails(AuthenticationContinuation, String)}
+     *          will be called where the {@link AuthenticationDetails} will need to be supplied
+     *          to continue the SignIn operation. See
+     *          {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
+     *          for details on continuation objects.
+     *
+     *     3) In all other error scenarios, {@link AuthenticationHandler#onFailure(Exception)} will
+     *          be called with the type and message of the exception and it is the responsibility of
+     *          the caller to handle the exceptions appropriately.
      * </p>
      *
      * @param callback REQUIRED: {@link AuthenticationHandler} callback
