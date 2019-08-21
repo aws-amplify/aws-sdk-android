@@ -49,6 +49,15 @@ public class CognitoUserIntegrationTest extends CognitoUserPoolsIntegrationTestB
         verifyCognitoUserSessionForSignedOutUser();
     }
 
+    void tearDown() {
+        try {
+            cognitoUserPool.awsKeyValueStore.clear();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail ("Error in wiping off data stored on disk by CognitoUserPools." + ex);
+        }
+    }
+
     @Test
     public void testCustomAuth(){
         final CountDownLatch signInLatch = new CountDownLatch(1);
