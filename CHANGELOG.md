@@ -1,6 +1,6 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
+## [Release 2.16.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.0)
 
 ### New Features
 
@@ -10,6 +10,8 @@
 - **Amazon CognitoIdentityProvider**
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
   - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
+
+## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
 ### Bug Fixes
 
