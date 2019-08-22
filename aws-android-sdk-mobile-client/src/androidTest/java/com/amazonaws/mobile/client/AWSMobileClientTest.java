@@ -252,6 +252,17 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         userAttributes.put("email", EMAIL);
 
         final SignUpResult signUpResult = auth.signUp(username, PASSWORD, userAttributes, null);
+        // Check for non-null user sub in the SignUpResult
+        String userSub = signUpResult.getUserSub();
+        assertNotNull(userSub);
+        // Validate that the userSub is a valid UUID
+        assertEquals(36, userSub.length());
+        assertEquals(5, userSub.split("-").length);
+        assertEquals(8,  userSub.split("-")[0].length());
+        assertEquals(4,  userSub.split("-")[1].length());
+        assertEquals(4,  userSub.split("-")[2].length());
+        assertEquals(4,  userSub.split("-")[3].length());
+        assertEquals(12,  userSub.split("-")[4].length());
         if (signUpResult.getConfirmationState()) {
             // Done
         } else {
