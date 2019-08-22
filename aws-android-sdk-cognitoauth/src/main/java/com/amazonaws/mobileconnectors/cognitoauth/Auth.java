@@ -643,7 +643,7 @@ public final class Auth {
      *     web interface is launched on Chrome Custom Tabs. The user credentials will be required to
      *     authenticate.
      *     <b>Note</b>: This SDK uses OAuth Code-Grant flow with PKCE, for authentication. To get
-     *     tokens after successful user authentication, the Amazom Cognito Auth returns the
+     *     tokens after successful user authentication, the Amazon Cognito Auth returns the
      *     authentication code through the redirect uri. Call {@link Auth#getTokens(Uri)} to
      *     get tokens from the authentication code. <i>Uri</i> is the redirect uri with the
      *     authentication code.

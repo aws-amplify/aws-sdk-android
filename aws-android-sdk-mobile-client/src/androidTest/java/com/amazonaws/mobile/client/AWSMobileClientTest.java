@@ -387,7 +387,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public void testSignInWaitOIDC() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
-       // writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
+       // writeUserPoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
         setTokensDirectly(appContext, AWSMobileClient.getInstance().getLoginKey(), "fakeToken", "someIdentityId");
         listener = new UserStateListener() {
             @Override
@@ -463,8 +463,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         }
     }
 
-    // Changing a password tends to have a rate limit that exceeds test timeout
-//    @Test
+    @Ignore("Changing a password tends to have a rate limit that exceeds test timeout")
+    @Test
     public void testChangePassword() throws Exception {
         Thread.sleep(THROTTLED_DELAY);
         auth.changePassword(PASSWORD, NEW_PASSWORD);
@@ -724,7 +724,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         auth.signOut();
 
-        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        writeUserPoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
         auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
         auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
 
@@ -732,7 +732,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         auth.signOut(SignOutOptions.builder().signOutGlobally(true).build());
 
-        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        writeUserPoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
         auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
         auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
 

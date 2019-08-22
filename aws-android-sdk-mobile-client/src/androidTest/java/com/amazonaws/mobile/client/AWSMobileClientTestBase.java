@@ -48,7 +48,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         awsKeyValueStore.put(AWSMobileClient.IDENTITY_ID_KEY, identityId);
     }
 
-    public static void writeUserpoolsTokens(final Context appContext, final String clientId, final String username, final long expiryFromNow) {
+    public static void writeUserPoolsTokens(final Context appContext, final String clientId, final String username, final long expiryFromNow) {
         // Store tokens in shared preferences
         final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(appContext,
                 "CognitoIdentityProviderCache",
@@ -60,7 +60,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
     }
 
-    public static void writeUserpoolsTokens(final Context appContext,
+    public static void writeUserPoolsTokens(final Context appContext,
                                             final String clientId,
                                             final String userId,
                                             final String accessToken,
@@ -99,7 +99,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         return accessToken_p1_Base64 + "." + accessToken_p2_Base64 + "." + accessToken_p3_Base64;
     }
 
-    protected void verifyTokens(Tokens tokens) {
+    void verifyTokens(Tokens tokens) {
         assertNotNull(tokens);
         Token accessToken = tokens.getAccessToken();
         assertNotNull(accessToken);
@@ -111,7 +111,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         assertNotNull(refreshToken);
     }
 
-    protected void initializeAWSMobileClient(final Context appContext,
+    AWSMobileClient initializeAWSMobileClient(final Context appContext,
                                              final UserState userState) {
         // Expect the UserState to be SIGNED_OUT
         final CountDownLatch waitForAWSMobileClientToBeInitialized = new CountDownLatch(1);
@@ -135,5 +135,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return AWSMobileClient.getInstance();
     }
 }

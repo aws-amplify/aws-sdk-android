@@ -1627,6 +1627,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
+        hostedUI = hostedUI.getCurrentUser();
         hostedUI.setAuthHandler(new AuthHandler() {
             @Override
             public void onSuccess(AuthUserSession session) {
