@@ -12,6 +12,11 @@ import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.Token;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.cognitoauth.AuthUserSession;
+import com.amazonaws.mobileconnectors.cognitoauth.tokens.AccessToken;
+import com.amazonaws.mobileconnectors.cognitoauth.tokens.IdToken;
+import com.amazonaws.mobileconnectors.cognitoauth.tokens.RefreshToken;
+import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
@@ -38,6 +43,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.amazonaws.mobile.client.AWSMobileClient.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -50,17 +56,17 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientPersistenceTest.class.getSimpleName();
 
-    public static final String EMAIL = "somebody@email.com";
-    public static final String USERNAME = "somebody";
-    public static final String PASSWORD = "1234Password!";
-    public static String IDENTITY_ID;
+    private static final String EMAIL = "somebody@email.com";
+    private static final String USERNAME = "somebody";
+    private static final String PASSWORD = "1234Password!";
+    private static String IDENTITY_ID;
 
-    static BasicAWSCredentials adminCreds;
-    static AmazonCognitoIdentityProvider userpoolLL;
+    private static BasicAWSCredentials adminCredentials;
+    private static AmazonCognitoIdentityProvider cognitoUserPoolLowLevelClient;
 
     static {
         try {
-            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
+            adminCredentials = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
                     , getPackageConfigure().getString("create_cognito_user_secret_key"));
             IDENTITY_ID = getPackageConfigure().getString("identity_id");
         } catch (Exception e) {
@@ -69,25 +75,25 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     }
 
     // Populated from awsconfiguration.json
-    static Regions clientRegion = Regions.US_WEST_2;
-    static String userPoolId;
-    static String identityPoolId;
+    private static Regions clientRegion = Regions.US_WEST_2;
+    private static String userPoolId;
+    private static String identityPoolId;
 
-    Context appContext;
-    AWSMobileClient auth;
-    UserStateListener listener;
-    String username;
+    private Context appContext;
+    private AWSMobileClient auth;
+    private UserStateListener listener;
+    private String username;
 
-    public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
-        if (userpoolLL == null) {
-            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
-            userpoolLL.setRegion(Region.getRegion(clientRegion));
+    public static synchronized AmazonCognitoIdentityProvider getCognitoUserPoolLowLevelClient() {
+        if (cognitoUserPoolLowLevelClient == null) {
+            cognitoUserPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(adminCredentials);
+            cognitoUserPoolLowLevelClient.setRegion(Region.getRegion(clientRegion));
         }
-        return userpoolLL;
+        return cognitoUserPoolLowLevelClient;
     }
 
     public static void createUser(final AWSMobileClient auth,
-                                  final String userpoolId,
+                                  final String userPoolId,
                                   final String username,
                                   final String password,
                                   final String email) throws Exception {
@@ -96,17 +102,17 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
         auth.signUp(username, password, userAttributes,null);
 
         AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
-        adminConfirmSignUpRequest.withUsername(username).withUserPoolId(userpoolId);
-        getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
+        adminConfirmSignUpRequest.withUsername(username).withUserPoolId(userPoolId);
+        getCognitoUserPoolLowLevelClient().adminConfirmSignUp(adminConfirmSignUpRequest);
     }
 
-    public static void deleteAllUsers(final String userpoolId) {
+    public static void deleteAllUsers(final String userPoolId) {
         ListUsersResult listUsersResult;
         do {
             ListUsersRequest listUsersRequest = new ListUsersRequest()
-                    .withUserPoolId(userpoolId)
+                    .withUserPoolId(userPoolId)
                     .withLimit(60);
-            listUsersResult = getUserpoolLL().listUsers(listUsersRequest);
+            listUsersResult = getCognitoUserPoolLowLevelClient().listUsers(listUsersRequest);
             for (UserType user : listUsersResult.getUsers()) {
                 if (USERNAME.equals(user.getUsername())
                         || "bimin".equals(user.getUsername())) {
@@ -117,12 +123,12 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
                 do {
                     try {
                         Log.d(TAG, "deleteAllUsers: " + user.getUsername());
-                        getUserpoolLL().adminDeleteUser(new AdminDeleteUserRequest().withUsername(user.getUsername()).withUserPoolId(userpoolId));
+                        getCognitoUserPoolLowLevelClient().adminDeleteUser(new AdminDeleteUserRequest().withUsername(user.getUsername()).withUserPoolId(userPoolId));
                     } catch (UserNotConfirmedException e) {
                         if (!retryConfirmSignUp) {
                             AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
-                            adminConfirmSignUpRequest.withUsername(user.getUsername()).withUserPoolId(userpoolId);
-                            getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
+                            adminConfirmSignUpRequest.withUsername(user.getUsername()).withUserPoolId(userPoolId);
+                            getCognitoUserPoolLowLevelClient().adminConfirmSignUp(adminConfirmSignUpRequest);
                             retryConfirmSignUp = true;
                             try {
                                 Thread.sleep(10);
@@ -365,6 +371,63 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
         assertNotNull(identityIdAfterSecondSignIn);
 
         assertEquals(identityId, identityIdAfterSecondSignIn);
+    }
+
+    @Test
+    public void testHostedUIObjectLifeCycle() {
+        initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
+
+        // Store a HostedUI session: token, username and app client id
+        AWSMobileClient awsMobileClient = AWSMobileClient.getInstance();
+        assertNotNull(awsMobileClient.hostedUI);
+
+        awsMobileClient.signOut();
+
+        initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
+        awsMobileClient = AWSMobileClient.getInstance();
+        assertNotNull(awsMobileClient.hostedUI);
+    }
+
+    @Test
+    public void testHostedUIGetTokens() throws Exception {
+        initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
+
+        // Store a HostedUI session: token, username and app client id
+        AWSMobileClient awsMobileClient = AWSMobileClient.getInstance();
+        assertNotNull(awsMobileClient.hostedUI);
+
+        AuthUserSession authUserSession = new AuthUserSession(
+                new IdToken("idToken"),
+                new AccessToken("accessToken"),
+                new RefreshToken("refreshToken"));
+        LocalDataManager.cacheSession(awsMobileClient.mStore.mAWSKeyValueStore, InstrumentationRegistry.getTargetContext(),
+                getPackageConfigure("cognitoauth").getString("AppClientId"),
+                getPackageConfigure("cognitoauth").getString("Username"),
+                authUserSession,
+                null);
+
+        // Set the AWSMobileClient metadata that is specific to HostedUI
+        awsMobileClient.mStore.set(FEDERATION_ENABLED_KEY, "true");
+        awsMobileClient.mStore.set(HOSTED_UI_KEY, "dummyJson");
+        awsMobileClient.mStore.set(SIGN_IN_MODE, AWSMobileClient.SignInMode.HOSTED_UI.toString());
+        awsMobileClient.mStore.set(PROVIDER_KEY, awsMobileClient.userpoolsLoginKey);
+        awsMobileClient.mStore.set(TOKEN_KEY, "dummyToken");
+
+        try {
+            awsMobileClient.getTokens();
+        } catch (Exception ex) {
+            assertEquals("No cached session.", ex.getMessage());
+        }
+
+        initializeAWSMobileClient(appContext, UserState.SIGNED_IN);
+        awsMobileClient = AWSMobileClient.getInstance();
+        assertNotNull(awsMobileClient.hostedUI);
+
+        try {
+            awsMobileClient.getTokens();
+        } catch (Exception ex) {
+            assertEquals("No cached session.", ex.getMessage());
+        }
     }
 
     private void signInAndVerifySignIn() {
