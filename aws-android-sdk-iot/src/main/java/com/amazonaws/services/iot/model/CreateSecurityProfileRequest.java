@@ -67,7 +67,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      */
@@ -75,7 +75,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Metadata which can be used to manage the security profile.
+     * Metadata that can be used to manage the security profile.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -377,14 +377,14 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      *
      * @return <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the profile's
-     *         <code>behaviors</code> but it is also retained for any metric
+     *         <code>behaviors</code>, but it is also retained for any metric
      *         specified here.
      *         </p>
      */
@@ -395,14 +395,14 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      *
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      */
@@ -418,7 +418,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      * <p>
@@ -428,7 +428,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -449,7 +449,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      * <p>
@@ -459,7 +459,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -473,11 +473,11 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Metadata which can be used to manage the security profile.
+     * Metadata that can be used to manage the security profile.
      * </p>
      *
      * @return <p>
-     *         Metadata which can be used to manage the security profile.
+     *         Metadata that can be used to manage the security profile.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -486,11 +486,11 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Metadata which can be used to manage the security profile.
+     * Metadata that can be used to manage the security profile.
      * </p>
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the security profile.
+     *            Metadata that can be used to manage the security profile.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -504,14 +504,14 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Metadata which can be used to manage the security profile.
+     * Metadata that can be used to manage the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the security profile.
+     *            Metadata that can be used to manage the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -528,14 +528,14 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Metadata which can be used to manage the security profile.
+     * Metadata that can be used to manage the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the security profile.
+     *            Metadata that can be used to manage the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

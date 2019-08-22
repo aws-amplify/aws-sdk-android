@@ -98,6 +98,9 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest
      */
     private boolean isRequesterPays;
 
+    /** Object tagging associated with this request */
+    private ObjectTagging tagging;
+
     /**
      * Constructs a request to initiate a new multipart upload in the specified
      * bucket, stored by the specified key.
@@ -541,6 +544,37 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest
      */
     public InitiateMultipartUploadRequest withRequesterPays(boolean isRequesterPays) {
         setRequesterPays(isRequesterPays);
+        return this;
+    }
+
+    /**
+     * Gets the object tagging associated with this request.
+     *
+     * @return Object tagging attached to this request
+     */
+    public ObjectTagging getTagging() {
+        return tagging;
+    }
+
+    /**
+     * Attaches object tagging to this request.
+     *
+     * @param tagging Object tagging to attach
+     */
+    public void setTagging(ObjectTagging tagging) {
+        this.tagging = tagging;
+    }
+
+    /**
+     * Sets tagging for this request. Returns updated
+     * InitiateMultipartUploadRequest object {@link InitiateMultipartUploadRequest},
+     * so that additional method calls can be chained together.
+     *
+     * @param tagSet Object tagging to be attached to this request
+     * @return The updated InitiateMultipartUploadRequest object
+     */
+    public InitiateMultipartUploadRequest withTagging(ObjectTagging tagSet) {
+        setTagging(tagSet);
         return this;
     }
 }

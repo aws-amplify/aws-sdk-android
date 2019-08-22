@@ -21,11 +21,11 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
     /**
      * <p>
      * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates and other items as
-     * necessary when performing an audit.
+     * information about your devices, policies, certificates, and other items
+     * as required when performing an audit.
      * </p>
      * <p>
-     * On the first call to <code>UpdateAccountAuditConfiguration</code> this
+     * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
      * parameter is required.
      * </p>
      * <p>
@@ -52,11 +52,11 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
     /**
      * <p>
      * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates and other items as
-     * necessary when performing an audit.
+     * information about your devices, policies, certificates, and other items
+     * as required when performing an audit.
      * </p>
      * <p>
-     * On the first call to <code>UpdateAccountAuditConfiguration</code> this
+     * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
      * parameter is required.
      * </p>
      * <p>
@@ -65,12 +65,12 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      *
      * @return <p>
      *         The ARN of the role that grants permission to AWS IoT to access
-     *         information about your devices, policies, certificates and other
-     *         items as necessary when performing an audit.
+     *         information about your devices, policies, certificates, and other
+     *         items as required when performing an audit.
      *         </p>
      *         <p>
      *         On the first call to <code>UpdateAccountAuditConfiguration</code>
-     *         this parameter is required.
+     *         , this parameter is required.
      *         </p>
      */
     public String getRoleArn() {
@@ -80,11 +80,11 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
     /**
      * <p>
      * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates and other items as
-     * necessary when performing an audit.
+     * information about your devices, policies, certificates, and other items
+     * as required when performing an audit.
      * </p>
      * <p>
-     * On the first call to <code>UpdateAccountAuditConfiguration</code> this
+     * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
      * parameter is required.
      * </p>
      * <p>
@@ -93,13 +93,13 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      *
      * @param roleArn <p>
      *            The ARN of the role that grants permission to AWS IoT to
-     *            access information about your devices, policies, certificates
-     *            and other items as necessary when performing an audit.
+     *            access information about your devices, policies, certificates,
+     *            and other items as required when performing an audit.
      *            </p>
      *            <p>
      *            On the first call to
-     *            <code>UpdateAccountAuditConfiguration</code> this parameter is
-     *            required.
+     *            <code>UpdateAccountAuditConfiguration</code>, this parameter
+     *            is required.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -109,11 +109,11 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
     /**
      * <p>
      * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates and other items as
-     * necessary when performing an audit.
+     * information about your devices, policies, certificates, and other items
+     * as required when performing an audit.
      * </p>
      * <p>
-     * On the first call to <code>UpdateAccountAuditConfiguration</code> this
+     * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
      * parameter is required.
      * </p>
      * <p>
@@ -125,13 +125,13 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      *
      * @param roleArn <p>
      *            The ARN of the role that grants permission to AWS IoT to
-     *            access information about your devices, policies, certificates
-     *            and other items as necessary when performing an audit.
+     *            access information about your devices, policies, certificates,
+     *            and other items as required when performing an audit.
      *            </p>
      *            <p>
      *            On the first call to
-     *            <code>UpdateAccountAuditConfiguration</code> this parameter is
-     *            required.
+     *            <code>UpdateAccountAuditConfiguration</code>, this parameter
+     *            is required.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

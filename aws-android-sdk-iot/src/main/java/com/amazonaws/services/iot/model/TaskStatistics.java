@@ -53,14 +53,14 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks that found non-compliant resources.
+     * The number of checks that found noncompliant resources.
      * </p>
      */
     private Integer nonCompliantChecks;
 
     /**
      * <p>
-     * The number of checks
+     * The number of checks.
      * </p>
      */
     private Integer failedChecks;
@@ -254,11 +254,11 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks that found non-compliant resources.
+     * The number of checks that found noncompliant resources.
      * </p>
      *
      * @return <p>
-     *         The number of checks that found non-compliant resources.
+     *         The number of checks that found noncompliant resources.
      *         </p>
      */
     public Integer getNonCompliantChecks() {
@@ -267,11 +267,11 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks that found non-compliant resources.
+     * The number of checks that found noncompliant resources.
      * </p>
      *
      * @param nonCompliantChecks <p>
-     *            The number of checks that found non-compliant resources.
+     *            The number of checks that found noncompliant resources.
      *            </p>
      */
     public void setNonCompliantChecks(Integer nonCompliantChecks) {
@@ -280,14 +280,14 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks that found non-compliant resources.
+     * The number of checks that found noncompliant resources.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nonCompliantChecks <p>
-     *            The number of checks that found non-compliant resources.
+     *            The number of checks that found noncompliant resources.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -299,11 +299,11 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks
+     * The number of checks.
      * </p>
      *
      * @return <p>
-     *         The number of checks
+     *         The number of checks.
      *         </p>
      */
     public Integer getFailedChecks() {
@@ -312,11 +312,11 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks
+     * The number of checks.
      * </p>
      *
      * @param failedChecks <p>
-     *            The number of checks
+     *            The number of checks.
      *            </p>
      */
     public void setFailedChecks(Integer failedChecks) {
@@ -325,14 +325,14 @@ public class TaskStatistics implements Serializable {
 
     /**
      * <p>
-     * The number of checks
+     * The number of checks.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failedChecks <p>
-     *            The number of checks
+     *            The number of checks.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

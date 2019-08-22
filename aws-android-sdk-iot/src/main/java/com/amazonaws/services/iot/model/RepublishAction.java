@@ -39,6 +39,16 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
+     * The Quality of Service (QoS) level to use when republishing messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     */
+    private Integer qos;
+
+    /**
+     * <p>
      * The ARN of the IAM role that grants access.
      * </p>
      *
@@ -128,6 +138,63 @@ public class RepublishAction implements Serializable {
     }
 
     /**
+     * <p>
+     * The Quality of Service (QoS) level to use when republishing messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @return <p>
+     *         The Quality of Service (QoS) level to use when republishing
+     *         messages.
+     *         </p>
+     */
+    public Integer getQos() {
+        return qos;
+    }
+
+    /**
+     * <p>
+     * The Quality of Service (QoS) level to use when republishing messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param qos <p>
+     *            The Quality of Service (QoS) level to use when republishing
+     *            messages.
+     *            </p>
+     */
+    public void setQos(Integer qos) {
+        this.qos = qos;
+    }
+
+    /**
+     * <p>
+     * The Quality of Service (QoS) level to use when republishing messages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param qos <p>
+     *            The Quality of Service (QoS) level to use when republishing
+     *            messages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RepublishAction withQos(Integer qos) {
+        this.qos = qos;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -141,7 +208,9 @@ public class RepublishAction implements Serializable {
         if (getRoleArn() != null)
             sb.append("roleArn: " + getRoleArn() + ",");
         if (getTopic() != null)
-            sb.append("topic: " + getTopic());
+            sb.append("topic: " + getTopic() + ",");
+        if (getQos() != null)
+            sb.append("qos: " + getQos());
         sb.append("}");
         return sb.toString();
     }
@@ -153,6 +222,7 @@ public class RepublishAction implements Serializable {
 
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode + ((getTopic() == null) ? 0 : getTopic().hashCode());
+        hashCode = prime * hashCode + ((getQos() == null) ? 0 : getQos().hashCode());
         return hashCode;
     }
 
@@ -174,6 +244,10 @@ public class RepublishAction implements Serializable {
         if (other.getTopic() == null ^ this.getTopic() == null)
             return false;
         if (other.getTopic() != null && other.getTopic().equals(this.getTopic()) == false)
+            return false;
+        if (other.getQos() == null ^ this.getQos() == null)
+            return false;
+        if (other.getQos() != null && other.getQos().equals(this.getQos()) == false)
             return false;
         return true;
     }

@@ -25,7 +25,19 @@ import java.io.Serializable;
 public class AuditFinding implements Serializable {
     /**
      * <p>
-     * The ID of the audit that generated this result (finding)
+     * A unique identifier for this set of audit findings. This identifier is
+     * used to apply mitigation tasks to one or more sets of findings.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     */
+    private String findingId;
+
+    /**
+     * <p>
+     * The ID of the audit that generated this result (finding).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +79,7 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The resource that was found to be non-compliant with the audit check.
+     * The resource that was found to be noncompliant with the audit check.
      * </p>
      */
     private NonCompliantResource nonCompliantResource;
@@ -81,21 +93,87 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The reason the resource was non-compliant.
+     * The reason the resource was noncompliant.
      * </p>
      */
     private String reasonForNonCompliance;
 
     /**
      * <p>
-     * A code which indicates the reason that the resource was non-compliant.
+     * A code that indicates the reason that the resource was noncompliant.
      * </p>
      */
     private String reasonForNonComplianceCode;
 
     /**
      * <p>
-     * The ID of the audit that generated this result (finding)
+     * A unique identifier for this set of audit findings. This identifier is
+     * used to apply mitigation tasks to one or more sets of findings.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @return <p>
+     *         A unique identifier for this set of audit findings. This
+     *         identifier is used to apply mitigation tasks to one or more sets
+     *         of findings.
+     *         </p>
+     */
+    public String getFindingId() {
+        return findingId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for this set of audit findings. This identifier is
+     * used to apply mitigation tasks to one or more sets of findings.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param findingId <p>
+     *            A unique identifier for this set of audit findings. This
+     *            identifier is used to apply mitigation tasks to one or more
+     *            sets of findings.
+     *            </p>
+     */
+    public void setFindingId(String findingId) {
+        this.findingId = findingId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for this set of audit findings. This identifier is
+     * used to apply mitigation tasks to one or more sets of findings.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param findingId <p>
+     *            A unique identifier for this set of audit findings. This
+     *            identifier is used to apply mitigation tasks to one or more
+     *            sets of findings.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AuditFinding withFindingId(String findingId) {
+        this.findingId = findingId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ID of the audit that generated this result (finding).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,7 +181,7 @@ public class AuditFinding implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\-]+<br/>
      *
      * @return <p>
-     *         The ID of the audit that generated this result (finding)
+     *         The ID of the audit that generated this result (finding).
      *         </p>
      */
     public String getTaskId() {
@@ -112,7 +190,7 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The ID of the audit that generated this result (finding)
+     * The ID of the audit that generated this result (finding).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +198,7 @@ public class AuditFinding implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\-]+<br/>
      *
      * @param taskId <p>
-     *            The ID of the audit that generated this result (finding)
+     *            The ID of the audit that generated this result (finding).
      *            </p>
      */
     public void setTaskId(String taskId) {
@@ -129,7 +207,7 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The ID of the audit that generated this result (finding)
+     * The ID of the audit that generated this result (finding).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -140,7 +218,7 @@ public class AuditFinding implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\-]+<br/>
      *
      * @param taskId <p>
-     *            The ID of the audit that generated this result (finding)
+     *            The ID of the audit that generated this result (finding).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -384,11 +462,11 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The resource that was found to be non-compliant with the audit check.
+     * The resource that was found to be noncompliant with the audit check.
      * </p>
      *
      * @return <p>
-     *         The resource that was found to be non-compliant with the audit
+     *         The resource that was found to be noncompliant with the audit
      *         check.
      *         </p>
      */
@@ -398,11 +476,11 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The resource that was found to be non-compliant with the audit check.
+     * The resource that was found to be noncompliant with the audit check.
      * </p>
      *
      * @param nonCompliantResource <p>
-     *            The resource that was found to be non-compliant with the audit
+     *            The resource that was found to be noncompliant with the audit
      *            check.
      *            </p>
      */
@@ -412,14 +490,14 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The resource that was found to be non-compliant with the audit check.
+     * The resource that was found to be noncompliant with the audit check.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nonCompliantResource <p>
-     *            The resource that was found to be non-compliant with the audit
+     *            The resource that was found to be noncompliant with the audit
      *            check.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -507,11 +585,11 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The reason the resource was non-compliant.
+     * The reason the resource was noncompliant.
      * </p>
      *
      * @return <p>
-     *         The reason the resource was non-compliant.
+     *         The reason the resource was noncompliant.
      *         </p>
      */
     public String getReasonForNonCompliance() {
@@ -520,11 +598,11 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The reason the resource was non-compliant.
+     * The reason the resource was noncompliant.
      * </p>
      *
      * @param reasonForNonCompliance <p>
-     *            The reason the resource was non-compliant.
+     *            The reason the resource was noncompliant.
      *            </p>
      */
     public void setReasonForNonCompliance(String reasonForNonCompliance) {
@@ -533,14 +611,14 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * The reason the resource was non-compliant.
+     * The reason the resource was noncompliant.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param reasonForNonCompliance <p>
-     *            The reason the resource was non-compliant.
+     *            The reason the resource was noncompliant.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -552,12 +630,12 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * A code which indicates the reason that the resource was non-compliant.
+     * A code that indicates the reason that the resource was noncompliant.
      * </p>
      *
      * @return <p>
-     *         A code which indicates the reason that the resource was
-     *         non-compliant.
+     *         A code that indicates the reason that the resource was
+     *         noncompliant.
      *         </p>
      */
     public String getReasonForNonComplianceCode() {
@@ -566,12 +644,12 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * A code which indicates the reason that the resource was non-compliant.
+     * A code that indicates the reason that the resource was noncompliant.
      * </p>
      *
      * @param reasonForNonComplianceCode <p>
-     *            A code which indicates the reason that the resource was
-     *            non-compliant.
+     *            A code that indicates the reason that the resource was
+     *            noncompliant.
      *            </p>
      */
     public void setReasonForNonComplianceCode(String reasonForNonComplianceCode) {
@@ -580,15 +658,15 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
-     * A code which indicates the reason that the resource was non-compliant.
+     * A code that indicates the reason that the resource was noncompliant.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param reasonForNonComplianceCode <p>
-     *            A code which indicates the reason that the resource was
-     *            non-compliant.
+     *            A code that indicates the reason that the resource was
+     *            noncompliant.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -609,6 +687,8 @@ public class AuditFinding implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getFindingId() != null)
+            sb.append("findingId: " + getFindingId() + ",");
         if (getTaskId() != null)
             sb.append("taskId: " + getTaskId() + ",");
         if (getCheckName() != null)
@@ -636,6 +716,7 @@ public class AuditFinding implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getFindingId() == null) ? 0 : getFindingId().hashCode());
         hashCode = prime * hashCode + ((getTaskId() == null) ? 0 : getTaskId().hashCode());
         hashCode = prime * hashCode + ((getCheckName() == null) ? 0 : getCheckName().hashCode());
         hashCode = prime * hashCode
@@ -669,6 +750,11 @@ public class AuditFinding implements Serializable {
             return false;
         AuditFinding other = (AuditFinding) obj;
 
+        if (other.getFindingId() == null ^ this.getFindingId() == null)
+            return false;
+        if (other.getFindingId() != null
+                && other.getFindingId().equals(this.getFindingId()) == false)
+            return false;
         if (other.getTaskId() == null ^ this.getTaskId() == null)
             return false;
         if (other.getTaskId() != null && other.getTaskId().equals(this.getTaskId()) == false)

@@ -21,7 +21,7 @@ public class ListViolationEventsResult implements Serializable {
     /**
      * <p>
      * The security profile violation alerts issued for this account during the
-     * given time frame, potentially filtered by security profile, behavior
+     * given time period, potentially filtered by security profile, behavior
      * violated, or thing (device) violating.
      * </p>
      */
@@ -38,13 +38,13 @@ public class ListViolationEventsResult implements Serializable {
     /**
      * <p>
      * The security profile violation alerts issued for this account during the
-     * given time frame, potentially filtered by security profile, behavior
+     * given time period, potentially filtered by security profile, behavior
      * violated, or thing (device) violating.
      * </p>
      *
      * @return <p>
      *         The security profile violation alerts issued for this account
-     *         during the given time frame, potentially filtered by security
+     *         during the given time period, potentially filtered by security
      *         profile, behavior violated, or thing (device) violating.
      *         </p>
      */
@@ -55,13 +55,13 @@ public class ListViolationEventsResult implements Serializable {
     /**
      * <p>
      * The security profile violation alerts issued for this account during the
-     * given time frame, potentially filtered by security profile, behavior
+     * given time period, potentially filtered by security profile, behavior
      * violated, or thing (device) violating.
      * </p>
      *
      * @param violationEvents <p>
      *            The security profile violation alerts issued for this account
-     *            during the given time frame, potentially filtered by security
+     *            during the given time period, potentially filtered by security
      *            profile, behavior violated, or thing (device) violating.
      *            </p>
      */
@@ -77,7 +77,7 @@ public class ListViolationEventsResult implements Serializable {
     /**
      * <p>
      * The security profile violation alerts issued for this account during the
-     * given time frame, potentially filtered by security profile, behavior
+     * given time period, potentially filtered by security profile, behavior
      * violated, or thing (device) violating.
      * </p>
      * <p>
@@ -86,7 +86,7 @@ public class ListViolationEventsResult implements Serializable {
      *
      * @param violationEvents <p>
      *            The security profile violation alerts issued for this account
-     *            during the given time frame, potentially filtered by security
+     *            during the given time period, potentially filtered by security
      *            profile, behavior violated, or thing (device) violating.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -105,7 +105,7 @@ public class ListViolationEventsResult implements Serializable {
     /**
      * <p>
      * The security profile violation alerts issued for this account during the
-     * given time frame, potentially filtered by security profile, behavior
+     * given time period, potentially filtered by security profile, behavior
      * violated, or thing (device) violating.
      * </p>
      * <p>
@@ -114,7 +114,7 @@ public class ListViolationEventsResult implements Serializable {
      *
      * @param violationEvents <p>
      *            The security profile violation alerts issued for this account
-     *            during the given time frame, potentially filtered by security
+     *            during the given time period, potentially filtered by security
      *            profile, behavior violated, or thing (device) violating.
      *            </p>
      * @return A reference to this updated object so that method calls can be

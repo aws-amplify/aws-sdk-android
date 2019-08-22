@@ -1,6 +1,6 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
+## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
 ### New Features
 
@@ -11,6 +11,51 @@
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
   - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
 
+### Bug Fixes
+
+- **AWS Core Runtime**
+  - Fixed a bug where encrypted authentication data persisted by the SDK could not be recovered due to:
+      * The encryption key being removed
+      * The encryption key being replaced
+      * The encryption key not being recoverable by the OS
+
+    These conditions formerly resulted in an app crash. Now, the errors are logged (without logging sensitive data) and the decryption attempt returns `null`, as if the data simply isn't present in the persistent store.
+
+    Classes affected:
+    - `CognitoCachingCredentialsProvider`
+    - `CognitoUserPool`
+    - `CognitoAuth`
+    - `AWSMobileClient`
+
+    For more detail, see issues:
+    - [#937](https://github.com/aws-amplify/aws-sdk-android/issues/937)
+    - [#1108](https://github.com/aws-amplify/aws-sdk-android/issues/1108)
+    - [#1109](https://github.com/aws-amplify/aws-sdk-android/issues/1109)
+    - [#1115](https://github.com/aws-amplify/aws-sdk-android/issues/1115)
+
+- **Amazon S3**
+  - Fixed a bug where multi-part uploads via `TransferUtility` would fail to propagate tags to `Amazon S3` from the `UserMetadata` passed through the `ObjectMetadata`. See [Issue#541](https://github.com/aws-amplify/aws-sdk-android/issues/541).
+  - The following code should now attach a tag for both single-part and multi-part uploads:
+  
+	```java
+	ObjectMetadata metadata = new ObjectMetadata();
+	metadata.addUserMetadata(Headers.S3_TAGGING, "key=value");
+	TransferObserver observer = transferUtility.upload(
+		file.getName(),
+		file,
+		metadata
+	);
+	```
+
+## [Release 2.15.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.0)
+
+### New Features
+
+- **AWS Core Runtime**
+  - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)
+- **Amazon Pinpoint**
+  - Removed the check for INTERNET and ACCESS_NETWORK_STATE permissions while initializing `PinpointManager`. These are [normal permissions](https://developer.android.com/guide/topics/permissions/overview#normal_permissions) and therefore are not required to be checked before performing corresponding app-op. This changes Pinpoint SDK behavior to match that of our other SDKs where an `UnknownHostException` or a corresponding RuntimeException would be thrown if connectivity is not present when network calls are made by the SDK. This fixes [Issue#1092](https://github.com/aws-amplify/aws-sdk-android/issues/1092).
+
 ### Misc. Updates
 
 - **Breaking Changes**
@@ -18,11 +63,11 @@
     - `ENABLE_S3_SIGV4_SYSTEM_PROPERTY`
     - `ENFORCE_S3_SIGV4_SYSTEM_PROPERTY`
 - Remove unused `mfaOption` property from `CognitoUserAttributes` class
-
-### Bug Fixes
-
-- **Amazon Pinpoint**
-  - Removed the check for INTERNET and ACCESS_NETWORK_STATE permissions while initializing `PinpointManager`. These are [normal permissions](https://developer.android.com/guide/topics/permissions/overview#normal_permissions) and therefore are not required to be checked before performing corresponding app-op. This changes Pinpoint SDK behavior to match that of our other SDKs where an `UnknownHostException` or a corresponding RuntimeException would be thrown if connectivity is not present when network calls are made by the SDK. This fixes [Issue#1092](https://github.com/aws-amplify/aws-sdk-android/issues/1092).
+- Model updates for the following services
+  - Amazon AutoScaling
+  - AWS IoT
+  - Amazon Lex
+  - Amazon Rekognition
 
 - **AWS Core Runtime**
   - Update `LogFactory.getLog` to automatically truncate the log tag to be within 23 character limit imposed by Android for Nougat(7.0) releases and prior(API <= 23). See [issue #1103](https://github.com/aws-amplify/aws-sdk-android/issues/1103)

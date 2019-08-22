@@ -32,7 +32,6 @@ public class ListActiveViolationsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
@@ -72,7 +71,6 @@ public class ListActiveViolationsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing whose active violations are listed.
@@ -89,7 +87,6 @@ public class ListActiveViolationsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing whose active violations are listed.
@@ -109,7 +106,6 @@ public class ListActiveViolationsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing whose active violations are listed.

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates a scheduled audit, including what checks are performed and how often
+ * Updates a scheduled audit, including which checks are performed and how often
  * the audit takes place.
  * </p>
  */
@@ -29,7 +29,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -55,7 +55,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -69,7 +69,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * Which checks are performed during the scheduled audit. Checks must be
      * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -90,7 +90,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -99,8 +99,8 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         How often the scheduled audit takes place. Can be one of "DAILY",
-     *         "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each
-     *         audit is determined by the system.
+     *         "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit
+     *         is determined by the system.
      *         </p>
      * @see AuditFrequency
      */
@@ -111,7 +111,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -120,8 +120,8 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start
-     *            time of each audit is determined by the system.
+     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
+     *            each audit is determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -132,7 +132,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -144,8 +144,8 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start
-     *            time of each audit is determined by the system.
+     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
+     *            each audit is determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -159,7 +159,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -168,8 +168,8 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start
-     *            time of each audit is determined by the system.
+     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
+     *            each audit is determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -180,7 +180,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start time of each audit is
+     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
      * determined by the system.
      * </p>
      * <p>
@@ -192,8 +192,8 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param frequency <p>
      *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY" or "MONTHLY". The actual start
-     *            time of each audit is determined by the system.
+     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
+     *            each audit is determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -285,7 +285,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -294,9 +294,9 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The day of the week on which the scheduled audit takes place. Can
-     *         be one of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This
-     *         field is required if the "frequency" parameter is set to "WEEKLY"
-     *         or "BIWEEKLY".
+     *         be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *         This field is required if the "frequency" parameter is set to
+     *         "WEEKLY" or "BIWEEKLY".
      *         </p>
      * @see DayOfWeek
      */
@@ -307,7 +307,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -316,7 +316,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI" or
+     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
      *            "SAT". This field is required if the "frequency" parameter is
      *            set to "WEEKLY" or "BIWEEKLY".
      *            </p>
@@ -329,7 +329,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -341,7 +341,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI" or
+     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
      *            "SAT". This field is required if the "frequency" parameter is
      *            set to "WEEKLY" or "BIWEEKLY".
      *            </p>
@@ -357,7 +357,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -366,7 +366,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI" or
+     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
      *            "SAT". This field is required if the "frequency" parameter is
      *            set to "WEEKLY" or "BIWEEKLY".
      *            </p>
@@ -379,7 +379,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI" or "SAT". This field is
+     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
      * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
      * </p>
      * <p>
@@ -391,7 +391,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI" or
+     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
      *            "SAT". This field is required if the "frequency" parameter is
      *            set to "WEEKLY" or "BIWEEKLY".
      *            </p>
@@ -409,7 +409,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * Which checks are performed during the scheduled audit. Checks must be
      * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -418,7 +418,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *         Which checks are performed during the scheduled audit. Checks
      *         must be enabled for your account. (Use
      *         <code>DescribeAccountAuditConfiguration</code> to see the list of
-     *         all checks including those that are enabled or
+     *         all checks, including those that are enabled or use
      *         <code>UpdateAccountAuditConfiguration</code> to select which
      *         checks are enabled.)
      *         </p>
@@ -432,7 +432,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * Which checks are performed during the scheduled audit. Checks must be
      * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -441,7 +441,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *            Which checks are performed during the scheduled audit. Checks
      *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>
@@ -460,7 +460,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * Which checks are performed during the scheduled audit. Checks must be
      * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -472,7 +472,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *            Which checks are performed during the scheduled audit. Checks
      *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>
@@ -494,7 +494,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * Which checks are performed during the scheduled audit. Checks must be
      * enabled for your account. (Use
      * <code>DescribeAccountAuditConfiguration</code> to see the list of all
-     * checks including those that are enabled or
+     * checks, including those that are enabled or use
      * <code>UpdateAccountAuditConfiguration</code> to select which checks are
      * enabled.)
      * </p>
@@ -506,7 +506,7 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *            Which checks are performed during the scheduled audit. Checks
      *            must be enabled for your account. (Use
      *            <code>DescribeAccountAuditConfiguration</code> to see the list
-     *            of all checks including those that are enabled or
+     *            of all checks, including those that are enabled or use
      *            <code>UpdateAccountAuditConfiguration</code> to select which
      *            checks are enabled.)
      *            </p>

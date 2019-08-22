@@ -16,12 +16,14 @@
 package com.amazonaws.internal.keyvaluestore;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_ENCRYPTION_KEY_NAMESPACE_SUFFIX;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -31,102 +33,57 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RunWith(AndroidJUnit4.class)
-public class AWSKeyStoreCorruptionIntegrationTest extends CoreIntegrationTestBase {
+public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest extends CoreIntegrationTestBase {
 
-    private static String TAG = AWSKeyStoreCorruptionIntegrationTest.class.getSimpleName();
-
-    private List<CognitoCachingCredentialsProvider> credentialsProviders;
+    private static String TAG = CognitoCachingCredentialsProviderDataCorruptionIntegrationTest.class.getSimpleName();
 
     private CognitoCachingCredentialsProvider credentialsProvider;
-
     private static SharedPreferences sharedPreferencesForAuth;
+    private static SharedPreferences sharedPreferencesForEncryptionMaterials;
+
+    private static final String SHARED_PREFERENCES_NAME = "com.amazonaws.android.auth";
 
     @BeforeClass
     public static void setupBeforeClass() {
         sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
-                .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE);
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() {
-        sharedPreferencesForAuth
-                .edit()
-                .clear()
-                .commit();
+                .getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        sharedPreferencesForEncryptionMaterials = InstrumentationRegistry.getTargetContext()
+                .getSharedPreferences(SHARED_PREFERENCES_NAME + SHARED_PREFERENCES_ENCRYPTION_KEY_NAMESPACE_SUFFIX, Context.MODE_PRIVATE);
     }
 
     @Before
     public void setUp() throws Exception {
-        sharedPreferencesForAuth
-                .edit()
-                .clear()
-                .commit();
-
-        credentialsProviders= new ArrayList<CognitoCachingCredentialsProvider>();
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 InstrumentationRegistry.getTargetContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
-        credentialsProviders.add(credentialsProvider);
     }
 
     @After
     public void tearDown() {
-        sharedPreferencesForAuth
-                .edit()
-                .clear()
-                .commit();
+        clearAll();
+        verifyCredentialsProviderClear();
+        deleteAllEncryptionKeys();
     }
 
     @Test
     public void testCachedAWSCredentialsWithCorruptedAccessKey() throws Exception {
-        sharedPreferencesForAuth
-                .edit()
-                .clear()
-                .commit();
-
-        assertNull(credentialsProvider.getCachedIdentityId());
-        credentialsProvider.clearCredentials();
-        credentialsProvider.clear();
-        assertNull(credentialsProvider.getCachedIdentityId());
-
-        final AWSSessionCredentials currentCredentials = credentialsProvider.getCredentials();
-        assertNotNull(currentCredentials);
-        Log.d(TAG, "Credentials = " + currentCredentials);
-
-        assertNotNull(credentialsProvider.getIdentityId());
-        Log.d(TAG, "Identity Id = " + credentialsProvider.getIdentityId());
-
-        assertNotNull(credentialsProvider.getCachedIdentityId());
-        Log.d(TAG, "Cached Identity Id = " + credentialsProvider.getCachedIdentityId());
-
-        Log.d(TAG, "sharedPreferencesForAuth => " +
-                sharedPreferencesForAuth.getAll().toString());
-
-        assertEquals(credentialsProvider.getIdentityId(), credentialsProvider.getCachedIdentityId());
-
+        verifyGetCredentialsAndIdentityId();
         verifySharedPreferencesContents();
+        final AWSSessionCredentials currentCredentials = credentialsProvider.getCredentials();
 
         // make the access key null
         sharedPreferencesForAuth
                 .edit()
                 .putString(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted", null)
                 .commit();
-
-        Log.d(TAG, "sharedPreferencesForAuth => " +
-                sharedPreferencesForAuth.getAll().toString());
-
         assertNull(sharedPreferencesForAuth
                         .getString(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted",
                                 null));
@@ -154,47 +111,20 @@ public class AWSKeyStoreCorruptionIntegrationTest extends CoreIntegrationTestBas
         assertNotEquals(currentCredentials.getAWSAccessKeyId(), newCredentials.getAWSAccessKeyId());
         assertNotEquals(currentCredentials.getAWSSecretKey(), newCredentials.getAWSSecretKey());
         assertNotEquals(currentCredentials.getSessionToken(), newCredentials.getSessionToken());
-
-        verifyCredentialsProviderClear();
     }
 
     @Test
     public void testCachedAWSCredentialsWithCredentialsExpired() throws Exception {
-        sharedPreferencesForAuth
-                .edit()
-                .clear()
-                .commit();
-
-        assertNull(credentialsProvider.getCachedIdentityId());
-        credentialsProvider.clearCredentials();
-        credentialsProvider.clear();
-        assertNull(credentialsProvider.getCachedIdentityId());
-
-        final AWSSessionCredentials currentCredentials = credentialsProvider.getCredentials();
-        assertNotNull(currentCredentials);
-        Log.d(TAG, "Credentials = " + currentCredentials);
-
-        assertNotNull(credentialsProvider.getIdentityId());
-        Log.d(TAG, "Identity Id = " + credentialsProvider.getIdentityId());
-
-        assertNotNull(credentialsProvider.getCachedIdentityId());
-        Log.d(TAG, "Cached Identity Id = " + credentialsProvider.getCachedIdentityId());
-
-        Log.d(TAG, "sharedPreferencesForAuth => " +
-                sharedPreferencesForAuth.getAll().toString());
-
-        assertEquals(credentialsProvider.getIdentityId(), credentialsProvider.getCachedIdentityId());
-
+        verifyGetCredentialsAndIdentityId();
         verifySharedPreferencesContents();
 
-        // make the access key null
+        final AWSSessionCredentials currentCredentials = credentialsProvider.getCredentials();
+
+        // modify the expiration date of credentials
         sharedPreferencesForAuth
                 .edit()
                 .putString(credentialsProvider.getIdentityPoolId() + ".expirationDate.encrypted", "-00000011111")
                 .commit();
-
-        Log.d(TAG, "sharedPreferencesForAuth => " +
-                sharedPreferencesForAuth.getAll().toString());
 
         assertEquals("-00000011111", sharedPreferencesForAuth
                 .getString(credentialsProvider.getIdentityPoolId() + ".expirationDate.encrypted",
@@ -236,56 +166,80 @@ public class AWSKeyStoreCorruptionIntegrationTest extends CoreIntegrationTestBas
         assertNotEquals(currentCredentials.getAWSAccessKeyId(), newCredentials.getAWSAccessKeyId());
         assertNotEquals(currentCredentials.getAWSSecretKey(), newCredentials.getAWSSecretKey());
         assertNotEquals(currentCredentials.getSessionToken(), newCredentials.getSessionToken());
+    }
 
-        verifyCredentialsProviderClear();
+    // getCredentials() will store the encrypted credentials in SharedPreferences.
+    // Now delete the key held in Android KeyStore
+    // getCredentials() now cannot read the content, so it will delete the encrypted
+    // credentials and go to clean state and fetch credentials from AWS.
+    @Test
+    public void testCachedAWSCredentialsWithKeyNotRetrieved() throws Exception {
+        verifyGetCredentialsAndIdentityId();
+        verifySharedPreferencesContents();
+
+        final String cachedIdentityId = credentialsProvider.getCachedIdentityId();
+
+        deleteAllEncryptionKeys();
+
+        CognitoCachingCredentialsProvider credentialsProviderAfterKeyDeleted = new CognitoCachingCredentialsProvider(
+                InstrumentationRegistry.getTargetContext(),
+                getPackageConfigure().getString("identity_pool_id"),
+                Regions.US_EAST_1);
+        assertNull(credentialsProviderAfterKeyDeleted.getCachedIdentityId());
+        assertNotNull(credentialsProviderAfterKeyDeleted.getCredentials());
+        assertNotNull(credentialsProviderAfterKeyDeleted.getIdentityId());
+        final String cachedIdentityIdAfterKeyDeleted = credentialsProviderAfterKeyDeleted.getCachedIdentityId();
+        assertNotEquals(cachedIdentityId, cachedIdentityIdAfterKeyDeleted);
+    }
+
+    private void clearAll() {
+        credentialsProvider.clearCredentials();
+        credentialsProvider.clear();
+        sharedPreferencesForAuth.edit().clear().commit();
+        sharedPreferencesForEncryptionMaterials.edit().clear().commit();
+    }
+
+    private void verifyGetCredentialsAndIdentityId() {
+        assertNotNull(credentialsProvider.getCredentials());
+        final String identityId = credentialsProvider.getIdentityId();
+        assertNotNull(identityId);
+        final String cachedIdentityId = credentialsProvider.getCachedIdentityId();
+        assertNotNull(credentialsProvider.getCachedIdentityId());
+        assertEquals(identityId, cachedIdentityId);
     }
 
     private void verifySharedPreferencesContents() {
-        final SharedPreferences sharedPreferences = InstrumentationRegistry.getTargetContext()
-                .getSharedPreferences("com.amazonaws.android.auth",
-                        Context.MODE_PRIVATE);
-        assert sharedPreferences.getAll().keySet().size() == credentialsProviders.size() * 5;
-        Log.d(TAG, "SharedPreferences Keys = " +
-                sharedPreferences.getAll().keySet().toString());
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted" , null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".secretKey.encrypted", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".sessionToken.encrypted", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".identityId.encrypted", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".expirationDate.encrypted", null));
 
-        for (int iterator = 0; iterator < credentialsProviders.size(); iterator++) {
-            final CognitoCachingCredentialsProvider cccp = credentialsProviders.get(iterator);
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".accessKey.encrypted" , null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".secretKey.encrypted", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".sessionToken.encrypted", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".identityId.encrypted", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".expirationDate.encrypted", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted.iv" , null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".secretKey.encrypted.iv", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".sessionToken.encrypted.iv", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".identityId.encrypted.iv", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".expirationDate.encrypted.iv", null));
 
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".accessKey.encrypted.iv" , null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".secretKey.encrypted.iv", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".sessionToken.encrypted.iv", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".identityId.encrypted.iv", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".expirationDate.encrypted.iv", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".accessKey.encrypted.keyvaluestoreversion" , null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".secretKey.encrypted.keyvaluestoreversion", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".sessionToken.encrypted.keyvaluestoreversion", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".identityId.encrypted.keyvaluestoreversion", null));
+        assertNotNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".expirationDate.encrypted.keyvaluestoreversion", null));
 
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".accessKey.encrypted.keyvaluestoreversion" , null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".secretKey.encrypted.keyvaluestoreversion", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".sessionToken.encrypted.keyvaluestoreversion", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".identityId.encrypted.keyvaluestoreversion", null));
-            assertNotNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".expirationDate.encrypted.keyvaluestoreversion", null));
-
-            assertNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".accessKey", null));
-            assertNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".secretKey", null));
-            assertNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".sessionToken", null));
-            assertNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".identityId", null));
-            assertNull(sharedPreferencesForAuth.getString(cccp.getIdentityPoolId() + ".expirationDate", null));
-        }
+        assertNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".accessKey", null));
+        assertNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".secretKey", null));
+        assertNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".sessionToken", null));
+        assertNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".identityId", null));
+        assertNull(sharedPreferencesForAuth.getString(credentialsProvider.getIdentityPoolId() + ".expirationDate", null));
     }
 
     private void verifyCredentialsProviderClear() {
-        for (int iterator = 0; iterator < credentialsProviders.size(); iterator++){
-            final CognitoCachingCredentialsProvider cccp = credentialsProviders.get(iterator);
+        credentialsProvider.clearCredentials();
+        credentialsProvider.clear();
 
-            cccp.clearCredentials();
-            cccp.clear();
-
-            assertNull(cccp.getCachedIdentityId());
-            assertNotNull(cccp.getIdentityId());
-            assertNotNull(cccp.getCachedIdentityId());
-        }
+        assertNull(credentialsProvider.getCachedIdentityId());
+        assertNotNull(credentialsProvider.getIdentityId());
+        assertNotNull(credentialsProvider.getCachedIdentityId());
     }
 }

@@ -1524,7 +1524,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Federated sign-in tokens are not supported.
      *
      * @return tokens from Cognito Userpools
-     * @throws Exception
+     * @throws Exception when the tokens cannot be retrieved successfully.
      */
     @WorkerThread
     public Tokens getTokens() throws Exception {
@@ -1537,7 +1537,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Federated sign-in tokens are not supported.
      *
      * @return tokens from Cognito Userpools
-     * @throws Exception
+     * @throws Exception when the tokens cannot be retrieved successfully.
      */
     @AnyThread
     public void getTokens(final Callback<Tokens> callback) {
@@ -1630,18 +1630,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
-        //                    final AuthUserSession cachedSession =
-//                            LocalDataManager.getCachedSession(mContext, hostedUIJSONConfigured.getAppId(),
-//                            LocalDataManager.getLastAuthUser(mContext,
-//                                    hostedUIJSONConfigured.getAppId()),
-//                            hostedUI.getScopes());
-//                    callback.onResult(new Tokens(
-//                            cachedSession.getAccessToken().getJWTToken(),
-//                            cachedSession.getIdToken().getJWTToken(),
-//                            cachedSession.getRefreshToken().getToken()
-//                    ));
-//                    return;
-
         hostedUI.setAuthHandler(new AuthHandler() {
             @Override
             public void onSuccess(AuthUserSession session) {

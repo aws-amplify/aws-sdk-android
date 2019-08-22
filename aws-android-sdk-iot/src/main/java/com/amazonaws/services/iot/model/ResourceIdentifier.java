@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information identifying the non-compliant resource.
+ * Information that identifies the noncompliant resource.
  * </p>
  */
 public class ResourceIdentifier implements Serializable {
@@ -47,7 +47,7 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
-     * The ID of the Cognito Identity Pool.
+     * The ID of the Amazon Cognito identity pool.
      * </p>
      */
     private String cognitoIdentityPoolId;
@@ -195,11 +195,11 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
-     * The ID of the Cognito Identity Pool.
+     * The ID of the Amazon Cognito identity pool.
      * </p>
      *
      * @return <p>
-     *         The ID of the Cognito Identity Pool.
+     *         The ID of the Amazon Cognito identity pool.
      *         </p>
      */
     public String getCognitoIdentityPoolId() {
@@ -208,11 +208,11 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
-     * The ID of the Cognito Identity Pool.
+     * The ID of the Amazon Cognito identity pool.
      * </p>
      *
      * @param cognitoIdentityPoolId <p>
-     *            The ID of the Cognito Identity Pool.
+     *            The ID of the Amazon Cognito identity pool.
      *            </p>
      */
     public void setCognitoIdentityPoolId(String cognitoIdentityPoolId) {
@@ -221,14 +221,14 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
-     * The ID of the Cognito Identity Pool.
+     * The ID of the Amazon Cognito identity pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cognitoIdentityPoolId <p>
-     *            The ID of the Cognito Identity Pool.
+     *            The ID of the Amazon Cognito identity pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

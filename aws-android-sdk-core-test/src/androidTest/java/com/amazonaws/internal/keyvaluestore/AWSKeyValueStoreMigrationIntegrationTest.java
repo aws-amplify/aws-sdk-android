@@ -92,10 +92,11 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
                 .commit();
 
         AWSKeyValueStore.cacheFactory.clear();
+        deleteAllEncryptionKeys();
     }
 
     @Test
-    public void testCachedAWSCredentialsMigration() throws Exception {
+    public void testCachedAWSCredentialsMigrationFromNoEncryption() throws Exception {
         Log.d(TAG, "SharedPreferences contents before migration for " + SHARED_PREFERENCES_NAME + "=> " +
                 sharedPreferencesForAuth.getAll().toString());
 

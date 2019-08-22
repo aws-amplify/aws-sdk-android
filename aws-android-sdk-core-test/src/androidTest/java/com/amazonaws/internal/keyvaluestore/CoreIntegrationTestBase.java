@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public abstract class CoreIntegrationTestBase extends AWSTestBase {
 
-    public static JSONObject getPackageConfigure()  {
+    public static JSONObject getPackageConfigure() {
         return getPackageConfigure("core");
     }
 }

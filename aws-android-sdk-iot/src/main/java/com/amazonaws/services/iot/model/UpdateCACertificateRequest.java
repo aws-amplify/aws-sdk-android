@@ -70,7 +70,7 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If true, remove auto registration.
+     * If true, removes auto registration.
      * </p>
      */
     private Boolean removeAutoRegistration;
@@ -424,11 +424,11 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If true, remove auto registration.
+     * If true, removes auto registration.
      * </p>
      *
      * @return <p>
-     *         If true, remove auto registration.
+     *         If true, removes auto registration.
      *         </p>
      */
     public Boolean isRemoveAutoRegistration() {
@@ -437,11 +437,11 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If true, remove auto registration.
+     * If true, removes auto registration.
      * </p>
      *
      * @return <p>
-     *         If true, remove auto registration.
+     *         If true, removes auto registration.
      *         </p>
      */
     public Boolean getRemoveAutoRegistration() {
@@ -450,11 +450,11 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If true, remove auto registration.
+     * If true, removes auto registration.
      * </p>
      *
      * @param removeAutoRegistration <p>
-     *            If true, remove auto registration.
+     *            If true, removes auto registration.
      *            </p>
      */
     public void setRemoveAutoRegistration(Boolean removeAutoRegistration) {
@@ -463,14 +463,14 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If true, remove auto registration.
+     * If true, removes auto registration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param removeAutoRegistration <p>
-     *            If true, remove auto registration.
+     *            If true, removes auto registration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
