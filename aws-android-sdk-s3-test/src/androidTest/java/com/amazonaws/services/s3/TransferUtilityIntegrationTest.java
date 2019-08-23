@@ -16,7 +16,12 @@
 package com.amazonaws.services.s3;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.support.test.InstrumentationRegistry;
+import android.util.Log;
 
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferNetworkLossHandler;
@@ -53,6 +58,9 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
     /** Countdown latch for testing */
     private static CountDownLatch latch;
 
+    /** Network loss handler */
+    private static TransferNetworkLossHandler lossHandler;
+
     /** The transfer utility used to upload to S3 */
     private static TransferUtility util;
 
@@ -83,7 +91,10 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         setUp();
-        TransferNetworkLossHandler.getInstance(context);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        lossHandler = TransferNetworkLossHandler.getInstance(context);
+        context.registerReceiver(lossHandler, filter);
         util = TransferUtility.builder()
                 .context(context)
                 .s3Client(s3)
@@ -111,6 +122,46 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
         if (file != null) {
             file.delete();
         }
+    }
+
+    @Test
+    public void testNetworkInterruption() throws Exception {
+        latch = new CountDownLatch(1);
+
+        long size = 20 * 1024 * 1024;
+        file = getRandomSparseFile("huge", size);
+        util.upload(bucketName, file.getName(), file)
+                .setTransferListener(new TransferListener() {
+                    private boolean downloadedHalf = false;
+                    private WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
+                    @Override
+                    public void onStateChanged(int id, TransferState state) {
+                        Log.d("TESTING", "State is now: " + state);
+                        if (state.equals(TransferState.COMPLETED)) {
+                            latch.countDown();
+                        }
+                        if (state.equals(TransferState.WAITING_FOR_NETWORK)) {
+                            wifi.setWifiEnabled(true);
+                        }
+                    }
+
+                    @Override
+                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                        double percent = (double) bytesCurrent / bytesTotal;
+                        Log.d("TESTING", "Progress: " + percent);
+                        if (!downloadedHalf && percent >= 0.5) {
+                            downloadedHalf = true;
+                            wifi.setWifiEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void onError(int id, Exception ex) {
+                        fail(ex.getMessage());
+                    }
+                });
+        latch.await(300, TimeUnit.SECONDS);
     }
 
     @Test
