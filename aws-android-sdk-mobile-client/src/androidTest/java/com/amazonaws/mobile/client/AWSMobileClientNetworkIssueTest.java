@@ -166,7 +166,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
         awsKeyValueStore.put(AWSMobileClient.PROVIDER_KEY, AWSMobileClient.getInstance().getLoginKey());
         awsKeyValueStore.put(AWSMobileClient.TOKEN_KEY, getValidJWT(-3600L));
         awsKeyValueStore.put(AWSMobileClient.IDENTITY_ID_KEY, "");
-        writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), username, -3600L);
+        writeUserPoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), username, -3600L);
         setField(auth.userpool, CognitoUserPool.class, "client", mockLowLevel);
         try {
             auth.getUserAttributes();
@@ -185,7 +185,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
         awsKeyValueStore.put(AWSMobileClient.PROVIDER_KEY, AWSMobileClient.getInstance().getLoginKey());
         awsKeyValueStore.put(AWSMobileClient.TOKEN_KEY, getValidJWT(-3600L));
         awsKeyValueStore.put(AWSMobileClient.IDENTITY_ID_KEY, "");
-        writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), username, -3600L);
+        writeUserPoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), username, -3600L);
         Field f1 = CognitoUserPool.class.getDeclaredField("client");
         f1.setAccessible(true);
         f1.set(auth.userpool, mockLowLevel);
