@@ -13,7 +13,7 @@
 
 ### Bug Fixes
 
-  - Fixed a bug in Cognito custom authentication flow where internal useSub was required instead of external username for successfully completing the custom auth flow. See [Issue #889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
+  - Fixed a bug in Cognito custom authentication flow where internal username was required instead of external username for successfully completing the custom auth flow. See [Issue #889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
 
 ## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
