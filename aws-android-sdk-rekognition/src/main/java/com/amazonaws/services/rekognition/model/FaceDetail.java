@@ -142,8 +142,12 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * The emotions detected on the face, and the confidence level in the
-     * determination. For example, HAPPY, SAD, and ANGRY.
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. The API is only making a determination of the
+     * physical appearance of a person's face. It is not a determination of the
+     * person’s internal emotional state and should not be used in such a way.
+     * For example, a person pretending to have a sad face might not be sad
+     * emotionally.
      * </p>
      */
     private java.util.List<Emotion> emotions;
@@ -686,13 +690,21 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * The emotions detected on the face, and the confidence level in the
-     * determination. For example, HAPPY, SAD, and ANGRY.
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. The API is only making a determination of the
+     * physical appearance of a person's face. It is not a determination of the
+     * person’s internal emotional state and should not be used in such a way.
+     * For example, a person pretending to have a sad face might not be sad
+     * emotionally.
      * </p>
      *
      * @return <p>
-     *         The emotions detected on the face, and the confidence level in
-     *         the determination. For example, HAPPY, SAD, and ANGRY.
+     *         The emotions that appear to be expressed on the face, and the
+     *         confidence level in the determination. The API is only making a
+     *         determination of the physical appearance of a person's face. It
+     *         is not a determination of the person’s internal emotional state
+     *         and should not be used in such a way. For example, a person
+     *         pretending to have a sad face might not be sad emotionally.
      *         </p>
      */
     public java.util.List<Emotion> getEmotions() {
@@ -701,13 +713,22 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * The emotions detected on the face, and the confidence level in the
-     * determination. For example, HAPPY, SAD, and ANGRY.
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. The API is only making a determination of the
+     * physical appearance of a person's face. It is not a determination of the
+     * person’s internal emotional state and should not be used in such a way.
+     * For example, a person pretending to have a sad face might not be sad
+     * emotionally.
      * </p>
      *
      * @param emotions <p>
-     *            The emotions detected on the face, and the confidence level in
-     *            the determination. For example, HAPPY, SAD, and ANGRY.
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. The API is only making
+     *            a determination of the physical appearance of a person's face.
+     *            It is not a determination of the person’s internal emotional
+     *            state and should not be used in such a way. For example, a
+     *            person pretending to have a sad face might not be sad
+     *            emotionally.
      *            </p>
      */
     public void setEmotions(java.util.Collection<Emotion> emotions) {
@@ -721,16 +742,25 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * The emotions detected on the face, and the confidence level in the
-     * determination. For example, HAPPY, SAD, and ANGRY.
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. The API is only making a determination of the
+     * physical appearance of a person's face. It is not a determination of the
+     * person’s internal emotional state and should not be used in such a way.
+     * For example, a person pretending to have a sad face might not be sad
+     * emotionally.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param emotions <p>
-     *            The emotions detected on the face, and the confidence level in
-     *            the determination. For example, HAPPY, SAD, and ANGRY.
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. The API is only making
+     *            a determination of the physical appearance of a person's face.
+     *            It is not a determination of the person’s internal emotional
+     *            state and should not be used in such a way. For example, a
+     *            person pretending to have a sad face might not be sad
+     *            emotionally.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -747,16 +777,25 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * The emotions detected on the face, and the confidence level in the
-     * determination. For example, HAPPY, SAD, and ANGRY.
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. The API is only making a determination of the
+     * physical appearance of a person's face. It is not a determination of the
+     * person’s internal emotional state and should not be used in such a way.
+     * For example, a person pretending to have a sad face might not be sad
+     * emotionally.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param emotions <p>
-     *            The emotions detected on the face, and the confidence level in
-     *            the determination. For example, HAPPY, SAD, and ANGRY.
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. The API is only making
+     *            a determination of the physical appearance of a person's face.
+     *            It is not a determination of the person’s internal emotional
+     *            state and should not be used in such a way. For example, a
+     *            person pretending to have a sad face might not be sad
+     *            emotionally.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

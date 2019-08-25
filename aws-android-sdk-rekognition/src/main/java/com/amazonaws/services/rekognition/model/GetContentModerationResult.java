@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class GetContentModerationResult implements Serializable {
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +47,7 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The detected moderation labels and the time(s) they were detected.
+     * The detected unsafe content labels and the time(s) they were detected.
      * </p>
      */
     private java.util.List<ContentModerationDetection> moderationLabels;
@@ -56,7 +56,7 @@ public class GetContentModerationResult implements Serializable {
      * <p>
      * If the response is truncated, Amazon Rekognition Video returns this token
      * that you can use in the subsequent request to retrieve the next set of
-     * moderation labels.
+     * unsafe content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,14 +74,14 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, SUCCEEDED, FAILED
      *
      * @return <p>
-     *         The current status of the content moderation job.
+     *         The current status of the unsafe content analysis job.
      *         </p>
      * @see VideoJobStatus
      */
@@ -91,14 +91,14 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, SUCCEEDED, FAILED
      *
      * @param jobStatus <p>
-     *            The current status of the content moderation job.
+     *            The current status of the unsafe content analysis job.
      *            </p>
      * @see VideoJobStatus
      */
@@ -108,7 +108,7 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +118,7 @@ public class GetContentModerationResult implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, SUCCEEDED, FAILED
      *
      * @param jobStatus <p>
-     *            The current status of the content moderation job.
+     *            The current status of the unsafe content analysis job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -131,14 +131,14 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, SUCCEEDED, FAILED
      *
      * @param jobStatus <p>
-     *            The current status of the content moderation job.
+     *            The current status of the unsafe content analysis job.
      *            </p>
      * @see VideoJobStatus
      */
@@ -148,7 +148,7 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the content moderation job.
+     * The current status of the unsafe content analysis job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +158,7 @@ public class GetContentModerationResult implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, SUCCEEDED, FAILED
      *
      * @param jobStatus <p>
-     *            The current status of the content moderation job.
+     *            The current status of the unsafe content analysis job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -279,11 +279,11 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The detected moderation labels and the time(s) they were detected.
+     * The detected unsafe content labels and the time(s) they were detected.
      * </p>
      *
      * @return <p>
-     *         The detected moderation labels and the time(s) they were
+     *         The detected unsafe content labels and the time(s) they were
      *         detected.
      *         </p>
      */
@@ -293,11 +293,11 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The detected moderation labels and the time(s) they were detected.
+     * The detected unsafe content labels and the time(s) they were detected.
      * </p>
      *
      * @param moderationLabels <p>
-     *            The detected moderation labels and the time(s) they were
+     *            The detected unsafe content labels and the time(s) they were
      *            detected.
      *            </p>
      */
@@ -314,14 +314,14 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The detected moderation labels and the time(s) they were detected.
+     * The detected unsafe content labels and the time(s) they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param moderationLabels <p>
-     *            The detected moderation labels and the time(s) they were
+     *            The detected unsafe content labels and the time(s) they were
      *            detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -341,14 +341,14 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The detected moderation labels and the time(s) they were detected.
+     * The detected unsafe content labels and the time(s) they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param moderationLabels <p>
-     *            The detected moderation labels and the time(s) they were
+     *            The detected unsafe content labels and the time(s) they were
      *            detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -364,7 +364,7 @@ public class GetContentModerationResult implements Serializable {
      * <p>
      * If the response is truncated, Amazon Rekognition Video returns this token
      * that you can use in the subsequent request to retrieve the next set of
-     * moderation labels.
+     * unsafe content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -373,7 +373,7 @@ public class GetContentModerationResult implements Serializable {
      * @return <p>
      *         If the response is truncated, Amazon Rekognition Video returns
      *         this token that you can use in the subsequent request to retrieve
-     *         the next set of moderation labels.
+     *         the next set of unsafe content labels.
      *         </p>
      */
     public String getNextToken() {
@@ -384,7 +384,7 @@ public class GetContentModerationResult implements Serializable {
      * <p>
      * If the response is truncated, Amazon Rekognition Video returns this token
      * that you can use in the subsequent request to retrieve the next set of
-     * moderation labels.
+     * unsafe content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -393,7 +393,7 @@ public class GetContentModerationResult implements Serializable {
      * @param nextToken <p>
      *            If the response is truncated, Amazon Rekognition Video returns
      *            this token that you can use in the subsequent request to
-     *            retrieve the next set of moderation labels.
+     *            retrieve the next set of unsafe content labels.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -404,7 +404,7 @@ public class GetContentModerationResult implements Serializable {
      * <p>
      * If the response is truncated, Amazon Rekognition Video returns this token
      * that you can use in the subsequent request to retrieve the next set of
-     * moderation labels.
+     * unsafe content labels.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -416,7 +416,7 @@ public class GetContentModerationResult implements Serializable {
      * @param nextToken <p>
      *            If the response is truncated, Amazon Rekognition Video returns
      *            this token that you can use in the subsequent request to
-     *            retrieve the next set of moderation labels.
+     *            retrieve the next set of unsafe content labels.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

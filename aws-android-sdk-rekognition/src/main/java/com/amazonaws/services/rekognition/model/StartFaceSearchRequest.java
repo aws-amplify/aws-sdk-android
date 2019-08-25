@@ -64,7 +64,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The minimum confidence in the person match to return. For example, don't
-     * return any matches where confidence in matches is less than 70%.
+     * return any matches where confidence in matches is less than 70%. The
+     * default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,8 +94,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Unique identifier you specify to identify the job in the completion
-     * status published to the Amazon Simple Notification Service topic.
+     * An identifier you specify that's returned in the completion notification
+     * that's published to your Amazon Simple Notification Service topic. For
+     * example, you can use <code>JobTag</code> to group related jobs and
+     * identify them in the completion notification.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -235,7 +238,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The minimum confidence in the person match to return. For example, don't
-     * return any matches where confidence in matches is less than 70%.
+     * return any matches where confidence in matches is less than 70%. The
+     * default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -244,7 +248,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * @return <p>
      *         The minimum confidence in the person match to return. For
      *         example, don't return any matches where confidence in matches is
-     *         less than 70%.
+     *         less than 70%. The default value is 80%.
      *         </p>
      */
     public Float getFaceMatchThreshold() {
@@ -254,7 +258,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The minimum confidence in the person match to return. For example, don't
-     * return any matches where confidence in matches is less than 70%.
+     * return any matches where confidence in matches is less than 70%. The
+     * default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -263,7 +268,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * @param faceMatchThreshold <p>
      *            The minimum confidence in the person match to return. For
      *            example, don't return any matches where confidence in matches
-     *            is less than 70%.
+     *            is less than 70%. The default value is 80%.
      *            </p>
      */
     public void setFaceMatchThreshold(Float faceMatchThreshold) {
@@ -273,7 +278,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The minimum confidence in the person match to return. For example, don't
-     * return any matches where confidence in matches is less than 70%.
+     * return any matches where confidence in matches is less than 70%. The
+     * default value is 80%.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -285,7 +291,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * @param faceMatchThreshold <p>
      *            The minimum confidence in the person match to return. For
      *            example, don't return any matches where confidence in matches
-     *            is less than 70%.
+     *            is less than 70%. The default value is 80%.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -410,8 +416,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Unique identifier you specify to identify the job in the completion
-     * status published to the Amazon Simple Notification Service topic.
+     * An identifier you specify that's returned in the completion notification
+     * that's published to your Amazon Simple Notification Service topic. For
+     * example, you can use <code>JobTag</code> to group related jobs and
+     * identify them in the completion notification.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -419,9 +427,11 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @return <p>
-     *         Unique identifier you specify to identify the job in the
-     *         completion status published to the Amazon Simple Notification
-     *         Service topic.
+     *         An identifier you specify that's returned in the completion
+     *         notification that's published to your Amazon Simple Notification
+     *         Service topic. For example, you can use <code>JobTag</code> to
+     *         group related jobs and identify them in the completion
+     *         notification.
      *         </p>
      */
     public String getJobTag() {
@@ -430,8 +440,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Unique identifier you specify to identify the job in the completion
-     * status published to the Amazon Simple Notification Service topic.
+     * An identifier you specify that's returned in the completion notification
+     * that's published to your Amazon Simple Notification Service topic. For
+     * example, you can use <code>JobTag</code> to group related jobs and
+     * identify them in the completion notification.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -439,9 +451,11 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            Unique identifier you specify to identify the job in the
-     *            completion status published to the Amazon Simple Notification
-     *            Service topic.
+     *            An identifier you specify that's returned in the completion
+     *            notification that's published to your Amazon Simple
+     *            Notification Service topic. For example, you can use
+     *            <code>JobTag</code> to group related jobs and identify them in
+     *            the completion notification.
      *            </p>
      */
     public void setJobTag(String jobTag) {
@@ -450,8 +464,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Unique identifier you specify to identify the job in the completion
-     * status published to the Amazon Simple Notification Service topic.
+     * An identifier you specify that's returned in the completion notification
+     * that's published to your Amazon Simple Notification Service topic. For
+     * example, you can use <code>JobTag</code> to group related jobs and
+     * identify them in the completion notification.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -462,9 +478,11 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            Unique identifier you specify to identify the job in the
-     *            completion status published to the Amazon Simple Notification
-     *            Service topic.
+     *            An identifier you specify that's returned in the completion
+     *            notification that's published to your Amazon Simple
+     *            Notification Service topic. For example, you can use
+     *            <code>JobTag</code> to group related jobs and identify them in
+     *            the completion notification.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

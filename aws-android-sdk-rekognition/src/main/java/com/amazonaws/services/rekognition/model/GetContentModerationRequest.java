@@ -21,16 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the content moderation analysis results for a Amazon Rekognition Video
+ * Gets the unsafe content analysis results for a Amazon Rekognition Video
  * analysis started by <a>StartContentModeration</a>.
  * </p>
  * <p>
- * Content moderation analysis of a video is an asynchronous operation. You
- * start analysis by calling <a>StartContentModeration</a> which returns a job
+ * Unsafe content analysis of a video is an asynchronous operation. You start
+ * analysis by calling <a>StartContentModeration</a> which returns a job
  * identifier (<code>JobId</code>). When analysis finishes, Amazon Rekognition
  * Video publishes a completion status to the Amazon Simple Notification Service
  * topic registered in the initial call to <code>StartContentModeration</code>.
- * To get the results of the content moderation analysis, first check that the
+ * To get the results of the unsafe content analysis, first check that the
  * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
  * so, call <code>GetContentModeration</code> and pass the job identifier (
  * <code>JobId</code>) from the initial call to
@@ -41,9 +41,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Rekognition Devlopers Guide.
  * </p>
  * <p>
- * <code>GetContentModeration</code> returns detected content moderation labels,
- * and the time they are detected, in an array, <code>ModerationLabels</code>,
- * of <a>ContentModerationDetection</a> objects.
+ * <code>GetContentModeration</code> returns detected unsafe content labels, and
+ * the time they are detected, in an array, <code>ModerationLabels</code>, of
+ * <a>ContentModerationDetection</a> objects.
  * </p>
  * <p>
  * By default, the moderated labels are returned sorted by time, in milliseconds
@@ -69,7 +69,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetContentModerationRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier for the content moderation job. Use <code>JobId</code> to
+     * The identifier for the unsafe content job. Use <code>JobId</code> to
      * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
@@ -96,8 +96,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <p>
      * If the previous response was incomplete (because there is more data to
      * retrieve), Amazon Rekognition returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of content
-     * moderation labels.
+     * You can use this pagination token to retrieve the next set of unsafe
+     * content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,7 +122,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for the content moderation job. Use <code>JobId</code> to
+     * The identifier for the unsafe content job. Use <code>JobId</code> to
      * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
@@ -132,8 +132,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @return <p>
-     *         The identifier for the content moderation job. Use
-     *         <code>JobId</code> to identify the job in a subsequent call to
+     *         The identifier for the unsafe content job. Use <code>JobId</code>
+     *         to identify the job in a subsequent call to
      *         <code>GetContentModeration</code>.
      *         </p>
      */
@@ -143,7 +143,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for the content moderation job. Use <code>JobId</code> to
+     * The identifier for the unsafe content job. Use <code>JobId</code> to
      * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
@@ -153,7 +153,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the content moderation job. Use
+     *            The identifier for the unsafe content job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
      *            <code>GetContentModeration</code>.
      *            </p>
@@ -164,7 +164,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for the content moderation job. Use <code>JobId</code> to
+     * The identifier for the unsafe content job. Use <code>JobId</code> to
      * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
@@ -177,7 +177,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the content moderation job. Use
+     *            The identifier for the unsafe content job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
      *            <code>GetContentModeration</code>.
      *            </p>
@@ -262,8 +262,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <p>
      * If the previous response was incomplete (because there is more data to
      * retrieve), Amazon Rekognition returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of content
-     * moderation labels.
+     * You can use this pagination token to retrieve the next set of unsafe
+     * content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -273,7 +273,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      *         If the previous response was incomplete (because there is more
      *         data to retrieve), Amazon Rekognition returns a pagination token
      *         in the response. You can use this pagination token to retrieve
-     *         the next set of content moderation labels.
+     *         the next set of unsafe content labels.
      *         </p>
      */
     public String getNextToken() {
@@ -284,8 +284,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <p>
      * If the previous response was incomplete (because there is more data to
      * retrieve), Amazon Rekognition returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of content
-     * moderation labels.
+     * You can use this pagination token to retrieve the next set of unsafe
+     * content labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -295,7 +295,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      *            If the previous response was incomplete (because there is more
      *            data to retrieve), Amazon Rekognition returns a pagination
      *            token in the response. You can use this pagination token to
-     *            retrieve the next set of content moderation labels.
+     *            retrieve the next set of unsafe content labels.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -306,8 +306,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      * <p>
      * If the previous response was incomplete (because there is more data to
      * retrieve), Amazon Rekognition returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of content
-     * moderation labels.
+     * You can use this pagination token to retrieve the next set of unsafe
+     * content labels.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -320,7 +320,7 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
      *            If the previous response was incomplete (because there is more
      *            data to retrieve), Amazon Rekognition returns a pagination
      *            token in the response. You can use this pagination token to
-     *            retrieve the next set of content moderation labels.
+     *            retrieve the next set of unsafe content labels.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
