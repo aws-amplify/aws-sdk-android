@@ -19,10 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about a single type of moderated content found in an
- * image or video. Each type of moderated content has a label within a
- * hierarchical taxonomy. For more information, see Detecting Unsafe Content in
- * the Amazon Rekognition Developer Guide.
+ * Provides information about a single type of unsafe content found in an image
+ * or video. Each type of moderated content has a label within a hierarchical
+ * taxonomy. For more information, see Detecting Unsafe Content in the Amazon
+ * Rekognition Developer Guide.
  * </p>
  */
 public class ModerationLabel implements Serializable {
@@ -44,7 +44,7 @@ public class ModerationLabel implements Serializable {
 
     /**
      * <p>
-     * The label name for the type of content detected in the image.
+     * The label name for the type of unsafe content detected in the image.
      * </p>
      */
     private String name;
@@ -152,11 +152,12 @@ public class ModerationLabel implements Serializable {
 
     /**
      * <p>
-     * The label name for the type of content detected in the image.
+     * The label name for the type of unsafe content detected in the image.
      * </p>
      *
      * @return <p>
-     *         The label name for the type of content detected in the image.
+     *         The label name for the type of unsafe content detected in the
+     *         image.
      *         </p>
      */
     public String getName() {
@@ -165,11 +166,12 @@ public class ModerationLabel implements Serializable {
 
     /**
      * <p>
-     * The label name for the type of content detected in the image.
+     * The label name for the type of unsafe content detected in the image.
      * </p>
      *
      * @param name <p>
-     *            The label name for the type of content detected in the image.
+     *            The label name for the type of unsafe content detected in the
+     *            image.
      *            </p>
      */
     public void setName(String name) {
@@ -178,14 +180,15 @@ public class ModerationLabel implements Serializable {
 
     /**
      * <p>
-     * The label name for the type of content detected in the image.
+     * The label name for the type of unsafe content detected in the image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param name <p>
-     *            The label name for the type of content detected in the image.
+     *            The label name for the type of unsafe content detected in the
+     *            image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
