@@ -37,10 +37,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -395,7 +398,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     public void testHostedUIObjectNotNullAfterAppRestarted() {
         auth = initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
         auth.signOut();
-        mockRestartingApp();
+        mockRestartingApp(UserState.SIGNED_OUT);
         assertNotNull(auth.hostedUI);
     }
 
@@ -403,18 +406,17 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     public void testHostedUIGetTokens() throws Exception {
         auth = initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
         mockHostedUISignIn();
-        auth.getTokens();
+        Tokens tokens = auth.getTokens(false);
+        assertNotNull(tokens);
     }
 
     @Test
     public void testHostedUIGetTokensAfterAppRestarted() throws Exception {
         auth = initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
-
         mockHostedUISignIn();
-        auth.getTokens();
-
-        mockRestartingApp();
-        assertNotNull(auth.getTokens());
+        mockRestartingApp(UserState.SIGNED_IN);
+        Tokens tokens = auth.getTokens(false);
+        assertNotNull(tokens);
     }
 
     private void signInAndVerifySignIn() {
@@ -470,34 +472,42 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
         }
     }
 
+    // Note that most tests create valid JWT tokens with expiry dates in the past. However, because
+    // we want to assert that HostedUI can get tokens, without making a network call to refresh a
+    // session, we're going to mock up valid session data, and ensure we call `getTokens` with
+    // `waitForSignIn = false`.
     private void mockHostedUISignIn() throws JSONException {
         AuthUserSession authUserSession = new AuthUserSession(
-                new IdToken(getValidJWT(-3600L)),
-                new AccessToken(getValidJWT(-3600L)),
-                new RefreshToken(getValidJWT(-360000L)));
+                new IdToken(getValidJWT(3600L)),
+                new AccessToken(getValidJWT(3600L)),
+                new RefreshToken(getValidJWT(360000L)));
+
+        Context targetContext = InstrumentationRegistry.getTargetContext();
 
         AWSKeyValueStore storeForHostedUI = new AWSKeyValueStore(
-                InstrumentationRegistry.getTargetContext(),
+                targetContext,
                 "CognitoIdentityProviderCache",
                 true);
 
+        final Set<String> scopes = new HashSet<String>(Arrays.asList("profile", "openid", "email"));
+
         LocalDataManager.cacheSession(storeForHostedUI,
-                InstrumentationRegistry.getTargetContext(),
+                targetContext,
                 getPackageConfigure("cognitoauth").getString("AppClientId"),
                 getPackageConfigure("cognitoauth").getString("Username"),
                 authUserSession,
-                null);
+                scopes);
 
         // Set the AWSMobileClient metadata that is specific to HostedUI
         auth.mStore.set(FEDERATION_ENABLED_KEY, "true");
         auth.mStore.set(HOSTED_UI_KEY, "dummyJson");
         auth.mStore.set(SIGN_IN_MODE, SignInMode.HOSTED_UI.toString());
         auth.mStore.set(PROVIDER_KEY, auth.getLoginKey());
-        auth.mStore.set(TOKEN_KEY, getValidJWT(-3600L));
+        auth.mStore.set(TOKEN_KEY, getValidJWT(3600L));
     }
 
-    private void mockRestartingApp() {
+    private void mockRestartingApp(UserState expectedUserState) {
         auth = null;
-        auth = initializeAWSMobileClient(appContext, UserState.SIGNED_OUT);
+        auth = initializeAWSMobileClient(appContext, expectedUserState);
     }
 }
