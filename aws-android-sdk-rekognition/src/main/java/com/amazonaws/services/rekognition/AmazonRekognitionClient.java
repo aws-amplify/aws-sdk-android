@@ -1139,10 +1139,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Detects explicit or suggestive adult content in a specified JPEG or PNG
-     * format image. Use <code>DetectModerationLabels</code> to moderate images
-     * depending on your requirements. For example, you might want to filter
-     * images that contain nudity, but not images containing suggestive content.
+     * Detects unsafe content in a specified JPEG or PNG format image. Use
+     * <code>DetectModerationLabels</code> to moderate images depending on your
+     * requirements. For example, you might want to filter images that contain
+     * nudity, but not images containing suggestive content.
      * </p>
      * <p>
      * To filter images, use the labels returned by
@@ -1486,17 +1486,17 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Gets the content moderation analysis results for a Amazon Rekognition
-     * Video analysis started by <a>StartContentModeration</a>.
+     * Gets the unsafe content analysis results for a Amazon Rekognition Video
+     * analysis started by <a>StartContentModeration</a>.
      * </p>
      * <p>
-     * Content moderation analysis of a video is an asynchronous operation. You
+     * Unsafe content analysis of a video is an asynchronous operation. You
      * start analysis by calling <a>StartContentModeration</a> which returns a
      * job identifier (<code>JobId</code>). When analysis finishes, Amazon
      * Rekognition Video publishes a completion status to the Amazon Simple
      * Notification Service topic registered in the initial call to
-     * <code>StartContentModeration</code>. To get the results of the content
-     * moderation analysis, first check that the status value published to the
+     * <code>StartContentModeration</code>. To get the results of the unsafe
+     * content analysis, first check that the status value published to the
      * Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
      * <code>GetContentModeration</code> and pass the job identifier (
      * <code>JobId</code>) from the initial call to
@@ -1507,8 +1507,8 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * Rekognition Devlopers Guide.
      * </p>
      * <p>
-     * <code>GetContentModeration</code> returns detected content moderation
-     * labels, and the time they are detected, in an array,
+     * <code>GetContentModeration</code> returns detected unsafe content labels,
+     * and the time they are detected, in an array,
      * <code>ModerationLabels</code>, of <a>ContentModerationDetection</a>
      * objects.
      * </p>
@@ -2678,24 +2678,22 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Starts asynchronous detection of explicit or suggestive adult content in
-     * a stored video.
+     * Starts asynchronous detection of unsafe content in a stored video.
      * </p>
      * <p>
      * Amazon Rekognition Video can moderate content in a video stored in an
      * Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the
      * filename of the video. <code>StartContentModeration</code> returns a job
      * identifier (<code>JobId</code>) which you use to get the results of the
-     * analysis. When content moderation analysis is finished, Amazon
-     * Rekognition Video publishes a completion status to the Amazon Simple
-     * Notification Service topic that you specify in
-     * <code>NotificationChannel</code>.
+     * analysis. When unsafe content analysis is finished, Amazon Rekognition
+     * Video publishes a completion status to the Amazon Simple Notification
+     * Service topic that you specify in <code>NotificationChannel</code>.
      * </p>
      * <p>
-     * To get the results of the content moderation analysis, first check that
-     * the status value published to the Amazon SNS topic is
-     * <code>SUCCEEDED</code>. If so, call <a>GetContentModeration</a> and pass
-     * the job identifier (<code>JobId</code>) from the initial call to
+     * To get the results of the unsafe content analysis, first check that the
+     * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
+     * If so, call <a>GetContentModeration</a> and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
      * <code>StartContentModeration</code>.
      * </p>
      * <p>

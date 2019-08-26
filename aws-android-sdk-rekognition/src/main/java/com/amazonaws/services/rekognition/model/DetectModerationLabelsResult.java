@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class DetectModerationLabelsResult implements Serializable {
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      */
     private java.util.List<ModerationLabel> moderationLabels;
@@ -36,12 +36,12 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      *
      * @return <p>
-     *         Array of detected Moderation labels and the time, in millseconds
+     *         Array of detected Moderation labels and the time, in milliseconds
      *         from the start of the video, they were detected.
      *         </p>
      */
@@ -51,13 +51,13 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      */
     public void setModerationLabels(java.util.Collection<ModerationLabel> moderationLabels) {
@@ -71,8 +71,8 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +80,7 @@ public class DetectModerationLabelsResult implements Serializable {
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,8 +98,8 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,7 +107,7 @@ public class DetectModerationLabelsResult implements Serializable {
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

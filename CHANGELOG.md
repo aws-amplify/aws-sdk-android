@@ -8,6 +8,12 @@
     See [issue #873](https://github.com/aws-amplify/aws-sdk-android/issues/873) and
     [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
 
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Rekognition
+  - Amazon Transcribe
+
 ## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
 ### Bug Fixes
