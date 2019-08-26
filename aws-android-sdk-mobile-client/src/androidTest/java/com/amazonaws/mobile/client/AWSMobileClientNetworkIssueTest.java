@@ -167,12 +167,17 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
         awsKeyValueStore.put(AWSMobileClient.TOKEN_KEY, getValidJWT(-3600L));
         awsKeyValueStore.put(AWSMobileClient.IDENTITY_ID_KEY, "");
         writeUserPoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), username, -3600L);
+
+        Object originalClient = getField(auth.userpool, CognitoUserPool.class, "client");
         setField(auth.userpool, CognitoUserPool.class, "client", mockLowLevel);
+
         try {
             auth.getUserAttributes();
             fail("Should throw exception for network issue");
         } catch (Exception e) {
             assertTrue("Deep cause should be network exception", e.getCause().getCause() instanceof UnknownHostException);
+        } finally {
+            setField(auth.userpool, CognitoUserPool.class, "client", originalClient);
         }
     }
 
@@ -201,15 +206,22 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     public void testNetworkExceptionPropagation_getTokens_federationStep1() throws Exception {
         reinitialize();
         auth.signIn(USERNAME, "1234Password!", null);
-//        setField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib", mockIdentityLowLevelGetId);
+
+        Object originalCib = getField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "cib");
         setField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "cib", mockIdentityLowLevelGetId);
+
+        Object originalIdentityId = getField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "identityId");
         setField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "identityId", null);
+
         auth.mFederatedLoginsMap.clear();
         try {
             auth.getCredentials();
             fail("Should throw exception for network issue");
         } catch (Exception e) {
             assertTrue("Deep cause should be network exception", e.getCause().getCause() instanceof UnknownHostException);
+        } finally {
+            setField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "cib", originalCib);
+            setField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "identityId", originalIdentityId);
         }
     }
 
@@ -217,20 +229,32 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     public void testNetworkExceptionPropagation_getTokens_federationStep2() throws Exception {
         reinitialize();
         auth.signIn(USERNAME, "1234Password!", null);
+
+        Object originalCib = getField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib");
         setField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib", mockIdentityLowLevelGetIdAndGetCredentials);
+
         auth.mFederatedLoginsMap.clear();
         try {
             auth.getCredentials();
             fail("Should throw exception for network issue");
         } catch (Exception e) {
             assertTrue("Deep cause should be network exception", e.getCause().getCause() instanceof UnknownHostException);
+        } finally {
+            setField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib", originalCib);
         }
     }
 
+    public static Object getField(Object obj, Class clazz, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        Object o = field.get(obj);
+        return o;
+    }
+
     public static void setField(Object obj, Class clazz, String fieldName, Object value) throws NoSuchFieldException, IllegalAccessException {
-        Field identityProviderCibField = clazz.getDeclaredField(fieldName);
-        identityProviderCibField.setAccessible(true);
-        identityProviderCibField.set(obj, value);
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        field.set(obj, value);
     }
 
     AmazonCognitoIdentityProvider mockLowLevel = new AbstractAmazonCognitoIdentityProvider() {
