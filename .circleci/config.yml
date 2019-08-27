@@ -1172,7 +1172,7 @@ jobs:
           name: "Configure AWS resources"
           command: |
             cd ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample
-            git clone https://github.com/AaronZyLee/amplify-cli.git -b integtest --single-branch
+            git clone https://github.com/aws-amplify/amplify-cli.git -b integtest --single-branch
             cd amplify-cli && yarn cache clean --force
             yarn && yarn config set workspaces-experimental true && yarn run production-build
             cd packages/amplify-ui-tests
