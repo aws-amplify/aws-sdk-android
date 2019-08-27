@@ -1094,6 +1094,133 @@ jobs:
           command: |
             python3 CircleciScripts/get_testresult_on_devicefarm.py "$(pwd)/devicefarm_configure.json" "${LAST_RUN_COMMITID}"
 
+  run_PhotoAlbum_uitest:
+    docker:
+      - image: circleci/android:api-27-node
+    environment:
+      JVM_OPTS: -Xms1024m -Xmx3584m
+      JAVA_TOOL_OPTIONS: -Xms1024m -Xmx3584m
+      MAVEN_OPTS: -Xms1024m -Xmx3584m 
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3584m -XX:+HeapDumpOnOutOfMemoryError"'
+    steps:
+      - checkout
+      - run:
+          name: installing aws cli
+          command: |
+            sudo pip install awscli 
+      - run:
+          name: configuring aws profile
+          command: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile default 
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile default 
+            aws configure set region $AWS_DEFAULT_REGION --profile default 
+      ## Android SDK build requires these platforms
+      - run:
+          name: Install Android platforms 18, 21, 23
+          command: |
+            sdkmanager "platforms;android-18" "platforms;android-21" "platforms;android-23"
+            sdkmanager --update
+      - run:
+         name: Install Maven
+         command: |
+            sudo apt-get update
+            sudo apt-get install maven
+      ## HOME and CIRCLE_WORKING_DIRECTORY fail to give the full path to pwd 
+      - run:
+          name: Configure environment variables
+          command: |
+            echo "Home: ${HOME}"
+            echo "JAVA_HOME: $JAVA_HOME"
+            echo "ANDROID_HOME: $ANDROID_HOME"
+            echo "PATH: $PATH"
+            echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
+            echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+            echo "export ANDROID_SDK_ROOT=$ANDROID_HOME" >> $BASH_ENV
+            circleci_root_directory=$(pwd)
+            echo "export circleci_root_directory=$circleci_root_directory" >> $BASH_ENV
+            echo 'export appSync_branch_to_uitest="master"' >> $BASH_ENV 
+            echo "export android_sdk_branch_to_uitest=$CIRCLE_BRANCH" >> $BASH_ENV
+      # Set master to test the latest released version of SDK
+      # echo 'export appSync_branch_to_uitest="master"' >> $BASH_ENV
+      # echo 'export android_sdk_branch_to_uitest="master"' >> $BASH_ENV 
+      - run:
+          name: Install json parser, lxml
+          command: |
+            sudo apt-get -y install python3-pip
+            sudo pip3 install demjson
+            sudo pip3 install lxml
+      - run:
+          name: "Checkout PhotoAlbum Sample App Repo"
+          command: |
+            cd ${circleci_root_directory}
+            git clone https://github.com/awslabs/aws-sdk-android-samples.git -b e2e-tests-sample-app sample_app_repo 
+      - restore_cache:
+          key: jars-{{ checksum "sample_app_repo/PhotoAlbumSample/build.gradle" }}-{{ checksum "sample_app_repo/PhotoAlbumSample/app/build.gradle" }}
+      ## Pre-Download and cache to improve build time
+      - run:
+          name: Download Gradle Dependencies
+          command: |
+            cd ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample
+            bash gradlew app:dependencies
+            sudo npm install -g apollo-codegen@0.19.1 
+      - save_cache:
+          paths:
+          - ~/.gradle
+          key: jars-{{ checksum "sample_app_repo/PhotoAlbumSample/build.gradle" }}-{{ checksum  "sample_app_repo/PhotoAlbumSample/app/build.gradle" }}
+      ## run_configure_aws_resources.py fails to access Project Level Environment Variables inside nodeJS script call
+      - run:
+          name: "Configure AWS resources"
+          command: |
+            cd ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample
+            git clone https://github.com/AaronZyLee/amplify-cli.git -b integtest --single-branch
+            cd amplify-cli && yarn cache clean --force
+            yarn && yarn config set workspaces-experimental true && yarn run production-build
+            cd packages/amplify-ui-tests
+            cp ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample/simple_model.graphql schemas/simple_model.graphql
+            npm run config ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample android auth storage api
+      - run:
+          name: "Set-up Mobile SDK Dependencies"
+          command: |
+            cd ${circleci_root_directory}/sample_app_repo/CircleciScripts
+            python3 run_setup_mobile_sdk_dependencies.py -n PhotoAlbumSample -a ${circleci_root_directory}/sample_app_repo
+      - run:
+          name: Set-up emulator
+          command: |
+            echo y | sdkmanager "system-images;android-23;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-23;default;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: |
+            cd ${ANDROID_HOME}/emulator;ls
+            export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib:/usr/lib64:/usr/lib:${ANDROID_HOME}/emulator/lib
+            sudo apt-get install libpulse0
+            ${ANDROID_HOME}/emulator/emulator -avd test -no-boot-anim -no-window -noaudio -accel auto -verbose 
+          background: true 
+      - run:
+          name: Launch logcat
+          command: 
+            adb logcat > logcat.log
+          background: true
+      - run:
+          name: Wait for emulator
+          command: |
+            circle-android wait-for-boot
+            cd ${circleci_root_directory}/sample_app_repo/CircleciScripts
+            python3 unlock_emulatorscreen.py 
+      - run:
+          name: "Build and run UITest"
+          command: |
+            cd ${circleci_root_directory}/sample_app_repo/CircleciScripts
+            python3 run_build_and_uitest.py -n PhotoAlbumSample -a ${circleci_root_directory}/sample_app_repo -c ${circleci_root_directory}
+      ## run_cleanup_uitests fails to access Project Level Environment Variables inside nodeJS script call
+      - run: 
+          name: "Tear-down AWS resources"
+          command: |
+            cd ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample/amplify-cli/packages/amplify-ui-tests
+            npm run delete ${circleci_root_directory}/sample_app_repo/PhotoAlbumSample
+          when: always
+      - store_artifacts:
+          path: uitest_android_results
+
 
 workflows:
   version: 2
@@ -1487,6 +1614,13 @@ workflows:
             - Core
             - CognitoIdentityProvider
             - sagemakerruntime
+      - run_PhotoAlbum_uitest:
+          filters:
+            branches:
+              only:
+                - master
+                - develop 
+                - e2e-testing 
       - merge_to_master:
           requires:
             - build_api10
