@@ -13,14 +13,10 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.servces.connect;
+package com.amazonaws.services.connect;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 
-import com.amazonaws.services.connect.AmazonConnectClient;
 import com.amazonaws.services.connect.model.ListUsersRequest;
 import com.amazonaws.services.connect.model.ListUsersResult;
 import com.amazonaws.services.connect.model.UserSummary;
@@ -30,11 +26,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumented test, which will execute on an Android device.
