@@ -7,6 +7,8 @@
   - Fix issue where MobileClient would return invalid tokens after initialization when using Hosted UI.
     See [issue #873](https://github.com/aws-amplify/aws-sdk-android/issues/873) and
     [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
+- **Amazon Cognito Identity Provider**
+  - Use internal username for computing secret hash that is passed in challenge response. See [Issue# 889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
 
 ### Misc. Updates
 
