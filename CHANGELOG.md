@@ -13,6 +13,7 @@
 ### Misc. Updates
 
 - Model updates for the following services
+  - Amazon Connect
   - Amazon Rekognition
   - Amazon Transcribe
 
