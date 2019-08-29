@@ -104,7 +104,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * (Optional) Specifies the minimum confidence in the face match to return.
      * For example, don't return any matches where confidence in matches is less
-     * than 70%.
+     * than 70%. The default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -361,7 +361,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * (Optional) Specifies the minimum confidence in the face match to return.
      * For example, don't return any matches where confidence in matches is less
-     * than 70%.
+     * than 70%. The default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -370,7 +370,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * @return <p>
      *         (Optional) Specifies the minimum confidence in the face match to
      *         return. For example, don't return any matches where confidence in
-     *         matches is less than 70%.
+     *         matches is less than 70%. The default value is 80%.
      *         </p>
      */
     public Float getFaceMatchThreshold() {
@@ -381,7 +381,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * (Optional) Specifies the minimum confidence in the face match to return.
      * For example, don't return any matches where confidence in matches is less
-     * than 70%.
+     * than 70%. The default value is 80%.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -390,7 +390,8 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * @param faceMatchThreshold <p>
      *            (Optional) Specifies the minimum confidence in the face match
      *            to return. For example, don't return any matches where
-     *            confidence in matches is less than 70%.
+     *            confidence in matches is less than 70%. The default value is
+     *            80%.
      *            </p>
      */
     public void setFaceMatchThreshold(Float faceMatchThreshold) {
@@ -401,7 +402,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * (Optional) Specifies the minimum confidence in the face match to return.
      * For example, don't return any matches where confidence in matches is less
-     * than 70%.
+     * than 70%. The default value is 80%.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -413,7 +414,8 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * @param faceMatchThreshold <p>
      *            (Optional) Specifies the minimum confidence in the face match
      *            to return. For example, don't return any matches where
-     *            confidence in matches is less than 70%.
+     *            confidence in matches is less than 70%. The default value is
+     *            80%.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

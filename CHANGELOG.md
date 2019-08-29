@@ -5,15 +5,28 @@
 ### New Features
 
 - **AWS Mobile Client**
-  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID)
+  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID).
 
 - **Amazon CognitoIdentityProvider**
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
   - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
 
-### Bug Fixes
+## [Release 2.15.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.2)
 
-  - Fixed a bug in Cognito custom authentication flow where internal username was required instead of external username for successfully completing the custom auth flow. See [Issue #889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
+### Bug Fixes
+- **AWS Mobile Client**
+  - Fix issue where MobileClient would return invalid tokens after initialization when using Hosted UI.
+    See [issue #873](https://github.com/aws-amplify/aws-sdk-android/issues/873) and
+    [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
+- **Amazon Cognito Identity Provider**
+  - Use internal username for computing secret hash that is passed in challenge response. See [Issue# 889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Connect
+  - Amazon Rekognition
+  - Amazon Transcribe
 
 ## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
