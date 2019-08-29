@@ -381,9 +381,7 @@ public class CognitoUserPool {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
-                            callback.onSuccess(user, signUpResult.getUserConfirmed(),
-                                    new CognitoUserCodeDeliveryDetails(
-                                            signUpResult.getCodeDeliveryDetails()));
+                            callback.onSuccess(user, signUpResult);
                         }
                     };
                 } catch (final Exception e) {
@@ -420,8 +418,7 @@ public class CognitoUserPool {
             final SignUpResult signUpResult = signUpInternal(userId, password, userAttributes,
                     validationData);
             final CognitoUser user = getUser(userId);
-            callback.onSuccess(user, signUpResult.getUserConfirmed(),
-                    new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
+            callback.onSuccess(user, signUpResult);
         } catch (final Exception e) {
             callback.onFailure(e);
         }
@@ -436,7 +433,7 @@ public class CognitoUserPool {
      * @param validationData    REQUIRED: Validation key value pairs, these will be passed to pre
      *                          and post registration lambda functions.
      *
-     * @return CognitoUser
+     * @return SignUpResult
      */
     private SignUpResult signUpInternal(String userId, String password,
                                               CognitoUserAttributes userAttributes,
