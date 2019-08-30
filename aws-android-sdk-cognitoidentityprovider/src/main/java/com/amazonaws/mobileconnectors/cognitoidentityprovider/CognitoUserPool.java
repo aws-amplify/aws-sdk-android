@@ -484,11 +484,15 @@ public class CognitoUserPool {
         final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
         if (awsKeyValueStore.contains(csiLastUserKey)) {
-            return getUser(awsKeyValueStore.get(csiLastUserKey));
-        } else {
-            return getUser();
+            try {
+                return getUser(awsKeyValueStore.get(csiLastUserKey));
+            } catch (Exception e) {
+                //  Exception like javax.crypto.AEADBadTagException
+            }
         }
+        return getUser();
     }
+
 
     /**
      * Returns a {@link CognitoUser} with no username set.
