@@ -19,10 +19,13 @@ package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 
 import android.content.Context;
 
+import com.amazonaws.kinesisvideo.client.mediasource.AudioMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.UnknownMediaSourceException;
+import com.amazonaws.kinesisvideo.internal.mediasource.multitrack.MultiTrackMediaSource;
+import com.amazonaws.kinesisvideo.internal.mediasource.multitrack.MultiTrackMediaSourceConfiguration;
 
 public final class AndroidMediaSourceFactory {
 
@@ -34,6 +37,8 @@ public final class AndroidMediaSourceFactory {
         if (CameraMediaSourceConfiguration.MEDIA_SOURCE_TYPE
             .equals(configuration.getMediaSourceType())) {
             return createAndroidCameraMediaSource(streamName, context, (CameraMediaSourceConfiguration) configuration);
+        } else if (configuration instanceof MultiTrackMediaSourceConfiguration) {
+            return createAndroidCameraMediaSource(streamName, context, (AndroidAudioVideoMediaSourceConfiguration) configuration);
         } else {
             throw new UnknownMediaSourceException(configuration.getMediaSourceType());
         }
@@ -45,6 +50,15 @@ public final class AndroidMediaSourceFactory {
             final CameraMediaSourceConfiguration configuration) {
 
         final AndroidCameraMediaSource mediaSource = new AndroidCameraMediaSource(streamName, context);
+        mediaSource.configure(configuration);
+        return mediaSource;
+    }
+
+    private static AndroidAudioVideoMediaSource createAndroidCameraMediaSource(
+            final String streamName,
+            final Context context,
+            final AndroidAudioVideoMediaSourceConfiguration configuration) {
+        final AndroidAudioVideoMediaSource mediaSource = new AndroidAudioVideoMediaSource(streamName, context);
         mediaSource.configure(configuration);
         return mediaSource;
     }

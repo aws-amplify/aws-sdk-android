@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.service;
@@ -76,7 +76,12 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             if (streamHandle != NativeKinesisVideoProducerJni.INVALID_STREAM_HANDLE_VALUE) {
                 // The exception can be null indicating successful completion
                 final int statusCode = getStatusCodeFromException(object);
-
+                for (final StreamingInfo stream : mStreams) {
+                    if (stream.getStream().getStreamHandle() == streamHandle) {
+                        log.info("Complete callback triggered for "
+                                + stream.getStream().getStreamName() + " with statuscode " + statusCode);
+                    }
+                }
                 if (statusCode != HTTP_OK) {
                     try {
                         stream.streamTerminated(uploadHandle, statusCode);
@@ -242,7 +247,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             final long timeout,
             @Nullable final byte[] authData,
             final int authType,
-            final long customData) throws ProducerException {
+            final long streamHandle,
+            final KinesisVideoProducerStream stream) throws ProducerException {
 
         Preconditions.checkState(isInitialized(), "Service callbacks object should be initialized first");
         final long delay = calculateRelativeServiceCallAfter(callAfter);
@@ -267,7 +273,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                 }
 
                 try {
-                    kinesisVideoProducer.describeStreamResult(customData, streamDescription, statusCode);
+                    kinesisVideoProducer.describeStreamResult(stream, streamHandle, streamDescription, statusCode);
                 } catch (final ProducerException e) {
                     throw new RuntimeException(e);
                 }
@@ -285,7 +291,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             final long timeout,
             @Nullable final byte[] authData,
             final int authType,
-            final long customData) throws ProducerException {
+            final long streamHandle,
+            final KinesisVideoProducerStream stream) throws ProducerException {
 
         Preconditions.checkState(isInitialized(), "Service callbacks object should be initialized first");
         final long delay = calculateRelativeServiceCallAfter(callAfter);
@@ -313,7 +320,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                 }
 
                 try {
-                    kinesisVideoProducer.getStreamingEndpointResult(customData, endpoint, statusCode);
+                    kinesisVideoProducer.getStreamingEndpointResult(stream, streamHandle, endpoint, statusCode);
                 } catch (final ProducerException e) {
                     throw new RuntimeException(e);
                 }
@@ -330,7 +337,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             final long timeout,
             @Nullable final byte[] authData,
             final int authType,
-            final long customData) throws ProducerException {
+            final long streamHandle,
+            final KinesisVideoProducerStream stream) throws ProducerException {
 
         Preconditions.checkState(isInitialized(), "Service callbacks object should be initialized first");
         final long delay = calculateRelativeServiceCallAfter(callAfter);
@@ -375,7 +383,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
 
                 try {
                     kinesisVideoProducer.getStreamingTokenResult(
-                            customData,
+                            stream,
+                            streamHandle,
                             serializedCredentials,
                             expiration,
                             statusCode);
@@ -400,7 +409,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             final long timeout,
             @Nullable final byte[] authData,
             final int authType,
-            final long customData) throws ProducerException {
+            final KinesisVideoProducerStream kinesisVideoProducerStream) throws ProducerException {
 
         Preconditions.checkState(isInitialized(), "Service callbacks object should be initialized first");
         final long delay = calculateRelativeServiceCallAfter(callAfter);
@@ -408,14 +417,6 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
         final Runnable task = new Runnable() {
             @Override
             public void run() {
-                // find the right stream
-                KinesisVideoProducerStream kinesisVideoProducerStream = null;
-                for (final StreamingInfo streamingInfo : mStreams) {
-                    if (streamingInfo.getStream().getStreamHandle() == customData) {
-                        kinesisVideoProducerStream = streamingInfo.getStream();
-                        break;
-                    }
-                }
 
                 if (kinesisVideoProducerStream == null) {
                     throw new IllegalStateException("Couldn't find the correct stream");
@@ -460,7 +461,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
 
                 try {
                     log.info("putStreamResult uploadHandle " + clientUploadHandle + " status " + statusCode);
-                    kinesisVideoProducer.putStreamResult(customData, clientUploadHandle, statusCode);
+                    kinesisVideoProducer.putStreamResult(kinesisVideoProducerStream, clientUploadHandle, statusCode);
                 } catch (final ProducerException e) {
                     throw new RuntimeException(e);
                 }
@@ -477,7 +478,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                             final long timeout,
                             @Nullable final byte[] authData,
                             final int authType,
-                            final long customData) throws ProducerException {
+                            final long streamHandle,
+                            final KinesisVideoProducerStream stream) throws ProducerException {
 
         Preconditions.checkState(isInitialized(), "Service callbacks object should be initialized first");
         final long delay = calculateRelativeServiceCallAfter(callAfter);
@@ -514,7 +516,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                 }
 
                 try {
-                    kinesisVideoProducer.tagResourceResult(customData, statusCode);
+                    kinesisVideoProducer.tagResourceResult(stream, streamHandle, statusCode);
                 } catch (final ProducerException e) {
                     throw new RuntimeException(e);
                 }

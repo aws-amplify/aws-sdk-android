@@ -1,24 +1,24 @@
-
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.client;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
+import static com.amazonaws.kinesisvideo.internal.producer.ReadResult.INVALID_UPLOAD_HANDLE_VALUE;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -155,27 +155,48 @@ public class NativeKinesisVideoClient extends AbstractKinesisVideoClient {
     @Override
     public void unregisterMediaSource(@NonNull final MediaSource mediaSource) throws KinesisVideoException {
         Preconditions.checkNotNull(mediaSource);
+        mediaSource.stop();
         super.unregisterMediaSource(mediaSource);
 
-        final KinesisVideoProducerStream producerStream = mMediaSourceToStreamMap.get(mediaSource);
+        final KinesisVideoProducerStream producerStream = mMediaSourceToStreamMap.remove(mediaSource);
+        try {
+            // The following call will blocked till the stopped event completes
+            producerStream.stopStreamSync();
+        } finally {
+            kinesisVideoProducer.freeStream(producerStream);
+            mServiceCallbacks.removeStream(producerStream);
+        }
+    }
 
-        // The following call will not block for the stopped event
-        producerStream.stopStream();
+    @Override
+    public void freeMediaSource(@NonNull final MediaSource mediaSource) throws KinesisVideoException {
+        Preconditions.checkNotNull(mediaSource);
+        super.freeMediaSource(mediaSource);
 
-        kinesisVideoProducer.freeStream(producerStream);
-        mServiceCallbacks.removeStream(producerStream);
+        final KinesisVideoProducerStream producerStream = mMediaSourceToStreamMap.remove(mediaSource);
+        try {
+            // The following call will not blocked during the stopped event
+            producerStream.streamClosed(INVALID_UPLOAD_HANDLE_VALUE);
+        } finally {
+            kinesisVideoProducer.freeStream(producerStream);
+            mServiceCallbacks.removeStream(producerStream);
+        }
     }
 
     @Override
     public void stopAllMediaSources() throws KinesisVideoException {
         super.stopAllMediaSources();
-        for (final MediaSource mediaSource : mMediaSources) {
-            final KinesisVideoProducerStream producerStream = mMediaSourceToStreamMap.get(mediaSource);
-            try {
-                producerStream.stopStreamSync();
-            } catch (final KinesisVideoException e) {
-                mLog.exception(e, "Failed to stop media source %s due to Exception ", mediaSource);
+        try {
+            for (final MediaSource mediaSource : mMediaSources) {
+                final KinesisVideoProducerStream producerStream = mMediaSourceToStreamMap.get(mediaSource);
+                try {
+                    producerStream.stopStreamSync();
+                } catch (final KinesisVideoException e) {
+                    mLog.exception(e, "Failed to stop media source %s due to Exception ", mediaSource);
+                }
             }
+        } finally {
+            mMediaSourceToStreamMap.clear();
         }
     }
 

@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.producer;
@@ -25,6 +25,12 @@ import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.nio.ByteBuffer;
+import java.util.UUID;
+
+import static com.amazonaws.kinesisvideo.producer.MkvTrackInfoType.VIDEO;
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_TRACK_ID;
+
 /**
  * Stream information class.
  *
@@ -34,13 +40,13 @@ import android.support.annotation.Nullable;
  *
  * NOTE: Suppressing Findbug to eliminate unnecessary mem copy.
  */
-//@SuppressFBWarnings("EI_EXPOSE_REP")
+////@SuppressFBWarnings("EI_EXPOSE_REP")
 public class StreamInfo {
     /**
      * StreamInfo structure current version.
      * IMPORTANT: Must be kept in sync with the native counterpart.
      */
-    public static final int STREAM_INFO_CURRENT_VERSION = 0;
+    public static final int STREAM_INFO_CURRENT_VERSION = 1;
 
     /**
      * Streaming types that must correspond to the native counterparts
@@ -138,8 +144,6 @@ public class StreamInfo {
     private final boolean mAbsoluteFragmentTimes;
     private final boolean mFragmentAcks;
     private final boolean mRecoverOnError;
-    private final String mCodecId;
-    private final String mTrackName;
     private final int mAvgBandwidthBps;
     private final int mFrameRate;
     private final long mBufferDuration;
@@ -147,9 +151,11 @@ public class StreamInfo {
     private final long mConnectionStalenessDuration;
     private final long mTimecodeScale;
     private final boolean mRecalculateMetrics;
-    private final byte[] mCodecPrivateData;
     private final Tag[] mTags;
     private final NalAdaptationFlags mNalAdaptationFlags;
+    private final TrackInfo[] mTrackInfoList;
+    private final UUID mSegmentUuid;
+    private final FrameOrderMode mFrameOrderMode;
 
     /**
      * Generates a track name from a content type
@@ -220,6 +226,59 @@ public class StreamInfo {
                       @Nullable final byte[] codecPrivateData,
                       @Nullable final Tag[] tags,
                       @NonNull final NalAdaptationFlags nalAdaptationFlags) {
+        this(version, name, streamingType, contentType, kmsKeyId, retentionPeriod, adaptive, maxLatency,
+                fragmentDuration, keyFrameFragmentation, frameTimecodes, absoluteFragmentTimes, fragmentAcks,
+                recoverOnError, avgBandwidthBps, frameRate, bufferDuration, replayDuration,
+                connectionStalenessDuration, timecodeScale, recalculateMetrics, tags,
+                nalAdaptationFlags,
+                null,
+                new TrackInfo[] {new TrackInfo(DEFAULT_TRACK_ID, codecId, trackName, codecPrivateData, VIDEO)});
+    }
+
+    public StreamInfo(final int version, @Nullable final String name, @NonNull final StreamingType streamingType,
+                      @NonNull final String contentType, @Nullable final String kmsKeyId, final long retentionPeriod,
+                      final boolean adaptive, final long maxLatency, final long fragmentDuration,
+                      final boolean keyFrameFragmentation, final boolean frameTimecodes,
+                      final boolean absoluteFragmentTimes, final boolean fragmentAcks, final boolean recoverOnError,
+                      final int avgBandwidthBps, final int frameRate, final long bufferDuration,
+                      final long replayDuration, final long connectionStalenessDuration, final long timecodeScale,
+                      final boolean recalculateMetrics, @Nullable final Tag[] tags,
+                      @NonNull final NalAdaptationFlags nalAdaptationFlags,
+                      @Nullable final UUID segmentUuid,
+                      @NonNull final TrackInfo[] trackInfoList) {
+        this(version, name, streamingType, contentType, kmsKeyId, retentionPeriod, adaptive, maxLatency,
+                fragmentDuration, keyFrameFragmentation, frameTimecodes, absoluteFragmentTimes, fragmentAcks,
+                recoverOnError, avgBandwidthBps, frameRate, bufferDuration, replayDuration,
+                connectionStalenessDuration, timecodeScale, recalculateMetrics, tags,
+                nalAdaptationFlags,
+                segmentUuid,
+                trackInfoList,
+                fixUpFrameOrderMode(trackInfoList));
+    }
+
+    private static FrameOrderMode fixUpFrameOrderMode(TrackInfo[] trackInfos) {
+        if (trackInfos.length == 2 && ((trackInfos[0].getTrackType().equals(MkvTrackInfoType.VIDEO)
+                && trackInfos[1].getTrackType().equals(MkvTrackInfoType.AUDIO))
+                || (trackInfos[0].getTrackType().equals(MkvTrackInfoType.AUDIO)
+                && trackInfos[1].getTrackType().equals(MkvTrackInfoType.VIDEO)))) {
+            // TODO change back to FRAME_ORDERING_MODE_MULTI_TRACK_AV once backend is fixed.
+            return FrameOrderMode.FRAME_ORDERING_MODE_MULTI_TRACK_AV_COMPARE_PTS_ONE_MS_COMPENSATE;
+        }
+        return FrameOrderMode.FRAME_ORDER_MODE_PASS_THROUGH;
+    }
+
+    public StreamInfo(final int version, @Nullable final String name, @NonNull final StreamingType streamingType,
+                      @NonNull final String contentType, @Nullable final String kmsKeyId, final long retentionPeriod,
+                      final boolean adaptive, final long maxLatency, final long fragmentDuration,
+                      final boolean keyFrameFragmentation, final boolean frameTimecodes,
+                      final boolean absoluteFragmentTimes, final boolean fragmentAcks, final boolean recoverOnError,
+                      final int avgBandwidthBps, final int frameRate, final long bufferDuration,
+                      final long replayDuration, final long connectionStalenessDuration, final long timecodeScale,
+                      final boolean recalculateMetrics, @Nullable final Tag[] tags,
+                      @NonNull final NalAdaptationFlags nalAdaptationFlags,
+                      @Nullable final UUID segmentUuid,
+                      @NonNull final TrackInfo[] trackInfoList,
+                      FrameOrderMode frameOrderMode) {
         mVersion = version;
         mName = name;
         mStreamingType = streamingType;
@@ -234,8 +293,6 @@ public class StreamInfo {
         mAbsoluteFragmentTimes = absoluteFragmentTimes;
         mFragmentAcks = fragmentAcks;
         mRecoverOnError = recoverOnError;
-        mCodecId = codecId;
-        mTrackName = trackName;
         mAvgBandwidthBps = avgBandwidthBps;
         mFrameRate = frameRate;
         mBufferDuration = bufferDuration;
@@ -243,9 +300,11 @@ public class StreamInfo {
         mConnectionStalenessDuration = connectionStalenessDuration;
         mTimecodeScale = timecodeScale;
         mRecalculateMetrics = recalculateMetrics;
-        mCodecPrivateData = codecPrivateData;
         mTags = tags;
         mNalAdaptationFlags = nalAdaptationFlags;
+        mSegmentUuid = segmentUuid;
+        mTrackInfoList = trackInfoList;
+        mFrameOrderMode = frameOrderMode;
     }
 
     public int getVersion() {
@@ -307,16 +366,6 @@ public class StreamInfo {
         return mRecoverOnError;
     }
 
-    @Nullable
-    public String getCodecId() {
-        return mCodecId;
-    }
-
-    @Nullable
-    public String getTrackName() {
-        return mTrackName;
-    }
-
     public int getAvgBandwidthBps() {
         return mAvgBandwidthBps;
     }
@@ -346,8 +395,79 @@ public class StreamInfo {
     }
 
     @Nullable
+    public UUID getSegmentUuid() {
+        return mSegmentUuid;
+    }
+
+    @Nullable
+    public byte[] getSegmentUuidBytes() {
+        if (mSegmentUuid == null) {
+            return null;
+        }
+
+        final ByteBuffer tempBuffer = ByteBuffer.wrap(new byte[16]);
+        tempBuffer.putLong(mSegmentUuid.getMostSignificantBits());
+        tempBuffer.putLong(mSegmentUuid.getLeastSignificantBits());
+        return tempBuffer.array();
+    }
+
+    @NonNull
+    public TrackInfo[] getTrackInfoList() {
+        return mTrackInfoList;
+    }
+
+    public int getTrackInfoCount() {
+        return mTrackInfoList.length;
+    }
+
+    @Nullable
+    public String getCodecId(final int trackIndex) {
+        return mTrackInfoList[trackIndex].getCodecId();
+    }
+
+    @Nullable
+    public String getTrackName(final int trackIndex) {
+        return mTrackInfoList[trackIndex].getTrackName();
+    }
+
+    @Nullable
     public byte[] getCodecPrivateData() {
-        return mCodecPrivateData;
+        return mTrackInfoList == null || mTrackInfoList.length == 0 ? null : mTrackInfoList[0].getCodecPrivateData();
+    }
+
+    @Nullable
+    public String getCodecId() {
+        return mTrackInfoList == null || mTrackInfoList.length == 0 ? null : mTrackInfoList[0].getCodecId();
+    }
+
+    @Nullable
+    public String getTrackName() {
+        return mTrackInfoList == null || mTrackInfoList.length == 0 ? null : mTrackInfoList[0].getTrackName();
+    }
+
+    @Nullable
+    public byte[] getCodecPrivateData(final int trackIndex) {
+        Preconditions.checkState(mTrackInfoList != null && trackIndex < mTrackInfoList.length,
+                "Requested track is not available in track info list.");
+        return mTrackInfoList[trackIndex].getCodecPrivateData();
+    }
+
+    public long getTrackId(final int trackIndex) {
+        Preconditions.checkState(mTrackInfoList != null && trackIndex < mTrackInfoList.length,
+                "Requested track is not available in track info list.");
+        return mTrackInfoList[trackIndex].getTrackId();
+    }
+
+    public int getTrackInfoType(final int trackIndex) {
+        Preconditions.checkState(mTrackInfoList != null && trackIndex < mTrackInfoList.length,
+                "Requested track is not available in track info list.");
+        return mTrackInfoList[trackIndex].getTrackType().intValue();
+    }
+
+    public int getTrackInfoVersion(final int trackIndex) {
+        Preconditions.checkState(mTrackInfoList != null && trackIndex < mTrackInfoList.length,
+                "Requested track is not available in track info list.");
+        return mTrackInfoList[trackIndex].getVersion();
     }
 
     @Nullable
@@ -358,5 +478,9 @@ public class StreamInfo {
     @NonNull
     public int getNalAdaptationFlags() {
         return mNalAdaptationFlags.getIntValue();
+    }
+
+    public int getFrameOrderMode() {
+        return mFrameOrderMode.intValue();
     }
 }

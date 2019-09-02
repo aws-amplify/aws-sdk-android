@@ -21,11 +21,17 @@ import android.media.Image;
 import android.media.MediaCodec;
 import android.util.Log;
 
+import com.amazonaws.kinesisvideo.client.mediasource.AudioMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.internal.mediasource.OnStreamDataAvailable;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 import com.amazonaws.mobileconnectors.kinesisvideo.util.FrameUtility;
 
 import java.nio.ByteBuffer;
+
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_TRACK_ID;
 
 /**
  * Wrapper class around MediaCodec.
@@ -36,16 +42,19 @@ import java.nio.ByteBuffer;
 public class EncoderWrapper {
     private static final String TAG = EncoderWrapper.class.getSimpleName();
     private static final int TIMEOUT_USEC = 10000;
-    private final CameraMediaSourceConfiguration mMediaSourceConfiguration;
+    private final MediaSourceConfiguration mMediaSourceConfiguration;
     private MediaCodec mEncoder;
     private EncoderFrameSubmitter mEncoderFrameSubmitter;
+    private EncoderSampleSubmitter mEncoderSampleSubmitter;
     private long mLastRecordedFrameTimestamp = 0;
     private MediaCodec.BufferInfo mBufferInfo;
     private CodecPrivateDataAvailableListener mCodecPrivateDataListener;
     private FrameAvailableListener mFrameAvailableListener;
+    private OnStreamDataAvailable mListener = null;
     private boolean mIsStopped = false;
     private int mFrameIndex;
     private long mFragmentStart = 0;
+    private int mTrackId = 0;
 
     public interface FrameAvailableListener {
 
@@ -55,16 +64,31 @@ public class EncoderWrapper {
 
         void onCodecPrivateDataAvailable(final byte[] privateData);
     }
-    public EncoderWrapper(final CameraMediaSourceConfiguration mediaSourceConfiguration) {
+    public EncoderWrapper(final MediaSourceConfiguration mediaSourceConfiguration) {
         mMediaSourceConfiguration = mediaSourceConfiguration;
         initEncoder();
     }
 
     private void initEncoder() {
         mBufferInfo = new MediaCodec.BufferInfo();
-        mEncoder = EncoderFactory.createConfiguredEncoder(mMediaSourceConfiguration);
-        mEncoderFrameSubmitter = new EncoderFrameSubmitter(mEncoder);
+        if (mMediaSourceConfiguration instanceof CameraMediaSourceConfiguration) {
+            mTrackId = ((CameraMediaSourceConfiguration) mMediaSourceConfiguration).getTrackId();
+            mEncoder = EncoderFactory
+                    .createConfiguredEncoder((CameraMediaSourceConfiguration) mMediaSourceConfiguration);
+            mEncoderFrameSubmitter = new EncoderFrameSubmitter(mEncoder);
+        } else if (mMediaSourceConfiguration instanceof AudioMediaSourceConfiguration) {
+            mTrackId = ((AudioMediaSourceConfiguration) mMediaSourceConfiguration).getTrackId();
+            mEncoder = EncoderFactory
+                    .createConfiguredAudioEncoder((AudioMediaSourceConfiguration) mMediaSourceConfiguration);
+            mEncoderSampleSubmitter = new EncoderSampleSubmitter(mEncoder);
+        } else {
+            throw new RuntimeException("Unexpected media source configuration: " + mMediaSourceConfiguration);
+        }
         mEncoder.start();
+    }
+
+    public void setMkvDataListener(final OnStreamDataAvailable listener) {
+        mListener = listener;
     }
 
     public void setCodecPrivateDataAvailableListener(
@@ -94,6 +118,26 @@ public class EncoderWrapper {
         getDataFromEncoder(endOfStream);
 
         Log.d(TAG, "frame encoded" + threadId());
+    }
+
+    public void encodeSample(final ByteBuffer buffer,
+                             final int readBytes,
+                             final boolean endOfStream) {
+
+        if (mIsStopped) {
+            Log.w(TAG, "received a sample to encode after already stopped. returning");
+            return;
+        }
+
+        Log.d(TAG, "encoding sample" + threadId());
+
+        mEncoderSampleSubmitter.submitSampleToEncoder(buffer, readBytes, endOfStream);
+
+        Log.d(TAG, "sample sent to encoder" + threadId());
+
+        getDataFromEncoder(endOfStream);
+
+        Log.d(TAG, "sample encoded" + threadId());
     }
 
 
@@ -181,7 +225,16 @@ public class EncoderWrapper {
         Log.d(TAG, "got codec private data");
         final ByteBuffer privateData = codecPrivateDataBuffer;
         final byte[] codecPrivateDataArray = convertToArray(privateData);
-        mCodecPrivateDataListener.onCodecPrivateDataAvailable(codecPrivateDataArray);
+        if (mListener == null) {
+            mCodecPrivateDataListener.onCodecPrivateDataAvailable(codecPrivateDataArray);
+        } else {
+            try {
+                mListener.onCodecPrivateData(codecPrivateDataArray, mTrackId);
+            } catch (KinesisVideoException e) {
+                Log.e(TAG, "error updating sink with codec private data", e);
+                throw new RuntimeException("error updating sink with codec private data", e);
+            }
+        }
     }
 
     private void sendEncodedFrameToProducerSDK(final ByteBuffer encodedData) {
@@ -195,12 +248,26 @@ public class EncoderWrapper {
 
         final ByteBuffer frameData = encodedData;
 
-        mFrameAvailableListener.onFrameAvailable(
-                FrameUtility.createFrame(
+        if (mListener == null) {
+            mFrameAvailableListener.onFrameAvailable(
+                    FrameUtility.createFrame(
+                            mBufferInfo,
+                            1 + currentTime - mFragmentStart,
+                            mFrameIndex++,
+                            frameData));
+        } else {
+            try {
+                mListener.onFrameDataAvailable(FrameUtility.createFrame(
                         mBufferInfo,
                         1 + currentTime - mFragmentStart,
                         mFrameIndex++,
-                        frameData));
+                        frameData,
+                        mTrackId,
+                        mMediaSourceConfiguration instanceof AudioMediaSourceConfiguration));
+            } catch (KinesisVideoException e) {
+                Log.e(TAG, "error updating sink with frame", e);
+            }
+        }
     }
 
     public void stop() {

@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.producer;
@@ -62,17 +62,15 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
     /**
      * Get stream data from the buffer.
      *
-     * @param fillBuffer
-     *         The buffer to fill
-     * @param offset
-     *         The start of the buffer
-     * @param length
-     *         The number of bytes to fill
-     * @param readResult
-     *         The result of the read
+     * @param uploadHandle Client stream upload handle.
+     * @param fillBuffer The buffer to fill
+     * @param offset The start of the buffer
+     * @param length The number of bytes to fill
+     * @param readResult The result of the read
      * @throws ProducerException
      */
-    void getStreamData(final @NonNull byte[] fillBuffer, int offset, int length, @NonNull final ReadResult readResult)
+    void getStreamData(final long uploadHandle, final @NonNull byte[] fillBuffer, int offset, int length,
+                       @NonNull final ReadResult readResult)
             throws ProducerException;
 
     /**
@@ -108,7 +106,7 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
      * NOTE: CPD is @Nullable - specifying a null will remove the CPD.
      * NOTE: currently, only Codec Private Data is supported while not streaming.
      */
-    void streamFormatChanged(final @Nullable byte[] codecPrivateData) throws ProducerException;
+    void streamFormatChanged(final @Nullable byte[] codecPrivateData, final int trackId) throws ProducerException;
 
     /**
      * Returns the underlying native stream handle
@@ -148,6 +146,11 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
      */
     @NonNull
     KinesisVideoStreamMetrics getMetrics() throws ProducerException;
+
+    /**
+     * Free the Kinesis Video stream.
+     */
+    void streamFreed() throws ProducerException;
 
     /**
      * Reset current connection of producer stream

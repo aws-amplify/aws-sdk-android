@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.config;
@@ -28,33 +28,19 @@ public final class ClientConfiguration {
     private URI streamUri;
     private Integer connectionTimeoutInMillis;
     private Integer readTimeoutInMillis;
-    
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "ClientConfiguration [region=" + region + ", serviceName=" + serviceName + ", apiName=" + apiName
-                + ", materialSet=" + materialSet + ", streamName=" + streamName + ", streamUri=" + streamUri
-                + ", connectionTimeoutInMillis=" + connectionTimeoutInMillis + ", readTimeoutInMillis="
-                + readTimeoutInMillis + "super=" + super.toString() + "]";
+
+    ClientConfiguration(final String region, final String serviceName, final String apiName, final String materialSet, final String streamName, final URI streamUri, final Integer connectionTimeoutInMillis, final Integer readTimeoutInMillis) {
+        this.region = region;
+        this.serviceName = serviceName;
+        this.apiName = apiName;
+        this.materialSet = materialSet;
+        this.streamName = streamName;
+        this.streamUri = streamUri;
+        this.connectionTimeoutInMillis = connectionTimeoutInMillis;
+        this.readTimeoutInMillis = readTimeoutInMillis;
     }
 
-    ClientConfiguration(ClientConfigurationBuilder builder) {
-        this.region = builder.region;
-        this.serviceName = builder.serviceName;
-        this.apiName = builder.apiName;
-        this.materialSet = builder.materialSet;
-        this.streamName = builder.streamName;
-        this.streamUri = builder.streamUri;
-        this.connectionTimeoutInMillis = builder.connectionTimeoutInMillis;
-        this.readTimeoutInMillis = builder.readTimeoutInMillis;
-    }
-    
-    public static ClientConfigurationBuilder builder() {
-        return new ClientConfigurationBuilder();
-    }
-    
+
     public static class ClientConfigurationBuilder {
         private String region;
         private String serviceName;
@@ -64,100 +50,98 @@ public final class ClientConfiguration {
         private URI streamUri;
         private Integer connectionTimeoutInMillis;
         private Integer readTimeoutInMillis;
-        
-        ClientConfigurationBuilder() { }
-        
-        public ClientConfigurationBuilder region(String region) {
+
+        ClientConfigurationBuilder() {
+        }
+
+        public ClientConfigurationBuilder region(final String region) {
             this.region = region;
             return this;
         }
-        
-        public ClientConfigurationBuilder serviceName(String serviceName) {
+
+        public ClientConfigurationBuilder serviceName(final String serviceName) {
             this.serviceName = serviceName;
             return this;
         }
-        
-        public ClientConfigurationBuilder apiName(String apiName) {
+
+        public ClientConfigurationBuilder apiName(final String apiName) {
             this.apiName = apiName;
             return this;
         }
-        
-        public ClientConfigurationBuilder materialSet(String materialSet) {
+
+        public ClientConfigurationBuilder materialSet(final String materialSet) {
             this.materialSet = materialSet;
             return this;
         }
-        
-        public ClientConfigurationBuilder streamName(String streamName) {
+
+        public ClientConfigurationBuilder streamName(final String streamName) {
             this.streamName = streamName;
             return this;
         }
-        
-        public ClientConfigurationBuilder streamUri(URI streamUri) {
+
+        public ClientConfigurationBuilder streamUri(final URI streamUri) {
             this.streamUri = streamUri;
             return this;
         }
-        
-        public ClientConfigurationBuilder connectionTimeoutInMillis(Integer connectionTimeoutInMillis) {
+
+        public ClientConfigurationBuilder connectionTimeoutInMillis(final Integer connectionTimeoutInMillis) {
             this.connectionTimeoutInMillis = connectionTimeoutInMillis;
             return this;
         }
-        
-        public ClientConfigurationBuilder readTimeoutInMillis(Integer readTimeoutInMillis) {
+
+        public ClientConfigurationBuilder readTimeoutInMillis(final Integer readTimeoutInMillis) {
             this.readTimeoutInMillis = readTimeoutInMillis;
             return this;
         }
-        
+
         public ClientConfiguration build() {
-            return new ClientConfiguration(this);
+            return new ClientConfiguration(region, serviceName, apiName, materialSet, streamName, streamUri, connectionTimeoutInMillis, readTimeoutInMillis);
+        }
+
+        @Override
+        public String toString() {
+            return "ClientConfiguration.ClientConfigurationBuilder(region=" + this.region + ", serviceName=" + this.serviceName + ", apiName=" + this.apiName + ", materialSet=" + this.materialSet + ", streamName=" + this.streamName + ", streamUri=" + this.streamUri + ", connectionTimeoutInMillis=" + this.connectionTimeoutInMillis + ", readTimeoutInMillis=" + this.readTimeoutInMillis + ")";
         }
     }
-    
-    /**
-     * @return the region
-     */
+
+    public static ClientConfigurationBuilder builder() {
+        return new ClientConfigurationBuilder();
+    }
+
     public String getRegion() {
-        return region;
+        return this.region;
     }
-    /**
-     * @return the serviceName
-     */
+
     public String getServiceName() {
-        return serviceName;
+        return this.serviceName;
     }
-    /**
-     * @return the apiName
-     */
+
     public String getApiName() {
-        return apiName;
+        return this.apiName;
     }
-    /**
-     * @return the materialSet
-     */
+
     public String getMaterialSet() {
-        return materialSet;
+        return this.materialSet;
     }
-    /**
-     * @return the streamName
-     */
+
     public String getStreamName() {
-        return streamName;
+        return this.streamName;
     }
-    /**
-     * @return the streamUri
-     */
+
     public URI getStreamUri() {
-        return streamUri;
+        return this.streamUri;
     }
-    /**
-     * @return the connectionTimeoutInMillis
-     */
+
     public Integer getConnectionTimeoutInMillis() {
-        return connectionTimeoutInMillis;
+        return this.connectionTimeoutInMillis;
     }
-    /**
-     * @return the readTimeoutInMillis
-     */
+
     public Integer getReadTimeoutInMillis() {
-        return readTimeoutInMillis;
+        return this.readTimeoutInMillis;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientConfiguration(region=" + this.getRegion() + ", serviceName=" + this.getServiceName() + ", apiName=" + this.getApiName() + ", materialSet=" + this.getMaterialSet() + ", streamName=" + this.getStreamName() + ", streamUri=" + this.getStreamUri() + ", connectionTimeoutInMillis=" + this.getConnectionTimeoutInMillis() + ", readTimeoutInMillis=" + this.getReadTimeoutInMillis() + ")";
     }
 }

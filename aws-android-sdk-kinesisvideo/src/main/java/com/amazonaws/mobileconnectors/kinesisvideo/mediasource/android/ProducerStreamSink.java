@@ -18,6 +18,7 @@
 package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_TRACK_ID;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -56,7 +57,12 @@ public class ProducerStreamSink implements MediaSourceSink {
 
     @Override
     public void onCodecPrivateData(@Nullable final byte[] bytes) throws KinesisVideoException {
-        mProducerStream.streamFormatChanged(bytes);
+        mProducerStream.streamFormatChanged(bytes, VIDEO_TRACK_ID);
+    }
+
+    @Override
+    public void onCodecPrivateData(@Nullable byte[] codecPrivateData, int trackId) throws KinesisVideoException {
+        mProducerStream.streamFormatChanged(codecPrivateData, trackId);
     }
 
     @Override

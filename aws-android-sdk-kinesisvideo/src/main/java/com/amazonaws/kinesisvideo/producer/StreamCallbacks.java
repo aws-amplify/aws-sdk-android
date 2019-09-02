@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.producer;
@@ -51,10 +51,11 @@ public interface StreamCallbacks
 
     /**
      * Reports the received ACK.
+     * @param uploadHandle The client stream upload handle.
      * @param fragmentAck The received fragment ACK.
      * @throws ProducerException
      */
-    void fragmentAckReceived(@NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException;
+    void fragmentAckReceived(long uploadHandle, @NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException;
 
     /**
      * Reports a dropped frame for the stream.
@@ -74,11 +75,12 @@ public interface StreamCallbacks
      * Reports an error for the stream. The client should terminate the connection
      * as the inlet host would have/has already terminated the connection.
      *
+     * @param uploadHandle The client stream upload handle.
      * @param fragmentTimecode Fragment time code of the errored fragment.
      * @param statusCode Status code of the failure.
      * @throws ProducerException
      */
-    void streamErrorReport(long fragmentTimecode, long statusCode) throws ProducerException;
+    void streamErrorReport(long uploadHandle, long fragmentTimecode, long statusCode) throws ProducerException;
 
     /**
      * New data is available for the stream.
@@ -101,4 +103,11 @@ public interface StreamCallbacks
      * @throws ProducerException
      */
     void streamClosed(long uploadHandle) throws ProducerException;
+
+    /**
+     * Stream temporal buffer pressure.
+     * @param remainDuration Remaining duration in the buffer in hundreds of nanos.
+     * @throws ProducerException
+     */
+    void bufferDurationOverflowPressure(long remainDuration) throws ProducerException;
 }

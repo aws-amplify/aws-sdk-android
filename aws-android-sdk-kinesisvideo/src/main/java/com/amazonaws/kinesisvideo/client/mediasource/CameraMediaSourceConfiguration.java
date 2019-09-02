@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.client.mediasource;
@@ -22,6 +22,8 @@ import android.support.annotation.Nullable;
 
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
+
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_TRACK_ID;
 
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
@@ -52,6 +54,7 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
         private StreamInfo.NalAdaptationFlags mNalAdaptationFlags;
         private boolean mIsAbsoluteTimecode;
         private int mRetentionPeriodInHours;
+        private int mTrackId = VIDEO_TRACK_ID;
 
         public Builder withEncodingMimeType(final String mimeType) {
             mMimeType = mimeType;
@@ -130,6 +133,11 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
         public Builder withIsAbsoluteTimecode(final boolean isAbsoluteTimecode) {
             mIsAbsoluteTimecode = isAbsoluteTimecode;
+            return this;
+        }
+
+        public Builder withTrackId(final int trackId) {
+            mTrackId = trackId;
             return this;
         }
 
@@ -215,12 +223,14 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
         return MEDIA_SOURCE_DESCRIPTION;
     }
 
-    public static CameraMediaSourceConfiguration.Builder builder() {
-        return new CameraMediaSourceConfiguration.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**
      * Returns the ID of the camera
+     *
+     * @return ID of the camera
      */
     public String getCameraId() {
         return mBuilder.mCameraId;
@@ -228,6 +238,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the camera facing front or back.
+     *
+     * @return camera facing front or back.
      */
     public int getCameraFacing() {
         return mBuilder.mCameraFacing;
@@ -235,6 +247,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the orientation of the camera in degrees.
+     *
+     * @return orientation of the camera in degrees.
      */
     public int getCameraOrientation() {
         return mBuilder.mCameraOrientation;
@@ -242,6 +256,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the horizontal resolution.
+     *
+     * @return horizontal resolution
      */
     public int getHorizontalResolution() {
         return mBuilder.mHorizontalResolution;
@@ -249,6 +265,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the vertical resolution.
+     *
+     * @return vertical resolution
      */
     public int getVerticalResolution() {
         return mBuilder.mVerticalResolution;
@@ -256,6 +274,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the output file name.
+     *
+     * @return Output file name
      */
     public String getOutputFileName() {
         return mBuilder.mOutputFileName;
@@ -263,6 +283,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the frame rate of the camera.
+     *
+     * @return Frame rate
      */
     public int getFrameRate() {
         return mBuilder.mFrameRate;
@@ -270,6 +292,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the retention period in hours
+     *
+     * @return Retention period in hours
      */
     public int getRetentionPeriodInHours() {
         return mBuilder.mRetentionPeriodInHours;
@@ -277,6 +301,9 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the encoding bitrate.
+     *
+     * @return bit rate.
+     *
      */
     public int getBitRate() {
         return mBuilder.mEncodingBitrate;
@@ -284,6 +311,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the encoder mime type.
+     *
+     * @return encoder mime type
      */
     @NonNull
     public String getEncoderMimeType() {
@@ -292,6 +321,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the GOP (group-of-pictures) duration in milliseconds.
+     *
+     * @return GOP duration
      */
     public int getGopDurationMillis() {
         return mBuilder.mGopDurationMillis;
@@ -299,6 +330,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Whether the encoder is hardware accelerated.
+     *
+     * @return true if encoder is hardware accelerated. false otherwise
      */
     public boolean isEndcoderHardwareAccelerated() {
         return mBuilder.mIsEncoderHardwareAccelerated;
@@ -306,6 +339,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the codec private data.
+     *
+     * @return Codec private data
      */
     @Nullable
     public byte[] getCodecPrivateData() {
@@ -314,6 +349,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Gets the timescale
+     *
+     * @return timescale
      */
     public long getTimeScale() {
         return mBuilder.mFrameTimescale;
@@ -321,6 +358,8 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Get the Nal Adaption Flag
+     *
+     * @return NAL Adaption flag
      */
     public StreamInfo.NalAdaptationFlags getNalAdaptationFlags() {
         return mBuilder.mNalAdaptationFlags;
@@ -328,9 +367,17 @@ public class CameraMediaSourceConfiguration implements MediaSourceConfiguration 
 
     /**
      * Get if timecode is absolute or not
-     * @return
+     * @return true if absolute. false otherwise.
      */
     public boolean getIsAbsoluteTimecode() {
         return mBuilder.mIsAbsoluteTimecode;
+    }
+
+    /**
+     * Get track id of video track
+     * @return track id
+     */
+    public int getTrackId() {
+        return mBuilder.mTrackId;
     }
 }

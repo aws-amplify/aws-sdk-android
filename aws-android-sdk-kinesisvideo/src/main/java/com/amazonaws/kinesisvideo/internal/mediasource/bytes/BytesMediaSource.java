@@ -1,27 +1,24 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.mediasource.bytes;
 
-import static com.amazonaws.kinesisvideo.producer.FrameFlags.FRAME_FLAG_KEY_FRAME;
-import static com.amazonaws.kinesisvideo.producer.FrameFlags.FRAME_FLAG_NONE;
 import static com.amazonaws.kinesisvideo.producer.StreamInfo.NalAdaptationFlags.NAL_ADAPTATION_FLAG_NONE;
 import static com.amazonaws.kinesisvideo.producer.Time.HUNDREDS_OF_NANOS_IN_AN_HOUR;
-import static com.amazonaws.kinesisvideo.producer.Time.HUNDREDS_OF_NANOS_IN_A_MILLISECOND;
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.ABSOLUTE_TIMECODES;
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_BITRATE;
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_BUFFER_DURATION;
@@ -40,8 +37,6 @@ import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.REQUEST_FRAGME
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.USE_FRAME_TIMECODES;
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VERSION_ZERO;
 
-import java.nio.ByteBuffer;
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -51,16 +46,13 @@ import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceSink;
 import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceState;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
-import com.amazonaws.kinesisvideo.internal.mediasource.OnStreamDataAvailable;
-import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
+import com.amazonaws.kinesisvideo.internal.mediasource.DefaultOnStreamDataAvailable;
 import com.amazonaws.kinesisvideo.producer.StreamCallbacks;
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
 import com.amazonaws.kinesisvideo.producer.Tag;
 
 public class BytesMediaSource implements MediaSource {
     private static final String TAG = "BytesMediaSource";
-    private static final int KEY_FRAME_EVERY_60_FRAMES = 60;
-    private static final long DEFAULT_FRAME_DURATION_33MS = 33L;
 
     private final String streamName;
 
@@ -68,8 +60,6 @@ public class BytesMediaSource implements MediaSource {
     private MediaSourceState mediaSourceState;
     private MediaSourceSink mediaSourceSink;
     private BytesGenerator bytesGenerator;
-    private int frameIndex;
-    private long lastTimestampMillis;
 
     public BytesMediaSource(final @NonNull String streamName) {
         this.streamName = streamName;
@@ -95,7 +85,7 @@ public class BytesMediaSource implements MediaSource {
                 configuration.getRetentionPeriodInHours() * HUNDREDS_OF_NANOS_IN_AN_HOUR,
                 NOT_ADAPTIVE,
                 MAX_LATENCY_ZERO,
-                DEFAULT_GOP_DURATION * HUNDREDS_OF_NANOS_IN_A_MILLISECOND,
+                DEFAULT_GOP_DURATION,
                 KEYFRAME_FRAGMENTATION,
                 USE_FRAME_TIMECODES,
                 ABSOLUTE_TIMECODES,
@@ -137,65 +127,8 @@ public class BytesMediaSource implements MediaSource {
     public void start() throws KinesisVideoException {
         mediaSourceState = MediaSourceState.RUNNING;
         bytesGenerator = new BytesGenerator(configuration.getFps());
-        bytesGenerator.onStreamDataAvailable(createDataAvailableCallback());
+        bytesGenerator.onStreamDataAvailable(new DefaultOnStreamDataAvailable(mediaSourceSink));
         bytesGenerator.start();
-    }
-
-    private OnStreamDataAvailable createDataAvailableCallback() {
-        return new OnStreamDataAvailable() {
-            @Override
-            public void onFrameDataAvailable(final ByteBuffer data) {
-                final long currentTimeMs = System.currentTimeMillis();
-                final long decodingTs = currentTimeMs * HUNDREDS_OF_NANOS_IN_A_MILLISECOND;
-                final long presentationTs = currentTimeMs * HUNDREDS_OF_NANOS_IN_A_MILLISECOND;
-                final long msSinceLastFrame = currentTimeMs - lastTimestampMillis;
-                final long frameDuration = lastTimestampMillis == 0
-                        ? DEFAULT_FRAME_DURATION_33MS * HUNDREDS_OF_NANOS_IN_A_MILLISECOND
-                        : msSinceLastFrame * HUNDREDS_OF_NANOS_IN_A_MILLISECOND / 2;
-
-                final int flags = isKeyFrame()
-                        ? FRAME_FLAG_KEY_FRAME
-                        : FRAME_FLAG_NONE;
-
-
-                final KinesisVideoFrame frame = new KinesisVideoFrame(
-                        frameIndex++,
-                        flags,
-                        decodingTs,
-                        presentationTs,
-                        frameDuration,
-                        data);
-
-                // ignore frame of size 0 or duration of 0
-                if (frame.getSize() == 0 || frameDuration == 0) {
-                    return;
-                }
-
-                lastTimestampMillis = currentTimeMs;
-                submitFrameOnUIThread(frame);
-            }
-
-            @Override
-            public void onFragmentMetadataAvailable(final String metadataName, final String metadataValue, final boolean persistent) {
-                try {
-                    mediaSourceSink.onFragmentMetadata(metadataName, metadataValue, persistent);
-                } catch (final KinesisVideoException e) {
-                    // TODO: log/throw
-                }
-            }
-        };
-    }
-
-    private boolean isKeyFrame() {
-        return frameIndex % KEY_FRAME_EVERY_60_FRAMES == 0;
-    }
-
-    private void submitFrameOnUIThread(final KinesisVideoFrame frame) {
-        try {
-            mediaSourceSink.onFrame(frame);
-        } catch (final KinesisVideoException e) {
-            // TODO: log/throw
-        }
     }
 
     @Override
