@@ -247,7 +247,7 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
         Preconditions.checkNotNull(kinesisVideoFrame);
         Preconditions.checkState(mStreamHandle != NativeKinesisVideoProducerJni.INVALID_STREAM_HANDLE_VALUE);
 
-        mLog.error("PutFrame index: %s, pts: %s, dts: %s, duration: %s, keyFrame: %s, track: %s",
+        mLog.debug("PutFrame index: %s, pts: %s, dts: %s, duration: %s, keyFrame: %s, track: %s",
                 kinesisVideoFrame.getIndex(),
                 kinesisVideoFrame.getPresentationTs(),
                 kinesisVideoFrame.getDecodingTs(),
