@@ -26,6 +26,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>ConfirmSubscription</code> action with the token from the confirmation
  * message. Confirmation tokens are valid for three days.
  * </p>
+ * <p>
+ * This action is throttled at 100 transactions per second (TPS).
+ * </p>
  */
 public class SubscribeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -42,44 +45,44 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * <code>http</code> -- delivery of JSON-encoded message via HTTP POST
+     * <code>http</code> – delivery of JSON-encoded message via HTTP POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>https</code> -- delivery of JSON-encoded message via HTTPS POST
+     * <code>https</code> – delivery of JSON-encoded message via HTTPS POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email</code> -- delivery of message via SMTP
+     * <code>email</code> – delivery of message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email-json</code> -- delivery of JSON-encoded message via SMTP
+     * <code>email-json</code> – delivery of JSON-encoded message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sms</code> -- delivery of message via SMS
+     * <code>sms</code> – delivery of message via SMS
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS
+     * <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS
      * queue
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>application</code> -- delivery of JSON-encoded message to an
+     * <code>application</code> – delivery of JSON-encoded message to an
      * EndpointArn for a mobile app and device.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> -- delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
      * function.
      * </p>
      * </li>
@@ -96,7 +99,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * "http://"
+     * "https://"
      * </p>
      * </li>
      * <li>
@@ -145,6 +148,63 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
     private String endpoint;
 
     /**
+     * <p>
+     * A map of attributes with their corresponding values.
+     * </p>
+     * <p>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicy</code> – The simple JSON object that lets your
+     * subscriber receive only a subset of messages, rather than receiving every
+     * message published to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RawMessageDelivery</code> – When set to <code>true</code>, enables
+     * raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates
+     * the need for the endpoints to process JSON formatting, which is otherwise
+     * created for Amazon SNS metadata.
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
+
+    /**
+     * <p>
+     * Sets whether the response from the <code>Subscribe</code> request
+     * includes the subscription ARN, even if the subscription is not yet
+     * confirmed.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>false</code>, the response includes
+     * the ARN for confirmed subscriptions, but it includes an ARN value of
+     * "pending subscription" for subscriptions that are not yet confirmed. A
+     * subscription becomes confirmed when the subscriber calls the
+     * <code>ConfirmSubscription</code> action with a confirmation token.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     */
+    private Boolean returnSubscriptionArn;
+
+    /**
      * Default constructor for SubscribeRequest object. Callers should use the
      * setter or fluent setter (with...) methods to initialize any additional
      * object members.
@@ -166,47 +226,47 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>http</code> -- delivery of JSON-encoded message via HTTP
+     *            <code>http</code> – delivery of JSON-encoded message via HTTP
      *            POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>https</code> -- delivery of JSON-encoded message via
+     *            <code>https</code> – delivery of JSON-encoded message via
      *            HTTPS POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email</code> -- delivery of message via SMTP
+     *            <code>email</code> – delivery of message via SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email-json</code> -- delivery of JSON-encoded message
-     *            via SMTP
+     *            <code>email-json</code> – delivery of JSON-encoded message via
+     *            SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sms</code> -- delivery of message via SMS
+     *            <code>sms</code> – delivery of message via SMS
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sqs</code> -- delivery of JSON-encoded message to an
+     *            <code>sqs</code> – delivery of JSON-encoded message to an
      *            Amazon SQS queue
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>application</code> -- delivery of JSON-encoded message
-     *            to an EndpointArn for a mobile app and device.
+     *            <code>application</code> – delivery of JSON-encoded message to
+     *            an EndpointArn for a mobile app and device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>lambda</code> -- delivery of JSON-encoded message to an
+     *            <code>lambda</code> – delivery of JSON-encoded message to an
      *            AWS Lambda function.
      *            </p>
      *            </li>
@@ -219,7 +279,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with "http://"
+     *            beginning with "https://"
      *            </p>
      *            </li>
      *            <li>
@@ -324,44 +384,44 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * <code>http</code> -- delivery of JSON-encoded message via HTTP POST
+     * <code>http</code> – delivery of JSON-encoded message via HTTP POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>https</code> -- delivery of JSON-encoded message via HTTPS POST
+     * <code>https</code> – delivery of JSON-encoded message via HTTPS POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email</code> -- delivery of message via SMTP
+     * <code>email</code> – delivery of message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email-json</code> -- delivery of JSON-encoded message via SMTP
+     * <code>email-json</code> – delivery of JSON-encoded message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sms</code> -- delivery of message via SMS
+     * <code>sms</code> – delivery of message via SMS
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS
+     * <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS
      * queue
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>application</code> -- delivery of JSON-encoded message to an
+     * <code>application</code> – delivery of JSON-encoded message to an
      * EndpointArn for a mobile app and device.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> -- delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
      * function.
      * </p>
      * </li>
@@ -373,47 +433,47 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>http</code> -- delivery of JSON-encoded message via HTTP
+     *         <code>http</code> – delivery of JSON-encoded message via HTTP
      *         POST
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>https</code> -- delivery of JSON-encoded message via HTTPS
+     *         <code>https</code> – delivery of JSON-encoded message via HTTPS
      *         POST
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>email</code> -- delivery of message via SMTP
+     *         <code>email</code> – delivery of message via SMTP
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>email-json</code> -- delivery of JSON-encoded message via
+     *         <code>email-json</code> – delivery of JSON-encoded message via
      *         SMTP
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>sms</code> -- delivery of message via SMS
+     *         <code>sms</code> – delivery of message via SMS
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>sqs</code> -- delivery of JSON-encoded message to an Amazon
+     *         <code>sqs</code> – delivery of JSON-encoded message to an Amazon
      *         SQS queue
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>application</code> -- delivery of JSON-encoded message to
-     *         an EndpointArn for a mobile app and device.
+     *         <code>application</code> – delivery of JSON-encoded message to an
+     *         EndpointArn for a mobile app and device.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>lambda</code> -- delivery of JSON-encoded message to an AWS
+     *         <code>lambda</code> – delivery of JSON-encoded message to an AWS
      *         Lambda function.
      *         </p>
      *         </li>
@@ -430,44 +490,44 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * <code>http</code> -- delivery of JSON-encoded message via HTTP POST
+     * <code>http</code> – delivery of JSON-encoded message via HTTP POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>https</code> -- delivery of JSON-encoded message via HTTPS POST
+     * <code>https</code> – delivery of JSON-encoded message via HTTPS POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email</code> -- delivery of message via SMTP
+     * <code>email</code> – delivery of message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email-json</code> -- delivery of JSON-encoded message via SMTP
+     * <code>email-json</code> – delivery of JSON-encoded message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sms</code> -- delivery of message via SMS
+     * <code>sms</code> – delivery of message via SMS
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS
+     * <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS
      * queue
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>application</code> -- delivery of JSON-encoded message to an
+     * <code>application</code> – delivery of JSON-encoded message to an
      * EndpointArn for a mobile app and device.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> -- delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
      * function.
      * </p>
      * </li>
@@ -479,47 +539,47 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>http</code> -- delivery of JSON-encoded message via HTTP
+     *            <code>http</code> – delivery of JSON-encoded message via HTTP
      *            POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>https</code> -- delivery of JSON-encoded message via
+     *            <code>https</code> – delivery of JSON-encoded message via
      *            HTTPS POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email</code> -- delivery of message via SMTP
+     *            <code>email</code> – delivery of message via SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email-json</code> -- delivery of JSON-encoded message
-     *            via SMTP
+     *            <code>email-json</code> – delivery of JSON-encoded message via
+     *            SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sms</code> -- delivery of message via SMS
+     *            <code>sms</code> – delivery of message via SMS
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sqs</code> -- delivery of JSON-encoded message to an
+     *            <code>sqs</code> – delivery of JSON-encoded message to an
      *            Amazon SQS queue
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>application</code> -- delivery of JSON-encoded message
-     *            to an EndpointArn for a mobile app and device.
+     *            <code>application</code> – delivery of JSON-encoded message to
+     *            an EndpointArn for a mobile app and device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>lambda</code> -- delivery of JSON-encoded message to an
+     *            <code>lambda</code> – delivery of JSON-encoded message to an
      *            AWS Lambda function.
      *            </p>
      *            </li>
@@ -536,44 +596,44 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * <code>http</code> -- delivery of JSON-encoded message via HTTP POST
+     * <code>http</code> – delivery of JSON-encoded message via HTTP POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>https</code> -- delivery of JSON-encoded message via HTTPS POST
+     * <code>https</code> – delivery of JSON-encoded message via HTTPS POST
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email</code> -- delivery of message via SMTP
+     * <code>email</code> – delivery of message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>email-json</code> -- delivery of JSON-encoded message via SMTP
+     * <code>email-json</code> – delivery of JSON-encoded message via SMTP
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sms</code> -- delivery of message via SMS
+     * <code>sms</code> – delivery of message via SMS
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS
+     * <code>sqs</code> – delivery of JSON-encoded message to an Amazon SQS
      * queue
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>application</code> -- delivery of JSON-encoded message to an
+     * <code>application</code> – delivery of JSON-encoded message to an
      * EndpointArn for a mobile app and device.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> -- delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
      * function.
      * </p>
      * </li>
@@ -588,47 +648,47 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>http</code> -- delivery of JSON-encoded message via HTTP
+     *            <code>http</code> – delivery of JSON-encoded message via HTTP
      *            POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>https</code> -- delivery of JSON-encoded message via
+     *            <code>https</code> – delivery of JSON-encoded message via
      *            HTTPS POST
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email</code> -- delivery of message via SMTP
+     *            <code>email</code> – delivery of message via SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>email-json</code> -- delivery of JSON-encoded message
-     *            via SMTP
+     *            <code>email-json</code> – delivery of JSON-encoded message via
+     *            SMTP
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sms</code> -- delivery of message via SMS
+     *            <code>sms</code> – delivery of message via SMS
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>sqs</code> -- delivery of JSON-encoded message to an
+     *            <code>sqs</code> – delivery of JSON-encoded message to an
      *            Amazon SQS queue
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>application</code> -- delivery of JSON-encoded message
-     *            to an EndpointArn for a mobile app and device.
+     *            <code>application</code> – delivery of JSON-encoded message to
+     *            an EndpointArn for a mobile app and device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>lambda</code> -- delivery of JSON-encoded message to an
+     *            <code>lambda</code> – delivery of JSON-encoded message to an
      *            AWS Lambda function.
      *            </p>
      *            </li>
@@ -650,7 +710,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * "http://"
+     * "https://"
      * </p>
      * </li>
      * <li>
@@ -704,7 +764,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         For the <code>http</code> protocol, the endpoint is an URL
-     *         beginning with "http://"
+     *         beginning with "https://"
      *         </p>
      *         </li>
      *         <li>
@@ -764,7 +824,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * "http://"
+     * "https://"
      * </p>
      * </li>
      * <li>
@@ -818,7 +878,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with "http://"
+     *            beginning with "https://"
      *            </p>
      *            </li>
      *            <li>
@@ -878,7 +938,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * "http://"
+     * "https://"
      * </p>
      * </li>
      * <li>
@@ -935,7 +995,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with "http://"
+     *            beginning with "https://"
      *            </p>
      *            </li>
      *            <li>
@@ -990,6 +1050,476 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * A map of attributes with their corresponding values.
+     * </p>
+     * <p>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicy</code> – The simple JSON object that lets your
+     * subscriber receive only a subset of messages, rather than receiving every
+     * message published to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RawMessageDelivery</code> – When set to <code>true</code>, enables
+     * raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates
+     * the need for the endpoints to process JSON formatting, which is otherwise
+     * created for Amazon SNS metadata.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         A map of attributes with their corresponding values.
+     *         </p>
+     *         <p>
+     *         The following lists the names, descriptions, and values of the
+     *         special request parameters that the
+     *         <code>SetTopicAttributes</code> action uses:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>DeliveryPolicy</code> – The policy that defines how Amazon
+     *         SNS retries failed deliveries to HTTP/S endpoints.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FilterPolicy</code> – The simple JSON object that lets your
+     *         subscriber receive only a subset of messages, rather than
+     *         receiving every message published to the topic.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>RawMessageDelivery</code> – When set to <code>true</code>,
+     *         enables raw message delivery to Amazon SQS or HTTP/S endpoints.
+     *         This eliminates the need for the endpoints to process JSON
+     *         formatting, which is otherwise created for Amazon SNS metadata.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.Map<String, String> getAttributes() {
+        return attributes;
+    }
+
+    /**
+     * <p>
+     * A map of attributes with their corresponding values.
+     * </p>
+     * <p>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicy</code> – The simple JSON object that lets your
+     * subscriber receive only a subset of messages, rather than receiving every
+     * message published to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RawMessageDelivery</code> – When set to <code>true</code>, enables
+     * raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates
+     * the need for the endpoints to process JSON formatting, which is otherwise
+     * created for Amazon SNS metadata.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param attributes <p>
+     *            A map of attributes with their corresponding values.
+     *            </p>
+     *            <p>
+     *            The following lists the names, descriptions, and values of the
+     *            special request parameters that the
+     *            <code>SetTopicAttributes</code> action uses:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>DeliveryPolicy</code> – The policy that defines how
+     *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FilterPolicy</code> – The simple JSON object that lets
+     *            your subscriber receive only a subset of messages, rather than
+     *            receiving every message published to the topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>RawMessageDelivery</code> – When set to
+     *            <code>true</code>, enables raw message delivery to Amazon SQS
+     *            or HTTP/S endpoints. This eliminates the need for the
+     *            endpoints to process JSON formatting, which is otherwise
+     *            created for Amazon SNS metadata.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setAttributes(java.util.Map<String, String> attributes) {
+        this.attributes = attributes;
+    }
+
+    /**
+     * <p>
+     * A map of attributes with their corresponding values.
+     * </p>
+     * <p>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicy</code> – The simple JSON object that lets your
+     * subscriber receive only a subset of messages, rather than receiving every
+     * message published to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RawMessageDelivery</code> – When set to <code>true</code>, enables
+     * raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates
+     * the need for the endpoints to process JSON formatting, which is otherwise
+     * created for Amazon SNS metadata.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param attributes <p>
+     *            A map of attributes with their corresponding values.
+     *            </p>
+     *            <p>
+     *            The following lists the names, descriptions, and values of the
+     *            special request parameters that the
+     *            <code>SetTopicAttributes</code> action uses:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>DeliveryPolicy</code> – The policy that defines how
+     *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FilterPolicy</code> – The simple JSON object that lets
+     *            your subscriber receive only a subset of messages, rather than
+     *            receiving every message published to the topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>RawMessageDelivery</code> – When set to
+     *            <code>true</code>, enables raw message delivery to Amazon SQS
+     *            or HTTP/S endpoints. This eliminates the need for the
+     *            endpoints to process JSON formatting, which is otherwise
+     *            created for Amazon SNS metadata.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SubscribeRequest withAttributes(java.util.Map<String, String> attributes) {
+        this.attributes = attributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of attributes with their corresponding values.
+     * </p>
+     * <p>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicy</code> – The simple JSON object that lets your
+     * subscriber receive only a subset of messages, rather than receiving every
+     * message published to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RawMessageDelivery</code> – When set to <code>true</code>, enables
+     * raw message delivery to Amazon SQS or HTTP/S endpoints. This eliminates
+     * the need for the endpoints to process JSON formatting, which is otherwise
+     * created for Amazon SNS metadata.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The method adds a new key-value pair into Attributes parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into Attributes.
+     * @param value The corresponding value of the entry to be added into
+     *            Attributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SubscribeRequest addAttributesEntry(String key, String value) {
+        if (null == this.attributes) {
+            this.attributes = new java.util.HashMap<String, String>();
+        }
+        if (this.attributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.attributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Attributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SubscribeRequest clearAttributesEntries() {
+        this.attributes = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets whether the response from the <code>Subscribe</code> request
+     * includes the subscription ARN, even if the subscription is not yet
+     * confirmed.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>false</code>, the response includes
+     * the ARN for confirmed subscriptions, but it includes an ARN value of
+     * "pending subscription" for subscriptions that are not yet confirmed. A
+     * subscription becomes confirmed when the subscriber calls the
+     * <code>ConfirmSubscription</code> action with a confirmation token.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Sets whether the response from the <code>Subscribe</code> request
+     *         includes the subscription ARN, even if the subscription is not
+     *         yet confirmed.
+     *         </p>
+     *         <p>
+     *         If you set this parameter to <code>false</code>, the response
+     *         includes the ARN for confirmed subscriptions, but it includes an
+     *         ARN value of "pending subscription" for subscriptions that are
+     *         not yet confirmed. A subscription becomes confirmed when the
+     *         subscriber calls the <code>ConfirmSubscription</code> action with
+     *         a confirmation token.
+     *         </p>
+     *         <p>
+     *         If you set this parameter to <code>true</code>, the response
+     *         includes the ARN in all cases, even if the subscription is not
+     *         yet confirmed.
+     *         </p>
+     *         <p>
+     *         The default value is <code>false</code>.
+     *         </p>
+     */
+    public Boolean isReturnSubscriptionArn() {
+        return returnSubscriptionArn;
+    }
+
+    /**
+     * <p>
+     * Sets whether the response from the <code>Subscribe</code> request
+     * includes the subscription ARN, even if the subscription is not yet
+     * confirmed.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>false</code>, the response includes
+     * the ARN for confirmed subscriptions, but it includes an ARN value of
+     * "pending subscription" for subscriptions that are not yet confirmed. A
+     * subscription becomes confirmed when the subscriber calls the
+     * <code>ConfirmSubscription</code> action with a confirmation token.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Sets whether the response from the <code>Subscribe</code> request
+     *         includes the subscription ARN, even if the subscription is not
+     *         yet confirmed.
+     *         </p>
+     *         <p>
+     *         If you set this parameter to <code>false</code>, the response
+     *         includes the ARN for confirmed subscriptions, but it includes an
+     *         ARN value of "pending subscription" for subscriptions that are
+     *         not yet confirmed. A subscription becomes confirmed when the
+     *         subscriber calls the <code>ConfirmSubscription</code> action with
+     *         a confirmation token.
+     *         </p>
+     *         <p>
+     *         If you set this parameter to <code>true</code>, the response
+     *         includes the ARN in all cases, even if the subscription is not
+     *         yet confirmed.
+     *         </p>
+     *         <p>
+     *         The default value is <code>false</code>.
+     *         </p>
+     */
+    public Boolean getReturnSubscriptionArn() {
+        return returnSubscriptionArn;
+    }
+
+    /**
+     * <p>
+     * Sets whether the response from the <code>Subscribe</code> request
+     * includes the subscription ARN, even if the subscription is not yet
+     * confirmed.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>false</code>, the response includes
+     * the ARN for confirmed subscriptions, but it includes an ARN value of
+     * "pending subscription" for subscriptions that are not yet confirmed. A
+     * subscription becomes confirmed when the subscriber calls the
+     * <code>ConfirmSubscription</code> action with a confirmation token.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @param returnSubscriptionArn <p>
+     *            Sets whether the response from the <code>Subscribe</code>
+     *            request includes the subscription ARN, even if the
+     *            subscription is not yet confirmed.
+     *            </p>
+     *            <p>
+     *            If you set this parameter to <code>false</code>, the response
+     *            includes the ARN for confirmed subscriptions, but it includes
+     *            an ARN value of "pending subscription" for subscriptions that
+     *            are not yet confirmed. A subscription becomes confirmed when
+     *            the subscriber calls the <code>ConfirmSubscription</code>
+     *            action with a confirmation token.
+     *            </p>
+     *            <p>
+     *            If you set this parameter to <code>true</code>, the response
+     *            includes the ARN in all cases, even if the subscription is not
+     *            yet confirmed.
+     *            </p>
+     *            <p>
+     *            The default value is <code>false</code>.
+     *            </p>
+     */
+    public void setReturnSubscriptionArn(Boolean returnSubscriptionArn) {
+        this.returnSubscriptionArn = returnSubscriptionArn;
+    }
+
+    /**
+     * <p>
+     * Sets whether the response from the <code>Subscribe</code> request
+     * includes the subscription ARN, even if the subscription is not yet
+     * confirmed.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>false</code>, the response includes
+     * the ARN for confirmed subscriptions, but it includes an ARN value of
+     * "pending subscription" for subscriptions that are not yet confirmed. A
+     * subscription becomes confirmed when the subscriber calls the
+     * <code>ConfirmSubscription</code> action with a confirmation token.
+     * </p>
+     * <p>
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param returnSubscriptionArn <p>
+     *            Sets whether the response from the <code>Subscribe</code>
+     *            request includes the subscription ARN, even if the
+     *            subscription is not yet confirmed.
+     *            </p>
+     *            <p>
+     *            If you set this parameter to <code>false</code>, the response
+     *            includes the ARN for confirmed subscriptions, but it includes
+     *            an ARN value of "pending subscription" for subscriptions that
+     *            are not yet confirmed. A subscription becomes confirmed when
+     *            the subscriber calls the <code>ConfirmSubscription</code>
+     *            action with a confirmation token.
+     *            </p>
+     *            <p>
+     *            If you set this parameter to <code>true</code>, the response
+     *            includes the ARN in all cases, even if the subscription is not
+     *            yet confirmed.
+     *            </p>
+     *            <p>
+     *            The default value is <code>false</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SubscribeRequest withReturnSubscriptionArn(Boolean returnSubscriptionArn) {
+        this.returnSubscriptionArn = returnSubscriptionArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1005,7 +1535,11 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
         if (getProtocol() != null)
             sb.append("Protocol: " + getProtocol() + ",");
         if (getEndpoint() != null)
-            sb.append("Endpoint: " + getEndpoint());
+            sb.append("Endpoint: " + getEndpoint() + ",");
+        if (getAttributes() != null)
+            sb.append("Attributes: " + getAttributes() + ",");
+        if (getReturnSubscriptionArn() != null)
+            sb.append("ReturnSubscriptionArn: " + getReturnSubscriptionArn());
         sb.append("}");
         return sb.toString();
     }
@@ -1018,6 +1552,10 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
         hashCode = prime * hashCode + ((getTopicArn() == null) ? 0 : getTopicArn().hashCode());
         hashCode = prime * hashCode + ((getProtocol() == null) ? 0 : getProtocol().hashCode());
         hashCode = prime * hashCode + ((getEndpoint() == null) ? 0 : getEndpoint().hashCode());
+        hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getReturnSubscriptionArn() == null) ? 0 : getReturnSubscriptionArn().hashCode());
         return hashCode;
     }
 
@@ -1043,6 +1581,16 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getEndpoint() == null ^ this.getEndpoint() == null)
             return false;
         if (other.getEndpoint() != null && other.getEndpoint().equals(this.getEndpoint()) == false)
+            return false;
+        if (other.getAttributes() == null ^ this.getAttributes() == null)
+            return false;
+        if (other.getAttributes() != null
+                && other.getAttributes().equals(this.getAttributes()) == false)
+            return false;
+        if (other.getReturnSubscriptionArn() == null ^ this.getReturnSubscriptionArn() == null)
+            return false;
+        if (other.getReturnSubscriptionArn() != null
+                && other.getReturnSubscriptionArn().equals(this.getReturnSubscriptionArn()) == false)
             return false;
         return true;
     }

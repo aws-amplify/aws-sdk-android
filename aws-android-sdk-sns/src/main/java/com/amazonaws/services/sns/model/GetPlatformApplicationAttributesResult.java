@@ -30,25 +30,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated
+     * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted
+     * <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate
+     * <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure
+     * <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure
      * event notifications should be sent upon Direct Publish delivery failure
      * (permanent) to one of the application's endpoints.
      * </p>
@@ -64,25 +64,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated
+     * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted
+     * <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate
+     * <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure
+     * <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure
      * event notifications should be sent upon Direct Publish delivery failure
      * (permanent) to one of the application's endpoints.
      * </p>
@@ -95,25 +95,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>EventEndpointCreated</code> -- Topic ARN to which
+     *         <code>EventEndpointCreated</code> – Topic ARN to which
      *         EndpointCreated event notifications should be sent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>EventEndpointDeleted</code> -- Topic ARN to which
+     *         <code>EventEndpointDeleted</code> – Topic ARN to which
      *         EndpointDeleted event notifications should be sent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>EventEndpointUpdated</code> -- Topic ARN to which
+     *         <code>EventEndpointUpdated</code> – Topic ARN to which
      *         EndpointUpdate event notifications should be sent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>EventDeliveryFailure</code> -- Topic ARN to which
+     *         <code>EventDeliveryFailure</code> – Topic ARN to which
      *         DeliveryFailure event notifications should be sent upon Direct
      *         Publish delivery failure (permanent) to one of the application's
      *         endpoints.
@@ -132,25 +132,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated
+     * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted
+     * <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate
+     * <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure
+     * <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure
      * event notifications should be sent upon Direct Publish delivery failure
      * (permanent) to one of the application's endpoints.
      * </p>
@@ -163,25 +163,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>EventEndpointCreated</code> -- Topic ARN to which
+     *            <code>EventEndpointCreated</code> – Topic ARN to which
      *            EndpointCreated event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventEndpointDeleted</code> -- Topic ARN to which
+     *            <code>EventEndpointDeleted</code> – Topic ARN to which
      *            EndpointDeleted event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventEndpointUpdated</code> -- Topic ARN to which
+     *            <code>EventEndpointUpdated</code> – Topic ARN to which
      *            EndpointUpdate event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventDeliveryFailure</code> -- Topic ARN to which
+     *            <code>EventDeliveryFailure</code> – Topic ARN to which
      *            DeliveryFailure event notifications should be sent upon Direct
      *            Publish delivery failure (permanent) to one of the
      *            application's endpoints.
@@ -200,25 +200,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated
+     * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted
+     * <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate
+     * <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure
+     * <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure
      * event notifications should be sent upon Direct Publish delivery failure
      * (permanent) to one of the application's endpoints.
      * </p>
@@ -234,25 +234,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>EventEndpointCreated</code> -- Topic ARN to which
+     *            <code>EventEndpointCreated</code> – Topic ARN to which
      *            EndpointCreated event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventEndpointDeleted</code> -- Topic ARN to which
+     *            <code>EventEndpointDeleted</code> – Topic ARN to which
      *            EndpointDeleted event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventEndpointUpdated</code> -- Topic ARN to which
+     *            <code>EventEndpointUpdated</code> – Topic ARN to which
      *            EndpointUpdate event notifications should be sent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EventDeliveryFailure</code> -- Topic ARN to which
+     *            <code>EventDeliveryFailure</code> – Topic ARN to which
      *            DeliveryFailure event notifications should be sent upon Direct
      *            Publish delivery failure (permanent) to one of the
      *            application's endpoints.
@@ -275,25 +275,25 @@ public class GetPlatformApplicationAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated
+     * <code>EventEndpointCreated</code> – Topic ARN to which EndpointCreated
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted
+     * <code>EventEndpointDeleted</code> – Topic ARN to which EndpointDeleted
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate
+     * <code>EventEndpointUpdated</code> – Topic ARN to which EndpointUpdate
      * event notifications should be sent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure
+     * <code>EventDeliveryFailure</code> – Topic ARN to which DeliveryFailure
      * event notifications should be sent upon Direct Publish delivery failure
      * (permanent) to one of the application's endpoints.
      * </p>

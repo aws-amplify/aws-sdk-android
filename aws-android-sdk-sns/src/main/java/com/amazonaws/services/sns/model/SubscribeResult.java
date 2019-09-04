@@ -25,22 +25,31 @@ import java.io.Serializable;
 public class SubscribeResult implements Serializable {
     /**
      * <p>
-     * The ARN of the subscription, if the service was able to create a
-     * subscription immediately (without requiring endpoint owner confirmation).
+     * The ARN of the subscription if it is confirmed, or the string
+     * "pending confirmation" if the subscription requires confirmation.
+     * However, if the API request parameter <code>ReturnSubscriptionArn</code>
+     * is true, then the value is always the subscription ARN, even if the
+     * subscription requires confirmation.
      * </p>
      */
     private String subscriptionArn;
 
     /**
      * <p>
-     * The ARN of the subscription, if the service was able to create a
-     * subscription immediately (without requiring endpoint owner confirmation).
+     * The ARN of the subscription if it is confirmed, or the string
+     * "pending confirmation" if the subscription requires confirmation.
+     * However, if the API request parameter <code>ReturnSubscriptionArn</code>
+     * is true, then the value is always the subscription ARN, even if the
+     * subscription requires confirmation.
      * </p>
      *
      * @return <p>
-     *         The ARN of the subscription, if the service was able to create a
-     *         subscription immediately (without requiring endpoint owner
-     *         confirmation).
+     *         The ARN of the subscription if it is confirmed, or the string
+     *         "pending confirmation" if the subscription requires confirmation.
+     *         However, if the API request parameter
+     *         <code>ReturnSubscriptionArn</code> is true, then the value is
+     *         always the subscription ARN, even if the subscription requires
+     *         confirmation.
      *         </p>
      */
     public String getSubscriptionArn() {
@@ -49,14 +58,20 @@ public class SubscribeResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the subscription, if the service was able to create a
-     * subscription immediately (without requiring endpoint owner confirmation).
+     * The ARN of the subscription if it is confirmed, or the string
+     * "pending confirmation" if the subscription requires confirmation.
+     * However, if the API request parameter <code>ReturnSubscriptionArn</code>
+     * is true, then the value is always the subscription ARN, even if the
+     * subscription requires confirmation.
      * </p>
      *
      * @param subscriptionArn <p>
-     *            The ARN of the subscription, if the service was able to create
-     *            a subscription immediately (without requiring endpoint owner
-     *            confirmation).
+     *            The ARN of the subscription if it is confirmed, or the string
+     *            "pending confirmation" if the subscription requires
+     *            confirmation. However, if the API request parameter
+     *            <code>ReturnSubscriptionArn</code> is true, then the value is
+     *            always the subscription ARN, even if the subscription requires
+     *            confirmation.
      *            </p>
      */
     public void setSubscriptionArn(String subscriptionArn) {
@@ -65,17 +80,23 @@ public class SubscribeResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the subscription, if the service was able to create a
-     * subscription immediately (without requiring endpoint owner confirmation).
+     * The ARN of the subscription if it is confirmed, or the string
+     * "pending confirmation" if the subscription requires confirmation.
+     * However, if the API request parameter <code>ReturnSubscriptionArn</code>
+     * is true, then the value is always the subscription ARN, even if the
+     * subscription requires confirmation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param subscriptionArn <p>
-     *            The ARN of the subscription, if the service was able to create
-     *            a subscription immediately (without requiring endpoint owner
-     *            confirmation).
+     *            The ARN of the subscription if it is confirmed, or the string
+     *            "pending confirmation" if the subscription requires
+     *            confirmation. However, if the API request parameter
+     *            <code>ReturnSubscriptionArn</code> is true, then the value is
+     *            always the subscription ARN, even if the subscription requires
+     *            confirmation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
