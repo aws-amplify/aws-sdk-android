@@ -171,8 +171,8 @@ This section describes how you can compile the SDK source code on your own.
 1. The AWS Core Runtime (`aws-android-sdk-core`) module requires Android API 23 only for compilation locally. Please download and install Android API Level 23 through SDK Manager in Android Studio. 
 
 2. When building the [Core module](https://github.com/aws-amplify/aws-sdk-android/blob/master/aws-android-sdk-core/build.gradle#L32), it requires the following:
-   2.1 Environment variable `ANDROID_HOME` to be set in order to find the `android-23.jar`.
-   2.2 Environment variable `ANDROID_PLATFORM` to be set to the platform number (`10` through `28` and above)
+    1. Environment variable `ANDROID_HOME` to be set in order to find the `android-23.jar`.
+    1. Environment variable `ANDROID_PLATFORM` to be set to the platform number (`10` through `28` and above)
 
 For command line approach, you can build the source via Gradle, which can be downloaded and installed from [here](https://gradle.org/install/).
 After installing Gradle, clone this repository and run
