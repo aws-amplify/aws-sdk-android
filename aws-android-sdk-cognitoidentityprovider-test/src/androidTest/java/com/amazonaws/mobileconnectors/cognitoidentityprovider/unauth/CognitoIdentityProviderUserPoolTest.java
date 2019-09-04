@@ -221,7 +221,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				
 				// Verify the arguments
 				ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -237,10 +237,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		        
 		        // Verify results
 				assertNotNull(user);
-				assertNotNull(signUpState);
-				assertNotNull(var3);
+				assertNotNull(signUpResult.getUserConfirmed());
+				assertNotNull(signUpResult.getCodeDeliveryDetails());
 				assertEquals(TEST_USER_NAME, user.getUserId());
-				assertEquals(signUpState, expected_result_boolean);
+				assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
 			}
 
 			@Override
@@ -274,7 +274,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
         testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
             @Override
-            public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+            public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 
                 // Verify the arguments
                 ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -292,10 +292,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
                 
                 // Verify results
                 assertNotNull(user);
-                assertNotNull(signUpState);
-                assertNotNull(var3);
+                assertNotNull(signUpResult.getUserConfirmed());
+                assertNotNull(signUpResult.getCodeDeliveryDetails());
                 assertEquals(TEST_USER_NAME, user.getUserId());
-                assertEquals(signUpState, expected_result_boolean);
+                assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
             }
 
             @Override
@@ -320,7 +320,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
         testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
             @Override
-            public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+            public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 
                 // Verify the arguments
                 ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -337,10 +337,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
                 
                 // Verify results
                 assertNotNull(user);
-                assertNotNull(signUpState);
-                assertNotNull(var3);
+                assertNotNull(signUpResult.getUserConfirmed());
+                assertNotNull(signUpResult.getCodeDeliveryDetails());
                 assertEquals(TEST_USER_NAME, user.getUserId());
-                assertEquals(signUpState, expected_result_boolean);
+                assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
             }
 
             @Override
@@ -360,7 +360,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		testPool.signUpInBackground(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				
 				// Verify the arguments
 				ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -376,10 +376,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		        assertEquals(3, requestSent.getValidationData().size());
 		        
 				assertNotNull(user);
-				assertNotNull(signUpState);
-				assertNotNull(var3);
+				assertNotNull(signUpResult.getUserConfirmed());
+				assertNotNull(signUpResult.getCodeDeliveryDetails());
 				assertEquals(TEST_USER_NAME, user.getUserId());
-				assertEquals(signUpState, expected_result_boolean);
+				assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
 			}
 
 			@Override
@@ -401,9 +401,9 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
-				assertNotNull(signUpState);
+				assertNotNull(signUpResult.getUserConfirmed());
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
 
@@ -426,7 +426,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
@@ -450,7 +450,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
