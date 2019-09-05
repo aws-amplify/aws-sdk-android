@@ -157,7 +157,7 @@ public class EncoderFactory {
         // configure() call to throw an unhelpful exception.
         format.setString(MediaFormat.KEY_MIME, mediaSourceConfiguration.getEncoderMimeType());
         format.setInteger(MediaFormat.KEY_AAC_PROFILE, MediaCodecInfo.CodecProfileLevel.AACObjectLC);
-        //format.setInteger(MediaFormat.KEY_CHANNEL_MASK, AudioFormat.CHANNEL_IN_MONO);
+        format.setInteger(MediaFormat.KEY_CHANNEL_MASK, AudioFormat.CHANNEL_IN_MONO);
         format.setInteger(MediaFormat.KEY_BIT_RATE, mediaSourceConfiguration.getBitRate());
         format.setInteger(MediaFormat.KEY_SAMPLE_RATE, mediaSourceConfiguration.getSampleRate());
         format.setInteger(MediaFormat.KEY_CHANNEL_COUNT, AUDIO_CHANNEL_COUNT);

@@ -60,7 +60,7 @@ public class EncoderSampleSubmitter {
         // step one. get the info about the encoder input buffer
         final int inputBufferIndex = mEncoder.dequeueInputBuffer(DEQUEUE_NOW);
         final ByteBuffer tmpBuffer = mEncoder.getInputBuffer(inputBufferIndex);
-        final int tmpBufferSize = tmpBuffer.capacity();
+        final int tmpSize = byteBuffer.remaining();
 
         // step two. copy the frame into the encoder input
         tmpBuffer.put(byteBuffer);
@@ -69,7 +69,7 @@ public class EncoderSampleSubmitter {
         mEncoder.queueInputBuffer(
                 inputBufferIndex,
                 FROM_START,
-                tmpBufferSize,
+                tmpSize,
                 timestampInUS,
                 flags);
     }
