@@ -34,13 +34,50 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the attribute you want to set. Only a subset of the topic's
-     * attributes are mutable.
+     * A map of attributes with their corresponding values.
      * </p>
      * <p>
-     * Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     * <code>DeliveryPolicy</code>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DisplayName</code> – The display name to use for a topic with SMS
+     * subscriptions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code> – The policy that defines who can access your topic.
+     * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attribute applies only to <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     * >Key Terms</a>. For more examples, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * </ul>
      */
     private String attributeName;
 
@@ -68,13 +105,53 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            The ARN of the topic to modify.
      *            </p>
      * @param attributeName <p>
-     *            The name of the attribute you want to set. Only a subset of
-     *            the topic's attributes are mutable.
+     *            A map of attributes with their corresponding values.
      *            </p>
      *            <p>
-     *            Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     *            <code>DeliveryPolicy</code>
+     *            The following lists the names, descriptions, and values of the
+     *            special request parameters that the
+     *            <code>SetTopicAttributes</code> action uses:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>DeliveryPolicy</code> – The policy that defines how
+     *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DisplayName</code> – The display name to use for a topic
+     *            with SMS subscriptions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code> – The policy that defines who can access
+     *            your topic. By default, only the topic owner can publish or
+     *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SNS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     *            >Key Terms</a>. For more examples, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *            >KeyId</a> in the <i>AWS Key Management Service API
+     *            Reference</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @param attributeValue <p>
      *            The new value for the attribute.
      *            </p>
@@ -132,22 +209,99 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the attribute you want to set. Only a subset of the topic's
-     * attributes are mutable.
+     * A map of attributes with their corresponding values.
      * </p>
      * <p>
-     * Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     * <code>DeliveryPolicy</code>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DisplayName</code> – The display name to use for a topic with SMS
+     * subscriptions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code> – The policy that defines who can access your topic.
+     * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attribute applies only to <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     * >Key Terms</a>. For more examples, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         The name of the attribute you want to set. Only a subset of the
-     *         topic's attributes are mutable.
+     *         A map of attributes with their corresponding values.
      *         </p>
      *         <p>
-     *         Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     *         <code>DeliveryPolicy</code>
+     *         The following lists the names, descriptions, and values of the
+     *         special request parameters that the
+     *         <code>SetTopicAttributes</code> action uses:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>DeliveryPolicy</code> – The policy that defines how Amazon
+     *         SNS retries failed deliveries to HTTP/S endpoints.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DisplayName</code> – The display name to use for a topic
+     *         with SMS subscriptions.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Policy</code> – The policy that defines who can access your
+     *         topic. By default, only the topic owner can publish or subscribe
+     *         to the topic.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The following attribute applies only to <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     *         >server-side-encryption</a>:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer
+     *         master key (CMK) for Amazon SNS or a custom CMK. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     *         >Key Terms</a>. For more examples, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *         >KeyId</a> in the <i>AWS Key Management Service API
+     *         Reference</i>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getAttributeName() {
         return attributeName;
@@ -155,22 +309,99 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the attribute you want to set. Only a subset of the topic's
-     * attributes are mutable.
+     * A map of attributes with their corresponding values.
      * </p>
      * <p>
-     * Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     * <code>DeliveryPolicy</code>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DisplayName</code> – The display name to use for a topic with SMS
+     * subscriptions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code> – The policy that defines who can access your topic.
+     * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attribute applies only to <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     * >Key Terms</a>. For more examples, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param attributeName <p>
-     *            The name of the attribute you want to set. Only a subset of
-     *            the topic's attributes are mutable.
+     *            A map of attributes with their corresponding values.
      *            </p>
      *            <p>
-     *            Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     *            <code>DeliveryPolicy</code>
+     *            The following lists the names, descriptions, and values of the
+     *            special request parameters that the
+     *            <code>SetTopicAttributes</code> action uses:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>DeliveryPolicy</code> – The policy that defines how
+     *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DisplayName</code> – The display name to use for a topic
+     *            with SMS subscriptions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code> – The policy that defines who can access
+     *            your topic. By default, only the topic owner can publish or
+     *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SNS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     *            >Key Terms</a>. For more examples, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *            >KeyId</a> in the <i>AWS Key Management Service API
+     *            Reference</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
@@ -178,25 +409,102 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the attribute you want to set. Only a subset of the topic's
-     * attributes are mutable.
+     * A map of attributes with their corresponding values.
      * </p>
      * <p>
-     * Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     * <code>DeliveryPolicy</code>
+     * The following lists the names, descriptions, and values of the special
+     * request parameters that the <code>SetTopicAttributes</code> action uses:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DeliveryPolicy</code> – The policy that defines how Amazon SNS
+     * retries failed deliveries to HTTP/S endpoints.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DisplayName</code> – The display name to use for a topic with SMS
+     * subscriptions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code> – The policy that defines who can access your topic.
+     * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attribute applies only to <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     * >Key Terms</a>. For more examples, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributeName <p>
-     *            The name of the attribute you want to set. Only a subset of
-     *            the topic's attributes are mutable.
+     *            A map of attributes with their corresponding values.
      *            </p>
      *            <p>
-     *            Valid values: <code>Policy</code> | <code>DisplayName</code> |
-     *            <code>DeliveryPolicy</code>
+     *            The following lists the names, descriptions, and values of the
+     *            special request parameters that the
+     *            <code>SetTopicAttributes</code> action uses:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>DeliveryPolicy</code> – The policy that defines how
+     *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DisplayName</code> – The display name to use for a topic
+     *            with SMS subscriptions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code> – The policy that defines who can access
+     *            your topic. By default, only the topic owner can publish or
+     *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SNS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
+     *            >Key Terms</a>. For more examples, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *            >KeyId</a> in the <i>AWS Key Management Service API
+     *            Reference</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

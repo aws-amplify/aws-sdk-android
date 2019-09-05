@@ -45,6 +45,40 @@ public class CreateTopicRequestMarshaller implements
             String name = createTopicRequest.getName();
             request.addParameter(prefix, StringUtils.fromString(name));
         }
+        if (createTopicRequest.getAttributes() != null) {
+            prefix = "Attributes";
+            java.util.Map<String, String> attributes = createTopicRequest.getAttributes();
+            int attributesIndex = 1;
+            String attributesPrefix = prefix + ".entry.";
+            for (java.util.Map.Entry<String, String> attributesEntry : attributes.entrySet()) {
+                prefix = attributesPrefix + attributesIndex;
+                if (attributesEntry.getKey() != null) {
+                    request.addParameter(prefix + ".key",
+                            StringUtils.fromString(attributesEntry.getKey()));
+                }
+                prefix += ".value";
+                if (attributesEntry.getValue() != null) {
+                    String attributesValue = attributesEntry.getValue();
+                    request.addParameter(prefix, StringUtils.fromString(attributesValue));
+                }
+                attributesIndex++;
+            }
+            prefix = attributesPrefix;
+        }
+        if (createTopicRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<Tag> tags = createTopicRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (Tag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagStaxMarshaller.getInstance().marshall(tagsItem, request, prefix + ".");
+                }
+                tagsIndex++;
+            }
+            prefix = tagsPrefix;
+        }
 
         return request;
     }

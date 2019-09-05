@@ -32,14 +32,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * already owns an endpoint with the same device token and attributes, that
  * endpoint's ARN is returned without creating a new endpoint. For more
  * information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+ * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>.
  * </p>
  * <p>
  * When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes
  * must be provided: ChannelId and UserId. The token field must also contain the
  * ChannelId. For more information, see <a href=
- * "http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html"
+ * "https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html"
  * >Creating an Amazon SNS Endpoint for Baidu</a>.
  * </p>
  */
@@ -75,7 +75,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      */
@@ -264,13 +264,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      *
      * @return <p>
      *         For a list of attributes, see <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *         >SetEndpointAttributes</a>.
      *         </p>
      */
@@ -281,13 +281,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *            >SetEndpointAttributes</a>.
      *            </p>
      */
@@ -298,7 +298,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      * <p>
@@ -307,7 +307,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *            >SetEndpointAttributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -321,7 +321,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      * <p>

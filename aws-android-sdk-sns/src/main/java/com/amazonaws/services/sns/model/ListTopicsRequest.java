@@ -26,6 +26,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returned. Use the <code>NextToken</code> parameter in a new
  * <code>ListTopics</code> call to get further results.
  * </p>
+ * <p>
+ * This action is throttled at 30 transactions per second (TPS).
+ * </p>
  */
 public class ListTopicsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

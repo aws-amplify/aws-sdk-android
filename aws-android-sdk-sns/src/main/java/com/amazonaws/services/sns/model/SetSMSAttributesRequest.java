@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * You can override some of these settings for a single message when you use the
  * <code>Publish</code> action with the <code>MessageAttributes.entry.N</code>
  * parameter. For more information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html"
+ * href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html"
  * >Sending an SMS Message</a> in the <i>Amazon SNS Developer Guide</i>.
  * </p>
  */
@@ -52,6 +52,14 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </important>
      * <p>
+     * By default, the spend limit is set to the maximum allowed by Amazon SNS.
+     * If you want to raise the limit, submit an <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     * >SNS Limit Increase case</a>. For <b>New limit value</b>, enter your
+     * desired monthly spend limit. In the <b>Use Case Description</b> field,
+     * explain that you are requesting an SMS monthly spend limit increase.
+     * </p>
+     * <p>
      * <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows
      * Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For
      * each SMS message that you send, Amazon SNS writes a log that includes the
@@ -79,17 +87,17 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Promotional</code> – Noncritical messages, such as marketing
-     * messages. Amazon SNS optimizes the message delivery to incur the lowest
-     * cost.
+     * <code>Promotional</code> – (Default) Noncritical messages, such as
+     * marketing messages. Amazon SNS optimizes the message delivery to incur
+     * the lowest cost.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Transactional</code> – (Default) Critical messages that support
-     * customer transactions, such as one-time passcodes for multi-factor
-     * authentication. Amazon SNS optimizes the message delivery to achieve the
-     * highest reliability.
+     * <code>Transactional</code> – Critical messages that support customer
+     * transactions, such as one-time passcodes for multi-factor authentication.
+     * Amazon SNS optimizes the message delivery to achieve the highest
+     * reliability.
      * </p>
      * </li>
      * </ul>
@@ -150,9 +158,8 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For an example bucket policy and usage report, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html">Viewing
-     * Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer
-     * Guide</i>.
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     * >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
@@ -176,6 +183,14 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </important>
      * <p>
+     * By default, the spend limit is set to the maximum allowed by Amazon SNS.
+     * If you want to raise the limit, submit an <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     * >SNS Limit Increase case</a>. For <b>New limit value</b>, enter your
+     * desired monthly spend limit. In the <b>Use Case Description</b> field,
+     * explain that you are requesting an SMS monthly spend limit increase.
+     * </p>
+     * <p>
      * <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows
      * Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For
      * each SMS message that you send, Amazon SNS writes a log that includes the
@@ -203,17 +218,17 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Promotional</code> – Noncritical messages, such as marketing
-     * messages. Amazon SNS optimizes the message delivery to incur the lowest
-     * cost.
+     * <code>Promotional</code> – (Default) Noncritical messages, such as
+     * marketing messages. Amazon SNS optimizes the message delivery to incur
+     * the lowest cost.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Transactional</code> – (Default) Critical messages that support
-     * customer transactions, such as one-time passcodes for multi-factor
-     * authentication. Amazon SNS optimizes the message delivery to achieve the
-     * highest reliability.
+     * <code>Transactional</code> – Critical messages that support customer
+     * transactions, such as one-time passcodes for multi-factor authentication.
+     * Amazon SNS optimizes the message delivery to achieve the highest
+     * reliability.
      * </p>
      * </li>
      * </ul>
@@ -274,9 +289,8 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For an example bucket policy and usage report, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html">Viewing
-     * Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer
-     * Guide</i>.
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     * >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
      *
      * @return <p>
@@ -297,6 +311,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *         messages, you will incur costs that exceed your limit.
      *         </p>
      *         </important>
+     *         <p>
+     *         By default, the spend limit is set to the maximum allowed by
+     *         Amazon SNS. If you want to raise the limit, submit an <a href=
+     *         "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     *         >SNS Limit Increase case</a>. For <b>New limit value</b>, enter
+     *         your desired monthly spend limit. In the <b>Use Case
+     *         Description</b> field, explain that you are requesting an SMS
+     *         monthly spend limit increase.
+     *         </p>
      *         <p>
      *         <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that
      *         allows Amazon SNS to write logs about SMS deliveries in
@@ -327,15 +350,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>Promotional</code> – Noncritical messages, such as
-     *         marketing messages. Amazon SNS optimizes the message delivery to
-     *         incur the lowest cost.
+     *         <code>Promotional</code> – (Default) Noncritical messages, such
+     *         as marketing messages. Amazon SNS optimizes the message delivery
+     *         to incur the lowest cost.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Transactional</code> – (Default) Critical messages that
-     *         support customer transactions, such as one-time passcodes for
+     *         <code>Transactional</code> – Critical messages that support
+     *         customer transactions, such as one-time passcodes for
      *         multi-factor authentication. Amazon SNS optimizes the message
      *         delivery to achieve the highest reliability.
      *         </p>
@@ -399,9 +422,9 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For an example bucket policy and usage report, see <a
-     *         href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
-     *         >Viewing Statistics About SMS Message Delivery</a> in the
-     *         <i>Amazon SNS Developer Guide</i>.
+     *         href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     *         >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer
+     *         Guide</i>.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -427,6 +450,14 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </important>
      * <p>
+     * By default, the spend limit is set to the maximum allowed by Amazon SNS.
+     * If you want to raise the limit, submit an <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     * >SNS Limit Increase case</a>. For <b>New limit value</b>, enter your
+     * desired monthly spend limit. In the <b>Use Case Description</b> field,
+     * explain that you are requesting an SMS monthly spend limit increase.
+     * </p>
+     * <p>
      * <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows
      * Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For
      * each SMS message that you send, Amazon SNS writes a log that includes the
@@ -454,17 +485,17 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Promotional</code> – Noncritical messages, such as marketing
-     * messages. Amazon SNS optimizes the message delivery to incur the lowest
-     * cost.
+     * <code>Promotional</code> – (Default) Noncritical messages, such as
+     * marketing messages. Amazon SNS optimizes the message delivery to incur
+     * the lowest cost.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Transactional</code> – (Default) Critical messages that support
-     * customer transactions, such as one-time passcodes for multi-factor
-     * authentication. Amazon SNS optimizes the message delivery to achieve the
-     * highest reliability.
+     * <code>Transactional</code> – Critical messages that support customer
+     * transactions, such as one-time passcodes for multi-factor authentication.
+     * Amazon SNS optimizes the message delivery to achieve the highest
+     * reliability.
      * </p>
      * </li>
      * </ul>
@@ -525,9 +556,8 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For an example bucket policy and usage report, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html">Viewing
-     * Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer
-     * Guide</i>.
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     * >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
      *
      * @param attributes <p>
@@ -549,6 +579,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            limit.
      *            </p>
      *            </important>
+     *            <p>
+     *            By default, the spend limit is set to the maximum allowed by
+     *            Amazon SNS. If you want to raise the limit, submit an <a href=
+     *            "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     *            >SNS Limit Increase case</a>. For <b>New limit value</b>,
+     *            enter your desired monthly spend limit. In the <b>Use Case
+     *            Description</b> field, explain that you are requesting an SMS
+     *            monthly spend limit increase.
+     *            </p>
      *            <p>
      *            <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role
      *            that allows Amazon SNS to write logs about SMS deliveries in
@@ -580,15 +619,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Promotional</code> – Noncritical messages, such as
-     *            marketing messages. Amazon SNS optimizes the message delivery
-     *            to incur the lowest cost.
+     *            <code>Promotional</code> – (Default) Noncritical messages,
+     *            such as marketing messages. Amazon SNS optimizes the message
+     *            delivery to incur the lowest cost.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Transactional</code> – (Default) Critical messages that
-     *            support customer transactions, such as one-time passcodes for
+     *            <code>Transactional</code> – Critical messages that support
+     *            customer transactions, such as one-time passcodes for
      *            multi-factor authentication. Amazon SNS optimizes the message
      *            delivery to achieve the highest reliability.
      *            </p>
@@ -653,9 +692,9 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For an example bucket policy and usage report, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
-     *            >Viewing Statistics About SMS Message Delivery</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     *            >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer
+     *            Guide</i>.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -681,6 +720,14 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </important>
      * <p>
+     * By default, the spend limit is set to the maximum allowed by Amazon SNS.
+     * If you want to raise the limit, submit an <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     * >SNS Limit Increase case</a>. For <b>New limit value</b>, enter your
+     * desired monthly spend limit. In the <b>Use Case Description</b> field,
+     * explain that you are requesting an SMS monthly spend limit increase.
+     * </p>
+     * <p>
      * <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows
      * Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For
      * each SMS message that you send, Amazon SNS writes a log that includes the
@@ -708,17 +755,17 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Promotional</code> – Noncritical messages, such as marketing
-     * messages. Amazon SNS optimizes the message delivery to incur the lowest
-     * cost.
+     * <code>Promotional</code> – (Default) Noncritical messages, such as
+     * marketing messages. Amazon SNS optimizes the message delivery to incur
+     * the lowest cost.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Transactional</code> – (Default) Critical messages that support
-     * customer transactions, such as one-time passcodes for multi-factor
-     * authentication. Amazon SNS optimizes the message delivery to achieve the
-     * highest reliability.
+     * <code>Transactional</code> – Critical messages that support customer
+     * transactions, such as one-time passcodes for multi-factor authentication.
+     * Amazon SNS optimizes the message delivery to achieve the highest
+     * reliability.
      * </p>
      * </li>
      * </ul>
@@ -779,9 +826,8 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For an example bucket policy and usage report, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html">Viewing
-     * Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer
-     * Guide</i>.
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     * >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -806,6 +852,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            limit.
      *            </p>
      *            </important>
+     *            <p>
+     *            By default, the spend limit is set to the maximum allowed by
+     *            Amazon SNS. If you want to raise the limit, submit an <a href=
+     *            "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     *            >SNS Limit Increase case</a>. For <b>New limit value</b>,
+     *            enter your desired monthly spend limit. In the <b>Use Case
+     *            Description</b> field, explain that you are requesting an SMS
+     *            monthly spend limit increase.
+     *            </p>
      *            <p>
      *            <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role
      *            that allows Amazon SNS to write logs about SMS deliveries in
@@ -837,15 +892,15 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Promotional</code> – Noncritical messages, such as
-     *            marketing messages. Amazon SNS optimizes the message delivery
-     *            to incur the lowest cost.
+     *            <code>Promotional</code> – (Default) Noncritical messages,
+     *            such as marketing messages. Amazon SNS optimizes the message
+     *            delivery to incur the lowest cost.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Transactional</code> – (Default) Critical messages that
-     *            support customer transactions, such as one-time passcodes for
+     *            <code>Transactional</code> – Critical messages that support
+     *            customer transactions, such as one-time passcodes for
      *            multi-factor authentication. Amazon SNS optimizes the message
      *            delivery to achieve the highest reliability.
      *            </p>
@@ -910,9 +965,9 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For an example bucket policy and usage report, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
-     *            >Viewing Statistics About SMS Message Delivery</a> in the
-     *            <i>Amazon SNS Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     *            >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -941,6 +996,14 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </important>
      * <p>
+     * By default, the spend limit is set to the maximum allowed by Amazon SNS.
+     * If you want to raise the limit, submit an <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sns"
+     * >SNS Limit Increase case</a>. For <b>New limit value</b>, enter your
+     * desired monthly spend limit. In the <b>Use Case Description</b> field,
+     * explain that you are requesting an SMS monthly spend limit increase.
+     * </p>
+     * <p>
      * <code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows
      * Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For
      * each SMS message that you send, Amazon SNS writes a log that includes the
@@ -968,17 +1031,17 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Promotional</code> – Noncritical messages, such as marketing
-     * messages. Amazon SNS optimizes the message delivery to incur the lowest
-     * cost.
+     * <code>Promotional</code> – (Default) Noncritical messages, such as
+     * marketing messages. Amazon SNS optimizes the message delivery to incur
+     * the lowest cost.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Transactional</code> – (Default) Critical messages that support
-     * customer transactions, such as one-time passcodes for multi-factor
-     * authentication. Amazon SNS optimizes the message delivery to achieve the
-     * highest reliability.
+     * <code>Transactional</code> – Critical messages that support customer
+     * transactions, such as one-time passcodes for multi-factor authentication.
+     * Amazon SNS optimizes the message delivery to achieve the highest
+     * reliability.
      * </p>
      * </li>
      * </ul>
@@ -1039,9 +1102,8 @@ public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For an example bucket policy and usage report, see <a
-     * href="http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html">Viewing
-     * Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer
-     * Guide</i>.
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sms_stats.html"
+     * >Monitoring SMS Activity</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
      * <p>
      * The method adds a new key-value pair into attributes parameter, and
