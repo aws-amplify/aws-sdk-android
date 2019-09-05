@@ -54,6 +54,31 @@ public class SubscribeRequestMarshaller implements
             String endpoint = subscribeRequest.getEndpoint();
             request.addParameter(prefix, StringUtils.fromString(endpoint));
         }
+        if (subscribeRequest.getAttributes() != null) {
+            prefix = "Attributes";
+            java.util.Map<String, String> attributes = subscribeRequest.getAttributes();
+            int attributesIndex = 1;
+            String attributesPrefix = prefix + ".entry.";
+            for (java.util.Map.Entry<String, String> attributesEntry : attributes.entrySet()) {
+                prefix = attributesPrefix + attributesIndex;
+                if (attributesEntry.getKey() != null) {
+                    request.addParameter(prefix + ".key",
+                            StringUtils.fromString(attributesEntry.getKey()));
+                }
+                prefix += ".value";
+                if (attributesEntry.getValue() != null) {
+                    String attributesValue = attributesEntry.getValue();
+                    request.addParameter(prefix, StringUtils.fromString(attributesValue));
+                }
+                attributesIndex++;
+            }
+            prefix = attributesPrefix;
+        }
+        if (subscribeRequest.getReturnSubscriptionArn() != null) {
+            prefix = "ReturnSubscriptionArn";
+            Boolean returnSubscriptionArn = subscribeRequest.getReturnSubscriptionArn();
+            request.addParameter(prefix, StringUtils.fromBoolean(returnSubscriptionArn));
+        }
 
         return request;
     }

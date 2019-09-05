@@ -22,7 +22,7 @@ import java.io.Serializable;
  * The user-specified message attribute value. For string data types, the value
  * attribute has the same restrictions on the content as the message body. For
  * more information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+ * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
  * >Publish</a>.
  * </p>
  * <p>
@@ -31,16 +31,16 @@ import java.io.Serializable;
  * including name, type, and value, are included in the message size
  * restriction, which is currently 256 KB (262,144 bytes). For more information,
  * see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html"
+ * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html"
  * >Using Amazon SNS Message Attributes</a>.
  * </p>
  */
 public class MessageAttributeValue implements Serializable {
     /**
      * <p>
-     * Amazon SNS supports the following logical data types: String, Number, and
-     * Binary. For more information, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     * Amazon SNS supports the following logical data types: String,
+     * String.Array, Number, and Binary. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      * >Message Attribute Data Types</a>.
      * </p>
      */
@@ -50,8 +50,8 @@ public class MessageAttributeValue implements Serializable {
      * <p>
      * Strings are Unicode with UTF8 binary encoding. For a list of code values,
      * see <a
-     * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     * >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
+     * href="https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     * >ASCII Printable Characters</a>.
      * </p>
      */
     private String stringValue;
@@ -66,16 +66,17 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SNS supports the following logical data types: String, Number, and
-     * Binary. For more information, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     * Amazon SNS supports the following logical data types: String,
+     * String.Array, Number, and Binary. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      * >Message Attribute Data Types</a>.
      * </p>
      *
      * @return <p>
      *         Amazon SNS supports the following logical data types: String,
-     *         Number, and Binary. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     *         String.Array, Number, and Binary. For more information, see <a
+     *         href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      *         >Message Attribute Data Types</a>.
      *         </p>
      */
@@ -85,16 +86,17 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SNS supports the following logical data types: String, Number, and
-     * Binary. For more information, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     * Amazon SNS supports the following logical data types: String,
+     * String.Array, Number, and Binary. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      * >Message Attribute Data Types</a>.
      * </p>
      *
      * @param dataType <p>
      *            Amazon SNS supports the following logical data types: String,
-     *            Number, and Binary. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     *            String.Array, Number, and Binary. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      *            >Message Attribute Data Types</a>.
      *            </p>
      */
@@ -104,9 +106,9 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SNS supports the following logical data types: String, Number, and
-     * Binary. For more information, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     * Amazon SNS supports the following logical data types: String,
+     * String.Array, Number, and Binary. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      * >Message Attribute Data Types</a>.
      * </p>
      * <p>
@@ -115,8 +117,9 @@ public class MessageAttributeValue implements Serializable {
      *
      * @param dataType <p>
      *            Amazon SNS supports the following logical data types: String,
-     *            Number, and Binary. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
+     *            String.Array, Number, and Binary. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes"
      *            >Message Attribute Data Types</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -131,16 +134,15 @@ public class MessageAttributeValue implements Serializable {
      * <p>
      * Strings are Unicode with UTF8 binary encoding. For a list of code values,
      * see <a
-     * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     * >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
+     * href="https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     * >ASCII Printable Characters</a>.
      * </p>
      *
      * @return <p>
      *         Strings are Unicode with UTF8 binary encoding. For a list of code
      *         values, see <a href=
-     *         "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     *         >http
-     *         ://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
+     *         "https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     *         >ASCII Printable Characters</a>.
      *         </p>
      */
     public String getStringValue() {
@@ -151,16 +153,15 @@ public class MessageAttributeValue implements Serializable {
      * <p>
      * Strings are Unicode with UTF8 binary encoding. For a list of code values,
      * see <a
-     * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     * >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
+     * href="https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     * >ASCII Printable Characters</a>.
      * </p>
      *
      * @param stringValue <p>
      *            Strings are Unicode with UTF8 binary encoding. For a list of
      *            code values, see <a href=
-     *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     *            >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
-     *            </a>.
+     *            "https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     *            >ASCII Printable Characters</a>.
      *            </p>
      */
     public void setStringValue(String stringValue) {
@@ -171,8 +172,8 @@ public class MessageAttributeValue implements Serializable {
      * <p>
      * Strings are Unicode with UTF8 binary encoding. For a list of code values,
      * see <a
-     * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     * >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
+     * href="https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     * >ASCII Printable Characters</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,9 +182,8 @@ public class MessageAttributeValue implements Serializable {
      * @param stringValue <p>
      *            Strings are Unicode with UTF8 binary encoding. For a list of
      *            code values, see <a href=
-     *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     *            >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
-     *            </a>.
+     *            "https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
+     *            >ASCII Printable Characters</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
