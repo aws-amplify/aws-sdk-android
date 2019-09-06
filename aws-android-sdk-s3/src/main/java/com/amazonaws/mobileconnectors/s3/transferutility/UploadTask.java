@@ -90,7 +90,7 @@ class UploadTask implements Callable<Boolean> {
     public Boolean call() throws Exception {
         try {
             if (TransferNetworkLossHandler.getInstance() != null &&
-                !TransferNetworkLossHandler.getInstance().networkInterruptManaged) {
+                !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                 LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
                 return false;	
@@ -181,7 +181,7 @@ class UploadTask implements Callable<Boolean> {
             if (!isSuccess) {
                 try {
                     if (TransferNetworkLossHandler.getInstance() != null &&
-                        !TransferNetworkLossHandler.getInstance().networkInterruptManaged) {
+                        !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                         LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
                         updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                         return false;	
@@ -302,7 +302,7 @@ class UploadTask implements Callable<Boolean> {
             // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
             try {
                 if (TransferNetworkLossHandler.getInstance() != null &&
-                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                    !TransferNetworkLossHandler.getInstance().networkInterruptManaged) {
                     LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
                     /*
                      * Network connection is being interrupted. Moving the TransferState to
