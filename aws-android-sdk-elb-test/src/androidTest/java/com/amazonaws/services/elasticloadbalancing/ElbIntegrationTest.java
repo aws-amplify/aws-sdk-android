@@ -78,7 +78,7 @@ import java.util.List;
 public class ElbIntegrationTest extends AWSTestBase {
 
     /** AMI used for tests that require an EC2 instance */
-    private static final String AMI_ID = "ami-7f418316";
+    private static final String AMI_ID = "ami-e965ba80";
 
     /** Protocol value used in LB requests */
     private static final String PROTOCOL = "HTTP";

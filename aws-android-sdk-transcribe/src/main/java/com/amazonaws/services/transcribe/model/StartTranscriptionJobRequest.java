@@ -45,13 +45,20 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      */
     private String languageCode;
 
     /**
      * <p>
      * The sample rate, in Hertz, of the audio track in the input media file.
+     * </p>
+     * <p>
+     * If you do not specify the media sample rate, Amazon Transcribe determines
+     * the sample rate. If you specify the sample rate, it must match the sample
+     * rate detected by Amazon Transcribe. In most cases, you should leave the
+     * <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe
+     * determine the sample rate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,7 +94,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
      * permissions that allow Amazon Transcribe to put files in the bucket. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
@@ -192,7 +199,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -210,7 +217,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -232,7 +239,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -254,7 +261,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -276,7 +283,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -296,12 +303,26 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
+     * If you do not specify the media sample rate, Amazon Transcribe determines
+     * the sample rate. If you specify the sample rate, it must match the sample
+     * rate detected by Amazon Transcribe. In most cases, you should leave the
+     * <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe
+     * determine the sample rate.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
      *         The sample rate, in Hertz, of the audio track in the input media
      *         file.
+     *         </p>
+     *         <p>
+     *         If you do not specify the media sample rate, Amazon Transcribe
+     *         determines the sample rate. If you specify the sample rate, it
+     *         must match the sample rate detected by Amazon Transcribe. In most
+     *         cases, you should leave the <code>MediaSampleRateHertz</code>
+     *         field blank and let Amazon Transcribe determine the sample rate.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -313,12 +334,27 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
+     * If you do not specify the media sample rate, Amazon Transcribe determines
+     * the sample rate. If you specify the sample rate, it must match the sample
+     * rate detected by Amazon Transcribe. In most cases, you should leave the
+     * <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe
+     * determine the sample rate.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the audio track in the input
      *            media file.
+     *            </p>
+     *            <p>
+     *            If you do not specify the media sample rate, Amazon Transcribe
+     *            determines the sample rate. If you specify the sample rate, it
+     *            must match the sample rate detected by Amazon Transcribe. In
+     *            most cases, you should leave the
+     *            <code>MediaSampleRateHertz</code> field blank and let Amazon
+     *            Transcribe determine the sample rate.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -330,6 +366,13 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
+     * If you do not specify the media sample rate, Amazon Transcribe determines
+     * the sample rate. If you specify the sample rate, it must match the sample
+     * rate detected by Amazon Transcribe. In most cases, you should leave the
+     * <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe
+     * determine the sample rate.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -339,6 +382,14 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the audio track in the input
      *            media file.
+     *            </p>
+     *            <p>
+     *            If you do not specify the media sample rate, Amazon Transcribe
+     *            determines the sample rate. If you specify the sample rate, it
+     *            must match the sample rate detected by Amazon Transcribe. In
+     *            most cases, you should leave the
+     *            <code>MediaSampleRateHertz</code> field blank and let Amazon
+     *            Transcribe determine the sample rate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -503,7 +554,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
      * permissions that allow Amazon Transcribe to put files in the bucket. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
@@ -532,7 +583,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         this location in the <code>TranscriptFileUri</code> field. The S3
      *         bucket must have permissions that allow Amazon Transcribe to put
      *         files in the bucket. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      *         >Permissions Required for IAM User Roles</a>.
      *         </p>
      *         <p>
@@ -563,7 +614,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
      * permissions that allow Amazon Transcribe to put files in the bucket. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
@@ -593,7 +644,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <code>TranscriptFileUri</code> field. The S3 bucket must have
      *            permissions that allow Amazon Transcribe to put files in the
      *            bucket. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>
@@ -624,7 +675,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
      * permissions that allow Amazon Transcribe to put files in the bucket. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
@@ -657,7 +708,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <code>TranscriptFileUri</code> field. The S3 bucket must have
      *            permissions that allow Amazon Transcribe to put files in the
      *            bucket. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>

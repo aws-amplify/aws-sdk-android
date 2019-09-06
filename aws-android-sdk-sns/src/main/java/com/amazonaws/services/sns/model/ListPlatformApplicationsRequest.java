@@ -29,8 +29,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * next page, you call <code>ListPlatformApplications</code> using the NextToken
  * string received from the previous call. When there are no more records to
  * return, NextToken will be null. For more information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+ * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>.
+ * </p>
+ * <p>
+ * This action is throttled at 15 transactions per second (TPS).
  * </p>
  */
 public class ListPlatformApplicationsRequest extends AmazonWebServiceRequest implements

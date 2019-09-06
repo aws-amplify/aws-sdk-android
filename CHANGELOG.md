@@ -1,5 +1,41 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.0)
+
+### New Features
+
+- **AWS Mobile Client**
+  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID).
+
+- **Amazon CognitoIdentityProvider**
+  - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
+  - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
+
+- **Amazon SNS**
+  - Updated model to support latest Amazon SNS features such as `TagResource` function. This resolves [Issue# 1020](https://github.com/aws-amplify/aws-sdk-android/issues/1020). 
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon SNS
+
+## [Release 2.15.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.2)
+
+### Bug Fixes
+- **AWS Mobile Client**
+  - Fix issue where MobileClient would return invalid tokens after initialization when using Hosted UI.
+    See [issue #873](https://github.com/aws-amplify/aws-sdk-android/issues/873) and
+    [issue #888](https://github.com/aws-amplify/aws-sdk-android/issues/888)
+- **Amazon Cognito Identity Provider**
+  - Use internal username for computing secret hash that is passed in challenge response. See [Issue# 889](https://github.com/aws-amplify/aws-sdk-android/issues/889) for details
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Connect
+  - Amazon Rekognition
+  - Amazon Transcribe
+
 ## [Release 2.15.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.1)
 
 ### Bug Fixes

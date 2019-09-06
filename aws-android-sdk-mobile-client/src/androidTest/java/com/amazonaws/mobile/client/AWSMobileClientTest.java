@@ -276,6 +276,17 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         userAttributes.put("email", EMAIL);
 
         final SignUpResult signUpResult = auth.signUp(username, PASSWORD, userAttributes, null);
+        // Check for non-null user sub in the SignUpResult
+        String userSub = signUpResult.getUserSub();
+        assertNotNull(userSub);
+        // Validate that the userSub is a valid UUID
+        assertEquals(36, userSub.length());
+        assertEquals(5, userSub.split("-").length);
+        assertEquals(8,  userSub.split("-")[0].length());
+        assertEquals(4,  userSub.split("-")[1].length());
+        assertEquals(4,  userSub.split("-")[2].length());
+        assertEquals(4,  userSub.split("-")[3].length());
+        assertEquals(12,  userSub.split("-")[4].length());
         if (signUpResult.getConfirmationState()) {
             // Done
         } else {
@@ -284,6 +295,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());
         }
+        assertNotNull(signUpResult.getUserSub());
         final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
         assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
     }
@@ -387,7 +399,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public void testSignInWaitOIDC() throws Exception {
         final AtomicReference<Boolean> hasWaited = new AtomicReference<Boolean>();
         hasWaited.set(false);
-       // writeUserpoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
+       // writeUserPoolsTokens(appContext, auth.getConfiguration().optJsonObject("CognitoUserPool").getString("AppClientId"), USERNAME, 3600L);
         setTokensDirectly(appContext, AWSMobileClient.getInstance().getLoginKey(), "fakeToken", "someIdentityId");
         listener = new UserStateListener() {
             @Override
@@ -463,8 +475,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         }
     }
 
-    // Changing a password tends to have a rate limit that exceeds test timeout
-//    @Test
+    @Ignore("Changing a password tends to have a rate limit that exceeds test timeout")
+    @Test
     public void testChangePassword() throws Exception {
         Thread.sleep(THROTTLED_DELAY);
         auth.changePassword(PASSWORD, NEW_PASSWORD);
@@ -724,7 +736,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         auth.signOut();
 
-        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        writeUserPoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
         auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
         auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
 
@@ -732,7 +744,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         auth.signOut(SignOutOptions.builder().signOutGlobally(true).build());
 
-        writeUserpoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
+        writeUserPoolsTokens(appContext, clientId, username, accessTokenA, idTokenA, refreshTokenA);
         auth.mStore.set(AWSMobileClient.PROVIDER_KEY, auth.userpoolsLoginKey);
         auth.mStore.set(AWSMobileClient.TOKEN_KEY, accessTokenA);
 

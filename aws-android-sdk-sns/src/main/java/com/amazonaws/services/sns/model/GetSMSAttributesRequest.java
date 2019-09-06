@@ -35,7 +35,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For all attribute names, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      * >SetSMSAttributes</a>.
      * </p>
      * <p>
@@ -51,7 +51,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For all attribute names, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      * >SetSMSAttributes</a>.
      * </p>
      * <p>
@@ -64,7 +64,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For all attribute names, see <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      *         >SetSMSAttributes</a>.
      *         </p>
      *         <p>
@@ -83,7 +83,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For all attribute names, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      * >SetSMSAttributes</a>.
      * </p>
      * <p>
@@ -96,7 +96,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For all attribute names, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      *            >SetSMSAttributes</a>.
      *            </p>
      *            <p>
@@ -120,7 +120,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For all attribute names, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      * >SetSMSAttributes</a>.
      * </p>
      * <p>
@@ -136,7 +136,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For all attribute names, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      *            >SetSMSAttributes</a>.
      *            </p>
      *            <p>
@@ -163,7 +163,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For all attribute names, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      * >SetSMSAttributes</a>.
      * </p>
      * <p>
@@ -179,7 +179,7 @@ public class GetSMSAttributesRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For all attribute names, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html"
      *            >SetSMSAttributes</a>.
      *            </p>
      *            <p>

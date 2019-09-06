@@ -27,6 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * parameter in a new <code>ListSubscriptionsByTopic</code> call to get further
  * results.
  * </p>
+ * <p>
+ * This action is throttled at 30 transactions per second (TPS).
+ * </p>
  */
 public class ListSubscriptionsByTopicRequest extends AmazonWebServiceRequest implements
         Serializable {

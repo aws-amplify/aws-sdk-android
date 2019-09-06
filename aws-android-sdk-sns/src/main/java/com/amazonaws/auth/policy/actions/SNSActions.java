@@ -82,6 +82,9 @@ public enum SNSActions implements Action {
     /** Action for the ListSubscriptionsByTopic operation. */
     ListSubscriptionsByTopic("sns:ListSubscriptionsByTopic"),
 
+    /** Action for the ListTagsForResource operation. */
+    ListTagsForResource("sns:ListTagsForResource"),
+
     /** Action for the ListTopics operation. */
     ListTopics("sns:ListTopics"),
 
@@ -112,8 +115,14 @@ public enum SNSActions implements Action {
     /** Action for the Subscribe operation. */
     Subscribe("sns:Subscribe"),
 
+    /** Action for the TagResource operation. */
+    TagResource("sns:TagResource"),
+
     /** Action for the Unsubscribe operation. */
-    Unsubscribe("sns:Unsubscribe");
+    Unsubscribe("sns:Unsubscribe"),
+
+    /** Action for the UntagResource operation. */
+    UntagResource("sns:UntagResource");
 
     private final String action;
 

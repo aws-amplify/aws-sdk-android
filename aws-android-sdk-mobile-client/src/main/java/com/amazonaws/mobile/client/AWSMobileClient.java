@@ -258,8 +258,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
-    private Auth hostedUIJSONConfigured;
-    private Auth hostedUI;
+    Auth hostedUI;
     OAuth2Client mOAuth2Client;
     String mUserPoolPoolId;
 
@@ -608,7 +607,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             throw new IllegalStateException("User pool Id must be available through user pool setting");
         }
 
-        hostedUIJSONConfigured = getHostedUI(hostedUIJSON)
+        hostedUI = getHostedUI(hostedUIJSON)
                 .setPersistenceEnabled(mIsPersistenceEnabled)
                 .setAuthHandler(new AuthHandler() {
                     @Override
@@ -955,7 +954,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         final Map<String, String> details = getSignInDetailsMap();
         final String providerKey = details.get(PROVIDER_KEY);
         final String token = details.get(TOKEN_KEY);
-        final SignInMode signInMode = getSignInMode();
         final String identityId = _getCachedIdentityId();
 
         final boolean federationEnabled = isFederationEnabled();
@@ -1023,7 +1021,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         } else if (hasUsefulToken && userpool != null) {
             Tokens tokens = null;
             String idToken = null;
-            Exception userpoolsException = null;
+            Exception userPoolsException = null;
             try {
                 tokens = getTokens(false);
                 idToken = tokens.getIdToken().getTokenString();
@@ -1048,14 +1046,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             } catch (Exception e) {
                 Log.w(TAG, tokens == null ? "Tokens are invalid, please sign-in again." :
                         "Failed to federate the tokens", e);
-                userpoolsException = e;
+                userPoolsException = e;
             } finally {
                 UserState userState = UserState.SIGNED_IN;
-                if (isSignedOutRelatedException(userpoolsException)) {
+                if (isSignedOutRelatedException(userPoolsException)) {
                     userState = UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID;
                 }
                 final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
-                userStateDetails.setException(userpoolsException);
+                userStateDetails.setException(userPoolsException);
                 return userStateDetails;
             }
         } else {
@@ -1246,7 +1244,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             if (mOAuth2Client != null) {
                 mOAuth2Client.signOut();
             }
-            hostedUI = null;
         }
         mStore.set(HOSTED_UI_KEY, hostedUIJSON);
         setUserState(getUserStateDetails(false));
@@ -1630,6 +1627,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
+        hostedUI = hostedUI.getCurrentUser();
         hostedUI.setAuthHandler(new AuthHandler() {
             @Override
             public void onSuccess(AuthUserSession session) {
@@ -1712,16 +1710,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 userpool.signUp(username, password, cognitoUserAttr, validationData, new SignUpHandler() {
                     @Override
                     public void onSuccess(final CognitoUser user,
-                                          final boolean signUpConfirmationState,
-                                          final CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+                                          final com.amazonaws.services.cognitoidentityprovider.model.SignUpResult signUpResult) {
 
                         signUpUser = user;
                         UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
-                                cognitoUserCodeDeliveryDetails.getDestination(),
-                                cognitoUserCodeDeliveryDetails.getDeliveryMedium(),
-                                cognitoUserCodeDeliveryDetails.getAttributeName()
+                                signUpResult.getCodeDeliveryDetails().getDestination(),
+                                signUpResult.getCodeDeliveryDetails().getDeliveryMedium(),
+                                signUpResult.getCodeDeliveryDetails().getAttributeName()
                         );
-                        callback.onResult(new SignUpResult(signUpConfirmationState, userCodeDeliveryDetails));
+                        callback.onResult(new SignUpResult(signUpResult.getUserConfirmed(), userCodeDeliveryDetails, signUpResult.getUserSub()));
                     }
 
                     @Override
@@ -1775,6 +1772,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     public void onSuccess() {
                         callback.onResult(new SignUpResult(
                                 true,
+                                null,
                                 null
                         ));
                         signUpUser = null;
@@ -1832,7 +1830,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         );
                         callback.onResult(new SignUpResult(
                                 false,
-                                userCodeDeliveryDetails
+                                userCodeDeliveryDetails,
+                                null
                         ));
                     }
 
