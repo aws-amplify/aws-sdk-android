@@ -14,6 +14,11 @@
 - **Amazon SNS**
   - Updated model to support latest Amazon SNS features such as `TagResource` function. This resolves [Issue# 1020](https://github.com/aws-amplify/aws-sdk-android/issues/1020). 
 
+### Bug Fixes
+
+- **Amazon S3**
+  - Fix race condition that caused transfer states to be set to "FAILED" if network recovered at a specific timing. See [Issue# 1006](https://github.com/aws-amplify/aws-sdk-android/issues/1006).
+
 ### Misc. Updates
 
 - Model updates for the following services
