@@ -11,6 +11,14 @@
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
   - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
 
+- **Amazon SNS**
+  - Updated model to support latest Amazon SNS features such as `TagResource` function. This resolves [Issue# 1020](https://github.com/aws-amplify/aws-sdk-android/issues/1020). 
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon SNS
+
 ## [Release 2.15.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.2)
 
 ### Bug Fixes
