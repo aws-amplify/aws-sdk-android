@@ -63,6 +63,11 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
     private static TransferNetworkLossHandler transferNetworkLossHandler;
 
     /**
+     * Remembers that network was lost to properly manage upload state
+     */
+    boolean networkInterruptManaged = true;
+
+    /**
      * Constructs a TransferNetworkLossHandler.
      *
      * @param context the application context
@@ -121,7 +126,9 @@ public class TransferNetworkLossHandler extends BroadcastReceiver {
                 public void run() {
                     if (isNetworkConnected()) {
                         resumeAllTransfersOnNetworkAvailability();
+                        networkInterruptManaged = true;
                     } else {
+                        networkInterruptManaged = false;
                         pauseAllTransfersDueToNetworkInterruption();
                     }
                 }

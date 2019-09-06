@@ -69,7 +69,7 @@ class DownloadTask implements Callable<Boolean> {
     public Boolean call() {
         try {
             if (TransferNetworkLossHandler.getInstance() != null && 
-                !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                !TransferNetworkLossHandler.getInstance().networkInterruptManaged) {
                 LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
                 return false;
@@ -136,7 +136,7 @@ class DownloadTask implements Callable<Boolean> {
             // Check if network is not connected, set the state to WAITING_FOR_NETWORK.
             try {
                 if (TransferNetworkLossHandler.getInstance() != null &&
-                    !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
+                    !TransferNetworkLossHandler.getInstance().networkInterruptManaged) {
                     LOGGER.info("Thread:[" + Thread.currentThread().getId() + "]: Network wasn't available.");
                     /*
                      * Network connection is being interrupted. Moving the TransferState to
