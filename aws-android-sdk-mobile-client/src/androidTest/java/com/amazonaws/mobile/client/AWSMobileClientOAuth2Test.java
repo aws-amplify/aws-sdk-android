@@ -20,13 +20,8 @@ import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
 
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 public class AWSMobileClientOAuth2Test extends AWSMobileClientTestBase {
