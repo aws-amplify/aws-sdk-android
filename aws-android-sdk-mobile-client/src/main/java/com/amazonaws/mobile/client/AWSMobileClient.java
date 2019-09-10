@@ -1335,7 +1335,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         break;
                     case DONE:
                         detectedContinuation = null;
-                        Log.d(TAG, "confirmSignIn called after signIn has succeeded");
+                        callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
                         break;
                     default:
                         callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
