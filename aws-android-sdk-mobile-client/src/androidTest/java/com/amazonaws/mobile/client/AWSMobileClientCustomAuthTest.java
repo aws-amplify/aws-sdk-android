@@ -107,9 +107,11 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
                     public void run() {
                         Log.d(TAG, "Sign-in callback state: " + signInResult.getSignInState());
                         switch (signInResult.getSignInState()) {
-                            case DONE: signUpLatch.countDown();
+                            case DONE:
+                                signUpLatch.countDown();
                                 break;
-                            case CUSTOM_CHALLENGE: confirmSignIn();
+                            case CUSTOM_CHALLENGE:
+                                confirmSignIn();
                                 break;
                             default:
                                 Log.e("APP", "Unexpected sign-in confirmation state: " + signInResult.getSignInState());
