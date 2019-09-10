@@ -5,7 +5,9 @@
 ### New Features
 
 - **AWS Mobile Client**
-  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID).
+  - **Breaking API Change** `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID)
+  - AWSMobileClient now supports Cognito Custom Authentication flow. See [documentation](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html#amazon-cognito-user-pools-custom-authentication-flow) for details
+  - Deprecated APIs `getCredentialsProvider`, `setCredentialsProvider`, `initialize(Context)` and `initialize(Context, AWSStartupHandler)` have been removed
 
 - **Amazon CognitoIdentityProvider**
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
