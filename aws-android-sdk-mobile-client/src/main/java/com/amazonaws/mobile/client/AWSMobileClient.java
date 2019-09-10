@@ -1242,8 +1242,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             @Override
             public void run() {
                 if (signInState == null) {
-                    callback.onError(new IllegalStateException("Cannot call confirmMFA(String, Callback) " +
-                            "without initiating sign-in. This call is used for SMS_MFA and NEW_PASSWORD_REQUIRED" +
+                    callback.onError(new IllegalStateException("Cannot call confirmSignIn(String, Callback) " +
+                            "without initiating sign-in. This call is used for SMS_MFA and NEW_PASSWORD_REQUIRED " +
                             "sign-in state."));
                     return;
                 }
@@ -1314,7 +1314,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             @Override
             public void run() {
                 if (signInState == null) {
-                    callback.onError(new IllegalStateException("Cannot call confirmMFA(Map<String, String>, Callback) " +
+                    callback.onError(new IllegalStateException("Cannot call confirmSignIn(Map<String, String>, Callback) " +
                             "without initiating sign-in. This call is used for CUSTOM_CHALLENGE sign-in state."));
                     return;
                 }
