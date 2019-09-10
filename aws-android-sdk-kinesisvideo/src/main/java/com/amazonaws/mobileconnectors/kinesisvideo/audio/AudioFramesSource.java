@@ -112,7 +112,7 @@ public class AudioFramesSource {
                 throw new RuntimeException("Failed to get the audio to initialized state");
             }
 
-            final ByteBuffer buffer = ByteBuffer.allocateDirect(mMediaSourceConfiguration.getSamplesPerFrame());
+            final ByteBuffer buffer = ByteBuffer.allocateDirect(min_buffer_size);
 
             // Start recording
             audioRecord.startRecording();
@@ -122,7 +122,7 @@ public class AudioFramesSource {
                 while (!mIsReleased) {
                     buffer.clear();
 
-                    readBytes = audioRecord.read(buffer, mMediaSourceConfiguration.getSamplesPerFrame());
+                    readBytes = audioRecord.read(buffer, min_buffer_size);
                     if (readBytes > 0) {
                         buffer.position(readBytes);
                         buffer.flip();
