@@ -18,6 +18,7 @@
 
 - Model updates for the following services
   - Amazon SNS
+  - Amazon Transcribe
 
 ## [Release 2.15.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.15.2)
 
