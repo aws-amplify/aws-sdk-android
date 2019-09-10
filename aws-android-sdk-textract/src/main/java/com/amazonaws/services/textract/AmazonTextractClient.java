@@ -456,7 +456,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
@@ -532,7 +532,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
@@ -650,7 +650,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
@@ -746,7 +746,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
@@ -830,7 +830,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
@@ -913,7 +913,7 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, AmazonWebServiceClient.LOGGING_AWS_REQUEST_METRIC);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
 
