@@ -46,7 +46,7 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
     private static AWSMobileClient auth;
 
     private static final CountDownLatch signUpLatch = new CountDownLatch(1);
-    private static final String USERNAME = "roskumr@amazon.com";
+    private static final String USERNAME = "customAuthTestUser";
     private static final String PASSWORD = "Test@123";
     private static final String TAG = AWSMobileClientCustomAuthTest.class.getSimpleName();
 
@@ -73,6 +73,81 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
         auth = AWSMobileClient.getInstance();
     }
 
+    /**
+     * This test needs following backend set up to complete successfully :
+     *
+     * User - This test assumes presence of a user named `customAuthTestUser` in the test user pool
+     * App Client - There should be an app client with "Only allow Custom Authentication (CUSTOM_AUTH_FLOW_ONLY)" enabled.
+     * Lambda Triggers - It needs following lambda triggers set in the test userpool:
+     *   Define Auth Lambda Trigger :
+     *     ```
+     *     exports.handler = function(event, context) {
+     *         if (event.request.session.length == 1 && event.request.session[0].challengeName == 'SRP_A') {
+     *             event.response.issueTokens = false;
+     *             event.response.failAuthentication = false;
+     *             event.response.challengeName = 'CUSTOM_CHALLENGE';
+     *         } else if (event.request.session.length == 2 && event.request.session[1].challengeName == 'CUSTOM_CHALLENGE' && event.request.session[1].challengeResult == true) {
+     *             event.response.issueTokens = true;
+     *             event.response.failAuthentication = false;
+     *             event.response.challengeName = 'CUSTOM_CHALLENGE';
+     *         } else {
+     *             event.response.issueTokens = false;
+     *             event.response.failAuthentication = true;
+     *         }
+     *         context.done(null, event);
+     *     }
+     *     ```
+     *
+     *   Create Auth Lambda Trigger :
+     *     ```
+     *     function createAuthChallenge(event) {
+     *         if (event.request.challengeName === 'CUSTOM_CHALLENGE') {
+     *             event.response.publicChallengeParameters = {};
+     *             event.response.privateChallengeParameters = {};
+     *             event.response.privateChallengeParameters.answer = '1133';
+     *         }
+     *     }
+     *
+     *     exports.handler = (event, context, callback) => {
+     *         console.log(JSON.stringify(event));
+     *         createAuthChallenge(event);
+     *
+     *         console.log(JSON.stringify(event));
+     *         callback(null, event);
+     *     };
+     *     ```
+     *
+     *   Verify Auth Lambda Trigger :
+     *     ```
+     *     function verifyAuthChallengeResponse(event) {
+     *         if (event.request.privateChallengeParameters.answer === event.request.challengeAnswer) {
+     *             event.response.answerCorrect = true;
+     *         } else {
+     *             event.response.answerCorrect = false;
+     *         }
+     *     }
+     *
+     *     exports.handler = (event, context, callback) => {
+     *         console.log(JSON.stringify(event));
+     *             verifyAuthChallengeResponse(event);
+     *
+     *         console.log(JSON.stringify(event));
+     *         callback(null, event);
+     *     };
+     *     ```
+     * awsconfiguration.json - Should set authenticationFlowType to 'CUSTOM_AUTH' in Auth section as follows :
+     *
+     *     ```
+     *     "Auth": {
+     *         "Default": {
+     *             "authenticationFlowType": "CUSTOM_AUTH"
+     *         }
+     *     }
+     *     ```
+     *
+     *
+     * @throws Exception
+     */
     @Test
     public void testCustomAuth() throws Exception {
         // Check successful sign In
