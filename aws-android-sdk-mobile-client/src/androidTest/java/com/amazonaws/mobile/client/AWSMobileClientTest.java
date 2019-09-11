@@ -152,7 +152,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
             listUsersResult = getUserpoolLL().listUsers(listUsersRequest);
             for (UserType user : listUsersResult.getUsers()) {
                 if (USERNAME.equals(user.getUsername())
-                    || "bimin".equals(user.getUsername())) {
+                    || "bimin".equals(user.getUsername()) || "customAuthTestUser".equals(user.getUsername())) {
                     // This user is saved to test the identity id permanence
                     continue;
                 }

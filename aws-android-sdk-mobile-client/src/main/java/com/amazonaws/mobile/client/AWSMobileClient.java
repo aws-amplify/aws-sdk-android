@@ -47,7 +47,6 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
-import com.amazonaws.mobile.auth.core.StartupAuthResult;
 import com.amazonaws.mobile.auth.core.StartupAuthResultHandler;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProvider;
@@ -91,7 +90,6 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Cogn
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
@@ -1166,7 +1164,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         @Override
                         public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                             Log.d(TAG, "Sending password.");
-                            authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
+                            try {
+                                if (awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")) {
+                                    final HashMap<String, String> authParameters = new HashMap<String,String>();
+                                    authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                } else {
+                                    authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                             authenticationContinuation.continueTask();
                         }
 
@@ -1208,6 +1215,136 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     });
                 } catch (Exception e) {
                     callback.onError(e);
+                }
+            }
+        };
+    }
+
+    @AnyThread
+    public void confirmSignIn(final String signInChallengeResponse,
+                              final Callback<SignInResult> callback) {
+
+        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
+    }
+
+    @WorkerThread
+    public SignInResult confirmSignIn(final String signInChallengeResponse) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
+    }
+
+    private Runnable _confirmSignIn(final String signInChallengeResponse,
+                                    final Callback<SignInResult> callback) {
+
+        return new Runnable() {
+            @Override
+            public void run() {
+                if (signInState == null) {
+                    callback.onError(new IllegalStateException("Cannot call confirmSignIn(String, Callback) " +
+                            "without initiating sign-in. This call is used for SMS_MFA and NEW_PASSWORD_REQUIRED " +
+                            "sign-in state."));
+                    return;
+                }
+
+                final CognitoIdentityProviderContinuation detectedContinuation;
+                switch (signInState) {
+                    case SMS_MFA:
+                        signInMfaContinuation.setMfaCode(signInChallengeResponse);
+                        detectedContinuation = signInMfaContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case NEW_PASSWORD_REQUIRED:
+                        ((NewPasswordContinuation) signInChallengeContinuation)
+                                .setPassword(signInChallengeResponse);
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case DONE:
+                        callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
+                        return;
+                    default:
+                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                "please file a feature request"));
+                        return;
+                }
+
+                if (detectedContinuation != null) {
+                    detectedContinuation.continueTask();
+                }
+            }
+        };
+    }
+
+    /**
+     * The counter part to {@link #signIn}.
+     * Call with the user's response to the sign-in challenge.
+     *
+     * @param signInChallengeResponse obtained from user
+     * @param callback callback
+     */
+    @AnyThread
+    public void confirmSignIn(final Map<String, String> signInChallengeResponse,
+                              final Callback<SignInResult> callback) {
+
+        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
+    }
+
+    /**
+     * The counter part to {@link #signIn}.
+     * Call with the user's response to the sign-in challenge.
+     *
+     * @param signInChallengeResponse obtained from user
+     * @return the result containing next steps or done.
+     * @throws Exception
+     */
+    @WorkerThread
+    public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
+    }
+
+    private Runnable _confirmSignIn(final Map<String, String> signInChallengeResponse,
+                                    final Callback<SignInResult> callback) {
+
+        return new Runnable() {
+            @Override
+            public void run() {
+                if (signInState == null) {
+                    callback.onError(new IllegalStateException("Cannot call confirmSignIn(Map<String, String>, Callback) " +
+                            "without initiating sign-in. This call is used for CUSTOM_CHALLENGE sign-in state."));
+                    return;
+                }
+
+                final CognitoIdentityProviderContinuation detectedContinuation;
+                switch (signInState) {
+                    case SMS_MFA:
+                    case NEW_PASSWORD_REQUIRED:
+                        callback.onError(new IllegalStateException(
+                                "Please use confirmSignIn(String, Callback) " +
+                                        "for SMS_MFA and NEW_PASSWORD_REQUIRED challenges"));
+                    case CUSTOM_CHALLENGE:
+                        for (final String key : signInChallengeResponse.keySet()) {
+                            signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
+                        }
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        break;
+                    case DONE:
+                        detectedContinuation = null;
+                        callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
+                        break;
+                    default:
+                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                "please file a feature request"));
+                        return;
+                }
+
+                if (detectedContinuation != null) {
+                    detectedContinuation.continueTask();
                 }
             }
         };
@@ -1987,136 +2124,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             }
                         }
                 );
-            }
-        };
-    }
-
-    @AnyThread
-    public void confirmSignIn(final String signInChallengeResponse,
-                              final Callback<SignInResult> callback) {
-
-        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
-    }
-
-    @WorkerThread
-    public SignInResult confirmSignIn(final String signInChallengeResponse) throws Exception {
-
-        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
-    }
-
-    private Runnable _confirmSignIn(final String signInChallengeResponse,
-                                    final Callback<SignInResult> callback) {
-
-        return new Runnable() {
-            @Override
-            public void run() {
-                if (signInState == null) {
-                    callback.onError(new IllegalStateException("Cannot call confirmMFA(String, Callback) " +
-                            "without initiating sign-in. This call is used for SMS_MFA and NEW_PASSWORD_REQUIRED" +
-                            "sign-in state."));
-                    return;
-                }
-
-                final CognitoIdentityProviderContinuation detectedContinuation;
-                switch (signInState) {
-                    case SMS_MFA:
-                        signInMfaContinuation.setMfaCode(signInChallengeResponse);
-                        detectedContinuation = signInMfaContinuation;
-                        signInCallback = new InternalCallback<SignInResult>(callback);
-                        break;
-                    case NEW_PASSWORD_REQUIRED:
-                        ((NewPasswordContinuation) signInChallengeContinuation)
-                                .setPassword(signInChallengeResponse);
-                        detectedContinuation = signInChallengeContinuation;
-                        signInCallback = new InternalCallback<SignInResult>(callback);
-                        break;
-                    case DONE:
-                        callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
-                        return;
-                    default:
-                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                "please file a feature request"));
-                        return;
-                }
-
-                if (detectedContinuation != null) {
-                    detectedContinuation.continueTask();
-                }
-            }
-        };
-    }
-
-    /**
-     * The counter part to {@link #signIn}.
-     * Call with the user's response to the sign-in challenge.
-     *
-     * @param signInChallengeResponse obtained from user
-     * @param callback callback
-     */
-    @AnyThread
-    public void confirmSignIn(final Map<String, String> signInChallengeResponse,
-                              final Callback<SignInResult> callback) {
-
-        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
-    }
-
-    /**
-     * The counter part to {@link #signIn}.
-     * Call with the user's response to the sign-in challenge.
-     *
-     * @param signInChallengeResponse obtained from user
-     * @return the result containing next steps or done.
-     * @throws Exception
-     */
-    @WorkerThread
-    public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse) throws Exception {
-
-        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
-    }
-
-    private Runnable _confirmSignIn(final Map<String, String> signInChallengeResponse,
-                                    final Callback<SignInResult> callback) {
-
-        return new Runnable() {
-            @Override
-            public void run() {
-                if (signInState == null) {
-                    callback.onError(new IllegalStateException("Cannot call confirmMFA(Map<String, String>, Callback) " +
-                            "without initiating sign-in. This call is used for CUSTOM_CHALLENGE sign-in state."));
-                    return;
-                }
-
-                final CognitoIdentityProviderContinuation detectedContinuation;
-                switch (signInState) {
-                    case SMS_MFA:
-                    case NEW_PASSWORD_REQUIRED:
-                        callback.onError(new IllegalStateException(
-                                "Please use confirmSignIn(String, Callback) " +
-                                        "for SMS_MFA and NEW_PASSWORD_REQUIRED challenges"));
-                    case CUSTOM_CHALLENGE:
-                        for (final String key : signInChallengeResponse.keySet()) {
-                            signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
-                        }
-                        detectedContinuation = signInChallengeContinuation;
-                        signInCallback = new InternalCallback<SignInResult>(callback);
-                        break;
-                    case DONE:
-                        detectedContinuation = null;
-                        Log.d(TAG, "confirmSignIn called after signIn has succeeded");
-                        break;
-                    default:
-                        callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                "please file a feature request"));
-                        return;
-                }
-
-                if (detectedContinuation != null) {
-                    detectedContinuation.continueTask();
-                }
             }
         };
     }
@@ -2986,61 +2993,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     //    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * This performs basic initialization for connecting
-     * to AWS including fetching the Cognito Identity for
-     * the user.
-     *
-     * @param context The activity context.
-     * @deprecated Since 2.8.0 This method will be removed in the next minor version.
-     * Please update to use AWSMobileClient using `initialize`.
-     * Please visit https://aws-amplify.github.io for the latest Android documentation.
-     */
-    @Deprecated
-    public InitializeBuilder initialize(final Context context) {
-        this.awsStartupHandler = new AWSStartupHandler() {
-            @Override
-            public void onComplete(final AWSStartupResult awsStartupResult) {
-                Log.d(TAG, "AWSMobileClient Initialize succeeded.");
-                Log.i(TAG, "Welcome to AWS! You are connected successfully.");
-            }
-        };
-        return initialize(context, this.awsStartupHandler);
-    }
-
-
-    /**
-     * This performs basic initialization for connecting
-     * to AWS including fetching the Cognito Identity for
-     * the user.
-     *
-     * @param context           The activity context.
-     * @param awsStartupHandler The result for Initialize callback.
-     * @deprecated Since 2.8.0 This method will be removed in the next minor version.
-     * Please update to use AWSMobileClient using `initialize`.
-     * Please visit https://aws-amplify.github.io for the latest Android documentation.
-     */
-    @Deprecated
-    public InitializeBuilder initialize(final Context context,
-                                        final AWSStartupHandler awsStartupHandler) {
-        this.awsConfiguration = new AWSConfiguration(context.getApplicationContext());
-        this.signInProviderConfig = null;
-        this.startupAuthResultHandler = new StartupAuthResultHandler() {
-            @Override
-            public void onComplete(final StartupAuthResult startupAuthResult) {
-                Log.i(TAG, "Welcome to AWS! You are connected successfully.");
-                if (startupAuthResult.isIdentityIdAvailable()) {
-                    Log.i(TAG, "Identity ID retrieved.");
-                }
-                awsStartupHandler.onComplete(
-                        new AWSStartupResult(IdentityManager.getDefaultIdentityManager()));
-            }
-        };
-        this.awsStartupHandler = awsStartupHandler;
-        mIsLegacyMode = true;
-        return new InitializeBuilder(context);
-    }
-
-    /**
      * Initialize the AWSMobileClient with the parameters passed in
      * {@link InitializeBuilder}
      *
@@ -3088,39 +3040,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         return client;
-    }
-
-    /**
-     * Retrieve the CredentialsProvider.
-     *
-     * @return the awsCredentialsProvider
-     * @deprecated Since 2.8.0 This method will be removed in the next minor version.
-     * The AWSMobileClient object now implements AWSCredentialsProvider.
-     * Please visit https://aws-amplify.github.io for the latest Android documentation.
-     */
-    @Deprecated
-    public AWSCredentialsProvider getCredentialsProvider() {
-        if (!isLegacyMode()) {
-            return this;
-        }
-        if (this.awsCredentialsProvider != null) {
-            return this.awsCredentialsProvider;
-        } else {
-            return IdentityManager.getDefaultIdentityManager().getUnderlyingProvider();
-        }
-    }
-
-    /**
-     * Set the CredentialsProvider passed in as the default.
-     *
-     * @param awsCredentialsProvider The credentials provider object created by the user.
-     * @deprecated Since 2.8.0 This method will be removed in the next minor version.
-     * The AWSMobileClient object now implements AWSCredentialsProvider.
-     * Please visit https://aws-amplify.github.io for the latest Android documentation.
-     */
-    @Deprecated
-    public void setCredentialsProvider(final AWSCredentialsProvider awsCredentialsProvider) {
-        this.awsCredentialsProvider = awsCredentialsProvider;
     }
 
     /**
