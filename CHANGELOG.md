@@ -9,7 +9,7 @@
     - `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID)
     - Deprecated APIs `getCredentialsProvider`, `setCredentialsProvider`, `initialize(Context)` and `initialize(Context, AWSStartupHandler)` have been removed
   - AWSMobileClient now supports Cognito Custom Authentication flow. See relevant [cognito docs](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html#amazon-cognito-user-pools-custom-authentication-flow) and [amplify docs](https://aws-amplify.github.io/docs/android/authentication#customizing-authentication-flow) for details
-  - `confirmSignIn(final Map<String, String> signInChallengeResponse)` now throws `IllegalStateException` if `confirmSignIn` is invoked after signIn has succeeded
+  - `confirmSignIn(final Map<String, String> signInChallengeResponse)` now throws `IllegalStateException` if `confirmSignIn` is called after signIn has succeeded. This matches the behavior of the overloaded version of this method, viz. `confirmSignIn(final String signInChallengeResponse, final Callback<SignInResult> callback)`
 
 - **Amazon CognitoIdentityProvider**
   - **Breaking API Change** `SignUpHandler` now receives `SignUpResult` upon success instead of a ConfirmationState and `CognitoUserCodeDeliveryDetails`
