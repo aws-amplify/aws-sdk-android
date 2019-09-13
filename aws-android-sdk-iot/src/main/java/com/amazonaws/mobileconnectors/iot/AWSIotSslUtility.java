@@ -82,4 +82,10 @@ final class AWSIotSslUtility {
 
         return new AWSIotTLSSocketFactory(context.getSocketFactory());
     }
+
+    public static SSLSocketFactory getSocketFactoryWithKeyStoreAndProxy(KeyStore keyStore, int portNumber, String proxyHost, int proxyPort)
+            throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
+            KeyManagementException, NoSuchProviderException {
+        return new AWSIotProxiedSocketFactory(getSocketFactoryWithKeyStore(keyStore, portNumber), proxyHost, proxyPort);
+    }
 }
