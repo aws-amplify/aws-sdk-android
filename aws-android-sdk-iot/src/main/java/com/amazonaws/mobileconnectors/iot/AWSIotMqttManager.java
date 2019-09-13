@@ -52,8 +52,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
 
 import javax.net.SocketFactory;
-import org.littleshoot.proxy.HttpProxyServer;
-import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
 
 /**
  * The broker for applications allows receive and publish messages AWS IoT
