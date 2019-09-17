@@ -1165,7 +1165,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                             Log.d(TAG, "Sending password.");
                             try {
-                                if (awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")) {
+                                if (awsConfiguration.optJsonObject("Auth") != null && awsConfiguration.optJsonObject("Auth").has("authenticationFlowType") && awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")) {
                                     final HashMap<String, String> authParameters = new HashMap<String,String>();
                                     authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                 } else {
