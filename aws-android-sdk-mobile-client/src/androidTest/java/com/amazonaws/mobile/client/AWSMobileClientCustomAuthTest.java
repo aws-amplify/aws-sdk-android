@@ -38,7 +38,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-import static com.amazonaws.mobile.client.AWSMobileClientPersistenceTest.PASSWORD;
+import static com.amazonaws.mobile.client.AWSMobileClientTest.PASSWORD;
 import static com.amazonaws.mobile.client.AWSMobileClientTest.USERNAME;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
