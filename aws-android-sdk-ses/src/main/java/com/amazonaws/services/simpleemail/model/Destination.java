@@ -38,21 +38,21 @@ import java.io.Serializable;
 public class Destination implements Serializable {
     /**
      * <p>
-     * The To: field(s) of the message.
+     * The recipients to place on the To: line of the message.
      * </p>
      */
     private java.util.List<String> toAddresses = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The CC: field(s) of the message.
+     * The recipients to place on the CC: line of the message.
      * </p>
      */
     private java.util.List<String> ccAddresses = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The BCC: field(s) of the message.
+     * The recipients to place on the BCC: line of the message.
      * </p>
      */
     private java.util.List<String> bccAddresses = new java.util.ArrayList<String>();
@@ -71,7 +71,7 @@ public class Destination implements Serializable {
      * members.
      * 
      * @param toAddresses <p>
-     *            The To: field(s) of the message.
+     *            The recipients to place on the To: line of the message.
      *            </p>
      */
     public Destination(java.util.List<String> toAddresses) {
@@ -80,11 +80,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The To: field(s) of the message.
+     * The recipients to place on the To: line of the message.
      * </p>
      *
      * @return <p>
-     *         The To: field(s) of the message.
+     *         The recipients to place on the To: line of the message.
      *         </p>
      */
     public java.util.List<String> getToAddresses() {
@@ -93,11 +93,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The To: field(s) of the message.
+     * The recipients to place on the To: line of the message.
      * </p>
      *
      * @param toAddresses <p>
-     *            The To: field(s) of the message.
+     *            The recipients to place on the To: line of the message.
      *            </p>
      */
     public void setToAddresses(java.util.Collection<String> toAddresses) {
@@ -111,14 +111,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The To: field(s) of the message.
+     * The recipients to place on the To: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param toAddresses <p>
-     *            The To: field(s) of the message.
+     *            The recipients to place on the To: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -135,14 +135,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The To: field(s) of the message.
+     * The recipients to place on the To: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param toAddresses <p>
-     *            The To: field(s) of the message.
+     *            The recipients to place on the To: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -154,11 +154,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The CC: field(s) of the message.
+     * The recipients to place on the CC: line of the message.
      * </p>
      *
      * @return <p>
-     *         The CC: field(s) of the message.
+     *         The recipients to place on the CC: line of the message.
      *         </p>
      */
     public java.util.List<String> getCcAddresses() {
@@ -167,11 +167,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The CC: field(s) of the message.
+     * The recipients to place on the CC: line of the message.
      * </p>
      *
      * @param ccAddresses <p>
-     *            The CC: field(s) of the message.
+     *            The recipients to place on the CC: line of the message.
      *            </p>
      */
     public void setCcAddresses(java.util.Collection<String> ccAddresses) {
@@ -185,14 +185,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The CC: field(s) of the message.
+     * The recipients to place on the CC: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ccAddresses <p>
-     *            The CC: field(s) of the message.
+     *            The recipients to place on the CC: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -209,14 +209,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The CC: field(s) of the message.
+     * The recipients to place on the CC: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ccAddresses <p>
-     *            The CC: field(s) of the message.
+     *            The recipients to place on the CC: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -228,11 +228,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The BCC: field(s) of the message.
+     * The recipients to place on the BCC: line of the message.
      * </p>
      *
      * @return <p>
-     *         The BCC: field(s) of the message.
+     *         The recipients to place on the BCC: line of the message.
      *         </p>
      */
     public java.util.List<String> getBccAddresses() {
@@ -241,11 +241,11 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The BCC: field(s) of the message.
+     * The recipients to place on the BCC: line of the message.
      * </p>
      *
      * @param bccAddresses <p>
-     *            The BCC: field(s) of the message.
+     *            The recipients to place on the BCC: line of the message.
      *            </p>
      */
     public void setBccAddresses(java.util.Collection<String> bccAddresses) {
@@ -259,14 +259,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The BCC: field(s) of the message.
+     * The recipients to place on the BCC: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bccAddresses <p>
-     *            The BCC: field(s) of the message.
+     *            The recipients to place on the BCC: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -283,14 +283,14 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The BCC: field(s) of the message.
+     * The recipients to place on the BCC: line of the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bccAddresses <p>
-     *            The BCC: field(s) of the message.
+     *            The recipients to place on the BCC: line of the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
