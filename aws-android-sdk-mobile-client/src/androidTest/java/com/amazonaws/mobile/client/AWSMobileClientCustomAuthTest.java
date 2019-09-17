@@ -35,8 +35,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+import static com.amazonaws.mobile.client.AWSMobileClientTest.PASSWORD;
+import static com.amazonaws.mobile.client.AWSMobileClientTest.USERNAME;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -46,8 +49,6 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
     private static AWSMobileClient auth;
 
     private static final CountDownLatch signUpLatch = new CountDownLatch(1);
-    private static final String USERNAME = "customAuthTestUser";
-    private static final String PASSWORD = "Test@123";
     private static final String TAG = AWSMobileClientCustomAuthTest.class.getSimpleName();
 
     @BeforeClass
@@ -203,7 +204,7 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
         });
 
         try {
-            signUpLatch.await();
+            signUpLatch.await(20, TimeUnit.SECONDS);
             return true;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -239,7 +240,7 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
         });
 
         try {
-            signUpLatch.await();
+            signUpLatch.await(20, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
