@@ -21,6 +21,7 @@
 ### Misc. Updates
 
 - Model updates for the following services
+  - Amazon SES
   - Amazon SNS
   - Amazon Textract
   - Amazon Transcribe
