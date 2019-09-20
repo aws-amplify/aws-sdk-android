@@ -1,5 +1,5 @@
 /**
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -181,6 +181,9 @@ public class AWSIotMqttManager {
      */
     private final String endpoint;
 
+    /**
+     * This is the hostname and port of the proxy, if any, to be used for connecting to AWS IoT
+     */
     private static String proxyHost;
     private static int proxyPort;
 
@@ -740,17 +743,20 @@ public class AWSIotMqttManager {
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
-     * using certificate and private key in keystore on port 8883. Keystore should be created
-     * using IotKeystoreHelper to setup the certificate and key aliases as
-     * expected by the underlying socket helper library.
+     * using certificate and private key in keystore on port 8883 via the proxy specified by a
+     * host and port combination. Keystore should be created using IotKeystoreHelper to setup the
+     * certificate and key aliases as expected by the underlying socket helper library.
      *
      * @param keyStore A keystore containing an keystore with a certificate and
      *            private key. Use IotKeystoreHelper to get keystore.
+     * @param host hostname of the proxy
+     * @param port proxy port number
      * @param statusCallback When new MQTT session status is received the
      *            function of callback will be called with new connection
      *            status.
      */
-    public void connectWithProxy(KeyStore keyStore, String host, int port, final AWSIotMqttClientStatusCallback statusCallback) {
+    public void connectWithProxy(KeyStore keyStore, final String host, final int port,
+                                 final AWSIotMqttClientStatusCallback statusCallback) {
         this.proxyHost = host;
         this.proxyPort = port;
         connect(keyStore, 8883, statusCallback);

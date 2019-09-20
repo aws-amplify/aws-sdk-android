@@ -1,3 +1,18 @@
+/**
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *    http://aws.amazon.com/apache2.0
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+ * OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.amazonaws.mobileconnectors.iot;
 
 import java.io.IOException;
@@ -5,7 +20,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.net.ssl.SSLSocketFactory;
 
@@ -15,11 +29,7 @@ public class AWSIotProxiedSocketFactory extends SSLSocketFactory {
 
     public AWSIotProxiedSocketFactory(SSLSocketFactory delegate, String proxyHost, int proxyPort){
         this.socketFactory = delegate;
-        this.proxy = buildProxy(proxyHost, proxyPort);
-    }
-
-    private Proxy buildProxy(String proxyHost, int proxyPort) {
-        return new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyHost, proxyPort));
+        this.proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(proxyHost, proxyPort));
     }
 
     @Override
@@ -43,12 +53,12 @@ public class AWSIotProxiedSocketFactory extends SSLSocketFactory {
     }
 
     @Override
-    public Socket createSocket(String s, int i) throws IOException, UnknownHostException {
+    public Socket createSocket(String s, int i) throws IOException {
         return socketFactory.createSocket(s, i);
     }
 
     @Override
-    public Socket createSocket(String s, int i, InetAddress inetAddress, int i1) throws IOException, UnknownHostException {
+    public Socket createSocket(String s, int i, InetAddress inetAddress, int i1) throws IOException {
         return socketFactory.createSocket(s, i, inetAddress, i1);
     }
 
