@@ -249,31 +249,27 @@ class AWSIotProxiedSSLSocket extends SSLSocket {
     }
 
     @Override
-    public void setSoTimeout(int i) throws SocketException {
-    }
-
-    @Override
-    public int getSoTimeout() throws SocketException {
+    public synchronized int getSoTimeout() throws SocketException {
         return this.socket.getSoTimeout();
     }
 
     @Override
-    public void setSendBufferSize(int i) throws SocketException {
+    public synchronized void setSendBufferSize(int i) throws SocketException {
         this.socket.setSendBufferSize(i);
     }
 
     @Override
-    public int getSendBufferSize() throws SocketException {
+    public synchronized int getSendBufferSize() throws SocketException {
         return this.socket.getSendBufferSize();
     }
 
     @Override
-    public void setReceiveBufferSize(int i) throws SocketException {
+    public synchronized void setReceiveBufferSize(int i) throws SocketException {
         this.socket.setReceiveBufferSize(i);
     }
 
     @Override
-    public int getReceiveBufferSize() throws SocketException {
+    public synchronized int getReceiveBufferSize() throws SocketException {
         return this.socket.getReceiveBufferSize();
     }
 
@@ -308,7 +304,7 @@ class AWSIotProxiedSSLSocket extends SSLSocket {
     }
 
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         this.socket.close();
     }
 
