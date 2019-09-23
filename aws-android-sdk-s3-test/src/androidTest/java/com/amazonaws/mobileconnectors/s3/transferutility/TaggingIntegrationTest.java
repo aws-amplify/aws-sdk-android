@@ -13,15 +13,12 @@
  * limitations under the License.
  */
 
-package com.amazonaws.services.s3;
+package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferNetworkLossHandler;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.services.s3.S3IntegrationTestBase;
 import com.amazonaws.services.s3.model.GetObjectTaggingRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.Tag;
@@ -31,7 +28,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.RandomAccessFile;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -42,7 +38,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
+public class TaggingIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
     private static final String bucketName = "amazon-transfer-util-integ-test-" + new Date().getTime();
@@ -83,7 +79,6 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         setUp();
-        TransferNetworkLossHandler.getInstance(context);
         util = TransferUtility.builder()
                 .context(context)
                 .s3Client(s3)
@@ -114,7 +109,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
     }
 
     @Test
-    public void testSingleUploadTagging() throws Exception {
+    public void testSinglePartUploadTagging() throws Exception {
         // Object metadata to add
         metadata = new ObjectMetadata();
         metadata.addUserMetadata("x-amz-tagging", "key1=value1&key2=value2");
@@ -139,7 +134,7 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
     }
 
     @Test
-    public void testMultiUploadTagging() throws Exception {
+    public void testMultiPartUploadTagging() throws Exception {
         // Object metadata to add
         metadata = new ObjectMetadata();
         metadata.addUserMetadata("x-amz-tagging", "key1=value1&key2=value2");
@@ -162,18 +157,5 @@ public class TransferUtilityIntegrationTest extends S3IntegrationTestBase {
                 new Tag("key1", "value1"),
                 new Tag("key2", "value2")
         ));
-    }
-
-    /*
-     * Helper method to create a sparse file (Faster than writing a file with random bytes with getRandomTempFile)
-     * Use for testing large uploads
-     */
-    private File getRandomSparseFile(String filename, long contentLength) throws Exception {
-        // Use the same storage path as getRandomTempFile()
-        String pathPrefix = System.getProperty("java.io.tmpdir") + File.separator + System.currentTimeMillis() + "-";
-        File tempFile = new File(pathPrefix + filename);
-        RandomAccessFile raf = new RandomAccessFile(tempFile, "rw"); // Create a new random access file with read/write access
-        raf.setLength(contentLength);
-        return tempFile;
     }
 }

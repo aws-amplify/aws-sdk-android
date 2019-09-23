@@ -47,6 +47,7 @@ import com.amazonaws.testutils.util.RandomTempFile;
 import org.junit.BeforeClass;
 
 import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -98,6 +99,17 @@ public abstract class S3IntegrationTestBase extends AWSTestBase {
         else {
             return new RandomTempFile(androidRootDir, filename, contentLength);
         }
+    }
+
+    /*
+     * Helper method to create a sparse file (Faster than writing a file with random bytes with getRandomTempFile)
+     * Use for testing large uploads
+     */
+    protected static File getRandomSparseFile(String filename, long contentLength) throws Exception {
+        File tempFile = getRandomTempFile(filename, 0);
+        RandomAccessFile raf = new RandomAccessFile(tempFile, "rw"); // Create a new random access file with read/write access
+        raf.setLength(contentLength);
+        return tempFile;
     }
 
     /**
@@ -321,7 +333,7 @@ public abstract class S3IntegrationTestBase extends AWSTestBase {
      * waiting a specific bucket created When exceed the poll time, will throw
      * Max poll time exceeded exception
      */
-    static void waitForBucketCreation(String bucketName) throws Exception {
+    protected static void waitForBucketCreation(String bucketName) throws Exception {
         final long startTime = System.currentTimeMillis();
         final long endTime = startTime + (30 * 60 * 1000);
         int hits = 0;
