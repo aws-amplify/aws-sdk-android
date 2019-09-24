@@ -35,7 +35,7 @@ public class MockMqttClient extends MqttAsyncClient {
     IMqttDeliveryToken testDeliveryToken = new MqttDeliveryToken();
 
     MockMqttClient() throws MqttException {
-        super("local://mockendpoint.example.com", "mock-id");
+        super("wss://mockendpoint.example.com", "mock-id");
         mockSubscriptions = new HashMap<String, Integer>();
         isConnected = false;
         throwsExceptionOnConnect = false;
