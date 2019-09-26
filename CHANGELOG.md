@@ -4,6 +4,13 @@
 
 ### New Features
 
+- **AWS IoT**
+  - AWS IoT now depends on the paho version 1.2.2
+
+## [Release 2.16.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.0)
+
+### New Features
+
 - **AWS Mobile Client**
   - **Breaking API Change**
     - `SignUpResult` available in the user callback provided during sign up now contains UserSub(UID)
