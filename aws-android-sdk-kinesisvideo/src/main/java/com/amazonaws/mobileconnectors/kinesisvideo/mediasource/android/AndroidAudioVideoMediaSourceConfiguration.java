@@ -23,6 +23,7 @@ import com.amazonaws.kinesisvideo.client.mediasource.AudioMediaSourceConfigurati
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.internal.mediasource.multitrack.MultiTrackMediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.producer.MkvTrackInfoType;
+import com.amazonaws.kinesisvideo.producer.StreamCallbacks;
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
 import com.amazonaws.kinesisvideo.producer.TrackInfo;
 
@@ -166,9 +167,15 @@ public class AndroidAudioVideoMediaSourceConfiguration extends MultiTrackMediaSo
 
     protected static class Builder<T extends Builder<T>>
             extends MultiTrackMediaSourceConfiguration.Builder<T> {
+        private StreamCallbacks mStreamCallback = null;
 
         public Builder(final Class<?> builder) {
             super();
+        }
+
+        public T withStreamCallbacks(final StreamCallbacks streamCallbacks) {
+            mStreamCallback = streamCallbacks;
+            return (T) this;
         }
 
         public T withEncodingMimeType(final String mimeType) {
@@ -321,5 +328,9 @@ public class AndroidAudioVideoMediaSourceConfiguration extends MultiTrackMediaSo
 
     public AudioMediaSourceConfiguration getAudioMediaSourceConfiguration() {
         return audioMediaSourceConfiguration;
+    }
+
+    public StreamCallbacks getStreamCallbacks() {
+        return builder.mStreamCallback;
     }
 }

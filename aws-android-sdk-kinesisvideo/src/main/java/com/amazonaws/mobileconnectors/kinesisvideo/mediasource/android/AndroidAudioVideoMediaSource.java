@@ -215,7 +215,7 @@ public class AndroidAudioVideoMediaSource extends MultiTrackMediaSource {
     @Nullable
     @Override
     public StreamCallbacks getStreamCallbacks() {
-        return null;
+        return mMediaSourceConfiguration.getStreamCallbacks();
     }
 
     private void startEncoding() {
