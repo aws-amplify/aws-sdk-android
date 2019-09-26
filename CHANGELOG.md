@@ -2,10 +2,10 @@
 
 ## [Release 2.16.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.1)
 
-### New Features
+### Misc. Updates
 
 - **AWS IoT**
-  - AWS IoT now depends on the paho version 1.2.2
+  - AWS Android SDK for IoT now depends on the 1.2.2 version of the Paho Library org.eclipse.paho.client.mqttv3
 
 ## [Release 2.16.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.0)
 
