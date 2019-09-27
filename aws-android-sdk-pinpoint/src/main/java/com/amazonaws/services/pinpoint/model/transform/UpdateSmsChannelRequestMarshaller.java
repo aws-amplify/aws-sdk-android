@@ -59,6 +59,29 @@ public class UpdateSmsChannelRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (updateSmsChannelRequest.getSMSChannelRequest() != null) {
+                SMSChannelRequest sMSChannelRequest = updateSmsChannelRequest
+                        .getSMSChannelRequest();
+                jsonWriter.name("SMSChannelRequest");
+                SMSChannelRequestJsonMarshaller.getInstance().marshall(sMSChannelRequest,
+                        jsonWriter);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             if (updateSmsChannelRequest.getSMSChannelRequest() != null) {
                 SMSChannelRequest sMSChannelRequest = updateSmsChannelRequest
                         .getSMSChannelRequest();

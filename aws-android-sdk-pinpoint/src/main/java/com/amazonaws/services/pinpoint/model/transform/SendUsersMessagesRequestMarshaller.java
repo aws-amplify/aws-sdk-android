@@ -60,6 +60,29 @@ public class SendUsersMessagesRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (sendUsersMessagesRequest.getSendUsersMessageRequest() != null) {
+                SendUsersMessageRequest sendUsersMessageRequest = sendUsersMessagesRequest
+                        .getSendUsersMessageRequest();
+                jsonWriter.name("SendUsersMessageRequest");
+                SendUsersMessageRequestJsonMarshaller.getInstance().marshall(
+                        sendUsersMessageRequest, jsonWriter);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             if (sendUsersMessagesRequest.getSendUsersMessageRequest() != null) {
                 SendUsersMessageRequest sendUsersMessageRequest = sendUsersMessagesRequest
                         .getSendUsersMessageRequest();

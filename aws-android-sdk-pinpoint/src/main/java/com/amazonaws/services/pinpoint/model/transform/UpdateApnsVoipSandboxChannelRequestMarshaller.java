@@ -61,6 +61,29 @@ public class UpdateApnsVoipSandboxChannelRequestMarshaller
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (updateApnsVoipSandboxChannelRequest.getAPNSVoipSandboxChannelRequest() != null) {
+                APNSVoipSandboxChannelRequest aPNSVoipSandboxChannelRequest = updateApnsVoipSandboxChannelRequest
+                        .getAPNSVoipSandboxChannelRequest();
+                jsonWriter.name("APNSVoipSandboxChannelRequest");
+                APNSVoipSandboxChannelRequestJsonMarshaller.getInstance().marshall(
+                        aPNSVoipSandboxChannelRequest, jsonWriter);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             if (updateApnsVoipSandboxChannelRequest.getAPNSVoipSandboxChannelRequest() != null) {
                 APNSVoipSandboxChannelRequest aPNSVoipSandboxChannelRequest = updateApnsVoipSandboxChannelRequest
                         .getAPNSVoipSandboxChannelRequest();

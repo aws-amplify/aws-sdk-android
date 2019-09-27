@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class DeleteSmsChannelResult implements Serializable {
     /**
-     * SMS Channel Response.
+     * <p>
+     * Provides information about the status and settings of the SMS channel for
+     * an application.
+     * </p>
      */
     private SMSChannelResponse sMSChannelResponse;
 
     /**
-     * SMS Channel Response.
+     * <p>
+     * Provides information about the status and settings of the SMS channel for
+     * an application.
+     * </p>
      *
-     * @return SMS Channel Response.
+     * @return <p>
+     *         Provides information about the status and settings of the SMS
+     *         channel for an application.
+     *         </p>
      */
     public SMSChannelResponse getSMSChannelResponse() {
         return sMSChannelResponse;
     }
 
     /**
-     * SMS Channel Response.
+     * <p>
+     * Provides information about the status and settings of the SMS channel for
+     * an application.
+     * </p>
      *
-     * @param sMSChannelResponse SMS Channel Response.
+     * @param sMSChannelResponse <p>
+     *            Provides information about the status and settings of the SMS
+     *            channel for an application.
+     *            </p>
      */
     public void setSMSChannelResponse(SMSChannelResponse sMSChannelResponse) {
         this.sMSChannelResponse = sMSChannelResponse;
     }
 
     /**
-     * SMS Channel Response.
+     * <p>
+     * Provides information about the status and settings of the SMS channel for
+     * an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sMSChannelResponse SMS Channel Response.
+     * @param sMSChannelResponse <p>
+     *            Provides information about the status and settings of the SMS
+     *            channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

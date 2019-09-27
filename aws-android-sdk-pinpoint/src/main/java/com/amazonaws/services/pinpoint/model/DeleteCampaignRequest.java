@@ -20,44 +20,72 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Deletes a campaign.
+ * <p>
+ * Deletes a campaign from an application.
+ * </p>
  */
 public class DeleteCampaignRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The unique ID of the campaign.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      */
     private String campaignId;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +95,42 @@ public class DeleteCampaignRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The unique ID of the campaign.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      *
-     * @return The unique ID of the campaign.
+     * @return <p>
+     *         The unique identifier for the campaign.
+     *         </p>
      */
     public String getCampaignId() {
         return campaignId;
     }
 
     /**
-     * The unique ID of the campaign.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      *
-     * @param campaignId The unique ID of the campaign.
+     * @param campaignId <p>
+     *            The unique identifier for the campaign.
+     *            </p>
      */
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;
     }
 
     /**
-     * The unique ID of the campaign.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignId The unique ID of the campaign.
+     * @param campaignId <p>
+     *            The unique identifier for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

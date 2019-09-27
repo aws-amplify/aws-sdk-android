@@ -59,6 +59,29 @@ public class CreateSegmentRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (createSegmentRequest.getWriteSegmentRequest() != null) {
+                WriteSegmentRequest writeSegmentRequest = createSegmentRequest
+                        .getWriteSegmentRequest();
+                jsonWriter.name("WriteSegmentRequest");
+                WriteSegmentRequestJsonMarshaller.getInstance().marshall(writeSegmentRequest,
+                        jsonWriter);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             if (createSegmentRequest.getWriteSegmentRequest() != null) {
                 WriteSegmentRequest writeSegmentRequest = createSegmentRequest
                         .getWriteSegmentRequest();

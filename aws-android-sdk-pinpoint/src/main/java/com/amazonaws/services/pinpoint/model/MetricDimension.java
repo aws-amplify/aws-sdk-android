@@ -18,58 +18,78 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Custom metric dimension
+ * <p>
+ * Specifies metric-based criteria for including or excluding endpoints from a
+ * segment. These criteria derive from custom metrics that you define for
+ * endpoints.
+ * </p>
  */
 public class MetricDimension implements Serializable {
     /**
-     * The operator that you're using to compare metric values. Possible values:
-     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
-     * EQUAL
+     * <p>
+     * The operator to use when comparing metric values. Valid values are:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and
+     * EQUAL.
+     * </p>
      */
     private String comparisonOperator;
 
     /**
-     * The value to be compared.
+     * <p>
+     * The value to compare.
+     * </p>
      */
     private Double value;
 
     /**
-     * The operator that you're using to compare metric values. Possible values:
-     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
-     * EQUAL
+     * <p>
+     * The operator to use when comparing metric values. Valid values are:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and
+     * EQUAL.
+     * </p>
      *
-     * @return The operator that you're using to compare metric values. Possible
-     *         values: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL,
-     *         LESS_THAN_OR_EQUAL, or EQUAL
+     * @return <p>
+     *         The operator to use when comparing metric values. Valid values
+     *         are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL,
+     *         LESS_THAN_OR_EQUAL, and EQUAL.
+     *         </p>
      */
     public String getComparisonOperator() {
         return comparisonOperator;
     }
 
     /**
-     * The operator that you're using to compare metric values. Possible values:
-     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
-     * EQUAL
+     * <p>
+     * The operator to use when comparing metric values. Valid values are:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and
+     * EQUAL.
+     * </p>
      *
-     * @param comparisonOperator The operator that you're using to compare
-     *            metric values. Possible values: GREATER_THAN, LESS_THAN,
-     *            GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or EQUAL
+     * @param comparisonOperator <p>
+     *            The operator to use when comparing metric values. Valid values
+     *            are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL,
+     *            LESS_THAN_OR_EQUAL, and EQUAL.
+     *            </p>
      */
     public void setComparisonOperator(String comparisonOperator) {
         this.comparisonOperator = comparisonOperator;
     }
 
     /**
-     * The operator that you're using to compare metric values. Possible values:
-     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or
-     * EQUAL
+     * <p>
+     * The operator to use when comparing metric values. Valid values are:
+     * GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and
+     * EQUAL.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param comparisonOperator The operator that you're using to compare
-     *            metric values. Possible values: GREATER_THAN, LESS_THAN,
-     *            GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, or EQUAL
+     * @param comparisonOperator <p>
+     *            The operator to use when comparing metric values. Valid values
+     *            are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL,
+     *            LESS_THAN_OR_EQUAL, and EQUAL.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -79,30 +99,42 @@ public class MetricDimension implements Serializable {
     }
 
     /**
-     * The value to be compared.
+     * <p>
+     * The value to compare.
+     * </p>
      *
-     * @return The value to be compared.
+     * @return <p>
+     *         The value to compare.
+     *         </p>
      */
     public Double getValue() {
         return value;
     }
 
     /**
-     * The value to be compared.
+     * <p>
+     * The value to compare.
+     * </p>
      *
-     * @param value The value to be compared.
+     * @param value <p>
+     *            The value to compare.
+     *            </p>
      */
     public void setValue(Double value) {
         this.value = value;
     }
 
     /**
-     * The value to be compared.
+     * <p>
+     * The value to compare.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param value The value to be compared.
+     * @param value <p>
+     *            The value to compare.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

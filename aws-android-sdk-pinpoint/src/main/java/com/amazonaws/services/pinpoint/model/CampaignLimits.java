@@ -18,66 +18,90 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Campaign Limits are used to limit the number of messages that can be sent to
- * a single endpoint.
+ * <p>
+ * Specifies limits on the messages that a campaign can send.
+ * </p>
  */
 public class CampaignLimits implements Serializable {
     /**
-     * The maximum number of messages that each campaign can send to a single
-     * endpoint in a 24-hour period.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during a 24-hour period. The maximum value is 100.
+     * </p>
      */
     private Integer daily;
 
     /**
-     * The length of time (in seconds) that the campaign can run before it ends
-     * and message deliveries stop. This duration begins at the scheduled start
-     * time for the campaign. The minimum value is 60.
+     * <p>
+     * The maximum amount of time, in seconds, that a campaign can attempt to
+     * deliver a message after the scheduled start time for the campaign. The
+     * minimum value is 60 seconds.
+     * </p>
      */
     private Integer maximumDuration;
 
     /**
-     * The number of messages that the campaign can send per second. The minimum
-     * value is 50, and the maximum is 20000.
+     * <p>
+     * The maximum number of messages that a campaign can send each second. The
+     * minimum value is 50. The maximum value is 20,000.
+     * </p>
      */
     private Integer messagesPerSecond;
 
     /**
-     * The maximum number of messages that an individual campaign can send to a
-     * single endpoint over the course of the campaign.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during the course of the campaign. The maximum value is 100.
+     * </p>
      */
     private Integer total;
 
     /**
-     * The maximum number of messages that each campaign can send to a single
-     * endpoint in a 24-hour period.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during a 24-hour period. The maximum value is 100.
+     * </p>
      *
-     * @return The maximum number of messages that each campaign can send to a
-     *         single endpoint in a 24-hour period.
+     * @return <p>
+     *         The maximum number of messages that a campaign can send to a
+     *         single endpoint during a 24-hour period. The maximum value is
+     *         100.
+     *         </p>
      */
     public Integer getDaily() {
         return daily;
     }
 
     /**
-     * The maximum number of messages that each campaign can send to a single
-     * endpoint in a 24-hour period.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during a 24-hour period. The maximum value is 100.
+     * </p>
      *
-     * @param daily The maximum number of messages that each campaign can send
-     *            to a single endpoint in a 24-hour period.
+     * @param daily <p>
+     *            The maximum number of messages that a campaign can send to a
+     *            single endpoint during a 24-hour period. The maximum value is
+     *            100.
+     *            </p>
      */
     public void setDaily(Integer daily) {
         this.daily = daily;
     }
 
     /**
-     * The maximum number of messages that each campaign can send to a single
-     * endpoint in a 24-hour period.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during a 24-hour period. The maximum value is 100.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param daily The maximum number of messages that each campaign can send
-     *            to a single endpoint in a 24-hour period.
+     * @param daily <p>
+     *            The maximum number of messages that a campaign can send to a
+     *            single endpoint during a 24-hour period. The maximum value is
+     *            100.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -87,44 +111,54 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The length of time (in seconds) that the campaign can run before it ends
-     * and message deliveries stop. This duration begins at the scheduled start
-     * time for the campaign. The minimum value is 60.
+     * <p>
+     * The maximum amount of time, in seconds, that a campaign can attempt to
+     * deliver a message after the scheduled start time for the campaign. The
+     * minimum value is 60 seconds.
+     * </p>
      *
-     * @return The length of time (in seconds) that the campaign can run before
-     *         it ends and message deliveries stop. This duration begins at the
-     *         scheduled start time for the campaign. The minimum value is 60.
+     * @return <p>
+     *         The maximum amount of time, in seconds, that a campaign can
+     *         attempt to deliver a message after the scheduled start time for
+     *         the campaign. The minimum value is 60 seconds.
+     *         </p>
      */
     public Integer getMaximumDuration() {
         return maximumDuration;
     }
 
     /**
-     * The length of time (in seconds) that the campaign can run before it ends
-     * and message deliveries stop. This duration begins at the scheduled start
-     * time for the campaign. The minimum value is 60.
+     * <p>
+     * The maximum amount of time, in seconds, that a campaign can attempt to
+     * deliver a message after the scheduled start time for the campaign. The
+     * minimum value is 60 seconds.
+     * </p>
      *
-     * @param maximumDuration The length of time (in seconds) that the campaign
-     *            can run before it ends and message deliveries stop. This
-     *            duration begins at the scheduled start time for the campaign.
-     *            The minimum value is 60.
+     * @param maximumDuration <p>
+     *            The maximum amount of time, in seconds, that a campaign can
+     *            attempt to deliver a message after the scheduled start time
+     *            for the campaign. The minimum value is 60 seconds.
+     *            </p>
      */
     public void setMaximumDuration(Integer maximumDuration) {
         this.maximumDuration = maximumDuration;
     }
 
     /**
-     * The length of time (in seconds) that the campaign can run before it ends
-     * and message deliveries stop. This duration begins at the scheduled start
-     * time for the campaign. The minimum value is 60.
+     * <p>
+     * The maximum amount of time, in seconds, that a campaign can attempt to
+     * deliver a message after the scheduled start time for the campaign. The
+     * minimum value is 60 seconds.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param maximumDuration The length of time (in seconds) that the campaign
-     *            can run before it ends and message deliveries stop. This
-     *            duration begins at the scheduled start time for the campaign.
-     *            The minimum value is 60.
+     * @param maximumDuration <p>
+     *            The maximum amount of time, in seconds, that a campaign can
+     *            attempt to deliver a message after the scheduled start time
+     *            for the campaign. The minimum value is 60 seconds.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -134,38 +168,48 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The number of messages that the campaign can send per second. The minimum
-     * value is 50, and the maximum is 20000.
+     * <p>
+     * The maximum number of messages that a campaign can send each second. The
+     * minimum value is 50. The maximum value is 20,000.
+     * </p>
      *
-     * @return The number of messages that the campaign can send per second. The
-     *         minimum value is 50, and the maximum is 20000.
+     * @return <p>
+     *         The maximum number of messages that a campaign can send each
+     *         second. The minimum value is 50. The maximum value is 20,000.
+     *         </p>
      */
     public Integer getMessagesPerSecond() {
         return messagesPerSecond;
     }
 
     /**
-     * The number of messages that the campaign can send per second. The minimum
-     * value is 50, and the maximum is 20000.
+     * <p>
+     * The maximum number of messages that a campaign can send each second. The
+     * minimum value is 50. The maximum value is 20,000.
+     * </p>
      *
-     * @param messagesPerSecond The number of messages that the campaign can
-     *            send per second. The minimum value is 50, and the maximum is
-     *            20000.
+     * @param messagesPerSecond <p>
+     *            The maximum number of messages that a campaign can send each
+     *            second. The minimum value is 50. The maximum value is 20,000.
+     *            </p>
      */
     public void setMessagesPerSecond(Integer messagesPerSecond) {
         this.messagesPerSecond = messagesPerSecond;
     }
 
     /**
-     * The number of messages that the campaign can send per second. The minimum
-     * value is 50, and the maximum is 20000.
+     * <p>
+     * The maximum number of messages that a campaign can send each second. The
+     * minimum value is 50. The maximum value is 20,000.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messagesPerSecond The number of messages that the campaign can
-     *            send per second. The minimum value is 50, and the maximum is
-     *            20000.
+     * @param messagesPerSecond <p>
+     *            The maximum number of messages that a campaign can send each
+     *            second. The minimum value is 50. The maximum value is 20,000.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -175,36 +219,51 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The maximum number of messages that an individual campaign can send to a
-     * single endpoint over the course of the campaign.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during the course of the campaign. The maximum value is 100.
+     * </p>
      *
-     * @return The maximum number of messages that an individual campaign can
-     *         send to a single endpoint over the course of the campaign.
+     * @return <p>
+     *         The maximum number of messages that a campaign can send to a
+     *         single endpoint during the course of the campaign. The maximum
+     *         value is 100.
+     *         </p>
      */
     public Integer getTotal() {
         return total;
     }
 
     /**
-     * The maximum number of messages that an individual campaign can send to a
-     * single endpoint over the course of the campaign.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during the course of the campaign. The maximum value is 100.
+     * </p>
      *
-     * @param total The maximum number of messages that an individual campaign
-     *            can send to a single endpoint over the course of the campaign.
+     * @param total <p>
+     *            The maximum number of messages that a campaign can send to a
+     *            single endpoint during the course of the campaign. The maximum
+     *            value is 100.
+     *            </p>
      */
     public void setTotal(Integer total) {
         this.total = total;
     }
 
     /**
-     * The maximum number of messages that an individual campaign can send to a
-     * single endpoint over the course of the campaign.
+     * <p>
+     * The maximum number of messages that a campaign can send to a single
+     * endpoint during the course of the campaign. The maximum value is 100.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param total The maximum number of messages that an individual campaign
-     *            can send to a single endpoint over the course of the campaign.
+     * @param total <p>
+     *            The maximum number of messages that a campaign can send to a
+     *            single endpoint during the course of the campaign. The maximum
+     *            value is 100.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

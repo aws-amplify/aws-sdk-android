@@ -29,6 +29,19 @@ public class DeleteEventStreamResultJsonUnmarshaller implements
     public DeleteEventStreamResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteEventStreamResult deleteEventStreamResult = new DeleteEventStreamResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("EventStream")) {
+                deleteEventStreamResult.setEventStream(EventStreamJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteEventStreamResult;
     }
 

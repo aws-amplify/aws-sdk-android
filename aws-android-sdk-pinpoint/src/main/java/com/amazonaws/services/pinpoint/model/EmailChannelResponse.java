@@ -18,114 +18,172 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Email Channel Response.
+ * <p>
+ * Provides information about the status and settings of the email channel for
+ * an application.
+ * </p>
  */
 public class EmailChannelResponse implements Serializable {
     /**
-     * The unique ID of the application to which the email channel belongs.
+     * <p>
+     * The unique identifier for the application that the email channel applies
+     * to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The configuration set that you want to use when you send email using the
-     * Pinpoint Email API.
+     * <p>
+     * The configuration set that's applied to email that's sent through the
+     * channel by using the <a href="emailAPIreference.html">Amazon Pinpoint
+     * Email API</a>.
+     * </p>
      */
     private String configurationSet;
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was
+     * enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the email channel is enabled for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * The email address used to send emails from.
+     * <p>
+     * The verified email address that you send email from when you send email
+     * through the channel.
+     * </p>
      */
     private String fromAddress;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the email channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * The ARN of an identity verified with SES.
+     * <p>
+     * The Amazon Resource Name (ARN) of the identity, verified with Amazon
+     * Simple Email Service (Amazon SES), that you use when you send email
+     * through the channel.
+     * </p>
      */
     private String identity;
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the email channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the email channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was last
+     * modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * Messages per second that can be sent
+     * <p>
+     * The maximum number of emails that you can send through the channel each
+     * second.
+     * </p>
      */
     private Integer messagesPerSecond;
 
     /**
-     * Platform type. Will be "EMAIL"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * email channel, this value is EMAIL.
+     * </p>
      */
     private String platform;
 
     /**
-     * The ARN of an IAM Role used to submit events to Mobile Analytics' event
-     * ingestion service
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that Amazon
+     * Pinpoint uses to submit email-related event data for the channel.
+     * </p>
      */
     private String roleArn;
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the email channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * The unique ID of the application to which the email channel belongs.
+     * <p>
+     * The unique identifier for the application that the email channel applies
+     * to.
+     * </p>
      *
-     * @return The unique ID of the application to which the email channel
-     *         belongs.
+     * @return <p>
+     *         The unique identifier for the application that the email channel
+     *         applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of the application to which the email channel belongs.
+     * <p>
+     * The unique identifier for the application that the email channel applies
+     * to.
+     * </p>
      *
-     * @param applicationId The unique ID of the application to which the email
-     *            channel belongs.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the email
+     *            channel applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of the application to which the email channel belongs.
+     * <p>
+     * The unique identifier for the application that the email channel applies
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of the application to which the email
-     *            channel belongs.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the email
+     *            channel applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -135,36 +193,54 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * The configuration set that you want to use when you send email using the
-     * Pinpoint Email API.
+     * <p>
+     * The configuration set that's applied to email that's sent through the
+     * channel by using the <a href="emailAPIreference.html">Amazon Pinpoint
+     * Email API</a>.
+     * </p>
      *
-     * @return The configuration set that you want to use when you send email
-     *         using the Pinpoint Email API.
+     * @return <p>
+     *         The configuration set that's applied to email that's sent through
+     *         the channel by using the <a href="emailAPIreference.html">Amazon
+     *         Pinpoint Email API</a>.
+     *         </p>
      */
     public String getConfigurationSet() {
         return configurationSet;
     }
 
     /**
-     * The configuration set that you want to use when you send email using the
-     * Pinpoint Email API.
+     * <p>
+     * The configuration set that's applied to email that's sent through the
+     * channel by using the <a href="emailAPIreference.html">Amazon Pinpoint
+     * Email API</a>.
+     * </p>
      *
-     * @param configurationSet The configuration set that you want to use when
-     *            you send email using the Pinpoint Email API.
+     * @param configurationSet <p>
+     *            The configuration set that's applied to email that's sent
+     *            through the channel by using the <a
+     *            href="emailAPIreference.html">Amazon Pinpoint Email API</a>.
+     *            </p>
      */
     public void setConfigurationSet(String configurationSet) {
         this.configurationSet = configurationSet;
     }
 
     /**
-     * The configuration set that you want to use when you send email using the
-     * Pinpoint Email API.
+     * <p>
+     * The configuration set that's applied to email that's sent through the
+     * channel by using the <a href="emailAPIreference.html">Amazon Pinpoint
+     * Email API</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param configurationSet The configuration set that you want to use when
-     *            you send email using the Pinpoint Email API.
+     * @param configurationSet <p>
+     *            The configuration set that's applied to email that's sent
+     *            through the channel by using the <a
+     *            href="emailAPIreference.html">Amazon Pinpoint Email API</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -174,32 +250,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was
+     * enabled.
+     * </p>
      *
-     * @return The date that the settings were last updated in ISO 8601 format.
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the email channel was
+     *         enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was
+     * enabled.
+     * </p>
      *
-     * @param creationDate The date that the settings were last updated in ISO
-     *            8601 format.
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the email channel
+     *            was enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was
+     * enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date that the settings were last updated in ISO
-     *            8601 format.
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the email channel
+     *            was enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -209,39 +301,59 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the email channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the email channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the email channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the email channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the email channel is enabled for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the email channel is enabled for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the email channel is enabled for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the email channel is enabled for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -251,30 +363,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * The email address used to send emails from.
+     * <p>
+     * The verified email address that you send email from when you send email
+     * through the channel.
+     * </p>
      *
-     * @return The email address used to send emails from.
+     * @return <p>
+     *         The verified email address that you send email from when you send
+     *         email through the channel.
+     *         </p>
      */
     public String getFromAddress() {
         return fromAddress;
     }
 
     /**
-     * The email address used to send emails from.
+     * <p>
+     * The verified email address that you send email from when you send email
+     * through the channel.
+     * </p>
      *
-     * @param fromAddress The email address used to send emails from.
+     * @param fromAddress <p>
+     *            The verified email address that you send email from when you
+     *            send email through the channel.
+     *            </p>
      */
     public void setFromAddress(String fromAddress) {
         this.fromAddress = fromAddress;
     }
 
     /**
-     * The email address used to send emails from.
+     * <p>
+     * The verified email address that you send email from when you send email
+     * through the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param fromAddress The email address used to send emails from.
+     * @param fromAddress <p>
+     *            The verified email address that you send email from when you
+     *            send email through the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -284,39 +414,59 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -326,30 +476,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the email channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the email channel. This property
+     *         is retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the email channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the email channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the email channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the email channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -359,30 +527,54 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * The ARN of an identity verified with SES.
+     * <p>
+     * The Amazon Resource Name (ARN) of the identity, verified with Amazon
+     * Simple Email Service (Amazon SES), that you use when you send email
+     * through the channel.
+     * </p>
      *
-     * @return The ARN of an identity verified with SES.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the identity, verified with
+     *         Amazon Simple Email Service (Amazon SES), that you use when you
+     *         send email through the channel.
+     *         </p>
      */
     public String getIdentity() {
         return identity;
     }
 
     /**
-     * The ARN of an identity verified with SES.
+     * <p>
+     * The Amazon Resource Name (ARN) of the identity, verified with Amazon
+     * Simple Email Service (Amazon SES), that you use when you send email
+     * through the channel.
+     * </p>
      *
-     * @param identity The ARN of an identity verified with SES.
+     * @param identity <p>
+     *            The Amazon Resource Name (ARN) of the identity, verified with
+     *            Amazon Simple Email Service (Amazon SES), that you use when
+     *            you send email through the channel.
+     *            </p>
      */
     public void setIdentity(String identity) {
         this.identity = identity;
     }
 
     /**
-     * The ARN of an identity verified with SES.
+     * <p>
+     * The Amazon Resource Name (ARN) of the identity, verified with Amazon
+     * Simple Email Service (Amazon SES), that you use when you send email
+     * through the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param identity The ARN of an identity verified with SES.
+     * @param identity <p>
+     *            The Amazon Resource Name (ARN) of the identity, verified with
+     *            Amazon Simple Email Service (Amazon SES), that you use when
+     *            you send email through the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -392,39 +584,55 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the email channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the email channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the email channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the email channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the email channel is archived.
+     * </p>
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the email channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the email channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the email channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -434,30 +642,42 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the email channel.
+     * </p>
      *
-     * @return Who last updated this entry
+     * @return <p>
+     *         The user who last modified the email channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the email channel.
+     * </p>
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the email channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the email channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the email channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -467,30 +687,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was last
+     * modified.
+     * </p>
      *
-     * @return Last date this was updated
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the email channel was
+     *         last modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was last
+     * modified.
+     * </p>
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the email channel
+     *            was last modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the email channel was last
+     * modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the email channel
+     *            was last modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -500,30 +738,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Messages per second that can be sent
+     * <p>
+     * The maximum number of emails that you can send through the channel each
+     * second.
+     * </p>
      *
-     * @return Messages per second that can be sent
+     * @return <p>
+     *         The maximum number of emails that you can send through the
+     *         channel each second.
+     *         </p>
      */
     public Integer getMessagesPerSecond() {
         return messagesPerSecond;
     }
 
     /**
-     * Messages per second that can be sent
+     * <p>
+     * The maximum number of emails that you can send through the channel each
+     * second.
+     * </p>
      *
-     * @param messagesPerSecond Messages per second that can be sent
+     * @param messagesPerSecond <p>
+     *            The maximum number of emails that you can send through the
+     *            channel each second.
+     *            </p>
      */
     public void setMessagesPerSecond(Integer messagesPerSecond) {
         this.messagesPerSecond = messagesPerSecond;
     }
 
     /**
-     * Messages per second that can be sent
+     * <p>
+     * The maximum number of emails that you can send through the channel each
+     * second.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messagesPerSecond Messages per second that can be sent
+     * @param messagesPerSecond <p>
+     *            The maximum number of emails that you can send through the
+     *            channel each second.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -533,30 +789,48 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Platform type. Will be "EMAIL"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * email channel, this value is EMAIL.
+     * </p>
      *
-     * @return Platform type. Will be "EMAIL"
+     * @return <p>
+     *         The type of messaging or notification platform for the channel.
+     *         For the email channel, this value is EMAIL.
+     *         </p>
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * Platform type. Will be "EMAIL"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * email channel, this value is EMAIL.
+     * </p>
      *
-     * @param platform Platform type. Will be "EMAIL"
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the email channel, this value is EMAIL.
+     *            </p>
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * Platform type. Will be "EMAIL"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * email channel, this value is EMAIL.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform Platform type. Will be "EMAIL"
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the email channel, this value is EMAIL.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -566,36 +840,51 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * The ARN of an IAM Role used to submit events to Mobile Analytics' event
-     * ingestion service
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that Amazon
+     * Pinpoint uses to submit email-related event data for the channel.
+     * </p>
      *
-     * @return The ARN of an IAM Role used to submit events to Mobile Analytics'
-     *         event ingestion service
+     * @return <p>
+     *         The ARN of the AWS Identity and Access Management (IAM) role that
+     *         Amazon Pinpoint uses to submit email-related event data for the
+     *         channel.
+     *         </p>
      */
     public String getRoleArn() {
         return roleArn;
     }
 
     /**
-     * The ARN of an IAM Role used to submit events to Mobile Analytics' event
-     * ingestion service
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that Amazon
+     * Pinpoint uses to submit email-related event data for the channel.
+     * </p>
      *
-     * @param roleArn The ARN of an IAM Role used to submit events to Mobile
-     *            Analytics' event ingestion service
+     * @param roleArn <p>
+     *            The ARN of the AWS Identity and Access Management (IAM) role
+     *            that Amazon Pinpoint uses to submit email-related event data
+     *            for the channel.
+     *            </p>
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
 
     /**
-     * The ARN of an IAM Role used to submit events to Mobile Analytics' event
-     * ingestion service
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that Amazon
+     * Pinpoint uses to submit email-related event data for the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param roleArn The ARN of an IAM Role used to submit events to Mobile
-     *            Analytics' event ingestion service
+     * @param roleArn <p>
+     *            The ARN of the AWS Identity and Access Management (IAM) role
+     *            that Amazon Pinpoint uses to submit email-related event data
+     *            for the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -605,30 +894,42 @@ public class EmailChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the email channel.
+     * </p>
      *
-     * @return Version of channel
+     * @return <p>
+     *         The current version of the email channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the email channel.
+     * </p>
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the email channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the email channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the email channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

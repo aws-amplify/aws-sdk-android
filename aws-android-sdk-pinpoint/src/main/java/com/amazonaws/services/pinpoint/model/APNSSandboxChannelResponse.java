@@ -18,97 +18,147 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Apple Development Push Notification Service channel definition.
+ * <p>
+ * Provides information about the status and settings of the APNs (Apple Push
+ * Notification service) sandbox channel for an application.
+ * </p>
  */
 public class APNSSandboxChannelResponse implements Serializable {
     /**
-     * The ID of the application to which the channel applies.
+     * <p>
+     * The unique identifier for the application that the APNs sandbox channel
+     * applies to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the APNs sandbox channel was enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with the APNs sandbox environment for this channel, key or
+     * certificate.
+     * </p>
      */
     private String defaultAuthenticationMethod;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs sandbox channel is enabled for the
+     * application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs sandbox channel is configured to communicate
+     * with APNs by using APNs tokens. To provide an authentication key for APNs
+     * tokens, set the TokenKey property of the channel.
+     * </p>
      */
     private Boolean hasTokenKey;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs sandbox channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the APNs sandbox channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the APNs sandbox channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the APNs sandbox channel was last modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * The platform type. Will be APNS_SANDBOX.
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs sandbox channel, this value is APNS_SANDBOX.
+     * </p>
      */
     private String platform;
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the APNs sandbox channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * The ID of the application to which the channel applies.
+     * <p>
+     * The unique identifier for the application that the APNs sandbox channel
+     * applies to.
+     * </p>
      *
-     * @return The ID of the application to which the channel applies.
+     * @return <p>
+     *         The unique identifier for the application that the APNs sandbox
+     *         channel applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The ID of the application to which the channel applies.
+     * <p>
+     * The unique identifier for the application that the APNs sandbox channel
+     * applies to.
+     * </p>
      *
-     * @param applicationId The ID of the application to which the channel
-     *            applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the APNs
+     *            sandbox channel applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The ID of the application to which the channel applies.
+     * <p>
+     * The unique identifier for the application that the APNs sandbox channel
+     * applies to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The ID of the application to which the channel
-     *            applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the APNs
+     *            sandbox channel applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -118,30 +168,42 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the APNs sandbox channel was enabled.
+     * </p>
      *
-     * @return When was this segment created
+     * @return <p>
+     *         The date and time when the APNs sandbox channel was enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the APNs sandbox channel was enabled.
+     * </p>
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time when the APNs sandbox channel was enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the APNs sandbox channel was enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time when the APNs sandbox channel was enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -151,32 +213,54 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with the APNs sandbox environment for this channel, key or
+     * certificate.
+     * </p>
      *
-     * @return The default authentication method used for APNs.
+     * @return <p>
+     *         The default authentication method that Amazon Pinpoint uses to
+     *         authenticate with the APNs sandbox environment for this channel,
+     *         key or certificate.
+     *         </p>
      */
     public String getDefaultAuthenticationMethod() {
         return defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with the APNs sandbox environment for this channel, key or
+     * certificate.
+     * </p>
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that Amazon Pinpoint uses to
+     *            authenticate with the APNs sandbox environment for this
+     *            channel, key or certificate.
+     *            </p>
      */
     public void setDefaultAuthenticationMethod(String defaultAuthenticationMethod) {
         this.defaultAuthenticationMethod = defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with the APNs sandbox environment for this channel, key or
+     * certificate.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that Amazon Pinpoint uses to
+     *            authenticate with the APNs sandbox environment for this
+     *            channel, key or certificate.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -187,39 +271,63 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs sandbox channel is enabled for the
+     * application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs sandbox channel is enabled for the
+     * application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs sandbox channel is enabled for the
+     * application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the APNs sandbox channel is enabled for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs sandbox channel is enabled for the
+     * application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the APNs sandbox channel is enabled for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -229,39 +337,59 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -271,51 +399,75 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs sandbox channel is configured to communicate
+     * with APNs by using APNs tokens. To provide an authentication key for APNs
+     * tokens, set the TokenKey property of the channel.
+     * </p>
      *
-     * @return Indicates whether the channel is configured with a key for APNs
-     *         token authentication. Provide a token key by setting the TokenKey
-     *         attribute.
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is configured to
+     *         communicate with APNs by using APNs tokens. To provide an
+     *         authentication key for APNs tokens, set the TokenKey property of
+     *         the channel.
+     *         </p>
      */
     public Boolean isHasTokenKey() {
         return hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs sandbox channel is configured to communicate
+     * with APNs by using APNs tokens. To provide an authentication key for APNs
+     * tokens, set the TokenKey property of the channel.
+     * </p>
      *
-     * @return Indicates whether the channel is configured with a key for APNs
-     *         token authentication. Provide a token key by setting the TokenKey
-     *         attribute.
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is configured to
+     *         communicate with APNs by using APNs tokens. To provide an
+     *         authentication key for APNs tokens, set the TokenKey property of
+     *         the channel.
+     *         </p>
      */
     public Boolean getHasTokenKey() {
         return hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs sandbox channel is configured to communicate
+     * with APNs by using APNs tokens. To provide an authentication key for APNs
+     * tokens, set the TokenKey property of the channel.
+     * </p>
      *
-     * @param hasTokenKey Indicates whether the channel is configured with a key
-     *            for APNs token authentication. Provide a token key by setting
-     *            the TokenKey attribute.
+     * @param hasTokenKey <p>
+     *            Specifies whether the APNs sandbox channel is configured to
+     *            communicate with APNs by using APNs tokens. To provide an
+     *            authentication key for APNs tokens, set the TokenKey property
+     *            of the channel.
+     *            </p>
      */
     public void setHasTokenKey(Boolean hasTokenKey) {
         this.hasTokenKey = hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs sandbox channel is configured to communicate
+     * with APNs by using APNs tokens. To provide an authentication key for APNs
+     * tokens, set the TokenKey property of the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasTokenKey Indicates whether the channel is configured with a key
-     *            for APNs token authentication. Provide a token key by setting
-     *            the TokenKey attribute.
+     * @param hasTokenKey <p>
+     *            Specifies whether the APNs sandbox channel is configured to
+     *            communicate with APNs by using APNs tokens. To provide an
+     *            authentication key for APNs tokens, set the TokenKey property
+     *            of the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -325,30 +477,48 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs sandbox channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the APNs sandbox channel. This
+     *         property is retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs sandbox channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the APNs sandbox channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs sandbox channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the APNs sandbox channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,39 +528,55 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the APNs sandbox channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the APNs sandbox channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the APNs sandbox channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the APNs sandbox channel is archived.
+     * </p>
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the APNs sandbox channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the APNs sandbox channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the APNs sandbox channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -400,30 +586,42 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the APNs sandbox channel.
+     * </p>
      *
-     * @return Who last updated this entry
+     * @return <p>
+     *         The user who last modified the APNs sandbox channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the APNs sandbox channel.
+     * </p>
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the APNs sandbox channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the APNs sandbox channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the APNs sandbox channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -433,30 +631,45 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the APNs sandbox channel was last modified.
+     * </p>
      *
-     * @return Last date this was updated
+     * @return <p>
+     *         The date and time when the APNs sandbox channel was last
+     *         modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the APNs sandbox channel was last modified.
+     * </p>
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time when the APNs sandbox channel was last
+     *            modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the APNs sandbox channel was last modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time when the APNs sandbox channel was last
+     *            modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -466,30 +679,50 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * The platform type. Will be APNS_SANDBOX.
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs sandbox channel, this value is APNS_SANDBOX.
+     * </p>
      *
-     * @return The platform type. Will be APNS_SANDBOX.
+     * @return <p>
+     *         The type of messaging or notification platform for the channel.
+     *         For the APNs sandbox channel, this value is APNS_SANDBOX.
+     *         </p>
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * The platform type. Will be APNS_SANDBOX.
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs sandbox channel, this value is APNS_SANDBOX.
+     * </p>
      *
-     * @param platform The platform type. Will be APNS_SANDBOX.
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the APNs sandbox channel, this value is
+     *            APNS_SANDBOX.
+     *            </p>
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * The platform type. Will be APNS_SANDBOX.
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs sandbox channel, this value is APNS_SANDBOX.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform The platform type. Will be APNS_SANDBOX.
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the APNs sandbox channel, this value is
+     *            APNS_SANDBOX.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -499,30 +732,42 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the APNs sandbox channel.
+     * </p>
      *
-     * @return Version of channel
+     * @return <p>
+     *         The current version of the APNs sandbox channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the APNs sandbox channel.
+     * </p>
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the APNs sandbox channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the APNs sandbox channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the APNs sandbox channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

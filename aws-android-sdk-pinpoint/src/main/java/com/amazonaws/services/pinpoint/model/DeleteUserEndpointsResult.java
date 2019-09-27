@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class DeleteUserEndpointsResult implements Serializable {
     /**
-     * List of endpoints
+     * <p>
+     * Provides information about all the endpoints that are associated with a
+     * user ID.
+     * </p>
      */
     private EndpointsResponse endpointsResponse;
 
     /**
-     * List of endpoints
+     * <p>
+     * Provides information about all the endpoints that are associated with a
+     * user ID.
+     * </p>
      *
-     * @return List of endpoints
+     * @return <p>
+     *         Provides information about all the endpoints that are associated
+     *         with a user ID.
+     *         </p>
      */
     public EndpointsResponse getEndpointsResponse() {
         return endpointsResponse;
     }
 
     /**
-     * List of endpoints
+     * <p>
+     * Provides information about all the endpoints that are associated with a
+     * user ID.
+     * </p>
      *
-     * @param endpointsResponse List of endpoints
+     * @param endpointsResponse <p>
+     *            Provides information about all the endpoints that are
+     *            associated with a user ID.
+     *            </p>
      */
     public void setEndpointsResponse(EndpointsResponse endpointsResponse) {
         this.endpointsResponse = endpointsResponse;
     }
 
     /**
-     * List of endpoints
+     * <p>
+     * Provides information about all the endpoints that are associated with a
+     * user ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointsResponse List of endpoints
+     * @param endpointsResponse <p>
+     *            Provides information about all the endpoints that are
+     *            associated with a user ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

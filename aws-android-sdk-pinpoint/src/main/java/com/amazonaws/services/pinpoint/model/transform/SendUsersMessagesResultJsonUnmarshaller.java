@@ -29,6 +29,21 @@ public class SendUsersMessagesResultJsonUnmarshaller implements
     public SendUsersMessagesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         SendUsersMessagesResult sendUsersMessagesResult = new SendUsersMessagesResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("SendUsersMessageResponse")) {
+                sendUsersMessagesResult
+                        .setSendUsersMessageResponse(SendUsersMessageResponseJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return sendUsersMessagesResult;
     }
 

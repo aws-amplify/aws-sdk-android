@@ -29,6 +29,20 @@ public class GetSegmentExportJobsResultJsonUnmarshaller implements
     public GetSegmentExportJobsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetSegmentExportJobsResult getSegmentExportJobsResult = new GetSegmentExportJobsResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("ExportJobsResponse")) {
+                getSegmentExportJobsResult.setExportJobsResponse(ExportJobsResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return getSegmentExportJobsResult;
     }
 
