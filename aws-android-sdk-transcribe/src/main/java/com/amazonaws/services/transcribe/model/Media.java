@@ -48,6 +48,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String mediaFileUri;
 
@@ -76,6 +77,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
      *         The S3 location of the input media file. The URI must be in the
@@ -129,6 +131,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param mediaFileUri <p>
      *            The S3 location of the input media file. The URI must be in
@@ -185,6 +188,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param mediaFileUri <p>
      *            The S3 location of the input media file. The URI must be in

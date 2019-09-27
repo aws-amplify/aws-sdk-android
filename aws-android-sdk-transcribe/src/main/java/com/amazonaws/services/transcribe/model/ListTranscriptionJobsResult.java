@@ -41,6 +41,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String nextToken;
 
@@ -161,6 +162,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
      *         The <code>ListTranscriptionJobs</code> operation returns a page
@@ -189,6 +191,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            The <code>ListTranscriptionJobs</code> operation returns a
@@ -220,6 +223,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            The <code>ListTranscriptionJobs</code> operation returns a
