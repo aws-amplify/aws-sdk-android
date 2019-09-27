@@ -18,89 +18,136 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Baidu Cloud Messaging channel definition
+ * <p>
+ * Provides information about the status and settings of the Baidu (Baidu Cloud
+ * Push) channel for an application.
+ * </p>
  */
 public class BaiduChannelResponse implements Serializable {
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application that the Baidu channel applies
+     * to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the Baidu channel was enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The Baidu API key from Baidu.
+     * <p>
+     * The API key that you received from the Baidu Cloud Push service to
+     * communicate with the service.
+     * </p>
      */
     private String credential;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the Baidu channel is enabled for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the Baidu channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the Baidu channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the Baidu channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the Baidu channel was last modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * The platform type. Will be BAIDU
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * Baidu channel, this value is BAIDU.
+     * </p>
      */
     private String platform;
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the Baidu channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application that the Baidu channel applies
+     * to.
+     * </p>
      *
-     * @return Application id
+     * @return <p>
+     *         The unique identifier for the application that the Baidu channel
+     *         applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application that the Baidu channel applies
+     * to.
+     * </p>
      *
-     * @param applicationId Application id
+     * @param applicationId <p>
+     *            The unique identifier for the application that the Baidu
+     *            channel applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application that the Baidu channel applies
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId Application id
+     * @param applicationId <p>
+     *            The unique identifier for the application that the Baidu
+     *            channel applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -110,30 +157,42 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the Baidu channel was enabled.
+     * </p>
      *
-     * @return When was this segment created
+     * @return <p>
+     *         The date and time when the Baidu channel was enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the Baidu channel was enabled.
+     * </p>
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time when the Baidu channel was enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time when the Baidu channel was enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time when the Baidu channel was enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -143,30 +202,48 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * The Baidu API key from Baidu.
+     * <p>
+     * The API key that you received from the Baidu Cloud Push service to
+     * communicate with the service.
+     * </p>
      *
-     * @return The Baidu API key from Baidu.
+     * @return <p>
+     *         The API key that you received from the Baidu Cloud Push service
+     *         to communicate with the service.
+     *         </p>
      */
     public String getCredential() {
         return credential;
     }
 
     /**
-     * The Baidu API key from Baidu.
+     * <p>
+     * The API key that you received from the Baidu Cloud Push service to
+     * communicate with the service.
+     * </p>
      *
-     * @param credential The Baidu API key from Baidu.
+     * @param credential <p>
+     *            The API key that you received from the Baidu Cloud Push
+     *            service to communicate with the service.
+     *            </p>
      */
     public void setCredential(String credential) {
         this.credential = credential;
     }
 
     /**
-     * The Baidu API key from Baidu.
+     * <p>
+     * The API key that you received from the Baidu Cloud Push service to
+     * communicate with the service.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param credential The Baidu API key from Baidu.
+     * @param credential <p>
+     *            The API key that you received from the Baidu Cloud Push
+     *            service to communicate with the service.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -176,39 +253,59 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the Baidu channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the Baidu channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the Baidu channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the Baidu channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the Baidu channel is enabled for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the Baidu channel is enabled for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the Baidu channel is enabled for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the Baidu channel is enabled for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -218,39 +315,59 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -260,30 +377,48 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the Baidu channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the Baidu channel. This property
+     *         is retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the Baidu channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the Baidu channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the Baidu channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the Baidu channel. This
+     *            property is retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -293,39 +428,55 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the Baidu channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the Baidu channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the Baidu channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the Baidu channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the Baidu channel is archived.
+     * </p>
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the Baidu channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the Baidu channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the Baidu channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -335,30 +486,42 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the Baidu channel.
+     * </p>
      *
-     * @return Who made the last change
+     * @return <p>
+     *         The user who last modified the Baidu channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the Baidu channel.
+     * </p>
      *
-     * @param lastModifiedBy Who made the last change
+     * @param lastModifiedBy <p>
+     *            The user who last modified the Baidu channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the Baidu channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who made the last change
+     * @param lastModifiedBy <p>
+     *            The user who last modified the Baidu channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -368,30 +531,42 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the Baidu channel was last modified.
+     * </p>
      *
-     * @return Last date this was updated
+     * @return <p>
+     *         The date and time when the Baidu channel was last modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the Baidu channel was last modified.
+     * </p>
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time when the Baidu channel was last modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time when the Baidu channel was last modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time when the Baidu channel was last modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -401,30 +576,48 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * The platform type. Will be BAIDU
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * Baidu channel, this value is BAIDU.
+     * </p>
      *
-     * @return The platform type. Will be BAIDU
+     * @return <p>
+     *         The type of messaging or notification platform for the channel.
+     *         For the Baidu channel, this value is BAIDU.
+     *         </p>
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * The platform type. Will be BAIDU
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * Baidu channel, this value is BAIDU.
+     * </p>
      *
-     * @param platform The platform type. Will be BAIDU
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the Baidu channel, this value is BAIDU.
+     *            </p>
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * The platform type. Will be BAIDU
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * Baidu channel, this value is BAIDU.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform The platform type. Will be BAIDU
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the Baidu channel, this value is BAIDU.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -434,30 +627,42 @@ public class BaiduChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the Baidu channel.
+     * </p>
      *
-     * @return Version of channel
+     * @return <p>
+     *         The current version of the Baidu channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the Baidu channel.
+     * </p>
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the Baidu channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the Baidu channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the Baidu channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

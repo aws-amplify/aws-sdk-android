@@ -18,44 +18,134 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Application Response.
+ * <p>
+ * Provides information about an application.
+ * </p>
  */
 public class ApplicationResponse implements Serializable {
     /**
-     * The unique application ID.
+     * <p>
+     * The Amazon Resource Name (ARN) of the application.
+     * </p>
+     */
+    private String arn;
+
+    /**
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String id;
 
     /**
-     * The display name of the application.
+     * <p>
+     * The display name of the application. This name is displayed as the
+     * <b>Project name</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String name;
 
     /**
-     * The unique application ID.
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the application. Each tag consists of a required tag
+     * key and an associated tag value.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the application.
+     * </p>
      *
-     * @return The unique application ID.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the application.
+     *         </p>
+     */
+    public String getArn() {
+        return arn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the application.
+     * </p>
+     *
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) of the application.
+     *            </p>
+     */
+    public void setArn(String arn) {
+        this.arn = arn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) of the application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ApplicationResponse withArn(String arn) {
+        this.arn = arn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
+     *
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * The unique application ID.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param id The unique application ID.
+     * @param id <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * The unique application ID.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id The unique application ID.
+     * @param id <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,35 +155,147 @@ public class ApplicationResponse implements Serializable {
     }
 
     /**
-     * The display name of the application.
+     * <p>
+     * The display name of the application. This name is displayed as the
+     * <b>Project name</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The display name of the application.
+     * @return <p>
+     *         The display name of the application. This name is displayed as
+     *         the <b>Project name</b> on the Amazon Pinpoint console.
+     *         </p>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The display name of the application.
+     * <p>
+     * The display name of the application. This name is displayed as the
+     * <b>Project name</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param name The display name of the application.
+     * @param name <p>
+     *            The display name of the application. This name is displayed as
+     *            the <b>Project name</b> on the Amazon Pinpoint console.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * The display name of the application.
+     * <p>
+     * The display name of the application. This name is displayed as the
+     * <b>Project name</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name The display name of the application.
+     * @param name <p>
+     *            The display name of the application. This name is displayed as
+     *            the <b>Project name</b> on the Amazon Pinpoint console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ApplicationResponse withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the application. Each tag consists of a required tag
+     * key and an associated tag value.
+     * </p>
+     *
+     * @return <p>
+     *         A string-to-string map of key-value pairs that identifies the
+     *         tags that are associated with the application. Each tag consists
+     *         of a required tag key and an associated tag value.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the application. Each tag consists of a required tag
+     * key and an associated tag value.
+     * </p>
+     *
+     * @param tags <p>
+     *            A string-to-string map of key-value pairs that identifies the
+     *            tags that are associated with the application. Each tag
+     *            consists of a required tag key and an associated tag value.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the application. Each tag consists of a required tag
+     * key and an associated tag value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A string-to-string map of key-value pairs that identifies the
+     *            tags that are associated with the application. Each tag
+     *            consists of a required tag key and an associated tag value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ApplicationResponse withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the application. Each tag consists of a required tag
+     * key and an associated tag value.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ApplicationResponse addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public ApplicationResponse cleartagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -108,10 +310,14 @@ public class ApplicationResponse implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getArn() != null)
+            sb.append("Arn: " + getArn() + ",");
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getName() != null)
-            sb.append("Name: " + getName());
+            sb.append("Name: " + getName() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -121,8 +327,10 @@ public class ApplicationResponse implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -137,6 +345,10 @@ public class ApplicationResponse implements Serializable {
             return false;
         ApplicationResponse other = (ApplicationResponse) obj;
 
+        if (other.getArn() == null ^ this.getArn() == null)
+            return false;
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
+            return false;
         if (other.getId() == null ^ this.getId() == null)
             return false;
         if (other.getId() != null && other.getId().equals(this.getId()) == false)
@@ -144,6 +356,10 @@ public class ApplicationResponse implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

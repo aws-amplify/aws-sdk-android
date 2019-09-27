@@ -20,45 +20,73 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to record events for endpoints. This method creates events and creates or
- * updates the endpoints that those events are associated with.
+ * <p>
+ * Creates a new event to record for endpoints, or creates or updates endpoint
+ * data that existing events are associated with.
+ * </p>
  */
 public class PutEventsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * A set of events to process.
+     * <p>
+     * Specifies a batch of events to process.
+     * </p>
      */
     private EventsRequest eventsRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -68,30 +96,42 @@ public class PutEventsRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * A set of events to process.
+     * <p>
+     * Specifies a batch of events to process.
+     * </p>
      *
-     * @return A set of events to process.
+     * @return <p>
+     *         Specifies a batch of events to process.
+     *         </p>
      */
     public EventsRequest getEventsRequest() {
         return eventsRequest;
     }
 
     /**
-     * A set of events to process.
+     * <p>
+     * Specifies a batch of events to process.
+     * </p>
      *
-     * @param eventsRequest A set of events to process.
+     * @param eventsRequest <p>
+     *            Specifies a batch of events to process.
+     *            </p>
      */
     public void setEventsRequest(EventsRequest eventsRequest) {
         this.eventsRequest = eventsRequest;
     }
 
     /**
-     * A set of events to process.
+     * <p>
+     * Specifies a batch of events to process.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventsRequest A set of events to process.
+     * @param eventsRequest <p>
+     *            Specifies a batch of events to process.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

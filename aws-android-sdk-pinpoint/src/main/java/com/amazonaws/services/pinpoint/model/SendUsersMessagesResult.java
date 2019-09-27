@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class SendUsersMessagesResult implements Serializable {
     /**
-     * User send message response.
+     * <p>
+     * Provides information about which users and endpoints a message was sent
+     * to.
+     * </p>
      */
     private SendUsersMessageResponse sendUsersMessageResponse;
 
     /**
-     * User send message response.
+     * <p>
+     * Provides information about which users and endpoints a message was sent
+     * to.
+     * </p>
      *
-     * @return User send message response.
+     * @return <p>
+     *         Provides information about which users and endpoints a message
+     *         was sent to.
+     *         </p>
      */
     public SendUsersMessageResponse getSendUsersMessageResponse() {
         return sendUsersMessageResponse;
     }
 
     /**
-     * User send message response.
+     * <p>
+     * Provides information about which users and endpoints a message was sent
+     * to.
+     * </p>
      *
-     * @param sendUsersMessageResponse User send message response.
+     * @param sendUsersMessageResponse <p>
+     *            Provides information about which users and endpoints a message
+     *            was sent to.
+     *            </p>
      */
     public void setSendUsersMessageResponse(SendUsersMessageResponse sendUsersMessageResponse) {
         this.sendUsersMessageResponse = sendUsersMessageResponse;
     }
 
     /**
-     * User send message response.
+     * <p>
+     * Provides information about which users and endpoints a message was sent
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sendUsersMessageResponse User send message response.
+     * @param sendUsersMessageResponse <p>
+     *            Provides information about which users and endpoints a message
+     *            was sent to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

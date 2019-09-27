@@ -29,6 +29,20 @@ public class UpdateSegmentResultJsonUnmarshaller implements
     public UpdateSegmentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateSegmentResult updateSegmentResult = new UpdateSegmentResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("SegmentResponse")) {
+                updateSegmentResult.setSegmentResponse(SegmentResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return updateSegmentResult;
     }
 

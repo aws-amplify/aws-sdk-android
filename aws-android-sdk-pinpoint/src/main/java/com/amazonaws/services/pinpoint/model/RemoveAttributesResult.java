@@ -19,35 +19,59 @@ import java.io.Serializable;
 
 public class RemoveAttributesResult implements Serializable {
     /**
-     * Attributes.
+     * <p>
+     * Provides information about the type and the names of attributes that were
+     * removed from all the endpoints that are associated with an application.
+     * </p>
      */
     private AttributesResource attributesResource;
 
     /**
-     * Attributes.
+     * <p>
+     * Provides information about the type and the names of attributes that were
+     * removed from all the endpoints that are associated with an application.
+     * </p>
      *
-     * @return Attributes.
+     * @return <p>
+     *         Provides information about the type and the names of attributes
+     *         that were removed from all the endpoints that are associated with
+     *         an application.
+     *         </p>
      */
     public AttributesResource getAttributesResource() {
         return attributesResource;
     }
 
     /**
-     * Attributes.
+     * <p>
+     * Provides information about the type and the names of attributes that were
+     * removed from all the endpoints that are associated with an application.
+     * </p>
      *
-     * @param attributesResource Attributes.
+     * @param attributesResource <p>
+     *            Provides information about the type and the names of
+     *            attributes that were removed from all the endpoints that are
+     *            associated with an application.
+     *            </p>
      */
     public void setAttributesResource(AttributesResource attributesResource) {
         this.attributesResource = attributesResource;
     }
 
     /**
-     * Attributes.
+     * <p>
+     * Provides information about the type and the names of attributes that were
+     * removed from all the endpoints that are associated with an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributesResource Attributes.
+     * @param attributesResource <p>
+     *            Provides information about the type and the names of
+     *            attributes that were removed from all the endpoints that are
+     *            associated with an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

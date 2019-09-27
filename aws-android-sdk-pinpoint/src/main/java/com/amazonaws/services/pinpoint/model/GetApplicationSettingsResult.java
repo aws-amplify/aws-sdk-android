@@ -19,23 +19,38 @@ import java.io.Serializable;
 
 public class GetApplicationSettingsResult implements Serializable {
     /**
-     * Application settings.
+     * <p>
+     * Provides information about an application, including the default settings
+     * for an application.
+     * </p>
      */
     private ApplicationSettingsResource applicationSettingsResource;
 
     /**
-     * Application settings.
+     * <p>
+     * Provides information about an application, including the default settings
+     * for an application.
+     * </p>
      *
-     * @return Application settings.
+     * @return <p>
+     *         Provides information about an application, including the default
+     *         settings for an application.
+     *         </p>
      */
     public ApplicationSettingsResource getApplicationSettingsResource() {
         return applicationSettingsResource;
     }
 
     /**
-     * Application settings.
+     * <p>
+     * Provides information about an application, including the default settings
+     * for an application.
+     * </p>
      *
-     * @param applicationSettingsResource Application settings.
+     * @param applicationSettingsResource <p>
+     *            Provides information about an application, including the
+     *            default settings for an application.
+     *            </p>
      */
     public void setApplicationSettingsResource(
             ApplicationSettingsResource applicationSettingsResource) {
@@ -43,12 +58,18 @@ public class GetApplicationSettingsResult implements Serializable {
     }
 
     /**
-     * Application settings.
+     * <p>
+     * Provides information about an application, including the default settings
+     * for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationSettingsResource Application settings.
+     * @param applicationSettingsResource <p>
+     *            Provides information about an application, including the
+     *            default settings for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

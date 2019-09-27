@@ -34,7 +34,9 @@ import com.amazonaws.services.pinpoint.model.transform.*;
  * Client for accessing AmazonPinpoint. All service calls made using this client
  * are blocking, and will not return until the service call completes.
  * <p>
- * Amazon Pinpoint
+ * <p>
+ * Doc Engage API - Amazon Pinpoint API
+ * </p>
  */
 public class AmazonPinpointClient extends AmazonWebServiceClient implements AmazonPinpoint {
     /** Provider for AWS credentials. */
@@ -108,7 +110,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      *     public void onResult(final UserStateDetails details) {
      *         AmazonPinpointClient client = new AmazonPinpointClient(AWSMobileClient.getInstance());
      *     }
-     *
+     * 
      *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
@@ -144,7 +146,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      *     public void onResult(final UserStateDetails details) {
      *         AmazonPinpointClient client = new AmazonPinpointClient(AWSMobileClient.getInstance());
      *     }
-     *
+     * 
      *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
@@ -171,10 +173,10 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      * the specified AWS account credentials provider.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
-     * provided in this constructor. Static AWSCredentials can be passed for
-     * quick testing. However, it is strongly recommended to use Amazon Cognito
-     * vended temporary credentials for use in production. This can be achieved
-     * by using {@link AWSMobileClient}. Please see
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
      * https://aws-amplify.github.io/docs/android/authentication for
      * instructions on how to enable {@link AWSMobileClient}.
      *
@@ -184,7 +186,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      *     public void onResult(final UserStateDetails details) {
      *         AmazonPinpointClient client = new AmazonPinpointClient(AWSMobileClient.getInstance());
      *     }
-     *
+     * 
      *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
@@ -209,10 +211,10 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      * options.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
-     * provided in this constructor. Static AWSCredentials can be passed for
-     * quick testing. However, it is strongly recommended to use Amazon Cognito
-     * vended temporary credentials for use in production. This can be achieved
-     * by using {@link AWSMobileClient}. Please see
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
      * https://aws-amplify.github.io/docs/android/authentication for
      * instructions on how to enable {@link AWSMobileClient}.
      *
@@ -222,7 +224,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      *     public void onResult(final UserStateDetails details) {
      *         AmazonPinpointClient client = new AmazonPinpointClient(AWSMobileClient.getInstance());
      *     }
-     *
+     * 
      *     &#064;Override
      *     public void onError(final Exception e) {
      *         e.printStackTrace();
@@ -277,6 +279,28 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
      * the specified AWS account credentials provider, client configuration
      * options and request metric collector.
      * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonPinpointClient client = new AmazonPinpointClient(AWSMobileClient.getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
      *
@@ -325,17 +349,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Creates or updates an app.
+     * <p>
+     * Creates an application.
+     * </p>
      * 
      * @param createAppRequest
      * @return createAppResult The response from the CreateApp service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -374,17 +417,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Creates or updates a campaign.
+     * <p>
+     * Creates a new campaign for an application or updates the settings of an
+     * existing campaign for an application.
+     * </p>
      * 
      * @param createCampaignRequest
      * @return createCampaignResult The response from the CreateCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -423,17 +486,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Creates an export job.
+     * <p>
+     * Creates a new export job for an application.
+     * </p>
      * 
      * @param createExportJobRequest
      * @return createExportJobResult The response from the CreateExportJob
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -472,17 +554,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Creates or updates an import job.
+     * <p>
+     * Creates a new import job for an application.
+     * </p>
      * 
      * @param createImportJobRequest
      * @return createImportJobResult The response from the CreateImportJob
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -521,17 +622,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to create or update a segment.
+     * <p>
+     * Creates a new segment for an application or updates the configuration,
+     * dimension, and other settings for an existing segment that's associated
+     * with an application.
+     * </p>
      * 
      * @param createSegmentRequest
      * @return createSegmentResult The response from the CreateSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -570,17 +692,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an ADM channel.
+     * <p>
+     * Disables the ADM channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteAdmChannelRequest
      * @return deleteAdmChannelResult The response from the DeleteAdmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -619,17 +761,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes the APNs channel for an app.
+     * <p>
+     * Disables the APNs channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteApnsChannelRequest
      * @return deleteApnsChannelResult The response from the DeleteApnsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -670,18 +832,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an APNS sandbox channel.
+     * <p>
+     * Disables the APNs sandbox channel for an application and deletes any
+     * existing settings for the channel.
+     * </p>
      * 
      * @param deleteApnsSandboxChannelRequest
      * @return deleteApnsSandboxChannelResult The response from the
      *         DeleteApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -722,18 +904,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an APNS VoIP channel
+     * <p>
+     * Disables the APNs VoIP channel for an application and deletes any
+     * existing settings for the channel.
+     * </p>
      * 
      * @param deleteApnsVoipChannelRequest
      * @return deleteApnsVoipChannelResult The response from the
      *         DeleteApnsVoipChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -774,18 +976,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an APNS VoIP sandbox channel
+     * <p>
+     * Disables the APNs VoIP sandbox channel for an application and deletes any
+     * existing settings for the channel.
+     * </p>
      * 
      * @param deleteApnsVoipSandboxChannelRequest
      * @return deleteApnsVoipSandboxChannelResult The response from the
      *         DeleteApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -826,17 +1048,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes an app.
+     * <p>
+     * Deletes an application.
+     * </p>
      * 
      * @param deleteAppRequest
      * @return deleteAppResult The response from the DeleteApp service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -875,17 +1116,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete a BAIDU GCM channel
+     * <p>
+     * Disables the Baidu channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteBaiduChannelRequest
      * @return deleteBaiduChannelResult The response from the DeleteBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -926,17 +1187,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes a campaign.
+     * <p>
+     * Deletes a campaign from an application.
+     * </p>
      * 
      * @param deleteCampaignRequest
      * @return deleteCampaignResult The response from the DeleteCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -975,17 +1255,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an email channel.
+     * <p>
+     * Disables the email channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteEmailChannelRequest
      * @return deleteEmailChannelResult The response from the DeleteEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1026,17 +1326,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes an endpoint.
+     * <p>
+     * Deletes an endpoint from an application.
+     * </p>
      * 
      * @param deleteEndpointRequest
      * @return deleteEndpointResult The response from the DeleteEndpoint service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1075,17 +1394,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes the event stream for an app.
+     * <p>
+     * Deletes the event stream for an application.
+     * </p>
      * 
      * @param deleteEventStreamRequest
      * @return deleteEventStreamResult The response from the DeleteEventStream
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1126,17 +1464,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes the GCM channel for an app.
+     * <p>
+     * Disables the GCM channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteGcmChannelRequest
      * @return deleteGcmChannelResult The response from the DeleteGcmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1175,17 +1533,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes a segment.
+     * <p>
+     * Deletes a segment from an application.
+     * </p>
      * 
      * @param deleteSegmentRequest
      * @return deleteSegmentResult The response from the DeleteSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1224,17 +1601,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an SMS channel.
+     * <p>
+     * Disables the SMS channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteSmsChannelRequest
      * @return deleteSmsChannelResult The response from the DeleteSmsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1273,18 +1670,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes endpoints that are associated with a User ID.
+     * <p>
+     * Deletes all the endpoints that are associated with a specific user ID.
+     * </p>
      * 
      * @param deleteUserEndpointsRequest
      * @return deleteUserEndpointsResult The response from the
      *         DeleteUserEndpoints service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1325,17 +1741,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Delete an Voice channel
+     * <p>
+     * Disables the voice channel for an application and deletes any existing
+     * settings for the channel.
+     * </p>
      * 
      * @param deleteVoiceChannelRequest
      * @return deleteVoiceChannelResult The response from the DeleteVoiceChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1376,17 +1812,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an ADM channel.
+     * <p>
+     * Retrieves information about the status and settings of the ADM channel
+     * for an application.
+     * </p>
      * 
      * @param getAdmChannelRequest
      * @return getAdmChannelResult The response from the GetAdmChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1425,17 +1881,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the APNs channel for an app.
+     * <p>
+     * Retrieves information about the status and settings of the APNs channel
+     * for an application.
+     * </p>
      * 
      * @param getApnsChannelRequest
      * @return getApnsChannelResult The response from the GetApnsChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1474,18 +1950,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an APNS sandbox channel.
+     * <p>
+     * Retrieves information about the status and settings of the APNs sandbox
+     * channel for an application.
+     * </p>
      * 
      * @param getApnsSandboxChannelRequest
      * @return getApnsSandboxChannelResult The response from the
      *         GetApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1526,17 +2022,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an APNS VoIP channel
+     * <p>
+     * Retrieves information about the status and settings of the APNs VoIP
+     * channel for an application.
+     * </p>
      * 
      * @param getApnsVoipChannelRequest
      * @return getApnsVoipChannelResult The response from the GetApnsVoipChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1577,18 +2093,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an APNS VoIPSandbox channel
+     * <p>
+     * Retrieves information about the status and settings of the APNs VoIP
+     * sandbox channel for an application.
+     * </p>
      * 
      * @param getApnsVoipSandboxChannelRequest
      * @return getApnsVoipSandboxChannelResult The response from the
      *         GetApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1629,17 +2165,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about an app.
+     * <p>
+     * Retrieves information about an application.
+     * </p>
      * 
      * @param getAppRequest
      * @return getAppResult The response from the GetApp service method, as
      *         returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1678,18 +2233,109 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to request the settings for an app.
+     * <p>
+     * Retrieves (queries) pre-aggregated data for a standard metric that
+     * applies to an application.
+     * </p>
+     * 
+     * @param getApplicationDateRangeKpiRequest
+     * @return getApplicationDateRangeKpiResult The response from the
+     *         GetApplicationDateRangeKpi service method, as returned by
+     *         AmazonPinpoint.
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public GetApplicationDateRangeKpiResult getApplicationDateRangeKpi(
+            GetApplicationDateRangeKpiRequest getApplicationDateRangeKpiRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getApplicationDateRangeKpiRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetApplicationDateRangeKpiRequest> request = null;
+        Response<GetApplicationDateRangeKpiResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetApplicationDateRangeKpiRequestMarshaller()
+                        .marshall(getApplicationDateRangeKpiRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetApplicationDateRangeKpiResult, JsonUnmarshallerContext> unmarshaller = new GetApplicationDateRangeKpiResultJsonUnmarshaller();
+            JsonResponseHandler<GetApplicationDateRangeKpiResult> responseHandler = new JsonResponseHandler<GetApplicationDateRangeKpiResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves information about the settings for an application.
+     * </p>
      * 
      * @param getApplicationSettingsRequest
      * @return getApplicationSettingsResult The response from the
      *         GetApplicationSettings service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1730,17 +2376,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your apps.
+     * <p>
+     * Retrieves information about all of your applications.
+     * </p>
      * 
      * @param getAppsRequest
      * @return getAppsResult The response from the GetApps service method, as
      *         returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1779,17 +2444,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get a BAIDU GCM channel
+     * <p>
+     * Retrieves information about the status and settings of the Baidu Cloud
+     * Push channel for an application.
+     * </p>
      * 
      * @param getBaiduChannelRequest
      * @return getBaiduChannelResult The response from the GetBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1828,17 +2513,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about a campaign.
+     * <p>
+     * Retrieves information about the status, configuration, and other settings
+     * for a campaign.
+     * </p>
      * 
      * @param getCampaignRequest
      * @return getCampaignResult The response from the GetCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1877,18 +2582,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the activity performed by a campaign.
+     * <p>
+     * Retrieves information about the activity performed by a campaign.
+     * </p>
      * 
      * @param getCampaignActivitiesRequest
      * @return getCampaignActivitiesResult The response from the
      *         GetCampaignActivities service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1929,17 +2653,109 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about a specific version of a campaign.
+     * <p>
+     * Retrieves (queries) pre-aggregated data for a standard metric that
+     * applies to a campaign.
+     * </p>
+     * 
+     * @param getCampaignDateRangeKpiRequest
+     * @return getCampaignDateRangeKpiResult The response from the
+     *         GetCampaignDateRangeKpi service method, as returned by
+     *         AmazonPinpoint.
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public GetCampaignDateRangeKpiResult getCampaignDateRangeKpi(
+            GetCampaignDateRangeKpiRequest getCampaignDateRangeKpiRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getCampaignDateRangeKpiRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetCampaignDateRangeKpiRequest> request = null;
+        Response<GetCampaignDateRangeKpiResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetCampaignDateRangeKpiRequestMarshaller()
+                        .marshall(getCampaignDateRangeKpiRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetCampaignDateRangeKpiResult, JsonUnmarshallerContext> unmarshaller = new GetCampaignDateRangeKpiResultJsonUnmarshaller();
+            JsonResponseHandler<GetCampaignDateRangeKpiResult> responseHandler = new JsonResponseHandler<GetCampaignDateRangeKpiResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves information about the status, configuration, and other settings
+     * for a specific version of a campaign.
+     * </p>
      * 
      * @param getCampaignVersionRequest
      * @return getCampaignVersionResult The response from the GetCampaignVersion
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1980,18 +2796,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your campaign versions.
+     * <p>
+     * Retrieves information about the status, configuration, and other settings
+     * for all versions of a specific campaign.
+     * </p>
      * 
      * @param getCampaignVersionsRequest
      * @return getCampaignVersionsResult The response from the
      *         GetCampaignVersions service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2032,17 +2868,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your campaigns.
+     * <p>
+     * Retrieves information about the status, configuration, and other settings
+     * for all the campaigns that are associated with an application.
+     * </p>
      * 
      * @param getCampaignsRequest
      * @return getCampaignsResult The response from the GetCampaigns service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2081,17 +2937,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get all channels.
+     * <p>
+     * Retrieves information about the history and status of each channel for an
+     * application.
+     * </p>
      * 
      * @param getChannelsRequest
      * @return getChannelsResult The response from the GetChannels service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2130,17 +3006,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an email channel.
+     * <p>
+     * Retrieves information about the status and settings of the email channel
+     * for an application.
+     * </p>
      * 
      * @param getEmailChannelRequest
      * @return getEmailChannelResult The response from the GetEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2179,17 +3075,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about an endpoint.
+     * <p>
+     * Retrieves information about the settings and attributes of a specific
+     * endpoint for an application.
+     * </p>
      * 
      * @param getEndpointRequest
      * @return getEndpointResult The response from the GetEndpoint service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2228,17 +3144,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns the event stream for an app.
+     * <p>
+     * Retrieves information about the event stream settings for an application.
+     * </p>
      * 
      * @param getEventStreamRequest
      * @return getEventStreamResult The response from the GetEventStream service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2277,17 +3212,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about an export job.
+     * <p>
+     * Retrieves information about the status and settings of a specific export
+     * job for an application.
+     * </p>
      * 
      * @param getExportJobRequest
      * @return getExportJobResult The response from the GetExportJob service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2326,17 +3281,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your export jobs.
+     * <p>
+     * Retrieves information about the status and settings of all the export
+     * jobs for an application.
+     * </p>
      * 
      * @param getExportJobsRequest
      * @return getExportJobsResult The response from the GetExportJobs service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2375,17 +3350,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the GCM channel for an app.
+     * <p>
+     * Retrieves information about the status and settings of the GCM channel
+     * for an application.
+     * </p>
      * 
      * @param getGcmChannelRequest
      * @return getGcmChannelResult The response from the GetGcmChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2424,17 +3419,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about an import job.
+     * <p>
+     * Retrieves information about the status and settings of a specific import
+     * job for an application.
+     * </p>
      * 
      * @param getImportJobRequest
      * @return getImportJobResult The response from the GetImportJob service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2473,17 +3488,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your import jobs.
+     * <p>
+     * Retrieves information about the status and settings of all the import
+     * jobs for an application.
+     * </p>
      * 
      * @param getImportJobsRequest
      * @return getImportJobsResult The response from the GetImportJobs service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2522,17 +3557,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about a segment.
+     * <p>
+     * Retrieves information about the configuration, dimension, and other
+     * settings for a specific segment that's associated with an application.
+     * </p>
      * 
      * @param getSegmentRequest
      * @return getSegmentResult The response from the GetSegment service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2571,18 +3626,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns a list of export jobs for a specific segment.
+     * <p>
+     * Retrieves information about the status and settings of the export jobs
+     * for a segment.
+     * </p>
      * 
      * @param getSegmentExportJobsRequest
      * @return getSegmentExportJobsResult The response from the
      *         GetSegmentExportJobs service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2623,18 +3698,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns a list of import jobs for a specific segment.
+     * <p>
+     * Retrieves information about the status and settings of the import jobs
+     * for a segment.
+     * </p>
      * 
      * @param getSegmentImportJobsRequest
      * @return getSegmentImportJobsResult The response from the
      *         GetSegmentImportJobs service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2675,17 +3770,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about a segment version.
+     * <p>
+     * Retrieves information about the configuration, dimension, and other
+     * settings for a specific version of a segment that's associated with an
+     * application.
+     * </p>
      * 
      * @param getSegmentVersionRequest
      * @return getSegmentVersionResult The response from the GetSegmentVersion
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2726,17 +3842,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about your segment versions.
+     * <p>
+     * Retrieves information about the configuration, dimension, and other
+     * settings for all versions of a specific segment that's associated with an
+     * application.
+     * </p>
      * 
      * @param getSegmentVersionsRequest
      * @return getSegmentVersionsResult The response from the GetSegmentVersions
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2777,17 +3914,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to get information about your segments.
+     * <p>
+     * Retrieves information about the configuration, dimension, and other
+     * settings for all the segments that are associated with an application.
+     * </p>
      * 
      * @param getSegmentsRequest
      * @return getSegmentsResult The response from the GetSegments service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2826,17 +3983,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get an SMS channel.
+     * <p>
+     * Retrieves information about the status and settings of the SMS channel
+     * for an application.
+     * </p>
      * 
      * @param getSmsChannelRequest
      * @return getSmsChannelResult The response from the GetSmsChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2875,18 +4052,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the endpoints that are associated with a User
-     * ID.
+     * <p>
+     * Retrieves information about all the endpoints that are associated with a
+     * specific user ID.
+     * </p>
      * 
      * @param getUserEndpointsRequest
      * @return getUserEndpointsResult The response from the GetUserEndpoints
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2925,17 +4121,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Get a Voice Channel
+     * <p>
+     * Retrieves information about the status and settings of the voice channel
+     * for an application.
+     * </p>
      * 
      * @param getVoiceChannelRequest
      * @return getVoiceChannelResult The response from the GetVoiceChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2974,18 +4190,86 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the specified phone number.
+     * <p>
+     * Retrieves all the tags (keys and values) that are associated with an
+     * application, campaign, or segment.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by
+     *         AmazonPinpoint.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a phone number.
+     * </p>
      * 
      * @param phoneNumberValidateRequest
      * @return phoneNumberValidateResult The response from the
      *         PhoneNumberValidate service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3026,17 +4310,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to create or update the event stream for an app.
+     * <p>
+     * Creates a new event stream for an application or updates the settings of
+     * an existing event stream for an application.
+     * </p>
      * 
      * @param putEventStreamRequest
      * @return putEventStreamResult The response from the PutEventStream service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3075,18 +4379,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to record events for endpoints. This method creates events and
-     * creates or updates the endpoints that those events are associated with.
+     * <p>
+     * Creates a new event to record for endpoints, or creates or updates
+     * endpoint data that existing events are associated with.
+     * </p>
      * 
      * @param putEventsRequest
      * @return putEventsResult The response from the PutEvents service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3125,17 +4448,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to remove the attributes for an app
+     * <p>
+     * Removes one or more attributes, of the same attribute type, from all the
+     * endpoints that are associated with an application.
+     * </p>
      * 
      * @param removeAttributesRequest
      * @return removeAttributesResult The response from the RemoveAttributes
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3174,17 +4517,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to send a direct message.
+     * <p>
+     * Creates and sends a direct message.
+     * </p>
      * 
      * @param sendMessagesRequest
      * @return sendMessagesResult The response from the SendMessages service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3223,17 +4585,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to send a message to a list of users.
+     * <p>
+     * Creates and sends a message to a list of users.
+     * </p>
      * 
      * @param sendUsersMessagesRequest
      * @return sendUsersMessagesResult The response from the SendUsersMessages
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3274,17 +4655,114 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an ADM channel.
+     * <p>
+     * Adds one or more tags (keys and values) to an application, campaign, or
+     * segment.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public void tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes one or more tags (keys and values) from an application, campaign,
+     * or segment.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public void untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the ADM channel settings for an application.
+     * </p>
      * 
      * @param updateAdmChannelRequest
      * @return updateAdmChannelResult The response from the UpdateAdmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3323,17 +4801,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to update the APNs channel for an app.
+     * <p>
+     * Updates the APNs channel settings for an application.
+     * </p>
      * 
      * @param updateApnsChannelRequest
      * @return updateApnsChannelResult The response from the UpdateApnsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3374,18 +4871,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an APNS sandbox channel.
+     * <p>
+     * Updates the APNs sandbox channel settings for an application.
+     * </p>
      * 
      * @param updateApnsSandboxChannelRequest
      * @return updateApnsSandboxChannelResult The response from the
      *         UpdateApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3426,18 +4942,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an APNS VoIP channel
+     * <p>
+     * Updates the APNs VoIP channel settings for an application.
+     * </p>
      * 
      * @param updateApnsVoipChannelRequest
      * @return updateApnsVoipChannelResult The response from the
      *         UpdateApnsVoipChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3478,18 +5013,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an APNS VoIP sandbox channel
+     * <p>
+     * Updates the settings for the APNs VoIP sandbox channel for an
+     * application.
+     * </p>
      * 
      * @param updateApnsVoipSandboxChannelRequest
      * @return updateApnsVoipSandboxChannelResult The response from the
      *         UpdateApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3530,18 +5085,37 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to update the settings for an app.
+     * <p>
+     * Updates the settings for an application.
+     * </p>
      * 
      * @param updateApplicationSettingsRequest
      * @return updateApplicationSettingsResult The response from the
      *         UpdateApplicationSettings service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3582,17 +5156,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update a BAIDU GCM channel
+     * <p>
+     * Updates the settings of the Baidu channel for an application.
+     * </p>
      * 
      * @param updateBaiduChannelRequest
      * @return updateBaiduChannelResult The response from the UpdateBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3633,17 +5226,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to update a campaign.
+     * <p>
+     * Updates the settings for a campaign.
+     * </p>
      * 
      * @param updateCampaignRequest
      * @return updateCampaignResult The response from the UpdateCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3682,17 +5294,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an email channel.
+     * <p>
+     * Updates the status and settings of the email channel for an application.
+     * </p>
      * 
      * @param updateEmailChannelRequest
      * @return updateEmailChannelResult The response from the UpdateEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3733,17 +5364,39 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Creates or updates an endpoint.
+     * <p>
+     * Creates a new endpoint for an application or updates the settings and
+     * attributes of an existing endpoint for an application. You can also use
+     * this operation to define custom attributes (Attributes, Metrics, and
+     * UserAttributes properties) for an endpoint.
+     * </p>
      * 
      * @param updateEndpointRequest
      * @return updateEndpointResult The response from the UpdateEndpoint service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3782,18 +5435,41 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to update a batch of endpoints.
+     * <p>
+     * Creates a new batch of endpoints for an application or updates the
+     * settings and attributes of a batch of existing endpoints for an
+     * application. You can also use this operation to define custom attributes
+     * (Attributes, Metrics, and UserAttributes properties) for a batch of
+     * endpoints.
+     * </p>
      * 
      * @param updateEndpointsBatchRequest
      * @return updateEndpointsBatchResult The response from the
      *         UpdateEndpointsBatch service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3834,17 +5510,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to update the GCM channel for an app.
+     * <p>
+     * Updates the status and settings of the GCM channel for an application.
+     * </p>
      * 
      * @param updateGcmChannelRequest
      * @return updateGcmChannelResult The response from the UpdateGcmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3883,17 +5578,38 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Used to update a segment.
+     * <p>
+     * Creates a new segment for an application or updates the configuration,
+     * dimension, and other settings for an existing segment that's associated
+     * with an application.
+     * </p>
      * 
      * @param updateSegmentRequest
      * @return updateSegmentResult The response from the UpdateSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3932,17 +5648,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an SMS channel.
+     * <p>
+     * Updates the status and settings of the SMS channel for an application.
+     * </p>
      * 
      * @param updateSmsChannelRequest
      * @return updateSmsChannelResult The response from the UpdateSmsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3981,17 +5716,36 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Update an Voice channel
+     * <p>
+     * Updates the status and settings of the voice channel for an application.
+     * </p>
      * 
      * @param updateVoiceChannelRequest
      * @return updateVoiceChannelResult The response from the UpdateVoiceChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException <p>
+     *             The request contains a syntax error (BadRequestException).
+     *             </p>
+     * @throws InternalServerErrorException <p>
+     *             The request failed due to an unknown internal server error,
+     *             exception, or failure (InternalServerErrorException).
+     *             </p>
+     * @throws ForbiddenException <p>
+     *             The request was denied because access to the specified
+     *             resource is forbidden (ForbiddenException).
+     *             </p>
+     * @throws NotFoundException <p>
+     *             The request failed because the specified resource was not
+     *             found (NotFoundException).
+     *             </p>
+     * @throws MethodNotAllowedException <p>
+     *             The request failed because the method is not allowed for the
+     *             specified resource (MethodNotAllowedException).
+     *             </p>
+     * @throws TooManyRequestsException <p>
+     *             The request failed because too many requests were sent during
+     *             a certain amount of time (TooManyRequestsException).
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

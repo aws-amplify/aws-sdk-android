@@ -18,39 +18,63 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Segment behavior dimensions
+ * <p>
+ * Specifies dimension settings for including or excluding endpoints from a
+ * segment based on how recently an endpoint was active.
+ * </p>
  */
 public class SegmentBehaviors implements Serializable {
     /**
-     * The recency of use.
+     * <p>
+     * The dimension settings that are based on how recently an endpoint was
+     * active.
+     * </p>
      */
     private RecencyDimension recency;
 
     /**
-     * The recency of use.
+     * <p>
+     * The dimension settings that are based on how recently an endpoint was
+     * active.
+     * </p>
      *
-     * @return The recency of use.
+     * @return <p>
+     *         The dimension settings that are based on how recently an endpoint
+     *         was active.
+     *         </p>
      */
     public RecencyDimension getRecency() {
         return recency;
     }
 
     /**
-     * The recency of use.
+     * <p>
+     * The dimension settings that are based on how recently an endpoint was
+     * active.
+     * </p>
      *
-     * @param recency The recency of use.
+     * @param recency <p>
+     *            The dimension settings that are based on how recently an
+     *            endpoint was active.
+     *            </p>
      */
     public void setRecency(RecencyDimension recency) {
         this.recency = recency;
     }
 
     /**
-     * The recency of use.
+     * <p>
+     * The dimension settings that are based on how recently an endpoint was
+     * active.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param recency The recency of use.
+     * @param recency <p>
+     *            The dimension settings that are based on how recently an
+     *            endpoint was active.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class DeleteCampaignResult implements Serializable {
     /**
-     * Campaign definition
+     * <p>
+     * Provides information about the status, configuration, and other settings
+     * for a campaign.
+     * </p>
      */
     private CampaignResponse campaignResponse;
 
     /**
-     * Campaign definition
+     * <p>
+     * Provides information about the status, configuration, and other settings
+     * for a campaign.
+     * </p>
      *
-     * @return Campaign definition
+     * @return <p>
+     *         Provides information about the status, configuration, and other
+     *         settings for a campaign.
+     *         </p>
      */
     public CampaignResponse getCampaignResponse() {
         return campaignResponse;
     }
 
     /**
-     * Campaign definition
+     * <p>
+     * Provides information about the status, configuration, and other settings
+     * for a campaign.
+     * </p>
      *
-     * @param campaignResponse Campaign definition
+     * @param campaignResponse <p>
+     *            Provides information about the status, configuration, and
+     *            other settings for a campaign.
+     *            </p>
      */
     public void setCampaignResponse(CampaignResponse campaignResponse) {
         this.campaignResponse = campaignResponse;
     }
 
     /**
-     * Campaign definition
+     * <p>
+     * Provides information about the status, configuration, and other settings
+     * for a campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignResponse Campaign definition
+     * @param campaignResponse <p>
+     *            Provides information about the status, configuration, and
+     *            other settings for a campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
