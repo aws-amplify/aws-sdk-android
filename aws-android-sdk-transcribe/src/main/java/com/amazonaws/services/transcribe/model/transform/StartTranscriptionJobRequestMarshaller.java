@@ -92,6 +92,12 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("OutputBucketName");
                 jsonWriter.value(outputBucketName);
             }
+            if (startTranscriptionJobRequest.getOutputEncryptionKMSKeyId() != null) {
+                String outputEncryptionKMSKeyId = startTranscriptionJobRequest
+                        .getOutputEncryptionKMSKeyId();
+                jsonWriter.name("OutputEncryptionKMSKeyId");
+                jsonWriter.value(outputEncryptionKMSKeyId);
+            }
             if (startTranscriptionJobRequest.getSettings() != null) {
                 Settings settings = startTranscriptionJobRequest.getSettings();
                 jsonWriter.name("Settings");

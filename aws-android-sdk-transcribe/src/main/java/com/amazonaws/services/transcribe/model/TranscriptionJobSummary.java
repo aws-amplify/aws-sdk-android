@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides a summary of information about a transcription job. .
+ * Provides a summary of information about a transcription job.
  * </p>
  */
 public class TranscriptionJobSummary implements Serializable {

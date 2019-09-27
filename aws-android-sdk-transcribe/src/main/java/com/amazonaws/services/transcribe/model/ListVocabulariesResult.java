@@ -41,6 +41,7 @@ public class ListVocabulariesResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String nextToken;
 
@@ -162,6 +163,7 @@ public class ListVocabulariesResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
      *         The <code>ListVocabularies</code> operation returns a page of
@@ -190,6 +192,7 @@ public class ListVocabulariesResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            The <code>ListVocabularies</code> operation returns a page of
@@ -221,6 +224,7 @@ public class ListVocabulariesResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            The <code>ListVocabularies</code> operation returns a page of
