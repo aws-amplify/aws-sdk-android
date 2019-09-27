@@ -55,6 +55,7 @@ public class EncoderWrapper {
     private int mFrameIndex;
     private long mFragmentStart = 0;
     private int mTrackId = 0;
+    private Object mStartMutex = null;
 
     public interface FrameAvailableListener {
 
@@ -67,6 +68,12 @@ public class EncoderWrapper {
     public EncoderWrapper(final MediaSourceConfiguration mediaSourceConfiguration) {
         mMediaSourceConfiguration = mediaSourceConfiguration;
         initEncoder();
+    }
+
+    public EncoderWrapper(final MediaSourceConfiguration mediaSourceConfiguration, final Object startMutex) {
+        mMediaSourceConfiguration = mediaSourceConfiguration;
+        initEncoder();
+        mStartMutex = startMutex;
     }
 
     private void initEncoder() {
@@ -244,6 +251,12 @@ public class EncoderWrapper {
 
         if (mFragmentStart == 0) {
             mFragmentStart = currentTime;
+            if (mStartMutex != null) {
+                synchronized (mStartMutex) {
+                    // Notify others this source started
+                    mStartMutex.notifyAll();
+                }
+            }
         }
 
         final ByteBuffer frameData = encodedData;

@@ -17,8 +17,6 @@
 
 package com.amazonaws.mobileconnectors.kinesisvideo.audio;
 
-import static com.amazonaws.mobileconnectors.kinesisvideo.encoding.EncoderWrapper.FrameAvailableListener;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -32,7 +30,6 @@ import com.amazonaws.kinesisvideo.client.mediasource.AudioMediaSourceConfigurati
 import com.amazonaws.kinesisvideo.internal.mediasource.OnStreamDataAvailable;
 import com.amazonaws.mobileconnectors.kinesisvideo.camera.EncodingCancellationToken;
 import com.amazonaws.mobileconnectors.kinesisvideo.encoding.EncoderWrapper;
-import com.amazonaws.mobileconnectors.kinesisvideo.encoding.EncoderWrapper.CodecPrivateDataAvailableListener;
 
 /**
  * Utility class for audio encoder
@@ -53,42 +50,48 @@ public class AudioFramesSource {
         mEncodingCancellationToken = encodingCancellationToken;
     }
 
-    public void startEncoding(final Context context) {
+    public void startEncoding(final Context context, final Object startMutex) {
         AudioFramesSourceRunnableWrapper.startEncoding(
                 this,
-                context);
+                context,
+                startMutex);
     }
 
     private static class AudioFramesSourceRunnableWrapper implements Runnable {
         private final AudioFramesSource mFramesSource;
         private final Context mContext;
+        private final Object mStartMutex;
 
         private AudioFramesSourceRunnableWrapper(final AudioFramesSource framesSource,
-                                                 final Context context) {
+                                                 final Context context,
+                                                 final Object startMutex) {
             mContext = context;
             mFramesSource = framesSource;
+            mStartMutex = startMutex;
         }
 
         @Override
         public void run() {
             try {
-                mFramesSource.startCapturing(mContext);
+                mFramesSource.startCapturing(mContext, mStartMutex);
             } catch (Throwable th) {
                 th.printStackTrace();
             }
         }
 
         public static void startEncoding(final AudioFramesSource framesSource,
-                                         final Context context) {
+                                         final Context context,
+                                         final Object startMutex) {
             AudioFramesSourceRunnableWrapper wrapper = new AudioFramesSourceRunnableWrapper(
                     framesSource,
-                    context);
+                    context,
+                    startMutex);
             Thread th = new Thread(wrapper, "AudioFramesSource");
             th.start();
         }
     }
 
-    private void startCapturing(final Context context) throws IOException {
+    private void startCapturing(final Context context, final Object startMutex) throws IOException {
         try {
             mEncoderWrapper = new EncoderWrapper(mMediaSourceConfiguration);
             mEncoderWrapper.setMkvDataListener(mListener);
@@ -116,6 +119,15 @@ public class AudioFramesSource {
 
             // Start recording
             audioRecord.startRecording();
+
+            synchronized (startMutex) {
+                // Wait until first video frame being put
+                try {
+                    startMutex.wait();
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Interruption happend while waiting for video frame", e);
+                }
+            }
 
             int readBytes;
             try {

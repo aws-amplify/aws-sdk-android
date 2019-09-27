@@ -71,6 +71,7 @@ public class AndroidAudioVideoMediaSource extends MultiTrackMediaSource {
     private AndroidAudioVideoMediaSourceConfiguration mMediaSourceConfiguration;
     private MediaSourceSink mMediaSourceSink;
     private OnStreamDataAvailable mListener;
+    private final Object mStartMutex = new Object();
 
     public interface OpenCameraCallback {
         void onOpened();
@@ -224,13 +225,14 @@ public class AndroidAudioVideoMediaSource extends MultiTrackMediaSource {
         mCameraAVFramesSource.startEncoding(
                 mContext,
                 mPreivewSurfaces,
-                mMediaSourceConfiguration.getCameraMediaSourceConfiguration().getCameraId());
+                mMediaSourceConfiguration.getCameraMediaSourceConfiguration().getCameraId(),
+                mStartMutex);
     }
 
     private void startAudioEncoding() {
         Log.i(TAG, "audio encoding starting");
 
-        mAudioFramesSource.startEncoding(mContext);
+        mAudioFramesSource.startEncoding(mContext, mStartMutex);
     }
 
     private void stopEncoding() {

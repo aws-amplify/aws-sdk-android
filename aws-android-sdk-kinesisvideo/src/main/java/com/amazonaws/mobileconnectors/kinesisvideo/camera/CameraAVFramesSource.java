@@ -80,7 +80,8 @@ public class CameraAVFramesSource {
 
     public void startEncoding(final Context context,
                               final List<Surface> previewSurfaces,
-                              final String cameraId) {
+                              final String cameraId,
+                              final Object startMutex) {
 
         final List<Surface> cameraOutputSurfaces = new ArrayList<Surface>();
         cameraOutputSurfaces.addAll(previewSurfaces);
@@ -90,7 +91,8 @@ public class CameraAVFramesSource {
                 this,
                 context,
                 cameraOutputSurfaces,
-                cameraId);
+                cameraId,
+                startMutex);
     }      
 
     private static class CameraFramesSourceRunnableWrapper implements Runnable {
@@ -98,16 +100,19 @@ public class CameraAVFramesSource {
         private final CameraAVFramesSource mCameraFramesSource;
         private final Context mContext;
 
+        private final Object mStartMutex;
         private final String mCameraId;
 
         private CameraFramesSourceRunnableWrapper(final CameraAVFramesSource cameraFramesSource,
                                                   final Context context,
                                                   final List<Surface> cameraOutputSurfaces,
-                                                  final String cameraId) {
+                                                  final String cameraId,
+                                                  final Object startMutex) {
             mCameraFramesSource = cameraFramesSource;
             mContext = context;
             mCameraOutputSurfaces = cameraOutputSurfaces;
             mCameraId = cameraId;
+            mStartMutex = startMutex;
         }
 
         @Override
@@ -116,7 +121,8 @@ public class CameraAVFramesSource {
                 mCameraFramesSource.startCapturing(
                         mContext,
                         mCameraOutputSurfaces,
-                        mCameraId);
+                        mCameraId,
+                        mStartMutex);
             } catch (Throwable th) {
                 th.printStackTrace();
             }
@@ -125,12 +131,14 @@ public class CameraAVFramesSource {
         public static void startEncoding(final CameraAVFramesSource test,
                                          final Context context,
                                          final List<Surface> cameraOutputSurfaces,
-                                         final String cameraId) {
+                                         final String cameraId,
+                                         final Object startMutex) {
             CameraFramesSourceRunnableWrapper wrapper = new CameraFramesSourceRunnableWrapper(
                     test,
                     context,
                     cameraOutputSurfaces,
-                    cameraId);
+                    cameraId,
+                    startMutex);
             Thread th = new Thread(wrapper, "CameraFramesSource");
             th.start();
         }
@@ -138,9 +146,10 @@ public class CameraAVFramesSource {
 
     private void startCapturing(final Context context,
                                 final List<Surface> cameraOutputSurfaces,
-                                final String cameraId) throws IOException {
+                                final String cameraId,
+                                final Object startMutex) throws IOException {
         try {
-            mEncoderWrapper = new EncoderWrapper(mMediaSourceConfiguration);
+            mEncoderWrapper = new EncoderWrapper(mMediaSourceConfiguration, startMutex);
             mEncoderWrapper.setMkvDataListener(mListener);
 
             prepareCameraAndPreview(
