@@ -37,6 +37,7 @@ public class Transcript implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String transcriptFileUri;
 
@@ -54,6 +55,7 @@ public class Transcript implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
      *         The location where the transcription is stored.
@@ -84,6 +86,7 @@ public class Transcript implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
      *            The location where the transcription is stored.
@@ -117,6 +120,7 @@ public class Transcript implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
      *            The location where the transcription is stored.

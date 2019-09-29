@@ -51,7 +51,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The sample rate of the audio track in the input media file in Hertz.
+     * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
      * If you do not specify the media sample rate, Amazon Transcribe determines
@@ -69,14 +69,6 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The format of the input media file.
-     * </p>
-     * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,9 +111,19 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 64<br/>
      * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
      */
     private String outputBucketName;
+
+    /**
+     * The new value for the outputEncryptionKMSKeyId property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     */
+    private String outputEncryptionKMSKeyId;
 
     /**
      * <p>
@@ -308,7 +310,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The sample rate of the audio track in the input media file in Hertz.
+     * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
      * If you do not specify the media sample rate, Amazon Transcribe determines
@@ -322,8 +324,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate of the audio track in the input media file in
-     *         Hertz.
+     *         The sample rate, in Hertz, of the audio track in the input media
+     *         file.
      *         </p>
      *         <p>
      *         If you do not specify the media sample rate, Amazon Transcribe
@@ -339,7 +341,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The sample rate of the audio track in the input media file in Hertz.
+     * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
      * If you do not specify the media sample rate, Amazon Transcribe determines
@@ -353,8 +355,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate of the audio track in the input media file in
-     *            Hertz.
+     *            The sample rate, in Hertz, of the audio track in the input
+     *            media file.
      *            </p>
      *            <p>
      *            If you do not specify the media sample rate, Amazon Transcribe
@@ -371,7 +373,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The sample rate of the audio track in the input media file in Hertz.
+     * The sample rate, in Hertz, of the audio track in the input media file.
      * </p>
      * <p>
      * If you do not specify the media sample rate, Amazon Transcribe determines
@@ -388,8 +390,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate of the audio track in the input media file in
-     *            Hertz.
+     *            The sample rate, in Hertz, of the audio track in the input
+     *            media file.
      *            </p>
      *            <p>
      *            If you do not specify the media sample rate, Amazon Transcribe
@@ -412,28 +414,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The format of the input media file.
      * </p>
      * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac
      *
      * @return <p>
      *         The format of the input media file.
-     *         </p>
-     *         <p>
-     *         If you do not specify the format of the media file, Amazon
-     *         Transcribe determines the format. If the format is not
-     *         recognized, Amazon Transcribe returns an
-     *         <code>InternalFailureException</code> exception. If you specify
-     *         the format, it must match the format detected by Amazon
-     *         Transcribe, otherwise you get an
-     *         <code>InternalFailureException</code> exception.
      *         </p>
      * @see MediaFormat
      */
@@ -446,28 +431,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The format of the input media file.
      * </p>
      * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
-     *            </p>
-     *            <p>
-     *            If you do not specify the format of the media file, Amazon
-     *            Transcribe determines the format. If the format is not
-     *            recognized, Amazon Transcribe returns an
-     *            <code>InternalFailureException</code> exception. If you
-     *            specify the format, it must match the format detected by
-     *            Amazon Transcribe, otherwise you get an
-     *            <code>InternalFailureException</code> exception.
      *            </p>
      * @see MediaFormat
      */
@@ -480,14 +448,6 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The format of the input media file.
      * </p>
      * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -496,15 +456,6 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
-     *            </p>
-     *            <p>
-     *            If you do not specify the format of the media file, Amazon
-     *            Transcribe determines the format. If the format is not
-     *            recognized, Amazon Transcribe returns an
-     *            <code>InternalFailureException</code> exception. If you
-     *            specify the format, it must match the format detected by
-     *            Amazon Transcribe, otherwise you get an
-     *            <code>InternalFailureException</code> exception.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -520,28 +471,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The format of the input media file.
      * </p>
      * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
-     *            </p>
-     *            <p>
-     *            If you do not specify the format of the media file, Amazon
-     *            Transcribe determines the format. If the format is not
-     *            recognized, Amazon Transcribe returns an
-     *            <code>InternalFailureException</code> exception. If you
-     *            specify the format, it must match the format detected by
-     *            Amazon Transcribe, otherwise you get an
-     *            <code>InternalFailureException</code> exception.
      *            </p>
      * @see MediaFormat
      */
@@ -554,14 +488,6 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * The format of the input media file.
      * </p>
      * <p>
-     * If you do not specify the format of the media file, Amazon Transcribe
-     * determines the format. If the format is not recognized, Amazon Transcribe
-     * returns an <code>InternalFailureException</code> exception. If you
-     * specify the format, it must match the format detected by Amazon
-     * Transcribe, otherwise you get an <code>InternalFailureException</code>
-     * exception.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -570,15 +496,6 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
-     *            </p>
-     *            <p>
-     *            If you do not specify the format of the media file, Amazon
-     *            Transcribe determines the format. If the format is not
-     *            recognized, Amazon Transcribe returns an
-     *            <code>InternalFailureException</code> exception. If you
-     *            specify the format, it must match the format detected by
-     *            Amazon Transcribe, otherwise you get an
-     *            <code>InternalFailureException</code> exception.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -664,6 +581,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 64<br/>
      * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
      *
      * @return <p>
@@ -724,6 +642,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 64<br/>
      * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
      *
      * @param outputBucketName <p>
@@ -788,6 +707,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 64<br/>
      * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
      *
      * @param outputBucketName <p>
@@ -821,6 +741,55 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      */
     public StartTranscriptionJobRequest withOutputBucketName(String outputBucketName) {
         this.outputBucketName = outputBucketName;
+        return this;
+    }
+
+    /**
+     * Returns the value of the outputEncryptionKMSKeyId property for this
+     * object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @return The value of the outputEncryptionKMSKeyId property for this
+     *         object.
+     */
+    public String getOutputEncryptionKMSKeyId() {
+        return outputEncryptionKMSKeyId;
+    }
+
+    /**
+     * Sets the value of outputEncryptionKMSKeyId
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param outputEncryptionKMSKeyId The new value for the
+     *            outputEncryptionKMSKeyId property for this object.
+     */
+    public void setOutputEncryptionKMSKeyId(String outputEncryptionKMSKeyId) {
+        this.outputEncryptionKMSKeyId = outputEncryptionKMSKeyId;
+    }
+
+    /**
+     * Sets the value of the outputEncryptionKMSKeyId property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param outputEncryptionKMSKeyId The new value for the
+     *            outputEncryptionKMSKeyId property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withOutputEncryptionKMSKeyId(String outputEncryptionKMSKeyId) {
+        this.outputEncryptionKMSKeyId = outputEncryptionKMSKeyId;
         return this;
     }
 
@@ -898,6 +867,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             sb.append("Media: " + getMedia() + ",");
         if (getOutputBucketName() != null)
             sb.append("OutputBucketName: " + getOutputBucketName() + ",");
+        if (getOutputEncryptionKMSKeyId() != null)
+            sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings());
         sb.append("}");
@@ -920,6 +891,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode + ((getMedia() == null) ? 0 : getMedia().hashCode());
         hashCode = prime * hashCode
                 + ((getOutputBucketName() == null) ? 0 : getOutputBucketName().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
+                        .hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         return hashCode;
     }
@@ -963,6 +938,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getOutputBucketName() != null
                 && other.getOutputBucketName().equals(this.getOutputBucketName()) == false)
+            return false;
+        if (other.getOutputEncryptionKMSKeyId() == null
+                ^ this.getOutputEncryptionKMSKeyId() == null)
+            return false;
+        if (other.getOutputEncryptionKMSKeyId() != null
+                && other.getOutputEncryptionKMSKeyId().equals(this.getOutputEncryptionKMSKeyId()) == false)
             return false;
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
