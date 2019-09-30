@@ -28,8 +28,14 @@ public enum SecurityTokenServiceActions implements Action {
     /** Action for the AssumeRole operation. */
     AssumeRole("sts:AssumeRole"),
 
+    /** Action for the AssumeRoleWithSAML operation. */
+    AssumeRoleWithSAML("sts:AssumeRoleWithSAML"),
+
     /** Action for the AssumeRoleWithWebIdentity operation. */
     AssumeRoleWithWebIdentity("sts:AssumeRoleWithWebIdentity"),
+
+    /** Action for the DecodeAuthorizationMessage operation. */
+    DecodeAuthorizationMessage("sts:DecodeAuthorizationMessage"),
 
     /** Action for the GetAccessKeyInfo operation. */
     GetAccessKeyInfo("sts:GetAccessKeyInfo"),
