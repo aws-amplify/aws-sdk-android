@@ -84,6 +84,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String vocabularyFileUri;
 
@@ -354,6 +355,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
      *         The S3 location of the text file that contains the definition of
@@ -412,6 +414,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
      *            The S3 location of the text file that contains the definition
@@ -473,6 +476,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
      *            The S3 location of the text file that contains the definition
