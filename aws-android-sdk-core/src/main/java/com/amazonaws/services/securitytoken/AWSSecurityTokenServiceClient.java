@@ -442,6 +442,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
         exceptionUnmarshallers.add(new ExpiredTokenExceptionUnmarshaller());
         exceptionUnmarshallers.add(new IDPCommunicationErrorExceptionUnmarshaller());
         exceptionUnmarshallers.add(new IDPRejectedClaimExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidAuthorizationMessageExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidIdentityTokenExceptionUnmarshaller());
         exceptionUnmarshallers.add(new MalformedPolicyDocumentExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PackedPolicyTooLargeExceptionUnmarshaller());
@@ -641,6 +642,169 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
     /**
      * <p>
      * Returns a set of temporary security credentials for users who have been
+     * authenticated via a SAML authentication response. This operation provides
+     * a mechanism for tying an enterprise identity store or directory to
+     * role-based AWS access without user-specific credentials or configuration.
+     * For a comparison of <code>AssumeRoleWithSAML</code> with the other API
+     * operations that produce temporary credentials, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
+     * >Requesting Temporary Security Credentials</a> and <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
+     * >Comparing the AWS STS API operations</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * The temporary security credentials returned by this operation consist of
+     * an access key ID, a secret access key, and a security token. Applications
+     * can use these temporary security credentials to sign calls to AWS
+     * services.
+     * </p>
+     * <p>
+     * By default, the temporary security credentials created by
+     * <code>AssumeRoleWithSAML</code> last for one hour. However, you can use
+     * the optional <code>DurationSeconds</code> parameter to specify the
+     * duration of your session. Your role session lasts for the duration that
+     * you specify, or until the time specified in the SAML authentication
+     * response's <code>SessionNotOnOrAfter</code> value, whichever is shorter.
+     * You can provide a <code>DurationSeconds</code> value from 900 seconds (15
+     * minutes) up to the maximum session duration setting for the role. This
+     * setting can have a value from 1 hour to 12 hours. To learn how to view
+     * the maximum value for your role, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>. The maximum session duration limit applies when you use
+     * the <code>AssumeRole*</code> API operations or the
+     * <code>assume-role*</code> CLI commands. However the limit does not apply
+     * when you use those operations to create a console URL. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html"
+     * >Using IAM Roles</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * The temporary security credentials created by
+     * <code>AssumeRoleWithSAML</code> can be used to make API calls to any AWS
+     * service with the following exception: you cannot call the STS
+     * <code>GetFederationToken</code> or <code>GetSessionToken</code> API
+     * operations.
+     * </p>
+     * <p>
+     * (Optional) You can pass inline or managed <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >session policies</a> to this operation. You can pass a single JSON
+     * policy document to use as an inline session policy. You can also specify
+     * up to 10 managed policies to use as managed session policies. The plain
+     * text that you use for both inline and managed session policies shouldn't
+     * exceed 2048 characters. Passing policies to this operation returns new
+     * temporary credentials. The resulting session's permissions are the
+     * intersection of the role's identity-based policy and the session
+     * policies. You can use the role's temporary credentials in subsequent AWS
+     * API calls to access resources in the account that owns the role. You
+     * cannot use session policies to grant more permissions than those allowed
+     * by the identity-based policy of the role that is being assumed. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
+     * >Session Policies</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * <p>
+     * Before your application can call <code>AssumeRoleWithSAML</code>, you
+     * must configure your SAML identity provider (IdP) to issue the claims
+     * required by AWS. Additionally, you must use AWS Identity and Access
+     * Management (IAM) to create a SAML provider entity in your AWS account
+     * that represents your identity provider. You must also create an IAM role
+     * that specifies this SAML provider in its trust policy.
+     * </p>
+     * <p>
+     * Calling <code>AssumeRoleWithSAML</code> does not require the use of AWS
+     * security credentials. The identity of the caller is validated by using
+     * keys in the metadata document that is uploaded for the SAML provider
+     * entity for your identity provider.
+     * </p>
+     * <important>
+     * <p>
+     * Calling <code>AssumeRoleWithSAML</code> can result in an entry in your
+     * AWS CloudTrail logs. The entry includes the value in the
+     * <code>NameID</code> element of the SAML assertion. We recommend that you
+     * use a <code>NameIDType</code> that is not associated with any personally
+     * identifiable information (PII). For example, you could instead use the
+     * Persistent Identifier (
+     * <code>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</code>).
+     * </p>
+     * </important>
+     * <p>
+     * For more information, see the following resources:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html"
+     * >About SAML 2.0-based Federation</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html"
+     * >Creating SAML Identity Providers</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html"
+     * >Configuring a Relying Party and Claims</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html"
+     * >Creating a Role for SAML 2.0 Federation</a> in the <i>IAM User
+     * Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param assumeRoleWithSAMLRequest
+     * @return assumeRoleWithSAMLResult The response from the AssumeRoleWithSAML
+     *         service method, as returned by AWS Security Token Service.
+     * @throws MalformedPolicyDocumentException
+     * @throws PackedPolicyTooLargeException
+     * @throws IDPRejectedClaimException
+     * @throws InvalidIdentityTokenException
+     * @throws ExpiredTokenException
+     * @throws RegionDisabledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Security Token Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AssumeRoleWithSAMLResult assumeRoleWithSAML(
+            AssumeRoleWithSAMLRequest assumeRoleWithSAMLRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(assumeRoleWithSAMLRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssumeRoleWithSAMLRequest> request = null;
+        Response<AssumeRoleWithSAMLResult> response = null;
+        try {
+            request = new AssumeRoleWithSAMLRequestMarshaller().marshall(assumeRoleWithSAMLRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new AssumeRoleWithSAMLResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a set of temporary security credentials for users who have been
      * authenticated in a mobile or web application with a web identity
      * provider. Example providers include Amazon Cognito, Login with Amazon,
      * Facebook, Google, or any OpenID Connect-compatible identity provider.
@@ -828,6 +992,104 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new AssumeRoleWithWebIdentityResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Decodes additional information about the authorization status of a
+     * request from an encoded message returned in response to an AWS request.
+     * </p>
+     * <p>
+     * For example, if a user is not authorized to perform an operation that he
+     * or she has requested, the request returns a
+     * <code>Client.UnauthorizedOperation</code> response (an HTTP 403
+     * response). Some AWS operations additionally return an encoded message
+     * that can provide details about this authorization failure.
+     * </p>
+     * <note>
+     * <p>
+     * Only certain AWS operations return an encoded authorization message. The
+     * documentation for an individual operation indicates whether that
+     * operation returns an encoded message in addition to returning an HTTP
+     * code.
+     * </p>
+     * </note>
+     * <p>
+     * The message is encoded because the details of the authorization status
+     * can constitute privileged information that the user who requested the
+     * operation should not see. To decode an authorization status message, a
+     * user must be granted permissions via an IAM policy to request the
+     * <code>DecodeAuthorizationMessage</code> (
+     * <code>sts:DecodeAuthorizationMessage</code>) action.
+     * </p>
+     * <p>
+     * The decoded message includes the following type of information:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Whether the request was denied due to an explicit deny or due to the
+     * absence of an explicit allow. For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-denyallow"
+     * >Determining Whether a Request is Allowed or Denied</a> in the <i>IAM
+     * User Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The principal who made the request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The requested action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The requested resource.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The values of condition keys in the context of the user's request.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param decodeAuthorizationMessageRequest
+     * @return decodeAuthorizationMessageResult The response from the
+     *         DecodeAuthorizationMessage service method, as returned by AWS
+     *         Security Token Service.
+     * @throws InvalidAuthorizationMessageException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Security Token Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DecodeAuthorizationMessageResult decodeAuthorizationMessage(
+            DecodeAuthorizationMessageRequest decodeAuthorizationMessageRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(decodeAuthorizationMessageRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DecodeAuthorizationMessageRequest> request = null;
+        Response<DecodeAuthorizationMessageResult> response = null;
+        try {
+            request = new DecodeAuthorizationMessageRequestMarshaller()
+                    .marshall(decodeAuthorizationMessageRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DecodeAuthorizationMessageResultStaxUnmarshaller(),
                     executionContext);
             return response.getAwsResponse();
         } finally {
