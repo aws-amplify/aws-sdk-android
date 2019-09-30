@@ -7,10 +7,10 @@
 - **AWS IoT**
   - AWS Android SDK for IoT now depends on the 1.2.2 version of the Paho Library org.eclipse.paho.client.mqttv3
   
-- **AWS STS**
+- **AWS Security Token Service**
   - AWS Security Token Service client now supports two additional APIs:
-    - `assumeRoleWithSAML()`
-    - `decodeAuthorizationMessage()`
+    - `assumeRoleWithSAML`
+    - `decodeAuthorizationMessage`
 
 - Model updates for the following services
   - Amazon Transcribe
