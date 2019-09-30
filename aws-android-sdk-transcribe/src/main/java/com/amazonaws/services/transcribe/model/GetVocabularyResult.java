@@ -73,6 +73,7 @@ public class GetVocabularyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String downloadUri;
 
@@ -438,6 +439,7 @@ public class GetVocabularyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
      *         The S3 location where the vocabulary is stored. Use this URI to
@@ -457,6 +459,7 @@ public class GetVocabularyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
      *            The S3 location where the vocabulary is stored. Use this URI
@@ -479,6 +482,7 @@ public class GetVocabularyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
      *            The S3 location where the vocabulary is stored. Use this URI

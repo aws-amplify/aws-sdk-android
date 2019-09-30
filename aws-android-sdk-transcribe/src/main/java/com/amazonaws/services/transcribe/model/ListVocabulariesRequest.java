@@ -35,6 +35,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String nextToken;
 
@@ -84,6 +85,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
      *         If the result of the previous request to
@@ -104,6 +106,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            If the result of the previous request to
@@ -127,6 +130,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 8192<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
      *            If the result of the previous request to
