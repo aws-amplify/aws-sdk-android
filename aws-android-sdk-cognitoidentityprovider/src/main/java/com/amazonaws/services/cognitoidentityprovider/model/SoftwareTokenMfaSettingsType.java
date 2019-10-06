@@ -32,7 +32,7 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * The preferred MFA method.
+     * Specifies whether software token MFA is the preferred MFA method.
      * </p>
      */
     private Boolean preferredMfa;
@@ -97,11 +97,11 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * The preferred MFA method.
+     * Specifies whether software token MFA is the preferred MFA method.
      * </p>
      *
      * @return <p>
-     *         The preferred MFA method.
+     *         Specifies whether software token MFA is the preferred MFA method.
      *         </p>
      */
     public Boolean isPreferredMfa() {
@@ -110,11 +110,11 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * The preferred MFA method.
+     * Specifies whether software token MFA is the preferred MFA method.
      * </p>
      *
      * @return <p>
-     *         The preferred MFA method.
+     *         Specifies whether software token MFA is the preferred MFA method.
      *         </p>
      */
     public Boolean getPreferredMfa() {
@@ -123,11 +123,12 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * The preferred MFA method.
+     * Specifies whether software token MFA is the preferred MFA method.
      * </p>
      *
      * @param preferredMfa <p>
-     *            The preferred MFA method.
+     *            Specifies whether software token MFA is the preferred MFA
+     *            method.
      *            </p>
      */
     public void setPreferredMfa(Boolean preferredMfa) {
@@ -136,14 +137,15 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * The preferred MFA method.
+     * Specifies whether software token MFA is the preferred MFA method.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param preferredMfa <p>
-     *            The preferred MFA method.
+     *            Specifies whether software token MFA is the preferred MFA
+     *            method.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

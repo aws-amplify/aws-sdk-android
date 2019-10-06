@@ -19,13 +19,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specifies the different settings for multi-factor authentication (MFA).
+ * <i>This data type is no longer supported.</i> You can use it only for SMS MFA
+ * configurations. You can't use it for TOTP software token MFA configurations.
+ * </p>
+ * <p>
+ * To set either type of MFA configuration, use the
+ * <a>AdminSetUserMFAPreference</a> or <a>SetUserMFAPreference</a> actions.
+ * </p>
+ * <p>
+ * To look up information about either type of MFA configuration, use the
+ * <a>AdminGetUserResponse$UserMFASettingList</a> or
+ * <a>GetUserResponse$UserMFASettingList</a> responses.
  * </p>
  */
 public class MFAOptionType implements Serializable {
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +46,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The attribute name of the MFA option type.
+     * The attribute name of the MFA option type. The only valid value is
+     * <code>phone_number</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,15 +58,16 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @return <p>
-     *         The delivery medium (email message or SMS message) to send the
-     *         MFA code.
+     *         The delivery medium to send the MFA code. You can use this
+     *         parameter to set only the <code>SMS</code> delivery medium value.
      *         </p>
      * @see DeliveryMediumType
      */
@@ -64,15 +77,17 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or SMS message) to send the
-     *            MFA code.
+     *            The delivery medium to send the MFA code. You can use this
+     *            parameter to set only the <code>SMS</code> delivery medium
+     *            value.
      *            </p>
      * @see DeliveryMediumType
      */
@@ -82,7 +97,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -92,8 +108,9 @@ public class MFAOptionType implements Serializable {
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or SMS message) to send the
-     *            MFA code.
+     *            The delivery medium to send the MFA code. You can use this
+     *            parameter to set only the <code>SMS</code> delivery medium
+     *            value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -106,15 +123,17 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or SMS message) to send the
-     *            MFA code.
+     *            The delivery medium to send the MFA code. You can use this
+     *            parameter to set only the <code>SMS</code> delivery medium
+     *            value.
      *            </p>
      * @see DeliveryMediumType
      */
@@ -124,7 +143,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or SMS message) to send the MFA code.
+     * The delivery medium to send the MFA code. You can use this parameter to
+     * set only the <code>SMS</code> delivery medium value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -134,8 +154,9 @@ public class MFAOptionType implements Serializable {
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or SMS message) to send the
-     *            MFA code.
+     *            The delivery medium to send the MFA code. You can use this
+     *            parameter to set only the <code>SMS</code> delivery medium
+     *            value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -148,7 +169,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The attribute name of the MFA option type.
+     * The attribute name of the MFA option type. The only valid value is
+     * <code>phone_number</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,7 +178,8 @@ public class MFAOptionType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The attribute name of the MFA option type.
+     *         The attribute name of the MFA option type. The only valid value
+     *         is <code>phone_number</code>.
      *         </p>
      */
     public String getAttributeName() {
@@ -165,7 +188,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The attribute name of the MFA option type.
+     * The attribute name of the MFA option type. The only valid value is
+     * <code>phone_number</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,7 +197,8 @@ public class MFAOptionType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name of the MFA option type.
+     *            The attribute name of the MFA option type. The only valid
+     *            value is <code>phone_number</code>.
      *            </p>
      */
     public void setAttributeName(String attributeName) {
@@ -182,7 +207,8 @@ public class MFAOptionType implements Serializable {
 
     /**
      * <p>
-     * The attribute name of the MFA option type.
+     * The attribute name of the MFA option type. The only valid value is
+     * <code>phone_number</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +219,8 @@ public class MFAOptionType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name of the MFA option type.
+     *            The attribute name of the MFA option type. The only valid
+     *            value is <code>phone_number</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * user.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest implements

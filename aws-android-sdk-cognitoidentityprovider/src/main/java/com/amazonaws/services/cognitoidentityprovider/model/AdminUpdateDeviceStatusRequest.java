@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates the device status as an administrator.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest implements Serializable {

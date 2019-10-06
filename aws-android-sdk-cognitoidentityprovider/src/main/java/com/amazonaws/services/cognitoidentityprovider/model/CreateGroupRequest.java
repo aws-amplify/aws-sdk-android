@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a new group in the specified user pool.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class CreateGroupRequest extends AmazonWebServiceRequest implements Serializable {

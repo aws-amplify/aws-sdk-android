@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sets the user settings like multi-factor authentication (MFA). If MFA is to
- * be removed for a particular attribute pass the attribute with code delivery
- * as null. If null list is passed, all MFA options are removed.
+ * <i>This action is no longer supported.</i> You can use it to configure only
+ * SMS MFA. You can't use it to configure TOTP software token MFA. To configure
+ * either type of MFA, use the <a>SetUserMFAPreference</a> action instead.
  * </p>
  */
 public class SetUserSettingsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -39,7 +39,8 @@ public class SetUserSettingsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Specifies the options for MFA (e.g., email or phone number).
+     * You can use this parameter only to set an SMS configuration that uses SMS
+     * for delivery.
      * </p>
      */
     private java.util.List<MFAOptionType> mFAOptions;
@@ -100,11 +101,13 @@ public class SetUserSettingsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Specifies the options for MFA (e.g., email or phone number).
+     * You can use this parameter only to set an SMS configuration that uses SMS
+     * for delivery.
      * </p>
      *
      * @return <p>
-     *         Specifies the options for MFA (e.g., email or phone number).
+     *         You can use this parameter only to set an SMS configuration that
+     *         uses SMS for delivery.
      *         </p>
      */
     public java.util.List<MFAOptionType> getMFAOptions() {
@@ -113,11 +116,13 @@ public class SetUserSettingsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Specifies the options for MFA (e.g., email or phone number).
+     * You can use this parameter only to set an SMS configuration that uses SMS
+     * for delivery.
      * </p>
      *
      * @param mFAOptions <p>
-     *            Specifies the options for MFA (e.g., email or phone number).
+     *            You can use this parameter only to set an SMS configuration
+     *            that uses SMS for delivery.
      *            </p>
      */
     public void setMFAOptions(java.util.Collection<MFAOptionType> mFAOptions) {
@@ -131,14 +136,16 @@ public class SetUserSettingsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Specifies the options for MFA (e.g., email or phone number).
+     * You can use this parameter only to set an SMS configuration that uses SMS
+     * for delivery.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mFAOptions <p>
-     *            Specifies the options for MFA (e.g., email or phone number).
+     *            You can use this parameter only to set an SMS configuration
+     *            that uses SMS for delivery.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,14 +162,16 @@ public class SetUserSettingsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Specifies the options for MFA (e.g., email or phone number).
+     * You can use this parameter only to set an SMS configuration that uses SMS
+     * for delivery.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mFAOptions <p>
-     *            Specifies the options for MFA (e.g., email or phone number).
+     *            You can use this parameter only to set an SMS configuration
+     *            that uses SMS for delivery.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

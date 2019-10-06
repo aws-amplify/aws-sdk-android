@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disables the specified user as an administrator. Works on any user.
+ * Disables the specified user.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminDisableUserRequest extends AmazonWebServiceRequest implements Serializable {

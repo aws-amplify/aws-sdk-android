@@ -70,6 +70,21 @@ public class AdminConfirmSignUpRequestMarshaller implements
                 jsonWriter.name("Username");
                 jsonWriter.value(username);
             }
+            if (adminConfirmSignUpRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = adminConfirmSignUpRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
