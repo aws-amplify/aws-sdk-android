@@ -129,7 +129,7 @@ public interface AmazonCognitoIdentityProvider {
      * Adds the specified user to the specified group.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminAddUserToGroupRequest
@@ -156,7 +156,7 @@ public interface AmazonCognitoIdentityProvider {
      * Works on any user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminConfirmSignUpRequest <p>
@@ -253,7 +253,7 @@ public interface AmazonCognitoIdentityProvider {
      * Deletes a user as an administrator. Works on any user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminDeleteUserRequest <p>
@@ -282,7 +282,7 @@ public interface AmazonCognitoIdentityProvider {
      * any user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminDeleteUserAttributesRequest <p>
@@ -381,10 +381,10 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Disables the specified user as an administrator. Works on any user.
+     * Disables the specified user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminDisableUserRequest <p>
@@ -415,7 +415,7 @@ public interface AmazonCognitoIdentityProvider {
      * Enables the specified user as an administrator. Works on any user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminEnableUserRequest <p>
@@ -446,7 +446,7 @@ public interface AmazonCognitoIdentityProvider {
      * Forgets the device, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminForgetDeviceRequest <p>
@@ -475,7 +475,7 @@ public interface AmazonCognitoIdentityProvider {
      * Gets the device, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminGetDeviceRequest <p>
@@ -506,7 +506,7 @@ public interface AmazonCognitoIdentityProvider {
      * Works on any user.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminGetUserRequest <p>
@@ -537,7 +537,7 @@ public interface AmazonCognitoIdentityProvider {
      * Initiates the authentication flow, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminInitiateAuthRequest <p>
@@ -631,7 +631,7 @@ public interface AmazonCognitoIdentityProvider {
      * Lists devices, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminListDevicesRequest <p>
@@ -661,7 +661,7 @@ public interface AmazonCognitoIdentityProvider {
      * Lists the groups that the user belongs to.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminListGroupsForUserRequest
@@ -720,7 +720,7 @@ public interface AmazonCognitoIdentityProvider {
      * Removes the specified user from the specified group.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminRemoveUserFromGroupRequest
@@ -758,7 +758,7 @@ public interface AmazonCognitoIdentityProvider {
      * user with the code to change their password.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminResetUserPasswordRequest <p>
@@ -798,7 +798,7 @@ public interface AmazonCognitoIdentityProvider {
      * Responds to an authentication challenge, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminRespondToAuthChallengeRequest <p>
@@ -842,7 +842,12 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Sets the user's multi-factor authentication (MFA) preference.
+     * Sets the user's multi-factor authentication (MFA) preference, including
+     * which MFA options are enabled and if any are preferred. Only one factor
+     * can be set as preferred. The preferred MFA factor will be used to
+     * authenticate a user if multiple factors are enabled. If multiple options
+     * are enabled and no preference is set, a challenge to choose an MFA option
+     * will be returned during sign in.
      * </p>
      * 
      * @param adminSetUserMFAPreferenceRequest
@@ -869,6 +874,23 @@ public interface AmazonCognitoIdentityProvider {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * Sets the specified user's password in a user pool as an administrator.
+     * Works on any user.
+     * </p>
+     * <p>
+     * The password can be temporary or permanent. If it is temporary, the user
+     * status will be placed into the <code>FORCE_CHANGE_PASSWORD</code> state.
+     * When the user next tries to sign in, the InitiateAuth/AdminInitiateAuth
+     * response will contain the <code>NEW_PASSWORD_REQUIRED</code> challenge.
+     * If the user does not sign in before it expires, the user will not be able
+     * to sign in and their password will need to be reset by an administrator.
+     * </p>
+     * <p>
+     * Once the user has set a new password, or the password is permanent, the
+     * user status will be set to <code>Confirmed</code>.
+     * </p>
+     * 
      * @param adminSetUserPasswordRequest
      * @return adminSetUserPasswordResult The response from the
      *         AdminSetUserPassword service method, as returned by Amazon
@@ -894,15 +916,15 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Sets all the user settings for a specified user name. Works on any user.
-     * </p>
-     * <p>
-     * Requires developer credentials.
+     * <i>This action is no longer supported.</i> You can use it to configure
+     * only SMS MFA. You can't use it to configure TOTP software token MFA. To
+     * configure either type of MFA, use the <a>AdminSetUserMFAPreference</a>
+     * action instead.
      * </p>
      * 
      * @param adminSetUserSettingsRequest <p>
-     *            Represents the request to set user settings as an
-     *            administrator.
+     *            You can use this parameter to set an MFA configuration that
+     *            uses the SMS delivery medium.
      *            </p>
      * @return adminSetUserSettingsResult The response from the
      *         AdminSetUserSettings service method, as returned by Amazon
@@ -959,7 +981,7 @@ public interface AmazonCognitoIdentityProvider {
      * Updates the device status as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminUpdateDeviceStatusRequest <p>
@@ -1001,7 +1023,7 @@ public interface AmazonCognitoIdentityProvider {
      * mark phone and email as verified.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminUpdateUserAttributesRequest <p>
@@ -1041,7 +1063,7 @@ public interface AmazonCognitoIdentityProvider {
      * Signs out users from all devices, as an administrator.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param adminUserGlobalSignOutRequest <p>
@@ -1240,7 +1262,7 @@ public interface AmazonCognitoIdentityProvider {
      * Creates a new group in the specified user pool.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param createGroupRequest
@@ -1442,7 +1464,7 @@ public interface AmazonCognitoIdentityProvider {
      * Deletes a group. Currently only groups with no members can be deleted.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param deleteGroupRequest
@@ -1963,7 +1985,7 @@ public interface AmazonCognitoIdentityProvider {
      * Gets a group.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param getGroupRequest
@@ -2023,6 +2045,7 @@ public interface AmazonCognitoIdentityProvider {
      *         GetSigningCertificate service method, as returned by Amazon
      *         Cognito Your User Pool.
      * @throws InternalErrorException
+     * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2209,6 +2232,8 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2255,7 +2280,7 @@ public interface AmazonCognitoIdentityProvider {
      * Lists the groups associated with a user pool.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param listGroupsRequest
@@ -2473,7 +2498,7 @@ public interface AmazonCognitoIdentityProvider {
      * Lists the users in the specified group.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param listUsersInGroupRequest
@@ -2657,7 +2682,12 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Set the user's multi-factor authentication (MFA) method preference.
+     * Set the user's multi-factor authentication (MFA) method preference,
+     * including which MFA factors are enabled and if any are preferred. Only
+     * one factor can be set as preferred. The preferred MFA factor will be used
+     * to authenticate a user if multiple factors are enabled. If multiple
+     * options are enabled and no preference is set, a challenge to choose an
+     * MFA option will be returned during sign in.
      * </p>
      * 
      * @param setUserMFAPreferenceRequest
@@ -2685,7 +2715,7 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Set the user pool MFA configuration.
+     * Set the user pool multi-factor authentication (MFA) configuration.
      * </p>
      * 
      * @param setUserPoolMfaConfigRequest
@@ -2713,9 +2743,10 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Sets the user settings like multi-factor authentication (MFA). If MFA is
-     * to be removed for a particular attribute pass the attribute with code
-     * delivery as null. If null list is passed, all MFA options are removed.
+     * <i>This action is no longer supported.</i> You can use it to configure
+     * only SMS MFA. You can't use it to configure TOTP software token MFA. To
+     * configure either type of MFA, use the <a>SetUserMFAPreference</a> action
+     * instead.
      * </p>
      * 
      * @param setUserSettingsRequest <p>
@@ -2967,7 +2998,7 @@ public interface AmazonCognitoIdentityProvider {
      * Updates the specified group with the specified attributes.
      * </p>
      * <p>
-     * Requires developer credentials.
+     * Calling this action requires developer credentials.
      * </p>
      * 
      * @param updateGroupRequest

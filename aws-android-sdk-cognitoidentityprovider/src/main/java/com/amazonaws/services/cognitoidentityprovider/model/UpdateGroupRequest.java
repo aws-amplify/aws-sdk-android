@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates the specified group with the specified attributes.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class UpdateGroupRequest extends AmazonWebServiceRequest implements Serializable {

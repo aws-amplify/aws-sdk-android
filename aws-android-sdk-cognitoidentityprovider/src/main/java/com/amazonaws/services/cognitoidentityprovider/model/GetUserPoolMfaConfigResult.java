@@ -34,8 +34,26 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
@@ -136,15 +154,51 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @return <p>
-     *         The multi-factor (MFA) configuration.
+     *         The multi-factor (MFA) configuration. Valid values include:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>OFF</code> MFA will not be used for any users.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ON</code> MFA is required for all users to sign in.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>OPTIONAL</code> MFA will be required only for individual
+     *         users who have an MFA factor enabled.
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see UserPoolMfaType
      */
     public String getMfaConfiguration() {
@@ -153,15 +207,51 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration.
+     *            The multi-factor (MFA) configuration. Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>OFF</code> MFA will not be used for any users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON</code> MFA is required for all users to sign in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OPTIONAL</code> MFA will be required only for individual
+     *            users who have an MFA factor enabled.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see UserPoolMfaType
      */
     public void setMfaConfiguration(String mfaConfiguration) {
@@ -170,8 +260,26 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -180,8 +288,26 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration.
+     *            The multi-factor (MFA) configuration. Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>OFF</code> MFA will not be used for any users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON</code> MFA is required for all users to sign in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OPTIONAL</code> MFA will be required only for individual
+     *            users who have an MFA factor enabled.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UserPoolMfaType
@@ -193,15 +319,51 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration.
+     *            The multi-factor (MFA) configuration. Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>OFF</code> MFA will not be used for any users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON</code> MFA is required for all users to sign in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OPTIONAL</code> MFA will be required only for individual
+     *            users who have an MFA factor enabled.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see UserPoolMfaType
      */
     public void setMfaConfiguration(UserPoolMfaType mfaConfiguration) {
@@ -210,8 +372,26 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration.
+     * The multi-factor (MFA) configuration. Valid values include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>OFF</code> MFA will not be used for any users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON</code> MFA is required for all users to sign in.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OPTIONAL</code> MFA will be required only for individual users who
+     * have an MFA factor enabled.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -220,8 +400,26 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration.
+     *            The multi-factor (MFA) configuration. Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>OFF</code> MFA will not be used for any users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON</code> MFA is required for all users to sign in.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OPTIONAL</code> MFA will be required only for individual
+     *            users who have an MFA factor enabled.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UserPoolMfaType

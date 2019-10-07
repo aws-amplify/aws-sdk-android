@@ -19,9 +19,30 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Sets the specified user's password in a user pool as an administrator. Works
+ * on any user.
+ * </p>
+ * <p>
+ * The password can be temporary or permanent. If it is temporary, the user
+ * status will be placed into the <code>FORCE_CHANGE_PASSWORD</code> state. When
+ * the user next tries to sign in, the InitiateAuth/AdminInitiateAuth response
+ * will contain the <code>NEW_PASSWORD_REQUIRED</code> challenge. If the user
+ * does not sign in before it expires, the user will not be able to sign in and
+ * their password will need to be reset by an administrator.
+ * </p>
+ * <p>
+ * Once the user has set a new password, or the password is permanent, the user
+ * status will be set to <code>Confirmed</code>.
+ * </p>
+ */
 public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool where you want to set the user's
+     * password.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -30,7 +51,9 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     private String userPoolId;
 
     /**
-     * The new value for the username property for this object.
+     * <p>
+     * The user name of the user whose password you wish to set.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -39,7 +62,9 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     private String username;
 
     /**
-     * The new value for the password property for this object.
+     * <p>
+     * The password for the user.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 256<br/>
@@ -48,39 +73,56 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     private String password;
 
     /**
-     * The new value for the permanent property for this object.
+     * <p>
+     * <code>True</code> if the password is permanent, <code>False</code> if it
+     * is temporary.
+     * </p>
      */
     private Boolean permanent;
 
     /**
-     * Returns the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool where you want to set the user's
+     * password.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @return The value of the userPoolId property for this object.
+     * @return <p>
+     *         The user pool ID for the user pool where you want to set the
+     *         user's password.
+     *         </p>
      */
     public String getUserPoolId() {
         return userPoolId;
     }
 
     /**
-     * Sets the value of userPoolId
+     * <p>
+     * The user pool ID for the user pool where you want to set the user's
+     * password.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool where you want to set the
+     *            user's password.
+     *            </p>
      */
     public void setUserPoolId(String userPoolId) {
         this.userPoolId = userPoolId;
     }
 
     /**
-     * Sets the value of the userPoolId property for this object.
+     * <p>
+     * The user pool ID for the user pool where you want to set the user's
+     * password.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -89,8 +131,10 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
-     * @param userPoolId The new value for the userPoolId property for this
-     *            object.
+     * @param userPoolId <p>
+     *            The user pool ID for the user pool where you want to set the
+     *            user's password.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -100,33 +144,43 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the username property for this object.
+     * <p>
+     * The user name of the user whose password you wish to set.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @return The value of the username property for this object.
+     * @return <p>
+     *         The user name of the user whose password you wish to set.
+     *         </p>
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Sets the value of username
+     * <p>
+     * The user name of the user whose password you wish to set.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name of the user whose password you wish to set.
+     *            </p>
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Sets the value of the username property for this object.
+     * <p>
+     * The user name of the user whose password you wish to set.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -135,7 +189,9 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
-     * @param username The new value for the username property for this object.
+     * @param username <p>
+     *            The user name of the user whose password you wish to set.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -145,33 +201,43 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the password property for this object.
+     * <p>
+     * The password for the user.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @return The value of the password property for this object.
+     * @return <p>
+     *         The password for the user.
+     *         </p>
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * Sets the value of password
+     * <p>
+     * The password for the user.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param password The new value for the password property for this object.
+     * @param password <p>
+     *            The password for the user.
+     *            </p>
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * Sets the value of the password property for this object.
+     * <p>
+     * The password for the user.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -180,7 +246,9 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>6 - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
-     * @param password The new value for the password property for this object.
+     * @param password <p>
+     *            The password for the user.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -190,41 +258,63 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the permanent property for this object.
+     * <p>
+     * <code>True</code> if the password is permanent, <code>False</code> if it
+     * is temporary.
+     * </p>
      *
-     * @return The value of the permanent property for this object.
+     * @return <p>
+     *         <code>True</code> if the password is permanent,
+     *         <code>False</code> if it is temporary.
+     *         </p>
      */
     public Boolean isPermanent() {
         return permanent;
     }
 
     /**
-     * Returns the value of the permanent property for this object.
+     * <p>
+     * <code>True</code> if the password is permanent, <code>False</code> if it
+     * is temporary.
+     * </p>
      *
-     * @return The value of the permanent property for this object.
+     * @return <p>
+     *         <code>True</code> if the password is permanent,
+     *         <code>False</code> if it is temporary.
+     *         </p>
      */
     public Boolean getPermanent() {
         return permanent;
     }
 
     /**
-     * Sets the value of permanent
+     * <p>
+     * <code>True</code> if the password is permanent, <code>False</code> if it
+     * is temporary.
+     * </p>
      *
-     * @param permanent The new value for the permanent property for this
-     *            object.
+     * @param permanent <p>
+     *            <code>True</code> if the password is permanent,
+     *            <code>False</code> if it is temporary.
+     *            </p>
      */
     public void setPermanent(Boolean permanent) {
         this.permanent = permanent;
     }
 
     /**
-     * Sets the value of the permanent property for this object.
+     * <p>
+     * <code>True</code> if the password is permanent, <code>False</code> if it
+     * is temporary.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param permanent The new value for the permanent property for this
-     *            object.
+     * @param permanent <p>
+     *            <code>True</code> if the password is permanent,
+     *            <code>False</code> if it is temporary.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

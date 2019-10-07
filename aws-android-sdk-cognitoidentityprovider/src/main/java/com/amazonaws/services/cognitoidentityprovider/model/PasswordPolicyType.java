@@ -67,8 +67,18 @@ public class PasswordPolicyType implements Serializable {
     private Boolean requireSymbols;
 
     /**
-     * The new value for the temporaryPasswordValidityDays property for this
-     * object.
+     * <p>
+     * In the password policy you have set, refers to the number of days a
+     * temporary password is valid. If the user does not sign-in during this
+     * time, their password will need to be reset by an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
+     * you will no longer be able to set the deprecated
+     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
@@ -412,35 +422,89 @@ public class PasswordPolicyType implements Serializable {
     }
 
     /**
-     * Returns the value of the temporaryPasswordValidityDays property for this
-     * object.
+     * <p>
+     * In the password policy you have set, refers to the number of days a
+     * temporary password is valid. If the user does not sign-in during this
+     * time, their password will need to be reset by an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
+     * you will no longer be able to set the deprecated
+     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
      *
-     * @return The value of the temporaryPasswordValidityDays property for this
-     *         object.
+     * @return <p>
+     *         In the password policy you have set, refers to the number of days
+     *         a temporary password is valid. If the user does not sign-in
+     *         during this time, their password will need to be reset by an
+     *         administrator.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         When you set <code>TemporaryPasswordValidityDays</code> for a
+     *         user pool, you will no longer be able to set the deprecated
+     *         <code>UnusedAccountValidityDays</code> value for that user pool.
+     *         </p>
+     *         </note>
      */
     public Integer getTemporaryPasswordValidityDays() {
         return temporaryPasswordValidityDays;
     }
 
     /**
-     * Sets the value of temporaryPasswordValidityDays
+     * <p>
+     * In the password policy you have set, refers to the number of days a
+     * temporary password is valid. If the user does not sign-in during this
+     * time, their password will need to be reset by an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
+     * you will no longer be able to set the deprecated
+     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
      *
-     * @param temporaryPasswordValidityDays The new value for the
-     *            temporaryPasswordValidityDays property for this object.
+     * @param temporaryPasswordValidityDays <p>
+     *            In the password policy you have set, refers to the number of
+     *            days a temporary password is valid. If the user does not
+     *            sign-in during this time, their password will need to be reset
+     *            by an administrator.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            When you set <code>TemporaryPasswordValidityDays</code> for a
+     *            user pool, you will no longer be able to set the deprecated
+     *            <code>UnusedAccountValidityDays</code> value for that user
+     *            pool.
+     *            </p>
+     *            </note>
      */
     public void setTemporaryPasswordValidityDays(Integer temporaryPasswordValidityDays) {
         this.temporaryPasswordValidityDays = temporaryPasswordValidityDays;
     }
 
     /**
-     * Sets the value of the temporaryPasswordValidityDays property for this
-     * object.
+     * <p>
+     * In the password policy you have set, refers to the number of days a
+     * temporary password is valid. If the user does not sign-in during this
+     * time, their password will need to be reset by an administrator.
+     * </p>
+     * <note>
+     * <p>
+     * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
+     * you will no longer be able to set the deprecated
+     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -448,8 +512,20 @@ public class PasswordPolicyType implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 365<br/>
      *
-     * @param temporaryPasswordValidityDays The new value for the
-     *            temporaryPasswordValidityDays property for this object.
+     * @param temporaryPasswordValidityDays <p>
+     *            In the password policy you have set, refers to the number of
+     *            days a temporary password is valid. If the user does not
+     *            sign-in during this time, their password will need to be reset
+     *            by an administrator.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            When you set <code>TemporaryPasswordValidityDays</code> for a
+     *            user pool, you will no longer be able to set the deprecated
+     *            <code>UnusedAccountValidityDays</code> value for that user
+     *            pool.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

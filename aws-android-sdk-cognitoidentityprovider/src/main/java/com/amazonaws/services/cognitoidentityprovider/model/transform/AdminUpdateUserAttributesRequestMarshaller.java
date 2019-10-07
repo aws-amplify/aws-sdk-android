@@ -83,6 +83,21 @@ public class AdminUpdateUserAttributesRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (adminUpdateUserAttributesRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = adminUpdateUserAttributesRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

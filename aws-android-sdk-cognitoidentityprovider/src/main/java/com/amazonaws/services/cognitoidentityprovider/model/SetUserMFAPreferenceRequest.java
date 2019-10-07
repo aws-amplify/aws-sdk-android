@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Set the user's multi-factor authentication (MFA) method preference.
+ * Set the user's multi-factor authentication (MFA) method preference, including
+ * which MFA factors are enabled and if any are preferred. Only one factor can
+ * be set as preferred. The preferred MFA factor will be used to authenticate a
+ * user if multiple factors are enabled. If multiple options are enabled and no
+ * preference is set, a challenge to choose an MFA option will be returned
+ * during sign in.
  * </p>
  */
 public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest implements Serializable {
@@ -41,7 +46,7 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token.
+     * The access token for the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,14 +149,14 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token.
+     * The access token for the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         The access token for the user.
      *         </p>
      */
     public String getAccessToken() {
@@ -160,14 +165,14 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token.
+     * The access token for the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            The access token for the user.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -176,7 +181,7 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token.
+     * The access token for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -186,7 +191,7 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            The access token for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

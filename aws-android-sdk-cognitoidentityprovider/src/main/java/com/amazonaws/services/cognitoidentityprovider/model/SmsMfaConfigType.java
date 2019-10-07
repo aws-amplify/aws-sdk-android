@@ -25,7 +25,10 @@ import java.io.Serializable;
 public class SmsMfaConfigType implements Serializable {
     /**
      * <p>
-     * The SMS authentication message.
+     * The SMS authentication message that will be sent to users with the code
+     * they need to sign in. The message must contain the ‘{####}’ placeholder,
+     * which will be replaced with the code. If the message is not included, and
+     * default message will be used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +46,10 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS authentication message.
+     * The SMS authentication message that will be sent to users with the code
+     * they need to sign in. The message must contain the ‘{####}’ placeholder,
+     * which will be replaced with the code. If the message is not included, and
+     * default message will be used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +57,10 @@ public class SmsMfaConfigType implements Serializable {
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @return <p>
-     *         The SMS authentication message.
+     *         The SMS authentication message that will be sent to users with
+     *         the code they need to sign in. The message must contain the
+     *         ‘{####}’ placeholder, which will be replaced with the code. If
+     *         the message is not included, and default message will be used.
      *         </p>
      */
     public String getSmsAuthenticationMessage() {
@@ -60,7 +69,10 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS authentication message.
+     * The SMS authentication message that will be sent to users with the code
+     * they need to sign in. The message must contain the ‘{####}’ placeholder,
+     * which will be replaced with the code. If the message is not included, and
+     * default message will be used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +80,10 @@ public class SmsMfaConfigType implements Serializable {
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @param smsAuthenticationMessage <p>
-     *            The SMS authentication message.
+     *            The SMS authentication message that will be sent to users with
+     *            the code they need to sign in. The message must contain the
+     *            ‘{####}’ placeholder, which will be replaced with the code. If
+     *            the message is not included, and default message will be used.
      *            </p>
      */
     public void setSmsAuthenticationMessage(String smsAuthenticationMessage) {
@@ -77,7 +92,10 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS authentication message.
+     * The SMS authentication message that will be sent to users with the code
+     * they need to sign in. The message must contain the ‘{####}’ placeholder,
+     * which will be replaced with the code. If the message is not included, and
+     * default message will be used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,7 +106,10 @@ public class SmsMfaConfigType implements Serializable {
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @param smsAuthenticationMessage <p>
-     *            The SMS authentication message.
+     *            The SMS authentication message that will be sent to users with
+     *            the code they need to sign in. The message must contain the
+     *            ‘{####}’ placeholder, which will be replaced with the code. If
+     *            the message is not included, and default message will be used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

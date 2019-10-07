@@ -99,6 +99,21 @@ public class ConfirmForgotPasswordRequestMarshaller implements
                 UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
+            if (confirmForgotPasswordRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = confirmForgotPasswordRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
