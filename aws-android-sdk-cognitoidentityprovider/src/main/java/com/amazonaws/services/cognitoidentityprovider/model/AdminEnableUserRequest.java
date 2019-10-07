@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Enables the specified user as an administrator. Works on any user.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminEnableUserRequest extends AmazonWebServiceRequest implements Serializable {

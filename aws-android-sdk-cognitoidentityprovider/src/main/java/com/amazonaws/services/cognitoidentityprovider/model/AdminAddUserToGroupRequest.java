@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds the specified user to the specified group.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implements Serializable {

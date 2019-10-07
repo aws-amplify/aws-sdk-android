@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Signs out users from all devices, as an administrator.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminUserGlobalSignOutRequest extends AmazonWebServiceRequest implements Serializable {

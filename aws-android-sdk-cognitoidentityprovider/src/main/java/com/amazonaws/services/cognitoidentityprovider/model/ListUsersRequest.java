@@ -162,9 +162,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      * >Searching for Users Using the ListUsers API</a> and <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      * >Examples of Using the ListUsers API</a> in the <i>Amazon Cognito
      * Developer Guide</i>.
      * </p>
@@ -541,9 +541,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      * >Searching for Users Using the ListUsers API</a> and <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      * >Examples of Using the ListUsers API</a> in the <i>Amazon Cognito
      * Developer Guide</i>.
      * </p>
@@ -644,9 +644,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      *         >Searching for Users Using the ListUsers API</a> and <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      *         >Examples of Using the ListUsers API</a> in the <i>Amazon Cognito
      *         Developer Guide</i>.
      *         </p>
@@ -749,9 +749,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      * >Searching for Users Using the ListUsers API</a> and <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      * >Examples of Using the ListUsers API</a> in the <i>Amazon Cognito
      * Developer Guide</i>.
      * </p>
@@ -853,9 +853,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      *            >Searching for Users Using the ListUsers API</a> and <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      *            >Examples of Using the ListUsers API</a> in the <i>Amazon
      *            Cognito Developer Guide</i>.
      *            </p>
@@ -958,9 +958,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      * >Searching for Users Using the ListUsers API</a> and <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      * >Examples of Using the ListUsers API</a> in the <i>Amazon Cognito
      * Developer Guide</i>.
      * </p>
@@ -1065,9 +1065,9 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-using-listusers-api"
      *            >Searching for Users Using the ListUsers API</a> and <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html#cognito-user-pools-searching-for-users-listusers-api-examples"
      *            >Examples of Using the ListUsers API</a> in the <i>Amazon
      *            Cognito Developer Guide</i>.
      *            </p>

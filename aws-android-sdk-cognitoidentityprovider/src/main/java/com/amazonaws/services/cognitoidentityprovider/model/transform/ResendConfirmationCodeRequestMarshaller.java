@@ -89,6 +89,21 @@ public class ResendConfirmationCodeRequestMarshaller implements
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
                         jsonWriter);
             }
+            if (resendConfirmationCodeRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = resendConfirmationCodeRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

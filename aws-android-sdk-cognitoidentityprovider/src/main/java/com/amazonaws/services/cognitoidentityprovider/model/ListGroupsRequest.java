@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the groups associated with a user pool.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class ListGroupsRequest extends AmazonWebServiceRequest implements Serializable {

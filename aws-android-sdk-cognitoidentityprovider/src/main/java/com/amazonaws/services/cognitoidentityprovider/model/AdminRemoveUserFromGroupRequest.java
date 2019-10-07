@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Removes the specified user from the specified group.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminRemoveUserFromGroupRequest extends AmazonWebServiceRequest implements

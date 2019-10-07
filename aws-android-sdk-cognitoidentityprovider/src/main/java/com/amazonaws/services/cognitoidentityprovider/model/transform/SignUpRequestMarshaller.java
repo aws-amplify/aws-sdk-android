@@ -113,6 +113,20 @@ public class SignUpRequestMarshaller implements Marshaller<Request<SignUpRequest
                 UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
+            if (signUpRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = signUpRequest.getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

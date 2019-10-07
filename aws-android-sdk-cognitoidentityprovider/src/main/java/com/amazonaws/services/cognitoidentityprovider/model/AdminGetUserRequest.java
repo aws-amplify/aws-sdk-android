@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Works on any user.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminGetUserRequest extends AmazonWebServiceRequest implements Serializable {

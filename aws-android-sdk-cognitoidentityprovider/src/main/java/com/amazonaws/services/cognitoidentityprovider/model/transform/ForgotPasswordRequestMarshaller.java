@@ -87,6 +87,21 @@ public class ForgotPasswordRequestMarshaller implements
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
                         jsonWriter);
             }
+            if (forgotPasswordRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = forgotPasswordRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

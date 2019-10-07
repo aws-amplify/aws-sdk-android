@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets a group.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class GetGroupRequest extends AmazonWebServiceRequest implements Serializable {

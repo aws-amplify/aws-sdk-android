@@ -78,6 +78,21 @@ public class UpdateUserAttributesRequestMarshaller implements
                 jsonWriter.name("AccessToken");
                 jsonWriter.value(accessToken);
             }
+            if (updateUserAttributesRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = updateUserAttributesRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

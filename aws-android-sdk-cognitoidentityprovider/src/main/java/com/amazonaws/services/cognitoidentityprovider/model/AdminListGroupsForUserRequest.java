@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the groups that the user belongs to.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminListGroupsForUserRequest extends AmazonWebServiceRequest implements Serializable {

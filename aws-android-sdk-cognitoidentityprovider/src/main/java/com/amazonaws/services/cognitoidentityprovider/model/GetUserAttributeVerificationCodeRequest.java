@@ -51,6 +51,59 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
 
     /**
      * <p>
+     * A map of custom key-value pairs that you can provide as input for any
+     * custom workflows that this action triggers.
+     * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the GetUserAttributeVerificationCode API
+     * action, Amazon Cognito invokes the function that is assigned to the
+     * <i>custom message</i> trigger. When Amazon Cognito invokes this function,
+     * it passes a JSON payload, which the function receives as input. This
+     * payload contains a <code>clientMetadata</code> attribute, which provides
+     * the data that you assigned to the ClientMetadata parameter in your
+     * GetUserAttributeVerificationCode request. In your function code in AWS
+     * Lambda, you can process the <code>clientMetadata</code> value to enhance
+     * your workflow for your specific needs.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     */
+    private java.util.Map<String, String> clientMetadata;
+
+    /**
+     * <p>
      * The access token returned by the server response to get the user
      * attribute verification code.
      * </p>
@@ -173,6 +226,422 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
     }
 
     /**
+     * <p>
+     * A map of custom key-value pairs that you can provide as input for any
+     * custom workflows that this action triggers.
+     * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the GetUserAttributeVerificationCode API
+     * action, Amazon Cognito invokes the function that is assigned to the
+     * <i>custom message</i> trigger. When Amazon Cognito invokes this function,
+     * it passes a JSON payload, which the function receives as input. This
+     * payload contains a <code>clientMetadata</code> attribute, which provides
+     * the data that you assigned to the ClientMetadata parameter in your
+     * GetUserAttributeVerificationCode request. In your function code in AWS
+     * Lambda, you can process the <code>clientMetadata</code> value to enhance
+     * your workflow for your specific needs.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     *
+     * @return <p>
+     *         A map of custom key-value pairs that you can provide as input for
+     *         any custom workflows that this action triggers.
+     *         </p>
+     *         <p>
+     *         You create custom workflows by assigning AWS Lambda functions to
+     *         user pool triggers. When you use the
+     *         GetUserAttributeVerificationCode API action, Amazon Cognito
+     *         invokes the function that is assigned to the <i>custom
+     *         message</i> trigger. When Amazon Cognito invokes this function,
+     *         it passes a JSON payload, which the function receives as input.
+     *         This payload contains a <code>clientMetadata</code> attribute,
+     *         which provides the data that you assigned to the ClientMetadata
+     *         parameter in your GetUserAttributeVerificationCode request. In
+     *         your function code in AWS Lambda, you can process the
+     *         <code>clientMetadata</code> value to enhance your workflow for
+     *         your specific needs.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *         >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     *         <i>Amazon Cognito Developer Guide</i>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Take the following limitations into consideration when you use
+     *         the ClientMetadata parameter:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not store the ClientMetadata value. This data
+     *         is available only to AWS Lambda triggers that are assigned to a
+     *         user pool to support custom workflows. If your user pool
+     *         configuration does not include triggers, the ClientMetadata
+     *         parameter serves no purpose.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not validate the ClientMetadata value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not encrypt the the ClientMetadata value, so
+     *         don't use it to provide sensitive information.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </note>
+     */
+    public java.util.Map<String, String> getClientMetadata() {
+        return clientMetadata;
+    }
+
+    /**
+     * <p>
+     * A map of custom key-value pairs that you can provide as input for any
+     * custom workflows that this action triggers.
+     * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the GetUserAttributeVerificationCode API
+     * action, Amazon Cognito invokes the function that is assigned to the
+     * <i>custom message</i> trigger. When Amazon Cognito invokes this function,
+     * it passes a JSON payload, which the function receives as input. This
+     * payload contains a <code>clientMetadata</code> attribute, which provides
+     * the data that you assigned to the ClientMetadata parameter in your
+     * GetUserAttributeVerificationCode request. In your function code in AWS
+     * Lambda, you can process the <code>clientMetadata</code> value to enhance
+     * your workflow for your specific needs.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     *
+     * @param clientMetadata <p>
+     *            A map of custom key-value pairs that you can provide as input
+     *            for any custom workflows that this action triggers.
+     *            </p>
+     *            <p>
+     *            You create custom workflows by assigning AWS Lambda functions
+     *            to user pool triggers. When you use the
+     *            GetUserAttributeVerificationCode API action, Amazon Cognito
+     *            invokes the function that is assigned to the <i>custom
+     *            message</i> trigger. When Amazon Cognito invokes this
+     *            function, it passes a JSON payload, which the function
+     *            receives as input. This payload contains a
+     *            <code>clientMetadata</code> attribute, which provides the data
+     *            that you assigned to the ClientMetadata parameter in your
+     *            GetUserAttributeVerificationCode request. In your function
+     *            code in AWS Lambda, you can process the
+     *            <code>clientMetadata</code> value to enhance your workflow for
+     *            your specific needs.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Take the following limitations into consideration when you use
+     *            the ClientMetadata parameter:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not store the ClientMetadata value. This
+     *            data is available only to AWS Lambda triggers that are
+     *            assigned to a user pool to support custom workflows. If your
+     *            user pool configuration does not include triggers, the
+     *            ClientMetadata parameter serves no purpose.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not encrypt the the ClientMetadata value,
+     *            so don't use it to provide sensitive information.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </note>
+     */
+    public void setClientMetadata(java.util.Map<String, String> clientMetadata) {
+        this.clientMetadata = clientMetadata;
+    }
+
+    /**
+     * <p>
+     * A map of custom key-value pairs that you can provide as input for any
+     * custom workflows that this action triggers.
+     * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the GetUserAttributeVerificationCode API
+     * action, Amazon Cognito invokes the function that is assigned to the
+     * <i>custom message</i> trigger. When Amazon Cognito invokes this function,
+     * it passes a JSON payload, which the function receives as input. This
+     * payload contains a <code>clientMetadata</code> attribute, which provides
+     * the data that you assigned to the ClientMetadata parameter in your
+     * GetUserAttributeVerificationCode request. In your function code in AWS
+     * Lambda, you can process the <code>clientMetadata</code> value to enhance
+     * your workflow for your specific needs.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param clientMetadata <p>
+     *            A map of custom key-value pairs that you can provide as input
+     *            for any custom workflows that this action triggers.
+     *            </p>
+     *            <p>
+     *            You create custom workflows by assigning AWS Lambda functions
+     *            to user pool triggers. When you use the
+     *            GetUserAttributeVerificationCode API action, Amazon Cognito
+     *            invokes the function that is assigned to the <i>custom
+     *            message</i> trigger. When Amazon Cognito invokes this
+     *            function, it passes a JSON payload, which the function
+     *            receives as input. This payload contains a
+     *            <code>clientMetadata</code> attribute, which provides the data
+     *            that you assigned to the ClientMetadata parameter in your
+     *            GetUserAttributeVerificationCode request. In your function
+     *            code in AWS Lambda, you can process the
+     *            <code>clientMetadata</code> value to enhance your workflow for
+     *            your specific needs.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Take the following limitations into consideration when you use
+     *            the ClientMetadata parameter:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not store the ClientMetadata value. This
+     *            data is available only to AWS Lambda triggers that are
+     *            assigned to a user pool to support custom workflows. If your
+     *            user pool configuration does not include triggers, the
+     *            ClientMetadata parameter serves no purpose.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not encrypt the the ClientMetadata value,
+     *            so don't use it to provide sensitive information.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetUserAttributeVerificationCodeRequest withClientMetadata(
+            java.util.Map<String, String> clientMetadata) {
+        this.clientMetadata = clientMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of custom key-value pairs that you can provide as input for any
+     * custom workflows that this action triggers.
+     * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the GetUserAttributeVerificationCode API
+     * action, Amazon Cognito invokes the function that is assigned to the
+     * <i>custom message</i> trigger. When Amazon Cognito invokes this function,
+     * it passes a JSON payload, which the function receives as input. This
+     * payload contains a <code>clientMetadata</code> attribute, which provides
+     * the data that you assigned to the ClientMetadata parameter in your
+     * GetUserAttributeVerificationCode request. In your function code in AWS
+     * Lambda, you can process the <code>clientMetadata</code> value to enhance
+     * your workflow for your specific needs.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * <p>
+     * The method adds a new key-value pair into ClientMetadata parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into ClientMetadata.
+     * @param value The corresponding value of the entry to be added into
+     *            ClientMetadata.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetUserAttributeVerificationCodeRequest addClientMetadataEntry(String key, String value) {
+        if (null == this.clientMetadata) {
+            this.clientMetadata = new java.util.HashMap<String, String>();
+        }
+        if (this.clientMetadata.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.clientMetadata.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ClientMetadata.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public GetUserAttributeVerificationCodeRequest clearClientMetadataEntries() {
+        this.clientMetadata = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -186,7 +655,9 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
         if (getAccessToken() != null)
             sb.append("AccessToken: " + getAccessToken() + ",");
         if (getAttributeName() != null)
-            sb.append("AttributeName: " + getAttributeName());
+            sb.append("AttributeName: " + getAttributeName() + ",");
+        if (getClientMetadata() != null)
+            sb.append("ClientMetadata: " + getClientMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -200,6 +671,8 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
                 + ((getAccessToken() == null) ? 0 : getAccessToken().hashCode());
         hashCode = prime * hashCode
                 + ((getAttributeName() == null) ? 0 : getAttributeName().hashCode());
+        hashCode = prime * hashCode
+                + ((getClientMetadata() == null) ? 0 : getClientMetadata().hashCode());
         return hashCode;
     }
 
@@ -223,6 +696,11 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
             return false;
         if (other.getAttributeName() != null
                 && other.getAttributeName().equals(this.getAttributeName()) == false)
+            return false;
+        if (other.getClientMetadata() == null ^ this.getClientMetadata() == null)
+            return false;
+        if (other.getClientMetadata() != null
+                && other.getClientMetadata().equals(this.getClientMetadata()) == false)
             return false;
         return true;
     }

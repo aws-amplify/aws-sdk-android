@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Forgets the device, as an administrator.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class AdminForgetDeviceRequest extends AmazonWebServiceRequest implements Serializable {

@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes a group. Currently only groups with no members can be deleted.
  * </p>
  * <p>
- * Requires developer credentials.
+ * Calling this action requires developer credentials.
  * </p>
  */
 public class DeleteGroupRequest extends AmazonWebServiceRequest implements Serializable {
