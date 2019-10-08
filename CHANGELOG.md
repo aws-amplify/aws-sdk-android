@@ -2,6 +2,11 @@
 
 ## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
+### Bug Fixes
+
+- **Amazon S3**
+  - `PutObjectResult` object will now contain content MD5 that was used in data validation (if available). See [Issue# 1236](https://github.com/aws-amplify/aws-sdk-android/issues/1236).
+
 ### Misc. Updates
 
 - Model updates for the following services
