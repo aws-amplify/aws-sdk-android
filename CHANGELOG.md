@@ -5,8 +5,8 @@
 ### Bug Fixes
 
 - **AWS IoT**
-  - Bumped target SDK version from 27 to 28 in `build.gradle` for IoT SDK.
-  - Specified minimum SDK and target SDK version in `AndroidManifest.xml` for IoT SDK.
+  - Specified minimum SDK (11) and target SDK (27) version in `AndroidManifest.xml` for IoT SDK.
+  - Prevents unintended permission from being implied in `AndroidManifest.xml`. See [Issue #1234](https://github.com/aws-amplify/aws-sdk-android/issues/1234).
 
 ### Misc. Updates
 
