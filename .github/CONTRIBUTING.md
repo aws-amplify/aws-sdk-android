@@ -25,7 +25,6 @@ appreciate help on:
 4. If you have some other ideas, please let us know!
 
 [issues]: https://github.com/aws/aws-sdk-android/issues
-[developerguide]: https://github.com/awsdocs/aws-android-developer-guide/
-[pull-requests]: https://github.com/aws/aws-sdk-android/pulls
-[license]: https://github.com/aws/aws-sdk-android/blob/master/LICENSE.txt
-[cla]: http://en.wikipedia.org/wiki/Contributor_License_Agreement
+[developerguide]: https://github.com/awsdocs/aws-android-developer-guide
+[cla]: http://en.wikipedia.org/wiki/Contributor_License_Agreement)
+[Asmatmaker](https://github.com/aws-amplify/aws-sdk-android/blob/master/.github/CONTRIBUTING.md
