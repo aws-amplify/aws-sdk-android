@@ -28,4 +28,5 @@ appreciate help on:
 [developerguide]: https://github.com/awsdocs/aws-android-developer-guide/
 [pull-requests]: https://github.com/aws/aws-sdk-android/pulls
 [license]: https://github.com/aws/aws-sdk-android/blob/master/LICENSE.txt
-[cla]: http://en.wikipedia.org/wiki/Contributor_License_Agreement
+[cla]: http://en.wikipedia.org/wiki/Contributor_License_Agreement)
+[Asmatmaker](https://github.com/aws-amplify/aws-sdk-android/blob/master/.github/CONTRIBUTING.md
