@@ -2,11 +2,17 @@
 
 ## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
+### Bug Fixes
+
+- **AWS IoT**
+  - Specified minimum SDK (11) and target SDK (27) version in `AndroidManifest.xml` for IoT SDK.
+  - Prevents unintended permission from being implied in `AndroidManifest.xml`. See [Issue #1234](https://github.com/aws-amplify/aws-sdk-android/issues/1234).
+
 ### Misc. Updates
 
 - Model updates for the following services
   - Amazon Cognito Identity Provider
-  
+
 ## [Release 2.16.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.1)
 
 ### Misc. Updates
