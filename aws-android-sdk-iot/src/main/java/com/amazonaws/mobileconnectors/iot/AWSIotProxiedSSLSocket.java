@@ -15,9 +15,6 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import android.annotation.TargetApi;
-import android.os.Build;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -90,12 +87,6 @@ class AWSIotProxiedSSLSocket extends SSLSocket {
     @Override
     public SSLSession getSession() {
         return this.socket.getSession();
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    @Override
-    public SSLSession getHandshakeSession() {
-        return this.socket.getHandshakeSession();
     }
 
     @Override

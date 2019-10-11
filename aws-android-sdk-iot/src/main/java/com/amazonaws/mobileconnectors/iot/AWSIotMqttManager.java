@@ -184,8 +184,8 @@ public class AWSIotMqttManager {
     /**
      * This is the hostname and port of the proxy, if any, to be used for connecting to AWS IoT
      */
-    private static String proxyHost;
-    private static int proxyPort;
+    private String proxyHost;
+    private int proxyPort;
 
     /**
      * Turning on/off metrics collection. By default metrics collection is enabled.
@@ -744,28 +744,29 @@ public class AWSIotMqttManager {
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
      * using certificate and private key in keystore on port 8883 via the proxy specified by a
-     * host and port combination. Keystore should be created using IotKeystoreHelper to setup the
+     * host and port combination. Keystore should be created using
+     * {@link com.amazonaws.mobileconnectors.iot.AWSIotKeystoreHelper} to setup the
      * certificate and key aliases as expected by the underlying socket helper library.
      *
      * @param keyStore A keystore containing an keystore with a certificate and
      *            private key. Use IotKeystoreHelper to get keystore.
-     * @param host hostname of the proxy
-     * @param port proxy port number
+     * @param proxyHost hostname of the proxy
+     * @param proxyPort proxy port number
      * @param statusCallback When new MQTT session status is received the
      *            function of callback will be called with new connection
      *            status.
      */
-    public void connectWithProxy(KeyStore keyStore, final String host, final int port,
+    public void connectWithProxy(KeyStore keyStore, final String proxyHost, final int proxyPort,
                                  final AWSIotMqttClientStatusCallback statusCallback) {
-        this.proxyHost = host;
-        this.proxyPort = port;
+        this.proxyHost = proxyHost;
+        this.proxyPort = proxyPort;
         connect(keyStore, 8883, statusCallback);
     }
 
     /**
      * Initializes the MQTT session and connects to the specified MQTT server
      * using certificate and private key in keystore on port 8883. Keystore should be created
-     * using IotKeystoreHelper to setup the certificate and key aliases as
+     * using {@link com.amazonaws.mobileconnectors.iot.AWSIotKeystoreHelper} to setup the certificate and key aliases as
      * expected by the underlying socket helper library.
      *
      * @param keyStore A keystore containing an keystore with a certificate and
