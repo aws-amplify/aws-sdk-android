@@ -18,27 +18,50 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Endpoint batch update request.
+ * <p>
+ * Specifies a batch of endpoints to create or update and the settings and
+ * attributes to set or change for each endpoint.
+ * </p>
  */
 public class EndpointBatchRequest implements Serializable {
     /**
-     * List of items to update. Maximum 100 items
+     * <p>
+     * An array that defines the endpoints to create or update and, for each
+     * endpoint, the property values to set or change. An array can contain a
+     * maximum of 100 items.
+     * </p>
      */
     private java.util.List<EndpointBatchItem> item;
 
     /**
-     * List of items to update. Maximum 100 items
+     * <p>
+     * An array that defines the endpoints to create or update and, for each
+     * endpoint, the property values to set or change. An array can contain a
+     * maximum of 100 items.
+     * </p>
      *
-     * @return List of items to update. Maximum 100 items
+     * @return <p>
+     *         An array that defines the endpoints to create or update and, for
+     *         each endpoint, the property values to set or change. An array can
+     *         contain a maximum of 100 items.
+     *         </p>
      */
     public java.util.List<EndpointBatchItem> getItem() {
         return item;
     }
 
     /**
-     * List of items to update. Maximum 100 items
+     * <p>
+     * An array that defines the endpoints to create or update and, for each
+     * endpoint, the property values to set or change. An array can contain a
+     * maximum of 100 items.
+     * </p>
      *
-     * @param item List of items to update. Maximum 100 items
+     * @param item <p>
+     *            An array that defines the endpoints to create or update and,
+     *            for each endpoint, the property values to set or change. An
+     *            array can contain a maximum of 100 items.
+     *            </p>
      */
     public void setItem(java.util.Collection<EndpointBatchItem> item) {
         if (item == null) {
@@ -50,12 +73,20 @@ public class EndpointBatchRequest implements Serializable {
     }
 
     /**
-     * List of items to update. Maximum 100 items
+     * <p>
+     * An array that defines the endpoints to create or update and, for each
+     * endpoint, the property values to set or change. An array can contain a
+     * maximum of 100 items.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item List of items to update. Maximum 100 items
+     * @param item <p>
+     *            An array that defines the endpoints to create or update and,
+     *            for each endpoint, the property values to set or change. An
+     *            array can contain a maximum of 100 items.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -70,12 +101,20 @@ public class EndpointBatchRequest implements Serializable {
     }
 
     /**
-     * List of items to update. Maximum 100 items
+     * <p>
+     * An array that defines the endpoints to create or update and, for each
+     * endpoint, the property values to set or change. An array can contain a
+     * maximum of 100 items.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item List of items to update. Maximum 100 items
+     * @param item <p>
+     *            An array that defines the endpoints to create or update and,
+     *            for each endpoint, the property values to set or change. An
+     *            array can contain a maximum of 100 items.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

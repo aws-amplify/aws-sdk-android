@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class SendMessagesResult implements Serializable {
     /**
-     * Send message response.
+     * <p>
+     * Provides information about the results of a request to send a message to
+     * an endpoint address.
+     * </p>
      */
     private MessageResponse messageResponse;
 
     /**
-     * Send message response.
+     * <p>
+     * Provides information about the results of a request to send a message to
+     * an endpoint address.
+     * </p>
      *
-     * @return Send message response.
+     * @return <p>
+     *         Provides information about the results of a request to send a
+     *         message to an endpoint address.
+     *         </p>
      */
     public MessageResponse getMessageResponse() {
         return messageResponse;
     }
 
     /**
-     * Send message response.
+     * <p>
+     * Provides information about the results of a request to send a message to
+     * an endpoint address.
+     * </p>
      *
-     * @param messageResponse Send message response.
+     * @param messageResponse <p>
+     *            Provides information about the results of a request to send a
+     *            message to an endpoint address.
+     *            </p>
      */
     public void setMessageResponse(MessageResponse messageResponse) {
         this.messageResponse = messageResponse;
     }
 
     /**
-     * Send message response.
+     * <p>
+     * Provides information about the results of a request to send a message to
+     * an endpoint address.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageResponse Send message response.
+     * @param messageResponse <p>
+     *            Provides information about the results of a request to send a
+     *            message to an endpoint address.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

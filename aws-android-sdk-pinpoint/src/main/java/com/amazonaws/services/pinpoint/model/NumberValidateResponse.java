@@ -18,119 +18,177 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Phone Number Validate response.
+ * <p>
+ * Provides information about a phone number.
+ * </p>
  */
 public class NumberValidateResponse implements Serializable {
     /**
-     * The carrier or servive provider that the phone number is currently
+     * <p>
+     * The carrier or service provider that the phone number is currently
+     * registered with. In some countries and regions, this value may be the
+     * carrier or service provider that the phone number was originally
      * registered with.
+     * </p>
      */
     private String carrier;
 
     /**
-     * The city where the phone number was originally registered.
+     * <p>
+     * The name of the city where the phone number was originally registered.
+     * </p>
      */
     private String city;
 
     /**
-     * The cleansed phone number, shown in E.164 format.
+     * <p>
+     * The cleansed phone number, in E.164 format, for the location where the
+     * phone number was originally registered.
+     * </p>
      */
     private String cleansedPhoneNumberE164;
 
     /**
-     * The cleansed phone number, shown in the local phone number format.
+     * <p>
+     * The cleansed phone number, in the format for the location where the phone
+     * number was originally registered.
+     * </p>
      */
     private String cleansedPhoneNumberNational;
 
     /**
-     * The country or region where the phone number was originally registered.
+     * <p>
+     * The name of the country or region where the phone number was originally
+     * registered.
+     * </p>
      */
     private String country;
 
     /**
-     * The two-character ISO code for the country or region where the phone
-     * number was originally registered.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, for the country or
+     * region where the phone number was originally registered.
+     * </p>
      */
     private String countryCodeIso2;
 
     /**
+     * <p>
      * The numeric code for the country or region where the phone number was
      * originally registered.
+     * </p>
      */
     private String countryCodeNumeric;
 
     /**
-     * The county where the phone number was originally registered.
+     * <p>
+     * The name of the county where the phone number was originally registered.
+     * </p>
      */
     private String county;
 
     /**
-     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
-     * region in the request body.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, that was sent in
+     * the request body.
+     * </p>
      */
     private String originalCountryCodeIso2;
 
     /**
-     * The phone number that you included in the request body.
+     * <p>
+     * The phone number that was sent in the request body.
+     * </p>
      */
     private String originalPhoneNumber;
 
     /**
-     * A description of the phone type. Possible values are MOBILE, LANDLINE,
+     * <p>
+     * The description of the phone type. Valid values are: MOBILE, LANDLINE,
      * VOIP, INVALID, PREPAID, and OTHER.
+     * </p>
      */
     private String phoneType;
 
     /**
-     * The phone type, represented by an integer. Possible values include 0
-     * (MOBILE), 1 (LANDLINE), 2 (VOIP), 3 (INVALID), 4 (OTHER), and 5
-     * (PREPAID).
+     * <p>
+     * The phone type, represented by an integer. Valid values are: 0 (mobile),
+     * 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).
+     * </p>
      */
     private Integer phoneTypeCode;
 
     /**
+     * <p>
      * The time zone for the location where the phone number was originally
      * registered.
+     * </p>
      */
     private String timezone;
 
     /**
-     * The postal code for the location where the phone number was originally
-     * registered.
+     * <p>
+     * The postal or ZIP code for the location where the phone number was
+     * originally registered.
+     * </p>
      */
     private String zipCode;
 
     /**
-     * The carrier or servive provider that the phone number is currently
+     * <p>
+     * The carrier or service provider that the phone number is currently
+     * registered with. In some countries and regions, this value may be the
+     * carrier or service provider that the phone number was originally
      * registered with.
+     * </p>
      *
-     * @return The carrier or servive provider that the phone number is
-     *         currently registered with.
+     * @return <p>
+     *         The carrier or service provider that the phone number is
+     *         currently registered with. In some countries and regions, this
+     *         value may be the carrier or service provider that the phone
+     *         number was originally registered with.
+     *         </p>
      */
     public String getCarrier() {
         return carrier;
     }
 
     /**
-     * The carrier or servive provider that the phone number is currently
+     * <p>
+     * The carrier or service provider that the phone number is currently
+     * registered with. In some countries and regions, this value may be the
+     * carrier or service provider that the phone number was originally
      * registered with.
+     * </p>
      *
-     * @param carrier The carrier or servive provider that the phone number is
-     *            currently registered with.
+     * @param carrier <p>
+     *            The carrier or service provider that the phone number is
+     *            currently registered with. In some countries and regions, this
+     *            value may be the carrier or service provider that the phone
+     *            number was originally registered with.
+     *            </p>
      */
     public void setCarrier(String carrier) {
         this.carrier = carrier;
     }
 
     /**
-     * The carrier or servive provider that the phone number is currently
+     * <p>
+     * The carrier or service provider that the phone number is currently
+     * registered with. In some countries and regions, this value may be the
+     * carrier or service provider that the phone number was originally
      * registered with.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param carrier The carrier or servive provider that the phone number is
-     *            currently registered with.
+     * @param carrier <p>
+     *            The carrier or service provider that the phone number is
+     *            currently registered with. In some countries and regions, this
+     *            value may be the carrier or service provider that the phone
+     *            number was originally registered with.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -140,30 +198,45 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The city where the phone number was originally registered.
+     * <p>
+     * The name of the city where the phone number was originally registered.
+     * </p>
      *
-     * @return The city where the phone number was originally registered.
+     * @return <p>
+     *         The name of the city where the phone number was originally
+     *         registered.
+     *         </p>
      */
     public String getCity() {
         return city;
     }
 
     /**
-     * The city where the phone number was originally registered.
+     * <p>
+     * The name of the city where the phone number was originally registered.
+     * </p>
      *
-     * @param city The city where the phone number was originally registered.
+     * @param city <p>
+     *            The name of the city where the phone number was originally
+     *            registered.
+     *            </p>
      */
     public void setCity(String city) {
         this.city = city;
     }
 
     /**
-     * The city where the phone number was originally registered.
+     * <p>
+     * The name of the city where the phone number was originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param city The city where the phone number was originally registered.
+     * @param city <p>
+     *            The name of the city where the phone number was originally
+     *            registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -173,32 +246,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The cleansed phone number, shown in E.164 format.
+     * <p>
+     * The cleansed phone number, in E.164 format, for the location where the
+     * phone number was originally registered.
+     * </p>
      *
-     * @return The cleansed phone number, shown in E.164 format.
+     * @return <p>
+     *         The cleansed phone number, in E.164 format, for the location
+     *         where the phone number was originally registered.
+     *         </p>
      */
     public String getCleansedPhoneNumberE164() {
         return cleansedPhoneNumberE164;
     }
 
     /**
-     * The cleansed phone number, shown in E.164 format.
+     * <p>
+     * The cleansed phone number, in E.164 format, for the location where the
+     * phone number was originally registered.
+     * </p>
      *
-     * @param cleansedPhoneNumberE164 The cleansed phone number, shown in E.164
-     *            format.
+     * @param cleansedPhoneNumberE164 <p>
+     *            The cleansed phone number, in E.164 format, for the location
+     *            where the phone number was originally registered.
+     *            </p>
      */
     public void setCleansedPhoneNumberE164(String cleansedPhoneNumberE164) {
         this.cleansedPhoneNumberE164 = cleansedPhoneNumberE164;
     }
 
     /**
-     * The cleansed phone number, shown in E.164 format.
+     * <p>
+     * The cleansed phone number, in E.164 format, for the location where the
+     * phone number was originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cleansedPhoneNumberE164 The cleansed phone number, shown in E.164
-     *            format.
+     * @param cleansedPhoneNumberE164 <p>
+     *            The cleansed phone number, in E.164 format, for the location
+     *            where the phone number was originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -208,33 +297,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The cleansed phone number, shown in the local phone number format.
+     * <p>
+     * The cleansed phone number, in the format for the location where the phone
+     * number was originally registered.
+     * </p>
      *
-     * @return The cleansed phone number, shown in the local phone number
-     *         format.
+     * @return <p>
+     *         The cleansed phone number, in the format for the location where
+     *         the phone number was originally registered.
+     *         </p>
      */
     public String getCleansedPhoneNumberNational() {
         return cleansedPhoneNumberNational;
     }
 
     /**
-     * The cleansed phone number, shown in the local phone number format.
+     * <p>
+     * The cleansed phone number, in the format for the location where the phone
+     * number was originally registered.
+     * </p>
      *
-     * @param cleansedPhoneNumberNational The cleansed phone number, shown in
-     *            the local phone number format.
+     * @param cleansedPhoneNumberNational <p>
+     *            The cleansed phone number, in the format for the location
+     *            where the phone number was originally registered.
+     *            </p>
      */
     public void setCleansedPhoneNumberNational(String cleansedPhoneNumberNational) {
         this.cleansedPhoneNumberNational = cleansedPhoneNumberNational;
     }
 
     /**
-     * The cleansed phone number, shown in the local phone number format.
+     * <p>
+     * The cleansed phone number, in the format for the location where the phone
+     * number was originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cleansedPhoneNumberNational The cleansed phone number, shown in
-     *            the local phone number format.
+     * @param cleansedPhoneNumberNational <p>
+     *            The cleansed phone number, in the format for the location
+     *            where the phone number was originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -244,33 +348,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The country or region where the phone number was originally registered.
+     * <p>
+     * The name of the country or region where the phone number was originally
+     * registered.
+     * </p>
      *
-     * @return The country or region where the phone number was originally
-     *         registered.
+     * @return <p>
+     *         The name of the country or region where the phone number was
+     *         originally registered.
+     *         </p>
      */
     public String getCountry() {
         return country;
     }
 
     /**
-     * The country or region where the phone number was originally registered.
+     * <p>
+     * The name of the country or region where the phone number was originally
+     * registered.
+     * </p>
      *
-     * @param country The country or region where the phone number was
+     * @param country <p>
+     *            The name of the country or region where the phone number was
      *            originally registered.
+     *            </p>
      */
     public void setCountry(String country) {
         this.country = country;
     }
 
     /**
-     * The country or region where the phone number was originally registered.
+     * <p>
+     * The name of the country or region where the phone number was originally
+     * registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param country The country or region where the phone number was
+     * @param country <p>
+     *            The name of the country or region where the phone number was
      *            originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -280,36 +399,51 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The two-character ISO code for the country or region where the phone
-     * number was originally registered.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, for the country or
+     * region where the phone number was originally registered.
+     * </p>
      *
-     * @return The two-character ISO code for the country or region where the
-     *         phone number was originally registered.
+     * @return <p>
+     *         The two-character code, in ISO 3166-1 alpha-2 format, for the
+     *         country or region where the phone number was originally
+     *         registered.
+     *         </p>
      */
     public String getCountryCodeIso2() {
         return countryCodeIso2;
     }
 
     /**
-     * The two-character ISO code for the country or region where the phone
-     * number was originally registered.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, for the country or
+     * region where the phone number was originally registered.
+     * </p>
      *
-     * @param countryCodeIso2 The two-character ISO code for the country or
-     *            region where the phone number was originally registered.
+     * @param countryCodeIso2 <p>
+     *            The two-character code, in ISO 3166-1 alpha-2 format, for the
+     *            country or region where the phone number was originally
+     *            registered.
+     *            </p>
      */
     public void setCountryCodeIso2(String countryCodeIso2) {
         this.countryCodeIso2 = countryCodeIso2;
     }
 
     /**
-     * The two-character ISO code for the country or region where the phone
-     * number was originally registered.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, for the country or
+     * region where the phone number was originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param countryCodeIso2 The two-character ISO code for the country or
-     *            region where the phone number was originally registered.
+     * @param countryCodeIso2 <p>
+     *            The two-character code, in ISO 3166-1 alpha-2 format, for the
+     *            country or region where the phone number was originally
+     *            registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -319,36 +453,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
+     * <p>
      * The numeric code for the country or region where the phone number was
      * originally registered.
+     * </p>
      *
-     * @return The numeric code for the country or region where the phone number
+     * @return <p>
+     *         The numeric code for the country or region where the phone number
      *         was originally registered.
+     *         </p>
      */
     public String getCountryCodeNumeric() {
         return countryCodeNumeric;
     }
 
     /**
+     * <p>
      * The numeric code for the country or region where the phone number was
      * originally registered.
+     * </p>
      *
-     * @param countryCodeNumeric The numeric code for the country or region
-     *            where the phone number was originally registered.
+     * @param countryCodeNumeric <p>
+     *            The numeric code for the country or region where the phone
+     *            number was originally registered.
+     *            </p>
      */
     public void setCountryCodeNumeric(String countryCodeNumeric) {
         this.countryCodeNumeric = countryCodeNumeric;
     }
 
     /**
+     * <p>
      * The numeric code for the country or region where the phone number was
      * originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param countryCodeNumeric The numeric code for the country or region
-     *            where the phone number was originally registered.
+     * @param countryCodeNumeric <p>
+     *            The numeric code for the country or region where the phone
+     *            number was originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,32 +504,45 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The county where the phone number was originally registered.
+     * <p>
+     * The name of the county where the phone number was originally registered.
+     * </p>
      *
-     * @return The county where the phone number was originally registered.
+     * @return <p>
+     *         The name of the county where the phone number was originally
+     *         registered.
+     *         </p>
      */
     public String getCounty() {
         return county;
     }
 
     /**
-     * The county where the phone number was originally registered.
+     * <p>
+     * The name of the county where the phone number was originally registered.
+     * </p>
      *
-     * @param county The county where the phone number was originally
+     * @param county <p>
+     *            The name of the county where the phone number was originally
      *            registered.
+     *            </p>
      */
     public void setCounty(String county) {
         this.county = county;
     }
 
     /**
-     * The county where the phone number was originally registered.
+     * <p>
+     * The name of the county where the phone number was originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param county The county where the phone number was originally
+     * @param county <p>
+     *            The name of the county where the phone number was originally
      *            registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -393,36 +552,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
-     * region in the request body.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, that was sent in
+     * the request body.
+     * </p>
      *
-     * @return The two-character code (in ISO 3166-1 alpha-2 format) for the
-     *         country or region in the request body.
+     * @return <p>
+     *         The two-character code, in ISO 3166-1 alpha-2 format, that was
+     *         sent in the request body.
+     *         </p>
      */
     public String getOriginalCountryCodeIso2() {
         return originalCountryCodeIso2;
     }
 
     /**
-     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
-     * region in the request body.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, that was sent in
+     * the request body.
+     * </p>
      *
-     * @param originalCountryCodeIso2 The two-character code (in ISO 3166-1
-     *            alpha-2 format) for the country or region in the request body.
+     * @param originalCountryCodeIso2 <p>
+     *            The two-character code, in ISO 3166-1 alpha-2 format, that was
+     *            sent in the request body.
+     *            </p>
      */
     public void setOriginalCountryCodeIso2(String originalCountryCodeIso2) {
         this.originalCountryCodeIso2 = originalCountryCodeIso2;
     }
 
     /**
-     * The two-character code (in ISO 3166-1 alpha-2 format) for the country or
-     * region in the request body.
+     * <p>
+     * The two-character code, in ISO 3166-1 alpha-2 format, that was sent in
+     * the request body.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param originalCountryCodeIso2 The two-character code (in ISO 3166-1
-     *            alpha-2 format) for the country or region in the request body.
+     * @param originalCountryCodeIso2 <p>
+     *            The two-character code, in ISO 3166-1 alpha-2 format, that was
+     *            sent in the request body.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -432,32 +603,42 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The phone number that you included in the request body.
+     * <p>
+     * The phone number that was sent in the request body.
+     * </p>
      *
-     * @return The phone number that you included in the request body.
+     * @return <p>
+     *         The phone number that was sent in the request body.
+     *         </p>
      */
     public String getOriginalPhoneNumber() {
         return originalPhoneNumber;
     }
 
     /**
-     * The phone number that you included in the request body.
+     * <p>
+     * The phone number that was sent in the request body.
+     * </p>
      *
-     * @param originalPhoneNumber The phone number that you included in the
-     *            request body.
+     * @param originalPhoneNumber <p>
+     *            The phone number that was sent in the request body.
+     *            </p>
      */
     public void setOriginalPhoneNumber(String originalPhoneNumber) {
         this.originalPhoneNumber = originalPhoneNumber;
     }
 
     /**
-     * The phone number that you included in the request body.
+     * <p>
+     * The phone number that was sent in the request body.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param originalPhoneNumber The phone number that you included in the
-     *            request body.
+     * @param originalPhoneNumber <p>
+     *            The phone number that was sent in the request body.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -467,36 +648,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * A description of the phone type. Possible values are MOBILE, LANDLINE,
+     * <p>
+     * The description of the phone type. Valid values are: MOBILE, LANDLINE,
      * VOIP, INVALID, PREPAID, and OTHER.
+     * </p>
      *
-     * @return A description of the phone type. Possible values are MOBILE,
+     * @return <p>
+     *         The description of the phone type. Valid values are: MOBILE,
      *         LANDLINE, VOIP, INVALID, PREPAID, and OTHER.
+     *         </p>
      */
     public String getPhoneType() {
         return phoneType;
     }
 
     /**
-     * A description of the phone type. Possible values are MOBILE, LANDLINE,
+     * <p>
+     * The description of the phone type. Valid values are: MOBILE, LANDLINE,
      * VOIP, INVALID, PREPAID, and OTHER.
+     * </p>
      *
-     * @param phoneType A description of the phone type. Possible values are
-     *            MOBILE, LANDLINE, VOIP, INVALID, PREPAID, and OTHER.
+     * @param phoneType <p>
+     *            The description of the phone type. Valid values are: MOBILE,
+     *            LANDLINE, VOIP, INVALID, PREPAID, and OTHER.
+     *            </p>
      */
     public void setPhoneType(String phoneType) {
         this.phoneType = phoneType;
     }
 
     /**
-     * A description of the phone type. Possible values are MOBILE, LANDLINE,
+     * <p>
+     * The description of the phone type. Valid values are: MOBILE, LANDLINE,
      * VOIP, INVALID, PREPAID, and OTHER.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param phoneType A description of the phone type. Possible values are
-     *            MOBILE, LANDLINE, VOIP, INVALID, PREPAID, and OTHER.
+     * @param phoneType <p>
+     *            The description of the phone type. Valid values are: MOBILE,
+     *            LANDLINE, VOIP, INVALID, PREPAID, and OTHER.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -506,42 +699,51 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The phone type, represented by an integer. Possible values include 0
-     * (MOBILE), 1 (LANDLINE), 2 (VOIP), 3 (INVALID), 4 (OTHER), and 5
-     * (PREPAID).
+     * <p>
+     * The phone type, represented by an integer. Valid values are: 0 (mobile),
+     * 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).
+     * </p>
      *
-     * @return The phone type, represented by an integer. Possible values
-     *         include 0 (MOBILE), 1 (LANDLINE), 2 (VOIP), 3 (INVALID), 4
-     *         (OTHER), and 5 (PREPAID).
+     * @return <p>
+     *         The phone type, represented by an integer. Valid values are: 0
+     *         (mobile), 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5
+     *         (prepaid).
+     *         </p>
      */
     public Integer getPhoneTypeCode() {
         return phoneTypeCode;
     }
 
     /**
-     * The phone type, represented by an integer. Possible values include 0
-     * (MOBILE), 1 (LANDLINE), 2 (VOIP), 3 (INVALID), 4 (OTHER), and 5
-     * (PREPAID).
+     * <p>
+     * The phone type, represented by an integer. Valid values are: 0 (mobile),
+     * 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).
+     * </p>
      *
-     * @param phoneTypeCode The phone type, represented by an integer. Possible
-     *            values include 0 (MOBILE), 1 (LANDLINE), 2 (VOIP), 3
-     *            (INVALID), 4 (OTHER), and 5 (PREPAID).
+     * @param phoneTypeCode <p>
+     *            The phone type, represented by an integer. Valid values are: 0
+     *            (mobile), 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and
+     *            5 (prepaid).
+     *            </p>
      */
     public void setPhoneTypeCode(Integer phoneTypeCode) {
         this.phoneTypeCode = phoneTypeCode;
     }
 
     /**
-     * The phone type, represented by an integer. Possible values include 0
-     * (MOBILE), 1 (LANDLINE), 2 (VOIP), 3 (INVALID), 4 (OTHER), and 5
-     * (PREPAID).
+     * <p>
+     * The phone type, represented by an integer. Valid values are: 0 (mobile),
+     * 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param phoneTypeCode The phone type, represented by an integer. Possible
-     *            values include 0 (MOBILE), 1 (LANDLINE), 2 (VOIP), 3
-     *            (INVALID), 4 (OTHER), and 5 (PREPAID).
+     * @param phoneTypeCode <p>
+     *            The phone type, represented by an integer. Valid values are: 0
+     *            (mobile), 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and
+     *            5 (prepaid).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -551,36 +753,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
+     * <p>
      * The time zone for the location where the phone number was originally
      * registered.
+     * </p>
      *
-     * @return The time zone for the location where the phone number was
+     * @return <p>
+     *         The time zone for the location where the phone number was
      *         originally registered.
+     *         </p>
      */
     public String getTimezone() {
         return timezone;
     }
 
     /**
+     * <p>
      * The time zone for the location where the phone number was originally
      * registered.
+     * </p>
      *
-     * @param timezone The time zone for the location where the phone number was
+     * @param timezone <p>
+     *            The time zone for the location where the phone number was
      *            originally registered.
+     *            </p>
      */
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
 
     /**
+     * <p>
      * The time zone for the location where the phone number was originally
      * registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param timezone The time zone for the location where the phone number was
+     * @param timezone <p>
+     *            The time zone for the location where the phone number was
      *            originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -590,36 +804,48 @@ public class NumberValidateResponse implements Serializable {
     }
 
     /**
-     * The postal code for the location where the phone number was originally
-     * registered.
+     * <p>
+     * The postal or ZIP code for the location where the phone number was
+     * originally registered.
+     * </p>
      *
-     * @return The postal code for the location where the phone number was
-     *         originally registered.
+     * @return <p>
+     *         The postal or ZIP code for the location where the phone number
+     *         was originally registered.
+     *         </p>
      */
     public String getZipCode() {
         return zipCode;
     }
 
     /**
-     * The postal code for the location where the phone number was originally
-     * registered.
+     * <p>
+     * The postal or ZIP code for the location where the phone number was
+     * originally registered.
+     * </p>
      *
-     * @param zipCode The postal code for the location where the phone number
+     * @param zipCode <p>
+     *            The postal or ZIP code for the location where the phone number
      *            was originally registered.
+     *            </p>
      */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
     /**
-     * The postal code for the location where the phone number was originally
-     * registered.
+     * <p>
+     * The postal or ZIP code for the location where the phone number was
+     * originally registered.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param zipCode The postal code for the location where the phone number
+     * @param zipCode <p>
+     *            The postal or ZIP code for the location where the phone number
      *            was originally registered.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

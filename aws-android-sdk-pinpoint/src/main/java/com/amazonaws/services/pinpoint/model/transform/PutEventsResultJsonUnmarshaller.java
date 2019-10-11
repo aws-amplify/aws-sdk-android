@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,14 +27,21 @@ public class PutEventsResultJsonUnmarshaller implements
         Unmarshaller<PutEventsResult, JsonUnmarshallerContext> {
 
     public PutEventsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
         PutEventsResult putEventsResult = new PutEventsResult();
-        putEventsResult.setEventsResponse(EventsResponseJsonUnmarshaller.getInstance()
-                .unmarshall(context));
+
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("EventsResponse")) {
+                putEventsResult.setEventsResponse(EventsResponseJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return putEventsResult;
     }
 

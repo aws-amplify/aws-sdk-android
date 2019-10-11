@@ -18,46 +18,67 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Get channels definition
+ * <p>
+ * Provides information about the general settings and status of all channels
+ * for an application, including channels that aren't enabled for the
+ * application.
+ * </p>
  */
 public class ChannelsResponse implements Serializable {
     /**
-     * A map of channels, with the ChannelType as the key and the Channel as the
-     * value.
+     * <p>
+     * A map that contains a multipart response for each channel. For each item
+     * in this object, the ChannelType is the key and the Channel is the value.
+     * </p>
      */
     private java.util.Map<String, ChannelResponse> channels;
 
     /**
-     * A map of channels, with the ChannelType as the key and the Channel as the
-     * value.
+     * <p>
+     * A map that contains a multipart response for each channel. For each item
+     * in this object, the ChannelType is the key and the Channel is the value.
+     * </p>
      *
-     * @return A map of channels, with the ChannelType as the key and the
-     *         Channel as the value.
+     * @return <p>
+     *         A map that contains a multipart response for each channel. For
+     *         each item in this object, the ChannelType is the key and the
+     *         Channel is the value.
+     *         </p>
      */
     public java.util.Map<String, ChannelResponse> getChannels() {
         return channels;
     }
 
     /**
-     * A map of channels, with the ChannelType as the key and the Channel as the
-     * value.
+     * <p>
+     * A map that contains a multipart response for each channel. For each item
+     * in this object, the ChannelType is the key and the Channel is the value.
+     * </p>
      *
-     * @param channels A map of channels, with the ChannelType as the key and
-     *            the Channel as the value.
+     * @param channels <p>
+     *            A map that contains a multipart response for each channel. For
+     *            each item in this object, the ChannelType is the key and the
+     *            Channel is the value.
+     *            </p>
      */
     public void setChannels(java.util.Map<String, ChannelResponse> channels) {
         this.channels = channels;
     }
 
     /**
-     * A map of channels, with the ChannelType as the key and the Channel as the
-     * value.
+     * <p>
+     * A map that contains a multipart response for each channel. For each item
+     * in this object, the ChannelType is the key and the Channel is the value.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param channels A map of channels, with the ChannelType as the key and
-     *            the Channel as the value.
+     * @param channels <p>
+     *            A map that contains a multipart response for each channel. For
+     *            each item in this object, the ChannelType is the key and the
+     *            Channel is the value.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,8 +88,10 @@ public class ChannelsResponse implements Serializable {
     }
 
     /**
-     * A map of channels, with the ChannelType as the key and the Channel as the
-     * value.
+     * <p>
+     * A map that contains a multipart response for each channel. For each item
+     * in this object, the ChannelType is the key and the Channel is the value.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Channels parameter, and returns
      * a reference to this object so that method calls can be chained together.

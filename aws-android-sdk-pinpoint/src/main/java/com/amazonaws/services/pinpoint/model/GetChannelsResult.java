@@ -19,35 +19,63 @@ import java.io.Serializable;
 
 public class GetChannelsResult implements Serializable {
     /**
-     * Get channels definition
+     * <p>
+     * Provides information about the general settings and status of all
+     * channels for an application, including channels that aren't enabled for
+     * the application.
+     * </p>
      */
     private ChannelsResponse channelsResponse;
 
     /**
-     * Get channels definition
+     * <p>
+     * Provides information about the general settings and status of all
+     * channels for an application, including channels that aren't enabled for
+     * the application.
+     * </p>
      *
-     * @return Get channels definition
+     * @return <p>
+     *         Provides information about the general settings and status of all
+     *         channels for an application, including channels that aren't
+     *         enabled for the application.
+     *         </p>
      */
     public ChannelsResponse getChannelsResponse() {
         return channelsResponse;
     }
 
     /**
-     * Get channels definition
+     * <p>
+     * Provides information about the general settings and status of all
+     * channels for an application, including channels that aren't enabled for
+     * the application.
+     * </p>
      *
-     * @param channelsResponse Get channels definition
+     * @param channelsResponse <p>
+     *            Provides information about the general settings and status of
+     *            all channels for an application, including channels that
+     *            aren't enabled for the application.
+     *            </p>
      */
     public void setChannelsResponse(ChannelsResponse channelsResponse) {
         this.channelsResponse = channelsResponse;
     }
 
     /**
-     * Get channels definition
+     * <p>
+     * Provides information about the general settings and status of all
+     * channels for an application, including channels that aren't enabled for
+     * the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param channelsResponse Get channels definition
+     * @param channelsResponse <p>
+     *            Provides information about the general settings and status of
+     *            all channels for an application, including channels that
+     *            aren't enabled for the application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

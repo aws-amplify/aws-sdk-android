@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class GetEmailChannelResult implements Serializable {
     /**
-     * Email Channel Response.
+     * <p>
+     * Provides information about the status and settings of the email channel
+     * for an application.
+     * </p>
      */
     private EmailChannelResponse emailChannelResponse;
 
     /**
-     * Email Channel Response.
+     * <p>
+     * Provides information about the status and settings of the email channel
+     * for an application.
+     * </p>
      *
-     * @return Email Channel Response.
+     * @return <p>
+     *         Provides information about the status and settings of the email
+     *         channel for an application.
+     *         </p>
      */
     public EmailChannelResponse getEmailChannelResponse() {
         return emailChannelResponse;
     }
 
     /**
-     * Email Channel Response.
+     * <p>
+     * Provides information about the status and settings of the email channel
+     * for an application.
+     * </p>
      *
-     * @param emailChannelResponse Email Channel Response.
+     * @param emailChannelResponse <p>
+     *            Provides information about the status and settings of the
+     *            email channel for an application.
+     *            </p>
      */
     public void setEmailChannelResponse(EmailChannelResponse emailChannelResponse) {
         this.emailChannelResponse = emailChannelResponse;
     }
 
     /**
-     * Email Channel Response.
+     * <p>
+     * Provides information about the status and settings of the email channel
+     * for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param emailChannelResponse Email Channel Response.
+     * @param emailChannelResponse <p>
+     *            Provides information about the status and settings of the
+     *            email channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

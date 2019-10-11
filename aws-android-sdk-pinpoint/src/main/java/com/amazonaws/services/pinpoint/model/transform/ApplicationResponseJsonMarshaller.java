@@ -26,6 +26,11 @@ class ApplicationResponseJsonMarshaller {
     public void marshall(ApplicationResponse applicationResponse, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (applicationResponse.getArn() != null) {
+            String arn = applicationResponse.getArn();
+            jsonWriter.name("Arn");
+            jsonWriter.value(arn);
+        }
         if (applicationResponse.getId() != null) {
             String id = applicationResponse.getId();
             jsonWriter.name("Id");
@@ -35,6 +40,19 @@ class ApplicationResponseJsonMarshaller {
             String name = applicationResponse.getName();
             jsonWriter.name("Name");
             jsonWriter.value(name);
+        }
+        if (applicationResponse.getTags() != null) {
+            java.util.Map<String, String> tags = applicationResponse.getTags();
+            jsonWriter.name("tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         jsonWriter.endObject();
     }

@@ -19,35 +19,77 @@ import java.io.Serializable;
 
 public class GetExportJobResult implements Serializable {
     /**
-     * Export job response.
+     * <p>
+     * Provides information about the status and settings of a job that exports
+     * endpoint definitions to a file. The file can be added directly to an
+     * Amazon Simple Storage Service (Amazon S3) bucket by using the Amazon
+     * Pinpoint API or downloaded directly to a computer by using the Amazon
+     * Pinpoint console.
+     * </p>
      */
     private ExportJobResponse exportJobResponse;
 
     /**
-     * Export job response.
+     * <p>
+     * Provides information about the status and settings of a job that exports
+     * endpoint definitions to a file. The file can be added directly to an
+     * Amazon Simple Storage Service (Amazon S3) bucket by using the Amazon
+     * Pinpoint API or downloaded directly to a computer by using the Amazon
+     * Pinpoint console.
+     * </p>
      *
-     * @return Export job response.
+     * @return <p>
+     *         Provides information about the status and settings of a job that
+     *         exports endpoint definitions to a file. The file can be added
+     *         directly to an Amazon Simple Storage Service (Amazon S3) bucket
+     *         by using the Amazon Pinpoint API or downloaded directly to a
+     *         computer by using the Amazon Pinpoint console.
+     *         </p>
      */
     public ExportJobResponse getExportJobResponse() {
         return exportJobResponse;
     }
 
     /**
-     * Export job response.
+     * <p>
+     * Provides information about the status and settings of a job that exports
+     * endpoint definitions to a file. The file can be added directly to an
+     * Amazon Simple Storage Service (Amazon S3) bucket by using the Amazon
+     * Pinpoint API or downloaded directly to a computer by using the Amazon
+     * Pinpoint console.
+     * </p>
      *
-     * @param exportJobResponse Export job response.
+     * @param exportJobResponse <p>
+     *            Provides information about the status and settings of a job
+     *            that exports endpoint definitions to a file. The file can be
+     *            added directly to an Amazon Simple Storage Service (Amazon S3)
+     *            bucket by using the Amazon Pinpoint API or downloaded directly
+     *            to a computer by using the Amazon Pinpoint console.
+     *            </p>
      */
     public void setExportJobResponse(ExportJobResponse exportJobResponse) {
         this.exportJobResponse = exportJobResponse;
     }
 
     /**
-     * Export job response.
+     * <p>
+     * Provides information about the status and settings of a job that exports
+     * endpoint definitions to a file. The file can be added directly to an
+     * Amazon Simple Storage Service (Amazon S3) bucket by using the Amazon
+     * Pinpoint API or downloaded directly to a computer by using the Amazon
+     * Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param exportJobResponse Export job response.
+     * @param exportJobResponse <p>
+     *            Provides information about the status and settings of a job
+     *            that exports endpoint definitions to a file. The file can be
+     *            added directly to an Amazon Simple Storage Service (Amazon S3)
+     *            bucket by using the Amazon Pinpoint API or downloaded directly
+     *            to a computer by using the Amazon Pinpoint console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
