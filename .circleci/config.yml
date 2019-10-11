@@ -1277,6 +1277,16 @@ workflows:
                 - master
                 - develop
       - integrationtest:
+          name: pinpoint
+          testmodule: aws-android-sdk-pinpoint-test
+          requires:
+            - pre_integrationtest
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
           name: polly
           testmodule: aws-android-sdk-polly-test
           requires:
@@ -1471,6 +1481,7 @@ workflows:
             - sdb
             - s3
             - rekognition
+            - pinpoint
             - polly
             # - machinelearning
             - lambda
@@ -1651,7 +1662,17 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/  
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: pinpoint
+          testmodule: aws-android-sdk-pinpoint-test
+          requires:
+            - pre_integrationtest
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       - integrationtest:
           name: polly
           testmodule: aws-android-sdk-polly-test
@@ -1847,6 +1868,7 @@ workflows:
             - sdb
             - s3
             - rekognition
+            - pinpoint
             - polly
             # - machinelearning
             - lambda
