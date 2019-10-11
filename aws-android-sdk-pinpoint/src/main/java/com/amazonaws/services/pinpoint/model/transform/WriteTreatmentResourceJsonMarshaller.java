@@ -43,6 +43,13 @@ class WriteTreatmentResourceJsonMarshaller {
             jsonWriter.name("SizePercent");
             jsonWriter.value(sizePercent);
         }
+        if (writeTreatmentResource.getTemplateConfiguration() != null) {
+            TemplateConfiguration templateConfiguration = writeTreatmentResource
+                    .getTemplateConfiguration();
+            jsonWriter.name("TemplateConfiguration");
+            TemplateConfigurationJsonMarshaller.getInstance().marshall(templateConfiguration,
+                    jsonWriter);
+        }
         if (writeTreatmentResource.getTreatmentDescription() != null) {
             String treatmentDescription = writeTreatmentResource.getTreatmentDescription();
             jsonWriter.name("TreatmentDescription");

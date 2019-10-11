@@ -18,18 +18,38 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * ADM Message.
+ * <p>
+ * Specifies the settings for a one-time message that's sent directly to an
+ * endpoint through the ADM (Amazon Device Messaging) channel.
+ * </p>
  */
 public class ADMMessage implements Serializable {
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
@@ -37,116 +57,184 @@ public class ADMMessage implements Serializable {
     private String action;
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      */
     private String body;
 
     /**
-     * Optional. Arbitrary string used to indicate multiple messages are
-     * logically the same and that ADM is allowed to drop previously enqueued
-     * messages in favor of this one.
+     * <p>
+     * An arbitrary string that indicates that multiple messages are logically
+     * the same and that Amazon Device Messaging (ADM) can drop previously
+     * enqueued messages in favor of this message.
+     * </p>
      */
     private String consolidationKey;
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      */
     private java.util.Map<String, String> data;
 
     /**
-     * Optional. Number of seconds ADM should retain the message if the device
-     * is offline
+     * <p>
+     * The amount of time, in seconds, that ADM should store the message if the
+     * recipient's device is offline. Amazon Pinpoint specifies this value in
+     * the expiresAfter parameter when it sends the notification message to ADM.
+     * </p>
      */
     private String expiresAfter;
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      */
     private String iconReference;
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      */
     private String imageIconUrl;
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      */
     private String imageUrl;
 
     /**
-     * Optional. Base-64-encoded MD5 checksum of the data parameter. Used to
-     * verify data integrity
+     * <p>
+     * The base64-encoded, MD5 checksum of the value specified by the Data
+     * property. ADM uses the MD5 value to verify the integrity of the data.
+     * </p>
      */
     private String mD5;
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      */
     private String rawContent;
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      */
     private Boolean silentPush;
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      */
     private String smallImageIconUrl;
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      */
     private String sound;
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      */
     private String title;
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      */
     private String url;
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @return The action that occurs if the user taps a push notification
-     *         delivered by the campaign: OPEN_APP - Your app launches, or it
-     *         becomes the foreground app if it has been sent to the background.
-     *         This is the default action. DEEP_LINK - Uses deep linking
-     *         features in iOS and Android to open your app and display a
-     *         designated user interface within the app. URL - The default
-     *         mobile browser on the user's device launches and opens a web page
-     *         at the URL you specify. Possible values include: OPEN_APP |
-     *         DEEP_LINK | URL
+     * @return <p>
+     *         The action to occur if the recipient taps the push notification.
+     *         Valid values are:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         OPEN_APP - Your app opens or it becomes the foreground app if it
+     *         was sent to the background. This is the default action.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         DEEP_LINK - Your app opens and displays a designated user
+     *         interface in the app. This action uses the deep-linking features
+     *         of the Android platform.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         URL - The default mobile browser on the recipient's device opens
+     *         and loads the web page at a URL that you specify.
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see Action
      */
     public String getAction() {
@@ -154,27 +242,60 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see Action
      */
     public void setAction(String action) {
@@ -182,14 +303,31 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -197,15 +335,31 @@ public class ADMMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -216,27 +370,60 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see Action
      */
     public void setAction(Action action) {
@@ -244,14 +431,31 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -259,15 +463,31 @@ public class ADMMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -278,30 +498,42 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      *
-     * @return The message body of the notification.
+     * @return <p>
+     *         The body of the notification message.
+     *         </p>
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      *
-     * @param body The message body of the notification.
+     * @param body <p>
+     *            The body of the notification message.
+     *            </p>
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body The message body of the notification.
+     * @param body <p>
+     *            The body of the notification message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -311,44 +543,54 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Optional. Arbitrary string used to indicate multiple messages are
-     * logically the same and that ADM is allowed to drop previously enqueued
-     * messages in favor of this one.
+     * <p>
+     * An arbitrary string that indicates that multiple messages are logically
+     * the same and that Amazon Device Messaging (ADM) can drop previously
+     * enqueued messages in favor of this message.
+     * </p>
      *
-     * @return Optional. Arbitrary string used to indicate multiple messages are
-     *         logically the same and that ADM is allowed to drop previously
-     *         enqueued messages in favor of this one.
+     * @return <p>
+     *         An arbitrary string that indicates that multiple messages are
+     *         logically the same and that Amazon Device Messaging (ADM) can
+     *         drop previously enqueued messages in favor of this message.
+     *         </p>
      */
     public String getConsolidationKey() {
         return consolidationKey;
     }
 
     /**
-     * Optional. Arbitrary string used to indicate multiple messages are
-     * logically the same and that ADM is allowed to drop previously enqueued
-     * messages in favor of this one.
+     * <p>
+     * An arbitrary string that indicates that multiple messages are logically
+     * the same and that Amazon Device Messaging (ADM) can drop previously
+     * enqueued messages in favor of this message.
+     * </p>
      *
-     * @param consolidationKey Optional. Arbitrary string used to indicate
-     *            multiple messages are logically the same and that ADM is
-     *            allowed to drop previously enqueued messages in favor of this
-     *            one.
+     * @param consolidationKey <p>
+     *            An arbitrary string that indicates that multiple messages are
+     *            logically the same and that Amazon Device Messaging (ADM) can
+     *            drop previously enqueued messages in favor of this message.
+     *            </p>
      */
     public void setConsolidationKey(String consolidationKey) {
         this.consolidationKey = consolidationKey;
     }
 
     /**
-     * Optional. Arbitrary string used to indicate multiple messages are
-     * logically the same and that ADM is allowed to drop previously enqueued
-     * messages in favor of this one.
+     * <p>
+     * An arbitrary string that indicates that multiple messages are logically
+     * the same and that Amazon Device Messaging (ADM) can drop previously
+     * enqueued messages in favor of this message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param consolidationKey Optional. Arbitrary string used to indicate
-     *            multiple messages are logically the same and that ADM is
-     *            allowed to drop previously enqueued messages in favor of this
-     *            one.
+     * @param consolidationKey <p>
+     *            An arbitrary string that indicates that multiple messages are
+     *            logically the same and that Amazon Device Messaging (ADM) can
+     *            drop previously enqueued messages in favor of this message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,36 +600,56 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      *
-     * @return The data payload used for a silent push. This payload is added to
-     *         the notifications' data.pinpoint.jsonBody' object
+     * @return <p>
+     *         The JSON data payload to use for the push notification, if the
+     *         notification is a silent push notification. This payload is added
+     *         to the data.pinpoint.jsonBody object of the notification.
+     *         </p>
      */
     public java.util.Map<String, String> getData() {
         return data;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      *
-     * @param data The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param data <p>
+     *            The JSON data payload to use for the push notification, if the
+     *            notification is a silent push notification. This payload is
+     *            added to the data.pinpoint.jsonBody object of the
+     *            notification.
+     *            </p>
      */
     public void setData(java.util.Map<String, String> data) {
         this.data = data;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param data The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param data <p>
+     *            The JSON data payload to use for the push notification, if the
+     *            notification is a silent push notification. This payload is
+     *            added to the data.pinpoint.jsonBody object of the
+     *            notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -397,8 +659,11 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Data parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -431,36 +696,57 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Optional. Number of seconds ADM should retain the message if the device
-     * is offline
+     * <p>
+     * The amount of time, in seconds, that ADM should store the message if the
+     * recipient's device is offline. Amazon Pinpoint specifies this value in
+     * the expiresAfter parameter when it sends the notification message to ADM.
+     * </p>
      *
-     * @return Optional. Number of seconds ADM should retain the message if the
-     *         device is offline
+     * @return <p>
+     *         The amount of time, in seconds, that ADM should store the message
+     *         if the recipient's device is offline. Amazon Pinpoint specifies
+     *         this value in the expiresAfter parameter when it sends the
+     *         notification message to ADM.
+     *         </p>
      */
     public String getExpiresAfter() {
         return expiresAfter;
     }
 
     /**
-     * Optional. Number of seconds ADM should retain the message if the device
-     * is offline
+     * <p>
+     * The amount of time, in seconds, that ADM should store the message if the
+     * recipient's device is offline. Amazon Pinpoint specifies this value in
+     * the expiresAfter parameter when it sends the notification message to ADM.
+     * </p>
      *
-     * @param expiresAfter Optional. Number of seconds ADM should retain the
-     *            message if the device is offline
+     * @param expiresAfter <p>
+     *            The amount of time, in seconds, that ADM should store the
+     *            message if the recipient's device is offline. Amazon Pinpoint
+     *            specifies this value in the expiresAfter parameter when it
+     *            sends the notification message to ADM.
+     *            </p>
      */
     public void setExpiresAfter(String expiresAfter) {
         this.expiresAfter = expiresAfter;
     }
 
     /**
-     * Optional. Number of seconds ADM should retain the message if the device
-     * is offline
+     * <p>
+     * The amount of time, in seconds, that ADM should store the message if the
+     * recipient's device is offline. Amazon Pinpoint specifies this value in
+     * the expiresAfter parameter when it sends the notification message to ADM.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param expiresAfter Optional. Number of seconds ADM should retain the
-     *            message if the device is offline
+     * @param expiresAfter <p>
+     *            The amount of time, in seconds, that ADM should store the
+     *            message if the recipient's device is offline. Amazon Pinpoint
+     *            specifies this value in the expiresAfter parameter when it
+     *            sends the notification message to ADM.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -470,32 +756,42 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      *
-     * @return The icon image name of the asset saved in your application.
+     * @return <p>
+     *         The icon image name of the asset saved in your app.
+     *         </p>
      */
     public String getIconReference() {
         return iconReference;
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      *
-     * @param iconReference The icon image name of the asset saved in your
-     *            application.
+     * @param iconReference <p>
+     *            The icon image name of the asset saved in your app.
+     *            </p>
      */
     public void setIconReference(String iconReference) {
         this.iconReference = iconReference;
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param iconReference The icon image name of the asset saved in your
-     *            application.
+     * @param iconReference <p>
+     *            The icon image name of the asset saved in your app.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -505,36 +801,48 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      *
-     * @return The URL that points to an image used as the large icon to the
-     *         notification content view.
+     * @return <p>
+     *         The URL of the large icon image to display in the content view of
+     *         the push notification.
+     *         </p>
      */
     public String getImageIconUrl() {
         return imageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      *
-     * @param imageIconUrl The URL that points to an image used as the large
-     *            icon to the notification content view.
+     * @param imageIconUrl <p>
+     *            The URL of the large icon image to display in the content view
+     *            of the push notification.
+     *            </p>
      */
     public void setImageIconUrl(String imageIconUrl) {
         this.imageIconUrl = imageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param imageIconUrl The URL that points to an image used as the large
-     *            icon to the notification content view.
+     * @param imageIconUrl <p>
+     *            The URL of the large icon image to display in the content view
+     *            of the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -544,32 +852,42 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      *
-     * @return The URL that points to an image used in the push notification.
+     * @return <p>
+     *         The URL of an image to display in the push notification.
+     *         </p>
      */
     public String getImageUrl() {
         return imageUrl;
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      *
-     * @param imageUrl The URL that points to an image used in the push
-     *            notification.
+     * @param imageUrl <p>
+     *            The URL of an image to display in the push notification.
+     *            </p>
      */
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param imageUrl The URL that points to an image used in the push
-     *            notification.
+     * @param imageUrl <p>
+     *            The URL of an image to display in the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -579,36 +897,51 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Optional. Base-64-encoded MD5 checksum of the data parameter. Used to
-     * verify data integrity
+     * <p>
+     * The base64-encoded, MD5 checksum of the value specified by the Data
+     * property. ADM uses the MD5 value to verify the integrity of the data.
+     * </p>
      *
-     * @return Optional. Base-64-encoded MD5 checksum of the data parameter.
-     *         Used to verify data integrity
+     * @return <p>
+     *         The base64-encoded, MD5 checksum of the value specified by the
+     *         Data property. ADM uses the MD5 value to verify the integrity of
+     *         the data.
+     *         </p>
      */
     public String getMD5() {
         return mD5;
     }
 
     /**
-     * Optional. Base-64-encoded MD5 checksum of the data parameter. Used to
-     * verify data integrity
+     * <p>
+     * The base64-encoded, MD5 checksum of the value specified by the Data
+     * property. ADM uses the MD5 value to verify the integrity of the data.
+     * </p>
      *
-     * @param mD5 Optional. Base-64-encoded MD5 checksum of the data parameter.
-     *            Used to verify data integrity
+     * @param mD5 <p>
+     *            The base64-encoded, MD5 checksum of the value specified by the
+     *            Data property. ADM uses the MD5 value to verify the integrity
+     *            of the data.
+     *            </p>
      */
     public void setMD5(String mD5) {
         this.mD5 = mD5;
     }
 
     /**
-     * Optional. Base-64-encoded MD5 checksum of the data parameter. Used to
-     * verify data integrity
+     * <p>
+     * The base64-encoded, MD5 checksum of the value specified by the Data
+     * property. ADM uses the MD5 value to verify the integrity of the data.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param mD5 Optional. Base-64-encoded MD5 checksum of the data parameter.
-     *            Used to verify data integrity
+     * @param mD5 <p>
+     *            The base64-encoded, MD5 checksum of the value specified by the
+     *            Data property. ADM uses the MD5 value to verify the integrity
+     *            of the data.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -618,36 +951,48 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      *
-     * @return The Raw JSON formatted string to be used as the payload. This
-     *         value overrides the message.
+     * @return <p>
+     *         The raw, JSON-formatted string to use as the payload for the
+     *         notification message. This value overrides the message.
+     *         </p>
      */
     public String getRawContent() {
         return rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            notification message. This value overrides the message.
+     *            </p>
      */
     public void setRawContent(String rawContent) {
         this.rawContent = rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            notification message. This value overrides the message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -657,51 +1002,83 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return <p>
+     *         Specifies whether the notification is a silent push notification,
+     *         which is a push notification that doesn't display on a
+     *         recipient's device. Silent push notifications can be used for
+     *         cases such as updating an app's configuration or supporting phone
+     *         home functionality.
+     *         </p>
      */
     public Boolean isSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return <p>
+     *         Specifies whether the notification is a silent push notification,
+     *         which is a push notification that doesn't display on a
+     *         recipient's device. Silent push notifications can be used for
+     *         cases such as updating an app's configuration or supporting phone
+     *         home functionality.
+     *         </p>
      */
     public Boolean getSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush <p>
+     *            Specifies whether the notification is a silent push
+     *            notification, which is a push notification that doesn't
+     *            display on a recipient's device. Silent push notifications can
+     *            be used for cases such as updating an app's configuration or
+     *            supporting phone home functionality.
+     *            </p>
      */
     public void setSilentPush(Boolean silentPush) {
         this.silentPush = silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush <p>
+     *            Specifies whether the notification is a silent push
+     *            notification, which is a push notification that doesn't
+     *            display on a recipient's device. Silent push notifications can
+     *            be used for cases such as updating an app's configuration or
+     *            supporting phone home functionality.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -711,42 +1088,48 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      *
-     * @return The URL that points to an image used as the small icon for the
-     *         notification which will be used to represent the notification in
-     *         the status bar and content view
+     * @return <p>
+     *         The URL of the small icon image to display in the status bar and
+     *         the content view of the push notification.
+     *         </p>
      */
     public String getSmallImageIconUrl() {
         return smallImageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      *
-     * @param smallImageIconUrl The URL that points to an image used as the
-     *            small icon for the notification which will be used to
-     *            represent the notification in the status bar and content view
+     * @param smallImageIconUrl <p>
+     *            The URL of the small icon image to display in the status bar
+     *            and the content view of the push notification.
+     *            </p>
      */
     public void setSmallImageIconUrl(String smallImageIconUrl) {
         this.smallImageIconUrl = smallImageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param smallImageIconUrl The URL that points to an image used as the
-     *            small icon for the notification which will be used to
-     *            represent the notification in the status bar and content view
+     * @param smallImageIconUrl <p>
+     *            The URL of the small icon image to display in the status bar
+     *            and the content view of the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -756,45 +1139,60 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      *
-     * @return Indicates a sound to play when the device receives the
-     *         notification. Supports default, or the filename of a sound
-     *         resource bundled in the app. Android sound files must reside in
-     *         /res/raw/
+     * @return <p>
+     *         The sound to play when the recipient receives the push
+     *         notification. You can use the default stream or specify the file
+     *         name of a sound resource that's bundled in your app. On an
+     *         Android platform, the sound file must reside in /res/raw/.
+     *         </p>
      */
     public String getSound() {
         return sound;
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      *
-     * @param sound Indicates a sound to play when the device receives the
-     *            notification. Supports default, or the filename of a sound
-     *            resource bundled in the app. Android sound files must reside
-     *            in /res/raw/
+     * @param sound <p>
+     *            The sound to play when the recipient receives the push
+     *            notification. You can use the default stream or specify the
+     *            file name of a sound resource that's bundled in your app. On
+     *            an Android platform, the sound file must reside in /res/raw/.
+     *            </p>
      */
     public void setSound(String sound) {
         this.sound = sound;
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sound Indicates a sound to play when the device receives the
-     *            notification. Supports default, or the filename of a sound
-     *            resource bundled in the app. Android sound files must reside
-     *            in /res/raw/
+     * @param sound <p>
+     *            The sound to play when the recipient receives the push
+     *            notification. You can use the default stream or specify the
+     *            file name of a sound resource that's bundled in your app. On
+     *            an Android platform, the sound file must reside in /res/raw/.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -804,36 +1202,51 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @return Default message substitutions. Can be overridden by individual
-     *         address substitutions.
+     * @return <p>
+     *         The default message variables to use in the notification message.
+     *         You can override the default variables with individual address
+     *         variables.
+     *         </p>
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the notification
+     *            message. You can override the default variables with
+     *            individual address variables.
+     *            </p>
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the notification
+     *            message. You can override the default variables with
+     *            individual address variables.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -843,8 +1256,10 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -879,33 +1294,48 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      *
-     * @return The message title that displays above the message on the user's
-     *         device.
+     * @return <p>
+     *         The title to display above the notification message on the
+     *         recipient's device.
+     *         </p>
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      *
-     * @param title The message title that displays above the message on the
-     *            user's device.
+     * @param title <p>
+     *            The title to display above the notification message on the
+     *            recipient's device.
+     *            </p>
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param title The message title that displays above the message on the
-     *            user's device.
+     * @param title <p>
+     *            The title to display above the notification message on the
+     *            recipient's device.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -915,36 +1345,51 @@ public class ADMMessage implements Serializable {
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      *
-     * @return The URL to open in the user's mobile browser. Used if the value
-     *         for Action is URL.
+     * @return <p>
+     *         The URL to open in the recipient's default mobile browser, if a
+     *         recipient taps the push notification and the value of the Action
+     *         property is URL.
+     *         </p>
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      *
-     * @param url The URL to open in the user's mobile browser. Used if the
-     *            value for Action is URL.
+     * @param url <p>
+     *            The URL to open in the recipient's default mobile browser, if
+     *            a recipient taps the push notification and the value of the
+     *            Action property is URL.
+     *            </p>
      */
     public void setUrl(String url) {
         this.url = url;
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param url The URL to open in the user's mobile browser. Used if the
-     *            value for Action is URL.
+     * @param url <p>
+     *            The URL to open in the recipient's default mobile browser, if
+     *            a recipient taps the push notification and the value of the
+     *            Action property is URL.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

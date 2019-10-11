@@ -46,6 +46,11 @@ class WriteTreatmentResourceJsonUnmarshaller implements
             } else if (name.equals("SizePercent")) {
                 writeTreatmentResource.setSizePercent(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                writeTreatmentResource
+                        .setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 writeTreatmentResource.setTreatmentDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

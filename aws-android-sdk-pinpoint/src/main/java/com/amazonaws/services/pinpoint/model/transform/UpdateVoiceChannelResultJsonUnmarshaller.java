@@ -29,6 +29,20 @@ public class UpdateVoiceChannelResultJsonUnmarshaller implements
     public UpdateVoiceChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateVoiceChannelResult updateVoiceChannelResult = new UpdateVoiceChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("VoiceChannelResponse")) {
+                updateVoiceChannelResult
+                        .setVoiceChannelResponse(VoiceChannelResponseJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return updateVoiceChannelResult;
     }
 

@@ -29,6 +29,20 @@ public class DeleteBaiduChannelResultJsonUnmarshaller implements
     public DeleteBaiduChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteBaiduChannelResult deleteBaiduChannelResult = new DeleteBaiduChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("BaiduChannelResponse")) {
+                deleteBaiduChannelResult
+                        .setBaiduChannelResponse(BaiduChannelResponseJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteBaiduChannelResult;
     }
 

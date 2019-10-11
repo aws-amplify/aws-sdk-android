@@ -29,6 +29,20 @@ public class DeleteVoiceChannelResultJsonUnmarshaller implements
     public DeleteVoiceChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteVoiceChannelResult deleteVoiceChannelResult = new DeleteVoiceChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("VoiceChannelResponse")) {
+                deleteVoiceChannelResult
+                        .setVoiceChannelResponse(VoiceChannelResponseJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteVoiceChannelResult;
     }
 

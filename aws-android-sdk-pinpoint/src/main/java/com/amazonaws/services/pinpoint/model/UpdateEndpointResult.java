@@ -19,35 +19,49 @@ import java.io.Serializable;
 
 public class UpdateEndpointResult implements Serializable {
     /**
-     * Simple message object.
+     * <p>
+     * Provides information about an API request or response.
+     * </p>
      */
     private MessageBody messageBody;
 
     /**
-     * Simple message object.
+     * <p>
+     * Provides information about an API request or response.
+     * </p>
      *
-     * @return Simple message object.
+     * @return <p>
+     *         Provides information about an API request or response.
+     *         </p>
      */
     public MessageBody getMessageBody() {
         return messageBody;
     }
 
     /**
-     * Simple message object.
+     * <p>
+     * Provides information about an API request or response.
+     * </p>
      *
-     * @param messageBody Simple message object.
+     * @param messageBody <p>
+     *            Provides information about an API request or response.
+     *            </p>
      */
     public void setMessageBody(MessageBody messageBody) {
         this.messageBody = messageBody;
     }
 
     /**
-     * Simple message object.
+     * <p>
+     * Provides information about an API request or response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageBody Simple message object.
+     * @param messageBody <p>
+     *            Provides information about an API request or response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -20,45 +20,73 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Used to update the settings for an app.
+ * <p>
+ * Updates the settings for an application.
+ * </p>
  */
 public class UpdateApplicationSettingsRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Creating application setting request
+     * <p>
+     * Specifies the default settings for an application.
+     * </p>
      */
     private WriteApplicationSettingsRequest writeApplicationSettingsRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -68,19 +96,26 @@ public class UpdateApplicationSettingsRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Creating application setting request
+     * <p>
+     * Specifies the default settings for an application.
+     * </p>
      *
-     * @return Creating application setting request
+     * @return <p>
+     *         Specifies the default settings for an application.
+     *         </p>
      */
     public WriteApplicationSettingsRequest getWriteApplicationSettingsRequest() {
         return writeApplicationSettingsRequest;
     }
 
     /**
-     * Creating application setting request
+     * <p>
+     * Specifies the default settings for an application.
+     * </p>
      *
-     * @param writeApplicationSettingsRequest Creating application setting
-     *            request
+     * @param writeApplicationSettingsRequest <p>
+     *            Specifies the default settings for an application.
+     *            </p>
      */
     public void setWriteApplicationSettingsRequest(
             WriteApplicationSettingsRequest writeApplicationSettingsRequest) {
@@ -88,13 +123,16 @@ public class UpdateApplicationSettingsRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Creating application setting request
+     * <p>
+     * Specifies the default settings for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeApplicationSettingsRequest Creating application setting
-     *            request
+     * @param writeApplicationSettingsRequest <p>
+     *            Specifies the default settings for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

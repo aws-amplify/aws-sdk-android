@@ -18,25 +18,39 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Import job request.
+ * <p>
+ * Specifies the settings for a job that imports endpoint definitions from an
+ * Amazon Simple Storage Service (Amazon S3) bucket.
+ * </p>
  */
 public class ImportJobRequest implements Serializable {
     /**
-     * Sets whether the endpoints create a segment when they are imported.
+     * <p>
+     * Specifies whether to create a segment that contains the endpoints, when
+     * the endpoint definitions are imported.
+     * </p>
      */
     private Boolean defineSegment;
 
     /**
-     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
-     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
-     * role. This requirement is removed, and external IDs are not recommended
-     * for IAM roles assumed by Amazon Pinpoint.
+     * <p>
+     * (Deprecated) Your AWS account ID, which you assigned to an external ID
+     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
+     * assume an IAM role when importing endpoint definitions, but we removed
+     * this requirement. We don't recommend use of external IDs for IAM roles
+     * that are assumed by Amazon Pinpoint.
+     * </p>
      */
     private String externalId;
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
@@ -44,75 +58,114 @@ public class ImportJobRequest implements Serializable {
     private String format;
 
     /**
-     * Sets whether the endpoints are registered with Amazon Pinpoint when they
-     * are imported.
+     * <p>
+     * Specifies whether to register the endpoints with Amazon Pinpoint, when
+     * the endpoint definitions are imported.
+     * </p>
      */
     private Boolean registerEndpoints;
 
     /**
-     * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
-     * access to the Amazon S3 location that contains the endpoints to import.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3
+     * location to import endpoint definitions from.
+     * </p>
      */
     private String roleArn;
 
     /**
-     * The URL of the S3 bucket that contains the segment information to import.
-     * The location can be a folder or a single file. The URL should use the
-     * following format: s3://bucket-name/folder-name/file-name Amazon Pinpoint
-     * imports endpoints from this location and any subfolders it contains.
+     * <p>
+     * The URL of the Amazon Simple Storage Service (Amazon S3) bucket that
+     * contains the endpoint definitions to import. This location can be a
+     * folder or a single file. If the location is a folder, Amazon Pinpoint
+     * imports endpoint definitions from the files in this location, including
+     * any subfolders that the folder contains.
+     * </p>
+     * <p>
+     * The URL should be in the following format:
+     * s3://<replaceable>bucket-name</
+     * replaceable>/<replaceable>folder-name</replaceable
+     * >/<replaceable>file-name</replaceable>. The location can end with the key
+     * for an individual object or a prefix that qualifies multiple objects.
+     * </p>
      */
     private String s3Url;
 
     /**
-     * The ID of the segment to update if the import job is meant to update an
-     * existing segment.
+     * <p>
+     * The identifier for the segment to update or add the imported endpoint
+     * definitions to, if the import job is meant to update an existing segment.
+     * </p>
      */
     private String segmentId;
 
     /**
-     * A custom name for the segment created by the import job. Use if
-     * DefineSegment is true.
+     * <p>
+     * The custom name for the segment that's created by the import job, if the
+     * value of the DefineSegment property is true.
+     * </p>
      */
     private String segmentName;
 
     /**
-     * Sets whether the endpoints create a segment when they are imported.
+     * <p>
+     * Specifies whether to create a segment that contains the endpoints, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @return Sets whether the endpoints create a segment when they are
-     *         imported.
+     * @return <p>
+     *         Specifies whether to create a segment that contains the
+     *         endpoints, when the endpoint definitions are imported.
+     *         </p>
      */
     public Boolean isDefineSegment() {
         return defineSegment;
     }
 
     /**
-     * Sets whether the endpoints create a segment when they are imported.
+     * <p>
+     * Specifies whether to create a segment that contains the endpoints, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @return Sets whether the endpoints create a segment when they are
-     *         imported.
+     * @return <p>
+     *         Specifies whether to create a segment that contains the
+     *         endpoints, when the endpoint definitions are imported.
+     *         </p>
      */
     public Boolean getDefineSegment() {
         return defineSegment;
     }
 
     /**
-     * Sets whether the endpoints create a segment when they are imported.
+     * <p>
+     * Specifies whether to create a segment that contains the endpoints, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @param defineSegment Sets whether the endpoints create a segment when
-     *            they are imported.
+     * @param defineSegment <p>
+     *            Specifies whether to create a segment that contains the
+     *            endpoints, when the endpoint definitions are imported.
+     *            </p>
      */
     public void setDefineSegment(Boolean defineSegment) {
         this.defineSegment = defineSegment;
     }
 
     /**
-     * Sets whether the endpoints create a segment when they are imported.
+     * <p>
+     * Specifies whether to create a segment that contains the endpoints, when
+     * the endpoint definitions are imported.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defineSegment Sets whether the endpoints create a segment when
-     *            they are imported.
+     * @param defineSegment <p>
+     *            Specifies whether to create a segment that contains the
+     *            endpoints, when the endpoint definitions are imported.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -122,50 +175,69 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
-     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
-     * role. This requirement is removed, and external IDs are not recommended
-     * for IAM roles assumed by Amazon Pinpoint.
+     * <p>
+     * (Deprecated) Your AWS account ID, which you assigned to an external ID
+     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
+     * assume an IAM role when importing endpoint definitions, but we removed
+     * this requirement. We don't recommend use of external IDs for IAM roles
+     * that are assumed by Amazon Pinpoint.
+     * </p>
      *
-     * @return (Deprecated) Your AWS account ID, which you assigned to the
-     *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
-     *         assume an IAM role. This requirement is removed, and external IDs
-     *         are not recommended for IAM roles assumed by Amazon Pinpoint.
+     * @return <p>
+     *         (Deprecated) Your AWS account ID, which you assigned to an
+     *         external ID key in an IAM trust policy. Amazon Pinpoint
+     *         previously used this value to assume an IAM role when importing
+     *         endpoint definitions, but we removed this requirement. We don't
+     *         recommend use of external IDs for IAM roles that are assumed by
+     *         Amazon Pinpoint.
+     *         </p>
      */
     public String getExternalId() {
         return externalId;
     }
 
     /**
-     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
-     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
-     * role. This requirement is removed, and external IDs are not recommended
-     * for IAM roles assumed by Amazon Pinpoint.
+     * <p>
+     * (Deprecated) Your AWS account ID, which you assigned to an external ID
+     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
+     * assume an IAM role when importing endpoint definitions, but we removed
+     * this requirement. We don't recommend use of external IDs for IAM roles
+     * that are assumed by Amazon Pinpoint.
+     * </p>
      *
-     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
-     *            the ExternalID key in an IAM trust policy. Used by Amazon
-     *            Pinpoint to assume an IAM role. This requirement is removed,
-     *            and external IDs are not recommended for IAM roles assumed by
-     *            Amazon Pinpoint.
+     * @param externalId <p>
+     *            (Deprecated) Your AWS account ID, which you assigned to an
+     *            external ID key in an IAM trust policy. Amazon Pinpoint
+     *            previously used this value to assume an IAM role when
+     *            importing endpoint definitions, but we removed this
+     *            requirement. We don't recommend use of external IDs for IAM
+     *            roles that are assumed by Amazon Pinpoint.
+     *            </p>
      */
     public void setExternalId(String externalId) {
         this.externalId = externalId;
     }
 
     /**
-     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
-     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
-     * role. This requirement is removed, and external IDs are not recommended
-     * for IAM roles assumed by Amazon Pinpoint.
+     * <p>
+     * (Deprecated) Your AWS account ID, which you assigned to an external ID
+     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
+     * assume an IAM role when importing endpoint definitions, but we removed
+     * this requirement. We don't recommend use of external IDs for IAM roles
+     * that are assumed by Amazon Pinpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
-     *            the ExternalID key in an IAM trust policy. Used by Amazon
-     *            Pinpoint to assume an IAM role. This requirement is removed,
-     *            and external IDs are not recommended for IAM roles assumed by
-     *            Amazon Pinpoint.
+     * @param externalId <p>
+     *            (Deprecated) Your AWS account ID, which you assigned to an
+     *            external ID key in an IAM trust policy. Amazon Pinpoint
+     *            previously used this value to assume an IAM role when
+     *            importing endpoint definitions, but we removed this
+     *            requirement. We don't recommend use of external IDs for IAM
+     *            roles that are assumed by Amazon Pinpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -175,14 +247,25 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
      *
-     * @return The format of the files that contain the endpoint definitions.
-     *         Valid values: CSV, JSON
+     * @return <p>
+     *         The format of the files that contain the endpoint definitions to
+     *         import. Valid values are: CSV, for comma-separated values format;
+     *         and, JSON, for newline-delimited JSON format. If the Amazon S3
+     *         location stores multiple files that use different formats, Amazon
+     *         Pinpoint imports data only from the files that use the specified
+     *         format.
+     *         </p>
      * @see Format
      */
     public String getFormat() {
@@ -190,14 +273,25 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
      *
-     * @param format The format of the files that contain the endpoint
-     *            definitions. Valid values: CSV, JSON
+     * @param format <p>
+     *            The format of the files that contain the endpoint definitions
+     *            to import. Valid values are: CSV, for comma-separated values
+     *            format; and, JSON, for newline-delimited JSON format. If the
+     *            Amazon S3 location stores multiple files that use different
+     *            formats, Amazon Pinpoint imports data only from the files that
+     *            use the specified format.
+     *            </p>
      * @see Format
      */
     public void setFormat(String format) {
@@ -205,8 +299,13 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -214,8 +313,14 @@ public class ImportJobRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
      *
-     * @param format The format of the files that contain the endpoint
-     *            definitions. Valid values: CSV, JSON
+     * @param format <p>
+     *            The format of the files that contain the endpoint definitions
+     *            to import. Valid values are: CSV, for comma-separated values
+     *            format; and, JSON, for newline-delimited JSON format. If the
+     *            Amazon S3 location stores multiple files that use different
+     *            formats, Amazon Pinpoint imports data only from the files that
+     *            use the specified format.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Format
@@ -226,14 +331,25 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
      *
-     * @param format The format of the files that contain the endpoint
-     *            definitions. Valid values: CSV, JSON
+     * @param format <p>
+     *            The format of the files that contain the endpoint definitions
+     *            to import. Valid values are: CSV, for comma-separated values
+     *            format; and, JSON, for newline-delimited JSON format. If the
+     *            Amazon S3 location stores multiple files that use different
+     *            formats, Amazon Pinpoint imports data only from the files that
+     *            use the specified format.
+     *            </p>
      * @see Format
      */
     public void setFormat(Format format) {
@@ -241,8 +357,13 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The format of the files that contain the endpoint definitions. Valid
-     * values: CSV, JSON
+     * <p>
+     * The format of the files that contain the endpoint definitions to import.
+     * Valid values are: CSV, for comma-separated values format; and, JSON, for
+     * newline-delimited JSON format. If the Amazon S3 location stores multiple
+     * files that use different formats, Amazon Pinpoint imports data only from
+     * the files that use the specified format.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -250,8 +371,14 @@ public class ImportJobRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CSV, JSON
      *
-     * @param format The format of the files that contain the endpoint
-     *            definitions. Valid values: CSV, JSON
+     * @param format <p>
+     *            The format of the files that contain the endpoint definitions
+     *            to import. Valid values are: CSV, for comma-separated values
+     *            format; and, JSON, for newline-delimited JSON format. If the
+     *            Amazon S3 location stores multiple files that use different
+     *            formats, Amazon Pinpoint imports data only from the files that
+     *            use the specified format.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Format
@@ -262,47 +389,63 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * Sets whether the endpoints are registered with Amazon Pinpoint when they
-     * are imported.
+     * <p>
+     * Specifies whether to register the endpoints with Amazon Pinpoint, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @return Sets whether the endpoints are registered with Amazon Pinpoint
-     *         when they are imported.
+     * @return <p>
+     *         Specifies whether to register the endpoints with Amazon Pinpoint,
+     *         when the endpoint definitions are imported.
+     *         </p>
      */
     public Boolean isRegisterEndpoints() {
         return registerEndpoints;
     }
 
     /**
-     * Sets whether the endpoints are registered with Amazon Pinpoint when they
-     * are imported.
+     * <p>
+     * Specifies whether to register the endpoints with Amazon Pinpoint, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @return Sets whether the endpoints are registered with Amazon Pinpoint
-     *         when they are imported.
+     * @return <p>
+     *         Specifies whether to register the endpoints with Amazon Pinpoint,
+     *         when the endpoint definitions are imported.
+     *         </p>
      */
     public Boolean getRegisterEndpoints() {
         return registerEndpoints;
     }
 
     /**
-     * Sets whether the endpoints are registered with Amazon Pinpoint when they
-     * are imported.
+     * <p>
+     * Specifies whether to register the endpoints with Amazon Pinpoint, when
+     * the endpoint definitions are imported.
+     * </p>
      *
-     * @param registerEndpoints Sets whether the endpoints are registered with
-     *            Amazon Pinpoint when they are imported.
+     * @param registerEndpoints <p>
+     *            Specifies whether to register the endpoints with Amazon
+     *            Pinpoint, when the endpoint definitions are imported.
+     *            </p>
      */
     public void setRegisterEndpoints(Boolean registerEndpoints) {
         this.registerEndpoints = registerEndpoints;
     }
 
     /**
-     * Sets whether the endpoints are registered with Amazon Pinpoint when they
-     * are imported.
+     * <p>
+     * Specifies whether to register the endpoints with Amazon Pinpoint, when
+     * the endpoint definitions are imported.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param registerEndpoints Sets whether the endpoints are registered with
-     *            Amazon Pinpoint when they are imported.
+     * @param registerEndpoints <p>
+     *            Specifies whether to register the endpoints with Amazon
+     *            Pinpoint, when the endpoint definitions are imported.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -312,39 +455,56 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
-     * access to the Amazon S3 location that contains the endpoints to import.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3
+     * location to import endpoint definitions from.
+     * </p>
      *
-     * @return The Amazon Resource Name (ARN) of an IAM role that grants Amazon
-     *         Pinpoint access to the Amazon S3 location that contains the
-     *         endpoints to import.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *         Management (IAM) role that authorizes Amazon Pinpoint to access
+     *         the Amazon S3 location to import endpoint definitions from.
+     *         </p>
      */
     public String getRoleArn() {
         return roleArn;
     }
 
     /**
-     * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
-     * access to the Amazon S3 location that contains the endpoints to import.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3
+     * location to import endpoint definitions from.
+     * </p>
      *
-     * @param roleArn The Amazon Resource Name (ARN) of an IAM role that grants
-     *            Amazon Pinpoint access to the Amazon S3 location that contains
-     *            the endpoints to import.
+     * @param roleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *            Management (IAM) role that authorizes Amazon Pinpoint to
+     *            access the Amazon S3 location to import endpoint definitions
+     *            from.
+     *            </p>
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
 
     /**
-     * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
-     * access to the Amazon S3 location that contains the endpoints to import.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3
+     * location to import endpoint definitions from.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param roleArn The Amazon Resource Name (ARN) of an IAM role that grants
-     *            Amazon Pinpoint access to the Amazon S3 location that contains
-     *            the endpoints to import.
+     * @param roleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *            Management (IAM) role that authorizes Amazon Pinpoint to
+     *            access the Amazon S3 location to import endpoint definitions
+     *            from.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -354,51 +514,113 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The URL of the S3 bucket that contains the segment information to import.
-     * The location can be a folder or a single file. The URL should use the
-     * following format: s3://bucket-name/folder-name/file-name Amazon Pinpoint
-     * imports endpoints from this location and any subfolders it contains.
+     * <p>
+     * The URL of the Amazon Simple Storage Service (Amazon S3) bucket that
+     * contains the endpoint definitions to import. This location can be a
+     * folder or a single file. If the location is a folder, Amazon Pinpoint
+     * imports endpoint definitions from the files in this location, including
+     * any subfolders that the folder contains.
+     * </p>
+     * <p>
+     * The URL should be in the following format:
+     * s3://<replaceable>bucket-name</
+     * replaceable>/<replaceable>folder-name</replaceable
+     * >/<replaceable>file-name</replaceable>. The location can end with the key
+     * for an individual object or a prefix that qualifies multiple objects.
+     * </p>
      *
-     * @return The URL of the S3 bucket that contains the segment information to
-     *         import. The location can be a folder or a single file. The URL
-     *         should use the following format:
-     *         s3://bucket-name/folder-name/file-name Amazon Pinpoint imports
-     *         endpoints from this location and any subfolders it contains.
+     * @return <p>
+     *         The URL of the Amazon Simple Storage Service (Amazon S3) bucket
+     *         that contains the endpoint definitions to import. This location
+     *         can be a folder or a single file. If the location is a folder,
+     *         Amazon Pinpoint imports endpoint definitions from the files in
+     *         this location, including any subfolders that the folder contains.
+     *         </p>
+     *         <p>
+     *         The URL should be in the following format:
+     *         s3://<replaceable>bucket
+     *         -name</replaceable>/<replaceable>folder-name
+     *         </replaceable>/<replaceable>file-name</replaceable>. The location
+     *         can end with the key for an individual object or a prefix that
+     *         qualifies multiple objects.
+     *         </p>
      */
     public String getS3Url() {
         return s3Url;
     }
 
     /**
-     * The URL of the S3 bucket that contains the segment information to import.
-     * The location can be a folder or a single file. The URL should use the
-     * following format: s3://bucket-name/folder-name/file-name Amazon Pinpoint
-     * imports endpoints from this location and any subfolders it contains.
+     * <p>
+     * The URL of the Amazon Simple Storage Service (Amazon S3) bucket that
+     * contains the endpoint definitions to import. This location can be a
+     * folder or a single file. If the location is a folder, Amazon Pinpoint
+     * imports endpoint definitions from the files in this location, including
+     * any subfolders that the folder contains.
+     * </p>
+     * <p>
+     * The URL should be in the following format:
+     * s3://<replaceable>bucket-name</
+     * replaceable>/<replaceable>folder-name</replaceable
+     * >/<replaceable>file-name</replaceable>. The location can end with the key
+     * for an individual object or a prefix that qualifies multiple objects.
+     * </p>
      *
-     * @param s3Url The URL of the S3 bucket that contains the segment
-     *            information to import. The location can be a folder or a
-     *            single file. The URL should use the following format:
-     *            s3://bucket-name/folder-name/file-name Amazon Pinpoint imports
-     *            endpoints from this location and any subfolders it contains.
+     * @param s3Url <p>
+     *            The URL of the Amazon Simple Storage Service (Amazon S3)
+     *            bucket that contains the endpoint definitions to import. This
+     *            location can be a folder or a single file. If the location is
+     *            a folder, Amazon Pinpoint imports endpoint definitions from
+     *            the files in this location, including any subfolders that the
+     *            folder contains.
+     *            </p>
+     *            <p>
+     *            The URL should be in the following format:
+     *            s3://<replaceable>bucket
+     *            -name</replaceable>/<replaceable>folder
+     *            -name</replaceable>/<replaceable>file-name</replaceable>. The
+     *            location can end with the key for an individual object or a
+     *            prefix that qualifies multiple objects.
+     *            </p>
      */
     public void setS3Url(String s3Url) {
         this.s3Url = s3Url;
     }
 
     /**
-     * The URL of the S3 bucket that contains the segment information to import.
-     * The location can be a folder or a single file. The URL should use the
-     * following format: s3://bucket-name/folder-name/file-name Amazon Pinpoint
-     * imports endpoints from this location and any subfolders it contains.
+     * <p>
+     * The URL of the Amazon Simple Storage Service (Amazon S3) bucket that
+     * contains the endpoint definitions to import. This location can be a
+     * folder or a single file. If the location is a folder, Amazon Pinpoint
+     * imports endpoint definitions from the files in this location, including
+     * any subfolders that the folder contains.
+     * </p>
+     * <p>
+     * The URL should be in the following format:
+     * s3://<replaceable>bucket-name</
+     * replaceable>/<replaceable>folder-name</replaceable
+     * >/<replaceable>file-name</replaceable>. The location can end with the key
+     * for an individual object or a prefix that qualifies multiple objects.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param s3Url The URL of the S3 bucket that contains the segment
-     *            information to import. The location can be a folder or a
-     *            single file. The URL should use the following format:
-     *            s3://bucket-name/folder-name/file-name Amazon Pinpoint imports
-     *            endpoints from this location and any subfolders it contains.
+     * @param s3Url <p>
+     *            The URL of the Amazon Simple Storage Service (Amazon S3)
+     *            bucket that contains the endpoint definitions to import. This
+     *            location can be a folder or a single file. If the location is
+     *            a folder, Amazon Pinpoint imports endpoint definitions from
+     *            the files in this location, including any subfolders that the
+     *            folder contains.
+     *            </p>
+     *            <p>
+     *            The URL should be in the following format:
+     *            s3://<replaceable>bucket
+     *            -name</replaceable>/<replaceable>folder
+     *            -name</replaceable>/<replaceable>file-name</replaceable>. The
+     *            location can end with the key for an individual object or a
+     *            prefix that qualifies multiple objects.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -408,36 +630,51 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * The ID of the segment to update if the import job is meant to update an
-     * existing segment.
+     * <p>
+     * The identifier for the segment to update or add the imported endpoint
+     * definitions to, if the import job is meant to update an existing segment.
+     * </p>
      *
-     * @return The ID of the segment to update if the import job is meant to
-     *         update an existing segment.
+     * @return <p>
+     *         The identifier for the segment to update or add the imported
+     *         endpoint definitions to, if the import job is meant to update an
+     *         existing segment.
+     *         </p>
      */
     public String getSegmentId() {
         return segmentId;
     }
 
     /**
-     * The ID of the segment to update if the import job is meant to update an
-     * existing segment.
+     * <p>
+     * The identifier for the segment to update or add the imported endpoint
+     * definitions to, if the import job is meant to update an existing segment.
+     * </p>
      *
-     * @param segmentId The ID of the segment to update if the import job is
-     *            meant to update an existing segment.
+     * @param segmentId <p>
+     *            The identifier for the segment to update or add the imported
+     *            endpoint definitions to, if the import job is meant to update
+     *            an existing segment.
+     *            </p>
      */
     public void setSegmentId(String segmentId) {
         this.segmentId = segmentId;
     }
 
     /**
-     * The ID of the segment to update if the import job is meant to update an
-     * existing segment.
+     * <p>
+     * The identifier for the segment to update or add the imported endpoint
+     * definitions to, if the import job is meant to update an existing segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentId The ID of the segment to update if the import job is
-     *            meant to update an existing segment.
+     * @param segmentId <p>
+     *            The identifier for the segment to update or add the imported
+     *            endpoint definitions to, if the import job is meant to update
+     *            an existing segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -447,36 +684,48 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * A custom name for the segment created by the import job. Use if
-     * DefineSegment is true.
+     * <p>
+     * The custom name for the segment that's created by the import job, if the
+     * value of the DefineSegment property is true.
+     * </p>
      *
-     * @return A custom name for the segment created by the import job. Use if
-     *         DefineSegment is true.
+     * @return <p>
+     *         The custom name for the segment that's created by the import job,
+     *         if the value of the DefineSegment property is true.
+     *         </p>
      */
     public String getSegmentName() {
         return segmentName;
     }
 
     /**
-     * A custom name for the segment created by the import job. Use if
-     * DefineSegment is true.
+     * <p>
+     * The custom name for the segment that's created by the import job, if the
+     * value of the DefineSegment property is true.
+     * </p>
      *
-     * @param segmentName A custom name for the segment created by the import
-     *            job. Use if DefineSegment is true.
+     * @param segmentName <p>
+     *            The custom name for the segment that's created by the import
+     *            job, if the value of the DefineSegment property is true.
+     *            </p>
      */
     public void setSegmentName(String segmentName) {
         this.segmentName = segmentName;
     }
 
     /**
-     * A custom name for the segment created by the import job. Use if
-     * DefineSegment is true.
+     * <p>
+     * The custom name for the segment that's created by the import job, if the
+     * value of the DefineSegment property is true.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentName A custom name for the segment created by the import
-     *            job. Use if DefineSegment is true.
+     * @param segmentName <p>
+     *            The custom name for the segment that's created by the import
+     *            job, if the value of the DefineSegment property is true.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

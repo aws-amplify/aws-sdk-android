@@ -18,27 +18,45 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * List of endpoints
+ * <p>
+ * Provides information about all the endpoints that are associated with a user
+ * ID.
+ * </p>
  */
 public class EndpointsResponse implements Serializable {
     /**
-     * The list of endpoints.
+     * <p>
+     * An array of responses, one for each endpoint that's associated with the
+     * user ID.
+     * </p>
      */
     private java.util.List<EndpointResponse> item;
 
     /**
-     * The list of endpoints.
+     * <p>
+     * An array of responses, one for each endpoint that's associated with the
+     * user ID.
+     * </p>
      *
-     * @return The list of endpoints.
+     * @return <p>
+     *         An array of responses, one for each endpoint that's associated
+     *         with the user ID.
+     *         </p>
      */
     public java.util.List<EndpointResponse> getItem() {
         return item;
     }
 
     /**
-     * The list of endpoints.
+     * <p>
+     * An array of responses, one for each endpoint that's associated with the
+     * user ID.
+     * </p>
      *
-     * @param item The list of endpoints.
+     * @param item <p>
+     *            An array of responses, one for each endpoint that's associated
+     *            with the user ID.
+     *            </p>
      */
     public void setItem(java.util.Collection<EndpointResponse> item) {
         if (item == null) {
@@ -50,12 +68,18 @@ public class EndpointsResponse implements Serializable {
     }
 
     /**
-     * The list of endpoints.
+     * <p>
+     * An array of responses, one for each endpoint that's associated with the
+     * user ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item The list of endpoints.
+     * @param item <p>
+     *            An array of responses, one for each endpoint that's associated
+     *            with the user ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -70,12 +94,18 @@ public class EndpointsResponse implements Serializable {
     }
 
     /**
-     * The list of endpoints.
+     * <p>
+     * An array of responses, one for each endpoint that's associated with the
+     * user ID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item The list of endpoints.
+     * @param item <p>
+     *            An array of responses, one for each endpoint that's associated
+     *            with the user ID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

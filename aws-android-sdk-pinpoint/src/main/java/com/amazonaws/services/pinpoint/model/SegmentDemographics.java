@@ -18,64 +18,92 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Segment demographic dimensions
+ * <p>
+ * Specifies demographic-based dimension settings for including or excluding
+ * endpoints from a segment. These settings derive from characteristics of
+ * endpoint devices, such as platform, make, and model.
+ * </p>
  */
 public class SegmentDemographics implements Serializable {
     /**
+     * <p>
      * The app version criteria for the segment.
+     * </p>
      */
     private SetDimension appVersion;
 
     /**
+     * <p>
      * The channel criteria for the segment.
+     * </p>
      */
     private SetDimension channel;
 
     /**
+     * <p>
      * The device type criteria for the segment.
+     * </p>
      */
     private SetDimension deviceType;
 
     /**
+     * <p>
      * The device make criteria for the segment.
+     * </p>
      */
     private SetDimension make;
 
     /**
+     * <p>
      * The device model criteria for the segment.
+     * </p>
      */
     private SetDimension model;
 
     /**
+     * <p>
      * The device platform criteria for the segment.
+     * </p>
      */
     private SetDimension platform;
 
     /**
+     * <p>
      * The app version criteria for the segment.
+     * </p>
      *
-     * @return The app version criteria for the segment.
+     * @return <p>
+     *         The app version criteria for the segment.
+     *         </p>
      */
     public SetDimension getAppVersion() {
         return appVersion;
     }
 
     /**
+     * <p>
      * The app version criteria for the segment.
+     * </p>
      *
-     * @param appVersion The app version criteria for the segment.
+     * @param appVersion <p>
+     *            The app version criteria for the segment.
+     *            </p>
      */
     public void setAppVersion(SetDimension appVersion) {
         this.appVersion = appVersion;
     }
 
     /**
+     * <p>
      * The app version criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appVersion The app version criteria for the segment.
+     * @param appVersion <p>
+     *            The app version criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -85,30 +113,42 @@ public class SegmentDemographics implements Serializable {
     }
 
     /**
+     * <p>
      * The channel criteria for the segment.
+     * </p>
      *
-     * @return The channel criteria for the segment.
+     * @return <p>
+     *         The channel criteria for the segment.
+     *         </p>
      */
     public SetDimension getChannel() {
         return channel;
     }
 
     /**
+     * <p>
      * The channel criteria for the segment.
+     * </p>
      *
-     * @param channel The channel criteria for the segment.
+     * @param channel <p>
+     *            The channel criteria for the segment.
+     *            </p>
      */
     public void setChannel(SetDimension channel) {
         this.channel = channel;
     }
 
     /**
+     * <p>
      * The channel criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param channel The channel criteria for the segment.
+     * @param channel <p>
+     *            The channel criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -118,30 +158,42 @@ public class SegmentDemographics implements Serializable {
     }
 
     /**
+     * <p>
      * The device type criteria for the segment.
+     * </p>
      *
-     * @return The device type criteria for the segment.
+     * @return <p>
+     *         The device type criteria for the segment.
+     *         </p>
      */
     public SetDimension getDeviceType() {
         return deviceType;
     }
 
     /**
+     * <p>
      * The device type criteria for the segment.
+     * </p>
      *
-     * @param deviceType The device type criteria for the segment.
+     * @param deviceType <p>
+     *            The device type criteria for the segment.
+     *            </p>
      */
     public void setDeviceType(SetDimension deviceType) {
         this.deviceType = deviceType;
     }
 
     /**
+     * <p>
      * The device type criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param deviceType The device type criteria for the segment.
+     * @param deviceType <p>
+     *            The device type criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -151,30 +203,42 @@ public class SegmentDemographics implements Serializable {
     }
 
     /**
+     * <p>
      * The device make criteria for the segment.
+     * </p>
      *
-     * @return The device make criteria for the segment.
+     * @return <p>
+     *         The device make criteria for the segment.
+     *         </p>
      */
     public SetDimension getMake() {
         return make;
     }
 
     /**
+     * <p>
      * The device make criteria for the segment.
+     * </p>
      *
-     * @param make The device make criteria for the segment.
+     * @param make <p>
+     *            The device make criteria for the segment.
+     *            </p>
      */
     public void setMake(SetDimension make) {
         this.make = make;
     }
 
     /**
+     * <p>
      * The device make criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param make The device make criteria for the segment.
+     * @param make <p>
+     *            The device make criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -184,30 +248,42 @@ public class SegmentDemographics implements Serializable {
     }
 
     /**
+     * <p>
      * The device model criteria for the segment.
+     * </p>
      *
-     * @return The device model criteria for the segment.
+     * @return <p>
+     *         The device model criteria for the segment.
+     *         </p>
      */
     public SetDimension getModel() {
         return model;
     }
 
     /**
+     * <p>
      * The device model criteria for the segment.
+     * </p>
      *
-     * @param model The device model criteria for the segment.
+     * @param model <p>
+     *            The device model criteria for the segment.
+     *            </p>
      */
     public void setModel(SetDimension model) {
         this.model = model;
     }
 
     /**
+     * <p>
      * The device model criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param model The device model criteria for the segment.
+     * @param model <p>
+     *            The device model criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -217,30 +293,42 @@ public class SegmentDemographics implements Serializable {
     }
 
     /**
+     * <p>
      * The device platform criteria for the segment.
+     * </p>
      *
-     * @return The device platform criteria for the segment.
+     * @return <p>
+     *         The device platform criteria for the segment.
+     *         </p>
      */
     public SetDimension getPlatform() {
         return platform;
     }
 
     /**
+     * <p>
      * The device platform criteria for the segment.
+     * </p>
      *
-     * @param platform The device platform criteria for the segment.
+     * @param platform <p>
+     *            The device platform criteria for the segment.
+     *            </p>
      */
     public void setPlatform(SetDimension platform) {
         this.platform = platform;
     }
 
     /**
+     * <p>
      * The device platform criteria for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform The device platform criteria for the segment.
+     * @param platform <p>
+     *            The device platform criteria for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

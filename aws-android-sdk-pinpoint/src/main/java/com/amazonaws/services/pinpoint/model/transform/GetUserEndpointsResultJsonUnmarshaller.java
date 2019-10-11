@@ -29,6 +29,20 @@ public class GetUserEndpointsResultJsonUnmarshaller implements
     public GetUserEndpointsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetUserEndpointsResult getUserEndpointsResult = new GetUserEndpointsResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("EndpointsResponse")) {
+                getUserEndpointsResult.setEndpointsResponse(EndpointsResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return getUserEndpointsResult;
     }
 

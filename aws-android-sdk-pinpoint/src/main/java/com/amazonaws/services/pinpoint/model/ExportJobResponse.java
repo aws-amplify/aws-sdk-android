@@ -18,55 +18,79 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Export job response.
+ * <p>
+ * Provides information about the status and settings of a job that exports
+ * endpoint definitions to a file. The file can be added directly to an Amazon
+ * Simple Storage Service (Amazon S3) bucket by using the Amazon Pinpoint API or
+ * downloaded directly to a computer by using the Amazon Pinpoint console.
+ * </p>
  */
 public class ExportJobResponse implements Serializable {
     /**
-     * The unique ID of the application associated with the export job.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * export job.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The number of pieces that have successfully completed as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * export job, as of the time of the request.
+     * </p>
      */
     private Integer completedPieces;
 
     /**
-     * The date the job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was completed.
+     * </p>
      */
     private String completionDate;
 
     /**
-     * The date the job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was created.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The export job settings.
+     * <p>
+     * The resource settings that apply to the export job.
+     * </p>
      */
     private ExportJobResource definition;
 
     /**
-     * The number of pieces that failed to be processed as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * export job, as of the time of the request.
+     * </p>
      */
     private Integer failedPieces;
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the export job, if any.
+     * </p>
      */
     private java.util.List<String> failures;
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the export job.
+     * </p>
      */
     private String id;
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
@@ -75,54 +99,81 @@ public class ExportJobResponse implements Serializable {
     private String jobStatus;
 
     /**
-     * The number of endpoints that were not processed; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the export job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      */
     private Integer totalFailures;
 
     /**
-     * The total number of pieces that must be processed to finish the job. Each
-     * piece is an approximately equal portion of the endpoints.
+     * <p>
+     * The total number of pieces that must be processed to complete the export
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the export job.
+     * </p>
      */
     private Integer totalPieces;
 
     /**
-     * The number of endpoints that were processed by the job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * export job.
+     * </p>
      */
     private Integer totalProcessed;
 
     /**
-     * The job type. Will be 'EXPORT'.
+     * <p>
+     * The job type. This value is EXPORT for export jobs.
+     * </p>
      */
     private String type;
 
     /**
-     * The unique ID of the application associated with the export job.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * export job.
+     * </p>
      *
-     * @return The unique ID of the application associated with the export job.
+     * @return <p>
+     *         The unique identifier for the application that's associated with
+     *         the export job.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of the application associated with the export job.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * export job.
+     * </p>
      *
-     * @param applicationId The unique ID of the application associated with the
-     *            export job.
+     * @param applicationId <p>
+     *            The unique identifier for the application that's associated
+     *            with the export job.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of the application associated with the export job.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * export job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of the application associated with the
-     *            export job.
+     * @param applicationId <p>
+     *            The unique identifier for the application that's associated
+     *            with the export job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -132,36 +183,48 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The number of pieces that have successfully completed as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * export job, as of the time of the request.
+     * </p>
      *
-     * @return The number of pieces that have successfully completed as of the
-     *         time of the request.
+     * @return <p>
+     *         The number of pieces that were processed successfully (completed)
+     *         by the export job, as of the time of the request.
+     *         </p>
      */
     public Integer getCompletedPieces() {
         return completedPieces;
     }
 
     /**
-     * The number of pieces that have successfully completed as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * export job, as of the time of the request.
+     * </p>
      *
-     * @param completedPieces The number of pieces that have successfully
-     *            completed as of the time of the request.
+     * @param completedPieces <p>
+     *            The number of pieces that were processed successfully
+     *            (completed) by the export job, as of the time of the request.
+     *            </p>
      */
     public void setCompletedPieces(Integer completedPieces) {
         this.completedPieces = completedPieces;
     }
 
     /**
-     * The number of pieces that have successfully completed as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * export job, as of the time of the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param completedPieces The number of pieces that have successfully
-     *            completed as of the time of the request.
+     * @param completedPieces <p>
+     *            The number of pieces that were processed successfully
+     *            (completed) by the export job, as of the time of the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -171,30 +234,44 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The date the job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was completed.
+     * </p>
      *
-     * @return The date the job completed in ISO 8601 format.
+     * @return <p>
+     *         The date, in ISO 8601 format, when the export job was completed.
+     *         </p>
      */
     public String getCompletionDate() {
         return completionDate;
     }
 
     /**
-     * The date the job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was completed.
+     * </p>
      *
-     * @param completionDate The date the job completed in ISO 8601 format.
+     * @param completionDate <p>
+     *            The date, in ISO 8601 format, when the export job was
+     *            completed.
+     *            </p>
      */
     public void setCompletionDate(String completionDate) {
         this.completionDate = completionDate;
     }
 
     /**
-     * The date the job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was completed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param completionDate The date the job completed in ISO 8601 format.
+     * @param completionDate <p>
+     *            The date, in ISO 8601 format, when the export job was
+     *            completed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -204,30 +281,42 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The date the job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was created.
+     * </p>
      *
-     * @return The date the job was created in ISO 8601 format.
+     * @return <p>
+     *         The date, in ISO 8601 format, when the export job was created.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date the job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was created.
+     * </p>
      *
-     * @param creationDate The date the job was created in ISO 8601 format.
+     * @param creationDate <p>
+     *            The date, in ISO 8601 format, when the export job was created.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date the job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the export job was created.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date the job was created in ISO 8601 format.
+     * @param creationDate <p>
+     *            The date, in ISO 8601 format, when the export job was created.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -237,30 +326,42 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The export job settings.
+     * <p>
+     * The resource settings that apply to the export job.
+     * </p>
      *
-     * @return The export job settings.
+     * @return <p>
+     *         The resource settings that apply to the export job.
+     *         </p>
      */
     public ExportJobResource getDefinition() {
         return definition;
     }
 
     /**
-     * The export job settings.
+     * <p>
+     * The resource settings that apply to the export job.
+     * </p>
      *
-     * @param definition The export job settings.
+     * @param definition <p>
+     *            The resource settings that apply to the export job.
+     *            </p>
      */
     public void setDefinition(ExportJobResource definition) {
         this.definition = definition;
     }
 
     /**
-     * The export job settings.
+     * <p>
+     * The resource settings that apply to the export job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param definition The export job settings.
+     * @param definition <p>
+     *            The resource settings that apply to the export job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -270,36 +371,48 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The number of pieces that failed to be processed as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * export job, as of the time of the request.
+     * </p>
      *
-     * @return The number of pieces that failed to be processed as of the time
-     *         of the request.
+     * @return <p>
+     *         The number of pieces that weren't processed successfully (failed)
+     *         by the export job, as of the time of the request.
+     *         </p>
      */
     public Integer getFailedPieces() {
         return failedPieces;
     }
 
     /**
-     * The number of pieces that failed to be processed as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * export job, as of the time of the request.
+     * </p>
      *
-     * @param failedPieces The number of pieces that failed to be processed as
-     *            of the time of the request.
+     * @param failedPieces <p>
+     *            The number of pieces that weren't processed successfully
+     *            (failed) by the export job, as of the time of the request.
+     *            </p>
      */
     public void setFailedPieces(Integer failedPieces) {
         this.failedPieces = failedPieces;
     }
 
     /**
-     * The number of pieces that failed to be processed as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * export job, as of the time of the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failedPieces The number of pieces that failed to be processed as
-     *            of the time of the request.
+     * @param failedPieces <p>
+     *            The number of pieces that weren't processed successfully
+     *            (failed) by the export job, as of the time of the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -309,20 +422,32 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the export job, if any.
+     * </p>
      *
-     * @return Provides up to 100 of the first failed entries for the job, if
-     *         any exist.
+     * @return <p>
+     *         An array of entries, one for each of the first 100 entries that
+     *         weren't processed successfully (failed) by the export job, if
+     *         any.
+     *         </p>
      */
     public java.util.List<String> getFailures() {
         return failures;
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the export job, if any.
+     * </p>
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the export
+     *            job, if any.
+     *            </p>
      */
     public void setFailures(java.util.Collection<String> failures) {
         if (failures == null) {
@@ -334,13 +459,19 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the export job, if any.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the export
+     *            job, if any.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -355,13 +486,19 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the export job, if any.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the export
+     *            job, if any.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -371,30 +508,42 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the export job.
+     * </p>
      *
-     * @return The unique ID of the job.
+     * @return <p>
+     *         The unique identifier for the export job.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the export job.
+     * </p>
      *
-     * @param id The unique ID of the job.
+     * @param id <p>
+     *            The unique identifier for the export job.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the export job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id The unique ID of the job.
+     * @param id <p>
+     *            The unique identifier for the export job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -404,17 +553,19 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @return The status of the job. Valid values: CREATED, INITIALIZING,
-     *         PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status
-     *         is FAILED if one or more pieces failed.
+     * @return <p>
+     *         The status of the export job. The job status is FAILED if Amazon
+     *         Pinpoint wasn't able to process one or more pieces in the job.
+     *         </p>
      * @see JobStatus
      */
     public String getJobStatus() {
@@ -422,17 +573,20 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed.
+     * @param jobStatus <p>
+     *            The status of the export job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @see JobStatus
      */
     public void setJobStatus(String jobStatus) {
@@ -440,9 +594,10 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -451,9 +606,11 @@ public class ExportJobResponse implements Serializable {
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed.
+     * @param jobStatus <p>
+     *            The status of the export job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
@@ -464,17 +621,20 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed.
+     * @param jobStatus <p>
+     *            The status of the export job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @see JobStatus
      */
     public void setJobStatus(JobStatus jobStatus) {
@@ -482,9 +642,10 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the job. Valid values: CREATED, INITIALIZING, PROCESSING,
-     * COMPLETING, COMPLETED, FAILING, FAILED The job status is FAILED if one or
-     * more pieces failed.
+     * <p>
+     * The status of the export job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -493,9 +654,11 @@ public class ExportJobResponse implements Serializable {
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed.
+     * @param jobStatus <p>
+     *            The status of the export job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
@@ -506,36 +669,54 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The number of endpoints that were not processed; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the export job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      *
-     * @return The number of endpoints that were not processed; for example,
-     *         because of syntax errors.
+     * @return <p>
+     *         The total number of endpoint definitions that weren't processed
+     *         successfully (failed) by the export job, typically because an
+     *         error, such as a syntax error, occurred.
+     *         </p>
      */
     public Integer getTotalFailures() {
         return totalFailures;
     }
 
     /**
-     * The number of endpoints that were not processed; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the export job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      *
-     * @param totalFailures The number of endpoints that were not processed; for
-     *            example, because of syntax errors.
+     * @param totalFailures <p>
+     *            The total number of endpoint definitions that weren't
+     *            processed successfully (failed) by the export job, typically
+     *            because an error, such as a syntax error, occurred.
+     *            </p>
      */
     public void setTotalFailures(Integer totalFailures) {
         this.totalFailures = totalFailures;
     }
 
     /**
-     * The number of endpoints that were not processed; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the export job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalFailures The number of endpoints that were not processed; for
-     *            example, because of syntax errors.
+     * @param totalFailures <p>
+     *            The total number of endpoint definitions that weren't
+     *            processed successfully (failed) by the export job, typically
+     *            because an error, such as a syntax error, occurred.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -545,39 +726,56 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The total number of pieces that must be processed to finish the job. Each
-     * piece is an approximately equal portion of the endpoints.
+     * <p>
+     * The total number of pieces that must be processed to complete the export
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the export job.
+     * </p>
      *
-     * @return The total number of pieces that must be processed to finish the
-     *         job. Each piece is an approximately equal portion of the
-     *         endpoints.
+     * @return <p>
+     *         The total number of pieces that must be processed to complete the
+     *         export job. Each piece consists of an approximately equal portion
+     *         of the endpoint definitions that are part of the export job.
+     *         </p>
      */
     public Integer getTotalPieces() {
         return totalPieces;
     }
 
     /**
-     * The total number of pieces that must be processed to finish the job. Each
-     * piece is an approximately equal portion of the endpoints.
+     * <p>
+     * The total number of pieces that must be processed to complete the export
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the export job.
+     * </p>
      *
-     * @param totalPieces The total number of pieces that must be processed to
-     *            finish the job. Each piece is an approximately equal portion
-     *            of the endpoints.
+     * @param totalPieces <p>
+     *            The total number of pieces that must be processed to complete
+     *            the export job. Each piece consists of an approximately equal
+     *            portion of the endpoint definitions that are part of the
+     *            export job.
+     *            </p>
      */
     public void setTotalPieces(Integer totalPieces) {
         this.totalPieces = totalPieces;
     }
 
     /**
-     * The total number of pieces that must be processed to finish the job. Each
-     * piece is an approximately equal portion of the endpoints.
+     * <p>
+     * The total number of pieces that must be processed to complete the export
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the export job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalPieces The total number of pieces that must be processed to
-     *            finish the job. Each piece is an approximately equal portion
-     *            of the endpoints.
+     * @param totalPieces <p>
+     *            The total number of pieces that must be processed to complete
+     *            the export job. Each piece consists of an approximately equal
+     *            portion of the endpoint definitions that are part of the
+     *            export job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -587,32 +785,48 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The number of endpoints that were processed by the job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * export job.
+     * </p>
      *
-     * @return The number of endpoints that were processed by the job.
+     * @return <p>
+     *         The total number of endpoint definitions that were processed by
+     *         the export job.
+     *         </p>
      */
     public Integer getTotalProcessed() {
         return totalProcessed;
     }
 
     /**
-     * The number of endpoints that were processed by the job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * export job.
+     * </p>
      *
-     * @param totalProcessed The number of endpoints that were processed by the
-     *            job.
+     * @param totalProcessed <p>
+     *            The total number of endpoint definitions that were processed
+     *            by the export job.
+     *            </p>
      */
     public void setTotalProcessed(Integer totalProcessed) {
         this.totalProcessed = totalProcessed;
     }
 
     /**
-     * The number of endpoints that were processed by the job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * export job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalProcessed The number of endpoints that were processed by the
-     *            job.
+     * @param totalProcessed <p>
+     *            The total number of endpoint definitions that were processed
+     *            by the export job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -622,30 +836,42 @@ public class ExportJobResponse implements Serializable {
     }
 
     /**
-     * The job type. Will be 'EXPORT'.
+     * <p>
+     * The job type. This value is EXPORT for export jobs.
+     * </p>
      *
-     * @return The job type. Will be 'EXPORT'.
+     * @return <p>
+     *         The job type. This value is EXPORT for export jobs.
+     *         </p>
      */
     public String getType() {
         return type;
     }
 
     /**
-     * The job type. Will be 'EXPORT'.
+     * <p>
+     * The job type. This value is EXPORT for export jobs.
+     * </p>
      *
-     * @param type The job type. Will be 'EXPORT'.
+     * @param type <p>
+     *            The job type. This value is EXPORT for export jobs.
+     *            </p>
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * The job type. Will be 'EXPORT'.
+     * <p>
+     * The job type. This value is EXPORT for export jobs.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param type The job type. Will be 'EXPORT'.
+     * @param type <p>
+     *            The job type. This value is EXPORT for export jobs.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
