@@ -10,6 +10,9 @@
 
 ### Misc. Updates
 
+- **Amazon S3**
+  - Added serialized name annotation to `TransferNetworkConnectionType` enum values and added instrumentation tests.
+  
 - Model updates for the following services
   - Amazon Cognito Identity Provider
 
