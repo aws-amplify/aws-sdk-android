@@ -53,6 +53,22 @@ public class GetSessionRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
+     * A string used to filter the intents returned in the
+     * <code>recentIntentSummaryView</code> structure.
+     * </p>
+     * <p>
+     * When you specify a filter, only intents with their
+     * <code>checkpointLabel</code> field set to that string are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     */
+    private String checkpointLabelFilter;
+
+    /**
+     * <p>
      * The name of the bot that contains the session data.
      * </p>
      *
@@ -205,6 +221,96 @@ public class GetSessionRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
+     * <p>
+     * A string used to filter the intents returned in the
+     * <code>recentIntentSummaryView</code> structure.
+     * </p>
+     * <p>
+     * When you specify a filter, only intents with their
+     * <code>checkpointLabel</code> field set to that string are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @return <p>
+     *         A string used to filter the intents returned in the
+     *         <code>recentIntentSummaryView</code> structure.
+     *         </p>
+     *         <p>
+     *         When you specify a filter, only intents with their
+     *         <code>checkpointLabel</code> field set to that string are
+     *         returned.
+     *         </p>
+     */
+    public String getCheckpointLabelFilter() {
+        return checkpointLabelFilter;
+    }
+
+    /**
+     * <p>
+     * A string used to filter the intents returned in the
+     * <code>recentIntentSummaryView</code> structure.
+     * </p>
+     * <p>
+     * When you specify a filter, only intents with their
+     * <code>checkpointLabel</code> field set to that string are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @param checkpointLabelFilter <p>
+     *            A string used to filter the intents returned in the
+     *            <code>recentIntentSummaryView</code> structure.
+     *            </p>
+     *            <p>
+     *            When you specify a filter, only intents with their
+     *            <code>checkpointLabel</code> field set to that string are
+     *            returned.
+     *            </p>
+     */
+    public void setCheckpointLabelFilter(String checkpointLabelFilter) {
+        this.checkpointLabelFilter = checkpointLabelFilter;
+    }
+
+    /**
+     * <p>
+     * A string used to filter the intents returned in the
+     * <code>recentIntentSummaryView</code> structure.
+     * </p>
+     * <p>
+     * When you specify a filter, only intents with their
+     * <code>checkpointLabel</code> field set to that string are returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @param checkpointLabelFilter <p>
+     *            A string used to filter the intents returned in the
+     *            <code>recentIntentSummaryView</code> structure.
+     *            </p>
+     *            <p>
+     *            When you specify a filter, only intents with their
+     *            <code>checkpointLabel</code> field set to that string are
+     *            returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetSessionRequest withCheckpointLabelFilter(String checkpointLabelFilter) {
+        this.checkpointLabelFilter = checkpointLabelFilter;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -220,7 +326,9 @@ public class GetSessionRequest extends AmazonWebServiceRequest implements Serial
         if (getBotAlias() != null)
             sb.append("botAlias: " + getBotAlias() + ",");
         if (getUserId() != null)
-            sb.append("userId: " + getUserId());
+            sb.append("userId: " + getUserId() + ",");
+        if (getCheckpointLabelFilter() != null)
+            sb.append("checkpointLabelFilter: " + getCheckpointLabelFilter());
         sb.append("}");
         return sb.toString();
     }
@@ -233,6 +341,9 @@ public class GetSessionRequest extends AmazonWebServiceRequest implements Serial
         hashCode = prime * hashCode + ((getBotName() == null) ? 0 : getBotName().hashCode());
         hashCode = prime * hashCode + ((getBotAlias() == null) ? 0 : getBotAlias().hashCode());
         hashCode = prime * hashCode + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getCheckpointLabelFilter() == null) ? 0 : getCheckpointLabelFilter().hashCode());
         return hashCode;
     }
 
@@ -258,6 +369,11 @@ public class GetSessionRequest extends AmazonWebServiceRequest implements Serial
         if (other.getUserId() == null ^ this.getUserId() == null)
             return false;
         if (other.getUserId() != null && other.getUserId().equals(this.getUserId()) == false)
+            return false;
+        if (other.getCheckpointLabelFilter() == null ^ this.getCheckpointLabelFilter() == null)
+            return false;
+        if (other.getCheckpointLabelFilter() != null
+                && other.getCheckpointLabelFilter().equals(this.getCheckpointLabelFilter()) == false)
             return false;
         return true;
     }
