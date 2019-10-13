@@ -25,6 +25,10 @@ public class GetSessionResult implements Serializable {
      * used in the session, the <code>recentIntentSummaryView</code> operation
      * contains information about the last three intents used.
      * </p>
+     * <p>
+     * If you set the <code>checkpointLabelFilter</code> parameter in the
+     * request, the array contains only the intents with the specified label.
+     * </p>
      */
     private java.util.List<IntentSummary> recentIntentSummaryView;
 
@@ -58,6 +62,10 @@ public class GetSessionResult implements Serializable {
      * used in the session, the <code>recentIntentSummaryView</code> operation
      * contains information about the last three intents used.
      * </p>
+     * <p>
+     * If you set the <code>checkpointLabelFilter</code> parameter in the
+     * request, the array contains only the intents with the specified label.
+     * </p>
      *
      * @return <p>
      *         An array of information about the intents used in the session.
@@ -65,6 +73,11 @@ public class GetSessionResult implements Serializable {
      *         three intents are used in the session, the
      *         <code>recentIntentSummaryView</code> operation contains
      *         information about the last three intents used.
+     *         </p>
+     *         <p>
+     *         If you set the <code>checkpointLabelFilter</code> parameter in
+     *         the request, the array contains only the intents with the
+     *         specified label.
      *         </p>
      */
     public java.util.List<IntentSummary> getRecentIntentSummaryView() {
@@ -78,6 +91,10 @@ public class GetSessionResult implements Serializable {
      * used in the session, the <code>recentIntentSummaryView</code> operation
      * contains information about the last three intents used.
      * </p>
+     * <p>
+     * If you set the <code>checkpointLabelFilter</code> parameter in the
+     * request, the array contains only the intents with the specified label.
+     * </p>
      *
      * @param recentIntentSummaryView <p>
      *            An array of information about the intents used in the session.
@@ -85,6 +102,11 @@ public class GetSessionResult implements Serializable {
      *            than three intents are used in the session, the
      *            <code>recentIntentSummaryView</code> operation contains
      *            information about the last three intents used.
+     *            </p>
+     *            <p>
+     *            If you set the <code>checkpointLabelFilter</code> parameter in
+     *            the request, the array contains only the intents with the
+     *            specified label.
      *            </p>
      */
     public void setRecentIntentSummaryView(
@@ -106,6 +128,10 @@ public class GetSessionResult implements Serializable {
      * contains information about the last three intents used.
      * </p>
      * <p>
+     * If you set the <code>checkpointLabelFilter</code> parameter in the
+     * request, the array contains only the intents with the specified label.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -115,6 +141,11 @@ public class GetSessionResult implements Serializable {
      *            than three intents are used in the session, the
      *            <code>recentIntentSummaryView</code> operation contains
      *            information about the last three intents used.
+     *            </p>
+     *            <p>
+     *            If you set the <code>checkpointLabelFilter</code> parameter in
+     *            the request, the array contains only the intents with the
+     *            specified label.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,6 +169,10 @@ public class GetSessionResult implements Serializable {
      * contains information about the last three intents used.
      * </p>
      * <p>
+     * If you set the <code>checkpointLabelFilter</code> parameter in the
+     * request, the array contains only the intents with the specified label.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -147,6 +182,11 @@ public class GetSessionResult implements Serializable {
      *            than three intents are used in the session, the
      *            <code>recentIntentSummaryView</code> operation contains
      *            information about the last three intents used.
+     *            </p>
+     *            <p>
+     *            If you set the <code>checkpointLabelFilter</code> parameter in
+     *            the request, the array contains only the intents with the
+     *            specified label.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
