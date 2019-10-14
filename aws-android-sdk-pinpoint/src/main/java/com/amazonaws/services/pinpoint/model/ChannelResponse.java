@@ -18,79 +18,114 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Base definition for channel response.
+ * <p>
+ * Provides information about the general settings and status of a channel for
+ * an application.
+ * </p>
  */
 public class ChannelResponse implements Serializable {
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the channel is enabled for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was last
+     * modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application.
+     * </p>
      *
-     * @return Application id
+     * @return <p>
+     *         The unique identifier for the application.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application.
+     * </p>
      *
-     * @param applicationId Application id
+     * @param applicationId <p>
+     *            The unique identifier for the application.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Application id
+     * <p>
+     * The unique identifier for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId Application id
+     * @param applicationId <p>
+     *            The unique identifier for the application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -100,30 +135,45 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was enabled.
+     * </p>
      *
-     * @return When was this segment created
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the channel was
+     *         enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was enabled.
+     * </p>
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the channel was
+     *            enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * When was this segment created
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate When was this segment created
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the channel was
+     *            enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -133,39 +183,55 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the channel is enabled for the application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the channel is enabled for the application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the channel is enabled for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the channel is enabled for the application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the channel is enabled for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the channel is enabled for the application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -175,39 +241,59 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -217,30 +303,48 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the channel. This property is
+     *         retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the channel. This property is
+     *            retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the channel. This property is
+     *            retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -250,39 +354,55 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the channel is archived.
+     * </p>
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -292,30 +412,42 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the channel.
+     * </p>
      *
-     * @return Who made the last change
+     * @return <p>
+     *         The user who last modified the channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the channel.
+     * </p>
      *
-     * @param lastModifiedBy Who made the last change
+     * @param lastModifiedBy <p>
+     *            The user who last modified the channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who made the last change
+     * <p>
+     * The user who last modified the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who made the last change
+     * @param lastModifiedBy <p>
+     *            The user who last modified the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -325,30 +457,48 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was last
+     * modified.
+     * </p>
      *
-     * @return Last date this was updated
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the channel was last
+     *         modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was last
+     * modified.
+     * </p>
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the channel was
+     *            last modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the channel was last
+     * modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the channel was
+     *            last modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,30 +508,42 @@ public class ChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the channel.
+     * </p>
      *
-     * @return Version of channel
+     * @return <p>
+     *         The current version of the channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the channel.
+     * </p>
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

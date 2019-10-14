@@ -29,6 +29,20 @@ public class DeleteApnsChannelResultJsonUnmarshaller implements
     public DeleteApnsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteApnsChannelResult deleteApnsChannelResult = new DeleteApnsChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("APNSChannelResponse")) {
+                deleteApnsChannelResult.setAPNSChannelResponse(APNSChannelResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteApnsChannelResult;
     }
 

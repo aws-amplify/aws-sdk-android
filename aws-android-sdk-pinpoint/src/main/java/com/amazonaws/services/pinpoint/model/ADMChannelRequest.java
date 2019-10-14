@@ -18,53 +18,78 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Amazon Device Messaging channel definition.
+ * <p>
+ * Specifies the status and settings of the ADM (Amazon Device Messaging)
+ * channel for an application.
+ * </p>
  */
 public class ADMChannelRequest implements Serializable {
     /**
-     * The Client ID that you obtained from the Amazon App Distribution Portal.
+     * <p>
+     * The Client ID that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      */
     private String clientId;
 
     /**
-     * The Client Secret that you obtained from the Amazon App Distribution
-     * Portal.
+     * <p>
+     * The Client Secret that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      */
     private String clientSecret;
 
     /**
-     * Indicates whether or not the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the ADM channel for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * The Client ID that you obtained from the Amazon App Distribution Portal.
+     * <p>
+     * The Client ID that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      *
-     * @return The Client ID that you obtained from the Amazon App Distribution
-     *         Portal.
+     * @return <p>
+     *         The Client ID that you received from Amazon to send messages by
+     *         using ADM.
+     *         </p>
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * The Client ID that you obtained from the Amazon App Distribution Portal.
+     * <p>
+     * The Client ID that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      *
-     * @param clientId The Client ID that you obtained from the Amazon App
-     *            Distribution Portal.
+     * @param clientId <p>
+     *            The Client ID that you received from Amazon to send messages
+     *            by using ADM.
+     *            </p>
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * The Client ID that you obtained from the Amazon App Distribution Portal.
+     * <p>
+     * The Client ID that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientId The Client ID that you obtained from the Amazon App
-     *            Distribution Portal.
+     * @param clientId <p>
+     *            The Client ID that you received from Amazon to send messages
+     *            by using ADM.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -74,36 +99,48 @@ public class ADMChannelRequest implements Serializable {
     }
 
     /**
-     * The Client Secret that you obtained from the Amazon App Distribution
-     * Portal.
+     * <p>
+     * The Client Secret that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      *
-     * @return The Client Secret that you obtained from the Amazon App
-     *         Distribution Portal.
+     * @return <p>
+     *         The Client Secret that you received from Amazon to send messages
+     *         by using ADM.
+     *         </p>
      */
     public String getClientSecret() {
         return clientSecret;
     }
 
     /**
-     * The Client Secret that you obtained from the Amazon App Distribution
-     * Portal.
+     * <p>
+     * The Client Secret that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      *
-     * @param clientSecret The Client Secret that you obtained from the Amazon
-     *            App Distribution Portal.
+     * @param clientSecret <p>
+     *            The Client Secret that you received from Amazon to send
+     *            messages by using ADM.
+     *            </p>
      */
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }
 
     /**
-     * The Client Secret that you obtained from the Amazon App Distribution
-     * Portal.
+     * <p>
+     * The Client Secret that you received from Amazon to send messages by using
+     * ADM.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientSecret The Client Secret that you obtained from the Amazon
-     *            App Distribution Portal.
+     * @param clientSecret <p>
+     *            The Client Secret that you received from Amazon to send
+     *            messages by using ADM.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -113,43 +150,57 @@ public class ADMChannelRequest implements Serializable {
     }
 
     /**
-     * Indicates whether or not the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the ADM channel for the application.
+     * </p>
      *
-     * @return Indicates whether or not the channel is enabled for sending
-     *         messages.
+     * @return <p>
+     *         Specifies whether to enable the ADM channel for the application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * Indicates whether or not the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the ADM channel for the application.
+     * </p>
      *
-     * @return Indicates whether or not the channel is enabled for sending
-     *         messages.
+     * @return <p>
+     *         Specifies whether to enable the ADM channel for the application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * Indicates whether or not the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the ADM channel for the application.
+     * </p>
      *
-     * @param enabled Indicates whether or not the channel is enabled for
-     *            sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the ADM channel for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * Indicates whether or not the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the ADM channel for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled Indicates whether or not the channel is enabled for
-     *            sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the ADM channel for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

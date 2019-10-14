@@ -20,44 +20,74 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Update an Voice channel
+ * <p>
+ * Enables the voice channel for an application or updates the status and
+ * settings of the voice channel for an application.
+ * </p>
  */
 public class UpdateVoiceChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Voice Channel Request
+     * <p>
+     * Specifies the status and settings of the voice channel for an
+     * application.
+     * </p>
      */
     private VoiceChannelRequest voiceChannelRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +97,48 @@ public class UpdateVoiceChannelRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * Voice Channel Request
+     * <p>
+     * Specifies the status and settings of the voice channel for an
+     * application.
+     * </p>
      *
-     * @return Voice Channel Request
+     * @return <p>
+     *         Specifies the status and settings of the voice channel for an
+     *         application.
+     *         </p>
      */
     public VoiceChannelRequest getVoiceChannelRequest() {
         return voiceChannelRequest;
     }
 
     /**
-     * Voice Channel Request
+     * <p>
+     * Specifies the status and settings of the voice channel for an
+     * application.
+     * </p>
      *
-     * @param voiceChannelRequest Voice Channel Request
+     * @param voiceChannelRequest <p>
+     *            Specifies the status and settings of the voice channel for an
+     *            application.
+     *            </p>
      */
     public void setVoiceChannelRequest(VoiceChannelRequest voiceChannelRequest) {
         this.voiceChannelRequest = voiceChannelRequest;
     }
 
     /**
-     * Voice Channel Request
+     * <p>
+     * Specifies the status and settings of the voice channel for an
+     * application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param voiceChannelRequest Voice Channel Request
+     * @param voiceChannelRequest <p>
+     *            Specifies the status and settings of the voice channel for an
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
