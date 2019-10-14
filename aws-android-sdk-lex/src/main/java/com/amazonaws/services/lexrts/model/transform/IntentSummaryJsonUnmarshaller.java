@@ -38,6 +38,9 @@ class IntentSummaryJsonUnmarshaller implements Unmarshaller<IntentSummary, JsonU
             if (name.equals("intentName")) {
                 intentSummary.setIntentName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("checkpointLabel")) {
+                intentSummary.setCheckpointLabel(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("slots")) {
                 intentSummary.setSlots(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
