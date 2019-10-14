@@ -34,6 +34,23 @@ public class IntentSummary implements Serializable {
 
     /**
      * <p>
+     * A user-defined label that identifies a particular intent. You can use
+     * this label to return to a previous intent.
+     * </p>
+     * <p>
+     * Use the <code>checkpointLabelFilter</code> parameter of the
+     * <code>GetSessionRequest</code> operation to filter the intents returned
+     * by the operation to those with only the specified label.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     */
+    private String checkpointLabel;
+
+    /**
+     * <p>
      * Map of the slots that have been gathered and their values.
      * </p>
      */
@@ -194,6 +211,101 @@ public class IntentSummary implements Serializable {
      */
     public IntentSummary withIntentName(String intentName) {
         this.intentName = intentName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A user-defined label that identifies a particular intent. You can use
+     * this label to return to a previous intent.
+     * </p>
+     * <p>
+     * Use the <code>checkpointLabelFilter</code> parameter of the
+     * <code>GetSessionRequest</code> operation to filter the intents returned
+     * by the operation to those with only the specified label.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @return <p>
+     *         A user-defined label that identifies a particular intent. You can
+     *         use this label to return to a previous intent.
+     *         </p>
+     *         <p>
+     *         Use the <code>checkpointLabelFilter</code> parameter of the
+     *         <code>GetSessionRequest</code> operation to filter the intents
+     *         returned by the operation to those with only the specified label.
+     *         </p>
+     */
+    public String getCheckpointLabel() {
+        return checkpointLabel;
+    }
+
+    /**
+     * <p>
+     * A user-defined label that identifies a particular intent. You can use
+     * this label to return to a previous intent.
+     * </p>
+     * <p>
+     * Use the <code>checkpointLabelFilter</code> parameter of the
+     * <code>GetSessionRequest</code> operation to filter the intents returned
+     * by the operation to those with only the specified label.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @param checkpointLabel <p>
+     *            A user-defined label that identifies a particular intent. You
+     *            can use this label to return to a previous intent.
+     *            </p>
+     *            <p>
+     *            Use the <code>checkpointLabelFilter</code> parameter of the
+     *            <code>GetSessionRequest</code> operation to filter the intents
+     *            returned by the operation to those with only the specified
+     *            label.
+     *            </p>
+     */
+    public void setCheckpointLabel(String checkpointLabel) {
+        this.checkpointLabel = checkpointLabel;
+    }
+
+    /**
+     * <p>
+     * A user-defined label that identifies a particular intent. You can use
+     * this label to return to a previous intent.
+     * </p>
+     * <p>
+     * Use the <code>checkpointLabelFilter</code> parameter of the
+     * <code>GetSessionRequest</code> operation to filter the intents returned
+     * by the operation to those with only the specified label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-]+<br/>
+     *
+     * @param checkpointLabel <p>
+     *            A user-defined label that identifies a particular intent. You
+     *            can use this label to return to a previous intent.
+     *            </p>
+     *            <p>
+     *            Use the <code>checkpointLabelFilter</code> parameter of the
+     *            <code>GetSessionRequest</code> operation to filter the intents
+     *            returned by the operation to those with only the specified
+     *            label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IntentSummary withCheckpointLabel(String checkpointLabel) {
+        this.checkpointLabel = checkpointLabel;
         return this;
     }
 
@@ -1387,6 +1499,8 @@ public class IntentSummary implements Serializable {
         sb.append("{");
         if (getIntentName() != null)
             sb.append("intentName: " + getIntentName() + ",");
+        if (getCheckpointLabel() != null)
+            sb.append("checkpointLabel: " + getCheckpointLabel() + ",");
         if (getSlots() != null)
             sb.append("slots: " + getSlots() + ",");
         if (getConfirmationStatus() != null)
@@ -1407,6 +1521,8 @@ public class IntentSummary implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getIntentName() == null) ? 0 : getIntentName().hashCode());
+        hashCode = prime * hashCode
+                + ((getCheckpointLabel() == null) ? 0 : getCheckpointLabel().hashCode());
         hashCode = prime * hashCode + ((getSlots() == null) ? 0 : getSlots().hashCode());
         hashCode = prime * hashCode
                 + ((getConfirmationStatus() == null) ? 0 : getConfirmationStatus().hashCode());
@@ -1434,6 +1550,11 @@ public class IntentSummary implements Serializable {
             return false;
         if (other.getIntentName() != null
                 && other.getIntentName().equals(this.getIntentName()) == false)
+            return false;
+        if (other.getCheckpointLabel() == null ^ this.getCheckpointLabel() == null)
+            return false;
+        if (other.getCheckpointLabel() != null
+                && other.getCheckpointLabel().equals(this.getCheckpointLabel()) == false)
             return false;
         if (other.getSlots() == null ^ this.getSlots() == null)
             return false;
