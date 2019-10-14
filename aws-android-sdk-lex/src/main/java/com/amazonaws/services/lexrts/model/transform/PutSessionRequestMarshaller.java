@@ -92,6 +92,19 @@ public class PutSessionRequestMarshaller implements
                 jsonWriter.name("dialogAction");
                 DialogActionJsonMarshaller.getInstance().marshall(dialogAction, jsonWriter);
             }
+            if (putSessionRequest.getRecentIntentSummaryView() != null) {
+                java.util.List<IntentSummary> recentIntentSummaryView = putSessionRequest
+                        .getRecentIntentSummaryView();
+                jsonWriter.name("recentIntentSummaryView");
+                jsonWriter.beginArray();
+                for (IntentSummary recentIntentSummaryViewItem : recentIntentSummaryView) {
+                    if (recentIntentSummaryViewItem != null) {
+                        IntentSummaryJsonMarshaller.getInstance().marshall(
+                                recentIntentSummaryViewItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

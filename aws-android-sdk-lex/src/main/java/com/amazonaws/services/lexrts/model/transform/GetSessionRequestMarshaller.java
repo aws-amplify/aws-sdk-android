@@ -50,7 +50,7 @@ public class GetSessionRequestMarshaller implements
                 getSessionRequest, "AmazonLexRuntime");
         request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/bot/{botName}/alias/{botAlias}/user/{userId}/session";
+        String uriResourcePath = "/bot/{botName}/alias/{botAlias}/user/{userId}/session/";
         uriResourcePath = uriResourcePath.replace(
                 "{botName}",
                 (getSessionRequest.getBotName() == null) ? "" : StringUtils
@@ -63,6 +63,10 @@ public class GetSessionRequestMarshaller implements
                 "{userId}",
                 (getSessionRequest.getUserId() == null) ? "" : StringUtils
                         .fromString(getSessionRequest.getUserId()));
+        if (getSessionRequest.getCheckpointLabelFilter() != null) {
+            request.addParameter("checkpointLabelFilter",
+                    StringUtils.fromString(getSessionRequest.getCheckpointLabelFilter()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
