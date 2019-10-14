@@ -18,55 +18,79 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Import job response.
+ * <p>
+ * Provides information about the status and settings of a job that imports
+ * endpoint definitions from one or more files. The files can be stored in an
+ * Amazon Simple Storage Service (Amazon S3) bucket or uploaded directly from a
+ * computer by using the Amazon Pinpoint console.
+ * </p>
  */
 public class ImportJobResponse implements Serializable {
     /**
-     * The unique ID of the application to which the import job applies.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * import job.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The number of pieces that have successfully imported as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * import job, as of the time of the request.
+     * </p>
      */
     private Integer completedPieces;
 
     /**
-     * The date the import job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was completed.
+     * </p>
      */
     private String completionDate;
 
     /**
-     * The date the import job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was created.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The import job settings.
+     * <p>
+     * The resource settings that apply to the import job.
+     * </p>
      */
     private ImportJobResource definition;
 
     /**
-     * The number of pieces that have failed to import as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * import job, as of the time of the request.
+     * </p>
      */
     private Integer failedPieces;
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the import job, if any.
+     * </p>
      */
     private java.util.List<String> failures;
 
     /**
-     * The unique ID of the import job.
+     * <p>
+     * The unique identifier for the import job.
+     * </p>
      */
     private String id;
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
@@ -75,54 +99,81 @@ public class ImportJobResponse implements Serializable {
     private String jobStatus;
 
     /**
-     * The number of endpoints that failed to import; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the import job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      */
     private Integer totalFailures;
 
     /**
-     * The total number of pieces that must be imported to finish the job. Each
-     * piece is an approximately equal portion of the endpoints to import.
+     * <p>
+     * The total number of pieces that must be processed to complete the import
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the import job.
+     * </p>
      */
     private Integer totalPieces;
 
     /**
-     * The number of endpoints that were processed by the import job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * import job.
+     * </p>
      */
     private Integer totalProcessed;
 
     /**
-     * The job type. Will be Import.
+     * <p>
+     * The job type. This value is IMPORT for import jobs.
+     * </p>
      */
     private String type;
 
     /**
-     * The unique ID of the application to which the import job applies.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * import job.
+     * </p>
      *
-     * @return The unique ID of the application to which the import job applies.
+     * @return <p>
+     *         The unique identifier for the application that's associated with
+     *         the import job.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of the application to which the import job applies.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * import job.
+     * </p>
      *
-     * @param applicationId The unique ID of the application to which the import
-     *            job applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that's associated
+     *            with the import job.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of the application to which the import job applies.
+     * <p>
+     * The unique identifier for the application that's associated with the
+     * import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of the application to which the import
-     *            job applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that's associated
+     *            with the import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -132,36 +183,48 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The number of pieces that have successfully imported as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * import job, as of the time of the request.
+     * </p>
      *
-     * @return The number of pieces that have successfully imported as of the
-     *         time of the request.
+     * @return <p>
+     *         The number of pieces that were processed successfully (completed)
+     *         by the import job, as of the time of the request.
+     *         </p>
      */
     public Integer getCompletedPieces() {
         return completedPieces;
     }
 
     /**
-     * The number of pieces that have successfully imported as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * import job, as of the time of the request.
+     * </p>
      *
-     * @param completedPieces The number of pieces that have successfully
-     *            imported as of the time of the request.
+     * @param completedPieces <p>
+     *            The number of pieces that were processed successfully
+     *            (completed) by the import job, as of the time of the request.
+     *            </p>
      */
     public void setCompletedPieces(Integer completedPieces) {
         this.completedPieces = completedPieces;
     }
 
     /**
-     * The number of pieces that have successfully imported as of the time of
-     * the request.
+     * <p>
+     * The number of pieces that were processed successfully (completed) by the
+     * import job, as of the time of the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param completedPieces The number of pieces that have successfully
-     *            imported as of the time of the request.
+     * @param completedPieces <p>
+     *            The number of pieces that were processed successfully
+     *            (completed) by the import job, as of the time of the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -171,32 +234,44 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The date the import job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was completed.
+     * </p>
      *
-     * @return The date the import job completed in ISO 8601 format.
+     * @return <p>
+     *         The date, in ISO 8601 format, when the import job was completed.
+     *         </p>
      */
     public String getCompletionDate() {
         return completionDate;
     }
 
     /**
-     * The date the import job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was completed.
+     * </p>
      *
-     * @param completionDate The date the import job completed in ISO 8601
-     *            format.
+     * @param completionDate <p>
+     *            The date, in ISO 8601 format, when the import job was
+     *            completed.
+     *            </p>
      */
     public void setCompletionDate(String completionDate) {
         this.completionDate = completionDate;
     }
 
     /**
-     * The date the import job completed in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was completed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param completionDate The date the import job completed in ISO 8601
-     *            format.
+     * @param completionDate <p>
+     *            The date, in ISO 8601 format, when the import job was
+     *            completed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -206,32 +281,42 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The date the import job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was created.
+     * </p>
      *
-     * @return The date the import job was created in ISO 8601 format.
+     * @return <p>
+     *         The date, in ISO 8601 format, when the import job was created.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date the import job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was created.
+     * </p>
      *
-     * @param creationDate The date the import job was created in ISO 8601
-     *            format.
+     * @param creationDate <p>
+     *            The date, in ISO 8601 format, when the import job was created.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date the import job was created in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the import job was created.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date the import job was created in ISO 8601
-     *            format.
+     * @param creationDate <p>
+     *            The date, in ISO 8601 format, when the import job was created.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -241,30 +326,42 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The import job settings.
+     * <p>
+     * The resource settings that apply to the import job.
+     * </p>
      *
-     * @return The import job settings.
+     * @return <p>
+     *         The resource settings that apply to the import job.
+     *         </p>
      */
     public ImportJobResource getDefinition() {
         return definition;
     }
 
     /**
-     * The import job settings.
+     * <p>
+     * The resource settings that apply to the import job.
+     * </p>
      *
-     * @param definition The import job settings.
+     * @param definition <p>
+     *            The resource settings that apply to the import job.
+     *            </p>
      */
     public void setDefinition(ImportJobResource definition) {
         this.definition = definition;
     }
 
     /**
-     * The import job settings.
+     * <p>
+     * The resource settings that apply to the import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param definition The import job settings.
+     * @param definition <p>
+     *            The resource settings that apply to the import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -274,36 +371,48 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The number of pieces that have failed to import as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * import job, as of the time of the request.
+     * </p>
      *
-     * @return The number of pieces that have failed to import as of the time of
-     *         the request.
+     * @return <p>
+     *         The number of pieces that weren't processed successfully (failed)
+     *         by the import job, as of the time of the request.
+     *         </p>
      */
     public Integer getFailedPieces() {
         return failedPieces;
     }
 
     /**
-     * The number of pieces that have failed to import as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * import job, as of the time of the request.
+     * </p>
      *
-     * @param failedPieces The number of pieces that have failed to import as of
-     *            the time of the request.
+     * @param failedPieces <p>
+     *            The number of pieces that weren't processed successfully
+     *            (failed) by the import job, as of the time of the request.
+     *            </p>
      */
     public void setFailedPieces(Integer failedPieces) {
         this.failedPieces = failedPieces;
     }
 
     /**
-     * The number of pieces that have failed to import as of the time of the
-     * request.
+     * <p>
+     * The number of pieces that weren't processed successfully (failed) by the
+     * import job, as of the time of the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failedPieces The number of pieces that have failed to import as of
-     *            the time of the request.
+     * @param failedPieces <p>
+     *            The number of pieces that weren't processed successfully
+     *            (failed) by the import job, as of the time of the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -313,20 +422,32 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the import job, if any.
+     * </p>
      *
-     * @return Provides up to 100 of the first failed entries for the job, if
-     *         any exist.
+     * @return <p>
+     *         An array of entries, one for each of the first 100 entries that
+     *         weren't processed successfully (failed) by the import job, if
+     *         any.
+     *         </p>
      */
     public java.util.List<String> getFailures() {
         return failures;
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the import job, if any.
+     * </p>
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the import
+     *            job, if any.
+     *            </p>
      */
     public void setFailures(java.util.Collection<String> failures) {
         if (failures == null) {
@@ -338,13 +459,19 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the import job, if any.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the import
+     *            job, if any.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -359,13 +486,19 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * Provides up to 100 of the first failed entries for the job, if any exist.
+     * <p>
+     * An array of entries, one for each of the first 100 entries that weren't
+     * processed successfully (failed) by the import job, if any.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param failures Provides up to 100 of the first failed entries for the
-     *            job, if any exist.
+     * @param failures <p>
+     *            An array of entries, one for each of the first 100 entries
+     *            that weren't processed successfully (failed) by the import
+     *            job, if any.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -375,30 +508,42 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The unique ID of the import job.
+     * <p>
+     * The unique identifier for the import job.
+     * </p>
      *
-     * @return The unique ID of the import job.
+     * @return <p>
+     *         The unique identifier for the import job.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * The unique ID of the import job.
+     * <p>
+     * The unique identifier for the import job.
+     * </p>
      *
-     * @param id The unique ID of the import job.
+     * @param id <p>
+     *            The unique identifier for the import job.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * The unique ID of the import job.
+     * <p>
+     * The unique identifier for the import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id The unique ID of the import job.
+     * @param id <p>
+     *            The unique identifier for the import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -408,17 +553,19 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @return The status of the import job. Valid values: CREATED,
-     *         INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED
-     *         The job status is FAILED if one or more pieces failed to import.
+     * @return <p>
+     *         The status of the import job. The job status is FAILED if Amazon
+     *         Pinpoint wasn't able to process one or more pieces in the job.
+     *         </p>
      * @see JobStatus
      */
     public String getJobStatus() {
@@ -426,18 +573,20 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the import job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed
-     *            to import.
+     * @param jobStatus <p>
+     *            The status of the import job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @see JobStatus
      */
     public void setJobStatus(String jobStatus) {
@@ -445,9 +594,10 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -456,10 +606,11 @@ public class ImportJobResponse implements Serializable {
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the import job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed
-     *            to import.
+     * @param jobStatus <p>
+     *            The status of the import job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
@@ -470,18 +621,20 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the import job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed
-     *            to import.
+     * @param jobStatus <p>
+     *            The status of the import job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @see JobStatus
      */
     public void setJobStatus(JobStatus jobStatus) {
@@ -489,9 +642,10 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The status of the import job. Valid values: CREATED, INITIALIZING,
-     * PROCESSING, COMPLETING, COMPLETED, FAILING, FAILED The job status is
-     * FAILED if one or more pieces failed to import.
+     * <p>
+     * The status of the import job. The job status is FAILED if Amazon Pinpoint
+     * wasn't able to process one or more pieces in the job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -500,10 +654,11 @@ public class ImportJobResponse implements Serializable {
      * <b>Allowed Values: </b>CREATED, INITIALIZING, PROCESSING, COMPLETING,
      * COMPLETED, FAILING, FAILED
      *
-     * @param jobStatus The status of the import job. Valid values: CREATED,
-     *            INITIALIZING, PROCESSING, COMPLETING, COMPLETED, FAILING,
-     *            FAILED The job status is FAILED if one or more pieces failed
-     *            to import.
+     * @param jobStatus <p>
+     *            The status of the import job. The job status is FAILED if
+     *            Amazon Pinpoint wasn't able to process one or more pieces in
+     *            the job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
@@ -514,36 +669,54 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The number of endpoints that failed to import; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the import job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      *
-     * @return The number of endpoints that failed to import; for example,
-     *         because of syntax errors.
+     * @return <p>
+     *         The total number of endpoint definitions that weren't processed
+     *         successfully (failed) by the import job, typically because an
+     *         error, such as a syntax error, occurred.
+     *         </p>
      */
     public Integer getTotalFailures() {
         return totalFailures;
     }
 
     /**
-     * The number of endpoints that failed to import; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the import job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      *
-     * @param totalFailures The number of endpoints that failed to import; for
-     *            example, because of syntax errors.
+     * @param totalFailures <p>
+     *            The total number of endpoint definitions that weren't
+     *            processed successfully (failed) by the import job, typically
+     *            because an error, such as a syntax error, occurred.
+     *            </p>
      */
     public void setTotalFailures(Integer totalFailures) {
         this.totalFailures = totalFailures;
     }
 
     /**
-     * The number of endpoints that failed to import; for example, because of
-     * syntax errors.
+     * <p>
+     * The total number of endpoint definitions that weren't processed
+     * successfully (failed) by the import job, typically because an error, such
+     * as a syntax error, occurred.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalFailures The number of endpoints that failed to import; for
-     *            example, because of syntax errors.
+     * @param totalFailures <p>
+     *            The total number of endpoint definitions that weren't
+     *            processed successfully (failed) by the import job, typically
+     *            because an error, such as a syntax error, occurred.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -553,39 +726,56 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The total number of pieces that must be imported to finish the job. Each
-     * piece is an approximately equal portion of the endpoints to import.
+     * <p>
+     * The total number of pieces that must be processed to complete the import
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the import job.
+     * </p>
      *
-     * @return The total number of pieces that must be imported to finish the
-     *         job. Each piece is an approximately equal portion of the
-     *         endpoints to import.
+     * @return <p>
+     *         The total number of pieces that must be processed to complete the
+     *         import job. Each piece consists of an approximately equal portion
+     *         of the endpoint definitions that are part of the import job.
+     *         </p>
      */
     public Integer getTotalPieces() {
         return totalPieces;
     }
 
     /**
-     * The total number of pieces that must be imported to finish the job. Each
-     * piece is an approximately equal portion of the endpoints to import.
+     * <p>
+     * The total number of pieces that must be processed to complete the import
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the import job.
+     * </p>
      *
-     * @param totalPieces The total number of pieces that must be imported to
-     *            finish the job. Each piece is an approximately equal portion
-     *            of the endpoints to import.
+     * @param totalPieces <p>
+     *            The total number of pieces that must be processed to complete
+     *            the import job. Each piece consists of an approximately equal
+     *            portion of the endpoint definitions that are part of the
+     *            import job.
+     *            </p>
      */
     public void setTotalPieces(Integer totalPieces) {
         this.totalPieces = totalPieces;
     }
 
     /**
-     * The total number of pieces that must be imported to finish the job. Each
-     * piece is an approximately equal portion of the endpoints to import.
+     * <p>
+     * The total number of pieces that must be processed to complete the import
+     * job. Each piece consists of an approximately equal portion of the
+     * endpoint definitions that are part of the import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalPieces The total number of pieces that must be imported to
-     *            finish the job. Each piece is an approximately equal portion
-     *            of the endpoints to import.
+     * @param totalPieces <p>
+     *            The total number of pieces that must be processed to complete
+     *            the import job. Each piece consists of an approximately equal
+     *            portion of the endpoint definitions that are part of the
+     *            import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -595,32 +785,48 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The number of endpoints that were processed by the import job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * import job.
+     * </p>
      *
-     * @return The number of endpoints that were processed by the import job.
+     * @return <p>
+     *         The total number of endpoint definitions that were processed by
+     *         the import job.
+     *         </p>
      */
     public Integer getTotalProcessed() {
         return totalProcessed;
     }
 
     /**
-     * The number of endpoints that were processed by the import job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * import job.
+     * </p>
      *
-     * @param totalProcessed The number of endpoints that were processed by the
-     *            import job.
+     * @param totalProcessed <p>
+     *            The total number of endpoint definitions that were processed
+     *            by the import job.
+     *            </p>
      */
     public void setTotalProcessed(Integer totalProcessed) {
         this.totalProcessed = totalProcessed;
     }
 
     /**
-     * The number of endpoints that were processed by the import job.
+     * <p>
+     * The total number of endpoint definitions that were processed by the
+     * import job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param totalProcessed The number of endpoints that were processed by the
-     *            import job.
+     * @param totalProcessed <p>
+     *            The total number of endpoint definitions that were processed
+     *            by the import job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -630,30 +836,42 @@ public class ImportJobResponse implements Serializable {
     }
 
     /**
-     * The job type. Will be Import.
+     * <p>
+     * The job type. This value is IMPORT for import jobs.
+     * </p>
      *
-     * @return The job type. Will be Import.
+     * @return <p>
+     *         The job type. This value is IMPORT for import jobs.
+     *         </p>
      */
     public String getType() {
         return type;
     }
 
     /**
-     * The job type. Will be Import.
+     * <p>
+     * The job type. This value is IMPORT for import jobs.
+     * </p>
      *
-     * @param type The job type. Will be Import.
+     * @param type <p>
+     *            The job type. This value is IMPORT for import jobs.
+     *            </p>
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * The job type. Will be Import.
+     * <p>
+     * The job type. This value is IMPORT for import jobs.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param type The job type. Will be Import.
+     * @param type <p>
+     *            The job type. This value is IMPORT for import jobs.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

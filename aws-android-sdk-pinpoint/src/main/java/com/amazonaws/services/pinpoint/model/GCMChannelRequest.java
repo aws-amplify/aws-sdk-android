@@ -18,44 +18,79 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Google Cloud Messaging credentials
+ * <p>
+ * Specifies the status and settings of the GCM channel for an application. This
+ * channel enables Amazon Pinpoint to send push notifications through the
+ * Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM),
+ * service.
+ * </p>
  */
 public class GCMChannelRequest implements Serializable {
     /**
-     * Platform credential API key from Google.
+     * <p>
+     * The Web API Key, also referred to as an <i>API_KEY</i> or <i>server
+     * key</i>, that you received from Google to communicate with Google
+     * services.
+     * </p>
      */
     private String apiKey;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the GCM channel for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Platform credential API key from Google.
+     * <p>
+     * The Web API Key, also referred to as an <i>API_KEY</i> or <i>server
+     * key</i>, that you received from Google to communicate with Google
+     * services.
+     * </p>
      *
-     * @return Platform credential API key from Google.
+     * @return <p>
+     *         The Web API Key, also referred to as an <i>API_KEY</i> or
+     *         <i>server key</i>, that you received from Google to communicate
+     *         with Google services.
+     *         </p>
      */
     public String getApiKey() {
         return apiKey;
     }
 
     /**
-     * Platform credential API key from Google.
+     * <p>
+     * The Web API Key, also referred to as an <i>API_KEY</i> or <i>server
+     * key</i>, that you received from Google to communicate with Google
+     * services.
+     * </p>
      *
-     * @param apiKey Platform credential API key from Google.
+     * @param apiKey <p>
+     *            The Web API Key, also referred to as an <i>API_KEY</i> or
+     *            <i>server key</i>, that you received from Google to
+     *            communicate with Google services.
+     *            </p>
      */
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
 
     /**
-     * Platform credential API key from Google.
+     * <p>
+     * The Web API Key, also referred to as an <i>API_KEY</i> or <i>server
+     * key</i>, that you received from Google to communicate with Google
+     * services.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param apiKey Platform credential API key from Google.
+     * @param apiKey <p>
+     *            The Web API Key, also referred to as an <i>API_KEY</i> or
+     *            <i>server key</i>, that you received from Google to
+     *            communicate with Google services.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,39 +100,57 @@ public class GCMChannelRequest implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the GCM channel for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether to enable the GCM channel for the application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the GCM channel for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether to enable the GCM channel for the application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the GCM channel for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the GCM channel for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the GCM channel for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the GCM channel for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

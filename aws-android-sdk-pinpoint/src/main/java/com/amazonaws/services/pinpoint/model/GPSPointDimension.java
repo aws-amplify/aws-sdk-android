@@ -18,44 +18,63 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * GPS point location dimension
+ * <p>
+ * Specifies GPS-based criteria for including or excluding endpoints from a
+ * segment.
+ * </p>
  */
 public class GPSPointDimension implements Serializable {
     /**
-     * Coordinate to measure distance from.
+     * <p>
+     * The GPS coordinates to measure distance from.
+     * </p>
      */
     private GPSCoordinates coordinates;
 
     /**
-     * Range in kilometers from the coordinate.
+     * <p>
+     * The range, in kilometers, from the GPS coordinates.
+     * </p>
      */
     private Double rangeInKilometers;
 
     /**
-     * Coordinate to measure distance from.
+     * <p>
+     * The GPS coordinates to measure distance from.
+     * </p>
      *
-     * @return Coordinate to measure distance from.
+     * @return <p>
+     *         The GPS coordinates to measure distance from.
+     *         </p>
      */
     public GPSCoordinates getCoordinates() {
         return coordinates;
     }
 
     /**
-     * Coordinate to measure distance from.
+     * <p>
+     * The GPS coordinates to measure distance from.
+     * </p>
      *
-     * @param coordinates Coordinate to measure distance from.
+     * @param coordinates <p>
+     *            The GPS coordinates to measure distance from.
+     *            </p>
      */
     public void setCoordinates(GPSCoordinates coordinates) {
         this.coordinates = coordinates;
     }
 
     /**
-     * Coordinate to measure distance from.
+     * <p>
+     * The GPS coordinates to measure distance from.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param coordinates Coordinate to measure distance from.
+     * @param coordinates <p>
+     *            The GPS coordinates to measure distance from.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,30 +84,42 @@ public class GPSPointDimension implements Serializable {
     }
 
     /**
-     * Range in kilometers from the coordinate.
+     * <p>
+     * The range, in kilometers, from the GPS coordinates.
+     * </p>
      *
-     * @return Range in kilometers from the coordinate.
+     * @return <p>
+     *         The range, in kilometers, from the GPS coordinates.
+     *         </p>
      */
     public Double getRangeInKilometers() {
         return rangeInKilometers;
     }
 
     /**
-     * Range in kilometers from the coordinate.
+     * <p>
+     * The range, in kilometers, from the GPS coordinates.
+     * </p>
      *
-     * @param rangeInKilometers Range in kilometers from the coordinate.
+     * @param rangeInKilometers <p>
+     *            The range, in kilometers, from the GPS coordinates.
+     *            </p>
      */
     public void setRangeInKilometers(Double rangeInKilometers) {
         this.rangeInKilometers = rangeInKilometers;
     }
 
     /**
-     * Range in kilometers from the coordinate.
+     * <p>
+     * The range, in kilometers, from the GPS coordinates.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param rangeInKilometers Range in kilometers from the coordinate.
+     * @param rangeInKilometers <p>
+     *            The range, in kilometers, from the GPS coordinates.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

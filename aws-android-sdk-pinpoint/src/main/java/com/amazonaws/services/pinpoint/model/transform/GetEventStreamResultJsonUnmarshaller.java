@@ -29,6 +29,19 @@ public class GetEventStreamResultJsonUnmarshaller implements
     public GetEventStreamResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetEventStreamResult getEventStreamResult = new GetEventStreamResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("EventStream")) {
+                getEventStreamResult.setEventStream(EventStreamJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return getEventStreamResult;
     }
 

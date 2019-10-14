@@ -20,44 +20,74 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Update an email channel.
+ * <p>
+ * Enables the email channel for an application or updates the status and
+ * settings of the email channel for an application.
+ * </p>
  */
 public class UpdateEmailChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Email Channel Request
+     * <p>
+     * Specifies the status and settings of the email channel for an
+     * application.
+     * </p>
      */
     private EmailChannelRequest emailChannelRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +97,48 @@ public class UpdateEmailChannelRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * Email Channel Request
+     * <p>
+     * Specifies the status and settings of the email channel for an
+     * application.
+     * </p>
      *
-     * @return Email Channel Request
+     * @return <p>
+     *         Specifies the status and settings of the email channel for an
+     *         application.
+     *         </p>
      */
     public EmailChannelRequest getEmailChannelRequest() {
         return emailChannelRequest;
     }
 
     /**
-     * Email Channel Request
+     * <p>
+     * Specifies the status and settings of the email channel for an
+     * application.
+     * </p>
      *
-     * @param emailChannelRequest Email Channel Request
+     * @param emailChannelRequest <p>
+     *            Specifies the status and settings of the email channel for an
+     *            application.
+     *            </p>
      */
     public void setEmailChannelRequest(EmailChannelRequest emailChannelRequest) {
         this.emailChannelRequest = emailChannelRequest;
     }
 
     /**
-     * Email Channel Request
+     * <p>
+     * Specifies the status and settings of the email channel for an
+     * application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param emailChannelRequest Email Channel Request
+     * @param emailChannelRequest <p>
+     *            Specifies the status and settings of the email channel for an
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

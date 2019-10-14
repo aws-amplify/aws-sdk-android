@@ -29,6 +29,20 @@ public class DeleteCampaignResultJsonUnmarshaller implements
     public DeleteCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteCampaignResult deleteCampaignResult = new DeleteCampaignResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("CampaignResponse")) {
+                deleteCampaignResult.setCampaignResponse(CampaignResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteCampaignResult;
     }
 

@@ -18,46 +18,65 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * A batch of PublicEndpoints and Events to process.
+ * <p>
+ * Specifies a batch of endpoints and events to process.
+ * </p>
  */
 public class EventsBatch implements Serializable {
     /**
-     * The PublicEndpoint attached to the EndpointId from the request.
+     * <p>
+     * A set of properties and attributes that are associated with the endpoint.
+     * </p>
      */
     private PublicEndpoint endpoint;
 
     /**
-     * An object that contains a set of events associated with the endpoint.
+     * <p>
+     * A set of properties that are associated with the event.
+     * </p>
      */
     private java.util.Map<String, Event> events;
 
     /**
-     * The PublicEndpoint attached to the EndpointId from the request.
+     * <p>
+     * A set of properties and attributes that are associated with the endpoint.
+     * </p>
      *
-     * @return The PublicEndpoint attached to the EndpointId from the request.
+     * @return <p>
+     *         A set of properties and attributes that are associated with the
+     *         endpoint.
+     *         </p>
      */
     public PublicEndpoint getEndpoint() {
         return endpoint;
     }
 
     /**
-     * The PublicEndpoint attached to the EndpointId from the request.
+     * <p>
+     * A set of properties and attributes that are associated with the endpoint.
+     * </p>
      *
-     * @param endpoint The PublicEndpoint attached to the EndpointId from the
-     *            request.
+     * @param endpoint <p>
+     *            A set of properties and attributes that are associated with
+     *            the endpoint.
+     *            </p>
      */
     public void setEndpoint(PublicEndpoint endpoint) {
         this.endpoint = endpoint;
     }
 
     /**
-     * The PublicEndpoint attached to the EndpointId from the request.
+     * <p>
+     * A set of properties and attributes that are associated with the endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpoint The PublicEndpoint attached to the EndpointId from the
-     *            request.
+     * @param endpoint <p>
+     *            A set of properties and attributes that are associated with
+     *            the endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,33 +86,42 @@ public class EventsBatch implements Serializable {
     }
 
     /**
-     * An object that contains a set of events associated with the endpoint.
+     * <p>
+     * A set of properties that are associated with the event.
+     * </p>
      *
-     * @return An object that contains a set of events associated with the
-     *         endpoint.
+     * @return <p>
+     *         A set of properties that are associated with the event.
+     *         </p>
      */
     public java.util.Map<String, Event> getEvents() {
         return events;
     }
 
     /**
-     * An object that contains a set of events associated with the endpoint.
+     * <p>
+     * A set of properties that are associated with the event.
+     * </p>
      *
-     * @param events An object that contains a set of events associated with the
-     *            endpoint.
+     * @param events <p>
+     *            A set of properties that are associated with the event.
+     *            </p>
      */
     public void setEvents(java.util.Map<String, Event> events) {
         this.events = events;
     }
 
     /**
-     * An object that contains a set of events associated with the endpoint.
+     * <p>
+     * A set of properties that are associated with the event.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param events An object that contains a set of events associated with the
-     *            endpoint.
+     * @param events <p>
+     *            A set of properties that are associated with the event.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,7 +131,9 @@ public class EventsBatch implements Serializable {
     }
 
     /**
-     * An object that contains a set of events associated with the endpoint.
+     * <p>
+     * A set of properties that are associated with the event.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Events parameter, and returns a
      * reference to this object so that method calls can be chained together.

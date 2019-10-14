@@ -20,44 +20,73 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Returns information about an export job.
+ * <p>
+ * Retrieves information about the status and settings of a specific export job
+ * for an application.
+ * </p>
  */
 public class GetExportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the job.
+     * </p>
      */
     private String jobId;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +96,42 @@ public class GetExportJobRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the job.
+     * </p>
      *
-     * @return The unique ID of the job.
+     * @return <p>
+     *         The unique identifier for the job.
+     *         </p>
      */
     public String getJobId() {
         return jobId;
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the job.
+     * </p>
      *
-     * @param jobId The unique ID of the job.
+     * @param jobId <p>
+     *            The unique identifier for the job.
+     *            </p>
      */
     public void setJobId(String jobId) {
         this.jobId = jobId;
     }
 
     /**
-     * The unique ID of the job.
+     * <p>
+     * The unique identifier for the job.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param jobId The unique ID of the job.
+     * @param jobId <p>
+     *            The unique identifier for the job.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

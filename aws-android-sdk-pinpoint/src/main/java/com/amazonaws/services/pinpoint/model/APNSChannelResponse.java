@@ -18,98 +18,145 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Apple Distribution Push Notification Service channel definition.
+ * <p>
+ * Provides information about the status and settings of the APNs (Apple Push
+ * Notification service) channel for an application.
+ * </p>
  */
 public class APNSChannelResponse implements Serializable {
     /**
-     * The ID of the application that the channel applies to.
+     * <p>
+     * The unique identifier for the application that the APNs channel applies
+     * to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The date and time when this channel was created.
+     * <p>
+     * The date and time when the APNs channel was enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with APNs for this channel, key or certificate.
+     * </p>
      */
     private String defaultAuthenticationMethod;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs channel is enabled for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs channel is configured to communicate with APNs
+     * by using APNs tokens. To provide an authentication key for APNs tokens,
+     * set the TokenKey property of the channel.
+     * </p>
      */
     private Boolean hasTokenKey;
 
     /**
-     * (Deprecated) An identifier for the channel. Retained for backwards
-     * compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * Indicates whether or not the channel is archived.
+     * <p>
+     * Specifies whether the APNs channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * The user who last updated this channel.
+     * <p>
+     * The user who last modified the APNs channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * The date and time when this channel was last modified.
+     * <p>
+     * The date and time when the APNs channel was last modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * The platform type. For this channel, the value is always "ADM."
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs channel, this value is APNS.
+     * </p>
      */
     private String platform;
 
     /**
-     * The channel version.
+     * <p>
+     * The current version of the APNs channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * The ID of the application that the channel applies to.
+     * <p>
+     * The unique identifier for the application that the APNs channel applies
+     * to.
+     * </p>
      *
-     * @return The ID of the application that the channel applies to.
+     * @return <p>
+     *         The unique identifier for the application that the APNs channel
+     *         applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The ID of the application that the channel applies to.
+     * <p>
+     * The unique identifier for the application that the APNs channel applies
+     * to.
+     * </p>
      *
-     * @param applicationId The ID of the application that the channel applies
-     *            to.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the APNs
+     *            channel applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The ID of the application that the channel applies to.
+     * <p>
+     * The unique identifier for the application that the APNs channel applies
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The ID of the application that the channel applies
-     *            to.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the APNs
+     *            channel applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -119,30 +166,42 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The date and time when this channel was created.
+     * <p>
+     * The date and time when the APNs channel was enabled.
+     * </p>
      *
-     * @return The date and time when this channel was created.
+     * @return <p>
+     *         The date and time when the APNs channel was enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date and time when this channel was created.
+     * <p>
+     * The date and time when the APNs channel was enabled.
+     * </p>
      *
-     * @param creationDate The date and time when this channel was created.
+     * @param creationDate <p>
+     *            The date and time when the APNs channel was enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date and time when this channel was created.
+     * <p>
+     * The date and time when the APNs channel was enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date and time when this channel was created.
+     * @param creationDate <p>
+     *            The date and time when the APNs channel was enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -152,32 +211,48 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with APNs for this channel, key or certificate.
+     * </p>
      *
-     * @return The default authentication method used for APNs.
+     * @return <p>
+     *         The default authentication method that Amazon Pinpoint uses to
+     *         authenticate with APNs for this channel, key or certificate.
+     *         </p>
      */
     public String getDefaultAuthenticationMethod() {
         return defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with APNs for this channel, key or certificate.
+     * </p>
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that Amazon Pinpoint uses to
+     *            authenticate with APNs for this channel, key or certificate.
+     *            </p>
      */
     public void setDefaultAuthenticationMethod(String defaultAuthenticationMethod) {
         this.defaultAuthenticationMethod = defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that Amazon Pinpoint uses to
+     * authenticate with APNs for this channel, key or certificate.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that Amazon Pinpoint uses to
+     *            authenticate with APNs for this channel, key or certificate.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -187,39 +262,59 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the APNs channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the APNs channel is enabled for the
+     *         application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs channel is enabled for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the APNs channel is enabled for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the APNs channel is enabled for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the APNs channel is enabled for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -229,39 +324,59 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -271,51 +386,73 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs channel is configured to communicate with APNs
+     * by using APNs tokens. To provide an authentication key for APNs tokens,
+     * set the TokenKey property of the channel.
+     * </p>
      *
-     * @return Indicates whether the channel is configured with a key for APNs
-     *         token authentication. Provide a token key by setting the TokenKey
-     *         attribute.
+     * @return <p>
+     *         Specifies whether the APNs channel is configured to communicate
+     *         with APNs by using APNs tokens. To provide an authentication key
+     *         for APNs tokens, set the TokenKey property of the channel.
+     *         </p>
      */
     public Boolean isHasTokenKey() {
         return hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs channel is configured to communicate with APNs
+     * by using APNs tokens. To provide an authentication key for APNs tokens,
+     * set the TokenKey property of the channel.
+     * </p>
      *
-     * @return Indicates whether the channel is configured with a key for APNs
-     *         token authentication. Provide a token key by setting the TokenKey
-     *         attribute.
+     * @return <p>
+     *         Specifies whether the APNs channel is configured to communicate
+     *         with APNs by using APNs tokens. To provide an authentication key
+     *         for APNs tokens, set the TokenKey property of the channel.
+     *         </p>
      */
     public Boolean getHasTokenKey() {
         return hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs channel is configured to communicate with APNs
+     * by using APNs tokens. To provide an authentication key for APNs tokens,
+     * set the TokenKey property of the channel.
+     * </p>
      *
-     * @param hasTokenKey Indicates whether the channel is configured with a key
-     *            for APNs token authentication. Provide a token key by setting
-     *            the TokenKey attribute.
+     * @param hasTokenKey <p>
+     *            Specifies whether the APNs channel is configured to
+     *            communicate with APNs by using APNs tokens. To provide an
+     *            authentication key for APNs tokens, set the TokenKey property
+     *            of the channel.
+     *            </p>
      */
     public void setHasTokenKey(Boolean hasTokenKey) {
         this.hasTokenKey = hasTokenKey;
     }
 
     /**
-     * Indicates whether the channel is configured with a key for APNs token
-     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Specifies whether the APNs channel is configured to communicate with APNs
+     * by using APNs tokens. To provide an authentication key for APNs tokens,
+     * set the TokenKey property of the channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasTokenKey Indicates whether the channel is configured with a key
-     *            for APNs token authentication. Provide a token key by setting
-     *            the TokenKey attribute.
+     * @param hasTokenKey <p>
+     *            Specifies whether the APNs channel is configured to
+     *            communicate with APNs by using APNs tokens. To provide an
+     *            authentication key for APNs tokens, set the TokenKey property
+     *            of the channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -325,36 +462,48 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * (Deprecated) An identifier for the channel. Retained for backwards
-     * compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @return (Deprecated) An identifier for the channel. Retained for
-     *         backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the APNs channel. This property is
+     *         retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * (Deprecated) An identifier for the channel. Retained for backwards
-     * compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      *
-     * @param id (Deprecated) An identifier for the channel. Retained for
-     *            backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the APNs channel. This property
+     *            is retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * (Deprecated) An identifier for the channel. Retained for backwards
-     * compatibility.
+     * <p>
+     * (Deprecated) An identifier for the APNs channel. This property is
+     * retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id (Deprecated) An identifier for the channel. Retained for
-     *            backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the APNs channel. This property
+     *            is retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -364,39 +513,55 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * Indicates whether or not the channel is archived.
+     * <p>
+     * Specifies whether the APNs channel is archived.
+     * </p>
      *
-     * @return Indicates whether or not the channel is archived.
+     * @return <p>
+     *         Specifies whether the APNs channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Indicates whether or not the channel is archived.
+     * <p>
+     * Specifies whether the APNs channel is archived.
+     * </p>
      *
-     * @return Indicates whether or not the channel is archived.
+     * @return <p>
+     *         Specifies whether the APNs channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Indicates whether or not the channel is archived.
+     * <p>
+     * Specifies whether the APNs channel is archived.
+     * </p>
      *
-     * @param isArchived Indicates whether or not the channel is archived.
+     * @param isArchived <p>
+     *            Specifies whether the APNs channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Indicates whether or not the channel is archived.
+     * <p>
+     * Specifies whether the APNs channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Indicates whether or not the channel is archived.
+     * @param isArchived <p>
+     *            Specifies whether the APNs channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -406,30 +571,42 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The user who last updated this channel.
+     * <p>
+     * The user who last modified the APNs channel.
+     * </p>
      *
-     * @return The user who last updated this channel.
+     * @return <p>
+     *         The user who last modified the APNs channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * The user who last updated this channel.
+     * <p>
+     * The user who last modified the APNs channel.
+     * </p>
      *
-     * @param lastModifiedBy The user who last updated this channel.
+     * @param lastModifiedBy <p>
+     *            The user who last modified the APNs channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * The user who last updated this channel.
+     * <p>
+     * The user who last modified the APNs channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy The user who last updated this channel.
+     * @param lastModifiedBy <p>
+     *            The user who last modified the APNs channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -439,32 +616,42 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The date and time when this channel was last modified.
+     * <p>
+     * The date and time when the APNs channel was last modified.
+     * </p>
      *
-     * @return The date and time when this channel was last modified.
+     * @return <p>
+     *         The date and time when the APNs channel was last modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * The date and time when this channel was last modified.
+     * <p>
+     * The date and time when the APNs channel was last modified.
+     * </p>
      *
-     * @param lastModifiedDate The date and time when this channel was last
-     *            modified.
+     * @param lastModifiedDate <p>
+     *            The date and time when the APNs channel was last modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * The date and time when this channel was last modified.
+     * <p>
+     * The date and time when the APNs channel was last modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate The date and time when this channel was last
-     *            modified.
+     * @param lastModifiedDate <p>
+     *            The date and time when the APNs channel was last modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -474,32 +661,48 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The platform type. For this channel, the value is always "ADM."
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs channel, this value is APNS.
+     * </p>
      *
-     * @return The platform type. For this channel, the value is always "ADM."
+     * @return <p>
+     *         The type of messaging or notification platform for the channel.
+     *         For the APNs channel, this value is APNS.
+     *         </p>
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * The platform type. For this channel, the value is always "ADM."
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs channel, this value is APNS.
+     * </p>
      *
-     * @param platform The platform type. For this channel, the value is always
-     *            "ADM."
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the APNs channel, this value is APNS.
+     *            </p>
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * The platform type. For this channel, the value is always "ADM."
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * APNs channel, this value is APNS.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform The platform type. For this channel, the value is always
-     *            "ADM."
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the APNs channel, this value is APNS.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -509,30 +712,42 @@ public class APNSChannelResponse implements Serializable {
     }
 
     /**
-     * The channel version.
+     * <p>
+     * The current version of the APNs channel.
+     * </p>
      *
-     * @return The channel version.
+     * @return <p>
+     *         The current version of the APNs channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * The channel version.
+     * <p>
+     * The current version of the APNs channel.
+     * </p>
      *
-     * @param version The channel version.
+     * @param version <p>
+     *            The current version of the APNs channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * The channel version.
+     * <p>
+     * The current version of the APNs channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version The channel version.
+     * @param version <p>
+     *            The current version of the APNs channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

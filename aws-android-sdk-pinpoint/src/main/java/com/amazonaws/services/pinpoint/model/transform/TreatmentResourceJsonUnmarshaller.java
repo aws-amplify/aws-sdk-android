@@ -52,6 +52,10 @@ class TreatmentResourceJsonUnmarshaller implements
             } else if (name.equals("State")) {
                 treatmentResource.setState(CampaignStateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                treatmentResource.setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 treatmentResource.setTreatmentDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -18,127 +18,210 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Campaign definition
+ * <p>
+ * Provides information about the status, configuration, and other settings for
+ * a campaign.
+ * </p>
  */
 public class CampaignResponse implements Serializable {
     /**
-     * Treatments that are defined in addition to the default treatment.
+     * <p>
+     * An array of responses, one for each treatment that you defined for the
+     * campaign, in addition to the default treatment.
+     * </p>
      */
     private java.util.List<TreatmentResource> additionalTreatments;
 
     /**
-     * The ID of the application to which the campaign applies.
+     * <p>
+     * The unique identifier for the application that the campaign applies to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The date the campaign was created in ISO 8601 format.
+     * <p>
+     * The Amazon Resource Name (ARN) of the campaign.
+     * </p>
+     */
+    private String arn;
+
+    /**
+     * <p>
+     * The date, ISO 8601 format, when the campaign was created.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * The status of the campaign's default treatment. Only present for A/B test
-     * campaigns.
+     * <p>
+     * The current status of the campaign's default treatment. This value exists
+     * only for campaigns that have more than one treatment, to support A/B
+     * testing.
+     * </p>
      */
     private CampaignState defaultState;
 
     /**
-     * A description of the campaign.
+     * <p>
+     * The custom description of the campaign.
+     * </p>
      */
     private String description;
 
     /**
-     * The allocated percentage of end users who will not receive messages from
-     * this campaign.
+     * <p>
+     * The allocated percentage of users (segment members) who shouldn't receive
+     * messages from the campaign.
+     * </p>
      */
     private Integer holdoutPercent;
 
     /**
-     * Campaign hook information.
+     * <p>
+     * The settings for the AWS Lambda function to use as a code hook for the
+     * campaign.
+     * </p>
      */
     private CampaignHook hook;
 
     /**
-     * The unique campaign ID.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      */
     private String id;
 
     /**
-     * Indicates whether the campaign is paused. A paused campaign does not send
-     * messages unless you resume it by setting IsPaused to false.
+     * <p>
+     * Specifies whether the campaign is paused. A paused campaign doesn't run
+     * unless you resume it by changing this value to false.
+     * </p>
      */
     private Boolean isPaused;
 
     /**
-     * The date the campaign was last updated in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the campaign was last modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * The campaign limits settings.
+     * <p>
+     * The messaging limits for the campaign.
+     * </p>
      */
     private CampaignLimits limits;
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the campaign.
+     * </p>
      */
     private MessageConfiguration messageConfiguration;
 
     /**
-     * The custom name of the campaign.
+     * <p>
+     * The name of the campaign.
+     * </p>
      */
     private String name;
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the campaign.
+     * </p>
      */
     private Schedule schedule;
 
     /**
-     * The ID of the segment to which the campaign sends messages.
+     * <p>
+     * The unique identifier for the segment that's associated with the
+     * campaign.
+     * </p>
      */
     private String segmentId;
 
     /**
-     * The version of the segment to which the campaign sends messages.
+     * <p>
+     * The version number of the segment that's associated with the campaign.
+     * </p>
      */
     private Integer segmentVersion;
 
     /**
-     * The campaign status. An A/B test campaign will have a status of COMPLETED
-     * only when all treatments have a status of COMPLETED.
+     * <p>
+     * The current status of the campaign.
+     * </p>
      */
     private CampaignState state;
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the campaign. Each tag consists of a required tag key
+     * and an associated tag value.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * Specifies the message template to use for the message, for each type of
+     * channel.
+     * </p>
+     */
+    private TemplateConfiguration templateConfiguration;
+
+    /**
+     * <p>
+     * The custom description of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      */
     private String treatmentDescription;
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * The custom name of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      */
     private String treatmentName;
 
     /**
-     * The campaign version number.
+     * <p>
+     * The version number of the campaign.
+     * </p>
      */
     private Integer version;
 
     /**
-     * Treatments that are defined in addition to the default treatment.
+     * <p>
+     * An array of responses, one for each treatment that you defined for the
+     * campaign, in addition to the default treatment.
+     * </p>
      *
-     * @return Treatments that are defined in addition to the default treatment.
+     * @return <p>
+     *         An array of responses, one for each treatment that you defined
+     *         for the campaign, in addition to the default treatment.
+     *         </p>
      */
     public java.util.List<TreatmentResource> getAdditionalTreatments() {
         return additionalTreatments;
     }
 
     /**
-     * Treatments that are defined in addition to the default treatment.
+     * <p>
+     * An array of responses, one for each treatment that you defined for the
+     * campaign, in addition to the default treatment.
+     * </p>
      *
-     * @param additionalTreatments Treatments that are defined in addition to
-     *            the default treatment.
+     * @param additionalTreatments <p>
+     *            An array of responses, one for each treatment that you defined
+     *            for the campaign, in addition to the default treatment.
+     *            </p>
      */
     public void setAdditionalTreatments(java.util.Collection<TreatmentResource> additionalTreatments) {
         if (additionalTreatments == null) {
@@ -150,13 +233,18 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * Treatments that are defined in addition to the default treatment.
+     * <p>
+     * An array of responses, one for each treatment that you defined for the
+     * campaign, in addition to the default treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param additionalTreatments Treatments that are defined in addition to
-     *            the default treatment.
+     * @param additionalTreatments <p>
+     *            An array of responses, one for each treatment that you defined
+     *            for the campaign, in addition to the default treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -172,13 +260,18 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * Treatments that are defined in addition to the default treatment.
+     * <p>
+     * An array of responses, one for each treatment that you defined for the
+     * campaign, in addition to the default treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param additionalTreatments Treatments that are defined in addition to
-     *            the default treatment.
+     * @param additionalTreatments <p>
+     *            An array of responses, one for each treatment that you defined
+     *            for the campaign, in addition to the default treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -189,32 +282,45 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The ID of the application to which the campaign applies.
+     * <p>
+     * The unique identifier for the application that the campaign applies to.
+     * </p>
      *
-     * @return The ID of the application to which the campaign applies.
+     * @return <p>
+     *         The unique identifier for the application that the campaign
+     *         applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The ID of the application to which the campaign applies.
+     * <p>
+     * The unique identifier for the application that the campaign applies to.
+     * </p>
      *
-     * @param applicationId The ID of the application to which the campaign
-     *            applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the campaign
+     *            applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The ID of the application to which the campaign applies.
+     * <p>
+     * The unique identifier for the application that the campaign applies to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The ID of the application to which the campaign
-     *            applies.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the campaign
+     *            applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -224,30 +330,87 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The date the campaign was created in ISO 8601 format.
+     * <p>
+     * The Amazon Resource Name (ARN) of the campaign.
+     * </p>
      *
-     * @return The date the campaign was created in ISO 8601 format.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the campaign.
+     *         </p>
+     */
+    public String getArn() {
+        return arn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the campaign.
+     * </p>
+     *
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) of the campaign.
+     *            </p>
+     */
+    public void setArn(String arn) {
+        this.arn = arn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the campaign.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) of the campaign.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse withArn(String arn) {
+        this.arn = arn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The date, ISO 8601 format, when the campaign was created.
+     * </p>
+     *
+     * @return <p>
+     *         The date, ISO 8601 format, when the campaign was created.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date the campaign was created in ISO 8601 format.
+     * <p>
+     * The date, ISO 8601 format, when the campaign was created.
+     * </p>
      *
-     * @param creationDate The date the campaign was created in ISO 8601 format.
+     * @param creationDate <p>
+     *            The date, ISO 8601 format, when the campaign was created.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date the campaign was created in ISO 8601 format.
+     * <p>
+     * The date, ISO 8601 format, when the campaign was created.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date the campaign was created in ISO 8601 format.
+     * @param creationDate <p>
+     *            The date, ISO 8601 format, when the campaign was created.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -257,36 +420,54 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The status of the campaign's default treatment. Only present for A/B test
-     * campaigns.
+     * <p>
+     * The current status of the campaign's default treatment. This value exists
+     * only for campaigns that have more than one treatment, to support A/B
+     * testing.
+     * </p>
      *
-     * @return The status of the campaign's default treatment. Only present for
-     *         A/B test campaigns.
+     * @return <p>
+     *         The current status of the campaign's default treatment. This
+     *         value exists only for campaigns that have more than one
+     *         treatment, to support A/B testing.
+     *         </p>
      */
     public CampaignState getDefaultState() {
         return defaultState;
     }
 
     /**
-     * The status of the campaign's default treatment. Only present for A/B test
-     * campaigns.
+     * <p>
+     * The current status of the campaign's default treatment. This value exists
+     * only for campaigns that have more than one treatment, to support A/B
+     * testing.
+     * </p>
      *
-     * @param defaultState The status of the campaign's default treatment. Only
-     *            present for A/B test campaigns.
+     * @param defaultState <p>
+     *            The current status of the campaign's default treatment. This
+     *            value exists only for campaigns that have more than one
+     *            treatment, to support A/B testing.
+     *            </p>
      */
     public void setDefaultState(CampaignState defaultState) {
         this.defaultState = defaultState;
     }
 
     /**
-     * The status of the campaign's default treatment. Only present for A/B test
-     * campaigns.
+     * <p>
+     * The current status of the campaign's default treatment. This value exists
+     * only for campaigns that have more than one treatment, to support A/B
+     * testing.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultState The status of the campaign's default treatment. Only
-     *            present for A/B test campaigns.
+     * @param defaultState <p>
+     *            The current status of the campaign's default treatment. This
+     *            value exists only for campaigns that have more than one
+     *            treatment, to support A/B testing.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -296,30 +477,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * A description of the campaign.
+     * <p>
+     * The custom description of the campaign.
+     * </p>
      *
-     * @return A description of the campaign.
+     * @return <p>
+     *         The custom description of the campaign.
+     *         </p>
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * A description of the campaign.
+     * <p>
+     * The custom description of the campaign.
+     * </p>
      *
-     * @param description A description of the campaign.
+     * @param description <p>
+     *            The custom description of the campaign.
+     *            </p>
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * A description of the campaign.
+     * <p>
+     * The custom description of the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param description A description of the campaign.
+     * @param description <p>
+     *            The custom description of the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -329,36 +522,48 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The allocated percentage of end users who will not receive messages from
-     * this campaign.
+     * <p>
+     * The allocated percentage of users (segment members) who shouldn't receive
+     * messages from the campaign.
+     * </p>
      *
-     * @return The allocated percentage of end users who will not receive
-     *         messages from this campaign.
+     * @return <p>
+     *         The allocated percentage of users (segment members) who shouldn't
+     *         receive messages from the campaign.
+     *         </p>
      */
     public Integer getHoldoutPercent() {
         return holdoutPercent;
     }
 
     /**
-     * The allocated percentage of end users who will not receive messages from
-     * this campaign.
+     * <p>
+     * The allocated percentage of users (segment members) who shouldn't receive
+     * messages from the campaign.
+     * </p>
      *
-     * @param holdoutPercent The allocated percentage of end users who will not
-     *            receive messages from this campaign.
+     * @param holdoutPercent <p>
+     *            The allocated percentage of users (segment members) who
+     *            shouldn't receive messages from the campaign.
+     *            </p>
      */
     public void setHoldoutPercent(Integer holdoutPercent) {
         this.holdoutPercent = holdoutPercent;
     }
 
     /**
-     * The allocated percentage of end users who will not receive messages from
-     * this campaign.
+     * <p>
+     * The allocated percentage of users (segment members) who shouldn't receive
+     * messages from the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param holdoutPercent The allocated percentage of end users who will not
-     *            receive messages from this campaign.
+     * @param holdoutPercent <p>
+     *            The allocated percentage of users (segment members) who
+     *            shouldn't receive messages from the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -368,30 +573,48 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * Campaign hook information.
+     * <p>
+     * The settings for the AWS Lambda function to use as a code hook for the
+     * campaign.
+     * </p>
      *
-     * @return Campaign hook information.
+     * @return <p>
+     *         The settings for the AWS Lambda function to use as a code hook
+     *         for the campaign.
+     *         </p>
      */
     public CampaignHook getHook() {
         return hook;
     }
 
     /**
-     * Campaign hook information.
+     * <p>
+     * The settings for the AWS Lambda function to use as a code hook for the
+     * campaign.
+     * </p>
      *
-     * @param hook Campaign hook information.
+     * @param hook <p>
+     *            The settings for the AWS Lambda function to use as a code hook
+     *            for the campaign.
+     *            </p>
      */
     public void setHook(CampaignHook hook) {
         this.hook = hook;
     }
 
     /**
-     * Campaign hook information.
+     * <p>
+     * The settings for the AWS Lambda function to use as a code hook for the
+     * campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hook Campaign hook information.
+     * @param hook <p>
+     *            The settings for the AWS Lambda function to use as a code hook
+     *            for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -401,30 +624,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The unique campaign ID.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      *
-     * @return The unique campaign ID.
+     * @return <p>
+     *         The unique identifier for the campaign.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * The unique campaign ID.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      *
-     * @param id The unique campaign ID.
+     * @param id <p>
+     *            The unique identifier for the campaign.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * The unique campaign ID.
+     * <p>
+     * The unique identifier for the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id The unique campaign ID.
+     * @param id <p>
+     *            The unique identifier for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -434,51 +669,65 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * Indicates whether the campaign is paused. A paused campaign does not send
-     * messages unless you resume it by setting IsPaused to false.
+     * <p>
+     * Specifies whether the campaign is paused. A paused campaign doesn't run
+     * unless you resume it by changing this value to false.
+     * </p>
      *
-     * @return Indicates whether the campaign is paused. A paused campaign does
-     *         not send messages unless you resume it by setting IsPaused to
-     *         false.
+     * @return <p>
+     *         Specifies whether the campaign is paused. A paused campaign
+     *         doesn't run unless you resume it by changing this value to false.
+     *         </p>
      */
     public Boolean isIsPaused() {
         return isPaused;
     }
 
     /**
-     * Indicates whether the campaign is paused. A paused campaign does not send
-     * messages unless you resume it by setting IsPaused to false.
+     * <p>
+     * Specifies whether the campaign is paused. A paused campaign doesn't run
+     * unless you resume it by changing this value to false.
+     * </p>
      *
-     * @return Indicates whether the campaign is paused. A paused campaign does
-     *         not send messages unless you resume it by setting IsPaused to
-     *         false.
+     * @return <p>
+     *         Specifies whether the campaign is paused. A paused campaign
+     *         doesn't run unless you resume it by changing this value to false.
+     *         </p>
      */
     public Boolean getIsPaused() {
         return isPaused;
     }
 
     /**
-     * Indicates whether the campaign is paused. A paused campaign does not send
-     * messages unless you resume it by setting IsPaused to false.
+     * <p>
+     * Specifies whether the campaign is paused. A paused campaign doesn't run
+     * unless you resume it by changing this value to false.
+     * </p>
      *
-     * @param isPaused Indicates whether the campaign is paused. A paused
-     *            campaign does not send messages unless you resume it by
-     *            setting IsPaused to false.
+     * @param isPaused <p>
+     *            Specifies whether the campaign is paused. A paused campaign
+     *            doesn't run unless you resume it by changing this value to
+     *            false.
+     *            </p>
      */
     public void setIsPaused(Boolean isPaused) {
         this.isPaused = isPaused;
     }
 
     /**
-     * Indicates whether the campaign is paused. A paused campaign does not send
-     * messages unless you resume it by setting IsPaused to false.
+     * <p>
+     * Specifies whether the campaign is paused. A paused campaign doesn't run
+     * unless you resume it by changing this value to false.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isPaused Indicates whether the campaign is paused. A paused
-     *            campaign does not send messages unless you resume it by
-     *            setting IsPaused to false.
+     * @param isPaused <p>
+     *            Specifies whether the campaign is paused. A paused campaign
+     *            doesn't run unless you resume it by changing this value to
+     *            false.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -488,32 +737,45 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The date the campaign was last updated in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the campaign was last modified.
+     * </p>
      *
-     * @return The date the campaign was last updated in ISO 8601 format.
+     * @return <p>
+     *         The date, in ISO 8601 format, when the campaign was last
+     *         modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * The date the campaign was last updated in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the campaign was last modified.
+     * </p>
      *
-     * @param lastModifiedDate The date the campaign was last updated in ISO
-     *            8601 format.
+     * @param lastModifiedDate <p>
+     *            The date, in ISO 8601 format, when the campaign was last
+     *            modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * The date the campaign was last updated in ISO 8601 format.
+     * <p>
+     * The date, in ISO 8601 format, when the campaign was last modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate The date the campaign was last updated in ISO
-     *            8601 format.
+     * @param lastModifiedDate <p>
+     *            The date, in ISO 8601 format, when the campaign was last
+     *            modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -523,30 +785,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The campaign limits settings.
+     * <p>
+     * The messaging limits for the campaign.
+     * </p>
      *
-     * @return The campaign limits settings.
+     * @return <p>
+     *         The messaging limits for the campaign.
+     *         </p>
      */
     public CampaignLimits getLimits() {
         return limits;
     }
 
     /**
-     * The campaign limits settings.
+     * <p>
+     * The messaging limits for the campaign.
+     * </p>
      *
-     * @param limits The campaign limits settings.
+     * @param limits <p>
+     *            The messaging limits for the campaign.
+     *            </p>
      */
     public void setLimits(CampaignLimits limits) {
         this.limits = limits;
     }
 
     /**
-     * The campaign limits settings.
+     * <p>
+     * The messaging limits for the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param limits The campaign limits settings.
+     * @param limits <p>
+     *            The messaging limits for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -556,30 +830,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the campaign.
+     * </p>
      *
-     * @return The message configuration settings.
+     * @return <p>
+     *         The message configuration settings for the campaign.
+     *         </p>
      */
     public MessageConfiguration getMessageConfiguration() {
         return messageConfiguration;
     }
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the campaign.
+     * </p>
      *
-     * @param messageConfiguration The message configuration settings.
+     * @param messageConfiguration <p>
+     *            The message configuration settings for the campaign.
+     *            </p>
      */
     public void setMessageConfiguration(MessageConfiguration messageConfiguration) {
         this.messageConfiguration = messageConfiguration;
     }
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageConfiguration The message configuration settings.
+     * @param messageConfiguration <p>
+     *            The message configuration settings for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -589,30 +875,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The custom name of the campaign.
+     * <p>
+     * The name of the campaign.
+     * </p>
      *
-     * @return The custom name of the campaign.
+     * @return <p>
+     *         The name of the campaign.
+     *         </p>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The custom name of the campaign.
+     * <p>
+     * The name of the campaign.
+     * </p>
      *
-     * @param name The custom name of the campaign.
+     * @param name <p>
+     *            The name of the campaign.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * The custom name of the campaign.
+     * <p>
+     * The name of the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name The custom name of the campaign.
+     * @param name <p>
+     *            The name of the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -622,30 +920,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the campaign.
+     * </p>
      *
-     * @return The campaign schedule.
+     * @return <p>
+     *         The schedule settings for the campaign.
+     *         </p>
      */
     public Schedule getSchedule() {
         return schedule;
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the campaign.
+     * </p>
      *
-     * @param schedule The campaign schedule.
+     * @param schedule <p>
+     *            The schedule settings for the campaign.
+     *            </p>
      */
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param schedule The campaign schedule.
+     * @param schedule <p>
+     *            The schedule settings for the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -655,32 +965,48 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The ID of the segment to which the campaign sends messages.
+     * <p>
+     * The unique identifier for the segment that's associated with the
+     * campaign.
+     * </p>
      *
-     * @return The ID of the segment to which the campaign sends messages.
+     * @return <p>
+     *         The unique identifier for the segment that's associated with the
+     *         campaign.
+     *         </p>
      */
     public String getSegmentId() {
         return segmentId;
     }
 
     /**
-     * The ID of the segment to which the campaign sends messages.
+     * <p>
+     * The unique identifier for the segment that's associated with the
+     * campaign.
+     * </p>
      *
-     * @param segmentId The ID of the segment to which the campaign sends
-     *            messages.
+     * @param segmentId <p>
+     *            The unique identifier for the segment that's associated with
+     *            the campaign.
+     *            </p>
      */
     public void setSegmentId(String segmentId) {
         this.segmentId = segmentId;
     }
 
     /**
-     * The ID of the segment to which the campaign sends messages.
+     * <p>
+     * The unique identifier for the segment that's associated with the
+     * campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentId The ID of the segment to which the campaign sends
-     *            messages.
+     * @param segmentId <p>
+     *            The unique identifier for the segment that's associated with
+     *            the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -690,32 +1016,45 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The version of the segment to which the campaign sends messages.
+     * <p>
+     * The version number of the segment that's associated with the campaign.
+     * </p>
      *
-     * @return The version of the segment to which the campaign sends messages.
+     * @return <p>
+     *         The version number of the segment that's associated with the
+     *         campaign.
+     *         </p>
      */
     public Integer getSegmentVersion() {
         return segmentVersion;
     }
 
     /**
-     * The version of the segment to which the campaign sends messages.
+     * <p>
+     * The version number of the segment that's associated with the campaign.
+     * </p>
      *
-     * @param segmentVersion The version of the segment to which the campaign
-     *            sends messages.
+     * @param segmentVersion <p>
+     *            The version number of the segment that's associated with the
+     *            campaign.
+     *            </p>
      */
     public void setSegmentVersion(Integer segmentVersion) {
         this.segmentVersion = segmentVersion;
     }
 
     /**
-     * The version of the segment to which the campaign sends messages.
+     * <p>
+     * The version number of the segment that's associated with the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentVersion The version of the segment to which the campaign
-     *            sends messages.
+     * @param segmentVersion <p>
+     *            The version number of the segment that's associated with the
+     *            campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -725,38 +1064,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The campaign status. An A/B test campaign will have a status of COMPLETED
-     * only when all treatments have a status of COMPLETED.
+     * <p>
+     * The current status of the campaign.
+     * </p>
      *
-     * @return The campaign status. An A/B test campaign will have a status of
-     *         COMPLETED only when all treatments have a status of COMPLETED.
+     * @return <p>
+     *         The current status of the campaign.
+     *         </p>
      */
     public CampaignState getState() {
         return state;
     }
 
     /**
-     * The campaign status. An A/B test campaign will have a status of COMPLETED
-     * only when all treatments have a status of COMPLETED.
+     * <p>
+     * The current status of the campaign.
+     * </p>
      *
-     * @param state The campaign status. An A/B test campaign will have a status
-     *            of COMPLETED only when all treatments have a status of
-     *            COMPLETED.
+     * @param state <p>
+     *            The current status of the campaign.
+     *            </p>
      */
     public void setState(CampaignState state) {
         this.state = state;
     }
 
     /**
-     * The campaign status. An A/B test campaign will have a status of COMPLETED
-     * only when all treatments have a status of COMPLETED.
+     * <p>
+     * The current status of the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param state The campaign status. An A/B test campaign will have a status
-     *            of COMPLETED only when all treatments have a status of
-     *            COMPLETED.
+     * @param state <p>
+     *            The current status of the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -766,30 +1109,193 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the campaign. Each tag consists of a required tag key
+     * and an associated tag value.
+     * </p>
      *
-     * @return A custom description for the treatment.
+     * @return <p>
+     *         A string-to-string map of key-value pairs that identifies the
+     *         tags that are associated with the campaign. Each tag consists of
+     *         a required tag key and an associated tag value.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the campaign. Each tag consists of a required tag key
+     * and an associated tag value.
+     * </p>
+     *
+     * @param tags <p>
+     *            A string-to-string map of key-value pairs that identifies the
+     *            tags that are associated with the campaign. Each tag consists
+     *            of a required tag key and an associated tag value.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the campaign. Each tag consists of a required tag key
+     * and an associated tag value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A string-to-string map of key-value pairs that identifies the
+     *            tags that are associated with the campaign. Each tag consists
+     *            of a required tag key and an associated tag value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A string-to-string map of key-value pairs that identifies the tags that
+     * are associated with the campaign. Each tag consists of a required tag key
+     * and an associated tag value.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into tags.
+     * @param value The corresponding value of the entry to be added into tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse addtagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CampaignResponse cleartagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the message template to use for the message, for each type of
+     * channel.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the message template to use for the message, for each
+     *         type of channel.
+     *         </p>
+     */
+    public TemplateConfiguration getTemplateConfiguration() {
+        return templateConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies the message template to use for the message, for each type of
+     * channel.
+     * </p>
+     *
+     * @param templateConfiguration <p>
+     *            Specifies the message template to use for the message, for
+     *            each type of channel.
+     *            </p>
+     */
+    public void setTemplateConfiguration(TemplateConfiguration templateConfiguration) {
+        this.templateConfiguration = templateConfiguration;
+    }
+
+    /**
+     * <p>
+     * Specifies the message template to use for the message, for each type of
+     * channel.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param templateConfiguration <p>
+     *            Specifies the message template to use for the message, for
+     *            each type of channel.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignResponse withTemplateConfiguration(TemplateConfiguration templateConfiguration) {
+        this.templateConfiguration = templateConfiguration;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The custom description of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
+     *
+     * @return <p>
+     *         The custom description of a variation of the campaign that's used
+     *         for A/B testing.
+     *         </p>
      */
     public String getTreatmentDescription() {
         return treatmentDescription;
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * The custom description of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      *
-     * @param treatmentDescription A custom description for the treatment.
+     * @param treatmentDescription <p>
+     *            The custom description of a variation of the campaign that's
+     *            used for A/B testing.
+     *            </p>
      */
     public void setTreatmentDescription(String treatmentDescription) {
         this.treatmentDescription = treatmentDescription;
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * The custom description of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentDescription A custom description for the treatment.
+     * @param treatmentDescription <p>
+     *            The custom description of a variation of the campaign that's
+     *            used for A/B testing.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -799,33 +1305,48 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * The custom name of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      *
-     * @return The custom name of a variation of the campaign used for A/B
-     *         testing.
+     * @return <p>
+     *         The custom name of a variation of the campaign that's used for
+     *         A/B testing.
+     *         </p>
      */
     public String getTreatmentName() {
         return treatmentName;
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * The custom name of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      *
-     * @param treatmentName The custom name of a variation of the campaign used
-     *            for A/B testing.
+     * @param treatmentName <p>
+     *            The custom name of a variation of the campaign that's used for
+     *            A/B testing.
+     *            </p>
      */
     public void setTreatmentName(String treatmentName) {
         this.treatmentName = treatmentName;
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * The custom name of a variation of the campaign that's used for A/B
+     * testing.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentName The custom name of a variation of the campaign used
-     *            for A/B testing.
+     * @param treatmentName <p>
+     *            The custom name of a variation of the campaign that's used for
+     *            A/B testing.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -835,30 +1356,42 @@ public class CampaignResponse implements Serializable {
     }
 
     /**
-     * The campaign version number.
+     * <p>
+     * The version number of the campaign.
+     * </p>
      *
-     * @return The campaign version number.
+     * @return <p>
+     *         The version number of the campaign.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * The campaign version number.
+     * <p>
+     * The version number of the campaign.
+     * </p>
      *
-     * @param version The campaign version number.
+     * @param version <p>
+     *            The version number of the campaign.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * The campaign version number.
+     * <p>
+     * The version number of the campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version The campaign version number.
+     * @param version <p>
+     *            The version number of the campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -882,6 +1415,8 @@ public class CampaignResponse implements Serializable {
             sb.append("AdditionalTreatments: " + getAdditionalTreatments() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
+        if (getArn() != null)
+            sb.append("Arn: " + getArn() + ",");
         if (getCreationDate() != null)
             sb.append("CreationDate: " + getCreationDate() + ",");
         if (getDefaultState() != null)
@@ -912,6 +1447,10 @@ public class CampaignResponse implements Serializable {
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
         if (getState() != null)
             sb.append("State: " + getState() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags() + ",");
+        if (getTemplateConfiguration() != null)
+            sb.append("TemplateConfiguration: " + getTemplateConfiguration() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -931,6 +1470,7 @@ public class CampaignResponse implements Serializable {
                 + ((getAdditionalTreatments() == null) ? 0 : getAdditionalTreatments().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode
@@ -953,6 +1493,10 @@ public class CampaignResponse implements Serializable {
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTemplateConfiguration() == null) ? 0 : getTemplateConfiguration().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -981,6 +1525,10 @@ public class CampaignResponse implements Serializable {
             return false;
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
+            return false;
+        if (other.getArn() == null ^ this.getArn() == null)
+            return false;
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
             return false;
         if (other.getCreationDate() == null ^ this.getCreationDate() == null)
             return false;
@@ -1049,6 +1597,15 @@ public class CampaignResponse implements Serializable {
         if (other.getState() == null ^ this.getState() == null)
             return false;
         if (other.getState() != null && other.getState().equals(this.getState()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getTemplateConfiguration() == null ^ this.getTemplateConfiguration() == null)
+            return false;
+        if (other.getTemplateConfiguration() != null
+                && other.getTemplateConfiguration().equals(this.getTemplateConfiguration()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

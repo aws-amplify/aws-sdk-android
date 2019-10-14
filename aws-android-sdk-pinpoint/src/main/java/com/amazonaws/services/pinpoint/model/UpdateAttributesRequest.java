@@ -18,28 +18,60 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Update attributes request
+ * <p>
+ * Specifies one or more attributes to remove from all the endpoints that are
+ * associated with an application.
+ * </p>
  */
 public class UpdateAttributesRequest implements Serializable {
     /**
-     * The GLOB wildcard for removing the attributes in the application
+     * <p>
+     * An array of the attributes to remove from all the endpoints that are
+     * associated with the application. The array can specify the complete,
+     * exact name of each attribute to remove or it can specify a glob pattern
+     * that an attribute name must match in order for the attribute to be
+     * removed.
+     * </p>
      */
     private java.util.List<String> blacklist;
 
     /**
-     * The GLOB wildcard for removing the attributes in the application
+     * <p>
+     * An array of the attributes to remove from all the endpoints that are
+     * associated with the application. The array can specify the complete,
+     * exact name of each attribute to remove or it can specify a glob pattern
+     * that an attribute name must match in order for the attribute to be
+     * removed.
+     * </p>
      *
-     * @return The GLOB wildcard for removing the attributes in the application
+     * @return <p>
+     *         An array of the attributes to remove from all the endpoints that
+     *         are associated with the application. The array can specify the
+     *         complete, exact name of each attribute to remove or it can
+     *         specify a glob pattern that an attribute name must match in order
+     *         for the attribute to be removed.
+     *         </p>
      */
     public java.util.List<String> getBlacklist() {
         return blacklist;
     }
 
     /**
-     * The GLOB wildcard for removing the attributes in the application
+     * <p>
+     * An array of the attributes to remove from all the endpoints that are
+     * associated with the application. The array can specify the complete,
+     * exact name of each attribute to remove or it can specify a glob pattern
+     * that an attribute name must match in order for the attribute to be
+     * removed.
+     * </p>
      *
-     * @param blacklist The GLOB wildcard for removing the attributes in the
-     *            application
+     * @param blacklist <p>
+     *            An array of the attributes to remove from all the endpoints
+     *            that are associated with the application. The array can
+     *            specify the complete, exact name of each attribute to remove
+     *            or it can specify a glob pattern that an attribute name must
+     *            match in order for the attribute to be removed.
+     *            </p>
      */
     public void setBlacklist(java.util.Collection<String> blacklist) {
         if (blacklist == null) {
@@ -51,13 +83,24 @@ public class UpdateAttributesRequest implements Serializable {
     }
 
     /**
-     * The GLOB wildcard for removing the attributes in the application
+     * <p>
+     * An array of the attributes to remove from all the endpoints that are
+     * associated with the application. The array can specify the complete,
+     * exact name of each attribute to remove or it can specify a glob pattern
+     * that an attribute name must match in order for the attribute to be
+     * removed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param blacklist The GLOB wildcard for removing the attributes in the
-     *            application
+     * @param blacklist <p>
+     *            An array of the attributes to remove from all the endpoints
+     *            that are associated with the application. The array can
+     *            specify the complete, exact name of each attribute to remove
+     *            or it can specify a glob pattern that an attribute name must
+     *            match in order for the attribute to be removed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -72,13 +115,24 @@ public class UpdateAttributesRequest implements Serializable {
     }
 
     /**
-     * The GLOB wildcard for removing the attributes in the application
+     * <p>
+     * An array of the attributes to remove from all the endpoints that are
+     * associated with the application. The array can specify the complete,
+     * exact name of each attribute to remove or it can specify a glob pattern
+     * that an attribute name must match in order for the attribute to be
+     * removed.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param blacklist The GLOB wildcard for removing the attributes in the
-     *            application
+     * @param blacklist <p>
+     *            An array of the attributes to remove from all the endpoints
+     *            that are associated with the application. The array can
+     *            specify the complete, exact name of each attribute to remove
+     *            or it can specify a glob pattern that an attribute name must
+     *            match in order for the attribute to be removed.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -19,35 +19,49 @@ import java.io.Serializable;
 
 public class GetAppsResult implements Serializable {
     /**
-     * Get Applications Result.
+     * <p>
+     * Provides information about all of your applications.
+     * </p>
      */
     private ApplicationsResponse applicationsResponse;
 
     /**
-     * Get Applications Result.
+     * <p>
+     * Provides information about all of your applications.
+     * </p>
      *
-     * @return Get Applications Result.
+     * @return <p>
+     *         Provides information about all of your applications.
+     *         </p>
      */
     public ApplicationsResponse getApplicationsResponse() {
         return applicationsResponse;
     }
 
     /**
-     * Get Applications Result.
+     * <p>
+     * Provides information about all of your applications.
+     * </p>
      *
-     * @param applicationsResponse Get Applications Result.
+     * @param applicationsResponse <p>
+     *            Provides information about all of your applications.
+     *            </p>
      */
     public void setApplicationsResponse(ApplicationsResponse applicationsResponse) {
         this.applicationsResponse = applicationsResponse;
     }
 
     /**
-     * Get Applications Result.
+     * <p>
+     * Provides information about all of your applications.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationsResponse Get Applications Result.
+     * @param applicationsResponse <p>
+     *            Provides information about all of your applications.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
