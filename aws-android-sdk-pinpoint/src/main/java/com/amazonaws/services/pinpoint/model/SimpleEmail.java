@@ -18,65 +18,88 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * An email composed of a subject, a text part and a html part.
+ * <p>
+ * Specifies the contents of an email message, composed of a subject, a text
+ * part, and an HTML part.
+ * </p>
  */
 public class SimpleEmail implements Serializable {
     /**
-     * The content of the message, in HTML format. Use this for email clients
-     * that can process HTML. You can include clickable links, formatted text,
-     * and much more in an HTML message.
+     * <p>
+     * The body of the email message, in HTML format. We recommend using an HTML
+     * part for email clients that support HTML. You can include links,
+     * formatted text, and more in an HTML message.
+     * </p>
      */
     private SimpleEmailPart htmlPart;
 
     /**
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * <p>
+     * The subject line, or title, of the email.
+     * </p>
      */
     private SimpleEmailPart subject;
 
     /**
-     * The content of the message, in text format. Use this for text-based email
-     * clients, or clients on high-latency networks (such as mobile devices).
+     * <p>
+     * The body of the email message, in text format. We recommend using a text
+     * part for email clients that don't support HTML and clients that are
+     * connected to high-latency networks, such as mobile devices.
+     * </p>
      */
     private SimpleEmailPart textPart;
 
     /**
-     * The content of the message, in HTML format. Use this for email clients
-     * that can process HTML. You can include clickable links, formatted text,
-     * and much more in an HTML message.
+     * <p>
+     * The body of the email message, in HTML format. We recommend using an HTML
+     * part for email clients that support HTML. You can include links,
+     * formatted text, and more in an HTML message.
+     * </p>
      *
-     * @return The content of the message, in HTML format. Use this for email
-     *         clients that can process HTML. You can include clickable links,
-     *         formatted text, and much more in an HTML message.
+     * @return <p>
+     *         The body of the email message, in HTML format. We recommend using
+     *         an HTML part for email clients that support HTML. You can include
+     *         links, formatted text, and more in an HTML message.
+     *         </p>
      */
     public SimpleEmailPart getHtmlPart() {
         return htmlPart;
     }
 
     /**
-     * The content of the message, in HTML format. Use this for email clients
-     * that can process HTML. You can include clickable links, formatted text,
-     * and much more in an HTML message.
+     * <p>
+     * The body of the email message, in HTML format. We recommend using an HTML
+     * part for email clients that support HTML. You can include links,
+     * formatted text, and more in an HTML message.
+     * </p>
      *
-     * @param htmlPart The content of the message, in HTML format. Use this for
-     *            email clients that can process HTML. You can include clickable
-     *            links, formatted text, and much more in an HTML message.
+     * @param htmlPart <p>
+     *            The body of the email message, in HTML format. We recommend
+     *            using an HTML part for email clients that support HTML. You
+     *            can include links, formatted text, and more in an HTML
+     *            message.
+     *            </p>
      */
     public void setHtmlPart(SimpleEmailPart htmlPart) {
         this.htmlPart = htmlPart;
     }
 
     /**
-     * The content of the message, in HTML format. Use this for email clients
-     * that can process HTML. You can include clickable links, formatted text,
-     * and much more in an HTML message.
+     * <p>
+     * The body of the email message, in HTML format. We recommend using an HTML
+     * part for email clients that support HTML. You can include links,
+     * formatted text, and more in an HTML message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param htmlPart The content of the message, in HTML format. Use this for
-     *            email clients that can process HTML. You can include clickable
-     *            links, formatted text, and much more in an HTML message.
+     * @param htmlPart <p>
+     *            The body of the email message, in HTML format. We recommend
+     *            using an HTML part for email clients that support HTML. You
+     *            can include links, formatted text, and more in an HTML
+     *            message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -86,36 +109,42 @@ public class SimpleEmail implements Serializable {
     }
 
     /**
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * <p>
+     * The subject line, or title, of the email.
+     * </p>
      *
-     * @return The subject of the message: A short summary of the content, which
-     *         will appear in the recipient's inbox.
+     * @return <p>
+     *         The subject line, or title, of the email.
+     *         </p>
      */
     public SimpleEmailPart getSubject() {
         return subject;
     }
 
     /**
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * <p>
+     * The subject line, or title, of the email.
+     * </p>
      *
-     * @param subject The subject of the message: A short summary of the
-     *            content, which will appear in the recipient's inbox.
+     * @param subject <p>
+     *            The subject line, or title, of the email.
+     *            </p>
      */
     public void setSubject(SimpleEmailPart subject) {
         this.subject = subject;
     }
 
     /**
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * <p>
+     * The subject line, or title, of the email.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param subject The subject of the message: A short summary of the
-     *            content, which will appear in the recipient's inbox.
+     * @param subject <p>
+     *            The subject line, or title, of the email.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -125,39 +154,57 @@ public class SimpleEmail implements Serializable {
     }
 
     /**
-     * The content of the message, in text format. Use this for text-based email
-     * clients, or clients on high-latency networks (such as mobile devices).
+     * <p>
+     * The body of the email message, in text format. We recommend using a text
+     * part for email clients that don't support HTML and clients that are
+     * connected to high-latency networks, such as mobile devices.
+     * </p>
      *
-     * @return The content of the message, in text format. Use this for
-     *         text-based email clients, or clients on high-latency networks
-     *         (such as mobile devices).
+     * @return <p>
+     *         The body of the email message, in text format. We recommend using
+     *         a text part for email clients that don't support HTML and clients
+     *         that are connected to high-latency networks, such as mobile
+     *         devices.
+     *         </p>
      */
     public SimpleEmailPart getTextPart() {
         return textPart;
     }
 
     /**
-     * The content of the message, in text format. Use this for text-based email
-     * clients, or clients on high-latency networks (such as mobile devices).
+     * <p>
+     * The body of the email message, in text format. We recommend using a text
+     * part for email clients that don't support HTML and clients that are
+     * connected to high-latency networks, such as mobile devices.
+     * </p>
      *
-     * @param textPart The content of the message, in text format. Use this for
-     *            text-based email clients, or clients on high-latency networks
-     *            (such as mobile devices).
+     * @param textPart <p>
+     *            The body of the email message, in text format. We recommend
+     *            using a text part for email clients that don't support HTML
+     *            and clients that are connected to high-latency networks, such
+     *            as mobile devices.
+     *            </p>
      */
     public void setTextPart(SimpleEmailPart textPart) {
         this.textPart = textPart;
     }
 
     /**
-     * The content of the message, in text format. Use this for text-based email
-     * clients, or clients on high-latency networks (such as mobile devices).
+     * <p>
+     * The body of the email message, in text format. We recommend using a text
+     * part for email clients that don't support HTML and clients that are
+     * connected to high-latency networks, such as mobile devices.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param textPart The content of the message, in text format. Use this for
-     *            text-based email clients, or clients on high-latency networks
-     *            (such as mobile devices).
+     * @param textPart <p>
+     *            The body of the email message, in text format. We recommend
+     *            using a text part for email clients that don't support HTML
+     *            and clients that are connected to high-latency networks, such
+     *            as mobile devices.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

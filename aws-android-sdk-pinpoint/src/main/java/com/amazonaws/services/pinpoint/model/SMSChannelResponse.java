@@ -18,107 +18,161 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * SMS Channel Response.
+ * <p>
+ * Provides information about the status and settings of the SMS channel for an
+ * application.
+ * </p>
  */
 public class SMSChannelResponse implements Serializable {
     /**
-     * The unique ID of the application to which the SMS channel belongs.
+     * <p>
+     * The unique identifier for the application that the SMS channel applies
+     * to.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was enabled.
+     * </p>
      */
     private String creationDate;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the SMS channel is enabled for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      */
     private Boolean hasCredential;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the SMS channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      */
     private String id;
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the SMS channel is archived.
+     * </p>
      */
     private Boolean isArchived;
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the SMS channel.
+     * </p>
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was last
+     * modified.
+     * </p>
      */
     private String lastModifiedDate;
 
     /**
-     * Platform type. Will be "SMS"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * SMS channel, this value is SMS.
+     * </p>
      */
     private String platform;
 
     /**
-     * Promotional messages per second that can be sent
+     * <p>
+     * The maximum number of promotional messages that you can send through the
+     * SMS channel each second.
+     * </p>
      */
     private Integer promotionalMessagesPerSecond;
 
     /**
-     * Sender identifier of your messages.
+     * <p>
+     * The identity that displays on recipients' devices when they receive
+     * messages from the SMS channel.
+     * </p>
      */
     private String senderId;
 
     /**
-     * The short code registered with the phone provider.
+     * <p>
+     * The registered short code to use when you send messages through the SMS
+     * channel.
+     * </p>
      */
     private String shortCode;
 
     /**
-     * Transactional messages per second that can be sent
+     * <p>
+     * The maximum number of transactional messages that you can send through
+     * the SMS channel each second.
+     * </p>
      */
     private Integer transactionalMessagesPerSecond;
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the SMS channel.
+     * </p>
      */
     private Integer version;
 
     /**
-     * The unique ID of the application to which the SMS channel belongs.
+     * <p>
+     * The unique identifier for the application that the SMS channel applies
+     * to.
+     * </p>
      *
-     * @return The unique ID of the application to which the SMS channel
-     *         belongs.
+     * @return <p>
+     *         The unique identifier for the application that the SMS channel
+     *         applies to.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of the application to which the SMS channel belongs.
+     * <p>
+     * The unique identifier for the application that the SMS channel applies
+     * to.
+     * </p>
      *
-     * @param applicationId The unique ID of the application to which the SMS
-     *            channel belongs.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the SMS channel
+     *            applies to.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of the application to which the SMS channel belongs.
+     * <p>
+     * The unique identifier for the application that the SMS channel applies
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of the application to which the SMS
-     *            channel belongs.
+     * @param applicationId <p>
+     *            The unique identifier for the application that the SMS channel
+     *            applies to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -128,32 +182,45 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was enabled.
+     * </p>
      *
-     * @return The date that the settings were last updated in ISO 8601 format.
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the SMS channel was
+     *         enabled.
+     *         </p>
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was enabled.
+     * </p>
      *
-     * @param creationDate The date that the settings were last updated in ISO
-     *            8601 format.
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the SMS channel
+     *            was enabled.
+     *            </p>
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date that the settings were last updated in ISO 8601 format.
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date that the settings were last updated in ISO
-     *            8601 format.
+     * @param creationDate <p>
+     *            The date and time, in ISO 8601 format, when the SMS channel
+     *            was enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -163,39 +230,57 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the SMS channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the SMS channel is enabled for the application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the SMS channel is enabled for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether the SMS channel is enabled for the application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the SMS channel is enabled for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the SMS channel is enabled for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether the SMS channel is enabled for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether the SMS channel is enabled for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -205,39 +290,59 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @return Not used. Retained for backwards compatibility.
+     * @return <p>
+     *         (Not used) This property is retained only for backward
+     *         compatibility.
+     *         </p>
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Not used. Retained for backwards compatibility.
+     * <p>
+     * (Not used) This property is retained only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Not used. Retained for backwards compatibility.
+     * @param hasCredential <p>
+     *            (Not used) This property is retained only for backward
+     *            compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -247,30 +352,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the SMS channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return <p>
+     *         (Deprecated) An identifier for the SMS channel. This property is
+     *         retained only for backward compatibility.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the SMS channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the SMS channel. This property
+     *            is retained only for backward compatibility.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * <p>
+     * (Deprecated) An identifier for the SMS channel. This property is retained
+     * only for backward compatibility.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id <p>
+     *            (Deprecated) An identifier for the SMS channel. This property
+     *            is retained only for backward compatibility.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -280,39 +403,55 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the SMS channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the SMS channel is archived.
+     *         </p>
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the SMS channel is archived.
+     * </p>
      *
-     * @return Is this channel archived
+     * @return <p>
+     *         Specifies whether the SMS channel is archived.
+     *         </p>
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the SMS channel is archived.
+     * </p>
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the SMS channel is archived.
+     *            </p>
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * <p>
+     * Specifies whether the SMS channel is archived.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived <p>
+     *            Specifies whether the SMS channel is archived.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -322,30 +461,42 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the SMS channel.
+     * </p>
      *
-     * @return Who last updated this entry
+     * @return <p>
+     *         The user who last modified the SMS channel.
+     *         </p>
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the SMS channel.
+     * </p>
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the SMS channel.
+     *            </p>
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * <p>
+     * The user who last modified the SMS channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy <p>
+     *            The user who last modified the SMS channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -355,30 +506,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was last
+     * modified.
+     * </p>
      *
-     * @return Last date this was updated
+     * @return <p>
+     *         The date and time, in ISO 8601 format, when the SMS channel was
+     *         last modified.
+     *         </p>
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was last
+     * modified.
+     * </p>
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the SMS channel
+     *            was last modified.
+     *            </p>
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * <p>
+     * The date and time, in ISO 8601 format, when the SMS channel was last
+     * modified.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate <p>
+     *            The date and time, in ISO 8601 format, when the SMS channel
+     *            was last modified.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -388,30 +557,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Platform type. Will be "SMS"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * SMS channel, this value is SMS.
+     * </p>
      *
-     * @return Platform type. Will be "SMS"
+     * @return <p>
+     *         The type of messaging or notification platform for the channel.
+     *         For the SMS channel, this value is SMS.
+     *         </p>
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * Platform type. Will be "SMS"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * SMS channel, this value is SMS.
+     * </p>
      *
-     * @param platform Platform type. Will be "SMS"
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the SMS channel, this value is SMS.
+     *            </p>
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * Platform type. Will be "SMS"
+     * <p>
+     * The type of messaging or notification platform for the channel. For the
+     * SMS channel, this value is SMS.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform Platform type. Will be "SMS"
+     * @param platform <p>
+     *            The type of messaging or notification platform for the
+     *            channel. For the SMS channel, this value is SMS.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -421,32 +608,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Promotional messages per second that can be sent
+     * <p>
+     * The maximum number of promotional messages that you can send through the
+     * SMS channel each second.
+     * </p>
      *
-     * @return Promotional messages per second that can be sent
+     * @return <p>
+     *         The maximum number of promotional messages that you can send
+     *         through the SMS channel each second.
+     *         </p>
      */
     public Integer getPromotionalMessagesPerSecond() {
         return promotionalMessagesPerSecond;
     }
 
     /**
-     * Promotional messages per second that can be sent
+     * <p>
+     * The maximum number of promotional messages that you can send through the
+     * SMS channel each second.
+     * </p>
      *
-     * @param promotionalMessagesPerSecond Promotional messages per second that
-     *            can be sent
+     * @param promotionalMessagesPerSecond <p>
+     *            The maximum number of promotional messages that you can send
+     *            through the SMS channel each second.
+     *            </p>
      */
     public void setPromotionalMessagesPerSecond(Integer promotionalMessagesPerSecond) {
         this.promotionalMessagesPerSecond = promotionalMessagesPerSecond;
     }
 
     /**
-     * Promotional messages per second that can be sent
+     * <p>
+     * The maximum number of promotional messages that you can send through the
+     * SMS channel each second.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param promotionalMessagesPerSecond Promotional messages per second that
-     *            can be sent
+     * @param promotionalMessagesPerSecond <p>
+     *            The maximum number of promotional messages that you can send
+     *            through the SMS channel each second.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -456,30 +659,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Sender identifier of your messages.
+     * <p>
+     * The identity that displays on recipients' devices when they receive
+     * messages from the SMS channel.
+     * </p>
      *
-     * @return Sender identifier of your messages.
+     * @return <p>
+     *         The identity that displays on recipients' devices when they
+     *         receive messages from the SMS channel.
+     *         </p>
      */
     public String getSenderId() {
         return senderId;
     }
 
     /**
-     * Sender identifier of your messages.
+     * <p>
+     * The identity that displays on recipients' devices when they receive
+     * messages from the SMS channel.
+     * </p>
      *
-     * @param senderId Sender identifier of your messages.
+     * @param senderId <p>
+     *            The identity that displays on recipients' devices when they
+     *            receive messages from the SMS channel.
+     *            </p>
      */
     public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 
     /**
-     * Sender identifier of your messages.
+     * <p>
+     * The identity that displays on recipients' devices when they receive
+     * messages from the SMS channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param senderId Sender identifier of your messages.
+     * @param senderId <p>
+     *            The identity that displays on recipients' devices when they
+     *            receive messages from the SMS channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -489,30 +710,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * The short code registered with the phone provider.
+     * <p>
+     * The registered short code to use when you send messages through the SMS
+     * channel.
+     * </p>
      *
-     * @return The short code registered with the phone provider.
+     * @return <p>
+     *         The registered short code to use when you send messages through
+     *         the SMS channel.
+     *         </p>
      */
     public String getShortCode() {
         return shortCode;
     }
 
     /**
-     * The short code registered with the phone provider.
+     * <p>
+     * The registered short code to use when you send messages through the SMS
+     * channel.
+     * </p>
      *
-     * @param shortCode The short code registered with the phone provider.
+     * @param shortCode <p>
+     *            The registered short code to use when you send messages
+     *            through the SMS channel.
+     *            </p>
      */
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
     }
 
     /**
-     * The short code registered with the phone provider.
+     * <p>
+     * The registered short code to use when you send messages through the SMS
+     * channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param shortCode The short code registered with the phone provider.
+     * @param shortCode <p>
+     *            The registered short code to use when you send messages
+     *            through the SMS channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -522,32 +761,48 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Transactional messages per second that can be sent
+     * <p>
+     * The maximum number of transactional messages that you can send through
+     * the SMS channel each second.
+     * </p>
      *
-     * @return Transactional messages per second that can be sent
+     * @return <p>
+     *         The maximum number of transactional messages that you can send
+     *         through the SMS channel each second.
+     *         </p>
      */
     public Integer getTransactionalMessagesPerSecond() {
         return transactionalMessagesPerSecond;
     }
 
     /**
-     * Transactional messages per second that can be sent
+     * <p>
+     * The maximum number of transactional messages that you can send through
+     * the SMS channel each second.
+     * </p>
      *
-     * @param transactionalMessagesPerSecond Transactional messages per second
-     *            that can be sent
+     * @param transactionalMessagesPerSecond <p>
+     *            The maximum number of transactional messages that you can send
+     *            through the SMS channel each second.
+     *            </p>
      */
     public void setTransactionalMessagesPerSecond(Integer transactionalMessagesPerSecond) {
         this.transactionalMessagesPerSecond = transactionalMessagesPerSecond;
     }
 
     /**
-     * Transactional messages per second that can be sent
+     * <p>
+     * The maximum number of transactional messages that you can send through
+     * the SMS channel each second.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param transactionalMessagesPerSecond Transactional messages per second
-     *            that can be sent
+     * @param transactionalMessagesPerSecond <p>
+     *            The maximum number of transactional messages that you can send
+     *            through the SMS channel each second.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -558,30 +813,42 @@ public class SMSChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the SMS channel.
+     * </p>
      *
-     * @return Version of channel
+     * @return <p>
+     *         The current version of the SMS channel.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the SMS channel.
+     * </p>
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the SMS channel.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * <p>
+     * The current version of the SMS channel.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version <p>
+     *            The current version of the SMS channel.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -20,44 +20,76 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to update the GCM channel for an app.
+ * <p>
+ * Enables the GCM channel for an application or updates the status and settings
+ * of the GCM channel for an application.
+ * </p>
  */
 public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Google Cloud Messaging credentials
+     * <p>
+     * Specifies the status and settings of the GCM channel for an application.
+     * This channel enables Amazon Pinpoint to send push notifications through
+     * the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging
+     * (GCM), service.
+     * </p>
      */
     private GCMChannelRequest gCMChannelRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +99,60 @@ public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Google Cloud Messaging credentials
+     * <p>
+     * Specifies the status and settings of the GCM channel for an application.
+     * This channel enables Amazon Pinpoint to send push notifications through
+     * the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging
+     * (GCM), service.
+     * </p>
      *
-     * @return Google Cloud Messaging credentials
+     * @return <p>
+     *         Specifies the status and settings of the GCM channel for an
+     *         application. This channel enables Amazon Pinpoint to send push
+     *         notifications through the Firebase Cloud Messaging (FCM),
+     *         formerly Google Cloud Messaging (GCM), service.
+     *         </p>
      */
     public GCMChannelRequest getGCMChannelRequest() {
         return gCMChannelRequest;
     }
 
     /**
-     * Google Cloud Messaging credentials
+     * <p>
+     * Specifies the status and settings of the GCM channel for an application.
+     * This channel enables Amazon Pinpoint to send push notifications through
+     * the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging
+     * (GCM), service.
+     * </p>
      *
-     * @param gCMChannelRequest Google Cloud Messaging credentials
+     * @param gCMChannelRequest <p>
+     *            Specifies the status and settings of the GCM channel for an
+     *            application. This channel enables Amazon Pinpoint to send push
+     *            notifications through the Firebase Cloud Messaging (FCM),
+     *            formerly Google Cloud Messaging (GCM), service.
+     *            </p>
      */
     public void setGCMChannelRequest(GCMChannelRequest gCMChannelRequest) {
         this.gCMChannelRequest = gCMChannelRequest;
     }
 
     /**
-     * Google Cloud Messaging credentials
+     * <p>
+     * Specifies the status and settings of the GCM channel for an application.
+     * This channel enables Amazon Pinpoint to send push notifications through
+     * the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging
+     * (GCM), service.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gCMChannelRequest Google Cloud Messaging credentials
+     * @param gCMChannelRequest <p>
+     *            Specifies the status and settings of the GCM channel for an
+     *            application. This channel enables Amazon Pinpoint to send push
+     *            notifications through the Firebase Cloud Messaging (FCM),
+     *            formerly Google Cloud Messaging (GCM), service.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -18,16 +18,23 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Campaign hook information.
+ * <p>
+ * Specifies the AWS Lambda function to use as a code hook for a campaign.
+ * </p>
  */
 public class CampaignHook implements Serializable {
     /**
-     * Lambda function name or arn to be called for delivery
+     * <p>
+     * The name or Amazon Resource Name (ARN) of the AWS Lambda function that
+     * Amazon Pinpoint invokes to send messages for a campaign.
+     * </p>
      */
     private String lambdaFunctionName;
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
@@ -35,38 +42,58 @@ public class CampaignHook implements Serializable {
     private String mode;
 
     /**
-     * Web URL to call for hook. If the URL has authentication specified it will
-     * be added as authentication to the request
+     * <p>
+     * The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function
+     * over HTTPS.
+     * </p>
      */
     private String webUrl;
 
     /**
-     * Lambda function name or arn to be called for delivery
+     * <p>
+     * The name or Amazon Resource Name (ARN) of the AWS Lambda function that
+     * Amazon Pinpoint invokes to send messages for a campaign.
+     * </p>
      *
-     * @return Lambda function name or arn to be called for delivery
+     * @return <p>
+     *         The name or Amazon Resource Name (ARN) of the AWS Lambda function
+     *         that Amazon Pinpoint invokes to send messages for a campaign.
+     *         </p>
      */
     public String getLambdaFunctionName() {
         return lambdaFunctionName;
     }
 
     /**
-     * Lambda function name or arn to be called for delivery
+     * <p>
+     * The name or Amazon Resource Name (ARN) of the AWS Lambda function that
+     * Amazon Pinpoint invokes to send messages for a campaign.
+     * </p>
      *
-     * @param lambdaFunctionName Lambda function name or arn to be called for
-     *            delivery
+     * @param lambdaFunctionName <p>
+     *            The name or Amazon Resource Name (ARN) of the AWS Lambda
+     *            function that Amazon Pinpoint invokes to send messages for a
+     *            campaign.
+     *            </p>
      */
     public void setLambdaFunctionName(String lambdaFunctionName) {
         this.lambdaFunctionName = lambdaFunctionName;
     }
 
     /**
-     * Lambda function name or arn to be called for delivery
+     * <p>
+     * The name or Amazon Resource Name (ARN) of the AWS Lambda function that
+     * Amazon Pinpoint invokes to send messages for a campaign.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lambdaFunctionName Lambda function name or arn to be called for
-     *            delivery
+     * @param lambdaFunctionName <p>
+     *            The name or Amazon Resource Name (ARN) of the AWS Lambda
+     *            function that Amazon Pinpoint invokes to send messages for a
+     *            campaign.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,12 +103,17 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
      *
-     * @return What mode Lambda should be invoked in.
+     * @return <p>
+     *         Specifies which Lambda mode to use when invoking the AWS Lambda
+     *         function.
+     *         </p>
      * @see Mode
      */
     public String getMode() {
@@ -89,12 +121,17 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
      *
-     * @param mode What mode Lambda should be invoked in.
+     * @param mode <p>
+     *            Specifies which Lambda mode to use when invoking the AWS
+     *            Lambda function.
+     *            </p>
      * @see Mode
      */
     public void setMode(String mode) {
@@ -102,7 +139,9 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -110,7 +149,10 @@ public class CampaignHook implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
      *
-     * @param mode What mode Lambda should be invoked in.
+     * @param mode <p>
+     *            Specifies which Lambda mode to use when invoking the AWS
+     *            Lambda function.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Mode
@@ -121,12 +163,17 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
      *
-     * @param mode What mode Lambda should be invoked in.
+     * @param mode <p>
+     *            Specifies which Lambda mode to use when invoking the AWS
+     *            Lambda function.
+     *            </p>
      * @see Mode
      */
     public void setMode(Mode mode) {
@@ -134,7 +181,9 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * What mode Lambda should be invoked in.
+     * <p>
+     * Specifies which Lambda mode to use when invoking the AWS Lambda function.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -142,7 +191,10 @@ public class CampaignHook implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DELIVERY, FILTER
      *
-     * @param mode What mode Lambda should be invoked in.
+     * @param mode <p>
+     *            Specifies which Lambda mode to use when invoking the AWS
+     *            Lambda function.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Mode
@@ -153,36 +205,48 @@ public class CampaignHook implements Serializable {
     }
 
     /**
-     * Web URL to call for hook. If the URL has authentication specified it will
-     * be added as authentication to the request
+     * <p>
+     * The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function
+     * over HTTPS.
+     * </p>
      *
-     * @return Web URL to call for hook. If the URL has authentication specified
-     *         it will be added as authentication to the request
+     * @return <p>
+     *         The web URL that Amazon Pinpoint calls to invoke the AWS Lambda
+     *         function over HTTPS.
+     *         </p>
      */
     public String getWebUrl() {
         return webUrl;
     }
 
     /**
-     * Web URL to call for hook. If the URL has authentication specified it will
-     * be added as authentication to the request
+     * <p>
+     * The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function
+     * over HTTPS.
+     * </p>
      *
-     * @param webUrl Web URL to call for hook. If the URL has authentication
-     *            specified it will be added as authentication to the request
+     * @param webUrl <p>
+     *            The web URL that Amazon Pinpoint calls to invoke the AWS
+     *            Lambda function over HTTPS.
+     *            </p>
      */
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
     }
 
     /**
-     * Web URL to call for hook. If the URL has authentication specified it will
-     * be added as authentication to the request
+     * <p>
+     * The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function
+     * over HTTPS.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param webUrl Web URL to call for hook. If the URL has authentication
-     *            specified it will be added as authentication to the request
+     * @param webUrl <p>
+     *            The web URL that Amazon Pinpoint calls to invoke the AWS
+     *            Lambda function over HTTPS.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

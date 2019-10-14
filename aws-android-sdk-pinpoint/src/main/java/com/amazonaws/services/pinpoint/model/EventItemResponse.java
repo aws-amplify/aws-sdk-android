@@ -18,50 +18,71 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * A complex object that holds the status code and message as a result of
- * processing an event.
+ * <p>
+ * Provides the status code and message that result from processing an event.
+ * </p>
  */
 public class EventItemResponse implements Serializable {
     /**
-     * A custom message that is associated with the processing of an event.
+     * <p>
+     * A custom message that's returned in the response as a result of
+     * processing the event.
+     * </p>
      */
     private String message;
 
     /**
-     * The status returned in the response as a result of processing the event.
-     * Possible values: 400 (for invalid events) and 202 (for events that were
-     * accepted).
+     * <p>
+     * The status code that's returned in the response as a result of processing
+     * the event. Possible values are: 202, for events that were accepted; and,
+     * 400, for events that weren't valid.
+     * </p>
      */
     private Integer statusCode;
 
     /**
-     * A custom message that is associated with the processing of an event.
+     * <p>
+     * A custom message that's returned in the response as a result of
+     * processing the event.
+     * </p>
      *
-     * @return A custom message that is associated with the processing of an
-     *         event.
+     * @return <p>
+     *         A custom message that's returned in the response as a result of
+     *         processing the event.
+     *         </p>
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * A custom message that is associated with the processing of an event.
+     * <p>
+     * A custom message that's returned in the response as a result of
+     * processing the event.
+     * </p>
      *
-     * @param message A custom message that is associated with the processing of
-     *            an event.
+     * @param message <p>
+     *            A custom message that's returned in the response as a result
+     *            of processing the event.
+     *            </p>
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * A custom message that is associated with the processing of an event.
+     * <p>
+     * A custom message that's returned in the response as a result of
+     * processing the event.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param message A custom message that is associated with the processing of
-     *            an event.
+     * @param message <p>
+     *            A custom message that's returned in the response as a result
+     *            of processing the event.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -71,42 +92,54 @@ public class EventItemResponse implements Serializable {
     }
 
     /**
-     * The status returned in the response as a result of processing the event.
-     * Possible values: 400 (for invalid events) and 202 (for events that were
-     * accepted).
+     * <p>
+     * The status code that's returned in the response as a result of processing
+     * the event. Possible values are: 202, for events that were accepted; and,
+     * 400, for events that weren't valid.
+     * </p>
      *
-     * @return The status returned in the response as a result of processing the
-     *         event. Possible values: 400 (for invalid events) and 202 (for
-     *         events that were accepted).
+     * @return <p>
+     *         The status code that's returned in the response as a result of
+     *         processing the event. Possible values are: 202, for events that
+     *         were accepted; and, 400, for events that weren't valid.
+     *         </p>
      */
     public Integer getStatusCode() {
         return statusCode;
     }
 
     /**
-     * The status returned in the response as a result of processing the event.
-     * Possible values: 400 (for invalid events) and 202 (for events that were
-     * accepted).
+     * <p>
+     * The status code that's returned in the response as a result of processing
+     * the event. Possible values are: 202, for events that were accepted; and,
+     * 400, for events that weren't valid.
+     * </p>
      *
-     * @param statusCode The status returned in the response as a result of
-     *            processing the event. Possible values: 400 (for invalid
-     *            events) and 202 (for events that were accepted).
+     * @param statusCode <p>
+     *            The status code that's returned in the response as a result of
+     *            processing the event. Possible values are: 202, for events
+     *            that were accepted; and, 400, for events that weren't valid.
+     *            </p>
      */
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 
     /**
-     * The status returned in the response as a result of processing the event.
-     * Possible values: 400 (for invalid events) and 202 (for events that were
-     * accepted).
+     * <p>
+     * The status code that's returned in the response as a result of processing
+     * the event. Possible values are: 202, for events that were accepted; and,
+     * 400, for events that weren't valid.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param statusCode The status returned in the response as a result of
-     *            processing the event. Possible values: 400 (for invalid
-     *            events) and 202 (for events that were accepted).
+     * @param statusCode <p>
+     *            The status code that's returned in the response as a result of
+     *            processing the event. Possible values are: 202, for events
+     *            that were accepted; and, 400, for events that weren't valid.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

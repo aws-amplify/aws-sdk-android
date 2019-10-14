@@ -29,6 +29,20 @@ public class GetSmsChannelResultJsonUnmarshaller implements
     public GetSmsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetSmsChannelResult getSmsChannelResult = new GetSmsChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("SMSChannelResponse")) {
+                getSmsChannelResult.setSMSChannelResponse(SMSChannelResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return getSmsChannelResult;
     }
 

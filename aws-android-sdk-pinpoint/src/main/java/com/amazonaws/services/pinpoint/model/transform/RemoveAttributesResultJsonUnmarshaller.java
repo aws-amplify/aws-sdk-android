@@ -29,6 +29,20 @@ public class RemoveAttributesResultJsonUnmarshaller implements
     public RemoveAttributesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         RemoveAttributesResult removeAttributesResult = new RemoveAttributesResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("AttributesResource")) {
+                removeAttributesResult.setAttributesResource(AttributesResourceJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return removeAttributesResult;
     }
 

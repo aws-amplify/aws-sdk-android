@@ -29,6 +29,20 @@ public class DeleteSmsChannelResultJsonUnmarshaller implements
     public DeleteSmsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteSmsChannelResult deleteSmsChannelResult = new DeleteSmsChannelResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("SMSChannelResponse")) {
+                deleteSmsChannelResult.setSMSChannelResponse(SMSChannelResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteSmsChannelResult;
     }
 

@@ -18,18 +18,40 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * GCM Message.
+ * <p>
+ * Specifies the settings for a one-time message that's sent directly to an
+ * endpoint through the GCM channel. The GCM channel enables Amazon Pinpoint to
+ * send messages to the Firebase Cloud Messaging (FCM), formerly Google Cloud
+ * Messaging (GCM), service.
+ * </p>
  */
 public class GCMMessage implements Serializable {
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
@@ -37,133 +59,220 @@ public class GCMMessage implements Serializable {
     private String action;
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      */
     private String body;
 
     /**
-     * This parameter identifies a group of messages (e.g., with collapse_key:
-     * "Updates Available") that can be collapsed, so that only the last message
-     * gets sent when delivery can be resumed. This is intended to avoid sending
-     * too many of the same messages when the device comes back online or
-     * becomes active.
+     * <p>
+     * An arbitrary string that identifies a group of messages that can be
+     * collapsed to ensure that only the last message is sent when delivery can
+     * resume. This helps avoid sending too many instances of the same messages
+     * when the recipient's device comes online again or becomes active.
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the Firebase Cloud Messaging
+     * (FCM) collapse_key parameter when it sends the notification message to
+     * FCM.
+     * </p>
      */
     private String collapseKey;
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      */
     private java.util.Map<String, String> data;
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      */
     private String iconReference;
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      */
     private String imageIconUrl;
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      */
     private String imageUrl;
 
     /**
-     * The message priority. Amazon Pinpoint uses this value to set the FCM or
-     * GCM priority parameter when it sends the message. Accepts the following
-     * values: "Normal" - Messages might be delayed. Delivery is optimized for
-     * battery usage on the receiving device. Use normal priority unless
-     * immediate delivery is required. "High" - Messages are sent immediately
-     * and might wake a sleeping device. The equivalent values for APNs messages
-     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
-     * them. For more information, see About FCM Messages in the Firebase
-     * documentation.
+     * <p>
+     * para>normal - The notification might be delayed. Delivery is optimized
+     * for battery usage on the recipient's device. Use this value unless
+     * immediate delivery is required.
+     * </p>
+     * /listitem> <li>
+     * <p>
+     * high - The notification is sent immediately and might wake a sleeping
+     * device.
+     * </p>
+     * </li>/para>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM priority parameter when
+     * it sends the notification message to FCM.
+     * </p>
+     * <p>
+     * The equivalent values for Apple Push Notification service (APNs) are 5,
+     * for normal, and 10, for high. If you specify an APNs value for this
+     * property, Amazon Pinpoint accepts and converts the value to the
+     * corresponding FCM value.
+     * </p>
      */
     private String priority;
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      */
     private String rawContent;
 
     /**
-     * This parameter specifies the package name of the application where the
-     * registration tokens must match in order to receive the message.
+     * <p>
+     * The package name of the application where registration tokens must match
+     * in order for the recipient to receive the message.
+     * </p>
      */
     private String restrictedPackageName;
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      */
     private Boolean silentPush;
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      */
     private String smallImageIconUrl;
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      */
     private String sound;
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * The length of time (in seconds) that FCM or GCM stores and attempts to
-     * deliver the message. If unspecified, the value defaults to the maximum,
-     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
-     * set the FCM or GCM time_to_live parameter.
+     * <p>
+     * The amount of time, in seconds, that FCM should store and attempt to
+     * deliver the push notification, if the service is unable to deliver the
+     * notification the first time. If you don't specify this value, FCM
+     * defaults to the maximum value, which is 2,419,200 seconds (28 days).
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM time_to_live parameter
+     * when it sends the notification message to FCM.
+     * </p>
      */
     private Integer timeToLive;
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      */
     private String title;
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      */
     private String url;
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @return The action that occurs if the user taps a push notification
-     *         delivered by the campaign: OPEN_APP - Your app launches, or it
-     *         becomes the foreground app if it has been sent to the background.
-     *         This is the default action. DEEP_LINK - Uses deep linking
-     *         features in iOS and Android to open your app and display a
-     *         designated user interface within the app. URL - The default
-     *         mobile browser on the user's device launches and opens a web page
-     *         at the URL you specify. Possible values include: OPEN_APP |
-     *         DEEP_LINK | URL
+     * @return <p>
+     *         The action to occur if the recipient taps the push notification.
+     *         Valid values are:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         OPEN_APP - Your app opens or it becomes the foreground app if it
+     *         was sent to the background. This is the default action.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         DEEP_LINK - Your app opens and displays a designated user
+     *         interface in the app. This action uses the deep-linking features
+     *         of the Android platform.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         URL - The default mobile browser on the recipient's device opens
+     *         and loads the web page at a URL that you specify.
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see Action
      */
     public String getAction() {
@@ -171,27 +280,60 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see Action
      */
     public void setAction(String action) {
@@ -199,14 +341,31 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -214,15 +373,31 @@ public class GCMMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -233,27 +408,60 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see Action
      */
     public void setAction(Action action) {
@@ -261,14 +469,31 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
-     * app if it has been sent to the background. This is the default action.
-     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
-     * app and display a designated user interface within the app. URL - The
-     * default mobile browser on the user's device launches and opens a web page
-     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
-     * URL
+     * <p>
+     * The action to occur if the recipient taps the push notification. Valid
+     * values are:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
+     * to the background. This is the default action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DEEP_LINK - Your app opens and displays a designated user interface in
+     * the app. This action uses the deep-linking features of the Android
+     * platform.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * URL - The default mobile browser on the recipient's device opens and
+     * loads the web page at a URL that you specify.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -276,15 +501,31 @@ public class GCMMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP - Your app launches, or it
-     *            becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK - Uses deep
-     *            linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL - The
-     *            default mobile browser on the user's device launches and opens
-     *            a web page at the URL you specify. Possible values include:
-     *            OPEN_APP | DEEP_LINK | URL
+     * @param action <p>
+     *            The action to occur if the recipient taps the push
+     *            notification. Valid values are:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            OPEN_APP - Your app opens or it becomes the foreground app if
+     *            it was sent to the background. This is the default action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            DEEP_LINK - Your app opens and displays a designated user
+     *            interface in the app. This action uses the deep-linking
+     *            features of the Android platform.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            URL - The default mobile browser on the recipient's device
+     *            opens and loads the web page at a URL that you specify.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -295,30 +536,42 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      *
-     * @return The message body of the notification.
+     * @return <p>
+     *         The body of the notification message.
+     *         </p>
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      *
-     * @param body The message body of the notification.
+     * @param body <p>
+     *            The body of the notification message.
+     *            </p>
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * The message body of the notification.
+     * <p>
+     * The body of the notification message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body The message body of the notification.
+     * @param body <p>
+     *            The body of the notification message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -328,56 +581,93 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * This parameter identifies a group of messages (e.g., with collapse_key:
-     * "Updates Available") that can be collapsed, so that only the last message
-     * gets sent when delivery can be resumed. This is intended to avoid sending
-     * too many of the same messages when the device comes back online or
-     * becomes active.
+     * <p>
+     * An arbitrary string that identifies a group of messages that can be
+     * collapsed to ensure that only the last message is sent when delivery can
+     * resume. This helps avoid sending too many instances of the same messages
+     * when the recipient's device comes online again or becomes active.
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the Firebase Cloud Messaging
+     * (FCM) collapse_key parameter when it sends the notification message to
+     * FCM.
+     * </p>
      *
-     * @return This parameter identifies a group of messages (e.g., with
-     *         collapse_key: "Updates Available") that can be collapsed, so that
-     *         only the last message gets sent when delivery can be resumed.
-     *         This is intended to avoid sending too many of the same messages
-     *         when the device comes back online or becomes active.
+     * @return <p>
+     *         An arbitrary string that identifies a group of messages that can
+     *         be collapsed to ensure that only the last message is sent when
+     *         delivery can resume. This helps avoid sending too many instances
+     *         of the same messages when the recipient's device comes online
+     *         again or becomes active.
+     *         </p>
+     *         <p>
+     *         Amazon Pinpoint specifies this value in the Firebase Cloud
+     *         Messaging (FCM) collapse_key parameter when it sends the
+     *         notification message to FCM.
+     *         </p>
      */
     public String getCollapseKey() {
         return collapseKey;
     }
 
     /**
-     * This parameter identifies a group of messages (e.g., with collapse_key:
-     * "Updates Available") that can be collapsed, so that only the last message
-     * gets sent when delivery can be resumed. This is intended to avoid sending
-     * too many of the same messages when the device comes back online or
-     * becomes active.
+     * <p>
+     * An arbitrary string that identifies a group of messages that can be
+     * collapsed to ensure that only the last message is sent when delivery can
+     * resume. This helps avoid sending too many instances of the same messages
+     * when the recipient's device comes online again or becomes active.
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the Firebase Cloud Messaging
+     * (FCM) collapse_key parameter when it sends the notification message to
+     * FCM.
+     * </p>
      *
-     * @param collapseKey This parameter identifies a group of messages (e.g.,
-     *            with collapse_key: "Updates Available") that can be collapsed,
-     *            so that only the last message gets sent when delivery can be
-     *            resumed. This is intended to avoid sending too many of the
-     *            same messages when the device comes back online or becomes
-     *            active.
+     * @param collapseKey <p>
+     *            An arbitrary string that identifies a group of messages that
+     *            can be collapsed to ensure that only the last message is sent
+     *            when delivery can resume. This helps avoid sending too many
+     *            instances of the same messages when the recipient's device
+     *            comes online again or becomes active.
+     *            </p>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the Firebase Cloud
+     *            Messaging (FCM) collapse_key parameter when it sends the
+     *            notification message to FCM.
+     *            </p>
      */
     public void setCollapseKey(String collapseKey) {
         this.collapseKey = collapseKey;
     }
 
     /**
-     * This parameter identifies a group of messages (e.g., with collapse_key:
-     * "Updates Available") that can be collapsed, so that only the last message
-     * gets sent when delivery can be resumed. This is intended to avoid sending
-     * too many of the same messages when the device comes back online or
-     * becomes active.
+     * <p>
+     * An arbitrary string that identifies a group of messages that can be
+     * collapsed to ensure that only the last message is sent when delivery can
+     * resume. This helps avoid sending too many instances of the same messages
+     * when the recipient's device comes online again or becomes active.
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the Firebase Cloud Messaging
+     * (FCM) collapse_key parameter when it sends the notification message to
+     * FCM.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param collapseKey This parameter identifies a group of messages (e.g.,
-     *            with collapse_key: "Updates Available") that can be collapsed,
-     *            so that only the last message gets sent when delivery can be
-     *            resumed. This is intended to avoid sending too many of the
-     *            same messages when the device comes back online or becomes
-     *            active.
+     * @param collapseKey <p>
+     *            An arbitrary string that identifies a group of messages that
+     *            can be collapsed to ensure that only the last message is sent
+     *            when delivery can resume. This helps avoid sending too many
+     *            instances of the same messages when the recipient's device
+     *            comes online again or becomes active.
+     *            </p>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the Firebase Cloud
+     *            Messaging (FCM) collapse_key parameter when it sends the
+     *            notification message to FCM.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -387,36 +677,56 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      *
-     * @return The data payload used for a silent push. This payload is added to
-     *         the notifications' data.pinpoint.jsonBody' object
+     * @return <p>
+     *         The JSON data payload to use for the push notification, if the
+     *         notification is a silent push notification. This payload is added
+     *         to the data.pinpoint.jsonBody object of the notification.
+     *         </p>
      */
     public java.util.Map<String, String> getData() {
         return data;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      *
-     * @param data The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param data <p>
+     *            The JSON data payload to use for the push notification, if the
+     *            notification is a silent push notification. This payload is
+     *            added to the data.pinpoint.jsonBody object of the
+     *            notification.
+     *            </p>
      */
     public void setData(java.util.Map<String, String> data) {
         this.data = data;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param data The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param data <p>
+     *            The JSON data payload to use for the push notification, if the
+     *            notification is a silent push notification. This payload is
+     *            added to the data.pinpoint.jsonBody object of the
+     *            notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -426,8 +736,11 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * <p>
+     * The JSON data payload to use for the push notification, if the
+     * notification is a silent push notification. This payload is added to the
+     * data.pinpoint.jsonBody object of the notification.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Data parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -460,32 +773,42 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      *
-     * @return The icon image name of the asset saved in your application.
+     * @return <p>
+     *         The icon image name of the asset saved in your app.
+     *         </p>
      */
     public String getIconReference() {
         return iconReference;
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      *
-     * @param iconReference The icon image name of the asset saved in your
-     *            application.
+     * @param iconReference <p>
+     *            The icon image name of the asset saved in your app.
+     *            </p>
      */
     public void setIconReference(String iconReference) {
         this.iconReference = iconReference;
     }
 
     /**
-     * The icon image name of the asset saved in your application.
+     * <p>
+     * The icon image name of the asset saved in your app.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param iconReference The icon image name of the asset saved in your
-     *            application.
+     * @param iconReference <p>
+     *            The icon image name of the asset saved in your app.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -495,36 +818,48 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      *
-     * @return The URL that points to an image used as the large icon to the
-     *         notification content view.
+     * @return <p>
+     *         The URL of the large icon image to display in the content view of
+     *         the push notification.
+     *         </p>
      */
     public String getImageIconUrl() {
         return imageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      *
-     * @param imageIconUrl The URL that points to an image used as the large
-     *            icon to the notification content view.
+     * @param imageIconUrl <p>
+     *            The URL of the large icon image to display in the content view
+     *            of the push notification.
+     *            </p>
      */
     public void setImageIconUrl(String imageIconUrl) {
         this.imageIconUrl = imageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the large icon to the
-     * notification content view.
+     * <p>
+     * The URL of the large icon image to display in the content view of the
+     * push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param imageIconUrl The URL that points to an image used as the large
-     *            icon to the notification content view.
+     * @param imageIconUrl <p>
+     *            The URL of the large icon image to display in the content view
+     *            of the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -534,32 +869,42 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      *
-     * @return The URL that points to an image used in the push notification.
+     * @return <p>
+     *         The URL of an image to display in the push notification.
+     *         </p>
      */
     public String getImageUrl() {
         return imageUrl;
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      *
-     * @param imageUrl The URL that points to an image used in the push
-     *            notification.
+     * @param imageUrl <p>
+     *            The URL of an image to display in the push notification.
+     *            </p>
      */
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
     /**
-     * The URL that points to an image used in the push notification.
+     * <p>
+     * The URL of an image to display in the push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param imageUrl The URL that points to an image used in the push
-     *            notification.
+     * @param imageUrl <p>
+     *            The URL of an image to display in the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -569,81 +914,150 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The message priority. Amazon Pinpoint uses this value to set the FCM or
-     * GCM priority parameter when it sends the message. Accepts the following
-     * values: "Normal" - Messages might be delayed. Delivery is optimized for
-     * battery usage on the receiving device. Use normal priority unless
-     * immediate delivery is required. "High" - Messages are sent immediately
-     * and might wake a sleeping device. The equivalent values for APNs messages
-     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
-     * them. For more information, see About FCM Messages in the Firebase
-     * documentation.
+     * <p>
+     * para>normal - The notification might be delayed. Delivery is optimized
+     * for battery usage on the recipient's device. Use this value unless
+     * immediate delivery is required.
+     * </p>
+     * /listitem> <li>
+     * <p>
+     * high - The notification is sent immediately and might wake a sleeping
+     * device.
+     * </p>
+     * </li>/para>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM priority parameter when
+     * it sends the notification message to FCM.
+     * </p>
+     * <p>
+     * The equivalent values for Apple Push Notification service (APNs) are 5,
+     * for normal, and 10, for high. If you specify an APNs value for this
+     * property, Amazon Pinpoint accepts and converts the value to the
+     * corresponding FCM value.
+     * </p>
      *
-     * @return The message priority. Amazon Pinpoint uses this value to set the
-     *         FCM or GCM priority parameter when it sends the message. Accepts
-     *         the following values: "Normal" - Messages might be delayed.
-     *         Delivery is optimized for battery usage on the receiving device.
-     *         Use normal priority unless immediate delivery is required. "High"
-     *         - Messages are sent immediately and might wake a sleeping device.
-     *         The equivalent values for APNs messages are "5" and "10". Amazon
-     *         Pinpoint accepts these values here and converts them. For more
-     *         information, see About FCM Messages in the Firebase
-     *         documentation.
+     * @return <p>
+     *         para>normal - The notification might be delayed. Delivery is
+     *         optimized for battery usage on the recipient's device. Use this
+     *         value unless immediate delivery is required.
+     *         </p>
+     *         /listitem> <li>
+     *         <p>
+     *         high - The notification is sent immediately and might wake a
+     *         sleeping device.
+     *         </p>
+     *         </li>/para>
+     *         <p>
+     *         Amazon Pinpoint specifies this value in the FCM priority
+     *         parameter when it sends the notification message to FCM.
+     *         </p>
+     *         <p>
+     *         The equivalent values for Apple Push Notification service (APNs)
+     *         are 5, for normal, and 10, for high. If you specify an APNs value
+     *         for this property, Amazon Pinpoint accepts and converts the value
+     *         to the corresponding FCM value.
+     *         </p>
      */
     public String getPriority() {
         return priority;
     }
 
     /**
-     * The message priority. Amazon Pinpoint uses this value to set the FCM or
-     * GCM priority parameter when it sends the message. Accepts the following
-     * values: "Normal" - Messages might be delayed. Delivery is optimized for
-     * battery usage on the receiving device. Use normal priority unless
-     * immediate delivery is required. "High" - Messages are sent immediately
-     * and might wake a sleeping device. The equivalent values for APNs messages
-     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
-     * them. For more information, see About FCM Messages in the Firebase
-     * documentation.
+     * <p>
+     * para>normal - The notification might be delayed. Delivery is optimized
+     * for battery usage on the recipient's device. Use this value unless
+     * immediate delivery is required.
+     * </p>
+     * /listitem> <li>
+     * <p>
+     * high - The notification is sent immediately and might wake a sleeping
+     * device.
+     * </p>
+     * </li>/para>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM priority parameter when
+     * it sends the notification message to FCM.
+     * </p>
+     * <p>
+     * The equivalent values for Apple Push Notification service (APNs) are 5,
+     * for normal, and 10, for high. If you specify an APNs value for this
+     * property, Amazon Pinpoint accepts and converts the value to the
+     * corresponding FCM value.
+     * </p>
      *
-     * @param priority The message priority. Amazon Pinpoint uses this value to
-     *            set the FCM or GCM priority parameter when it sends the
-     *            message. Accepts the following values: "Normal" - Messages
-     *            might be delayed. Delivery is optimized for battery usage on
-     *            the receiving device. Use normal priority unless immediate
-     *            delivery is required. "High" - Messages are sent immediately
-     *            and might wake a sleeping device. The equivalent values for
-     *            APNs messages are "5" and "10". Amazon Pinpoint accepts these
-     *            values here and converts them. For more information, see About
-     *            FCM Messages in the Firebase documentation.
+     * @param priority <p>
+     *            para>normal - The notification might be delayed. Delivery is
+     *            optimized for battery usage on the recipient's device. Use
+     *            this value unless immediate delivery is required.
+     *            </p>
+     *            /listitem> <li>
+     *            <p>
+     *            high - The notification is sent immediately and might wake a
+     *            sleeping device.
+     *            </p>
+     *            </li>/para>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the FCM priority
+     *            parameter when it sends the notification message to FCM.
+     *            </p>
+     *            <p>
+     *            The equivalent values for Apple Push Notification service
+     *            (APNs) are 5, for normal, and 10, for high. If you specify an
+     *            APNs value for this property, Amazon Pinpoint accepts and
+     *            converts the value to the corresponding FCM value.
+     *            </p>
      */
     public void setPriority(String priority) {
         this.priority = priority;
     }
 
     /**
-     * The message priority. Amazon Pinpoint uses this value to set the FCM or
-     * GCM priority parameter when it sends the message. Accepts the following
-     * values: "Normal" - Messages might be delayed. Delivery is optimized for
-     * battery usage on the receiving device. Use normal priority unless
-     * immediate delivery is required. "High" - Messages are sent immediately
-     * and might wake a sleeping device. The equivalent values for APNs messages
-     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
-     * them. For more information, see About FCM Messages in the Firebase
-     * documentation.
+     * <p>
+     * para>normal - The notification might be delayed. Delivery is optimized
+     * for battery usage on the recipient's device. Use this value unless
+     * immediate delivery is required.
+     * </p>
+     * /listitem> <li>
+     * <p>
+     * high - The notification is sent immediately and might wake a sleeping
+     * device.
+     * </p>
+     * </li>/para>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM priority parameter when
+     * it sends the notification message to FCM.
+     * </p>
+     * <p>
+     * The equivalent values for Apple Push Notification service (APNs) are 5,
+     * for normal, and 10, for high. If you specify an APNs value for this
+     * property, Amazon Pinpoint accepts and converts the value to the
+     * corresponding FCM value.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param priority The message priority. Amazon Pinpoint uses this value to
-     *            set the FCM or GCM priority parameter when it sends the
-     *            message. Accepts the following values: "Normal" - Messages
-     *            might be delayed. Delivery is optimized for battery usage on
-     *            the receiving device. Use normal priority unless immediate
-     *            delivery is required. "High" - Messages are sent immediately
-     *            and might wake a sleeping device. The equivalent values for
-     *            APNs messages are "5" and "10". Amazon Pinpoint accepts these
-     *            values here and converts them. For more information, see About
-     *            FCM Messages in the Firebase documentation.
+     * @param priority <p>
+     *            para>normal - The notification might be delayed. Delivery is
+     *            optimized for battery usage on the recipient's device. Use
+     *            this value unless immediate delivery is required.
+     *            </p>
+     *            /listitem> <li>
+     *            <p>
+     *            high - The notification is sent immediately and might wake a
+     *            sleeping device.
+     *            </p>
+     *            </li>/para>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the FCM priority
+     *            parameter when it sends the notification message to FCM.
+     *            </p>
+     *            <p>
+     *            The equivalent values for Apple Push Notification service
+     *            (APNs) are 5, for normal, and 10, for high. If you specify an
+     *            APNs value for this property, Amazon Pinpoint accepts and
+     *            converts the value to the corresponding FCM value.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -653,36 +1067,48 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      *
-     * @return The Raw JSON formatted string to be used as the payload. This
-     *         value overrides the message.
+     * @return <p>
+     *         The raw, JSON-formatted string to use as the payload for the
+     *         notification message. This value overrides the message.
+     *         </p>
      */
     public String getRawContent() {
         return rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            notification message. This value overrides the message.
+     *            </p>
      */
     public void setRawContent(String rawContent) {
         this.rawContent = rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the notification
+     * message. This value overrides the message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            notification message. This value overrides the message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -692,39 +1118,48 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * This parameter specifies the package name of the application where the
-     * registration tokens must match in order to receive the message.
+     * <p>
+     * The package name of the application where registration tokens must match
+     * in order for the recipient to receive the message.
+     * </p>
      *
-     * @return This parameter specifies the package name of the application
-     *         where the registration tokens must match in order to receive the
-     *         message.
+     * @return <p>
+     *         The package name of the application where registration tokens
+     *         must match in order for the recipient to receive the message.
+     *         </p>
      */
     public String getRestrictedPackageName() {
         return restrictedPackageName;
     }
 
     /**
-     * This parameter specifies the package name of the application where the
-     * registration tokens must match in order to receive the message.
+     * <p>
+     * The package name of the application where registration tokens must match
+     * in order for the recipient to receive the message.
+     * </p>
      *
-     * @param restrictedPackageName This parameter specifies the package name of
-     *            the application where the registration tokens must match in
-     *            order to receive the message.
+     * @param restrictedPackageName <p>
+     *            The package name of the application where registration tokens
+     *            must match in order for the recipient to receive the message.
+     *            </p>
      */
     public void setRestrictedPackageName(String restrictedPackageName) {
         this.restrictedPackageName = restrictedPackageName;
     }
 
     /**
-     * This parameter specifies the package name of the application where the
-     * registration tokens must match in order to receive the message.
+     * <p>
+     * The package name of the application where registration tokens must match
+     * in order for the recipient to receive the message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param restrictedPackageName This parameter specifies the package name of
-     *            the application where the registration tokens must match in
-     *            order to receive the message.
+     * @param restrictedPackageName <p>
+     *            The package name of the application where registration tokens
+     *            must match in order for the recipient to receive the message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -734,51 +1169,83 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return <p>
+     *         Specifies whether the notification is a silent push notification,
+     *         which is a push notification that doesn't display on a
+     *         recipient's device. Silent push notifications can be used for
+     *         cases such as updating an app's configuration or supporting phone
+     *         home functionality.
+     *         </p>
      */
     public Boolean isSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @return Indicates if the message should display on the users device.
-     *         Silent pushes can be used for Remote Configuration and Phone Home
-     *         use cases.
+     * @return <p>
+     *         Specifies whether the notification is a silent push notification,
+     *         which is a push notification that doesn't display on a
+     *         recipient's device. Silent push notifications can be used for
+     *         cases such as updating an app's configuration or supporting phone
+     *         home functionality.
+     *         </p>
      */
     public Boolean getSilentPush() {
         return silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush <p>
+     *            Specifies whether the notification is a silent push
+     *            notification, which is a push notification that doesn't
+     *            display on a recipient's device. Silent push notifications can
+     *            be used for cases such as updating an app's configuration or
+     *            supporting phone home functionality.
+     *            </p>
      */
     public void setSilentPush(Boolean silentPush) {
         this.silentPush = silentPush;
     }
 
     /**
-     * Indicates if the message should display on the users device. Silent
-     * pushes can be used for Remote Configuration and Phone Home use cases.
+     * <p>
+     * Specifies whether the notification is a silent push notification, which
+     * is a push notification that doesn't display on a recipient's device.
+     * Silent push notifications can be used for cases such as updating an app's
+     * configuration or supporting phone home functionality.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param silentPush Indicates if the message should display on the users
-     *            device. Silent pushes can be used for Remote Configuration and
-     *            Phone Home use cases.
+     * @param silentPush <p>
+     *            Specifies whether the notification is a silent push
+     *            notification, which is a push notification that doesn't
+     *            display on a recipient's device. Silent push notifications can
+     *            be used for cases such as updating an app's configuration or
+     *            supporting phone home functionality.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -788,42 +1255,48 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      *
-     * @return The URL that points to an image used as the small icon for the
-     *         notification which will be used to represent the notification in
-     *         the status bar and content view
+     * @return <p>
+     *         The URL of the small icon image to display in the status bar and
+     *         the content view of the push notification.
+     *         </p>
      */
     public String getSmallImageIconUrl() {
         return smallImageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      *
-     * @param smallImageIconUrl The URL that points to an image used as the
-     *            small icon for the notification which will be used to
-     *            represent the notification in the status bar and content view
+     * @param smallImageIconUrl <p>
+     *            The URL of the small icon image to display in the status bar
+     *            and the content view of the push notification.
+     *            </p>
      */
     public void setSmallImageIconUrl(String smallImageIconUrl) {
         this.smallImageIconUrl = smallImageIconUrl;
     }
 
     /**
-     * The URL that points to an image used as the small icon for the
-     * notification which will be used to represent the notification in the
-     * status bar and content view
+     * <p>
+     * The URL of the small icon image to display in the status bar and the
+     * content view of the push notification.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param smallImageIconUrl The URL that points to an image used as the
-     *            small icon for the notification which will be used to
-     *            represent the notification in the status bar and content view
+     * @param smallImageIconUrl <p>
+     *            The URL of the small icon image to display in the status bar
+     *            and the content view of the push notification.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -833,45 +1306,60 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      *
-     * @return Indicates a sound to play when the device receives the
-     *         notification. Supports default, or the filename of a sound
-     *         resource bundled in the app. Android sound files must reside in
-     *         /res/raw/
+     * @return <p>
+     *         The sound to play when the recipient receives the push
+     *         notification. You can use the default stream or specify the file
+     *         name of a sound resource that's bundled in your app. On an
+     *         Android platform, the sound file must reside in /res/raw/.
+     *         </p>
      */
     public String getSound() {
         return sound;
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      *
-     * @param sound Indicates a sound to play when the device receives the
-     *            notification. Supports default, or the filename of a sound
-     *            resource bundled in the app. Android sound files must reside
-     *            in /res/raw/
+     * @param sound <p>
+     *            The sound to play when the recipient receives the push
+     *            notification. You can use the default stream or specify the
+     *            file name of a sound resource that's bundled in your app. On
+     *            an Android platform, the sound file must reside in /res/raw/.
+     *            </p>
      */
     public void setSound(String sound) {
         this.sound = sound;
     }
 
     /**
-     * Indicates a sound to play when the device receives the notification.
-     * Supports default, or the filename of a sound resource bundled in the app.
-     * Android sound files must reside in /res/raw/
+     * <p>
+     * The sound to play when the recipient receives the push notification. You
+     * can use the default stream or specify the file name of a sound resource
+     * that's bundled in your app. On an Android platform, the sound file must
+     * reside in /res/raw/.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sound Indicates a sound to play when the device receives the
-     *            notification. Supports default, or the filename of a sound
-     *            resource bundled in the app. Android sound files must reside
-     *            in /res/raw/
+     * @param sound <p>
+     *            The sound to play when the recipient receives the push
+     *            notification. You can use the default stream or specify the
+     *            file name of a sound resource that's bundled in your app. On
+     *            an Android platform, the sound file must reside in /res/raw/.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -881,36 +1369,51 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @return Default message substitutions. Can be overridden by individual
-     *         address substitutions.
+     * @return <p>
+     *         The default message variables to use in the notification message.
+     *         You can override the default variables with individual address
+     *         variables.
+     *         </p>
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the notification
+     *            message. You can override the default variables with
+     *            individual address variables.
+     *            </p>
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the notification
+     *            message. You can override the default variables with
+     *            individual address variables.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -920,8 +1423,10 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the notification message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -956,51 +1461,87 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The length of time (in seconds) that FCM or GCM stores and attempts to
-     * deliver the message. If unspecified, the value defaults to the maximum,
-     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
-     * set the FCM or GCM time_to_live parameter.
+     * <p>
+     * The amount of time, in seconds, that FCM should store and attempt to
+     * deliver the push notification, if the service is unable to deliver the
+     * notification the first time. If you don't specify this value, FCM
+     * defaults to the maximum value, which is 2,419,200 seconds (28 days).
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM time_to_live parameter
+     * when it sends the notification message to FCM.
+     * </p>
      *
-     * @return The length of time (in seconds) that FCM or GCM stores and
-     *         attempts to deliver the message. If unspecified, the value
-     *         defaults to the maximum, which is 2,419,200 seconds (28 days).
-     *         Amazon Pinpoint uses this value to set the FCM or GCM
-     *         time_to_live parameter.
+     * @return <p>
+     *         The amount of time, in seconds, that FCM should store and attempt
+     *         to deliver the push notification, if the service is unable to
+     *         deliver the notification the first time. If you don't specify
+     *         this value, FCM defaults to the maximum value, which is 2,419,200
+     *         seconds (28 days).
+     *         </p>
+     *         <p>
+     *         Amazon Pinpoint specifies this value in the FCM time_to_live
+     *         parameter when it sends the notification message to FCM.
+     *         </p>
      */
     public Integer getTimeToLive() {
         return timeToLive;
     }
 
     /**
-     * The length of time (in seconds) that FCM or GCM stores and attempts to
-     * deliver the message. If unspecified, the value defaults to the maximum,
-     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
-     * set the FCM or GCM time_to_live parameter.
+     * <p>
+     * The amount of time, in seconds, that FCM should store and attempt to
+     * deliver the push notification, if the service is unable to deliver the
+     * notification the first time. If you don't specify this value, FCM
+     * defaults to the maximum value, which is 2,419,200 seconds (28 days).
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM time_to_live parameter
+     * when it sends the notification message to FCM.
+     * </p>
      *
-     * @param timeToLive The length of time (in seconds) that FCM or GCM stores
-     *            and attempts to deliver the message. If unspecified, the value
-     *            defaults to the maximum, which is 2,419,200 seconds (28 days).
-     *            Amazon Pinpoint uses this value to set the FCM or GCM
-     *            time_to_live parameter.
+     * @param timeToLive <p>
+     *            The amount of time, in seconds, that FCM should store and
+     *            attempt to deliver the push notification, if the service is
+     *            unable to deliver the notification the first time. If you
+     *            don't specify this value, FCM defaults to the maximum value,
+     *            which is 2,419,200 seconds (28 days).
+     *            </p>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the FCM time_to_live
+     *            parameter when it sends the notification message to FCM.
+     *            </p>
      */
     public void setTimeToLive(Integer timeToLive) {
         this.timeToLive = timeToLive;
     }
 
     /**
-     * The length of time (in seconds) that FCM or GCM stores and attempts to
-     * deliver the message. If unspecified, the value defaults to the maximum,
-     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
-     * set the FCM or GCM time_to_live parameter.
+     * <p>
+     * The amount of time, in seconds, that FCM should store and attempt to
+     * deliver the push notification, if the service is unable to deliver the
+     * notification the first time. If you don't specify this value, FCM
+     * defaults to the maximum value, which is 2,419,200 seconds (28 days).
+     * </p>
+     * <p>
+     * Amazon Pinpoint specifies this value in the FCM time_to_live parameter
+     * when it sends the notification message to FCM.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param timeToLive The length of time (in seconds) that FCM or GCM stores
-     *            and attempts to deliver the message. If unspecified, the value
-     *            defaults to the maximum, which is 2,419,200 seconds (28 days).
-     *            Amazon Pinpoint uses this value to set the FCM or GCM
-     *            time_to_live parameter.
+     * @param timeToLive <p>
+     *            The amount of time, in seconds, that FCM should store and
+     *            attempt to deliver the push notification, if the service is
+     *            unable to deliver the notification the first time. If you
+     *            don't specify this value, FCM defaults to the maximum value,
+     *            which is 2,419,200 seconds (28 days).
+     *            </p>
+     *            <p>
+     *            Amazon Pinpoint specifies this value in the FCM time_to_live
+     *            parameter when it sends the notification message to FCM.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1010,33 +1551,48 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      *
-     * @return The message title that displays above the message on the user's
-     *         device.
+     * @return <p>
+     *         The title to display above the notification message on the
+     *         recipient's device.
+     *         </p>
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      *
-     * @param title The message title that displays above the message on the
-     *            user's device.
+     * @param title <p>
+     *            The title to display above the notification message on the
+     *            recipient's device.
+     *            </p>
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * The message title that displays above the message on the user's device.
+     * <p>
+     * The title to display above the notification message on the recipient's
+     * device.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param title The message title that displays above the message on the
-     *            user's device.
+     * @param title <p>
+     *            The title to display above the notification message on the
+     *            recipient's device.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1046,36 +1602,51 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      *
-     * @return The URL to open in the user's mobile browser. Used if the value
-     *         for Action is URL.
+     * @return <p>
+     *         The URL to open in the recipient's default mobile browser, if a
+     *         recipient taps the push notification and the value of the Action
+     *         property is URL.
+     *         </p>
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      *
-     * @param url The URL to open in the user's mobile browser. Used if the
-     *            value for Action is URL.
+     * @param url <p>
+     *            The URL to open in the recipient's default mobile browser, if
+     *            a recipient taps the push notification and the value of the
+     *            Action property is URL.
+     *            </p>
      */
     public void setUrl(String url) {
         this.url = url;
     }
 
     /**
-     * The URL to open in the user's mobile browser. Used if the value for
-     * Action is URL.
+     * <p>
+     * The URL to open in the recipient's default mobile browser, if a recipient
+     * taps the push notification and the value of the Action property is URL.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param url The URL to open in the user's mobile browser. Used if the
-     *            value for Action is URL.
+     * @param url <p>
+     *            The URL to open in the recipient's default mobile browser, if
+     *            a recipient taps the push notification and the value of the
+     *            Action property is URL.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
