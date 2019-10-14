@@ -29,6 +29,19 @@ public class UpdateEndpointResultJsonUnmarshaller implements
     public UpdateEndpointResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEndpointResult updateEndpointResult = new UpdateEndpointResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("MessageBody")) {
+                updateEndpointResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return updateEndpointResult;
     }
 

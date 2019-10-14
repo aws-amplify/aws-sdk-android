@@ -19,35 +19,63 @@ import java.io.Serializable;
 
 public class GetExportJobsResult implements Serializable {
     /**
-     * Export job list.
+     * <p>
+     * Provides information about all the export jobs that are associated with
+     * an application or segment. An export job is a job that exports endpoint
+     * definitions to a file.
+     * </p>
      */
     private ExportJobsResponse exportJobsResponse;
 
     /**
-     * Export job list.
+     * <p>
+     * Provides information about all the export jobs that are associated with
+     * an application or segment. An export job is a job that exports endpoint
+     * definitions to a file.
+     * </p>
      *
-     * @return Export job list.
+     * @return <p>
+     *         Provides information about all the export jobs that are
+     *         associated with an application or segment. An export job is a job
+     *         that exports endpoint definitions to a file.
+     *         </p>
      */
     public ExportJobsResponse getExportJobsResponse() {
         return exportJobsResponse;
     }
 
     /**
-     * Export job list.
+     * <p>
+     * Provides information about all the export jobs that are associated with
+     * an application or segment. An export job is a job that exports endpoint
+     * definitions to a file.
+     * </p>
      *
-     * @param exportJobsResponse Export job list.
+     * @param exportJobsResponse <p>
+     *            Provides information about all the export jobs that are
+     *            associated with an application or segment. An export job is a
+     *            job that exports endpoint definitions to a file.
+     *            </p>
      */
     public void setExportJobsResponse(ExportJobsResponse exportJobsResponse) {
         this.exportJobsResponse = exportJobsResponse;
     }
 
     /**
-     * Export job list.
+     * <p>
+     * Provides information about all the export jobs that are associated with
+     * an application or segment. An export job is a job that exports endpoint
+     * definitions to a file.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param exportJobsResponse Export job list.
+     * @param exportJobsResponse <p>
+     *            Provides information about all the export jobs that are
+     *            associated with an application or segment. An export job is a
+     *            job that exports endpoint definitions to a file.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

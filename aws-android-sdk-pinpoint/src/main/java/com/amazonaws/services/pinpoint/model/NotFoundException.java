@@ -18,13 +18,17 @@ package com.amazonaws.services.pinpoint.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * Simple message object.
+ * <p>
+ * Provides information about an API request or response.
+ * </p>
  */
 public class NotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      */
     private String requestID;
 
@@ -38,18 +42,26 @@ public class NotFoundException extends AmazonServiceException {
     }
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      *
-     * @return The unique message body ID.
+     * @return <p>
+     *         The unique identifier for the request or response.
+     *         </p>
      */
     public String getRequestID() {
         return requestID;
     }
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      *
-     * @param requestID The unique message body ID.
+     * @param requestID <p>
+     *            The unique identifier for the request or response.
+     *            </p>
      */
     public void setRequestID(String requestID) {
         this.requestID = requestID;

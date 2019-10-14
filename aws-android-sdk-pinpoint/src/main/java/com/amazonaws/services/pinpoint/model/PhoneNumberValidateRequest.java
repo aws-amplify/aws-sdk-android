@@ -20,39 +20,58 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Returns information about the specified phone number.
+ * <p>
+ * Retrieves information about a phone number.
+ * </p>
  */
 public class PhoneNumberValidateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Phone Number Validate request.
+     * <p>
+     * Specifies a phone number to validate and retrieve information about.
+     * </p>
      */
     private NumberValidateRequest numberValidateRequest;
 
     /**
-     * Phone Number Validate request.
+     * <p>
+     * Specifies a phone number to validate and retrieve information about.
+     * </p>
      *
-     * @return Phone Number Validate request.
+     * @return <p>
+     *         Specifies a phone number to validate and retrieve information
+     *         about.
+     *         </p>
      */
     public NumberValidateRequest getNumberValidateRequest() {
         return numberValidateRequest;
     }
 
     /**
-     * Phone Number Validate request.
+     * <p>
+     * Specifies a phone number to validate and retrieve information about.
+     * </p>
      *
-     * @param numberValidateRequest Phone Number Validate request.
+     * @param numberValidateRequest <p>
+     *            Specifies a phone number to validate and retrieve information
+     *            about.
+     *            </p>
      */
     public void setNumberValidateRequest(NumberValidateRequest numberValidateRequest) {
         this.numberValidateRequest = numberValidateRequest;
     }
 
     /**
-     * Phone Number Validate request.
+     * <p>
+     * Specifies a phone number to validate and retrieve information about.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param numberValidateRequest Phone Number Validate request.
+     * @param numberValidateRequest <p>
+     *            Specifies a phone number to validate and retrieve information
+     *            about.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

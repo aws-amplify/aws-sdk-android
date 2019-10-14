@@ -7,11 +7,18 @@
 - **Amazon S3**
   - `PutObjectResult` object will now contain content MD5 that was used in data validation (if available). See [Issue# 1236](https://github.com/aws-amplify/aws-sdk-android/issues/1236).
 
+- **AWS IoT**
+  - Specified minimum SDK (11) and target SDK (27) version in `AndroidManifest.xml` for IoT SDK.
+  - Prevents unintended permission from being implied in `AndroidManifest.xml`. See [Issue #1234](https://github.com/aws-amplify/aws-sdk-android/issues/1234).
+
 ### Misc. Updates
 
+- **Amazon S3**
+  - Added serialized name annotation to `TransferNetworkConnectionType` enum values and added instrumentation tests.
+  
 - Model updates for the following services
   - Amazon Cognito Identity Provider
-  
+
 ## [Release 2.16.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.1)
 
 ### Misc. Updates

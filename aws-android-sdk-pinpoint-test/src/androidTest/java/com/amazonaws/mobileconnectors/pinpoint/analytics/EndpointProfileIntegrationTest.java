@@ -27,6 +27,7 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileUser;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.junit.After;
@@ -77,12 +78,14 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
 
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 appContext,
-                getPackageConfigure("core")
+                getPackageConfigure("pinpoint")
                         .getString("identity_pool_id"),
-                Regions.US_EAST_1);
+                Regions.fromName(getPackageConfigure("pinpoint")
+                        .getString("identity_pool_id_region")));
         pinpointConfiguration = new PinpointConfiguration(appContext,
                 appId,
                 regions,
+                ChannelType.GCM,
                 credentialsProvider);
         pinpointManager = new PinpointManager(pinpointConfiguration);
     }

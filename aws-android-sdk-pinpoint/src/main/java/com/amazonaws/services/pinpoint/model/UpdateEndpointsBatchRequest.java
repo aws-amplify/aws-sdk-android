@@ -20,44 +20,76 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to update a batch of endpoints.
+ * <p>
+ * Creates a new batch of endpoints for an application or updates the settings
+ * and attributes of a batch of existing endpoints for an application. You can
+ * also use this operation to define custom attributes (Attributes, Metrics, and
+ * UserAttributes properties) for a batch of endpoints.
+ * </p>
  */
 public class UpdateEndpointsBatchRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Endpoint batch update request.
+     * <p>
+     * Specifies a batch of endpoints to create or update and the settings and
+     * attributes to set or change for each endpoint.
+     * </p>
      */
     private EndpointBatchRequest endpointBatchRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +99,48 @@ public class UpdateEndpointsBatchRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Endpoint batch update request.
+     * <p>
+     * Specifies a batch of endpoints to create or update and the settings and
+     * attributes to set or change for each endpoint.
+     * </p>
      *
-     * @return Endpoint batch update request.
+     * @return <p>
+     *         Specifies a batch of endpoints to create or update and the
+     *         settings and attributes to set or change for each endpoint.
+     *         </p>
      */
     public EndpointBatchRequest getEndpointBatchRequest() {
         return endpointBatchRequest;
     }
 
     /**
-     * Endpoint batch update request.
+     * <p>
+     * Specifies a batch of endpoints to create or update and the settings and
+     * attributes to set or change for each endpoint.
+     * </p>
      *
-     * @param endpointBatchRequest Endpoint batch update request.
+     * @param endpointBatchRequest <p>
+     *            Specifies a batch of endpoints to create or update and the
+     *            settings and attributes to set or change for each endpoint.
+     *            </p>
      */
     public void setEndpointBatchRequest(EndpointBatchRequest endpointBatchRequest) {
         this.endpointBatchRequest = endpointBatchRequest;
     }
 
     /**
-     * Endpoint batch update request.
+     * <p>
+     * Specifies a batch of endpoints to create or update and the settings and
+     * attributes to set or change for each endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointBatchRequest Endpoint batch update request.
+     * @param endpointBatchRequest <p>
+     *            Specifies a batch of endpoints to create or update and the
+     *            settings and attributes to set or change for each endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

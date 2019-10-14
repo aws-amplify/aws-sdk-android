@@ -45,6 +45,11 @@ class WriteSegmentRequestJsonUnmarshaller implements
             } else if (name.equals("SegmentGroups")) {
                 writeSegmentRequest.setSegmentGroups(SegmentGroupListJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("tags")) {
+                writeSegmentRequest.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

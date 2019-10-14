@@ -29,6 +29,20 @@ public class CreateCampaignResultJsonUnmarshaller implements
     public CreateCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateCampaignResult createCampaignResult = new CreateCampaignResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("CampaignResponse")) {
+                createCampaignResult.setCampaignResponse(CampaignResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return createCampaignResult;
     }
 

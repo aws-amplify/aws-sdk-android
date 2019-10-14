@@ -76,6 +76,46 @@ public class PutSessionRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
+     * A summary of the recent intents for the bot. You can use the intent
+     * summary view to set a checkpoint label on an intent and modify attributes
+     * of intents. You can also use it to remove or add intent summary objects
+     * to the list.
+     * </p>
+     * <p>
+     * An intent that you modify or add to the list must make sense for the bot.
+     * For example, the intent name must be valid for the bot. You must provide
+     * valid values for:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>intentName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * slot names
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElict</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you send the <code>recentIntentSummaryView</code> parameter in a
+     * <code>PutSession</code> request, the contents of the new summary view
+     * replaces the old summary view. For example, if a <code>GetSession</code>
+     * request returns three intents in the summary view and you call
+     * <code>PutSession</code> with one intent in the summary view, the next
+     * call to <code>GetSession</code> will only return one intent.
+     * </p>
+     */
+    private java.util.List<IntentSummary> recentIntentSummaryView;
+
+    /**
+     * <p>
      * The message that Amazon Lex returns in the response can be either text or
      * speech based depending on the value of this field.
      * </p>
@@ -434,6 +474,352 @@ public class PutSessionRequest extends AmazonWebServiceRequest implements Serial
      */
     public PutSessionRequest withDialogAction(DialogAction dialogAction) {
         this.dialogAction = dialogAction;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A summary of the recent intents for the bot. You can use the intent
+     * summary view to set a checkpoint label on an intent and modify attributes
+     * of intents. You can also use it to remove or add intent summary objects
+     * to the list.
+     * </p>
+     * <p>
+     * An intent that you modify or add to the list must make sense for the bot.
+     * For example, the intent name must be valid for the bot. You must provide
+     * valid values for:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>intentName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * slot names
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElict</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you send the <code>recentIntentSummaryView</code> parameter in a
+     * <code>PutSession</code> request, the contents of the new summary view
+     * replaces the old summary view. For example, if a <code>GetSession</code>
+     * request returns three intents in the summary view and you call
+     * <code>PutSession</code> with one intent in the summary view, the next
+     * call to <code>GetSession</code> will only return one intent.
+     * </p>
+     *
+     * @return <p>
+     *         A summary of the recent intents for the bot. You can use the
+     *         intent summary view to set a checkpoint label on an intent and
+     *         modify attributes of intents. You can also use it to remove or
+     *         add intent summary objects to the list.
+     *         </p>
+     *         <p>
+     *         An intent that you modify or add to the list must make sense for
+     *         the bot. For example, the intent name must be valid for the bot.
+     *         You must provide valid values for:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>intentName</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         slot names
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>slotToElict</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         If you send the <code>recentIntentSummaryView</code> parameter in
+     *         a <code>PutSession</code> request, the contents of the new
+     *         summary view replaces the old summary view. For example, if a
+     *         <code>GetSession</code> request returns three intents in the
+     *         summary view and you call <code>PutSession</code> with one intent
+     *         in the summary view, the next call to <code>GetSession</code>
+     *         will only return one intent.
+     *         </p>
+     */
+    public java.util.List<IntentSummary> getRecentIntentSummaryView() {
+        return recentIntentSummaryView;
+    }
+
+    /**
+     * <p>
+     * A summary of the recent intents for the bot. You can use the intent
+     * summary view to set a checkpoint label on an intent and modify attributes
+     * of intents. You can also use it to remove or add intent summary objects
+     * to the list.
+     * </p>
+     * <p>
+     * An intent that you modify or add to the list must make sense for the bot.
+     * For example, the intent name must be valid for the bot. You must provide
+     * valid values for:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>intentName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * slot names
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElict</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you send the <code>recentIntentSummaryView</code> parameter in a
+     * <code>PutSession</code> request, the contents of the new summary view
+     * replaces the old summary view. For example, if a <code>GetSession</code>
+     * request returns three intents in the summary view and you call
+     * <code>PutSession</code> with one intent in the summary view, the next
+     * call to <code>GetSession</code> will only return one intent.
+     * </p>
+     *
+     * @param recentIntentSummaryView <p>
+     *            A summary of the recent intents for the bot. You can use the
+     *            intent summary view to set a checkpoint label on an intent and
+     *            modify attributes of intents. You can also use it to remove or
+     *            add intent summary objects to the list.
+     *            </p>
+     *            <p>
+     *            An intent that you modify or add to the list must make sense
+     *            for the bot. For example, the intent name must be valid for
+     *            the bot. You must provide valid values for:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>intentName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            slot names
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>slotToElict</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you send the <code>recentIntentSummaryView</code> parameter
+     *            in a <code>PutSession</code> request, the contents of the new
+     *            summary view replaces the old summary view. For example, if a
+     *            <code>GetSession</code> request returns three intents in the
+     *            summary view and you call <code>PutSession</code> with one
+     *            intent in the summary view, the next call to
+     *            <code>GetSession</code> will only return one intent.
+     *            </p>
+     */
+    public void setRecentIntentSummaryView(
+            java.util.Collection<IntentSummary> recentIntentSummaryView) {
+        if (recentIntentSummaryView == null) {
+            this.recentIntentSummaryView = null;
+            return;
+        }
+
+        this.recentIntentSummaryView = new java.util.ArrayList<IntentSummary>(
+                recentIntentSummaryView);
+    }
+
+    /**
+     * <p>
+     * A summary of the recent intents for the bot. You can use the intent
+     * summary view to set a checkpoint label on an intent and modify attributes
+     * of intents. You can also use it to remove or add intent summary objects
+     * to the list.
+     * </p>
+     * <p>
+     * An intent that you modify or add to the list must make sense for the bot.
+     * For example, the intent name must be valid for the bot. You must provide
+     * valid values for:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>intentName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * slot names
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElict</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you send the <code>recentIntentSummaryView</code> parameter in a
+     * <code>PutSession</code> request, the contents of the new summary view
+     * replaces the old summary view. For example, if a <code>GetSession</code>
+     * request returns three intents in the summary view and you call
+     * <code>PutSession</code> with one intent in the summary view, the next
+     * call to <code>GetSession</code> will only return one intent.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param recentIntentSummaryView <p>
+     *            A summary of the recent intents for the bot. You can use the
+     *            intent summary view to set a checkpoint label on an intent and
+     *            modify attributes of intents. You can also use it to remove or
+     *            add intent summary objects to the list.
+     *            </p>
+     *            <p>
+     *            An intent that you modify or add to the list must make sense
+     *            for the bot. For example, the intent name must be valid for
+     *            the bot. You must provide valid values for:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>intentName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            slot names
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>slotToElict</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you send the <code>recentIntentSummaryView</code> parameter
+     *            in a <code>PutSession</code> request, the contents of the new
+     *            summary view replaces the old summary view. For example, if a
+     *            <code>GetSession</code> request returns three intents in the
+     *            summary view and you call <code>PutSession</code> with one
+     *            intent in the summary view, the next call to
+     *            <code>GetSession</code> will only return one intent.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutSessionRequest withRecentIntentSummaryView(IntentSummary... recentIntentSummaryView) {
+        if (getRecentIntentSummaryView() == null) {
+            this.recentIntentSummaryView = new java.util.ArrayList<IntentSummary>(
+                    recentIntentSummaryView.length);
+        }
+        for (IntentSummary value : recentIntentSummaryView) {
+            this.recentIntentSummaryView.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A summary of the recent intents for the bot. You can use the intent
+     * summary view to set a checkpoint label on an intent and modify attributes
+     * of intents. You can also use it to remove or add intent summary objects
+     * to the list.
+     * </p>
+     * <p>
+     * An intent that you modify or add to the list must make sense for the bot.
+     * For example, the intent name must be valid for the bot. You must provide
+     * valid values for:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>intentName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * slot names
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElict</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you send the <code>recentIntentSummaryView</code> parameter in a
+     * <code>PutSession</code> request, the contents of the new summary view
+     * replaces the old summary view. For example, if a <code>GetSession</code>
+     * request returns three intents in the summary view and you call
+     * <code>PutSession</code> with one intent in the summary view, the next
+     * call to <code>GetSession</code> will only return one intent.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param recentIntentSummaryView <p>
+     *            A summary of the recent intents for the bot. You can use the
+     *            intent summary view to set a checkpoint label on an intent and
+     *            modify attributes of intents. You can also use it to remove or
+     *            add intent summary objects to the list.
+     *            </p>
+     *            <p>
+     *            An intent that you modify or add to the list must make sense
+     *            for the bot. For example, the intent name must be valid for
+     *            the bot. You must provide valid values for:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>intentName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            slot names
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>slotToElict</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you send the <code>recentIntentSummaryView</code> parameter
+     *            in a <code>PutSession</code> request, the contents of the new
+     *            summary view replaces the old summary view. For example, if a
+     *            <code>GetSession</code> request returns three intents in the
+     *            summary view and you call <code>PutSession</code> with one
+     *            intent in the summary view, the next call to
+     *            <code>GetSession</code> will only return one intent.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutSessionRequest withRecentIntentSummaryView(
+            java.util.Collection<IntentSummary> recentIntentSummaryView) {
+        setRecentIntentSummaryView(recentIntentSummaryView);
         return this;
     }
 
@@ -841,6 +1227,8 @@ public class PutSessionRequest extends AmazonWebServiceRequest implements Serial
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
         if (getDialogAction() != null)
             sb.append("dialogAction: " + getDialogAction() + ",");
+        if (getRecentIntentSummaryView() != null)
+            sb.append("recentIntentSummaryView: " + getRecentIntentSummaryView() + ",");
         if (getAccept() != null)
             sb.append("accept: " + getAccept());
         sb.append("}");
@@ -859,6 +1247,10 @@ public class PutSessionRequest extends AmazonWebServiceRequest implements Serial
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogAction() == null) ? 0 : getDialogAction().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getRecentIntentSummaryView() == null) ? 0 : getRecentIntentSummaryView()
+                        .hashCode());
         hashCode = prime * hashCode + ((getAccept() == null) ? 0 : getAccept().hashCode());
         return hashCode;
     }
@@ -895,6 +1287,11 @@ public class PutSessionRequest extends AmazonWebServiceRequest implements Serial
             return false;
         if (other.getDialogAction() != null
                 && other.getDialogAction().equals(this.getDialogAction()) == false)
+            return false;
+        if (other.getRecentIntentSummaryView() == null ^ this.getRecentIntentSummaryView() == null)
+            return false;
+        if (other.getRecentIntentSummaryView() != null
+                && other.getRecentIntentSummaryView().equals(this.getRecentIntentSummaryView()) == false)
             return false;
         if (other.getAccept() == null ^ this.getAccept() == null)
             return false;

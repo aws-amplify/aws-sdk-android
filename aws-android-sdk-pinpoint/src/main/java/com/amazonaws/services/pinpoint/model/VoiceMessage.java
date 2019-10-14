@@ -18,63 +18,93 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Voice Message.
+ * <p>
+ * Specifies the settings for a one-time voice message that's sent directly to
+ * an endpoint through the voice channel.
+ * </p>
  */
 public class VoiceMessage implements Serializable {
     /**
-     * The message body of the notification, the email body or the text message.
+     * <p>
+     * The text script for the voice message.
+     * </p>
      */
     private String body;
 
     /**
-     * Language of sent message
+     * <p>
+     * The language to use when delivering the message. For a list of supported
+     * languages, see the <a href="AmazonPollyDG.html">Amazon Polly Developer
+     * Guide</a>.
+     * </p>
      */
     private String languageCode;
 
     /**
-     * Is the number from the pool or messaging service to send from.
+     * <p>
+     * The long code to send the voice message from. This value should be one of
+     * the dedicated long codes that's assigned to your AWS account. Although it
+     * isn't required, we recommend that you specify the long code in E.164
+     * format, for example +12065550100, to ensure prompt and accurate delivery
+     * of the message.
+     * </p>
      */
     private String originationNumber;
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the voice message. You can
+     * override the default variables with individual address variables.
+     * </p>
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * Voice ID of sent message.
+     * <p>
+     * The name of the voice to use when delivering the message. For a list of
+     * supported voices, see the <a href="AmazonPollyDG.html">Amazon Polly
+     * Developer Guide</a>.
+     * </p>
      */
     private String voiceId;
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * <p>
+     * The text script for the voice message.
+     * </p>
      *
-     * @return The message body of the notification, the email body or the text
-     *         message.
+     * @return <p>
+     *         The text script for the voice message.
+     *         </p>
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * <p>
+     * The text script for the voice message.
+     * </p>
      *
-     * @param body The message body of the notification, the email body or the
-     *            text message.
+     * @param body <p>
+     *            The text script for the voice message.
+     *            </p>
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * <p>
+     * The text script for the voice message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body The message body of the notification, the email body or the
-     *            text message.
+     * @param body <p>
+     *            The text script for the voice message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -84,30 +114,54 @@ public class VoiceMessage implements Serializable {
     }
 
     /**
-     * Language of sent message
+     * <p>
+     * The language to use when delivering the message. For a list of supported
+     * languages, see the <a href="AmazonPollyDG.html">Amazon Polly Developer
+     * Guide</a>.
+     * </p>
      *
-     * @return Language of sent message
+     * @return <p>
+     *         The language to use when delivering the message. For a list of
+     *         supported languages, see the <a href="AmazonPollyDG.html">Amazon
+     *         Polly Developer Guide</a>.
+     *         </p>
      */
     public String getLanguageCode() {
         return languageCode;
     }
 
     /**
-     * Language of sent message
+     * <p>
+     * The language to use when delivering the message. For a list of supported
+     * languages, see the <a href="AmazonPollyDG.html">Amazon Polly Developer
+     * Guide</a>.
+     * </p>
      *
-     * @param languageCode Language of sent message
+     * @param languageCode <p>
+     *            The language to use when delivering the message. For a list of
+     *            supported languages, see the <a
+     *            href="AmazonPollyDG.html">Amazon Polly Developer Guide</a>.
+     *            </p>
      */
     public void setLanguageCode(String languageCode) {
         this.languageCode = languageCode;
     }
 
     /**
-     * Language of sent message
+     * <p>
+     * The language to use when delivering the message. For a list of supported
+     * languages, see the <a href="AmazonPollyDG.html">Amazon Polly Developer
+     * Guide</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param languageCode Language of sent message
+     * @param languageCode <p>
+     *            The language to use when delivering the message. For a list of
+     *            supported languages, see the <a
+     *            href="AmazonPollyDG.html">Amazon Polly Developer Guide</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -117,32 +171,68 @@ public class VoiceMessage implements Serializable {
     }
 
     /**
-     * Is the number from the pool or messaging service to send from.
+     * <p>
+     * The long code to send the voice message from. This value should be one of
+     * the dedicated long codes that's assigned to your AWS account. Although it
+     * isn't required, we recommend that you specify the long code in E.164
+     * format, for example +12065550100, to ensure prompt and accurate delivery
+     * of the message.
+     * </p>
      *
-     * @return Is the number from the pool or messaging service to send from.
+     * @return <p>
+     *         The long code to send the voice message from. This value should
+     *         be one of the dedicated long codes that's assigned to your AWS
+     *         account. Although it isn't required, we recommend that you
+     *         specify the long code in E.164 format, for example +12065550100,
+     *         to ensure prompt and accurate delivery of the message.
+     *         </p>
      */
     public String getOriginationNumber() {
         return originationNumber;
     }
 
     /**
-     * Is the number from the pool or messaging service to send from.
+     * <p>
+     * The long code to send the voice message from. This value should be one of
+     * the dedicated long codes that's assigned to your AWS account. Although it
+     * isn't required, we recommend that you specify the long code in E.164
+     * format, for example +12065550100, to ensure prompt and accurate delivery
+     * of the message.
+     * </p>
      *
-     * @param originationNumber Is the number from the pool or messaging service
-     *            to send from.
+     * @param originationNumber <p>
+     *            The long code to send the voice message from. This value
+     *            should be one of the dedicated long codes that's assigned to
+     *            your AWS account. Although it isn't required, we recommend
+     *            that you specify the long code in E.164 format, for example
+     *            +12065550100, to ensure prompt and accurate delivery of the
+     *            message.
+     *            </p>
      */
     public void setOriginationNumber(String originationNumber) {
         this.originationNumber = originationNumber;
     }
 
     /**
-     * Is the number from the pool or messaging service to send from.
+     * <p>
+     * The long code to send the voice message from. This value should be one of
+     * the dedicated long codes that's assigned to your AWS account. Although it
+     * isn't required, we recommend that you specify the long code in E.164
+     * format, for example +12065550100, to ensure prompt and accurate delivery
+     * of the message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param originationNumber Is the number from the pool or messaging service
-     *            to send from.
+     * @param originationNumber <p>
+     *            The long code to send the voice message from. This value
+     *            should be one of the dedicated long codes that's assigned to
+     *            your AWS account. Although it isn't required, we recommend
+     *            that you specify the long code in E.164 format, for example
+     *            +12065550100, to ensure prompt and accurate delivery of the
+     *            message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -152,36 +242,51 @@ public class VoiceMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the voice message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @return Default message substitutions. Can be overridden by individual
-     *         address substitutions.
+     * @return <p>
+     *         The default message variables to use in the voice message. You
+     *         can override the default variables with individual address
+     *         variables.
+     *         </p>
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the voice message. You can
+     * override the default variables with individual address variables.
+     * </p>
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the voice message. You
+     *            can override the default variables with individual address
+     *            variables.
+     *            </p>
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the voice message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions Default message substitutions. Can be overridden by
-     *            individual address substitutions.
+     * @param substitutions <p>
+     *            The default message variables to use in the voice message. You
+     *            can override the default variables with individual address
+     *            variables.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -192,8 +297,10 @@ public class VoiceMessage implements Serializable {
     }
 
     /**
-     * Default message substitutions. Can be overridden by individual address
-     * substitutions.
+     * <p>
+     * The default message variables to use in the voice message. You can
+     * override the default variables with individual address variables.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -228,30 +335,54 @@ public class VoiceMessage implements Serializable {
     }
 
     /**
-     * Voice ID of sent message.
+     * <p>
+     * The name of the voice to use when delivering the message. For a list of
+     * supported voices, see the <a href="AmazonPollyDG.html">Amazon Polly
+     * Developer Guide</a>.
+     * </p>
      *
-     * @return Voice ID of sent message.
+     * @return <p>
+     *         The name of the voice to use when delivering the message. For a
+     *         list of supported voices, see the <a
+     *         href="AmazonPollyDG.html">Amazon Polly Developer Guide</a>.
+     *         </p>
      */
     public String getVoiceId() {
         return voiceId;
     }
 
     /**
-     * Voice ID of sent message.
+     * <p>
+     * The name of the voice to use when delivering the message. For a list of
+     * supported voices, see the <a href="AmazonPollyDG.html">Amazon Polly
+     * Developer Guide</a>.
+     * </p>
      *
-     * @param voiceId Voice ID of sent message.
+     * @param voiceId <p>
+     *            The name of the voice to use when delivering the message. For
+     *            a list of supported voices, see the <a
+     *            href="AmazonPollyDG.html">Amazon Polly Developer Guide</a>.
+     *            </p>
      */
     public void setVoiceId(String voiceId) {
         this.voiceId = voiceId;
     }
 
     /**
-     * Voice ID of sent message.
+     * <p>
+     * The name of the voice to use when delivering the message. For a list of
+     * supported voices, see the <a href="AmazonPollyDG.html">Amazon Polly
+     * Developer Guide</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param voiceId Voice ID of sent message.
+     * @param voiceId <p>
+     *            The name of the voice to use when delivering the message. For
+     *            a list of supported voices, see the <a
+     *            href="AmazonPollyDG.html">Amazon Polly Developer Guide</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

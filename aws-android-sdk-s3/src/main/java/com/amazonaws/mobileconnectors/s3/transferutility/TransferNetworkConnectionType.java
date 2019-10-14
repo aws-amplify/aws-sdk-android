@@ -19,6 +19,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ public enum TransferNetworkConnectionType {
     /**
      * Any connection
      */
+    @SerializedName("ANY")
     ANY() {
         @Override
         protected boolean verify(NetworkInfo networkInfo) {
@@ -40,6 +42,7 @@ public enum TransferNetworkConnectionType {
     /**
      * Wifi only
      */
+    @SerializedName("WIFI")
     WIFI() {
         @Override
         protected boolean verify(NetworkInfo networkInfo) {
@@ -51,6 +54,7 @@ public enum TransferNetworkConnectionType {
     /**
      * Mobile only
      */
+    @SerializedName("MOBILE")
     MOBILE() {
         @Override
         protected boolean verify(NetworkInfo networkInfo) {

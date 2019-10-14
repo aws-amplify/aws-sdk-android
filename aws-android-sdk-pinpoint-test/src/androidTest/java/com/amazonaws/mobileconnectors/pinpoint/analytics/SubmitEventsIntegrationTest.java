@@ -25,6 +25,7 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.junit.After;
@@ -76,12 +77,14 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
 
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 appContext,
-                getPackageConfigure("core")
+                getPackageConfigure("pinpoint")
                         .getString("identity_pool_id"),
-                Regions.US_EAST_1);
+                Regions.fromName(getPackageConfigure("pinpoint")
+                        .getString("identity_pool_id_region")));
         pinpointConfiguration = new PinpointConfiguration(appContext,
                 appId,
                 regions,
+                ChannelType.GCM,
                 credentialsProvider);
         pinpointManager = new PinpointManager(pinpointConfiguration);
     }

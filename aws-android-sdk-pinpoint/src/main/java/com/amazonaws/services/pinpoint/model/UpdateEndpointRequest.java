@@ -20,49 +20,82 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Creates or updates an endpoint.
+ * <p>
+ * Creates a new endpoint for an application or updates the settings and
+ * attributes of an existing endpoint for an application. You can also use this
+ * operation to define custom attributes (Attributes, Metrics, and
+ * UserAttributes properties) for an endpoint.
+ * </p>
  */
 public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      */
     private String endpointId;
 
     /**
-     * An endpoint update request.
+     * <p>
+     * Specifies the channel type and other settings for an endpoint.
+     * </p>
      */
     private EndpointRequest endpointRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -72,30 +105,42 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      *
-     * @return The unique ID of the endpoint.
+     * @return <p>
+     *         The unique identifier for the endpoint.
+     *         </p>
      */
     public String getEndpointId() {
         return endpointId;
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      *
-     * @param endpointId The unique ID of the endpoint.
+     * @param endpointId <p>
+     *            The unique identifier for the endpoint.
+     *            </p>
      */
     public void setEndpointId(String endpointId) {
         this.endpointId = endpointId;
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointId The unique ID of the endpoint.
+     * @param endpointId <p>
+     *            The unique identifier for the endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -105,30 +150,42 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * An endpoint update request.
+     * <p>
+     * Specifies the channel type and other settings for an endpoint.
+     * </p>
      *
-     * @return An endpoint update request.
+     * @return <p>
+     *         Specifies the channel type and other settings for an endpoint.
+     *         </p>
      */
     public EndpointRequest getEndpointRequest() {
         return endpointRequest;
     }
 
     /**
-     * An endpoint update request.
+     * <p>
+     * Specifies the channel type and other settings for an endpoint.
+     * </p>
      *
-     * @param endpointRequest An endpoint update request.
+     * @param endpointRequest <p>
+     *            Specifies the channel type and other settings for an endpoint.
+     *            </p>
      */
     public void setEndpointRequest(EndpointRequest endpointRequest) {
         this.endpointRequest = endpointRequest;
     }
 
     /**
-     * An endpoint update request.
+     * <p>
+     * Specifies the channel type and other settings for an endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointRequest An endpoint update request.
+     * @param endpointRequest <p>
+     *            Specifies the channel type and other settings for an endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

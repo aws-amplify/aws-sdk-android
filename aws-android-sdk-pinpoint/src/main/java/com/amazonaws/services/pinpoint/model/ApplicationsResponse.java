@@ -18,33 +18,50 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Get Applications Result.
+ * <p>
+ * Provides information about all of your applications.
+ * </p>
  */
 public class ApplicationsResponse implements Serializable {
     /**
-     * List of applications returned in this page.
+     * <p>
+     * An array of responses, one for each application that was returned.
+     * </p>
      */
     private java.util.List<ApplicationResponse> item;
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      */
     private String nextToken;
 
     /**
-     * List of applications returned in this page.
+     * <p>
+     * An array of responses, one for each application that was returned.
+     * </p>
      *
-     * @return List of applications returned in this page.
+     * @return <p>
+     *         An array of responses, one for each application that was
+     *         returned.
+     *         </p>
      */
     public java.util.List<ApplicationResponse> getItem() {
         return item;
     }
 
     /**
-     * List of applications returned in this page.
+     * <p>
+     * An array of responses, one for each application that was returned.
+     * </p>
      *
-     * @param item List of applications returned in this page.
+     * @param item <p>
+     *            An array of responses, one for each application that was
+     *            returned.
+     *            </p>
      */
     public void setItem(java.util.Collection<ApplicationResponse> item) {
         if (item == null) {
@@ -56,12 +73,17 @@ public class ApplicationsResponse implements Serializable {
     }
 
     /**
-     * List of applications returned in this page.
+     * <p>
+     * An array of responses, one for each application that was returned.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item List of applications returned in this page.
+     * @param item <p>
+     *            An array of responses, one for each application that was
+     *            returned.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,12 +98,17 @@ public class ApplicationsResponse implements Serializable {
     }
 
     /**
-     * List of applications returned in this page.
+     * <p>
+     * An array of responses, one for each application that was returned.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item List of applications returned in this page.
+     * @param item <p>
+     *            An array of responses, one for each application that was
+     *            returned.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -91,36 +118,54 @@ public class ApplicationsResponse implements Serializable {
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @return The string that you use in a subsequent request to get the next
-     *         page of results in a paginated response.
+     * @return <p>
+     *         The string to use in a subsequent request to get the next page of
+     *         results in a paginated response. This value is null if there are
+     *         no additional pages.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @param nextToken The string that you use in a subsequent request to get
-     *            the next page of results in a paginated response.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param nextToken The string that you use in a subsequent request to get
-     *            the next page of results in a paginated response.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
