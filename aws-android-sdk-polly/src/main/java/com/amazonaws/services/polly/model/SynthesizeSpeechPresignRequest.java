@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -127,7 +127,36 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      */
     private String voiceId;
 
+    /**
+     * <p>
+     * Optional language code for the Synthesize Speech request. This is only
+     * necessary if using a bilingual voice, such as Aditi, which can be used
+     * for either Indian English (en-IN) or Hindi (hi-IN).
+     * </p>
+     * <p>
+     * If a bilingual voice is used and no language code is specified, Amazon
+     * Polly will use the default language of the bilingual voice. The default
+     * language for any voice is the one returned by the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation for the <code>LanguageCode</code>
+     * parameter. For example, if no language code is specified, Aditi will use
+     * Indian English rather than Hindi.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     */
     private String languageCode;
+
+    /**
+     * Specifies the engine (standard or neural) for Amazon Polly to use
+     * when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will
+     * result in an error.
+     */
+    private Engine engine;
 
     /**
      * <p>
@@ -179,6 +208,17 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     }
 
     /**
+     * Returns the optional credentials to use to sign this request, overriding
+     * the default credentials set at the client level.
+     *
+     * @return The optional credentials to use to sign this request, overriding
+     *         the default credentials set at the client level.
+     */
+    public AWSCredentials getRequestCredentials() {
+        return credentials;
+    }
+
+    /**
      * Sets the optional credentials to use for this request, overriding the
      * default credentials set at the client level.
      *
@@ -191,14 +231,18 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     }
 
     /**
-     * Returns the optional credentials to use to sign this request, overriding
-     * the default credentials set at the client level.
+     * Sets the optional credentials to use for this request, overriding the
+     * default credentials set at the client level.
      *
-     * @return The optional credentials to use to sign this request, overriding
-     *         the default credentials set at the client level.
+     * @param credentials The optional AWS security credentials to use for this
+     *            request, overriding the default credentials set at the client
+     *            level.
+     * @return The updated request object, so that additional method calls can be
+     *         chained together.
      */
-    public AWSCredentials getRequestCredentials() {
-        return credentials;
+    public SynthesizeSpeechPresignRequest withRequestCredentials(AWSCredentials credentials) {
+        this.credentials = credentials;
+        return this;
     }
 
     /**
@@ -221,6 +265,38 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      */
     public java.util.List<String> getLexiconNames() {
         return lexiconNames;
+    }
+
+    /**
+     * <p>
+     * List of one or more pronunciation lexicon names you want the service to
+     * apply during synthesis. Lexicons are applied only if the language of the
+     * lexicon is the same as the language of the voice. For information about
+     * storing lexicons, see <a
+     * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     * >PutLexicon</a>.
+     * </p>
+     * <p>
+     * Currently only one lexicon per request is supported by AWS SDK for Android.
+     * </p>
+     *
+     * @param lexiconNames <p>
+     *            List of one or more pronunciation lexicon names you want the service to
+     *            apply during synthesis. Lexicons are applied only if the language of the
+     *            lexicon is the same as the language of the voice. For information about
+     *            storing lexicons, see <a
+     *            href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
+     *            >PutLexicon</a>.
+     *            </p>
+     */
+    public void setLexiconNames(String... lexiconNames) {
+        if (getLexiconNames() == null) {
+            this.lexiconNames = new java.util.ArrayList<String>(lexiconNames.length);
+        }
+
+        for (String value : lexiconNames) {
+            this.lexiconNames.add(value);
+        }
     }
 
     /**
@@ -366,6 +442,24 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * The audio format in which the resulting stream will be encoded.
      * </p>
      * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     *
+     * @param outputFormat <p>
+     *            The audio format in which the resulting stream will be
+     *            encoded.
+     *            </p>
+     * @see OutputFormat
+     */
+    public void setOutputFormat(OutputFormat outputFormat) {
+        this.outputFormat = outputFormat.toString();
+    }
+
+    /**
+     * <p>
+     * The audio format in which the resulting stream will be encoded.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -383,24 +477,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     public SynthesizeSpeechPresignRequest withOutputFormat(String outputFormat) {
         this.outputFormat = outputFormat;
         return this;
-    }
-
-    /**
-     * <p>
-     * The audio format in which the resulting stream will be encoded.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
-     *
-     * @param outputFormat <p>
-     *            The audio format in which the resulting stream will be
-     *            encoded.
-     *            </p>
-     * @see OutputFormat
-     */
-    public void setOutputFormat(OutputFormat outputFormat) {
-        this.outputFormat = outputFormat.toString();
     }
 
     /**
@@ -691,6 +767,30 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * SSML</a>.
      * </p>
      * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ssml, text
+     *
+     * @param textType <p>
+     *            Specifies whether the input text is plain text or SSML. The
+     *            default value is plain text. For more information, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     *            SSML</a>.
+     *            </p>
+     * @see TextType
+     */
+    public void setTextType(TextType textType) {
+        this.textType = textType.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies whether the input text is plain text or SSML. The default value
+     * is plain text. For more information, see <a
+     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
+     * SSML</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -711,30 +811,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     public SynthesizeSpeechPresignRequest withTextType(String textType) {
         this.textType = textType;
         return this;
-    }
-
-    /**
-     * <p>
-     * Specifies whether the input text is plain text or SSML. The default value
-     * is plain text. For more information, see <a
-     * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     * SSML</a>.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ssml, text
-     *
-     * @param textType <p>
-     *            Specifies whether the input text is plain text or SSML. The
-     *            default value is plain text. For more information, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using
-     *            SSML</a>.
-     *            </p>
-     * @see TextType
-     */
-    public void setTextType(TextType textType) {
-        this.textType = textType.toString();
     }
 
     /**
@@ -798,6 +874,130 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
 
     /**
      * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
+     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
+     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @see VoiceId
+     */
+    public void setVoiceId(String voiceId) {
+        this.voiceId = voiceId;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
+     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
+     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @see VoiceId
+     */
+    public void setVoiceId(VoiceId voiceId) {
+        this.voiceId = voiceId.toString();
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
+     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
+     * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VoiceId
+     */
+    public SynthesizeSpeechPresignRequest withVoiceId(String voiceId) {
+        this.voiceId = voiceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Voice ID to use for the synthesis. You can get a list of available voice
+     * IDs by calling the <a href=
+     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
+     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
+     * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     *
+     * @param voiceId <p>
+     *            Voice ID to use for the synthesis. You can get a list of
+     *            available voice IDs by calling the <a href=
+     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VoiceId
+     */
+    public SynthesizeSpeechPresignRequest withVoiceId(VoiceId voiceId) {
+        this.voiceId = voiceId.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * Optional language code for the Synthesize Speech request. This is only
      * necessary if using a bilingual voice, such as Aditi, which can be used
      * for either Indian English (en-IN) or Hindi (hi-IN).
@@ -836,34 +1036,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      */
     public String getLanguageCode() {
         return languageCode;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
-     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @see VoiceId
-     */
-    public void setVoiceId(String voiceId) {
-        this.voiceId = voiceId;
     }
 
     /**
@@ -956,97 +1128,47 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
 
     /**
      * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
+     * Optional language code for the Synthesize Speech request. This is only
+     * necessary if using a bilingual voice, such as Aditi, which can be used
+     * for either Indian English (en-IN) or Hindi (hi-IN).
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
-     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
-     * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see VoiceId
-     */
-    public SynthesizeSpeechPresignRequest withVoiceId(String voiceId) {
-        this.voiceId = voiceId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
+     * If a bilingual voice is used and no language code is specified, Amazon
+     * Polly will use the default language of the bilingual voice. The default
+     * language for any voice is the one returned by the <a href=
+     * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     * >DescribeVoices</a> operation for the <code>LanguageCode</code>
+     * parameter. For example, if no language code is specified, Aditi will use
+     * Indian English rather than Hindi.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
-     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
+     * @param languageCode <p>
+     *            Optional language code for the Synthesize Speech request. This
+     *            is only necessary if using a bilingual voice, such as Aditi,
+     *            which can be used for either Indian English (en-IN) or Hindi
+     *            (hi-IN).
      *            </p>
-     * @see VoiceId
-     */
-    public void setVoiceId(VoiceId voiceId) {
-        this.voiceId = voiceId.toString();
-    }
-
-    /**
-     * <p>
-     * Voice ID to use for the synthesis. You can get a list of available voice
-     * IDs by calling the <a href=
-     * "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     * >DescribeVoices</a> operation.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
-     * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
-     * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
-     *
-     * @param voiceId <p>
-     *            Voice ID to use for the synthesis. You can get a list of
-     *            available voice IDs by calling the <a href=
-     *            "http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
-     *            >DescribeVoices</a> operation.
+     *            <p>
+     *            If a bilingual voice is used and no language code is
+     *            specified, Amazon Polly will use the default language of the
+     *            bilingual voice. The default language for any voice is the one
+     *            returned by the <a href=
+     *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
+     *            >DescribeVoices</a> operation for the
+     *            <code>LanguageCode</code> parameter. For example, if no
+     *            language code is specified, Aditi will use Indian English
+     *            rather than Hindi.
      *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see VoiceId
+     * @see LanguageCode
+     * @return A reference to this updated object so that method calls can be chained together.
      */
-    public SynthesizeSpeechPresignRequest withVoiceId(VoiceId voiceId) {
-        this.voiceId = voiceId.toString();
+    public SynthesizeSpeechPresignRequest withLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
         return this;
     }
 
@@ -1097,6 +1219,63 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     }
 
     /**
+     * Specifies the engine (standard or neural) for Amazon Polly to use
+     * when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will
+     * result in an error.
+     *
+     * @return <p>
+     *          Specifies the engine (standard or neural) for Amazon Polly to use
+     *          when processing input text for speech synthesis.
+     *          Using a voice that is not supported for the engine selected will
+     *          result in an error.
+     *         </p>
+     * @see Engine
+     */
+    public Engine getEngine() {
+        return engine;
+    }
+
+    /**
+     * Specifies the engine (standard or neural) for Amazon Polly to use
+     * when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will
+     * result in an error.
+     * @param engine
+     * <p>
+     *      Specifies the engine (standard or neural) for Amazon Polly to use
+     *      when processing input text for speech synthesis.
+     *      Using a voice that is not supported for the engine selected will
+     *      result in an error.
+     * </p>
+     * @see Engine
+     */
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    /**
+     * Specifies the engine (standard or neural) for Amazon Polly to use
+     * when processing input text for speech synthesis.
+     * Using a voice that is not supported for the engine selected will
+     * result in an error.
+     *
+     * @param engine
+     * <p>
+     *      Specifies the engine (standard or neural) for Amazon Polly to use
+     *      when processing input text for speech synthesis.
+     *      Using a voice that is not supported for the engine selected will
+     *      result in an error.
+     * </p>
+     * @see Engine
+     * @return A reference to this updated object so that method calls can be chained together.
+     */
+    public SynthesizeSpeechPresignRequest withEngine(Engine engine) {
+        this.engine = engine;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1119,6 +1298,8 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
             sb.append("TextType: " + getTextType() + ",");
         if (getVoiceId() != null)
             sb.append("VoiceId: " + getVoiceId());
+        if (getEngine() != null)
+            sb.append("Engine: " + getEngine());
         sb.append("}");
         return sb.toString();
     }
@@ -1136,6 +1317,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode + ((getTextType() == null) ? 0 : getTextType().hashCode());
         hashCode = prime * hashCode + ((getVoiceId() == null) ? 0 : getVoiceId().hashCode());
+        hashCode = prime * hashCode + ((getEngine() == null) ? 0 : getEngine().hashCode());
         return hashCode;
     }
 
@@ -1176,6 +1358,8 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
         if (other.getVoiceId() == null ^ this.getVoiceId() == null)
             return false;
         if (other.getVoiceId() != null && other.getVoiceId().equals(this.getVoiceId()) == false)
+            return false;
+        if (other.getEngine() != null && other.getEngine().equals(this.getEngine()) == false)
             return false;
         return true;
     }

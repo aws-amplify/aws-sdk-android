@@ -2,6 +2,13 @@
 
 ## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
+### New Features
+
+- **Amazon Polly**
+  - `SynthesizeSpeechPresignRequest` now supports the ability to specify the engine (`standard` or neural) for a request.
+    See [the Amazon Polly documentation](https://docs.aws.amazon.com/polly/latest/dg/API_SynthesizeSpeech.html#polly-SynthesizeSpeech-request-Engine)
+    for a discussion of the Engine. See [Issue #1256](https://github.com/aws-amplify/aws-sdk-android/issues/1256).
+
 ### Bug Fixes
 
 - **AWS IoT**
@@ -15,6 +22,9 @@
   
 - Model updates for the following services
   - Amazon Cognito Identity Provider
+  - Amazon Kinesis Firehose
+  - Amazon Lex
+  - Amazon Pinpoint
 
 ## [Release 2.16.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.1)
 
