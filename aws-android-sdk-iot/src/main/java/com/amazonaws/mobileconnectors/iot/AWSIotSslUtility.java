@@ -95,7 +95,7 @@ final class AWSIotSslUtility {
      * @return a socket factory for use in creating a secured socket.
      * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
      * @throws UnrecoverableKeyException when the private key cannot be
-     *             recovered. Ususally a bad keystore password.
+     *             recovered. Usually a bad keystore password.
      * @throws KeyStoreException when keystore cannot be created.
      * @throws KeyManagementException when SSL context cannot be created by key
      *             manager.

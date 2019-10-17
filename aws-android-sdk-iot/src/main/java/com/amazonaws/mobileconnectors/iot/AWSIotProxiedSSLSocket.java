@@ -31,10 +31,19 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
+/**
+ * This class extends SSLSocket to route all requests via the specified proxy server
+ */
 class AWSIotProxiedSSLSocket extends SSLSocket {
 
+    /**
+     * SSLSocket factory to produce socket with Keystore information for authentication baked into it.
+     */
     private final SSLSocketFactory socketFactory;
     private final Socket proxySocket;
+    /**
+     * Socket with built-in keystore and proxy information used for connecting to AWS IoT
+     */
     private SSLSocket socket;
 
 
@@ -152,11 +161,6 @@ class AWSIotProxiedSSLSocket extends SSLSocket {
     @Override
     public void setSSLParameters(SSLParameters sslParameters) {
         this.socket.setSSLParameters(sslParameters);
-    }
-
-    @Override
-    public void bind(SocketAddress socketAddress) throws IOException {
-        throw new UnsupportedOperationException();
     }
 
     @Override

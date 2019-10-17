@@ -828,7 +828,7 @@ public class AWSIotMqttManager {
                 mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
             }
 
-            final SocketFactory socketFactory = (proxyHost!=null) ?
+            final SocketFactory socketFactory = (proxyHost != null) ?
                     AWSIotSslUtility.getSocketFactoryWithKeyStoreAndProxy(keyStore, portNumber, proxyHost, proxyPort):
                     AWSIotSslUtility.getSocketFactoryWithKeyStore(keyStore, portNumber) ;
 
