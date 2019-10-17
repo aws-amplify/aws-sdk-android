@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class UpdateBaiduChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the Baidu (Baidu
-     * Cloud Push) channel for an application.
-     * </p>
+     * Baidu Cloud Messaging channel definition
      */
     private BaiduChannelResponse baiduChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the Baidu (Baidu
-     * Cloud Push) channel for an application.
-     * </p>
+     * Baidu Cloud Messaging channel definition
      *
-     * @return <p>
-     *         Provides information about the status and settings of the Baidu
-     *         (Baidu Cloud Push) channel for an application.
-     *         </p>
+     * @return Baidu Cloud Messaging channel definition
      */
     public BaiduChannelResponse getBaiduChannelResponse() {
         return baiduChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the Baidu (Baidu
-     * Cloud Push) channel for an application.
-     * </p>
+     * Baidu Cloud Messaging channel definition
      *
-     * @param baiduChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            Baidu (Baidu Cloud Push) channel for an application.
-     *            </p>
+     * @param baiduChannelResponse Baidu Cloud Messaging channel definition
      */
     public void setBaiduChannelResponse(BaiduChannelResponse baiduChannelResponse) {
         this.baiduChannelResponse = baiduChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the Baidu (Baidu
-     * Cloud Push) channel for an application.
-     * </p>
+     * Baidu Cloud Messaging channel definition
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param baiduChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            Baidu (Baidu Cloud Push) channel for an application.
-     *            </p>
+     * @param baiduChannelResponse Baidu Cloud Messaging channel definition
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

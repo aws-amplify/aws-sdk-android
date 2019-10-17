@@ -18,18 +18,13 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the dimension type and values for a segment dimension.
- * </p>
+ * Dimension specification of a segment.
  */
 public class SetDimension implements Serializable {
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
@@ -37,31 +32,23 @@ public class SetDimension implements Serializable {
     private String dimensionType;
 
     /**
-     * <p>
-     * The criteria values to use for the segment dimension. Depending on the
-     * value of the DimensionType property, endpoints are included or excluded
-     * from the segment if their values match the criteria values.
-     * </p>
+     * The criteria values for the segment dimension. Endpoints with matching
+     * attribute values are included or excluded from the segment, depending on
+     * the setting for Type.
      */
     private java.util.List<String> values;
 
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @return <p>
-     *         The type of segment dimension to use. Valid values are:
-     *         INCLUSIVE, endpoints that match the criteria are included in the
-     *         segment; and, EXCLUSIVE, endpoints that match the criteria are
-     *         excluded from the segment.
-     *         </p>
+     * @return The type of dimension: INCLUSIVE - Endpoints that match the
+     *         criteria are included in the segment. EXCLUSIVE - Endpoints that
+     *         match the criteria are excluded from the segment.
      * @see DimensionType
      */
     public String getDimensionType() {
@@ -69,22 +56,17 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param dimensionType <p>
-     *            The type of segment dimension to use. Valid values are:
-     *            INCLUSIVE, endpoints that match the criteria are included in
-     *            the segment; and, EXCLUSIVE, endpoints that match the criteria
-     *            are excluded from the segment.
-     *            </p>
+     * @param dimensionType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
+     *            Endpoints that match the criteria are excluded from the
+     *            segment.
      * @see DimensionType
      */
     public void setDimensionType(String dimensionType) {
@@ -92,12 +74,9 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -105,12 +84,10 @@ public class SetDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param dimensionType <p>
-     *            The type of segment dimension to use. Valid values are:
-     *            INCLUSIVE, endpoints that match the criteria are included in
-     *            the segment; and, EXCLUSIVE, endpoints that match the criteria
-     *            are excluded from the segment.
-     *            </p>
+     * @param dimensionType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
+     *            Endpoints that match the criteria are excluded from the
+     *            segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DimensionType
@@ -121,22 +98,17 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param dimensionType <p>
-     *            The type of segment dimension to use. Valid values are:
-     *            INCLUSIVE, endpoints that match the criteria are included in
-     *            the segment; and, EXCLUSIVE, endpoints that match the criteria
-     *            are excluded from the segment.
-     *            </p>
+     * @param dimensionType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
+     *            Endpoints that match the criteria are excluded from the
+     *            segment.
      * @see DimensionType
      */
     public void setDimensionType(DimensionType dimensionType) {
@@ -144,12 +116,9 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of segment dimension to use. Valid values are: INCLUSIVE,
-     * endpoints that match the criteria are included in the segment; and,
-     * EXCLUSIVE, endpoints that match the criteria are excluded from the
-     * segment.
-     * </p>
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -157,12 +126,10 @@ public class SetDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param dimensionType <p>
-     *            The type of segment dimension to use. Valid values are:
-     *            INCLUSIVE, endpoints that match the criteria are included in
-     *            the segment; and, EXCLUSIVE, endpoints that match the criteria
-     *            are excluded from the segment.
-     *            </p>
+     * @param dimensionType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
+     *            Endpoints that match the criteria are excluded from the
+     *            segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DimensionType
@@ -173,36 +140,26 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The criteria values to use for the segment dimension. Depending on the
-     * value of the DimensionType property, endpoints are included or excluded
-     * from the segment if their values match the criteria values.
-     * </p>
+     * The criteria values for the segment dimension. Endpoints with matching
+     * attribute values are included or excluded from the segment, depending on
+     * the setting for Type.
      *
-     * @return <p>
-     *         The criteria values to use for the segment dimension. Depending
-     *         on the value of the DimensionType property, endpoints are
-     *         included or excluded from the segment if their values match the
-     *         criteria values.
-     *         </p>
+     * @return The criteria values for the segment dimension. Endpoints with
+     *         matching attribute values are included or excluded from the
+     *         segment, depending on the setting for Type.
      */
     public java.util.List<String> getValues() {
         return values;
     }
 
     /**
-     * <p>
-     * The criteria values to use for the segment dimension. Depending on the
-     * value of the DimensionType property, endpoints are included or excluded
-     * from the segment if their values match the criteria values.
-     * </p>
+     * The criteria values for the segment dimension. Endpoints with matching
+     * attribute values are included or excluded from the segment, depending on
+     * the setting for Type.
      *
-     * @param values <p>
-     *            The criteria values to use for the segment dimension.
-     *            Depending on the value of the DimensionType property,
-     *            endpoints are included or excluded from the segment if their
-     *            values match the criteria values.
-     *            </p>
+     * @param values The criteria values for the segment dimension. Endpoints
+     *            with matching attribute values are included or excluded from
+     *            the segment, depending on the setting for Type.
      */
     public void setValues(java.util.Collection<String> values) {
         if (values == null) {
@@ -214,21 +171,16 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The criteria values to use for the segment dimension. Depending on the
-     * value of the DimensionType property, endpoints are included or excluded
-     * from the segment if their values match the criteria values.
-     * </p>
+     * The criteria values for the segment dimension. Endpoints with matching
+     * attribute values are included or excluded from the segment, depending on
+     * the setting for Type.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param values <p>
-     *            The criteria values to use for the segment dimension.
-     *            Depending on the value of the DimensionType property,
-     *            endpoints are included or excluded from the segment if their
-     *            values match the criteria values.
-     *            </p>
+     * @param values The criteria values for the segment dimension. Endpoints
+     *            with matching attribute values are included or excluded from
+     *            the segment, depending on the setting for Type.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -243,21 +195,16 @@ public class SetDimension implements Serializable {
     }
 
     /**
-     * <p>
-     * The criteria values to use for the segment dimension. Depending on the
-     * value of the DimensionType property, endpoints are included or excluded
-     * from the segment if their values match the criteria values.
-     * </p>
+     * The criteria values for the segment dimension. Endpoints with matching
+     * attribute values are included or excluded from the segment, depending on
+     * the setting for Type.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param values <p>
-     *            The criteria values to use for the segment dimension.
-     *            Depending on the value of the DimensionType property,
-     *            endpoints are included or excluded from the segment if their
-     *            values match the criteria values.
-     *            </p>
+     * @param values The criteria values for the segment dimension. Endpoints
+     *            with matching attribute values are included or excluded from
+     *            the segment, depending on the setting for Type.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

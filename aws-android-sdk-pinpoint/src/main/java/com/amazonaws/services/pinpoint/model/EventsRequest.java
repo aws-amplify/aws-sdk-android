@@ -18,65 +18,48 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies a batch of events to process.
- * </p>
+ * A set of events to process.
  */
 public class EventsRequest implements Serializable {
     /**
-     * <p>
-     * The batch of events to process. For each item in a batch, the endpoint ID
-     * acts as a key that has an EventsBatch object as its value.
-     * </p>
+     * A batch of events to process. Each BatchItem consists of an endpoint ID
+     * as the key, and an EventsBatch object as the value.
      */
     private java.util.Map<String, EventsBatch> batchItem;
 
     /**
-     * <p>
-     * The batch of events to process. For each item in a batch, the endpoint ID
-     * acts as a key that has an EventsBatch object as its value.
-     * </p>
+     * A batch of events to process. Each BatchItem consists of an endpoint ID
+     * as the key, and an EventsBatch object as the value.
      *
-     * @return <p>
-     *         The batch of events to process. For each item in a batch, the
-     *         endpoint ID acts as a key that has an EventsBatch object as its
-     *         value.
-     *         </p>
+     * @return A batch of events to process. Each BatchItem consists of an
+     *         endpoint ID as the key, and an EventsBatch object as the value.
      */
     public java.util.Map<String, EventsBatch> getBatchItem() {
         return batchItem;
     }
 
     /**
-     * <p>
-     * The batch of events to process. For each item in a batch, the endpoint ID
-     * acts as a key that has an EventsBatch object as its value.
-     * </p>
+     * A batch of events to process. Each BatchItem consists of an endpoint ID
+     * as the key, and an EventsBatch object as the value.
      *
-     * @param batchItem <p>
-     *            The batch of events to process. For each item in a batch, the
-     *            endpoint ID acts as a key that has an EventsBatch object as
-     *            its value.
-     *            </p>
+     * @param batchItem A batch of events to process. Each BatchItem consists of
+     *            an endpoint ID as the key, and an EventsBatch object as the
+     *            value.
      */
     public void setBatchItem(java.util.Map<String, EventsBatch> batchItem) {
         this.batchItem = batchItem;
     }
 
     /**
-     * <p>
-     * The batch of events to process. For each item in a batch, the endpoint ID
-     * acts as a key that has an EventsBatch object as its value.
-     * </p>
+     * A batch of events to process. Each BatchItem consists of an endpoint ID
+     * as the key, and an EventsBatch object as the value.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param batchItem <p>
-     *            The batch of events to process. For each item in a batch, the
-     *            endpoint ID acts as a key that has an EventsBatch object as
-     *            its value.
-     *            </p>
+     * @param batchItem A batch of events to process. Each BatchItem consists of
+     *            an endpoint ID as the key, and an EventsBatch object as the
+     *            value.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -86,10 +69,8 @@ public class EventsRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The batch of events to process. For each item in a batch, the endpoint ID
-     * acts as a key that has an EventsBatch object as its value.
-     * </p>
+     * A batch of events to process. Each BatchItem consists of an endpoint ID
+     * as the key, and an EventsBatch object as the value.
      * <p>
      * The method adds a new key-value pair into BatchItem parameter, and
      * returns a reference to this object so that method calls can be chained

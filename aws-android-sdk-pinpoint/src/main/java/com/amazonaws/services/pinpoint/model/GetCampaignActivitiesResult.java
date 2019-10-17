@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class GetCampaignActivitiesResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the activities that were performed by a
-     * campaign.
-     * </p>
+     * Activities for campaign.
      */
     private ActivitiesResponse activitiesResponse;
 
     /**
-     * <p>
-     * Provides information about the activities that were performed by a
-     * campaign.
-     * </p>
+     * Activities for campaign.
      *
-     * @return <p>
-     *         Provides information about the activities that were performed by
-     *         a campaign.
-     *         </p>
+     * @return Activities for campaign.
      */
     public ActivitiesResponse getActivitiesResponse() {
         return activitiesResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the activities that were performed by a
-     * campaign.
-     * </p>
+     * Activities for campaign.
      *
-     * @param activitiesResponse <p>
-     *            Provides information about the activities that were performed
-     *            by a campaign.
-     *            </p>
+     * @param activitiesResponse Activities for campaign.
      */
     public void setActivitiesResponse(ActivitiesResponse activitiesResponse) {
         this.activitiesResponse = activitiesResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the activities that were performed by a
-     * campaign.
-     * </p>
+     * Activities for campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param activitiesResponse <p>
-     *            Provides information about the activities that were performed
-     *            by a campaign.
-     *            </p>
+     * @param activitiesResponse Activities for campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

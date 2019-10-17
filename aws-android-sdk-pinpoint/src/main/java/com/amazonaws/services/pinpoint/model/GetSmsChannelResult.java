@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class GetSmsChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the SMS channel for
-     * an application.
-     * </p>
+     * SMS Channel Response.
      */
     private SMSChannelResponse sMSChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the SMS channel for
-     * an application.
-     * </p>
+     * SMS Channel Response.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the SMS
-     *         channel for an application.
-     *         </p>
+     * @return SMS Channel Response.
      */
     public SMSChannelResponse getSMSChannelResponse() {
         return sMSChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the SMS channel for
-     * an application.
-     * </p>
+     * SMS Channel Response.
      *
-     * @param sMSChannelResponse <p>
-     *            Provides information about the status and settings of the SMS
-     *            channel for an application.
-     *            </p>
+     * @param sMSChannelResponse SMS Channel Response.
      */
     public void setSMSChannelResponse(SMSChannelResponse sMSChannelResponse) {
         this.sMSChannelResponse = sMSChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the SMS channel for
-     * an application.
-     * </p>
+     * SMS Channel Response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sMSChannelResponse <p>
-     *            Provides information about the status and settings of the SMS
-     *            channel for an application.
-     *            </p>
+     * @param sMSChannelResponse SMS Channel Response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

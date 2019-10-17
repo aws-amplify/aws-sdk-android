@@ -1,5 +1,5 @@
 /**
- * <p>Doc Engage API - Amazon Pinpoint API</p>
+ * Amazon Pinpoint
  */
 
 package com.amazonaws.services.pinpoint;

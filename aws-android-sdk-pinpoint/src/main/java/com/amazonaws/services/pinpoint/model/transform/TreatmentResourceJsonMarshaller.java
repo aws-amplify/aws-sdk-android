@@ -52,13 +52,6 @@ class TreatmentResourceJsonMarshaller {
             jsonWriter.name("State");
             CampaignStateJsonMarshaller.getInstance().marshall(state, jsonWriter);
         }
-        if (treatmentResource.getTemplateConfiguration() != null) {
-            TemplateConfiguration templateConfiguration = treatmentResource
-                    .getTemplateConfiguration();
-            jsonWriter.name("TemplateConfiguration");
-            TemplateConfigurationJsonMarshaller.getInstance().marshall(templateConfiguration,
-                    jsonWriter);
-        }
         if (treatmentResource.getTreatmentDescription() != null) {
             String treatmentDescription = treatmentResource.getTreatmentDescription();
             jsonWriter.name("TreatmentDescription");

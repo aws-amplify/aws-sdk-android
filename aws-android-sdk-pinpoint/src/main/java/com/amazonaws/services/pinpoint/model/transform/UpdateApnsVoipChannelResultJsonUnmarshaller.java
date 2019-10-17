@@ -29,21 +29,6 @@ public class UpdateApnsVoipChannelResultJsonUnmarshaller implements
     public UpdateApnsVoipChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateApnsVoipChannelResult updateApnsVoipChannelResult = new UpdateApnsVoipChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSVoipChannelResponse")) {
-                updateApnsVoipChannelResult
-                        .setAPNSVoipChannelResponse(APNSVoipChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateApnsVoipChannelResult;
     }
 

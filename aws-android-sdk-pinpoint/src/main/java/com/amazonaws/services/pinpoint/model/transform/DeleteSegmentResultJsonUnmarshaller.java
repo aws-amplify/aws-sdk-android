@@ -29,20 +29,6 @@ public class DeleteSegmentResultJsonUnmarshaller implements
     public DeleteSegmentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteSegmentResult deleteSegmentResult = new DeleteSegmentResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("SegmentResponse")) {
-                deleteSegmentResult.setSegmentResponse(SegmentResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteSegmentResult;
     }
 

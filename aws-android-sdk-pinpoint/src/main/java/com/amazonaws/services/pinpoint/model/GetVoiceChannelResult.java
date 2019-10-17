@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class GetVoiceChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the voice channel
-     * for an application.
-     * </p>
+     * Voice Channel Response.
      */
     private VoiceChannelResponse voiceChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the voice channel
-     * for an application.
-     * </p>
+     * Voice Channel Response.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the voice
-     *         channel for an application.
-     *         </p>
+     * @return Voice Channel Response.
      */
     public VoiceChannelResponse getVoiceChannelResponse() {
         return voiceChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the voice channel
-     * for an application.
-     * </p>
+     * Voice Channel Response.
      *
-     * @param voiceChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            voice channel for an application.
-     *            </p>
+     * @param voiceChannelResponse Voice Channel Response.
      */
     public void setVoiceChannelResponse(VoiceChannelResponse voiceChannelResponse) {
         this.voiceChannelResponse = voiceChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the voice channel
-     * for an application.
-     * </p>
+     * Voice Channel Response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param voiceChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            voice channel for an application.
-     *            </p>
+     * @param voiceChannelResponse Voice Channel Response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

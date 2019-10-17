@@ -18,62 +18,44 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the GPS coordinates of a location.
- * </p>
+ * GPS coordinates
  */
 public class GPSCoordinates implements Serializable {
     /**
-     * <p>
-     * The latitude coordinate of the location.
-     * </p>
+     * Latitude
      */
     private Double latitude;
 
     /**
-     * <p>
-     * The longitude coordinate of the location.
-     * </p>
+     * Longitude
      */
     private Double longitude;
 
     /**
-     * <p>
-     * The latitude coordinate of the location.
-     * </p>
+     * Latitude
      *
-     * @return <p>
-     *         The latitude coordinate of the location.
-     *         </p>
+     * @return Latitude
      */
     public Double getLatitude() {
         return latitude;
     }
 
     /**
-     * <p>
-     * The latitude coordinate of the location.
-     * </p>
+     * Latitude
      *
-     * @param latitude <p>
-     *            The latitude coordinate of the location.
-     *            </p>
+     * @param latitude Latitude
      */
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
     /**
-     * <p>
-     * The latitude coordinate of the location.
-     * </p>
+     * Latitude
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param latitude <p>
-     *            The latitude coordinate of the location.
-     *            </p>
+     * @param latitude Latitude
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -83,42 +65,30 @@ public class GPSCoordinates implements Serializable {
     }
 
     /**
-     * <p>
-     * The longitude coordinate of the location.
-     * </p>
+     * Longitude
      *
-     * @return <p>
-     *         The longitude coordinate of the location.
-     *         </p>
+     * @return Longitude
      */
     public Double getLongitude() {
         return longitude;
     }
 
     /**
-     * <p>
-     * The longitude coordinate of the location.
-     * </p>
+     * Longitude
      *
-     * @param longitude <p>
-     *            The longitude coordinate of the location.
-     *            </p>
+     * @param longitude Longitude
      */
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
     /**
-     * <p>
-     * The longitude coordinate of the location.
-     * </p>
+     * Longitude
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param longitude <p>
-     *            The longitude coordinate of the location.
-     *            </p>
+     * @param longitude Longitude
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

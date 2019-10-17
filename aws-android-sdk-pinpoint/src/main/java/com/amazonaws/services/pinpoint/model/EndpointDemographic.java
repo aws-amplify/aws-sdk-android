@@ -18,108 +18,78 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies demographic information about an endpoint, such as the applicable
- * time zone and platform.
- * </p>
+ * Demographic information about the endpoint.
  */
 public class EndpointDemographic implements Serializable {
     /**
-     * <p>
-     * The version of the app that's associated with the endpoint.
-     * </p>
+     * The version of the application associated with the endpoint.
      */
     private String appVersion;
 
     /**
-     * <p>
-     * The locale of the endpoint, in the following format: the ISO 639-1
-     * alpha-2 code, followed by an underscore (_), followed by an ISO 3166-1
-     * alpha-2 value.
-     * </p>
+     * The endpoint locale in the following format: The ISO 639-1 alpha-2 code,
+     * followed by an underscore, followed by an ISO 3166-1 alpha-2 value.
      */
     private String locale;
 
     /**
-     * <p>
      * The manufacturer of the endpoint device, such as Apple or Samsung.
-     * </p>
      */
     private String make;
 
     /**
-     * <p>
      * The model name or number of the endpoint device, such as iPhone.
-     * </p>
      */
     private String model;
 
     /**
-     * <p>
      * The model version of the endpoint device.
-     * </p>
      */
     private String modelVersion;
 
     /**
-     * <p>
      * The platform of the endpoint device, such as iOS or Android.
-     * </p>
      */
     private String platform;
 
     /**
-     * <p>
      * The platform version of the endpoint device.
-     * </p>
      */
     private String platformVersion;
 
     /**
-     * <p>
-     * The time zone of the endpoint, specified as a tz database name value,
-     * such as America/Los_Angeles.
-     * </p>
+     * The timezone of the endpoint. Specified as a tz database value, such as
+     * Americas/Los_Angeles.
      */
     private String timezone;
 
     /**
-     * <p>
-     * The version of the app that's associated with the endpoint.
-     * </p>
+     * The version of the application associated with the endpoint.
      *
-     * @return <p>
-     *         The version of the app that's associated with the endpoint.
-     *         </p>
+     * @return The version of the application associated with the endpoint.
      */
     public String getAppVersion() {
         return appVersion;
     }
 
     /**
-     * <p>
-     * The version of the app that's associated with the endpoint.
-     * </p>
+     * The version of the application associated with the endpoint.
      *
-     * @param appVersion <p>
-     *            The version of the app that's associated with the endpoint.
-     *            </p>
+     * @param appVersion The version of the application associated with the
+     *            endpoint.
      */
     public void setAppVersion(String appVersion) {
         this.appVersion = appVersion;
     }
 
     /**
-     * <p>
-     * The version of the app that's associated with the endpoint.
-     * </p>
+     * The version of the application associated with the endpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appVersion <p>
-     *            The version of the app that's associated with the endpoint.
-     *            </p>
+     * @param appVersion The version of the application associated with the
+     *            endpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -129,55 +99,38 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
-     * The locale of the endpoint, in the following format: the ISO 639-1
-     * alpha-2 code, followed by an underscore (_), followed by an ISO 3166-1
-     * alpha-2 value.
-     * </p>
-     *
-     * @return <p>
-     *         The locale of the endpoint, in the following format: the ISO
-     *         639-1 alpha-2 code, followed by an underscore (_), followed by an
-     *         ISO 3166-1 alpha-2 value.
-     *         </p>
+     * The endpoint locale in the following format: The ISO 639-1 alpha-2 code,
+     * followed by an underscore, followed by an ISO 3166-1 alpha-2 value.
+     * 
+     * @return The endpoint locale in the following format: The ISO 639-1 alpha-2
+     *         code, followed by an underscore, followed by an ISO 3166-1
+     *         alpha-2 value.
      */
     public String getLocale() {
         return locale;
     }
 
     /**
-     * <p>
-     * The locale of the endpoint, in the following format: the ISO 639-1
-     * alpha-2 code, followed by an underscore (_), followed by an ISO 3166-1
-     * alpha-2 value.
-     * </p>
-     *
-     * @param locale <p>
-     *            The locale of the endpoint, in the following format: the ISO
-     *            639-1 alpha-2 code, followed by an underscore (_), followed by
-     *            an ISO 3166-1 alpha-2 value.
-     *            </p>
+     * The endpoint locale in the following format: The ISO 639-1 alpha-2 code,
+     * followed by an underscore, followed by an ISO 3166-1 alpha-2 value.
+     * 
+     * @param locale The endpoint locale in the following format: The ISO 639-1
+     *            alpha-2 code, followed by an underscore, followed by an ISO
+     *            3166-1 alpha-2 value.
      */
     public void setLocale(String locale) {
         this.locale = locale;
     }
 
     /**
-     * <p>
-     * The locale of the endpoint, in the following format: the ISO 639-1
-     * alpha-2 code, followed by an underscore (_), followed by an ISO 3166-1
-     * alpha-2 value.
-     * </p>
-     * <p>
+     * The endpoint locale in the following format: The ISO 639-1 alpha-2 code,
+     * followed by an underscore, followed by an ISO 3166-1 alpha-2 value. <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param locale <p>
-     *            The locale of the endpoint, in the following format: the ISO
-     *            639-1 alpha-2 code, followed by an underscore (_), followed by
-     *            an ISO 3166-1 alpha-2 value.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
+     * @param locale The endpoint locale in the following format: The ISO 639-1
+     *            alpha-2 code, followed by an underscore, followed by an ISO
+     *            3166-1 alpha-2 value. @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public EndpointDemographic withLocale(String locale) {
@@ -186,45 +139,33 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
      * The manufacturer of the endpoint device, such as Apple or Samsung.
-     * </p>
      *
-     * @return <p>
-     *         The manufacturer of the endpoint device, such as Apple or
+     * @return The manufacturer of the endpoint device, such as Apple or
      *         Samsung.
-     *         </p>
      */
     public String getMake() {
         return make;
     }
 
     /**
-     * <p>
      * The manufacturer of the endpoint device, such as Apple or Samsung.
-     * </p>
      *
-     * @param make <p>
-     *            The manufacturer of the endpoint device, such as Apple or
+     * @param make The manufacturer of the endpoint device, such as Apple or
      *            Samsung.
-     *            </p>
      */
     public void setMake(String make) {
         this.make = make;
     }
 
     /**
-     * <p>
      * The manufacturer of the endpoint device, such as Apple or Samsung.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param make <p>
-     *            The manufacturer of the endpoint device, such as Apple or
+     * @param make The manufacturer of the endpoint device, such as Apple or
      *            Samsung.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -234,44 +175,32 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
      * The model name or number of the endpoint device, such as iPhone.
-     * </p>
      *
-     * @return <p>
-     *         The model name or number of the endpoint device, such as iPhone.
-     *         </p>
+     * @return The model name or number of the endpoint device, such as iPhone.
      */
     public String getModel() {
         return model;
     }
 
     /**
-     * <p>
      * The model name or number of the endpoint device, such as iPhone.
-     * </p>
      *
-     * @param model <p>
-     *            The model name or number of the endpoint device, such as
+     * @param model The model name or number of the endpoint device, such as
      *            iPhone.
-     *            </p>
      */
     public void setModel(String model) {
         this.model = model;
     }
 
     /**
-     * <p>
      * The model name or number of the endpoint device, such as iPhone.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param model <p>
-     *            The model name or number of the endpoint device, such as
+     * @param model The model name or number of the endpoint device, such as
      *            iPhone.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -281,42 +210,30 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
      * The model version of the endpoint device.
-     * </p>
      *
-     * @return <p>
-     *         The model version of the endpoint device.
-     *         </p>
+     * @return The model version of the endpoint device.
      */
     public String getModelVersion() {
         return modelVersion;
     }
 
     /**
-     * <p>
      * The model version of the endpoint device.
-     * </p>
      *
-     * @param modelVersion <p>
-     *            The model version of the endpoint device.
-     *            </p>
+     * @param modelVersion The model version of the endpoint device.
      */
     public void setModelVersion(String modelVersion) {
         this.modelVersion = modelVersion;
     }
 
     /**
-     * <p>
      * The model version of the endpoint device.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param modelVersion <p>
-     *            The model version of the endpoint device.
-     *            </p>
+     * @param modelVersion The model version of the endpoint device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -326,42 +243,32 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
      * The platform of the endpoint device, such as iOS or Android.
-     * </p>
      *
-     * @return <p>
-     *         The platform of the endpoint device, such as iOS or Android.
-     *         </p>
+     * @return The platform of the endpoint device, such as iOS or Android.
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * <p>
      * The platform of the endpoint device, such as iOS or Android.
-     * </p>
      *
-     * @param platform <p>
-     *            The platform of the endpoint device, such as iOS or Android.
-     *            </p>
+     * @param platform The platform of the endpoint device, such as iOS or
+     *            Android.
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * <p>
      * The platform of the endpoint device, such as iOS or Android.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform <p>
-     *            The platform of the endpoint device, such as iOS or Android.
-     *            </p>
+     * @param platform The platform of the endpoint device, such as iOS or
+     *            Android.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -371,42 +278,30 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
      * The platform version of the endpoint device.
-     * </p>
      *
-     * @return <p>
-     *         The platform version of the endpoint device.
-     *         </p>
+     * @return The platform version of the endpoint device.
      */
     public String getPlatformVersion() {
         return platformVersion;
     }
 
     /**
-     * <p>
      * The platform version of the endpoint device.
-     * </p>
      *
-     * @param platformVersion <p>
-     *            The platform version of the endpoint device.
-     *            </p>
+     * @param platformVersion The platform version of the endpoint device.
      */
     public void setPlatformVersion(String platformVersion) {
         this.platformVersion = platformVersion;
     }
 
     /**
-     * <p>
      * The platform version of the endpoint device.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platformVersion <p>
-     *            The platform version of the endpoint device.
-     *            </p>
+     * @param platformVersion The platform version of the endpoint device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -416,48 +311,36 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * <p>
-     * The time zone of the endpoint, specified as a tz database name value,
-     * such as America/Los_Angeles.
-     * </p>
+     * The timezone of the endpoint. Specified as a tz database value, such as
+     * Americas/Los_Angeles.
      *
-     * @return <p>
-     *         The time zone of the endpoint, specified as a tz database name
-     *         value, such as America/Los_Angeles.
-     *         </p>
+     * @return The timezone of the endpoint. Specified as a tz database value,
+     *         such as Americas/Los_Angeles.
      */
     public String getTimezone() {
         return timezone;
     }
 
     /**
-     * <p>
-     * The time zone of the endpoint, specified as a tz database name value,
-     * such as America/Los_Angeles.
-     * </p>
+     * The timezone of the endpoint. Specified as a tz database value, such as
+     * Americas/Los_Angeles.
      *
-     * @param timezone <p>
-     *            The time zone of the endpoint, specified as a tz database name
-     *            value, such as America/Los_Angeles.
-     *            </p>
+     * @param timezone The timezone of the endpoint. Specified as a tz database
+     *            value, such as Americas/Los_Angeles.
      */
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
 
     /**
-     * <p>
-     * The time zone of the endpoint, specified as a tz database name value,
-     * such as America/Los_Angeles.
-     * </p>
+     * The timezone of the endpoint. Specified as a tz database value, such as
+     * Americas/Los_Angeles.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param timezone <p>
-     *            The time zone of the endpoint, specified as a tz database name
-     *            value, such as America/Los_Angeles.
-     *            </p>
+     * @param timezone The timezone of the endpoint. Specified as a tz database
+     *            value, such as Americas/Los_Angeles.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

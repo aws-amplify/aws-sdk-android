@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class PutEventsResult implements Serializable {
     /**
-     * <p>
-     * Provides information about endpoints and the events that they're
-     * associated with.
-     * </p>
+     * Custom messages associated with events.
      */
     private EventsResponse eventsResponse;
 
     /**
-     * <p>
-     * Provides information about endpoints and the events that they're
-     * associated with.
-     * </p>
+     * Custom messages associated with events.
      *
-     * @return <p>
-     *         Provides information about endpoints and the events that they're
-     *         associated with.
-     *         </p>
+     * @return Custom messages associated with events.
      */
     public EventsResponse getEventsResponse() {
         return eventsResponse;
     }
 
     /**
-     * <p>
-     * Provides information about endpoints and the events that they're
-     * associated with.
-     * </p>
+     * Custom messages associated with events.
      *
-     * @param eventsResponse <p>
-     *            Provides information about endpoints and the events that
-     *            they're associated with.
-     *            </p>
+     * @param eventsResponse Custom messages associated with events.
      */
     public void setEventsResponse(EventsResponse eventsResponse) {
         this.eventsResponse = eventsResponse;
     }
 
     /**
-     * <p>
-     * Provides information about endpoints and the events that they're
-     * associated with.
-     * </p>
+     * Custom messages associated with events.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventsResponse <p>
-     *            Provides information about endpoints and the events that
-     *            they're associated with.
-     *            </p>
+     * @param eventsResponse Custom messages associated with events.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -19,40 +19,25 @@ import java.io.Serializable;
 
 public class DeleteApnsVoipSandboxChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      */
     private APNSVoipSandboxChannelResponse aPNSVoipSandboxChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the APNs
-     *         (Apple Push Notification service) VoIP sandbox channel for an
-     *         application.
-     *         </p>
+     * @return Apple VoIP Developer Push Notification Service channel
+     *         definition.
      */
     public APNSVoipSandboxChannelResponse getAPNSVoipSandboxChannelResponse() {
         return aPNSVoipSandboxChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      *
-     * @param aPNSVoipSandboxChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) VoIP sandbox channel for an
-     *            application.
-     *            </p>
+     * @param aPNSVoipSandboxChannelResponse Apple VoIP Developer Push
+     *            Notification Service channel definition.
      */
     public void setAPNSVoipSandboxChannelResponse(
             APNSVoipSandboxChannelResponse aPNSVoipSandboxChannelResponse) {
@@ -60,19 +45,13 @@ public class DeleteApnsVoipSandboxChannelResult implements Serializable {
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSVoipSandboxChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) VoIP sandbox channel for an
-     *            application.
-     *            </p>
+     * @param aPNSVoipSandboxChannelResponse Apple VoIP Developer Push
+     *            Notification Service channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

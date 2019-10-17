@@ -18,89 +18,57 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about the results of a request to send a message to an
- * endpoint address.
- * </p>
+ * Send message response.
  */
 public class MessageResponse implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application that was used to send the
-     * message.
-     * </p>
+     * Application id of the message.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address that the
-     * message was sent to. In the map, the endpoint ID is the key and the
-     * result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the
+     * endpointId as the key and the result as the value.
      */
     private java.util.Map<String, EndpointMessageResult> endpointResult;
 
     /**
-     * <p>
-     * The identifier for the original request that the message was delivered
-     * for.
-     * </p>
+     * Original request Id for which this message was delivered.
      */
     private String requestId;
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address (email address,
-     * phone number, or push notification token) that the message was sent to.
-     * In the map, the address is the key and the result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the address
+     * as the key(Email address, phone number or push token) and the result as
+     * the value.
      */
     private java.util.Map<String, MessageResult> result;
 
     /**
-     * <p>
-     * The unique identifier for the application that was used to send the
-     * message.
-     * </p>
+     * Application id of the message.
      *
-     * @return <p>
-     *         The unique identifier for the application that was used to send
-     *         the message.
-     *         </p>
+     * @return Application id of the message.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that was used to send the
-     * message.
-     * </p>
+     * Application id of the message.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that was used to
-     *            send the message.
-     *            </p>
+     * @param applicationId Application id of the message.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that was used to send the
-     * message.
-     * </p>
+     * Application id of the message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that was used to
-     *            send the message.
-     *            </p>
+     * @param applicationId Application id of the message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -110,54 +78,38 @@ public class MessageResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address that the
-     * message was sent to. In the map, the endpoint ID is the key and the
-     * result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the
+     * endpointId as the key and the result as the value.
      *
-     * @return <p>
-     *         A map that contains a multipart response for each address that
-     *         the message was sent to. In the map, the endpoint ID is the key
-     *         and the result is the value.
-     *         </p>
+     * @return A map containing a multi part response for each address, with the
+     *         endpointId as the key and the result as the value.
      */
     public java.util.Map<String, EndpointMessageResult> getEndpointResult() {
         return endpointResult;
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address that the
-     * message was sent to. In the map, the endpoint ID is the key and the
-     * result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the
+     * endpointId as the key and the result as the value.
      *
-     * @param endpointResult <p>
-     *            A map that contains a multipart response for each address that
-     *            the message was sent to. In the map, the endpoint ID is the
-     *            key and the result is the value.
-     *            </p>
+     * @param endpointResult A map containing a multi part response for each
+     *            address, with the endpointId as the key and the result as the
+     *            value.
      */
     public void setEndpointResult(java.util.Map<String, EndpointMessageResult> endpointResult) {
         this.endpointResult = endpointResult;
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address that the
-     * message was sent to. In the map, the endpoint ID is the key and the
-     * result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the
+     * endpointId as the key and the result as the value.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointResult <p>
-     *            A map that contains a multipart response for each address that
-     *            the message was sent to. In the map, the endpoint ID is the
-     *            key and the result is the value.
-     *            </p>
+     * @param endpointResult A map containing a multi part response for each
+     *            address, with the endpointId as the key and the result as the
+     *            value.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -168,11 +120,8 @@ public class MessageResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address that the
-     * message was sent to. In the map, the endpoint ID is the key and the
-     * result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the
+     * endpointId as the key and the result as the value.
      * <p>
      * The method adds a new key-value pair into EndpointResult parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -207,48 +156,32 @@ public class MessageResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The identifier for the original request that the message was delivered
-     * for.
-     * </p>
+     * Original request Id for which this message was delivered.
      *
-     * @return <p>
-     *         The identifier for the original request that the message was
-     *         delivered for.
-     *         </p>
+     * @return Original request Id for which this message was delivered.
      */
     public String getRequestId() {
         return requestId;
     }
 
     /**
-     * <p>
-     * The identifier for the original request that the message was delivered
-     * for.
-     * </p>
+     * Original request Id for which this message was delivered.
      *
-     * @param requestId <p>
-     *            The identifier for the original request that the message was
-     *            delivered for.
-     *            </p>
+     * @param requestId Original request Id for which this message was
+     *            delivered.
      */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
 
     /**
-     * <p>
-     * The identifier for the original request that the message was delivered
-     * for.
-     * </p>
+     * Original request Id for which this message was delivered.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param requestId <p>
-     *            The identifier for the original request that the message was
-     *            delivered for.
-     *            </p>
+     * @param requestId Original request Id for which this message was
+     *            delivered.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -258,57 +191,42 @@ public class MessageResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address (email address,
-     * phone number, or push notification token) that the message was sent to.
-     * In the map, the address is the key and the result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the address
+     * as the key(Email address, phone number or push token) and the result as
+     * the value.
      *
-     * @return <p>
-     *         A map that contains a multipart response for each address (email
-     *         address, phone number, or push notification token) that the
-     *         message was sent to. In the map, the address is the key and the
-     *         result is the value.
-     *         </p>
+     * @return A map containing a multi part response for each address, with the
+     *         address as the key(Email address, phone number or push token) and
+     *         the result as the value.
      */
     public java.util.Map<String, MessageResult> getResult() {
         return result;
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address (email address,
-     * phone number, or push notification token) that the message was sent to.
-     * In the map, the address is the key and the result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the address
+     * as the key(Email address, phone number or push token) and the result as
+     * the value.
      *
-     * @param result <p>
-     *            A map that contains a multipart response for each address
-     *            (email address, phone number, or push notification token) that
-     *            the message was sent to. In the map, the address is the key
-     *            and the result is the value.
-     *            </p>
+     * @param result A map containing a multi part response for each address,
+     *            with the address as the key(Email address, phone number or
+     *            push token) and the result as the value.
      */
     public void setResult(java.util.Map<String, MessageResult> result) {
         this.result = result;
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address (email address,
-     * phone number, or push notification token) that the message was sent to.
-     * In the map, the address is the key and the result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the address
+     * as the key(Email address, phone number or push token) and the result as
+     * the value.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param result <p>
-     *            A map that contains a multipart response for each address
-     *            (email address, phone number, or push notification token) that
-     *            the message was sent to. In the map, the address is the key
-     *            and the result is the value.
-     *            </p>
+     * @param result A map containing a multi part response for each address,
+     *            with the address as the key(Email address, phone number or
+     *            push token) and the result as the value.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -318,11 +236,9 @@ public class MessageResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * A map that contains a multipart response for each address (email address,
-     * phone number, or push notification token) that the message was sent to.
-     * In the map, the address is the key and the result is the value.
-     * </p>
+     * A map containing a multi part response for each address, with the address
+     * as the key(Email address, phone number or push token) and the result as
+     * the value.
      * <p>
      * The method adds a new key-value pair into Result parameter, and returns a
      * reference to this object so that method calls can be chained together.

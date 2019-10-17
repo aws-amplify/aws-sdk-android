@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates a new campaign for an application or updates the settings of an
- * existing campaign for an application.
- * </p>
+ * Creates or updates a campaign.
  */
 public class CreateCampaignRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a campaign.
-     * </p>
+     * Used to create a campaign.
      */
     private WriteCampaignRequest writeCampaignRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,42 +67,30 @@ public class CreateCampaignRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a campaign.
-     * </p>
+     * Used to create a campaign.
      *
-     * @return <p>
-     *         Specifies the configuration and other settings for a campaign.
-     *         </p>
+     * @return Used to create a campaign.
      */
     public WriteCampaignRequest getWriteCampaignRequest() {
         return writeCampaignRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a campaign.
-     * </p>
+     * Used to create a campaign.
      *
-     * @param writeCampaignRequest <p>
-     *            Specifies the configuration and other settings for a campaign.
-     *            </p>
+     * @param writeCampaignRequest Used to create a campaign.
      */
     public void setWriteCampaignRequest(WriteCampaignRequest writeCampaignRequest) {
         this.writeCampaignRequest = writeCampaignRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a campaign.
-     * </p>
+     * Used to create a campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeCampaignRequest <p>
-     *            Specifies the configuration and other settings for a campaign.
-     *            </p>
+     * @param writeCampaignRequest Used to create a campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

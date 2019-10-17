@@ -18,171 +18,47 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the display name of an application and the tags to associate with
- * the application.
- * </p>
+ * Application Request.
  */
 public class CreateApplicationRequest implements Serializable {
     /**
-     * <p>
-     * The display name of the application. This name is displayed as the
-     * <b>Project name</b> on the Amazon Pinpoint console.
-     * </p>
+     * The display name of the application. Used in the Amazon Pinpoint console.
      */
     private String name;
 
     /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the application. Each tag consists of a required tag key
-     * and an associated tag value.
-     * </p>
-     */
-    private java.util.Map<String, String> tags;
-
-    /**
-     * <p>
-     * The display name of the application. This name is displayed as the
-     * <b>Project name</b> on the Amazon Pinpoint console.
-     * </p>
+     * The display name of the application. Used in the Amazon Pinpoint console.
      *
-     * @return <p>
-     *         The display name of the application. This name is displayed as
-     *         the <b>Project name</b> on the Amazon Pinpoint console.
-     *         </p>
+     * @return The display name of the application. Used in the Amazon Pinpoint
+     *         console.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * <p>
-     * The display name of the application. This name is displayed as the
-     * <b>Project name</b> on the Amazon Pinpoint console.
-     * </p>
+     * The display name of the application. Used in the Amazon Pinpoint console.
      *
-     * @param name <p>
-     *            The display name of the application. This name is displayed as
-     *            the <b>Project name</b> on the Amazon Pinpoint console.
-     *            </p>
+     * @param name The display name of the application. Used in the Amazon
+     *            Pinpoint console.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * <p>
-     * The display name of the application. This name is displayed as the
-     * <b>Project name</b> on the Amazon Pinpoint console.
-     * </p>
+     * The display name of the application. Used in the Amazon Pinpoint console.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name <p>
-     *            The display name of the application. This name is displayed as
-     *            the <b>Project name</b> on the Amazon Pinpoint console.
-     *            </p>
+     * @param name The display name of the application. Used in the Amazon
+     *            Pinpoint console.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public CreateApplicationRequest withName(String name) {
         this.name = name;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the application. Each tag consists of a required tag key
-     * and an associated tag value.
-     * </p>
-     *
-     * @return <p>
-     *         A string-to-string map of key-value pairs that defines the tags
-     *         to associate with the application. Each tag consists of a
-     *         required tag key and an associated tag value.
-     *         </p>
-     */
-    public java.util.Map<String, String> getTags() {
-        return tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the application. Each tag consists of a required tag key
-     * and an associated tag value.
-     * </p>
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the application. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     */
-    public void setTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the application. Each tag consists of a required tag key
-     * and an associated tag value.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the application. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateApplicationRequest withTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the application. Each tag consists of a required tag key
-     * and an associated tag value.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into tags parameter, and returns a
-     * reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into tags.
-     * @param value The corresponding value of the entry to be added into tags.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateApplicationRequest addtagsEntry(String key, String value) {
-        if (null == this.tags) {
-            this.tags = new java.util.HashMap<String, String>();
-        }
-        if (this.tags.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.tags.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into tags.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public CreateApplicationRequest cleartagsEntries() {
-        this.tags = null;
         return this;
     }
 
@@ -198,9 +74,7 @@ public class CreateApplicationRequest implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getName() != null)
-            sb.append("Name: " + getName() + ",");
-        if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("Name: " + getName());
         sb.append("}");
         return sb.toString();
     }
@@ -211,7 +85,6 @@ public class CreateApplicationRequest implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
-        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -229,10 +102,6 @@ public class CreateApplicationRequest implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
-            return false;
-        if (other.getTags() == null ^ this.getTags() == null)
-            return false;
-        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

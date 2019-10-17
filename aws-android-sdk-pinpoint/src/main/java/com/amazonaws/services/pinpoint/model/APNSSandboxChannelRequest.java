@@ -18,120 +18,74 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the status and settings of the APNs (Apple Push Notification
- * service) sandbox channel for an application.
- * </p>
+ * Apple Development Push Notification Service channel definition.
  */
 public class APNSSandboxChannelRequest implements Serializable {
     /**
-     * <p>
-     * The bundle identifier that's assigned to your iOS app. This identifier is
-     * used for APNs tokens.
-     * </p>
+     * The bundle id used for APNs Tokens.
      */
     private String bundleId;
 
     /**
-     * <p>
-     * The APNs client certificate that you received from Apple, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * an APNs certificate.
-     * </p>
+     * The distribution certificate from Apple.
      */
     private String certificate;
 
     /**
-     * <p>
-     * The default authentication method that you want Amazon Pinpoint to use
-     * when authenticating with the APNs sandbox environment, key or
-     * certificate.
-     * </p>
+     * The default authentication method used for APNs.
      */
     private String defaultAuthenticationMethod;
 
     /**
-     * <p>
-     * Specifies whether to enable the APNs sandbox channel for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      */
     private Boolean enabled;
 
     /**
-     * <p>
-     * The private key for the APNs client certificate that you want Amazon
-     * Pinpoint to use to communicate with the APNs sandbox environment.
-     * </p>
+     * The certificate private key.
      */
     private String privateKey;
 
     /**
-     * <p>
-     * The identifier that's assigned to your Apple developer account team. This
-     * identifier is used for APNs tokens.
-     * </p>
+     * The team id used for APNs Tokens.
      */
     private String teamId;
 
     /**
-     * <p>
-     * The authentication key to use for APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      */
     private String tokenKey;
 
     /**
-     * <p>
-     * The key identifier that's assigned to your APNs signing key, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      */
     private String tokenKeyId;
 
     /**
-     * <p>
-     * The bundle identifier that's assigned to your iOS app. This identifier is
-     * used for APNs tokens.
-     * </p>
+     * The bundle id used for APNs Tokens.
      *
-     * @return <p>
-     *         The bundle identifier that's assigned to your iOS app. This
-     *         identifier is used for APNs tokens.
-     *         </p>
+     * @return The bundle id used for APNs Tokens.
      */
     public String getBundleId() {
         return bundleId;
     }
 
     /**
-     * <p>
-     * The bundle identifier that's assigned to your iOS app. This identifier is
-     * used for APNs tokens.
-     * </p>
+     * The bundle id used for APNs Tokens.
      *
-     * @param bundleId <p>
-     *            The bundle identifier that's assigned to your iOS app. This
-     *            identifier is used for APNs tokens.
-     *            </p>
+     * @param bundleId The bundle id used for APNs Tokens.
      */
     public void setBundleId(String bundleId) {
         this.bundleId = bundleId;
     }
 
     /**
-     * <p>
-     * The bundle identifier that's assigned to your iOS app. This identifier is
-     * used for APNs tokens.
-     * </p>
+     * The bundle id used for APNs Tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param bundleId <p>
-     *            The bundle identifier that's assigned to your iOS app. This
-     *            identifier is used for APNs tokens.
-     *            </p>
+     * @param bundleId The bundle id used for APNs Tokens.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -141,54 +95,30 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The APNs client certificate that you received from Apple, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * an APNs certificate.
-     * </p>
+     * The distribution certificate from Apple.
      *
-     * @return <p>
-     *         The APNs client certificate that you received from Apple, if you
-     *         want Amazon Pinpoint to communicate with the APNs sandbox
-     *         environment by using an APNs certificate.
-     *         </p>
+     * @return The distribution certificate from Apple.
      */
     public String getCertificate() {
         return certificate;
     }
 
     /**
-     * <p>
-     * The APNs client certificate that you received from Apple, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * an APNs certificate.
-     * </p>
+     * The distribution certificate from Apple.
      *
-     * @param certificate <p>
-     *            The APNs client certificate that you received from Apple, if
-     *            you want Amazon Pinpoint to communicate with the APNs sandbox
-     *            environment by using an APNs certificate.
-     *            </p>
+     * @param certificate The distribution certificate from Apple.
      */
     public void setCertificate(String certificate) {
         this.certificate = certificate;
     }
 
     /**
-     * <p>
-     * The APNs client certificate that you received from Apple, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * an APNs certificate.
-     * </p>
+     * The distribution certificate from Apple.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param certificate <p>
-     *            The APNs client certificate that you received from Apple, if
-     *            you want Amazon Pinpoint to communicate with the APNs sandbox
-     *            environment by using an APNs certificate.
-     *            </p>
+     * @param certificate The distribution certificate from Apple.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -198,54 +128,32 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The default authentication method that you want Amazon Pinpoint to use
-     * when authenticating with the APNs sandbox environment, key or
-     * certificate.
-     * </p>
+     * The default authentication method used for APNs.
      *
-     * @return <p>
-     *         The default authentication method that you want Amazon Pinpoint
-     *         to use when authenticating with the APNs sandbox environment, key
-     *         or certificate.
-     *         </p>
+     * @return The default authentication method used for APNs.
      */
     public String getDefaultAuthenticationMethod() {
         return defaultAuthenticationMethod;
     }
 
     /**
-     * <p>
-     * The default authentication method that you want Amazon Pinpoint to use
-     * when authenticating with the APNs sandbox environment, key or
-     * certificate.
-     * </p>
+     * The default authentication method used for APNs.
      *
-     * @param defaultAuthenticationMethod <p>
-     *            The default authentication method that you want Amazon
-     *            Pinpoint to use when authenticating with the APNs sandbox
-     *            environment, key or certificate.
-     *            </p>
+     * @param defaultAuthenticationMethod The default authentication method used
+     *            for APNs.
      */
     public void setDefaultAuthenticationMethod(String defaultAuthenticationMethod) {
         this.defaultAuthenticationMethod = defaultAuthenticationMethod;
     }
 
     /**
-     * <p>
-     * The default authentication method that you want Amazon Pinpoint to use
-     * when authenticating with the APNs sandbox environment, key or
-     * certificate.
-     * </p>
+     * The default authentication method used for APNs.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultAuthenticationMethod <p>
-     *            The default authentication method that you want Amazon
-     *            Pinpoint to use when authenticating with the APNs sandbox
-     *            environment, key or certificate.
-     *            </p>
+     * @param defaultAuthenticationMethod The default authentication method used
+     *            for APNs.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -256,59 +164,39 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether to enable the APNs sandbox channel for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @return <p>
-     *         Specifies whether to enable the APNs sandbox channel for the
-     *         application.
-     *         </p>
+     * @return If the channel is enabled for sending messages.
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether to enable the APNs sandbox channel for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @return <p>
-     *         Specifies whether to enable the APNs sandbox channel for the
-     *         application.
-     *         </p>
+     * @return If the channel is enabled for sending messages.
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether to enable the APNs sandbox channel for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @param enabled <p>
-     *            Specifies whether to enable the APNs sandbox channel for the
-     *            application.
-     *            </p>
+     * @param enabled If the channel is enabled for sending messages.
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether to enable the APNs sandbox channel for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled <p>
-     *            Specifies whether to enable the APNs sandbox channel for the
-     *            application.
-     *            </p>
+     * @param enabled If the channel is enabled for sending messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -318,51 +206,30 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The private key for the APNs client certificate that you want Amazon
-     * Pinpoint to use to communicate with the APNs sandbox environment.
-     * </p>
+     * The certificate private key.
      *
-     * @return <p>
-     *         The private key for the APNs client certificate that you want
-     *         Amazon Pinpoint to use to communicate with the APNs sandbox
-     *         environment.
-     *         </p>
+     * @return The certificate private key.
      */
     public String getPrivateKey() {
         return privateKey;
     }
 
     /**
-     * <p>
-     * The private key for the APNs client certificate that you want Amazon
-     * Pinpoint to use to communicate with the APNs sandbox environment.
-     * </p>
+     * The certificate private key.
      *
-     * @param privateKey <p>
-     *            The private key for the APNs client certificate that you want
-     *            Amazon Pinpoint to use to communicate with the APNs sandbox
-     *            environment.
-     *            </p>
+     * @param privateKey The certificate private key.
      */
     public void setPrivateKey(String privateKey) {
         this.privateKey = privateKey;
     }
 
     /**
-     * <p>
-     * The private key for the APNs client certificate that you want Amazon
-     * Pinpoint to use to communicate with the APNs sandbox environment.
-     * </p>
+     * The certificate private key.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param privateKey <p>
-     *            The private key for the APNs client certificate that you want
-     *            Amazon Pinpoint to use to communicate with the APNs sandbox
-     *            environment.
-     *            </p>
+     * @param privateKey The certificate private key.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -372,48 +239,30 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The identifier that's assigned to your Apple developer account team. This
-     * identifier is used for APNs tokens.
-     * </p>
+     * The team id used for APNs Tokens.
      *
-     * @return <p>
-     *         The identifier that's assigned to your Apple developer account
-     *         team. This identifier is used for APNs tokens.
-     *         </p>
+     * @return The team id used for APNs Tokens.
      */
     public String getTeamId() {
         return teamId;
     }
 
     /**
-     * <p>
-     * The identifier that's assigned to your Apple developer account team. This
-     * identifier is used for APNs tokens.
-     * </p>
+     * The team id used for APNs Tokens.
      *
-     * @param teamId <p>
-     *            The identifier that's assigned to your Apple developer account
-     *            team. This identifier is used for APNs tokens.
-     *            </p>
+     * @param teamId The team id used for APNs Tokens.
      */
     public void setTeamId(String teamId) {
         this.teamId = teamId;
     }
 
     /**
-     * <p>
-     * The identifier that's assigned to your Apple developer account team. This
-     * identifier is used for APNs tokens.
-     * </p>
+     * The team id used for APNs Tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param teamId <p>
-     *            The identifier that's assigned to your Apple developer account
-     *            team. This identifier is used for APNs tokens.
-     *            </p>
+     * @param teamId The team id used for APNs Tokens.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -423,42 +272,30 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The authentication key to use for APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      *
-     * @return <p>
-     *         The authentication key to use for APNs tokens.
-     *         </p>
+     * @return The token key used for APNs Tokens.
      */
     public String getTokenKey() {
         return tokenKey;
     }
 
     /**
-     * <p>
-     * The authentication key to use for APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      *
-     * @param tokenKey <p>
-     *            The authentication key to use for APNs tokens.
-     *            </p>
+     * @param tokenKey The token key used for APNs Tokens.
      */
     public void setTokenKey(String tokenKey) {
         this.tokenKey = tokenKey;
     }
 
     /**
-     * <p>
-     * The authentication key to use for APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tokenKey <p>
-     *            The authentication key to use for APNs tokens.
-     *            </p>
+     * @param tokenKey The token key used for APNs Tokens.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -468,54 +305,30 @@ public class APNSSandboxChannelRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The key identifier that's assigned to your APNs signing key, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      *
-     * @return <p>
-     *         The key identifier that's assigned to your APNs signing key, if
-     *         you want Amazon Pinpoint to communicate with the APNs sandbox
-     *         environment by using APNs tokens.
-     *         </p>
+     * @return The token key used for APNs Tokens.
      */
     public String getTokenKeyId() {
         return tokenKeyId;
     }
 
     /**
-     * <p>
-     * The key identifier that's assigned to your APNs signing key, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      *
-     * @param tokenKeyId <p>
-     *            The key identifier that's assigned to your APNs signing key,
-     *            if you want Amazon Pinpoint to communicate with the APNs
-     *            sandbox environment by using APNs tokens.
-     *            </p>
+     * @param tokenKeyId The token key used for APNs Tokens.
      */
     public void setTokenKeyId(String tokenKeyId) {
         this.tokenKeyId = tokenKeyId;
     }
 
     /**
-     * <p>
-     * The key identifier that's assigned to your APNs signing key, if you want
-     * Amazon Pinpoint to communicate with the APNs sandbox environment by using
-     * APNs tokens.
-     * </p>
+     * The token key used for APNs Tokens.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tokenKeyId <p>
-     *            The key identifier that's assigned to your APNs signing key,
-     *            if you want Amazon Pinpoint to communicate with the APNs
-     *            sandbox environment by using APNs tokens.
-     *            </p>
+     * @param tokenKeyId The token key used for APNs Tokens.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

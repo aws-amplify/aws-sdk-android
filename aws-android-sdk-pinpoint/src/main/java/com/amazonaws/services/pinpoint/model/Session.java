@@ -18,76 +18,54 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about a session.
- * </p>
+ * Information about a session.
  */
 public class Session implements Serializable {
     /**
-     * <p>
      * The duration of the session, in milliseconds.
-     * </p>
      */
     private Integer duration;
 
     /**
-     * <p>
-     * The unique identifier for the session.
-     * </p>
+     * A unique identifier for the session.
      */
     private String id;
 
     /**
-     * <p>
      * The date and time when the session began.
-     * </p>
      */
     private String startTimestamp;
 
     /**
-     * <p>
      * The date and time when the session ended.
-     * </p>
      */
     private String stopTimestamp;
 
     /**
-     * <p>
      * The duration of the session, in milliseconds.
-     * </p>
      *
-     * @return <p>
-     *         The duration of the session, in milliseconds.
-     *         </p>
+     * @return The duration of the session, in milliseconds.
      */
     public Integer getDuration() {
         return duration;
     }
 
     /**
-     * <p>
      * The duration of the session, in milliseconds.
-     * </p>
      *
-     * @param duration <p>
-     *            The duration of the session, in milliseconds.
-     *            </p>
+     * @param duration The duration of the session, in milliseconds.
      */
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
     /**
-     * <p>
      * The duration of the session, in milliseconds.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param duration <p>
-     *            The duration of the session, in milliseconds.
-     *            </p>
+     * @param duration The duration of the session, in milliseconds.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,42 +75,30 @@ public class Session implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier for the session.
-     * </p>
+     * A unique identifier for the session.
      *
-     * @return <p>
-     *         The unique identifier for the session.
-     *         </p>
+     * @return A unique identifier for the session.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * <p>
-     * The unique identifier for the session.
-     * </p>
+     * A unique identifier for the session.
      *
-     * @param id <p>
-     *            The unique identifier for the session.
-     *            </p>
+     * @param id A unique identifier for the session.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * <p>
-     * The unique identifier for the session.
-     * </p>
+     * A unique identifier for the session.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id <p>
-     *            The unique identifier for the session.
-     *            </p>
+     * @param id A unique identifier for the session.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -142,42 +108,30 @@ public class Session implements Serializable {
     }
 
     /**
-     * <p>
      * The date and time when the session began.
-     * </p>
      *
-     * @return <p>
-     *         The date and time when the session began.
-     *         </p>
+     * @return The date and time when the session began.
      */
     public String getStartTimestamp() {
         return startTimestamp;
     }
 
     /**
-     * <p>
      * The date and time when the session began.
-     * </p>
      *
-     * @param startTimestamp <p>
-     *            The date and time when the session began.
-     *            </p>
+     * @param startTimestamp The date and time when the session began.
      */
     public void setStartTimestamp(String startTimestamp) {
         this.startTimestamp = startTimestamp;
     }
 
     /**
-     * <p>
      * The date and time when the session began.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param startTimestamp <p>
-     *            The date and time when the session began.
-     *            </p>
+     * @param startTimestamp The date and time when the session began.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -187,42 +141,30 @@ public class Session implements Serializable {
     }
 
     /**
-     * <p>
      * The date and time when the session ended.
-     * </p>
      *
-     * @return <p>
-     *         The date and time when the session ended.
-     *         </p>
+     * @return The date and time when the session ended.
      */
     public String getStopTimestamp() {
         return stopTimestamp;
     }
 
     /**
-     * <p>
      * The date and time when the session ended.
-     * </p>
      *
-     * @param stopTimestamp <p>
-     *            The date and time when the session ended.
-     *            </p>
+     * @param stopTimestamp The date and time when the session ended.
      */
     public void setStopTimestamp(String stopTimestamp) {
         this.stopTimestamp = stopTimestamp;
     }
 
     /**
-     * <p>
      * The date and time when the session ended.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param stopTimestamp <p>
-     *            The date and time when the session ended.
-     *            </p>
+     * @param stopTimestamp The date and time when the session ended.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

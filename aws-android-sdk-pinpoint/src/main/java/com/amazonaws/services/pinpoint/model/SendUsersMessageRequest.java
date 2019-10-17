@@ -18,113 +18,82 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the configuration and other settings for a message to send to all
- * the endpoints that are associated with a list of users.
- * </p>
+ * Send message request.
  */
 public class SendUsersMessageRequest implements Serializable {
     /**
-     * <p>
-     * A map of custom attribute-value pairs. For a push notification, Amazon
-     * Pinpoint adds these attributes to the data.pinpoint object in the body of
-     * the notification payload. Amazon Pinpoint also provides these attributes
-     * in the events that it generates for users-messages deliveries.
-     * </p>
+     * A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     * attributes to the data.pinpoint object in the body of the push
+     * notification payload. Amazon Pinpoint also provides these attributes in
+     * the events that it generates for users-messages deliveries.
      */
     private java.util.Map<String, String> context;
 
     /**
-     * <p>
-     * The message definitions for the default message and any default messages
-     * that you defined for specific channels.
-     * </p>
+     * Message definitions for the default message and any messages that are
+     * tailored for specific channels.
      */
     private DirectMessageConfiguration messageConfiguration;
 
     /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     */
-    private TemplateConfiguration templateConfiguration;
-
-    /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      */
     private String traceId;
 
     /**
-     * <p>
      * A map that associates user IDs with EndpointSendConfiguration objects.
-     * You can use an EndpointSendConfiguration object to tailor the message for
-     * a user by specifying settings such as content overrides and message
-     * variables.
-     * </p>
+     * Within an EndpointSendConfiguration object, you can tailor the message
+     * for a user by specifying message overrides or substitutions.
      */
     private java.util.Map<String, EndpointSendConfiguration> users;
 
     /**
-     * <p>
-     * A map of custom attribute-value pairs. For a push notification, Amazon
-     * Pinpoint adds these attributes to the data.pinpoint object in the body of
-     * the notification payload. Amazon Pinpoint also provides these attributes
-     * in the events that it generates for users-messages deliveries.
-     * </p>
+     * A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     * attributes to the data.pinpoint object in the body of the push
+     * notification payload. Amazon Pinpoint also provides these attributes in
+     * the events that it generates for users-messages deliveries.
      *
-     * @return <p>
-     *         A map of custom attribute-value pairs. For a push notification,
-     *         Amazon Pinpoint adds these attributes to the data.pinpoint object
-     *         in the body of the notification payload. Amazon Pinpoint also
-     *         provides these attributes in the events that it generates for
-     *         users-messages deliveries.
-     *         </p>
+     * @return A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     *         attributes to the data.pinpoint object in the body of the push
+     *         notification payload. Amazon Pinpoint also provides these
+     *         attributes in the events that it generates for users-messages
+     *         deliveries.
      */
     public java.util.Map<String, String> getContext() {
         return context;
     }
 
     /**
-     * <p>
-     * A map of custom attribute-value pairs. For a push notification, Amazon
-     * Pinpoint adds these attributes to the data.pinpoint object in the body of
-     * the notification payload. Amazon Pinpoint also provides these attributes
-     * in the events that it generates for users-messages deliveries.
-     * </p>
+     * A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     * attributes to the data.pinpoint object in the body of the push
+     * notification payload. Amazon Pinpoint also provides these attributes in
+     * the events that it generates for users-messages deliveries.
      *
-     * @param context <p>
-     *            A map of custom attribute-value pairs. For a push
-     *            notification, Amazon Pinpoint adds these attributes to the
-     *            data.pinpoint object in the body of the notification payload.
-     *            Amazon Pinpoint also provides these attributes in the events
-     *            that it generates for users-messages deliveries.
-     *            </p>
+     * @param context A map of custom attribute-value pairs. Amazon Pinpoint
+     *            adds these attributes to the data.pinpoint object in the body
+     *            of the push notification payload. Amazon Pinpoint also
+     *            provides these attributes in the events that it generates for
+     *            users-messages deliveries.
      */
     public void setContext(java.util.Map<String, String> context) {
         this.context = context;
     }
 
     /**
-     * <p>
-     * A map of custom attribute-value pairs. For a push notification, Amazon
-     * Pinpoint adds these attributes to the data.pinpoint object in the body of
-     * the notification payload. Amazon Pinpoint also provides these attributes
-     * in the events that it generates for users-messages deliveries.
-     * </p>
+     * A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     * attributes to the data.pinpoint object in the body of the push
+     * notification payload. Amazon Pinpoint also provides these attributes in
+     * the events that it generates for users-messages deliveries.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param context <p>
-     *            A map of custom attribute-value pairs. For a push
-     *            notification, Amazon Pinpoint adds these attributes to the
-     *            data.pinpoint object in the body of the notification payload.
-     *            Amazon Pinpoint also provides these attributes in the events
-     *            that it generates for users-messages deliveries.
-     *            </p>
+     * @param context A map of custom attribute-value pairs. Amazon Pinpoint
+     *            adds these attributes to the data.pinpoint object in the body
+     *            of the push notification payload. Amazon Pinpoint also
+     *            provides these attributes in the events that it generates for
+     *            users-messages deliveries.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -134,12 +103,10 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * A map of custom attribute-value pairs. For a push notification, Amazon
-     * Pinpoint adds these attributes to the data.pinpoint object in the body of
-     * the notification payload. Amazon Pinpoint also provides these attributes
-     * in the events that it generates for users-messages deliveries.
-     * </p>
+     * A map of custom attribute-value pairs. Amazon Pinpoint adds these
+     * attributes to the data.pinpoint object in the body of the push
+     * notification payload. Amazon Pinpoint also provides these attributes in
+     * the events that it generates for users-messages deliveries.
      * <p>
      * The method adds a new key-value pair into Context parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -173,48 +140,36 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The message definitions for the default message and any default messages
-     * that you defined for specific channels.
-     * </p>
+     * Message definitions for the default message and any messages that are
+     * tailored for specific channels.
      *
-     * @return <p>
-     *         The message definitions for the default message and any default
-     *         messages that you defined for specific channels.
-     *         </p>
+     * @return Message definitions for the default message and any messages that
+     *         are tailored for specific channels.
      */
     public DirectMessageConfiguration getMessageConfiguration() {
         return messageConfiguration;
     }
 
     /**
-     * <p>
-     * The message definitions for the default message and any default messages
-     * that you defined for specific channels.
-     * </p>
+     * Message definitions for the default message and any messages that are
+     * tailored for specific channels.
      *
-     * @param messageConfiguration <p>
-     *            The message definitions for the default message and any
-     *            default messages that you defined for specific channels.
-     *            </p>
+     * @param messageConfiguration Message definitions for the default message
+     *            and any messages that are tailored for specific channels.
      */
     public void setMessageConfiguration(DirectMessageConfiguration messageConfiguration) {
         this.messageConfiguration = messageConfiguration;
     }
 
     /**
-     * <p>
-     * The message definitions for the default message and any default messages
-     * that you defined for specific channels.
-     * </p>
+     * Message definitions for the default message and any messages that are
+     * tailored for specific channels.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageConfiguration <p>
-     *            The message definitions for the default message and any
-     *            default messages that you defined for specific channels.
-     *            </p>
+     * @param messageConfiguration Message definitions for the default message
+     *            and any messages that are tailored for specific channels.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -225,94 +180,36 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      *
-     * @return <p>
-     *         The message template to use for the message.
-     *         </p>
-     */
-    public TemplateConfiguration getTemplateConfiguration() {
-        return templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     *
-     * @param templateConfiguration <p>
-     *            The message template to use for the message.
-     *            </p>
-     */
-    public void setTemplateConfiguration(TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param templateConfiguration <p>
-     *            The message template to use for the message.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SendUsersMessageRequest withTemplateConfiguration(
-            TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
-     *
-     * @return <p>
-     *         The unique identifier for tracing the message. This identifier is
-     *         visible to message recipients.
-     *         </p>
+     * @return A unique ID that you can use to trace a message. This ID is
+     *         visible to recipients.
      */
     public String getTraceId() {
         return traceId;
     }
 
     /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      *
-     * @param traceId <p>
-     *            The unique identifier for tracing the message. This identifier
-     *            is visible to message recipients.
-     *            </p>
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
      */
     public void setTraceId(String traceId) {
         this.traceId = traceId;
     }
 
     /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param traceId <p>
-     *            The unique identifier for tracing the message. This identifier
-     *            is visible to message recipients.
-     *            </p>
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -322,60 +219,45 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * <p>
      * A map that associates user IDs with EndpointSendConfiguration objects.
-     * You can use an EndpointSendConfiguration object to tailor the message for
-     * a user by specifying settings such as content overrides and message
-     * variables.
-     * </p>
+     * Within an EndpointSendConfiguration object, you can tailor the message
+     * for a user by specifying message overrides or substitutions.
      *
-     * @return <p>
-     *         A map that associates user IDs with EndpointSendConfiguration
-     *         objects. You can use an EndpointSendConfiguration object to
-     *         tailor the message for a user by specifying settings such as
-     *         content overrides and message variables.
-     *         </p>
+     * @return A map that associates user IDs with EndpointSendConfiguration
+     *         objects. Within an EndpointSendConfiguration object, you can
+     *         tailor the message for a user by specifying message overrides or
+     *         substitutions.
      */
     public java.util.Map<String, EndpointSendConfiguration> getUsers() {
         return users;
     }
 
     /**
-     * <p>
      * A map that associates user IDs with EndpointSendConfiguration objects.
-     * You can use an EndpointSendConfiguration object to tailor the message for
-     * a user by specifying settings such as content overrides and message
-     * variables.
-     * </p>
+     * Within an EndpointSendConfiguration object, you can tailor the message
+     * for a user by specifying message overrides or substitutions.
      *
-     * @param users <p>
-     *            A map that associates user IDs with EndpointSendConfiguration
-     *            objects. You can use an EndpointSendConfiguration object to
-     *            tailor the message for a user by specifying settings such as
-     *            content overrides and message variables.
-     *            </p>
+     * @param users A map that associates user IDs with
+     *            EndpointSendConfiguration objects. Within an
+     *            EndpointSendConfiguration object, you can tailor the message
+     *            for a user by specifying message overrides or substitutions.
      */
     public void setUsers(java.util.Map<String, EndpointSendConfiguration> users) {
         this.users = users;
     }
 
     /**
-     * <p>
      * A map that associates user IDs with EndpointSendConfiguration objects.
-     * You can use an EndpointSendConfiguration object to tailor the message for
-     * a user by specifying settings such as content overrides and message
-     * variables.
-     * </p>
+     * Within an EndpointSendConfiguration object, you can tailor the message
+     * for a user by specifying message overrides or substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param users <p>
-     *            A map that associates user IDs with EndpointSendConfiguration
-     *            objects. You can use an EndpointSendConfiguration object to
-     *            tailor the message for a user by specifying settings such as
-     *            content overrides and message variables.
-     *            </p>
+     * @param users A map that associates user IDs with
+     *            EndpointSendConfiguration objects. Within an
+     *            EndpointSendConfiguration object, you can tailor the message
+     *            for a user by specifying message overrides or substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -385,12 +267,9 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * <p>
      * A map that associates user IDs with EndpointSendConfiguration objects.
-     * You can use an EndpointSendConfiguration object to tailor the message for
-     * a user by specifying settings such as content overrides and message
-     * variables.
-     * </p>
+     * Within an EndpointSendConfiguration object, you can tailor the message
+     * for a user by specifying message overrides or substitutions.
      * <p>
      * The method adds a new key-value pair into Users parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -437,8 +316,6 @@ public class SendUsersMessageRequest implements Serializable {
             sb.append("Context: " + getContext() + ",");
         if (getMessageConfiguration() != null)
             sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
-        if (getTemplateConfiguration() != null)
-            sb.append("TemplateConfiguration: " + getTemplateConfiguration() + ",");
         if (getTraceId() != null)
             sb.append("TraceId: " + getTraceId() + ",");
         if (getUsers() != null)
@@ -455,9 +332,6 @@ public class SendUsersMessageRequest implements Serializable {
         hashCode = prime * hashCode + ((getContext() == null) ? 0 : getContext().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getTemplateConfiguration() == null) ? 0 : getTemplateConfiguration().hashCode());
         hashCode = prime * hashCode + ((getTraceId() == null) ? 0 : getTraceId().hashCode());
         hashCode = prime * hashCode + ((getUsers() == null) ? 0 : getUsers().hashCode());
         return hashCode;
@@ -482,11 +356,6 @@ public class SendUsersMessageRequest implements Serializable {
             return false;
         if (other.getMessageConfiguration() != null
                 && other.getMessageConfiguration().equals(this.getMessageConfiguration()) == false)
-            return false;
-        if (other.getTemplateConfiguration() == null ^ this.getTemplateConfiguration() == null)
-            return false;
-        if (other.getTemplateConfiguration() != null
-                && other.getTemplateConfiguration().equals(this.getTemplateConfiguration()) == false)
             return false;
         if (other.getTraceId() == null ^ this.getTraceId() == null)
             return false;
