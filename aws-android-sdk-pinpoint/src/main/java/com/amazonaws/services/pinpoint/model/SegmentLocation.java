@@ -18,44 +18,69 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Segment location dimensions
+ * <p>
+ * Specifies geographical dimension settings for a segment.
+ * </p>
  */
 public class SegmentLocation implements Serializable {
     /**
-     * The country or region, in ISO 3166-1 alpha-2 format.
+     * <p>
+     * The country or region code, in ISO 3166-1 alpha-2 format, for the
+     * segment.
+     * </p>
      */
     private SetDimension country;
 
     /**
-     * The GPS Point dimension.
+     * <p>
+     * The GPS location and range for the segment.
+     * </p>
      */
     private GPSPointDimension gPSPoint;
 
     /**
-     * The country or region, in ISO 3166-1 alpha-2 format.
+     * <p>
+     * The country or region code, in ISO 3166-1 alpha-2 format, for the
+     * segment.
+     * </p>
      *
-     * @return The country or region, in ISO 3166-1 alpha-2 format.
+     * @return <p>
+     *         The country or region code, in ISO 3166-1 alpha-2 format, for the
+     *         segment.
+     *         </p>
      */
     public SetDimension getCountry() {
         return country;
     }
 
     /**
-     * The country or region, in ISO 3166-1 alpha-2 format.
+     * <p>
+     * The country or region code, in ISO 3166-1 alpha-2 format, for the
+     * segment.
+     * </p>
      *
-     * @param country The country or region, in ISO 3166-1 alpha-2 format.
+     * @param country <p>
+     *            The country or region code, in ISO 3166-1 alpha-2 format, for
+     *            the segment.
+     *            </p>
      */
     public void setCountry(SetDimension country) {
         this.country = country;
     }
 
     /**
-     * The country or region, in ISO 3166-1 alpha-2 format.
+     * <p>
+     * The country or region code, in ISO 3166-1 alpha-2 format, for the
+     * segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param country The country or region, in ISO 3166-1 alpha-2 format.
+     * @param country <p>
+     *            The country or region code, in ISO 3166-1 alpha-2 format, for
+     *            the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,30 +90,42 @@ public class SegmentLocation implements Serializable {
     }
 
     /**
-     * The GPS Point dimension.
+     * <p>
+     * The GPS location and range for the segment.
+     * </p>
      *
-     * @return The GPS Point dimension.
+     * @return <p>
+     *         The GPS location and range for the segment.
+     *         </p>
      */
     public GPSPointDimension getGPSPoint() {
         return gPSPoint;
     }
 
     /**
-     * The GPS Point dimension.
+     * <p>
+     * The GPS location and range for the segment.
+     * </p>
      *
-     * @param gPSPoint The GPS Point dimension.
+     * @param gPSPoint <p>
+     *            The GPS location and range for the segment.
+     *            </p>
      */
     public void setGPSPoint(GPSPointDimension gPSPoint) {
         this.gPSPoint = gPSPoint;
     }
 
     /**
-     * The GPS Point dimension.
+     * <p>
+     * The GPS location and range for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gPSPoint The GPS Point dimension.
+     * @param gPSPoint <p>
+     *            The GPS location and range for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

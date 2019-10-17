@@ -29,6 +29,20 @@ public class DeleteAppResultJsonUnmarshaller implements
     public DeleteAppResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteAppResult deleteAppResult = new DeleteAppResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("ApplicationResponse")) {
+                deleteAppResult.setApplicationResponse(ApplicationResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return deleteAppResult;
     }
 

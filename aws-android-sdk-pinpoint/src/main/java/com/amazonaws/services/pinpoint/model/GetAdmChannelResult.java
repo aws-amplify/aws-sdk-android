@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class GetAdmChannelResult implements Serializable {
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Provides information about the status and settings of the ADM (Amazon
+     * Device Messaging) channel for an application.
+     * </p>
      */
     private ADMChannelResponse aDMChannelResponse;
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Provides information about the status and settings of the ADM (Amazon
+     * Device Messaging) channel for an application.
+     * </p>
      *
-     * @return Amazon Device Messaging channel definition.
+     * @return <p>
+     *         Provides information about the status and settings of the ADM
+     *         (Amazon Device Messaging) channel for an application.
+     *         </p>
      */
     public ADMChannelResponse getADMChannelResponse() {
         return aDMChannelResponse;
     }
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Provides information about the status and settings of the ADM (Amazon
+     * Device Messaging) channel for an application.
+     * </p>
      *
-     * @param aDMChannelResponse Amazon Device Messaging channel definition.
+     * @param aDMChannelResponse <p>
+     *            Provides information about the status and settings of the ADM
+     *            (Amazon Device Messaging) channel for an application.
+     *            </p>
      */
     public void setADMChannelResponse(ADMChannelResponse aDMChannelResponse) {
         this.aDMChannelResponse = aDMChannelResponse;
     }
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Provides information about the status and settings of the ADM (Amazon
+     * Device Messaging) channel for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aDMChannelResponse Amazon Device Messaging channel definition.
+     * @param aDMChannelResponse <p>
+     *            Provides information about the status and settings of the ADM
+     *            (Amazon Device Messaging) channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

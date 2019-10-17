@@ -18,44 +18,63 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Textual email data, plus an optional character set specification.
+ * <p>
+ * Specifies the subject or body of an email message, represented as textual
+ * email data and the applicable character set.
+ * </p>
  */
 public class SimpleEmailPart implements Serializable {
     /**
-     * The character set of the content.
+     * <p>
+     * The applicable character set for the message content.
+     * </p>
      */
     private String charset;
 
     /**
-     * The textual data of the content.
+     * <p>
+     * The textual data of the message content.
+     * </p>
      */
     private String data;
 
     /**
-     * The character set of the content.
+     * <p>
+     * The applicable character set for the message content.
+     * </p>
      *
-     * @return The character set of the content.
+     * @return <p>
+     *         The applicable character set for the message content.
+     *         </p>
      */
     public String getCharset() {
         return charset;
     }
 
     /**
-     * The character set of the content.
+     * <p>
+     * The applicable character set for the message content.
+     * </p>
      *
-     * @param charset The character set of the content.
+     * @param charset <p>
+     *            The applicable character set for the message content.
+     *            </p>
      */
     public void setCharset(String charset) {
         this.charset = charset;
     }
 
     /**
-     * The character set of the content.
+     * <p>
+     * The applicable character set for the message content.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param charset The character set of the content.
+     * @param charset <p>
+     *            The applicable character set for the message content.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,30 +84,42 @@ public class SimpleEmailPart implements Serializable {
     }
 
     /**
-     * The textual data of the content.
+     * <p>
+     * The textual data of the message content.
+     * </p>
      *
-     * @return The textual data of the content.
+     * @return <p>
+     *         The textual data of the message content.
+     *         </p>
      */
     public String getData() {
         return data;
     }
 
     /**
-     * The textual data of the content.
+     * <p>
+     * The textual data of the message content.
+     * </p>
      *
-     * @param data The textual data of the content.
+     * @param data <p>
+     *            The textual data of the message content.
+     *            </p>
      */
     public void setData(String data) {
         this.data = data;
     }
 
     /**
-     * The textual data of the content.
+     * <p>
+     * The textual data of the message content.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param data The textual data of the content.
+     * @param data <p>
+     *            The textual data of the message content.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

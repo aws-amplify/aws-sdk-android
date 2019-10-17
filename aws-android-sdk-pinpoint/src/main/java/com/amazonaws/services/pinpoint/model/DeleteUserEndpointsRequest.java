@@ -20,44 +20,72 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Deletes endpoints that are associated with a User ID.
+ * <p>
+ * Deletes all the endpoints that are associated with a specific user ID.
+ * </p>
  */
 public class DeleteUserEndpointsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The unique ID of the user.
+     * <p>
+     * The unique identifier for the user.
+     * </p>
      */
     private String userId;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +95,42 @@ public class DeleteUserEndpointsRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * The unique ID of the user.
+     * <p>
+     * The unique identifier for the user.
+     * </p>
      *
-     * @return The unique ID of the user.
+     * @return <p>
+     *         The unique identifier for the user.
+     *         </p>
      */
     public String getUserId() {
         return userId;
     }
 
     /**
-     * The unique ID of the user.
+     * <p>
+     * The unique identifier for the user.
+     * </p>
      *
-     * @param userId The unique ID of the user.
+     * @param userId <p>
+     *            The unique identifier for the user.
+     *            </p>
      */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
-     * The unique ID of the user.
+     * <p>
+     * The unique identifier for the user.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userId The unique ID of the user.
+     * @param userId <p>
+     *            The unique identifier for the user.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

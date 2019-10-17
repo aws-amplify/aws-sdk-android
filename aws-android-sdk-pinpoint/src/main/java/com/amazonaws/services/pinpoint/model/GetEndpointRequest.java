@@ -20,44 +20,73 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Returns information about an endpoint.
+ * <p>
+ * Retrieves information about the settings and attributes of a specific
+ * endpoint for an application.
+ * </p>
  */
 public class GetEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      */
     private String endpointId;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +96,42 @@ public class GetEndpointRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      *
-     * @return The unique ID of the endpoint.
+     * @return <p>
+     *         The unique identifier for the endpoint.
+     *         </p>
      */
     public String getEndpointId() {
         return endpointId;
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      *
-     * @param endpointId The unique ID of the endpoint.
+     * @param endpointId <p>
+     *            The unique identifier for the endpoint.
+     *            </p>
      */
     public void setEndpointId(String endpointId) {
         this.endpointId = endpointId;
     }
 
     /**
-     * The unique ID of the endpoint.
+     * <p>
+     * The unique identifier for the endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointId The unique ID of the endpoint.
+     * @param endpointId <p>
+     *            The unique identifier for the endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -18,67 +18,98 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Endpoint send configuration.
+ * <p>
+ * Specifies the content, including message variables and attributes, to use in
+ * a message that's sent directly to an endpoint.
+ * </p>
  */
 public class EndpointSendConfiguration implements Serializable {
     /**
-     * Body override. If specified will override default body.
+     * <p>
+     * The body of the message. If specified, this value overrides the default
+     * message body.
+     * </p>
      */
     private String bodyOverride;
 
     /**
-     * A map of custom attributes to attributes to be attached to the message
-     * for this address. This payload is added to the push notification's
-     * 'data.pinpoint' object or added to the email/sms delivery receipt event
-     * attributes.
+     * <p>
+     * A map of custom attributes to attach to the message for the address. For
+     * a push notification, this payload is added to the data.pinpoint object.
+     * For an email or text message, this payload is added to email/SMS delivery
+     * receipt event attributes.
+     * </p>
      */
     private java.util.Map<String, String> context;
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the message. If
+     * specified, this value overrides the message.
+     * </p>
      */
     private String rawContent;
 
     /**
-     * A map of substitution values for the message to be merged with the
-     * DefaultMessage's substitutions. Substitutions on this map take precedence
-     * over the all other substitutions.
+     * <p>
+     * A map of the message variables to merge with the variables specified for
+     * the default message (DefaultMessage.Substitutions). The variables
+     * specified in this map take precedence over all other variables.
+     * </p>
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * Title override. If specified will override default title if applicable.
+     * <p>
+     * The title or subject line of the message. If specified, this value
+     * overrides the default message title or subject line.
+     * </p>
      */
     private String titleOverride;
 
     /**
-     * Body override. If specified will override default body.
+     * <p>
+     * The body of the message. If specified, this value overrides the default
+     * message body.
+     * </p>
      *
-     * @return Body override. If specified will override default body.
+     * @return <p>
+     *         The body of the message. If specified, this value overrides the
+     *         default message body.
+     *         </p>
      */
     public String getBodyOverride() {
         return bodyOverride;
     }
 
     /**
-     * Body override. If specified will override default body.
+     * <p>
+     * The body of the message. If specified, this value overrides the default
+     * message body.
+     * </p>
      *
-     * @param bodyOverride Body override. If specified will override default
-     *            body.
+     * @param bodyOverride <p>
+     *            The body of the message. If specified, this value overrides
+     *            the default message body.
+     *            </p>
      */
     public void setBodyOverride(String bodyOverride) {
         this.bodyOverride = bodyOverride;
     }
 
     /**
-     * Body override. If specified will override default body.
+     * <p>
+     * The body of the message. If specified, this value overrides the default
+     * message body.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param bodyOverride Body override. If specified will override default
-     *            body.
+     * @param bodyOverride <p>
+     *            The body of the message. If specified, this value overrides
+     *            the default message body.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -88,48 +119,62 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * A map of custom attributes to attributes to be attached to the message
-     * for this address. This payload is added to the push notification's
-     * 'data.pinpoint' object or added to the email/sms delivery receipt event
-     * attributes.
+     * <p>
+     * A map of custom attributes to attach to the message for the address. For
+     * a push notification, this payload is added to the data.pinpoint object.
+     * For an email or text message, this payload is added to email/SMS delivery
+     * receipt event attributes.
+     * </p>
      *
-     * @return A map of custom attributes to attributes to be attached to the
-     *         message for this address. This payload is added to the push
-     *         notification's 'data.pinpoint' object or added to the email/sms
-     *         delivery receipt event attributes.
+     * @return <p>
+     *         A map of custom attributes to attach to the message for the
+     *         address. For a push notification, this payload is added to the
+     *         data.pinpoint object. For an email or text message, this payload
+     *         is added to email/SMS delivery receipt event attributes.
+     *         </p>
      */
     public java.util.Map<String, String> getContext() {
         return context;
     }
 
     /**
-     * A map of custom attributes to attributes to be attached to the message
-     * for this address. This payload is added to the push notification's
-     * 'data.pinpoint' object or added to the email/sms delivery receipt event
-     * attributes.
+     * <p>
+     * A map of custom attributes to attach to the message for the address. For
+     * a push notification, this payload is added to the data.pinpoint object.
+     * For an email or text message, this payload is added to email/SMS delivery
+     * receipt event attributes.
+     * </p>
      *
-     * @param context A map of custom attributes to attributes to be attached to
-     *            the message for this address. This payload is added to the
-     *            push notification's 'data.pinpoint' object or added to the
-     *            email/sms delivery receipt event attributes.
+     * @param context <p>
+     *            A map of custom attributes to attach to the message for the
+     *            address. For a push notification, this payload is added to the
+     *            data.pinpoint object. For an email or text message, this
+     *            payload is added to email/SMS delivery receipt event
+     *            attributes.
+     *            </p>
      */
     public void setContext(java.util.Map<String, String> context) {
         this.context = context;
     }
 
     /**
-     * A map of custom attributes to attributes to be attached to the message
-     * for this address. This payload is added to the push notification's
-     * 'data.pinpoint' object or added to the email/sms delivery receipt event
-     * attributes.
+     * <p>
+     * A map of custom attributes to attach to the message for the address. For
+     * a push notification, this payload is added to the data.pinpoint object.
+     * For an email or text message, this payload is added to email/SMS delivery
+     * receipt event attributes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param context A map of custom attributes to attributes to be attached to
-     *            the message for this address. This payload is added to the
-     *            push notification's 'data.pinpoint' object or added to the
-     *            email/sms delivery receipt event attributes.
+     * @param context <p>
+     *            A map of custom attributes to attach to the message for the
+     *            address. For a push notification, this payload is added to the
+     *            data.pinpoint object. For an email or text message, this
+     *            payload is added to email/SMS delivery receipt event
+     *            attributes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -139,10 +184,12 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * A map of custom attributes to attributes to be attached to the message
-     * for this address. This payload is added to the push notification's
-     * 'data.pinpoint' object or added to the email/sms delivery receipt event
-     * attributes.
+     * <p>
+     * A map of custom attributes to attach to the message for the address. For
+     * a push notification, this payload is added to the data.pinpoint object.
+     * For an email or text message, this payload is added to email/SMS delivery
+     * receipt event attributes.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Context parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -176,36 +223,48 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the message. If
+     * specified, this value overrides the message.
+     * </p>
      *
-     * @return The Raw JSON formatted string to be used as the payload. This
-     *         value overrides the message.
+     * @return <p>
+     *         The raw, JSON-formatted string to use as the payload for the
+     *         message. If specified, this value overrides the message.
+     *         </p>
      */
     public String getRawContent() {
         return rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the message. If
+     * specified, this value overrides the message.
+     * </p>
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            message. If specified, this value overrides the message.
+     *            </p>
      */
     public void setRawContent(String rawContent) {
         this.rawContent = rawContent;
     }
 
     /**
-     * The Raw JSON formatted string to be used as the payload. This value
-     * overrides the message.
+     * <p>
+     * The raw, JSON-formatted string to use as the payload for the message. If
+     * specified, this value overrides the message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param rawContent The Raw JSON formatted string to be used as the
-     *            payload. This value overrides the message.
+     * @param rawContent <p>
+     *            The raw, JSON-formatted string to use as the payload for the
+     *            message. If specified, this value overrides the message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -215,42 +274,57 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * A map of substitution values for the message to be merged with the
-     * DefaultMessage's substitutions. Substitutions on this map take precedence
-     * over the all other substitutions.
+     * <p>
+     * A map of the message variables to merge with the variables specified for
+     * the default message (DefaultMessage.Substitutions). The variables
+     * specified in this map take precedence over all other variables.
+     * </p>
      *
-     * @return A map of substitution values for the message to be merged with
-     *         the DefaultMessage's substitutions. Substitutions on this map
-     *         take precedence over the all other substitutions.
+     * @return <p>
+     *         A map of the message variables to merge with the variables
+     *         specified for the default message (DefaultMessage.Substitutions).
+     *         The variables specified in this map take precedence over all
+     *         other variables.
+     *         </p>
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * A map of substitution values for the message to be merged with the
-     * DefaultMessage's substitutions. Substitutions on this map take precedence
-     * over the all other substitutions.
+     * <p>
+     * A map of the message variables to merge with the variables specified for
+     * the default message (DefaultMessage.Substitutions). The variables
+     * specified in this map take precedence over all other variables.
+     * </p>
      *
-     * @param substitutions A map of substitution values for the message to be
-     *            merged with the DefaultMessage's substitutions. Substitutions
-     *            on this map take precedence over the all other substitutions.
+     * @param substitutions <p>
+     *            A map of the message variables to merge with the variables
+     *            specified for the default message
+     *            (DefaultMessage.Substitutions). The variables specified in
+     *            this map take precedence over all other variables.
+     *            </p>
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * A map of substitution values for the message to be merged with the
-     * DefaultMessage's substitutions. Substitutions on this map take precedence
-     * over the all other substitutions.
+     * <p>
+     * A map of the message variables to merge with the variables specified for
+     * the default message (DefaultMessage.Substitutions). The variables
+     * specified in this map take precedence over all other variables.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions A map of substitution values for the message to be
-     *            merged with the DefaultMessage's substitutions. Substitutions
-     *            on this map take precedence over the all other substitutions.
+     * @param substitutions <p>
+     *            A map of the message variables to merge with the variables
+     *            specified for the default message
+     *            (DefaultMessage.Substitutions). The variables specified in
+     *            this map take precedence over all other variables.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -261,9 +335,11 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * A map of substitution values for the message to be merged with the
-     * DefaultMessage's substitutions. Substitutions on this map take precedence
-     * over the all other substitutions.
+     * <p>
+     * A map of the message variables to merge with the variables specified for
+     * the default message (DefaultMessage.Substitutions). The variables
+     * specified in this map take precedence over all other variables.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -298,33 +374,48 @@ public class EndpointSendConfiguration implements Serializable {
     }
 
     /**
-     * Title override. If specified will override default title if applicable.
+     * <p>
+     * The title or subject line of the message. If specified, this value
+     * overrides the default message title or subject line.
+     * </p>
      *
-     * @return Title override. If specified will override default title if
-     *         applicable.
+     * @return <p>
+     *         The title or subject line of the message. If specified, this
+     *         value overrides the default message title or subject line.
+     *         </p>
      */
     public String getTitleOverride() {
         return titleOverride;
     }
 
     /**
-     * Title override. If specified will override default title if applicable.
+     * <p>
+     * The title or subject line of the message. If specified, this value
+     * overrides the default message title or subject line.
+     * </p>
      *
-     * @param titleOverride Title override. If specified will override default
-     *            title if applicable.
+     * @param titleOverride <p>
+     *            The title or subject line of the message. If specified, this
+     *            value overrides the default message title or subject line.
+     *            </p>
      */
     public void setTitleOverride(String titleOverride) {
         this.titleOverride = titleOverride;
     }
 
     /**
-     * Title override. If specified will override default title if applicable.
+     * <p>
+     * The title or subject line of the message. If specified, this value
+     * overrides the default message title or subject line.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param titleOverride Title override. If specified will override default
-     *            title if applicable.
+     * @param titleOverride <p>
+     *            The title or subject line of the message. If specified, this
+     *            value overrides the default message title or subject line.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -18,13 +18,18 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * State of the Campaign
+ * <p>
+ * Provides information about the status of a campaign.
+ * </p>
  */
 public class CampaignState implements Serializable {
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
@@ -33,17 +38,23 @@ public class CampaignState implements Serializable {
     private String campaignStatus;
 
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @return The status of the campaign, or the status of a treatment that
-     *         belongs to an A/B test campaign. Valid values: SCHEDULED,
-     *         EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @return <p>
+     *         The status of the campaign, or the status of a treatment that
+     *         belongs to an A/B test campaign. If a campaign uses A/B testing,
+     *         the campaign has a status of COMPLETED only when all campaign
+     *         treatments have a status of COMPLETED.
+     *         </p>
      * @see CampaignStatus
      */
     public String getCampaignStatus() {
@@ -51,17 +62,23 @@ public class CampaignState implements Serializable {
     }
 
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The status of the campaign, or the status of a treatment that
+     *            belongs to an A/B test campaign. If a campaign uses A/B
+     *            testing, the campaign has a status of COMPLETED only when all
+     *            campaign treatments have a status of COMPLETED.
+     *            </p>
      * @see CampaignStatus
      */
     public void setCampaignStatus(String campaignStatus) {
@@ -69,9 +86,12 @@ public class CampaignState implements Serializable {
     }
 
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -80,9 +100,12 @@ public class CampaignState implements Serializable {
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The status of the campaign, or the status of a treatment that
+     *            belongs to an A/B test campaign. If a campaign uses A/B
+     *            testing, the campaign has a status of COMPLETED only when all
+     *            campaign treatments have a status of COMPLETED.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CampaignStatus
@@ -93,17 +116,23 @@ public class CampaignState implements Serializable {
     }
 
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The status of the campaign, or the status of a treatment that
+     *            belongs to an A/B test campaign. If a campaign uses A/B
+     *            testing, the campaign has a status of COMPLETED only when all
+     *            campaign treatments have a status of COMPLETED.
+     *            </p>
      * @see CampaignStatus
      */
     public void setCampaignStatus(CampaignStatus campaignStatus) {
@@ -111,9 +140,12 @@ public class CampaignState implements Serializable {
     }
 
     /**
+     * <p>
      * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * an A/B test campaign. If a campaign uses A/B testing, the campaign has a
+     * status of COMPLETED only when all campaign treatments have a status of
+     * COMPLETED.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -122,9 +154,12 @@ public class CampaignState implements Serializable {
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The status of the campaign, or the status of a treatment that
+     *            belongs to an A/B test campaign. If a campaign uses A/B
+     *            testing, the campaign has a status of COMPLETED only when all
+     *            campaign treatments have a status of COMPLETED.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CampaignStatus

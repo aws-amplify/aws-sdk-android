@@ -30,6 +30,21 @@ public class GetApplicationSettingsResultJsonUnmarshaller implements
             throws Exception {
         GetApplicationSettingsResult getApplicationSettingsResult = new GetApplicationSettingsResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("ApplicationSettingsResource")) {
+                getApplicationSettingsResult
+                        .setApplicationSettingsResource(ApplicationSettingsResourceJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return getApplicationSettingsResult;
     }
 

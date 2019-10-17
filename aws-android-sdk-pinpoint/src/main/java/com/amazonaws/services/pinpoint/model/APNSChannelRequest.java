@@ -18,74 +18,117 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Apple Push Notification Service channel definition.
+ * <p>
+ * Specifies the status and settings of the APNs (Apple Push Notification
+ * service) channel for an application.
+ * </p>
  */
 public class APNSChannelRequest implements Serializable {
     /**
-     * The bundle id used for APNs Tokens.
+     * <p>
+     * The bundle identifier that's assigned to your iOS app. This identifier is
+     * used for APNs tokens.
+     * </p>
      */
     private String bundleId;
 
     /**
-     * The distribution certificate from Apple.
+     * <p>
+     * The APNs client certificate that you received from Apple, if you want
+     * Amazon Pinpoint to communicate with APNs by using an APNs certificate.
+     * </p>
      */
     private String certificate;
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that you want Amazon Pinpoint to use
+     * when authenticating with APNs, key or certificate.
+     * </p>
      */
     private String defaultAuthenticationMethod;
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the APNs channel for the application.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * The certificate private key.
+     * <p>
+     * The private key for the APNs client certificate that you want Amazon
+     * Pinpoint to use to communicate with APNs.
+     * </p>
      */
     private String privateKey;
 
     /**
-     * The team id used for APNs Tokens.
+     * <p>
+     * The identifier that's assigned to your Apple developer account team. This
+     * identifier is used for APNs tokens.
+     * </p>
      */
     private String teamId;
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The authentication key to use for APNs tokens.
+     * </p>
      */
     private String tokenKey;
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The key identifier that's assigned to your APNs signing key, if you want
+     * Amazon Pinpoint to communicate with APNs by using APNs tokens.
+     * </p>
      */
     private String tokenKeyId;
 
     /**
-     * The bundle id used for APNs Tokens.
+     * <p>
+     * The bundle identifier that's assigned to your iOS app. This identifier is
+     * used for APNs tokens.
+     * </p>
      *
-     * @return The bundle id used for APNs Tokens.
+     * @return <p>
+     *         The bundle identifier that's assigned to your iOS app. This
+     *         identifier is used for APNs tokens.
+     *         </p>
      */
     public String getBundleId() {
         return bundleId;
     }
 
     /**
-     * The bundle id used for APNs Tokens.
+     * <p>
+     * The bundle identifier that's assigned to your iOS app. This identifier is
+     * used for APNs tokens.
+     * </p>
      *
-     * @param bundleId The bundle id used for APNs Tokens.
+     * @param bundleId <p>
+     *            The bundle identifier that's assigned to your iOS app. This
+     *            identifier is used for APNs tokens.
+     *            </p>
      */
     public void setBundleId(String bundleId) {
         this.bundleId = bundleId;
     }
 
     /**
-     * The bundle id used for APNs Tokens.
+     * <p>
+     * The bundle identifier that's assigned to your iOS app. This identifier is
+     * used for APNs tokens.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param bundleId The bundle id used for APNs Tokens.
+     * @param bundleId <p>
+     *            The bundle identifier that's assigned to your iOS app. This
+     *            identifier is used for APNs tokens.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,30 +138,51 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The distribution certificate from Apple.
+     * <p>
+     * The APNs client certificate that you received from Apple, if you want
+     * Amazon Pinpoint to communicate with APNs by using an APNs certificate.
+     * </p>
      *
-     * @return The distribution certificate from Apple.
+     * @return <p>
+     *         The APNs client certificate that you received from Apple, if you
+     *         want Amazon Pinpoint to communicate with APNs by using an APNs
+     *         certificate.
+     *         </p>
      */
     public String getCertificate() {
         return certificate;
     }
 
     /**
-     * The distribution certificate from Apple.
+     * <p>
+     * The APNs client certificate that you received from Apple, if you want
+     * Amazon Pinpoint to communicate with APNs by using an APNs certificate.
+     * </p>
      *
-     * @param certificate The distribution certificate from Apple.
+     * @param certificate <p>
+     *            The APNs client certificate that you received from Apple, if
+     *            you want Amazon Pinpoint to communicate with APNs by using an
+     *            APNs certificate.
+     *            </p>
      */
     public void setCertificate(String certificate) {
         this.certificate = certificate;
     }
 
     /**
-     * The distribution certificate from Apple.
+     * <p>
+     * The APNs client certificate that you received from Apple, if you want
+     * Amazon Pinpoint to communicate with APNs by using an APNs certificate.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param certificate The distribution certificate from Apple.
+     * @param certificate <p>
+     *            The APNs client certificate that you received from Apple, if
+     *            you want Amazon Pinpoint to communicate with APNs by using an
+     *            APNs certificate.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -128,32 +192,50 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that you want Amazon Pinpoint to use
+     * when authenticating with APNs, key or certificate.
+     * </p>
      *
-     * @return The default authentication method used for APNs.
+     * @return <p>
+     *         The default authentication method that you want Amazon Pinpoint
+     *         to use when authenticating with APNs, key or certificate.
+     *         </p>
      */
     public String getDefaultAuthenticationMethod() {
         return defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that you want Amazon Pinpoint to use
+     * when authenticating with APNs, key or certificate.
+     * </p>
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that you want Amazon
+     *            Pinpoint to use when authenticating with APNs, key or
+     *            certificate.
+     *            </p>
      */
     public void setDefaultAuthenticationMethod(String defaultAuthenticationMethod) {
         this.defaultAuthenticationMethod = defaultAuthenticationMethod;
     }
 
     /**
-     * The default authentication method used for APNs.
+     * <p>
+     * The default authentication method that you want Amazon Pinpoint to use
+     * when authenticating with APNs, key or certificate.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultAuthenticationMethod The default authentication method used
-     *            for APNs.
+     * @param defaultAuthenticationMethod <p>
+     *            The default authentication method that you want Amazon
+     *            Pinpoint to use when authenticating with APNs, key or
+     *            certificate.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -163,39 +245,57 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the APNs channel for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether to enable the APNs channel for the application.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the APNs channel for the application.
+     * </p>
      *
-     * @return If the channel is enabled for sending messages.
+     * @return <p>
+     *         Specifies whether to enable the APNs channel for the application.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the APNs channel for the application.
+     * </p>
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the APNs channel for the
+     *            application.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * <p>
+     * Specifies whether to enable the APNs channel for the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled <p>
+     *            Specifies whether to enable the APNs channel for the
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -205,30 +305,48 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The certificate private key.
+     * <p>
+     * The private key for the APNs client certificate that you want Amazon
+     * Pinpoint to use to communicate with APNs.
+     * </p>
      *
-     * @return The certificate private key.
+     * @return <p>
+     *         The private key for the APNs client certificate that you want
+     *         Amazon Pinpoint to use to communicate with APNs.
+     *         </p>
      */
     public String getPrivateKey() {
         return privateKey;
     }
 
     /**
-     * The certificate private key.
+     * <p>
+     * The private key for the APNs client certificate that you want Amazon
+     * Pinpoint to use to communicate with APNs.
+     * </p>
      *
-     * @param privateKey The certificate private key.
+     * @param privateKey <p>
+     *            The private key for the APNs client certificate that you want
+     *            Amazon Pinpoint to use to communicate with APNs.
+     *            </p>
      */
     public void setPrivateKey(String privateKey) {
         this.privateKey = privateKey;
     }
 
     /**
-     * The certificate private key.
+     * <p>
+     * The private key for the APNs client certificate that you want Amazon
+     * Pinpoint to use to communicate with APNs.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param privateKey The certificate private key.
+     * @param privateKey <p>
+     *            The private key for the APNs client certificate that you want
+     *            Amazon Pinpoint to use to communicate with APNs.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -238,30 +356,48 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The team id used for APNs Tokens.
+     * <p>
+     * The identifier that's assigned to your Apple developer account team. This
+     * identifier is used for APNs tokens.
+     * </p>
      *
-     * @return The team id used for APNs Tokens.
+     * @return <p>
+     *         The identifier that's assigned to your Apple developer account
+     *         team. This identifier is used for APNs tokens.
+     *         </p>
      */
     public String getTeamId() {
         return teamId;
     }
 
     /**
-     * The team id used for APNs Tokens.
+     * <p>
+     * The identifier that's assigned to your Apple developer account team. This
+     * identifier is used for APNs tokens.
+     * </p>
      *
-     * @param teamId The team id used for APNs Tokens.
+     * @param teamId <p>
+     *            The identifier that's assigned to your Apple developer account
+     *            team. This identifier is used for APNs tokens.
+     *            </p>
      */
     public void setTeamId(String teamId) {
         this.teamId = teamId;
     }
 
     /**
-     * The team id used for APNs Tokens.
+     * <p>
+     * The identifier that's assigned to your Apple developer account team. This
+     * identifier is used for APNs tokens.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param teamId The team id used for APNs Tokens.
+     * @param teamId <p>
+     *            The identifier that's assigned to your Apple developer account
+     *            team. This identifier is used for APNs tokens.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -271,30 +407,42 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The authentication key to use for APNs tokens.
+     * </p>
      *
-     * @return The token key used for APNs Tokens.
+     * @return <p>
+     *         The authentication key to use for APNs tokens.
+     *         </p>
      */
     public String getTokenKey() {
         return tokenKey;
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The authentication key to use for APNs tokens.
+     * </p>
      *
-     * @param tokenKey The token key used for APNs Tokens.
+     * @param tokenKey <p>
+     *            The authentication key to use for APNs tokens.
+     *            </p>
      */
     public void setTokenKey(String tokenKey) {
         this.tokenKey = tokenKey;
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The authentication key to use for APNs tokens.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tokenKey The token key used for APNs Tokens.
+     * @param tokenKey <p>
+     *            The authentication key to use for APNs tokens.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -304,30 +452,51 @@ public class APNSChannelRequest implements Serializable {
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The key identifier that's assigned to your APNs signing key, if you want
+     * Amazon Pinpoint to communicate with APNs by using APNs tokens.
+     * </p>
      *
-     * @return The token key used for APNs Tokens.
+     * @return <p>
+     *         The key identifier that's assigned to your APNs signing key, if
+     *         you want Amazon Pinpoint to communicate with APNs by using APNs
+     *         tokens.
+     *         </p>
      */
     public String getTokenKeyId() {
         return tokenKeyId;
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The key identifier that's assigned to your APNs signing key, if you want
+     * Amazon Pinpoint to communicate with APNs by using APNs tokens.
+     * </p>
      *
-     * @param tokenKeyId The token key used for APNs Tokens.
+     * @param tokenKeyId <p>
+     *            The key identifier that's assigned to your APNs signing key,
+     *            if you want Amazon Pinpoint to communicate with APNs by using
+     *            APNs tokens.
+     *            </p>
      */
     public void setTokenKeyId(String tokenKeyId) {
         this.tokenKeyId = tokenKeyId;
     }
 
     /**
-     * The token key used for APNs Tokens.
+     * <p>
+     * The key identifier that's assigned to your APNs signing key, if you want
+     * Amazon Pinpoint to communicate with APNs by using APNs tokens.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tokenKeyId The token key used for APNs Tokens.
+     * @param tokenKeyId <p>
+     *            The key identifier that's assigned to your APNs signing key,
+     *            if you want Amazon Pinpoint to communicate with APNs by using
+     *            APNs tokens.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

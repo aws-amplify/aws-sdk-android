@@ -18,33 +18,61 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Segments in your account.
+ * <p>
+ * Provides information about all the segments that are associated with an
+ * application.
+ * </p>
  */
 public class SegmentsResponse implements Serializable {
     /**
-     * The list of segments.
+     * <p>
+     * An array of responses, one for each segment that's associated with the
+     * application (Segments resource) or each version of a segment that's
+     * associated with the application (Segment Versions resource).
+     * </p>
      */
     private java.util.List<SegmentResponse> item;
 
     /**
-     * An identifier used to retrieve the next page of results. The token is
-     * null if no additional pages exist.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      */
     private String nextToken;
 
     /**
-     * The list of segments.
+     * <p>
+     * An array of responses, one for each segment that's associated with the
+     * application (Segments resource) or each version of a segment that's
+     * associated with the application (Segment Versions resource).
+     * </p>
      *
-     * @return The list of segments.
+     * @return <p>
+     *         An array of responses, one for each segment that's associated
+     *         with the application (Segments resource) or each version of a
+     *         segment that's associated with the application (Segment Versions
+     *         resource).
+     *         </p>
      */
     public java.util.List<SegmentResponse> getItem() {
         return item;
     }
 
     /**
-     * The list of segments.
+     * <p>
+     * An array of responses, one for each segment that's associated with the
+     * application (Segments resource) or each version of a segment that's
+     * associated with the application (Segment Versions resource).
+     * </p>
      *
-     * @param item The list of segments.
+     * @param item <p>
+     *            An array of responses, one for each segment that's associated
+     *            with the application (Segments resource) or each version of a
+     *            segment that's associated with the application (Segment
+     *            Versions resource).
+     *            </p>
      */
     public void setItem(java.util.Collection<SegmentResponse> item) {
         if (item == null) {
@@ -56,12 +84,21 @@ public class SegmentsResponse implements Serializable {
     }
 
     /**
-     * The list of segments.
+     * <p>
+     * An array of responses, one for each segment that's associated with the
+     * application (Segments resource) or each version of a segment that's
+     * associated with the application (Segment Versions resource).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item The list of segments.
+     * @param item <p>
+     *            An array of responses, one for each segment that's associated
+     *            with the application (Segments resource) or each version of a
+     *            segment that's associated with the application (Segment
+     *            Versions resource).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,12 +113,21 @@ public class SegmentsResponse implements Serializable {
     }
 
     /**
-     * The list of segments.
+     * <p>
+     * An array of responses, one for each segment that's associated with the
+     * application (Segments resource) or each version of a segment that's
+     * associated with the application (Segment Versions resource).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item The list of segments.
+     * @param item <p>
+     *            An array of responses, one for each segment that's associated
+     *            with the application (Segments resource) or each version of a
+     *            segment that's associated with the application (Segment
+     *            Versions resource).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -91,36 +137,54 @@ public class SegmentsResponse implements Serializable {
     }
 
     /**
-     * An identifier used to retrieve the next page of results. The token is
-     * null if no additional pages exist.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @return An identifier used to retrieve the next page of results. The
-     *         token is null if no additional pages exist.
+     * @return <p>
+     *         The string to use in a subsequent request to get the next page of
+     *         results in a paginated response. This value is null if there are
+     *         no additional pages.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * An identifier used to retrieve the next page of results. The token is
-     * null if no additional pages exist.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @param nextToken An identifier used to retrieve the next page of results.
-     *            The token is null if no additional pages exist.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * An identifier used to retrieve the next page of results. The token is
-     * null if no additional pages exist.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param nextToken An identifier used to retrieve the next page of results.
-     *            The token is null if no additional pages exist.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

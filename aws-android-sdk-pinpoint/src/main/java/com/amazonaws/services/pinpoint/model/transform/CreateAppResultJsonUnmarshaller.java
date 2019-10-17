@@ -29,6 +29,20 @@ public class CreateAppResultJsonUnmarshaller implements
     public CreateAppResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateAppResult createAppResult = new CreateAppResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("ApplicationResponse")) {
+                createAppResult.setApplicationResponse(ApplicationResponseJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return createAppResult;
     }
 

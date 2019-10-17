@@ -30,6 +30,11 @@ class IntentSummaryJsonMarshaller {
             jsonWriter.name("intentName");
             jsonWriter.value(intentName);
         }
+        if (intentSummary.getCheckpointLabel() != null) {
+            String checkpointLabel = intentSummary.getCheckpointLabel();
+            jsonWriter.name("checkpointLabel");
+            jsonWriter.value(checkpointLabel);
+        }
         if (intentSummary.getSlots() != null) {
             java.util.Map<String, String> slots = intentSummary.getSlots();
             jsonWriter.name("slots");

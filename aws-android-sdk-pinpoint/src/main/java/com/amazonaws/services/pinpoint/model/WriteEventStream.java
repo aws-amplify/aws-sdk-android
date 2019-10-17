@@ -18,71 +18,168 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Request to save an EventStream.
+ * <p>
+ * Specifies the Amazon Resource Name (ARN) of an event stream to publish events
+ * to and the AWS Identity and Access Management (IAM) role to use when
+ * publishing those events.
+ * </p>
  */
 public class WriteEventStream implements Serializable {
     /**
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
-     * delivery stream to which you want to publish events. Firehose ARN:
-     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
-     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * <p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
+     * Amazon Kinesis Data Firehose delivery stream that you want to publish
+     * event data to.
+     * </p>
+     * <p>
+     * For a Kinesis data stream, the ARN format is:
+     * arn:aws:kinesis:<replaceable
+     * >region</replaceable>:<replaceable>account-id<
+     * /replaceable>:stream/<replaceable>stream_name</replaceable>
+     * </p>
+     * <p>
+     * For a Kinesis Data Firehose delivery stream, the ARN format is:
+     * arn:aws:firehose
+     * :<replaceable>region</replaceable>:<replaceable>account-id
+     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
+     * </p>
      */
     private String destinationStreamArn;
 
     /**
-     * The IAM role that authorizes Amazon Pinpoint to publish events to the
-     * stream in your account.
+     * <p>
+     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
+     * Pinpoint to publish event data to the stream in your AWS account.
+     * </p>
      */
     private String roleArn;
 
     /**
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
-     * delivery stream to which you want to publish events. Firehose ARN:
-     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
-     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * <p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
+     * Amazon Kinesis Data Firehose delivery stream that you want to publish
+     * event data to.
+     * </p>
+     * <p>
+     * For a Kinesis data stream, the ARN format is:
+     * arn:aws:kinesis:<replaceable
+     * >region</replaceable>:<replaceable>account-id<
+     * /replaceable>:stream/<replaceable>stream_name</replaceable>
+     * </p>
+     * <p>
+     * For a Kinesis Data Firehose delivery stream, the ARN format is:
+     * arn:aws:firehose
+     * :<replaceable>region</replaceable>:<replaceable>account-id
+     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
+     * </p>
      *
-     * @return The Amazon Resource Name (ARN) of the Amazon Kinesis stream or
-     *         Firehose delivery stream to which you want to publish events.
-     *         Firehose ARN:
-     *         arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
-     *         Kinesis ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the Amazon Kinesis data stream
+     *         or Amazon Kinesis Data Firehose delivery stream that you want to
+     *         publish event data to.
+     *         </p>
+     *         <p>
+     *         For a Kinesis data stream, the ARN format is:
+     *         arn:aws:kinesis:<replaceable
+     *         >region</replaceable>:<replaceable>account
+     *         -id</replaceable>:stream/<replaceable>stream_name</replaceable>
+     *         </p>
+     *         <p>
+     *         For a Kinesis Data Firehose delivery stream, the ARN format is:
+     *         arn:aws:firehose:<replaceable>region</replaceable>:<replaceable>
+     *         account
+     *         -id</replaceable>:deliverystream/<replaceable>stream_name</
+     *         replaceable>
+     *         </p>
      */
     public String getDestinationStreamArn() {
         return destinationStreamArn;
     }
 
     /**
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
-     * delivery stream to which you want to publish events. Firehose ARN:
-     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
-     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * <p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
+     * Amazon Kinesis Data Firehose delivery stream that you want to publish
+     * event data to.
+     * </p>
+     * <p>
+     * For a Kinesis data stream, the ARN format is:
+     * arn:aws:kinesis:<replaceable
+     * >region</replaceable>:<replaceable>account-id<
+     * /replaceable>:stream/<replaceable>stream_name</replaceable>
+     * </p>
+     * <p>
+     * For a Kinesis Data Firehose delivery stream, the ARN format is:
+     * arn:aws:firehose
+     * :<replaceable>region</replaceable>:<replaceable>account-id
+     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
+     * </p>
      *
-     * @param destinationStreamArn The Amazon Resource Name (ARN) of the Amazon
-     *            Kinesis stream or Firehose delivery stream to which you want
-     *            to publish events. Firehose ARN:
-     *            arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
-     *            Kinesis ARN:
-     *            arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * @param destinationStreamArn <p>
+     *            The Amazon Resource Name (ARN) of the Amazon Kinesis data
+     *            stream or Amazon Kinesis Data Firehose delivery stream that
+     *            you want to publish event data to.
+     *            </p>
+     *            <p>
+     *            For a Kinesis data stream, the ARN format is:
+     *            arn:aws:kinesis:<
+     *            replaceable>region</replaceable>:<replaceable>
+     *            account-id</replaceable
+     *            >:stream/<replaceable>stream_name</replaceable>
+     *            </p>
+     *            <p>
+     *            For a Kinesis Data Firehose delivery stream, the ARN format
+     *            is: arn:aws:firehose:<replaceable>region</replaceable>:<
+     *            replaceable
+     *            >account-id</replaceable>:deliverystream/<replaceable
+     *            >stream_name</replaceable>
+     *            </p>
      */
     public void setDestinationStreamArn(String destinationStreamArn) {
         this.destinationStreamArn = destinationStreamArn;
     }
 
     /**
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
-     * delivery stream to which you want to publish events. Firehose ARN:
-     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
-     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * <p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
+     * Amazon Kinesis Data Firehose delivery stream that you want to publish
+     * event data to.
+     * </p>
+     * <p>
+     * For a Kinesis data stream, the ARN format is:
+     * arn:aws:kinesis:<replaceable
+     * >region</replaceable>:<replaceable>account-id<
+     * /replaceable>:stream/<replaceable>stream_name</replaceable>
+     * </p>
+     * <p>
+     * For a Kinesis Data Firehose delivery stream, the ARN format is:
+     * arn:aws:firehose
+     * :<replaceable>region</replaceable>:<replaceable>account-id
+     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param destinationStreamArn The Amazon Resource Name (ARN) of the Amazon
-     *            Kinesis stream or Firehose delivery stream to which you want
-     *            to publish events. Firehose ARN:
-     *            arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
-     *            Kinesis ARN:
-     *            arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
+     * @param destinationStreamArn <p>
+     *            The Amazon Resource Name (ARN) of the Amazon Kinesis data
+     *            stream or Amazon Kinesis Data Firehose delivery stream that
+     *            you want to publish event data to.
+     *            </p>
+     *            <p>
+     *            For a Kinesis data stream, the ARN format is:
+     *            arn:aws:kinesis:<
+     *            replaceable>region</replaceable>:<replaceable>
+     *            account-id</replaceable
+     *            >:stream/<replaceable>stream_name</replaceable>
+     *            </p>
+     *            <p>
+     *            For a Kinesis Data Firehose delivery stream, the ARN format
+     *            is: arn:aws:firehose:<replaceable>region</replaceable>:<
+     *            replaceable
+     *            >account-id</replaceable>:deliverystream/<replaceable
+     *            >stream_name</replaceable>
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -92,36 +189,51 @@ public class WriteEventStream implements Serializable {
     }
 
     /**
-     * The IAM role that authorizes Amazon Pinpoint to publish events to the
-     * stream in your account.
+     * <p>
+     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
+     * Pinpoint to publish event data to the stream in your AWS account.
+     * </p>
      *
-     * @return The IAM role that authorizes Amazon Pinpoint to publish events to
-     *         the stream in your account.
+     * @return <p>
+     *         The AWS Identity and Access Management (IAM) role that authorizes
+     *         Amazon Pinpoint to publish event data to the stream in your AWS
+     *         account.
+     *         </p>
      */
     public String getRoleArn() {
         return roleArn;
     }
 
     /**
-     * The IAM role that authorizes Amazon Pinpoint to publish events to the
-     * stream in your account.
+     * <p>
+     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
+     * Pinpoint to publish event data to the stream in your AWS account.
+     * </p>
      *
-     * @param roleArn The IAM role that authorizes Amazon Pinpoint to publish
-     *            events to the stream in your account.
+     * @param roleArn <p>
+     *            The AWS Identity and Access Management (IAM) role that
+     *            authorizes Amazon Pinpoint to publish event data to the stream
+     *            in your AWS account.
+     *            </p>
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
 
     /**
-     * The IAM role that authorizes Amazon Pinpoint to publish events to the
-     * stream in your account.
+     * <p>
+     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
+     * Pinpoint to publish event data to the stream in your AWS account.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param roleArn The IAM role that authorizes Amazon Pinpoint to publish
-     *            events to the stream in your account.
+     * @param roleArn <p>
+     *            The AWS Identity and Access Management (IAM) role that
+     *            authorizes Amazon Pinpoint to publish event data to the stream
+     *            in your AWS account.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
