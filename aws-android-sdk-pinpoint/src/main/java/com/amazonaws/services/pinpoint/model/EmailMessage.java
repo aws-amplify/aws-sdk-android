@@ -18,102 +18,73 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the default settings and content for a one-time email message
- * that's sent directly to an endpoint.
- * </p>
+ * Email Message.
  */
 public class EmailMessage implements Serializable {
     /**
-     * <p>
      * The body of the email message.
-     * </p>
      */
     private String body;
 
     /**
-     * <p>
-     * The email address to forward bounces and complaints to, if feedback
-     * forwarding is enabled.
-     * </p>
+     * The email address that bounces and complaints will be forwarded to when
+     * feedback forwarding is enabled.
      */
     private String feedbackForwardingAddress;
 
     /**
-     * <p>
-     * The verified email address to send the email message from. The default
-     * value is the FromAddress specified for the email channel.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      */
     private String fromAddress;
 
     /**
-     * <p>
-     * The email message, represented as a raw MIME message.
-     * </p>
+     * An email represented as a raw MIME message.
      */
     private RawEmail rawEmail;
 
     /**
-     * <p>
-     * The reply-to email address(es) for the email message. If a recipient
-     * replies to the email, each reply-to address receives the reply.
-     * </p>
+     * The reply-to email address(es) for the email. If the recipient replies to
+     * the email, each reply-to address will receive the reply.
      */
     private java.util.List<String> replyToAddresses;
 
     /**
-     * <p>
-     * The email message, composed of a subject, a text part, and an HTML part.
-     * </p>
+     * An email composed of a subject, a text part and a html part.
      */
     private SimpleEmail simpleEmail;
 
     /**
-     * <p>
-     * The default message variables to use in the email message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * <p>
      * The body of the email message.
-     * </p>
      *
-     * @return <p>
-     *         The body of the email message.
-     *         </p>
+     * @return The body of the email message.
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * <p>
      * The body of the email message.
-     * </p>
      *
-     * @param body <p>
-     *            The body of the email message.
-     *            </p>
+     * @param body The body of the email message.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * <p>
      * The body of the email message.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body <p>
-     *            The body of the email message.
-     *            </p>
+     * @param body The body of the email message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -123,48 +94,38 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The email address to forward bounces and complaints to, if feedback
-     * forwarding is enabled.
-     * </p>
+     * The email address that bounces and complaints will be forwarded to when
+     * feedback forwarding is enabled.
      *
-     * @return <p>
-     *         The email address to forward bounces and complaints to, if
-     *         feedback forwarding is enabled.
-     *         </p>
+     * @return The email address that bounces and complaints will be forwarded
+     *         to when feedback forwarding is enabled.
      */
     public String getFeedbackForwardingAddress() {
         return feedbackForwardingAddress;
     }
 
     /**
-     * <p>
-     * The email address to forward bounces and complaints to, if feedback
-     * forwarding is enabled.
-     * </p>
+     * The email address that bounces and complaints will be forwarded to when
+     * feedback forwarding is enabled.
      *
-     * @param feedbackForwardingAddress <p>
-     *            The email address to forward bounces and complaints to, if
-     *            feedback forwarding is enabled.
-     *            </p>
+     * @param feedbackForwardingAddress The email address that bounces and
+     *            complaints will be forwarded to when feedback forwarding is
+     *            enabled.
      */
     public void setFeedbackForwardingAddress(String feedbackForwardingAddress) {
         this.feedbackForwardingAddress = feedbackForwardingAddress;
     }
 
     /**
-     * <p>
-     * The email address to forward bounces and complaints to, if feedback
-     * forwarding is enabled.
-     * </p>
+     * The email address that bounces and complaints will be forwarded to when
+     * feedback forwarding is enabled.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param feedbackForwardingAddress <p>
-     *            The email address to forward bounces and complaints to, if
-     *            feedback forwarding is enabled.
-     *            </p>
+     * @param feedbackForwardingAddress The email address that bounces and
+     *            complaints will be forwarded to when feedback forwarding is
+     *            enabled.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -174,50 +135,36 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The verified email address to send the email message from. The default
-     * value is the FromAddress specified for the email channel.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      *
-     * @return <p>
-     *         The verified email address to send the email message from. The
-     *         default value is the FromAddress specified for the email channel.
-     *         </p>
+     * @return The email address used to send the email from. Defaults to use
+     *         FromAddress specified in the Email Channel.
      */
     public String getFromAddress() {
         return fromAddress;
     }
 
     /**
-     * <p>
-     * The verified email address to send the email message from. The default
-     * value is the FromAddress specified for the email channel.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      *
-     * @param fromAddress <p>
-     *            The verified email address to send the email message from. The
-     *            default value is the FromAddress specified for the email
-     *            channel.
-     *            </p>
+     * @param fromAddress The email address used to send the email from.
+     *            Defaults to use FromAddress specified in the Email Channel.
      */
     public void setFromAddress(String fromAddress) {
         this.fromAddress = fromAddress;
     }
 
     /**
-     * <p>
-     * The verified email address to send the email message from. The default
-     * value is the FromAddress specified for the email channel.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param fromAddress <p>
-     *            The verified email address to send the email message from. The
-     *            default value is the FromAddress specified for the email
-     *            channel.
-     *            </p>
+     * @param fromAddress The email address used to send the email from.
+     *            Defaults to use FromAddress specified in the Email Channel.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -227,42 +174,30 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The email message, represented as a raw MIME message.
-     * </p>
+     * An email represented as a raw MIME message.
      *
-     * @return <p>
-     *         The email message, represented as a raw MIME message.
-     *         </p>
+     * @return An email represented as a raw MIME message.
      */
     public RawEmail getRawEmail() {
         return rawEmail;
     }
 
     /**
-     * <p>
-     * The email message, represented as a raw MIME message.
-     * </p>
+     * An email represented as a raw MIME message.
      *
-     * @param rawEmail <p>
-     *            The email message, represented as a raw MIME message.
-     *            </p>
+     * @param rawEmail An email represented as a raw MIME message.
      */
     public void setRawEmail(RawEmail rawEmail) {
         this.rawEmail = rawEmail;
     }
 
     /**
-     * <p>
-     * The email message, represented as a raw MIME message.
-     * </p>
+     * An email represented as a raw MIME message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param rawEmail <p>
-     *            The email message, represented as a raw MIME message.
-     *            </p>
+     * @param rawEmail An email represented as a raw MIME message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -272,32 +207,24 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The reply-to email address(es) for the email message. If a recipient
-     * replies to the email, each reply-to address receives the reply.
-     * </p>
+     * The reply-to email address(es) for the email. If the recipient replies to
+     * the email, each reply-to address will receive the reply.
      *
-     * @return <p>
-     *         The reply-to email address(es) for the email message. If a
-     *         recipient replies to the email, each reply-to address receives
-     *         the reply.
-     *         </p>
+     * @return The reply-to email address(es) for the email. If the recipient
+     *         replies to the email, each reply-to address will receive the
+     *         reply.
      */
     public java.util.List<String> getReplyToAddresses() {
         return replyToAddresses;
     }
 
     /**
-     * <p>
-     * The reply-to email address(es) for the email message. If a recipient
-     * replies to the email, each reply-to address receives the reply.
-     * </p>
+     * The reply-to email address(es) for the email. If the recipient replies to
+     * the email, each reply-to address will receive the reply.
      *
-     * @param replyToAddresses <p>
-     *            The reply-to email address(es) for the email message. If a
-     *            recipient replies to the email, each reply-to address receives
-     *            the reply.
-     *            </p>
+     * @param replyToAddresses The reply-to email address(es) for the email. If
+     *            the recipient replies to the email, each reply-to address will
+     *            receive the reply.
      */
     public void setReplyToAddresses(java.util.Collection<String> replyToAddresses) {
         if (replyToAddresses == null) {
@@ -309,19 +236,15 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The reply-to email address(es) for the email message. If a recipient
-     * replies to the email, each reply-to address receives the reply.
-     * </p>
+     * The reply-to email address(es) for the email. If the recipient replies to
+     * the email, each reply-to address will receive the reply.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param replyToAddresses <p>
-     *            The reply-to email address(es) for the email message. If a
-     *            recipient replies to the email, each reply-to address receives
-     *            the reply.
-     *            </p>
+     * @param replyToAddresses The reply-to email address(es) for the email. If
+     *            the recipient replies to the email, each reply-to address will
+     *            receive the reply.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -336,19 +259,15 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The reply-to email address(es) for the email message. If a recipient
-     * replies to the email, each reply-to address receives the reply.
-     * </p>
+     * The reply-to email address(es) for the email. If the recipient replies to
+     * the email, each reply-to address will receive the reply.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param replyToAddresses <p>
-     *            The reply-to email address(es) for the email message. If a
-     *            recipient replies to the email, each reply-to address receives
-     *            the reply.
-     *            </p>
+     * @param replyToAddresses The reply-to email address(es) for the email. If
+     *            the recipient replies to the email, each reply-to address will
+     *            receive the reply.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,45 +277,32 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The email message, composed of a subject, a text part, and an HTML part.
-     * </p>
+     * An email composed of a subject, a text part and a html part.
      *
-     * @return <p>
-     *         The email message, composed of a subject, a text part, and an
-     *         HTML part.
-     *         </p>
+     * @return An email composed of a subject, a text part and a html part.
      */
     public SimpleEmail getSimpleEmail() {
         return simpleEmail;
     }
 
     /**
-     * <p>
-     * The email message, composed of a subject, a text part, and an HTML part.
-     * </p>
+     * An email composed of a subject, a text part and a html part.
      *
-     * @param simpleEmail <p>
-     *            The email message, composed of a subject, a text part, and an
-     *            HTML part.
-     *            </p>
+     * @param simpleEmail An email composed of a subject, a text part and a html
+     *            part.
      */
     public void setSimpleEmail(SimpleEmail simpleEmail) {
         this.simpleEmail = simpleEmail;
     }
 
     /**
-     * <p>
-     * The email message, composed of a subject, a text part, and an HTML part.
-     * </p>
+     * An email composed of a subject, a text part and a html part.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param simpleEmail <p>
-     *            The email message, composed of a subject, a text part, and an
-     *            HTML part.
-     *            </p>
+     * @param simpleEmail An email composed of a subject, a text part and a html
+     *            part.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -406,51 +312,36 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the email message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @return <p>
-     *         The default message variables to use in the email message. You
-     *         can override the default variables with individual address
-     *         variables.
-     *         </p>
+     * @return Default message substitutions. Can be overridden by individual
+     *         address substitutions.
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the email message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the email message. You
-     *            can override the default variables with individual address
-     *            variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the email message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the email message. You
-     *            can override the default variables with individual address
-     *            variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -461,10 +352,8 @@ public class EmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the email message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained

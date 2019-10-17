@@ -18,53 +18,33 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about the activities that were performed by a campaign.
- * </p>
+ * Activities for campaign.
  */
 public class ActivitiesResponse implements Serializable {
     /**
-     * <p>
-     * An array of responses, one for each activity that was performed by the
-     * campaign.
-     * </p>
+     * List of campaign activities
      */
     private java.util.List<ActivityResponse> item;
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      */
     private String nextToken;
 
     /**
-     * <p>
-     * An array of responses, one for each activity that was performed by the
-     * campaign.
-     * </p>
+     * List of campaign activities
      *
-     * @return <p>
-     *         An array of responses, one for each activity that was performed
-     *         by the campaign.
-     *         </p>
+     * @return List of campaign activities
      */
     public java.util.List<ActivityResponse> getItem() {
         return item;
     }
 
     /**
-     * <p>
-     * An array of responses, one for each activity that was performed by the
-     * campaign.
-     * </p>
+     * List of campaign activities
      *
-     * @param item <p>
-     *            An array of responses, one for each activity that was
-     *            performed by the campaign.
-     *            </p>
+     * @param item List of campaign activities
      */
     public void setItem(java.util.Collection<ActivityResponse> item) {
         if (item == null) {
@@ -76,18 +56,12 @@ public class ActivitiesResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of responses, one for each activity that was performed by the
-     * campaign.
-     * </p>
+     * List of campaign activities
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item <p>
-     *            An array of responses, one for each activity that was
-     *            performed by the campaign.
-     *            </p>
+     * @param item List of campaign activities
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -102,18 +76,12 @@ public class ActivitiesResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of responses, one for each activity that was performed by the
-     * campaign.
-     * </p>
+     * List of campaign activities
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item <p>
-     *            An array of responses, one for each activity that was
-     *            performed by the campaign.
-     *            </p>
+     * @param item List of campaign activities
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -123,54 +91,36 @@ public class ActivitiesResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      *
-     * @return <p>
-     *         The string to use in a subsequent request to get the next page of
-     *         results in a paginated response. This value is null if there are
-     *         no additional pages.
-     *         </p>
+     * @return The string that you use in a subsequent request to get the next
+     *         page of results in a paginated response.
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      *
-     * @param nextToken <p>
-     *            The string to use in a subsequent request to get the next page
-     *            of results in a paginated response. This value is null if
-     *            there are no additional pages.
-     *            </p>
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param nextToken <p>
-     *            The string to use in a subsequent request to get the next page
-     *            of results in a paginated response. This value is null if
-     *            there are no additional pages.
-     *            </p>
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

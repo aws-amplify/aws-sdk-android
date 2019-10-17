@@ -18,130 +18,81 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the objects that define configuration and other settings for a
- * message.
- * </p>
+ * Send message request.
  */
 public class MessageRequest implements Serializable {
     /**
-     * <p>
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
-     * token, a phone number, or an email address. You can use an
-     * AddressConfiguration object to tailor the message for an address by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * token, a phone number, or an email address.
      */
     private java.util.Map<String, AddressConfiguration> addresses;
 
     /**
-     * <p>
-     * A map of custom attributes to attach to the message. For a push
-     * notification, this payload is added to the data.pinpoint object. For an
-     * email or text message, this payload is added to email/SMS delivery
-     * receipt event attributes.
-     * </p>
+     * A map of custom attributes to attributes to be attached to the message.
+     * This payload is added to the push notification's 'data.pinpoint' object
+     * or added to the email/sms delivery receipt event attributes.
      */
     private java.util.Map<String, String> context;
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an endpoint ID and each value
-     * is an EndpointSendConfiguration object. You can use an
-     * EndpointSendConfiguration object to tailor the message for an endpoint by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * is an EndpointSendConfiguration object. Within an
+     * EndpointSendConfiguration object, you can tailor the message for an
+     * endpoint by specifying message overrides or substitutions.
      */
     private java.util.Map<String, EndpointSendConfiguration> endpoints;
 
     /**
-     * <p>
-     * The set of properties that defines the configuration settings for the
-     * message.
-     * </p>
+     * Message configuration.
      */
     private DirectMessageConfiguration messageConfiguration;
 
     /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     */
-    private TemplateConfiguration templateConfiguration;
-
-    /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      */
     private String traceId;
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
-     * token, a phone number, or an email address. You can use an
-     * AddressConfiguration object to tailor the message for an address by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * token, a phone number, or an email address.
      *
-     * @return <p>
-     *         A map of key-value pairs, where each key is an address and each
+     * @return A map of key-value pairs, where each key is an address and each
      *         value is an AddressConfiguration object. An address can be a push
-     *         notification token, a phone number, or an email address. You can
-     *         use an AddressConfiguration object to tailor the message for an
-     *         address by specifying settings such as content overrides and
-     *         message variables.
-     *         </p>
+     *         notification token, a phone number, or an email address.
      */
     public java.util.Map<String, AddressConfiguration> getAddresses() {
         return addresses;
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
-     * token, a phone number, or an email address. You can use an
-     * AddressConfiguration object to tailor the message for an address by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * token, a phone number, or an email address.
      *
-     * @param addresses <p>
-     *            A map of key-value pairs, where each key is an address and
-     *            each value is an AddressConfiguration object. An address can
-     *            be a push notification token, a phone number, or an email
-     *            address. You can use an AddressConfiguration object to tailor
-     *            the message for an address by specifying settings such as
-     *            content overrides and message variables.
-     *            </p>
+     * @param addresses A map of key-value pairs, where each key is an address
+     *            and each value is an AddressConfiguration object. An address
+     *            can be a push notification token, a phone number, or an email
+     *            address.
      */
     public void setAddresses(java.util.Map<String, AddressConfiguration> addresses) {
         this.addresses = addresses;
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
-     * token, a phone number, or an email address. You can use an
-     * AddressConfiguration object to tailor the message for an address by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * token, a phone number, or an email address.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param addresses <p>
-     *            A map of key-value pairs, where each key is an address and
-     *            each value is an AddressConfiguration object. An address can
-     *            be a push notification token, a phone number, or an email
-     *            address. You can use an AddressConfiguration object to tailor
-     *            the message for an address by specifying settings such as
-     *            content overrides and message variables.
-     *            </p>
+     * @param addresses A map of key-value pairs, where each key is an address
+     *            and each value is an AddressConfiguration object. An address
+     *            can be a push notification token, a phone number, or an email
+     *            address.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -151,13 +102,9 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
-     * token, a phone number, or an email address. You can use an
-     * AddressConfiguration object to tailor the message for an address by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * token, a phone number, or an email address.
      * <p>
      * The method adds a new key-value pair into Addresses parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -192,60 +139,45 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * A map of custom attributes to attach to the message. For a push
-     * notification, this payload is added to the data.pinpoint object. For an
-     * email or text message, this payload is added to email/SMS delivery
-     * receipt event attributes.
-     * </p>
+     * A map of custom attributes to attributes to be attached to the message.
+     * This payload is added to the push notification's 'data.pinpoint' object
+     * or added to the email/sms delivery receipt event attributes.
      *
-     * @return <p>
-     *         A map of custom attributes to attach to the message. For a push
-     *         notification, this payload is added to the data.pinpoint object.
-     *         For an email or text message, this payload is added to email/SMS
-     *         delivery receipt event attributes.
-     *         </p>
+     * @return A map of custom attributes to attributes to be attached to the
+     *         message. This payload is added to the push notification's
+     *         'data.pinpoint' object or added to the email/sms delivery receipt
+     *         event attributes.
      */
     public java.util.Map<String, String> getContext() {
         return context;
     }
 
     /**
-     * <p>
-     * A map of custom attributes to attach to the message. For a push
-     * notification, this payload is added to the data.pinpoint object. For an
-     * email or text message, this payload is added to email/SMS delivery
-     * receipt event attributes.
-     * </p>
+     * A map of custom attributes to attributes to be attached to the message.
+     * This payload is added to the push notification's 'data.pinpoint' object
+     * or added to the email/sms delivery receipt event attributes.
      *
-     * @param context <p>
-     *            A map of custom attributes to attach to the message. For a
-     *            push notification, this payload is added to the data.pinpoint
-     *            object. For an email or text message, this payload is added to
-     *            email/SMS delivery receipt event attributes.
-     *            </p>
+     * @param context A map of custom attributes to attributes to be attached to
+     *            the message. This payload is added to the push notification's
+     *            'data.pinpoint' object or added to the email/sms delivery
+     *            receipt event attributes.
      */
     public void setContext(java.util.Map<String, String> context) {
         this.context = context;
     }
 
     /**
-     * <p>
-     * A map of custom attributes to attach to the message. For a push
-     * notification, this payload is added to the data.pinpoint object. For an
-     * email or text message, this payload is added to email/SMS delivery
-     * receipt event attributes.
-     * </p>
+     * A map of custom attributes to attributes to be attached to the message.
+     * This payload is added to the push notification's 'data.pinpoint' object
+     * or added to the email/sms delivery receipt event attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param context <p>
-     *            A map of custom attributes to attach to the message. For a
-     *            push notification, this payload is added to the data.pinpoint
-     *            object. For an email or text message, this payload is added to
-     *            email/SMS delivery receipt event attributes.
-     *            </p>
+     * @param context A map of custom attributes to attributes to be attached to
+     *            the message. This payload is added to the push notification's
+     *            'data.pinpoint' object or added to the email/sms delivery
+     *            receipt event attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -255,12 +187,9 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * A map of custom attributes to attach to the message. For a push
-     * notification, this payload is added to the data.pinpoint object. For an
-     * email or text message, this payload is added to email/SMS delivery
-     * receipt event attributes.
-     * </p>
+     * A map of custom attributes to attributes to be attached to the message.
+     * This payload is added to the push notification's 'data.pinpoint' object
+     * or added to the email/sms delivery receipt event attributes.
      * <p>
      * The method adds a new key-value pair into Context parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -294,63 +223,50 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an endpoint ID and each value
-     * is an EndpointSendConfiguration object. You can use an
-     * EndpointSendConfiguration object to tailor the message for an endpoint by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * is an EndpointSendConfiguration object. Within an
+     * EndpointSendConfiguration object, you can tailor the message for an
+     * endpoint by specifying message overrides or substitutions.
      *
-     * @return <p>
-     *         A map of key-value pairs, where each key is an endpoint ID and
-     *         each value is an EndpointSendConfiguration object. You can use an
-     *         EndpointSendConfiguration object to tailor the message for an
-     *         endpoint by specifying settings such as content overrides and
-     *         message variables.
-     *         </p>
+     * @return A map of key-value pairs, where each key is an endpoint ID and
+     *         each value is an EndpointSendConfiguration object. Within an
+     *         EndpointSendConfiguration object, you can tailor the message for
+     *         an endpoint by specifying message overrides or substitutions.
      */
     public java.util.Map<String, EndpointSendConfiguration> getEndpoints() {
         return endpoints;
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an endpoint ID and each value
-     * is an EndpointSendConfiguration object. You can use an
-     * EndpointSendConfiguration object to tailor the message for an endpoint by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * is an EndpointSendConfiguration object. Within an
+     * EndpointSendConfiguration object, you can tailor the message for an
+     * endpoint by specifying message overrides or substitutions.
      *
-     * @param endpoints <p>
-     *            A map of key-value pairs, where each key is an endpoint ID and
-     *            each value is an EndpointSendConfiguration object. You can use
-     *            an EndpointSendConfiguration object to tailor the message for
-     *            an endpoint by specifying settings such as content overrides
-     *            and message variables.
-     *            </p>
+     * @param endpoints A map of key-value pairs, where each key is an endpoint
+     *            ID and each value is an EndpointSendConfiguration object.
+     *            Within an EndpointSendConfiguration object, you can tailor the
+     *            message for an endpoint by specifying message overrides or
+     *            substitutions.
      */
     public void setEndpoints(java.util.Map<String, EndpointSendConfiguration> endpoints) {
         this.endpoints = endpoints;
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an endpoint ID and each value
-     * is an EndpointSendConfiguration object. You can use an
-     * EndpointSendConfiguration object to tailor the message for an endpoint by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * is an EndpointSendConfiguration object. Within an
+     * EndpointSendConfiguration object, you can tailor the message for an
+     * endpoint by specifying message overrides or substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpoints <p>
-     *            A map of key-value pairs, where each key is an endpoint ID and
-     *            each value is an EndpointSendConfiguration object. You can use
-     *            an EndpointSendConfiguration object to tailor the message for
-     *            an endpoint by specifying settings such as content overrides
-     *            and message variables.
-     *            </p>
+     * @param endpoints A map of key-value pairs, where each key is an endpoint
+     *            ID and each value is an EndpointSendConfiguration object.
+     *            Within an EndpointSendConfiguration object, you can tailor the
+     *            message for an endpoint by specifying message overrides or
+     *            substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -360,12 +276,10 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
      * A map of key-value pairs, where each key is an endpoint ID and each value
-     * is an EndpointSendConfiguration object. You can use an
-     * EndpointSendConfiguration object to tailor the message for an endpoint by
-     * specifying settings such as content overrides and message variables.
-     * </p>
+     * is an EndpointSendConfiguration object. Within an
+     * EndpointSendConfiguration object, you can tailor the message for an
+     * endpoint by specifying message overrides or substitutions.
      * <p>
      * The method adds a new key-value pair into Endpoints parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -400,48 +314,30 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The set of properties that defines the configuration settings for the
-     * message.
-     * </p>
+     * Message configuration.
      *
-     * @return <p>
-     *         The set of properties that defines the configuration settings for
-     *         the message.
-     *         </p>
+     * @return Message configuration.
      */
     public DirectMessageConfiguration getMessageConfiguration() {
         return messageConfiguration;
     }
 
     /**
-     * <p>
-     * The set of properties that defines the configuration settings for the
-     * message.
-     * </p>
+     * Message configuration.
      *
-     * @param messageConfiguration <p>
-     *            The set of properties that defines the configuration settings
-     *            for the message.
-     *            </p>
+     * @param messageConfiguration Message configuration.
      */
     public void setMessageConfiguration(DirectMessageConfiguration messageConfiguration) {
         this.messageConfiguration = messageConfiguration;
     }
 
     /**
-     * <p>
-     * The set of properties that defines the configuration settings for the
-     * message.
-     * </p>
+     * Message configuration.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageConfiguration <p>
-     *            The set of properties that defines the configuration settings
-     *            for the message.
-     *            </p>
+     * @param messageConfiguration Message configuration.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -451,93 +347,36 @@ public class MessageRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      *
-     * @return <p>
-     *         The message template to use for the message.
-     *         </p>
-     */
-    public TemplateConfiguration getTemplateConfiguration() {
-        return templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     *
-     * @param templateConfiguration <p>
-     *            The message template to use for the message.
-     *            </p>
-     */
-    public void setTemplateConfiguration(TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * The message template to use for the message.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param templateConfiguration <p>
-     *            The message template to use for the message.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public MessageRequest withTemplateConfiguration(TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
-     *
-     * @return <p>
-     *         The unique identifier for tracing the message. This identifier is
-     *         visible to message recipients.
-     *         </p>
+     * @return A unique ID that you can use to trace a message. This ID is
+     *         visible to recipients.
      */
     public String getTraceId() {
         return traceId;
     }
 
     /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      *
-     * @param traceId <p>
-     *            The unique identifier for tracing the message. This identifier
-     *            is visible to message recipients.
-     *            </p>
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
      */
     public void setTraceId(String traceId) {
         this.traceId = traceId;
     }
 
     /**
-     * <p>
-     * The unique identifier for tracing the message. This identifier is visible
-     * to message recipients.
-     * </p>
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param traceId <p>
-     *            The unique identifier for tracing the message. This identifier
-     *            is visible to message recipients.
-     *            </p>
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -565,8 +404,6 @@ public class MessageRequest implements Serializable {
             sb.append("Endpoints: " + getEndpoints() + ",");
         if (getMessageConfiguration() != null)
             sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
-        if (getTemplateConfiguration() != null)
-            sb.append("TemplateConfiguration: " + getTemplateConfiguration() + ",");
         if (getTraceId() != null)
             sb.append("TraceId: " + getTraceId());
         sb.append("}");
@@ -583,9 +420,6 @@ public class MessageRequest implements Serializable {
         hashCode = prime * hashCode + ((getEndpoints() == null) ? 0 : getEndpoints().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getTemplateConfiguration() == null) ? 0 : getTemplateConfiguration().hashCode());
         hashCode = prime * hashCode + ((getTraceId() == null) ? 0 : getTraceId().hashCode());
         return hashCode;
     }
@@ -619,11 +453,6 @@ public class MessageRequest implements Serializable {
             return false;
         if (other.getMessageConfiguration() != null
                 && other.getMessageConfiguration().equals(this.getMessageConfiguration()) == false)
-            return false;
-        if (other.getTemplateConfiguration() == null ^ this.getTemplateConfiguration() == null)
-            return false;
-        if (other.getTemplateConfiguration() != null
-                && other.getTemplateConfiguration().equals(this.getTemplateConfiguration()) == false)
             return false;
         if (other.getTraceId() == null ^ this.getTraceId() == null)
             return false;

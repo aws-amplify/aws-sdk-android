@@ -39,9 +39,6 @@ class SegmentResponseJsonUnmarshaller implements
             if (name.equals("ApplicationId")) {
                 segmentResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Arn")) {
-                segmentResponse.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
                 segmentResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -67,11 +64,6 @@ class SegmentResponseJsonUnmarshaller implements
             } else if (name.equals("SegmentType")) {
                 segmentResponse.setSegmentType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("tags")) {
-                segmentResponse.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
             } else if (name.equals("Version")) {
                 segmentResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

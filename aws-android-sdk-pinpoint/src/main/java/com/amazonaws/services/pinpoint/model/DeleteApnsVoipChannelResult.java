@@ -19,59 +19,37 @@ import java.io.Serializable;
 
 public class DeleteApnsVoipChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP channel for an application.
-     * </p>
+     * Apple VoIP Push Notification Service channel definition.
      */
     private APNSVoipChannelResponse aPNSVoipChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP channel for an application.
-     * </p>
+     * Apple VoIP Push Notification Service channel definition.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the APNs
-     *         (Apple Push Notification service) VoIP channel for an
-     *         application.
-     *         </p>
+     * @return Apple VoIP Push Notification Service channel definition.
      */
     public APNSVoipChannelResponse getAPNSVoipChannelResponse() {
         return aPNSVoipChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP channel for an application.
-     * </p>
+     * Apple VoIP Push Notification Service channel definition.
      *
-     * @param aPNSVoipChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) VoIP channel for an
-     *            application.
-     *            </p>
+     * @param aPNSVoipChannelResponse Apple VoIP Push Notification Service
+     *            channel definition.
      */
     public void setAPNSVoipChannelResponse(APNSVoipChannelResponse aPNSVoipChannelResponse) {
         this.aPNSVoipChannelResponse = aPNSVoipChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) VoIP channel for an application.
-     * </p>
+     * Apple VoIP Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSVoipChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) VoIP channel for an
-     *            application.
-     *            </p>
+     * @param aPNSVoipChannelResponse Apple VoIP Push Notification Service
+     *            channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -29,21 +29,6 @@ public class PhoneNumberValidateResultJsonUnmarshaller implements
     public PhoneNumberValidateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         PhoneNumberValidateResult phoneNumberValidateResult = new PhoneNumberValidateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("NumberValidateResponse")) {
-                phoneNumberValidateResult
-                        .setNumberValidateResponse(NumberValidateResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return phoneNumberValidateResult;
     }
 

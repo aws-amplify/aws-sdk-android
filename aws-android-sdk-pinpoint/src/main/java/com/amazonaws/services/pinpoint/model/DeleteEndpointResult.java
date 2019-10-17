@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class DeleteEndpointResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the channel type and other settings for an
-     * endpoint.
-     * </p>
+     * Endpoint response
      */
     private EndpointResponse endpointResponse;
 
     /**
-     * <p>
-     * Provides information about the channel type and other settings for an
-     * endpoint.
-     * </p>
+     * Endpoint response
      *
-     * @return <p>
-     *         Provides information about the channel type and other settings
-     *         for an endpoint.
-     *         </p>
+     * @return Endpoint response
      */
     public EndpointResponse getEndpointResponse() {
         return endpointResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the channel type and other settings for an
-     * endpoint.
-     * </p>
+     * Endpoint response
      *
-     * @param endpointResponse <p>
-     *            Provides information about the channel type and other settings
-     *            for an endpoint.
-     *            </p>
+     * @param endpointResponse Endpoint response
      */
     public void setEndpointResponse(EndpointResponse endpointResponse) {
         this.endpointResponse = endpointResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the channel type and other settings for an
-     * endpoint.
-     * </p>
+     * Endpoint response
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointResponse <p>
-     *            Provides information about the channel type and other settings
-     *            for an endpoint.
-     *            </p>
+     * @param endpointResponse Endpoint response
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

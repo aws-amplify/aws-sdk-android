@@ -18,48 +18,35 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about the channel type and other settings for an
- * endpoint.
- * </p>
+ * Endpoint response
  */
 public class EndpointResponse implements Serializable {
     /**
-     * <p>
-     * The destination address for messages or push notifications that you send
-     * to the endpoint. The address varies by channel. For example, the address
-     * for a push-notification channel is typically the token provided by a push
-     * notification service, such as an Apple Push Notification service (APNs)
-     * device token or a Firebase Cloud Messaging (FCM) registration token. The
-     * address for the SMS channel is a phone number in E.164 format, such as
-     * +12065550100. The address for the email channel is an email address.
-     * </p>
+     * The address of the endpoint as provided by your push provider. For
+     * example, the DeviceToken or RegistrationId.
      */
     private String address;
 
     /**
-     * <p>
-     * The unique identifier for the application that's associated with the
-     * endpoint.
-     * </p>
+     * The ID of the application that is associated with the endpoint.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * One or more custom attributes that describe the endpoint by associating a
-     * name with an array of values. For example, the value of a custom
-     * attribute named Interests might be: ["science", "music", "travel"]. You
-     * can use these attributes as filter criteria when you create segments.
-     * </p>
+     * Custom attributes that describe the endpoint by associating a name with
+     * an array of values. For example, an attribute named "interests" might
+     * have the following values: ["science", "politics", "travel"]. You can use
+     * these attributes as selection criteria when you create segments. The
+     * Amazon Pinpoint console can't display attribute names that include the
+     * following characters: hash/pound sign (#), colon (:), question mark (?),
+     * backslash (\), and forward slash (/). For this reason, you should avoid
+     * using these characters in the names of custom attributes.
      */
     private java.util.Map<String, java.util.List<String>> attributes;
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
@@ -68,183 +55,100 @@ public class EndpointResponse implements Serializable {
     private String channelType;
 
     /**
-     * <p>
-     * A number from 0-99 that represents the cohort that the endpoint is
-     * assigned to. Endpoints are grouped into cohorts randomly, and each cohort
-     * contains approximately 1 percent of the endpoints for an application.
-     * Amazon Pinpoint assigns cohorts to the holdout or treatment allocations
-     * for campaigns.
-     * </p>
+     * A number from 0-99 that represents the cohort the endpoint is assigned
+     * to. Endpoints are grouped into cohorts randomly, and each cohort contains
+     * approximately 1 percent of the endpoints for an app. Amazon Pinpoint
+     * assigns cohorts to the holdout or treatment allocations for a campaign.
      */
     private String cohortId;
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was created.
-     * </p>
+     * The date and time when the endpoint was created, shown in ISO 8601
+     * format.
      */
     private String creationDate;
 
     /**
-     * <p>
-     * The demographic information for the endpoint, such as the time zone and
-     * platform.
-     * </p>
+     * The endpoint demographic attributes.
      */
     private EndpointDemographic demographic;
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was last
-     * updated.
-     * </p>
+     * The date and time when the endpoint was last updated, shown in ISO 8601
+     * format.
      */
     private String effectiveDate;
 
     /**
-     * <p>
-     * Specifies whether messages or push notifications are sent to the
-     * endpoint. Possible values are: ACTIVE, messages are sent to the endpoint;
-     * and, INACTIVE, messages aren’t sent to the endpoint.
-     * </p>
-     * <p>
-     * Amazon Pinpoint automatically sets this value to ACTIVE when you create
-     * an endpoint or update an existing endpoint. Amazon Pinpoint automatically
-     * sets this value to INACTIVE if you update another endpoint that has the
-     * same address specified by the Address property.
-     * </p>
+     * Unused.
      */
     private String endpointStatus;
 
     /**
-     * <p>
-     * The unique identifier that you assigned to the endpoint. The identifier
-     * should be a globally unique identifier (GUID) to ensure that it doesn't
-     * conflict with other endpoint identifiers that are associated with the
-     * application.
-     * </p>
+     * The unique ID that you assigned to the endpoint. The ID should be a
+     * globally unique identifier (GUID) to ensure that it doesn't conflict with
+     * other endpoint IDs associated with the application.
      */
     private String id;
 
     /**
-     * <p>
-     * The geographic information for the endpoint.
-     * </p>
+     * The endpoint location attributes.
      */
     private EndpointLocation location;
 
     /**
-     * <p>
-     * One or more custom metrics that your app reports to Amazon Pinpoint for
-     * the endpoint.
-     * </p>
+     * Custom metrics that your app reports to Amazon Pinpoint.
      */
     private java.util.Map<String, Double> metrics;
 
     /**
-     * <p>
-     * Specifies whether the user who's associated with the endpoint has opted
-     * out of receiving messages and push notifications from you. Possible
-     * values are: ALL, the user has opted out and doesn't want to receive any
-     * messages or push notifications; and, NONE, the user hasn't opted out and
-     * wants to receive all messages and push notifications.
-     * </p>
+     * Indicates whether a user has opted out of receiving messages with one of
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      */
     private String optOut;
 
     /**
-     * <p>
-     * The unique identifier for the most recent request to update the endpoint.
-     * </p>
+     * The unique ID for the most recent request to update the endpoint.
      */
     private String requestId;
 
     /**
-     * <p>
-     * One or more custom user attributes that your app reports to Amazon
-     * Pinpoint for the user who's associated with the endpoint.
-     * </p>
+     * Custom user-specific attributes that your app reports to Amazon Pinpoint.
      */
     private EndpointUser user;
 
     /**
-     * <p>
-     * The destination address for messages or push notifications that you send
-     * to the endpoint. The address varies by channel. For example, the address
-     * for a push-notification channel is typically the token provided by a push
-     * notification service, such as an Apple Push Notification service (APNs)
-     * device token or a Firebase Cloud Messaging (FCM) registration token. The
-     * address for the SMS channel is a phone number in E.164 format, such as
-     * +12065550100. The address for the email channel is an email address.
-     * </p>
+     * The address of the endpoint as provided by your push provider. For
+     * example, the DeviceToken or RegistrationId.
      *
-     * @return <p>
-     *         The destination address for messages or push notifications that
-     *         you send to the endpoint. The address varies by channel. For
-     *         example, the address for a push-notification channel is typically
-     *         the token provided by a push notification service, such as an
-     *         Apple Push Notification service (APNs) device token or a Firebase
-     *         Cloud Messaging (FCM) registration token. The address for the SMS
-     *         channel is a phone number in E.164 format, such as +12065550100.
-     *         The address for the email channel is an email address.
-     *         </p>
+     * @return The address of the endpoint as provided by your push provider.
+     *         For example, the DeviceToken or RegistrationId.
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     * <p>
-     * The destination address for messages or push notifications that you send
-     * to the endpoint. The address varies by channel. For example, the address
-     * for a push-notification channel is typically the token provided by a push
-     * notification service, such as an Apple Push Notification service (APNs)
-     * device token or a Firebase Cloud Messaging (FCM) registration token. The
-     * address for the SMS channel is a phone number in E.164 format, such as
-     * +12065550100. The address for the email channel is an email address.
-     * </p>
+     * The address of the endpoint as provided by your push provider. For
+     * example, the DeviceToken or RegistrationId.
      *
-     * @param address <p>
-     *            The destination address for messages or push notifications
-     *            that you send to the endpoint. The address varies by channel.
-     *            For example, the address for a push-notification channel is
-     *            typically the token provided by a push notification service,
-     *            such as an Apple Push Notification service (APNs) device token
-     *            or a Firebase Cloud Messaging (FCM) registration token. The
-     *            address for the SMS channel is a phone number in E.164 format,
-     *            such as +12065550100. The address for the email channel is an
-     *            email address.
-     *            </p>
+     * @param address The address of the endpoint as provided by your push
+     *            provider. For example, the DeviceToken or RegistrationId.
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /**
-     * <p>
-     * The destination address for messages or push notifications that you send
-     * to the endpoint. The address varies by channel. For example, the address
-     * for a push-notification channel is typically the token provided by a push
-     * notification service, such as an Apple Push Notification service (APNs)
-     * device token or a Firebase Cloud Messaging (FCM) registration token. The
-     * address for the SMS channel is a phone number in E.164 format, such as
-     * +12065550100. The address for the email channel is an email address.
-     * </p>
+     * The address of the endpoint as provided by your push provider. For
+     * example, the DeviceToken or RegistrationId.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param address <p>
-     *            The destination address for messages or push notifications
-     *            that you send to the endpoint. The address varies by channel.
-     *            For example, the address for a push-notification channel is
-     *            typically the token provided by a push notification service,
-     *            such as an Apple Push Notification service (APNs) device token
-     *            or a Firebase Cloud Messaging (FCM) registration token. The
-     *            address for the SMS channel is a phone number in E.164 format,
-     *            such as +12065550100. The address for the email channel is an
-     *            email address.
-     *            </p>
+     * @param address The address of the endpoint as provided by your push
+     *            provider. For example, the DeviceToken or RegistrationId.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -254,48 +158,32 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that's associated with the
-     * endpoint.
-     * </p>
+     * The ID of the application that is associated with the endpoint.
      *
-     * @return <p>
-     *         The unique identifier for the application that's associated with
-     *         the endpoint.
-     *         </p>
+     * @return The ID of the application that is associated with the endpoint.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that's associated with the
-     * endpoint.
-     * </p>
+     * The ID of the application that is associated with the endpoint.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that's associated
-     *            with the endpoint.
-     *            </p>
+     * @param applicationId The ID of the application that is associated with
+     *            the endpoint.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that's associated with the
-     * endpoint.
-     * </p>
+     * The ID of the application that is associated with the endpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that's associated
-     *            with the endpoint.
-     *            </p>
+     * @param applicationId The ID of the application that is associated with
+     *            the endpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -305,63 +193,77 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom attributes that describe the endpoint by associating a
-     * name with an array of values. For example, the value of a custom
-     * attribute named Interests might be: ["science", "music", "travel"]. You
-     * can use these attributes as filter criteria when you create segments.
-     * </p>
+     * Custom attributes that describe the endpoint by associating a name with
+     * an array of values. For example, an attribute named "interests" might
+     * have the following values: ["science", "politics", "travel"]. You can use
+     * these attributes as selection criteria when you create segments. The
+     * Amazon Pinpoint console can't display attribute names that include the
+     * following characters: hash/pound sign (#), colon (:), question mark (?),
+     * backslash (\), and forward slash (/). For this reason, you should avoid
+     * using these characters in the names of custom attributes.
      *
-     * @return <p>
-     *         One or more custom attributes that describe the endpoint by
-     *         associating a name with an array of values. For example, the
-     *         value of a custom attribute named Interests might be: ["science",
-     *         "music", "travel"]. You can use these attributes as filter
-     *         criteria when you create segments.
-     *         </p>
+     * @return Custom attributes that describe the endpoint by associating a
+     *         name with an array of values. For example, an attribute named
+     *         "interests" might have the following values: ["science",
+     *         "politics", "travel"]. You can use these attributes as selection
+     *         criteria when you create segments. The Amazon Pinpoint console
+     *         can't display attribute names that include the following
+     *         characters: hash/pound sign (#), colon (:), question mark (?),
+     *         backslash (\), and forward slash (/). For this reason, you should
+     *         avoid using these characters in the names of custom attributes.
      */
     public java.util.Map<String, java.util.List<String>> getAttributes() {
         return attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes that describe the endpoint by associating a
-     * name with an array of values. For example, the value of a custom
-     * attribute named Interests might be: ["science", "music", "travel"]. You
-     * can use these attributes as filter criteria when you create segments.
-     * </p>
+     * Custom attributes that describe the endpoint by associating a name with
+     * an array of values. For example, an attribute named "interests" might
+     * have the following values: ["science", "politics", "travel"]. You can use
+     * these attributes as selection criteria when you create segments. The
+     * Amazon Pinpoint console can't display attribute names that include the
+     * following characters: hash/pound sign (#), colon (:), question mark (?),
+     * backslash (\), and forward slash (/). For this reason, you should avoid
+     * using these characters in the names of custom attributes.
      *
-     * @param attributes <p>
-     *            One or more custom attributes that describe the endpoint by
-     *            associating a name with an array of values. For example, the
-     *            value of a custom attribute named Interests might be:
-     *            ["science", "music", "travel"]. You can use these attributes
-     *            as filter criteria when you create segments.
-     *            </p>
+     * @param attributes Custom attributes that describe the endpoint by
+     *            associating a name with an array of values. For example, an
+     *            attribute named "interests" might have the following values:
+     *            ["science", "politics", "travel"]. You can use these
+     *            attributes as selection criteria when you create segments. The
+     *            Amazon Pinpoint console can't display attribute names that
+     *            include the following characters: hash/pound sign (#), colon
+     *            (:), question mark (?), backslash (\), and forward slash (/).
+     *            For this reason, you should avoid using these characters in
+     *            the names of custom attributes.
      */
     public void setAttributes(java.util.Map<String, java.util.List<String>> attributes) {
         this.attributes = attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes that describe the endpoint by associating a
-     * name with an array of values. For example, the value of a custom
-     * attribute named Interests might be: ["science", "music", "travel"]. You
-     * can use these attributes as filter criteria when you create segments.
-     * </p>
+     * Custom attributes that describe the endpoint by associating a name with
+     * an array of values. For example, an attribute named "interests" might
+     * have the following values: ["science", "politics", "travel"]. You can use
+     * these attributes as selection criteria when you create segments. The
+     * Amazon Pinpoint console can't display attribute names that include the
+     * following characters: hash/pound sign (#), colon (:), question mark (?),
+     * backslash (\), and forward slash (/). For this reason, you should avoid
+     * using these characters in the names of custom attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributes <p>
-     *            One or more custom attributes that describe the endpoint by
-     *            associating a name with an array of values. For example, the
-     *            value of a custom attribute named Interests might be:
-     *            ["science", "music", "travel"]. You can use these attributes
-     *            as filter criteria when you create segments.
-     *            </p>
+     * @param attributes Custom attributes that describe the endpoint by
+     *            associating a name with an array of values. For example, an
+     *            attribute named "interests" might have the following values:
+     *            ["science", "politics", "travel"]. You can use these
+     *            attributes as selection criteria when you create segments. The
+     *            Amazon Pinpoint console can't display attribute names that
+     *            include the following characters: hash/pound sign (#), colon
+     *            (:), question mark (?), backslash (\), and forward slash (/).
+     *            For this reason, you should avoid using these characters in
+     *            the names of custom attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -371,12 +273,14 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom attributes that describe the endpoint by associating a
-     * name with an array of values. For example, the value of a custom
-     * attribute named Interests might be: ["science", "music", "travel"]. You
-     * can use these attributes as filter criteria when you create segments.
-     * </p>
+     * Custom attributes that describe the endpoint by associating a name with
+     * an array of values. For example, an attribute named "interests" might
+     * have the following values: ["science", "politics", "travel"]. You can use
+     * these attributes as selection criteria when you create segments. The
+     * Amazon Pinpoint console can't display attribute names that include the
+     * following characters: hash/pound sign (#), colon (:), question mark (?),
+     * backslash (\), and forward slash (/). For this reason, you should avoid
+     * using these characters in the names of custom attributes.
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -411,19 +315,15 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
      * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
-     * @return <p>
-     *         The channel that's used when sending messages or push
-     *         notifications to the endpoint.
-     *         </p>
+     * @return The channel type. Valid values: GCM | APNS | APNS_SANDBOX |
+     *         APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * @see ChannelType
      */
     public String getChannelType() {
@@ -431,19 +331,16 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
      * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType <p>
-     *            The channel that's used when sending messages or push
-     *            notifications to the endpoint.
-     *            </p>
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @see ChannelType
      */
     public void setChannelType(String channelType) {
@@ -451,10 +348,8 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -463,10 +358,9 @@ public class EndpointResponse implements Serializable {
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
      * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType <p>
-     *            The channel that's used when sending messages or push
-     *            notifications to the endpoint.
-     *            </p>
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType
@@ -477,19 +371,16 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
      * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType <p>
-     *            The channel that's used when sending messages or push
-     *            notifications to the endpoint.
-     *            </p>
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @see ChannelType
      */
     public void setChannelType(ChannelType channelType) {
@@ -497,10 +388,8 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The channel that's used when sending messages or push notifications to
-     * the endpoint.
-     * </p>
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -509,10 +398,9 @@ public class EndpointResponse implements Serializable {
      * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
      * APNS_VOIP_SANDBOX, ADM, SMS, VOICE, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType <p>
-     *            The channel that's used when sending messages or push
-     *            notifications to the endpoint.
-     *            </p>
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType
@@ -523,66 +411,51 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * A number from 0-99 that represents the cohort that the endpoint is
-     * assigned to. Endpoints are grouped into cohorts randomly, and each cohort
-     * contains approximately 1 percent of the endpoints for an application.
-     * Amazon Pinpoint assigns cohorts to the holdout or treatment allocations
-     * for campaigns.
-     * </p>
+     * A number from 0-99 that represents the cohort the endpoint is assigned
+     * to. Endpoints are grouped into cohorts randomly, and each cohort contains
+     * approximately 1 percent of the endpoints for an app. Amazon Pinpoint
+     * assigns cohorts to the holdout or treatment allocations for a campaign.
      *
-     * @return <p>
-     *         A number from 0-99 that represents the cohort that the endpoint
-     *         is assigned to. Endpoints are grouped into cohorts randomly, and
+     * @return A number from 0-99 that represents the cohort the endpoint is
+     *         assigned to. Endpoints are grouped into cohorts randomly, and
      *         each cohort contains approximately 1 percent of the endpoints for
-     *         an application. Amazon Pinpoint assigns cohorts to the holdout or
-     *         treatment allocations for campaigns.
-     *         </p>
+     *         an app. Amazon Pinpoint assigns cohorts to the holdout or
+     *         treatment allocations for a campaign.
      */
     public String getCohortId() {
         return cohortId;
     }
 
     /**
-     * <p>
-     * A number from 0-99 that represents the cohort that the endpoint is
-     * assigned to. Endpoints are grouped into cohorts randomly, and each cohort
-     * contains approximately 1 percent of the endpoints for an application.
-     * Amazon Pinpoint assigns cohorts to the holdout or treatment allocations
-     * for campaigns.
-     * </p>
+     * A number from 0-99 that represents the cohort the endpoint is assigned
+     * to. Endpoints are grouped into cohorts randomly, and each cohort contains
+     * approximately 1 percent of the endpoints for an app. Amazon Pinpoint
+     * assigns cohorts to the holdout or treatment allocations for a campaign.
      *
-     * @param cohortId <p>
-     *            A number from 0-99 that represents the cohort that the
+     * @param cohortId A number from 0-99 that represents the cohort the
      *            endpoint is assigned to. Endpoints are grouped into cohorts
      *            randomly, and each cohort contains approximately 1 percent of
-     *            the endpoints for an application. Amazon Pinpoint assigns
-     *            cohorts to the holdout or treatment allocations for campaigns.
-     *            </p>
+     *            the endpoints for an app. Amazon Pinpoint assigns cohorts to
+     *            the holdout or treatment allocations for a campaign.
      */
     public void setCohortId(String cohortId) {
         this.cohortId = cohortId;
     }
 
     /**
-     * <p>
-     * A number from 0-99 that represents the cohort that the endpoint is
-     * assigned to. Endpoints are grouped into cohorts randomly, and each cohort
-     * contains approximately 1 percent of the endpoints for an application.
-     * Amazon Pinpoint assigns cohorts to the holdout or treatment allocations
-     * for campaigns.
-     * </p>
+     * A number from 0-99 that represents the cohort the endpoint is assigned
+     * to. Endpoints are grouped into cohorts randomly, and each cohort contains
+     * approximately 1 percent of the endpoints for an app. Amazon Pinpoint
+     * assigns cohorts to the holdout or treatment allocations for a campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cohortId <p>
-     *            A number from 0-99 that represents the cohort that the
+     * @param cohortId A number from 0-99 that represents the cohort the
      *            endpoint is assigned to. Endpoints are grouped into cohorts
      *            randomly, and each cohort contains approximately 1 percent of
-     *            the endpoints for an application. Amazon Pinpoint assigns
-     *            cohorts to the holdout or treatment allocations for campaigns.
-     *            </p>
+     *            the endpoints for an app. Amazon Pinpoint assigns cohorts to
+     *            the holdout or treatment allocations for a campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -592,45 +465,36 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was created.
-     * </p>
+     * The date and time when the endpoint was created, shown in ISO 8601
+     * format.
      *
-     * @return <p>
-     *         The date and time, in ISO 8601 format, when the endpoint was
-     *         created.
-     *         </p>
+     * @return The date and time when the endpoint was created, shown in ISO
+     *         8601 format.
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was created.
-     * </p>
+     * The date and time when the endpoint was created, shown in ISO 8601
+     * format.
      *
-     * @param creationDate <p>
-     *            The date and time, in ISO 8601 format, when the endpoint was
-     *            created.
-     *            </p>
+     * @param creationDate The date and time when the endpoint was created,
+     *            shown in ISO 8601 format.
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was created.
-     * </p>
+     * The date and time when the endpoint was created, shown in ISO 8601
+     * format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate <p>
-     *            The date and time, in ISO 8601 format, when the endpoint was
-     *            created.
-     *            </p>
+     * @param creationDate The date and time when the endpoint was created,
+     *            shown in ISO 8601 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -640,48 +504,30 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The demographic information for the endpoint, such as the time zone and
-     * platform.
-     * </p>
+     * The endpoint demographic attributes.
      *
-     * @return <p>
-     *         The demographic information for the endpoint, such as the time
-     *         zone and platform.
-     *         </p>
+     * @return The endpoint demographic attributes.
      */
     public EndpointDemographic getDemographic() {
         return demographic;
     }
 
     /**
-     * <p>
-     * The demographic information for the endpoint, such as the time zone and
-     * platform.
-     * </p>
+     * The endpoint demographic attributes.
      *
-     * @param demographic <p>
-     *            The demographic information for the endpoint, such as the time
-     *            zone and platform.
-     *            </p>
+     * @param demographic The endpoint demographic attributes.
      */
     public void setDemographic(EndpointDemographic demographic) {
         this.demographic = demographic;
     }
 
     /**
-     * <p>
-     * The demographic information for the endpoint, such as the time zone and
-     * platform.
-     * </p>
+     * The endpoint demographic attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param demographic <p>
-     *            The demographic information for the endpoint, such as the time
-     *            zone and platform.
-     *            </p>
+     * @param demographic The endpoint demographic attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -691,48 +537,36 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was last
-     * updated.
-     * </p>
+     * The date and time when the endpoint was last updated, shown in ISO 8601
+     * format.
      *
-     * @return <p>
-     *         The date and time, in ISO 8601 format, when the endpoint was last
-     *         updated.
-     *         </p>
+     * @return The date and time when the endpoint was last updated, shown in
+     *         ISO 8601 format.
      */
     public String getEffectiveDate() {
         return effectiveDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was last
-     * updated.
-     * </p>
+     * The date and time when the endpoint was last updated, shown in ISO 8601
+     * format.
      *
-     * @param effectiveDate <p>
-     *            The date and time, in ISO 8601 format, when the endpoint was
-     *            last updated.
-     *            </p>
+     * @param effectiveDate The date and time when the endpoint was last
+     *            updated, shown in ISO 8601 format.
      */
     public void setEffectiveDate(String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the endpoint was last
-     * updated.
-     * </p>
+     * The date and time when the endpoint was last updated, shown in ISO 8601
+     * format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param effectiveDate <p>
-     *            The date and time, in ISO 8601 format, when the endpoint was
-     *            last updated.
-     *            </p>
+     * @param effectiveDate The date and time when the endpoint was last
+     *            updated, shown in ISO 8601 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -742,95 +576,30 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether messages or push notifications are sent to the
-     * endpoint. Possible values are: ACTIVE, messages are sent to the endpoint;
-     * and, INACTIVE, messages aren’t sent to the endpoint.
-     * </p>
-     * <p>
-     * Amazon Pinpoint automatically sets this value to ACTIVE when you create
-     * an endpoint or update an existing endpoint. Amazon Pinpoint automatically
-     * sets this value to INACTIVE if you update another endpoint that has the
-     * same address specified by the Address property.
-     * </p>
+     * Unused.
      *
-     * @return <p>
-     *         Specifies whether messages or push notifications are sent to the
-     *         endpoint. Possible values are: ACTIVE, messages are sent to the
-     *         endpoint; and, INACTIVE, messages aren’t sent to the endpoint.
-     *         </p>
-     *         <p>
-     *         Amazon Pinpoint automatically sets this value to ACTIVE when you
-     *         create an endpoint or update an existing endpoint. Amazon
-     *         Pinpoint automatically sets this value to INACTIVE if you update
-     *         another endpoint that has the same address specified by the
-     *         Address property.
-     *         </p>
+     * @return Unused.
      */
     public String getEndpointStatus() {
         return endpointStatus;
     }
 
     /**
-     * <p>
-     * Specifies whether messages or push notifications are sent to the
-     * endpoint. Possible values are: ACTIVE, messages are sent to the endpoint;
-     * and, INACTIVE, messages aren’t sent to the endpoint.
-     * </p>
-     * <p>
-     * Amazon Pinpoint automatically sets this value to ACTIVE when you create
-     * an endpoint or update an existing endpoint. Amazon Pinpoint automatically
-     * sets this value to INACTIVE if you update another endpoint that has the
-     * same address specified by the Address property.
-     * </p>
+     * Unused.
      *
-     * @param endpointStatus <p>
-     *            Specifies whether messages or push notifications are sent to
-     *            the endpoint. Possible values are: ACTIVE, messages are sent
-     *            to the endpoint; and, INACTIVE, messages aren’t sent to the
-     *            endpoint.
-     *            </p>
-     *            <p>
-     *            Amazon Pinpoint automatically sets this value to ACTIVE when
-     *            you create an endpoint or update an existing endpoint. Amazon
-     *            Pinpoint automatically sets this value to INACTIVE if you
-     *            update another endpoint that has the same address specified by
-     *            the Address property.
-     *            </p>
+     * @param endpointStatus Unused.
      */
     public void setEndpointStatus(String endpointStatus) {
         this.endpointStatus = endpointStatus;
     }
 
     /**
-     * <p>
-     * Specifies whether messages or push notifications are sent to the
-     * endpoint. Possible values are: ACTIVE, messages are sent to the endpoint;
-     * and, INACTIVE, messages aren’t sent to the endpoint.
-     * </p>
-     * <p>
-     * Amazon Pinpoint automatically sets this value to ACTIVE when you create
-     * an endpoint or update an existing endpoint. Amazon Pinpoint automatically
-     * sets this value to INACTIVE if you update another endpoint that has the
-     * same address specified by the Address property.
-     * </p>
+     * Unused.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointStatus <p>
-     *            Specifies whether messages or push notifications are sent to
-     *            the endpoint. Possible values are: ACTIVE, messages are sent
-     *            to the endpoint; and, INACTIVE, messages aren’t sent to the
-     *            endpoint.
-     *            </p>
-     *            <p>
-     *            Amazon Pinpoint automatically sets this value to ACTIVE when
-     *            you create an endpoint or update an existing endpoint. Amazon
-     *            Pinpoint automatically sets this value to INACTIVE if you
-     *            update another endpoint that has the same address specified by
-     *            the Address property.
-     *            </p>
+     * @param endpointStatus Unused.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -840,60 +609,44 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier that you assigned to the endpoint. The identifier
-     * should be a globally unique identifier (GUID) to ensure that it doesn't
-     * conflict with other endpoint identifiers that are associated with the
-     * application.
-     * </p>
+     * The unique ID that you assigned to the endpoint. The ID should be a
+     * globally unique identifier (GUID) to ensure that it doesn't conflict with
+     * other endpoint IDs associated with the application.
      *
-     * @return <p>
-     *         The unique identifier that you assigned to the endpoint. The
-     *         identifier should be a globally unique identifier (GUID) to
-     *         ensure that it doesn't conflict with other endpoint identifiers
-     *         that are associated with the application.
-     *         </p>
+     * @return The unique ID that you assigned to the endpoint. The ID should be
+     *         a globally unique identifier (GUID) to ensure that it doesn't
+     *         conflict with other endpoint IDs associated with the application.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * <p>
-     * The unique identifier that you assigned to the endpoint. The identifier
-     * should be a globally unique identifier (GUID) to ensure that it doesn't
-     * conflict with other endpoint identifiers that are associated with the
-     * application.
-     * </p>
+     * The unique ID that you assigned to the endpoint. The ID should be a
+     * globally unique identifier (GUID) to ensure that it doesn't conflict with
+     * other endpoint IDs associated with the application.
      *
-     * @param id <p>
-     *            The unique identifier that you assigned to the endpoint. The
-     *            identifier should be a globally unique identifier (GUID) to
-     *            ensure that it doesn't conflict with other endpoint
-     *            identifiers that are associated with the application.
-     *            </p>
+     * @param id The unique ID that you assigned to the endpoint. The ID should
+     *            be a globally unique identifier (GUID) to ensure that it
+     *            doesn't conflict with other endpoint IDs associated with the
+     *            application.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * <p>
-     * The unique identifier that you assigned to the endpoint. The identifier
-     * should be a globally unique identifier (GUID) to ensure that it doesn't
-     * conflict with other endpoint identifiers that are associated with the
-     * application.
-     * </p>
+     * The unique ID that you assigned to the endpoint. The ID should be a
+     * globally unique identifier (GUID) to ensure that it doesn't conflict with
+     * other endpoint IDs associated with the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id <p>
-     *            The unique identifier that you assigned to the endpoint. The
-     *            identifier should be a globally unique identifier (GUID) to
-     *            ensure that it doesn't conflict with other endpoint
-     *            identifiers that are associated with the application.
-     *            </p>
+     * @param id The unique ID that you assigned to the endpoint. The ID should
+     *            be a globally unique identifier (GUID) to ensure that it
+     *            doesn't conflict with other endpoint IDs associated with the
+     *            application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -903,42 +656,30 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The geographic information for the endpoint.
-     * </p>
+     * The endpoint location attributes.
      *
-     * @return <p>
-     *         The geographic information for the endpoint.
-     *         </p>
+     * @return The endpoint location attributes.
      */
     public EndpointLocation getLocation() {
         return location;
     }
 
     /**
-     * <p>
-     * The geographic information for the endpoint.
-     * </p>
+     * The endpoint location attributes.
      *
-     * @param location <p>
-     *            The geographic information for the endpoint.
-     *            </p>
+     * @param location The endpoint location attributes.
      */
     public void setLocation(EndpointLocation location) {
         this.location = location;
     }
 
     /**
-     * <p>
-     * The geographic information for the endpoint.
-     * </p>
+     * The endpoint location attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param location <p>
-     *            The geographic information for the endpoint.
-     *            </p>
+     * @param location The endpoint location attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -948,48 +689,30 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics that your app reports to Amazon Pinpoint for
-     * the endpoint.
-     * </p>
+     * Custom metrics that your app reports to Amazon Pinpoint.
      *
-     * @return <p>
-     *         One or more custom metrics that your app reports to Amazon
-     *         Pinpoint for the endpoint.
-     *         </p>
+     * @return Custom metrics that your app reports to Amazon Pinpoint.
      */
     public java.util.Map<String, Double> getMetrics() {
         return metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics that your app reports to Amazon Pinpoint for
-     * the endpoint.
-     * </p>
+     * Custom metrics that your app reports to Amazon Pinpoint.
      *
-     * @param metrics <p>
-     *            One or more custom metrics that your app reports to Amazon
-     *            Pinpoint for the endpoint.
-     *            </p>
+     * @param metrics Custom metrics that your app reports to Amazon Pinpoint.
      */
     public void setMetrics(java.util.Map<String, Double> metrics) {
         this.metrics = metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics that your app reports to Amazon Pinpoint for
-     * the endpoint.
-     * </p>
+     * Custom metrics that your app reports to Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param metrics <p>
-     *            One or more custom metrics that your app reports to Amazon
-     *            Pinpoint for the endpoint.
-     *            </p>
+     * @param metrics Custom metrics that your app reports to Amazon Pinpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -999,10 +722,7 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics that your app reports to Amazon Pinpoint for
-     * the endpoint.
-     * </p>
+     * Custom metrics that your app reports to Amazon Pinpoint.
      * <p>
      * The method adds a new key-value pair into Metrics parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -1036,69 +756,45 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether the user who's associated with the endpoint has opted
-     * out of receiving messages and push notifications from you. Possible
-     * values are: ALL, the user has opted out and doesn't want to receive any
-     * messages or push notifications; and, NONE, the user hasn't opted out and
-     * wants to receive all messages and push notifications.
-     * </p>
+     * Indicates whether a user has opted out of receiving messages with one of
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      *
-     * @return <p>
-     *         Specifies whether the user who's associated with the endpoint has
-     *         opted out of receiving messages and push notifications from you.
-     *         Possible values are: ALL, the user has opted out and doesn't want
-     *         to receive any messages or push notifications; and, NONE, the
-     *         user hasn't opted out and wants to receive all messages and push
-     *         notifications.
-     *         </p>
+     * @return Indicates whether a user has opted out of receiving messages with
+     *         one of the following values: ALL - User has opted out of all
+     *         messages. NONE - Users has not opted out and receives all
+     *         messages.
      */
     public String getOptOut() {
         return optOut;
     }
 
     /**
-     * <p>
-     * Specifies whether the user who's associated with the endpoint has opted
-     * out of receiving messages and push notifications from you. Possible
-     * values are: ALL, the user has opted out and doesn't want to receive any
-     * messages or push notifications; and, NONE, the user hasn't opted out and
-     * wants to receive all messages and push notifications.
-     * </p>
+     * Indicates whether a user has opted out of receiving messages with one of
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      *
-     * @param optOut <p>
-     *            Specifies whether the user who's associated with the endpoint
-     *            has opted out of receiving messages and push notifications
-     *            from you. Possible values are: ALL, the user has opted out and
-     *            doesn't want to receive any messages or push notifications;
-     *            and, NONE, the user hasn't opted out and wants to receive all
-     *            messages and push notifications.
-     *            </p>
+     * @param optOut Indicates whether a user has opted out of receiving
+     *            messages with one of the following values: ALL - User has
+     *            opted out of all messages. NONE - Users has not opted out and
+     *            receives all messages.
      */
     public void setOptOut(String optOut) {
         this.optOut = optOut;
     }
 
     /**
-     * <p>
-     * Specifies whether the user who's associated with the endpoint has opted
-     * out of receiving messages and push notifications from you. Possible
-     * values are: ALL, the user has opted out and doesn't want to receive any
-     * messages or push notifications; and, NONE, the user hasn't opted out and
-     * wants to receive all messages and push notifications.
-     * </p>
+     * Indicates whether a user has opted out of receiving messages with one of
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param optOut <p>
-     *            Specifies whether the user who's associated with the endpoint
-     *            has opted out of receiving messages and push notifications
-     *            from you. Possible values are: ALL, the user has opted out and
-     *            doesn't want to receive any messages or push notifications;
-     *            and, NONE, the user hasn't opted out and wants to receive all
-     *            messages and push notifications.
-     *            </p>
+     * @param optOut Indicates whether a user has opted out of receiving
+     *            messages with one of the following values: ALL - User has
+     *            opted out of all messages. NONE - Users has not opted out and
+     *            receives all messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1108,45 +804,32 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier for the most recent request to update the endpoint.
-     * </p>
+     * The unique ID for the most recent request to update the endpoint.
      *
-     * @return <p>
-     *         The unique identifier for the most recent request to update the
-     *         endpoint.
-     *         </p>
+     * @return The unique ID for the most recent request to update the endpoint.
      */
     public String getRequestId() {
         return requestId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the most recent request to update the endpoint.
-     * </p>
+     * The unique ID for the most recent request to update the endpoint.
      *
-     * @param requestId <p>
-     *            The unique identifier for the most recent request to update
-     *            the endpoint.
-     *            </p>
+     * @param requestId The unique ID for the most recent request to update the
+     *            endpoint.
      */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the most recent request to update the endpoint.
-     * </p>
+     * The unique ID for the most recent request to update the endpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param requestId <p>
-     *            The unique identifier for the most recent request to update
-     *            the endpoint.
-     *            </p>
+     * @param requestId The unique ID for the most recent request to update the
+     *            endpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1156,50 +839,33 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom user attributes that your app reports to Amazon
-     * Pinpoint for the user who's associated with the endpoint.
-     * </p>
+     * Custom user-specific attributes that your app reports to Amazon Pinpoint.
      *
-     * @return <p>
-     *         One or more custom user attributes that your app reports to
-     *         Amazon Pinpoint for the user who's associated with the endpoint.
-     *         </p>
+     * @return Custom user-specific attributes that your app reports to Amazon
+     *         Pinpoint.
      */
     public EndpointUser getUser() {
         return user;
     }
 
     /**
-     * <p>
-     * One or more custom user attributes that your app reports to Amazon
-     * Pinpoint for the user who's associated with the endpoint.
-     * </p>
+     * Custom user-specific attributes that your app reports to Amazon Pinpoint.
      *
-     * @param user <p>
-     *            One or more custom user attributes that your app reports to
-     *            Amazon Pinpoint for the user who's associated with the
-     *            endpoint.
-     *            </p>
+     * @param user Custom user-specific attributes that your app reports to
+     *            Amazon Pinpoint.
      */
     public void setUser(EndpointUser user) {
         this.user = user;
     }
 
     /**
-     * <p>
-     * One or more custom user attributes that your app reports to Amazon
-     * Pinpoint for the user who's associated with the endpoint.
-     * </p>
+     * Custom user-specific attributes that your app reports to Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param user <p>
-     *            One or more custom user attributes that your app reports to
-     *            Amazon Pinpoint for the user who's associated with the
-     *            endpoint.
-     *            </p>
+     * @param user Custom user-specific attributes that your app reports to
+     *            Amazon Pinpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates and sends a message to a list of users.
- * </p>
+ * Used to send a message to a list of users.
  */
 public class SendUsersMessagesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a message to send to
-     * all the endpoints that are associated with a list of users.
-     * </p>
+     * Send message request.
      */
     private SendUsersMessageRequest sendUsersMessageRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,51 +67,30 @@ public class SendUsersMessagesRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a message to send to
-     * all the endpoints that are associated with a list of users.
-     * </p>
+     * Send message request.
      *
-     * @return <p>
-     *         Specifies the configuration and other settings for a message to
-     *         send to all the endpoints that are associated with a list of
-     *         users.
-     *         </p>
+     * @return Send message request.
      */
     public SendUsersMessageRequest getSendUsersMessageRequest() {
         return sendUsersMessageRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a message to send to
-     * all the endpoints that are associated with a list of users.
-     * </p>
+     * Send message request.
      *
-     * @param sendUsersMessageRequest <p>
-     *            Specifies the configuration and other settings for a message
-     *            to send to all the endpoints that are associated with a list
-     *            of users.
-     *            </p>
+     * @param sendUsersMessageRequest Send message request.
      */
     public void setSendUsersMessageRequest(SendUsersMessageRequest sendUsersMessageRequest) {
         this.sendUsersMessageRequest = sendUsersMessageRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration and other settings for a message to send to
-     * all the endpoints that are associated with a list of users.
-     * </p>
+     * Send message request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sendUsersMessageRequest <p>
-     *            Specifies the configuration and other settings for a message
-     *            to send to all the endpoints that are associated with a list
-     *            of users.
-     *            </p>
+     * @param sendUsersMessageRequest Send message request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

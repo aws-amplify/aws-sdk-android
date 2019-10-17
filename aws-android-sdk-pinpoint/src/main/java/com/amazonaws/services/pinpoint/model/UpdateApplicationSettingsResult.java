@@ -19,38 +19,23 @@ import java.io.Serializable;
 
 public class UpdateApplicationSettingsResult implements Serializable {
     /**
-     * <p>
-     * Provides information about an application, including the default settings
-     * for an application.
-     * </p>
+     * Application settings.
      */
     private ApplicationSettingsResource applicationSettingsResource;
 
     /**
-     * <p>
-     * Provides information about an application, including the default settings
-     * for an application.
-     * </p>
+     * Application settings.
      *
-     * @return <p>
-     *         Provides information about an application, including the default
-     *         settings for an application.
-     *         </p>
+     * @return Application settings.
      */
     public ApplicationSettingsResource getApplicationSettingsResource() {
         return applicationSettingsResource;
     }
 
     /**
-     * <p>
-     * Provides information about an application, including the default settings
-     * for an application.
-     * </p>
+     * Application settings.
      *
-     * @param applicationSettingsResource <p>
-     *            Provides information about an application, including the
-     *            default settings for an application.
-     *            </p>
+     * @param applicationSettingsResource Application settings.
      */
     public void setApplicationSettingsResource(
             ApplicationSettingsResource applicationSettingsResource) {
@@ -58,18 +43,12 @@ public class UpdateApplicationSettingsResult implements Serializable {
     }
 
     /**
-     * <p>
-     * Provides information about an application, including the default settings
-     * for an application.
-     * </p>
+     * Application settings.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationSettingsResource <p>
-     *            Provides information about an application, including the
-     *            default settings for an application.
-     *            </p>
+     * @param applicationSettingsResource Application settings.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

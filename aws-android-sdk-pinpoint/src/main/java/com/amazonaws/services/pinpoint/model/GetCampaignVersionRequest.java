@@ -20,80 +20,49 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Retrieves information about the status, configuration, and other settings for
- * a specific version of a campaign.
- * </p>
+ * Returns information about a specific version of a campaign.
  */
 public class GetCampaignVersionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The unique identifier for the campaign.
-     * </p>
+     * The unique ID of the campaign.
      */
     private String campaignId;
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The version of the campaign.
      */
     private String version;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,42 +72,30 @@ public class GetCampaignVersionRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * <p>
-     * The unique identifier for the campaign.
-     * </p>
+     * The unique ID of the campaign.
      *
-     * @return <p>
-     *         The unique identifier for the campaign.
-     *         </p>
+     * @return The unique ID of the campaign.
      */
     public String getCampaignId() {
         return campaignId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the campaign.
-     * </p>
+     * The unique ID of the campaign.
      *
-     * @param campaignId <p>
-     *            The unique identifier for the campaign.
-     *            </p>
+     * @param campaignId The unique ID of the campaign.
      */
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the campaign.
-     * </p>
+     * The unique ID of the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignId <p>
-     *            The unique identifier for the campaign.
-     *            </p>
+     * @param campaignId The unique ID of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -148,45 +105,30 @@ public class GetCampaignVersionRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The version of the campaign.
      *
-     * @return <p>
-     *         The unique version number (Version property) for the campaign
-     *         version.
-     *         </p>
+     * @return The version of the campaign.
      */
     public String getVersion() {
         return version;
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The version of the campaign.
      *
-     * @param version <p>
-     *            The unique version number (Version property) for the campaign
-     *            version.
-     *            </p>
+     * @param version The version of the campaign.
      */
     public void setVersion(String version) {
         this.version = version;
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The version of the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version <p>
-     *            The unique version number (Version property) for the campaign
-     *            version.
-     *            </p>
+     * @param version The version of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

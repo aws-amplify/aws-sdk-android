@@ -29,20 +29,6 @@ public class DeleteEndpointResultJsonUnmarshaller implements
     public DeleteEndpointResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteEndpointResult deleteEndpointResult = new DeleteEndpointResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("EndpointResponse")) {
-                deleteEndpointResult.setEndpointResponse(EndpointResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteEndpointResult;
     }
 

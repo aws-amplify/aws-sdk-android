@@ -41,19 +41,6 @@ class WriteSegmentRequestJsonMarshaller {
             jsonWriter.name("SegmentGroups");
             SegmentGroupListJsonMarshaller.getInstance().marshall(segmentGroups, jsonWriter);
         }
-        if (writeSegmentRequest.getTags() != null) {
-            java.util.Map<String, String> tags = writeSegmentRequest.getTags();
-            jsonWriter.name("tags");
-            jsonWriter.beginObject();
-            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
-                String tagsValue = tagsEntry.getValue();
-                if (tagsValue != null) {
-                    jsonWriter.name(tagsEntry.getKey());
-                    jsonWriter.value(tagsValue);
-                }
-            }
-            jsonWriter.endObject();
-        }
         jsonWriter.endObject();
     }
 

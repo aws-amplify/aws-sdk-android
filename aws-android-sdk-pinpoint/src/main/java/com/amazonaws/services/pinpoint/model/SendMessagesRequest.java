@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates and sends a direct message.
- * </p>
+ * Used to send a direct message.
  */
 public class SendMessagesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the objects that define configuration and other settings for a
-     * message.
-     * </p>
+     * Send message request.
      */
     private MessageRequest messageRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,48 +67,30 @@ public class SendMessagesRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * <p>
-     * Specifies the objects that define configuration and other settings for a
-     * message.
-     * </p>
+     * Send message request.
      *
-     * @return <p>
-     *         Specifies the objects that define configuration and other
-     *         settings for a message.
-     *         </p>
+     * @return Send message request.
      */
     public MessageRequest getMessageRequest() {
         return messageRequest;
     }
 
     /**
-     * <p>
-     * Specifies the objects that define configuration and other settings for a
-     * message.
-     * </p>
+     * Send message request.
      *
-     * @param messageRequest <p>
-     *            Specifies the objects that define configuration and other
-     *            settings for a message.
-     *            </p>
+     * @param messageRequest Send message request.
      */
     public void setMessageRequest(MessageRequest messageRequest) {
         this.messageRequest = messageRequest;
     }
 
     /**
-     * <p>
-     * Specifies the objects that define configuration and other settings for a
-     * message.
-     * </p>
+     * Send message request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageRequest <p>
-     *            Specifies the objects that define configuration and other
-     *            settings for a message.
-     *            </p>
+     * @param messageRequest Send message request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -19,56 +19,37 @@ import java.io.Serializable;
 
 public class GetApnsChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) channel for an application.
-     * </p>
+     * Apple Distribution Push Notification Service channel definition.
      */
     private APNSChannelResponse aPNSChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) channel for an application.
-     * </p>
+     * Apple Distribution Push Notification Service channel definition.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the APNs
-     *         (Apple Push Notification service) channel for an application.
-     *         </p>
+     * @return Apple Distribution Push Notification Service channel definition.
      */
     public APNSChannelResponse getAPNSChannelResponse() {
         return aPNSChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) channel for an application.
-     * </p>
+     * Apple Distribution Push Notification Service channel definition.
      *
-     * @param aPNSChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) channel for an application.
-     *            </p>
+     * @param aPNSChannelResponse Apple Distribution Push Notification Service
+     *            channel definition.
      */
     public void setAPNSChannelResponse(APNSChannelResponse aPNSChannelResponse) {
         this.aPNSChannelResponse = aPNSChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the APNs (Apple
-     * Push Notification service) channel for an application.
-     * </p>
+     * Apple Distribution Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSChannelResponse <p>
-     *            Provides information about the status and settings of the APNs
-     *            (Apple Push Notification service) channel for an application.
-     *            </p>
+     * @param aPNSChannelResponse Apple Distribution Push Notification Service
+     *            channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

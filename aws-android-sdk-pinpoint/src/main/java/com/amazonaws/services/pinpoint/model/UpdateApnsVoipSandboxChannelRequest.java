@@ -20,54 +20,35 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Enables the APNs VoIP sandbox channel for an application or updates the
- * status and settings of the APNs VoIP sandbox channel for an application.
- * </p>
+ * Update an APNS VoIP sandbox channel
  */
 public class UpdateApnsVoipSandboxChannelRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
-     * <p>
-     * Specifies the status and settings of the APNs (Apple Push Notification
-     * service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      */
     private APNSVoipSandboxChannelRequest aPNSVoipSandboxChannelRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the status and settings of the APNs (Apple Push Notification
-     * service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      *
-     * @return <p>
-     *         Specifies the status and settings of the APNs (Apple Push
-     *         Notification service) VoIP sandbox channel for an application.
-     *         </p>
+     * @return Apple VoIP Developer Push Notification Service channel
+     *         definition.
      */
     public APNSVoipSandboxChannelRequest getAPNSVoipSandboxChannelRequest() {
         return aPNSVoipSandboxChannelRequest;
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the APNs (Apple Push Notification
-     * service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      *
-     * @param aPNSVoipSandboxChannelRequest <p>
-     *            Specifies the status and settings of the APNs (Apple Push
-     *            Notification service) VoIP sandbox channel for an application.
-     *            </p>
+     * @param aPNSVoipSandboxChannelRequest Apple VoIP Developer Push
+     *            Notification Service channel definition.
      */
     public void setAPNSVoipSandboxChannelRequest(
             APNSVoipSandboxChannelRequest aPNSVoipSandboxChannelRequest) {
@@ -75,18 +56,13 @@ public class UpdateApnsVoipSandboxChannelRequest extends AmazonWebServiceRequest
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the APNs (Apple Push Notification
-     * service) VoIP sandbox channel for an application.
-     * </p>
+     * Apple VoIP Developer Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSVoipSandboxChannelRequest <p>
-     *            Specifies the status and settings of the APNs (Apple Push
-     *            Notification service) VoIP sandbox channel for an application.
-     *            </p>
+     * @param aPNSVoipSandboxChannelRequest Apple VoIP Developer Push
+     *            Notification Service channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,51 +73,30 @@ public class UpdateApnsVoipSandboxChannelRequest extends AmazonWebServiceRequest
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

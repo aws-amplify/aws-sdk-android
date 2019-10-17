@@ -30,21 +30,6 @@ public class UpdateApnsSandboxChannelResultJsonUnmarshaller implements
             throws Exception {
         UpdateApnsSandboxChannelResult updateApnsSandboxChannelResult = new UpdateApnsSandboxChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSSandboxChannelResponse")) {
-                updateApnsSandboxChannelResult
-                        .setAPNSSandboxChannelResponse(APNSSandboxChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateApnsSandboxChannelResult;
     }
 

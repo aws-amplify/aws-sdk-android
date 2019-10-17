@@ -29,20 +29,6 @@ public class GetCampaignVersionsResultJsonUnmarshaller implements
     public GetCampaignVersionsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetCampaignVersionsResult getCampaignVersionsResult = new GetCampaignVersionsResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("CampaignsResponse")) {
-                getCampaignVersionsResult.setCampaignsResponse(CampaignsResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getCampaignVersionsResult;
     }
 

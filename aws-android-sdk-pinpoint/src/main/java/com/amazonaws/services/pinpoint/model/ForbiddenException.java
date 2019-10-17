@@ -18,17 +18,13 @@ package com.amazonaws.services.pinpoint.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * <p>
- * Provides information about an API request or response.
- * </p>
+ * Simple message object.
  */
 public class ForbiddenException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      */
     private String requestID;
 
@@ -42,26 +38,18 @@ public class ForbiddenException extends AmazonServiceException {
     }
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      *
-     * @return <p>
-     *         The unique identifier for the request or response.
-     *         </p>
+     * @return The unique message body ID.
      */
     public String getRequestID() {
         return requestID;
     }
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      *
-     * @param requestID <p>
-     *            The unique identifier for the request or response.
-     *            </p>
+     * @param requestID The unique message body ID.
      */
     public void setRequestID(String requestID) {
         this.requestID = requestID;

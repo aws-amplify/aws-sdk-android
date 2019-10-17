@@ -20,77 +20,47 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Retrieves information about all of your applications.
- * </p>
+ * Returns information about your apps.
  */
 public class GetAppsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The maximum number of items to include in each page of a paginated
-     * response. This parameter is currently not supported by the Application
-     * Metrics and Campaign Metrics resources.
-     * </p>
+     * The number of entries you want on each page in the response.
      */
     private String pageSize;
 
     /**
-     * <p>
-     * The NextToken string that specifies which page of results to return in a
-     * paginated response.
-     * </p>
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      */
     private String token;
 
     /**
-     * <p>
-     * The maximum number of items to include in each page of a paginated
-     * response. This parameter is currently not supported by the Application
-     * Metrics and Campaign Metrics resources.
-     * </p>
+     * The number of entries you want on each page in the response.
      *
-     * @return <p>
-     *         The maximum number of items to include in each page of a
-     *         paginated response. This parameter is currently not supported by
-     *         the Application Metrics and Campaign Metrics resources.
-     *         </p>
+     * @return The number of entries you want on each page in the response.
      */
     public String getPageSize() {
         return pageSize;
     }
 
     /**
-     * <p>
-     * The maximum number of items to include in each page of a paginated
-     * response. This parameter is currently not supported by the Application
-     * Metrics and Campaign Metrics resources.
-     * </p>
+     * The number of entries you want on each page in the response.
      *
-     * @param pageSize <p>
-     *            The maximum number of items to include in each page of a
-     *            paginated response. This parameter is currently not supported
-     *            by the Application Metrics and Campaign Metrics resources.
-     *            </p>
+     * @param pageSize The number of entries you want on each page in the
+     *            response.
      */
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
     }
 
     /**
-     * <p>
-     * The maximum number of items to include in each page of a paginated
-     * response. This parameter is currently not supported by the Application
-     * Metrics and Campaign Metrics resources.
-     * </p>
+     * The number of entries you want on each page in the response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param pageSize <p>
-     *            The maximum number of items to include in each page of a
-     *            paginated response. This parameter is currently not supported
-     *            by the Application Metrics and Campaign Metrics resources.
-     *            </p>
+     * @param pageSize The number of entries you want on each page in the
+     *            response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -100,48 +70,36 @@ public class GetAppsRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * <p>
-     * The NextToken string that specifies which page of results to return in a
-     * paginated response.
-     * </p>
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      *
-     * @return <p>
-     *         The NextToken string that specifies which page of results to
-     *         return in a paginated response.
-     *         </p>
+     * @return The NextToken string returned on a previous page that you use to
+     *         get the next page of results in a paginated response.
      */
     public String getToken() {
         return token;
     }
 
     /**
-     * <p>
-     * The NextToken string that specifies which page of results to return in a
-     * paginated response.
-     * </p>
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      *
-     * @param token <p>
-     *            The NextToken string that specifies which page of results to
-     *            return in a paginated response.
-     *            </p>
+     * @param token The NextToken string returned on a previous page that you
+     *            use to get the next page of results in a paginated response.
      */
     public void setToken(String token) {
         this.token = token;
     }
 
     /**
-     * <p>
-     * The NextToken string that specifies which page of results to return in a
-     * paginated response.
-     * </p>
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param token <p>
-     *            The NextToken string that specifies which page of results to
-     *            return in a paginated response.
-     *            </p>
+     * @param token The NextToken string returned on a previous page that you
+     *            use to get the next page of results in a paginated response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

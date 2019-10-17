@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Enables the SMS channel for an application or updates the status and settings
- * of the SMS channel for an application.
- * </p>
+ * Update an SMS channel.
  */
 public class UpdateSmsChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the status and settings of the SMS channel for an application.
-     * </p>
+     * SMS Channel Request
      */
     private SMSChannelRequest sMSChannelRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,45 +67,30 @@ public class UpdateSmsChannelRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the SMS channel for an application.
-     * </p>
+     * SMS Channel Request
      *
-     * @return <p>
-     *         Specifies the status and settings of the SMS channel for an
-     *         application.
-     *         </p>
+     * @return SMS Channel Request
      */
     public SMSChannelRequest getSMSChannelRequest() {
         return sMSChannelRequest;
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the SMS channel for an application.
-     * </p>
+     * SMS Channel Request
      *
-     * @param sMSChannelRequest <p>
-     *            Specifies the status and settings of the SMS channel for an
-     *            application.
-     *            </p>
+     * @param sMSChannelRequest SMS Channel Request
      */
     public void setSMSChannelRequest(SMSChannelRequest sMSChannelRequest) {
         this.sMSChannelRequest = sMSChannelRequest;
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the SMS channel for an application.
-     * </p>
+     * SMS Channel Request
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sMSChannelRequest <p>
-     *            Specifies the status and settings of the SMS channel for an
-     *            application.
-     *            </p>
+     * @param sMSChannelRequest SMS Channel Request
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

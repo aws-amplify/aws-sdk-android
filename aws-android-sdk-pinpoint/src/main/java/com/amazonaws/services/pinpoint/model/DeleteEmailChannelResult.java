@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class DeleteEmailChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the email channel
-     * for an application.
-     * </p>
+     * Email Channel Response.
      */
     private EmailChannelResponse emailChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the email channel
-     * for an application.
-     * </p>
+     * Email Channel Response.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the email
-     *         channel for an application.
-     *         </p>
+     * @return Email Channel Response.
      */
     public EmailChannelResponse getEmailChannelResponse() {
         return emailChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the email channel
-     * for an application.
-     * </p>
+     * Email Channel Response.
      *
-     * @param emailChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            email channel for an application.
-     *            </p>
+     * @param emailChannelResponse Email Channel Response.
      */
     public void setEmailChannelResponse(EmailChannelResponse emailChannelResponse) {
         this.emailChannelResponse = emailChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the email channel
-     * for an application.
-     * </p>
+     * Email Channel Response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param emailChannelResponse <p>
-     *            Provides information about the status and settings of the
-     *            email channel for an application.
-     *            </p>
+     * @param emailChannelResponse Email Channel Response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
