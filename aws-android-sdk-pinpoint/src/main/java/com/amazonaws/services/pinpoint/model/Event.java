@@ -18,118 +18,88 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies information about an event that reports data to Amazon Pinpoint.
- * </p>
+ * Model for creating or updating events.
  */
 public class Event implements Serializable {
     /**
-     * <p>
-     * The package name of the app that's recording the event.
-     * </p>
+     * The package name associated with the app that's recording the event.
      */
     private String appPackageName;
 
     /**
-     * <p>
      * The title of the app that's recording the event.
-     * </p>
      */
     private String appTitle;
 
     /**
-     * <p>
      * The version number of the app that's recording the event.
-     * </p>
      */
     private String appVersionCode;
 
     /**
-     * <p>
-     * One or more custom attributes that are associated with the event.
-     * </p>
+     * Custom attributes that are associated with the event you're adding or
+     * updating.
      */
     private java.util.Map<String, String> attributes;
 
     /**
-     * <p>
      * The version of the SDK that's running on the client device.
-     * </p>
      */
     private String clientSdkVersion;
 
     /**
-     * <p>
-     * The name of the event.
-     * </p>
+     * The name of the custom event that you're recording.
      */
     private String eventType;
 
     /**
-     * <p>
-     * One or more custom metrics that are associated with the event.
-     * </p>
+     * Custom metrics related to the event.
      */
     private java.util.Map<String, Double> metrics;
 
     /**
-     * <p>
      * The name of the SDK that's being used to record the event.
-     * </p>
      */
     private String sdkName;
 
     /**
-     * <p>
      * Information about the session in which the event occurred.
-     * </p>
      */
     private Session session;
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the event occurred.
-     * </p>
+     * The date and time when the event occurred, in ISO 8601 format.
      */
     private String timestamp;
 
     /**
-     * <p>
-     * The package name of the app that's recording the event.
-     * </p>
+     * The package name associated with the app that's recording the event.
      *
-     * @return <p>
-     *         The package name of the app that's recording the event.
-     *         </p>
+     * @return The package name associated with the app that's recording the
+     *         event.
      */
     public String getAppPackageName() {
         return appPackageName;
     }
 
     /**
-     * <p>
-     * The package name of the app that's recording the event.
-     * </p>
+     * The package name associated with the app that's recording the event.
      *
-     * @param appPackageName <p>
-     *            The package name of the app that's recording the event.
-     *            </p>
+     * @param appPackageName The package name associated with the app that's
+     *            recording the event.
      */
     public void setAppPackageName(String appPackageName) {
         this.appPackageName = appPackageName;
     }
 
     /**
-     * <p>
-     * The package name of the app that's recording the event.
-     * </p>
+     * The package name associated with the app that's recording the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appPackageName <p>
-     *            The package name of the app that's recording the event.
-     *            </p>
+     * @param appPackageName The package name associated with the app that's
+     *            recording the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -139,42 +109,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
      * The title of the app that's recording the event.
-     * </p>
      *
-     * @return <p>
-     *         The title of the app that's recording the event.
-     *         </p>
+     * @return The title of the app that's recording the event.
      */
     public String getAppTitle() {
         return appTitle;
     }
 
     /**
-     * <p>
      * The title of the app that's recording the event.
-     * </p>
      *
-     * @param appTitle <p>
-     *            The title of the app that's recording the event.
-     *            </p>
+     * @param appTitle The title of the app that's recording the event.
      */
     public void setAppTitle(String appTitle) {
         this.appTitle = appTitle;
     }
 
     /**
-     * <p>
      * The title of the app that's recording the event.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appTitle <p>
-     *            The title of the app that's recording the event.
-     *            </p>
+     * @param appTitle The title of the app that's recording the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -184,42 +142,32 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
      * The version number of the app that's recording the event.
-     * </p>
      *
-     * @return <p>
-     *         The version number of the app that's recording the event.
-     *         </p>
+     * @return The version number of the app that's recording the event.
      */
     public String getAppVersionCode() {
         return appVersionCode;
     }
 
     /**
-     * <p>
      * The version number of the app that's recording the event.
-     * </p>
      *
-     * @param appVersionCode <p>
-     *            The version number of the app that's recording the event.
-     *            </p>
+     * @param appVersionCode The version number of the app that's recording the
+     *            event.
      */
     public void setAppVersionCode(String appVersionCode) {
         this.appVersionCode = appVersionCode;
     }
 
     /**
-     * <p>
      * The version number of the app that's recording the event.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param appVersionCode <p>
-     *            The version number of the app that's recording the event.
-     *            </p>
+     * @param appVersionCode The version number of the app that's recording the
+     *            event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -229,44 +177,36 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom attributes that are associated with the event.
-     * </p>
+     * Custom attributes that are associated with the event you're adding or
+     * updating.
      *
-     * @return <p>
-     *         One or more custom attributes that are associated with the event.
-     *         </p>
+     * @return Custom attributes that are associated with the event you're
+     *         adding or updating.
      */
     public java.util.Map<String, String> getAttributes() {
         return attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes that are associated with the event.
-     * </p>
+     * Custom attributes that are associated with the event you're adding or
+     * updating.
      *
-     * @param attributes <p>
-     *            One or more custom attributes that are associated with the
-     *            event.
-     *            </p>
+     * @param attributes Custom attributes that are associated with the event
+     *            you're adding or updating.
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
         this.attributes = attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes that are associated with the event.
-     * </p>
+     * Custom attributes that are associated with the event you're adding or
+     * updating.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributes <p>
-     *            One or more custom attributes that are associated with the
-     *            event.
-     *            </p>
+     * @param attributes Custom attributes that are associated with the event
+     *            you're adding or updating.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -276,9 +216,8 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom attributes that are associated with the event.
-     * </p>
+     * Custom attributes that are associated with the event you're adding or
+     * updating.
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -313,42 +252,32 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
      * The version of the SDK that's running on the client device.
-     * </p>
      *
-     * @return <p>
-     *         The version of the SDK that's running on the client device.
-     *         </p>
+     * @return The version of the SDK that's running on the client device.
      */
     public String getClientSdkVersion() {
         return clientSdkVersion;
     }
 
     /**
-     * <p>
      * The version of the SDK that's running on the client device.
-     * </p>
      *
-     * @param clientSdkVersion <p>
-     *            The version of the SDK that's running on the client device.
-     *            </p>
+     * @param clientSdkVersion The version of the SDK that's running on the
+     *            client device.
      */
     public void setClientSdkVersion(String clientSdkVersion) {
         this.clientSdkVersion = clientSdkVersion;
     }
 
     /**
-     * <p>
      * The version of the SDK that's running on the client device.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientSdkVersion <p>
-     *            The version of the SDK that's running on the client device.
-     *            </p>
+     * @param clientSdkVersion The version of the SDK that's running on the
+     *            client device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -358,42 +287,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * The name of the event.
-     * </p>
+     * The name of the custom event that you're recording.
      *
-     * @return <p>
-     *         The name of the event.
-     *         </p>
+     * @return The name of the custom event that you're recording.
      */
     public String getEventType() {
         return eventType;
     }
 
     /**
-     * <p>
-     * The name of the event.
-     * </p>
+     * The name of the custom event that you're recording.
      *
-     * @param eventType <p>
-     *            The name of the event.
-     *            </p>
+     * @param eventType The name of the custom event that you're recording.
      */
     public void setEventType(String eventType) {
         this.eventType = eventType;
     }
 
     /**
-     * <p>
-     * The name of the event.
-     * </p>
+     * The name of the custom event that you're recording.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventType <p>
-     *            The name of the event.
-     *            </p>
+     * @param eventType The name of the custom event that you're recording.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -403,42 +320,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics that are associated with the event.
-     * </p>
+     * Custom metrics related to the event.
      *
-     * @return <p>
-     *         One or more custom metrics that are associated with the event.
-     *         </p>
+     * @return Custom metrics related to the event.
      */
     public java.util.Map<String, Double> getMetrics() {
         return metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics that are associated with the event.
-     * </p>
+     * Custom metrics related to the event.
      *
-     * @param metrics <p>
-     *            One or more custom metrics that are associated with the event.
-     *            </p>
+     * @param metrics Custom metrics related to the event.
      */
     public void setMetrics(java.util.Map<String, Double> metrics) {
         this.metrics = metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics that are associated with the event.
-     * </p>
+     * Custom metrics related to the event.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param metrics <p>
-     *            One or more custom metrics that are associated with the event.
-     *            </p>
+     * @param metrics Custom metrics related to the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -448,9 +353,7 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics that are associated with the event.
-     * </p>
+     * Custom metrics related to the event.
      * <p>
      * The method adds a new key-value pair into Metrics parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -484,42 +387,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
      * The name of the SDK that's being used to record the event.
-     * </p>
      *
-     * @return <p>
-     *         The name of the SDK that's being used to record the event.
-     *         </p>
+     * @return The name of the SDK that's being used to record the event.
      */
     public String getSdkName() {
         return sdkName;
     }
 
     /**
-     * <p>
      * The name of the SDK that's being used to record the event.
-     * </p>
      *
-     * @param sdkName <p>
-     *            The name of the SDK that's being used to record the event.
-     *            </p>
+     * @param sdkName The name of the SDK that's being used to record the event.
      */
     public void setSdkName(String sdkName) {
         this.sdkName = sdkName;
     }
 
     /**
-     * <p>
      * The name of the SDK that's being used to record the event.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sdkName <p>
-     *            The name of the SDK that's being used to record the event.
-     *            </p>
+     * @param sdkName The name of the SDK that's being used to record the event.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -529,42 +420,30 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
      * Information about the session in which the event occurred.
-     * </p>
      *
-     * @return <p>
-     *         Information about the session in which the event occurred.
-     *         </p>
+     * @return Information about the session in which the event occurred.
      */
     public Session getSession() {
         return session;
     }
 
     /**
-     * <p>
      * Information about the session in which the event occurred.
-     * </p>
      *
-     * @param session <p>
-     *            Information about the session in which the event occurred.
-     *            </p>
+     * @param session Information about the session in which the event occurred.
      */
     public void setSession(Session session) {
         this.session = session;
     }
 
     /**
-     * <p>
      * Information about the session in which the event occurred.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param session <p>
-     *            Information about the session in which the event occurred.
-     *            </p>
+     * @param session Information about the session in which the event occurred.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -574,44 +453,32 @@ public class Event implements Serializable {
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the event occurred.
-     * </p>
+     * The date and time when the event occurred, in ISO 8601 format.
      *
-     * @return <p>
-     *         The date and time, in ISO 8601 format, when the event occurred.
-     *         </p>
+     * @return The date and time when the event occurred, in ISO 8601 format.
      */
     public String getTimestamp() {
         return timestamp;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the event occurred.
-     * </p>
+     * The date and time when the event occurred, in ISO 8601 format.
      *
-     * @param timestamp <p>
-     *            The date and time, in ISO 8601 format, when the event
-     *            occurred.
-     *            </p>
+     * @param timestamp The date and time when the event occurred, in ISO 8601
+     *            format.
      */
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the event occurred.
-     * </p>
+     * The date and time when the event occurred, in ISO 8601 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param timestamp <p>
-     *            The date and time, in ISO 8601 format, when the event
-     *            occurred.
-     *            </p>
+     * @param timestamp The date and time when the event occurred, in ISO 8601
+     *            format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

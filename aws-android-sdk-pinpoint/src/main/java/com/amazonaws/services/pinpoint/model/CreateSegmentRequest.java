@@ -20,76 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates a new segment for an application or updates the configuration,
- * dimension, and other settings for an existing segment that's associated with
- * an application.
- * </p>
+ * Used to create or update a segment.
  */
 public class CreateSegmentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the configuration, dimension, and other settings for a segment.
-     * A WriteSegmentRequest object can include a Dimensions object or a
-     * SegmentGroups object, but not both.
-     * </p>
+     * Segment definition.
      */
     private WriteSegmentRequest writeSegmentRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -99,54 +67,30 @@ public class CreateSegmentRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
-     * <p>
-     * Specifies the configuration, dimension, and other settings for a segment.
-     * A WriteSegmentRequest object can include a Dimensions object or a
-     * SegmentGroups object, but not both.
-     * </p>
+     * Segment definition.
      *
-     * @return <p>
-     *         Specifies the configuration, dimension, and other settings for a
-     *         segment. A WriteSegmentRequest object can include a Dimensions
-     *         object or a SegmentGroups object, but not both.
-     *         </p>
+     * @return Segment definition.
      */
     public WriteSegmentRequest getWriteSegmentRequest() {
         return writeSegmentRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration, dimension, and other settings for a segment.
-     * A WriteSegmentRequest object can include a Dimensions object or a
-     * SegmentGroups object, but not both.
-     * </p>
+     * Segment definition.
      *
-     * @param writeSegmentRequest <p>
-     *            Specifies the configuration, dimension, and other settings for
-     *            a segment. A WriteSegmentRequest object can include a
-     *            Dimensions object or a SegmentGroups object, but not both.
-     *            </p>
+     * @param writeSegmentRequest Segment definition.
      */
     public void setWriteSegmentRequest(WriteSegmentRequest writeSegmentRequest) {
         this.writeSegmentRequest = writeSegmentRequest;
     }
 
     /**
-     * <p>
-     * Specifies the configuration, dimension, and other settings for a segment.
-     * A WriteSegmentRequest object can include a Dimensions object or a
-     * SegmentGroups object, but not both.
-     * </p>
+     * Segment definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeSegmentRequest <p>
-     *            Specifies the configuration, dimension, and other settings for
-     *            a segment. A WriteSegmentRequest object can include a
-     *            Dimensions object or a SegmentGroups object, but not both.
-     *            </p>
+     * @param writeSegmentRequest Segment definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

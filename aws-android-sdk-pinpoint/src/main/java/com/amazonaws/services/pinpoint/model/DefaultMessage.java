@@ -18,67 +18,48 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the default message to use for all channels.
- * </p>
+ * The default message to use across all channels.
  */
 public class DefaultMessage implements Serializable {
     /**
-     * <p>
-     * The default message body of the push notification, email, or SMS message.
-     * </p>
+     * The message body of the notification, the email body or the text message.
      */
     private String body;
 
     /**
-     * <p>
-     * The default message variables to use in the push notification, email, or
-     * SMS message. You can override these default variables with individual
-     * address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * <p>
-     * The default message body of the push notification, email, or SMS message.
-     * </p>
+     * The message body of the notification, the email body or the text message.
      *
-     * @return <p>
-     *         The default message body of the push notification, email, or SMS
+     * @return The message body of the notification, the email body or the text
      *         message.
-     *         </p>
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * <p>
-     * The default message body of the push notification, email, or SMS message.
-     * </p>
+     * The message body of the notification, the email body or the text message.
      *
-     * @param body <p>
-     *            The default message body of the push notification, email, or
-     *            SMS message.
-     *            </p>
+     * @param body The message body of the notification, the email body or the
+     *            text message.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * <p>
-     * The default message body of the push notification, email, or SMS message.
-     * </p>
+     * The message body of the notification, the email body or the text message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body <p>
-     *            The default message body of the push notification, email, or
-     *            SMS message.
-     *            </p>
+     * @param body The message body of the notification, the email body or the
+     *            text message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -88,54 +69,36 @@ public class DefaultMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the push notification, email, or
-     * SMS message. You can override these default variables with individual
-     * address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @return <p>
-     *         The default message variables to use in the push notification,
-     *         email, or SMS message. You can override these default variables
-     *         with individual address variables.
-     *         </p>
+     * @return Default message substitutions. Can be overridden by individual
+     *         address substitutions.
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the push notification, email, or
-     * SMS message. You can override these default variables with individual
-     * address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the push notification,
-     *            email, or SMS message. You can override these default
-     *            variables with individual address variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the push notification, email, or
-     * SMS message. You can override these default variables with individual
-     * address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the push notification,
-     *            email, or SMS message. You can override these default
-     *            variables with individual address variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -146,11 +109,8 @@ public class DefaultMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the push notification, email, or
-     * SMS message. You can override these default variables with individual
-     * address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained

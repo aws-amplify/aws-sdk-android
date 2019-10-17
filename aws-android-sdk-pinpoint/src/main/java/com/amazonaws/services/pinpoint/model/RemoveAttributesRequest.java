@@ -20,103 +20,50 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Removes one or more attributes, of the same attribute type, from all the
- * endpoints that are associated with an application.
- * </p>
+ * Used to remove the attributes for an app
  */
 public class RemoveAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The type of attribute or attributes to remove. Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints,
-     * such as the date when an associated user opted in or out of receiving
-     * communications from you through a specific type of channel.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints, such as the number of app sessions or the number
-     * of items left in a cart.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users, such as
-     * first name, last name, and age.
-     * </p>
-     * </li>
-     * </ul>
+     * Type of attribute. Can be endpoint-custom-attributes,
+     * endpoint-custom-metrics, endpoint-user-attributes.
      */
     private String attributeType;
 
     /**
-     * <p>
-     * Specifies one or more attributes to remove from all the endpoints that
-     * are associated with an application.
-     * </p>
+     * Update attributes request
      */
     private UpdateAttributesRequest updateAttributesRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -126,179 +73,38 @@ public class RemoveAttributesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes to remove. Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints,
-     * such as the date when an associated user opted in or out of receiving
-     * communications from you through a specific type of channel.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints, such as the number of app sessions or the number
-     * of items left in a cart.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users, such as
-     * first name, last name, and age.
-     * </p>
-     * </li>
-     * </ul>
+     * Type of attribute. Can be endpoint-custom-attributes,
+     * endpoint-custom-metrics, endpoint-user-attributes.
      *
-     * @return <p>
-     *         The type of attribute or attributes to remove. Valid values are:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         endpoint-custom-attributes - Custom attributes that describe
-     *         endpoints, such as the date when an associated user opted in or
-     *         out of receiving communications from you through a specific type
-     *         of channel.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         endpoint-custom-metrics - Custom metrics that your app reports to
-     *         Amazon Pinpoint for endpoints, such as the number of app sessions
-     *         or the number of items left in a cart.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         endpoint-user-attributes - Custom attributes that describe users,
-     *         such as first name, last name, and age.
-     *         </p>
-     *         </li>
-     *         </ul>
+     * @return Type of attribute. Can be endpoint-custom-attributes,
+     *         endpoint-custom-metrics, endpoint-user-attributes.
      */
     public String getAttributeType() {
         return attributeType;
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes to remove. Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints,
-     * such as the date when an associated user opted in or out of receiving
-     * communications from you through a specific type of channel.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints, such as the number of app sessions or the number
-     * of items left in a cart.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users, such as
-     * first name, last name, and age.
-     * </p>
-     * </li>
-     * </ul>
+     * Type of attribute. Can be endpoint-custom-attributes,
+     * endpoint-custom-metrics, endpoint-user-attributes.
      *
-     * @param attributeType <p>
-     *            The type of attribute or attributes to remove. Valid values
-     *            are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-attributes - Custom attributes that describe
-     *            endpoints, such as the date when an associated user opted in
-     *            or out of receiving communications from you through a specific
-     *            type of channel.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-metrics - Custom metrics that your app reports
-     *            to Amazon Pinpoint for endpoints, such as the number of app
-     *            sessions or the number of items left in a cart.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-user-attributes - Custom attributes that describe
-     *            users, such as first name, last name, and age.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param attributeType Type of attribute. Can be
+     *            endpoint-custom-attributes, endpoint-custom-metrics,
+     *            endpoint-user-attributes.
      */
     public void setAttributeType(String attributeType) {
         this.attributeType = attributeType;
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes to remove. Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints,
-     * such as the date when an associated user opted in or out of receiving
-     * communications from you through a specific type of channel.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints, such as the number of app sessions or the number
-     * of items left in a cart.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users, such as
-     * first name, last name, and age.
-     * </p>
-     * </li>
-     * </ul>
+     * Type of attribute. Can be endpoint-custom-attributes,
+     * endpoint-custom-metrics, endpoint-user-attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributeType <p>
-     *            The type of attribute or attributes to remove. Valid values
-     *            are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-attributes - Custom attributes that describe
-     *            endpoints, such as the date when an associated user opted in
-     *            or out of receiving communications from you through a specific
-     *            type of channel.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-metrics - Custom metrics that your app reports
-     *            to Amazon Pinpoint for endpoints, such as the number of app
-     *            sessions or the number of items left in a cart.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-user-attributes - Custom attributes that describe
-     *            users, such as first name, last name, and age.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param attributeType Type of attribute. Can be
+     *            endpoint-custom-attributes, endpoint-custom-metrics,
+     *            endpoint-user-attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -308,48 +114,30 @@ public class RemoveAttributesRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * <p>
-     * Specifies one or more attributes to remove from all the endpoints that
-     * are associated with an application.
-     * </p>
+     * Update attributes request
      *
-     * @return <p>
-     *         Specifies one or more attributes to remove from all the endpoints
-     *         that are associated with an application.
-     *         </p>
+     * @return Update attributes request
      */
     public UpdateAttributesRequest getUpdateAttributesRequest() {
         return updateAttributesRequest;
     }
 
     /**
-     * <p>
-     * Specifies one or more attributes to remove from all the endpoints that
-     * are associated with an application.
-     * </p>
+     * Update attributes request
      *
-     * @param updateAttributesRequest <p>
-     *            Specifies one or more attributes to remove from all the
-     *            endpoints that are associated with an application.
-     *            </p>
+     * @param updateAttributesRequest Update attributes request
      */
     public void setUpdateAttributesRequest(UpdateAttributesRequest updateAttributesRequest) {
         this.updateAttributesRequest = updateAttributesRequest;
     }
 
     /**
-     * <p>
-     * Specifies one or more attributes to remove from all the endpoints that
-     * are associated with an application.
-     * </p>
+     * Update attributes request
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param updateAttributesRequest <p>
-     *            Specifies one or more attributes to remove from all the
-     *            endpoints that are associated with an application.
-     *            </p>
+     * @param updateAttributesRequest Update attributes request
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

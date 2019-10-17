@@ -19,49 +19,35 @@ import java.io.Serializable;
 
 public class CreateAppResult implements Serializable {
     /**
-     * <p>
-     * Provides information about an application.
-     * </p>
+     * Application Response.
      */
     private ApplicationResponse applicationResponse;
 
     /**
-     * <p>
-     * Provides information about an application.
-     * </p>
+     * Application Response.
      *
-     * @return <p>
-     *         Provides information about an application.
-     *         </p>
+     * @return Application Response.
      */
     public ApplicationResponse getApplicationResponse() {
         return applicationResponse;
     }
 
     /**
-     * <p>
-     * Provides information about an application.
-     * </p>
+     * Application Response.
      *
-     * @param applicationResponse <p>
-     *            Provides information about an application.
-     *            </p>
+     * @param applicationResponse Application Response.
      */
     public void setApplicationResponse(ApplicationResponse applicationResponse) {
         this.applicationResponse = applicationResponse;
     }
 
     /**
-     * <p>
-     * Provides information about an application.
-     * </p>
+     * Application Response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationResponse <p>
-     *            Provides information about an application.
-     *            </p>
+     * @param applicationResponse Application Response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -29,20 +29,6 @@ public class DeleteGcmChannelResultJsonUnmarshaller implements
     public DeleteGcmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteGcmChannelResult deleteGcmChannelResult = new DeleteGcmChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("GCMChannelResponse")) {
-                deleteGcmChannelResult.setGCMChannelResponse(GCMChannelResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteGcmChannelResult;
     }
 

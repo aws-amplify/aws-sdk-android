@@ -18,136 +18,90 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the settings and content for the default message and any default
- * messages that you tailored for specific channels.
- * </p>
+ * Message definitions for the default message and any messages that are
+ * tailored for specific channels.
  */
 public class DirectMessageConfiguration implements Serializable {
     /**
-     * <p>
-     * The default push notification message for the ADM (Amazon Device
-     * Messaging) channel. This message overrides the default push notification
-     * message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to ADM channels. Overrides the default push notification
+     * message.
      */
     private ADMMessage aDMMessage;
 
     /**
-     * <p>
-     * The default push notification message for the APNs (Apple Push
-     * Notification service) channel. This message overrides the default push
-     * notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to APNS channels. Overrides the default push notification
+     * message.
      */
     private APNSMessage aPNSMessage;
 
     /**
-     * <p>
-     * The default push notification message for the Baidu (Baidu Cloud Push)
-     * channel. This message overrides the default push notification message
-     * (DefaultPushNotificationMessage).
-     * </p>
+     * The message to Baidu GCM channels. Overrides the default push
+     * notification message.
      */
     private BaiduMessage baiduMessage;
 
     /**
-     * <p>
-     * The default message body for all channels.
-     * </p>
+     * The default message for all channels.
      */
     private DefaultMessage defaultMessage;
 
     /**
-     * <p>
-     * The default push notification message for all push notification channels.
-     * </p>
+     * The default push notification message for all push channels.
      */
     private DefaultPushNotificationMessage defaultPushNotificationMessage;
 
     /**
-     * <p>
-     * The default message for the email channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Email channels. Overrides the default message.
      */
     private EmailMessage emailMessage;
 
     /**
-     * <p>
-     * The default push notification message for the GCM channel, which is used
-     * to send notifications through the Firebase Cloud Messaging (FCM),
-     * formerly Google Cloud Messaging (GCM), service. This message overrides
-     * the default push notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to GCM channels. Overrides the default push notification
+     * message.
      */
     private GCMMessage gCMMessage;
 
     /**
-     * <p>
-     * The default message for the SMS channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to SMS channels. Overrides the default message.
      */
     private SMSMessage sMSMessage;
 
     /**
-     * <p>
-     * The default message for the voice channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Voice channels. Overrides the default message.
      */
     private VoiceMessage voiceMessage;
 
     /**
-     * <p>
-     * The default push notification message for the ADM (Amazon Device
-     * Messaging) channel. This message overrides the default push notification
-     * message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to ADM channels. Overrides the default push notification
+     * message.
      *
-     * @return <p>
-     *         The default push notification message for the ADM (Amazon Device
-     *         Messaging) channel. This message overrides the default push
-     *         notification message (DefaultPushNotificationMessage).
-     *         </p>
+     * @return The message to ADM channels. Overrides the default push
+     *         notification message.
      */
     public ADMMessage getADMMessage() {
         return aDMMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the ADM (Amazon Device
-     * Messaging) channel. This message overrides the default push notification
-     * message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to ADM channels. Overrides the default push notification
+     * message.
      *
-     * @param aDMMessage <p>
-     *            The default push notification message for the ADM (Amazon
-     *            Device Messaging) channel. This message overrides the default
-     *            push notification message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param aDMMessage The message to ADM channels. Overrides the default push
+     *            notification message.
      */
     public void setADMMessage(ADMMessage aDMMessage) {
         this.aDMMessage = aDMMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the ADM (Amazon Device
-     * Messaging) channel. This message overrides the default push notification
-     * message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to ADM channels. Overrides the default push notification
+     * message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aDMMessage <p>
-     *            The default push notification message for the ADM (Amazon
-     *            Device Messaging) channel. This message overrides the default
-     *            push notification message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param aDMMessage The message to ADM channels. Overrides the default push
+     *            notification message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -157,56 +111,36 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default push notification message for the APNs (Apple Push
-     * Notification service) channel. This message overrides the default push
-     * notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to APNS channels. Overrides the default push notification
+     * message.
      *
-     * @return <p>
-     *         The default push notification message for the APNs (Apple Push
-     *         Notification service) channel. This message overrides the default
-     *         push notification message (DefaultPushNotificationMessage).
-     *         </p>
+     * @return The message to APNS channels. Overrides the default push
+     *         notification message.
      */
     public APNSMessage getAPNSMessage() {
         return aPNSMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the APNs (Apple Push
-     * Notification service) channel. This message overrides the default push
-     * notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to APNS channels. Overrides the default push notification
+     * message.
      *
-     * @param aPNSMessage <p>
-     *            The default push notification message for the APNs (Apple Push
-     *            Notification service) channel. This message overrides the
-     *            default push notification message
-     *            (DefaultPushNotificationMessage).
-     *            </p>
+     * @param aPNSMessage The message to APNS channels. Overrides the default
+     *            push notification message.
      */
     public void setAPNSMessage(APNSMessage aPNSMessage) {
         this.aPNSMessage = aPNSMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the APNs (Apple Push
-     * Notification service) channel. This message overrides the default push
-     * notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to APNS channels. Overrides the default push notification
+     * message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSMessage <p>
-     *            The default push notification message for the APNs (Apple Push
-     *            Notification service) channel. This message overrides the
-     *            default push notification message
-     *            (DefaultPushNotificationMessage).
-     *            </p>
+     * @param aPNSMessage The message to APNS channels. Overrides the default
+     *            push notification message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -216,54 +150,36 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default push notification message for the Baidu (Baidu Cloud Push)
-     * channel. This message overrides the default push notification message
-     * (DefaultPushNotificationMessage).
-     * </p>
+     * The message to Baidu GCM channels. Overrides the default push
+     * notification message.
      *
-     * @return <p>
-     *         The default push notification message for the Baidu (Baidu Cloud
-     *         Push) channel. This message overrides the default push
-     *         notification message (DefaultPushNotificationMessage).
-     *         </p>
+     * @return The message to Baidu GCM channels. Overrides the default push
+     *         notification message.
      */
     public BaiduMessage getBaiduMessage() {
         return baiduMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the Baidu (Baidu Cloud Push)
-     * channel. This message overrides the default push notification message
-     * (DefaultPushNotificationMessage).
-     * </p>
+     * The message to Baidu GCM channels. Overrides the default push
+     * notification message.
      *
-     * @param baiduMessage <p>
-     *            The default push notification message for the Baidu (Baidu
-     *            Cloud Push) channel. This message overrides the default push
-     *            notification message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param baiduMessage The message to Baidu GCM channels. Overrides the
+     *            default push notification message.
      */
     public void setBaiduMessage(BaiduMessage baiduMessage) {
         this.baiduMessage = baiduMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the Baidu (Baidu Cloud Push)
-     * channel. This message overrides the default push notification message
-     * (DefaultPushNotificationMessage).
-     * </p>
+     * The message to Baidu GCM channels. Overrides the default push
+     * notification message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param baiduMessage <p>
-     *            The default push notification message for the Baidu (Baidu
-     *            Cloud Push) channel. This message overrides the default push
-     *            notification message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param baiduMessage The message to Baidu GCM channels. Overrides the
+     *            default push notification message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -273,42 +189,30 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message body for all channels.
-     * </p>
+     * The default message for all channels.
      *
-     * @return <p>
-     *         The default message body for all channels.
-     *         </p>
+     * @return The default message for all channels.
      */
     public DefaultMessage getDefaultMessage() {
         return defaultMessage;
     }
 
     /**
-     * <p>
-     * The default message body for all channels.
-     * </p>
+     * The default message for all channels.
      *
-     * @param defaultMessage <p>
-     *            The default message body for all channels.
-     *            </p>
+     * @param defaultMessage The default message for all channels.
      */
     public void setDefaultMessage(DefaultMessage defaultMessage) {
         this.defaultMessage = defaultMessage;
     }
 
     /**
-     * <p>
-     * The default message body for all channels.
-     * </p>
+     * The default message for all channels.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultMessage <p>
-     *            The default message body for all channels.
-     *            </p>
+     * @param defaultMessage The default message for all channels.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -318,28 +222,19 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default push notification message for all push notification channels.
-     * </p>
+     * The default push notification message for all push channels.
      *
-     * @return <p>
-     *         The default push notification message for all push notification
-     *         channels.
-     *         </p>
+     * @return The default push notification message for all push channels.
      */
     public DefaultPushNotificationMessage getDefaultPushNotificationMessage() {
         return defaultPushNotificationMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for all push notification channels.
-     * </p>
+     * The default push notification message for all push channels.
      *
-     * @param defaultPushNotificationMessage <p>
-     *            The default push notification message for all push
-     *            notification channels.
-     *            </p>
+     * @param defaultPushNotificationMessage The default push notification
+     *            message for all push channels.
      */
     public void setDefaultPushNotificationMessage(
             DefaultPushNotificationMessage defaultPushNotificationMessage) {
@@ -347,17 +242,13 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default push notification message for all push notification channels.
-     * </p>
+     * The default push notification message for all push channels.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param defaultPushNotificationMessage <p>
-     *            The default push notification message for all push
-     *            notification channels.
-     *            </p>
+     * @param defaultPushNotificationMessage The default push notification
+     *            message for all push channels.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -368,48 +259,32 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message for the email channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Email channels. Overrides the default message.
      *
-     * @return <p>
-     *         The default message for the email channel. This message overrides
-     *         the default message (DefaultMessage).
-     *         </p>
+     * @return The message to Email channels. Overrides the default message.
      */
     public EmailMessage getEmailMessage() {
         return emailMessage;
     }
 
     /**
-     * <p>
-     * The default message for the email channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Email channels. Overrides the default message.
      *
-     * @param emailMessage <p>
-     *            The default message for the email channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param emailMessage The message to Email channels. Overrides the default
+     *            message.
      */
     public void setEmailMessage(EmailMessage emailMessage) {
         this.emailMessage = emailMessage;
     }
 
     /**
-     * <p>
-     * The default message for the email channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Email channels. Overrides the default message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param emailMessage <p>
-     *            The default message for the email channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param emailMessage The message to Email channels. Overrides the default
+     *            message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -419,63 +294,36 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default push notification message for the GCM channel, which is used
-     * to send notifications through the Firebase Cloud Messaging (FCM),
-     * formerly Google Cloud Messaging (GCM), service. This message overrides
-     * the default push notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to GCM channels. Overrides the default push notification
+     * message.
      *
-     * @return <p>
-     *         The default push notification message for the GCM channel, which
-     *         is used to send notifications through the Firebase Cloud
-     *         Messaging (FCM), formerly Google Cloud Messaging (GCM), service.
-     *         This message overrides the default push notification message
-     *         (DefaultPushNotificationMessage).
-     *         </p>
+     * @return The message to GCM channels. Overrides the default push
+     *         notification message.
      */
     public GCMMessage getGCMMessage() {
         return gCMMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the GCM channel, which is used
-     * to send notifications through the Firebase Cloud Messaging (FCM),
-     * formerly Google Cloud Messaging (GCM), service. This message overrides
-     * the default push notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to GCM channels. Overrides the default push notification
+     * message.
      *
-     * @param gCMMessage <p>
-     *            The default push notification message for the GCM channel,
-     *            which is used to send notifications through the Firebase Cloud
-     *            Messaging (FCM), formerly Google Cloud Messaging (GCM),
-     *            service. This message overrides the default push notification
-     *            message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param gCMMessage The message to GCM channels. Overrides the default push
+     *            notification message.
      */
     public void setGCMMessage(GCMMessage gCMMessage) {
         this.gCMMessage = gCMMessage;
     }
 
     /**
-     * <p>
-     * The default push notification message for the GCM channel, which is used
-     * to send notifications through the Firebase Cloud Messaging (FCM),
-     * formerly Google Cloud Messaging (GCM), service. This message overrides
-     * the default push notification message (DefaultPushNotificationMessage).
-     * </p>
+     * The message to GCM channels. Overrides the default push notification
+     * message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gCMMessage <p>
-     *            The default push notification message for the GCM channel,
-     *            which is used to send notifications through the Firebase Cloud
-     *            Messaging (FCM), formerly Google Cloud Messaging (GCM),
-     *            service. This message overrides the default push notification
-     *            message (DefaultPushNotificationMessage).
-     *            </p>
+     * @param gCMMessage The message to GCM channels. Overrides the default push
+     *            notification message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -485,48 +333,32 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message for the SMS channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to SMS channels. Overrides the default message.
      *
-     * @return <p>
-     *         The default message for the SMS channel. This message overrides
-     *         the default message (DefaultMessage).
-     *         </p>
+     * @return The message to SMS channels. Overrides the default message.
      */
     public SMSMessage getSMSMessage() {
         return sMSMessage;
     }
 
     /**
-     * <p>
-     * The default message for the SMS channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to SMS channels. Overrides the default message.
      *
-     * @param sMSMessage <p>
-     *            The default message for the SMS channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param sMSMessage The message to SMS channels. Overrides the default
+     *            message.
      */
     public void setSMSMessage(SMSMessage sMSMessage) {
         this.sMSMessage = sMSMessage;
     }
 
     /**
-     * <p>
-     * The default message for the SMS channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to SMS channels. Overrides the default message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sMSMessage <p>
-     *            The default message for the SMS channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param sMSMessage The message to SMS channels. Overrides the default
+     *            message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -536,48 +368,32 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message for the voice channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Voice channels. Overrides the default message.
      *
-     * @return <p>
-     *         The default message for the voice channel. This message overrides
-     *         the default message (DefaultMessage).
-     *         </p>
+     * @return The message to Voice channels. Overrides the default message.
      */
     public VoiceMessage getVoiceMessage() {
         return voiceMessage;
     }
 
     /**
-     * <p>
-     * The default message for the voice channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Voice channels. Overrides the default message.
      *
-     * @param voiceMessage <p>
-     *            The default message for the voice channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param voiceMessage The message to Voice channels. Overrides the default
+     *            message.
      */
     public void setVoiceMessage(VoiceMessage voiceMessage) {
         this.voiceMessage = voiceMessage;
     }
 
     /**
-     * <p>
-     * The default message for the voice channel. This message overrides the
-     * default message (DefaultMessage).
-     * </p>
+     * The message to Voice channels. Overrides the default message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param voiceMessage <p>
-     *            The default message for the voice channel. This message
-     *            overrides the default message (DefaultMessage).
-     *            </p>
+     * @param voiceMessage The message to Voice channels. Overrides the default
+     *            message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

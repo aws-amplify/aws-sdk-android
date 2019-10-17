@@ -18,27 +18,19 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the settings that define the relationships between segment groups
- * for a segment.
- * </p>
+ * Segment group definition.
  */
 public class SegmentGroupList implements Serializable {
     /**
-     * <p>
-     * An array that defines the set of segment criteria to evaluate when
-     * handling segment groups for the segment.
-     * </p>
+     * A set of segment criteria to evaluate.
      */
     private java.util.List<SegmentGroup> groups;
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
@@ -46,30 +38,18 @@ public class SegmentGroupList implements Serializable {
     private String include;
 
     /**
-     * <p>
-     * An array that defines the set of segment criteria to evaluate when
-     * handling segment groups for the segment.
-     * </p>
+     * A set of segment criteria to evaluate.
      *
-     * @return <p>
-     *         An array that defines the set of segment criteria to evaluate
-     *         when handling segment groups for the segment.
-     *         </p>
+     * @return A set of segment criteria to evaluate.
      */
     public java.util.List<SegmentGroup> getGroups() {
         return groups;
     }
 
     /**
-     * <p>
-     * An array that defines the set of segment criteria to evaluate when
-     * handling segment groups for the segment.
-     * </p>
+     * A set of segment criteria to evaluate.
      *
-     * @param groups <p>
-     *            An array that defines the set of segment criteria to evaluate
-     *            when handling segment groups for the segment.
-     *            </p>
+     * @param groups A set of segment criteria to evaluate.
      */
     public void setGroups(java.util.Collection<SegmentGroup> groups) {
         if (groups == null) {
@@ -81,18 +61,12 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * An array that defines the set of segment criteria to evaluate when
-     * handling segment groups for the segment.
-     * </p>
+     * A set of segment criteria to evaluate.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param groups <p>
-     *            An array that defines the set of segment criteria to evaluate
-     *            when handling segment groups for the segment.
-     *            </p>
+     * @param groups A set of segment criteria to evaluate.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -107,18 +81,12 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * An array that defines the set of segment criteria to evaluate when
-     * handling segment groups for the segment.
-     * </p>
+     * A set of segment criteria to evaluate.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param groups <p>
-     *            An array that defines the set of segment criteria to evaluate
-     *            when handling segment groups for the segment.
-     *            </p>
+     * @param groups A set of segment criteria to evaluate.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -128,22 +96,19 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @return <p>
-     *         Specifies how to handle multiple segment groups for the segment.
-     *         For example, if the segment includes three segment groups,
-     *         whether the resulting segment includes endpoints that match all,
-     *         any, or none of the segment groups.
-     *         </p>
+     * @return Specify how to handle multiple segment groups. For example, if
+     *         the segment includes three segment groups, should the resulting
+     *         segment include endpoints that are matched by all, any, or none
+     *         of the segment groups you created. Acceptable values: ALL, ANY,
+     *         or NONE.
      * @see Include
      */
     public String getInclude() {
@@ -151,22 +116,19 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param include <p>
-     *            Specifies how to handle multiple segment groups for the
-     *            segment. For example, if the segment includes three segment
-     *            groups, whether the resulting segment includes endpoints that
-     *            match all, any, or none of the segment groups.
-     *            </p>
+     * @param include Specify how to handle multiple segment groups. For
+     *            example, if the segment includes three segment groups, should
+     *            the resulting segment include endpoints that are matched by
+     *            all, any, or none of the segment groups you created.
+     *            Acceptable values: ALL, ANY, or NONE.
      * @see Include
      */
     public void setInclude(String include) {
@@ -174,12 +136,10 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -187,12 +147,11 @@ public class SegmentGroupList implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param include <p>
-     *            Specifies how to handle multiple segment groups for the
-     *            segment. For example, if the segment includes three segment
-     *            groups, whether the resulting segment includes endpoints that
-     *            match all, any, or none of the segment groups.
-     *            </p>
+     * @param include Specify how to handle multiple segment groups. For
+     *            example, if the segment includes three segment groups, should
+     *            the resulting segment include endpoints that are matched by
+     *            all, any, or none of the segment groups you created.
+     *            Acceptable values: ALL, ANY, or NONE.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Include
@@ -203,22 +162,19 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param include <p>
-     *            Specifies how to handle multiple segment groups for the
-     *            segment. For example, if the segment includes three segment
-     *            groups, whether the resulting segment includes endpoints that
-     *            match all, any, or none of the segment groups.
-     *            </p>
+     * @param include Specify how to handle multiple segment groups. For
+     *            example, if the segment includes three segment groups, should
+     *            the resulting segment include endpoints that are matched by
+     *            all, any, or none of the segment groups you created.
+     *            Acceptable values: ALL, ANY, or NONE.
      * @see Include
      */
     public void setInclude(Include include) {
@@ -226,12 +182,10 @@ public class SegmentGroupList implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how to handle multiple segment groups for the segment. For
-     * example, if the segment includes three segment groups, whether the
-     * resulting segment includes endpoints that match all, any, or none of the
-     * segment groups.
-     * </p>
+     * Specify how to handle multiple segment groups. For example, if the
+     * segment includes three segment groups, should the resulting segment
+     * include endpoints that are matched by all, any, or none of the segment
+     * groups you created. Acceptable values: ALL, ANY, or NONE.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -239,12 +193,11 @@ public class SegmentGroupList implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param include <p>
-     *            Specifies how to handle multiple segment groups for the
-     *            segment. For example, if the segment includes three segment
-     *            groups, whether the resulting segment includes endpoints that
-     *            match all, any, or none of the segment groups.
-     *            </p>
+     * @param include Specify how to handle multiple segment groups. For
+     *            example, if the segment includes three segment groups, should
+     *            the resulting segment include endpoints that are matched by
+     *            all, any, or none of the segment groups you created.
+     *            Acceptable values: ALL, ANY, or NONE.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Include

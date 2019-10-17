@@ -29,20 +29,6 @@ public class UpdateApnsChannelResultJsonUnmarshaller implements
     public UpdateApnsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateApnsChannelResult updateApnsChannelResult = new UpdateApnsChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSChannelResponse")) {
-                updateApnsChannelResult.setAPNSChannelResponse(APNSChannelResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateApnsChannelResult;
     }
 

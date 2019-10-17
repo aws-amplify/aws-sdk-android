@@ -29,20 +29,6 @@ public class UpdateBaiduChannelResultJsonUnmarshaller implements
     public UpdateBaiduChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateBaiduChannelResult updateBaiduChannelResult = new UpdateBaiduChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("BaiduChannelResponse")) {
-                updateBaiduChannelResult
-                        .setBaiduChannelResponse(BaiduChannelResponseJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateBaiduChannelResult;
     }
 

@@ -29,20 +29,6 @@ public class GetImportJobResultJsonUnmarshaller implements
     public GetImportJobResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetImportJobResult getImportJobResult = new GetImportJobResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ImportJobResponse")) {
-                getImportJobResult.setImportJobResponse(ImportJobResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getImportJobResult;
     }
 
