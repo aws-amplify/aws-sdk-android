@@ -29,19 +29,6 @@ public class DeleteEmailTemplateResultJsonUnmarshaller implements
     public DeleteEmailTemplateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteEmailTemplateResult deleteEmailTemplateResult = new DeleteEmailTemplateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("MessageBody")) {
-                deleteEmailTemplateResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteEmailTemplateResult;
     }
 

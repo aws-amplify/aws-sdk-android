@@ -29,20 +29,6 @@ public class GetChannelsResultJsonUnmarshaller implements
     public GetChannelsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetChannelsResult getChannelsResult = new GetChannelsResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ChannelsResponse")) {
-                getChannelsResult.setChannelsResponse(ChannelsResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getChannelsResult;
     }
 

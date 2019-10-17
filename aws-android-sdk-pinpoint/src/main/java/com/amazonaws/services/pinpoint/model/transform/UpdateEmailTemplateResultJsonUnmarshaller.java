@@ -29,19 +29,6 @@ public class UpdateEmailTemplateResultJsonUnmarshaller implements
     public UpdateEmailTemplateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEmailTemplateResult updateEmailTemplateResult = new UpdateEmailTemplateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("MessageBody")) {
-                updateEmailTemplateResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateEmailTemplateResult;
     }
 

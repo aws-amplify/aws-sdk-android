@@ -29,19 +29,6 @@ public class ListTagsForResourceResultJsonUnmarshaller implements
     public ListTagsForResourceResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         ListTagsForResourceResult listTagsForResourceResult = new ListTagsForResourceResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("TagsModel")) {
-                listTagsForResourceResult.setTagsModel(TagsModelJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return listTagsForResourceResult;
     }
 

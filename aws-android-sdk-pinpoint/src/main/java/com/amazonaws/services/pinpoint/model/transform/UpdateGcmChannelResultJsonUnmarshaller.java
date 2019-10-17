@@ -29,20 +29,6 @@ public class UpdateGcmChannelResultJsonUnmarshaller implements
     public UpdateGcmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateGcmChannelResult updateGcmChannelResult = new UpdateGcmChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("GCMChannelResponse")) {
-                updateGcmChannelResult.setGCMChannelResponse(GCMChannelResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateGcmChannelResult;
     }
 

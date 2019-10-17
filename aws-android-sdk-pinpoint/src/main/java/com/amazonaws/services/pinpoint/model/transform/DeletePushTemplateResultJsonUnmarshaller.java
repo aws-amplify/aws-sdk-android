@@ -29,19 +29,6 @@ public class DeletePushTemplateResultJsonUnmarshaller implements
     public DeletePushTemplateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeletePushTemplateResult deletePushTemplateResult = new DeletePushTemplateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("MessageBody")) {
-                deletePushTemplateResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deletePushTemplateResult;
     }
 

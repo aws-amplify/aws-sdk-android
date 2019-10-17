@@ -29,20 +29,6 @@ public class UpdateCampaignResultJsonUnmarshaller implements
     public UpdateCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateCampaignResult updateCampaignResult = new UpdateCampaignResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("CampaignResponse")) {
-                updateCampaignResult.setCampaignResponse(CampaignResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateCampaignResult;
     }
 

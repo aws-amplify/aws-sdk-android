@@ -30,21 +30,6 @@ public class GetCampaignDateRangeKpiResultJsonUnmarshaller implements
             throws Exception {
         GetCampaignDateRangeKpiResult getCampaignDateRangeKpiResult = new GetCampaignDateRangeKpiResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("CampaignDateRangeKpiResponse")) {
-                getCampaignDateRangeKpiResult
-                        .setCampaignDateRangeKpiResponse(CampaignDateRangeKpiResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getCampaignDateRangeKpiResult;
     }
 

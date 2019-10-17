@@ -29,20 +29,6 @@ public class ListTemplatesResultJsonUnmarshaller implements
     public ListTemplatesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         ListTemplatesResult listTemplatesResult = new ListTemplatesResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("TemplatesResponse")) {
-                listTemplatesResult.setTemplatesResponse(TemplatesResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return listTemplatesResult;
     }
 

@@ -29,19 +29,6 @@ public class UpdatePushTemplateResultJsonUnmarshaller implements
     public UpdatePushTemplateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdatePushTemplateResult updatePushTemplateResult = new UpdatePushTemplateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("MessageBody")) {
-                updatePushTemplateResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updatePushTemplateResult;
     }
 

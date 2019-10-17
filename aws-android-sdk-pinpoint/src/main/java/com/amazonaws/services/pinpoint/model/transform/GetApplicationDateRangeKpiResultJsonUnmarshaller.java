@@ -30,21 +30,6 @@ public class GetApplicationDateRangeKpiResultJsonUnmarshaller implements
             throws Exception {
         GetApplicationDateRangeKpiResult getApplicationDateRangeKpiResult = new GetApplicationDateRangeKpiResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ApplicationDateRangeKpiResponse")) {
-                getApplicationDateRangeKpiResult
-                        .setApplicationDateRangeKpiResponse(ApplicationDateRangeKpiResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getApplicationDateRangeKpiResult;
     }
 

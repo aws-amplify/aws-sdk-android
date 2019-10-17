@@ -29,20 +29,6 @@ public class GetAdmChannelResultJsonUnmarshaller implements
     public GetAdmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetAdmChannelResult getAdmChannelResult = new GetAdmChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ADMChannelResponse")) {
-                getAdmChannelResult.setADMChannelResponse(ADMChannelResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getAdmChannelResult;
     }
 

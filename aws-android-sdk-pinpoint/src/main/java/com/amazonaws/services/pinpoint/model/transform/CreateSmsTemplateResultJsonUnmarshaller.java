@@ -29,21 +29,6 @@ public class CreateSmsTemplateResultJsonUnmarshaller implements
     public CreateSmsTemplateResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateSmsTemplateResult createSmsTemplateResult = new CreateSmsTemplateResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("CreateTemplateMessageBody")) {
-                createSmsTemplateResult
-                        .setCreateTemplateMessageBody(CreateTemplateMessageBodyJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return createSmsTemplateResult;
     }
 
