@@ -44,6 +44,11 @@ class CampaignResponseJsonMarshaller {
             jsonWriter.name("ApplicationId");
             jsonWriter.value(applicationId);
         }
+        if (campaignResponse.getArn() != null) {
+            String arn = campaignResponse.getArn();
+            jsonWriter.name("Arn");
+            jsonWriter.value(arn);
+        }
         if (campaignResponse.getCreationDate() != null) {
             String creationDate = campaignResponse.getCreationDate();
             jsonWriter.name("CreationDate");
@@ -119,6 +124,26 @@ class CampaignResponseJsonMarshaller {
             CampaignState state = campaignResponse.getState();
             jsonWriter.name("State");
             CampaignStateJsonMarshaller.getInstance().marshall(state, jsonWriter);
+        }
+        if (campaignResponse.getTags() != null) {
+            java.util.Map<String, String> tags = campaignResponse.getTags();
+            jsonWriter.name("tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
+        if (campaignResponse.getTemplateConfiguration() != null) {
+            TemplateConfiguration templateConfiguration = campaignResponse
+                    .getTemplateConfiguration();
+            jsonWriter.name("TemplateConfiguration");
+            TemplateConfigurationJsonMarshaller.getInstance().marshall(templateConfiguration,
+                    jsonWriter);
         }
         if (campaignResponse.getTreatmentDescription() != null) {
             String treatmentDescription = campaignResponse.getTreatmentDescription();

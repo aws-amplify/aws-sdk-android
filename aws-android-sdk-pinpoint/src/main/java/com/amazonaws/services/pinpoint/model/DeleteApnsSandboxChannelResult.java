@@ -19,37 +19,59 @@ import java.io.Serializable;
 
 public class DeleteApnsSandboxChannelResult implements Serializable {
     /**
-     * Apple Development Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) sandbox channel for an application.
+     * </p>
      */
     private APNSSandboxChannelResponse aPNSSandboxChannelResponse;
 
     /**
-     * Apple Development Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) sandbox channel for an application.
+     * </p>
      *
-     * @return Apple Development Push Notification Service channel definition.
+     * @return <p>
+     *         Provides information about the status and settings of the APNs
+     *         (Apple Push Notification service) sandbox channel for an
+     *         application.
+     *         </p>
      */
     public APNSSandboxChannelResponse getAPNSSandboxChannelResponse() {
         return aPNSSandboxChannelResponse;
     }
 
     /**
-     * Apple Development Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) sandbox channel for an application.
+     * </p>
      *
-     * @param aPNSSandboxChannelResponse Apple Development Push Notification
-     *            Service channel definition.
+     * @param aPNSSandboxChannelResponse <p>
+     *            Provides information about the status and settings of the APNs
+     *            (Apple Push Notification service) sandbox channel for an
+     *            application.
+     *            </p>
      */
     public void setAPNSSandboxChannelResponse(APNSSandboxChannelResponse aPNSSandboxChannelResponse) {
         this.aPNSSandboxChannelResponse = aPNSSandboxChannelResponse;
     }
 
     /**
-     * Apple Development Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) sandbox channel for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSSandboxChannelResponse Apple Development Push Notification
-     *            Service channel definition.
+     * @param aPNSSandboxChannelResponse <p>
+     *            Provides information about the status and settings of the APNs
+     *            (Apple Push Notification service) sandbox channel for an
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

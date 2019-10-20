@@ -19,35 +19,58 @@ import java.io.Serializable;
 
 public class GetEventStreamResult implements Serializable {
     /**
-     * Model for an event publishing subscription export.
+     * <p>
+     * Specifies settings for publishing event data to an Amazon Kinesis data
+     * stream or an Amazon Kinesis Data Firehose delivery stream.
+     * </p>
      */
     private EventStream eventStream;
 
     /**
-     * Model for an event publishing subscription export.
+     * <p>
+     * Specifies settings for publishing event data to an Amazon Kinesis data
+     * stream or an Amazon Kinesis Data Firehose delivery stream.
+     * </p>
      *
-     * @return Model for an event publishing subscription export.
+     * @return <p>
+     *         Specifies settings for publishing event data to an Amazon Kinesis
+     *         data stream or an Amazon Kinesis Data Firehose delivery stream.
+     *         </p>
      */
     public EventStream getEventStream() {
         return eventStream;
     }
 
     /**
-     * Model for an event publishing subscription export.
+     * <p>
+     * Specifies settings for publishing event data to an Amazon Kinesis data
+     * stream or an Amazon Kinesis Data Firehose delivery stream.
+     * </p>
      *
-     * @param eventStream Model for an event publishing subscription export.
+     * @param eventStream <p>
+     *            Specifies settings for publishing event data to an Amazon
+     *            Kinesis data stream or an Amazon Kinesis Data Firehose
+     *            delivery stream.
+     *            </p>
      */
     public void setEventStream(EventStream eventStream) {
         this.eventStream = eventStream;
     }
 
     /**
-     * Model for an event publishing subscription export.
+     * <p>
+     * Specifies settings for publishing event data to an Amazon Kinesis data
+     * stream or an Amazon Kinesis Data Firehose delivery stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventStream Model for an event publishing subscription export.
+     * @param eventStream <p>
+     *            Specifies settings for publishing event data to an Amazon
+     *            Kinesis data stream or an Amazon Kinesis Data Firehose
+     *            delivery stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

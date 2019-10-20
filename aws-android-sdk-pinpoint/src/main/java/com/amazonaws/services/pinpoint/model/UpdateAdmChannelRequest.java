@@ -20,44 +20,71 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Update an ADM channel.
+ * <p>
+ * Enables the ADM channel for an application or updates the status and settings
+ * of the ADM channel for an application.
+ * </p>
  */
 public class UpdateAdmChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Specifies the status and settings of the ADM (Amazon Device Messaging)
+     * channel for an application.
+     * </p>
      */
     private ADMChannelRequest aDMChannelRequest;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Specifies the status and settings of the ADM (Amazon Device Messaging)
+     * channel for an application.
+     * </p>
      *
-     * @return Amazon Device Messaging channel definition.
+     * @return <p>
+     *         Specifies the status and settings of the ADM (Amazon Device
+     *         Messaging) channel for an application.
+     *         </p>
      */
     public ADMChannelRequest getADMChannelRequest() {
         return aDMChannelRequest;
     }
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Specifies the status and settings of the ADM (Amazon Device Messaging)
+     * channel for an application.
+     * </p>
      *
-     * @param aDMChannelRequest Amazon Device Messaging channel definition.
+     * @param aDMChannelRequest <p>
+     *            Specifies the status and settings of the ADM (Amazon Device
+     *            Messaging) channel for an application.
+     *            </p>
      */
     public void setADMChannelRequest(ADMChannelRequest aDMChannelRequest) {
         this.aDMChannelRequest = aDMChannelRequest;
     }
 
     /**
-     * Amazon Device Messaging channel definition.
+     * <p>
+     * Specifies the status and settings of the ADM (Amazon Device Messaging)
+     * channel for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aDMChannelRequest Amazon Device Messaging channel definition.
+     * @param aDMChannelRequest <p>
+     *            Specifies the status and settings of the ADM (Amazon Device
+     *            Messaging) channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +94,51 @@ public class UpdateAdmChannelRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
