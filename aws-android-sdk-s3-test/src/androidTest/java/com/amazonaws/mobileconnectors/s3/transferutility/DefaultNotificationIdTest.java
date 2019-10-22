@@ -46,7 +46,7 @@ public class DefaultNotificationIdTest {
      */
     @Before
     public void setUp() {
-        assumeTrue(Build.VERSION.SDK_INT >= 26);
+        assumeTrue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O);
 
         notificationPassed = false;
         notificationIdAssigned = false;
@@ -111,7 +111,7 @@ public class DefaultNotificationIdTest {
         }
 
         assertTrue(notificationIdAssigned);
-        assertEquals(0, notificationId);
+        assertEquals(1, notificationId);
 
         assertTrue(removeNotificationAssigned);
         assertEquals(true, removeNotification);
