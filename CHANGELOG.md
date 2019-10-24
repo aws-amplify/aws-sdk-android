@@ -15,9 +15,8 @@
   - Specified minimum SDK (11) and target SDK (27) version in `AndroidManifest.xml` for IoT SDK.
   - Prevents unintended permission from being implied in `AndroidManifest.xml`. See [Issue #1234](https://github.com/aws-amplify/aws-sdk-android/issues/1234).
 
-- **Amazon S3*
-  - Changed default notification ID of `TransferService` from 0 to 1.
-  - `TransferService` would fail to transition to foreground if notification ID is 0. See [Android guide](https://developer.android.com/guide/components/services.html).
+- **Amazon S3**
+  - Changed the default notification ID of the notification that will be displayed when the `TransferService` transitions to foreground from `0` to `1` because `0` is reserved and not recommended by Android. `TransferService` would fail to transition to foreground if notification ID is 0. See [Android guide](https://developer.android.com/guide/components/services.html) for details.
 
 ### Misc. Updates
 
