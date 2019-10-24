@@ -20,7 +20,7 @@ package com.amazonaws.mobile.client.results;
 /**
  * The result of a sign up action. Check the confirmation state and delivery details to proceed.
  */
-public class SignUpResult {
+public final class SignUpResult {
 
     private final boolean signUpConfirmationState;
     private final UserCodeDeliveryDetails cognitoUserCodeDeliveryDetails;
