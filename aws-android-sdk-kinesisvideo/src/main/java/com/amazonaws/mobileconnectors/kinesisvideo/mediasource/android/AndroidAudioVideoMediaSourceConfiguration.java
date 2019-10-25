@@ -296,6 +296,11 @@ public class AndroidAudioVideoMediaSourceConfiguration extends MultiTrackMediaSo
             return (T) this;
         }
 
+        public T withAudioFrameRate(final int frameRate) {
+            audioConfigBuilder.withFrameRate(frameRate);
+            return (T) this;
+        }
+
         @Override
         public AndroidAudioVideoMediaSourceConfiguration build() {
             cameraConfigBuilder.withCodecPrivateData(null);

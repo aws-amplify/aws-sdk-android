@@ -162,6 +162,7 @@ public class EncoderFactory {
         format.setInteger(MediaFormat.KEY_SAMPLE_RATE, mediaSourceConfiguration.getSampleRate());
         format.setInteger(MediaFormat.KEY_CHANNEL_COUNT, AUDIO_CHANNEL_COUNT);
         format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 16384);
+        format.setInteger(MediaFormat.KEY_FRAME_RATE, mediaSourceConfiguration.getFrameRate());
 
         Log.d(TAG, "format: " + format);
 

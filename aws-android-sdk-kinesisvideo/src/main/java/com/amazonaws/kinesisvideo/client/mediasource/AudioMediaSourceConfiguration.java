@@ -50,6 +50,7 @@ public class AudioMediaSourceConfiguration implements MediaSourceConfiguration {
         private int mSamplesPerFrame;
         private int mFramesPerBuffer;
         private int mTrackId = AUDIO_TRACK_ID;
+        private int mFrameRate = 60;
 
         public Builder withEncodingMimeType(final String mimeType) {
             mMimeType = mimeType;
@@ -106,44 +107,13 @@ public class AudioMediaSourceConfiguration implements MediaSourceConfiguration {
             return this;
         }
 
-        public String getMimeType() {
-            return mMimeType;
-        }
-
-        public int getRetentionPeriodInHours() {
-            return mRetentionPeriodInHours;
-        }
-
-        public int getSampleRate() {
-            return mSampleRate;
-        }
-
-        public int getSamplesPerFrame() {
-            return mSamplesPerFrame;
-        }
-
-        public int getFramesPerBuffer() {
-            return mFramesPerBuffer;
-        }
-
-        public String getOutputFileName() {
-            return mOutputFileName;
-        }
-
-        public int getEncodingBitrate() {
-            return mEncodingBitrate;
-        }
-
-        public boolean isEncoderHardwareAccelerated() {
-            return mIsEncoderHardwareAccelerated;
+        public Builder withFrameRate(final int frameRate) {
+            mFrameRate = frameRate;
+            return this;
         }
 
         public byte[] getCodecPrivateData() {
             return mCodecPrivateData;
-        }
-
-        public long getFrameTimescale() {
-            return mFrameTimescale;
         }
 
         public Builder withTrackId(final int trackId) {
@@ -256,5 +226,13 @@ public class AudioMediaSourceConfiguration implements MediaSourceConfiguration {
      */
     public int getTrackId() {
         return mBuilder.mTrackId;
+    }
+
+    /**
+     * Get frame rate of audio track
+     * @return frame rate
+     */
+    public int getFrameRate() {
+        return mBuilder.mFrameRate;
     }
 }
