@@ -19,14 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>HistoricalMetric</code> object that contains the Name, Unit,
- * Statistic, and Threshold for the metric.
+ * Contains information about a historical metric.
  * </p>
  */
 public class HistoricalMetric implements Serializable {
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +70,7 @@ public class HistoricalMetric implements Serializable {
 
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +85,7 @@ public class HistoricalMetric implements Serializable {
      * HOLD_TIME, INTERACTION_TIME, INTERACTION_AND_HOLD_TIME, SERVICE_LEVEL
      *
      * @return <p>
-     *         The name of the historical metric.
+     *         The name of the metric.
      *         </p>
      * @see HistoricalMetricName
      */
@@ -96,7 +95,7 @@ public class HistoricalMetric implements Serializable {
 
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -111,7 +110,7 @@ public class HistoricalMetric implements Serializable {
      * HOLD_TIME, INTERACTION_TIME, INTERACTION_AND_HOLD_TIME, SERVICE_LEVEL
      *
      * @param name <p>
-     *            The name of the historical metric.
+     *            The name of the metric.
      *            </p>
      * @see HistoricalMetricName
      */
@@ -121,7 +120,7 @@ public class HistoricalMetric implements Serializable {
 
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +138,7 @@ public class HistoricalMetric implements Serializable {
      * HOLD_TIME, INTERACTION_TIME, INTERACTION_AND_HOLD_TIME, SERVICE_LEVEL
      *
      * @param name <p>
-     *            The name of the historical metric.
+     *            The name of the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -152,7 +151,7 @@ public class HistoricalMetric implements Serializable {
 
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,7 +166,7 @@ public class HistoricalMetric implements Serializable {
      * HOLD_TIME, INTERACTION_TIME, INTERACTION_AND_HOLD_TIME, SERVICE_LEVEL
      *
      * @param name <p>
-     *            The name of the historical metric.
+     *            The name of the metric.
      *            </p>
      * @see HistoricalMetricName
      */
@@ -177,7 +176,7 @@ public class HistoricalMetric implements Serializable {
 
     /**
      * <p>
-     * The name of the historical metric.
+     * The name of the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -195,7 +194,7 @@ public class HistoricalMetric implements Serializable {
      * HOLD_TIME, INTERACTION_TIME, INTERACTION_AND_HOLD_TIME, SERVICE_LEVEL
      *
      * @param name <p>
-     *            The name of the historical metric.
+     *            The name of the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

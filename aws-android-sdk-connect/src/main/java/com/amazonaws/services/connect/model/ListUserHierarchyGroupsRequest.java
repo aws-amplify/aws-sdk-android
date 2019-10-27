@@ -21,20 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array of
- * <code>HierarchyGroupSummary</code> objects that contain information about the
- * hierarchy groups in your instance.
+ * Provides summary information about the hierarchy groups for the specified
+ * Amazon Connect instance.
  * </p>
  */
 public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +47,7 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of hierarchy groups to return.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,25 +57,14 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -90,25 +73,14 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -117,12 +89,7 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -132,13 +99,7 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -207,14 +168,14 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of hierarchy groups to return.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         The maximum number of hierarchy groups to return.
+     *         The maximimum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -223,14 +184,14 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of hierarchy groups to return.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of hierarchy groups to return.
+     *            The maximimum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -239,7 +200,7 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of hierarchy groups to return.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -249,7 +210,7 @@ public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest impl
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of hierarchy groups to return.
+     *            The maximimum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

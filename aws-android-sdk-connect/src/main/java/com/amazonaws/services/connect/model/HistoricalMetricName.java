@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * <p>
- * A list of historical metric names.
+ * The historical metric names.
  * </p>
  */
 public enum HistoricalMetricName {

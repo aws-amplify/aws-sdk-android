@@ -20,30 +20,26 @@ import java.io.Serializable;
 public class ListUsersResult implements Serializable {
     /**
      * <p>
-     * An array of <code>UserSummary</code> objects that contain information
-     * about the users in your instance.
+     * Information about the users.
      * </p>
      */
     private java.util.List<UserSummary> userSummaryList;
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * An array of <code>UserSummary</code> objects that contain information
-     * about the users in your instance.
+     * Information about the users.
      * </p>
      *
      * @return <p>
-     *         An array of <code>UserSummary</code> objects that contain
-     *         information about the users in your instance.
+     *         Information about the users.
      *         </p>
      */
     public java.util.List<UserSummary> getUserSummaryList() {
@@ -52,13 +48,11 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>UserSummary</code> objects that contain information
-     * about the users in your instance.
+     * Information about the users.
      * </p>
      *
      * @param userSummaryList <p>
-     *            An array of <code>UserSummary</code> objects that contain
-     *            information about the users in your instance.
+     *            Information about the users.
      *            </p>
      */
     public void setUserSummaryList(java.util.Collection<UserSummary> userSummaryList) {
@@ -72,16 +66,14 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>UserSummary</code> objects that contain information
-     * about the users in your instance.
+     * Information about the users.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userSummaryList <p>
-     *            An array of <code>UserSummary</code> objects that contain
-     *            information about the users in your instance.
+     *            Information about the users.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,16 +90,14 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>UserSummary</code> objects that contain information
-     * about the users in your instance.
+     * Information about the users.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userSummaryList <p>
-     *            An array of <code>UserSummary</code> objects that contain
-     *            information about the users in your instance.
+     *            Information about the users.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,15 +109,13 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @return <p>
-     *         A string returned in the response. Use the value returned in the
-     *         response as the value of the NextToken in a subsequent request to
-     *         retrieve the next set of results.
+     *         If there are additional results, this is the token for the next
+     *         set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -136,15 +124,13 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -153,18 +139,16 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

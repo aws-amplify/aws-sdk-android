@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class GetContactAttributesResult implements Serializable {
     /**
      * <p>
-     * The attributes to update.
+     * Information about the attributes.
      * </p>
      */
     private java.util.Map<String, String> attributes;
 
     /**
      * <p>
-     * The attributes to update.
+     * Information about the attributes.
      * </p>
      *
      * @return <p>
-     *         The attributes to update.
+     *         Information about the attributes.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -40,11 +40,11 @@ public class GetContactAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes to update.
+     * Information about the attributes.
      * </p>
      *
      * @param attributes <p>
-     *            The attributes to update.
+     *            Information about the attributes.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -53,14 +53,14 @@ public class GetContactAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes to update.
+     * Information about the attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            The attributes to update.
+     *            Information about the attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -72,7 +72,7 @@ public class GetContactAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes to update.
+     * Information about the attributes.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

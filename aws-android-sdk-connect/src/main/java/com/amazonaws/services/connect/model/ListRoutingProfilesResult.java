@@ -20,30 +20,26 @@ import java.io.Serializable;
 public class ListRoutingProfilesResult implements Serializable {
     /**
      * <p>
-     * An array of <code>RoutingProfileSummary</code> objects that include the
-     * ARN, Id, and Name of the routing profile.
+     * Information about the routing profiles.
      * </p>
      */
     private java.util.List<RoutingProfileSummary> routingProfileSummaryList;
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * An array of <code>RoutingProfileSummary</code> objects that include the
-     * ARN, Id, and Name of the routing profile.
+     * Information about the routing profiles.
      * </p>
      *
      * @return <p>
-     *         An array of <code>RoutingProfileSummary</code> objects that
-     *         include the ARN, Id, and Name of the routing profile.
+     *         Information about the routing profiles.
      *         </p>
      */
     public java.util.List<RoutingProfileSummary> getRoutingProfileSummaryList() {
@@ -52,13 +48,11 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>RoutingProfileSummary</code> objects that include the
-     * ARN, Id, and Name of the routing profile.
+     * Information about the routing profiles.
      * </p>
      *
      * @param routingProfileSummaryList <p>
-     *            An array of <code>RoutingProfileSummary</code> objects that
-     *            include the ARN, Id, and Name of the routing profile.
+     *            Information about the routing profiles.
      *            </p>
      */
     public void setRoutingProfileSummaryList(
@@ -74,16 +68,14 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>RoutingProfileSummary</code> objects that include the
-     * ARN, Id, and Name of the routing profile.
+     * Information about the routing profiles.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param routingProfileSummaryList <p>
-     *            An array of <code>RoutingProfileSummary</code> objects that
-     *            include the ARN, Id, and Name of the routing profile.
+     *            Information about the routing profiles.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,16 +94,14 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>RoutingProfileSummary</code> objects that include the
-     * ARN, Id, and Name of the routing profile.
+     * Information about the routing profiles.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param routingProfileSummaryList <p>
-     *            An array of <code>RoutingProfileSummary</code> objects that
-     *            include the ARN, Id, and Name of the routing profile.
+     *            Information about the routing profiles.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -124,15 +114,13 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @return <p>
-     *         A string returned in the response. Use the value returned in the
-     *         response as the value of the NextToken in a subsequent request to
-     *         retrieve the next set of results.
+     *         If there are additional results, this is the token for the next
+     *         set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -141,15 +129,13 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -158,18 +144,16 @@ public class ListRoutingProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

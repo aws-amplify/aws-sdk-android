@@ -20,70 +20,50 @@ import java.io.Serializable;
 public class GetCurrentMetricDataResult implements Serializable {
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the NextToken must use the same request parameters as
-     * the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * A list of <code>CurrentMetricResult</code> objects organized by
-     * <code>Dimensions</code> combining with
-     * <code>CurrentMetricDataCollections</code>.
-     * </p>
-     * <p>
-     * <code>Dimensions</code> is the resourceId specified in the
-     * <code>Filters</code> of the request.
-     * </p>
-     * <p>
-     * <code>Collections</code> is a list of <code>CurrentMetricData</code>
-     * objects with corresponding values to the <code>CurrentMetrics</code>
-     * specified in the request.
-     * </p>
-     * <p>
-     * If no <code>Grouping</code> is specified in the request,
-     * <code>Collections</code> is a summary for the <code>CurrentMetric</code>
-     * returned.
+     * Information about the real-time metrics.
      * </p>
      */
     private java.util.List<CurrentMetricResult> metricResults;
 
     /**
      * <p>
-     * The time at which <code>CurrentMetricData</code> was retrieved and cached
-     * for pagination.
+     * The time at which the metrics were retrieved and cached for pagination.
      * </p>
      */
     private java.util.Date dataSnapshotTime;
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the NextToken must use the same request parameters as
-     * the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      *
      * @return <p>
-     *         A string returned in the response. Use the value returned in the
-     *         response as the value of the NextToken in a subsequent request to
-     *         retrieve the next set of results.
+     *         If there are additional results, this is the token for the next
+     *         set of results.
      *         </p>
      *         <p>
      *         The token expires after 5 minutes from the time it is created.
-     *         Subsequent requests that use the NextToken must use the same
-     *         request parameters as the request that generated the token.
+     *         Subsequent requests that use the token must use the same request
+     *         parameters as the request that generated the token.
      *         </p>
      */
     public String getNextToken() {
@@ -92,24 +72,22 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the NextToken must use the same request parameters as
-     * the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      *            <p>
      *            The token expires after 5 minutes from the time it is created.
-     *            Subsequent requests that use the NextToken must use the same
+     *            Subsequent requests that use the token must use the same
      *            request parameters as the request that generated the token.
      *            </p>
      */
@@ -119,27 +97,25 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the NextToken must use the same request parameters as
-     * the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      *            <p>
      *            The token expires after 5 minutes from the time it is created.
-     *            Subsequent requests that use the NextToken must use the same
+     *            Subsequent requests that use the token must use the same
      *            request parameters as the request that generated the token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -152,43 +128,11 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>CurrentMetricResult</code> objects organized by
-     * <code>Dimensions</code> combining with
-     * <code>CurrentMetricDataCollections</code>.
-     * </p>
-     * <p>
-     * <code>Dimensions</code> is the resourceId specified in the
-     * <code>Filters</code> of the request.
-     * </p>
-     * <p>
-     * <code>Collections</code> is a list of <code>CurrentMetricData</code>
-     * objects with corresponding values to the <code>CurrentMetrics</code>
-     * specified in the request.
-     * </p>
-     * <p>
-     * If no <code>Grouping</code> is specified in the request,
-     * <code>Collections</code> is a summary for the <code>CurrentMetric</code>
-     * returned.
+     * Information about the real-time metrics.
      * </p>
      *
      * @return <p>
-     *         A list of <code>CurrentMetricResult</code> objects organized by
-     *         <code>Dimensions</code> combining with
-     *         <code>CurrentMetricDataCollections</code>.
-     *         </p>
-     *         <p>
-     *         <code>Dimensions</code> is the resourceId specified in the
-     *         <code>Filters</code> of the request.
-     *         </p>
-     *         <p>
-     *         <code>Collections</code> is a list of
-     *         <code>CurrentMetricData</code> objects with corresponding values
-     *         to the <code>CurrentMetrics</code> specified in the request.
-     *         </p>
-     *         <p>
-     *         If no <code>Grouping</code> is specified in the request,
-     *         <code>Collections</code> is a summary for the
-     *         <code>CurrentMetric</code> returned.
+     *         Information about the real-time metrics.
      *         </p>
      */
     public java.util.List<CurrentMetricResult> getMetricResults() {
@@ -197,44 +141,11 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>CurrentMetricResult</code> objects organized by
-     * <code>Dimensions</code> combining with
-     * <code>CurrentMetricDataCollections</code>.
-     * </p>
-     * <p>
-     * <code>Dimensions</code> is the resourceId specified in the
-     * <code>Filters</code> of the request.
-     * </p>
-     * <p>
-     * <code>Collections</code> is a list of <code>CurrentMetricData</code>
-     * objects with corresponding values to the <code>CurrentMetrics</code>
-     * specified in the request.
-     * </p>
-     * <p>
-     * If no <code>Grouping</code> is specified in the request,
-     * <code>Collections</code> is a summary for the <code>CurrentMetric</code>
-     * returned.
+     * Information about the real-time metrics.
      * </p>
      *
      * @param metricResults <p>
-     *            A list of <code>CurrentMetricResult</code> objects organized
-     *            by <code>Dimensions</code> combining with
-     *            <code>CurrentMetricDataCollections</code>.
-     *            </p>
-     *            <p>
-     *            <code>Dimensions</code> is the resourceId specified in the
-     *            <code>Filters</code> of the request.
-     *            </p>
-     *            <p>
-     *            <code>Collections</code> is a list of
-     *            <code>CurrentMetricData</code> objects with corresponding
-     *            values to the <code>CurrentMetrics</code> specified in the
-     *            request.
-     *            </p>
-     *            <p>
-     *            If no <code>Grouping</code> is specified in the request,
-     *            <code>Collections</code> is a summary for the
-     *            <code>CurrentMetric</code> returned.
+     *            Information about the real-time metrics.
      *            </p>
      */
     public void setMetricResults(java.util.Collection<CurrentMetricResult> metricResults) {
@@ -248,47 +159,14 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>CurrentMetricResult</code> objects organized by
-     * <code>Dimensions</code> combining with
-     * <code>CurrentMetricDataCollections</code>.
-     * </p>
-     * <p>
-     * <code>Dimensions</code> is the resourceId specified in the
-     * <code>Filters</code> of the request.
-     * </p>
-     * <p>
-     * <code>Collections</code> is a list of <code>CurrentMetricData</code>
-     * objects with corresponding values to the <code>CurrentMetrics</code>
-     * specified in the request.
-     * </p>
-     * <p>
-     * If no <code>Grouping</code> is specified in the request,
-     * <code>Collections</code> is a summary for the <code>CurrentMetric</code>
-     * returned.
+     * Information about the real-time metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metricResults <p>
-     *            A list of <code>CurrentMetricResult</code> objects organized
-     *            by <code>Dimensions</code> combining with
-     *            <code>CurrentMetricDataCollections</code>.
-     *            </p>
-     *            <p>
-     *            <code>Dimensions</code> is the resourceId specified in the
-     *            <code>Filters</code> of the request.
-     *            </p>
-     *            <p>
-     *            <code>Collections</code> is a list of
-     *            <code>CurrentMetricData</code> objects with corresponding
-     *            values to the <code>CurrentMetrics</code> specified in the
-     *            request.
-     *            </p>
-     *            <p>
-     *            If no <code>Grouping</code> is specified in the request,
-     *            <code>Collections</code> is a summary for the
-     *            <code>CurrentMetric</code> returned.
+     *            Information about the real-time metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -305,47 +183,14 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>CurrentMetricResult</code> objects organized by
-     * <code>Dimensions</code> combining with
-     * <code>CurrentMetricDataCollections</code>.
-     * </p>
-     * <p>
-     * <code>Dimensions</code> is the resourceId specified in the
-     * <code>Filters</code> of the request.
-     * </p>
-     * <p>
-     * <code>Collections</code> is a list of <code>CurrentMetricData</code>
-     * objects with corresponding values to the <code>CurrentMetrics</code>
-     * specified in the request.
-     * </p>
-     * <p>
-     * If no <code>Grouping</code> is specified in the request,
-     * <code>Collections</code> is a summary for the <code>CurrentMetric</code>
-     * returned.
+     * Information about the real-time metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metricResults <p>
-     *            A list of <code>CurrentMetricResult</code> objects organized
-     *            by <code>Dimensions</code> combining with
-     *            <code>CurrentMetricDataCollections</code>.
-     *            </p>
-     *            <p>
-     *            <code>Dimensions</code> is the resourceId specified in the
-     *            <code>Filters</code> of the request.
-     *            </p>
-     *            <p>
-     *            <code>Collections</code> is a list of
-     *            <code>CurrentMetricData</code> objects with corresponding
-     *            values to the <code>CurrentMetrics</code> specified in the
-     *            request.
-     *            </p>
-     *            <p>
-     *            If no <code>Grouping</code> is specified in the request,
-     *            <code>Collections</code> is a summary for the
-     *            <code>CurrentMetric</code> returned.
+     *            Information about the real-time metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -358,13 +203,12 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * The time at which <code>CurrentMetricData</code> was retrieved and cached
-     * for pagination.
+     * The time at which the metrics were retrieved and cached for pagination.
      * </p>
      *
      * @return <p>
-     *         The time at which <code>CurrentMetricData</code> was retrieved
-     *         and cached for pagination.
+     *         The time at which the metrics were retrieved and cached for
+     *         pagination.
      *         </p>
      */
     public java.util.Date getDataSnapshotTime() {
@@ -373,13 +217,12 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * The time at which <code>CurrentMetricData</code> was retrieved and cached
-     * for pagination.
+     * The time at which the metrics were retrieved and cached for pagination.
      * </p>
      *
      * @param dataSnapshotTime <p>
-     *            The time at which <code>CurrentMetricData</code> was retrieved
-     *            and cached for pagination.
+     *            The time at which the metrics were retrieved and cached for
+     *            pagination.
      *            </p>
      */
     public void setDataSnapshotTime(java.util.Date dataSnapshotTime) {
@@ -388,16 +231,15 @@ public class GetCurrentMetricDataResult implements Serializable {
 
     /**
      * <p>
-     * The time at which <code>CurrentMetricData</code> was retrieved and cached
-     * for pagination.
+     * The time at which the metrics were retrieved and cached for pagination.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dataSnapshotTime <p>
-     *            The time at which <code>CurrentMetricData</code> was retrieved
-     *            and cached for pagination.
+     *            The time at which the metrics were retrieved and cached for
+     *            pagination.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

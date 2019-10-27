@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>RoutingProfileSummary</code> object that contains information about a
- * routing profile, including ARN, Id, and Name.
+ * Contains summary information about a routing profile.
  * </p>
  */
 public class RoutingProfileSummary implements Serializable {
@@ -33,7 +32,7 @@ public class RoutingProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the routing profile.
+     * The Amazon Resource Name (ARN) of the routing profile.
      * </p>
      */
     private String arn;
@@ -95,11 +94,11 @@ public class RoutingProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the routing profile.
+     * The Amazon Resource Name (ARN) of the routing profile.
      * </p>
      *
      * @return <p>
-     *         The ARN of the routing profile.
+     *         The Amazon Resource Name (ARN) of the routing profile.
      *         </p>
      */
     public String getArn() {
@@ -108,11 +107,11 @@ public class RoutingProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the routing profile.
+     * The Amazon Resource Name (ARN) of the routing profile.
      * </p>
      *
      * @param arn <p>
-     *            The ARN of the routing profile.
+     *            The Amazon Resource Name (ARN) of the routing profile.
      *            </p>
      */
     public void setArn(String arn) {
@@ -121,14 +120,14 @@ public class RoutingProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the routing profile.
+     * The Amazon Resource Name (ARN) of the routing profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN of the routing profile.
+     *            The Amazon Resource Name (ARN) of the routing profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

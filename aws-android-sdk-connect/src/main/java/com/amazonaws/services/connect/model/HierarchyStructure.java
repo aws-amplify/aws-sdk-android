@@ -19,60 +19,52 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>HierarchyStructure</code> object that contains information about the
- * hierarchy group structure.
+ * Contains information about a hierarchy structure.
  * </p>
  */
 public class HierarchyStructure implements Serializable {
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level one.
      * </p>
      */
     private HierarchyLevel levelOne;
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level two.
      * </p>
      */
     private HierarchyLevel levelTwo;
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level three.
      * </p>
      */
     private HierarchyLevel levelThree;
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level four.
      * </p>
      */
     private HierarchyLevel levelFour;
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level five.
      * </p>
      */
     private HierarchyLevel levelFive;
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level one.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyLevel</code> object that contains information
-     *         about the hierarchy group level.
+     *         Information about level one.
      *         </p>
      */
     public HierarchyLevel getLevelOne() {
@@ -81,13 +73,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level one.
      * </p>
      *
      * @param levelOne <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level one.
      *            </p>
      */
     public void setLevelOne(HierarchyLevel levelOne) {
@@ -96,16 +86,14 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level one.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param levelOne <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level one.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,13 +105,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level two.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyLevel</code> object that contains information
-     *         about the hierarchy group level.
+     *         Information about level two.
      *         </p>
      */
     public HierarchyLevel getLevelTwo() {
@@ -132,13 +118,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level two.
      * </p>
      *
      * @param levelTwo <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level two.
      *            </p>
      */
     public void setLevelTwo(HierarchyLevel levelTwo) {
@@ -147,16 +131,14 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level two.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param levelTwo <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level two.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,13 +150,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level three.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyLevel</code> object that contains information
-     *         about the hierarchy group level.
+     *         Information about level three.
      *         </p>
      */
     public HierarchyLevel getLevelThree() {
@@ -183,13 +163,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level three.
      * </p>
      *
      * @param levelThree <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level three.
      *            </p>
      */
     public void setLevelThree(HierarchyLevel levelThree) {
@@ -198,16 +176,14 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level three.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param levelThree <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level three.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -219,13 +195,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level four.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyLevel</code> object that contains information
-     *         about the hierarchy group level.
+     *         Information about level four.
      *         </p>
      */
     public HierarchyLevel getLevelFour() {
@@ -234,13 +208,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level four.
      * </p>
      *
      * @param levelFour <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level four.
      *            </p>
      */
     public void setLevelFour(HierarchyLevel levelFour) {
@@ -249,16 +221,14 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level four.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param levelFour <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level four.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -270,13 +240,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level five.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyLevel</code> object that contains information
-     *         about the hierarchy group level.
+     *         Information about level five.
      *         </p>
      */
     public HierarchyLevel getLevelFive() {
@@ -285,13 +253,11 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level five.
      * </p>
      *
      * @param levelFive <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level five.
      *            </p>
      */
     public void setLevelFive(HierarchyLevel levelFive) {
@@ -300,16 +266,14 @@ public class HierarchyStructure implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyLevel</code> object that contains information about the
-     * hierarchy group level.
+     * Information about level five.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param levelFive <p>
-     *            A <code>HierarchyLevel</code> object that contains information
-     *            about the hierarchy group level.
+     *            Information about level five.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

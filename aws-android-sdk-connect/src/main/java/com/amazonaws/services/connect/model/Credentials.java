@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The credentials to use for federation.
+ * Contains credentials to use for federation.
  * </p>
  */
 public class Credentials implements Serializable {
     /**
      * <p>
-     * An access token generated for a federated user to access Amazon Connect
+     * An access token generated for a federated user to access Amazon Connect.
      * </p>
      */
     private String accessToken;
@@ -33,7 +33,7 @@ public class Credentials implements Serializable {
     /**
      * <p>
      * A token generated with an expiration time for the session a user is
-     * logged in to Amazon Connect
+     * logged in to Amazon Connect.
      * </p>
      */
     private java.util.Date accessTokenExpiration;
@@ -55,12 +55,12 @@ public class Credentials implements Serializable {
 
     /**
      * <p>
-     * An access token generated for a federated user to access Amazon Connect
+     * An access token generated for a federated user to access Amazon Connect.
      * </p>
      *
      * @return <p>
      *         An access token generated for a federated user to access Amazon
-     *         Connect
+     *         Connect.
      *         </p>
      */
     public String getAccessToken() {
@@ -69,12 +69,12 @@ public class Credentials implements Serializable {
 
     /**
      * <p>
-     * An access token generated for a federated user to access Amazon Connect
+     * An access token generated for a federated user to access Amazon Connect.
      * </p>
      *
      * @param accessToken <p>
      *            An access token generated for a federated user to access
-     *            Amazon Connect
+     *            Amazon Connect.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -83,7 +83,7 @@ public class Credentials implements Serializable {
 
     /**
      * <p>
-     * An access token generated for a federated user to access Amazon Connect
+     * An access token generated for a federated user to access Amazon Connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -91,7 +91,7 @@ public class Credentials implements Serializable {
      *
      * @param accessToken <p>
      *            An access token generated for a federated user to access
-     *            Amazon Connect
+     *            Amazon Connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -104,12 +104,12 @@ public class Credentials implements Serializable {
     /**
      * <p>
      * A token generated with an expiration time for the session a user is
-     * logged in to Amazon Connect
+     * logged in to Amazon Connect.
      * </p>
      *
      * @return <p>
      *         A token generated with an expiration time for the session a user
-     *         is logged in to Amazon Connect
+     *         is logged in to Amazon Connect.
      *         </p>
      */
     public java.util.Date getAccessTokenExpiration() {
@@ -119,12 +119,12 @@ public class Credentials implements Serializable {
     /**
      * <p>
      * A token generated with an expiration time for the session a user is
-     * logged in to Amazon Connect
+     * logged in to Amazon Connect.
      * </p>
      *
      * @param accessTokenExpiration <p>
      *            A token generated with an expiration time for the session a
-     *            user is logged in to Amazon Connect
+     *            user is logged in to Amazon Connect.
      *            </p>
      */
     public void setAccessTokenExpiration(java.util.Date accessTokenExpiration) {
@@ -134,7 +134,7 @@ public class Credentials implements Serializable {
     /**
      * <p>
      * A token generated with an expiration time for the session a user is
-     * logged in to Amazon Connect
+     * logged in to Amazon Connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -142,7 +142,7 @@ public class Credentials implements Serializable {
      *
      * @param accessTokenExpiration <p>
      *            A token generated with an expiration time for the session a
-     *            user is logged in to Amazon Connect
+     *            user is logged in to Amazon Connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

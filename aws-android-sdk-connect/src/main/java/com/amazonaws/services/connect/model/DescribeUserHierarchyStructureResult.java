@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class DescribeUserHierarchyStructureResult implements Serializable {
     /**
      * <p>
-     * A <code>HierarchyStructure</code> object.
+     * Information about the hierarchy structure.
      * </p>
      */
     private HierarchyStructure hierarchyStructure;
 
     /**
      * <p>
-     * A <code>HierarchyStructure</code> object.
+     * Information about the hierarchy structure.
      * </p>
      *
      * @return <p>
-     *         A <code>HierarchyStructure</code> object.
+     *         Information about the hierarchy structure.
      *         </p>
      */
     public HierarchyStructure getHierarchyStructure() {
@@ -40,11 +40,11 @@ public class DescribeUserHierarchyStructureResult implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyStructure</code> object.
+     * Information about the hierarchy structure.
      * </p>
      *
      * @param hierarchyStructure <p>
-     *            A <code>HierarchyStructure</code> object.
+     *            Information about the hierarchy structure.
      *            </p>
      */
     public void setHierarchyStructure(HierarchyStructure hierarchyStructure) {
@@ -53,14 +53,14 @@ public class DescribeUserHierarchyStructureResult implements Serializable {
 
     /**
      * <p>
-     * A <code>HierarchyStructure</code> object.
+     * Information about the hierarchy structure.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hierarchyStructure <p>
-     *            A <code>HierarchyStructure</code> object.
+     *            Information about the hierarchy structure.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
