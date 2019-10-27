@@ -46,6 +46,11 @@ class SendUsersMessageRequestJsonUnmarshaller implements
                         .setMessageConfiguration(DirectMessageConfigurationJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                sendUsersMessageRequest
+                        .setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("TraceId")) {
                 sendUsersMessageRequest.setTraceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -19,35 +19,49 @@ import java.io.Serializable;
 
 public class PhoneNumberValidateResult implements Serializable {
     /**
-     * Phone Number Validate response.
+     * <p>
+     * Provides information about a phone number.
+     * </p>
      */
     private NumberValidateResponse numberValidateResponse;
 
     /**
-     * Phone Number Validate response.
+     * <p>
+     * Provides information about a phone number.
+     * </p>
      *
-     * @return Phone Number Validate response.
+     * @return <p>
+     *         Provides information about a phone number.
+     *         </p>
      */
     public NumberValidateResponse getNumberValidateResponse() {
         return numberValidateResponse;
     }
 
     /**
-     * Phone Number Validate response.
+     * <p>
+     * Provides information about a phone number.
+     * </p>
      *
-     * @param numberValidateResponse Phone Number Validate response.
+     * @param numberValidateResponse <p>
+     *            Provides information about a phone number.
+     *            </p>
      */
     public void setNumberValidateResponse(NumberValidateResponse numberValidateResponse) {
         this.numberValidateResponse = numberValidateResponse;
     }
 
     /**
-     * Phone Number Validate response.
+     * <p>
+     * Provides information about a phone number.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param numberValidateResponse Phone Number Validate response.
+     * @param numberValidateResponse <p>
+     *            Provides information about a phone number.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

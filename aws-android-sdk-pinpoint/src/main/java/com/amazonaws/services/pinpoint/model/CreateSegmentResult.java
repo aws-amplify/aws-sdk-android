@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class CreateSegmentResult implements Serializable {
     /**
-     * Segment definition.
+     * <p>
+     * Provides information about the configuration, dimension, and other
+     * settings for a segment.
+     * </p>
      */
     private SegmentResponse segmentResponse;
 
     /**
-     * Segment definition.
+     * <p>
+     * Provides information about the configuration, dimension, and other
+     * settings for a segment.
+     * </p>
      *
-     * @return Segment definition.
+     * @return <p>
+     *         Provides information about the configuration, dimension, and
+     *         other settings for a segment.
+     *         </p>
      */
     public SegmentResponse getSegmentResponse() {
         return segmentResponse;
     }
 
     /**
-     * Segment definition.
+     * <p>
+     * Provides information about the configuration, dimension, and other
+     * settings for a segment.
+     * </p>
      *
-     * @param segmentResponse Segment definition.
+     * @param segmentResponse <p>
+     *            Provides information about the configuration, dimension, and
+     *            other settings for a segment.
+     *            </p>
      */
     public void setSegmentResponse(SegmentResponse segmentResponse) {
         this.segmentResponse = segmentResponse;
     }
 
     /**
-     * Segment definition.
+     * <p>
+     * Provides information about the configuration, dimension, and other
+     * settings for a segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentResponse Segment definition.
+     * @param segmentResponse <p>
+     *            Provides information about the configuration, dimension, and
+     *            other settings for a segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

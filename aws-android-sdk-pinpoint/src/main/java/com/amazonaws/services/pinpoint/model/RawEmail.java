@@ -18,42 +18,63 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * An email represented as a raw MIME message.
+ * <p>
+ * Specifies the contents of an email message, represented as a raw MIME
+ * message.
+ * </p>
  */
 public class RawEmail implements Serializable {
     /**
-     * The raw email message itself. Then entire message must be base64-encoded.
+     * <p>
+     * The email message, represented as a raw MIME message. The entire message
+     * must be base64 encoded.
+     * </p>
      */
     private java.nio.ByteBuffer data;
 
     /**
-     * The raw email message itself. Then entire message must be base64-encoded.
+     * <p>
+     * The email message, represented as a raw MIME message. The entire message
+     * must be base64 encoded.
+     * </p>
      *
-     * @return The raw email message itself. Then entire message must be
-     *         base64-encoded.
+     * @return <p>
+     *         The email message, represented as a raw MIME message. The entire
+     *         message must be base64 encoded.
+     *         </p>
      */
     public java.nio.ByteBuffer getData() {
         return data;
     }
 
     /**
-     * The raw email message itself. Then entire message must be base64-encoded.
+     * <p>
+     * The email message, represented as a raw MIME message. The entire message
+     * must be base64 encoded.
+     * </p>
      *
-     * @param data The raw email message itself. Then entire message must be
-     *            base64-encoded.
+     * @param data <p>
+     *            The email message, represented as a raw MIME message. The
+     *            entire message must be base64 encoded.
+     *            </p>
      */
     public void setData(java.nio.ByteBuffer data) {
         this.data = data;
     }
 
     /**
-     * The raw email message itself. Then entire message must be base64-encoded.
+     * <p>
+     * The email message, represented as a raw MIME message. The entire message
+     * must be base64 encoded.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param data The raw email message itself. Then entire message must be
-     *            base64-encoded.
+     * @param data <p>
+     *            The email message, represented as a raw MIME message. The
+     *            entire message must be base64 encoded.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

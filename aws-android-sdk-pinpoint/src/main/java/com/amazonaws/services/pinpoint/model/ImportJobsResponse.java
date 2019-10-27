@@ -18,33 +18,60 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Import job list.
+ * <p>
+ * Provides information about the status and settings of all the import jobs
+ * that are associated with an application or segment. An import job is a job
+ * that imports endpoint definitions from one or more files.
+ * </p>
  */
 public class ImportJobsResponse implements Serializable {
     /**
-     * A list of import jobs for the application.
+     * <p>
+     * An array of responses, one for each import job that's associated with the
+     * application (Import Jobs resource) or segment (Segment Import Jobs
+     * resource).
+     * </p>
      */
     private java.util.List<ImportJobResponse> item;
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      */
     private String nextToken;
 
     /**
-     * A list of import jobs for the application.
+     * <p>
+     * An array of responses, one for each import job that's associated with the
+     * application (Import Jobs resource) or segment (Segment Import Jobs
+     * resource).
+     * </p>
      *
-     * @return A list of import jobs for the application.
+     * @return <p>
+     *         An array of responses, one for each import job that's associated
+     *         with the application (Import Jobs resource) or segment (Segment
+     *         Import Jobs resource).
+     *         </p>
      */
     public java.util.List<ImportJobResponse> getItem() {
         return item;
     }
 
     /**
-     * A list of import jobs for the application.
+     * <p>
+     * An array of responses, one for each import job that's associated with the
+     * application (Import Jobs resource) or segment (Segment Import Jobs
+     * resource).
+     * </p>
      *
-     * @param item A list of import jobs for the application.
+     * @param item <p>
+     *            An array of responses, one for each import job that's
+     *            associated with the application (Import Jobs resource) or
+     *            segment (Segment Import Jobs resource).
+     *            </p>
      */
     public void setItem(java.util.Collection<ImportJobResponse> item) {
         if (item == null) {
@@ -56,12 +83,20 @@ public class ImportJobsResponse implements Serializable {
     }
 
     /**
-     * A list of import jobs for the application.
+     * <p>
+     * An array of responses, one for each import job that's associated with the
+     * application (Import Jobs resource) or segment (Segment Import Jobs
+     * resource).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item A list of import jobs for the application.
+     * @param item <p>
+     *            An array of responses, one for each import job that's
+     *            associated with the application (Import Jobs resource) or
+     *            segment (Segment Import Jobs resource).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,12 +111,20 @@ public class ImportJobsResponse implements Serializable {
     }
 
     /**
-     * A list of import jobs for the application.
+     * <p>
+     * An array of responses, one for each import job that's associated with the
+     * application (Import Jobs resource) or segment (Segment Import Jobs
+     * resource).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item A list of import jobs for the application.
+     * @param item <p>
+     *            An array of responses, one for each import job that's
+     *            associated with the application (Import Jobs resource) or
+     *            segment (Segment Import Jobs resource).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -91,36 +134,54 @@ public class ImportJobsResponse implements Serializable {
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @return The string that you use in a subsequent request to get the next
-     *         page of results in a paginated response.
+     * @return <p>
+     *         The string to use in a subsequent request to get the next page of
+     *         results in a paginated response. This value is null if there are
+     *         no additional pages.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      *
-     * @param nextToken The string that you use in a subsequent request to get
-     *            the next page of results in a paginated response.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * The string that you use in a subsequent request to get the next page of
-     * results in a paginated response.
+     * <p>
+     * The string to use in a subsequent request to get the next page of results
+     * in a paginated response. This value is null if there are no additional
+     * pages.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param nextToken The string that you use in a subsequent request to get
-     *            the next page of results in a paginated response.
+     * @param nextToken <p>
+     *            The string to use in a subsequent request to get the next page
+     *            of results in a paginated response. This value is null if
+     *            there are no additional pages.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
