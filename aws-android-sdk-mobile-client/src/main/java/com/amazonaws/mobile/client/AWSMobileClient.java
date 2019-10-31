@@ -1904,7 +1904,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return new Runnable() {
             @Override
             public void run() {
-                userpool.getUser(username).confirmSignUp(signUpChallengeResponse, true, new GenericHandler() {
+                userpool.getUser(username).confirmSignUp(signUpChallengeResponse, false, new GenericHandler() {
                     @Override
                     public void onSuccess() {
                         callback.onResult(new SignUpResult(

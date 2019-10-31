@@ -8,6 +8,13 @@
   - Now supports calling LogFactory.setLevel(Level) to set a global level of which logs will be output. Any logs below the set level will not be output
     You can also call Log.setLevel(Level) on a specific Logger to limit the logs which are output by a specific class. Addresses issue #1174
 
+### Bug Fixes
+
+- **AWSMobileClient**
+  - Sets default confirmSignup behavior to prevent a user from signing up with the same email/phone as another user. This is the same as iOS.
+    NOTE: When you upgrade to this version, your app behavior will change from allowing users to sign up with the same email/phone as another user
+    (and just overriding the existing user) to giving the user an error if they attempt to do that.
+
 ## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
 ### New Features
