@@ -211,4 +211,11 @@ public interface Log {
      * @param t log this cause
      */
     public void error(Object message, Throwable t);
+
+    /**
+     * <p> Set the level of logs which will be output for this particular logger. </p>
+     *
+     * @param level Only logs of this level and above will now be output
+     */
+    public void setLevel(LogFactory.Level level);
 }
