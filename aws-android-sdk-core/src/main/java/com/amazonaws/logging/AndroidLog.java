@@ -26,6 +26,9 @@ public class AndroidLog implements com.amazonaws.logging.Log {
     /** Tag for the log message */
     private final String tag;
 
+    /** If set, only this level and above logs will be output by this logger **/
+    private LogFactory.Level level = null;
+
     /**
      *
      * @param tag The tag that is present in
@@ -37,76 +40,118 @@ public class AndroidLog implements com.amazonaws.logging.Log {
 
     @Override
     public boolean isDebugEnabled() {
-        return Log.isLoggable(tag, Log.DEBUG);
+        return Log.isLoggable(tag, Log.DEBUG) &&
+                (getLevel() == null || getLevel().getValue() <= LogFactory.Level.DEBUG.getValue());
     }
 
     @Override
     public boolean isErrorEnabled() {
-        return Log.isLoggable(tag, Log.ERROR);
+        return Log.isLoggable(tag, Log.ERROR) &&
+                (getLevel() == null || getLevel().getValue() <= LogFactory.Level.ERROR.getValue());
     }
 
     @Override
     public boolean isInfoEnabled() {
-        return Log.isLoggable(tag, Log.INFO);
+        return Log.isLoggable(tag, Log.INFO) &&
+                (getLevel() == null || getLevel().getValue() <= LogFactory.Level.INFO.getValue());
     }
 
     @Override
     public boolean isTraceEnabled() {
-        return Log.isLoggable(tag, Log.VERBOSE);
+        return Log.isLoggable(tag, Log.VERBOSE) &&
+                (getLevel() == null || getLevel().getValue() <= LogFactory.Level.TRACE.getValue());
     }
 
     @Override
     public boolean isWarnEnabled() {
-        return Log.isLoggable(tag, Log.WARN);
+        return Log.isLoggable(tag, Log.WARN) &&
+                (getLevel() == null || getLevel().getValue() <= LogFactory.Level.WARN.getValue());
     }
 
     @Override
     public void trace(Object message) {
-        Log.v(tag, message.toString());
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.TRACE.getValue()) {
+            Log.v(tag, message.toString());
+        }
     }
 
     @Override
     public void trace(Object message, Throwable t) {
-        Log.v(tag, message.toString(), t);
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.TRACE.getValue()) {
+            Log.v(tag, message.toString(), t);
+        }
     }
 
     @Override
     public void debug(Object message) {
-        Log.d(tag, message.toString());
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.DEBUG.getValue()) {
+            Log.d(tag, message.toString());
+        }
     }
 
     @Override
     public void debug(Object message, Throwable t) {
-        Log.d(tag, message.toString(), t);
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.DEBUG.getValue()) {
+            Log.d(tag, message.toString(), t);
+        }
     }
 
     @Override
     public void info(Object message) {
-        Log.i(tag, message.toString());
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.INFO.getValue()) {
+            Log.i(tag, message.toString());
+        }
     }
 
     @Override
     public void info(Object message, Throwable t) {
-        Log.i(tag, message.toString(), t);
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.INFO.getValue()) {
+            Log.i(tag, message.toString(), t);
+        }
     }
 
     @Override
     public void warn(Object message) {
-        Log.w(tag, message.toString());
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.WARN.getValue()) {
+            Log.w(tag, message.toString());
+        }
     }
 
     @Override
     public void warn(Object message, Throwable t) {
-        Log.w(tag, message.toString(), t);
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.WARN.getValue()) {
+            Log.w(tag, message.toString(), t);
+        }
     }
 
     @Override
     public void error(Object message) {
-        Log.e(tag, message.toString());
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.ERROR.getValue()) {
+            Log.e(tag, message.toString());
+        }
     }
 
     @Override
     public void error(Object message, Throwable t) {
-        Log.e(tag, message.toString(), t);
+        if (getLevel() == null || getLevel().getValue() <= LogFactory.Level.ERROR.getValue()) {
+            Log.e(tag, message.toString(), t);
+        }
+    }
+
+    @Override
+    public void setLevel(LogFactory.Level level) {
+        this.level = level;
+    }
+
+    /**
+     * Checks whether a log level has been set either at the local level or, if not, the global one
+     * @return Appropriate log level if one has been set by the user
+     */
+    private LogFactory.Level getLevel() {
+        if (level != null) {
+            return level;
+        } else {
+            return LogFactory.getLevel();
+        }
     }
 }
