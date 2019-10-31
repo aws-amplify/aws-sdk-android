@@ -1,6 +1,6 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
+## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
 ### New Features
 
@@ -8,23 +8,17 @@
   - Now supports calling LogFactory.setLevel(Level) to set a global level of which logs will be output. Any logs below the set level will not be output
     You can also call Log.setLevel(Level) on a specific Logger to limit the logs which are output by a specific class. Addresses issue #1174
 
-### Bug Fixes
-
-- **AWSMobileClient**
-  - Sets default confirmSignup behavior to prevent a user from signing up with the same email/phone as another user. This is the same as iOS.
-    NOTE: When you upgrade to this version, your app behavior will change from allowing users to sign up with the same email/phone as another user
-    (and just overriding the existing user) to giving the user an error if they attempt to do that.
-
-## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
-
-### New Features
-
 - **Amazon Polly**
   - `SynthesizeSpeechPresignRequest` now supports the ability to specify the engine (`standard` or neural) for a request.
     See [the Amazon Polly documentation](https://docs.aws.amazon.com/polly/latest/dg/API_SynthesizeSpeech.html#polly-SynthesizeSpeech-request-Engine)
     for a discussion of the Engine. See [Issue #1256](https://github.com/aws-amplify/aws-sdk-android/issues/1256).
 
 ### Bug Fixes
+
+- **AWSMobileClient**
+  - Sets default confirmSignup behavior to prevent a user from signing up with the same email/phone as another user. This is the same as iOS.
+    NOTE: When you upgrade to this version, your app behavior will change from allowing users to sign up with the same email/phone as another user
+    (and just overriding the existing user) to giving the user an error if they attempt to do that.
 
 - **AWS IoT**
   - Specified minimum SDK (11) and target SDK (27) version in `AndroidManifest.xml` for IoT SDK.
@@ -34,7 +28,7 @@
 
 - **Amazon S3**
   - Added serialized name annotation to `TransferNetworkConnectionType` enum values and added instrumentation tests.
-  
+
 - Model updates for the following services
   - Amazon Cognito Identity Provider
   - Amazon Kinesis Firehose
@@ -47,7 +41,7 @@
 
 - **AWS IoT**
   - AWS Android SDK for IoT now depends on the 1.2.2 version of the Paho Library org.eclipse.paho.client.mqttv3
-  
+
 - **AWS Security Token Service**
   - AWS Security Token Service client now supports two additional APIs:
     - `assumeRoleWithSAML`
@@ -73,7 +67,7 @@
   - `signUpInBackground` and `signUp` now receive `SignUpResult` in the `onSuccess` callback
 
 - **Amazon SNS**
-  - Updated model to support latest Amazon SNS features such as `TagResource` function. This resolves [Issue# 1020](https://github.com/aws-amplify/aws-sdk-android/issues/1020). 
+  - Updated model to support latest Amazon SNS features such as `TagResource` function. This resolves [Issue# 1020](https://github.com/aws-amplify/aws-sdk-android/issues/1020).
 
 ### Misc. Updates
 
@@ -127,7 +121,7 @@
 - **Amazon S3**
   - Fixed a bug where multi-part uploads via `TransferUtility` would fail to propagate tags to `Amazon S3` from the `UserMetadata` passed through the `ObjectMetadata`. See [Issue#541](https://github.com/aws-amplify/aws-sdk-android/issues/541).
   - The following code should now attach a tag for both single-part and multi-part uploads:
-  
+
 	```java
 	ObjectMetadata metadata = new ObjectMetadata();
 	metadata.addUserMetadata(Headers.S3_TAGGING, "key=value");
@@ -217,7 +211,7 @@
 
 * **Amazon SageMaker**
   * Amazon SageMaker provides every developer and data scientist with the ability to build, train, and deploy machine learning models quickly. Amazon SageMaker is a fully-managed service that covers the entire machine learning workflow to label and prepare your data, choose an algorithm, train the model, tune and optimize it for deployment, make predictions, and take action. Your models get to production faster with much less effort and lower cost. See [Amazon SageMaker Documentation](https://aws.amazon.com/sagemaker/) for more details.
-  
+
 * **Amazon Textract**
   * Amazon Textract is a service that automatically extracts text and data from scanned documents. Amazon Textract goes beyond simple optical character recognition (OCR) to also identify the contents of fields in forms and information stored in tables. See [Amazon Textract Documentation](https://aws.amazon.com/textract/) for more details.
 
@@ -228,7 +222,7 @@
 
 * **Amazon Pinpoint**
   * Added limits to batch submit events. A maximum of 100 events per batch as specified by the service. See [issue #977](https://github.com/aws-amplify/aws-sdk-android/issues/977) for details.
-  
+
 ### Misc. Updates
 
 * Model updates for the following services
@@ -267,7 +261,7 @@
 
 * **Amazon S3**
   * Fix a bug where the `TransferListener` is not triggered when the preferred network type is not available. See [issue #958](https://github.com/aws-amplify/aws-sdk-android/issues/958) for details.
-  
+
 * **AWS Core Runtime**
   * Fixed a bug where generating RSA keys for encryption of the credentials failed due to `setKeySize(int)` method not available in Android API level 18. See [issue #964](https://github.com/aws-amplify/aws-sdk-android/issues/964) for details.
 
@@ -294,7 +288,7 @@
   * Update logic to expose network related exceptions during API calls. The network related exceptions were not surfaced previously in API calls like getUserAttributes. Only the exceptions that conclusively indicate signed-out are used to trigger SIGNED_OUT_TOKENS_INVALID variants. See [issue #679](https://github.com/aws-amplify/aws-sdk-android/issues/679)
   * Reduced logging of unfound dependencies for the Hosted UI feature when not used.
   * Delay usage of drop-in UI dependencies until `showSignIn()` is called.
-  
+
 ### Misc. Updates
 
 * Model updates for the following services
@@ -449,11 +443,11 @@
   * Added a method `CognitoCachingCredentialsProvider.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
 
 * **Amazon CognitoIdentityProvider**
-  * Persistence of client state including user credentials is now enabled and encrypted by default. 
+  * Persistence of client state including user credentials is now enabled and encrypted by default.
   * Added a method `CognitoUserPool.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
 
 * **Amazon CognitoAuth**
-  * Persistence of client state including user credentials is now enabled and encrypted by default. 
+  * Persistence of client state including user credentials is now enabled and encrypted by default.
   * Added a method `Auth.setPersistenceEnabled(boolean)`, which is enabled (set to true) by default therefore the information is persisted in SharedPreferences. When disabled (set to false), the information will only be kept in memory.
 
 * **AWSMobileClient**
@@ -565,14 +559,14 @@ AmazonS3Client(ClientConfiguration) | AmazonS3Client(ClientConfiguration, com.am
   * Amazon Kinesis Firehose
   * Amazon Transcribe
   * Amazon Pinpoint
- 
+
 ## [Release 2.11.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.11.0)
 
 ### Enhancements
 
 * **Amazon S3**
   * Introduced `TransferNetworkLossHandler`, a utility that listens for network connectivity changes. `TransferNetworkLossHandler` pauses the on-going transfers when the network goes offline and resumes the transfers that were paused when the network comes back online.
-  * `TransferService` will be moved to foreground state when the device is running Android Oreo (API Level 26) and above. 
+  * `TransferService` will be moved to foreground state when the device is running Android Oreo (API Level 26) and above.
       * Transitioning to the foreground state requires a valid on-going `Notification` object, identifier for on-going notification and the flag that determines the ability to remove the on-going notification when the service transitions out of foreground state. If a valid notification object is not passed in, the service will not be transitioned into the foreground state.
       * The `TransferService` can now be started using `startForegroundService` method to move the service to foreground state. The service can be invoked in the following way to transition the service to foreground state: `getApplicationContext().startForegroundService(intent);`.
 
@@ -611,7 +605,7 @@ AmazonS3Client(ClientConfiguration) | AmazonS3Client(ClientConfiguration, com.am
         * Added overrides to various `InteractionClient` and `LexServiceContinuation` methods, to allow passing request attributes
         * **Breaking API Changes:** The following APIs have been changed:
             * `PostContentRequest`, `PostContentResponse`
-                * Certain properties which used to have a type of `Map<String, String>` are now `String`. This requires your calling code to 
+                * Certain properties which used to have a type of `Map<String, String>` are now `String`. This requires your calling code to
                   JSON serialize and base64-encode the value. The `get`, `set` and `with` APIs of the following properties are affected:
                   - `PostContentRequest.requestAttributes`
                   - `PostContentRequest.sessionAttributes`
@@ -908,7 +902,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
   * Starting version `2.7.0` of the SDK, `TransferService` logic has been refactored. This service now will be responsible only for monitoring network connectivity changes. When the network goes offline, the transfers that are in progress will be paused. When the network comes back online, the transfers that are paused will be resumed. If you expect your app to perform long-running transfers in the background, you need to initiate the transfers from a background service of your choice.
 
   * The `TransferService` will not be started or stopped by `TransferUtility` anymore. You have to start `TransferService` manually from your application. A recommended way is to start the service upon Application startup. One way you can do this is to include the following line in the `onCreate` method of your app's Application class.
-  		  
+
 	```java
 	getApplicationContext().startService(new Intent(getApplicationContext(), TransferService.class));
 	```
@@ -1099,7 +1093,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
 
 * **Amazon CloudWatch Logs**
   * Fix signing issue for `AmazonCloudWatchLogsClient`.  See [issue #453](https://github.com/aws/aws-sdk-android/issues/453)
-  
+
 * **AWS IoT**
   * Use `ConcurrentHashMap` to avoid `ConcurrentModificationException`. See [PR #330](https://github.com/aws/aws-sdk-android/issues/330)
 
@@ -1329,7 +1323,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
 ### New Features:
 
 - **Amazon Pinpoint**
-  - Add support for ADM and Baidu channels. Now Android developers will be able to target devices that leverage Amazon Device messaging and Baidu Cloud messaging. 
+  - Add support for ADM and Baidu channels. Now Android developers will be able to target devices that leverage Amazon Device messaging and Baidu Cloud messaging.
 - **Amazon Cognito Identity Provider**
   - Support for Pinpoint Analytics integration in Cognito User Pools.
 
@@ -1587,7 +1581,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
 ## [Release 2.3.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.2) (10/06/2016)
 
 ### Improvements
-- **Amazon Cognito Identity Provider**: 
+- **Amazon Cognito Identity Provider**:
 - Support for Admin Create User feature.
 - Allow SDK to refresh tokens which are about to expire within a pre-set threshold.
 
@@ -1597,21 +1591,21 @@ All documentation is now centralized at https://aws-amplify.github.io/
 - **API Gateway**: Added a generic invoker to execute requests for any path.
 
 ### Bug Fixes
-- **Amazon Cognito Identity Provider**: 
+- **Amazon Cognito Identity Provider**:
 - Fixed a bug introduced by StandardCharsets that caused the Android SDK to be unavailable for API 18 and below.
 
 ## [Release 2.3.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.0) (07/28/2016)
 
 ### Improvements
 - **AWS Core Runtime Library**: Added support for `us-west-2/PDX` region for cognito identity.
-- **Amazon Cognito Identity Provider**: 
+- **Amazon Cognito Identity Provider**:
 - Support for Custom authentication flows. Developers can implement custom authentication flows around Cognito Your User Pools.
 - Support for devices.
 - Global sign-out users, to sign-out from all devices.
 - **Amazon Cognito Sync**: Added support for `us-west-2/PDX` region.
 
 ### Bug Fixes
-- **Amazon Cognito Identity Provider**: 
+- **Amazon Cognito Identity Provider**:
 - Authentication flow in Android SDK now uses Custom Authentication API.
 - Two new exceptions added for getSession API. These exceptions have been added to accurately represent the user state when the username is invalid and when the user is not confirmed. You will have to update your application to handle these exceptions.
 - UserNotFoundException: Returned when the username user does not exist.
@@ -1648,7 +1642,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
 - In DynamoDB, the method `setKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is removed from `GetItemRequest`, `UpdateItemRequest`, `DeleteItemRequest`, and `DeleteRequest`. Use `addKeyEntry(String key, AttributeValue value)` instead. `setExclusiveStartKey(java.util.Map.Entry<String, AttributeValue> hashKey, java.util.Map.Entry<String, AttributeValue> rangeKey)` is also removed from `QueryRequest` and `ScanRequest`. The alternative is `addExclusiveStartKeyEntry(String key, AttributeValue value)`.
 
 ### Bug Fixes
-- **API Gateway**: Fixed a bug where user agent is overwritten by `ApiHandler`. [#159](https://github.com/aws/aws-sdk-android/issues/159) 
+- **API Gateway**: Fixed a bug where user agent is overwritten by `ApiHandler`. [#159](https://github.com/aws/aws-sdk-android/issues/159)
 
 
 ## [Release 2.2.19](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.2.19) (06/23/2016)
@@ -1800,8 +1794,8 @@ All documentation is now centralized at https://aws-amplify.github.io/
 - **AWS Lambda**: You can now maintain multiple versions of your Lambda function code. Versioning allows you to control which Lambda function version is executed in your different environments (e.g., development, testing, or production).  You can also set up your Lambda functions to run for up to five minutes allowing longer running functions such as large volume data ingestion and processing jobs.
 
 ### Bug Fixes
-- **Amazon S3**: Resolved a hostname verification issue when there is a . in the bucket name. [#59](https://github.com/aws/aws-sdk-android/issues/59) 
-- **Amazon S3**: Resolved an issue when using  SSE-C with Transfer Manager 
+- **Amazon S3**: Resolved a hostname verification issue when there is a . in the bucket name. [#59](https://github.com/aws/aws-sdk-android/issues/59)
+- **Amazon S3**: Resolved an issue when using  SSE-C with Transfer Manager
 - **Amazon API Gateway**: Fixed an issue where the incorrect content length was sent to the service when the body contained UTF-8 characters that were multiple bytes in length. [#62](https://github.com/aws/aws-sdk-android/issues/62)
 
 
