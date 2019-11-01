@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
+
+### Bug Fixes
+
+- **AWS Mobile Client**
+  - During `signUp`, when the user is confirmed, Cognito does not send `CognitoUserCodeDeliveryDetails`
+and it appears to be null when the SignUpResult is unmarshalled. Add a check before accessing the `CognitoUserCodeDeliveryDetails` only when the user is not confirmed. See [issue #1264](https://github.com/aws-amplify/aws-sdk-android/issues/1264) for more details.
+
 ## [Release 2.16.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.2)
 
 ### New Features
