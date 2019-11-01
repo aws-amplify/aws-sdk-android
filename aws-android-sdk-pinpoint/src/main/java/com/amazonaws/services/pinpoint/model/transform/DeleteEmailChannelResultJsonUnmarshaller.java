@@ -29,20 +29,6 @@ public class DeleteEmailChannelResultJsonUnmarshaller implements
     public DeleteEmailChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteEmailChannelResult deleteEmailChannelResult = new DeleteEmailChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("EmailChannelResponse")) {
-                deleteEmailChannelResult
-                        .setEmailChannelResponse(EmailChannelResponseJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteEmailChannelResult;
     }
 

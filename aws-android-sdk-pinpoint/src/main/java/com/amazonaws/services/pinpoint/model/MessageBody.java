@@ -18,62 +18,44 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about an API request or response.
- * </p>
+ * Simple message object.
  */
 public class MessageBody implements Serializable {
     /**
-     * <p>
-     * The message that's returned from the API.
-     * </p>
+     * The error message that's returned from the API.
      */
     private String message;
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      */
     private String requestID;
 
     /**
-     * <p>
-     * The message that's returned from the API.
-     * </p>
+     * The error message that's returned from the API.
      *
-     * @return <p>
-     *         The message that's returned from the API.
-     *         </p>
+     * @return The error message that's returned from the API.
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * <p>
-     * The message that's returned from the API.
-     * </p>
+     * The error message that's returned from the API.
      *
-     * @param message <p>
-     *            The message that's returned from the API.
-     *            </p>
+     * @param message The error message that's returned from the API.
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * <p>
-     * The message that's returned from the API.
-     * </p>
+     * The error message that's returned from the API.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param message <p>
-     *            The message that's returned from the API.
-     *            </p>
+     * @param message The error message that's returned from the API.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -83,42 +65,30 @@ public class MessageBody implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      *
-     * @return <p>
-     *         The unique identifier for the request or response.
-     *         </p>
+     * @return The unique message body ID.
      */
     public String getRequestID() {
         return requestID;
     }
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      *
-     * @param requestID <p>
-     *            The unique identifier for the request or response.
-     *            </p>
+     * @param requestID The unique message body ID.
      */
     public void setRequestID(String requestID) {
         this.requestID = requestID;
     }
 
     /**
-     * <p>
-     * The unique identifier for the request or response.
-     * </p>
+     * The unique message body ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param requestID <p>
-     *            The unique identifier for the request or response.
-     *            </p>
+     * @param requestID The unique message body ID.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

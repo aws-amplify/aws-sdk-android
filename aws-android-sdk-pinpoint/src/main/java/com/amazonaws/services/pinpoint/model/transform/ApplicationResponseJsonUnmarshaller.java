@@ -36,20 +36,12 @@ class ApplicationResponseJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Arn")) {
-                applicationResponse.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Id")) {
+            if (name.equals("Id")) {
                 applicationResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Name")) {
                 applicationResponse.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("tags")) {
-                applicationResponse.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

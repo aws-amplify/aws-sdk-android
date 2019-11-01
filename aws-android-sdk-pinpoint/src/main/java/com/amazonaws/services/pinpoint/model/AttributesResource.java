@@ -18,90 +18,49 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about the type and the names of attributes that were
- * removed from all the endpoints that are associated with an application.
- * </p>
+ * Attributes.
  */
 public class AttributesResource implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application.
-     * </p>
+     * The unique ID for the application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The type of attribute or attributes that were removed from the endpoints.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users.
-     * </p>
-     * </li>
-     * </ul>
+     * The attribute type for the application.
      */
     private String attributeType;
 
     /**
-     * <p>
-     * An array that specifies the names of the attributes that were removed
-     * from the endpoints.
-     * </p>
+     * The attributes for the application.
      */
     private java.util.List<String> attributes;
 
     /**
-     * <p>
-     * The unique identifier for the application.
-     * </p>
+     * The unique ID for the application.
      *
-     * @return <p>
-     *         The unique identifier for the application.
-     *         </p>
+     * @return The unique ID for the application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application.
-     * </p>
+     * The unique ID for the application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application.
-     *            </p>
+     * @param applicationId The unique ID for the application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application.
-     * </p>
+     * The unique ID for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application.
-     *            </p>
+     * @param applicationId The unique ID for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,161 +70,30 @@ public class AttributesResource implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes that were removed from the endpoints.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users.
-     * </p>
-     * </li>
-     * </ul>
+     * The attribute type for the application.
      *
-     * @return <p>
-     *         The type of attribute or attributes that were removed from the
-     *         endpoints. Valid values are:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         endpoint-custom-attributes - Custom attributes that describe
-     *         endpoints.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         endpoint-custom-metrics - Custom metrics that your app reports to
-     *         Amazon Pinpoint for endpoints.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         endpoint-user-attributes - Custom attributes that describe users.
-     *         </p>
-     *         </li>
-     *         </ul>
+     * @return The attribute type for the application.
      */
     public String getAttributeType() {
         return attributeType;
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes that were removed from the endpoints.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users.
-     * </p>
-     * </li>
-     * </ul>
+     * The attribute type for the application.
      *
-     * @param attributeType <p>
-     *            The type of attribute or attributes that were removed from the
-     *            endpoints. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-attributes - Custom attributes that describe
-     *            endpoints.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-metrics - Custom metrics that your app reports
-     *            to Amazon Pinpoint for endpoints.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-user-attributes - Custom attributes that describe
-     *            users.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param attributeType The attribute type for the application.
      */
     public void setAttributeType(String attributeType) {
         this.attributeType = attributeType;
     }
 
     /**
-     * <p>
-     * The type of attribute or attributes that were removed from the endpoints.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * endpoint-custom-attributes - Custom attributes that describe endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-custom-metrics - Custom metrics that your app reports to Amazon
-     * Pinpoint for endpoints.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * endpoint-user-attributes - Custom attributes that describe users.
-     * </p>
-     * </li>
-     * </ul>
+     * The attribute type for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributeType <p>
-     *            The type of attribute or attributes that were removed from the
-     *            endpoints. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-attributes - Custom attributes that describe
-     *            endpoints.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-custom-metrics - Custom metrics that your app reports
-     *            to Amazon Pinpoint for endpoints.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            endpoint-user-attributes - Custom attributes that describe
-     *            users.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param attributeType The attribute type for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -275,30 +103,18 @@ public class AttributesResource implements Serializable {
     }
 
     /**
-     * <p>
-     * An array that specifies the names of the attributes that were removed
-     * from the endpoints.
-     * </p>
+     * The attributes for the application.
      *
-     * @return <p>
-     *         An array that specifies the names of the attributes that were
-     *         removed from the endpoints.
-     *         </p>
+     * @return The attributes for the application.
      */
     public java.util.List<String> getAttributes() {
         return attributes;
     }
 
     /**
-     * <p>
-     * An array that specifies the names of the attributes that were removed
-     * from the endpoints.
-     * </p>
+     * The attributes for the application.
      *
-     * @param attributes <p>
-     *            An array that specifies the names of the attributes that were
-     *            removed from the endpoints.
-     *            </p>
+     * @param attributes The attributes for the application.
      */
     public void setAttributes(java.util.Collection<String> attributes) {
         if (attributes == null) {
@@ -310,18 +126,12 @@ public class AttributesResource implements Serializable {
     }
 
     /**
-     * <p>
-     * An array that specifies the names of the attributes that were removed
-     * from the endpoints.
-     * </p>
+     * The attributes for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributes <p>
-     *            An array that specifies the names of the attributes that were
-     *            removed from the endpoints.
-     *            </p>
+     * @param attributes The attributes for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -336,18 +146,12 @@ public class AttributesResource implements Serializable {
     }
 
     /**
-     * <p>
-     * An array that specifies the names of the attributes that were removed
-     * from the endpoints.
-     * </p>
+     * The attributes for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributes <p>
-     *            An array that specifies the names of the attributes that were
-     *            removed from the endpoints.
-     *            </p>
+     * @param attributes The attributes for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

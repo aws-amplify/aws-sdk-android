@@ -31,11 +31,6 @@ class SegmentResponseJsonMarshaller {
             jsonWriter.name("ApplicationId");
             jsonWriter.value(applicationId);
         }
-        if (segmentResponse.getArn() != null) {
-            String arn = segmentResponse.getArn();
-            jsonWriter.name("Arn");
-            jsonWriter.value(arn);
-        }
         if (segmentResponse.getCreationDate() != null) {
             String creationDate = segmentResponse.getCreationDate();
             jsonWriter.name("CreationDate");
@@ -76,19 +71,6 @@ class SegmentResponseJsonMarshaller {
             String segmentType = segmentResponse.getSegmentType();
             jsonWriter.name("SegmentType");
             jsonWriter.value(segmentType);
-        }
-        if (segmentResponse.getTags() != null) {
-            java.util.Map<String, String> tags = segmentResponse.getTags();
-            jsonWriter.name("tags");
-            jsonWriter.beginObject();
-            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
-                String tagsValue = tagsEntry.getValue();
-                if (tagsValue != null) {
-                    jsonWriter.name(tagsEntry.getKey());
-                    jsonWriter.value(tagsValue);
-                }
-            }
-            jsonWriter.endObject();
         }
         if (segmentResponse.getVersion() != null) {
             Integer version = segmentResponse.getVersion();

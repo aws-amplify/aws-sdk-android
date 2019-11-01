@@ -20,58 +20,39 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Retrieves information about a phone number.
- * </p>
+ * Returns information about the specified phone number.
  */
 public class PhoneNumberValidateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * Specifies a phone number to validate and retrieve information about.
-     * </p>
+     * Phone Number Validate request.
      */
     private NumberValidateRequest numberValidateRequest;
 
     /**
-     * <p>
-     * Specifies a phone number to validate and retrieve information about.
-     * </p>
+     * Phone Number Validate request.
      *
-     * @return <p>
-     *         Specifies a phone number to validate and retrieve information
-     *         about.
-     *         </p>
+     * @return Phone Number Validate request.
      */
     public NumberValidateRequest getNumberValidateRequest() {
         return numberValidateRequest;
     }
 
     /**
-     * <p>
-     * Specifies a phone number to validate and retrieve information about.
-     * </p>
+     * Phone Number Validate request.
      *
-     * @param numberValidateRequest <p>
-     *            Specifies a phone number to validate and retrieve information
-     *            about.
-     *            </p>
+     * @param numberValidateRequest Phone Number Validate request.
      */
     public void setNumberValidateRequest(NumberValidateRequest numberValidateRequest) {
         this.numberValidateRequest = numberValidateRequest;
     }
 
     /**
-     * <p>
-     * Specifies a phone number to validate and retrieve information about.
-     * </p>
+     * Phone Number Validate request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param numberValidateRequest <p>
-     *            Specifies a phone number to validate and retrieve information
-     *            about.
-     *            </p>
+     * @param numberValidateRequest Phone Number Validate request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

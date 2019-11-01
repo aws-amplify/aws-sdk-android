@@ -19,73 +19,35 @@ import java.io.Serializable;
 
 public class GetImportJobResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of a job that imports
-     * endpoint definitions from one or more files. The files can be stored in
-     * an Amazon Simple Storage Service (Amazon S3) bucket or uploaded directly
-     * from a computer by using the Amazon Pinpoint console.
-     * </p>
+     * Import job response.
      */
     private ImportJobResponse importJobResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of a job that imports
-     * endpoint definitions from one or more files. The files can be stored in
-     * an Amazon Simple Storage Service (Amazon S3) bucket or uploaded directly
-     * from a computer by using the Amazon Pinpoint console.
-     * </p>
+     * Import job response.
      *
-     * @return <p>
-     *         Provides information about the status and settings of a job that
-     *         imports endpoint definitions from one or more files. The files
-     *         can be stored in an Amazon Simple Storage Service (Amazon S3)
-     *         bucket or uploaded directly from a computer by using the Amazon
-     *         Pinpoint console.
-     *         </p>
+     * @return Import job response.
      */
     public ImportJobResponse getImportJobResponse() {
         return importJobResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of a job that imports
-     * endpoint definitions from one or more files. The files can be stored in
-     * an Amazon Simple Storage Service (Amazon S3) bucket or uploaded directly
-     * from a computer by using the Amazon Pinpoint console.
-     * </p>
+     * Import job response.
      *
-     * @param importJobResponse <p>
-     *            Provides information about the status and settings of a job
-     *            that imports endpoint definitions from one or more files. The
-     *            files can be stored in an Amazon Simple Storage Service
-     *            (Amazon S3) bucket or uploaded directly from a computer by
-     *            using the Amazon Pinpoint console.
-     *            </p>
+     * @param importJobResponse Import job response.
      */
     public void setImportJobResponse(ImportJobResponse importJobResponse) {
         this.importJobResponse = importJobResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of a job that imports
-     * endpoint definitions from one or more files. The files can be stored in
-     * an Amazon Simple Storage Service (Amazon S3) bucket or uploaded directly
-     * from a computer by using the Amazon Pinpoint console.
-     * </p>
+     * Import job response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importJobResponse <p>
-     *            Provides information about the status and settings of a job
-     *            that imports endpoint definitions from one or more files. The
-     *            files can be stored in an Amazon Simple Storage Service
-     *            (Amazon S3) bucket or uploaded directly from a computer by
-     *            using the Amazon Pinpoint console.
-     *            </p>
+     * @param importJobResponse Import job response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

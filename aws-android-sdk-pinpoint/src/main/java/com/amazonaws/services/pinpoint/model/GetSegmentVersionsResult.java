@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class GetSegmentVersionsResult implements Serializable {
     /**
-     * <p>
-     * Provides information about all the segments that are associated with an
-     * application.
-     * </p>
+     * Segments in your account.
      */
     private SegmentsResponse segmentsResponse;
 
     /**
-     * <p>
-     * Provides information about all the segments that are associated with an
-     * application.
-     * </p>
+     * Segments in your account.
      *
-     * @return <p>
-     *         Provides information about all the segments that are associated
-     *         with an application.
-     *         </p>
+     * @return Segments in your account.
      */
     public SegmentsResponse getSegmentsResponse() {
         return segmentsResponse;
     }
 
     /**
-     * <p>
-     * Provides information about all the segments that are associated with an
-     * application.
-     * </p>
+     * Segments in your account.
      *
-     * @param segmentsResponse <p>
-     *            Provides information about all the segments that are
-     *            associated with an application.
-     *            </p>
+     * @param segmentsResponse Segments in your account.
      */
     public void setSegmentsResponse(SegmentsResponse segmentsResponse) {
         this.segmentsResponse = segmentsResponse;
     }
 
     /**
-     * <p>
-     * Provides information about all the segments that are associated with an
-     * application.
-     * </p>
+     * Segments in your account.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentsResponse <p>
-     *            Provides information about all the segments that are
-     *            associated with an application.
-     *            </p>
+     * @param segmentsResponse Segments in your account.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

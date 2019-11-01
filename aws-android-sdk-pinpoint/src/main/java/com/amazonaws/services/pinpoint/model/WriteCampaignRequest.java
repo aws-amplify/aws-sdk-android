@@ -18,150 +18,90 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the configuration and other settings for a campaign.
- * </p>
+ * Used to create a campaign.
  */
 public class WriteCampaignRequest implements Serializable {
     /**
-     * <p>
-     * An array of requests that defines additional treatments for the campaign,
-     * in addition to the default treatment for the campaign.
-     * </p>
+     * Treatments that are defined in addition to the default treatment.
      */
     private java.util.List<WriteTreatmentResource> additionalTreatments;
 
     /**
-     * <p>
-     * The custom description of the campaign.
-     * </p>
+     * A description of the campaign.
      */
     private String description;
 
     /**
-     * <p>
-     * The allocated percentage of users (segment members) who shouldn't receive
-     * messages from the campaign.
-     * </p>
+     * The allocated percentage of end users who will not receive messages from
+     * this campaign.
      */
     private Integer holdoutPercent;
 
     /**
-     * <p>
-     * The settings for the AWS Lambda function to use as a code hook for the
-     * campaign.
-     * </p>
+     * Campaign hook information.
      */
     private CampaignHook hook;
 
     /**
-     * <p>
-     * Specifies whether to pause the campaign. A paused campaign doesn't run
-     * unless you resume it by setting this value to false.
-     * </p>
+     * Indicates whether the campaign is paused. A paused campaign does not send
+     * messages unless you resume it by setting IsPaused to false.
      */
     private Boolean isPaused;
 
     /**
-     * <p>
-     * The messaging limits for the campaign.
-     * </p>
+     * The campaign limits settings.
      */
     private CampaignLimits limits;
 
     /**
-     * <p>
-     * The message configuration settings for the campaign.
-     * </p>
+     * The message configuration settings.
      */
     private MessageConfiguration messageConfiguration;
 
     /**
-     * <p>
      * The custom name of the campaign.
-     * </p>
      */
     private String name;
 
     /**
-     * <p>
-     * The schedule settings for the campaign.
-     * </p>
+     * The campaign schedule.
      */
     private Schedule schedule;
 
     /**
-     * <p>
-     * The unique identifier for the segment to associate with the campaign.
-     * </p>
+     * The ID of the segment to which the campaign sends messages.
      */
     private String segmentId;
 
     /**
-     * <p>
-     * The version of the segment to associate with the campaign.
-     * </p>
+     * The version of the segment to which the campaign sends messages.
      */
     private Integer segmentVersion;
 
     /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the campaign. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     */
-    private java.util.Map<String, String> tags;
-
-    /**
-     * <p>
-     * Specifies the message template to use for the message, for each type of
-     * channel.
-     * </p>
-     */
-    private TemplateConfiguration templateConfiguration;
-
-    /**
-     * <p>
-     * The custom description of a variation of the campaign to use for A/B
-     * testing.
-     * </p>
+     * A custom description for the treatment.
      */
     private String treatmentDescription;
 
     /**
-     * <p>
-     * The custom name of a variation of the campaign to use for A/B testing.
-     * </p>
+     * The custom name of a variation of the campaign used for A/B testing.
      */
     private String treatmentName;
 
     /**
-     * <p>
-     * An array of requests that defines additional treatments for the campaign,
-     * in addition to the default treatment for the campaign.
-     * </p>
+     * Treatments that are defined in addition to the default treatment.
      *
-     * @return <p>
-     *         An array of requests that defines additional treatments for the
-     *         campaign, in addition to the default treatment for the campaign.
-     *         </p>
+     * @return Treatments that are defined in addition to the default treatment.
      */
     public java.util.List<WriteTreatmentResource> getAdditionalTreatments() {
         return additionalTreatments;
     }
 
     /**
-     * <p>
-     * An array of requests that defines additional treatments for the campaign,
-     * in addition to the default treatment for the campaign.
-     * </p>
+     * Treatments that are defined in addition to the default treatment.
      *
-     * @param additionalTreatments <p>
-     *            An array of requests that defines additional treatments for
-     *            the campaign, in addition to the default treatment for the
-     *            campaign.
-     *            </p>
+     * @param additionalTreatments Treatments that are defined in addition to
+     *            the default treatment.
      */
     public void setAdditionalTreatments(
             java.util.Collection<WriteTreatmentResource> additionalTreatments) {
@@ -175,19 +115,13 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of requests that defines additional treatments for the campaign,
-     * in addition to the default treatment for the campaign.
-     * </p>
+     * Treatments that are defined in addition to the default treatment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param additionalTreatments <p>
-     *            An array of requests that defines additional treatments for
-     *            the campaign, in addition to the default treatment for the
-     *            campaign.
-     *            </p>
+     * @param additionalTreatments Treatments that are defined in addition to
+     *            the default treatment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -204,19 +138,13 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of requests that defines additional treatments for the campaign,
-     * in addition to the default treatment for the campaign.
-     * </p>
+     * Treatments that are defined in addition to the default treatment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param additionalTreatments <p>
-     *            An array of requests that defines additional treatments for
-     *            the campaign, in addition to the default treatment for the
-     *            campaign.
-     *            </p>
+     * @param additionalTreatments Treatments that are defined in addition to
+     *            the default treatment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -227,42 +155,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The custom description of the campaign.
-     * </p>
+     * A description of the campaign.
      *
-     * @return <p>
-     *         The custom description of the campaign.
-     *         </p>
+     * @return A description of the campaign.
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * <p>
-     * The custom description of the campaign.
-     * </p>
+     * A description of the campaign.
      *
-     * @param description <p>
-     *            The custom description of the campaign.
-     *            </p>
+     * @param description A description of the campaign.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * <p>
-     * The custom description of the campaign.
-     * </p>
+     * A description of the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param description <p>
-     *            The custom description of the campaign.
-     *            </p>
+     * @param description A description of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -272,48 +188,36 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The allocated percentage of users (segment members) who shouldn't receive
-     * messages from the campaign.
-     * </p>
+     * The allocated percentage of end users who will not receive messages from
+     * this campaign.
      *
-     * @return <p>
-     *         The allocated percentage of users (segment members) who shouldn't
-     *         receive messages from the campaign.
-     *         </p>
+     * @return The allocated percentage of end users who will not receive
+     *         messages from this campaign.
      */
     public Integer getHoldoutPercent() {
         return holdoutPercent;
     }
 
     /**
-     * <p>
-     * The allocated percentage of users (segment members) who shouldn't receive
-     * messages from the campaign.
-     * </p>
+     * The allocated percentage of end users who will not receive messages from
+     * this campaign.
      *
-     * @param holdoutPercent <p>
-     *            The allocated percentage of users (segment members) who
-     *            shouldn't receive messages from the campaign.
-     *            </p>
+     * @param holdoutPercent The allocated percentage of end users who will not
+     *            receive messages from this campaign.
      */
     public void setHoldoutPercent(Integer holdoutPercent) {
         this.holdoutPercent = holdoutPercent;
     }
 
     /**
-     * <p>
-     * The allocated percentage of users (segment members) who shouldn't receive
-     * messages from the campaign.
-     * </p>
+     * The allocated percentage of end users who will not receive messages from
+     * this campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param holdoutPercent <p>
-     *            The allocated percentage of users (segment members) who
-     *            shouldn't receive messages from the campaign.
-     *            </p>
+     * @param holdoutPercent The allocated percentage of end users who will not
+     *            receive messages from this campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -323,48 +227,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The settings for the AWS Lambda function to use as a code hook for the
-     * campaign.
-     * </p>
+     * Campaign hook information.
      *
-     * @return <p>
-     *         The settings for the AWS Lambda function to use as a code hook
-     *         for the campaign.
-     *         </p>
+     * @return Campaign hook information.
      */
     public CampaignHook getHook() {
         return hook;
     }
 
     /**
-     * <p>
-     * The settings for the AWS Lambda function to use as a code hook for the
-     * campaign.
-     * </p>
+     * Campaign hook information.
      *
-     * @param hook <p>
-     *            The settings for the AWS Lambda function to use as a code hook
-     *            for the campaign.
-     *            </p>
+     * @param hook Campaign hook information.
      */
     public void setHook(CampaignHook hook) {
         this.hook = hook;
     }
 
     /**
-     * <p>
-     * The settings for the AWS Lambda function to use as a code hook for the
-     * campaign.
-     * </p>
+     * Campaign hook information.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hook <p>
-     *            The settings for the AWS Lambda function to use as a code hook
-     *            for the campaign.
-     *            </p>
+     * @param hook Campaign hook information.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -374,65 +260,51 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether to pause the campaign. A paused campaign doesn't run
-     * unless you resume it by setting this value to false.
-     * </p>
+     * Indicates whether the campaign is paused. A paused campaign does not send
+     * messages unless you resume it by setting IsPaused to false.
      *
-     * @return <p>
-     *         Specifies whether to pause the campaign. A paused campaign
-     *         doesn't run unless you resume it by setting this value to false.
-     *         </p>
+     * @return Indicates whether the campaign is paused. A paused campaign does
+     *         not send messages unless you resume it by setting IsPaused to
+     *         false.
      */
     public Boolean isIsPaused() {
         return isPaused;
     }
 
     /**
-     * <p>
-     * Specifies whether to pause the campaign. A paused campaign doesn't run
-     * unless you resume it by setting this value to false.
-     * </p>
+     * Indicates whether the campaign is paused. A paused campaign does not send
+     * messages unless you resume it by setting IsPaused to false.
      *
-     * @return <p>
-     *         Specifies whether to pause the campaign. A paused campaign
-     *         doesn't run unless you resume it by setting this value to false.
-     *         </p>
+     * @return Indicates whether the campaign is paused. A paused campaign does
+     *         not send messages unless you resume it by setting IsPaused to
+     *         false.
      */
     public Boolean getIsPaused() {
         return isPaused;
     }
 
     /**
-     * <p>
-     * Specifies whether to pause the campaign. A paused campaign doesn't run
-     * unless you resume it by setting this value to false.
-     * </p>
+     * Indicates whether the campaign is paused. A paused campaign does not send
+     * messages unless you resume it by setting IsPaused to false.
      *
-     * @param isPaused <p>
-     *            Specifies whether to pause the campaign. A paused campaign
-     *            doesn't run unless you resume it by setting this value to
-     *            false.
-     *            </p>
+     * @param isPaused Indicates whether the campaign is paused. A paused
+     *            campaign does not send messages unless you resume it by
+     *            setting IsPaused to false.
      */
     public void setIsPaused(Boolean isPaused) {
         this.isPaused = isPaused;
     }
 
     /**
-     * <p>
-     * Specifies whether to pause the campaign. A paused campaign doesn't run
-     * unless you resume it by setting this value to false.
-     * </p>
+     * Indicates whether the campaign is paused. A paused campaign does not send
+     * messages unless you resume it by setting IsPaused to false.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isPaused <p>
-     *            Specifies whether to pause the campaign. A paused campaign
-     *            doesn't run unless you resume it by setting this value to
-     *            false.
-     *            </p>
+     * @param isPaused Indicates whether the campaign is paused. A paused
+     *            campaign does not send messages unless you resume it by
+     *            setting IsPaused to false.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -442,42 +314,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The messaging limits for the campaign.
-     * </p>
+     * The campaign limits settings.
      *
-     * @return <p>
-     *         The messaging limits for the campaign.
-     *         </p>
+     * @return The campaign limits settings.
      */
     public CampaignLimits getLimits() {
         return limits;
     }
 
     /**
-     * <p>
-     * The messaging limits for the campaign.
-     * </p>
+     * The campaign limits settings.
      *
-     * @param limits <p>
-     *            The messaging limits for the campaign.
-     *            </p>
+     * @param limits The campaign limits settings.
      */
     public void setLimits(CampaignLimits limits) {
         this.limits = limits;
     }
 
     /**
-     * <p>
-     * The messaging limits for the campaign.
-     * </p>
+     * The campaign limits settings.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param limits <p>
-     *            The messaging limits for the campaign.
-     *            </p>
+     * @param limits The campaign limits settings.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -487,42 +347,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The message configuration settings for the campaign.
-     * </p>
+     * The message configuration settings.
      *
-     * @return <p>
-     *         The message configuration settings for the campaign.
-     *         </p>
+     * @return The message configuration settings.
      */
     public MessageConfiguration getMessageConfiguration() {
         return messageConfiguration;
     }
 
     /**
-     * <p>
-     * The message configuration settings for the campaign.
-     * </p>
+     * The message configuration settings.
      *
-     * @param messageConfiguration <p>
-     *            The message configuration settings for the campaign.
-     *            </p>
+     * @param messageConfiguration The message configuration settings.
      */
     public void setMessageConfiguration(MessageConfiguration messageConfiguration) {
         this.messageConfiguration = messageConfiguration;
     }
 
     /**
-     * <p>
-     * The message configuration settings for the campaign.
-     * </p>
+     * The message configuration settings.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageConfiguration <p>
-     *            The message configuration settings for the campaign.
-     *            </p>
+     * @param messageConfiguration The message configuration settings.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -532,42 +380,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
      * The custom name of the campaign.
-     * </p>
      *
-     * @return <p>
-     *         The custom name of the campaign.
-     *         </p>
+     * @return The custom name of the campaign.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * <p>
      * The custom name of the campaign.
-     * </p>
      *
-     * @param name <p>
-     *            The custom name of the campaign.
-     *            </p>
+     * @param name The custom name of the campaign.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * <p>
      * The custom name of the campaign.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name <p>
-     *            The custom name of the campaign.
-     *            </p>
+     * @param name The custom name of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -577,42 +413,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The schedule settings for the campaign.
-     * </p>
+     * The campaign schedule.
      *
-     * @return <p>
-     *         The schedule settings for the campaign.
-     *         </p>
+     * @return The campaign schedule.
      */
     public Schedule getSchedule() {
         return schedule;
     }
 
     /**
-     * <p>
-     * The schedule settings for the campaign.
-     * </p>
+     * The campaign schedule.
      *
-     * @param schedule <p>
-     *            The schedule settings for the campaign.
-     *            </p>
+     * @param schedule The campaign schedule.
      */
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
 
     /**
-     * <p>
-     * The schedule settings for the campaign.
-     * </p>
+     * The campaign schedule.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param schedule <p>
-     *            The schedule settings for the campaign.
-     *            </p>
+     * @param schedule The campaign schedule.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -622,45 +446,32 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment to associate with the campaign.
-     * </p>
+     * The ID of the segment to which the campaign sends messages.
      *
-     * @return <p>
-     *         The unique identifier for the segment to associate with the
-     *         campaign.
-     *         </p>
+     * @return The ID of the segment to which the campaign sends messages.
      */
     public String getSegmentId() {
         return segmentId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment to associate with the campaign.
-     * </p>
+     * The ID of the segment to which the campaign sends messages.
      *
-     * @param segmentId <p>
-     *            The unique identifier for the segment to associate with the
-     *            campaign.
-     *            </p>
+     * @param segmentId The ID of the segment to which the campaign sends
+     *            messages.
      */
     public void setSegmentId(String segmentId) {
         this.segmentId = segmentId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment to associate with the campaign.
-     * </p>
+     * The ID of the segment to which the campaign sends messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentId <p>
-     *            The unique identifier for the segment to associate with the
-     *            campaign.
-     *            </p>
+     * @param segmentId The ID of the segment to which the campaign sends
+     *            messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -670,42 +481,32 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The version of the segment to associate with the campaign.
-     * </p>
+     * The version of the segment to which the campaign sends messages.
      *
-     * @return <p>
-     *         The version of the segment to associate with the campaign.
-     *         </p>
+     * @return The version of the segment to which the campaign sends messages.
      */
     public Integer getSegmentVersion() {
         return segmentVersion;
     }
 
     /**
-     * <p>
-     * The version of the segment to associate with the campaign.
-     * </p>
+     * The version of the segment to which the campaign sends messages.
      *
-     * @param segmentVersion <p>
-     *            The version of the segment to associate with the campaign.
-     *            </p>
+     * @param segmentVersion The version of the segment to which the campaign
+     *            sends messages.
      */
     public void setSegmentVersion(Integer segmentVersion) {
         this.segmentVersion = segmentVersion;
     }
 
     /**
-     * <p>
-     * The version of the segment to associate with the campaign.
-     * </p>
+     * The version of the segment to which the campaign sends messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentVersion <p>
-     *            The version of the segment to associate with the campaign.
-     *            </p>
+     * @param segmentVersion The version of the segment to which the campaign
+     *            sends messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -715,194 +516,30 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the campaign. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
+     * A custom description for the treatment.
      *
-     * @return <p>
-     *         A string-to-string map of key-value pairs that defines the tags
-     *         to associate with the campaign. Each tag consists of a required
-     *         tag key and an associated tag value.
-     *         </p>
-     */
-    public java.util.Map<String, String> getTags() {
-        return tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the campaign. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the campaign. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     */
-    public void setTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the campaign. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the campaign. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteCampaignRequest withTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the campaign. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into tags parameter, and returns a
-     * reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into tags.
-     * @param value The corresponding value of the entry to be added into tags.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteCampaignRequest addtagsEntry(String key, String value) {
-        if (null == this.tags) {
-            this.tags = new java.util.HashMap<String, String>();
-        }
-        if (this.tags.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.tags.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into tags.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public WriteCampaignRequest cleartagsEntries() {
-        this.tags = null;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Specifies the message template to use for the message, for each type of
-     * channel.
-     * </p>
-     *
-     * @return <p>
-     *         Specifies the message template to use for the message, for each
-     *         type of channel.
-     *         </p>
-     */
-    public TemplateConfiguration getTemplateConfiguration() {
-        return templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * Specifies the message template to use for the message, for each type of
-     * channel.
-     * </p>
-     *
-     * @param templateConfiguration <p>
-     *            Specifies the message template to use for the message, for
-     *            each type of channel.
-     *            </p>
-     */
-    public void setTemplateConfiguration(TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-    }
-
-    /**
-     * <p>
-     * Specifies the message template to use for the message, for each type of
-     * channel.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param templateConfiguration <p>
-     *            Specifies the message template to use for the message, for
-     *            each type of channel.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteCampaignRequest withTemplateConfiguration(
-            TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The custom description of a variation of the campaign to use for A/B
-     * testing.
-     * </p>
-     *
-     * @return <p>
-     *         The custom description of a variation of the campaign to use for
-     *         A/B testing.
-     *         </p>
+     * @return A custom description for the treatment.
      */
     public String getTreatmentDescription() {
         return treatmentDescription;
     }
 
     /**
-     * <p>
-     * The custom description of a variation of the campaign to use for A/B
-     * testing.
-     * </p>
+     * A custom description for the treatment.
      *
-     * @param treatmentDescription <p>
-     *            The custom description of a variation of the campaign to use
-     *            for A/B testing.
-     *            </p>
+     * @param treatmentDescription A custom description for the treatment.
      */
     public void setTreatmentDescription(String treatmentDescription) {
         this.treatmentDescription = treatmentDescription;
     }
 
     /**
-     * <p>
-     * The custom description of a variation of the campaign to use for A/B
-     * testing.
-     * </p>
+     * A custom description for the treatment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentDescription <p>
-     *            The custom description of a variation of the campaign to use
-     *            for A/B testing.
-     *            </p>
+     * @param treatmentDescription A custom description for the treatment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -912,45 +549,33 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The custom name of a variation of the campaign to use for A/B testing.
-     * </p>
+     * The custom name of a variation of the campaign used for A/B testing.
      *
-     * @return <p>
-     *         The custom name of a variation of the campaign to use for A/B
+     * @return The custom name of a variation of the campaign used for A/B
      *         testing.
-     *         </p>
      */
     public String getTreatmentName() {
         return treatmentName;
     }
 
     /**
-     * <p>
-     * The custom name of a variation of the campaign to use for A/B testing.
-     * </p>
+     * The custom name of a variation of the campaign used for A/B testing.
      *
-     * @param treatmentName <p>
-     *            The custom name of a variation of the campaign to use for A/B
-     *            testing.
-     *            </p>
+     * @param treatmentName The custom name of a variation of the campaign used
+     *            for A/B testing.
      */
     public void setTreatmentName(String treatmentName) {
         this.treatmentName = treatmentName;
     }
 
     /**
-     * <p>
-     * The custom name of a variation of the campaign to use for A/B testing.
-     * </p>
+     * The custom name of a variation of the campaign used for A/B testing.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentName <p>
-     *            The custom name of a variation of the campaign to use for A/B
-     *            testing.
-     *            </p>
+     * @param treatmentName The custom name of a variation of the campaign used
+     *            for A/B testing.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -992,10 +617,6 @@ public class WriteCampaignRequest implements Serializable {
             sb.append("SegmentId: " + getSegmentId() + ",");
         if (getSegmentVersion() != null)
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
-        if (getTags() != null)
-            sb.append("tags: " + getTags() + ",");
-        if (getTemplateConfiguration() != null)
-            sb.append("TemplateConfiguration: " + getTemplateConfiguration() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -1025,10 +646,6 @@ public class WriteCampaignRequest implements Serializable {
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
-        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getTemplateConfiguration() == null) ? 0 : getTemplateConfiguration().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -1096,15 +713,6 @@ public class WriteCampaignRequest implements Serializable {
             return false;
         if (other.getSegmentVersion() != null
                 && other.getSegmentVersion().equals(this.getSegmentVersion()) == false)
-            return false;
-        if (other.getTags() == null ^ this.getTags() == null)
-            return false;
-        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
-            return false;
-        if (other.getTemplateConfiguration() == null ^ this.getTemplateConfiguration() == null)
-            return false;
-        if (other.getTemplateConfiguration() != null
-                && other.getTemplateConfiguration().equals(this.getTemplateConfiguration()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

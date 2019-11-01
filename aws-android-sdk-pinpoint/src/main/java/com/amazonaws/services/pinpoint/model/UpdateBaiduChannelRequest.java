@@ -20,74 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Enables the Baidu channel for an application or updates the status and
- * settings of the Baidu channel for an application.
- * </p>
+ * Update a BAIDU GCM channel
  */
 public class UpdateBaiduChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
-     * for an application.
-     * </p>
+     * Baidu Cloud Push credentials
      */
     private BaiduChannelRequest baiduChannelRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,48 +67,30 @@ public class UpdateBaiduChannelRequest extends AmazonWebServiceRequest implement
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
-     * for an application.
-     * </p>
+     * Baidu Cloud Push credentials
      *
-     * @return <p>
-     *         Specifies the status and settings of the Baidu (Baidu Cloud Push)
-     *         channel for an application.
-     *         </p>
+     * @return Baidu Cloud Push credentials
      */
     public BaiduChannelRequest getBaiduChannelRequest() {
         return baiduChannelRequest;
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
-     * for an application.
-     * </p>
+     * Baidu Cloud Push credentials
      *
-     * @param baiduChannelRequest <p>
-     *            Specifies the status and settings of the Baidu (Baidu Cloud
-     *            Push) channel for an application.
-     *            </p>
+     * @param baiduChannelRequest Baidu Cloud Push credentials
      */
     public void setBaiduChannelRequest(BaiduChannelRequest baiduChannelRequest) {
         this.baiduChannelRequest = baiduChannelRequest;
     }
 
     /**
-     * <p>
-     * Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
-     * for an application.
-     * </p>
+     * Baidu Cloud Push credentials
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param baiduChannelRequest <p>
-     *            Specifies the status and settings of the Baidu (Baidu Cloud
-     *            Push) channel for an application.
-     *            </p>
+     * @param baiduChannelRequest Baidu Cloud Push credentials
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

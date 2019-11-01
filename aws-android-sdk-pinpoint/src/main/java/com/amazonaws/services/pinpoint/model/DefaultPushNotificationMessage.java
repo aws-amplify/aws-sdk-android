@@ -18,38 +18,18 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the default settings and content for a push notification that's
- * sent directly to an endpoint.
- * </p>
+ * Default Push Notification Message.
  */
 public class DefaultPushNotificationMessage implements Serializable {
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
@@ -57,112 +37,62 @@ public class DefaultPushNotificationMessage implements Serializable {
     private String action;
 
     /**
-     * <p>
-     * The default body of the notification message.
-     * </p>
+     * The message body of the notification.
      */
     private String body;
 
     /**
-     * <p>
-     * The JSON data payload to use for the default push notification, if the
-     * notification is a silent push notification. This payload is added to the
-     * data.pinpoint.jsonBody object of the notification.
-     * </p>
+     * The data payload used for a silent push. This payload is added to the
+     * notifications' data.pinpoint.jsonBody' object
      */
     private java.util.Map<String, String> data;
 
     /**
-     * <p>
-     * Specifies whether the default notification is a silent push notification,
-     * which is a push notification that doesn't display on a recipient's
-     * device. Silent push notifications can be used for cases such as updating
-     * an app's configuration or delivering messages to an in-app notification
-     * center.
-     * </p>
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      */
     private Boolean silentPush;
 
     /**
-     * <p>
-     * The default message variables to use in the notification message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * <p>
-     * The default title to display above the notification message on a
-     * recipient's device.
-     * </p>
+     * The message title that displays above the message on the user's device.
      */
     private String title;
 
     /**
-     * <p>
-     * The default URL to open in a recipient's default mobile browser, if a
-     * recipient taps the push notification and the value of the Action property
-     * is URL.
-     * </p>
+     * The URL to open in the user's mobile browser. Used if the value for
+     * Action is URL.
      */
     private String url;
 
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @return <p>
-     *         The default action to occur if a recipient taps the push
-     *         notification. Valid values are:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         OPEN_APP - Your app opens or it becomes the foreground app if it
-     *         was sent to the background. This is the default action.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         DEEP_LINK - Your app opens and displays a designated user
-     *         interface in the app. This setting uses the deep-linking features
-     *         of the iOS and Android platforms.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         URL - The default mobile browser on the recipient's device opens
-     *         and loads the web page at a URL that you specify.
-     *         </p>
-     *         </li>
-     *         </ul>
+     * @return The action that occurs if the user taps a push notification
+     *         delivered by the campaign: OPEN_APP - Your app launches, or it
+     *         becomes the foreground app if it has been sent to the background.
+     *         This is the default action. DEEP_LINK - Uses deep linking
+     *         features in iOS and Android to open your app and display a
+     *         designated user interface within the app. URL - The default
+     *         mobile browser on the user's device launches and opens a web page
+     *         at the URL you specify. Possible values include: OPEN_APP |
+     *         DEEP_LINK | URL
      * @see Action
      */
     public String getAction() {
@@ -170,60 +100,27 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action <p>
-     *            The default action to occur if a recipient taps the push
-     *            notification. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            OPEN_APP - Your app opens or it becomes the foreground app if
-     *            it was sent to the background. This is the default action.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            DEEP_LINK - Your app opens and displays a designated user
-     *            interface in the app. This setting uses the deep-linking
-     *            features of the iOS and Android platforms.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            URL - The default mobile browser on the recipient's device
-     *            opens and loads the web page at a URL that you specify.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param action The action that occurs if the user taps a push notification
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify. Possible values include:
+     *            OPEN_APP | DEEP_LINK | URL
      * @see Action
      */
     public void setAction(String action) {
@@ -231,31 +128,14 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -263,31 +143,15 @@ public class DefaultPushNotificationMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action <p>
-     *            The default action to occur if a recipient taps the push
-     *            notification. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            OPEN_APP - Your app opens or it becomes the foreground app if
-     *            it was sent to the background. This is the default action.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            DEEP_LINK - Your app opens and displays a designated user
-     *            interface in the app. This setting uses the deep-linking
-     *            features of the iOS and Android platforms.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            URL - The default mobile browser on the recipient's device
-     *            opens and loads the web page at a URL that you specify.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param action The action that occurs if the user taps a push notification
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify. Possible values include:
+     *            OPEN_APP | DEEP_LINK | URL
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -298,60 +162,27 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action <p>
-     *            The default action to occur if a recipient taps the push
-     *            notification. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            OPEN_APP - Your app opens or it becomes the foreground app if
-     *            it was sent to the background. This is the default action.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            DEEP_LINK - Your app opens and displays a designated user
-     *            interface in the app. This setting uses the deep-linking
-     *            features of the iOS and Android platforms.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            URL - The default mobile browser on the recipient's device
-     *            opens and loads the web page at a URL that you specify.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param action The action that occurs if the user taps a push notification
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify. Possible values include:
+     *            OPEN_APP | DEEP_LINK | URL
      * @see Action
      */
     public void setAction(Action action) {
@@ -359,31 +190,14 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default action to occur if a recipient taps the push notification.
-     * Valid values are:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * OPEN_APP - Your app opens or it becomes the foreground app if it was sent
-     * to the background. This is the default action.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * DEEP_LINK - Your app opens and displays a designated user interface in
-     * the app. This setting uses the deep-linking features of the iOS and
-     * Android platforms.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * URL - The default mobile browser on the recipient's device opens and
-     * loads the web page at a URL that you specify.
-     * </p>
-     * </li>
-     * </ul>
+     * The action that occurs if the user taps a push notification delivered by
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify. Possible values include: OPEN_APP | DEEP_LINK |
+     * URL
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -391,31 +205,15 @@ public class DefaultPushNotificationMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
-     * @param action <p>
-     *            The default action to occur if a recipient taps the push
-     *            notification. Valid values are:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            OPEN_APP - Your app opens or it becomes the foreground app if
-     *            it was sent to the background. This is the default action.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            DEEP_LINK - Your app opens and displays a designated user
-     *            interface in the app. This setting uses the deep-linking
-     *            features of the iOS and Android platforms.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            URL - The default mobile browser on the recipient's device
-     *            opens and loads the web page at a URL that you specify.
-     *            </p>
-     *            </li>
-     *            </ul>
+     * @param action The action that occurs if the user taps a push notification
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify. Possible values include:
+     *            OPEN_APP | DEEP_LINK | URL
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -426,42 +224,30 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default body of the notification message.
-     * </p>
+     * The message body of the notification.
      *
-     * @return <p>
-     *         The default body of the notification message.
-     *         </p>
+     * @return The message body of the notification.
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * <p>
-     * The default body of the notification message.
-     * </p>
+     * The message body of the notification.
      *
-     * @param body <p>
-     *            The default body of the notification message.
-     *            </p>
+     * @param body The message body of the notification.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * <p>
-     * The default body of the notification message.
-     * </p>
+     * The message body of the notification.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body <p>
-     *            The default body of the notification message.
-     *            </p>
+     * @param body The message body of the notification.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -471,57 +257,36 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The JSON data payload to use for the default push notification, if the
-     * notification is a silent push notification. This payload is added to the
-     * data.pinpoint.jsonBody object of the notification.
-     * </p>
+     * The data payload used for a silent push. This payload is added to the
+     * notifications' data.pinpoint.jsonBody' object
      *
-     * @return <p>
-     *         The JSON data payload to use for the default push notification,
-     *         if the notification is a silent push notification. This payload
-     *         is added to the data.pinpoint.jsonBody object of the
-     *         notification.
-     *         </p>
+     * @return The data payload used for a silent push. This payload is added to
+     *         the notifications' data.pinpoint.jsonBody' object
      */
     public java.util.Map<String, String> getData() {
         return data;
     }
 
     /**
-     * <p>
-     * The JSON data payload to use for the default push notification, if the
-     * notification is a silent push notification. This payload is added to the
-     * data.pinpoint.jsonBody object of the notification.
-     * </p>
+     * The data payload used for a silent push. This payload is added to the
+     * notifications' data.pinpoint.jsonBody' object
      *
-     * @param data <p>
-     *            The JSON data payload to use for the default push
-     *            notification, if the notification is a silent push
-     *            notification. This payload is added to the
-     *            data.pinpoint.jsonBody object of the notification.
-     *            </p>
+     * @param data The data payload used for a silent push. This payload is
+     *            added to the notifications' data.pinpoint.jsonBody' object
      */
     public void setData(java.util.Map<String, String> data) {
         this.data = data;
     }
 
     /**
-     * <p>
-     * The JSON data payload to use for the default push notification, if the
-     * notification is a silent push notification. This payload is added to the
-     * data.pinpoint.jsonBody object of the notification.
-     * </p>
+     * The data payload used for a silent push. This payload is added to the
+     * notifications' data.pinpoint.jsonBody' object
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param data <p>
-     *            The JSON data payload to use for the default push
-     *            notification, if the notification is a silent push
-     *            notification. This payload is added to the
-     *            data.pinpoint.jsonBody object of the notification.
-     *            </p>
+     * @param data The data payload used for a silent push. This payload is
+     *            added to the notifications' data.pinpoint.jsonBody' object
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -531,11 +296,8 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The JSON data payload to use for the default push notification, if the
-     * notification is a silent push notification. This payload is added to the
-     * data.pinpoint.jsonBody object of the notification.
-     * </p>
+     * The data payload used for a silent push. This payload is added to the
+     * notifications' data.pinpoint.jsonBody' object
      * <p>
      * The method adds a new key-value pair into Data parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -568,87 +330,57 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether the default notification is a silent push notification,
-     * which is a push notification that doesn't display on a recipient's
-     * device. Silent push notifications can be used for cases such as updating
-     * an app's configuration or delivering messages to an in-app notification
-     * center.
-     * </p>
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @return <p>
-     *         Specifies whether the default notification is a silent push
-     *         notification, which is a push notification that doesn't display
-     *         on a recipient's device. Silent push notifications can be used
-     *         for cases such as updating an app's configuration or delivering
-     *         messages to an in-app notification center.
-     *         </p>
+     * @return Indicates if the message should display on the recipient's
+     *         device. You can use silent pushes for remote configuration or to
+     *         deliver messages to in-app notification centers.
      */
     public Boolean isSilentPush() {
         return silentPush;
     }
 
     /**
-     * <p>
-     * Specifies whether the default notification is a silent push notification,
-     * which is a push notification that doesn't display on a recipient's
-     * device. Silent push notifications can be used for cases such as updating
-     * an app's configuration or delivering messages to an in-app notification
-     * center.
-     * </p>
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @return <p>
-     *         Specifies whether the default notification is a silent push
-     *         notification, which is a push notification that doesn't display
-     *         on a recipient's device. Silent push notifications can be used
-     *         for cases such as updating an app's configuration or delivering
-     *         messages to an in-app notification center.
-     *         </p>
+     * @return Indicates if the message should display on the recipient's
+     *         device. You can use silent pushes for remote configuration or to
+     *         deliver messages to in-app notification centers.
      */
     public Boolean getSilentPush() {
         return silentPush;
     }
 
     /**
-     * <p>
-     * Specifies whether the default notification is a silent push notification,
-     * which is a push notification that doesn't display on a recipient's
-     * device. Silent push notifications can be used for cases such as updating
-     * an app's configuration or delivering messages to an in-app notification
-     * center.
-     * </p>
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      *
-     * @param silentPush <p>
-     *            Specifies whether the default notification is a silent push
-     *            notification, which is a push notification that doesn't
-     *            display on a recipient's device. Silent push notifications can
-     *            be used for cases such as updating an app's configuration or
-     *            delivering messages to an in-app notification center.
-     *            </p>
+     * @param silentPush Indicates if the message should display on the
+     *            recipient's device. You can use silent pushes for remote
+     *            configuration or to deliver messages to in-app notification
+     *            centers.
      */
     public void setSilentPush(Boolean silentPush) {
         this.silentPush = silentPush;
     }
 
     /**
-     * <p>
-     * Specifies whether the default notification is a silent push notification,
-     * which is a push notification that doesn't display on a recipient's
-     * device. Silent push notifications can be used for cases such as updating
-     * an app's configuration or delivering messages to an in-app notification
-     * center.
-     * </p>
+     * Indicates if the message should display on the recipient's device. You
+     * can use silent pushes for remote configuration or to deliver messages to
+     * in-app notification centers.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param silentPush <p>
-     *            Specifies whether the default notification is a silent push
-     *            notification, which is a push notification that doesn't
-     *            display on a recipient's device. Silent push notifications can
-     *            be used for cases such as updating an app's configuration or
-     *            delivering messages to an in-app notification center.
-     *            </p>
+     * @param silentPush Indicates if the message should display on the
+     *            recipient's device. You can use silent pushes for remote
+     *            configuration or to deliver messages to in-app notification
+     *            centers.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -658,51 +390,36 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the notification message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @return <p>
-     *         The default message variables to use in the notification message.
-     *         You can override the default variables with individual address
-     *         variables.
-     *         </p>
+     * @return Default message substitutions. Can be overridden by individual
+     *         address substitutions.
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the notification message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the notification
-     *            message. You can override the default variables with
-     *            individual address variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * <p>
-     * The default message variables to use in the notification message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions <p>
-     *            The default message variables to use in the notification
-     *            message. You can override the default variables with
-     *            individual address variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -713,10 +430,8 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default message variables to use in the notification message. You can
-     * override the default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -752,48 +467,33 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default title to display above the notification message on a
-     * recipient's device.
-     * </p>
+     * The message title that displays above the message on the user's device.
      *
-     * @return <p>
-     *         The default title to display above the notification message on a
-     *         recipient's device.
-     *         </p>
+     * @return The message title that displays above the message on the user's
+     *         device.
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * <p>
-     * The default title to display above the notification message on a
-     * recipient's device.
-     * </p>
+     * The message title that displays above the message on the user's device.
      *
-     * @param title <p>
-     *            The default title to display above the notification message on
-     *            a recipient's device.
-     *            </p>
+     * @param title The message title that displays above the message on the
+     *            user's device.
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * <p>
-     * The default title to display above the notification message on a
-     * recipient's device.
-     * </p>
+     * The message title that displays above the message on the user's device.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param title <p>
-     *            The default title to display above the notification message on
-     *            a recipient's device.
-     *            </p>
+     * @param title The message title that displays above the message on the
+     *            user's device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -803,54 +503,36 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The default URL to open in a recipient's default mobile browser, if a
-     * recipient taps the push notification and the value of the Action property
-     * is URL.
-     * </p>
+     * The URL to open in the user's mobile browser. Used if the value for
+     * Action is URL.
      *
-     * @return <p>
-     *         The default URL to open in a recipient's default mobile browser,
-     *         if a recipient taps the push notification and the value of the
-     *         Action property is URL.
-     *         </p>
+     * @return The URL to open in the user's mobile browser. Used if the value
+     *         for Action is URL.
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     * <p>
-     * The default URL to open in a recipient's default mobile browser, if a
-     * recipient taps the push notification and the value of the Action property
-     * is URL.
-     * </p>
+     * The URL to open in the user's mobile browser. Used if the value for
+     * Action is URL.
      *
-     * @param url <p>
-     *            The default URL to open in a recipient's default mobile
-     *            browser, if a recipient taps the push notification and the
-     *            value of the Action property is URL.
-     *            </p>
+     * @param url The URL to open in the user's mobile browser. Used if the
+     *            value for Action is URL.
      */
     public void setUrl(String url) {
         this.url = url;
     }
 
     /**
-     * <p>
-     * The default URL to open in a recipient's default mobile browser, if a
-     * recipient taps the push notification and the value of the Action property
-     * is URL.
-     * </p>
+     * The URL to open in the user's mobile browser. Used if the value for
+     * Action is URL.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param url <p>
-     *            The default URL to open in a recipient's default mobile
-     *            browser, if a recipient taps the push notification and the
-     *            value of the Action property is URL.
-     *            </p>
+     * @param url The URL to open in the user's mobile browser. Used if the
+     *            value for Action is URL.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

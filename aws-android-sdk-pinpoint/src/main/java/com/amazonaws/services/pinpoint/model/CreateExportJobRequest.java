@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates an export job for an application.
- * </p>
+ * Creates an export job.
  */
 public class CreateExportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the settings for a job that exports endpoint definitions to an
-     * Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Export job request.
      */
     private ExportJobRequest exportJobRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,51 +67,30 @@ public class CreateExportJobRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that exports endpoint definitions to an
-     * Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Export job request.
      *
-     * @return <p>
-     *         Specifies the settings for a job that exports endpoint
-     *         definitions to an Amazon Simple Storage Service (Amazon S3)
-     *         bucket.
-     *         </p>
+     * @return Export job request.
      */
     public ExportJobRequest getExportJobRequest() {
         return exportJobRequest;
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that exports endpoint definitions to an
-     * Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Export job request.
      *
-     * @param exportJobRequest <p>
-     *            Specifies the settings for a job that exports endpoint
-     *            definitions to an Amazon Simple Storage Service (Amazon S3)
-     *            bucket.
-     *            </p>
+     * @param exportJobRequest Export job request.
      */
     public void setExportJobRequest(ExportJobRequest exportJobRequest) {
         this.exportJobRequest = exportJobRequest;
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that exports endpoint definitions to an
-     * Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Export job request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param exportJobRequest <p>
-     *            Specifies the settings for a job that exports endpoint
-     *            definitions to an Amazon Simple Storage Service (Amazon S3)
-     *            bucket.
-     *            </p>
+     * @param exportJobRequest Export job request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

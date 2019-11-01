@@ -18,94 +18,64 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the dimension settings for a segment.
- * </p>
+ * Segment dimensions
  */
 public class SegmentDimensions implements Serializable {
     /**
-     * <p>
-     * One or more custom attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment attributes.
      */
     private java.util.Map<String, AttributeDimension> attributes;
 
     /**
-     * <p>
-     * The behavior-based criteria, such as how recently users have used your
-     * app, for the segment.
-     * </p>
+     * The segment behaviors attributes.
      */
     private SegmentBehaviors behavior;
 
     /**
-     * <p>
-     * The demographic-based criteria, such as device platform, for the segment.
-     * </p>
+     * The segment demographics attributes.
      */
     private SegmentDemographics demographic;
 
     /**
-     * <p>
-     * The location-based criteria, such as region or GPS coordinates, for the
-     * segment.
-     * </p>
+     * The segment location attributes.
      */
     private SegmentLocation location;
 
     /**
-     * <p>
-     * One or more custom metrics to use as criteria for the segment.
-     * </p>
+     * Custom segment metrics.
      */
     private java.util.Map<String, MetricDimension> metrics;
 
     /**
-     * <p>
-     * One or more custom user attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment user attributes.
      */
     private java.util.Map<String, AttributeDimension> userAttributes;
 
     /**
-     * <p>
-     * One or more custom attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment attributes.
      *
-     * @return <p>
-     *         One or more custom attributes to use as criteria for the segment.
-     *         </p>
+     * @return Custom segment attributes.
      */
     public java.util.Map<String, AttributeDimension> getAttributes() {
         return attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment attributes.
      *
-     * @param attributes <p>
-     *            One or more custom attributes to use as criteria for the
-     *            segment.
-     *            </p>
+     * @param attributes Custom segment attributes.
      */
     public void setAttributes(java.util.Map<String, AttributeDimension> attributes) {
         this.attributes = attributes;
     }
 
     /**
-     * <p>
-     * One or more custom attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributes <p>
-     *            One or more custom attributes to use as criteria for the
-     *            segment.
-     *            </p>
+     * @param attributes Custom segment attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -115,9 +85,7 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment attributes.
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -152,48 +120,30 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * The behavior-based criteria, such as how recently users have used your
-     * app, for the segment.
-     * </p>
+     * The segment behaviors attributes.
      *
-     * @return <p>
-     *         The behavior-based criteria, such as how recently users have used
-     *         your app, for the segment.
-     *         </p>
+     * @return The segment behaviors attributes.
      */
     public SegmentBehaviors getBehavior() {
         return behavior;
     }
 
     /**
-     * <p>
-     * The behavior-based criteria, such as how recently users have used your
-     * app, for the segment.
-     * </p>
+     * The segment behaviors attributes.
      *
-     * @param behavior <p>
-     *            The behavior-based criteria, such as how recently users have
-     *            used your app, for the segment.
-     *            </p>
+     * @param behavior The segment behaviors attributes.
      */
     public void setBehavior(SegmentBehaviors behavior) {
         this.behavior = behavior;
     }
 
     /**
-     * <p>
-     * The behavior-based criteria, such as how recently users have used your
-     * app, for the segment.
-     * </p>
+     * The segment behaviors attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param behavior <p>
-     *            The behavior-based criteria, such as how recently users have
-     *            used your app, for the segment.
-     *            </p>
+     * @param behavior The segment behaviors attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -203,45 +153,30 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * The demographic-based criteria, such as device platform, for the segment.
-     * </p>
+     * The segment demographics attributes.
      *
-     * @return <p>
-     *         The demographic-based criteria, such as device platform, for the
-     *         segment.
-     *         </p>
+     * @return The segment demographics attributes.
      */
     public SegmentDemographics getDemographic() {
         return demographic;
     }
 
     /**
-     * <p>
-     * The demographic-based criteria, such as device platform, for the segment.
-     * </p>
+     * The segment demographics attributes.
      *
-     * @param demographic <p>
-     *            The demographic-based criteria, such as device platform, for
-     *            the segment.
-     *            </p>
+     * @param demographic The segment demographics attributes.
      */
     public void setDemographic(SegmentDemographics demographic) {
         this.demographic = demographic;
     }
 
     /**
-     * <p>
-     * The demographic-based criteria, such as device platform, for the segment.
-     * </p>
+     * The segment demographics attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param demographic <p>
-     *            The demographic-based criteria, such as device platform, for
-     *            the segment.
-     *            </p>
+     * @param demographic The segment demographics attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -251,48 +186,30 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * The location-based criteria, such as region or GPS coordinates, for the
-     * segment.
-     * </p>
+     * The segment location attributes.
      *
-     * @return <p>
-     *         The location-based criteria, such as region or GPS coordinates,
-     *         for the segment.
-     *         </p>
+     * @return The segment location attributes.
      */
     public SegmentLocation getLocation() {
         return location;
     }
 
     /**
-     * <p>
-     * The location-based criteria, such as region or GPS coordinates, for the
-     * segment.
-     * </p>
+     * The segment location attributes.
      *
-     * @param location <p>
-     *            The location-based criteria, such as region or GPS
-     *            coordinates, for the segment.
-     *            </p>
+     * @param location The segment location attributes.
      */
     public void setLocation(SegmentLocation location) {
         this.location = location;
     }
 
     /**
-     * <p>
-     * The location-based criteria, such as region or GPS coordinates, for the
-     * segment.
-     * </p>
+     * The segment location attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param location <p>
-     *            The location-based criteria, such as region or GPS
-     *            coordinates, for the segment.
-     *            </p>
+     * @param location The segment location attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -302,42 +219,30 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics to use as criteria for the segment.
-     * </p>
+     * Custom segment metrics.
      *
-     * @return <p>
-     *         One or more custom metrics to use as criteria for the segment.
-     *         </p>
+     * @return Custom segment metrics.
      */
     public java.util.Map<String, MetricDimension> getMetrics() {
         return metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics to use as criteria for the segment.
-     * </p>
+     * Custom segment metrics.
      *
-     * @param metrics <p>
-     *            One or more custom metrics to use as criteria for the segment.
-     *            </p>
+     * @param metrics Custom segment metrics.
      */
     public void setMetrics(java.util.Map<String, MetricDimension> metrics) {
         this.metrics = metrics;
     }
 
     /**
-     * <p>
-     * One or more custom metrics to use as criteria for the segment.
-     * </p>
+     * Custom segment metrics.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param metrics <p>
-     *            One or more custom metrics to use as criteria for the segment.
-     *            </p>
+     * @param metrics Custom segment metrics.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -347,9 +252,7 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom metrics to use as criteria for the segment.
-     * </p>
+     * Custom segment metrics.
      * <p>
      * The method adds a new key-value pair into Metrics parameter, and returns
      * a reference to this object so that method calls can be chained together.
@@ -383,45 +286,30 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom user attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment user attributes.
      *
-     * @return <p>
-     *         One or more custom user attributes to use as criteria for the
-     *         segment.
-     *         </p>
+     * @return Custom segment user attributes.
      */
     public java.util.Map<String, AttributeDimension> getUserAttributes() {
         return userAttributes;
     }
 
     /**
-     * <p>
-     * One or more custom user attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment user attributes.
      *
-     * @param userAttributes <p>
-     *            One or more custom user attributes to use as criteria for the
-     *            segment.
-     *            </p>
+     * @param userAttributes Custom segment user attributes.
      */
     public void setUserAttributes(java.util.Map<String, AttributeDimension> userAttributes) {
         this.userAttributes = userAttributes;
     }
 
     /**
-     * <p>
-     * One or more custom user attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment user attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userAttributes <p>
-     *            One or more custom user attributes to use as criteria for the
-     *            segment.
-     *            </p>
+     * @param userAttributes Custom segment user attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -432,9 +320,7 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * <p>
-     * One or more custom user attributes to use as criteria for the segment.
-     * </p>
+     * Custom segment user attributes.
      * <p>
      * The method adds a new key-value pair into UserAttributes parameter, and
      * returns a reference to this object so that method calls can be chained

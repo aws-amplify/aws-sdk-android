@@ -29,20 +29,6 @@ public class UpdateEmailChannelResultJsonUnmarshaller implements
     public UpdateEmailChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEmailChannelResult updateEmailChannelResult = new UpdateEmailChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("EmailChannelResponse")) {
-                updateEmailChannelResult
-                        .setEmailChannelResponse(EmailChannelResponseJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateEmailChannelResult;
     }
 

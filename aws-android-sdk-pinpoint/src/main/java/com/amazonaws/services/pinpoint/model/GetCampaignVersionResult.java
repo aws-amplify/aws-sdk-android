@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class GetCampaignVersionResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status, configuration, and other settings
-     * for a campaign.
-     * </p>
+     * Campaign definition
      */
     private CampaignResponse campaignResponse;
 
     /**
-     * <p>
-     * Provides information about the status, configuration, and other settings
-     * for a campaign.
-     * </p>
+     * Campaign definition
      *
-     * @return <p>
-     *         Provides information about the status, configuration, and other
-     *         settings for a campaign.
-     *         </p>
+     * @return Campaign definition
      */
     public CampaignResponse getCampaignResponse() {
         return campaignResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status, configuration, and other settings
-     * for a campaign.
-     * </p>
+     * Campaign definition
      *
-     * @param campaignResponse <p>
-     *            Provides information about the status, configuration, and
-     *            other settings for a campaign.
-     *            </p>
+     * @param campaignResponse Campaign definition
      */
     public void setCampaignResponse(CampaignResponse campaignResponse) {
         this.campaignResponse = campaignResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status, configuration, and other settings
-     * for a campaign.
-     * </p>
+     * Campaign definition
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignResponse <p>
-     *            Provides information about the status, configuration, and
-     *            other settings for a campaign.
-     *            </p>
+     * @param campaignResponse Campaign definition
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

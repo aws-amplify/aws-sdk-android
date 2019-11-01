@@ -18,86 +18,55 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the content and "From" address for an email message that's sent to
- * recipients of a campaign.
- * </p>
+ * The email message configuration.
  */
 public class CampaignEmailMessage implements Serializable {
     /**
-     * <p>
-     * The body of the email for recipients whose email clients don't support
-     * HTML content.
-     * </p>
+     * The email text body.
      */
     private String body;
 
     /**
-     * <p>
-     * The verified email address to send the email from. The default address is
-     * the FromAddress specified for the email channel for the application.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      */
     private String fromAddress;
 
     /**
-     * <p>
-     * The body of the email, in HTML format, for recipients whose email clients
-     * support HTML content.
-     * </p>
+     * The email html body.
      */
     private String htmlBody;
 
     /**
-     * <p>
-     * The subject line, or title, of the email.
-     * </p>
+     * The email title (Or subject).
      */
     private String title;
 
     /**
-     * <p>
-     * The body of the email for recipients whose email clients don't support
-     * HTML content.
-     * </p>
+     * The email text body.
      *
-     * @return <p>
-     *         The body of the email for recipients whose email clients don't
-     *         support HTML content.
-     *         </p>
+     * @return The email text body.
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * <p>
-     * The body of the email for recipients whose email clients don't support
-     * HTML content.
-     * </p>
+     * The email text body.
      *
-     * @param body <p>
-     *            The body of the email for recipients whose email clients don't
-     *            support HTML content.
-     *            </p>
+     * @param body The email text body.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * <p>
-     * The body of the email for recipients whose email clients don't support
-     * HTML content.
-     * </p>
+     * The email text body.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body <p>
-     *            The body of the email for recipients whose email clients don't
-     *            support HTML content.
-     *            </p>
+     * @param body The email text body.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -107,51 +76,36 @@ public class CampaignEmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The verified email address to send the email from. The default address is
-     * the FromAddress specified for the email channel for the application.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      *
-     * @return <p>
-     *         The verified email address to send the email from. The default
-     *         address is the FromAddress specified for the email channel for
-     *         the application.
-     *         </p>
+     * @return The email address used to send the email from. Defaults to use
+     *         FromAddress specified in the Email Channel.
      */
     public String getFromAddress() {
         return fromAddress;
     }
 
     /**
-     * <p>
-     * The verified email address to send the email from. The default address is
-     * the FromAddress specified for the email channel for the application.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      *
-     * @param fromAddress <p>
-     *            The verified email address to send the email from. The default
-     *            address is the FromAddress specified for the email channel for
-     *            the application.
-     *            </p>
+     * @param fromAddress The email address used to send the email from.
+     *            Defaults to use FromAddress specified in the Email Channel.
      */
     public void setFromAddress(String fromAddress) {
         this.fromAddress = fromAddress;
     }
 
     /**
-     * <p>
-     * The verified email address to send the email from. The default address is
-     * the FromAddress specified for the email channel for the application.
-     * </p>
+     * The email address used to send the email from. Defaults to use
+     * FromAddress specified in the Email Channel.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param fromAddress <p>
-     *            The verified email address to send the email from. The default
-     *            address is the FromAddress specified for the email channel for
-     *            the application.
-     *            </p>
+     * @param fromAddress The email address used to send the email from.
+     *            Defaults to use FromAddress specified in the Email Channel.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -161,48 +115,30 @@ public class CampaignEmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The body of the email, in HTML format, for recipients whose email clients
-     * support HTML content.
-     * </p>
+     * The email html body.
      *
-     * @return <p>
-     *         The body of the email, in HTML format, for recipients whose email
-     *         clients support HTML content.
-     *         </p>
+     * @return The email html body.
      */
     public String getHtmlBody() {
         return htmlBody;
     }
 
     /**
-     * <p>
-     * The body of the email, in HTML format, for recipients whose email clients
-     * support HTML content.
-     * </p>
+     * The email html body.
      *
-     * @param htmlBody <p>
-     *            The body of the email, in HTML format, for recipients whose
-     *            email clients support HTML content.
-     *            </p>
+     * @param htmlBody The email html body.
      */
     public void setHtmlBody(String htmlBody) {
         this.htmlBody = htmlBody;
     }
 
     /**
-     * <p>
-     * The body of the email, in HTML format, for recipients whose email clients
-     * support HTML content.
-     * </p>
+     * The email html body.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param htmlBody <p>
-     *            The body of the email, in HTML format, for recipients whose
-     *            email clients support HTML content.
-     *            </p>
+     * @param htmlBody The email html body.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -212,42 +148,30 @@ public class CampaignEmailMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The subject line, or title, of the email.
-     * </p>
+     * The email title (Or subject).
      *
-     * @return <p>
-     *         The subject line, or title, of the email.
-     *         </p>
+     * @return The email title (Or subject).
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * <p>
-     * The subject line, or title, of the email.
-     * </p>
+     * The email title (Or subject).
      *
-     * @param title <p>
-     *            The subject line, or title, of the email.
-     *            </p>
+     * @param title The email title (Or subject).
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * <p>
-     * The subject line, or title, of the email.
-     * </p>
+     * The email title (Or subject).
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param title <p>
-     *            The subject line, or title, of the email.
-     *            </p>
+     * @param title The email title (Or subject).
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

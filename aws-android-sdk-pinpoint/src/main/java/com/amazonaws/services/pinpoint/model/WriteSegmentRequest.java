@@ -18,83 +18,52 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the configuration, dimension, and other settings for a segment. A
- * WriteSegmentRequest object can include a Dimensions object or a SegmentGroups
- * object, but not both.
- * </p>
+ * Segment definition.
  */
 public class WriteSegmentRequest implements Serializable {
     /**
-     * <p>
-     * The criteria that define the dimensions for the segment.
-     * </p>
+     * The segment dimensions attributes.
      */
     private SegmentDimensions dimensions;
 
     /**
-     * <p>
-     * The name of the segment.
-     * </p>
+     * The name of segment
      */
     private String name;
 
     /**
-     * <p>
-     * The segment group to use and the dimensions to apply to the group's base
-     * segments in order to build the segment. A segment group can consist of
-     * zero or more base segments. Your request can include only one segment
-     * group.
-     * </p>
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
      */
     private SegmentGroupList segmentGroups;
 
     /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the segment. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     */
-    private java.util.Map<String, String> tags;
-
-    /**
-     * <p>
-     * The criteria that define the dimensions for the segment.
-     * </p>
+     * The segment dimensions attributes.
      *
-     * @return <p>
-     *         The criteria that define the dimensions for the segment.
-     *         </p>
+     * @return The segment dimensions attributes.
      */
     public SegmentDimensions getDimensions() {
         return dimensions;
     }
 
     /**
-     * <p>
-     * The criteria that define the dimensions for the segment.
-     * </p>
+     * The segment dimensions attributes.
      *
-     * @param dimensions <p>
-     *            The criteria that define the dimensions for the segment.
-     *            </p>
+     * @param dimensions The segment dimensions attributes.
      */
     public void setDimensions(SegmentDimensions dimensions) {
         this.dimensions = dimensions;
     }
 
     /**
-     * <p>
-     * The criteria that define the dimensions for the segment.
-     * </p>
+     * The segment dimensions attributes.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param dimensions <p>
-     *            The criteria that define the dimensions for the segment.
-     *            </p>
+     * @param dimensions The segment dimensions attributes.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -104,42 +73,30 @@ public class WriteSegmentRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The name of the segment.
-     * </p>
+     * The name of segment
      *
-     * @return <p>
-     *         The name of the segment.
-     *         </p>
+     * @return The name of segment
      */
     public String getName() {
         return name;
     }
 
     /**
-     * <p>
-     * The name of the segment.
-     * </p>
+     * The name of segment
      *
-     * @param name <p>
-     *            The name of the segment.
-     *            </p>
+     * @param name The name of segment
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * <p>
-     * The name of the segment.
-     * </p>
+     * The name of segment
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name <p>
-     *            The name of the segment.
-     *            </p>
+     * @param name The name of segment
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -149,159 +106,56 @@ public class WriteSegmentRequest implements Serializable {
     }
 
     /**
-     * <p>
-     * The segment group to use and the dimensions to apply to the group's base
-     * segments in order to build the segment. A segment group can consist of
-     * zero or more base segments. Your request can include only one segment
-     * group.
-     * </p>
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
      *
-     * @return <p>
-     *         The segment group to use and the dimensions to apply to the
-     *         group's base segments in order to build the segment. A segment
-     *         group can consist of zero or more base segments. Your request can
-     *         include only one segment group.
-     *         </p>
+     * @return A segment group, which consists of zero or more source segments,
+     *         plus dimensions that are applied to those source segments. Your
+     *         request can only include one segment group. Your request can
+     *         include either a SegmentGroups object or a Dimensions object, but
+     *         not both.
      */
     public SegmentGroupList getSegmentGroups() {
         return segmentGroups;
     }
 
     /**
-     * <p>
-     * The segment group to use and the dimensions to apply to the group's base
-     * segments in order to build the segment. A segment group can consist of
-     * zero or more base segments. Your request can include only one segment
-     * group.
-     * </p>
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
      *
-     * @param segmentGroups <p>
-     *            The segment group to use and the dimensions to apply to the
-     *            group's base segments in order to build the segment. A segment
-     *            group can consist of zero or more base segments. Your request
-     *            can include only one segment group.
-     *            </p>
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments. Your request can only include one segment
+     *            group. Your request can include either a SegmentGroups object
+     *            or a Dimensions object, but not both.
      */
     public void setSegmentGroups(SegmentGroupList segmentGroups) {
         this.segmentGroups = segmentGroups;
     }
 
     /**
-     * <p>
-     * The segment group to use and the dimensions to apply to the group's base
-     * segments in order to build the segment. A segment group can consist of
-     * zero or more base segments. Your request can include only one segment
-     * group.
-     * </p>
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentGroups <p>
-     *            The segment group to use and the dimensions to apply to the
-     *            group's base segments in order to build the segment. A segment
-     *            group can consist of zero or more base segments. Your request
-     *            can include only one segment group.
-     *            </p>
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments. Your request can only include one segment
+     *            group. Your request can include either a SegmentGroups object
+     *            or a Dimensions object, but not both.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public WriteSegmentRequest withSegmentGroups(SegmentGroupList segmentGroups) {
         this.segmentGroups = segmentGroups;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the segment. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     *
-     * @return <p>
-     *         A string-to-string map of key-value pairs that defines the tags
-     *         to associate with the segment. Each tag consists of a required
-     *         tag key and an associated tag value.
-     *         </p>
-     */
-    public java.util.Map<String, String> getTags() {
-        return tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the segment. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the segment. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     */
-    public void setTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the segment. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tags <p>
-     *            A string-to-string map of key-value pairs that defines the
-     *            tags to associate with the segment. Each tag consists of a
-     *            required tag key and an associated tag value.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteSegmentRequest withTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A string-to-string map of key-value pairs that defines the tags to
-     * associate with the segment. Each tag consists of a required tag key and
-     * an associated tag value.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into tags parameter, and returns a
-     * reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into tags.
-     * @param value The corresponding value of the entry to be added into tags.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteSegmentRequest addtagsEntry(String key, String value) {
-        if (null == this.tags) {
-            this.tags = new java.util.HashMap<String, String>();
-        }
-        if (this.tags.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.tags.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into tags.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public WriteSegmentRequest cleartagsEntries() {
-        this.tags = null;
         return this;
     }
 
@@ -321,9 +175,7 @@ public class WriteSegmentRequest implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getSegmentGroups() != null)
-            sb.append("SegmentGroups: " + getSegmentGroups() + ",");
-        if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("SegmentGroups: " + getSegmentGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -337,7 +189,6 @@ public class WriteSegmentRequest implements Serializable {
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
-        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -365,10 +216,6 @@ public class WriteSegmentRequest implements Serializable {
             return false;
         if (other.getSegmentGroups() != null
                 && other.getSegmentGroups().equals(this.getSegmentGroups()) == false)
-            return false;
-        if (other.getTags() == null ^ this.getTags() == null)
-            return false;
-        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

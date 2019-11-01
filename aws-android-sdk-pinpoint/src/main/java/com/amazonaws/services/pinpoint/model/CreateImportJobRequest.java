@@ -20,73 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates an import job for an application.
- * </p>
+ * Creates or updates an import job.
  */
 public class CreateImportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the settings for a job that imports endpoint definitions from
-     * an Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Import job request.
      */
     private ImportJobRequest importJobRequest;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -96,51 +67,30 @@ public class CreateImportJobRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that imports endpoint definitions from
-     * an Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Import job request.
      *
-     * @return <p>
-     *         Specifies the settings for a job that imports endpoint
-     *         definitions from an Amazon Simple Storage Service (Amazon S3)
-     *         bucket.
-     *         </p>
+     * @return Import job request.
      */
     public ImportJobRequest getImportJobRequest() {
         return importJobRequest;
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that imports endpoint definitions from
-     * an Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Import job request.
      *
-     * @param importJobRequest <p>
-     *            Specifies the settings for a job that imports endpoint
-     *            definitions from an Amazon Simple Storage Service (Amazon S3)
-     *            bucket.
-     *            </p>
+     * @param importJobRequest Import job request.
      */
     public void setImportJobRequest(ImportJobRequest importJobRequest) {
         this.importJobRequest = importJobRequest;
     }
 
     /**
-     * <p>
-     * Specifies the settings for a job that imports endpoint definitions from
-     * an Amazon Simple Storage Service (Amazon S3) bucket.
-     * </p>
+     * Import job request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importJobRequest <p>
-     *            Specifies the settings for a job that imports endpoint
-     *            definitions from an Amazon Simple Storage Service (Amazon S3)
-     *            bucket.
-     *            </p>
+     * @param importJobRequest Import job request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
