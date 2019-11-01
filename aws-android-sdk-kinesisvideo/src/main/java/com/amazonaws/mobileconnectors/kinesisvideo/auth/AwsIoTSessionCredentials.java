@@ -1,8 +1,10 @@
 package com.amazonaws.mobileconnectors.kinesisvideo.auth;
 
+import com.amazonaws.auth.AWSSessionCredentials;
+
 import java.util.Date;
 
-public class AwsIoTSessionCredentials {
+public class AwsIoTSessionCredentials implements AWSSessionCredentials {
     private String accessKeyId;
     private String secretAccessKey;
     private String sessionToken;
@@ -37,5 +39,15 @@ public class AwsIoTSessionCredentials {
     public String toString() {
         return "AwsIoTSessionCredentials [accessKeyId=" + accessKeyId + ", secretAccessKey=" + secretAccessKey
                 + ", sessionToken=" + sessionToken + ", expiration=" + expiration + "]";
+    }
+
+    @Override
+    public String getAWSAccessKeyId() {
+        return accessKeyId;
+    }
+
+    @Override
+    public String getAWSSecretKey() {
+        return secretAccessKey;
     }
 }
