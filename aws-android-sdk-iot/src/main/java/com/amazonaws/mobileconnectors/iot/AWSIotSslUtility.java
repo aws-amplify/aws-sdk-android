@@ -82,4 +82,29 @@ final class AWSIotSslUtility {
 
         return new AWSIotTLSSocketFactory(context.getSocketFactory());
     }
+
+    /**
+     * Creates a socket factory given a keystore, a portNumber and a proxy identified by its
+     * host and port.
+     *
+     * @param keyStore keystore containing a certificate and private key for
+     *            used in creating a secured socket.
+     * @param portNumber Port number used for connecting to Iot
+     * @param proxyHost proxy host
+     * @param proxyPort proxy port
+     * @return a socket factory for use in creating a secured socket.
+     * @throws NoSuchAlgorithmException when TLS 1.2 is not available.
+     * @throws UnrecoverableKeyException when the private key cannot be
+     *             recovered. Usually a bad keystore password.
+     * @throws KeyStoreException when keystore cannot be created.
+     * @throws KeyManagementException when SSL context cannot be created by key
+     *             manager.
+     */
+    public static SSLSocketFactory getSocketFactoryWithKeyStoreAndProxy(KeyStore keyStore,
+                                                                        int portNumber, String proxyHost,
+                                                                        int proxyPort)
+            throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException,
+            KeyManagementException, NoSuchProviderException {
+        return new AWSIotProxiedSocketFactory(getSocketFactoryWithKeyStore(keyStore, portNumber), proxyHost, proxyPort);
+    }
 }

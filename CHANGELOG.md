@@ -2,6 +2,11 @@
 
 ## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
 
+### New Features
+
+- **AWS IoT**
+  - Added proxy support for connecting to AWS IoT via Keystore over port 8883
+
 ### Bug Fixes
 
 - **AWS Mobile Client**
