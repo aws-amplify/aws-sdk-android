@@ -18,6 +18,10 @@ package com.amazonaws.auth;
 /**
  * Basic implementation of the AWSCredentials interface that allows callers to
  * pass in the AWS access key and secret access in the constructor.
+ *
+ * It is not recommended to use this class. Instead, use short term credentials
+ * from Cognito with the AWSMobileClient.
+ * @see <a href="https://aws-amplify.github.io/aws-sdk-android/docs/reference/com/amazonaws/mobile/client/AWSMobileClient.html">AWSMobileClient</a>
  */
 public class BasicAWSCredentials implements AWSCredentials {
 
