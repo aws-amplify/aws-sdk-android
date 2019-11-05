@@ -9,6 +9,9 @@
 
 ### Bug Fixes
 
+- **AWS Core**
+  - Added warning against using `BasicAWSCredentials` instead of `AWSMobileClient` in Javadoc.
+
 - **AWS Mobile Client**
   - During `signUp`, when the user is confirmed, Cognito does not send `CognitoUserCodeDeliveryDetails`
 and it appears to be null when the SignUpResult is unmarshalled. Add a check before accessing the `CognitoUserCodeDeliveryDetails` only when the user is not confirmed. See [issue #1264](https://github.com/aws-amplify/aws-sdk-android/issues/1264) for more details.
