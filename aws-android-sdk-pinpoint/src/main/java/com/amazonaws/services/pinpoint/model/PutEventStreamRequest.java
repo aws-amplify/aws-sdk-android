@@ -20,75 +20,44 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates a new event stream for an application or updates the settings of an
- * existing event stream for an application.
- * </p>
+ * Use to create or update the event stream for an app.
  */
 public class PutEventStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * Specifies the Amazon Resource Name (ARN) of an event stream to publish
-     * events to and the AWS Identity and Access Management (IAM) role to use
-     * when publishing those events.
-     * </p>
+     * Request to save an EventStream.
      */
     private WriteEventStream writeEventStream;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -98,54 +67,30 @@ public class PutEventStreamRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * <p>
-     * Specifies the Amazon Resource Name (ARN) of an event stream to publish
-     * events to and the AWS Identity and Access Management (IAM) role to use
-     * when publishing those events.
-     * </p>
+     * Request to save an EventStream.
      *
-     * @return <p>
-     *         Specifies the Amazon Resource Name (ARN) of an event stream to
-     *         publish events to and the AWS Identity and Access Management
-     *         (IAM) role to use when publishing those events.
-     *         </p>
+     * @return Request to save an EventStream.
      */
     public WriteEventStream getWriteEventStream() {
         return writeEventStream;
     }
 
     /**
-     * <p>
-     * Specifies the Amazon Resource Name (ARN) of an event stream to publish
-     * events to and the AWS Identity and Access Management (IAM) role to use
-     * when publishing those events.
-     * </p>
+     * Request to save an EventStream.
      *
-     * @param writeEventStream <p>
-     *            Specifies the Amazon Resource Name (ARN) of an event stream to
-     *            publish events to and the AWS Identity and Access Management
-     *            (IAM) role to use when publishing those events.
-     *            </p>
+     * @param writeEventStream Request to save an EventStream.
      */
     public void setWriteEventStream(WriteEventStream writeEventStream) {
         this.writeEventStream = writeEventStream;
     }
 
     /**
-     * <p>
-     * Specifies the Amazon Resource Name (ARN) of an event stream to publish
-     * events to and the AWS Identity and Access Management (IAM) role to use
-     * when publishing those events.
-     * </p>
+     * Request to save an EventStream.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeEventStream <p>
-     *            Specifies the Amazon Resource Name (ARN) of an event stream to
-     *            publish events to and the AWS Identity and Access Management
-     *            (IAM) role to use when publishing those events.
-     *            </p>
+     * @param writeEventStream Request to save an EventStream.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

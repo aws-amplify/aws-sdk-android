@@ -19,56 +19,35 @@ import java.io.Serializable;
 
 public class UpdateAdmChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the ADM (Amazon
-     * Device Messaging) channel for an application.
-     * </p>
+     * Amazon Device Messaging channel definition.
      */
     private ADMChannelResponse aDMChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the ADM (Amazon
-     * Device Messaging) channel for an application.
-     * </p>
+     * Amazon Device Messaging channel definition.
      *
-     * @return <p>
-     *         Provides information about the status and settings of the ADM
-     *         (Amazon Device Messaging) channel for an application.
-     *         </p>
+     * @return Amazon Device Messaging channel definition.
      */
     public ADMChannelResponse getADMChannelResponse() {
         return aDMChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the ADM (Amazon
-     * Device Messaging) channel for an application.
-     * </p>
+     * Amazon Device Messaging channel definition.
      *
-     * @param aDMChannelResponse <p>
-     *            Provides information about the status and settings of the ADM
-     *            (Amazon Device Messaging) channel for an application.
-     *            </p>
+     * @param aDMChannelResponse Amazon Device Messaging channel definition.
      */
     public void setADMChannelResponse(ADMChannelResponse aDMChannelResponse) {
         this.aDMChannelResponse = aDMChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the ADM (Amazon
-     * Device Messaging) channel for an application.
-     * </p>
+     * Amazon Device Messaging channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aDMChannelResponse <p>
-     *            Provides information about the status and settings of the ADM
-     *            (Amazon Device Messaging) channel for an application.
-     *            </p>
+     * @param aDMChannelResponse Amazon Device Messaging channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

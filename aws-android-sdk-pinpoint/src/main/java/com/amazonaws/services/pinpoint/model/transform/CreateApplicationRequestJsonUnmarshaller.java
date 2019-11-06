@@ -39,11 +39,6 @@ class CreateApplicationRequestJsonUnmarshaller implements
             if (name.equals("Name")) {
                 createApplicationRequest.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("tags")) {
-                createApplicationRequest.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

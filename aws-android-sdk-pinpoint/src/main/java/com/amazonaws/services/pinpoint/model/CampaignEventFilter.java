@@ -18,25 +18,19 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the settings for events that cause a campaign to be sent.
- * </p>
+ * An object that defines the events that cause the campaign to be sent.
  */
 public class CampaignEventFilter implements Serializable {
     /**
-     * <p>
-     * The dimension settings of the event filter for the campaign.
-     * </p>
+     * An object that defines the dimensions for the event filter.
      */
     private EventDimensions dimensions;
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
@@ -44,42 +38,32 @@ public class CampaignEventFilter implements Serializable {
     private String filterType;
 
     /**
-     * <p>
-     * The dimension settings of the event filter for the campaign.
-     * </p>
+     * An object that defines the dimensions for the event filter.
      *
-     * @return <p>
-     *         The dimension settings of the event filter for the campaign.
-     *         </p>
+     * @return An object that defines the dimensions for the event filter.
      */
     public EventDimensions getDimensions() {
         return dimensions;
     }
 
     /**
-     * <p>
-     * The dimension settings of the event filter for the campaign.
-     * </p>
+     * An object that defines the dimensions for the event filter.
      *
-     * @param dimensions <p>
-     *            The dimension settings of the event filter for the campaign.
-     *            </p>
+     * @param dimensions An object that defines the dimensions for the event
+     *            filter.
      */
     public void setDimensions(EventDimensions dimensions) {
         this.dimensions = dimensions;
     }
 
     /**
-     * <p>
-     * The dimension settings of the event filter for the campaign.
-     * </p>
+     * An object that defines the dimensions for the event filter.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param dimensions <p>
-     *            The dimension settings of the event filter for the campaign.
-     *            </p>
+     * @param dimensions An object that defines the dimensions for the event
+     *            filter.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -89,23 +73,19 @@ public class CampaignEventFilter implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
      *
-     * @return <p>
-     *         The type of event that causes the campaign to be sent. Valid
-     *         values are: SYSTEM, sends the campaign when a system event
-     *         occurs; and, ENDPOINT, sends the campaign when an endpoint event
-     *         (<link linkend="apps-application-id-events">Events</link>
-     *         resource) occurs.
-     *         </p>
+     * @return The type of event that causes the campaign to be sent. Possible
+     *         values: SYSTEM - Send the campaign when a system event occurs.
+     *         See the System resource for more information. ENDPOINT - Send the
+     *         campaign when an endpoint event occurs. See the Event resource
+     *         for more information.
      * @see FilterType
      */
     public String getFilterType() {
@@ -113,24 +93,19 @@ public class CampaignEventFilter implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
      *
-     * @param filterType <p>
-     *            The type of event that causes the campaign to be sent. Valid
-     *            values are: SYSTEM, sends the campaign when a system event
-     *            occurs; and, ENDPOINT, sends the campaign when an endpoint
-     *            event (<link
-     *            linkend="apps-application-id-events">Events</link> resource)
-     *            occurs.
-     *            </p>
+     * @param filterType The type of event that causes the campaign to be sent.
+     *            Possible values: SYSTEM - Send the campaign when a system
+     *            event occurs. See the System resource for more information.
+     *            ENDPOINT - Send the campaign when an endpoint event occurs.
+     *            See the Event resource for more information.
      * @see FilterType
      */
     public void setFilterType(String filterType) {
@@ -138,12 +113,10 @@ public class CampaignEventFilter implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -151,14 +124,11 @@ public class CampaignEventFilter implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
      *
-     * @param filterType <p>
-     *            The type of event that causes the campaign to be sent. Valid
-     *            values are: SYSTEM, sends the campaign when a system event
-     *            occurs; and, ENDPOINT, sends the campaign when an endpoint
-     *            event (<link
-     *            linkend="apps-application-id-events">Events</link> resource)
-     *            occurs.
-     *            </p>
+     * @param filterType The type of event that causes the campaign to be sent.
+     *            Possible values: SYSTEM - Send the campaign when a system
+     *            event occurs. See the System resource for more information.
+     *            ENDPOINT - Send the campaign when an endpoint event occurs.
+     *            See the Event resource for more information.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see FilterType
@@ -169,24 +139,19 @@ public class CampaignEventFilter implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
      *
-     * @param filterType <p>
-     *            The type of event that causes the campaign to be sent. Valid
-     *            values are: SYSTEM, sends the campaign when a system event
-     *            occurs; and, ENDPOINT, sends the campaign when an endpoint
-     *            event (<link
-     *            linkend="apps-application-id-events">Events</link> resource)
-     *            occurs.
-     *            </p>
+     * @param filterType The type of event that causes the campaign to be sent.
+     *            Possible values: SYSTEM - Send the campaign when a system
+     *            event occurs. See the System resource for more information.
+     *            ENDPOINT - Send the campaign when an endpoint event occurs.
+     *            See the Event resource for more information.
      * @see FilterType
      */
     public void setFilterType(FilterType filterType) {
@@ -194,12 +159,10 @@ public class CampaignEventFilter implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent. Valid values are:
-     * SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT,
-     * sends the campaign when an endpoint event (<link
-     * linkend="apps-application-id-events">Events</link> resource) occurs.
-     * </p>
+     * The type of event that causes the campaign to be sent. Possible values:
+     * SYSTEM - Send the campaign when a system event occurs. See the System
+     * resource for more information. ENDPOINT - Send the campaign when an
+     * endpoint event occurs. See the Event resource for more information.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -207,14 +170,11 @@ public class CampaignEventFilter implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYSTEM, ENDPOINT
      *
-     * @param filterType <p>
-     *            The type of event that causes the campaign to be sent. Valid
-     *            values are: SYSTEM, sends the campaign when a system event
-     *            occurs; and, ENDPOINT, sends the campaign when an endpoint
-     *            event (<link
-     *            linkend="apps-application-id-events">Events</link> resource)
-     *            occurs.
-     *            </p>
+     * @param filterType The type of event that causes the campaign to be sent.
+     *            Possible values: SYSTEM - Send the campaign when a system
+     *            event occurs. See the System resource for more information.
+     *            ENDPOINT - Send the campaign when an endpoint event occurs.
+     *            See the Event resource for more information.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see FilterType

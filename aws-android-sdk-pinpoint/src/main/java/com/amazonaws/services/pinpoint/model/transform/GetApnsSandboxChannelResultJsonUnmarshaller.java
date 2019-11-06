@@ -29,21 +29,6 @@ public class GetApnsSandboxChannelResultJsonUnmarshaller implements
     public GetApnsSandboxChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetApnsSandboxChannelResult getApnsSandboxChannelResult = new GetApnsSandboxChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSSandboxChannelResponse")) {
-                getApnsSandboxChannelResult
-                        .setAPNSSandboxChannelResponse(APNSSandboxChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getApnsSandboxChannelResult;
     }
 

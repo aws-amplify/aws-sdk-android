@@ -18,34 +18,22 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the default settings for a one-time SMS message that's sent
- * directly to an endpoint.
- * </p>
+ * SMS Message.
  */
 public class SMSMessage implements Serializable {
     /**
-     * <p>
      * The body of the SMS message.
-     * </p>
      */
     private String body;
 
     /**
-     * <p>
      * The SMS program name that you provided to AWS Support when you requested
      * your dedicated number.
-     * </p>
      */
     private String keyword;
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
@@ -53,68 +41,50 @@ public class SMSMessage implements Serializable {
     private String messageType;
 
     /**
-     * <p>
-     * The number to send the SMS message from. This value should be one of the
-     * dedicated long or short codes that's assigned to your AWS account. If you
-     * don't specify a long or short code, Amazon Pinpoint assigns a random long
-     * code to the SMS message and sends the message from that code.
-     * </p>
+     * The phone number that the SMS message originates from. Specify one of the
+     * dedicated long codes or short codes that you requested from AWS Support
+     * and that is assigned to your account. If this attribute is not specified,
+     * Amazon Pinpoint randomly assigns a long code.
      */
     private String originationNumber;
 
     /**
-     * <p>
-     * The sender ID to display as the sender of the message on a recipient's
+     * The sender ID that is shown as the message sender on the recipient's
      * device. Support for sender IDs varies by country or region.
-     * </p>
      */
     private String senderId;
 
     /**
-     * <p>
-     * The message variables to use in the SMS message. You can override the
-     * default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
-     * <p>
      * The body of the SMS message.
-     * </p>
      *
-     * @return <p>
-     *         The body of the SMS message.
-     *         </p>
+     * @return The body of the SMS message.
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * <p>
      * The body of the SMS message.
-     * </p>
      *
-     * @param body <p>
-     *            The body of the SMS message.
-     *            </p>
+     * @param body The body of the SMS message.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * <p>
      * The body of the SMS message.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body <p>
-     *            The body of the SMS message.
-     *            </p>
+     * @param body The body of the SMS message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -124,48 +94,36 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
      * The SMS program name that you provided to AWS Support when you requested
      * your dedicated number.
-     * </p>
      *
-     * @return <p>
-     *         The SMS program name that you provided to AWS Support when you
+     * @return The SMS program name that you provided to AWS Support when you
      *         requested your dedicated number.
-     *         </p>
      */
     public String getKeyword() {
         return keyword;
     }
 
     /**
-     * <p>
      * The SMS program name that you provided to AWS Support when you requested
      * your dedicated number.
-     * </p>
      *
-     * @param keyword <p>
-     *            The SMS program name that you provided to AWS Support when you
-     *            requested your dedicated number.
-     *            </p>
+     * @param keyword The SMS program name that you provided to AWS Support when
+     *            you requested your dedicated number.
      */
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
     /**
-     * <p>
      * The SMS program name that you provided to AWS Support when you requested
      * your dedicated number.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param keyword <p>
-     *            The SMS program name that you provided to AWS Support when you
-     *            requested your dedicated number.
-     *            </p>
+     * @param keyword The SMS program name that you provided to AWS Support when
+     *            you requested your dedicated number.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -175,23 +133,12 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @return <p>
-     *         The SMS message type. Valid values are: TRANSACTIONAL, the
-     *         message is critical or time-sensitive, such as a one-time
-     *         password that supports a customer transaction; and, PROMOTIONAL,
-     *         the message is not critical or time-sensitive, such as a
-     *         marketing message.
-     *         </p>
+     * @return Is this a transaction priority message or lower priority.
      * @see MessageType
      */
     public String getMessageType() {
@@ -199,23 +146,13 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType <p>
-     *            The SMS message type. Valid values are: TRANSACTIONAL, the
-     *            message is critical or time-sensitive, such as a one-time
-     *            password that supports a customer transaction; and,
-     *            PROMOTIONAL, the message is not critical or time-sensitive,
-     *            such as a marketing message.
-     *            </p>
+     * @param messageType Is this a transaction priority message or lower
+     *            priority.
      * @see MessageType
      */
     public void setMessageType(String messageType) {
@@ -223,12 +160,7 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -236,13 +168,8 @@ public class SMSMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType <p>
-     *            The SMS message type. Valid values are: TRANSACTIONAL, the
-     *            message is critical or time-sensitive, such as a one-time
-     *            password that supports a customer transaction; and,
-     *            PROMOTIONAL, the message is not critical or time-sensitive,
-     *            such as a marketing message.
-     *            </p>
+     * @param messageType Is this a transaction priority message or lower
+     *            priority.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType
@@ -253,23 +180,13 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType <p>
-     *            The SMS message type. Valid values are: TRANSACTIONAL, the
-     *            message is critical or time-sensitive, such as a one-time
-     *            password that supports a customer transaction; and,
-     *            PROMOTIONAL, the message is not critical or time-sensitive,
-     *            such as a marketing message.
-     *            </p>
+     * @param messageType Is this a transaction priority message or lower
+     *            priority.
      * @see MessageType
      */
     public void setMessageType(MessageType messageType) {
@@ -277,12 +194,7 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The SMS message type. Valid values are: TRANSACTIONAL, the message is
-     * critical or time-sensitive, such as a one-time password that supports a
-     * customer transaction; and, PROMOTIONAL, the message is not critical or
-     * time-sensitive, such as a marketing message.
-     * </p>
+     * Is this a transaction priority message or lower priority.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -290,13 +202,8 @@ public class SMSMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType <p>
-     *            The SMS message type. Valid values are: TRANSACTIONAL, the
-     *            message is critical or time-sensitive, such as a one-time
-     *            password that supports a customer transaction; and,
-     *            PROMOTIONAL, the message is not critical or time-sensitive,
-     *            such as a marketing message.
-     *            </p>
+     * @param messageType Is this a transaction priority message or lower
+     *            priority.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType
@@ -307,63 +214,51 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The number to send the SMS message from. This value should be one of the
-     * dedicated long or short codes that's assigned to your AWS account. If you
-     * don't specify a long or short code, Amazon Pinpoint assigns a random long
-     * code to the SMS message and sends the message from that code.
-     * </p>
+     * The phone number that the SMS message originates from. Specify one of the
+     * dedicated long codes or short codes that you requested from AWS Support
+     * and that is assigned to your account. If this attribute is not specified,
+     * Amazon Pinpoint randomly assigns a long code.
      *
-     * @return <p>
-     *         The number to send the SMS message from. This value should be one
-     *         of the dedicated long or short codes that's assigned to your AWS
-     *         account. If you don't specify a long or short code, Amazon
-     *         Pinpoint assigns a random long code to the SMS message and sends
-     *         the message from that code.
-     *         </p>
+     * @return The phone number that the SMS message originates from. Specify
+     *         one of the dedicated long codes or short codes that you requested
+     *         from AWS Support and that is assigned to your account. If this
+     *         attribute is not specified, Amazon Pinpoint randomly assigns a
+     *         long code.
      */
     public String getOriginationNumber() {
         return originationNumber;
     }
 
     /**
-     * <p>
-     * The number to send the SMS message from. This value should be one of the
-     * dedicated long or short codes that's assigned to your AWS account. If you
-     * don't specify a long or short code, Amazon Pinpoint assigns a random long
-     * code to the SMS message and sends the message from that code.
-     * </p>
+     * The phone number that the SMS message originates from. Specify one of the
+     * dedicated long codes or short codes that you requested from AWS Support
+     * and that is assigned to your account. If this attribute is not specified,
+     * Amazon Pinpoint randomly assigns a long code.
      *
-     * @param originationNumber <p>
-     *            The number to send the SMS message from. This value should be
-     *            one of the dedicated long or short codes that's assigned to
-     *            your AWS account. If you don't specify a long or short code,
-     *            Amazon Pinpoint assigns a random long code to the SMS message
-     *            and sends the message from that code.
-     *            </p>
+     * @param originationNumber The phone number that the SMS message originates
+     *            from. Specify one of the dedicated long codes or short codes
+     *            that you requested from AWS Support and that is assigned to
+     *            your account. If this attribute is not specified, Amazon
+     *            Pinpoint randomly assigns a long code.
      */
     public void setOriginationNumber(String originationNumber) {
         this.originationNumber = originationNumber;
     }
 
     /**
-     * <p>
-     * The number to send the SMS message from. This value should be one of the
-     * dedicated long or short codes that's assigned to your AWS account. If you
-     * don't specify a long or short code, Amazon Pinpoint assigns a random long
-     * code to the SMS message and sends the message from that code.
-     * </p>
+     * The phone number that the SMS message originates from. Specify one of the
+     * dedicated long codes or short codes that you requested from AWS Support
+     * and that is assigned to your account. If this attribute is not specified,
+     * Amazon Pinpoint randomly assigns a long code.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param originationNumber <p>
-     *            The number to send the SMS message from. This value should be
-     *            one of the dedicated long or short codes that's assigned to
-     *            your AWS account. If you don't specify a long or short code,
-     *            Amazon Pinpoint assigns a random long code to the SMS message
-     *            and sends the message from that code.
-     *            </p>
+     * @param originationNumber The phone number that the SMS message originates
+     *            from. Specify one of the dedicated long codes or short codes
+     *            that you requested from AWS Support and that is assigned to
+     *            your account. If this attribute is not specified, Amazon
+     *            Pinpoint randomly assigns a long code.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -373,51 +268,39 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The sender ID to display as the sender of the message on a recipient's
+     * The sender ID that is shown as the message sender on the recipient's
      * device. Support for sender IDs varies by country or region.
-     * </p>
      *
-     * @return <p>
-     *         The sender ID to display as the sender of the message on a
+     * @return The sender ID that is shown as the message sender on the
      *         recipient's device. Support for sender IDs varies by country or
      *         region.
-     *         </p>
      */
     public String getSenderId() {
         return senderId;
     }
 
     /**
-     * <p>
-     * The sender ID to display as the sender of the message on a recipient's
+     * The sender ID that is shown as the message sender on the recipient's
      * device. Support for sender IDs varies by country or region.
-     * </p>
      *
-     * @param senderId <p>
-     *            The sender ID to display as the sender of the message on a
+     * @param senderId The sender ID that is shown as the message sender on the
      *            recipient's device. Support for sender IDs varies by country
      *            or region.
-     *            </p>
      */
     public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 
     /**
-     * <p>
-     * The sender ID to display as the sender of the message on a recipient's
+     * The sender ID that is shown as the message sender on the recipient's
      * device. Support for sender IDs varies by country or region.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param senderId <p>
-     *            The sender ID to display as the sender of the message on a
+     * @param senderId The sender ID that is shown as the message sender on the
      *            recipient's device. Support for sender IDs varies by country
      *            or region.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -427,50 +310,36 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The message variables to use in the SMS message. You can override the
-     * default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @return <p>
-     *         The message variables to use in the SMS message. You can override
-     *         the default variables with individual address variables.
-     *         </p>
+     * @return Default message substitutions. Can be overridden by individual
+     *         address substitutions.
      */
     public java.util.Map<String, java.util.List<String>> getSubstitutions() {
         return substitutions;
     }
 
     /**
-     * <p>
-     * The message variables to use in the SMS message. You can override the
-     * default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      *
-     * @param substitutions <p>
-     *            The message variables to use in the SMS message. You can
-     *            override the default variables with individual address
-     *            variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      */
     public void setSubstitutions(java.util.Map<String, java.util.List<String>> substitutions) {
         this.substitutions = substitutions;
     }
 
     /**
-     * <p>
-     * The message variables to use in the SMS message. You can override the
-     * default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param substitutions <p>
-     *            The message variables to use in the SMS message. You can
-     *            override the default variables with individual address
-     *            variables.
-     *            </p>
+     * @param substitutions Default message substitutions. Can be overridden by
+     *            individual address substitutions.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -480,10 +349,8 @@ public class SMSMessage implements Serializable {
     }
 
     /**
-     * <p>
-     * The message variables to use in the SMS message. You can override the
-     * default variables with individual address variables.
-     * </p>
+     * Default message substitutions. Can be overridden by individual address
+     * substitutions.
      * <p>
      * The method adds a new key-value pair into Substitutions parameter, and
      * returns a reference to this object so that method calls can be chained

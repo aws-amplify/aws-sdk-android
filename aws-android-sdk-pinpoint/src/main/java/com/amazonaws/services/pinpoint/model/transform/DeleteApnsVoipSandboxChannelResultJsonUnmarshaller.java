@@ -30,21 +30,6 @@ public class DeleteApnsVoipSandboxChannelResultJsonUnmarshaller implements
             throws Exception {
         DeleteApnsVoipSandboxChannelResult deleteApnsVoipSandboxChannelResult = new DeleteApnsVoipSandboxChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSVoipSandboxChannelResponse")) {
-                deleteApnsVoipSandboxChannelResult
-                        .setAPNSVoipSandboxChannelResponse(APNSVoipSandboxChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteApnsVoipSandboxChannelResult;
     }
 

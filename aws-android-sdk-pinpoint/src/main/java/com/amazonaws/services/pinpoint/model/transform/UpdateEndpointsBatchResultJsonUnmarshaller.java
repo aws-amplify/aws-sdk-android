@@ -29,19 +29,6 @@ public class UpdateEndpointsBatchResultJsonUnmarshaller implements
     public UpdateEndpointsBatchResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEndpointsBatchResult updateEndpointsBatchResult = new UpdateEndpointsBatchResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("MessageBody")) {
-                updateEndpointsBatchResult.setMessageBody(MessageBodyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return updateEndpointsBatchResult;
     }
 

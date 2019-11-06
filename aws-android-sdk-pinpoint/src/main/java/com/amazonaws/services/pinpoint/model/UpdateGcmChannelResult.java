@@ -19,72 +19,35 @@ import java.io.Serializable;
 
 public class UpdateGcmChannelResult implements Serializable {
     /**
-     * <p>
-     * Provides information about the status and settings of the GCM channel for
-     * an application. The GCM channel enables Amazon Pinpoint to send push
-     * notifications through the Firebase Cloud Messaging (FCM), formerly Google
-     * Cloud Messaging (GCM), service.
-     * </p>
+     * Google Cloud Messaging channel definition
      */
     private GCMChannelResponse gCMChannelResponse;
 
     /**
-     * <p>
-     * Provides information about the status and settings of the GCM channel for
-     * an application. The GCM channel enables Amazon Pinpoint to send push
-     * notifications through the Firebase Cloud Messaging (FCM), formerly Google
-     * Cloud Messaging (GCM), service.
-     * </p>
+     * Google Cloud Messaging channel definition
      *
-     * @return <p>
-     *         Provides information about the status and settings of the GCM
-     *         channel for an application. The GCM channel enables Amazon
-     *         Pinpoint to send push notifications through the Firebase Cloud
-     *         Messaging (FCM), formerly Google Cloud Messaging (GCM), service.
-     *         </p>
+     * @return Google Cloud Messaging channel definition
      */
     public GCMChannelResponse getGCMChannelResponse() {
         return gCMChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the GCM channel for
-     * an application. The GCM channel enables Amazon Pinpoint to send push
-     * notifications through the Firebase Cloud Messaging (FCM), formerly Google
-     * Cloud Messaging (GCM), service.
-     * </p>
+     * Google Cloud Messaging channel definition
      *
-     * @param gCMChannelResponse <p>
-     *            Provides information about the status and settings of the GCM
-     *            channel for an application. The GCM channel enables Amazon
-     *            Pinpoint to send push notifications through the Firebase Cloud
-     *            Messaging (FCM), formerly Google Cloud Messaging (GCM),
-     *            service.
-     *            </p>
+     * @param gCMChannelResponse Google Cloud Messaging channel definition
      */
     public void setGCMChannelResponse(GCMChannelResponse gCMChannelResponse) {
         this.gCMChannelResponse = gCMChannelResponse;
     }
 
     /**
-     * <p>
-     * Provides information about the status and settings of the GCM channel for
-     * an application. The GCM channel enables Amazon Pinpoint to send push
-     * notifications through the Firebase Cloud Messaging (FCM), formerly Google
-     * Cloud Messaging (GCM), service.
-     * </p>
+     * Google Cloud Messaging channel definition
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gCMChannelResponse <p>
-     *            Provides information about the status and settings of the GCM
-     *            channel for an application. The GCM channel enables Amazon
-     *            Pinpoint to send push notifications through the Firebase Cloud
-     *            Messaging (FCM), formerly Google Cloud Messaging (GCM),
-     *            service.
-     *            </p>
+     * @param gCMChannelResponse Google Cloud Messaging channel definition
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

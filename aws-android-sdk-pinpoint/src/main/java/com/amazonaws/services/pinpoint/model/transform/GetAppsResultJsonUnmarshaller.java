@@ -29,20 +29,6 @@ public class GetAppsResultJsonUnmarshaller implements
     public GetAppsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetAppsResult getAppsResult = new GetAppsResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ApplicationsResponse")) {
-                getAppsResult.setApplicationsResponse(ApplicationsResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getAppsResult;
     }
 

@@ -18,31 +18,23 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the schedule settings for a campaign.
- * </p>
+ * Shcedule that defines when a campaign is run.
  */
 public class Schedule implements Serializable {
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to end.
-     * </p>
+     * The scheduled time that the campaign ends in ISO 8601 format.
      */
     private String endTime;
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent, if the value of
-     * the Frequency property is EVENT.
-     * </p>
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
      */
     private CampaignEventFilter eventFilter;
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
@@ -50,105 +42,69 @@ public class Schedule implements Serializable {
     private String frequency;
 
     /**
-     * <p>
-     * Specifies whether the start and end times for the campaign schedule use
-     * each recipient's local time. To base the schedule on each recipient's
-     * local time, set this value to true.
-     * </p>
+     * Indicates whether the campaign schedule takes effect according to each
+     * user's local time.
      */
     private Boolean isLocalTime;
 
     /**
-     * <p>
-     * The default quiet time for the campaign. Quiet time is a specific time
-     * range when a campaign doesn't send messages to endpoints, if all the
-     * following conditions are met:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The EndpointDemographic.Timezone property of the endpoint is set to a
-     * valid value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is later than or equal to
-     * the time specified by the QuietTime.Start property for the campaign.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is earlier than or equal to
-     * the time specified by the QuietTime.End property for the campaign.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * If any of the preceding conditions isn't met, the endpoint will receive
-     * messages from the campaign, even if quiet time is enabled.
-     * </p>
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      */
     private QuietTime quietTime;
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to begin.
-     * </p>
+     * The scheduled time that the campaign begins in ISO 8601 format.
      */
     private String startTime;
 
     /**
-     * <p>
-     * The starting UTC offset for the campaign schedule, if the value of the
-     * IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02,
-     * UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30, UTC+05:45,
-     * UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30,
-     * UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     * UTC-08, UTC-09, UTC-10, and UTC-11.
-     * </p>
+     * The starting UTC offset for the schedule if the value for isLocalTime is
+     * true Valid values: UTC UTC+01 UTC+02 UTC+03 UTC+03:30 UTC+04 UTC+04:30
+     * UTC+05 UTC+05:30 UTC+05:45 UTC+06 UTC+06:30 UTC+07 UTC+08 UTC+09
+     * UTC+09:30 UTC+10 UTC+10:30 UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04
+     * UTC-05 UTC-06 UTC-07 UTC-08 UTC-09 UTC-10 UTC-11
      */
     private String timezone;
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to end.
-     * </p>
+     * The scheduled time that the campaign ends in ISO 8601 format.
      *
-     * @return <p>
-     *         The scheduled time, in ISO 8601 format, for the campaign to end.
-     *         </p>
+     * @return The scheduled time that the campaign ends in ISO 8601 format.
      */
     public String getEndTime() {
         return endTime;
     }
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to end.
-     * </p>
+     * The scheduled time that the campaign ends in ISO 8601 format.
      *
-     * @param endTime <p>
-     *            The scheduled time, in ISO 8601 format, for the campaign to
-     *            end.
-     *            </p>
+     * @param endTime The scheduled time that the campaign ends in ISO 8601
+     *            format.
      */
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to end.
-     * </p>
+     * The scheduled time that the campaign ends in ISO 8601 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endTime <p>
-     *            The scheduled time, in ISO 8601 format, for the campaign to
-     *            end.
-     *            </p>
+     * @param endTime The scheduled time that the campaign ends in ISO 8601
+     *            format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -158,48 +114,36 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent, if the value of
-     * the Frequency property is EVENT.
-     * </p>
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
      *
-     * @return <p>
-     *         The type of event that causes the campaign to be sent, if the
-     *         value of the Frequency property is EVENT.
-     *         </p>
+     * @return Defines the type of events that can trigger the campaign. Used
+     *         when the Frequency is set to EVENT.
      */
     public CampaignEventFilter getEventFilter() {
         return eventFilter;
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent, if the value of
-     * the Frequency property is EVENT.
-     * </p>
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
      *
-     * @param eventFilter <p>
-     *            The type of event that causes the campaign to be sent, if the
-     *            value of the Frequency property is EVENT.
-     *            </p>
+     * @param eventFilter Defines the type of events that can trigger the
+     *            campaign. Used when the Frequency is set to EVENT.
      */
     public void setEventFilter(CampaignEventFilter eventFilter) {
         this.eventFilter = eventFilter;
     }
 
     /**
-     * <p>
-     * The type of event that causes the campaign to be sent, if the value of
-     * the Frequency property is EVENT.
-     * </p>
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param eventFilter <p>
-     *            The type of event that causes the campaign to be sent, if the
-     *            value of the Frequency property is EVENT.
-     *            </p>
+     * @param eventFilter Defines the type of events that can trigger the
+     *            campaign. Used when the Frequency is set to EVENT.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -209,18 +153,14 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @return <p>
-     *         Specifies how often the campaign is sent or whether the campaign
-     *         is sent in response to a specific event.
-     *         </p>
+     * @return How often the campaign delivers messages. Valid values: ONCE
+     *         HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public String getFrequency() {
@@ -228,18 +168,14 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @param frequency <p>
-     *            Specifies how often the campaign is sent or whether the
-     *            campaign is sent in response to a specific event.
-     *            </p>
+     * @param frequency How often the campaign delivers messages. Valid values:
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public void setFrequency(String frequency) {
@@ -247,10 +183,8 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -258,10 +192,8 @@ public class Schedule implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @param frequency <p>
-     *            Specifies how often the campaign is sent or whether the
-     *            campaign is sent in response to a specific event.
-     *            </p>
+     * @param frequency How often the campaign delivers messages. Valid values:
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Frequency
@@ -272,18 +204,14 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @param frequency <p>
-     *            Specifies how often the campaign is sent or whether the
-     *            campaign is sent in response to a specific event.
-     *            </p>
+     * @param frequency How often the campaign delivers messages. Valid values:
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public void setFrequency(Frequency frequency) {
@@ -291,10 +219,8 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies how often the campaign is sent or whether the campaign is sent
-     * in response to a specific event.
-     * </p>
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -302,10 +228,8 @@ public class Schedule implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @param frequency <p>
-     *            Specifies how often the campaign is sent or whether the
-     *            campaign is sent in response to a specific event.
-     *            </p>
+     * @param frequency How often the campaign delivers messages. Valid values:
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Frequency
@@ -316,71 +240,47 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether the start and end times for the campaign schedule use
-     * each recipient's local time. To base the schedule on each recipient's
-     * local time, set this value to true.
-     * </p>
+     * Indicates whether the campaign schedule takes effect according to each
+     * user's local time.
      *
-     * @return <p>
-     *         Specifies whether the start and end times for the campaign
-     *         schedule use each recipient's local time. To base the schedule on
-     *         each recipient's local time, set this value to true.
-     *         </p>
+     * @return Indicates whether the campaign schedule takes effect according to
+     *         each user's local time.
      */
     public Boolean isIsLocalTime() {
         return isLocalTime;
     }
 
     /**
-     * <p>
-     * Specifies whether the start and end times for the campaign schedule use
-     * each recipient's local time. To base the schedule on each recipient's
-     * local time, set this value to true.
-     * </p>
+     * Indicates whether the campaign schedule takes effect according to each
+     * user's local time.
      *
-     * @return <p>
-     *         Specifies whether the start and end times for the campaign
-     *         schedule use each recipient's local time. To base the schedule on
-     *         each recipient's local time, set this value to true.
-     *         </p>
+     * @return Indicates whether the campaign schedule takes effect according to
+     *         each user's local time.
      */
     public Boolean getIsLocalTime() {
         return isLocalTime;
     }
 
     /**
-     * <p>
-     * Specifies whether the start and end times for the campaign schedule use
-     * each recipient's local time. To base the schedule on each recipient's
-     * local time, set this value to true.
-     * </p>
+     * Indicates whether the campaign schedule takes effect according to each
+     * user's local time.
      *
-     * @param isLocalTime <p>
-     *            Specifies whether the start and end times for the campaign
-     *            schedule use each recipient's local time. To base the schedule
-     *            on each recipient's local time, set this value to true.
-     *            </p>
+     * @param isLocalTime Indicates whether the campaign schedule takes effect
+     *            according to each user's local time.
      */
     public void setIsLocalTime(Boolean isLocalTime) {
         this.isLocalTime = isLocalTime;
     }
 
     /**
-     * <p>
-     * Specifies whether the start and end times for the campaign schedule use
-     * each recipient's local time. To base the schedule on each recipient's
-     * local time, set this value to true.
-     * </p>
+     * Indicates whether the campaign schedule takes effect according to each
+     * user's local time.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isLocalTime <p>
-     *            Specifies whether the start and end times for the campaign
-     *            schedule use each recipient's local time. To base the schedule
-     *            on each recipient's local time, set this value to true.
-     *            </p>
+     * @param isLocalTime Indicates whether the campaign schedule takes effect
+     *            according to each user's local time.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -390,207 +290,109 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * The default quiet time for the campaign. Quiet time is a specific time
-     * range when a campaign doesn't send messages to endpoints, if all the
-     * following conditions are met:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The EndpointDemographic.Timezone property of the endpoint is set to a
-     * valid value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is later than or equal to
-     * the time specified by the QuietTime.Start property for the campaign.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is earlier than or equal to
-     * the time specified by the QuietTime.End property for the campaign.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * If any of the preceding conditions isn't met, the endpoint will receive
-     * messages from the campaign, even if quiet time is enabled.
-     * </p>
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      *
-     * @return <p>
-     *         The default quiet time for the campaign. Quiet time is a specific
-     *         time range when a campaign doesn't send messages to endpoints, if
-     *         all the following conditions are met:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         The EndpointDemographic.Timezone property of the endpoint is set
-     *         to a valid value.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         The current time in the endpoint's time zone is later than or
-     *         equal to the time specified by the QuietTime.Start property for
-     *         the campaign.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         The current time in the endpoint's time zone is earlier than or
-     *         equal to the time specified by the QuietTime.End property for the
-     *         campaign.
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <p>
-     *         If any of the preceding conditions isn't met, the endpoint will
-     *         receive messages from the campaign, even if quiet time is
-     *         enabled.
-     *         </p>
+     * @return The default quiet time for the campaign. The campaign doesn't
+     *         send messages to endpoints during the quiet time. Note: Make sure
+     *         that your endpoints include the Demographics.Timezone attribute
+     *         if you plan to enable a quiet time for your campaign. If your
+     *         endpoints don't include this attribute, they'll receive the
+     *         messages that you send them, even if quiet time is enabled. When
+     *         you set up a campaign to use quiet time, the campaign doesn't
+     *         send messages during the time range you specified, as long as all
+     *         of the following are true: - The endpoint includes a valid
+     *         Demographic.Timezone attribute. - The current time in the
+     *         endpoint's time zone is later than or equal to the time specified
+     *         in the QuietTime.Start attribute for the campaign. - The current
+     *         time in the endpoint's time zone is earlier than or equal to the
+     *         time specified in the QuietTime.End attribute for the campaign.
      */
     public QuietTime getQuietTime() {
         return quietTime;
     }
 
     /**
-     * <p>
-     * The default quiet time for the campaign. Quiet time is a specific time
-     * range when a campaign doesn't send messages to endpoints, if all the
-     * following conditions are met:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The EndpointDemographic.Timezone property of the endpoint is set to a
-     * valid value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is later than or equal to
-     * the time specified by the QuietTime.Start property for the campaign.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is earlier than or equal to
-     * the time specified by the QuietTime.End property for the campaign.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * If any of the preceding conditions isn't met, the endpoint will receive
-     * messages from the campaign, even if quiet time is enabled.
-     * </p>
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      *
-     * @param quietTime <p>
-     *            The default quiet time for the campaign. Quiet time is a
-     *            specific time range when a campaign doesn't send messages to
-     *            endpoints, if all the following conditions are met:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The EndpointDemographic.Timezone property of the endpoint is
-     *            set to a valid value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The current time in the endpoint's time zone is later than or
-     *            equal to the time specified by the QuietTime.Start property
-     *            for the campaign.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The current time in the endpoint's time zone is earlier than
-     *            or equal to the time specified by the QuietTime.End property
-     *            for the campaign.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If any of the preceding conditions isn't met, the endpoint
-     *            will receive messages from the campaign, even if quiet time is
-     *            enabled.
-     *            </p>
+     * @param quietTime The default quiet time for the campaign. The campaign
+     *            doesn't send messages to endpoints during the quiet time.
+     *            Note: Make sure that your endpoints include the
+     *            Demographics.Timezone attribute if you plan to enable a quiet
+     *            time for your campaign. If your endpoints don't include this
+     *            attribute, they'll receive the messages that you send them,
+     *            even if quiet time is enabled. When you set up a campaign to
+     *            use quiet time, the campaign doesn't send messages during the
+     *            time range you specified, as long as all of the following are
+     *            true: - The endpoint includes a valid Demographic.Timezone
+     *            attribute. - The current time in the endpoint's time zone is
+     *            later than or equal to the time specified in the
+     *            QuietTime.Start attribute for the campaign. - The current time
+     *            in the endpoint's time zone is earlier than or equal to the
+     *            time specified in the QuietTime.End attribute for the
+     *            campaign.
      */
     public void setQuietTime(QuietTime quietTime) {
         this.quietTime = quietTime;
     }
 
     /**
-     * <p>
-     * The default quiet time for the campaign. Quiet time is a specific time
-     * range when a campaign doesn't send messages to endpoints, if all the
-     * following conditions are met:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The EndpointDemographic.Timezone property of the endpoint is set to a
-     * valid value.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is later than or equal to
-     * the time specified by the QuietTime.Start property for the campaign.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The current time in the endpoint's time zone is earlier than or equal to
-     * the time specified by the QuietTime.End property for the campaign.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * If any of the preceding conditions isn't met, the endpoint will receive
-     * messages from the campaign, even if quiet time is enabled.
-     * </p>
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param quietTime <p>
-     *            The default quiet time for the campaign. Quiet time is a
-     *            specific time range when a campaign doesn't send messages to
-     *            endpoints, if all the following conditions are met:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The EndpointDemographic.Timezone property of the endpoint is
-     *            set to a valid value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The current time in the endpoint's time zone is later than or
-     *            equal to the time specified by the QuietTime.Start property
-     *            for the campaign.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The current time in the endpoint's time zone is earlier than
-     *            or equal to the time specified by the QuietTime.End property
-     *            for the campaign.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If any of the preceding conditions isn't met, the endpoint
-     *            will receive messages from the campaign, even if quiet time is
-     *            enabled.
-     *            </p>
+     * @param quietTime The default quiet time for the campaign. The campaign
+     *            doesn't send messages to endpoints during the quiet time.
+     *            Note: Make sure that your endpoints include the
+     *            Demographics.Timezone attribute if you plan to enable a quiet
+     *            time for your campaign. If your endpoints don't include this
+     *            attribute, they'll receive the messages that you send them,
+     *            even if quiet time is enabled. When you set up a campaign to
+     *            use quiet time, the campaign doesn't send messages during the
+     *            time range you specified, as long as all of the following are
+     *            true: - The endpoint includes a valid Demographic.Timezone
+     *            attribute. - The current time in the endpoint's time zone is
+     *            later than or equal to the time specified in the
+     *            QuietTime.Start attribute for the campaign. - The current time
+     *            in the endpoint's time zone is earlier than or equal to the
+     *            time specified in the QuietTime.End attribute for the
+     *            campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -600,45 +402,32 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to begin.
-     * </p>
+     * The scheduled time that the campaign begins in ISO 8601 format.
      *
-     * @return <p>
-     *         The scheduled time, in ISO 8601 format, for the campaign to
-     *         begin.
-     *         </p>
+     * @return The scheduled time that the campaign begins in ISO 8601 format.
      */
     public String getStartTime() {
         return startTime;
     }
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to begin.
-     * </p>
+     * The scheduled time that the campaign begins in ISO 8601 format.
      *
-     * @param startTime <p>
-     *            The scheduled time, in ISO 8601 format, for the campaign to
-     *            begin.
-     *            </p>
+     * @param startTime The scheduled time that the campaign begins in ISO 8601
+     *            format.
      */
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
     /**
-     * <p>
-     * The scheduled time, in ISO 8601 format, for the campaign to begin.
-     * </p>
+     * The scheduled time that the campaign begins in ISO 8601 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param startTime <p>
-     *            The scheduled time, in ISO 8601 format, for the campaign to
-     *            begin.
-     *            </p>
+     * @param startTime The scheduled time that the campaign begins in ISO 8601
+     *            format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -648,75 +437,57 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * <p>
-     * The starting UTC offset for the campaign schedule, if the value of the
-     * IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02,
-     * UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30, UTC+05:45,
-     * UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30,
-     * UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     * UTC-08, UTC-09, UTC-10, and UTC-11.
-     * </p>
+     * The starting UTC offset for the schedule if the value for isLocalTime is
+     * true Valid values: UTC UTC+01 UTC+02 UTC+03 UTC+03:30 UTC+04 UTC+04:30
+     * UTC+05 UTC+05:30 UTC+05:45 UTC+06 UTC+06:30 UTC+07 UTC+08 UTC+09
+     * UTC+09:30 UTC+10 UTC+10:30 UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04
+     * UTC-05 UTC-06 UTC-07 UTC-08 UTC-09 UTC-10 UTC-11
      *
-     * @return <p>
-     *         The starting UTC offset for the campaign schedule, if the value
-     *         of the IsLocalTime property is true. Valid values are: UTC,
-     *         UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05,
-     *         UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09,
-     *         UTC+09:30, UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+13, UTC-02,
-     *         UTC-03, UTC-04, UTC-05, UTC-06, UTC-07, UTC-08, UTC-09, UTC-10,
-     *         and UTC-11.
-     *         </p>
+     * @return The starting UTC offset for the schedule if the value for
+     *         isLocalTime is true Valid values: UTC UTC+01 UTC+02 UTC+03
+     *         UTC+03:30 UTC+04 UTC+04:30 UTC+05 UTC+05:30 UTC+05:45 UTC+06
+     *         UTC+06:30 UTC+07 UTC+08 UTC+09 UTC+09:30 UTC+10 UTC+10:30 UTC+11
+     *         UTC+12 UTC+13 UTC-02 UTC-03 UTC-04 UTC-05 UTC-06 UTC-07 UTC-08
+     *         UTC-09 UTC-10 UTC-11
      */
     public String getTimezone() {
         return timezone;
     }
 
     /**
-     * <p>
-     * The starting UTC offset for the campaign schedule, if the value of the
-     * IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02,
-     * UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30, UTC+05:45,
-     * UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30,
-     * UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     * UTC-08, UTC-09, UTC-10, and UTC-11.
-     * </p>
+     * The starting UTC offset for the schedule if the value for isLocalTime is
+     * true Valid values: UTC UTC+01 UTC+02 UTC+03 UTC+03:30 UTC+04 UTC+04:30
+     * UTC+05 UTC+05:30 UTC+05:45 UTC+06 UTC+06:30 UTC+07 UTC+08 UTC+09
+     * UTC+09:30 UTC+10 UTC+10:30 UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04
+     * UTC-05 UTC-06 UTC-07 UTC-08 UTC-09 UTC-10 UTC-11
      *
-     * @param timezone <p>
-     *            The starting UTC offset for the campaign schedule, if the
-     *            value of the IsLocalTime property is true. Valid values are:
-     *            UTC, UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30,
-     *            UTC+05, UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07,
-     *            UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30, UTC+11, UTC+12,
-     *            UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     *            UTC-08, UTC-09, UTC-10, and UTC-11.
-     *            </p>
+     * @param timezone The starting UTC offset for the schedule if the value for
+     *            isLocalTime is true Valid values: UTC UTC+01 UTC+02 UTC+03
+     *            UTC+03:30 UTC+04 UTC+04:30 UTC+05 UTC+05:30 UTC+05:45 UTC+06
+     *            UTC+06:30 UTC+07 UTC+08 UTC+09 UTC+09:30 UTC+10 UTC+10:30
+     *            UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04 UTC-05 UTC-06 UTC-07
+     *            UTC-08 UTC-09 UTC-10 UTC-11
      */
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
 
     /**
-     * <p>
-     * The starting UTC offset for the campaign schedule, if the value of the
-     * IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02,
-     * UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30, UTC+05:45,
-     * UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30,
-     * UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     * UTC-08, UTC-09, UTC-10, and UTC-11.
-     * </p>
+     * The starting UTC offset for the schedule if the value for isLocalTime is
+     * true Valid values: UTC UTC+01 UTC+02 UTC+03 UTC+03:30 UTC+04 UTC+04:30
+     * UTC+05 UTC+05:30 UTC+05:45 UTC+06 UTC+06:30 UTC+07 UTC+08 UTC+09
+     * UTC+09:30 UTC+10 UTC+10:30 UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04
+     * UTC-05 UTC-06 UTC-07 UTC-08 UTC-09 UTC-10 UTC-11
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param timezone <p>
-     *            The starting UTC offset for the campaign schedule, if the
-     *            value of the IsLocalTime property is true. Valid values are:
-     *            UTC, UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30,
-     *            UTC+05, UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07,
-     *            UTC+08, UTC+09, UTC+09:30, UTC+10, UTC+10:30, UTC+11, UTC+12,
-     *            UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06, UTC-07,
-     *            UTC-08, UTC-09, UTC-10, and UTC-11.
-     *            </p>
+     * @param timezone The starting UTC offset for the schedule if the value for
+     *            isLocalTime is true Valid values: UTC UTC+01 UTC+02 UTC+03
+     *            UTC+03:30 UTC+04 UTC+04:30 UTC+05 UTC+05:30 UTC+05:45 UTC+06
+     *            UTC+06:30 UTC+07 UTC+08 UTC+09 UTC+09:30 UTC+10 UTC+10:30
+     *            UTC+11 UTC+12 UTC+13 UTC-02 UTC-03 UTC-04 UTC-05 UTC-06 UTC-07
+     *            UTC-08 UTC-09 UTC-10 UTC-11
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

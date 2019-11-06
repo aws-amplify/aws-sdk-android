@@ -18,112 +18,73 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies settings for publishing event data to an Amazon Kinesis data stream
- * or an Amazon Kinesis Data Firehose delivery stream.
- * </p>
+ * Model for an event publishing subscription export.
  */
 public class EventStream implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application to publish event data for.
-     * </p>
+     * The ID of the application from which events should be published.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
-     * Amazon Kinesis Data Firehose delivery stream to publish event data to.
-     * </p>
-     * <p>
-     * For a Kinesis data stream, the ARN format is:
-     * arn:aws:kinesis:<replaceable
-     * >region</replaceable>:<replaceable>account-id<
-     * /replaceable>:stream/<replaceable>stream_name</replaceable>
-     * </p>
-     * <p>
-     * For a Kinesis Data Firehose delivery stream, the ARN format is:
-     * arn:aws:firehose
-     * :<replaceable>region</replaceable>:<replaceable>account-id
-     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
-     * </p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
+     * delivery stream to which you want to publish events. Firehose ARN:
+     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
+     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      */
     private String destinationStreamArn;
 
     /**
-     * <p>
-     * (Deprecated) Your AWS account ID, which you assigned to an external ID
-     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
-     * assume an IAM role when publishing event data, but we removed this
-     * requirement. We don't recommend use of external IDs for IAM roles that
-     * are assumed by Amazon Pinpoint.
-     * </p>
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      */
     private String externalId;
 
     /**
-     * <p>
-     * The date, in ISO 8601 format, when the event stream was last modified.
-     * </p>
+     * The date the event stream was last updated in ISO 8601 format.
      */
     private String lastModifiedDate;
 
     /**
-     * <p>
      * The IAM user who last modified the event stream.
-     * </p>
      */
     private String lastUpdatedBy;
 
     /**
-     * <p>
-     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
-     * Pinpoint to publish event data to the stream in your AWS account.
-     * </p>
+     * The IAM role that authorizes Amazon Pinpoint to publish events to the
+     * stream in your account.
      */
     private String roleArn;
 
     /**
-     * <p>
-     * The unique identifier for the application to publish event data for.
-     * </p>
+     * The ID of the application from which events should be published.
      *
-     * @return <p>
-     *         The unique identifier for the application to publish event data
-     *         for.
-     *         </p>
+     * @return The ID of the application from which events should be published.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application to publish event data for.
-     * </p>
+     * The ID of the application from which events should be published.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application to publish event
-     *            data for.
-     *            </p>
+     * @param applicationId The ID of the application from which events should
+     *            be published.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application to publish event data for.
-     * </p>
+     * The ID of the application from which events should be published.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application to publish event
-     *            data for.
-     *            </p>
+     * @param applicationId The ID of the application from which events should
+     *            be published.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -133,128 +94,53 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
-     * Amazon Kinesis Data Firehose delivery stream to publish event data to.
-     * </p>
-     * <p>
-     * For a Kinesis data stream, the ARN format is:
-     * arn:aws:kinesis:<replaceable
-     * >region</replaceable>:<replaceable>account-id<
-     * /replaceable>:stream/<replaceable>stream_name</replaceable>
-     * </p>
-     * <p>
-     * For a Kinesis Data Firehose delivery stream, the ARN format is:
-     * arn:aws:firehose
-     * :<replaceable>region</replaceable>:<replaceable>account-id
-     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
-     * </p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
+     * delivery stream to which you want to publish events. Firehose ARN:
+     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
+     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) of the Amazon Kinesis data stream
-     *         or Amazon Kinesis Data Firehose delivery stream to publish event
-     *         data to.
-     *         </p>
-     *         <p>
-     *         For a Kinesis data stream, the ARN format is:
-     *         arn:aws:kinesis:<replaceable
-     *         >region</replaceable>:<replaceable>account
-     *         -id</replaceable>:stream/<replaceable>stream_name</replaceable>
-     *         </p>
-     *         <p>
-     *         For a Kinesis Data Firehose delivery stream, the ARN format is:
-     *         arn:aws:firehose:<replaceable>region</replaceable>:<replaceable>
-     *         account
-     *         -id</replaceable>:deliverystream/<replaceable>stream_name</
-     *         replaceable>
-     *         </p>
+     * @return The Amazon Resource Name (ARN) of the Amazon Kinesis stream or
+     *         Firehose delivery stream to which you want to publish events.
+     *         Firehose ARN:
+     *         arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
+     *         Kinesis ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      */
     public String getDestinationStreamArn() {
         return destinationStreamArn;
     }
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
-     * Amazon Kinesis Data Firehose delivery stream to publish event data to.
-     * </p>
-     * <p>
-     * For a Kinesis data stream, the ARN format is:
-     * arn:aws:kinesis:<replaceable
-     * >region</replaceable>:<replaceable>account-id<
-     * /replaceable>:stream/<replaceable>stream_name</replaceable>
-     * </p>
-     * <p>
-     * For a Kinesis Data Firehose delivery stream, the ARN format is:
-     * arn:aws:firehose
-     * :<replaceable>region</replaceable>:<replaceable>account-id
-     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
-     * </p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
+     * delivery stream to which you want to publish events. Firehose ARN:
+     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
+     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      *
-     * @param destinationStreamArn <p>
-     *            The Amazon Resource Name (ARN) of the Amazon Kinesis data
-     *            stream or Amazon Kinesis Data Firehose delivery stream to
-     *            publish event data to.
-     *            </p>
-     *            <p>
-     *            For a Kinesis data stream, the ARN format is:
-     *            arn:aws:kinesis:<
-     *            replaceable>region</replaceable>:<replaceable>
-     *            account-id</replaceable
-     *            >:stream/<replaceable>stream_name</replaceable>
-     *            </p>
-     *            <p>
-     *            For a Kinesis Data Firehose delivery stream, the ARN format
-     *            is: arn:aws:firehose:<replaceable>region</replaceable>:<
-     *            replaceable
-     *            >account-id</replaceable>:deliverystream/<replaceable
-     *            >stream_name</replaceable>
-     *            </p>
+     * @param destinationStreamArn The Amazon Resource Name (ARN) of the Amazon
+     *            Kinesis stream or Firehose delivery stream to which you want
+     *            to publish events. Firehose ARN:
+     *            arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
+     *            Kinesis ARN:
+     *            arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      */
     public void setDestinationStreamArn(String destinationStreamArn) {
         this.destinationStreamArn = destinationStreamArn;
     }
 
     /**
-     * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or
-     * Amazon Kinesis Data Firehose delivery stream to publish event data to.
-     * </p>
-     * <p>
-     * For a Kinesis data stream, the ARN format is:
-     * arn:aws:kinesis:<replaceable
-     * >region</replaceable>:<replaceable>account-id<
-     * /replaceable>:stream/<replaceable>stream_name</replaceable>
-     * </p>
-     * <p>
-     * For a Kinesis Data Firehose delivery stream, the ARN format is:
-     * arn:aws:firehose
-     * :<replaceable>region</replaceable>:<replaceable>account-id
-     * </replaceable>:deliverystream/<replaceable>stream_name</replaceable>
-     * </p>
+     * The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose
+     * delivery stream to which you want to publish events. Firehose ARN:
+     * arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME Kinesis
+     * ARN: arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param destinationStreamArn <p>
-     *            The Amazon Resource Name (ARN) of the Amazon Kinesis data
-     *            stream or Amazon Kinesis Data Firehose delivery stream to
-     *            publish event data to.
-     *            </p>
-     *            <p>
-     *            For a Kinesis data stream, the ARN format is:
-     *            arn:aws:kinesis:<
-     *            replaceable>region</replaceable>:<replaceable>
-     *            account-id</replaceable
-     *            >:stream/<replaceable>stream_name</replaceable>
-     *            </p>
-     *            <p>
-     *            For a Kinesis Data Firehose delivery stream, the ARN format
-     *            is: arn:aws:firehose:<replaceable>region</replaceable>:<
-     *            replaceable
-     *            >account-id</replaceable>:deliverystream/<replaceable
-     *            >stream_name</replaceable>
-     *            </p>
+     * @param destinationStreamArn The Amazon Resource Name (ARN) of the Amazon
+     *            Kinesis stream or Firehose delivery stream to which you want
+     *            to publish events. Firehose ARN:
+     *            arn:aws:firehose:REGION:ACCOUNT_ID:deliverystream/STREAM_NAME
+     *            Kinesis ARN:
+     *            arn:aws:kinesis:REGION:ACCOUNT_ID:stream/STREAM_NAME
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -264,69 +150,50 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * <p>
-     * (Deprecated) Your AWS account ID, which you assigned to an external ID
-     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
-     * assume an IAM role when publishing event data, but we removed this
-     * requirement. We don't recommend use of external IDs for IAM roles that
-     * are assumed by Amazon Pinpoint.
-     * </p>
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @return <p>
-     *         (Deprecated) Your AWS account ID, which you assigned to an
-     *         external ID key in an IAM trust policy. Amazon Pinpoint
-     *         previously used this value to assume an IAM role when publishing
-     *         event data, but we removed this requirement. We don't recommend
-     *         use of external IDs for IAM roles that are assumed by Amazon
-     *         Pinpoint.
-     *         </p>
+     * @return (Deprecated) Your AWS account ID, which you assigned to the
+     *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
+     *         assume an IAM role. This requirement is removed, and external IDs
+     *         are not recommended for IAM roles assumed by Amazon Pinpoint.
      */
     public String getExternalId() {
         return externalId;
     }
 
     /**
-     * <p>
-     * (Deprecated) Your AWS account ID, which you assigned to an external ID
-     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
-     * assume an IAM role when publishing event data, but we removed this
-     * requirement. We don't recommend use of external IDs for IAM roles that
-     * are assumed by Amazon Pinpoint.
-     * </p>
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @param externalId <p>
-     *            (Deprecated) Your AWS account ID, which you assigned to an
-     *            external ID key in an IAM trust policy. Amazon Pinpoint
-     *            previously used this value to assume an IAM role when
-     *            publishing event data, but we removed this requirement. We
-     *            don't recommend use of external IDs for IAM roles that are
-     *            assumed by Amazon Pinpoint.
-     *            </p>
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      */
     public void setExternalId(String externalId) {
         this.externalId = externalId;
     }
 
     /**
-     * <p>
-     * (Deprecated) Your AWS account ID, which you assigned to an external ID
-     * key in an IAM trust policy. Amazon Pinpoint previously used this value to
-     * assume an IAM role when publishing event data, but we removed this
-     * requirement. We don't recommend use of external IDs for IAM roles that
-     * are assumed by Amazon Pinpoint.
-     * </p>
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId <p>
-     *            (Deprecated) Your AWS account ID, which you assigned to an
-     *            external ID key in an IAM trust policy. Amazon Pinpoint
-     *            previously used this value to assume an IAM role when
-     *            publishing event data, but we removed this requirement. We
-     *            don't recommend use of external IDs for IAM roles that are
-     *            assumed by Amazon Pinpoint.
-     *            </p>
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -336,45 +203,32 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * <p>
-     * The date, in ISO 8601 format, when the event stream was last modified.
-     * </p>
+     * The date the event stream was last updated in ISO 8601 format.
      *
-     * @return <p>
-     *         The date, in ISO 8601 format, when the event stream was last
-     *         modified.
-     *         </p>
+     * @return The date the event stream was last updated in ISO 8601 format.
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * <p>
-     * The date, in ISO 8601 format, when the event stream was last modified.
-     * </p>
+     * The date the event stream was last updated in ISO 8601 format.
      *
-     * @param lastModifiedDate <p>
-     *            The date, in ISO 8601 format, when the event stream was last
-     *            modified.
-     *            </p>
+     * @param lastModifiedDate The date the event stream was last updated in ISO
+     *            8601 format.
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * <p>
-     * The date, in ISO 8601 format, when the event stream was last modified.
-     * </p>
+     * The date the event stream was last updated in ISO 8601 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate <p>
-     *            The date, in ISO 8601 format, when the event stream was last
-     *            modified.
-     *            </p>
+     * @param lastModifiedDate The date the event stream was last updated in ISO
+     *            8601 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -384,42 +238,30 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * <p>
      * The IAM user who last modified the event stream.
-     * </p>
      *
-     * @return <p>
-     *         The IAM user who last modified the event stream.
-     *         </p>
+     * @return The IAM user who last modified the event stream.
      */
     public String getLastUpdatedBy() {
         return lastUpdatedBy;
     }
 
     /**
-     * <p>
      * The IAM user who last modified the event stream.
-     * </p>
      *
-     * @param lastUpdatedBy <p>
-     *            The IAM user who last modified the event stream.
-     *            </p>
+     * @param lastUpdatedBy The IAM user who last modified the event stream.
      */
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
     /**
-     * <p>
      * The IAM user who last modified the event stream.
-     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastUpdatedBy <p>
-     *            The IAM user who last modified the event stream.
-     *            </p>
+     * @param lastUpdatedBy The IAM user who last modified the event stream.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -429,51 +271,36 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * <p>
-     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
-     * Pinpoint to publish event data to the stream in your AWS account.
-     * </p>
+     * The IAM role that authorizes Amazon Pinpoint to publish events to the
+     * stream in your account.
      *
-     * @return <p>
-     *         The AWS Identity and Access Management (IAM) role that authorizes
-     *         Amazon Pinpoint to publish event data to the stream in your AWS
-     *         account.
-     *         </p>
+     * @return The IAM role that authorizes Amazon Pinpoint to publish events to
+     *         the stream in your account.
      */
     public String getRoleArn() {
         return roleArn;
     }
 
     /**
-     * <p>
-     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
-     * Pinpoint to publish event data to the stream in your AWS account.
-     * </p>
+     * The IAM role that authorizes Amazon Pinpoint to publish events to the
+     * stream in your account.
      *
-     * @param roleArn <p>
-     *            The AWS Identity and Access Management (IAM) role that
-     *            authorizes Amazon Pinpoint to publish event data to the stream
-     *            in your AWS account.
-     *            </p>
+     * @param roleArn The IAM role that authorizes Amazon Pinpoint to publish
+     *            events to the stream in your account.
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
     }
 
     /**
-     * <p>
-     * The AWS Identity and Access Management (IAM) role that authorizes Amazon
-     * Pinpoint to publish event data to the stream in your AWS account.
-     * </p>
+     * The IAM role that authorizes Amazon Pinpoint to publish events to the
+     * stream in your account.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param roleArn <p>
-     *            The AWS Identity and Access Management (IAM) role that
-     *            authorizes Amazon Pinpoint to publish event data to the stream
-     *            in your AWS account.
-     *            </p>
+     * @param roleArn The IAM role that authorizes Amazon Pinpoint to publish
+     *            events to the stream in your account.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

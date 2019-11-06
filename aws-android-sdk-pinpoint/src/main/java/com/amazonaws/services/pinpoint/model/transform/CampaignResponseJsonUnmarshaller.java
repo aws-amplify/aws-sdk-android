@@ -44,9 +44,6 @@ class CampaignResponseJsonUnmarshaller implements
             } else if (name.equals("ApplicationId")) {
                 campaignResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Arn")) {
-                campaignResponse.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
                 campaignResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -92,15 +89,6 @@ class CampaignResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("State")) {
                 campaignResponse.setState(CampaignStateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("tags")) {
-                campaignResponse.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("TemplateConfiguration")) {
-                campaignResponse.setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
-                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 campaignResponse.setTreatmentDescription(StringJsonUnmarshaller.getInstance()

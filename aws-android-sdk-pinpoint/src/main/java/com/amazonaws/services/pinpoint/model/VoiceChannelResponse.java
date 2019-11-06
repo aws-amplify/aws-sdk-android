@@ -18,130 +18,84 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about the status and settings of the voice channel for
- * an application.
- * </p>
+ * Voice Channel Response.
  */
 public class VoiceChannelResponse implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application that the voice channel applies
-     * to.
-     * </p>
+     * Application id
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was
-     * enabled.
-     * </p>
+     * The date that the settings were last updated in ISO 8601 format.
      */
     private String creationDate;
 
     /**
-     * <p>
-     * Specifies whether the voice channel is enabled for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      */
     private Boolean enabled;
 
     /**
-     * <p>
-     * (Not used) This property is retained only for backward compatibility.
-     * </p>
+     * The new value for the hasCredential property for this object.
      */
     private Boolean hasCredential;
 
     /**
-     * <p>
-     * (Deprecated) An identifier for the voice channel. This property is
-     * retained only for backward compatibility.
-     * </p>
+     * Channel ID. Not used, only for backwards compatibility.
      */
     private String id;
 
     /**
-     * <p>
-     * Specifies whether the voice channel is archived.
-     * </p>
+     * Is this channel archived
      */
     private Boolean isArchived;
 
     /**
-     * <p>
-     * The user who last modified the voice channel.
-     * </p>
+     * Who made the last change
      */
     private String lastModifiedBy;
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was last
-     * modified.
-     * </p>
+     * Last date this was updated
      */
     private String lastModifiedDate;
 
     /**
-     * <p>
-     * The type of messaging or notification platform for the channel. For the
-     * voice channel, this value is VOICE.
-     * </p>
+     * Platform type. Will be "Voice"
      */
     private String platform;
 
     /**
-     * <p>
-     * The current version of the voice channel.
-     * </p>
+     * Version of channel
      */
     private Integer version;
 
     /**
-     * <p>
-     * The unique identifier for the application that the voice channel applies
-     * to.
-     * </p>
+     * Application id
      *
-     * @return <p>
-     *         The unique identifier for the application that the voice channel
-     *         applies to.
-     *         </p>
+     * @return Application id
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that the voice channel applies
-     * to.
-     * </p>
+     * Application id
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that the voice
-     *            channel applies to.
-     *            </p>
+     * @param applicationId Application id
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application that the voice channel applies
-     * to.
-     * </p>
+     * Application id
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application that the voice
-     *            channel applies to.
-     *            </p>
+     * @param applicationId Application id
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -151,48 +105,32 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was
-     * enabled.
-     * </p>
+     * The date that the settings were last updated in ISO 8601 format.
      *
-     * @return <p>
-     *         The date and time, in ISO 8601 format, when the voice channel was
-     *         enabled.
-     *         </p>
+     * @return The date that the settings were last updated in ISO 8601 format.
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was
-     * enabled.
-     * </p>
+     * The date that the settings were last updated in ISO 8601 format.
      *
-     * @param creationDate <p>
-     *            The date and time, in ISO 8601 format, when the voice channel
-     *            was enabled.
-     *            </p>
+     * @param creationDate The date that the settings were last updated in ISO
+     *            8601 format.
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was
-     * enabled.
-     * </p>
+     * The date that the settings were last updated in ISO 8601 format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate <p>
-     *            The date and time, in ISO 8601 format, when the voice channel
-     *            was enabled.
-     *            </p>
+     * @param creationDate The date that the settings were last updated in ISO
+     *            8601 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -202,59 +140,39 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is enabled for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @return <p>
-     *         Specifies whether the voice channel is enabled for the
-     *         application.
-     *         </p>
+     * @return If the channel is enabled for sending messages.
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is enabled for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @return <p>
-     *         Specifies whether the voice channel is enabled for the
-     *         application.
-     *         </p>
+     * @return If the channel is enabled for sending messages.
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is enabled for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      *
-     * @param enabled <p>
-     *            Specifies whether the voice channel is enabled for the
-     *            application.
-     *            </p>
+     * @param enabled If the channel is enabled for sending messages.
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is enabled for the application.
-     * </p>
+     * If the channel is enabled for sending messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled <p>
-     *            Specifies whether the voice channel is enabled for the
-     *            application.
-     *            </p>
+     * @param enabled If the channel is enabled for sending messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -264,59 +182,41 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * (Not used) This property is retained only for backward compatibility.
-     * </p>
+     * Returns the value of the hasCredential property for this object.
      *
-     * @return <p>
-     *         (Not used) This property is retained only for backward
-     *         compatibility.
-     *         </p>
+     * @return The value of the hasCredential property for this object.
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * <p>
-     * (Not used) This property is retained only for backward compatibility.
-     * </p>
+     * Returns the value of the hasCredential property for this object.
      *
-     * @return <p>
-     *         (Not used) This property is retained only for backward
-     *         compatibility.
-     *         </p>
+     * @return The value of the hasCredential property for this object.
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * <p>
-     * (Not used) This property is retained only for backward compatibility.
-     * </p>
+     * Sets the value of hasCredential
      *
-     * @param hasCredential <p>
-     *            (Not used) This property is retained only for backward
-     *            compatibility.
-     *            </p>
+     * @param hasCredential The new value for the hasCredential property for
+     *            this object.
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * <p>
-     * (Not used) This property is retained only for backward compatibility.
-     * </p>
+     * Sets the value of the hasCredential property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential <p>
-     *            (Not used) This property is retained only for backward
-     *            compatibility.
-     *            </p>
+     * @param hasCredential The new value for the hasCredential property for
+     *            this object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -326,48 +226,30 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * (Deprecated) An identifier for the voice channel. This property is
-     * retained only for backward compatibility.
-     * </p>
+     * Channel ID. Not used, only for backwards compatibility.
      *
-     * @return <p>
-     *         (Deprecated) An identifier for the voice channel. This property
-     *         is retained only for backward compatibility.
-     *         </p>
+     * @return Channel ID. Not used, only for backwards compatibility.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * <p>
-     * (Deprecated) An identifier for the voice channel. This property is
-     * retained only for backward compatibility.
-     * </p>
+     * Channel ID. Not used, only for backwards compatibility.
      *
-     * @param id <p>
-     *            (Deprecated) An identifier for the voice channel. This
-     *            property is retained only for backward compatibility.
-     *            </p>
+     * @param id Channel ID. Not used, only for backwards compatibility.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * <p>
-     * (Deprecated) An identifier for the voice channel. This property is
-     * retained only for backward compatibility.
-     * </p>
+     * Channel ID. Not used, only for backwards compatibility.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id <p>
-     *            (Deprecated) An identifier for the voice channel. This
-     *            property is retained only for backward compatibility.
-     *            </p>
+     * @param id Channel ID. Not used, only for backwards compatibility.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -377,55 +259,39 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is archived.
-     * </p>
+     * Is this channel archived
      *
-     * @return <p>
-     *         Specifies whether the voice channel is archived.
-     *         </p>
+     * @return Is this channel archived
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is archived.
-     * </p>
+     * Is this channel archived
      *
-     * @return <p>
-     *         Specifies whether the voice channel is archived.
-     *         </p>
+     * @return Is this channel archived
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is archived.
-     * </p>
+     * Is this channel archived
      *
-     * @param isArchived <p>
-     *            Specifies whether the voice channel is archived.
-     *            </p>
+     * @param isArchived Is this channel archived
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * <p>
-     * Specifies whether the voice channel is archived.
-     * </p>
+     * Is this channel archived
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived <p>
-     *            Specifies whether the voice channel is archived.
-     *            </p>
+     * @param isArchived Is this channel archived
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -435,42 +301,30 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The user who last modified the voice channel.
-     * </p>
+     * Who made the last change
      *
-     * @return <p>
-     *         The user who last modified the voice channel.
-     *         </p>
+     * @return Who made the last change
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * <p>
-     * The user who last modified the voice channel.
-     * </p>
+     * Who made the last change
      *
-     * @param lastModifiedBy <p>
-     *            The user who last modified the voice channel.
-     *            </p>
+     * @param lastModifiedBy Who made the last change
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * <p>
-     * The user who last modified the voice channel.
-     * </p>
+     * Who made the last change
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy <p>
-     *            The user who last modified the voice channel.
-     *            </p>
+     * @param lastModifiedBy Who made the last change
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -480,48 +334,30 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was last
-     * modified.
-     * </p>
+     * Last date this was updated
      *
-     * @return <p>
-     *         The date and time, in ISO 8601 format, when the voice channel was
-     *         last modified.
-     *         </p>
+     * @return Last date this was updated
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was last
-     * modified.
-     * </p>
+     * Last date this was updated
      *
-     * @param lastModifiedDate <p>
-     *            The date and time, in ISO 8601 format, when the voice channel
-     *            was last modified.
-     *            </p>
+     * @param lastModifiedDate Last date this was updated
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * <p>
-     * The date and time, in ISO 8601 format, when the voice channel was last
-     * modified.
-     * </p>
+     * Last date this was updated
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate <p>
-     *            The date and time, in ISO 8601 format, when the voice channel
-     *            was last modified.
-     *            </p>
+     * @param lastModifiedDate Last date this was updated
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -531,48 +367,30 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The type of messaging or notification platform for the channel. For the
-     * voice channel, this value is VOICE.
-     * </p>
+     * Platform type. Will be "Voice"
      *
-     * @return <p>
-     *         The type of messaging or notification platform for the channel.
-     *         For the voice channel, this value is VOICE.
-     *         </p>
+     * @return Platform type. Will be "Voice"
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * <p>
-     * The type of messaging or notification platform for the channel. For the
-     * voice channel, this value is VOICE.
-     * </p>
+     * Platform type. Will be "Voice"
      *
-     * @param platform <p>
-     *            The type of messaging or notification platform for the
-     *            channel. For the voice channel, this value is VOICE.
-     *            </p>
+     * @param platform Platform type. Will be "Voice"
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * <p>
-     * The type of messaging or notification platform for the channel. For the
-     * voice channel, this value is VOICE.
-     * </p>
+     * Platform type. Will be "Voice"
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform <p>
-     *            The type of messaging or notification platform for the
-     *            channel. For the voice channel, this value is VOICE.
-     *            </p>
+     * @param platform Platform type. Will be "Voice"
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -582,42 +400,30 @@ public class VoiceChannelResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The current version of the voice channel.
-     * </p>
+     * Version of channel
      *
-     * @return <p>
-     *         The current version of the voice channel.
-     *         </p>
+     * @return Version of channel
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * <p>
-     * The current version of the voice channel.
-     * </p>
+     * Version of channel
      *
-     * @param version <p>
-     *            The current version of the voice channel.
-     *            </p>
+     * @param version Version of channel
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * <p>
-     * The current version of the voice channel.
-     * </p>
+     * Version of channel
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version <p>
-     *            The current version of the voice channel.
-     *            </p>
+     * @param version Version of channel
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

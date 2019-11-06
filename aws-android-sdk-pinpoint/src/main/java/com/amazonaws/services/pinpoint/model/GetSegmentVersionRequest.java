@@ -20,80 +20,49 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Retrieves information about the configuration, dimension, and other settings
- * for a specific version of a segment that's associated with an application.
- * </p>
+ * Returns information about a segment version.
  */
 public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * The unique ID of the segment.
      */
     private String segmentId;
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The segment version.
      */
     private String version;
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return <p>
-     *         The unique identifier for the application. This identifier is
-     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *         console.
-     *         </p>
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the application. This identifier is displayed
-     * as the <b>Project ID</b> on the Amazon Pinpoint console.
-     * </p>
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId <p>
-     *            The unique identifier for the application. This identifier is
-     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
-     *            console.
-     *            </p>
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,42 +72,30 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * The unique ID of the segment.
      *
-     * @return <p>
-     *         The unique identifier for the segment.
-     *         </p>
+     * @return The unique ID of the segment.
      */
     public String getSegmentId() {
         return segmentId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * The unique ID of the segment.
      *
-     * @param segmentId <p>
-     *            The unique identifier for the segment.
-     *            </p>
+     * @param segmentId The unique ID of the segment.
      */
     public void setSegmentId(String segmentId) {
         this.segmentId = segmentId;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * The unique ID of the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentId <p>
-     *            The unique identifier for the segment.
-     *            </p>
+     * @param segmentId The unique ID of the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -148,45 +105,30 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The segment version.
      *
-     * @return <p>
-     *         The unique version number (Version property) for the campaign
-     *         version.
-     *         </p>
+     * @return The segment version.
      */
     public String getVersion() {
         return version;
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The segment version.
      *
-     * @param version <p>
-     *            The unique version number (Version property) for the campaign
-     *            version.
-     *            </p>
+     * @param version The segment version.
      */
     public void setVersion(String version) {
         this.version = version;
     }
 
     /**
-     * <p>
-     * The unique version number (Version property) for the campaign version.
-     * </p>
+     * The segment version.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version <p>
-     *            The unique version number (Version property) for the campaign
-     *            version.
-     *            </p>
+     * @param version The segment version.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

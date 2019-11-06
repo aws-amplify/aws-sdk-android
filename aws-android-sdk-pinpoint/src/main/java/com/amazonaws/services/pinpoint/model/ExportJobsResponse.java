@@ -18,60 +18,33 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides information about all the export jobs that are associated with an
- * application or segment. An export job is a job that exports endpoint
- * definitions to a file.
- * </p>
+ * Export job list.
  */
 public class ExportJobsResponse implements Serializable {
     /**
-     * <p>
-     * An array of responses, one for each export job that's associated with the
-     * application (Export Jobs resource) or segment (Segment Export Jobs
-     * resource).
-     * </p>
+     * A list of export jobs for the application.
      */
     private java.util.List<ExportJobResponse> item;
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      */
     private String nextToken;
 
     /**
-     * <p>
-     * An array of responses, one for each export job that's associated with the
-     * application (Export Jobs resource) or segment (Segment Export Jobs
-     * resource).
-     * </p>
+     * A list of export jobs for the application.
      *
-     * @return <p>
-     *         An array of responses, one for each export job that's associated
-     *         with the application (Export Jobs resource) or segment (Segment
-     *         Export Jobs resource).
-     *         </p>
+     * @return A list of export jobs for the application.
      */
     public java.util.List<ExportJobResponse> getItem() {
         return item;
     }
 
     /**
-     * <p>
-     * An array of responses, one for each export job that's associated with the
-     * application (Export Jobs resource) or segment (Segment Export Jobs
-     * resource).
-     * </p>
+     * A list of export jobs for the application.
      *
-     * @param item <p>
-     *            An array of responses, one for each export job that's
-     *            associated with the application (Export Jobs resource) or
-     *            segment (Segment Export Jobs resource).
-     *            </p>
+     * @param item A list of export jobs for the application.
      */
     public void setItem(java.util.Collection<ExportJobResponse> item) {
         if (item == null) {
@@ -83,20 +56,12 @@ public class ExportJobsResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of responses, one for each export job that's associated with the
-     * application (Export Jobs resource) or segment (Segment Export Jobs
-     * resource).
-     * </p>
+     * A list of export jobs for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item <p>
-     *            An array of responses, one for each export job that's
-     *            associated with the application (Export Jobs resource) or
-     *            segment (Segment Export Jobs resource).
-     *            </p>
+     * @param item A list of export jobs for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,20 +76,12 @@ public class ExportJobsResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * An array of responses, one for each export job that's associated with the
-     * application (Export Jobs resource) or segment (Segment Export Jobs
-     * resource).
-     * </p>
+     * A list of export jobs for the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param item <p>
-     *            An array of responses, one for each export job that's
-     *            associated with the application (Export Jobs resource) or
-     *            segment (Segment Export Jobs resource).
-     *            </p>
+     * @param item A list of export jobs for the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -134,54 +91,36 @@ public class ExportJobsResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      *
-     * @return <p>
-     *         The string to use in a subsequent request to get the next page of
-     *         results in a paginated response. This value is null if there are
-     *         no additional pages.
-     *         </p>
+     * @return The string that you use in a subsequent request to get the next
+     *         page of results in a paginated response.
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      *
-     * @param nextToken <p>
-     *            The string to use in a subsequent request to get the next page
-     *            of results in a paginated response. This value is null if
-     *            there are no additional pages.
-     *            </p>
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * <p>
-     * The string to use in a subsequent request to get the next page of results
-     * in a paginated response. This value is null if there are no additional
-     * pages.
-     * </p>
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param nextToken <p>
-     *            The string to use in a subsequent request to get the next page
-     *            of results in a paginated response. This value is null if
-     *            there are no additional pages.
-     *            </p>
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

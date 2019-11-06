@@ -46,13 +46,6 @@ class SendUsersMessageRequestJsonMarshaller {
             DirectMessageConfigurationJsonMarshaller.getInstance().marshall(messageConfiguration,
                     jsonWriter);
         }
-        if (sendUsersMessageRequest.getTemplateConfiguration() != null) {
-            TemplateConfiguration templateConfiguration = sendUsersMessageRequest
-                    .getTemplateConfiguration();
-            jsonWriter.name("TemplateConfiguration");
-            TemplateConfigurationJsonMarshaller.getInstance().marshall(templateConfiguration,
-                    jsonWriter);
-        }
         if (sendUsersMessageRequest.getTraceId() != null) {
             String traceId = sendUsersMessageRequest.getTraceId();
             jsonWriter.name("TraceId");

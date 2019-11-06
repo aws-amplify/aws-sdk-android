@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -634,5 +634,29 @@ public class PollyPresigningIntegrationTest extends AWSTestBase {
         }
         synthesizeSpeechPresignRequest.withLexiconNames(lexiconList);
         client.getPresignedSynthesizeSpeechUrl(synthesizeSpeechPresignRequest);
+    }
+
+    @Test
+    public void testGetPresignedSynthesizeSpeechUrlWithStandardEngine() throws IOException {
+        SynthesizeSpeechPresignRequest synthesizeSpeechPresignRequest =
+                new SynthesizeSpeechPresignRequest()
+                        .withVoiceId(VoiceId.Aditi)
+                        .withText("नमस्ते आप कैसे हैं")
+                        .withOutputFormat(OutputFormat.Mp3)
+                        .withEngine(Engine.Standard);
+        final URL presignedURL = client.getPresignedSynthesizeSpeechUrl(synthesizeSpeechPresignRequest);
+        checkUrl(presignedURL);
+    }
+
+    @Test
+    public void testGetPresignedSynthesizeSpeechUrlWithNeuralEngine() throws IOException {
+        SynthesizeSpeechPresignRequest synthesizeSpeechPresignRequest =
+                new SynthesizeSpeechPresignRequest()
+                        .withVoiceId(VoiceId.Matthew)
+                        .withText("It's too cold in Seattle!")
+                        .withOutputFormat(OutputFormat.Mp3)
+                        .withEngine(Engine.Neural);
+        final URL presignedURL = client.getPresignedSynthesizeSpeechUrl(synthesizeSpeechPresignRequest);
+        checkUrl(presignedURL);
     }
 }

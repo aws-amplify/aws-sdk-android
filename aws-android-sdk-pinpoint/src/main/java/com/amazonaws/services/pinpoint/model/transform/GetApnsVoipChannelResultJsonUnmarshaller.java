@@ -29,21 +29,6 @@ public class GetApnsVoipChannelResultJsonUnmarshaller implements
     public GetApnsVoipChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetApnsVoipChannelResult getApnsVoipChannelResult = new GetApnsVoipChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSVoipChannelResponse")) {
-                getApnsVoipChannelResult
-                        .setAPNSVoipChannelResponse(APNSVoipChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getApnsVoipChannelResult;
     }
 

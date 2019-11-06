@@ -20,62 +20,39 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates an application.
- * </p>
+ * Creates or updates an app.
  */
 public class CreateAppRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * <p>
-     * Specifies the display name of an application and the tags to associate
-     * with the application.
-     * </p>
+     * Application Request.
      */
     private CreateApplicationRequest createApplicationRequest;
 
     /**
-     * <p>
-     * Specifies the display name of an application and the tags to associate
-     * with the application.
-     * </p>
+     * Application Request.
      *
-     * @return <p>
-     *         Specifies the display name of an application and the tags to
-     *         associate with the application.
-     *         </p>
+     * @return Application Request.
      */
     public CreateApplicationRequest getCreateApplicationRequest() {
         return createApplicationRequest;
     }
 
     /**
-     * <p>
-     * Specifies the display name of an application and the tags to associate
-     * with the application.
-     * </p>
+     * Application Request.
      *
-     * @param createApplicationRequest <p>
-     *            Specifies the display name of an application and the tags to
-     *            associate with the application.
-     *            </p>
+     * @param createApplicationRequest Application Request.
      */
     public void setCreateApplicationRequest(CreateApplicationRequest createApplicationRequest) {
         this.createApplicationRequest = createApplicationRequest;
     }
 
     /**
-     * <p>
-     * Specifies the display name of an application and the tags to associate
-     * with the application.
-     * </p>
+     * Application Request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param createApplicationRequest <p>
-     *            Specifies the display name of an application and the tags to
-     *            associate with the application.
-     *            </p>
+     * @param createApplicationRequest Application Request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -18,71 +18,53 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Provides the status code and message that result from processing data for an
- * endpoint.
- * </p>
+ * A complex object that holds the status code and message as a result of
+ * processing an endpoint.
  */
 public class EndpointItemResponse implements Serializable {
     /**
-     * <p>
-     * The custom message that's returned in the response as a result of
-     * processing the endpoint data.
-     * </p>
+     * A custom message associated with the registration of an endpoint when
+     * issuing a response.
      */
     private String message;
 
     /**
-     * <p>
-     * The status code that's returned in the response as a result of processing
-     * the endpoint data.
-     * </p>
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      */
     private Integer statusCode;
 
     /**
-     * <p>
-     * The custom message that's returned in the response as a result of
-     * processing the endpoint data.
-     * </p>
+     * A custom message associated with the registration of an endpoint when
+     * issuing a response.
      *
-     * @return <p>
-     *         The custom message that's returned in the response as a result of
-     *         processing the endpoint data.
-     *         </p>
+     * @return A custom message associated with the registration of an endpoint
+     *         when issuing a response.
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * <p>
-     * The custom message that's returned in the response as a result of
-     * processing the endpoint data.
-     * </p>
+     * A custom message associated with the registration of an endpoint when
+     * issuing a response.
      *
-     * @param message <p>
-     *            The custom message that's returned in the response as a result
-     *            of processing the endpoint data.
-     *            </p>
+     * @param message A custom message associated with the registration of an
+     *            endpoint when issuing a response.
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * <p>
-     * The custom message that's returned in the response as a result of
-     * processing the endpoint data.
-     * </p>
+     * A custom message associated with the registration of an endpoint when
+     * issuing a response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param message <p>
-     *            The custom message that's returned in the response as a result
-     *            of processing the endpoint data.
-     *            </p>
+     * @param message A custom message associated with the registration of an
+     *            endpoint when issuing a response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -92,48 +74,36 @@ public class EndpointItemResponse implements Serializable {
     }
 
     /**
-     * <p>
-     * The status code that's returned in the response as a result of processing
-     * the endpoint data.
-     * </p>
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      *
-     * @return <p>
-     *         The status code that's returned in the response as a result of
-     *         processing the endpoint data.
-     *         </p>
+     * @return The status code associated with the merging of an endpoint when
+     *         issuing a response.
      */
     public Integer getStatusCode() {
         return statusCode;
     }
 
     /**
-     * <p>
-     * The status code that's returned in the response as a result of processing
-     * the endpoint data.
-     * </p>
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      *
-     * @param statusCode <p>
-     *            The status code that's returned in the response as a result of
-     *            processing the endpoint data.
-     *            </p>
+     * @param statusCode The status code associated with the merging of an
+     *            endpoint when issuing a response.
      */
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 
     /**
-     * <p>
-     * The status code that's returned in the response as a result of processing
-     * the endpoint data.
-     * </p>
+     * The status code associated with the merging of an endpoint when issuing a
+     * response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param statusCode <p>
-     *            The status code that's returned in the response as a result of
-     *            processing the endpoint data.
-     *            </p>
+     * @param statusCode The status code associated with the merging of an
+     *            endpoint when issuing a response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

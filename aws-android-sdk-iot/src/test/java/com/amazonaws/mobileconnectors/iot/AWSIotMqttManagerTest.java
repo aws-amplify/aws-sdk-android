@@ -272,6 +272,30 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testConnectWithProxy() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connectWithProxy(testKeystore, "localhost", 8080, csb);
+        mockClient.mockConnectSuccess();
+
+        assertEquals(1, mockClient.connectCalls);
+        assertTrue(mockClient.mostRecentOptions.isCleanSession());
+        assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
+        assertEquals(2, csb.statuses.size());
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+    }
+
+    @Test
     public void testConnectWithLwt() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 

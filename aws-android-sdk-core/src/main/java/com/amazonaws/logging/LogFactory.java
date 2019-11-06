@@ -30,7 +30,7 @@ public class LogFactory {
      */
     private static final String TAG = LogFactory.class.getSimpleName();
     private static final String APACHE_COMMONS_LOGGING_LOGFACTORY = "org.apache.commons.logging.LogFactory";
-
+    private static Level globalLogLevel = null;
     private static Map<String, Log> logMap = new HashMap<String, Log>();
 
     /**
@@ -70,6 +70,14 @@ public class LogFactory {
         return log;
     }
 
+    public static void setLevel(Level level) {
+        globalLogLevel = level;
+    }
+
+    public static Level getLevel() {
+        return globalLogLevel;
+    }
+
     private static boolean checkApacheCommonsLoggingExists() {
         try {
             Class<?> classObject = Class.forName(APACHE_COMMONS_LOGGING_LOGFACTORY);
@@ -100,5 +108,28 @@ public class LogFactory {
         }
 
         return logTag;
+    }
+
+    public enum Level
+    {
+        ALL(Integer.MIN_VALUE),
+        TRACE(0),
+        DEBUG(1),
+        INFO(2),
+        WARN(3),
+        ERROR(4),
+        OFF(Integer.MAX_VALUE);
+
+        private int value;
+
+        public int getValue()
+        {
+            return this.value;
+        }
+
+        Level(int value)
+        {
+            this.value = value;
+        }
     }
 }

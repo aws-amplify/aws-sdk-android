@@ -30,21 +30,6 @@ public class GetApnsVoipSandboxChannelResultJsonUnmarshaller implements
             throws Exception {
         GetApnsVoipSandboxChannelResult getApnsVoipSandboxChannelResult = new GetApnsVoipSandboxChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("APNSVoipSandboxChannelResponse")) {
-                getApnsVoipSandboxChannelResult
-                        .setAPNSVoipSandboxChannelResponse(APNSVoipSandboxChannelResponseJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return getApnsVoipSandboxChannelResult;
     }
 

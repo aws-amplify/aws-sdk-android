@@ -29,20 +29,6 @@ public class DeleteAdmChannelResultJsonUnmarshaller implements
     public DeleteAdmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteAdmChannelResult deleteAdmChannelResult = new DeleteAdmChannelResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("ADMChannelResponse")) {
-                deleteAdmChannelResult.setADMChannelResponse(ADMChannelResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return deleteAdmChannelResult;
     }
 

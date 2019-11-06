@@ -18,62 +18,44 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * <p>
- * Specifies the segment identifier and version of a segment.
- * </p>
+ * Segment reference.
  */
 public class SegmentReference implements Serializable {
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * A unique identifier for the segment.
      */
     private String id;
 
     /**
-     * <p>
-     * The version number of the segment.
-     * </p>
+     * If specified contains a specific version of the segment included.
      */
     private Integer version;
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * A unique identifier for the segment.
      *
-     * @return <p>
-     *         The unique identifier for the segment.
-     *         </p>
+     * @return A unique identifier for the segment.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * A unique identifier for the segment.
      *
-     * @param id <p>
-     *            The unique identifier for the segment.
-     *            </p>
+     * @param id A unique identifier for the segment.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * <p>
-     * The unique identifier for the segment.
-     * </p>
+     * A unique identifier for the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id <p>
-     *            The unique identifier for the segment.
-     *            </p>
+     * @param id A unique identifier for the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -83,42 +65,32 @@ public class SegmentReference implements Serializable {
     }
 
     /**
-     * <p>
-     * The version number of the segment.
-     * </p>
+     * If specified contains a specific version of the segment included.
      *
-     * @return <p>
-     *         The version number of the segment.
-     *         </p>
+     * @return If specified contains a specific version of the segment included.
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * <p>
-     * The version number of the segment.
-     * </p>
+     * If specified contains a specific version of the segment included.
      *
-     * @param version <p>
-     *            The version number of the segment.
-     *            </p>
+     * @param version If specified contains a specific version of the segment
+     *            included.
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * <p>
-     * The version number of the segment.
-     * </p>
+     * If specified contains a specific version of the segment included.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version <p>
-     *            The version number of the segment.
-     *            </p>
+     * @param version If specified contains a specific version of the segment
+     *            included.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
