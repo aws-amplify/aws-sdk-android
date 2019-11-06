@@ -28,6 +28,7 @@ public enum VoiceId {
     Astrid("Astrid"),
     Bianca("Bianca"),
     Brian("Brian"),
+    Camila("Camila"),
     Carla("Carla"),
     Carmen("Carmen"),
     Celine("Celine"),
@@ -57,6 +58,7 @@ public enum VoiceId {
     Liv("Liv"),
     Lotte("Lotte"),
     Lucia("Lucia"),
+    Lupe("Lupe"),
     Mads("Mads"),
     Maja("Maja"),
     Marlene("Marlene"),
@@ -101,6 +103,7 @@ public enum VoiceId {
         enumMap.put("Astrid", Astrid);
         enumMap.put("Bianca", Bianca);
         enumMap.put("Brian", Brian);
+        enumMap.put("Camila", Camila);
         enumMap.put("Carla", Carla);
         enumMap.put("Carmen", Carmen);
         enumMap.put("Celine", Celine);
@@ -130,6 +133,7 @@ public enum VoiceId {
         enumMap.put("Liv", Liv);
         enumMap.put("Lotte", Lotte);
         enumMap.put("Lucia", Lucia);
+        enumMap.put("Lupe", Lupe);
         enumMap.put("Mads", Mads);
         enumMap.put("Maja", Maja);
         enumMap.put("Marlene", Marlene);
