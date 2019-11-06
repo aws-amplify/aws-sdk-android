@@ -525,7 +525,6 @@ jobs:
             HOMEBREW_TEMP=~/homebrew-temp
             brew update
             brew doctor
-            brew tap caskroom/cask
             brew cask install android-sdk
       - run:
           name: Install Android build tools
