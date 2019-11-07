@@ -2003,6 +2003,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         result.setETag(returnedMetadata.getETag());
         result.setMetadata(returnedMetadata);
         result.setRequesterCharged(returnedMetadata.isRequesterCharged());
+        result.setContentMd5(contentMd5);
 
         return result;
     }

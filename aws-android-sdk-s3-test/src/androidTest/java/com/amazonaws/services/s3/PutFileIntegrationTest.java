@@ -89,6 +89,7 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
     public void testPutFileWithRecognizedMimeType() throws Exception {
         final PutObjectResult result = s3.putObject(bucketName, key, file);
         assertNotEmpty(result.getETag());
+        assertNotEmpty(result.getContentMd5());
         assertNull(result.getVersionId());
 
         final S3Object object = s3.getObject(bucketName, key);
@@ -214,9 +215,10 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPutFileWithMetadataAndCannedAcl() throws Exception {
-        s3.putObject(new PutObjectRequest(bucketName, key, file)
+        final PutObjectResult result = s3.putObject(new PutObjectRequest(bucketName, key, file)
                 .withMetadata(expectedMetadata)
                 .withCannedAcl(CannedAccessControlList.AuthenticatedRead));
+        assertNotEmpty(result.getContentMd5());
 
         final S3Object object = s3.getObject(bucketName, key);
         assertFileEqualsStream(file, object.getObjectContent());
