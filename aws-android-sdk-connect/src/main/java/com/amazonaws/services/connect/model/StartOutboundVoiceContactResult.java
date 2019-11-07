@@ -20,8 +20,7 @@ import java.io.Serializable;
 public class StartOutboundVoiceContactResult implements Serializable {
     /**
      * <p>
-     * The unique identifier of this contact within your Amazon Connect
-     * instance.
+     * The identifier of this contact within the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,15 +30,14 @@ public class StartOutboundVoiceContactResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of this contact within your Amazon Connect
-     * instance.
+     * The identifier of this contact within the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The unique identifier of this contact within your Amazon Connect
+     *         The identifier of this contact within the Amazon Connect
      *         instance.
      *         </p>
      */
@@ -49,16 +47,15 @@ public class StartOutboundVoiceContactResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of this contact within your Amazon Connect
-     * instance.
+     * The identifier of this contact within the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactId <p>
-     *            The unique identifier of this contact within your Amazon
-     *            Connect instance.
+     *            The identifier of this contact within the Amazon Connect
+     *            instance.
      *            </p>
      */
     public void setContactId(String contactId) {
@@ -67,8 +64,7 @@ public class StartOutboundVoiceContactResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of this contact within your Amazon Connect
-     * instance.
+     * The identifier of this contact within the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -78,8 +74,8 @@ public class StartOutboundVoiceContactResult implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactId <p>
-     *            The unique identifier of this contact within your Amazon
-     *            Connect instance.
+     *            The identifier of this contact within the Amazon Connect
+     *            instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
