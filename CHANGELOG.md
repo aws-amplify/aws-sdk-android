@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.4)
+
+### Bug Fixes
+
+- **Amazon S3**
+  - Changed the default notification ID of the notification that will be displayed when the `TransferService` transitions to foreground from `0` to `1` because `0` is reserved and not recommended by Android. `TransferService` would fail to transition to foreground if notification ID is 0. See [Android guide](https://developer.android.com/guide/components/services.html) for details.
+
 ## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
 
 ### New Features

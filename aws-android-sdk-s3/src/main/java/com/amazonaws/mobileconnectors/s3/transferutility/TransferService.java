@@ -56,7 +56,7 @@ public class TransferService extends Service {
     /**
      * The identifier used for the notification.
      */
-    private int ongoingNotificationId = 0;
+    private int ongoingNotificationId = 1;
 
     /**
      * This flag determines if the notification needs to be removed
