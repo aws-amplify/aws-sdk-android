@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 - **Amazon S3**
+  - `PutObjectResult` object will now contain content MD5 that was used in data validation (if available). See [Issue# 1236](https://github.com/aws-amplify/aws-sdk-android/issues/1236).
   - Changed the default notification ID of the notification that will be displayed when the `TransferService` transitions to foreground from `0` to `1` because `0` is reserved and not recommended by Android. `TransferService` would fail to transition to foreground if notification ID is 0. See [Android guide](https://developer.android.com/guide/components/services.html) for details.
 
 ## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
