@@ -43,6 +43,9 @@ public class UpdateIdentityPoolResultJsonUnmarshaller implements
                 updateIdentityPoolResult.setAllowUnauthenticatedIdentities(BooleanJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AllowClassicFlow")) {
+                updateIdentityPoolResult.setAllowClassicFlow(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SupportedLoginProviders")) {
                 updateIdentityPoolResult.setSupportedLoginProviders(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()

@@ -94,6 +94,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      * could use a leaked token to access your AWS resources for the token's
      * duration.
      * </p>
+     * <note>
+     * <p>
+     * Please provide for a small grace period, usually no more than 5 minutes,
+     * to account for clock skew.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
@@ -373,6 +379,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      * could use a leaked token to access your AWS resources for the token's
      * duration.
      * </p>
+     * <note>
+     * <p>
+     * Please provide for a small grace period, usually no more than 5 minutes,
+     * to account for clock skew.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
@@ -388,6 +400,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      *         significant security implications: an attacker could use a leaked
      *         token to access your AWS resources for the token's duration.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Please provide for a small grace period, usually no more than 5
+     *         minutes, to account for clock skew.
+     *         </p>
+     *         </note>
      */
     public Long getTokenDuration() {
         return tokenDuration;
@@ -405,6 +423,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      * could use a leaked token to access your AWS resources for the token's
      * duration.
      * </p>
+     * <note>
+     * <p>
+     * Please provide for a small grace period, usually no more than 5 minutes,
+     * to account for clock skew.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
@@ -421,6 +445,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      *            an attacker could use a leaked token to access your AWS
      *            resources for the token's duration.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Please provide for a small grace period, usually no more than
+     *            5 minutes, to account for clock skew.
+     *            </p>
+     *            </note>
      */
     public void setTokenDuration(Long tokenDuration) {
         this.tokenDuration = tokenDuration;
@@ -438,6 +468,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      * could use a leaked token to access your AWS resources for the token's
      * duration.
      * </p>
+     * <note>
+     * <p>
+     * Please provide for a small grace period, usually no more than 5 minutes,
+     * to account for clock skew.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -457,6 +493,12 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      *            an attacker could use a leaked token to access your AWS
      *            resources for the token's duration.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Please provide for a small grace period, usually no more than
+     *            5 minutes, to account for clock skew.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

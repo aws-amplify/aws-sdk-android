@@ -46,7 +46,7 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      */
     private String identityPoolName;
 
@@ -56,6 +56,17 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * </p>
      */
     private Boolean allowUnauthenticatedIdentities;
+
+    /**
+     * <p>
+     * Enables or disables the Basic (Classic) authentication flow. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     * >Identity Pools (Federated Identities) Authentication Flow</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     */
+    private Boolean allowClassicFlow;
 
     /**
      * <p>
@@ -171,7 +182,7 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @return <p>
      *         A string that you provide.
@@ -188,7 +199,7 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.
@@ -208,7 +219,7 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.
@@ -277,6 +288,96 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
     public UpdateIdentityPoolRequest withAllowUnauthenticatedIdentities(
             Boolean allowUnauthenticatedIdentities) {
         this.allowUnauthenticatedIdentities = allowUnauthenticatedIdentities;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Enables or disables the Basic (Classic) authentication flow. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     * >Identity Pools (Federated Identities) Authentication Flow</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Enables or disables the Basic (Classic) authentication flow. For
+     *         more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     *         >Identity Pools (Federated Identities) Authentication Flow</a> in
+     *         the <i>Amazon Cognito Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isAllowClassicFlow() {
+        return allowClassicFlow;
+    }
+
+    /**
+     * <p>
+     * Enables or disables the Basic (Classic) authentication flow. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     * >Identity Pools (Federated Identities) Authentication Flow</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Enables or disables the Basic (Classic) authentication flow. For
+     *         more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     *         >Identity Pools (Federated Identities) Authentication Flow</a> in
+     *         the <i>Amazon Cognito Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getAllowClassicFlow() {
+        return allowClassicFlow;
+    }
+
+    /**
+     * <p>
+     * Enables or disables the Basic (Classic) authentication flow. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     * >Identity Pools (Federated Identities) Authentication Flow</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     *
+     * @param allowClassicFlow <p>
+     *            Enables or disables the Basic (Classic) authentication flow.
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     *            >Identity Pools (Federated Identities) Authentication Flow</a>
+     *            in the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     */
+    public void setAllowClassicFlow(Boolean allowClassicFlow) {
+        this.allowClassicFlow = allowClassicFlow;
+    }
+
+    /**
+     * <p>
+     * Enables or disables the Basic (Classic) authentication flow. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     * >Identity Pools (Federated Identities) Authentication Flow</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param allowClassicFlow <p>
+     *            Enables or disables the Basic (Classic) authentication flow.
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html"
+     *            >Identity Pools (Federated Identities) Authentication Flow</a>
+     *            in the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateIdentityPoolRequest withAllowClassicFlow(Boolean allowClassicFlow) {
+        this.allowClassicFlow = allowClassicFlow;
         return this;
     }
 
@@ -788,6 +889,8 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
         if (getAllowUnauthenticatedIdentities() != null)
             sb.append("AllowUnauthenticatedIdentities: " + getAllowUnauthenticatedIdentities()
                     + ",");
+        if (getAllowClassicFlow() != null)
+            sb.append("AllowClassicFlow: " + getAllowClassicFlow() + ",");
         if (getSupportedLoginProviders() != null)
             sb.append("SupportedLoginProviders: " + getSupportedLoginProviders() + ",");
         if (getDeveloperProviderName() != null)
@@ -817,6 +920,8 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
                 * hashCode
                 + ((getAllowUnauthenticatedIdentities() == null) ? 0
                         : getAllowUnauthenticatedIdentities().hashCode());
+        hashCode = prime * hashCode
+                + ((getAllowClassicFlow() == null) ? 0 : getAllowClassicFlow().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getSupportedLoginProviders() == null) ? 0 : getSupportedLoginProviders()
@@ -866,6 +971,11 @@ public class UpdateIdentityPoolRequest extends AmazonWebServiceRequest implement
         if (other.getAllowUnauthenticatedIdentities() != null
                 && other.getAllowUnauthenticatedIdentities().equals(
                         this.getAllowUnauthenticatedIdentities()) == false)
+            return false;
+        if (other.getAllowClassicFlow() == null ^ this.getAllowClassicFlow() == null)
+            return false;
+        if (other.getAllowClassicFlow() != null
+                && other.getAllowClassicFlow().equals(this.getAllowClassicFlow()) == false)
             return false;
         if (other.getSupportedLoginProviders() == null ^ this.getSupportedLoginProviders() == null)
             return false;
