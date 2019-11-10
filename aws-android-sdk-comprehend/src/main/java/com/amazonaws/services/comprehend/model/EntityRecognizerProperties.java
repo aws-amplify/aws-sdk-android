@@ -43,7 +43,7 @@ public class EntityRecognizerProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -229,7 +229,7 @@ public class EntityRecognizerProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. All documents must be in the
@@ -248,7 +248,7 @@ public class EntityRecognizerProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -270,7 +270,7 @@ public class EntityRecognizerProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -292,7 +292,7 @@ public class EntityRecognizerProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -314,7 +314,7 @@ public class EntityRecognizerProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in

@@ -114,7 +114,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -715,7 +715,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language code of the input documents.
@@ -732,7 +732,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -752,7 +752,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -772,7 +772,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -792,7 +792,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language code of the input documents.

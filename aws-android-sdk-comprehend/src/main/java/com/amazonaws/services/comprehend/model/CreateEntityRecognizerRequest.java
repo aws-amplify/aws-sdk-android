@@ -37,7 +37,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      */
     private String recognizerName;
 
@@ -91,7 +91,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -142,7 +142,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @return <p>
      *         The name given to the newly created recognizer. Recognizer names
@@ -165,7 +165,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param recognizerName <p>
      *            The name given to the newly created recognizer. Recognizer
@@ -191,7 +191,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param recognizerName <p>
      *            The name given to the newly created recognizer. Recognizer
@@ -503,7 +503,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. All documents must be in the
@@ -522,7 +522,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -544,7 +544,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -566,7 +566,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
@@ -588,7 +588,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in

@@ -77,7 +77,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -375,7 +375,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
@@ -398,7 +398,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -425,7 +425,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -452,7 +452,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -479,7 +479,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of

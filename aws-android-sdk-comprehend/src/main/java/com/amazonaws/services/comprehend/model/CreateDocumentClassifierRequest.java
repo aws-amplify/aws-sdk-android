@@ -37,7 +37,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      */
     private String documentClassifierName;
 
@@ -99,7 +99,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -147,7 +147,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @return <p>
      *         The name of the document classifier.
@@ -164,7 +164,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param documentClassifierName <p>
      *            The name of the document classifier.
@@ -184,7 +184,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param documentClassifierName <p>
      *            The name of the document classifier.
@@ -537,7 +537,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
@@ -560,7 +560,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -587,7 +587,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -614,7 +614,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
@@ -641,7 +641,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
