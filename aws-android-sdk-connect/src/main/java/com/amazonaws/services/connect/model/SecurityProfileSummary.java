@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>SecurityProfileSummary</code> object that contains information about
- * a security profile, including ARN, Id, Name.
+ * Contains information about a security profile.
  * </p>
  */
 public class SecurityProfileSummary implements Serializable {
@@ -33,7 +32,7 @@ public class SecurityProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the security profile.
+     * The Amazon Resource Name (ARN) of the security profile.
      * </p>
      */
     private String arn;
@@ -92,11 +91,11 @@ public class SecurityProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the security profile.
+     * The Amazon Resource Name (ARN) of the security profile.
      * </p>
      *
      * @return <p>
-     *         The ARN of the security profile.
+     *         The Amazon Resource Name (ARN) of the security profile.
      *         </p>
      */
     public String getArn() {
@@ -105,11 +104,11 @@ public class SecurityProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the security profile.
+     * The Amazon Resource Name (ARN) of the security profile.
      * </p>
      *
      * @param arn <p>
-     *            The ARN of the security profile.
+     *            The Amazon Resource Name (ARN) of the security profile.
      *            </p>
      */
     public void setArn(String arn) {
@@ -118,14 +117,14 @@ public class SecurityProfileSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the security profile.
+     * The Amazon Resource Name (ARN) of the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN of the security profile.
+     *            The Amazon Resource Name (ARN) of the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

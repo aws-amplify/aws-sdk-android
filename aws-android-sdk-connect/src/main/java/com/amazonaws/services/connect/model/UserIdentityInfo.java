@@ -19,15 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>UserIdentityInfo</code> object that contains information about the
- * user's identity, including email address, first name, and last name.
+ * Contains information about the identity of a user.
  * </p>
  */
 public class UserIdentityInfo implements Serializable {
     /**
      * <p>
-     * The first name used in the user account. This is required if you are
-     * using Amazon Connect or SAML for identity management.
+     * The first name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,8 +36,8 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The last name used in the user account. This is required if you are using
-     * Amazon Connect or SAML for identity management.
+     * The last name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,25 +47,24 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The email address added to the user account. If you are using SAML for
-     * identity management and include this parameter, an
-     * <code>InvalidRequestException</code> is returned.
+     * The email address. If you are using SAML for identity management and
+     * include this parameter, an error is returned.
      * </p>
      */
     private String email;
 
     /**
      * <p>
-     * The first name used in the user account. This is required if you are
-     * using Amazon Connect or SAML for identity management.
+     * The first name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The first name used in the user account. This is required if you
-     *         are using Amazon Connect or SAML for identity management.
+     *         The first name. This is required if you are using Amazon Connect
+     *         or SAML for identity management.
      *         </p>
      */
     public String getFirstName() {
@@ -75,16 +73,16 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The first name used in the user account. This is required if you are
-     * using Amazon Connect or SAML for identity management.
+     * The first name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param firstName <p>
-     *            The first name used in the user account. This is required if
-     *            you are using Amazon Connect or SAML for identity management.
+     *            The first name. This is required if you are using Amazon
+     *            Connect or SAML for identity management.
      *            </p>
      */
     public void setFirstName(String firstName) {
@@ -93,8 +91,8 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The first name used in the user account. This is required if you are
-     * using Amazon Connect or SAML for identity management.
+     * The first name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,8 +102,8 @@ public class UserIdentityInfo implements Serializable {
      * <b>Length: </b>1 - 100<br/>
      *
      * @param firstName <p>
-     *            The first name used in the user account. This is required if
-     *            you are using Amazon Connect or SAML for identity management.
+     *            The first name. This is required if you are using Amazon
+     *            Connect or SAML for identity management.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,16 +115,16 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The last name used in the user account. This is required if you are using
-     * Amazon Connect or SAML for identity management.
+     * The last name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The last name used in the user account. This is required if you
-     *         are using Amazon Connect or SAML for identity management.
+     *         The last name. This is required if you are using Amazon Connect
+     *         or SAML for identity management.
      *         </p>
      */
     public String getLastName() {
@@ -135,16 +133,16 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The last name used in the user account. This is required if you are using
-     * Amazon Connect or SAML for identity management.
+     * The last name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param lastName <p>
-     *            The last name used in the user account. This is required if
-     *            you are using Amazon Connect or SAML for identity management.
+     *            The last name. This is required if you are using Amazon
+     *            Connect or SAML for identity management.
      *            </p>
      */
     public void setLastName(String lastName) {
@@ -153,8 +151,8 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The last name used in the user account. This is required if you are using
-     * Amazon Connect or SAML for identity management.
+     * The last name. This is required if you are using Amazon Connect or SAML
+     * for identity management.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -164,8 +162,8 @@ public class UserIdentityInfo implements Serializable {
      * <b>Length: </b>1 - 100<br/>
      *
      * @param lastName <p>
-     *            The last name used in the user account. This is required if
-     *            you are using Amazon Connect or SAML for identity management.
+     *            The last name. This is required if you are using Amazon
+     *            Connect or SAML for identity management.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -177,15 +175,13 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The email address added to the user account. If you are using SAML for
-     * identity management and include this parameter, an
-     * <code>InvalidRequestException</code> is returned.
+     * The email address. If you are using SAML for identity management and
+     * include this parameter, an error is returned.
      * </p>
      *
      * @return <p>
-     *         The email address added to the user account. If you are using
-     *         SAML for identity management and include this parameter, an
-     *         <code>InvalidRequestException</code> is returned.
+     *         The email address. If you are using SAML for identity management
+     *         and include this parameter, an error is returned.
      *         </p>
      */
     public String getEmail() {
@@ -194,15 +190,13 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The email address added to the user account. If you are using SAML for
-     * identity management and include this parameter, an
-     * <code>InvalidRequestException</code> is returned.
+     * The email address. If you are using SAML for identity management and
+     * include this parameter, an error is returned.
      * </p>
      *
      * @param email <p>
-     *            The email address added to the user account. If you are using
-     *            SAML for identity management and include this parameter, an
-     *            <code>InvalidRequestException</code> is returned.
+     *            The email address. If you are using SAML for identity
+     *            management and include this parameter, an error is returned.
      *            </p>
      */
     public void setEmail(String email) {
@@ -211,18 +205,16 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
-     * The email address added to the user account. If you are using SAML for
-     * identity management and include this parameter, an
-     * <code>InvalidRequestException</code> is returned.
+     * The email address. If you are using SAML for identity management and
+     * include this parameter, an error is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param email <p>
-     *            The email address added to the user account. If you are using
-     *            SAML for identity management and include this parameter, an
-     *            <code>InvalidRequestException</code> is returned.
+     *            The email address. If you are using SAML for identity
+     *            management and include this parameter, an error is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

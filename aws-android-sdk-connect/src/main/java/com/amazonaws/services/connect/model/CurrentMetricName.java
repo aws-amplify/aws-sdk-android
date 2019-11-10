@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * <p>
- * A list of current metric names.
+ * The current metric names.
  * </p>
  */
 public enum CurrentMetricName {

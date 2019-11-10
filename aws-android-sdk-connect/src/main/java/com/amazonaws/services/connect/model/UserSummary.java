@@ -19,28 +19,27 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>UserSummary</code> object that contains Information about a user,
- * including ARN, Id, and user name.
+ * Contains summary information about a user.
  * </p>
  */
 public class UserSummary implements Serializable {
     /**
      * <p>
-     * The identifier for the user account.
+     * The identifier of the user account.
      * </p>
      */
     private String id;
 
     /**
      * <p>
-     * The ARN for the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The Amazon Connect user name for the user account.
+     * The Amazon Connect user name of the user account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,11 +50,11 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier for the user account.
+     * The identifier of the user account.
      * </p>
      *
      * @return <p>
-     *         The identifier for the user account.
+     *         The identifier of the user account.
      *         </p>
      */
     public String getId() {
@@ -64,11 +63,11 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier for the user account.
+     * The identifier of the user account.
      * </p>
      *
      * @param id <p>
-     *            The identifier for the user account.
+     *            The identifier of the user account.
      *            </p>
      */
     public void setId(String id) {
@@ -77,14 +76,14 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier for the user account.
+     * The identifier of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            The identifier for the user account.
+     *            The identifier of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -96,11 +95,11 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @return <p>
-     *         The ARN for the user account.
+     *         The Amazon Resource Name (ARN) of the user account.
      *         </p>
      */
     public String getArn() {
@@ -109,11 +108,11 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @param arn <p>
-     *            The ARN for the user account.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      */
     public void setArn(String arn) {
@@ -122,14 +121,14 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN for the user account.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -141,7 +140,7 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Connect user name for the user account.
+     * The Amazon Connect user name of the user account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,7 +148,7 @@ public class UserSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
      *
      * @return <p>
-     *         The Amazon Connect user name for the user account.
+     *         The Amazon Connect user name of the user account.
      *         </p>
      */
     public String getUsername() {
@@ -158,7 +157,7 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Connect user name for the user account.
+     * The Amazon Connect user name of the user account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -166,7 +165,7 @@ public class UserSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
      *
      * @param username <p>
-     *            The Amazon Connect user name for the user account.
+     *            The Amazon Connect user name of the user account.
      *            </p>
      */
     public void setUsername(String username) {
@@ -175,7 +174,7 @@ public class UserSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Connect user name for the user account.
+     * The Amazon Connect user name of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -186,7 +185,7 @@ public class UserSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
      *
      * @param username <p>
-     *            The Amazon Connect user name for the user account.
+     *            The Amazon Connect user name of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

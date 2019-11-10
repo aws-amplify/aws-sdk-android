@@ -21,36 +21,27 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the phone configuration settings in the <code>UserPhoneConfig</code>
- * object for the specified user.
+ * Updates the phone configuration settings for the specified user.
  * </p>
  */
 public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object that contains settings for
-     * <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>,
-     * <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to assign to the
-     * user.
+     * Information about phone configuration settings for the user.
      * </p>
      */
     private UserPhoneConfig phoneConfig;
 
     /**
      * <p>
-     * The identifier for the user account to change phone settings for.
+     * The identifier of the user account.
      * </p>
      */
     private String userId;
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,17 +51,11 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object that contains settings for
-     * <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>,
-     * <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to assign to the
-     * user.
+     * Information about phone configuration settings for the user.
      * </p>
      *
      * @return <p>
-     *         A <code>UserPhoneConfig</code> object that contains settings for
-     *         <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>,
-     *         <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to
-     *         assign to the user.
+     *         Information about phone configuration settings for the user.
      *         </p>
      */
     public UserPhoneConfig getPhoneConfig() {
@@ -79,17 +64,11 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object that contains settings for
-     * <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>,
-     * <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to assign to the
-     * user.
+     * Information about phone configuration settings for the user.
      * </p>
      *
      * @param phoneConfig <p>
-     *            A <code>UserPhoneConfig</code> object that contains settings
-     *            for <code>AfterContactWorkTimeLimit</code>,
-     *            <code>AutoAccept</code>, <code>DeskPhoneNumber</code>, and
-     *            <code>PhoneType</code> to assign to the user.
+     *            Information about phone configuration settings for the user.
      *            </p>
      */
     public void setPhoneConfig(UserPhoneConfig phoneConfig) {
@@ -98,20 +77,14 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object that contains settings for
-     * <code>AfterContactWorkTimeLimit</code>, <code>AutoAccept</code>,
-     * <code>DeskPhoneNumber</code>, and <code>PhoneType</code> to assign to the
-     * user.
+     * Information about phone configuration settings for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param phoneConfig <p>
-     *            A <code>UserPhoneConfig</code> object that contains settings
-     *            for <code>AfterContactWorkTimeLimit</code>,
-     *            <code>AutoAccept</code>, <code>DeskPhoneNumber</code>, and
-     *            <code>PhoneType</code> to assign to the user.
+     *            Information about phone configuration settings for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -123,11 +96,11 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for the user account to change phone settings for.
+     * The identifier of the user account.
      * </p>
      *
      * @return <p>
-     *         The identifier for the user account to change phone settings for.
+     *         The identifier of the user account.
      *         </p>
      */
     public String getUserId() {
@@ -136,12 +109,11 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for the user account to change phone settings for.
+     * The identifier of the user account.
      * </p>
      *
      * @param userId <p>
-     *            The identifier for the user account to change phone settings
-     *            for.
+     *            The identifier of the user account.
      *            </p>
      */
     public void setUserId(String userId) {
@@ -150,15 +122,14 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for the user account to change phone settings for.
+     * The identifier of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userId <p>
-     *            The identifier for the user account to change phone settings
-     *            for.
+     *            The identifier of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -170,25 +141,14 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -197,25 +157,14 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -224,12 +173,7 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -239,13 +183,7 @@ public class UpdateUserPhoneConfigRequest extends AmazonWebServiceRequest implem
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

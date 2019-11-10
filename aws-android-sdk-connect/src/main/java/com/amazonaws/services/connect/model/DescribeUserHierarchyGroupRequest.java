@@ -21,27 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a <code>HierarchyGroup</code> object that includes information about
- * a hierarchy group in your instance.
+ * Describes the specified hierarchy group.
  * </p>
  */
 public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The identifier for the hierarchy group to return.
+     * The identifier of the hierarchy group.
      * </p>
      */
     private String hierarchyGroupId;
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,11 +45,11 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for the hierarchy group to return.
+     * The identifier of the hierarchy group.
      * </p>
      *
      * @return <p>
-     *         The identifier for the hierarchy group to return.
+     *         The identifier of the hierarchy group.
      *         </p>
      */
     public String getHierarchyGroupId() {
@@ -64,11 +58,11 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for the hierarchy group to return.
+     * The identifier of the hierarchy group.
      * </p>
      *
      * @param hierarchyGroupId <p>
-     *            The identifier for the hierarchy group to return.
+     *            The identifier of the hierarchy group.
      *            </p>
      */
     public void setHierarchyGroupId(String hierarchyGroupId) {
@@ -77,14 +71,14 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for the hierarchy group to return.
+     * The identifier of the hierarchy group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hierarchyGroupId <p>
-     *            The identifier for the hierarchy group to return.
+     *            The identifier of the hierarchy group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -96,25 +90,14 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -123,25 +106,14 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -150,12 +122,7 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,13 +132,7 @@ public class DescribeUserHierarchyGroupRequest extends AmazonWebServiceRequest i
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

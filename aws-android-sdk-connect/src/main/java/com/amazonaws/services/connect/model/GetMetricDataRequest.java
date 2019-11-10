@@ -21,23 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <code>GetMetricData</code> operation retrieves historical metrics data
- * from your Amazon Connect instance.
+ * Gets historical metric data from the specified Amazon Connect instance.
  * </p>
  * <p>
- * If you are using an IAM account, it must have permission to the
- * <code>connect:GetMetricData</code> action.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
+ * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
  * </p>
  */
 public class GetMetricDataRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,9 +48,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.
      * </p>
      * <p>
-     * <code>StartTime</code> cannot be earlier than 24 hours before the time of
-     * the request. Historical metrics are available in Amazon Connect only for
-     * 24 hours.
+     * The start time cannot be earlier than 24 hours before the time of the
+     * request. Historical metrics are available only for 24 hours.
      * </p>
      */
     private java.util.Date startTime;
@@ -64,32 +59,21 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The timestamp, in UNIX Epoch time format, at which to end the reporting
      * interval for the retrieval of historical metrics data. The time must be
      * specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10,
-     * and must be later than the <code>StartTime</code> timestamp.
+     * and must be later than the start time timestamp.
      * </p>
      * <p>
-     * The time range between <code>StartTime</code> and <code>EndTime</code>
-     * must be less than 24 hours.
+     * The time range between the start and end time must be less than 24 hours.
      * </p>
      */
     private java.util.Date endTime;
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or a list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the IDs, ARNs, or Channels included in the filter. You
-     * can use both IDs and ARNs together in a request. Only VOICE is supported
-     * for Channel.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      */
     private Filters filters;
@@ -97,40 +81,81 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when results
-     * are grouped by queueId, the metrics returned are grouped by queue. The
+     * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
      * </p>
      * <p>
-     * The current version supports grouping by Queue
+     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
-     * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>HistoricalMetrics</code> for all queues is returned.
+     * If no grouping is specified, a summary of metrics for all queues is
+     * returned.
      * </p>
      */
     private java.util.List<String> groupings;
 
     /**
      * <p>
-     * A list of <code>HistoricalMetric</code> objects that contain the metrics
-     * to retrieve with the request.
-     * </p>
-     * <p>
-     * A <code>HistoricalMetric</code> object contains:
-     * <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     * <code>Threshold</code>, and <code>Unit</code>.
-     * </p>
-     * <p>
-     * You must list each metric to retrieve data for in the request. For each
-     * historical metric you include in the request, you must include a
-     * <code>Unit</code> and a <code>Statistic</code>.
-     * </p>
-     * <p>
-     * The following historical metrics are available:
+     * The metrics to retrieve. Specify the name, unit, and statistic for each
+     * metric. The following historical metrics are available:
      * </p>
      * <dl>
-     * <dt>CONTACTS_QUEUED</dt>
+     * <dt>ABANDON_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>AFTER_CONTACT_WORK_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>API_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_ABANDONED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_CONSULTED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -145,34 +170,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_ABANDONED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_CONSULTED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -181,7 +179,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -190,7 +188,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -199,70 +197,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>API_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_MISSED</dt>
@@ -271,16 +206,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
-     * <dt>OCCUPANCY</dt>
+     * <dt>CONTACTS_QUEUED</dt>
      * <dd>
      * <p>
-     * Unit: PERCENT
+     * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>HANDLE_TIME</dt>
@@ -289,43 +260,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>AFTER_CONTACT_WORK_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>QUEUED_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: MAX
-     * </p>
-     * </dd>
-     * <dt>ABANDON_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>QUEUE_ANSWER_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>HOLD_TIME</dt>
@@ -334,16 +269,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>INTERACTION_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -352,7 +278,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>INTERACTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>OCCUPANCY</dt>
+     * <dd>
+     * <p>
+     * Unit: PERCENT
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUE_ANSWER_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUED_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: MAX
      * </p>
      * </dd>
      * <dt>SERVICE_LEVEL</dt>
@@ -361,7 +323,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: PERCENT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * <p>
      * Threshold: Only "Less than" comparisons are supported, with the following
@@ -384,8 +346,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Indicates the maximum number of results to return per page in the
-     * response, between 1-100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -395,25 +356,14 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -422,25 +372,14 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -449,12 +388,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -464,13 +398,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -487,9 +415,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.
      * </p>
      * <p>
-     * <code>StartTime</code> cannot be earlier than 24 hours before the time of
-     * the request. Historical metrics are available in Amazon Connect only for
-     * 24 hours.
+     * The start time cannot be earlier than 24 hours before the time of the
+     * request. Historical metrics are available only for 24 hours.
      * </p>
      *
      * @return <p>
@@ -499,9 +426,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         10:05, 10:10, 10:15.
      *         </p>
      *         <p>
-     *         <code>StartTime</code> cannot be earlier than 24 hours before the
-     *         time of the request. Historical metrics are available in Amazon
-     *         Connect only for 24 hours.
+     *         The start time cannot be earlier than 24 hours before the time of
+     *         the request. Historical metrics are available only for 24 hours.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -515,9 +441,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.
      * </p>
      * <p>
-     * <code>StartTime</code> cannot be earlier than 24 hours before the time of
-     * the request. Historical metrics are available in Amazon Connect only for
-     * 24 hours.
+     * The start time cannot be earlier than 24 hours before the time of the
+     * request. Historical metrics are available only for 24 hours.
      * </p>
      *
      * @param startTime <p>
@@ -527,9 +452,9 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            minutes, such as 10:05, 10:10, 10:15.
      *            </p>
      *            <p>
-     *            <code>StartTime</code> cannot be earlier than 24 hours before
-     *            the time of the request. Historical metrics are available in
-     *            Amazon Connect only for 24 hours.
+     *            The start time cannot be earlier than 24 hours before the time
+     *            of the request. Historical metrics are available only for 24
+     *            hours.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -543,9 +468,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.
      * </p>
      * <p>
-     * <code>StartTime</code> cannot be earlier than 24 hours before the time of
-     * the request. Historical metrics are available in Amazon Connect only for
-     * 24 hours.
+     * The start time cannot be earlier than 24 hours before the time of the
+     * request. Historical metrics are available only for 24 hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -558,9 +482,9 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            minutes, such as 10:05, 10:10, 10:15.
      *            </p>
      *            <p>
-     *            <code>StartTime</code> cannot be earlier than 24 hours before
-     *            the time of the request. Historical metrics are available in
-     *            Amazon Connect only for 24 hours.
+     *            The start time cannot be earlier than 24 hours before the time
+     *            of the request. Historical metrics are available only for 24
+     *            hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -575,23 +499,22 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The timestamp, in UNIX Epoch time format, at which to end the reporting
      * interval for the retrieval of historical metrics data. The time must be
      * specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10,
-     * and must be later than the <code>StartTime</code> timestamp.
+     * and must be later than the start time timestamp.
      * </p>
      * <p>
-     * The time range between <code>StartTime</code> and <code>EndTime</code>
-     * must be less than 24 hours.
+     * The time range between the start and end time must be less than 24 hours.
      * </p>
      *
      * @return <p>
      *         The timestamp, in UNIX Epoch time format, at which to end the
      *         reporting interval for the retrieval of historical metrics data.
      *         The time must be specified using an interval of 5 minutes, such
-     *         as 11:00, 11:05, 11:10, and must be later than the
-     *         <code>StartTime</code> timestamp.
+     *         as 11:00, 11:05, 11:10, and must be later than the start time
+     *         timestamp.
      *         </p>
      *         <p>
-     *         The time range between <code>StartTime</code> and
-     *         <code>EndTime</code> must be less than 24 hours.
+     *         The time range between the start and end time must be less than
+     *         24 hours.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -603,11 +526,10 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The timestamp, in UNIX Epoch time format, at which to end the reporting
      * interval for the retrieval of historical metrics data. The time must be
      * specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10,
-     * and must be later than the <code>StartTime</code> timestamp.
+     * and must be later than the start time timestamp.
      * </p>
      * <p>
-     * The time range between <code>StartTime</code> and <code>EndTime</code>
-     * must be less than 24 hours.
+     * The time range between the start and end time must be less than 24 hours.
      * </p>
      *
      * @param endTime <p>
@@ -615,11 +537,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            reporting interval for the retrieval of historical metrics
      *            data. The time must be specified using an interval of 5
      *            minutes, such as 11:00, 11:05, 11:10, and must be later than
-     *            the <code>StartTime</code> timestamp.
+     *            the start time timestamp.
      *            </p>
      *            <p>
-     *            The time range between <code>StartTime</code> and
-     *            <code>EndTime</code> must be less than 24 hours.
+     *            The time range between the start and end time must be less
+     *            than 24 hours.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -631,11 +553,10 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The timestamp, in UNIX Epoch time format, at which to end the reporting
      * interval for the retrieval of historical metrics data. The time must be
      * specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10,
-     * and must be later than the <code>StartTime</code> timestamp.
+     * and must be later than the start time timestamp.
      * </p>
      * <p>
-     * The time range between <code>StartTime</code> and <code>EndTime</code>
-     * must be less than 24 hours.
+     * The time range between the start and end time must be less than 24 hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -646,11 +567,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            reporting interval for the retrieval of historical metrics
      *            data. The time must be specified using an interval of 5
      *            minutes, such as 11:00, 11:05, 11:10, and must be later than
-     *            the <code>StartTime</code> timestamp.
+     *            the start time timestamp.
      *            </p>
      *            <p>
-     *            The time range between <code>StartTime</code> and
-     *            <code>EndTime</code> must be less than 24 hours.
+     *            The time range between the start and end time must be less
+     *            than 24 hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -662,40 +583,19 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or a list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the IDs, ARNs, or Channels included in the filter. You
-     * can use both IDs and ARNs together in a request. Only VOICE is supported
-     * for Channel.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      *
      * @return <p>
-     *         A <code>Filters</code> object that contains a list of queue IDs
-     *         or queue ARNs, up to 100, or a list of Channels to use to filter
-     *         the metrics returned in the response. Metric data is retrieved
-     *         only for the resources associated with the IDs, ARNs, or Channels
-     *         included in the filter. You can use both IDs and ARNs together in
-     *         a request. Only VOICE is supported for Channel.
-     *         </p>
-     *         <p>
-     *         To find the ARN for a queue, open the queue you want to use in
-     *         the Amazon Connect Queue editor. The ARN for the queue is
-     *         displayed in the address bar as part of the URL. For example, the
-     *         queue ARN is the set of characters at the end of the URL, after
-     *         'id=' such as
-     *         <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *         . The queue ID is also included in the URL, and is the string
-     *         after 'queue/'.
+     *         The queues, up to 100, or channels, to use to filter the metrics
+     *         returned. Metric data is retrieved only for the resources
+     *         associated with the queues or channels included in the filter.
+     *         You can include both queue IDs and queue ARNs in the same
+     *         request. The only supported channel is <code>VOICE</code>.
      *         </p>
      */
     public Filters getFilters() {
@@ -704,41 +604,20 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or a list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the IDs, ARNs, or Channels included in the filter. You
-     * can use both IDs and ARNs together in a request. Only VOICE is supported
-     * for Channel.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      *
      * @param filters <p>
-     *            A <code>Filters</code> object that contains a list of queue
-     *            IDs or queue ARNs, up to 100, or a list of Channels to use to
-     *            filter the metrics returned in the response. Metric data is
-     *            retrieved only for the resources associated with the IDs,
-     *            ARNs, or Channels included in the filter. You can use both IDs
-     *            and ARNs together in a request. Only VOICE is supported for
-     *            Channel.
-     *            </p>
-     *            <p>
-     *            To find the ARN for a queue, open the queue you want to use in
-     *            the Amazon Connect Queue editor. The ARN for the queue is
-     *            displayed in the address bar as part of the URL. For example,
-     *            the queue ARN is the set of characters at the end of the URL,
-     *            after 'id=' such as
-     *            <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *            . The queue ID is also included in the URL, and is the string
-     *            after 'queue/'.
+     *            The queues, up to 100, or channels, to use to filter the
+     *            metrics returned. Metric data is retrieved only for the
+     *            resources associated with the queues or channels included in
+     *            the filter. You can include both queue IDs and queue ARNs in
+     *            the same request. The only supported channel is
+     *            <code>VOICE</code>.
      *            </p>
      */
     public void setFilters(Filters filters) {
@@ -747,44 +626,23 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or a list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the IDs, ARNs, or Channels included in the filter. You
-     * can use both IDs and ARNs together in a request. Only VOICE is supported
-     * for Channel.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filters <p>
-     *            A <code>Filters</code> object that contains a list of queue
-     *            IDs or queue ARNs, up to 100, or a list of Channels to use to
-     *            filter the metrics returned in the response. Metric data is
-     *            retrieved only for the resources associated with the IDs,
-     *            ARNs, or Channels included in the filter. You can use both IDs
-     *            and ARNs together in a request. Only VOICE is supported for
-     *            Channel.
-     *            </p>
-     *            <p>
-     *            To find the ARN for a queue, open the queue you want to use in
-     *            the Amazon Connect Queue editor. The ARN for the queue is
-     *            displayed in the address bar as part of the URL. For example,
-     *            the queue ARN is the set of characters at the end of the URL,
-     *            after 'id=' such as
-     *            <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *            . The queue ID is also included in the URL, and is the string
-     *            after 'queue/'.
+     *            The queues, up to 100, or channels, to use to filter the
+     *            metrics returned. Metric data is retrieved only for the
+     *            resources associated with the queues or channels included in
+     *            the filter. You can include both queue IDs and queue ARNs in
+     *            the same request. The only supported channel is
+     *            <code>VOICE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -797,30 +655,30 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when results
-     * are grouped by queueId, the metrics returned are grouped by queue. The
+     * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
      * </p>
      * <p>
-     * The current version supports grouping by Queue
+     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
-     * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>HistoricalMetrics</code> for all queues is returned.
+     * If no grouping is specified, a summary of metrics for all queues is
+     * returned.
      * </p>
      *
      * @return <p>
      *         The grouping applied to the metrics returned. For example, when
-     *         results are grouped by queueId, the metrics returned are grouped
-     *         by queue. The values returned apply to the metrics for each queue
+     *         results are grouped by queue, the metrics returned are grouped by
+     *         queue. The values returned apply to the metrics for each queue
      *         rather than aggregated for all queues.
      *         </p>
      *         <p>
-     *         The current version supports grouping by Queue
+     *         The only supported grouping is <code>QUEUE</code>.
      *         </p>
      *         <p>
-     *         If no <code>Grouping</code> is included in the request, a summary
-     *         of <code>HistoricalMetrics</code> for all queues is returned.
+     *         If no grouping is specified, a summary of metrics for all queues
+     *         is returned.
      *         </p>
      */
     public java.util.List<String> getGroupings() {
@@ -830,31 +688,30 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when results
-     * are grouped by queueId, the metrics returned are grouped by queue. The
+     * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
      * </p>
      * <p>
-     * The current version supports grouping by Queue
+     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
-     * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>HistoricalMetrics</code> for all queues is returned.
+     * If no grouping is specified, a summary of metrics for all queues is
+     * returned.
      * </p>
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when results are grouped by queueId, the metrics returned are
+     *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
      *            </p>
      *            <p>
-     *            The current version supports grouping by Queue
+     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
-     *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>HistoricalMetrics</code> for all queues is
-     *            returned.
+     *            If no grouping is specified, a summary of metrics for all
+     *            queues is returned.
      *            </p>
      */
     public void setGroupings(java.util.Collection<String> groupings) {
@@ -869,16 +726,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when results
-     * are grouped by queueId, the metrics returned are grouped by queue. The
+     * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
      * </p>
      * <p>
-     * The current version supports grouping by Queue
+     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
-     * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>HistoricalMetrics</code> for all queues is returned.
+     * If no grouping is specified, a summary of metrics for all queues is
+     * returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -886,17 +743,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when results are grouped by queueId, the metrics returned are
+     *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
      *            </p>
      *            <p>
-     *            The current version supports grouping by Queue
+     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
-     *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>HistoricalMetrics</code> for all queues is
-     *            returned.
+     *            If no grouping is specified, a summary of metrics for all
+     *            queues is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -914,16 +770,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when results
-     * are grouped by queueId, the metrics returned are grouped by queue. The
+     * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
      * </p>
      * <p>
-     * The current version supports grouping by Queue
+     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
-     * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>HistoricalMetrics</code> for all queues is returned.
+     * If no grouping is specified, a summary of metrics for all queues is
+     * returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -931,17 +787,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when results are grouped by queueId, the metrics returned are
+     *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
      *            </p>
      *            <p>
-     *            The current version supports grouping by Queue
+     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
-     *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>HistoricalMetrics</code> for all queues is
-     *            returned.
+     *            If no grouping is specified, a summary of metrics for all
+     *            queues is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -953,24 +808,65 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A list of <code>HistoricalMetric</code> objects that contain the metrics
-     * to retrieve with the request.
-     * </p>
-     * <p>
-     * A <code>HistoricalMetric</code> object contains:
-     * <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     * <code>Threshold</code>, and <code>Unit</code>.
-     * </p>
-     * <p>
-     * You must list each metric to retrieve data for in the request. For each
-     * historical metric you include in the request, you must include a
-     * <code>Unit</code> and a <code>Statistic</code>.
-     * </p>
-     * <p>
-     * The following historical metrics are available:
+     * The metrics to retrieve. Specify the name, unit, and statistic for each
+     * metric. The following historical metrics are available:
      * </p>
      * <dl>
-     * <dt>CONTACTS_QUEUED</dt>
+     * <dt>ABANDON_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>AFTER_CONTACT_WORK_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>API_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_ABANDONED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_CONSULTED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -985,34 +881,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_ABANDONED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_CONSULTED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -1021,7 +890,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -1030,7 +899,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -1039,70 +908,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>API_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_MISSED</dt>
@@ -1111,16 +917,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
-     * <dt>OCCUPANCY</dt>
+     * <dt>CONTACTS_QUEUED</dt>
      * <dd>
      * <p>
-     * Unit: PERCENT
+     * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>HANDLE_TIME</dt>
@@ -1129,43 +971,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>AFTER_CONTACT_WORK_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>QUEUED_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: MAX
-     * </p>
-     * </dd>
-     * <dt>ABANDON_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>QUEUE_ANSWER_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>HOLD_TIME</dt>
@@ -1174,16 +980,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>INTERACTION_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -1192,7 +989,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>INTERACTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>OCCUPANCY</dt>
+     * <dd>
+     * <p>
+     * Unit: PERCENT
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUE_ANSWER_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUED_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: MAX
      * </p>
      * </dd>
      * <dt>SERVICE_LEVEL</dt>
@@ -1201,7 +1034,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: PERCENT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * <p>
      * Threshold: Only "Less than" comparisons are supported, with the following
@@ -1212,24 +1045,65 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * </dl>
      *
      * @return <p>
-     *         A list of <code>HistoricalMetric</code> objects that contain the
-     *         metrics to retrieve with the request.
-     *         </p>
-     *         <p>
-     *         A <code>HistoricalMetric</code> object contains:
-     *         <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     *         <code>Threshold</code>, and <code>Unit</code>.
-     *         </p>
-     *         <p>
-     *         You must list each metric to retrieve data for in the request.
-     *         For each historical metric you include in the request, you must
-     *         include a <code>Unit</code> and a <code>Statistic</code>.
-     *         </p>
-     *         <p>
-     *         The following historical metrics are available:
+     *         The metrics to retrieve. Specify the name, unit, and statistic
+     *         for each metric. The following historical metrics are available:
      *         </p>
      *         <dl>
-     *         <dt>CONTACTS_QUEUED</dt>
+     *         <dt>ABANDON_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: SECONDS
+     *         </p>
+     *         <p>
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>AFTER_CONTACT_WORK_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: SECONDS
+     *         </p>
+     *         <p>
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>API_CONTACTS_HANDLED</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_ABANDONED</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_CONSULTED</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
@@ -1244,34 +1118,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_ABANDONED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_CONSULTED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
+     *         Statistic: SUM
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -1280,7 +1127,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: SUM
+     *         Statistic: SUM
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -1289,7 +1136,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: SUM
+     *         Statistic: SUM
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -1298,70 +1145,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_TRANSFERRED_IN</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>API_CONTACTS_HANDLED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
+     *         Statistic: SUM
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_MISSED</dt>
@@ -1370,16 +1154,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: SUM
+     *         Statistic: SUM
      *         </p>
      *         </dd>
-     *         <dt>OCCUPANCY</dt>
+     *         <dt>CONTACTS_QUEUED</dt>
      *         <dd>
      *         <p>
-     *         Unit: PERCENT
+     *         Unit: COUNT
      *         </p>
      *         <p>
-     *         Statistics: AVG
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_TRANSFERRED_IN</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Statistic: SUM
      *         </p>
      *         </dd>
      *         <dt>HANDLE_TIME</dt>
@@ -1388,43 +1208,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: SECONDS
      *         </p>
      *         <p>
-     *         Statistics: AVG
-     *         </p>
-     *         </dd>
-     *         <dt>AFTER_CONTACT_WORK_TIME</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: SECONDS
-     *         </p>
-     *         <p>
-     *         Statistics: AVG
-     *         </p>
-     *         </dd>
-     *         <dt>QUEUED_TIME</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: SECONDS
-     *         </p>
-     *         <p>
-     *         Statistics: MAX
-     *         </p>
-     *         </dd>
-     *         <dt>ABANDON_TIME</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         <p>
-     *         Statistics: SUM
-     *         </p>
-     *         </dd>
-     *         <dt>QUEUE_ANSWER_TIME</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: SECONDS
-     *         </p>
-     *         <p>
-     *         Statistics: AVG
+     *         Statistic: AVG
      *         </p>
      *         </dd>
      *         <dt>HOLD_TIME</dt>
@@ -1433,16 +1217,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: SECONDS
      *         </p>
      *         <p>
-     *         Statistics: AVG
-     *         </p>
-     *         </dd>
-     *         <dt>INTERACTION_TIME</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: SECONDS
-     *         </p>
-     *         <p>
-     *         Statistics: AVG
+     *         Statistic: AVG
      *         </p>
      *         </dd>
      *         <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -1451,7 +1226,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: SECONDS
      *         </p>
      *         <p>
-     *         Statistics: AVG
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>INTERACTION_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: SECONDS
+     *         </p>
+     *         <p>
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>OCCUPANCY</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: PERCENT
+     *         </p>
+     *         <p>
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>QUEUE_ANSWER_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: SECONDS
+     *         </p>
+     *         <p>
+     *         Statistic: AVG
+     *         </p>
+     *         </dd>
+     *         <dt>QUEUED_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: SECONDS
+     *         </p>
+     *         <p>
+     *         Statistic: MAX
      *         </p>
      *         </dd>
      *         <dt>SERVICE_LEVEL</dt>
@@ -1460,7 +1271,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         Unit: PERCENT
      *         </p>
      *         <p>
-     *         Statistics: AVG
+     *         Statistic: AVG
      *         </p>
      *         <p>
      *         Threshold: Only "Less than" comparisons are supported, with the
@@ -1476,24 +1287,65 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A list of <code>HistoricalMetric</code> objects that contain the metrics
-     * to retrieve with the request.
-     * </p>
-     * <p>
-     * A <code>HistoricalMetric</code> object contains:
-     * <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     * <code>Threshold</code>, and <code>Unit</code>.
-     * </p>
-     * <p>
-     * You must list each metric to retrieve data for in the request. For each
-     * historical metric you include in the request, you must include a
-     * <code>Unit</code> and a <code>Statistic</code>.
-     * </p>
-     * <p>
-     * The following historical metrics are available:
+     * The metrics to retrieve. Specify the name, unit, and statistic for each
+     * metric. The following historical metrics are available:
      * </p>
      * <dl>
-     * <dt>CONTACTS_QUEUED</dt>
+     * <dt>ABANDON_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>AFTER_CONTACT_WORK_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>API_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_ABANDONED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_CONSULTED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -1508,34 +1360,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_ABANDONED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_CONSULTED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -1544,7 +1369,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -1553,7 +1378,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -1562,70 +1387,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>API_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_MISSED</dt>
@@ -1634,16 +1396,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
-     * <dt>OCCUPANCY</dt>
+     * <dt>CONTACTS_QUEUED</dt>
      * <dd>
      * <p>
-     * Unit: PERCENT
+     * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>HANDLE_TIME</dt>
@@ -1652,43 +1450,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>AFTER_CONTACT_WORK_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>QUEUED_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: MAX
-     * </p>
-     * </dd>
-     * <dt>ABANDON_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>QUEUE_ANSWER_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>HOLD_TIME</dt>
@@ -1697,16 +1459,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>INTERACTION_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -1715,7 +1468,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>INTERACTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>OCCUPANCY</dt>
+     * <dd>
+     * <p>
+     * Unit: PERCENT
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUE_ANSWER_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUED_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: MAX
      * </p>
      * </dd>
      * <dt>SERVICE_LEVEL</dt>
@@ -1724,7 +1513,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: PERCENT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * <p>
      * Threshold: Only "Less than" comparisons are supported, with the following
@@ -1735,24 +1524,66 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * </dl>
      *
      * @param historicalMetrics <p>
-     *            A list of <code>HistoricalMetric</code> objects that contain
-     *            the metrics to retrieve with the request.
-     *            </p>
-     *            <p>
-     *            A <code>HistoricalMetric</code> object contains:
-     *            <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     *            <code>Threshold</code>, and <code>Unit</code>.
-     *            </p>
-     *            <p>
-     *            You must list each metric to retrieve data for in the request.
-     *            For each historical metric you include in the request, you
-     *            must include a <code>Unit</code> and a <code>Statistic</code>.
-     *            </p>
-     *            <p>
-     *            The following historical metrics are available:
+     *            The metrics to retrieve. Specify the name, unit, and statistic
+     *            for each metric. The following historical metrics are
+     *            available:
      *            </p>
      *            <dl>
-     *            <dt>CONTACTS_QUEUED</dt>
+     *            <dt>ABANDON_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>API_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_ABANDONED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_CONSULTED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -1767,34 +1598,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_ABANDONED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_CONSULTED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -1803,7 +1607,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -1812,7 +1616,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -1821,70 +1625,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>API_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_MISSED</dt>
@@ -1893,16 +1634,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
-     *            <dt>OCCUPANCY</dt>
+     *            <dt>CONTACTS_QUEUED</dt>
      *            <dd>
      *            <p>
-     *            Unit: PERCENT
+     *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>HANDLE_TIME</dt>
@@ -1911,43 +1688,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUED_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: MAX
-     *            </p>
-     *            </dd>
-     *            <dt>ABANDON_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUE_ANSWER_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>HOLD_TIME</dt>
@@ -1956,16 +1697,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>INTERACTION_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -1974,7 +1706,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>INTERACTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>OCCUPANCY</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: PERCENT
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUE_ANSWER_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUED_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: MAX
      *            </p>
      *            </dd>
      *            <dt>SERVICE_LEVEL</dt>
@@ -1983,7 +1751,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: PERCENT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            <p>
      *            Threshold: Only "Less than" comparisons are supported, with
@@ -2004,24 +1772,65 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A list of <code>HistoricalMetric</code> objects that contain the metrics
-     * to retrieve with the request.
-     * </p>
-     * <p>
-     * A <code>HistoricalMetric</code> object contains:
-     * <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     * <code>Threshold</code>, and <code>Unit</code>.
-     * </p>
-     * <p>
-     * You must list each metric to retrieve data for in the request. For each
-     * historical metric you include in the request, you must include a
-     * <code>Unit</code> and a <code>Statistic</code>.
-     * </p>
-     * <p>
-     * The following historical metrics are available:
+     * The metrics to retrieve. Specify the name, unit, and statistic for each
+     * metric. The following historical metrics are available:
      * </p>
      * <dl>
-     * <dt>CONTACTS_QUEUED</dt>
+     * <dt>ABANDON_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>AFTER_CONTACT_WORK_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>API_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_ABANDONED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_CONSULTED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -2036,34 +1845,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_ABANDONED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_CONSULTED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -2072,7 +1854,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -2081,7 +1863,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -2090,70 +1872,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>API_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_MISSED</dt>
@@ -2162,16 +1881,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
-     * <dt>OCCUPANCY</dt>
+     * <dt>CONTACTS_QUEUED</dt>
      * <dd>
      * <p>
-     * Unit: PERCENT
+     * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>HANDLE_TIME</dt>
@@ -2180,43 +1935,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>AFTER_CONTACT_WORK_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>QUEUED_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: MAX
-     * </p>
-     * </dd>
-     * <dt>ABANDON_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>QUEUE_ANSWER_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>HOLD_TIME</dt>
@@ -2225,16 +1944,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>INTERACTION_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -2243,7 +1953,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>INTERACTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>OCCUPANCY</dt>
+     * <dd>
+     * <p>
+     * Unit: PERCENT
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUE_ANSWER_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUED_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: MAX
      * </p>
      * </dd>
      * <dt>SERVICE_LEVEL</dt>
@@ -2252,7 +1998,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: PERCENT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * <p>
      * Threshold: Only "Less than" comparisons are supported, with the following
@@ -2266,24 +2012,66 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * together.
      *
      * @param historicalMetrics <p>
-     *            A list of <code>HistoricalMetric</code> objects that contain
-     *            the metrics to retrieve with the request.
-     *            </p>
-     *            <p>
-     *            A <code>HistoricalMetric</code> object contains:
-     *            <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     *            <code>Threshold</code>, and <code>Unit</code>.
-     *            </p>
-     *            <p>
-     *            You must list each metric to retrieve data for in the request.
-     *            For each historical metric you include in the request, you
-     *            must include a <code>Unit</code> and a <code>Statistic</code>.
-     *            </p>
-     *            <p>
-     *            The following historical metrics are available:
+     *            The metrics to retrieve. Specify the name, unit, and statistic
+     *            for each metric. The following historical metrics are
+     *            available:
      *            </p>
      *            <dl>
-     *            <dt>CONTACTS_QUEUED</dt>
+     *            <dt>ABANDON_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>API_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_ABANDONED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_CONSULTED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -2298,34 +2086,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_ABANDONED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_CONSULTED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -2334,7 +2095,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -2343,7 +2104,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -2352,70 +2113,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>API_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_MISSED</dt>
@@ -2424,16 +2122,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
-     *            <dt>OCCUPANCY</dt>
+     *            <dt>CONTACTS_QUEUED</dt>
      *            <dd>
      *            <p>
-     *            Unit: PERCENT
+     *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>HANDLE_TIME</dt>
@@ -2442,43 +2176,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUED_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: MAX
-     *            </p>
-     *            </dd>
-     *            <dt>ABANDON_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUE_ANSWER_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>HOLD_TIME</dt>
@@ -2487,16 +2185,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>INTERACTION_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -2505,7 +2194,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>INTERACTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>OCCUPANCY</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: PERCENT
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUE_ANSWER_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUED_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: MAX
      *            </p>
      *            </dd>
      *            <dt>SERVICE_LEVEL</dt>
@@ -2514,7 +2239,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: PERCENT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            <p>
      *            Threshold: Only "Less than" comparisons are supported, with
@@ -2539,24 +2264,65 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A list of <code>HistoricalMetric</code> objects that contain the metrics
-     * to retrieve with the request.
-     * </p>
-     * <p>
-     * A <code>HistoricalMetric</code> object contains:
-     * <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     * <code>Threshold</code>, and <code>Unit</code>.
-     * </p>
-     * <p>
-     * You must list each metric to retrieve data for in the request. For each
-     * historical metric you include in the request, you must include a
-     * <code>Unit</code> and a <code>Statistic</code>.
-     * </p>
-     * <p>
-     * The following historical metrics are available:
+     * The metrics to retrieve. Specify the name, unit, and statistic for each
+     * metric. The following historical metrics are available:
      * </p>
      * <dl>
-     * <dt>CONTACTS_QUEUED</dt>
+     * <dt>ABANDON_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>AFTER_CONTACT_WORK_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>API_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_ABANDONED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_CONSULTED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -2571,34 +2337,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_ABANDONED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_CONSULTED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -2607,7 +2346,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -2616,7 +2355,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -2625,70 +2364,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>API_CONTACTS_HANDLED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>CONTACTS_MISSED</dt>
@@ -2697,16 +2373,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: SUM
+     * Statistic: SUM
      * </p>
      * </dd>
-     * <dt>OCCUPANCY</dt>
+     * <dt>CONTACTS_QUEUED</dt>
      * <dd>
      * <p>
-     * Unit: PERCENT
+     * Unit: COUNT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * <p>
+     * Statistic: SUM
      * </p>
      * </dd>
      * <dt>HANDLE_TIME</dt>
@@ -2715,43 +2427,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>AFTER_CONTACT_WORK_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>QUEUED_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: MAX
-     * </p>
-     * </dd>
-     * <dt>ABANDON_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * <p>
-     * Statistics: SUM
-     * </p>
-     * </dd>
-     * <dt>QUEUE_ANSWER_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>HOLD_TIME</dt>
@@ -2760,16 +2436,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
-     * </p>
-     * </dd>
-     * <dt>INTERACTION_TIME</dt>
-     * <dd>
-     * <p>
-     * Unit: SECONDS
-     * </p>
-     * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * </dd>
      * <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -2778,7 +2445,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: SECONDS
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>INTERACTION_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>OCCUPANCY</dt>
+     * <dd>
+     * <p>
+     * Unit: PERCENT
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUE_ANSWER_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: AVG
+     * </p>
+     * </dd>
+     * <dt>QUEUED_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: SECONDS
+     * </p>
+     * <p>
+     * Statistic: MAX
      * </p>
      * </dd>
      * <dt>SERVICE_LEVEL</dt>
@@ -2787,7 +2490,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * Unit: PERCENT
      * </p>
      * <p>
-     * Statistics: AVG
+     * Statistic: AVG
      * </p>
      * <p>
      * Threshold: Only "Less than" comparisons are supported, with the following
@@ -2801,24 +2504,66 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * together.
      *
      * @param historicalMetrics <p>
-     *            A list of <code>HistoricalMetric</code> objects that contain
-     *            the metrics to retrieve with the request.
-     *            </p>
-     *            <p>
-     *            A <code>HistoricalMetric</code> object contains:
-     *            <code>HistoricalMetricName</code>, <code>Statistic</code>,
-     *            <code>Threshold</code>, and <code>Unit</code>.
-     *            </p>
-     *            <p>
-     *            You must list each metric to retrieve data for in the request.
-     *            For each historical metric you include in the request, you
-     *            must include a <code>Unit</code> and a <code>Statistic</code>.
-     *            </p>
-     *            <p>
-     *            The following historical metrics are available:
+     *            The metrics to retrieve. Specify the name, unit, and statistic
+     *            for each metric. The following historical metrics are
+     *            available:
      *            </p>
      *            <dl>
-     *            <dt>CONTACTS_QUEUED</dt>
+     *            <dt>ABANDON_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>API_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_ABANDONED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_CONSULTED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -2833,34 +2578,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_ABANDONED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_CONSULTED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_INCOMING</dt>
@@ -2869,7 +2587,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HANDLED_OUTBOUND</dt>
@@ -2878,7 +2596,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
@@ -2887,70 +2605,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>CALLBACK_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>API_CONTACTS_HANDLED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_MISSED</dt>
@@ -2959,16 +2614,52 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: SUM
+     *            Statistic: SUM
      *            </p>
      *            </dd>
-     *            <dt>OCCUPANCY</dt>
+     *            <dt>CONTACTS_QUEUED</dt>
      *            <dd>
      *            <p>
-     *            Unit: PERCENT
+     *            Unit: COUNT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Statistic: SUM
      *            </p>
      *            </dd>
      *            <dt>HANDLE_TIME</dt>
@@ -2977,43 +2668,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>AFTER_CONTACT_WORK_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUED_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: MAX
-     *            </p>
-     *            </dd>
-     *            <dt>ABANDON_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            <p>
-     *            Statistics: SUM
-     *            </p>
-     *            </dd>
-     *            <dt>QUEUE_ANSWER_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>HOLD_TIME</dt>
@@ -3022,16 +2677,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
-     *            </p>
-     *            </dd>
-     *            <dt>INTERACTION_TIME</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: SECONDS
-     *            </p>
-     *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            </dd>
      *            <dt>INTERACTION_AND_HOLD_TIME</dt>
@@ -3040,7 +2686,43 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: SECONDS
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>INTERACTION_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>OCCUPANCY</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: PERCENT
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUE_ANSWER_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: AVG
+     *            </p>
+     *            </dd>
+     *            <dt>QUEUED_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: SECONDS
+     *            </p>
+     *            <p>
+     *            Statistic: MAX
      *            </p>
      *            </dd>
      *            <dt>SERVICE_LEVEL</dt>
@@ -3049,7 +2731,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            Unit: PERCENT
      *            </p>
      *            <p>
-     *            Statistics: AVG
+     *            Statistic: AVG
      *            </p>
      *            <p>
      *            Threshold: Only "Less than" comparisons are supported, with
@@ -3126,16 +2808,14 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Indicates the maximum number of results to return per page in the
-     * response, between 1-100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         Indicates the maximum number of results to return per page in the
-     *         response, between 1-100.
+     *         The maximimum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -3144,16 +2824,14 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Indicates the maximum number of results to return per page in the
-     * response, between 1-100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            Indicates the maximum number of results to return per page in
-     *            the response, between 1-100.
+     *            The maximimum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -3162,8 +2840,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Indicates the maximum number of results to return per page in the
-     * response, between 1-100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -3173,8 +2850,7 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            Indicates the maximum number of results to return per page in
-     *            the response, between 1-100.
+     *            The maximimum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

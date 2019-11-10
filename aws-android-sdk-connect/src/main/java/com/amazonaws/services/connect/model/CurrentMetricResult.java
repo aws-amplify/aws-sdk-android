@@ -19,35 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>CurrentMetricResult</code> object.
+ * Contains information about a set of real-time metrics.
  * </p>
  */
 public class CurrentMetricResult implements Serializable {
     /**
      * <p>
-     * The <code>Dimensions</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The dimensions for the metrics.
      * </p>
      */
     private Dimensions dimensions;
 
     /**
      * <p>
-     * The <code>Collections</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The set of metrics.
      * </p>
      */
     private java.util.List<CurrentMetricData> collections;
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The dimensions for the metrics.
      * </p>
      *
      * @return <p>
-     *         The <code>Dimensions</code> for the
-     *         <code>CurrentMetricResult</code> object.
+     *         The dimensions for the metrics.
      *         </p>
      */
     public Dimensions getDimensions() {
@@ -56,13 +52,11 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The dimensions for the metrics.
      * </p>
      *
      * @param dimensions <p>
-     *            The <code>Dimensions</code> for the
-     *            <code>CurrentMetricResult</code> object.
+     *            The dimensions for the metrics.
      *            </p>
      */
     public void setDimensions(Dimensions dimensions) {
@@ -71,16 +65,14 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The dimensions for the metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dimensions <p>
-     *            The <code>Dimensions</code> for the
-     *            <code>CurrentMetricResult</code> object.
+     *            The dimensions for the metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -92,13 +84,11 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Collections</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The set of metrics.
      * </p>
      *
      * @return <p>
-     *         The <code>Collections</code> for the
-     *         <code>CurrentMetricResult</code> object.
+     *         The set of metrics.
      *         </p>
      */
     public java.util.List<CurrentMetricData> getCollections() {
@@ -107,13 +97,11 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Collections</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The set of metrics.
      * </p>
      *
      * @param collections <p>
-     *            The <code>Collections</code> for the
-     *            <code>CurrentMetricResult</code> object.
+     *            The set of metrics.
      *            </p>
      */
     public void setCollections(java.util.Collection<CurrentMetricData> collections) {
@@ -127,16 +115,14 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Collections</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The set of metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param collections <p>
-     *            The <code>Collections</code> for the
-     *            <code>CurrentMetricResult</code> object.
+     *            The set of metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -153,16 +139,14 @@ public class CurrentMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Collections</code> for the <code>CurrentMetricResult</code>
-     * object.
+     * The set of metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param collections <p>
-     *            The <code>Collections</code> for the
-     *            <code>CurrentMetricResult</code> object.
+     *            The set of metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,14 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>UserPhoneConfig</code> object that contains information about the
- * user phone configuration settings.
+ * Contains information about the phone configuration settings for a user.
  * </p>
  */
 public class UserPhoneConfig implements Serializable {
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,14 +35,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The Auto accept setting for the user, Yes or No.
+     * The Auto accept setting.
      * </p>
      */
     private Boolean autoAccept;
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds, for the user.
+     * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,15 +59,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SOFT_PHONE, DESK_PHONE
      *
      * @return <p>
-     *         The phone type selected for the user, either Soft phone or Desk
-     *         phone.
+     *         The phone type.
      *         </p>
      * @see PhoneType
      */
@@ -78,15 +76,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SOFT_PHONE, DESK_PHONE
      *
      * @param phoneType <p>
-     *            The phone type selected for the user, either Soft phone or
-     *            Desk phone.
+     *            The phone type.
      *            </p>
      * @see PhoneType
      */
@@ -96,7 +93,7 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,8 +103,7 @@ public class UserPhoneConfig implements Serializable {
      * <b>Allowed Values: </b>SOFT_PHONE, DESK_PHONE
      *
      * @param phoneType <p>
-     *            The phone type selected for the user, either Soft phone or
-     *            Desk phone.
+     *            The phone type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,15 +116,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SOFT_PHONE, DESK_PHONE
      *
      * @param phoneType <p>
-     *            The phone type selected for the user, either Soft phone or
-     *            Desk phone.
+     *            The phone type.
      *            </p>
      * @see PhoneType
      */
@@ -138,7 +133,7 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The phone type selected for the user, either Soft phone or Desk phone.
+     * The phone type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -148,8 +143,7 @@ public class UserPhoneConfig implements Serializable {
      * <b>Allowed Values: </b>SOFT_PHONE, DESK_PHONE
      *
      * @param phoneType <p>
-     *            The phone type selected for the user, either Soft phone or
-     *            Desk phone.
+     *            The phone type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -162,11 +156,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The Auto accept setting for the user, Yes or No.
+     * The Auto accept setting.
      * </p>
      *
      * @return <p>
-     *         The Auto accept setting for the user, Yes or No.
+     *         The Auto accept setting.
      *         </p>
      */
     public Boolean isAutoAccept() {
@@ -175,11 +169,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The Auto accept setting for the user, Yes or No.
+     * The Auto accept setting.
      * </p>
      *
      * @return <p>
-     *         The Auto accept setting for the user, Yes or No.
+     *         The Auto accept setting.
      *         </p>
      */
     public Boolean getAutoAccept() {
@@ -188,11 +182,11 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The Auto accept setting for the user, Yes or No.
+     * The Auto accept setting.
      * </p>
      *
      * @param autoAccept <p>
-     *            The Auto accept setting for the user, Yes or No.
+     *            The Auto accept setting.
      *            </p>
      */
     public void setAutoAccept(Boolean autoAccept) {
@@ -201,14 +195,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The Auto accept setting for the user, Yes or No.
+     * The Auto accept setting.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoAccept <p>
-     *            The Auto accept setting for the user, Yes or No.
+     *            The Auto accept setting.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -220,15 +214,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds, for the user.
+     * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The After Call Work (ACW) timeout setting, in seconds, for the
-     *         user.
+     *         The After Call Work (ACW) timeout setting, in seconds.
      *         </p>
      */
     public Integer getAfterContactWorkTimeLimit() {
@@ -237,15 +230,14 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds, for the user.
+     * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param afterContactWorkTimeLimit <p>
-     *            The After Call Work (ACW) timeout setting, in seconds, for the
-     *            user.
+     *            The After Call Work (ACW) timeout setting, in seconds.
      *            </p>
      */
     public void setAfterContactWorkTimeLimit(Integer afterContactWorkTimeLimit) {
@@ -254,7 +246,7 @@ public class UserPhoneConfig implements Serializable {
 
     /**
      * <p>
-     * The After Call Work (ACW) timeout setting, in seconds, for the user.
+     * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -264,8 +256,7 @@ public class UserPhoneConfig implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param afterContactWorkTimeLimit <p>
-     *            The After Call Work (ACW) timeout setting, in seconds, for the
-     *            user.
+     *            The After Call Work (ACW) timeout setting, in seconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

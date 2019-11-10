@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>HierarchyGroupSummary</code> object that contains information about
- * the hierarchy group, including ARN, Id, and Name.
+ * Contains summary information about a hierarchy group.
  * </p>
  */
 public class HierarchyGroupSummary implements Serializable {
@@ -33,7 +32,7 @@ public class HierarchyGroupSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group.
+     * The Amazon Resource Name (ARN) of the hierarchy group.
      * </p>
      */
     private String arn;
@@ -92,11 +91,11 @@ public class HierarchyGroupSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group.
+     * The Amazon Resource Name (ARN) of the hierarchy group.
      * </p>
      *
      * @return <p>
-     *         The ARN for the hierarchy group.
+     *         The Amazon Resource Name (ARN) of the hierarchy group.
      *         </p>
      */
     public String getArn() {
@@ -105,11 +104,11 @@ public class HierarchyGroupSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group.
+     * The Amazon Resource Name (ARN) of the hierarchy group.
      * </p>
      *
      * @param arn <p>
-     *            The ARN for the hierarchy group.
+     *            The Amazon Resource Name (ARN) of the hierarchy group.
      *            </p>
      */
     public void setArn(String arn) {
@@ -118,14 +117,14 @@ public class HierarchyGroupSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group.
+     * The Amazon Resource Name (ARN) of the hierarchy group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN for the hierarchy group.
+     *            The Amazon Resource Name (ARN) of the hierarchy group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
