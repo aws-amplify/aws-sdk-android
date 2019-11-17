@@ -20,27 +20,26 @@ import java.io.Serializable;
 public class ListSecurityProfilesResult implements Serializable {
     /**
      * <p>
-     * An array of <code>SecurityProfileSummary</code> objects.
+     * Information about the security profiles.
      * </p>
      */
     private java.util.List<SecurityProfileSummary> securityProfileSummaryList;
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * An array of <code>SecurityProfileSummary</code> objects.
+     * Information about the security profiles.
      * </p>
      *
      * @return <p>
-     *         An array of <code>SecurityProfileSummary</code> objects.
+     *         Information about the security profiles.
      *         </p>
      */
     public java.util.List<SecurityProfileSummary> getSecurityProfileSummaryList() {
@@ -49,11 +48,11 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>SecurityProfileSummary</code> objects.
+     * Information about the security profiles.
      * </p>
      *
      * @param securityProfileSummaryList <p>
-     *            An array of <code>SecurityProfileSummary</code> objects.
+     *            Information about the security profiles.
      *            </p>
      */
     public void setSecurityProfileSummaryList(
@@ -69,14 +68,14 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>SecurityProfileSummary</code> objects.
+     * Information about the security profiles.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityProfileSummaryList <p>
-     *            An array of <code>SecurityProfileSummary</code> objects.
+     *            Information about the security profiles.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -95,14 +94,14 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>SecurityProfileSummary</code> objects.
+     * Information about the security profiles.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityProfileSummaryList <p>
-     *            An array of <code>SecurityProfileSummary</code> objects.
+     *            Information about the security profiles.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -115,15 +114,13 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @return <p>
-     *         A string returned in the response. Use the value returned in the
-     *         response as the value of the NextToken in a subsequent request to
-     *         retrieve the next set of results.
+     *         If there are additional results, this is the token for the next
+     *         set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -132,15 +129,13 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -149,18 +144,16 @@ public class ListSecurityProfilesResult implements Serializable {
 
     /**
      * <p>
-     * A string returned in the response. Use the value returned in the response
-     * as the value of the NextToken in a subsequent request to retrieve the
-     * next set of results.
+     * If there are additional results, this is the token for the next set of
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A string returned in the response. Use the value returned in
-     *            the response as the value of the NextToken in a subsequent
-     *            request to retrieve the next set of results.
+     *            If there are additional results, this is the token for the
+     *            next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

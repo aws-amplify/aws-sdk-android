@@ -35,28 +35,22 @@ import com.amazonaws.services.connect.model.transform.*;
  * are blocking, and will not return until the service call completes.
  * <p>
  * <p>
- * The Amazon Connect API Reference provides descriptions, syntax, and usage
- * examples for each of the Amazon Connect actions, data types, parameters, and
- * errors. Amazon Connect is a cloud-based contact center solution that makes it
- * easy to set up and manage a customer contact center and provide reliable
- * customer engagement at any scale.
+ * Amazon Connect is a cloud-based contact center solution that makes it easy to
+ * set up and manage a customer contact center and provide reliable customer
+ * engagement at any scale.
  * </p>
  * <p>
- * Throttling limits for the Amazon Connect API operations:
+ * Amazon Connect provides rich metrics and real-time reporting that allow you
+ * to optimize contact routing. You can also resolve customer issues more
+ * efficiently by putting customers in touch with the right agents.
  * </p>
  * <p>
- * For the <code>GetMetricData</code> and <code>GetCurrentMetricData</code>
- * operations, a RateLimit of 5 per second, and a BurstLimit of 8 per second.
- * </p>
- * <p>
- * For all other operations, a RateLimit of 2 per second, and a BurstLimit of 5
- * per second.
- * </p>
- * <p>
- * You can request an increase to the throttling limits by submitting a <a href=
- * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase"
- * >Amazon Connect service limits increase form</a>. You must be signed in to
- * your AWS account to access the form.
+ * There are limits to the number of Amazon Connect resources that you can
+ * create and limits to the number of requests that you can make per second. For
+ * more information, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+ * >Amazon Connect Service Limits</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
  * </p>
  */
 public class AmazonConnectClient extends AmazonWebServiceClient implements AmazonConnect {
@@ -376,7 +370,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Creates a new user account in your Amazon Connect instance.
+     * Creates a user account for the specified Amazon Connect instance.
      * </p>
      * 
      * @param createUserRequest
@@ -428,7 +422,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Deletes a user account from Amazon Connect.
+     * Deletes a user account from the specified Amazon Connect instance.
      * </p>
      * 
      * @param deleteUserRequest
@@ -471,8 +465,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns a <code>User</code> object that contains information about the
-     * user account specified by the <code>UserId</code>.
+     * Describes the specified user account. You can find the instance ID in the
+     * console (it’s the final part of the ARN). The console does not display
+     * the user IDs. Instead, list the users and note the IDs provided in the
+     * output.
      * </p>
      * 
      * @param describeUserRequest
@@ -522,8 +518,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns a <code>HierarchyGroup</code> object that includes information
-     * about a hierarchy group in your instance.
+     * Describes the specified hierarchy group.
      * </p>
      * 
      * @param describeUserHierarchyGroupRequest
@@ -576,8 +571,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns a <code>HiearchyGroupStructure</code> object, which contains data
-     * about the levels in the agent hierarchy.
+     * Describes the hierarchy structure of the specified Amazon Connect
+     * instance.
      * </p>
      * 
      * @param describeUserHierarchyStructureRequest
@@ -630,7 +625,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Retrieves the contact attributes associated with a contact.
+     * Retrieves the contact attributes for the specified contact.
      * </p>
      * 
      * @param getContactAttributesRequest
@@ -681,12 +676,14 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * The <code>GetCurrentMetricData</code> operation retrieves current metric
-     * data from your Amazon Connect instance.
+     * Gets the real-time metric data from the specified Amazon Connect
+     * instance.
      * </p>
      * <p>
-     * If you are using an IAM account, it must have permission to the
-     * <code>connect:GetCurrentMetricData</code> action.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
+     * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param getCurrentMetricDataRequest
@@ -792,12 +789,13 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * The <code>GetMetricData</code> operation retrieves historical metrics
-     * data from your Amazon Connect instance.
+     * Gets historical metric data from the specified Amazon Connect instance.
      * </p>
      * <p>
-     * If you are using an IAM account, it must have permission to the
-     * <code>connect:GetMetricData</code> action.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
+     * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param getMetricDataRequest
@@ -847,8 +845,215 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns an array of <code>RoutingProfileSummary</code> objects that
-     * includes information about the routing profiles in your instance.
+     * Provides information about the contact flows for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listContactFlowsRequest
+     * @return listContactFlowsResult The response from the ListContactFlows
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListContactFlowsResult listContactFlows(ListContactFlowsRequest listContactFlowsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listContactFlowsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListContactFlowsRequest> request = null;
+        Response<ListContactFlowsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListContactFlowsRequestMarshaller().marshall(listContactFlowsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListContactFlowsResult, JsonUnmarshallerContext> unmarshaller = new ListContactFlowsResultJsonUnmarshaller();
+            JsonResponseHandler<ListContactFlowsResult> responseHandler = new JsonResponseHandler<ListContactFlowsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides information about the hours of operation for the specified
+     * Amazon Connect instance.
+     * </p>
+     * 
+     * @param listHoursOfOperationsRequest
+     * @return listHoursOfOperationsResult The response from the
+     *         ListHoursOfOperations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListHoursOfOperationsResult listHoursOfOperations(
+            ListHoursOfOperationsRequest listHoursOfOperationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listHoursOfOperationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListHoursOfOperationsRequest> request = null;
+        Response<ListHoursOfOperationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListHoursOfOperationsRequestMarshaller()
+                        .marshall(listHoursOfOperationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListHoursOfOperationsResult, JsonUnmarshallerContext> unmarshaller = new ListHoursOfOperationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListHoursOfOperationsResult> responseHandler = new JsonResponseHandler<ListHoursOfOperationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides information about the phone numbers for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listPhoneNumbersRequest
+     * @return listPhoneNumbersResult The response from the ListPhoneNumbers
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListPhoneNumbersResult listPhoneNumbers(ListPhoneNumbersRequest listPhoneNumbersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listPhoneNumbersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListPhoneNumbersRequest> request = null;
+        Response<ListPhoneNumbersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListPhoneNumbersRequestMarshaller().marshall(listPhoneNumbersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListPhoneNumbersResult, JsonUnmarshallerContext> unmarshaller = new ListPhoneNumbersResultJsonUnmarshaller();
+            JsonResponseHandler<ListPhoneNumbersResult> responseHandler = new JsonResponseHandler<ListPhoneNumbersResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides information about the queues for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listQueuesRequest
+     * @return listQueuesResult The response from the ListQueues service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListQueuesResult listQueues(ListQueuesRequest listQueuesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listQueuesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListQueuesRequest> request = null;
+        Response<ListQueuesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListQueuesRequestMarshaller().marshall(listQueuesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListQueuesResult, JsonUnmarshallerContext> unmarshaller = new ListQueuesResultJsonUnmarshaller();
+            JsonResponseHandler<ListQueuesResult> responseHandler = new JsonResponseHandler<ListQueuesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides summary information about the routing profiles for the specified
+     * Amazon Connect instance.
      * </p>
      * 
      * @param listRoutingProfilesRequest
@@ -901,9 +1106,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns an array of SecurityProfileSummary objects that contain
-     * information about the security profiles in your instance, including the
-     * ARN, Id, and Name of the security profile.
+     * Provides summary information about the security profiles for the
+     * specified Amazon Connect instance.
      * </p>
      * 
      * @param listSecurityProfilesRequest
@@ -956,9 +1160,61 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns a <code>UserHierarchyGroupSummaryList</code>, which is an array
-     * of <code>HierarchyGroupSummary</code> objects that contain information
-     * about the hierarchy groups in your instance.
+     * Lists the tags for the specified resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides summary information about the hierarchy groups for the specified
+     * Amazon Connect instance.
      * </p>
      * 
      * @param listUserHierarchyGroupsRequest
@@ -1011,8 +1267,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Returns a <code>UserSummaryList</code>, which is an array of
-     * <code>UserSummary</code> objects.
+     * Provides summary information about the users for the specified Amazon
+     * Connect instance.
      * </p>
      * 
      * @param listUsersRequest
@@ -1062,16 +1318,11 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * The <code>StartOutboundVoiceContact</code> operation initiates a contact
-     * flow to place an outbound call to a customer.
-     * </p>
-     * <p>
-     * If you are using an IAM account, it must have permission to the
-     * <code>connect:StartOutboundVoiceContact</code> action.
+     * Initiates a contact flow to place an outbound call to a customer.
      * </p>
      * <p>
      * There is a 60 second dialing timeout for this operation. If the call is
-     * not connected after 60 seconds, the call fails.
+     * not connected after 60 seconds, it fails.
      * </p>
      * 
      * @param startOutboundVoiceContactRequest
@@ -1126,12 +1377,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Ends the contact initiated by the <code>StartOutboundVoiceContact</code>
-     * operation.
-     * </p>
-     * <p>
-     * If you are using an IAM account, it must have permission to the
-     * <code>connect:StopContact</code> action.
+     * Ends the specified contact.
      * </p>
      * 
      * @param stopContactRequest
@@ -1181,34 +1427,120 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * The <code>UpdateContactAttributes</code> operation lets you
-     * programmatically create new, or update existing, contact attributes
-     * associated with a contact. You can use the operation to add or update
-     * attributes for both ongoing and completed contacts. For example, you can
-     * update the customer's name or the reason the customer called while the
-     * call is active, or add notes about steps that the agent took during the
-     * call that are displayed to the next agent that takes the call. You can
-     * also use the <code>UpdateContactAttributes</code> operation to update
-     * attributes for a contact using data from your CRM application and save
-     * the data with the contact in Amazon Connect. You could also flag calls
-     * for additional analysis, such as legal review or identifying abusive
-     * callers.
+     * Adds the specified tags to the specified resource.
+     * </p>
+     * <p>
+     * The supported resource type is users.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified tags from the specified resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates or updates the contact attributes associated with the specified
+     * contact.
+     * </p>
+     * <p>
+     * You can add or update attributes for both ongoing and completed contacts.
+     * For example, you can update the customer's name or the reason the
+     * customer called while the call is active, or add notes about steps that
+     * the agent took during the call that are displayed to the next agent that
+     * takes the call. You can also update attributes for a contact using data
+     * from your CRM application and save the data with the contact in Amazon
+     * Connect. You could also flag calls for additional analysis, such as legal
+     * review or identifying abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
      * then deleted.
      * </p>
      * <p>
-     * <i>Important:</i>
-     * </p>
-     * <p>
-     * You cannot use the operation to update attributes for contacts that
-     * occurred prior to the release of the API, September 12, 2018. You can
-     * update attributes only for contacts that started after the release of the
-     * API. If you attempt to update attributes for a contact that occurred
-     * prior to the release of the API, a 400 error is returned. This applies
-     * also to queued callbacks that were initiated prior to the release of the
-     * API but are still active in your instance.
+     * <b>Important:</b> You cannot use the operation to update attributes for
+     * contacts that occurred prior to the release of the API, September 12,
+     * 2018. You can update attributes only for contacts that started after the
+     * release of the API. If you attempt to update attributes for a contact
+     * that occurred prior to the release of the API, a 400 error is returned.
+     * This applies also to queued callbacks that were initiated prior to the
+     * release of the API but are still active in your instance.
      * </p>
      * 
      * @param updateContactAttributesRequest
@@ -1260,7 +1592,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Assigns the specified hierarchy group to the user.
+     * Assigns the specified hierarchy group to the specified user.
      * </p>
      * 
      * @param updateUserHierarchyRequest
@@ -1304,9 +1636,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Updates the identity information for the specified user in a
-     * <code>UserIdentityInfo</code> object, including email, first name, and
-     * last name.
+     * Updates the identity information for the specified user.
      * </p>
      * 
      * @param updateUserIdentityInfoRequest
@@ -1350,8 +1680,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Updates the phone configuration settings in the
-     * <code>UserPhoneConfig</code> object for the specified user.
+     * Updates the phone configuration settings for the specified user.
      * </p>
      * 
      * @param updateUserPhoneConfigRequest
@@ -1395,7 +1724,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Assigns the specified routing profile to a user.
+     * Assigns the specified routing profile to the specified user.
      * </p>
      * 
      * @param updateUserRoutingProfileRequest
@@ -1440,7 +1769,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Updates the security profiles assigned to the user.
+     * Assigns the specified security profiles to the specified user.
      * </p>
      * 
      * @param updateUserSecurityProfilesRequest

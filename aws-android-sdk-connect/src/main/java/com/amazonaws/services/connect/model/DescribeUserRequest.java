@@ -21,26 +21,22 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a <code>User</code> object that contains information about the user
- * account specified by the <code>UserId</code>.
+ * Describes the specified user account. You can find the instance ID in the
+ * console (it’s the final part of the ARN). The console does not display the
+ * user IDs. Instead, list the users and note the IDs provided in the output.
  * </p>
  */
 public class DescribeUserRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Unique identifier for the user account to return.
+     * The identifier of the user account.
      * </p>
      */
     private String userId;
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,11 +46,11 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Unique identifier for the user account to return.
+     * The identifier of the user account.
      * </p>
      *
      * @return <p>
-     *         Unique identifier for the user account to return.
+     *         The identifier of the user account.
      *         </p>
      */
     public String getUserId() {
@@ -63,11 +59,11 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Unique identifier for the user account to return.
+     * The identifier of the user account.
      * </p>
      *
      * @param userId <p>
-     *            Unique identifier for the user account to return.
+     *            The identifier of the user account.
      *            </p>
      */
     public void setUserId(String userId) {
@@ -76,14 +72,14 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Unique identifier for the user account to return.
+     * The identifier of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userId <p>
-     *            Unique identifier for the user account to return.
+     *            The identifier of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -95,25 +91,14 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -122,25 +107,14 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -149,12 +123,7 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -164,13 +133,7 @@ public class DescribeUserRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

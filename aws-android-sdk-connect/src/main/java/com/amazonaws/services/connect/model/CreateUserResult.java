@@ -20,25 +20,25 @@ import java.io.Serializable;
 public class CreateUserResult implements Serializable {
     /**
      * <p>
-     * The unique identifier for the user account in Amazon Connect
+     * The identifier of the user account.
      * </p>
      */
     private String userId;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the user account created.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      */
     private String userArn;
 
     /**
      * <p>
-     * The unique identifier for the user account in Amazon Connect
+     * The identifier of the user account.
      * </p>
      *
      * @return <p>
-     *         The unique identifier for the user account in Amazon Connect
+     *         The identifier of the user account.
      *         </p>
      */
     public String getUserId() {
@@ -47,11 +47,11 @@ public class CreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier for the user account in Amazon Connect
+     * The identifier of the user account.
      * </p>
      *
      * @param userId <p>
-     *            The unique identifier for the user account in Amazon Connect
+     *            The identifier of the user account.
      *            </p>
      */
     public void setUserId(String userId) {
@@ -60,14 +60,14 @@ public class CreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier for the user account in Amazon Connect
+     * The identifier of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userId <p>
-     *            The unique identifier for the user account in Amazon Connect
+     *            The identifier of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -79,11 +79,11 @@ public class CreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the user account created.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the user account created.
+     *         The Amazon Resource Name (ARN) of the user account.
      *         </p>
      */
     public String getUserArn() {
@@ -92,11 +92,11 @@ public class CreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the user account created.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @param userArn <p>
-     *            The Amazon Resource Name (ARN) of the user account created.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      */
     public void setUserArn(String userArn) {
@@ -105,14 +105,14 @@ public class CreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the user account created.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userArn <p>
-     *            The Amazon Resource Name (ARN) of the user account created.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

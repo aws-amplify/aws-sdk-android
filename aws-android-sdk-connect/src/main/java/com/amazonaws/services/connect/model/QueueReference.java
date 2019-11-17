@@ -19,32 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A QueueReference object that contains the the QueueId and ARN for the queue
- * resource for which metrics are returned.
+ * Contains information about a queue resource for which metrics are returned.
  * </p>
  */
 public class QueueReference implements Serializable {
     /**
      * <p>
-     * The ID of the queue associated with the metrics returned.
+     * The identifier of the queue.
      * </p>
      */
     private String id;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of queue.
+     * The Amazon Resource Name (ARN) of the queue.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The ID of the queue associated with the metrics returned.
+     * The identifier of the queue.
      * </p>
      *
      * @return <p>
-     *         The ID of the queue associated with the metrics returned.
+     *         The identifier of the queue.
      *         </p>
      */
     public String getId() {
@@ -53,11 +52,11 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
-     * The ID of the queue associated with the metrics returned.
+     * The identifier of the queue.
      * </p>
      *
      * @param id <p>
-     *            The ID of the queue associated with the metrics returned.
+     *            The identifier of the queue.
      *            </p>
      */
     public void setId(String id) {
@@ -66,14 +65,14 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
-     * The ID of the queue associated with the metrics returned.
+     * The identifier of the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            The ID of the queue associated with the metrics returned.
+     *            The identifier of the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -85,11 +84,11 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of queue.
+     * The Amazon Resource Name (ARN) of the queue.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of queue.
+     *         The Amazon Resource Name (ARN) of the queue.
      *         </p>
      */
     public String getArn() {
@@ -98,11 +97,11 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of queue.
+     * The Amazon Resource Name (ARN) of the queue.
      * </p>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of queue.
+     *            The Amazon Resource Name (ARN) of the queue.
      *            </p>
      */
     public void setArn(String arn) {
@@ -111,14 +110,14 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of queue.
+     * The Amazon Resource Name (ARN) of the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of queue.
+     *            The Amazon Resource Name (ARN) of the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

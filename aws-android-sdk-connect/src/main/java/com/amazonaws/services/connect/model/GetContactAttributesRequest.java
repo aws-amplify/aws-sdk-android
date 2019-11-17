@@ -21,14 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves the contact attributes associated with a contact.
+ * Retrieves the contact attributes for the specified contact.
  * </p>
  */
 public class GetContactAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The instance ID for the instance from which to retrieve contact
-     * attributes.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,8 +37,7 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID for the initial contact in Amazon Connect associated with the
-     * attributes to update.
+     * The identifier of the initial contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,16 +47,14 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The instance ID for the instance from which to retrieve contact
-     * attributes.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The instance ID for the instance from which to retrieve contact
-     *         attributes.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -67,16 +63,14 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The instance ID for the instance from which to retrieve contact
-     * attributes.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The instance ID for the instance from which to retrieve
-     *            contact attributes.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -85,8 +79,7 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The instance ID for the instance from which to retrieve contact
-     * attributes.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -96,8 +89,7 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The instance ID for the instance from which to retrieve
-     *            contact attributes.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -109,16 +101,14 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID for the initial contact in Amazon Connect associated with the
-     * attributes to update.
+     * The identifier of the initial contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The ID for the initial contact in Amazon Connect associated with
-     *         the attributes to update.
+     *         The identifier of the initial contact.
      *         </p>
      */
     public String getInitialContactId() {
@@ -127,16 +117,14 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID for the initial contact in Amazon Connect associated with the
-     * attributes to update.
+     * The identifier of the initial contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param initialContactId <p>
-     *            The ID for the initial contact in Amazon Connect associated
-     *            with the attributes to update.
+     *            The identifier of the initial contact.
      *            </p>
      */
     public void setInitialContactId(String initialContactId) {
@@ -145,8 +133,7 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID for the initial contact in Amazon Connect associated with the
-     * attributes to update.
+     * The identifier of the initial contact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -156,8 +143,7 @@ public class GetContactAttributesRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 256<br/>
      *
      * @param initialContactId <p>
-     *            The ID for the initial contact in Amazon Connect associated
-     *            with the attributes to update.
+     *            The identifier of the initial contact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
