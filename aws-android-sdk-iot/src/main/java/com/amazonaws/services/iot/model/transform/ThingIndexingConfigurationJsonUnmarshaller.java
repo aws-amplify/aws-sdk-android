@@ -44,6 +44,16 @@ class ThingIndexingConfigurationJsonUnmarshaller implements
                 thingIndexingConfiguration.setThingConnectivityIndexingMode(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("managedFields")) {
+                thingIndexingConfiguration.setManagedFields(new ListUnmarshaller<Field>(
+                        FieldJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("customFields")) {
+                thingIndexingConfiguration.setCustomFields(new ListUnmarshaller<Field>(
+                        FieldJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
