@@ -193,6 +193,12 @@ public class UpdateUserPoolClientRequestMarshaller implements
                 AnalyticsConfigurationTypeJsonMarshaller.getInstance().marshall(
                         analyticsConfiguration, jsonWriter);
             }
+            if (updateUserPoolClientRequest.getPreventUserExistenceErrors() != null) {
+                String preventUserExistenceErrors = updateUserPoolClientRequest
+                        .getPreventUserExistenceErrors();
+                jsonWriter.name("PreventUserExistenceErrors");
+                jsonWriter.value(preventUserExistenceErrors);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

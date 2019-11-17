@@ -26,6 +26,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Calling this action requires developer credentials.
  * </p>
+ * <important>
+ * <p>
+ * If you don't provide a value for an attribute, it will be set to the default
+ * value.
+ * </p>
+ * </important>
  */
 public class UpdateGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

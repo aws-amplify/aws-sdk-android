@@ -129,6 +129,49 @@ public class EmailConfigurationType implements Serializable {
 
     /**
      * <p>
+     * Identifies either the sender’s email address or the sender’s name with
+     * their email address. For example, <code>testuser@example.com</code> or
+     * <code>Test User &lt;testuser@example.com&gt;</code>. This address will
+     * appear before the body of the email.
+     * </p>
+     */
+    private String from;
+
+    /**
+     * <p>
+     * The set of configuration rules that can be applied to emails sent using
+     * Amazon SES. A configuration set is applied to an email by including a
+     * reference to the configuration set in the headers of the email. Once
+     * applied, all of the rules in that configuration set are applied to the
+     * email. Configuration sets can be used to apply the following types of
+     * rules to emails:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Event publishing – Amazon SES can track the number of send, delivery,
+     * open, click, bounce, and complaint events for each email sent. Use event
+     * publishing to send information about these events to other AWS services
+     * such as SNS and CloudWatch.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IP pool management – When leasing dedicated IP addresses with Amazon SES,
+     * you can create groups of IP addresses, called dedicated IP pools. You can
+     * then associate the dedicated IP pools with configuration sets.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]+$<br/>
+     */
+    private String configurationSet;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of a verified email address in Amazon SES.
      * This email address is used in one of the following ways, depending on the
      * value that you specify for the <code>EmailSendingAccount</code>
@@ -1006,6 +1049,264 @@ public class EmailConfigurationType implements Serializable {
     }
 
     /**
+     * <p>
+     * Identifies either the sender’s email address or the sender’s name with
+     * their email address. For example, <code>testuser@example.com</code> or
+     * <code>Test User &lt;testuser@example.com&gt;</code>. This address will
+     * appear before the body of the email.
+     * </p>
+     *
+     * @return <p>
+     *         Identifies either the sender’s email address or the sender’s name
+     *         with their email address. For example,
+     *         <code>testuser@example.com</code> or
+     *         <code>Test User &lt;testuser@example.com&gt;</code>. This address
+     *         will appear before the body of the email.
+     *         </p>
+     */
+    public String getFrom() {
+        return from;
+    }
+
+    /**
+     * <p>
+     * Identifies either the sender’s email address or the sender’s name with
+     * their email address. For example, <code>testuser@example.com</code> or
+     * <code>Test User &lt;testuser@example.com&gt;</code>. This address will
+     * appear before the body of the email.
+     * </p>
+     *
+     * @param from <p>
+     *            Identifies either the sender’s email address or the sender’s
+     *            name with their email address. For example,
+     *            <code>testuser@example.com</code> or
+     *            <code>Test User &lt;testuser@example.com&gt;</code>. This
+     *            address will appear before the body of the email.
+     *            </p>
+     */
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    /**
+     * <p>
+     * Identifies either the sender’s email address or the sender’s name with
+     * their email address. For example, <code>testuser@example.com</code> or
+     * <code>Test User &lt;testuser@example.com&gt;</code>. This address will
+     * appear before the body of the email.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param from <p>
+     *            Identifies either the sender’s email address or the sender’s
+     *            name with their email address. For example,
+     *            <code>testuser@example.com</code> or
+     *            <code>Test User &lt;testuser@example.com&gt;</code>. This
+     *            address will appear before the body of the email.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EmailConfigurationType withFrom(String from) {
+        this.from = from;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The set of configuration rules that can be applied to emails sent using
+     * Amazon SES. A configuration set is applied to an email by including a
+     * reference to the configuration set in the headers of the email. Once
+     * applied, all of the rules in that configuration set are applied to the
+     * email. Configuration sets can be used to apply the following types of
+     * rules to emails:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Event publishing – Amazon SES can track the number of send, delivery,
+     * open, click, bounce, and complaint events for each email sent. Use event
+     * publishing to send information about these events to other AWS services
+     * such as SNS and CloudWatch.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IP pool management – When leasing dedicated IP addresses with Amazon SES,
+     * you can create groups of IP addresses, called dedicated IP pools. You can
+     * then associate the dedicated IP pools with configuration sets.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]+$<br/>
+     *
+     * @return <p>
+     *         The set of configuration rules that can be applied to emails sent
+     *         using Amazon SES. A configuration set is applied to an email by
+     *         including a reference to the configuration set in the headers of
+     *         the email. Once applied, all of the rules in that configuration
+     *         set are applied to the email. Configuration sets can be used to
+     *         apply the following types of rules to emails:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Event publishing – Amazon SES can track the number of send,
+     *         delivery, open, click, bounce, and complaint events for each
+     *         email sent. Use event publishing to send information about these
+     *         events to other AWS services such as SNS and CloudWatch.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         IP pool management – When leasing dedicated IP addresses with
+     *         Amazon SES, you can create groups of IP addresses, called
+     *         dedicated IP pools. You can then associate the dedicated IP pools
+     *         with configuration sets.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getConfigurationSet() {
+        return configurationSet;
+    }
+
+    /**
+     * <p>
+     * The set of configuration rules that can be applied to emails sent using
+     * Amazon SES. A configuration set is applied to an email by including a
+     * reference to the configuration set in the headers of the email. Once
+     * applied, all of the rules in that configuration set are applied to the
+     * email. Configuration sets can be used to apply the following types of
+     * rules to emails:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Event publishing – Amazon SES can track the number of send, delivery,
+     * open, click, bounce, and complaint events for each email sent. Use event
+     * publishing to send information about these events to other AWS services
+     * such as SNS and CloudWatch.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IP pool management – When leasing dedicated IP addresses with Amazon SES,
+     * you can create groups of IP addresses, called dedicated IP pools. You can
+     * then associate the dedicated IP pools with configuration sets.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]+$<br/>
+     *
+     * @param configurationSet <p>
+     *            The set of configuration rules that can be applied to emails
+     *            sent using Amazon SES. A configuration set is applied to an
+     *            email by including a reference to the configuration set in the
+     *            headers of the email. Once applied, all of the rules in that
+     *            configuration set are applied to the email. Configuration sets
+     *            can be used to apply the following types of rules to emails:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Event publishing – Amazon SES can track the number of send,
+     *            delivery, open, click, bounce, and complaint events for each
+     *            email sent. Use event publishing to send information about
+     *            these events to other AWS services such as SNS and CloudWatch.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            IP pool management – When leasing dedicated IP addresses with
+     *            Amazon SES, you can create groups of IP addresses, called
+     *            dedicated IP pools. You can then associate the dedicated IP
+     *            pools with configuration sets.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
+    }
+
+    /**
+     * <p>
+     * The set of configuration rules that can be applied to emails sent using
+     * Amazon SES. A configuration set is applied to an email by including a
+     * reference to the configuration set in the headers of the email. Once
+     * applied, all of the rules in that configuration set are applied to the
+     * email. Configuration sets can be used to apply the following types of
+     * rules to emails:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Event publishing – Amazon SES can track the number of send, delivery,
+     * open, click, bounce, and complaint events for each email sent. Use event
+     * publishing to send information about these events to other AWS services
+     * such as SNS and CloudWatch.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IP pool management – When leasing dedicated IP addresses with Amazon SES,
+     * you can create groups of IP addresses, called dedicated IP pools. You can
+     * then associate the dedicated IP pools with configuration sets.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9_-]+$<br/>
+     *
+     * @param configurationSet <p>
+     *            The set of configuration rules that can be applied to emails
+     *            sent using Amazon SES. A configuration set is applied to an
+     *            email by including a reference to the configuration set in the
+     *            headers of the email. Once applied, all of the rules in that
+     *            configuration set are applied to the email. Configuration sets
+     *            can be used to apply the following types of rules to emails:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Event publishing – Amazon SES can track the number of send,
+     *            delivery, open, click, bounce, and complaint events for each
+     *            email sent. Use event publishing to send information about
+     *            these events to other AWS services such as SNS and CloudWatch.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            IP pool management – When leasing dedicated IP addresses with
+     *            Amazon SES, you can create groups of IP addresses, called
+     *            dedicated IP pools. You can then associate the dedicated IP
+     *            pools with configuration sets.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EmailConfigurationType withConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1021,7 +1322,11 @@ public class EmailConfigurationType implements Serializable {
         if (getReplyToEmailAddress() != null)
             sb.append("ReplyToEmailAddress: " + getReplyToEmailAddress() + ",");
         if (getEmailSendingAccount() != null)
-            sb.append("EmailSendingAccount: " + getEmailSendingAccount());
+            sb.append("EmailSendingAccount: " + getEmailSendingAccount() + ",");
+        if (getFrom() != null)
+            sb.append("From: " + getFrom() + ",");
+        if (getConfigurationSet() != null)
+            sb.append("ConfigurationSet: " + getConfigurationSet());
         sb.append("}");
         return sb.toString();
     }
@@ -1036,6 +1341,9 @@ public class EmailConfigurationType implements Serializable {
                 + ((getReplyToEmailAddress() == null) ? 0 : getReplyToEmailAddress().hashCode());
         hashCode = prime * hashCode
                 + ((getEmailSendingAccount() == null) ? 0 : getEmailSendingAccount().hashCode());
+        hashCode = prime * hashCode + ((getFrom() == null) ? 0 : getFrom().hashCode());
+        hashCode = prime * hashCode
+                + ((getConfigurationSet() == null) ? 0 : getConfigurationSet().hashCode());
         return hashCode;
     }
 
@@ -1064,6 +1372,15 @@ public class EmailConfigurationType implements Serializable {
             return false;
         if (other.getEmailSendingAccount() != null
                 && other.getEmailSendingAccount().equals(this.getEmailSendingAccount()) == false)
+            return false;
+        if (other.getFrom() == null ^ this.getFrom() == null)
+            return false;
+        if (other.getFrom() != null && other.getFrom().equals(this.getFrom()) == false)
+            return false;
+        if (other.getConfigurationSet() == null ^ this.getConfigurationSet() == null)
+            return false;
+        if (other.getConfigurationSet() != null
+                && other.getConfigurationSet().equals(this.getConfigurationSet()) == false)
             return false;
         return true;
     }
