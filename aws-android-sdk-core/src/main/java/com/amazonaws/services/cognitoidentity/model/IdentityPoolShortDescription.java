@@ -41,7 +41,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      */
     private String identityPoolName;
 
@@ -109,7 +109,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @return <p>
      *         A string that you provide.
@@ -126,7 +126,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.
@@ -146,7 +146,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.
