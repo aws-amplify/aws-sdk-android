@@ -41,6 +41,16 @@ class ThingGroupIndexingConfigurationJsonUnmarshaller implements
                 thingGroupIndexingConfiguration.setThingGroupIndexingMode(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("managedFields")) {
+                thingGroupIndexingConfiguration.setManagedFields(new ListUnmarshaller<Field>(
+                        FieldJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("customFields")) {
+                thingGroupIndexingConfiguration.setCustomFields(new ListUnmarshaller<Field>(
+                        FieldJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

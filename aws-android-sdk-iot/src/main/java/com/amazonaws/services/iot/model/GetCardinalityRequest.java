@@ -21,17 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets statistics returns the count, average, sum, minimum, maximum,
- * sumOfSquares, variance, and standard deviation for the specified aggregated
- * field. If the aggregation field is of type String, only the count statistic
- * is returned.
+ * Returns the number of things with distinct values for the aggregation field.
  * </p>
  */
-public class GetStatisticsRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetCardinalityRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,8 +38,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The search query.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +48,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,15 +58,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      */
     private String queryVersion;
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,8 +73,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the index to search. The default value is
-     *         <code>AWS_Things</code>.
+     *         The name of the index to search.
      *         </p>
      */
     public String getIndexName() {
@@ -89,8 +82,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,8 +90,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The name of the index to search. The default value is
-     *            <code>AWS_Things</code>.
+     *            The name of the index to search.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -108,8 +99,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -120,30 +110,26 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The name of the index to search. The default value is
-     *            <code>AWS_Things</code>.
+     *            The name of the index to search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withIndexName(String indexName) {
+    public GetCardinalityRequest withIndexName(String indexName) {
         this.indexName = indexName;
         return this;
     }
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The search query.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The query used to search. You can specify "*" for the query
-     *         string to get the count of all indexed things in your AWS
-     *         account.
+     *         The search query.
      *         </p>
      */
     public String getQueryString() {
@@ -152,17 +138,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The search query.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            The search query.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -171,8 +154,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The search query.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,28 +164,26 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            The search query.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withQueryString(String queryString) {
+    public GetCardinalityRequest withQueryString(String queryString) {
         this.queryString = queryString;
         return this;
     }
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The aggregation field name.
+     *         The field to aggregate.
      *         </p>
      */
     public String getAggregationField() {
@@ -212,14 +192,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The field to aggregate.
      *            </p>
      */
     public void setAggregationField(String aggregationField) {
@@ -228,7 +208,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,23 +218,23 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The field to aggregate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withAggregationField(String aggregationField) {
+    public GetCardinalityRequest withAggregationField(String aggregationField) {
         this.aggregationField = aggregationField;
         return this;
     }
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      *
      * @return <p>
-     *         The version of the query used to search.
+     *         The query version.
      *         </p>
      */
     public String getQueryVersion() {
@@ -263,11 +243,11 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      *
      * @param queryVersion <p>
-     *            The version of the query used to search.
+     *            The query version.
      *            </p>
      */
     public void setQueryVersion(String queryVersion) {
@@ -276,19 +256,19 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queryVersion <p>
-     *            The version of the query used to search.
+     *            The query version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withQueryVersion(String queryVersion) {
+    public GetCardinalityRequest withQueryVersion(String queryVersion) {
         this.queryVersion = queryVersion;
         return this;
     }
@@ -338,9 +318,9 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof GetStatisticsRequest == false)
+        if (obj instanceof GetCardinalityRequest == false)
             return false;
-        GetStatisticsRequest other = (GetStatisticsRequest) obj;
+        GetCardinalityRequest other = (GetCardinalityRequest) obj;
 
         if (other.getIndexName() == null ^ this.getIndexName() == null)
             return false;
