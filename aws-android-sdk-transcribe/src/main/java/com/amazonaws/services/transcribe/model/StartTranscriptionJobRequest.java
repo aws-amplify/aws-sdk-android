@@ -45,7 +45,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      */
     private String languageCode;
 
@@ -98,9 +99,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * Amazon Transcribe uses the default Amazon S3 key for server-side
-     * encryption of transcripts that are placed in your S3 bucket. You can't
-     * specify your own encryption key.
+     * You can specify an AWS Key Management Service (KMS) key to encrypt the
+     * output of your transcription using the
+     * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
+     * KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket.
      * </p>
      * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
@@ -117,7 +120,54 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     private String outputBucketName;
 
     /**
-     * The new value for the outputEncryptionKMSKeyId property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
+     * key used to encrypt the output of the transcription job. The user calling
+     * the <code>StartTranscriptionJob</code> operation must have permission to
+     * use the specified KMS key.
+     * </p>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * KMS Key Alias: "alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account or another account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN of a KMS Key Alias:
+     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify an encryption key, the output of the transcription
+     * job is encrypted with the default Amazon S3 key (SSE-S3).
+     * </p>
+     * <p>
+     * If you specify a KMS key to encrypt your output, you must also specify an
+     * output location in the <code>OutputBucketName</code> parameter.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -209,7 +259,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -227,7 +278,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -249,7 +301,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -271,7 +324,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -293,7 +347,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -568,9 +623,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * Amazon Transcribe uses the default Amazon S3 key for server-side
-     * encryption of transcripts that are placed in your S3 bucket. You can't
-     * specify your own encryption key.
+     * You can specify an AWS Key Management Service (KMS) key to encrypt the
+     * output of your transcription using the
+     * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
+     * KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket.
      * </p>
      * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
@@ -598,9 +655,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         >Permissions Required for IAM User Roles</a>.
      *         </p>
      *         <p>
-     *         Amazon Transcribe uses the default Amazon S3 key for server-side
-     *         encryption of transcripts that are placed in your S3 bucket. You
-     *         can't specify your own encryption key.
+     *         You can specify an AWS Key Management Service (KMS) key to
+     *         encrypt the output of your transcription using the
+     *         <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
+     *         specify a KMS key, Amazon Transcribe uses the default Amazon S3
+     *         key for server-side encryption of transcripts that are placed in
+     *         your S3 bucket.
      *         </p>
      *         <p>
      *         If you don't set the <code>OutputBucketName</code>, Amazon
@@ -629,9 +689,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * Amazon Transcribe uses the default Amazon S3 key for server-side
-     * encryption of transcripts that are placed in your S3 bucket. You can't
-     * specify your own encryption key.
+     * You can specify an AWS Key Management Service (KMS) key to encrypt the
+     * output of your transcription using the
+     * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
+     * KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket.
      * </p>
      * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
@@ -660,9 +722,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>
-     *            Amazon Transcribe uses the default Amazon S3 key for
-     *            server-side encryption of transcripts that are placed in your
-     *            S3 bucket. You can't specify your own encryption key.
+     *            You can specify an AWS Key Management Service (KMS) key to
+     *            encrypt the output of your transcription using the
+     *            <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
+     *            specify a KMS key, Amazon Transcribe uses the default Amazon
+     *            S3 key for server-side encryption of transcripts that are
+     *            placed in your S3 bucket.
      *            </p>
      *            <p>
      *            If you don't set the <code>OutputBucketName</code>, Amazon
@@ -691,9 +756,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * Amazon Transcribe uses the default Amazon S3 key for server-side
-     * encryption of transcripts that are placed in your S3 bucket. You can't
-     * specify your own encryption key.
+     * You can specify an AWS Key Management Service (KMS) key to encrypt the
+     * output of your transcription using the
+     * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
+     * KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
+     * encryption of transcripts that are placed in your S3 bucket.
      * </p>
      * <p>
      * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
@@ -725,9 +792,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>
-     *            Amazon Transcribe uses the default Amazon S3 key for
-     *            server-side encryption of transcripts that are placed in your
-     *            S3 bucket. You can't specify your own encryption key.
+     *            You can specify an AWS Key Management Service (KMS) key to
+     *            encrypt the output of your transcription using the
+     *            <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
+     *            specify a KMS key, Amazon Transcribe uses the default Amazon
+     *            S3 key for server-side encryption of transcripts that are
+     *            placed in your S3 bucket.
      *            </p>
      *            <p>
      *            If you don't set the <code>OutputBucketName</code>, Amazon
@@ -745,36 +815,273 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     }
 
     /**
-     * Returns the value of the outputEncryptionKMSKeyId property for this
-     * object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
+     * key used to encrypt the output of the transcription job. The user calling
+     * the <code>StartTranscriptionJob</code> operation must have permission to
+     * use the specified KMS key.
+     * </p>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * KMS Key Alias: "alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account or another account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN of a KMS Key Alias:
+     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify an encryption key, the output of the transcription
+     * job is encrypted with the default Amazon S3 key (SSE-S3).
+     * </p>
+     * <p>
+     * If you specify a KMS key to encrypt your output, you must also specify an
+     * output location in the <code>OutputBucketName</code> parameter.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
-     * @return The value of the outputEncryptionKMSKeyId property for this
-     *         object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the AWS Key Management Service
+     *         (KMS) key used to encrypt the output of the transcription job.
+     *         The user calling the <code>StartTranscriptionJob</code> operation
+     *         must have permission to use the specified KMS key.
+     *         </p>
+     *         <p>
+     *         You can use either of the following to identify a KMS key in the
+     *         current account:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         KMS Key Alias: "alias/ExampleAlias"
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         You can use either of the following to identify a KMS key in the
+     *         current account or another account:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Amazon Resource Name (ARN) of a KMS Key:
+     *         "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         ARN of a KMS Key Alias:
+     *         "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         If you don't specify an encryption key, the output of the
+     *         transcription job is encrypted with the default Amazon S3 key
+     *         (SSE-S3).
+     *         </p>
+     *         <p>
+     *         If you specify a KMS key to encrypt your output, you must also
+     *         specify an output location in the <code>OutputBucketName</code>
+     *         parameter.
+     *         </p>
      */
     public String getOutputEncryptionKMSKeyId() {
         return outputEncryptionKMSKeyId;
     }
 
     /**
-     * Sets the value of outputEncryptionKMSKeyId
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
+     * key used to encrypt the output of the transcription job. The user calling
+     * the <code>StartTranscriptionJob</code> operation must have permission to
+     * use the specified KMS key.
+     * </p>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * KMS Key Alias: "alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account or another account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN of a KMS Key Alias:
+     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify an encryption key, the output of the transcription
+     * job is encrypted with the default Amazon S3 key (SSE-S3).
+     * </p>
+     * <p>
+     * If you specify a KMS key to encrypt your output, you must also specify an
+     * output location in the <code>OutputBucketName</code> parameter.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
-     * @param outputEncryptionKMSKeyId The new value for the
-     *            outputEncryptionKMSKeyId property for this object.
+     * @param outputEncryptionKMSKeyId <p>
+     *            The Amazon Resource Name (ARN) of the AWS Key Management
+     *            Service (KMS) key used to encrypt the output of the
+     *            transcription job. The user calling the
+     *            <code>StartTranscriptionJob</code> operation must have
+     *            permission to use the specified KMS key.
+     *            </p>
+     *            <p>
+     *            You can use either of the following to identify a KMS key in
+     *            the current account:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            KMS Key Alias: "alias/ExampleAlias"
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            You can use either of the following to identify a KMS key in
+     *            the current account or another account:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN of a KMS Key Alias:
+     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify an encryption key, the output of the
+     *            transcription job is encrypted with the default Amazon S3 key
+     *            (SSE-S3).
+     *            </p>
+     *            <p>
+     *            If you specify a KMS key to encrypt your output, you must also
+     *            specify an output location in the
+     *            <code>OutputBucketName</code> parameter.
+     *            </p>
      */
     public void setOutputEncryptionKMSKeyId(String outputEncryptionKMSKeyId) {
         this.outputEncryptionKMSKeyId = outputEncryptionKMSKeyId;
     }
 
     /**
-     * Sets the value of the outputEncryptionKMSKeyId property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
+     * key used to encrypt the output of the transcription job. The user calling
+     * the <code>StartTranscriptionJob</code> operation must have permission to
+     * use the specified KMS key.
+     * </p>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * KMS Key Alias: "alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * You can use either of the following to identify a KMS key in the current
+     * account or another account:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN of a KMS Key Alias:
+     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify an encryption key, the output of the transcription
+     * job is encrypted with the default Amazon S3 key (SSE-S3).
+     * </p>
+     * <p>
+     * If you specify a KMS key to encrypt your output, you must also specify an
+     * output location in the <code>OutputBucketName</code> parameter.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -783,8 +1090,57 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
-     * @param outputEncryptionKMSKeyId The new value for the
-     *            outputEncryptionKMSKeyId property for this object.
+     * @param outputEncryptionKMSKeyId <p>
+     *            The Amazon Resource Name (ARN) of the AWS Key Management
+     *            Service (KMS) key used to encrypt the output of the
+     *            transcription job. The user calling the
+     *            <code>StartTranscriptionJob</code> operation must have
+     *            permission to use the specified KMS key.
+     *            </p>
+     *            <p>
+     *            You can use either of the following to identify a KMS key in
+     *            the current account:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            KMS Key Alias: "alias/ExampleAlias"
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            You can use either of the following to identify a KMS key in
+     *            the current account or another account:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN of a KMS Key Alias:
+     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify an encryption key, the output of the
+     *            transcription job is encrypted with the default Amazon S3 key
+     *            (SSE-S3).
+     *            </p>
+     *            <p>
+     *            If you specify a KMS key to encrypt your output, you must also
+     *            specify an output location in the
+     *            <code>OutputBucketName</code> parameter.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

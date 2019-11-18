@@ -38,7 +38,15 @@ public enum LanguageCode {
     HiIN("hi-IN"),
     ArSA("ar-SA"),
     RuRU("ru-RU"),
-    ZhCN("zh-CN");
+    ZhCN("zh-CN"),
+    NlNL("nl-NL"),
+    IdID("id-ID"),
+    TaIN("ta-IN"),
+    FaIR("fa-IR"),
+    EnIE("en-IE"),
+    EnAB("en-AB"),
+    EnWL("en-WL"),
+    PtPT("pt-PT");
 
     private String value;
 
@@ -70,6 +78,14 @@ public enum LanguageCode {
         enumMap.put("ar-SA", ArSA);
         enumMap.put("ru-RU", RuRU);
         enumMap.put("zh-CN", ZhCN);
+        enumMap.put("nl-NL", NlNL);
+        enumMap.put("id-ID", IdID);
+        enumMap.put("ta-IN", TaIN);
+        enumMap.put("fa-IR", FaIR);
+        enumMap.put("en-IE", EnIE);
+        enumMap.put("en-AB", EnAB);
+        enumMap.put("en-WL", EnWL);
+        enumMap.put("pt-PT", PtPT);
     }
 
     /**
