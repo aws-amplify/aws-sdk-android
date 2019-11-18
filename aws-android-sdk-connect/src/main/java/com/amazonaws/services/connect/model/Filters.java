@@ -19,37 +19,34 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The filter, either channel or queues, to apply to the metric results
- * retrieved.
+ * Contains the filter to apply when retrieving metrics.
  * </p>
  */
 public class Filters implements Serializable {
     /**
      * <p>
-     * A list of up to 100 queue IDs or queue ARNs to use to filter the metrics
-     * retrieved. You can include both IDs and ARNs in a request.
+     * The queues to use to filter the metrics. You can specify up to 100 queues
+     * per request.
      * </p>
      */
     private java.util.List<String> queues;
 
     /**
      * <p>
-     * The Channel to use as a filter for the metrics returned. Only VOICE is
-     * supported.
+     * The channel to use to filter the metrics.
      * </p>
      */
     private java.util.List<String> channels;
 
     /**
      * <p>
-     * A list of up to 100 queue IDs or queue ARNs to use to filter the metrics
-     * retrieved. You can include both IDs and ARNs in a request.
+     * The queues to use to filter the metrics. You can specify up to 100 queues
+     * per request.
      * </p>
      *
      * @return <p>
-     *         A list of up to 100 queue IDs or queue ARNs to use to filter the
-     *         metrics retrieved. You can include both IDs and ARNs in a
-     *         request.
+     *         The queues to use to filter the metrics. You can specify up to
+     *         100 queues per request.
      *         </p>
      */
     public java.util.List<String> getQueues() {
@@ -58,14 +55,13 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * A list of up to 100 queue IDs or queue ARNs to use to filter the metrics
-     * retrieved. You can include both IDs and ARNs in a request.
+     * The queues to use to filter the metrics. You can specify up to 100 queues
+     * per request.
      * </p>
      *
      * @param queues <p>
-     *            A list of up to 100 queue IDs or queue ARNs to use to filter
-     *            the metrics retrieved. You can include both IDs and ARNs in a
-     *            request.
+     *            The queues to use to filter the metrics. You can specify up to
+     *            100 queues per request.
      *            </p>
      */
     public void setQueues(java.util.Collection<String> queues) {
@@ -79,17 +75,16 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * A list of up to 100 queue IDs or queue ARNs to use to filter the metrics
-     * retrieved. You can include both IDs and ARNs in a request.
+     * The queues to use to filter the metrics. You can specify up to 100 queues
+     * per request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            A list of up to 100 queue IDs or queue ARNs to use to filter
-     *            the metrics retrieved. You can include both IDs and ARNs in a
-     *            request.
+     *            The queues to use to filter the metrics. You can specify up to
+     *            100 queues per request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -106,17 +101,16 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * A list of up to 100 queue IDs or queue ARNs to use to filter the metrics
-     * retrieved. You can include both IDs and ARNs in a request.
+     * The queues to use to filter the metrics. You can specify up to 100 queues
+     * per request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            A list of up to 100 queue IDs or queue ARNs to use to filter
-     *            the metrics retrieved. You can include both IDs and ARNs in a
-     *            request.
+     *            The queues to use to filter the metrics. You can specify up to
+     *            100 queues per request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -128,13 +122,11 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The Channel to use as a filter for the metrics returned. Only VOICE is
-     * supported.
+     * The channel to use to filter the metrics.
      * </p>
      *
      * @return <p>
-     *         The Channel to use as a filter for the metrics returned. Only
-     *         VOICE is supported.
+     *         The channel to use to filter the metrics.
      *         </p>
      */
     public java.util.List<String> getChannels() {
@@ -143,13 +135,11 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The Channel to use as a filter for the metrics returned. Only VOICE is
-     * supported.
+     * The channel to use to filter the metrics.
      * </p>
      *
      * @param channels <p>
-     *            The Channel to use as a filter for the metrics returned. Only
-     *            VOICE is supported.
+     *            The channel to use to filter the metrics.
      *            </p>
      */
     public void setChannels(java.util.Collection<String> channels) {
@@ -163,16 +153,14 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The Channel to use as a filter for the metrics returned. Only VOICE is
-     * supported.
+     * The channel to use to filter the metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channels <p>
-     *            The Channel to use as a filter for the metrics returned. Only
-     *            VOICE is supported.
+     *            The channel to use to filter the metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -189,16 +177,14 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The Channel to use as a filter for the metrics returned. Only VOICE is
-     * supported.
+     * The channel to use to filter the metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channels <p>
-     *            The Channel to use as a filter for the metrics returned. Only
-     *            VOICE is supported.
+     *            The channel to use to filter the metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

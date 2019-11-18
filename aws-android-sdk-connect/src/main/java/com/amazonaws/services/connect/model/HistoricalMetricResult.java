@@ -19,31 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The metrics data returned from a <code>GetMetricData</code> operation.
+ * Contains information about the historical metrics retrieved.
  * </p>
  */
 public class HistoricalMetricResult implements Serializable {
     /**
      * <p>
-     * The <code>Dimensions</code> for the metrics.
+     * The dimension for the metrics.
      * </p>
      */
     private Dimensions dimensions;
 
     /**
      * <p>
-     * A list of <code>HistoricalMetricData</code> objects.
+     * The set of metrics.
      * </p>
      */
     private java.util.List<HistoricalMetricData> collections;
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the metrics.
+     * The dimension for the metrics.
      * </p>
      *
      * @return <p>
-     *         The <code>Dimensions</code> for the metrics.
+     *         The dimension for the metrics.
      *         </p>
      */
     public Dimensions getDimensions() {
@@ -52,11 +52,11 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the metrics.
+     * The dimension for the metrics.
      * </p>
      *
      * @param dimensions <p>
-     *            The <code>Dimensions</code> for the metrics.
+     *            The dimension for the metrics.
      *            </p>
      */
     public void setDimensions(Dimensions dimensions) {
@@ -65,14 +65,14 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * The <code>Dimensions</code> for the metrics.
+     * The dimension for the metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dimensions <p>
-     *            The <code>Dimensions</code> for the metrics.
+     *            The dimension for the metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -84,11 +84,11 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>HistoricalMetricData</code> objects.
+     * The set of metrics.
      * </p>
      *
      * @return <p>
-     *         A list of <code>HistoricalMetricData</code> objects.
+     *         The set of metrics.
      *         </p>
      */
     public java.util.List<HistoricalMetricData> getCollections() {
@@ -97,11 +97,11 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>HistoricalMetricData</code> objects.
+     * The set of metrics.
      * </p>
      *
      * @param collections <p>
-     *            A list of <code>HistoricalMetricData</code> objects.
+     *            The set of metrics.
      *            </p>
      */
     public void setCollections(java.util.Collection<HistoricalMetricData> collections) {
@@ -115,14 +115,14 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>HistoricalMetricData</code> objects.
+     * The set of metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param collections <p>
-     *            A list of <code>HistoricalMetricData</code> objects.
+     *            The set of metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -139,14 +139,14 @@ public class HistoricalMetricResult implements Serializable {
 
     /**
      * <p>
-     * A list of <code>HistoricalMetricData</code> objects.
+     * The set of metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param collections <p>
-     *            A list of <code>HistoricalMetricData</code> objects.
+     *            The set of metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

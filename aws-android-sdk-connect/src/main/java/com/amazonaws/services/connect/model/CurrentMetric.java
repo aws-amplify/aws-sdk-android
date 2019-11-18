@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>CurrentMetric</code> object that contains the Name and Unit for the
- * metric.
+ * Contains information about a real-time metric.
  * </p>
  */
 public class CurrentMetric implements Serializable {

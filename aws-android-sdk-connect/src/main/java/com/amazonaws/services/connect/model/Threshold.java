@@ -19,15 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>Threshold</code> object that includes a comparison and
- * <code>ThresholdValue</code> to compare to. Used with service level metrics.
+ * Contains information about the threshold for service level metrics.
  * </p>
  */
 public class Threshold implements Serializable {
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,24 +35,22 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The value of the threshold to compare the metric to. Only "Less than"
-     * (LT) comparisons are supported.
+     * The threshold value to compare.
      * </p>
      */
     private Double thresholdValue;
 
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>LT
      *
      * @return <p>
-     *         The Threshold to use to compare service level metrics to. Only
-     *         "Less than" (LT) comparisons are supported.
+     *         The type of comparison. Only "less than" (LT) comparisons are
+     *         supported.
      *         </p>
      * @see Comparison
      */
@@ -64,16 +60,15 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>LT
      *
      * @param comparison <p>
-     *            The Threshold to use to compare service level metrics to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The type of comparison. Only "less than" (LT) comparisons are
+     *            supported.
      *            </p>
      * @see Comparison
      */
@@ -83,8 +78,7 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,8 +88,8 @@ public class Threshold implements Serializable {
      * <b>Allowed Values: </b>LT
      *
      * @param comparison <p>
-     *            The Threshold to use to compare service level metrics to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The type of comparison. Only "less than" (LT) comparisons are
+     *            supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,16 +102,15 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>LT
      *
      * @param comparison <p>
-     *            The Threshold to use to compare service level metrics to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The type of comparison. Only "less than" (LT) comparisons are
+     *            supported.
      *            </p>
      * @see Comparison
      */
@@ -127,8 +120,7 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The Threshold to use to compare service level metrics to. Only
-     * "Less than" (LT) comparisons are supported.
+     * The type of comparison. Only "less than" (LT) comparisons are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -138,8 +130,8 @@ public class Threshold implements Serializable {
      * <b>Allowed Values: </b>LT
      *
      * @param comparison <p>
-     *            The Threshold to use to compare service level metrics to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The type of comparison. Only "less than" (LT) comparisons are
+     *            supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -152,13 +144,11 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The value of the threshold to compare the metric to. Only "Less than"
-     * (LT) comparisons are supported.
+     * The threshold value to compare.
      * </p>
      *
      * @return <p>
-     *         The value of the threshold to compare the metric to. Only
-     *         "Less than" (LT) comparisons are supported.
+     *         The threshold value to compare.
      *         </p>
      */
     public Double getThresholdValue() {
@@ -167,13 +157,11 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The value of the threshold to compare the metric to. Only "Less than"
-     * (LT) comparisons are supported.
+     * The threshold value to compare.
      * </p>
      *
      * @param thresholdValue <p>
-     *            The value of the threshold to compare the metric to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The threshold value to compare.
      *            </p>
      */
     public void setThresholdValue(Double thresholdValue) {
@@ -182,16 +170,14 @@ public class Threshold implements Serializable {
 
     /**
      * <p>
-     * The value of the threshold to compare the metric to. Only "Less than"
-     * (LT) comparisons are supported.
+     * The threshold value to compare.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param thresholdValue <p>
-     *            The value of the threshold to compare the metric to. Only
-     *            "Less than" (LT) comparisons are supported.
+     *            The threshold value to compare.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

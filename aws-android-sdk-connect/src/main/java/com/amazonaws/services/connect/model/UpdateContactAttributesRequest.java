@@ -21,41 +21,37 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <code>UpdateContactAttributes</code> operation lets you programmatically
- * create new, or update existing, contact attributes associated with a contact.
- * You can use the operation to add or update attributes for both ongoing and
- * completed contacts. For example, you can update the customer's name or the
- * reason the customer called while the call is active, or add notes about steps
- * that the agent took during the call that are displayed to the next agent that
- * takes the call. You can also use the <code>UpdateContactAttributes</code>
- * operation to update attributes for a contact using data from your CRM
- * application and save the data with the contact in Amazon Connect. You could
- * also flag calls for additional analysis, such as legal review or identifying
- * abusive callers.
+ * Creates or updates the contact attributes associated with the specified
+ * contact.
+ * </p>
+ * <p>
+ * You can add or update attributes for both ongoing and completed contacts. For
+ * example, you can update the customer's name or the reason the customer called
+ * while the call is active, or add notes about steps that the agent took during
+ * the call that are displayed to the next agent that takes the call. You can
+ * also update attributes for a contact using data from your CRM application and
+ * save the data with the contact in Amazon Connect. You could also flag calls
+ * for additional analysis, such as legal review or identifying abusive callers.
  * </p>
  * <p>
  * Contact attributes are available in Amazon Connect for 24 months, and are
  * then deleted.
  * </p>
  * <p>
- * <i>Important:</i>
- * </p>
- * <p>
- * You cannot use the operation to update attributes for contacts that occurred
- * prior to the release of the API, September 12, 2018. You can update
- * attributes only for contacts that started after the release of the API. If
- * you attempt to update attributes for a contact that occurred prior to the
- * release of the API, a 400 error is returned. This applies also to queued
- * callbacks that were initiated prior to the release of the API but are still
- * active in your instance.
+ * <b>Important:</b> You cannot use the operation to update attributes for
+ * contacts that occurred prior to the release of the API, September 12, 2018.
+ * You can update attributes only for contacts that started after the release of
+ * the API. If you attempt to update attributes for a contact that occurred
+ * prior to the release of the API, a 400 error is returned. This applies also
+ * to queued callbacks that were initiated prior to the release of the API but
+ * are still active in your instance.
  * </p>
  */
 public class UpdateContactAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The unique identifier of the contact for which to update attributes. This
-     * is the identifier for the contact associated with the first interaction
-     * with the contact center.
+     * The identifier of the contact. This is the identifier of the contact
+     * associated with the first interaction with the contact center.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,12 +61,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,12 +71,11 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specify a custom key-value pair using an attribute map. The attributes
-     * are standard Amazon Connect attributes, and can be accessed in contact
-     * flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in
+     * contact flows just like any other contact attributes.
      * </p>
      * <p>
-     * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
+     * You can have up to 32,768 UTF-8 bytes across all attributes for a
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
@@ -94,18 +84,17 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The unique identifier of the contact for which to update attributes. This
-     * is the identifier for the contact associated with the first interaction
-     * with the contact center.
+     * The identifier of the contact. This is the identifier of the contact
+     * associated with the first interaction with the contact center.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The unique identifier of the contact for which to update
-     *         attributes. This is the identifier for the contact associated
-     *         with the first interaction with the contact center.
+     *         The identifier of the contact. This is the identifier of the
+     *         contact associated with the first interaction with the contact
+     *         center.
      *         </p>
      */
     public String getInitialContactId() {
@@ -114,18 +103,17 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The unique identifier of the contact for which to update attributes. This
-     * is the identifier for the contact associated with the first interaction
-     * with the contact center.
+     * The identifier of the contact. This is the identifier of the contact
+     * associated with the first interaction with the contact center.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param initialContactId <p>
-     *            The unique identifier of the contact for which to update
-     *            attributes. This is the identifier for the contact associated
-     *            with the first interaction with the contact center.
+     *            The identifier of the contact. This is the identifier of the
+     *            contact associated with the first interaction with the contact
+     *            center.
      *            </p>
      */
     public void setInitialContactId(String initialContactId) {
@@ -134,9 +122,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The unique identifier of the contact for which to update attributes. This
-     * is the identifier for the contact associated with the first interaction
-     * with the contact center.
+     * The identifier of the contact. This is the identifier of the contact
+     * associated with the first interaction with the contact center.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -146,9 +133,9 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 256<br/>
      *
      * @param initialContactId <p>
-     *            The unique identifier of the contact for which to update
-     *            attributes. This is the identifier for the contact associated
-     *            with the first interaction with the contact center.
+     *            The identifier of the contact. This is the identifier of the
+     *            contact associated with the first interaction with the contact
+     *            center.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -160,25 +147,14 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -187,25 +163,14 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -214,12 +179,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -229,13 +189,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -247,25 +201,23 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specify a custom key-value pair using an attribute map. The attributes
-     * are standard Amazon Connect attributes, and can be accessed in contact
-     * flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in
+     * contact flows just like any other contact attributes.
      * </p>
      * <p>
-     * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
+     * You can have up to 32,768 UTF-8 bytes across all attributes for a
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
      *
      * @return <p>
-     *         Specify a custom key-value pair using an attribute map. The
-     *         attributes are standard Amazon Connect attributes, and can be
-     *         accessed in contact flows just like any other contact attributes.
+     *         The Amazon Connect attributes. These attributes can be accessed
+     *         in contact flows just like any other contact attributes.
      *         </p>
      *         <p>
-     *         There can be up to 32,768 UTF-8 bytes across all key-value pairs
-     *         per contact. Attribute keys can include only alphanumeric, dash,
-     *         and underscore characters.
+     *         You can have up to 32,768 UTF-8 bytes across all attributes for a
+     *         contact. Attribute keys can include only alphanumeric, dash, and
+     *         underscore characters.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -274,26 +226,24 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specify a custom key-value pair using an attribute map. The attributes
-     * are standard Amazon Connect attributes, and can be accessed in contact
-     * flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in
+     * contact flows just like any other contact attributes.
      * </p>
      * <p>
-     * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
+     * You can have up to 32,768 UTF-8 bytes across all attributes for a
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
      *
      * @param attributes <p>
-     *            Specify a custom key-value pair using an attribute map. The
-     *            attributes are standard Amazon Connect attributes, and can be
+     *            The Amazon Connect attributes. These attributes can be
      *            accessed in contact flows just like any other contact
      *            attributes.
      *            </p>
      *            <p>
-     *            There can be up to 32,768 UTF-8 bytes across all key-value
-     *            pairs per contact. Attribute keys can include only
-     *            alphanumeric, dash, and underscore characters.
+     *            You can have up to 32,768 UTF-8 bytes across all attributes
+     *            for a contact. Attribute keys can include only alphanumeric,
+     *            dash, and underscore characters.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -302,12 +252,11 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specify a custom key-value pair using an attribute map. The attributes
-     * are standard Amazon Connect attributes, and can be accessed in contact
-     * flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in
+     * contact flows just like any other contact attributes.
      * </p>
      * <p>
-     * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
+     * You can have up to 32,768 UTF-8 bytes across all attributes for a
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
@@ -316,15 +265,14 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param attributes <p>
-     *            Specify a custom key-value pair using an attribute map. The
-     *            attributes are standard Amazon Connect attributes, and can be
+     *            The Amazon Connect attributes. These attributes can be
      *            accessed in contact flows just like any other contact
      *            attributes.
      *            </p>
      *            <p>
-     *            There can be up to 32,768 UTF-8 bytes across all key-value
-     *            pairs per contact. Attribute keys can include only
-     *            alphanumeric, dash, and underscore characters.
+     *            You can have up to 32,768 UTF-8 bytes across all attributes
+     *            for a contact. Attribute keys can include only alphanumeric,
+     *            dash, and underscore characters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -336,12 +284,11 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specify a custom key-value pair using an attribute map. The attributes
-     * are standard Amazon Connect attributes, and can be accessed in contact
-     * flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in
+     * contact flows just like any other contact attributes.
      * </p>
      * <p>
-     * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
+     * You can have up to 32,768 UTF-8 bytes across all attributes for a
      * contact. Attribute keys can include only alphanumeric, dash, and
      * underscore characters.
      * </p>
