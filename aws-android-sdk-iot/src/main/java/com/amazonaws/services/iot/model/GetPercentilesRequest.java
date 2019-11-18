@@ -21,17 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets statistics returns the count, average, sum, minimum, maximum,
- * sumOfSquares, variance, and standard deviation for the specified aggregated
- * field. If the aggregation field is of type String, only the count statistic
- * is returned.
+ * Returns the percentile values for the aggregation field. The results from
+ * GetPercentiles is an approximation. The default percentile groupings are:
+ * 1,5,25,50,75,95,99. You can specify custom percentile grouping using the
+ * percents argument to the GetPercentiles API.
  * </p>
  */
-public class GetStatisticsRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetPercentilesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,8 +41,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +51,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,15 +61,21 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      */
     private String queryVersion;
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The percentile groups returned.
+     * </p>
+     */
+    private java.util.List<Double> percents;
+
+    /**
+     * <p>
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,8 +83,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the index to search. The default value is
-     *         <code>AWS_Things</code>.
+     *         The name of the index to search.
      *         </p>
      */
     public String getIndexName() {
@@ -89,8 +92,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,8 +100,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The name of the index to search. The default value is
-     *            <code>AWS_Things</code>.
+     *            The name of the index to search.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -108,8 +109,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the index to search. The default value is
-     * <code>AWS_Things</code>.
+     * The name of the index to search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -120,30 +120,26 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param indexName <p>
-     *            The name of the index to search. The default value is
-     *            <code>AWS_Things</code>.
+     *            The name of the index to search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withIndexName(String indexName) {
+    public GetPercentilesRequest withIndexName(String indexName) {
         this.indexName = indexName;
         return this;
     }
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The query used to search. You can specify "*" for the query
-     *         string to get the count of all indexed things in your AWS
-     *         account.
+     *         The query string.
      *         </p>
      */
     public String getQueryString() {
@@ -152,17 +148,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            The query string.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -171,8 +164,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * The query string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,28 +174,26 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            The query string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withQueryString(String queryString) {
+    public GetPercentilesRequest withQueryString(String queryString) {
         this.queryString = queryString;
         return this;
     }
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The aggregation field name.
+     *         The field to aggregate.
      *         </p>
      */
     public String getAggregationField() {
@@ -212,14 +202,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The field to aggregate.
      *            </p>
      */
     public void setAggregationField(String aggregationField) {
@@ -228,7 +218,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The field to aggregate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,23 +228,23 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The field to aggregate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withAggregationField(String aggregationField) {
+    public GetPercentilesRequest withAggregationField(String aggregationField) {
         this.aggregationField = aggregationField;
         return this;
     }
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      *
      * @return <p>
-     *         The version of the query used to search.
+     *         The query version.
      *         </p>
      */
     public String getQueryVersion() {
@@ -263,11 +253,11 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      *
      * @param queryVersion <p>
-     *            The version of the query used to search.
+     *            The query version.
      *            </p>
      */
     public void setQueryVersion(String queryVersion) {
@@ -276,20 +266,94 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The version of the query used to search.
+     * The query version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queryVersion <p>
-     *            The version of the query used to search.
+     *            The query version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetStatisticsRequest withQueryVersion(String queryVersion) {
+    public GetPercentilesRequest withQueryVersion(String queryVersion) {
         this.queryVersion = queryVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The percentile groups returned.
+     * </p>
+     *
+     * @return <p>
+     *         The percentile groups returned.
+     *         </p>
+     */
+    public java.util.List<Double> getPercents() {
+        return percents;
+    }
+
+    /**
+     * <p>
+     * The percentile groups returned.
+     * </p>
+     *
+     * @param percents <p>
+     *            The percentile groups returned.
+     *            </p>
+     */
+    public void setPercents(java.util.Collection<Double> percents) {
+        if (percents == null) {
+            this.percents = null;
+            return;
+        }
+
+        this.percents = new java.util.ArrayList<Double>(percents);
+    }
+
+    /**
+     * <p>
+     * The percentile groups returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param percents <p>
+     *            The percentile groups returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPercentilesRequest withPercents(Double... percents) {
+        if (getPercents() == null) {
+            this.percents = new java.util.ArrayList<Double>(percents.length);
+        }
+        for (Double value : percents) {
+            this.percents.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The percentile groups returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param percents <p>
+     *            The percentile groups returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPercentilesRequest withPercents(java.util.Collection<Double> percents) {
+        setPercents(percents);
         return this;
     }
 
@@ -311,7 +375,9 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
         if (getAggregationField() != null)
             sb.append("aggregationField: " + getAggregationField() + ",");
         if (getQueryVersion() != null)
-            sb.append("queryVersion: " + getQueryVersion());
+            sb.append("queryVersion: " + getQueryVersion() + ",");
+        if (getPercents() != null)
+            sb.append("percents: " + getPercents());
         sb.append("}");
         return sb.toString();
     }
@@ -328,6 +394,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
                 + ((getAggregationField() == null) ? 0 : getAggregationField().hashCode());
         hashCode = prime * hashCode
                 + ((getQueryVersion() == null) ? 0 : getQueryVersion().hashCode());
+        hashCode = prime * hashCode + ((getPercents() == null) ? 0 : getPercents().hashCode());
         return hashCode;
     }
 
@@ -338,9 +405,9 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof GetStatisticsRequest == false)
+        if (obj instanceof GetPercentilesRequest == false)
             return false;
-        GetStatisticsRequest other = (GetStatisticsRequest) obj;
+        GetPercentilesRequest other = (GetPercentilesRequest) obj;
 
         if (other.getIndexName() == null ^ this.getIndexName() == null)
             return false;
@@ -361,6 +428,10 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getQueryVersion() != null
                 && other.getQueryVersion().equals(this.getQueryVersion()) == false)
+            return false;
+        if (other.getPercents() == null ^ this.getPercents() == null)
+            return false;
+        if (other.getPercents() != null && other.getPercents().equals(this.getPercents()) == false)
             return false;
         return true;
     }

@@ -30,6 +30,41 @@ class StatisticsJsonMarshaller {
             jsonWriter.name("count");
             jsonWriter.value(count);
         }
+        if (statistics.getAverage() != null) {
+            Double average = statistics.getAverage();
+            jsonWriter.name("average");
+            jsonWriter.value(average);
+        }
+        if (statistics.getSum() != null) {
+            Double sum = statistics.getSum();
+            jsonWriter.name("sum");
+            jsonWriter.value(sum);
+        }
+        if (statistics.getMinimum() != null) {
+            Double minimum = statistics.getMinimum();
+            jsonWriter.name("minimum");
+            jsonWriter.value(minimum);
+        }
+        if (statistics.getMaximum() != null) {
+            Double maximum = statistics.getMaximum();
+            jsonWriter.name("maximum");
+            jsonWriter.value(maximum);
+        }
+        if (statistics.getSumOfSquares() != null) {
+            Double sumOfSquares = statistics.getSumOfSquares();
+            jsonWriter.name("sumOfSquares");
+            jsonWriter.value(sumOfSquares);
+        }
+        if (statistics.getVariance() != null) {
+            Double variance = statistics.getVariance();
+            jsonWriter.name("variance");
+            jsonWriter.value(variance);
+        }
+        if (statistics.getStdDeviation() != null) {
+            Double stdDeviation = statistics.getStdDeviation();
+            jsonWriter.name("stdDeviation");
+            jsonWriter.value(stdDeviation);
+        }
         jsonWriter.endObject();
     }
 

@@ -39,7 +39,8 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
-     * The Quality of Service (QoS) level to use when republishing messages.
+     * The Quality of Service (QoS) level to use when republishing messages. The
+     * default value is 0.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -139,7 +140,8 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
-     * The Quality of Service (QoS) level to use when republishing messages.
+     * The Quality of Service (QoS) level to use when republishing messages. The
+     * default value is 0.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,7 +149,7 @@ public class RepublishAction implements Serializable {
      *
      * @return <p>
      *         The Quality of Service (QoS) level to use when republishing
-     *         messages.
+     *         messages. The default value is 0.
      *         </p>
      */
     public Integer getQos() {
@@ -156,7 +158,8 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
-     * The Quality of Service (QoS) level to use when republishing messages.
+     * The Quality of Service (QoS) level to use when republishing messages. The
+     * default value is 0.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -164,7 +167,7 @@ public class RepublishAction implements Serializable {
      *
      * @param qos <p>
      *            The Quality of Service (QoS) level to use when republishing
-     *            messages.
+     *            messages. The default value is 0.
      *            </p>
      */
     public void setQos(Integer qos) {
@@ -173,7 +176,8 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
-     * The Quality of Service (QoS) level to use when republishing messages.
+     * The Quality of Service (QoS) level to use when republishing messages. The
+     * default value is 0.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -184,7 +188,7 @@ public class RepublishAction implements Serializable {
      *
      * @param qos <p>
      *            The Quality of Service (QoS) level to use when republishing
-     *            messages.
+     *            messages. The default value is 0.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

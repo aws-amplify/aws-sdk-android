@@ -38,6 +38,27 @@ class StatisticsJsonUnmarshaller implements Unmarshaller<Statistics, JsonUnmarsh
             if (name.equals("count")) {
                 statistics.setCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("average")) {
+                statistics.setAverage(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("sum")) {
+                statistics.setSum(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("minimum")) {
+                statistics.setMinimum(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("maximum")) {
+                statistics.setMaximum(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("sumOfSquares")) {
+                statistics.setSumOfSquares(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("variance")) {
+                statistics.setVariance(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("stdDeviation")) {
+                statistics.setStdDeviation(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,6 +37,28 @@ class ThingIndexingConfigurationJsonMarshaller {
             jsonWriter.name("thingConnectivityIndexingMode");
             jsonWriter.value(thingConnectivityIndexingMode);
         }
+        if (thingIndexingConfiguration.getManagedFields() != null) {
+            java.util.List<Field> managedFields = thingIndexingConfiguration.getManagedFields();
+            jsonWriter.name("managedFields");
+            jsonWriter.beginArray();
+            for (Field managedFieldsItem : managedFields) {
+                if (managedFieldsItem != null) {
+                    FieldJsonMarshaller.getInstance().marshall(managedFieldsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (thingIndexingConfiguration.getCustomFields() != null) {
+            java.util.List<Field> customFields = thingIndexingConfiguration.getCustomFields();
+            jsonWriter.name("customFields");
+            jsonWriter.beginArray();
+            for (Field customFieldsItem : customFields) {
+                if (customFieldsItem != null) {
+                    FieldJsonMarshaller.getInstance().marshall(customFieldsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
