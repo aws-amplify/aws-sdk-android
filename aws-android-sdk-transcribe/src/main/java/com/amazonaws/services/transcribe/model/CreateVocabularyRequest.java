@@ -45,7 +45,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      */
     private String languageCode;
 
@@ -63,13 +64,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -158,7 +159,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -176,7 +178,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -197,7 +200,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -218,7 +222,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -239,7 +244,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -334,13 +340,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -363,13 +369,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         API endpoint that you are calling. The general form is
      *         </p>
      *         <p>
-     *         <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *         </p>
      *         <p>
      *         For example:
      *         </p>
      *         <p>
-     *         <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *         <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -393,13 +399,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -422,13 +428,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is
      *            </p>
      *            <p>
-     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -452,13 +458,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -484,13 +490,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is
      *            </p>
      *            <p>
-     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

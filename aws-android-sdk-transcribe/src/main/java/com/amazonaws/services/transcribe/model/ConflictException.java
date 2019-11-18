@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * When you are using the <code>StartTranscriptionJob</code> operation, the
+ * When you are using the <code>CreateVocabulary</code> operation, the
  * <code>JobName</code> field is a duplicate of a previously entered job name.
  * Resend your request with a different name.
  * </p>
