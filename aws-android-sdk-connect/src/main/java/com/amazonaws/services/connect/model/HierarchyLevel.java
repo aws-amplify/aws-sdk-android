@@ -19,39 +19,38 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>HierarchyLevel</code> object that contains information about the
- * levels in a hierarchy group, including ARN, Id, and Name.
+ * Contains information about a hierarchy level.
  * </p>
  */
 public class HierarchyLevel implements Serializable {
     /**
      * <p>
-     * The identifier for the hierarchy group level.
+     * The identifier of the hierarchy level.
      * </p>
      */
     private String id;
 
     /**
      * <p>
-     * The ARN for the hierarchy group level.
+     * The Amazon Resource Name (ARN) of the hierarchy level.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The name of the hierarchy group level.
+     * The name of the hierarchy level.
      * </p>
      */
     private String name;
 
     /**
      * <p>
-     * The identifier for the hierarchy group level.
+     * The identifier of the hierarchy level.
      * </p>
      *
      * @return <p>
-     *         The identifier for the hierarchy group level.
+     *         The identifier of the hierarchy level.
      *         </p>
      */
     public String getId() {
@@ -60,11 +59,11 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hierarchy group level.
+     * The identifier of the hierarchy level.
      * </p>
      *
      * @param id <p>
-     *            The identifier for the hierarchy group level.
+     *            The identifier of the hierarchy level.
      *            </p>
      */
     public void setId(String id) {
@@ -73,14 +72,14 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hierarchy group level.
+     * The identifier of the hierarchy level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            The identifier for the hierarchy group level.
+     *            The identifier of the hierarchy level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -92,11 +91,11 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group level.
+     * The Amazon Resource Name (ARN) of the hierarchy level.
      * </p>
      *
      * @return <p>
-     *         The ARN for the hierarchy group level.
+     *         The Amazon Resource Name (ARN) of the hierarchy level.
      *         </p>
      */
     public String getArn() {
@@ -105,11 +104,11 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group level.
+     * The Amazon Resource Name (ARN) of the hierarchy level.
      * </p>
      *
      * @param arn <p>
-     *            The ARN for the hierarchy group level.
+     *            The Amazon Resource Name (ARN) of the hierarchy level.
      *            </p>
      */
     public void setArn(String arn) {
@@ -118,14 +117,14 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The ARN for the hierarchy group level.
+     * The Amazon Resource Name (ARN) of the hierarchy level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN for the hierarchy group level.
+     *            The Amazon Resource Name (ARN) of the hierarchy level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,11 +136,11 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The name of the hierarchy group level.
+     * The name of the hierarchy level.
      * </p>
      *
      * @return <p>
-     *         The name of the hierarchy group level.
+     *         The name of the hierarchy level.
      *         </p>
      */
     public String getName() {
@@ -150,11 +149,11 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The name of the hierarchy group level.
+     * The name of the hierarchy level.
      * </p>
      *
      * @param name <p>
-     *            The name of the hierarchy group level.
+     *            The name of the hierarchy level.
      *            </p>
      */
     public void setName(String name) {
@@ -163,14 +162,14 @@ public class HierarchyLevel implements Serializable {
 
     /**
      * <p>
-     * The name of the hierarchy group level.
+     * The name of the hierarchy level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param name <p>
-     *            The name of the hierarchy group level.
+     *            The name of the hierarchy level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

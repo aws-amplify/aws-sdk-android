@@ -64,6 +64,10 @@ class UserJsonUnmarshaller implements Unmarshaller<User, JsonUnmarshallerContext
             } else if (name.equals("HierarchyGroupId")) {
                 user.setHierarchyGroupId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                user.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

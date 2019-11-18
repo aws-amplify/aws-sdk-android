@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>User</code> object that contains information about a user account in
- * your Amazon Connect instance, including configuration settings.
+ * Contains information about a user account for a Amazon Connect instance.
  * </p>
  */
 public class User implements Serializable {
@@ -33,7 +32,7 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The ARN of the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      */
     private String arn;
@@ -51,46 +50,53 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserIdentityInfo</code> object.
+     * Information about the user identity.
      * </p>
      */
     private UserIdentityInfo identityInfo;
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object.
+     * Information about the phone configuration for the user.
      * </p>
      */
     private UserPhoneConfig phoneConfig;
 
     /**
      * <p>
-     * The directory Id for the user account in the existing directory used for
-     * identity management.
+     * The identifier of the user account in the directory used for identity
+     * management.
      * </p>
      */
     private String directoryUserId;
 
     /**
      * <p>
-     * The identifier(s) for the security profile assigned to the user.
+     * The identifiers of the security profiles for the user.
      * </p>
      */
     private java.util.List<String> securityProfileIds;
 
     /**
      * <p>
-     * The identifier of the routing profile assigned to the user.
+     * The identifier of the routing profile for the user.
      * </p>
      */
     private String routingProfileId;
 
     /**
      * <p>
-     * The identifier for the hierarchy group assigned to the user.
+     * The identifier of the hierarchy group for the user.
      * </p>
      */
     private String hierarchyGroupId;
+
+    /**
+     * <p>
+     * The tags.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -139,11 +145,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The ARN of the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @return <p>
-     *         The ARN of the user account.
+     *         The Amazon Resource Name (ARN) of the user account.
      *         </p>
      */
     public String getArn() {
@@ -152,11 +158,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The ARN of the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      *
      * @param arn <p>
-     *            The ARN of the user account.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      */
     public void setArn(String arn) {
@@ -165,14 +171,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The ARN of the user account.
+     * The Amazon Resource Name (ARN) of the user account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN of the user account.
+     *            The Amazon Resource Name (ARN) of the user account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -241,11 +247,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserIdentityInfo</code> object.
+     * Information about the user identity.
      * </p>
      *
      * @return <p>
-     *         A <code>UserIdentityInfo</code> object.
+     *         Information about the user identity.
      *         </p>
      */
     public UserIdentityInfo getIdentityInfo() {
@@ -254,11 +260,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserIdentityInfo</code> object.
+     * Information about the user identity.
      * </p>
      *
      * @param identityInfo <p>
-     *            A <code>UserIdentityInfo</code> object.
+     *            Information about the user identity.
      *            </p>
      */
     public void setIdentityInfo(UserIdentityInfo identityInfo) {
@@ -267,14 +273,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserIdentityInfo</code> object.
+     * Information about the user identity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identityInfo <p>
-     *            A <code>UserIdentityInfo</code> object.
+     *            Information about the user identity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -286,11 +292,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object.
+     * Information about the phone configuration for the user.
      * </p>
      *
      * @return <p>
-     *         A <code>UserPhoneConfig</code> object.
+     *         Information about the phone configuration for the user.
      *         </p>
      */
     public UserPhoneConfig getPhoneConfig() {
@@ -299,11 +305,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object.
+     * Information about the phone configuration for the user.
      * </p>
      *
      * @param phoneConfig <p>
-     *            A <code>UserPhoneConfig</code> object.
+     *            Information about the phone configuration for the user.
      *            </p>
      */
     public void setPhoneConfig(UserPhoneConfig phoneConfig) {
@@ -312,14 +318,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * A <code>UserPhoneConfig</code> object.
+     * Information about the phone configuration for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param phoneConfig <p>
-     *            A <code>UserPhoneConfig</code> object.
+     *            Information about the phone configuration for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -331,13 +337,13 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The directory Id for the user account in the existing directory used for
-     * identity management.
+     * The identifier of the user account in the directory used for identity
+     * management.
      * </p>
      *
      * @return <p>
-     *         The directory Id for the user account in the existing directory
-     *         used for identity management.
+     *         The identifier of the user account in the directory used for
+     *         identity management.
      *         </p>
      */
     public String getDirectoryUserId() {
@@ -346,13 +352,13 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The directory Id for the user account in the existing directory used for
-     * identity management.
+     * The identifier of the user account in the directory used for identity
+     * management.
      * </p>
      *
      * @param directoryUserId <p>
-     *            The directory Id for the user account in the existing
-     *            directory used for identity management.
+     *            The identifier of the user account in the directory used for
+     *            identity management.
      *            </p>
      */
     public void setDirectoryUserId(String directoryUserId) {
@@ -361,16 +367,16 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The directory Id for the user account in the existing directory used for
-     * identity management.
+     * The identifier of the user account in the directory used for identity
+     * management.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param directoryUserId <p>
-     *            The directory Id for the user account in the existing
-     *            directory used for identity management.
+     *            The identifier of the user account in the directory used for
+     *            identity management.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -382,11 +388,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier(s) for the security profile assigned to the user.
+     * The identifiers of the security profiles for the user.
      * </p>
      *
      * @return <p>
-     *         The identifier(s) for the security profile assigned to the user.
+     *         The identifiers of the security profiles for the user.
      *         </p>
      */
     public java.util.List<String> getSecurityProfileIds() {
@@ -395,12 +401,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier(s) for the security profile assigned to the user.
+     * The identifiers of the security profiles for the user.
      * </p>
      *
      * @param securityProfileIds <p>
-     *            The identifier(s) for the security profile assigned to the
-     *            user.
+     *            The identifiers of the security profiles for the user.
      *            </p>
      */
     public void setSecurityProfileIds(java.util.Collection<String> securityProfileIds) {
@@ -414,15 +419,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier(s) for the security profile assigned to the user.
+     * The identifiers of the security profiles for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityProfileIds <p>
-     *            The identifier(s) for the security profile assigned to the
-     *            user.
+     *            The identifiers of the security profiles for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -439,15 +443,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier(s) for the security profile assigned to the user.
+     * The identifiers of the security profiles for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param securityProfileIds <p>
-     *            The identifier(s) for the security profile assigned to the
-     *            user.
+     *            The identifiers of the security profiles for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -459,11 +462,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier of the routing profile assigned to the user.
+     * The identifier of the routing profile for the user.
      * </p>
      *
      * @return <p>
-     *         The identifier of the routing profile assigned to the user.
+     *         The identifier of the routing profile for the user.
      *         </p>
      */
     public String getRoutingProfileId() {
@@ -472,11 +475,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier of the routing profile assigned to the user.
+     * The identifier of the routing profile for the user.
      * </p>
      *
      * @param routingProfileId <p>
-     *            The identifier of the routing profile assigned to the user.
+     *            The identifier of the routing profile for the user.
      *            </p>
      */
     public void setRoutingProfileId(String routingProfileId) {
@@ -485,14 +488,14 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier of the routing profile assigned to the user.
+     * The identifier of the routing profile for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param routingProfileId <p>
-     *            The identifier of the routing profile assigned to the user.
+     *            The identifier of the routing profile for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -504,11 +507,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hierarchy group assigned to the user.
+     * The identifier of the hierarchy group for the user.
      * </p>
      *
      * @return <p>
-     *         The identifier for the hierarchy group assigned to the user.
+     *         The identifier of the hierarchy group for the user.
      *         </p>
      */
     public String getHierarchyGroupId() {
@@ -517,11 +520,11 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hierarchy group assigned to the user.
+     * The identifier of the hierarchy group for the user.
      * </p>
      *
      * @param hierarchyGroupId <p>
-     *            The identifier for the hierarchy group assigned to the user.
+     *            The identifier of the hierarchy group for the user.
      *            </p>
      */
     public void setHierarchyGroupId(String hierarchyGroupId) {
@@ -530,20 +533,100 @@ public class User implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hierarchy group assigned to the user.
+     * The identifier of the hierarchy group for the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hierarchyGroupId <p>
-     *            The identifier for the hierarchy group assigned to the user.
+     *            The identifier of the hierarchy group for the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public User withHierarchyGroupId(String hierarchyGroupId) {
         this.hierarchyGroupId = hierarchyGroupId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The tags.
+     * </p>
+     *
+     * @return <p>
+     *         The tags.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * The tags.
+     * </p>
+     *
+     * @param tags <p>
+     *            The tags.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * The tags.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            The tags.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public User withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The tags.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public User addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public User clearTagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -575,7 +658,9 @@ public class User implements Serializable {
         if (getRoutingProfileId() != null)
             sb.append("RoutingProfileId: " + getRoutingProfileId() + ",");
         if (getHierarchyGroupId() != null)
-            sb.append("HierarchyGroupId: " + getHierarchyGroupId());
+            sb.append("HierarchyGroupId: " + getHierarchyGroupId() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -600,6 +685,7 @@ public class User implements Serializable {
                 + ((getRoutingProfileId() == null) ? 0 : getRoutingProfileId().hashCode());
         hashCode = prime * hashCode
                 + ((getHierarchyGroupId() == null) ? 0 : getHierarchyGroupId().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -655,6 +741,10 @@ public class User implements Serializable {
             return false;
         if (other.getHierarchyGroupId() != null
                 && other.getHierarchyGroupId().equals(this.getHierarchyGroupId()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

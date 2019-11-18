@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The allowed limit for the resource has been reached.
+ * The allowed limit for the resource has been exceeded.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {

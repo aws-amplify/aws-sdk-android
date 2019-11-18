@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * A resource with that name already exists.
+ * A resource with the specified name already exists.
  * </p>
  */
 public class DuplicateResourceException extends AmazonServiceException {

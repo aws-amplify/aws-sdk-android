@@ -19,32 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>HistoricalMetricData</code> object than contains a
- * <code>Metric</code> and a <code>Value</code>.
+ * Contains the data for a historical metric.
  * </p>
  */
 public class HistoricalMetricData implements Serializable {
     /**
      * <p>
-     * A <code>HistoricalMetric</code> object.
+     * Information about the metric.
      * </p>
      */
     private HistoricalMetric metric;
 
     /**
      * <p>
-     * The <code>Value</code> of the metric.
+     * The value of the metric.
      * </p>
      */
     private Double value;
 
     /**
      * <p>
-     * A <code>HistoricalMetric</code> object.
+     * Information about the metric.
      * </p>
      *
      * @return <p>
-     *         A <code>HistoricalMetric</code> object.
+     *         Information about the metric.
      *         </p>
      */
     public HistoricalMetric getMetric() {
@@ -53,11 +52,11 @@ public class HistoricalMetricData implements Serializable {
 
     /**
      * <p>
-     * A <code>HistoricalMetric</code> object.
+     * Information about the metric.
      * </p>
      *
      * @param metric <p>
-     *            A <code>HistoricalMetric</code> object.
+     *            Information about the metric.
      *            </p>
      */
     public void setMetric(HistoricalMetric metric) {
@@ -66,14 +65,14 @@ public class HistoricalMetricData implements Serializable {
 
     /**
      * <p>
-     * A <code>HistoricalMetric</code> object.
+     * Information about the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metric <p>
-     *            A <code>HistoricalMetric</code> object.
+     *            Information about the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -85,11 +84,11 @@ public class HistoricalMetricData implements Serializable {
 
     /**
      * <p>
-     * The <code>Value</code> of the metric.
+     * The value of the metric.
      * </p>
      *
      * @return <p>
-     *         The <code>Value</code> of the metric.
+     *         The value of the metric.
      *         </p>
      */
     public Double getValue() {
@@ -98,11 +97,11 @@ public class HistoricalMetricData implements Serializable {
 
     /**
      * <p>
-     * The <code>Value</code> of the metric.
+     * The value of the metric.
      * </p>
      *
      * @param value <p>
-     *            The <code>Value</code> of the metric.
+     *            The value of the metric.
      *            </p>
      */
     public void setValue(Double value) {
@@ -111,14 +110,14 @@ public class HistoricalMetricData implements Serializable {
 
     /**
      * <p>
-     * The <code>Value</code> of the metric.
+     * The value of the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param value <p>
-     *            The <code>Value</code> of the metric.
+     *            The value of the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
