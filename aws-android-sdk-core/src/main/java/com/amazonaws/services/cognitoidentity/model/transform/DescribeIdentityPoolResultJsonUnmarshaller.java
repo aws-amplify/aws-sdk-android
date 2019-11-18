@@ -43,6 +43,10 @@ public class DescribeIdentityPoolResultJsonUnmarshaller implements
                 describeIdentityPoolResult
                         .setAllowUnauthenticatedIdentities(BooleanJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("AllowClassicFlow")) {
+                describeIdentityPoolResult.setAllowClassicFlow(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SupportedLoginProviders")) {
                 describeIdentityPoolResult.setSupportedLoginProviders(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()

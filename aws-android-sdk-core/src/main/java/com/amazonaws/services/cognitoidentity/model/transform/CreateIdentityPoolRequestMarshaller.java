@@ -71,6 +71,11 @@ public class CreateIdentityPoolRequestMarshaller implements
                 jsonWriter.name("AllowUnauthenticatedIdentities");
                 jsonWriter.value(allowUnauthenticatedIdentities);
             }
+            if (createIdentityPoolRequest.getAllowClassicFlow() != null) {
+                Boolean allowClassicFlow = createIdentityPoolRequest.getAllowClassicFlow();
+                jsonWriter.name("AllowClassicFlow");
+                jsonWriter.value(allowClassicFlow);
+            }
             if (createIdentityPoolRequest.getSupportedLoginProviders() != null) {
                 java.util.Map<String, String> supportedLoginProviders = createIdentityPoolRequest
                         .getSupportedLoginProviders();
