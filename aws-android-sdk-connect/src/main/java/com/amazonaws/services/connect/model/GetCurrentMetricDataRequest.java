@@ -103,6 +103,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>AGENTS_ONLINE</dt>
      * <dd>
      * <p>
@@ -131,6 +137,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <dd>
      * <p>
      * Unit: SECONDS
+     * </p>
+     * </dd>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
      * </p>
      * </dd>
      * </dl>
@@ -460,6 +478,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>AGENTS_ONLINE</dt>
      * <dd>
      * <p>
@@ -488,6 +512,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <dd>
      * <p>
      * Unit: SECONDS
+     * </p>
+     * </dd>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
      * </p>
      * </dd>
      * </dl>
@@ -527,6 +563,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         Unit: COUNT
      *         </p>
      *         </dd>
+     *         <dt>AGENTS_ON_CONTACT</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
      *         <dt>AGENTS_ONLINE</dt>
      *         <dd>
      *         <p>
@@ -555,6 +597,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <dd>
      *         <p>
      *         Unit: SECONDS
+     *         </p>
+     *         </dd>
+     *         <dt>SLOTS_ACTIVE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>SLOTS_AVAILABLE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
      *         </p>
      *         </dd>
      *         </dl>
@@ -599,6 +653,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>AGENTS_ONLINE</dt>
      * <dd>
      * <p>
@@ -627,6 +687,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <dd>
      * <p>
      * Unit: SECONDS
+     * </p>
+     * </dd>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
      * </p>
      * </dd>
      * </dl>
@@ -666,6 +738,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
      *            <dd>
      *            <p>
@@ -694,6 +772,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <dd>
      *            <p>
      *            Unit: SECONDS
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
      *            </p>
      *            </dd>
      *            </dl>
@@ -743,6 +833,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>AGENTS_ONLINE</dt>
      * <dd>
      * <p>
@@ -771,6 +867,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <dd>
      * <p>
      * Unit: SECONDS
+     * </p>
+     * </dd>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
      * </p>
      * </dd>
      * </dl>
@@ -813,6 +921,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
      *            <dd>
      *            <p>
@@ -841,6 +955,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <dd>
      *            <p>
      *            Unit: SECONDS
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
      *            </p>
      *            </dd>
      *            </dl>
@@ -893,6 +1019,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>AGENTS_ONLINE</dt>
      * <dd>
      * <p>
@@ -921,6 +1053,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <dd>
      * <p>
      * Unit: SECONDS
+     * </p>
+     * </dd>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
      * </p>
      * </dd>
      * </dl>
@@ -963,6 +1107,12 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
      *            <dd>
      *            <p>
@@ -991,6 +1141,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <dd>
      *            <p>
      *            Unit: SECONDS
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
      *            </p>
      *            </dd>
      *            </dl>
