@@ -278,22 +278,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information, see
-     * <a href=
+     * specify exceeds the current Spot price. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
-     * <p>
-     * If a Spot price is set, then the Auto Scaling group will only launch
-     * instances when the Spot price has been met, regardless of the setting in
-     * the Auto Scaling group's <code>DesiredCapacity</code>.
-     * </p>
      * <note>
      * <p>
-     * When you change your Spot price by creating a new launch configuration,
-     * running instances will continue to run as long as the Spot price for
-     * those running instances is higher than the current Spot market price.
+     * When you change your maximum price by creating a new launch
+     * configuration, running instances will continue to run as long as the
+     * maximum price for those running instances is higher than the current Spot
+     * price.
      * </p>
      * </note>
      * <p>
@@ -391,7 +387,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Guide</i>.
      * </p>
      * <p>
-     * Valid values: <code>default</code> | <code>dedicated</code>
+     * Valid Values: <code>default</code> | <code>dedicated</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1889,22 +1885,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information, see
-     * <a href=
+     * specify exceeds the current Spot price. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
-     * <p>
-     * If a Spot price is set, then the Auto Scaling group will only launch
-     * instances when the Spot price has been met, regardless of the setting in
-     * the Auto Scaling group's <code>DesiredCapacity</code>.
-     * </p>
      * <note>
      * <p>
-     * When you change your Spot price by creating a new launch configuration,
-     * running instances will continue to run as long as the Spot price for
-     * those running instances is higher than the current Spot market price.
+     * When you change your maximum price by creating a new launch
+     * configuration, running instances will continue to run as long as the
+     * maximum price for those running instances is higher than the current Spot
+     * price.
      * </p>
      * </note>
      * <p>
@@ -1914,24 +1906,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @return <p>
      *         The maximum hourly price to be paid for any Spot Instance
      *         launched to fulfill the request. Spot Instances are launched when
-     *         the price you specify exceeds the current Spot market price. For
-     *         more information, see <a href=
+     *         the price you specify exceeds the current Spot price. For more
+     *         information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *         >Launching Spot Instances in Your Auto Scaling Group</a> in the
      *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
-     *         <p>
-     *         If a Spot price is set, then the Auto Scaling group will only
-     *         launch instances when the Spot price has been met, regardless of
-     *         the setting in the Auto Scaling group's
-     *         <code>DesiredCapacity</code>.
-     *         </p>
      *         <note>
      *         <p>
-     *         When you change your Spot price by creating a new launch
+     *         When you change your maximum price by creating a new launch
      *         configuration, running instances will continue to run as long as
-     *         the Spot price for those running instances is higher than the
-     *         current Spot market price.
+     *         the maximum price for those running instances is higher than the
+     *         current Spot price.
      *         </p>
      *         </note>
      */
@@ -1943,22 +1929,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information, see
-     * <a href=
+     * specify exceeds the current Spot price. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
-     * <p>
-     * If a Spot price is set, then the Auto Scaling group will only launch
-     * instances when the Spot price has been met, regardless of the setting in
-     * the Auto Scaling group's <code>DesiredCapacity</code>.
-     * </p>
      * <note>
      * <p>
-     * When you change your Spot price by creating a new launch configuration,
-     * running instances will continue to run as long as the Spot price for
-     * those running instances is higher than the current Spot market price.
+     * When you change your maximum price by creating a new launch
+     * configuration, running instances will continue to run as long as the
+     * maximum price for those running instances is higher than the current Spot
+     * price.
      * </p>
      * </note>
      * <p>
@@ -1968,24 +1950,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param spotPrice <p>
      *            The maximum hourly price to be paid for any Spot Instance
      *            launched to fulfill the request. Spot Instances are launched
-     *            when the price you specify exceeds the current Spot market
-     *            price. For more information, see <a href=
+     *            when the price you specify exceeds the current Spot price. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *            >Launching Spot Instances in Your Auto Scaling Group</a> in
      *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
-     *            <p>
-     *            If a Spot price is set, then the Auto Scaling group will only
-     *            launch instances when the Spot price has been met, regardless
-     *            of the setting in the Auto Scaling group's
-     *            <code>DesiredCapacity</code>.
-     *            </p>
      *            <note>
      *            <p>
-     *            When you change your Spot price by creating a new launch
+     *            When you change your maximum price by creating a new launch
      *            configuration, running instances will continue to run as long
-     *            as the Spot price for those running instances is higher than
-     *            the current Spot market price.
+     *            as the maximum price for those running instances is higher
+     *            than the current Spot price.
      *            </p>
      *            </note>
      */
@@ -1997,22 +1973,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price. For more information, see
-     * <a href=
+     * specify exceeds the current Spot price. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
      * EC2 Auto Scaling User Guide</i>.
      * </p>
-     * <p>
-     * If a Spot price is set, then the Auto Scaling group will only launch
-     * instances when the Spot price has been met, regardless of the setting in
-     * the Auto Scaling group's <code>DesiredCapacity</code>.
-     * </p>
      * <note>
      * <p>
-     * When you change your Spot price by creating a new launch configuration,
-     * running instances will continue to run as long as the Spot price for
-     * those running instances is higher than the current Spot market price.
+     * When you change your maximum price by creating a new launch
+     * configuration, running instances will continue to run as long as the
+     * maximum price for those running instances is higher than the current Spot
+     * price.
      * </p>
      * </note>
      * <p>
@@ -2025,24 +1997,18 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param spotPrice <p>
      *            The maximum hourly price to be paid for any Spot Instance
      *            launched to fulfill the request. Spot Instances are launched
-     *            when the price you specify exceeds the current Spot market
-     *            price. For more information, see <a href=
+     *            when the price you specify exceeds the current Spot price. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *            >Launching Spot Instances in Your Auto Scaling Group</a> in
      *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
-     *            <p>
-     *            If a Spot price is set, then the Auto Scaling group will only
-     *            launch instances when the Spot price has been met, regardless
-     *            of the setting in the Auto Scaling group's
-     *            <code>DesiredCapacity</code>.
-     *            </p>
      *            <note>
      *            <p>
-     *            When you change your Spot price by creating a new launch
+     *            When you change your maximum price by creating a new launch
      *            configuration, running instances will continue to run as long
-     *            as the Spot price for those running instances is higher than
-     *            the current Spot market price.
+     *            as the maximum price for those running instances is higher
+     *            than the current Spot price.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -2574,7 +2540,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Guide</i>.
      * </p>
      * <p>
-     * Valid values: <code>default</code> | <code>dedicated</code>
+     * Valid Values: <code>default</code> | <code>dedicated</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -2605,7 +2571,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         User Guide</i>.
      *         </p>
      *         <p>
-     *         Valid values: <code>default</code> | <code>dedicated</code>
+     *         Valid Values: <code>default</code> | <code>dedicated</code>
      *         </p>
      */
     public String getPlacementTenancy() {
@@ -2634,7 +2600,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Guide</i>.
      * </p>
      * <p>
-     * Valid values: <code>default</code> | <code>dedicated</code>
+     * Valid Values: <code>default</code> | <code>dedicated</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -2665,7 +2631,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Valid values: <code>default</code> | <code>dedicated</code>
+     *            Valid Values: <code>default</code> | <code>dedicated</code>
      *            </p>
      */
     public void setPlacementTenancy(String placementTenancy) {
@@ -2694,7 +2660,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Guide</i>.
      * </p>
      * <p>
-     * Valid values: <code>default</code> | <code>dedicated</code>
+     * Valid Values: <code>default</code> | <code>dedicated</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -2728,7 +2694,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Valid values: <code>default</code> | <code>dedicated</code>
+     *            Valid Values: <code>default</code> | <code>dedicated</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

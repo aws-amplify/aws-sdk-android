@@ -3393,6 +3393,17 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Moves the specified instances into the standby state.
      * </p>
      * <p>
+     * If you choose to decrement the desired capacity of the Auto Scaling
+     * group, the instances can enter standby as long as the desired capacity of
+     * the Auto Scaling group after the instances are placed into standby is
+     * equal to or greater than the minimum capacity of the group.
+     * </p>
+     * <p>
+     * If you choose not to decrement the desired capacity of the Auto Scaling
+     * group, the Auto Scaling group launches new instances to replace the
+     * instances on standby.
+     * </p>
+     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
@@ -3424,6 +3435,17 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Moves the specified instances into the standby state.
+     * </p>
+     * <p>
+     * If you choose to decrement the desired capacity of the Auto Scaling
+     * group, the instances can enter standby as long as the desired capacity of
+     * the Auto Scaling group after the instances are placed into standby is
+     * equal to or greater than the minimum capacity of the group.
+     * </p>
+     * <p>
+     * If you choose not to decrement the desired capacity of the Auto Scaling
+     * group, the Auto Scaling group launches new instances to replace the
+     * instances on standby.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -3532,6 +3554,10 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Moves the specified instances out of the standby state.
      * </p>
      * <p>
+     * After you put the instances back in service, the desired capacity is
+     * incremented.
+     * </p>
+     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
@@ -3562,6 +3588,10 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Moves the specified instances out of the standby state.
+     * </p>
+     * <p>
+     * After you put the instances back in service, the desired capacity is
+     * incremented.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -4704,8 +4734,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * To update an Auto Scaling group, specify the name of the group and the
      * parameter that you want to change. Any parameters that you don't specify
      * are not changed by this update request. The new settings take effect on
-     * any scaling activities after this call returns. Scaling activities that
-     * are currently in progress aren't affected.
+     * any scaling activities after this call returns.
      * </p>
      * <p>
      * If you associate a new launch configuration or template with an Auto
@@ -4793,8 +4822,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * To update an Auto Scaling group, specify the name of the group and the
      * parameter that you want to change. Any parameters that you don't specify
      * are not changed by this update request. The new settings take effect on
-     * any scaling activities after this call returns. Scaling activities that
-     * are currently in progress aren't affected.
+     * any scaling activities after this call returns.
      * </p>
      * <p>
      * If you associate a new launch configuration or template with an Auto

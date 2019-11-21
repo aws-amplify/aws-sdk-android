@@ -32,6 +32,11 @@ class AutoScalingInstanceDetailsStaxMarshaller {
             String instanceId = _autoScalingInstanceDetails.getInstanceId();
             request.addParameter(prefix, StringUtils.fromString(instanceId));
         }
+        if (_autoScalingInstanceDetails.getInstanceType() != null) {
+            prefix = _prefix + "InstanceType";
+            String instanceType = _autoScalingInstanceDetails.getInstanceType();
+            request.addParameter(prefix, StringUtils.fromString(instanceType));
+        }
         if (_autoScalingInstanceDetails.getAutoScalingGroupName() != null) {
             prefix = _prefix + "AutoScalingGroupName";
             String autoScalingGroupName = _autoScalingInstanceDetails.getAutoScalingGroupName();
@@ -69,6 +74,11 @@ class AutoScalingInstanceDetailsStaxMarshaller {
             prefix = _prefix + "ProtectedFromScaleIn";
             Boolean protectedFromScaleIn = _autoScalingInstanceDetails.getProtectedFromScaleIn();
             request.addParameter(prefix, StringUtils.fromBoolean(protectedFromScaleIn));
+        }
+        if (_autoScalingInstanceDetails.getWeightedCapacity() != null) {
+            prefix = _prefix + "WeightedCapacity";
+            String weightedCapacity = _autoScalingInstanceDetails.getWeightedCapacity();
+            request.addParameter(prefix, StringUtils.fromString(weightedCapacity));
         }
     }
 

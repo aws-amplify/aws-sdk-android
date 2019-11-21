@@ -231,6 +231,11 @@ class AutoScalingGroupStaxMarshaller {
             String serviceLinkedRoleARN = _autoScalingGroup.getServiceLinkedRoleARN();
             request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
         }
+        if (_autoScalingGroup.getMaxInstanceLifetime() != null) {
+            prefix = _prefix + "MaxInstanceLifetime";
+            Integer maxInstanceLifetime = _autoScalingGroup.getMaxInstanceLifetime();
+            request.addParameter(prefix, StringUtils.fromInteger(maxInstanceLifetime));
+        }
     }
 
     private static AutoScalingGroupStaxMarshaller instance;

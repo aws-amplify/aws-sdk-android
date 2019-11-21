@@ -52,6 +52,11 @@ class LaunchTemplateOverridesStaxUnmarshaller implements
                             .unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("WeightedCapacity", targetDepth)) {
+                    launchTemplateOverrides.setWeightedCapacity(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     break;
