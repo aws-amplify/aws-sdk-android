@@ -21,10 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the specified user pool with the specified attributes. If you don't
- * provide a value for an attribute, it will be set to the default value. You
- * can get a list of the current user pool settings with .
+ * Updates the specified user pool with the specified attributes. You can get a
+ * list of the current user pool settings with .
  * </p>
+ * <important>
+ * <p>
+ * If you don't provide a value for an attribute, it will be set to the default
+ * value.
+ * </p>
+ * </important>
  */
 public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Serializable {
     /**

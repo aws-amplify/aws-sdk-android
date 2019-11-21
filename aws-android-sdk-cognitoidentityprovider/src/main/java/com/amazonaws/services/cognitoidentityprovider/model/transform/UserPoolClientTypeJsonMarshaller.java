@@ -168,6 +168,11 @@ class UserPoolClientTypeJsonMarshaller {
             AnalyticsConfigurationTypeJsonMarshaller.getInstance().marshall(analyticsConfiguration,
                     jsonWriter);
         }
+        if (userPoolClientType.getPreventUserExistenceErrors() != null) {
+            String preventUserExistenceErrors = userPoolClientType.getPreventUserExistenceErrors();
+            jsonWriter.name("PreventUserExistenceErrors");
+            jsonWriter.value(preventUserExistenceErrors);
+        }
         jsonWriter.endObject();
     }
 
