@@ -19,6 +19,7 @@
 			"aws-android-sdk-cognitoidentityprovider",
 			"aws-android-sdk-comprehend",
 			"aws-android-sdk-connect",
+			"aws-android-sdk-connectparticipant",
 			"aws-android-sdk-core",
 			"aws-android-sdk-ddb",
 			"aws-android-sdk-ddb-document",
@@ -221,6 +222,12 @@
 				packages : [ 
 					"${service.prefix}.connect*" 
 				]  
+			},
+			{
+				title : "Amazon Connect Participant" ,
+				packages : [
+					"${service.prefix}.connectparticipant*"
+				]
 			},
 			{ 
 				title : "Amazon EC2" , 
