@@ -2,11 +2,25 @@
 
 ## [Release 2.16.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.4)
 
+### New Features
+
+- **Amazon Connect Participant**
+  - Amazon Connect is a cloud-based contact center solution that makes it easy to set up and manage a customer contact center and provide reliable customer engagement at any scale. Amazon Connect enables customer contacts through voice or chat. The Amazon Connect Participant Service is used by chat participants, such as agents and customers. See Amazon Connect Participant Service Documentation (link https://aws.amazon.com/connect/) for more details.
+
+- **Amazon Connect**
+  - Added a new api to support CHAT media in Connect. See API reference (https://docs.aws.amazon.com/connect/latest/APIReference)
+
 ### Bug Fixes
 
 - **Amazon S3**
   - `PutObjectResult` object will now contain content MD5 that was used in data validation (if available). See [Issue# 1236](https://github.com/aws-amplify/aws-sdk-android/issues/1236).
   - Changed the default notification ID of the notification that will be displayed when the `TransferService` transitions to foreground from `0` to `1` because `0` is reserved and not recommended by Android. `TransferService` would fail to transition to foreground if notification ID is 0. See [Android guide](https://developer.android.com/guide/components/services.html) for details.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Connect
+  - Amazon Connect Participant
 
 ## [Release 2.16.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.3)
 
