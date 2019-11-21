@@ -34,8 +34,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      */
     private String username;
 
@@ -130,8 +129,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
      *         The user name for the account. For instances not using SAML for
@@ -153,8 +151,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The user name for the account. For instances not using SAML
@@ -180,8 +177,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The user name for the account. For instances not using SAML
