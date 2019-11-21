@@ -43,8 +43,7 @@ public class User implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      */
     private String username;
 
@@ -194,8 +193,7 @@ public class User implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
      *         The user name assigned to the user account.
@@ -211,8 +209,7 @@ public class User implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The user name assigned to the user account.
@@ -231,8 +228,7 @@ public class User implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The user name assigned to the user account.

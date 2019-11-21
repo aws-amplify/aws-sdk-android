@@ -36,7 +36,7 @@ public class Dimensions implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      */
     private String channel;
 
@@ -91,7 +91,7 @@ public class Dimensions implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @return <p>
      *         The channel used for grouping and filters.
@@ -108,7 +108,7 @@ public class Dimensions implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
      *            The channel used for grouping and filters.
@@ -128,7 +128,7 @@ public class Dimensions implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
      *            The channel used for grouping and filters.
@@ -148,7 +148,7 @@ public class Dimensions implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
      *            The channel used for grouping and filters.
@@ -168,7 +168,7 @@ public class Dimensions implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
      *            The channel used for grouping and filters.

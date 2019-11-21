@@ -43,8 +43,7 @@ public class UserSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      */
     private String username;
 
@@ -144,8 +143,7 @@ public class UserSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
      *         The Amazon Connect user name of the user account.
@@ -161,8 +159,7 @@ public class UserSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The Amazon Connect user name of the user account.
@@ -181,8 +178,7 @@ public class UserSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 20<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9\_\-\.]+<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @param username <p>
      *            The Amazon Connect user name of the user account.

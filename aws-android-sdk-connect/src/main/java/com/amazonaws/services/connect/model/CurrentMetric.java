@@ -31,7 +31,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      */
     private String name;
 
@@ -53,7 +54,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      *
      * @return <p>
      *         The name of the metric.
@@ -72,7 +74,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      *
      * @param name <p>
      *            The name of the metric.
@@ -94,7 +97,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      *
      * @param name <p>
      *            The name of the metric.
@@ -116,7 +120,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      *
      * @param name <p>
      *            The name of the metric.
@@ -138,7 +143,8 @@ public class CurrentMetric implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENTS_ONLINE, AGENTS_AVAILABLE, AGENTS_ON_CALL,
      * AGENTS_NON_PRODUCTIVE, AGENTS_AFTER_CONTACT_WORK, AGENTS_ERROR,
-     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE, CONTACTS_SCHEDULED
+     * AGENTS_STAFFED, CONTACTS_IN_QUEUE, OLDEST_CONTACT_AGE,
+     * CONTACTS_SCHEDULED, AGENTS_ON_CONTACT, SLOTS_ACTIVE, SLOTS_AVAILABLE
      *
      * @param name <p>
      *            The name of the metric.
