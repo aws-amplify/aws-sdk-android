@@ -1216,6 +1216,16 @@ workflows:
                 - master
                 - develop
       - integrationtest:
+          name: connectparticipant
+          testmodule: aws-android-sdk-connectparticipant-test
+          requires:
+            - pre_integrationtest
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - integrationtest:
           name: ddb-mapper
           testmodule: aws-android-sdk-ddb-mapper-test
           requires:
@@ -1471,6 +1481,7 @@ workflows:
             # - kinesisvideo
             - mobile-client
             - connect
+            - connectparticipant
             - textract
             - translate
             - transcribe
@@ -1596,6 +1607,16 @@ workflows:
           testmodule: aws-android-sdk-connect-test
           requires:
             - pre_integrationtest    
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      - integrationtest:
+          name: connectparticipant
+          testmodule: aws-android-sdk-connectparticipant-test
+          requires:
+            - pre_integrationtest
           filters:
             branches:
               ignore: /.*/
@@ -1858,6 +1879,7 @@ workflows:
             # - kinesisvideo
             - mobile-client
             - connect
+            - connectparticipant
             - textract
             - translate
             - transcribe
