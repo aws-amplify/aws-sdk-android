@@ -93,6 +93,8 @@ com.amazonaws.services.comprehend
 com.amazonaws.services.comprehend.model
 com.amazonaws.services.connect
 com.amazonaws.services.connect.model
+com.amazonaws.services.connectparticipant
+com.amazonaws.services.connectparticipant.model
 com.amazonaws.services.dynamodbv2
 com.amazonaws.services.dynamodbv2.model
 com.amazonaws.services.dynamodbv2.util
