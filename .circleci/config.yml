@@ -524,6 +524,7 @@ jobs:
             HOMEBREW_LOGS=~/homebrew-logs
             HOMEBREW_TEMP=~/homebrew-temp
             brew update
+            brew install openssl@1.1
             brew doctor
             brew cask install android-sdk
       - run:
