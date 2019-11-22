@@ -519,13 +519,16 @@ jobs:
       - configure_aws
       - set_enviroment_variables
       - run:
+          name: Download gpghome
+          command: |
+            aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
+            unzip -a gpghome.zip
+      - run:
           name: Install Android SDK tools
           command: |
             HOMEBREW_LOGS=~/homebrew-logs
             HOMEBREW_TEMP=~/homebrew-temp
             brew update
-            brew install openssl@1.1
-            brew doctor
             brew cask install android-sdk
       - run:
           name: Install Android build tools
@@ -553,11 +556,6 @@ jobs:
             echo "PATH: $PATH"
             echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
             echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
-      - run:
-          name: Download gpghome
-          command: |
-            aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
-            unzip -a gpghome.zip
       - run:
           name: publish to maven
           command: |
