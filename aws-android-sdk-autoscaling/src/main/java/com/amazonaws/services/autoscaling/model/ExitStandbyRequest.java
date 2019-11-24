@@ -24,6 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Moves the specified instances out of the standby state.
  * </p>
  * <p>
+ * After you put the instances back in service, the desired capacity is
+ * incremented.
+ * </p>
+ * <p>
  * For more information, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
  * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the

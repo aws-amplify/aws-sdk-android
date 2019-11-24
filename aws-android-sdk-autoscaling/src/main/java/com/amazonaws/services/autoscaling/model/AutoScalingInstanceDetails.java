@@ -37,6 +37,18 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
+     * The instance type of the EC2 instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     */
+    private String instanceType;
+
+    /**
+     * <p>
      * The name of the Auto Scaling group for the instance.
      * </p>
      * <p>
@@ -116,6 +128,22 @@ public class AutoScalingInstanceDetails implements Serializable {
 
     /**
      * <p>
+     * The number of capacity units contributed by the instance based on its
+     * instance type.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 999.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     */
+    private String weightedCapacity;
+
+    /**
+     * <p>
      * The ID of the instance.
      * </p>
      * <p>
@@ -171,6 +199,66 @@ public class AutoScalingInstanceDetails implements Serializable {
      */
     public AutoScalingInstanceDetails withInstanceId(String instanceId) {
         this.instanceId = instanceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The instance type of the EC2 instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @return <p>
+     *         The instance type of the EC2 instance.
+     *         </p>
+     */
+    public String getInstanceType() {
+        return instanceType;
+    }
+
+    /**
+     * <p>
+     * The instance type of the EC2 instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param instanceType <p>
+     *            The instance type of the EC2 instance.
+     *            </p>
+     */
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    /**
+     * <p>
+     * The instance type of the EC2 instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 255<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param instanceType <p>
+     *            The instance type of the EC2 instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingInstanceDetails withInstanceType(String instanceType) {
+        this.instanceType = instanceType;
         return this;
     }
 
@@ -613,6 +701,90 @@ public class AutoScalingInstanceDetails implements Serializable {
     }
 
     /**
+     * <p>
+     * The number of capacity units contributed by the instance based on its
+     * instance type.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 999.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @return <p>
+     *         The number of capacity units contributed by the instance based on
+     *         its instance type.
+     *         </p>
+     *         <p>
+     *         Valid Range: Minimum value of 1. Maximum value of 999.
+     *         </p>
+     */
+    public String getWeightedCapacity() {
+        return weightedCapacity;
+    }
+
+    /**
+     * <p>
+     * The number of capacity units contributed by the instance based on its
+     * instance type.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 999.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param weightedCapacity <p>
+     *            The number of capacity units contributed by the instance based
+     *            on its instance type.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 1. Maximum value of 999.
+     *            </p>
+     */
+    public void setWeightedCapacity(String weightedCapacity) {
+        this.weightedCapacity = weightedCapacity;
+    }
+
+    /**
+     * <p>
+     * The number of capacity units contributed by the instance based on its
+     * instance type.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 999.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param weightedCapacity <p>
+     *            The number of capacity units contributed by the instance based
+     *            on its instance type.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 1. Maximum value of 999.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingInstanceDetails withWeightedCapacity(String weightedCapacity) {
+        this.weightedCapacity = weightedCapacity;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -625,6 +797,8 @@ public class AutoScalingInstanceDetails implements Serializable {
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getInstanceType() != null)
+            sb.append("InstanceType: " + getInstanceType() + ",");
         if (getAutoScalingGroupName() != null)
             sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
         if (getAvailabilityZone() != null)
@@ -638,7 +812,9 @@ public class AutoScalingInstanceDetails implements Serializable {
         if (getLaunchTemplate() != null)
             sb.append("LaunchTemplate: " + getLaunchTemplate() + ",");
         if (getProtectedFromScaleIn() != null)
-            sb.append("ProtectedFromScaleIn: " + getProtectedFromScaleIn());
+            sb.append("ProtectedFromScaleIn: " + getProtectedFromScaleIn() + ",");
+        if (getWeightedCapacity() != null)
+            sb.append("WeightedCapacity: " + getWeightedCapacity());
         sb.append("}");
         return sb.toString();
     }
@@ -649,6 +825,8 @@ public class AutoScalingInstanceDetails implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode());
         hashCode = prime * hashCode
                 + ((getAutoScalingGroupName() == null) ? 0 : getAutoScalingGroupName().hashCode());
         hashCode = prime * hashCode
@@ -665,6 +843,8 @@ public class AutoScalingInstanceDetails implements Serializable {
                 + ((getLaunchTemplate() == null) ? 0 : getLaunchTemplate().hashCode());
         hashCode = prime * hashCode
                 + ((getProtectedFromScaleIn() == null) ? 0 : getProtectedFromScaleIn().hashCode());
+        hashCode = prime * hashCode
+                + ((getWeightedCapacity() == null) ? 0 : getWeightedCapacity().hashCode());
         return hashCode;
     }
 
@@ -683,6 +863,11 @@ public class AutoScalingInstanceDetails implements Serializable {
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getInstanceType() == null ^ this.getInstanceType() == null)
+            return false;
+        if (other.getInstanceType() != null
+                && other.getInstanceType().equals(this.getInstanceType()) == false)
             return false;
         if (other.getAutoScalingGroupName() == null ^ this.getAutoScalingGroupName() == null)
             return false;
@@ -718,6 +903,11 @@ public class AutoScalingInstanceDetails implements Serializable {
             return false;
         if (other.getProtectedFromScaleIn() != null
                 && other.getProtectedFromScaleIn().equals(this.getProtectedFromScaleIn()) == false)
+            return false;
+        if (other.getWeightedCapacity() == null ^ this.getWeightedCapacity() == null)
+            return false;
+        if (other.getWeightedCapacity() != null
+                && other.getWeightedCapacity().equals(this.getWeightedCapacity()) == false)
             return false;
         return true;
     }

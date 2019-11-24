@@ -376,6 +376,17 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     */
+    private Integer maxInstanceLifetime;
+
+    /**
+     * <p>
      * The name of the Auto Scaling group. This name must be unique per Region
      * per account.
      * </p>
@@ -2703,6 +2714,75 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     *
+     * @return <p>
+     *         The maximum amount of time, in seconds, that an instance can be
+     *         in service.
+     *         </p>
+     *         <p>
+     *         Valid Range: Minimum value of 604800.
+     *         </p>
+     */
+    public Integer getMaxInstanceLifetime() {
+        return maxInstanceLifetime;
+    }
+
+    /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     *
+     * @param maxInstanceLifetime <p>
+     *            The maximum amount of time, in seconds, that an instance can
+     *            be in service.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 604800.
+     *            </p>
+     */
+    public void setMaxInstanceLifetime(Integer maxInstanceLifetime) {
+        this.maxInstanceLifetime = maxInstanceLifetime;
+    }
+
+    /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxInstanceLifetime <p>
+     *            The maximum amount of time, in seconds, that an instance can
+     *            be in service.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 604800.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAutoScalingGroupRequest withMaxInstanceLifetime(Integer maxInstanceLifetime) {
+        this.maxInstanceLifetime = maxInstanceLifetime;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2756,7 +2836,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
         if (getServiceLinkedRoleARN() != null)
-            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN());
+            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN() + ",");
+        if (getMaxInstanceLifetime() != null)
+            sb.append("MaxInstanceLifetime: " + getMaxInstanceLifetime());
         sb.append("}");
         return sb.toString();
     }
@@ -2812,6 +2894,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getServiceLinkedRoleARN() == null) ? 0 : getServiceLinkedRoleARN().hashCode());
+        hashCode = prime * hashCode
+                + ((getMaxInstanceLifetime() == null) ? 0 : getMaxInstanceLifetime().hashCode());
         return hashCode;
     }
 
@@ -2931,6 +3015,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getServiceLinkedRoleARN() != null
                 && other.getServiceLinkedRoleARN().equals(this.getServiceLinkedRoleARN()) == false)
+            return false;
+        if (other.getMaxInstanceLifetime() == null ^ this.getMaxInstanceLifetime() == null)
+            return false;
+        if (other.getMaxInstanceLifetime() != null
+                && other.getMaxInstanceLifetime().equals(this.getMaxInstanceLifetime()) == false)
             return false;
         return true;
     }

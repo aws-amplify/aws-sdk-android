@@ -27,8 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To update an Auto Scaling group, specify the name of the group and the
  * parameter that you want to change. Any parameters that you don't specify are
  * not changed by this update request. The new settings take effect on any
- * scaling activities after this call returns. Scaling activities that are
- * currently in progress aren't affected.
+ * scaling activities after this call returns.
  * </p>
  * <p>
  * If you associate a new launch configuration or template with an Auto Scaling
@@ -99,15 +98,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <code>LaunchConfigurationName</code> in your update request, you can't
      * specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.
      * </p>
-     * <important>
-     * <p>
-     * To update an Auto Scaling group with a launch configuration with
-     * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you get an error. If
-     * you have previously enabled the collection of group metrics, you can
-     * disable it using <a>DisableMetricsCollection</a>.
-     * </p>
-     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -318,6 +308,17 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     */
+    private Integer maxInstanceLifetime;
+
+    /**
+     * <p>
      * The name of the Auto Scaling group.
      * </p>
      * <p>
@@ -382,15 +383,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <code>LaunchConfigurationName</code> in your update request, you can't
      * specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.
      * </p>
-     * <important>
-     * <p>
-     * To update an Auto Scaling group with a launch configuration with
-     * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you get an error. If
-     * you have previously enabled the collection of group metrics, you can
-     * disable it using <a>DisableMetricsCollection</a>.
-     * </p>
-     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -403,16 +395,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         can't specify <code>LaunchTemplate</code> or
      *         <code>MixedInstancesPolicy</code>.
      *         </p>
-     *         <important>
-     *         <p>
-     *         To update an Auto Scaling group with a launch configuration with
-     *         <code>InstanceMonitoring</code> set to <code>false</code>, you
-     *         must first disable the collection of group metrics. Otherwise,
-     *         you get an error. If you have previously enabled the collection
-     *         of group metrics, you can disable it using
-     *         <a>DisableMetricsCollection</a>.
-     *         </p>
-     *         </important>
      */
     public String getLaunchConfigurationName() {
         return launchConfigurationName;
@@ -424,15 +406,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <code>LaunchConfigurationName</code> in your update request, you can't
      * specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.
      * </p>
-     * <important>
-     * <p>
-     * To update an Auto Scaling group with a launch configuration with
-     * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you get an error. If
-     * you have previously enabled the collection of group metrics, you can
-     * disable it using <a>DisableMetricsCollection</a>.
-     * </p>
-     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -445,16 +418,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            you can't specify <code>LaunchTemplate</code> or
      *            <code>MixedInstancesPolicy</code>.
      *            </p>
-     *            <important>
-     *            <p>
-     *            To update an Auto Scaling group with a launch configuration
-     *            with <code>InstanceMonitoring</code> set to <code>false</code>
-     *            , you must first disable the collection of group metrics.
-     *            Otherwise, you get an error. If you have previously enabled
-     *            the collection of group metrics, you can disable it using
-     *            <a>DisableMetricsCollection</a>.
-     *            </p>
-     *            </important>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
@@ -466,15 +429,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <code>LaunchConfigurationName</code> in your update request, you can't
      * specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.
      * </p>
-     * <important>
-     * <p>
-     * To update an Auto Scaling group with a launch configuration with
-     * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you get an error. If
-     * you have previously enabled the collection of group metrics, you can
-     * disable it using <a>DisableMetricsCollection</a>.
-     * </p>
-     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -490,16 +444,6 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            you can't specify <code>LaunchTemplate</code> or
      *            <code>MixedInstancesPolicy</code>.
      *            </p>
-     *            <important>
-     *            <p>
-     *            To update an Auto Scaling group with a launch configuration
-     *            with <code>InstanceMonitoring</code> set to <code>false</code>
-     *            , you must first disable the collection of group metrics.
-     *            Otherwise, you get an error. If you have previously enabled
-     *            the collection of group metrics, you can disable it using
-     *            <a>DisableMetricsCollection</a>.
-     *            </p>
-     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1818,6 +1762,75 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     *
+     * @return <p>
+     *         The maximum amount of time, in seconds, that an instance can be
+     *         in service.
+     *         </p>
+     *         <p>
+     *         Valid Range: Minimum value of 604800.
+     *         </p>
+     */
+    public Integer getMaxInstanceLifetime() {
+        return maxInstanceLifetime;
+    }
+
+    /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     *
+     * @param maxInstanceLifetime <p>
+     *            The maximum amount of time, in seconds, that an instance can
+     *            be in service.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 604800.
+     *            </p>
+     */
+    public void setMaxInstanceLifetime(Integer maxInstanceLifetime) {
+        this.maxInstanceLifetime = maxInstanceLifetime;
+    }
+
+    /**
+     * <p>
+     * The maximum amount of time, in seconds, that an instance can be in
+     * service.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 604800.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxInstanceLifetime <p>
+     *            The maximum amount of time, in seconds, that an instance can
+     *            be in service.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 604800.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAutoScalingGroupRequest withMaxInstanceLifetime(Integer maxInstanceLifetime) {
+        this.maxInstanceLifetime = maxInstanceLifetime;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1860,7 +1873,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn()
                     + ",");
         if (getServiceLinkedRoleARN() != null)
-            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN());
+            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN() + ",");
+        if (getMaxInstanceLifetime() != null)
+            sb.append("MaxInstanceLifetime: " + getMaxInstanceLifetime());
         sb.append("}");
         return sb.toString();
     }
@@ -1906,6 +1921,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
                         : getNewInstancesProtectedFromScaleIn().hashCode());
         hashCode = prime * hashCode
                 + ((getServiceLinkedRoleARN() == null) ? 0 : getServiceLinkedRoleARN().hashCode());
+        hashCode = prime * hashCode
+                + ((getMaxInstanceLifetime() == null) ? 0 : getMaxInstanceLifetime().hashCode());
         return hashCode;
     }
 
@@ -1999,6 +2016,11 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getServiceLinkedRoleARN() != null
                 && other.getServiceLinkedRoleARN().equals(this.getServiceLinkedRoleARN()) == false)
+            return false;
+        if (other.getMaxInstanceLifetime() == null ^ this.getMaxInstanceLifetime() == null)
+            return false;
+        if (other.getMaxInstanceLifetime() != null
+                && other.getMaxInstanceLifetime().equals(this.getMaxInstanceLifetime()) == false)
             return false;
         return true;
     }

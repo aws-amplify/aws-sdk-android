@@ -51,8 +51,8 @@ public class MixedInstancesPolicy implements Serializable {
      * The instances distribution to use.
      * </p>
      * <p>
-     * If you leave this parameter unspecified when creating a mixed instances
-     * policy, the default values are used.
+     * If you leave this parameter unspecified, the value for each parameter in
+     * <code>InstancesDistribution</code> uses a default value.
      * </p>
      */
     private InstancesDistribution instancesDistribution;
@@ -128,16 +128,17 @@ public class MixedInstancesPolicy implements Serializable {
      * The instances distribution to use.
      * </p>
      * <p>
-     * If you leave this parameter unspecified when creating a mixed instances
-     * policy, the default values are used.
+     * If you leave this parameter unspecified, the value for each parameter in
+     * <code>InstancesDistribution</code> uses a default value.
      * </p>
      *
      * @return <p>
      *         The instances distribution to use.
      *         </p>
      *         <p>
-     *         If you leave this parameter unspecified when creating a mixed
-     *         instances policy, the default values are used.
+     *         If you leave this parameter unspecified, the value for each
+     *         parameter in <code>InstancesDistribution</code> uses a default
+     *         value.
      *         </p>
      */
     public InstancesDistribution getInstancesDistribution() {
@@ -149,16 +150,17 @@ public class MixedInstancesPolicy implements Serializable {
      * The instances distribution to use.
      * </p>
      * <p>
-     * If you leave this parameter unspecified when creating a mixed instances
-     * policy, the default values are used.
+     * If you leave this parameter unspecified, the value for each parameter in
+     * <code>InstancesDistribution</code> uses a default value.
      * </p>
      *
      * @param instancesDistribution <p>
      *            The instances distribution to use.
      *            </p>
      *            <p>
-     *            If you leave this parameter unspecified when creating a mixed
-     *            instances policy, the default values are used.
+     *            If you leave this parameter unspecified, the value for each
+     *            parameter in <code>InstancesDistribution</code> uses a default
+     *            value.
      *            </p>
      */
     public void setInstancesDistribution(InstancesDistribution instancesDistribution) {
@@ -170,8 +172,8 @@ public class MixedInstancesPolicy implements Serializable {
      * The instances distribution to use.
      * </p>
      * <p>
-     * If you leave this parameter unspecified when creating a mixed instances
-     * policy, the default values are used.
+     * If you leave this parameter unspecified, the value for each parameter in
+     * <code>InstancesDistribution</code> uses a default value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,8 +183,9 @@ public class MixedInstancesPolicy implements Serializable {
      *            The instances distribution to use.
      *            </p>
      *            <p>
-     *            If you leave this parameter unspecified when creating a mixed
-     *            instances policy, the default values are used.
+     *            If you leave this parameter unspecified, the value for each
+     *            parameter in <code>InstancesDistribution</code> uses a default
+     *            value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

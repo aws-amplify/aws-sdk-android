@@ -214,6 +214,11 @@ public class CreateAutoScalingGroupRequestMarshaller implements
             String serviceLinkedRoleARN = createAutoScalingGroupRequest.getServiceLinkedRoleARN();
             request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
         }
+        if (createAutoScalingGroupRequest.getMaxInstanceLifetime() != null) {
+            prefix = "MaxInstanceLifetime";
+            Integer maxInstanceLifetime = createAutoScalingGroupRequest.getMaxInstanceLifetime();
+            request.addParameter(prefix, StringUtils.fromInteger(maxInstanceLifetime));
+        }
 
         return request;
     }
