@@ -338,6 +338,7 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new InvalidArgumentExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidKMSResourceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -453,6 +454,7 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
      *         method, as returned by Amazon Kinesis Firehose.
      * @throws ResourceNotFoundException
      * @throws InvalidArgumentException
+     * @throws InvalidKMSResourceException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

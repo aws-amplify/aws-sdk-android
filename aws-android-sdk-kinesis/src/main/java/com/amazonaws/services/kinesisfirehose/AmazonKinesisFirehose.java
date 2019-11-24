@@ -183,6 +183,7 @@ public interface AmazonKinesisFirehose {
      *         method, as returned by Amazon Kinesis Firehose.
      * @throws ResourceNotFoundException
      * @throws InvalidArgumentException
+     * @throws InvalidKMSResourceException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
