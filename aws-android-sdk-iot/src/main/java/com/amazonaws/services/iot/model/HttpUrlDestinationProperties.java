@@ -17,56 +17,73 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-public class GetCardinalityResult implements Serializable {
+/**
+ * <p>
+ * HTTP URL destination properties.
+ * </p>
+ */
+public class HttpUrlDestinationProperties implements Serializable {
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The URL used to confirm the HTTP topic rule destination URL.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2000<br/>
      */
-    private Integer cardinality;
+    private String confirmationUrl;
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The URL used to confirm the HTTP topic rule destination URL.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2000<br/>
      *
      * @return <p>
-     *         The approximate count of unique values that match the query.
+     *         The URL used to confirm the HTTP topic rule destination URL.
      *         </p>
      */
-    public Integer getCardinality() {
-        return cardinality;
+    public String getConfirmationUrl() {
+        return confirmationUrl;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The URL used to confirm the HTTP topic rule destination URL.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2000<br/>
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param confirmationUrl <p>
+     *            The URL used to confirm the HTTP topic rule destination URL.
      *            </p>
      */
-    public void setCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public void setConfirmationUrl(String confirmationUrl) {
+        this.confirmationUrl = confirmationUrl;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The URL used to confirm the HTTP topic rule destination URL.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2000<br/>
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param confirmationUrl <p>
+     *            The URL used to confirm the HTTP topic rule destination URL.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetCardinalityResult withCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public HttpUrlDestinationProperties withConfirmationUrl(String confirmationUrl) {
+        this.confirmationUrl = confirmationUrl;
         return this;
     }
 
@@ -81,8 +98,8 @@ public class GetCardinalityResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCardinality() != null)
-            sb.append("cardinality: " + getCardinality());
+        if (getConfirmationUrl() != null)
+            sb.append("confirmationUrl: " + getConfirmationUrl());
         sb.append("}");
         return sb.toString();
     }
@@ -93,7 +110,7 @@ public class GetCardinalityResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getCardinality() == null) ? 0 : getCardinality().hashCode());
+                + ((getConfirmationUrl() == null) ? 0 : getConfirmationUrl().hashCode());
         return hashCode;
     }
 
@@ -104,14 +121,14 @@ public class GetCardinalityResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof GetCardinalityResult == false)
+        if (obj instanceof HttpUrlDestinationProperties == false)
             return false;
-        GetCardinalityResult other = (GetCardinalityResult) obj;
+        HttpUrlDestinationProperties other = (HttpUrlDestinationProperties) obj;
 
-        if (other.getCardinality() == null ^ this.getCardinality() == null)
+        if (other.getConfirmationUrl() == null ^ this.getConfirmationUrl() == null)
             return false;
-        if (other.getCardinality() != null
-                && other.getCardinality().equals(this.getCardinality()) == false)
+        if (other.getConfirmationUrl() != null
+                && other.getConfirmationUrl().equals(this.getConfirmationUrl()) == false)
             return false;
         return true;
     }

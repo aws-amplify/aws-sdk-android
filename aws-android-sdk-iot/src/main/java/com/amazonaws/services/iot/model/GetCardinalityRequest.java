@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the number of things with distinct values for the aggregation field.
+ * Returns the approximate count of unique values that match the query.
  * </p>
  */
 public class GetCardinalityRequest extends AmazonWebServiceRequest implements Serializable {
