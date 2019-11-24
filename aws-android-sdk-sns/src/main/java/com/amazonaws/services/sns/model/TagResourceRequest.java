@@ -53,18 +53,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Tagging actions are limited to 10 TPS per AWS account. If your application
- * requires a higher throughput, file a <a href=
+ * Tagging actions are limited to 10 TPS per AWS account, per AWS region. If
+ * your application requires a higher throughput, file a <a href=
  * "https://console.aws.amazon.com/support/home#/case/create?issueType=technical"
  * >technical support request</a>.
  * </p>
  * </li>
  * </ul>
- * <p>
- * For a full list of tag restrictions, see <a href=
- * "https://docs.aws.amazon.com/sns/latest/dg/sns-limits.html#limits-topics"
- * >Limits Related to Topics</a> in the <i>Amazon SNS Developer Guide</i>.
- * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

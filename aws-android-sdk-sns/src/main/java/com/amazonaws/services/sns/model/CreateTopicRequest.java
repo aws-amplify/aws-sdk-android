@@ -94,6 +94,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The list of tags to add to a new topic.
      * </p>
+     * <note>
+     * <p>
+     * To be able to tag a topic on creation, you must have the
+     * <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     * permissions.
+     * </p>
+     * </note>
      */
     private java.util.List<Tag> tags = new java.util.ArrayList<Tag>();
 
@@ -587,10 +594,24 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The list of tags to add to a new topic.
      * </p>
+     * <note>
+     * <p>
+     * To be able to tag a topic on creation, you must have the
+     * <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     * permissions.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The list of tags to add to a new topic.
      *         </p>
+     *         <note>
+     *         <p>
+     *         To be able to tag a topic on creation, you must have the
+     *         <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     *         permissions.
+     *         </p>
+     *         </note>
      */
     public java.util.List<Tag> getTags() {
         return tags;
@@ -600,10 +621,24 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The list of tags to add to a new topic.
      * </p>
+     * <note>
+     * <p>
+     * To be able to tag a topic on creation, you must have the
+     * <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     * permissions.
+     * </p>
+     * </note>
      *
      * @param tags <p>
      *            The list of tags to add to a new topic.
      *            </p>
+     *            <note>
+     *            <p>
+     *            To be able to tag a topic on creation, you must have the
+     *            <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     *            permissions.
+     *            </p>
+     *            </note>
      */
     public void setTags(java.util.Collection<Tag> tags) {
         if (tags == null) {
@@ -618,6 +653,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The list of tags to add to a new topic.
      * </p>
+     * <note>
+     * <p>
+     * To be able to tag a topic on creation, you must have the
+     * <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     * permissions.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -625,6 +667,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * @param tags <p>
      *            The list of tags to add to a new topic.
      *            </p>
+     *            <note>
+     *            <p>
+     *            To be able to tag a topic on creation, you must have the
+     *            <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     *            permissions.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -642,6 +691,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The list of tags to add to a new topic.
      * </p>
+     * <note>
+     * <p>
+     * To be able to tag a topic on creation, you must have the
+     * <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     * permissions.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -649,6 +705,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * @param tags <p>
      *            The list of tags to add to a new topic.
      *            </p>
+     *            <note>
+     *            <p>
+     *            To be able to tag a topic on creation, you must have the
+     *            <code>sns:CreateTopic</code> and <code>sns:TagResource</code>
+     *            permissions.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

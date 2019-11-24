@@ -54,7 +54,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * The action you want to allow for the specified principal(s).
      * </p>
      * <p>
-     * Valid values: any Amazon SNS action name.
+     * Valid values: Any Amazon SNS action name, for example
+     * <code>Publish</code>.
      * </p>
      */
     private java.util.List<String> actionNames = new java.util.ArrayList<String>();
@@ -88,7 +89,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      *            The action you want to allow for the specified principal(s).
      *            </p>
      *            <p>
-     *            Valid values: any Amazon SNS action name.
+     *            Valid values: Any Amazon SNS action name, for example
+     *            <code>Publish</code>.
      *            </p>
      */
     public AddPermissionRequest(String topicArn, String label,
@@ -287,14 +289,16 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * The action you want to allow for the specified principal(s).
      * </p>
      * <p>
-     * Valid values: any Amazon SNS action name.
+     * Valid values: Any Amazon SNS action name, for example
+     * <code>Publish</code>.
      * </p>
      *
      * @return <p>
      *         The action you want to allow for the specified principal(s).
      *         </p>
      *         <p>
-     *         Valid values: any Amazon SNS action name.
+     *         Valid values: Any Amazon SNS action name, for example
+     *         <code>Publish</code>.
      *         </p>
      */
     public java.util.List<String> getActionNames() {
@@ -306,14 +310,16 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * The action you want to allow for the specified principal(s).
      * </p>
      * <p>
-     * Valid values: any Amazon SNS action name.
+     * Valid values: Any Amazon SNS action name, for example
+     * <code>Publish</code>.
      * </p>
      *
      * @param actionNames <p>
      *            The action you want to allow for the specified principal(s).
      *            </p>
      *            <p>
-     *            Valid values: any Amazon SNS action name.
+     *            Valid values: Any Amazon SNS action name, for example
+     *            <code>Publish</code>.
      *            </p>
      */
     public void setActionNames(java.util.Collection<String> actionNames) {
@@ -330,7 +336,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * The action you want to allow for the specified principal(s).
      * </p>
      * <p>
-     * Valid values: any Amazon SNS action name.
+     * Valid values: Any Amazon SNS action name, for example
+     * <code>Publish</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,7 +347,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      *            The action you want to allow for the specified principal(s).
      *            </p>
      *            <p>
-     *            Valid values: any Amazon SNS action name.
+     *            Valid values: Any Amazon SNS action name, for example
+     *            <code>Publish</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -360,7 +368,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      * The action you want to allow for the specified principal(s).
      * </p>
      * <p>
-     * Valid values: any Amazon SNS action name.
+     * Valid values: Any Amazon SNS action name, for example
+     * <code>Publish</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -370,7 +379,8 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      *            The action you want to allow for the specified principal(s).
      *            </p>
      *            <p>
-     *            Valid values: any Amazon SNS action name.
+     *            Valid values: Any Amazon SNS action name, for example
+     *            <code>Publish</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
