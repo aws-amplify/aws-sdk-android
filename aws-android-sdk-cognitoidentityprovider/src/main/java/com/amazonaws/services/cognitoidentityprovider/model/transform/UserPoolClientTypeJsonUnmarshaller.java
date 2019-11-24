@@ -109,6 +109,10 @@ class UserPoolClientTypeJsonUnmarshaller implements
                         .setAnalyticsConfiguration(AnalyticsConfigurationTypeJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("PreventUserExistenceErrors")) {
+                userPoolClientType.setPreventUserExistenceErrors(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

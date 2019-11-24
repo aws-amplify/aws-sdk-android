@@ -81,6 +81,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -88,7 +96,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      */
     private String authFlow;
 
@@ -320,6 +329,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -327,7 +344,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @return <p>
      *         The authentication flow for this call to execute. The API action
@@ -383,6 +401,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *         USERNAME and PASSWORD are passed directly. If a user migration
      *         Lambda trigger is set, this flow will invoke the user migration
      *         Lambda if the USERNAME is not found in the user pool.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     *         authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     *         authentication flow. In this flow, Cognito receives the password
+     *         in the request instead of using the SRP process to verify
+     *         passwords.
      *         </p>
      *         </li>
      *         </ul>
@@ -451,6 +478,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -458,7 +493,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -515,6 +551,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -583,6 +628,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -593,7 +646,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -650,6 +704,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -721,6 +784,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -728,7 +799,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -785,6 +857,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -853,6 +934,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -863,7 +952,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -920,6 +1010,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>

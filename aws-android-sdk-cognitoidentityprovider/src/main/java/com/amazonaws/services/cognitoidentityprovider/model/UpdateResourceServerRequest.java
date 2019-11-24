@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates the name and scopes of resource server. All other fields are
  * read-only.
  * </p>
+ * <important>
+ * <p>
+ * If you don't provide a value for an attribute, it will be set to the default
+ * value.
+ * </p>
+ * </important>
  */
 public class UpdateResourceServerRequest extends AmazonWebServiceRequest implements Serializable {
     /**
