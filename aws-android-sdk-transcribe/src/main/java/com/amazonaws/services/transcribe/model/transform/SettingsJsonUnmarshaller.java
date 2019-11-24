@@ -47,6 +47,12 @@ class SettingsJsonUnmarshaller implements Unmarshaller<Settings, JsonUnmarshalle
             } else if (name.equals("ChannelIdentification")) {
                 settings.setChannelIdentification(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ShowAlternatives")) {
+                settings.setShowAlternatives(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MaxAlternatives")) {
+                settings.setMaxAlternatives(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
