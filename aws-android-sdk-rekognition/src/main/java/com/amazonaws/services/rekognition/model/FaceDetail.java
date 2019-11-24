@@ -103,7 +103,7 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Gender of the face and the confidence level in the determination.
+     * The predicted gender of a detected face.
      * </p>
      */
     private Gender gender;
@@ -439,11 +439,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Gender of the face and the confidence level in the determination.
+     * The predicted gender of a detected face.
      * </p>
      *
      * @return <p>
-     *         Gender of the face and the confidence level in the determination.
+     *         The predicted gender of a detected face.
      *         </p>
      */
     public Gender getGender() {
@@ -452,12 +452,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Gender of the face and the confidence level in the determination.
+     * The predicted gender of a detected face.
      * </p>
      *
      * @param gender <p>
-     *            Gender of the face and the confidence level in the
-     *            determination.
+     *            The predicted gender of a detected face.
      *            </p>
      */
     public void setGender(Gender gender) {
@@ -466,15 +465,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Gender of the face and the confidence level in the determination.
+     * The predicted gender of a detected face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param gender <p>
-     *            Gender of the face and the confidence level in the
-     *            determination.
+     *            The predicted gender of a detected face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
