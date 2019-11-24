@@ -44,7 +44,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * requested the temporary credentials for an <code>ASIA</code> access key, view
  * the STS events in your <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html"
- * >CloudTrail logs</a>.
+ * >CloudTrail logs</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * This operation does not indicate the state of the access key. The key might
@@ -60,7 +60,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * This parameter allows (through its regex pattern) a string of characters
-     * that can consist of any upper- or lowercased letter or digit.
+     * that can consist of any upper- or lowercase letter or digit.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,7 +75,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * This parameter allows (through its regex pattern) a string of characters
-     * that can consist of any upper- or lowercased letter or digit.
+     * that can consist of any upper- or lowercase letter or digit.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,7 +87,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         This parameter allows (through its regex pattern) a string of
-     *         characters that can consist of any upper- or lowercased letter or
+     *         characters that can consist of any upper- or lowercase letter or
      *         digit.
      *         </p>
      */
@@ -101,7 +101,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * This parameter allows (through its regex pattern) a string of characters
-     * that can consist of any upper- or lowercased letter or digit.
+     * that can consist of any upper- or lowercase letter or digit.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -113,7 +113,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            This parameter allows (through its regex pattern) a string of
-     *            characters that can consist of any upper- or lowercased letter
+     *            characters that can consist of any upper- or lowercase letter
      *            or digit.
      *            </p>
      */
@@ -127,7 +127,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * This parameter allows (through its regex pattern) a string of characters
-     * that can consist of any upper- or lowercased letter or digit.
+     * that can consist of any upper- or lowercase letter or digit.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -142,7 +142,7 @@ public class GetAccessKeyInfoRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            This parameter allows (through its regex pattern) a string of
-     *            characters that can consist of any upper- or lowercased letter
+     *            characters that can consist of any upper- or lowercase letter
      *            or digit.
      *            </p>
      * @return A reference to this updated object so that method calls can be
