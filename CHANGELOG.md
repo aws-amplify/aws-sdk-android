@@ -1,5 +1,20 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.5)
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon AutoScaling
+  - Amazon Cognito Identity Provider
+  - AWS IoT
+  - Amazon Kinesis Firehose
+  - Amazon Lex
+  - AWS Rekognition
+  - Amazon Security Token Service (STS)
+  - Amazon Simple Notification Service (SNS)
+  - Amazon Transcribe
+
 ## [Release 2.16.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.4)
 
 ### New Features
