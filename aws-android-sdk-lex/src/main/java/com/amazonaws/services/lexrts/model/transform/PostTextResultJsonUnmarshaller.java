@@ -49,6 +49,9 @@ public class PostTextResultJsonUnmarshaller implements
             } else if (name.equals("message")) {
                 postTextResult.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("sentimentResponse")) {
+                postTextResult.setSentimentResponse(SentimentResponseJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("messageFormat")) {
                 postTextResult.setMessageFormat(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -38,6 +38,8 @@ public class PostContentResultJsonUnmarshaller implements
         if (context.getHeader("x-amz-lex-session-attributes") != null)
             postContentResult.setSessionAttributes(context
                     .getHeader("x-amz-lex-session-attributes"));
+        if (context.getHeader("x-amz-lex-sentiment") != null)
+            postContentResult.setSentimentResponse(context.getHeader("x-amz-lex-sentiment"));
         if (context.getHeader("x-amz-lex-message") != null)
             postContentResult.setMessage(context.getHeader("x-amz-lex-message"));
         if (context.getHeader("x-amz-lex-message-format") != null)

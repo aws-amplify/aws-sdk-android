@@ -87,6 +87,17 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     */
+    private SentimentResponse sentimentResponse;
+
+    /**
+     * <p>
      * The format of the response message. One of the following values:
      * </p>
      * <ul>
@@ -714,6 +725,78 @@ public class PostTextResult implements Serializable {
      */
     public PostTextResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @return <p>
+     *         The sentiment expressed in and utterance.
+     *         </p>
+     *         <p>
+     *         When the bot is configured to send utterances to Amazon
+     *         Comprehend for sentiment analysis, this field contains the result
+     *         of the analysis.
+     *         </p>
+     */
+    public SentimentResponse getSentimentResponse() {
+        return sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     */
+    public void setSentimentResponse(SentimentResponse sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withSentimentResponse(SentimentResponse sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
         return this;
     }
 
@@ -2027,6 +2110,8 @@ public class PostTextResult implements Serializable {
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
+        if (getSentimentResponse() != null)
+            sb.append("sentimentResponse: " + getSentimentResponse() + ",");
         if (getMessageFormat() != null)
             sb.append("messageFormat: " + getMessageFormat() + ",");
         if (getDialogState() != null)
@@ -2049,6 +2134,8 @@ public class PostTextResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getSentimentResponse() == null) ? 0 : getSentimentResponse().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
         hashCode = prime * hashCode
@@ -2088,6 +2175,11 @@ public class PostTextResult implements Serializable {
         if (other.getMessage() == null ^ this.getMessage() == null)
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
+            return false;
+        if (other.getSentimentResponse() == null ^ this.getSentimentResponse() == null)
+            return false;
+        if (other.getSentimentResponse() != null
+                && other.getSentimentResponse().equals(this.getSentimentResponse()) == false)
             return false;
         if (other.getMessageFormat() == null ^ this.getMessageFormat() == null)
             return false;
