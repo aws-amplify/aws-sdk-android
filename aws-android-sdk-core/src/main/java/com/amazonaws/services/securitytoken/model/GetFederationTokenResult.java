@@ -51,9 +51,10 @@ public class GetFederationTokenResult implements Serializable {
 
     /**
      * <p>
-     * A percentage value indicating the size of the policy in packed form. The
-     * service rejects policies for which the packed size is greater than 100
-     * percent of the allowed value.
+     * A percentage value that indicates the packed size of the session policies
+     * and session tags combined passed in the request. The request fails if the
+     * packed size is greater than 100 percent, which means the policies and
+     * tags exceeded the allowed space.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -227,18 +228,20 @@ public class GetFederationTokenResult implements Serializable {
 
     /**
      * <p>
-     * A percentage value indicating the size of the policy in packed form. The
-     * service rejects policies for which the packed size is greater than 100
-     * percent of the allowed value.
+     * A percentage value that indicates the packed size of the session policies
+     * and session tags combined passed in the request. The request fails if the
+     * packed size is greater than 100 percent, which means the policies and
+     * tags exceeded the allowed space.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         A percentage value indicating the size of the policy in packed
-     *         form. The service rejects policies for which the packed size is
-     *         greater than 100 percent of the allowed value.
+     *         A percentage value that indicates the packed size of the session
+     *         policies and session tags combined passed in the request. The
+     *         request fails if the packed size is greater than 100 percent,
+     *         which means the policies and tags exceeded the allowed space.
      *         </p>
      */
     public Integer getPackedPolicySize() {
@@ -247,18 +250,21 @@ public class GetFederationTokenResult implements Serializable {
 
     /**
      * <p>
-     * A percentage value indicating the size of the policy in packed form. The
-     * service rejects policies for which the packed size is greater than 100
-     * percent of the allowed value.
+     * A percentage value that indicates the packed size of the session policies
+     * and session tags combined passed in the request. The request fails if the
+     * packed size is greater than 100 percent, which means the policies and
+     * tags exceeded the allowed space.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param packedPolicySize <p>
-     *            A percentage value indicating the size of the policy in packed
-     *            form. The service rejects policies for which the packed size
-     *            is greater than 100 percent of the allowed value.
+     *            A percentage value that indicates the packed size of the
+     *            session policies and session tags combined passed in the
+     *            request. The request fails if the packed size is greater than
+     *            100 percent, which means the policies and tags exceeded the
+     *            allowed space.
      *            </p>
      */
     public void setPackedPolicySize(Integer packedPolicySize) {
@@ -267,9 +273,10 @@ public class GetFederationTokenResult implements Serializable {
 
     /**
      * <p>
-     * A percentage value indicating the size of the policy in packed form. The
-     * service rejects policies for which the packed size is greater than 100
-     * percent of the allowed value.
+     * A percentage value that indicates the packed size of the session policies
+     * and session tags combined passed in the request. The request fails if the
+     * packed size is greater than 100 percent, which means the policies and
+     * tags exceeded the allowed space.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -279,9 +286,11 @@ public class GetFederationTokenResult implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param packedPolicySize <p>
-     *            A percentage value indicating the size of the policy in packed
-     *            form. The service rejects policies for which the packed size
-     *            is greater than 100 percent of the allowed value.
+     *            A percentage value that indicates the packed size of the
+     *            session policies and session tags combined passed in the
+     *            request. The request fails if the packed size is greater than
+     *            100 percent, which means the policies and tags exceeded the
+     *            allowed space.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -72,6 +72,20 @@ public class GetFederationTokenRequestMarshaller implements
             Integer durationSeconds = getFederationTokenRequest.getDurationSeconds();
             request.addParameter(prefix, StringUtils.fromInteger(durationSeconds));
         }
+        if (getFederationTokenRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<Tag> tags = getFederationTokenRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (Tag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagStaxMarshaller.getInstance().marshall(tagsItem, request, prefix + ".");
+                }
+                tagsIndex++;
+            }
+            prefix = tagsPrefix;
+        }
 
         return request;
     }
