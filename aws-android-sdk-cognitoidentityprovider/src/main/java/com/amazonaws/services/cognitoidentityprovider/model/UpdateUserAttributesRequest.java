@@ -54,15 +54,14 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * You create custom workflows by assigning AWS Lambda functions to user
      * pool triggers. When you use the UpdateUserAttributes API action, Amazon
-     * Cognito invokes the functions that are assigned to the <i>custom
-     * message</i> and <i>pre mutation</i> triggers. When Amazon Cognito invokes
-     * either of these functions, it passes a JSON payload, which the function
-     * receives as input. This payload contains a <code>clientMetadata</code>
-     * attribute, which provides the data that you assigned to the
-     * ClientMetadata parameter in your UpdateUserAttributes request. In your
-     * function code in AWS Lambda, you can process the
-     * <code>clientMetadata</code> value to enhance your workflow for your
-     * specific needs.
+     * Cognito invokes the function that is assigned to the <i>custom
+     * message</i> trigger. When Amazon Cognito invokes this function, it passes
+     * a JSON payload, which the function receives as input. This payload
+     * contains a <code>clientMetadata</code> attribute, which provides the data
+     * that you assigned to the ClientMetadata parameter in your
+     * UpdateUserAttributes request. In your function code in AWS Lambda, you
+     * can process the <code>clientMetadata</code> value to enhance your
+     * workflow for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -269,15 +268,14 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * You create custom workflows by assigning AWS Lambda functions to user
      * pool triggers. When you use the UpdateUserAttributes API action, Amazon
-     * Cognito invokes the functions that are assigned to the <i>custom
-     * message</i> and <i>pre mutation</i> triggers. When Amazon Cognito invokes
-     * either of these functions, it passes a JSON payload, which the function
-     * receives as input. This payload contains a <code>clientMetadata</code>
-     * attribute, which provides the data that you assigned to the
-     * ClientMetadata parameter in your UpdateUserAttributes request. In your
-     * function code in AWS Lambda, you can process the
-     * <code>clientMetadata</code> value to enhance your workflow for your
-     * specific needs.
+     * Cognito invokes the function that is assigned to the <i>custom
+     * message</i> trigger. When Amazon Cognito invokes this function, it passes
+     * a JSON payload, which the function receives as input. This payload
+     * contains a <code>clientMetadata</code> attribute, which provides the data
+     * that you assigned to the ClientMetadata parameter in your
+     * UpdateUserAttributes request. In your function code in AWS Lambda, you
+     * can process the <code>clientMetadata</code> value to enhance your
+     * workflow for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -320,13 +318,13 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         You create custom workflows by assigning AWS Lambda functions to
      *         user pool triggers. When you use the UpdateUserAttributes API
-     *         action, Amazon Cognito invokes the functions that are assigned to
-     *         the <i>custom message</i> and <i>pre mutation</i> triggers. When
-     *         Amazon Cognito invokes either of these functions, it passes a
-     *         JSON payload, which the function receives as input. This payload
-     *         contains a <code>clientMetadata</code> attribute, which provides
-     *         the data that you assigned to the ClientMetadata parameter in
-     *         your UpdateUserAttributes request. In your function code in AWS
+     *         action, Amazon Cognito invokes the function that is assigned to
+     *         the <i>custom message</i> trigger. When Amazon Cognito invokes
+     *         this function, it passes a JSON payload, which the function
+     *         receives as input. This payload contains a
+     *         <code>clientMetadata</code> attribute, which provides the data
+     *         that you assigned to the ClientMetadata parameter in your
+     *         UpdateUserAttributes request. In your function code in AWS
      *         Lambda, you can process the <code>clientMetadata</code> value to
      *         enhance your workflow for your specific needs.
      *         </p>
@@ -377,15 +375,14 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * You create custom workflows by assigning AWS Lambda functions to user
      * pool triggers. When you use the UpdateUserAttributes API action, Amazon
-     * Cognito invokes the functions that are assigned to the <i>custom
-     * message</i> and <i>pre mutation</i> triggers. When Amazon Cognito invokes
-     * either of these functions, it passes a JSON payload, which the function
-     * receives as input. This payload contains a <code>clientMetadata</code>
-     * attribute, which provides the data that you assigned to the
-     * ClientMetadata parameter in your UpdateUserAttributes request. In your
-     * function code in AWS Lambda, you can process the
-     * <code>clientMetadata</code> value to enhance your workflow for your
-     * specific needs.
+     * Cognito invokes the function that is assigned to the <i>custom
+     * message</i> trigger. When Amazon Cognito invokes this function, it passes
+     * a JSON payload, which the function receives as input. This payload
+     * contains a <code>clientMetadata</code> attribute, which provides the data
+     * that you assigned to the ClientMetadata parameter in your
+     * UpdateUserAttributes request. In your function code in AWS Lambda, you
+     * can process the <code>clientMetadata</code> value to enhance your
+     * workflow for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -428,11 +425,10 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            You create custom workflows by assigning AWS Lambda functions
      *            to user pool triggers. When you use the UpdateUserAttributes
-     *            API action, Amazon Cognito invokes the functions that are
-     *            assigned to the <i>custom message</i> and <i>pre mutation</i>
-     *            triggers. When Amazon Cognito invokes either of these
-     *            functions, it passes a JSON payload, which the function
-     *            receives as input. This payload contains a
+     *            API action, Amazon Cognito invokes the function that is
+     *            assigned to the <i>custom message</i> trigger. When Amazon
+     *            Cognito invokes this function, it passes a JSON payload, which
+     *            the function receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
      *            UpdateUserAttributes request. In your function code in AWS
@@ -486,15 +482,14 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * You create custom workflows by assigning AWS Lambda functions to user
      * pool triggers. When you use the UpdateUserAttributes API action, Amazon
-     * Cognito invokes the functions that are assigned to the <i>custom
-     * message</i> and <i>pre mutation</i> triggers. When Amazon Cognito invokes
-     * either of these functions, it passes a JSON payload, which the function
-     * receives as input. This payload contains a <code>clientMetadata</code>
-     * attribute, which provides the data that you assigned to the
-     * ClientMetadata parameter in your UpdateUserAttributes request. In your
-     * function code in AWS Lambda, you can process the
-     * <code>clientMetadata</code> value to enhance your workflow for your
-     * specific needs.
+     * Cognito invokes the function that is assigned to the <i>custom
+     * message</i> trigger. When Amazon Cognito invokes this function, it passes
+     * a JSON payload, which the function receives as input. This payload
+     * contains a <code>clientMetadata</code> attribute, which provides the data
+     * that you assigned to the ClientMetadata parameter in your
+     * UpdateUserAttributes request. In your function code in AWS Lambda, you
+     * can process the <code>clientMetadata</code> value to enhance your
+     * workflow for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -540,11 +535,10 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            You create custom workflows by assigning AWS Lambda functions
      *            to user pool triggers. When you use the UpdateUserAttributes
-     *            API action, Amazon Cognito invokes the functions that are
-     *            assigned to the <i>custom message</i> and <i>pre mutation</i>
-     *            triggers. When Amazon Cognito invokes either of these
-     *            functions, it passes a JSON payload, which the function
-     *            receives as input. This payload contains a
+     *            API action, Amazon Cognito invokes the function that is
+     *            assigned to the <i>custom message</i> trigger. When Amazon
+     *            Cognito invokes this function, it passes a JSON payload, which
+     *            the function receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
      *            UpdateUserAttributes request. In your function code in AWS
@@ -602,15 +596,14 @@ public class UpdateUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <p>
      * You create custom workflows by assigning AWS Lambda functions to user
      * pool triggers. When you use the UpdateUserAttributes API action, Amazon
-     * Cognito invokes the functions that are assigned to the <i>custom
-     * message</i> and <i>pre mutation</i> triggers. When Amazon Cognito invokes
-     * either of these functions, it passes a JSON payload, which the function
-     * receives as input. This payload contains a <code>clientMetadata</code>
-     * attribute, which provides the data that you assigned to the
-     * ClientMetadata parameter in your UpdateUserAttributes request. In your
-     * function code in AWS Lambda, you can process the
-     * <code>clientMetadata</code> value to enhance your workflow for your
-     * specific needs.
+     * Cognito invokes the function that is assigned to the <i>custom
+     * message</i> trigger. When Amazon Cognito invokes this function, it passes
+     * a JSON payload, which the function receives as input. This payload
+     * contains a <code>clientMetadata</code> attribute, which provides the data
+     * that you assigned to the ClientMetadata parameter in your
+     * UpdateUserAttributes request. In your function code in AWS Lambda, you
+     * can process the <code>clientMetadata</code> value to enhance your
+     * workflow for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=

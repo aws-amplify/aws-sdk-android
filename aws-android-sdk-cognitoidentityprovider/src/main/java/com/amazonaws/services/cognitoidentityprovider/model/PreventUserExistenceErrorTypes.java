@@ -19,21 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Auth Flow Type
+ * Prevent User Existence Error Types
  */
-public enum AuthFlowType {
+public enum PreventUserExistenceErrorTypes {
 
-    USER_SRP_AUTH("USER_SRP_AUTH"),
-    REFRESH_TOKEN_AUTH("REFRESH_TOKEN_AUTH"),
-    REFRESH_TOKEN("REFRESH_TOKEN"),
-    CUSTOM_AUTH("CUSTOM_AUTH"),
-    ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH"),
-    USER_PASSWORD_AUTH("USER_PASSWORD_AUTH"),
-    ADMIN_USER_PASSWORD_AUTH("ADMIN_USER_PASSWORD_AUTH");
+    LEGACY("LEGACY"),
+    ENABLED("ENABLED");
 
     private String value;
 
-    private AuthFlowType(String value) {
+    private PreventUserExistenceErrorTypes(String value) {
         this.value = value;
     }
 
@@ -42,25 +37,20 @@ public enum AuthFlowType {
         return value;
     }
 
-    private static final Map<String, AuthFlowType> enumMap;
+    private static final Map<String, PreventUserExistenceErrorTypes> enumMap;
     static {
-        enumMap = new HashMap<String, AuthFlowType>();
-        enumMap.put("USER_SRP_AUTH", USER_SRP_AUTH);
-        enumMap.put("REFRESH_TOKEN_AUTH", REFRESH_TOKEN_AUTH);
-        enumMap.put("REFRESH_TOKEN", REFRESH_TOKEN);
-        enumMap.put("CUSTOM_AUTH", CUSTOM_AUTH);
-        enumMap.put("ADMIN_NO_SRP_AUTH", ADMIN_NO_SRP_AUTH);
-        enumMap.put("USER_PASSWORD_AUTH", USER_PASSWORD_AUTH);
-        enumMap.put("ADMIN_USER_PASSWORD_AUTH", ADMIN_USER_PASSWORD_AUTH);
+        enumMap = new HashMap<String, PreventUserExistenceErrorTypes>();
+        enumMap.put("LEGACY", LEGACY);
+        enumMap.put("ENABLED", ENABLED);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return AuthFlowType corresponding to the value
+     * @return PreventUserExistenceErrorTypes corresponding to the value
      */
-    public static AuthFlowType fromValue(String value) {
+    public static PreventUserExistenceErrorTypes fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

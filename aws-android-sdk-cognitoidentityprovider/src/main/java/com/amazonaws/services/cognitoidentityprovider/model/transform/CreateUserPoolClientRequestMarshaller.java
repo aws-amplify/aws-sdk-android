@@ -193,6 +193,12 @@ public class CreateUserPoolClientRequestMarshaller implements
                 AnalyticsConfigurationTypeJsonMarshaller.getInstance().marshall(
                         analyticsConfiguration, jsonWriter);
             }
+            if (createUserPoolClientRequest.getPreventUserExistenceErrors() != null) {
+                String preventUserExistenceErrors = createUserPoolClientRequest
+                        .getPreventUserExistenceErrors();
+                jsonWriter.name("PreventUserExistenceErrors");
+                jsonWriter.value(preventUserExistenceErrors);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
