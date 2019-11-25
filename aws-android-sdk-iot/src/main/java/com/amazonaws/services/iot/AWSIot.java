@@ -502,6 +502,36 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Confirms a topic rule destination. When you create a rule requiring a
+     * destination, AWS IoT sends a confirmation message to the endpoint or base
+     * address you specify. The message includes a token which you pass back
+     * when calling <code>ConfirmTopicRuleDestination</code> to confirm that you
+     * own or have access to the endpoint.
+     * </p>
+     * 
+     * @param confirmTopicRuleDestinationRequest
+     * @return confirmTopicRuleDestinationResult The response from the
+     *         ConfirmTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ConfirmTopicRuleDestinationResult confirmTopicRuleDestination(
+            ConfirmTopicRuleDestinationRequest confirmTopicRuleDestinationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates an authorizer.
      * </p>
      * 
@@ -1074,6 +1104,33 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a topic rule destination. The destination must be confirmed prior
+     * to use.
+     * </p>
+     * 
+     * @param createTopicRuleDestinationRequest
+     * @return createTopicRuleDestinationResult The response from the
+     *         CreateTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ServiceUnavailableException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateTopicRuleDestinationResult createTopicRuleDestination(
+            CreateTopicRuleDestinationRequest createTopicRuleDestinationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Restores the default settings for Device Defender audits for this
      * account. Any configuration data you entered is deleted and all audit
      * checks are reset to disabled.
@@ -1642,6 +1699,32 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteTopicRule(DeleteTopicRuleRequest deleteTopicRuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a topic rule destination.
+     * </p>
+     * 
+     * @param deleteTopicRuleDestinationRequest
+     * @return deleteTopicRuleDestinationResult The response from the
+     *         DeleteTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteTopicRuleDestinationResult deleteTopicRuleDestination(
+            DeleteTopicRuleDestinationRequest deleteTopicRuleDestinationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2434,8 +2517,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Returns the number of things with distinct values for the aggregation
-     * field.
+     * Returns the approximate count of unique values that match the query.
      * </p>
      * 
      * @param getCardinalityRequest
@@ -2593,10 +2675,17 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Returns the percentile values for the aggregation field. The results from
-     * GetPercentiles is an approximation. The default percentile groupings are:
-     * 1,5,25,50,75,95,99. You can specify custom percentile grouping using the
-     * percents argument to the GetPercentiles API.
+     * Groups the aggregated values that match the query into percentile
+     * groupings. The default percentile groupings are: 1,5,25,50,75,95,99,
+     * although you can specify your own when you call
+     * <code>GetPercentiles</code>. This function returns a value for each
+     * percentile group specified (or the default percentile groupings). The
+     * percentile group "1" contains the aggregated field value that occurs in
+     * approximately one percent of the values that match the query. The
+     * percentile group "5" contains the aggregated field value that occurs in
+     * approximately five percent of the values that match the query, and so on.
+     * The result is an approximation, the more values that match the query, the
+     * more accurate the percentile values.
      * </p>
      * 
      * @param getPercentilesRequest
@@ -2706,10 +2795,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Gets statistics returns the count, average, sum, minimum, maximum,
-     * sumOfSquares, variance, and standard deviation for the specified
-     * aggregated field. If the aggregation field is of type String, only the
-     * count statistic is returned.
+     * Gets statistics about things that match the specified query.
      * </p>
      * 
      * @param getStatisticsRequest
@@ -2758,6 +2844,30 @@ public interface AWSIot {
      *             or a server side issue.
      */
     GetTopicRuleResult getTopicRule(GetTopicRuleRequest getTopicRuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a topic rule destination.
+     * </p>
+     * 
+     * @param getTopicRuleDestinationRequest
+     * @return getTopicRuleDestinationResult The response from the
+     *         GetTopicRuleDestination service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetTopicRuleDestinationResult getTopicRuleDestination(
+            GetTopicRuleDestinationRequest getTopicRuleDestinationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3816,6 +3926,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists all the topic rule destinations in your AWS account.
+     * </p>
+     * 
+     * @param listTopicRuleDestinationsRequest
+     * @return listTopicRuleDestinationsResult The response from the
+     *         ListTopicRuleDestinations service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListTopicRuleDestinationsResult listTopicRuleDestinations(
+            ListTopicRuleDestinationsRequest listTopicRuleDestinationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the rules for the specific topic.
      * </p>
      * 
@@ -3961,13 +4095,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Provisions a thing in the device registry. RegisterThing calls other AWS
-     * IoT control plane APIs. These calls might exceed your account level <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
-     * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact
-     * <a href="https://console.aws.amazon.com/support/home">AWS Customer
-     * Support</a> to raise your throttling limits if necessary.
+     * Provisions a thing.
      * </p>
      * 
      * @param registerThingRequest
@@ -4938,6 +5066,33 @@ public interface AWSIot {
      */
     UpdateThingGroupsForThingResult updateThingGroupsForThing(
             UpdateThingGroupsForThingRequest updateThingGroupsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a topic rule destination. You use this to change the status,
+     * endpoint URL, or confirmation URL of the destination.
+     * </p>
+     * 
+     * @param updateTopicRuleDestinationRequest
+     * @return updateTopicRuleDestinationResult The response from the
+     *         UpdateTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateTopicRuleDestinationResult updateTopicRuleDestination(
+            UpdateTopicRuleDestinationRequest updateTopicRuleDestinationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

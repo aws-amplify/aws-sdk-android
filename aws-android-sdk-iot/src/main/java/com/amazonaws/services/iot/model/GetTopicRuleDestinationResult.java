@@ -17,56 +17,57 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-public class GetCardinalityResult implements Serializable {
+public class GetTopicRuleDestinationResult implements Serializable {
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The topic rule destination.
      * </p>
      */
-    private Integer cardinality;
+    private TopicRuleDestination topicRuleDestination;
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The topic rule destination.
      * </p>
      *
      * @return <p>
-     *         The approximate count of unique values that match the query.
+     *         The topic rule destination.
      *         </p>
      */
-    public Integer getCardinality() {
-        return cardinality;
+    public TopicRuleDestination getTopicRuleDestination() {
+        return topicRuleDestination;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The topic rule destination.
      * </p>
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param topicRuleDestination <p>
+     *            The topic rule destination.
      *            </p>
      */
-    public void setCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public void setTopicRuleDestination(TopicRuleDestination topicRuleDestination) {
+        this.topicRuleDestination = topicRuleDestination;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The topic rule destination.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param topicRuleDestination <p>
+     *            The topic rule destination.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetCardinalityResult withCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public GetTopicRuleDestinationResult withTopicRuleDestination(
+            TopicRuleDestination topicRuleDestination) {
+        this.topicRuleDestination = topicRuleDestination;
         return this;
     }
 
@@ -81,8 +82,8 @@ public class GetCardinalityResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCardinality() != null)
-            sb.append("cardinality: " + getCardinality());
+        if (getTopicRuleDestination() != null)
+            sb.append("topicRuleDestination: " + getTopicRuleDestination());
         sb.append("}");
         return sb.toString();
     }
@@ -93,7 +94,7 @@ public class GetCardinalityResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getCardinality() == null) ? 0 : getCardinality().hashCode());
+                + ((getTopicRuleDestination() == null) ? 0 : getTopicRuleDestination().hashCode());
         return hashCode;
     }
 
@@ -104,14 +105,14 @@ public class GetCardinalityResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof GetCardinalityResult == false)
+        if (obj instanceof GetTopicRuleDestinationResult == false)
             return false;
-        GetCardinalityResult other = (GetCardinalityResult) obj;
+        GetTopicRuleDestinationResult other = (GetTopicRuleDestinationResult) obj;
 
-        if (other.getCardinality() == null ^ this.getCardinality() == null)
+        if (other.getTopicRuleDestination() == null ^ this.getTopicRuleDestination() == null)
             return false;
-        if (other.getCardinality() != null
-                && other.getCardinality().equals(this.getCardinality()) == false)
+        if (other.getTopicRuleDestination() != null
+                && other.getTopicRuleDestination().equals(this.getTopicRuleDestination()) == false)
             return false;
         return true;
     }

@@ -1140,6 +1140,63 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Confirms a topic rule destination. When you create a rule requiring a
+     * destination, AWS IoT sends a confirmation message to the endpoint or base
+     * address you specify. The message includes a token which you pass back
+     * when calling <code>ConfirmTopicRuleDestination</code> to confirm that you
+     * own or have access to the endpoint.
+     * </p>
+     * 
+     * @param confirmTopicRuleDestinationRequest
+     * @return confirmTopicRuleDestinationResult The response from the
+     *         ConfirmTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ConfirmTopicRuleDestinationResult confirmTopicRuleDestination(
+            ConfirmTopicRuleDestinationRequest confirmTopicRuleDestinationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(confirmTopicRuleDestinationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ConfirmTopicRuleDestinationRequest> request = null;
+        Response<ConfirmTopicRuleDestinationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ConfirmTopicRuleDestinationRequestMarshaller()
+                        .marshall(confirmTopicRuleDestinationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ConfirmTopicRuleDestinationResult, JsonUnmarshallerContext> unmarshaller = new ConfirmTopicRuleDestinationResultJsonUnmarshaller();
+            JsonResponseHandler<ConfirmTopicRuleDestinationResult> responseHandler = new JsonResponseHandler<ConfirmTopicRuleDestinationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates an authorizer.
      * </p>
      * 
@@ -2176,6 +2233,60 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a topic rule destination. The destination must be confirmed prior
+     * to use.
+     * </p>
+     * 
+     * @param createTopicRuleDestinationRequest
+     * @return createTopicRuleDestinationResult The response from the
+     *         CreateTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ServiceUnavailableException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateTopicRuleDestinationResult createTopicRuleDestination(
+            CreateTopicRuleDestinationRequest createTopicRuleDestinationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createTopicRuleDestinationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateTopicRuleDestinationRequest> request = null;
+        Response<CreateTopicRuleDestinationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateTopicRuleDestinationRequestMarshaller()
+                        .marshall(createTopicRuleDestinationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateTopicRuleDestinationResult, JsonUnmarshallerContext> unmarshaller = new CreateTopicRuleDestinationResultJsonUnmarshaller();
+            JsonResponseHandler<CreateTopicRuleDestinationResult> responseHandler = new JsonResponseHandler<CreateTopicRuleDestinationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -3276,6 +3387,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a topic rule destination.
+     * </p>
+     * 
+     * @param deleteTopicRuleDestinationRequest
+     * @return deleteTopicRuleDestinationResult The response from the
+     *         DeleteTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteTopicRuleDestinationResult deleteTopicRuleDestination(
+            DeleteTopicRuleDestinationRequest deleteTopicRuleDestinationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteTopicRuleDestinationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTopicRuleDestinationRequest> request = null;
+        Response<DeleteTopicRuleDestinationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTopicRuleDestinationRequestMarshaller()
+                        .marshall(deleteTopicRuleDestinationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteTopicRuleDestinationResult, JsonUnmarshallerContext> unmarshaller = new DeleteTopicRuleDestinationResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteTopicRuleDestinationResult> responseHandler = new JsonResponseHandler<DeleteTopicRuleDestinationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4882,8 +5046,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Returns the number of things with distinct values for the aggregation
-     * field.
+     * Returns the approximate count of unique values that match the query.
      * </p>
      * 
      * @param getCardinalityRequest
@@ -5201,10 +5364,17 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Returns the percentile values for the aggregation field. The results from
-     * GetPercentiles is an approximation. The default percentile groupings are:
-     * 1,5,25,50,75,95,99. You can specify custom percentile grouping using the
-     * percents argument to the GetPercentiles API.
+     * Groups the aggregated values that match the query into percentile
+     * groupings. The default percentile groupings are: 1,5,25,50,75,95,99,
+     * although you can specify your own when you call
+     * <code>GetPercentiles</code>. This function returns a value for each
+     * percentile group specified (or the default percentile groupings). The
+     * percentile group "1" contains the aggregated field value that occurs in
+     * approximately one percent of the values that match the query. The
+     * percentile group "5" contains the aggregated field value that occurs in
+     * approximately five percent of the values that match the query, and so on.
+     * The result is an approximation, the more values that match the query, the
+     * more accurate the percentile values.
      * </p>
      * 
      * @param getPercentilesRequest
@@ -5419,10 +5589,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Gets statistics returns the count, average, sum, minimum, maximum,
-     * sumOfSquares, variance, and standard deviation for the specified
-     * aggregated field. If the aggregation field is of type String, only the
-     * count statistic is returned.
+     * Gets statistics about things that match the specified query.
      * </p>
      * 
      * @param getStatisticsRequest
@@ -5514,6 +5681,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<GetTopicRuleResult, JsonUnmarshallerContext> unmarshaller = new GetTopicRuleResultJsonUnmarshaller();
             JsonResponseHandler<GetTopicRuleResult> responseHandler = new JsonResponseHandler<GetTopicRuleResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about a topic rule destination.
+     * </p>
+     * 
+     * @param getTopicRuleDestinationRequest
+     * @return getTopicRuleDestinationResult The response from the
+     *         GetTopicRuleDestination service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public GetTopicRuleDestinationResult getTopicRuleDestination(
+            GetTopicRuleDestinationRequest getTopicRuleDestinationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getTopicRuleDestinationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTopicRuleDestinationRequest> request = null;
+        Response<GetTopicRuleDestinationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTopicRuleDestinationRequestMarshaller()
+                        .marshall(getTopicRuleDestinationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetTopicRuleDestinationResult, JsonUnmarshallerContext> unmarshaller = new GetTopicRuleDestinationResultJsonUnmarshaller();
+            JsonResponseHandler<GetTopicRuleDestinationResult> responseHandler = new JsonResponseHandler<GetTopicRuleDestinationResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7680,6 +7898,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Lists all the topic rule destinations in your AWS account.
+     * </p>
+     * 
+     * @param listTopicRuleDestinationsRequest
+     * @return listTopicRuleDestinationsResult The response from the
+     *         ListTopicRuleDestinations service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListTopicRuleDestinationsResult listTopicRuleDestinations(
+            ListTopicRuleDestinationsRequest listTopicRuleDestinationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTopicRuleDestinationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTopicRuleDestinationsRequest> request = null;
+        Response<ListTopicRuleDestinationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTopicRuleDestinationsRequestMarshaller()
+                        .marshall(listTopicRuleDestinationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTopicRuleDestinationsResult, JsonUnmarshallerContext> unmarshaller = new ListTopicRuleDestinationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListTopicRuleDestinationsResult> responseHandler = new JsonResponseHandler<ListTopicRuleDestinationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the rules for the specific topic.
      * </p>
      * 
@@ -7959,13 +8228,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Provisions a thing in the device registry. RegisterThing calls other AWS
-     * IoT control plane APIs. These calls might exceed your account level <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
-     * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact
-     * <a href="https://console.aws.amazon.com/support/home">AWS Customer
-     * Support</a> to raise your throttling limits if necessary.
+     * Provisions a thing.
      * </p>
      * 
      * @param registerThingRequest
@@ -9874,6 +10137,60 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<UpdateThingGroupsForThingResult, JsonUnmarshallerContext> unmarshaller = new UpdateThingGroupsForThingResultJsonUnmarshaller();
             JsonResponseHandler<UpdateThingGroupsForThingResult> responseHandler = new JsonResponseHandler<UpdateThingGroupsForThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a topic rule destination. You use this to change the status,
+     * endpoint URL, or confirmation URL of the destination.
+     * </p>
+     * 
+     * @param updateTopicRuleDestinationRequest
+     * @return updateTopicRuleDestinationResult The response from the
+     *         UpdateTopicRuleDestination service method, as returned by AWS
+     *         IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateTopicRuleDestinationResult updateTopicRuleDestination(
+            UpdateTopicRuleDestinationRequest updateTopicRuleDestinationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateTopicRuleDestinationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateTopicRuleDestinationRequest> request = null;
+        Response<UpdateTopicRuleDestinationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateTopicRuleDestinationRequestMarshaller()
+                        .marshall(updateTopicRuleDestinationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateTopicRuleDestinationResult, JsonUnmarshallerContext> unmarshaller = new UpdateTopicRuleDestinationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateTopicRuleDestinationResult> responseHandler = new JsonResponseHandler<UpdateTopicRuleDestinationResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

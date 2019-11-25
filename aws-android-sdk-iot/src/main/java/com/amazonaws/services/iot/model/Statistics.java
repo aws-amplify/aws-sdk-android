@@ -33,28 +33,32 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated field values.
+     * The average of the aggregated fields. If the field data type is String
+     * this value is indeterminate.
      * </p>
      */
     private Double average;
 
     /**
      * <p>
-     * The sum of the aggregated field values.
+     * The sum of the aggregated fields. If the field data type is String this
+     * value is indeterminate.
      * </p>
      */
     private Double sum;
 
     /**
      * <p>
-     * The minimum aggregated field value.
+     * The minimum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      */
     private Double minimum;
 
     /**
      * <p>
-     * The maximum aggregated field value.
+     * The maximum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      */
     private Double maximum;
@@ -75,7 +79,7 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The standard deviation of the aggregated field valuesl
+     * The standard deviation of the aggregated field values.
      * </p>
      */
     private Double stdDeviation;
@@ -127,11 +131,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated field values.
+     * The average of the aggregated fields. If the field data type is String
+     * this value is indeterminate.
      * </p>
      *
      * @return <p>
-     *         The average of the aggregated field values.
+     *         The average of the aggregated fields. If the field data type is
+     *         String this value is indeterminate.
      *         </p>
      */
     public Double getAverage() {
@@ -140,11 +146,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated field values.
+     * The average of the aggregated fields. If the field data type is String
+     * this value is indeterminate.
      * </p>
      *
      * @param average <p>
-     *            The average of the aggregated field values.
+     *            The average of the aggregated fields. If the field data type
+     *            is String this value is indeterminate.
      *            </p>
      */
     public void setAverage(Double average) {
@@ -153,14 +161,16 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated field values.
+     * The average of the aggregated fields. If the field data type is String
+     * this value is indeterminate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param average <p>
-     *            The average of the aggregated field values.
+     *            The average of the aggregated fields. If the field data type
+     *            is String this value is indeterminate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -172,11 +182,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated field values.
+     * The sum of the aggregated fields. If the field data type is String this
+     * value is indeterminate.
      * </p>
      *
      * @return <p>
-     *         The sum of the aggregated field values.
+     *         The sum of the aggregated fields. If the field data type is
+     *         String this value is indeterminate.
      *         </p>
      */
     public Double getSum() {
@@ -185,11 +197,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated field values.
+     * The sum of the aggregated fields. If the field data type is String this
+     * value is indeterminate.
      * </p>
      *
      * @param sum <p>
-     *            The sum of the aggregated field values.
+     *            The sum of the aggregated fields. If the field data type is
+     *            String this value is indeterminate.
      *            </p>
      */
     public void setSum(Double sum) {
@@ -198,14 +212,16 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated field values.
+     * The sum of the aggregated fields. If the field data type is String this
+     * value is indeterminate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sum <p>
-     *            The sum of the aggregated field values.
+     *            The sum of the aggregated fields. If the field data type is
+     *            String this value is indeterminate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -217,11 +233,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum aggregated field value.
+     * The minimum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      *
      * @return <p>
-     *         The minimum aggregated field value.
+     *         The minimum value of the aggregated fields. If the field data
+     *         type is String this value is indeterminate.
      *         </p>
      */
     public Double getMinimum() {
@@ -230,11 +248,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum aggregated field value.
+     * The minimum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      *
      * @param minimum <p>
-     *            The minimum aggregated field value.
+     *            The minimum value of the aggregated fields. If the field data
+     *            type is String this value is indeterminate.
      *            </p>
      */
     public void setMinimum(Double minimum) {
@@ -243,14 +263,16 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum aggregated field value.
+     * The minimum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minimum <p>
-     *            The minimum aggregated field value.
+     *            The minimum value of the aggregated fields. If the field data
+     *            type is String this value is indeterminate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -262,11 +284,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum aggregated field value.
+     * The maximum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      *
      * @return <p>
-     *         The maximum aggregated field value.
+     *         The maximum value of the aggregated fields. If the field data
+     *         type is String this value is indeterminate.
      *         </p>
      */
     public Double getMaximum() {
@@ -275,11 +299,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum aggregated field value.
+     * The maximum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      *
      * @param maximum <p>
-     *            The maximum aggregated field value.
+     *            The maximum value of the aggregated fields. If the field data
+     *            type is String this value is indeterminate.
      *            </p>
      */
     public void setMaximum(Double maximum) {
@@ -288,14 +314,16 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum aggregated field value.
+     * The maximum value of the aggregated fields. If the field data type is
+     * String this value is indeterminate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maximum <p>
-     *            The maximum aggregated field value.
+     *            The maximum value of the aggregated fields. If the field data
+     *            type is String this value is indeterminate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -397,11 +425,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The standard deviation of the aggregated field valuesl
+     * The standard deviation of the aggregated field values.
      * </p>
      *
      * @return <p>
-     *         The standard deviation of the aggregated field valuesl
+     *         The standard deviation of the aggregated field values.
      *         </p>
      */
     public Double getStdDeviation() {
@@ -410,11 +438,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The standard deviation of the aggregated field valuesl
+     * The standard deviation of the aggregated field values.
      * </p>
      *
      * @param stdDeviation <p>
-     *            The standard deviation of the aggregated field valuesl
+     *            The standard deviation of the aggregated field values.
      *            </p>
      */
     public void setStdDeviation(Double stdDeviation) {
@@ -423,14 +451,14 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The standard deviation of the aggregated field valuesl
+     * The standard deviation of the aggregated field values.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param stdDeviation <p>
-     *            The standard deviation of the aggregated field valuesl
+     *            The standard deviation of the aggregated field values.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

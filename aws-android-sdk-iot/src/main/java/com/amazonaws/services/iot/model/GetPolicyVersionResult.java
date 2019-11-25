@@ -67,14 +67,14 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was created.
+     * The date the policy version was created.
      * </p>
      */
     private java.util.Date creationDate;
 
     /**
      * <p>
-     * The date the policy was last modified.
+     * The date the policy version was last modified.
      * </p>
      */
     private java.util.Date lastModifiedDate;
@@ -347,11 +347,11 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was created.
+     * The date the policy version was created.
      * </p>
      *
      * @return <p>
-     *         The date the policy was created.
+     *         The date the policy version was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -360,11 +360,11 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was created.
+     * The date the policy version was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date the policy was created.
+     *            The date the policy version was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -373,14 +373,14 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was created.
+     * The date the policy version was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date the policy was created.
+     *            The date the policy version was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -392,11 +392,11 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was last modified.
+     * The date the policy version was last modified.
      * </p>
      *
      * @return <p>
-     *         The date the policy was last modified.
+     *         The date the policy version was last modified.
      *         </p>
      */
     public java.util.Date getLastModifiedDate() {
@@ -405,11 +405,11 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was last modified.
+     * The date the policy version was last modified.
      * </p>
      *
      * @param lastModifiedDate <p>
-     *            The date the policy was last modified.
+     *            The date the policy version was last modified.
      *            </p>
      */
     public void setLastModifiedDate(java.util.Date lastModifiedDate) {
@@ -418,14 +418,14 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date the policy was last modified.
+     * The date the policy version was last modified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedDate <p>
-     *            The date the policy was last modified.
+     *            The date the policy version was last modified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

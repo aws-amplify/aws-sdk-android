@@ -77,15 +77,16 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * A list of automatically indexed thing fields.
      * </p>
      */
     private java.util.List<Field> managedFields;
 
     /**
      * <p>
-     * Contains custom field names and their data type.
+     * A list of thing fields to index. This list cannot contain any managed
+     * fields. Use the GetIndexingConfiguration API to get a list of managed
+     * fields.
      * </p>
      */
     private java.util.List<Field> customFields;
@@ -599,13 +600,11 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * A list of automatically indexed thing fields.
      * </p>
      *
      * @return <p>
-     *         Contains fields that are indexed and whose types are already
-     *         known by the Fleet Indexing service.
+     *         A list of automatically indexed thing fields.
      *         </p>
      */
     public java.util.List<Field> getManagedFields() {
@@ -614,13 +613,11 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * A list of automatically indexed thing fields.
      * </p>
      *
      * @param managedFields <p>
-     *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            A list of automatically indexed thing fields.
      *            </p>
      */
     public void setManagedFields(java.util.Collection<Field> managedFields) {
@@ -634,16 +631,14 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * A list of automatically indexed thing fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param managedFields <p>
-     *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            A list of automatically indexed thing fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -660,16 +655,14 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains fields that are indexed and whose types are already known by the
-     * Fleet Indexing service.
+     * A list of automatically indexed thing fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param managedFields <p>
-     *            Contains fields that are indexed and whose types are already
-     *            known by the Fleet Indexing service.
+     *            A list of automatically indexed thing fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -681,11 +674,15 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains custom field names and their data type.
+     * A list of thing fields to index. This list cannot contain any managed
+     * fields. Use the GetIndexingConfiguration API to get a list of managed
+     * fields.
      * </p>
      *
      * @return <p>
-     *         Contains custom field names and their data type.
+     *         A list of thing fields to index. This list cannot contain any
+     *         managed fields. Use the GetIndexingConfiguration API to get a
+     *         list of managed fields.
      *         </p>
      */
     public java.util.List<Field> getCustomFields() {
@@ -694,11 +691,15 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains custom field names and their data type.
+     * A list of thing fields to index. This list cannot contain any managed
+     * fields. Use the GetIndexingConfiguration API to get a list of managed
+     * fields.
      * </p>
      *
      * @param customFields <p>
-     *            Contains custom field names and their data type.
+     *            A list of thing fields to index. This list cannot contain any
+     *            managed fields. Use the GetIndexingConfiguration API to get a
+     *            list of managed fields.
      *            </p>
      */
     public void setCustomFields(java.util.Collection<Field> customFields) {
@@ -712,14 +713,18 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains custom field names and their data type.
+     * A list of thing fields to index. This list cannot contain any managed
+     * fields. Use the GetIndexingConfiguration API to get a list of managed
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param customFields <p>
-     *            Contains custom field names and their data type.
+     *            A list of thing fields to index. This list cannot contain any
+     *            managed fields. Use the GetIndexingConfiguration API to get a
+     *            list of managed fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -736,14 +741,18 @@ public class ThingIndexingConfiguration implements Serializable {
 
     /**
      * <p>
-     * Contains custom field names and their data type.
+     * A list of thing fields to index. This list cannot contain any managed
+     * fields. Use the GetIndexingConfiguration API to get a list of managed
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param customFields <p>
-     *            Contains custom field names and their data type.
+     *            A list of thing fields to index. This list cannot contain any
+     *            managed fields. Use the GetIndexingConfiguration API to get a
+     *            list of managed fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

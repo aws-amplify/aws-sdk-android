@@ -139,6 +139,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Send data to an HTTPS endpoint.
+     * </p>
+     */
+    private HttpAction http;
+
+    /**
+     * <p>
      * Write to a DynamoDB table.
      * </p>
      *
@@ -870,6 +877,51 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * Send data to an HTTPS endpoint.
+     * </p>
+     *
+     * @return <p>
+     *         Send data to an HTTPS endpoint.
+     *         </p>
+     */
+    public HttpAction getHttp() {
+        return http;
+    }
+
+    /**
+     * <p>
+     * Send data to an HTTPS endpoint.
+     * </p>
+     *
+     * @param http <p>
+     *            Send data to an HTTPS endpoint.
+     *            </p>
+     */
+    public void setHttp(HttpAction http) {
+        this.http = http;
+    }
+
+    /**
+     * <p>
+     * Send data to an HTTPS endpoint.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param http <p>
+     *            Send data to an HTTPS endpoint.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withHttp(HttpAction http) {
+        this.http = http;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -911,7 +963,9 @@ public class Action implements Serializable {
         if (getIotEvents() != null)
             sb.append("iotEvents: " + getIotEvents() + ",");
         if (getStepFunctions() != null)
-            sb.append("stepFunctions: " + getStepFunctions());
+            sb.append("stepFunctions: " + getStepFunctions() + ",");
+        if (getHttp() != null)
+            sb.append("http: " + getHttp());
         sb.append("}");
         return sb.toString();
     }
@@ -942,6 +996,7 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getIotEvents() == null) ? 0 : getIotEvents().hashCode());
         hashCode = prime * hashCode
                 + ((getStepFunctions() == null) ? 0 : getStepFunctions().hashCode());
+        hashCode = prime * hashCode + ((getHttp() == null) ? 0 : getHttp().hashCode());
         return hashCode;
     }
 
@@ -1028,6 +1083,10 @@ public class Action implements Serializable {
             return false;
         if (other.getStepFunctions() != null
                 && other.getStepFunctions().equals(this.getStepFunctions()) == false)
+            return false;
+        if (other.getHttp() == null ^ this.getHttp() == null)
+            return false;
+        if (other.getHttp() != null && other.getHttp().equals(this.getHttp()) == false)
             return false;
         return true;
     }
