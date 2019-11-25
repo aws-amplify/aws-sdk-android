@@ -33,7 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returned when an IAM user or role is denied access. To view an example
  * response, see <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_access-denied-delete-mfa"
- * >I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</a>.
+ * >I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</a> in the <i>IAM
+ * User Guide</i>.
  * </p>
  * </note>
  */
