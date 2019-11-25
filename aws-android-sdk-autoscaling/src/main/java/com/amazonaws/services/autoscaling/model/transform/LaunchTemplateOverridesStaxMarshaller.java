@@ -32,6 +32,11 @@ class LaunchTemplateOverridesStaxMarshaller {
             String instanceType = _launchTemplateOverrides.getInstanceType();
             request.addParameter(prefix, StringUtils.fromString(instanceType));
         }
+        if (_launchTemplateOverrides.getWeightedCapacity() != null) {
+            prefix = _prefix + "WeightedCapacity";
+            String weightedCapacity = _launchTemplateOverrides.getWeightedCapacity();
+            request.addParameter(prefix, StringUtils.fromString(weightedCapacity));
+        }
     }
 
     private static LaunchTemplateOverridesStaxMarshaller instance;

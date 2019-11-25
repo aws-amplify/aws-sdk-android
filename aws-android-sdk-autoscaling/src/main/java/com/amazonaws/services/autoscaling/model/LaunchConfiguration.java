@@ -230,7 +230,7 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price.
+     * specify exceeds the current Spot price.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1591,7 +1591,7 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price.
+     * specify exceeds the current Spot price.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1606,7 +1606,7 @@ public class LaunchConfiguration implements Serializable {
      * @return <p>
      *         The maximum hourly price to be paid for any Spot Instance
      *         launched to fulfill the request. Spot Instances are launched when
-     *         the price you specify exceeds the current Spot market price.
+     *         the price you specify exceeds the current Spot price.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -1623,7 +1623,7 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price.
+     * specify exceeds the current Spot price.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1638,8 +1638,7 @@ public class LaunchConfiguration implements Serializable {
      * @param spotPrice <p>
      *            The maximum hourly price to be paid for any Spot Instance
      *            launched to fulfill the request. Spot Instances are launched
-     *            when the price you specify exceeds the current Spot market
-     *            price.
+     *            when the price you specify exceeds the current Spot price.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1656,7 +1655,7 @@ public class LaunchConfiguration implements Serializable {
      * <p>
      * The maximum hourly price to be paid for any Spot Instance launched to
      * fulfill the request. Spot Instances are launched when the price you
-     * specify exceeds the current Spot market price.
+     * specify exceeds the current Spot price.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1674,8 +1673,7 @@ public class LaunchConfiguration implements Serializable {
      * @param spotPrice <p>
      *            The maximum hourly price to be paid for any Spot Instance
      *            launched to fulfill the request. Spot Instances are launched
-     *            when the price you specify exceeds the current Spot market
-     *            price.
+     *            when the price you specify exceeds the current Spot price.
      *            </p>
      *            <p>
      *            For more information, see <a href=
