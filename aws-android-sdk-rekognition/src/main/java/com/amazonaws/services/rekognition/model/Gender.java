@@ -19,13 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Gender of the face and the confidence level in the determination.
+ * The predicted gender of a detected face.
+ * </p>
+ * <p>
+ * Amazon Rekognition makes gender binary (male/female) predictions based on the
+ * physical appearance of a face in a particular image. This kind of prediction
+ * is not designed to categorize a person’s gender identity, and you shouldn't
+ * use Amazon Rekognition to make such a determination. For example, a male
+ * actor wearing a long-haired wig and earrings for a role might be predicted as
+ * female.
+ * </p>
+ * <p>
+ * Using Amazon Rekognition to make gender binary predictions is best suited for
+ * use cases where aggregate gender distribution statistics need to be analyzed
+ * without identifying specific users. For example, the percentage of female
+ * users compared to male users on a social media platform.
+ * </p>
+ * <p>
+ * We don't recommend using gender binary predictions to make decisions that
+ * impact&#x2028; an individual's rights, privacy, or access to services.
  * </p>
  */
 public class Gender implements Serializable {
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +53,7 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Level of confidence in the determination.
+     * Level of confidence in the prediction.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +63,14 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Male, Female
      *
      * @return <p>
-     *         Gender of the face.
+     *         The predicted gender of the face.
      *         </p>
      * @see GenderType
      */
@@ -62,14 +80,14 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
-     *            Gender of the face.
+     *            The predicted gender of the face.
      *            </p>
      * @see GenderType
      */
@@ -79,7 +97,7 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,7 +107,7 @@ public class Gender implements Serializable {
      * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
-     *            Gender of the face.
+     *            The predicted gender of the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,14 +120,14 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
-     *            Gender of the face.
+     *            The predicted gender of the face.
      *            </p>
      * @see GenderType
      */
@@ -119,7 +137,7 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Gender of the face.
+     * The predicted gender of the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,7 +147,7 @@ public class Gender implements Serializable {
      * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
-     *            Gender of the face.
+     *            The predicted gender of the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -142,14 +160,14 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Level of confidence in the determination.
+     * Level of confidence in the prediction.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         Level of confidence in the determination.
+     *         Level of confidence in the prediction.
      *         </p>
      */
     public Float getConfidence() {
@@ -158,14 +176,14 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Level of confidence in the determination.
+     * Level of confidence in the prediction.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            Level of confidence in the determination.
+     *            Level of confidence in the prediction.
      *            </p>
      */
     public void setConfidence(Float confidence) {
@@ -174,7 +192,7 @@ public class Gender implements Serializable {
 
     /**
      * <p>
-     * Level of confidence in the determination.
+     * Level of confidence in the prediction.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -184,7 +202,7 @@ public class Gender implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            Level of confidence in the determination.
+     *            Level of confidence in the prediction.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

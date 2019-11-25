@@ -80,6 +80,11 @@ public class SearchFacesByImageRequestMarshaller implements
                 jsonWriter.name("FaceMatchThreshold");
                 jsonWriter.value(faceMatchThreshold);
             }
+            if (searchFacesByImageRequest.getQualityFilter() != null) {
+                String qualityFilter = searchFacesByImageRequest.getQualityFilter();
+                jsonWriter.name("QualityFilter");
+                jsonWriter.value(qualityFilter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -24,7 +24,10 @@ import java.util.Map;
 public enum QualityFilter {
 
     NONE("NONE"),
-    AUTO("AUTO");
+    AUTO("AUTO"),
+    LOW("LOW"),
+    MEDIUM("MEDIUM"),
+    HIGH("HIGH");
 
     private String value;
 
@@ -42,6 +45,9 @@ public enum QualityFilter {
         enumMap = new HashMap<String, QualityFilter>();
         enumMap.put("NONE", NONE);
         enumMap.put("AUTO", AUTO);
+        enumMap.put("LOW", LOW);
+        enumMap.put("MEDIUM", MEDIUM);
+        enumMap.put("HIGH", HIGH);
     }
 
     /**
