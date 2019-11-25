@@ -28,7 +28,8 @@ public enum Reason {
     LOW_BRIGHTNESS("LOW_BRIGHTNESS"),
     LOW_SHARPNESS("LOW_SHARPNESS"),
     LOW_CONFIDENCE("LOW_CONFIDENCE"),
-    SMALL_BOUNDING_BOX("SMALL_BOUNDING_BOX");
+    SMALL_BOUNDING_BOX("SMALL_BOUNDING_BOX"),
+    LOW_FACE_QUALITY("LOW_FACE_QUALITY");
 
     private String value;
 
@@ -50,6 +51,7 @@ public enum Reason {
         enumMap.put("LOW_SHARPNESS", LOW_SHARPNESS);
         enumMap.put("LOW_CONFIDENCE", LOW_CONFIDENCE);
         enumMap.put("SMALL_BOUNDING_BOX", SMALL_BOUNDING_BOX);
+        enumMap.put("LOW_FACE_QUALITY", LOW_FACE_QUALITY);
     }
 
     /**

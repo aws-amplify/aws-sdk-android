@@ -74,6 +74,11 @@ public class CompareFacesRequestMarshaller implements
                 jsonWriter.name("SimilarityThreshold");
                 jsonWriter.value(similarityThreshold);
             }
+            if (compareFacesRequest.getQualityFilter() != null) {
+                String qualityFilter = compareFacesRequest.getQualityFilter();
+                jsonWriter.name("QualityFilter");
+                jsonWriter.value(qualityFilter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
