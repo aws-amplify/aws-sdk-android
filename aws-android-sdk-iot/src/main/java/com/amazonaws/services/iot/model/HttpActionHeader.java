@@ -19,122 +19,122 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the percentile and percentile value.
+ * The HTTP action header.
  * </p>
  */
-public class PercentPair implements Serializable {
+public class HttpActionHeader implements Serializable {
     /**
      * <p>
-     * The percentile.
+     * The HTTP header key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private Double percent;
+    private String key;
 
     /**
      * <p>
-     * The value of the percentile.
+     * The HTTP header value. Substitution templates are supported.
      * </p>
      */
-    private Double value;
+    private String value;
 
     /**
      * <p>
-     * The percentile.
+     * The HTTP header key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The percentile.
+     *         The HTTP header key.
      *         </p>
      */
-    public Double getPercent() {
-        return percent;
+    public String getKey() {
+        return key;
     }
 
     /**
      * <p>
-     * The percentile.
+     * The HTTP header key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param percent <p>
-     *            The percentile.
+     * @param key <p>
+     *            The HTTP header key.
      *            </p>
      */
-    public void setPercent(Double percent) {
-        this.percent = percent;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     /**
      * <p>
-     * The percentile.
+     * The HTTP header key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param percent <p>
-     *            The percentile.
+     * @param key <p>
+     *            The HTTP header key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PercentPair withPercent(Double percent) {
-        this.percent = percent;
+    public HttpActionHeader withKey(String key) {
+        this.key = key;
         return this;
     }
 
     /**
      * <p>
-     * The value of the percentile.
+     * The HTTP header value. Substitution templates are supported.
      * </p>
      *
      * @return <p>
-     *         The value of the percentile.
+     *         The HTTP header value. Substitution templates are supported.
      *         </p>
      */
-    public Double getValue() {
+    public String getValue() {
         return value;
     }
 
     /**
      * <p>
-     * The value of the percentile.
+     * The HTTP header value. Substitution templates are supported.
      * </p>
      *
      * @param value <p>
-     *            The value of the percentile.
+     *            The HTTP header value. Substitution templates are supported.
      *            </p>
      */
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
     /**
      * <p>
-     * The value of the percentile.
+     * The HTTP header value. Substitution templates are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param value <p>
-     *            The value of the percentile.
+     *            The HTTP header value. Substitution templates are supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PercentPair withValue(Double value) {
+    public HttpActionHeader withValue(String value) {
         this.value = value;
         return this;
     }
@@ -150,8 +150,8 @@ public class PercentPair implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getPercent() != null)
-            sb.append("percent: " + getPercent() + ",");
+        if (getKey() != null)
+            sb.append("key: " + getKey() + ",");
         if (getValue() != null)
             sb.append("value: " + getValue());
         sb.append("}");
@@ -163,7 +163,7 @@ public class PercentPair implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getPercent() == null) ? 0 : getPercent().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getValue() == null) ? 0 : getValue().hashCode());
         return hashCode;
     }
@@ -175,13 +175,13 @@ public class PercentPair implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof PercentPair == false)
+        if (obj instanceof HttpActionHeader == false)
             return false;
-        PercentPair other = (PercentPair) obj;
+        HttpActionHeader other = (HttpActionHeader) obj;
 
-        if (other.getPercent() == null ^ this.getPercent() == null)
+        if (other.getKey() == null ^ this.getKey() == null)
             return false;
-        if (other.getPercent() != null && other.getPercent().equals(this.getPercent()) == false)
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         if (other.getValue() == null ^ this.getValue() == null)
             return false;

@@ -106,6 +106,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("stepFunctions");
             StepFunctionsActionJsonMarshaller.getInstance().marshall(stepFunctions, jsonWriter);
         }
+        if (action.getHttp() != null) {
+            HttpAction http = action.getHttp();
+            jsonWriter.name("http");
+            HttpActionJsonMarshaller.getInstance().marshall(http, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

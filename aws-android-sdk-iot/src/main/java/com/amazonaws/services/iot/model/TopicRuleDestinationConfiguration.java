@@ -17,56 +17,62 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-public class GetCardinalityResult implements Serializable {
+/**
+ * <p>
+ * Configuration of the topic rule destination.
+ * </p>
+ */
+public class TopicRuleDestinationConfiguration implements Serializable {
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * Configuration of the HTTP URL.
      * </p>
      */
-    private Integer cardinality;
+    private HttpUrlDestinationConfiguration httpUrlConfiguration;
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * Configuration of the HTTP URL.
      * </p>
      *
      * @return <p>
-     *         The approximate count of unique values that match the query.
+     *         Configuration of the HTTP URL.
      *         </p>
      */
-    public Integer getCardinality() {
-        return cardinality;
+    public HttpUrlDestinationConfiguration getHttpUrlConfiguration() {
+        return httpUrlConfiguration;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * Configuration of the HTTP URL.
      * </p>
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param httpUrlConfiguration <p>
+     *            Configuration of the HTTP URL.
      *            </p>
      */
-    public void setCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public void setHttpUrlConfiguration(HttpUrlDestinationConfiguration httpUrlConfiguration) {
+        this.httpUrlConfiguration = httpUrlConfiguration;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * Configuration of the HTTP URL.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param httpUrlConfiguration <p>
+     *            Configuration of the HTTP URL.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetCardinalityResult withCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public TopicRuleDestinationConfiguration withHttpUrlConfiguration(
+            HttpUrlDestinationConfiguration httpUrlConfiguration) {
+        this.httpUrlConfiguration = httpUrlConfiguration;
         return this;
     }
 
@@ -81,8 +87,8 @@ public class GetCardinalityResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCardinality() != null)
-            sb.append("cardinality: " + getCardinality());
+        if (getHttpUrlConfiguration() != null)
+            sb.append("httpUrlConfiguration: " + getHttpUrlConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -93,7 +99,7 @@ public class GetCardinalityResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getCardinality() == null) ? 0 : getCardinality().hashCode());
+                + ((getHttpUrlConfiguration() == null) ? 0 : getHttpUrlConfiguration().hashCode());
         return hashCode;
     }
 
@@ -104,14 +110,14 @@ public class GetCardinalityResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof GetCardinalityResult == false)
+        if (obj instanceof TopicRuleDestinationConfiguration == false)
             return false;
-        GetCardinalityResult other = (GetCardinalityResult) obj;
+        TopicRuleDestinationConfiguration other = (TopicRuleDestinationConfiguration) obj;
 
-        if (other.getCardinality() == null ^ this.getCardinality() == null)
+        if (other.getHttpUrlConfiguration() == null ^ this.getHttpUrlConfiguration() == null)
             return false;
-        if (other.getCardinality() != null
-                && other.getCardinality().equals(this.getCardinality()) == false)
+        if (other.getHttpUrlConfiguration() != null
+                && other.getHttpUrlConfiguration().equals(this.getHttpUrlConfiguration()) == false)
             return false;
         return true;
     }

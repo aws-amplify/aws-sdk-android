@@ -21,10 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets statistics returns the count, average, sum, minimum, maximum,
- * sumOfSquares, variance, and standard deviation for the specified aggregated
- * field. If the aggregation field is of type String, only the count statistic
- * is returned.
+ * Gets statistics about things that match the specified query.
  * </p>
  */
 public class GetStatisticsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -53,7 +50,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,14 +193,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The aggregation field name.
+     *         The aggregation field name. Currently not supported.
      *         </p>
      */
     public String getAggregationField() {
@@ -212,14 +209,14 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The aggregation field name. Currently not supported.
      *            </p>
      */
     public void setAggregationField(String aggregationField) {
@@ -228,7 +225,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The aggregation field name.
+     * The aggregation field name. Currently not supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,7 +235,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - <br/>
      *
      * @param aggregationField <p>
-     *            The aggregation field name.
+     *            The aggregation field name. Currently not supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

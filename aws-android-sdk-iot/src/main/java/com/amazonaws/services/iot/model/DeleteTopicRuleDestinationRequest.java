@@ -17,56 +17,64 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-public class GetCardinalityResult implements Serializable {
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * <p>
+ * Deletes a topic rule destination.
+ * </p>
+ */
+public class DeleteTopicRuleDestinationRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The ARN of the topic rule destination to delete.
      * </p>
      */
-    private Integer cardinality;
+    private String arn;
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The ARN of the topic rule destination to delete.
      * </p>
      *
      * @return <p>
-     *         The approximate count of unique values that match the query.
+     *         The ARN of the topic rule destination to delete.
      *         </p>
      */
-    public Integer getCardinality() {
-        return cardinality;
+    public String getArn() {
+        return arn;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The ARN of the topic rule destination to delete.
      * </p>
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param arn <p>
+     *            The ARN of the topic rule destination to delete.
      *            </p>
      */
-    public void setCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public void setArn(String arn) {
+        this.arn = arn;
     }
 
     /**
      * <p>
-     * The approximate count of unique values that match the query.
+     * The ARN of the topic rule destination to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param cardinality <p>
-     *            The approximate count of unique values that match the query.
+     * @param arn <p>
+     *            The ARN of the topic rule destination to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetCardinalityResult withCardinality(Integer cardinality) {
-        this.cardinality = cardinality;
+    public DeleteTopicRuleDestinationRequest withArn(String arn) {
+        this.arn = arn;
         return this;
     }
 
@@ -81,8 +89,8 @@ public class GetCardinalityResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCardinality() != null)
-            sb.append("cardinality: " + getCardinality());
+        if (getArn() != null)
+            sb.append("arn: " + getArn());
         sb.append("}");
         return sb.toString();
     }
@@ -92,8 +100,7 @@ public class GetCardinalityResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode
-                + ((getCardinality() == null) ? 0 : getCardinality().hashCode());
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         return hashCode;
     }
 
@@ -104,14 +111,13 @@ public class GetCardinalityResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof GetCardinalityResult == false)
+        if (obj instanceof DeleteTopicRuleDestinationRequest == false)
             return false;
-        GetCardinalityResult other = (GetCardinalityResult) obj;
+        DeleteTopicRuleDestinationRequest other = (DeleteTopicRuleDestinationRequest) obj;
 
-        if (other.getCardinality() == null ^ this.getCardinality() == null)
+        if (other.getArn() == null ^ this.getArn() == null)
             return false;
-        if (other.getCardinality() != null
-                && other.getCardinality().equals(this.getCardinality()) == false)
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
             return false;
         return true;
     }
