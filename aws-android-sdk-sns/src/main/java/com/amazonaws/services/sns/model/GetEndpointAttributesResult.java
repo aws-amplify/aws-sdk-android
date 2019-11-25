@@ -50,7 +50,11 @@ public class GetEndpointAttributesResult implements Serializable {
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
@@ -82,7 +86,11 @@ public class GetEndpointAttributesResult implements Serializable {
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      *
      * @return <p>
@@ -111,7 +119,11 @@ public class GetEndpointAttributesResult implements Serializable {
      *         from the notification service when an app and mobile device are
      *         registered with the notification service.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         The device token for the iOS platform is returned in lowercase.
+     *         </p>
+     *         </note></li>
      *         </ul>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -145,7 +157,11 @@ public class GetEndpointAttributesResult implements Serializable {
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      *
      * @param attributes <p>
@@ -175,7 +191,12 @@ public class GetEndpointAttributesResult implements Serializable {
      *            returned from the notification service when an app and mobile
      *            device are registered with the notification service.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The device token for the iOS platform is returned in
+     *            lowercase.
+     *            </p>
+     *            </note></li>
      *            </ul>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -209,7 +230,11 @@ public class GetEndpointAttributesResult implements Serializable {
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -242,7 +267,12 @@ public class GetEndpointAttributesResult implements Serializable {
      *            returned from the notification service when an app and mobile
      *            device are registered with the notification service.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The device token for the iOS platform is returned in
+     *            lowercase.
+     *            </p>
+     *            </note></li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -279,7 +309,11 @@ public class GetEndpointAttributesResult implements Serializable {
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

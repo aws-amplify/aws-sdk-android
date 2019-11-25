@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the platform application objects for the supported push notification
- * services, such as APNS and GCM. The results for
+ * services, such as APNS and FCM. The results for
  * <code>ListPlatformApplications</code> are paginated and return a limited list
  * of applications, up to 100. If additional records are available after the
  * first page results, then a NextToken string will be returned. To receive the
