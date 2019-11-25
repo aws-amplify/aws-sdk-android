@@ -46,7 +46,14 @@ public enum LanguageCode {
     EnIE("en-IE"),
     EnAB("en-AB"),
     EnWL("en-WL"),
-    PtPT("pt-PT");
+    PtPT("pt-PT"),
+    TeIN("te-IN"),
+    TrTR("tr-TR"),
+    DeCH("de-CH"),
+    HeIL("he-IL"),
+    MsMY("ms-MY"),
+    JaJP("ja-JP"),
+    ArAE("ar-AE");
 
     private String value;
 
@@ -86,6 +93,13 @@ public enum LanguageCode {
         enumMap.put("en-AB", EnAB);
         enumMap.put("en-WL", EnWL);
         enumMap.put("pt-PT", PtPT);
+        enumMap.put("te-IN", TeIN);
+        enumMap.put("tr-TR", TrTR);
+        enumMap.put("de-CH", DeCH);
+        enumMap.put("he-IL", HeIL);
+        enumMap.put("ms-MY", MsMY);
+        enumMap.put("ja-JP", JaJP);
+        enumMap.put("ar-AE", ArAE);
     }
 
     /**
