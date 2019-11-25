@@ -84,13 +84,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * The message you want to send.
      * </p>
-     * <important>
-     * <p>
-     * The <code>Message</code> parameter is always a string. If you set
-     * <code>MessageStructure</code> to <code>json</code>, you must
-     * string-encode the <code>Message</code> parameter.
-     * </p>
-     * </important>
      * <p>
      * If you are publishing to a topic and you want to send the same message to
      * all transport protocols, include the text of the message as a String
@@ -227,13 +220,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * send to a specific transport protocol (e.g., "http").
      * </p>
      * <p>
-     * For information about sending different messages for each protocol using
-     * the AWS Management Console, go to <a href=
-     * "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     * >Create Different Messages for Each Protocol</a> in the <i>Amazon Simple
-     * Notification Service Getting Started Guide</i>.
-     * </p>
-     * <p>
      * Valid value: <code>json</code>
      * </p>
      */
@@ -270,13 +256,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param message <p>
      *            The message you want to send.
      *            </p>
-     *            <important>
-     *            <p>
-     *            The <code>Message</code> parameter is always a string. If you
-     *            set <code>MessageStructure</code> to <code>json</code>, you
-     *            must string-encode the <code>Message</code> parameter.
-     *            </p>
-     *            </important>
      *            <p>
      *            If you are publishing to a topic and you want to send the same
      *            message to all transport protocols, include the text of the
@@ -397,13 +376,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param message <p>
      *            The message you want to send.
      *            </p>
-     *            <important>
-     *            <p>
-     *            The <code>Message</code> parameter is always a string. If you
-     *            set <code>MessageStructure</code> to <code>json</code>, you
-     *            must string-encode the <code>Message</code> parameter.
-     *            </p>
-     *            </important>
      *            <p>
      *            If you are publishing to a topic and you want to send the same
      *            message to all transport protocols, include the text of the
@@ -738,13 +710,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * The message you want to send.
      * </p>
-     * <important>
-     * <p>
-     * The <code>Message</code> parameter is always a string. If you set
-     * <code>MessageStructure</code> to <code>json</code>, you must
-     * string-encode the <code>Message</code> parameter.
-     * </p>
-     * </important>
      * <p>
      * If you are publishing to a topic and you want to send the same message to
      * all transport protocols, include the text of the message as a String
@@ -841,13 +806,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @return <p>
      *         The message you want to send.
      *         </p>
-     *         <important>
-     *         <p>
-     *         The <code>Message</code> parameter is always a string. If you set
-     *         <code>MessageStructure</code> to <code>json</code>, you must
-     *         string-encode the <code>Message</code> parameter.
-     *         </p>
-     *         </important>
      *         <p>
      *         If you are publishing to a topic and you want to send the same
      *         message to all transport protocols, include the text of the
@@ -954,13 +912,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * The message you want to send.
      * </p>
-     * <important>
-     * <p>
-     * The <code>Message</code> parameter is always a string. If you set
-     * <code>MessageStructure</code> to <code>json</code>, you must
-     * string-encode the <code>Message</code> parameter.
-     * </p>
-     * </important>
      * <p>
      * If you are publishing to a topic and you want to send the same message to
      * all transport protocols, include the text of the message as a String
@@ -1057,13 +1008,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param message <p>
      *            The message you want to send.
      *            </p>
-     *            <important>
-     *            <p>
-     *            The <code>Message</code> parameter is always a string. If you
-     *            set <code>MessageStructure</code> to <code>json</code>, you
-     *            must string-encode the <code>Message</code> parameter.
-     *            </p>
-     *            </important>
      *            <p>
      *            If you are publishing to a topic and you want to send the same
      *            message to all transport protocols, include the text of the
@@ -1171,13 +1115,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * The message you want to send.
      * </p>
-     * <important>
-     * <p>
-     * The <code>Message</code> parameter is always a string. If you set
-     * <code>MessageStructure</code> to <code>json</code>, you must
-     * string-encode the <code>Message</code> parameter.
-     * </p>
-     * </important>
      * <p>
      * If you are publishing to a topic and you want to send the same message to
      * all transport protocols, include the text of the message as a String
@@ -1277,13 +1214,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param message <p>
      *            The message you want to send.
      *            </p>
-     *            <important>
-     *            <p>
-     *            The <code>Message</code> parameter is always a string. If you
-     *            set <code>MessageStructure</code> to <code>json</code>, you
-     *            must string-encode the <code>Message</code> parameter.
-     *            </p>
-     *            </important>
      *            <p>
      *            If you are publishing to a topic and you want to send the same
      *            message to all transport protocols, include the text of the
@@ -1509,13 +1439,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * send to a specific transport protocol (e.g., "http").
      * </p>
      * <p>
-     * For information about sending different messages for each protocol using
-     * the AWS Management Console, go to <a href=
-     * "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     * >Create Different Messages for Each Protocol</a> in the <i>Amazon Simple
-     * Notification Service Getting Started Guide</i>.
-     * </p>
-     * <p>
      * Valid value: <code>json</code>
      * </p>
      *
@@ -1543,13 +1466,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *         <p>
      *         You can define other top-level keys that define the message you
      *         want to send to a specific transport protocol (e.g., "http").
-     *         </p>
-     *         <p>
-     *         For information about sending different messages for each
-     *         protocol using the AWS Management Console, go to <a href=
-     *         "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     *         >Create Different Messages for Each Protocol</a> in the <i>Amazon
-     *         Simple Notification Service Getting Started Guide</i>.
      *         </p>
      *         <p>
      *         Valid value: <code>json</code>
@@ -1586,13 +1502,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * send to a specific transport protocol (e.g., "http").
      * </p>
      * <p>
-     * For information about sending different messages for each protocol using
-     * the AWS Management Console, go to <a href=
-     * "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     * >Create Different Messages for Each Protocol</a> in the <i>Amazon Simple
-     * Notification Service Getting Started Guide</i>.
-     * </p>
-     * <p>
      * Valid value: <code>json</code>
      * </p>
      *
@@ -1622,14 +1531,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *            You can define other top-level keys that define the message
      *            you want to send to a specific transport protocol (e.g.,
      *            "http").
-     *            </p>
-     *            <p>
-     *            For information about sending different messages for each
-     *            protocol using the AWS Management Console, go to <a href=
-     *            "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     *            >Create Different Messages for Each Protocol</a> in the
-     *            <i>Amazon Simple Notification Service Getting Started
-     *            Guide</i>.
      *            </p>
      *            <p>
      *            Valid value: <code>json</code>
@@ -1666,13 +1567,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * send to a specific transport protocol (e.g., "http").
      * </p>
      * <p>
-     * For information about sending different messages for each protocol using
-     * the AWS Management Console, go to <a href=
-     * "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     * >Create Different Messages for Each Protocol</a> in the <i>Amazon Simple
-     * Notification Service Getting Started Guide</i>.
-     * </p>
-     * <p>
      * Valid value: <code>json</code>
      * </p>
      * <p>
@@ -1705,14 +1599,6 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      *            You can define other top-level keys that define the message
      *            you want to send to a specific transport protocol (e.g.,
      *            "http").
-     *            </p>
-     *            <p>
-     *            For information about sending different messages for each
-     *            protocol using the AWS Management Console, go to <a href=
-     *            "https://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol"
-     *            >Create Different Messages for Each Protocol</a> in the
-     *            <i>Amazon Simple Notification Service Getting Started
-     *            Guide</i>.
      *            </p>
      *            <p>
      *            Valid value: <code>json</code>

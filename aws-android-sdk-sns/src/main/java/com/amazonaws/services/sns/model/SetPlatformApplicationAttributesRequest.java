@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Sets the attributes of the platform application object for the supported push
- * notification services, such as APNS and GCM. For more information, see <a
+ * notification services, such as APNS and FCM. For more information, see <a
  * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>. For information on configuring
  * attributes for message delivery status, see <a
@@ -49,7 +49,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformCredential</code> – The credential received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformCredential is
-     * private key. For GCM, PlatformCredential is "API key". For ADM,
+     * private key. For FCM, PlatformCredential is "API key". For ADM,
      * PlatformCredential is "client secret".
      * </p>
      * </li>
@@ -57,7 +57,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformPrincipal</code> – The principal received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL
-     * certificate. For GCM, PlatformPrincipal is not applicable. For ADM,
+     * certificate. For FCM, PlatformPrincipal is not applicable. For ADM,
      * PlatformPrincipal is "client id".
      * </p>
      * </li>
@@ -167,7 +167,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformCredential</code> – The credential received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformCredential is
-     * private key. For GCM, PlatformCredential is "API key". For ADM,
+     * private key. For FCM, PlatformCredential is "API key". For ADM,
      * PlatformCredential is "client secret".
      * </p>
      * </li>
@@ -175,7 +175,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformPrincipal</code> – The principal received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL
-     * certificate. For GCM, PlatformPrincipal is not applicable. For ADM,
+     * certificate. For FCM, PlatformPrincipal is not applicable. For ADM,
      * PlatformPrincipal is "client id".
      * </p>
      * </li>
@@ -233,7 +233,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         <p>
      *         <code>PlatformCredential</code> – The credential received from
      *         the notification service. For APNS/APNS_SANDBOX,
-     *         PlatformCredential is private key. For GCM, PlatformCredential is
+     *         PlatformCredential is private key. For FCM, PlatformCredential is
      *         "API key". For ADM, PlatformCredential is "client secret".
      *         </p>
      *         </li>
@@ -241,7 +241,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *         <p>
      *         <code>PlatformPrincipal</code> – The principal received from the
      *         notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is
-     *         SSL certificate. For GCM, PlatformPrincipal is not applicable.
+     *         SSL certificate. For FCM, PlatformPrincipal is not applicable.
      *         For ADM, PlatformPrincipal is "client id".
      *         </p>
      *         </li>
@@ -305,7 +305,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformCredential</code> – The credential received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformCredential is
-     * private key. For GCM, PlatformCredential is "API key". For ADM,
+     * private key. For FCM, PlatformCredential is "API key". For ADM,
      * PlatformCredential is "client secret".
      * </p>
      * </li>
@@ -313,7 +313,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformPrincipal</code> – The principal received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL
-     * certificate. For GCM, PlatformPrincipal is not applicable. For ADM,
+     * certificate. For FCM, PlatformPrincipal is not applicable. For ADM,
      * PlatformPrincipal is "client id".
      * </p>
      * </li>
@@ -371,7 +371,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            <p>
      *            <code>PlatformCredential</code> – The credential received from
      *            the notification service. For APNS/APNS_SANDBOX,
-     *            PlatformCredential is private key. For GCM, PlatformCredential
+     *            PlatformCredential is private key. For FCM, PlatformCredential
      *            is "API key". For ADM, PlatformCredential is "client secret".
      *            </p>
      *            </li>
@@ -379,7 +379,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            <p>
      *            <code>PlatformPrincipal</code> – The principal received from
      *            the notification service. For APNS/APNS_SANDBOX,
-     *            PlatformPrincipal is SSL certificate. For GCM,
+     *            PlatformPrincipal is SSL certificate. For FCM,
      *            PlatformPrincipal is not applicable. For ADM,
      *            PlatformPrincipal is "client id".
      *            </p>
@@ -446,7 +446,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformCredential</code> – The credential received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformCredential is
-     * private key. For GCM, PlatformCredential is "API key". For ADM,
+     * private key. For FCM, PlatformCredential is "API key". For ADM,
      * PlatformCredential is "client secret".
      * </p>
      * </li>
@@ -454,7 +454,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformPrincipal</code> – The principal received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL
-     * certificate. For GCM, PlatformPrincipal is not applicable. For ADM,
+     * certificate. For FCM, PlatformPrincipal is not applicable. For ADM,
      * PlatformPrincipal is "client id".
      * </p>
      * </li>
@@ -515,7 +515,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            <p>
      *            <code>PlatformCredential</code> – The credential received from
      *            the notification service. For APNS/APNS_SANDBOX,
-     *            PlatformCredential is private key. For GCM, PlatformCredential
+     *            PlatformCredential is private key. For FCM, PlatformCredential
      *            is "API key". For ADM, PlatformCredential is "client secret".
      *            </p>
      *            </li>
@@ -523,7 +523,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      *            <p>
      *            <code>PlatformPrincipal</code> – The principal received from
      *            the notification service. For APNS/APNS_SANDBOX,
-     *            PlatformPrincipal is SSL certificate. For GCM,
+     *            PlatformPrincipal is SSL certificate. For FCM,
      *            PlatformPrincipal is not applicable. For ADM,
      *            PlatformPrincipal is "client id".
      *            </p>
@@ -594,7 +594,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformCredential</code> – The credential received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformCredential is
-     * private key. For GCM, PlatformCredential is "API key". For ADM,
+     * private key. For FCM, PlatformCredential is "API key". For ADM,
      * PlatformCredential is "client secret".
      * </p>
      * </li>
@@ -602,7 +602,7 @@ public class SetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
      * <p>
      * <code>PlatformPrincipal</code> – The principal received from the
      * notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL
-     * certificate. For GCM, PlatformPrincipal is not applicable. For ADM,
+     * certificate. For FCM, PlatformPrincipal is not applicable. For ADM,
      * PlatformPrincipal is "client id".
      * </p>
      * </li>

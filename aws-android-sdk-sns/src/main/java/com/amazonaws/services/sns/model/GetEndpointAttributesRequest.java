@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Retrieves the endpoint attributes for a device on one of the supported push
- * notification services, such as GCM and APNS. For more information, see <a
+ * notification services, such as FCM and APNS. For more information, see <a
  * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>.
  * </p>
