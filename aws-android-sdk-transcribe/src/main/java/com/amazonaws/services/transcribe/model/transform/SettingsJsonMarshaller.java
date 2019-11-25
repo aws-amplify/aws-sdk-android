@@ -45,6 +45,16 @@ class SettingsJsonMarshaller {
             jsonWriter.name("ChannelIdentification");
             jsonWriter.value(channelIdentification);
         }
+        if (settings.getShowAlternatives() != null) {
+            Boolean showAlternatives = settings.getShowAlternatives();
+            jsonWriter.name("ShowAlternatives");
+            jsonWriter.value(showAlternatives);
+        }
+        if (settings.getMaxAlternatives() != null) {
+            Integer maxAlternatives = settings.getMaxAlternatives();
+            jsonWriter.name("MaxAlternatives");
+            jsonWriter.value(maxAlternatives);
+        }
         jsonWriter.endObject();
     }
 
