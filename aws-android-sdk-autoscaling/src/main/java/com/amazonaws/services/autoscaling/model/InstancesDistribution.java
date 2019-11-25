@@ -28,6 +28,16 @@ import java.io.Serializable;
  * Auto Scaling group allocates instance types to fulfill On-Demand and Spot
  * capacity.
  * </p>
+ * <p>
+ * When you update <code>SpotAllocationStrategy</code>,
+ * <code>SpotInstancePools</code>, or <code>SpotMaxPrice</code>, this update
+ * action does not deploy any changes across the running Amazon EC2 instances in
+ * the group. Your existing Spot Instances continue to run as long as the
+ * maximum price for those instances is higher than the current Spot price. When
+ * scale out occurs, Amazon EC2 Auto Scaling launches instances based on the new
+ * settings. When scale in occurs, Amazon EC2 Auto Scaling terminates instances
+ * according to the group's termination policies.
+ * </p>
  */
 public class InstancesDistribution implements Serializable {
     /**
@@ -57,24 +67,41 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is <code>0</code>. If you leave this parameter set to
-     * <code>0</code>, On-Demand Instances are launched as a percentage of the
-     * Auto Scaling group's desired capacity, per the
-     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
+     * Default if not set is 0. If you leave it set to 0, On-Demand Instances
+     * are launched as a percentage of the Auto Scaling group's desired
+     * capacity, per the <code>OnDemandPercentageAboveBaseCapacity</code>
+     * setting.
      * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the specified number of On-Demand Instances for your base
+     * capacity. When replacing instances, Amazon EC2 Auto Scaling launches new
+     * instances before terminating the old ones.
+     * </p>
+     * </note>
      */
     private Integer onDemandBaseCapacity;
 
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
-     * range is 0–100.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The default value is <code>100</code>. If you leave this parameter set to
-     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
-     * for Spot Instances.
+     * Default if not set is 100. If you leave it set to 100, the percentages
+     * are 100% for On-Demand Instances and 0% for Spot Instances.
+     * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the percentage of On-Demand Instances for your additional
+     * capacity above the base capacity. When replacing instances, Amazon EC2
+     * Auto Scaling launches new instances before terminating the old ones.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Range: Minimum value of 0. Maximum value of 100.
      * </p>
      */
     private Integer onDemandPercentageAboveBaseCapacity;
@@ -111,12 +138,14 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot Instance pools across which to allocate your Spot
      * Instances. The Spot pools are determined from the different instance
-     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
-     * The default value is <code>2</code>.
+     * types in the Overrides array of <a>LaunchTemplate</a>. Default if not set
+     * is 2.
      * </p>
      * <p>
-     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
-     * .
+     * Used only when the Spot allocation strategy is <code>lowest-price</code>.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 20.
      * </p>
      */
     private Integer spotInstancePools;
@@ -263,11 +292,19 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is <code>0</code>. If you leave this parameter set to
-     * <code>0</code>, On-Demand Instances are launched as a percentage of the
-     * Auto Scaling group's desired capacity, per the
-     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
+     * Default if not set is 0. If you leave it set to 0, On-Demand Instances
+     * are launched as a percentage of the Auto Scaling group's desired
+     * capacity, per the <code>OnDemandPercentageAboveBaseCapacity</code>
+     * setting.
      * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the specified number of On-Demand Instances for your base
+     * capacity. When replacing instances, Amazon EC2 Auto Scaling launches new
+     * instances before terminating the old ones.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The minimum amount of the Auto Scaling group's capacity that must
@@ -275,11 +312,19 @@ public class InstancesDistribution implements Serializable {
      *         provisioned first as your group scales.
      *         </p>
      *         <p>
-     *         The default value is <code>0</code>. If you leave this parameter
-     *         set to <code>0</code>, On-Demand Instances are launched as a
-     *         percentage of the Auto Scaling group's desired capacity, per the
+     *         Default if not set is 0. If you leave it set to 0, On-Demand
+     *         Instances are launched as a percentage of the Auto Scaling
+     *         group's desired capacity, per the
      *         <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *         </p>
+     *         <note>
+     *         <p>
+     *         An update to this setting means a gradual replacement of
+     *         instances to maintain the specified number of On-Demand Instances
+     *         for your base capacity. When replacing instances, Amazon EC2 Auto
+     *         Scaling launches new instances before terminating the old ones.
+     *         </p>
+     *         </note>
      */
     public Integer getOnDemandBaseCapacity() {
         return onDemandBaseCapacity;
@@ -292,11 +337,19 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is <code>0</code>. If you leave this parameter set to
-     * <code>0</code>, On-Demand Instances are launched as a percentage of the
-     * Auto Scaling group's desired capacity, per the
-     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
+     * Default if not set is 0. If you leave it set to 0, On-Demand Instances
+     * are launched as a percentage of the Auto Scaling group's desired
+     * capacity, per the <code>OnDemandPercentageAboveBaseCapacity</code>
+     * setting.
      * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the specified number of On-Demand Instances for your base
+     * capacity. When replacing instances, Amazon EC2 Auto Scaling launches new
+     * instances before terminating the old ones.
+     * </p>
+     * </note>
      *
      * @param onDemandBaseCapacity <p>
      *            The minimum amount of the Auto Scaling group's capacity that
@@ -304,12 +357,20 @@ public class InstancesDistribution implements Serializable {
      *            provisioned first as your group scales.
      *            </p>
      *            <p>
-     *            The default value is <code>0</code>. If you leave this
-     *            parameter set to <code>0</code>, On-Demand Instances are
-     *            launched as a percentage of the Auto Scaling group's desired
-     *            capacity, per the
+     *            Default if not set is 0. If you leave it set to 0, On-Demand
+     *            Instances are launched as a percentage of the Auto Scaling
+     *            group's desired capacity, per the
      *            <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *            </p>
+     *            <note>
+     *            <p>
+     *            An update to this setting means a gradual replacement of
+     *            instances to maintain the specified number of On-Demand
+     *            Instances for your base capacity. When replacing instances,
+     *            Amazon EC2 Auto Scaling launches new instances before
+     *            terminating the old ones.
+     *            </p>
+     *            </note>
      */
     public void setOnDemandBaseCapacity(Integer onDemandBaseCapacity) {
         this.onDemandBaseCapacity = onDemandBaseCapacity;
@@ -322,11 +383,19 @@ public class InstancesDistribution implements Serializable {
      * as your group scales.
      * </p>
      * <p>
-     * The default value is <code>0</code>. If you leave this parameter set to
-     * <code>0</code>, On-Demand Instances are launched as a percentage of the
-     * Auto Scaling group's desired capacity, per the
-     * <code>OnDemandPercentageAboveBaseCapacity</code> setting.
+     * Default if not set is 0. If you leave it set to 0, On-Demand Instances
+     * are launched as a percentage of the Auto Scaling group's desired
+     * capacity, per the <code>OnDemandPercentageAboveBaseCapacity</code>
+     * setting.
      * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the specified number of On-Demand Instances for your base
+     * capacity. When replacing instances, Amazon EC2 Auto Scaling launches new
+     * instances before terminating the old ones.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -337,12 +406,20 @@ public class InstancesDistribution implements Serializable {
      *            provisioned first as your group scales.
      *            </p>
      *            <p>
-     *            The default value is <code>0</code>. If you leave this
-     *            parameter set to <code>0</code>, On-Demand Instances are
-     *            launched as a percentage of the Auto Scaling group's desired
-     *            capacity, per the
+     *            Default if not set is 0. If you leave it set to 0, On-Demand
+     *            Instances are launched as a percentage of the Auto Scaling
+     *            group's desired capacity, per the
      *            <code>OnDemandPercentageAboveBaseCapacity</code> setting.
      *            </p>
+     *            <note>
+     *            <p>
+     *            An update to this setting means a gradual replacement of
+     *            instances to maintain the specified number of On-Demand
+     *            Instances for your base capacity. When replacing instances,
+     *            Amazon EC2 Auto Scaling launches new instances before
+     *            terminating the old ones.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -354,24 +431,45 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
-     * range is 0–100.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The default value is <code>100</code>. If you leave this parameter set to
-     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
-     * for Spot Instances.
+     * Default if not set is 100. If you leave it set to 100, the percentages
+     * are 100% for On-Demand Instances and 0% for Spot Instances.
+     * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the percentage of On-Demand Instances for your additional
+     * capacity above the base capacity. When replacing instances, Amazon EC2
+     * Auto Scaling launches new instances before terminating the old ones.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Range: Minimum value of 0. Maximum value of 100.
      * </p>
      *
      * @return <p>
      *         Controls the percentages of On-Demand Instances and Spot
      *         Instances for your additional capacity beyond
-     *         <code>OnDemandBaseCapacity</code>. The range is 0–100.
+     *         <code>OnDemandBaseCapacity</code>.
      *         </p>
      *         <p>
-     *         The default value is <code>100</code>. If you leave this
-     *         parameter set to <code>100</code>, the percentages are 100% for
-     *         On-Demand Instances and 0% for Spot Instances.
+     *         Default if not set is 100. If you leave it set to 100, the
+     *         percentages are 100% for On-Demand Instances and 0% for Spot
+     *         Instances.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         An update to this setting means a gradual replacement of
+     *         instances to maintain the percentage of On-Demand Instances for
+     *         your additional capacity above the base capacity. When replacing
+     *         instances, Amazon EC2 Auto Scaling launches new instances before
+     *         terminating the old ones.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         Valid Range: Minimum value of 0. Maximum value of 100.
      *         </p>
      */
     public Integer getOnDemandPercentageAboveBaseCapacity() {
@@ -381,24 +479,45 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
-     * range is 0–100.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The default value is <code>100</code>. If you leave this parameter set to
-     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
-     * for Spot Instances.
+     * Default if not set is 100. If you leave it set to 100, the percentages
+     * are 100% for On-Demand Instances and 0% for Spot Instances.
+     * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the percentage of On-Demand Instances for your additional
+     * capacity above the base capacity. When replacing instances, Amazon EC2
+     * Auto Scaling launches new instances before terminating the old ones.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Range: Minimum value of 0. Maximum value of 100.
      * </p>
      *
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <code>OnDemandBaseCapacity</code>. The range is 0–100.
+     *            <code>OnDemandBaseCapacity</code>.
      *            </p>
      *            <p>
-     *            The default value is <code>100</code>. If you leave this
-     *            parameter set to <code>100</code>, the percentages are 100%
-     *            for On-Demand Instances and 0% for Spot Instances.
+     *            Default if not set is 100. If you leave it set to 100, the
+     *            percentages are 100% for On-Demand Instances and 0% for Spot
+     *            Instances.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            An update to this setting means a gradual replacement of
+     *            instances to maintain the percentage of On-Demand Instances
+     *            for your additional capacity above the base capacity. When
+     *            replacing instances, Amazon EC2 Auto Scaling launches new
+     *            instances before terminating the old ones.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Range: Minimum value of 0. Maximum value of 100.
      *            </p>
      */
     public void setOnDemandPercentageAboveBaseCapacity(Integer onDemandPercentageAboveBaseCapacity) {
@@ -408,13 +527,22 @@ public class InstancesDistribution implements Serializable {
     /**
      * <p>
      * Controls the percentages of On-Demand Instances and Spot Instances for
-     * your additional capacity beyond <code>OnDemandBaseCapacity</code>. The
-     * range is 0–100.
+     * your additional capacity beyond <code>OnDemandBaseCapacity</code>.
      * </p>
      * <p>
-     * The default value is <code>100</code>. If you leave this parameter set to
-     * <code>100</code>, the percentages are 100% for On-Demand Instances and 0%
-     * for Spot Instances.
+     * Default if not set is 100. If you leave it set to 100, the percentages
+     * are 100% for On-Demand Instances and 0% for Spot Instances.
+     * </p>
+     * <note>
+     * <p>
+     * An update to this setting means a gradual replacement of instances to
+     * maintain the percentage of On-Demand Instances for your additional
+     * capacity above the base capacity. When replacing instances, Amazon EC2
+     * Auto Scaling launches new instances before terminating the old ones.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Range: Minimum value of 0. Maximum value of 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -423,12 +551,24 @@ public class InstancesDistribution implements Serializable {
      * @param onDemandPercentageAboveBaseCapacity <p>
      *            Controls the percentages of On-Demand Instances and Spot
      *            Instances for your additional capacity beyond
-     *            <code>OnDemandBaseCapacity</code>. The range is 0–100.
+     *            <code>OnDemandBaseCapacity</code>.
      *            </p>
      *            <p>
-     *            The default value is <code>100</code>. If you leave this
-     *            parameter set to <code>100</code>, the percentages are 100%
-     *            for On-Demand Instances and 0% for Spot Instances.
+     *            Default if not set is 100. If you leave it set to 100, the
+     *            percentages are 100% for On-Demand Instances and 0% for Spot
+     *            Instances.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            An update to this setting means a gradual replacement of
+     *            instances to maintain the percentage of On-Demand Instances
+     *            for your additional capacity above the base capacity. When
+     *            replacing instances, Amazon EC2 Auto Scaling launches new
+     *            instances before terminating the old ones.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Range: Minimum value of 0. Maximum value of 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -613,23 +753,28 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot Instance pools across which to allocate your Spot
      * Instances. The Spot pools are determined from the different instance
-     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
-     * The default value is <code>2</code>.
+     * types in the Overrides array of <a>LaunchTemplate</a>. Default if not set
+     * is 2.
      * </p>
      * <p>
-     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
-     * .
+     * Used only when the Spot allocation strategy is <code>lowest-price</code>.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 20.
      * </p>
      *
      * @return <p>
      *         The number of Spot Instance pools across which to allocate your
      *         Spot Instances. The Spot pools are determined from the different
      *         instance types in the Overrides array of <a>LaunchTemplate</a>.
-     *         The range is 1–20. The default value is <code>2</code>.
+     *         Default if not set is 2.
      *         </p>
      *         <p>
-     *         Valid only when the Spot allocation strategy is
+     *         Used only when the Spot allocation strategy is
      *         <code>lowest-price</code>.
+     *         </p>
+     *         <p>
+     *         Valid Range: Minimum value of 1. Maximum value of 20.
      *         </p>
      */
     public Integer getSpotInstancePools() {
@@ -640,24 +785,28 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot Instance pools across which to allocate your Spot
      * Instances. The Spot pools are determined from the different instance
-     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
-     * The default value is <code>2</code>.
+     * types in the Overrides array of <a>LaunchTemplate</a>. Default if not set
+     * is 2.
      * </p>
      * <p>
-     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
-     * .
+     * Used only when the Spot allocation strategy is <code>lowest-price</code>.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 20.
      * </p>
      *
      * @param spotInstancePools <p>
      *            The number of Spot Instance pools across which to allocate
      *            your Spot Instances. The Spot pools are determined from the
      *            different instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>. The range is 1–20. The default value is
-     *            <code>2</code>.
+     *            <a>LaunchTemplate</a>. Default if not set is 2.
      *            </p>
      *            <p>
-     *            Valid only when the Spot allocation strategy is
+     *            Used only when the Spot allocation strategy is
      *            <code>lowest-price</code>.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 1. Maximum value of 20.
      *            </p>
      */
     public void setSpotInstancePools(Integer spotInstancePools) {
@@ -668,12 +817,14 @@ public class InstancesDistribution implements Serializable {
      * <p>
      * The number of Spot Instance pools across which to allocate your Spot
      * Instances. The Spot pools are determined from the different instance
-     * types in the Overrides array of <a>LaunchTemplate</a>. The range is 1–20.
-     * The default value is <code>2</code>.
+     * types in the Overrides array of <a>LaunchTemplate</a>. Default if not set
+     * is 2.
      * </p>
      * <p>
-     * Valid only when the Spot allocation strategy is <code>lowest-price</code>
-     * .
+     * Used only when the Spot allocation strategy is <code>lowest-price</code>.
+     * </p>
+     * <p>
+     * Valid Range: Minimum value of 1. Maximum value of 20.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -683,12 +834,14 @@ public class InstancesDistribution implements Serializable {
      *            The number of Spot Instance pools across which to allocate
      *            your Spot Instances. The Spot pools are determined from the
      *            different instance types in the Overrides array of
-     *            <a>LaunchTemplate</a>. The range is 1–20. The default value is
-     *            <code>2</code>.
+     *            <a>LaunchTemplate</a>. Default if not set is 2.
      *            </p>
      *            <p>
-     *            Valid only when the Spot allocation strategy is
+     *            Used only when the Spot allocation strategy is
      *            <code>lowest-price</code>.
+     *            </p>
+     *            <p>
+     *            Valid Range: Minimum value of 1. Maximum value of 20.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

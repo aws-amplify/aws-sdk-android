@@ -172,6 +172,11 @@ class AutoScalingGroupStaxUnmarshaller implements
                             .unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("MaxInstanceLifetime", targetDepth)) {
+                    autoScalingGroup.setMaxInstanceLifetime(IntegerStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     break;

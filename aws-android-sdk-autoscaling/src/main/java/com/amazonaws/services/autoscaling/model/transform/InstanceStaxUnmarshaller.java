@@ -50,6 +50,11 @@ class InstanceStaxUnmarshaller implements Unmarshaller<Instance, StaxUnmarshalle
                     instance.setInstanceId(StringStaxUnmarshaller.getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("InstanceType", targetDepth)) {
+                    instance.setInstanceType(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
                 if (context.testExpression("AvailabilityZone", targetDepth)) {
                     instance.setAvailabilityZone(StringStaxUnmarshaller.getInstance().unmarshall(
                             context));
@@ -78,6 +83,11 @@ class InstanceStaxUnmarshaller implements Unmarshaller<Instance, StaxUnmarshalle
                 if (context.testExpression("ProtectedFromScaleIn", targetDepth)) {
                     instance.setProtectedFromScaleIn(BooleanStaxUnmarshaller.getInstance()
                             .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("WeightedCapacity", targetDepth)) {
+                    instance.setWeightedCapacity(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

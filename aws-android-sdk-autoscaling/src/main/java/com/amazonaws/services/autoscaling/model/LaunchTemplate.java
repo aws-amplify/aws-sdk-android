@@ -26,6 +26,13 @@ import java.io.Serializable;
  * template with multiple instance types that can be used to launch On-Demand
  * Instances and Spot Instances.
  * </p>
+ * <p>
+ * When you update the launch template or overrides, existing Amazon EC2
+ * instances continue to run. When scale out occurs, Amazon EC2 Auto Scaling
+ * launches instances to match the new settings. When scale in occurs, Amazon
+ * EC2 Auto Scaling terminates instances according to the group's termination
+ * policies.
+ * </p>
  */
 public class LaunchTemplate implements Serializable {
     /**
@@ -38,9 +45,9 @@ public class LaunchTemplate implements Serializable {
 
     /**
      * <p>
-     * Any parameters that you specify override the same parameters in the
-     * launch template. Currently, the only supported override is instance type.
-     * You must specify between 2 and 20 overrides.
+     * An optional setting. Any parameters that you specify override the same
+     * parameters in the launch template. Currently, the only supported override
+     * is instance type. You can specify between 1 and 20 instance types.
      * </p>
      */
     private java.util.List<LaunchTemplateOverrides> overrides = new java.util.ArrayList<LaunchTemplateOverrides>();
@@ -100,15 +107,16 @@ public class LaunchTemplate implements Serializable {
 
     /**
      * <p>
-     * Any parameters that you specify override the same parameters in the
-     * launch template. Currently, the only supported override is instance type.
-     * You must specify between 2 and 20 overrides.
+     * An optional setting. Any parameters that you specify override the same
+     * parameters in the launch template. Currently, the only supported override
+     * is instance type. You can specify between 1 and 20 instance types.
      * </p>
      *
      * @return <p>
-     *         Any parameters that you specify override the same parameters in
-     *         the launch template. Currently, the only supported override is
-     *         instance type. You must specify between 2 and 20 overrides.
+     *         An optional setting. Any parameters that you specify override the
+     *         same parameters in the launch template. Currently, the only
+     *         supported override is instance type. You can specify between 1
+     *         and 20 instance types.
      *         </p>
      */
     public java.util.List<LaunchTemplateOverrides> getOverrides() {
@@ -117,15 +125,16 @@ public class LaunchTemplate implements Serializable {
 
     /**
      * <p>
-     * Any parameters that you specify override the same parameters in the
-     * launch template. Currently, the only supported override is instance type.
-     * You must specify between 2 and 20 overrides.
+     * An optional setting. Any parameters that you specify override the same
+     * parameters in the launch template. Currently, the only supported override
+     * is instance type. You can specify between 1 and 20 instance types.
      * </p>
      *
      * @param overrides <p>
-     *            Any parameters that you specify override the same parameters
-     *            in the launch template. Currently, the only supported override
-     *            is instance type. You must specify between 2 and 20 overrides.
+     *            An optional setting. Any parameters that you specify override
+     *            the same parameters in the launch template. Currently, the
+     *            only supported override is instance type. You can specify
+     *            between 1 and 20 instance types.
      *            </p>
      */
     public void setOverrides(java.util.Collection<LaunchTemplateOverrides> overrides) {
@@ -139,18 +148,19 @@ public class LaunchTemplate implements Serializable {
 
     /**
      * <p>
-     * Any parameters that you specify override the same parameters in the
-     * launch template. Currently, the only supported override is instance type.
-     * You must specify between 2 and 20 overrides.
+     * An optional setting. Any parameters that you specify override the same
+     * parameters in the launch template. Currently, the only supported override
+     * is instance type. You can specify between 1 and 20 instance types.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param overrides <p>
-     *            Any parameters that you specify override the same parameters
-     *            in the launch template. Currently, the only supported override
-     *            is instance type. You must specify between 2 and 20 overrides.
+     *            An optional setting. Any parameters that you specify override
+     *            the same parameters in the launch template. Currently, the
+     *            only supported override is instance type. You can specify
+     *            between 1 and 20 instance types.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -167,18 +177,19 @@ public class LaunchTemplate implements Serializable {
 
     /**
      * <p>
-     * Any parameters that you specify override the same parameters in the
-     * launch template. Currently, the only supported override is instance type.
-     * You must specify between 2 and 20 overrides.
+     * An optional setting. Any parameters that you specify override the same
+     * parameters in the launch template. Currently, the only supported override
+     * is instance type. You can specify between 1 and 20 instance types.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param overrides <p>
-     *            Any parameters that you specify override the same parameters
-     *            in the launch template. Currently, the only supported override
-     *            is instance type. You must specify between 2 and 20 overrides.
+     *            An optional setting. Any parameters that you specify override
+     *            the same parameters in the launch template. Currently, the
+     *            only supported override is instance type. You can specify
+     *            between 1 and 20 instance types.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
