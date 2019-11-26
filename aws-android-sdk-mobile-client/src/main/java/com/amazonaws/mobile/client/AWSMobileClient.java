@@ -1122,6 +1122,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return internalCallback.await(_signIn(username, password, validationData, internalCallback));
     }
 
+    @AnyThread
+    public void signIn(final String username,
+                       final Map<String, String> validationData,
+                       final Callback<SignInResult> callback) {
+
+        signIn(username, null, validationData, callback);
+    }
+
+    @WorkerThread
+    public SignInResult signIn(final String username,
+                               final Map<String, String> validationData) throws Exception {
+
+        return signIn(username, null, validationData);
+    }
+
     private Runnable _signIn(final String username,
                              final String password,
                              final Map<String, String> validationData,
