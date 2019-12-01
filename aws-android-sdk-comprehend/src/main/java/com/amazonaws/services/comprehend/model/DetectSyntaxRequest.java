@@ -40,9 +40,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -113,9 +113,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,7 +123,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      *
      * @return <p>
      *         The language code of the input documents. You can specify any of
-     *         the primary languages supported by Amazon Comprehend: German
+     *         the following languages supported by Amazon Comprehend: German
      *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *         ("it"), or Portuguese ("pt").
      *         </p>
@@ -136,9 +136,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +146,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify any
-     *            of the primary languages supported by Amazon Comprehend:
+     *            of the following languages supported by Amazon Comprehend:
      *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
      *            Italian ("it"), or Portuguese ("pt").
      *            </p>
@@ -159,9 +159,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -172,7 +172,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify any
-     *            of the primary languages supported by Amazon Comprehend:
+     *            of the following languages supported by Amazon Comprehend:
      *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
      *            Italian ("it"), or Portuguese ("pt").
      *            </p>
@@ -188,9 +188,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -198,7 +198,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify any
-     *            of the primary languages supported by Amazon Comprehend:
+     *            of the following languages supported by Amazon Comprehend:
      *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
      *            Italian ("it"), or Portuguese ("pt").
      *            </p>
@@ -211,9 +211,9 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The language code of the input documents. You can specify any of the
-     * primary languages supported by Amazon Comprehend: German ("de"), English
-     * ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese
-     * ("pt").
+     * following languages supported by Amazon Comprehend: German ("de"),
+     * English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
+     * Portuguese ("pt").
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -224,7 +224,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify any
-     *            of the primary languages supported by Amazon Comprehend:
+     *            of the following languages supported by Amazon Comprehend:
      *            German ("de"), English ("en"), Spanish ("es"), French ("fr"),
      *            Italian ("it"), or Portuguese ("pt").
      *            </p>

@@ -92,7 +92,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -530,7 +530,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -541,9 +541,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend: German ("de"),
-     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
-     *         Portuguese ("pt"). All documents must be in the same language.
+     *         following languages supported by Amazon Comprehend: German
+     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *         ("it"), or Portuguese ("pt"). All documents must be in the same
+     *         language.
      *         </p>
      * @see LanguageCode
      */
@@ -553,7 +554,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -564,7 +565,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -577,7 +578,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -591,7 +592,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -607,7 +608,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -618,7 +619,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -631,7 +632,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -645,7 +646,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
