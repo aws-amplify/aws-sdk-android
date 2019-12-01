@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the specified CMK was not available. The
- * request can be retried.
+ * The request was rejected because the specified CMK was not available. You can
+ * retry the request.
  * </p>
  */
 public class KeyUnavailableException extends AmazonServiceException {

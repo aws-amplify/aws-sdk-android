@@ -57,8 +57,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Developer Guide</i>.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.

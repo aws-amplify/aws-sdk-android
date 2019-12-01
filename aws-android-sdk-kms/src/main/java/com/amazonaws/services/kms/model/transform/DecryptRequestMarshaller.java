@@ -89,6 +89,16 @@ public class DecryptRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (decryptRequest.getKeyId() != null) {
+                String keyId = decryptRequest.getKeyId();
+                jsonWriter.name("KeyId");
+                jsonWriter.value(keyId);
+            }
+            if (decryptRequest.getEncryptionAlgorithm() != null) {
+                String encryptionAlgorithm = decryptRequest.getEncryptionAlgorithm();
+                jsonWriter.name("EncryptionAlgorithm");
+                jsonWriter.value(encryptionAlgorithm);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
