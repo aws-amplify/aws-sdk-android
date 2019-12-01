@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the search configuration.
+ * Gets the indexing configuration.
  * </p>
  */
 public class GetIndexingConfigurationRequest extends AmazonWebServiceRequest implements

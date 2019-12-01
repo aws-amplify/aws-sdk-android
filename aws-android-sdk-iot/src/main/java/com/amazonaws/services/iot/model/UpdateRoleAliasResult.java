@@ -33,6 +33,9 @@ public class UpdateRoleAliasResult implements Serializable {
      * <p>
      * The role alias ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String roleAliasArn;
 
@@ -97,6 +100,9 @@ public class UpdateRoleAliasResult implements Serializable {
      * <p>
      * The role alias ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The role alias ARN.
@@ -110,6 +116,9 @@ public class UpdateRoleAliasResult implements Serializable {
      * <p>
      * The role alias ARN.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param roleAliasArn <p>
      *            The role alias ARN.
@@ -126,6 +135,9 @@ public class UpdateRoleAliasResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param roleAliasArn <p>
      *            The role alias ARN.

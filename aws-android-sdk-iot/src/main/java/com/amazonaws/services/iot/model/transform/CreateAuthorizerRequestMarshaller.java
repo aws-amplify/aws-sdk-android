@@ -91,6 +91,11 @@ public class CreateAuthorizerRequestMarshaller implements
                 jsonWriter.name("status");
                 jsonWriter.value(status);
             }
+            if (createAuthorizerRequest.getSigningDisabled() != null) {
+                Boolean signingDisabled = createAuthorizerRequest.getSigningDisabled();
+                jsonWriter.name("signingDisabled");
+                jsonWriter.value(signingDisabled);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

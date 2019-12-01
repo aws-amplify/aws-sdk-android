@@ -76,6 +76,11 @@ class AuthorizerDescriptionJsonMarshaller {
             jsonWriter.name("lastModifiedDate");
             jsonWriter.value(lastModifiedDate);
         }
+        if (authorizerDescription.getSigningDisabled() != null) {
+            Boolean signingDisabled = authorizerDescription.getSigningDisabled();
+            jsonWriter.name("signingDisabled");
+            jsonWriter.value(signingDisabled);
+        }
         jsonWriter.endObject();
     }
 
