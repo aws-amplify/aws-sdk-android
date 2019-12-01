@@ -255,6 +255,13 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * The unique identifier for the session.
+     * </p>
+     */
+    private String sessionId;
+
+    /**
+     * <p>
      * Content type as specified in the <code>Accept</code> HTTP header in the
      * request.
      * </p>
@@ -2177,6 +2184,51 @@ public class PostContentResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     *
+     * @return <p>
+     *         The unique identifier for the session.
+     *         </p>
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     *
+     * @param sessionId <p>
+     *            The unique identifier for the session.
+     *            </p>
+     */
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sessionId <p>
+     *            The unique identifier for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withSessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2208,7 +2260,9 @@ public class PostContentResult implements Serializable {
         if (getInputTranscript() != null)
             sb.append("inputTranscript: " + getInputTranscript() + ",");
         if (getAudioStream() != null)
-            sb.append("audioStream: " + getAudioStream());
+            sb.append("audioStream: " + getAudioStream() + ",");
+        if (getSessionId() != null)
+            sb.append("sessionId: " + getSessionId());
         sb.append("}");
         return sb.toString();
     }
@@ -2237,6 +2291,7 @@ public class PostContentResult implements Serializable {
                 + ((getInputTranscript() == null) ? 0 : getInputTranscript().hashCode());
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
+        hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         return hashCode;
     }
 
@@ -2303,6 +2358,11 @@ public class PostContentResult implements Serializable {
             return false;
         if (other.getAudioStream() != null
                 && other.getAudioStream().equals(this.getAudioStream()) == false)
+            return false;
+        if (other.getSessionId() == null ^ this.getSessionId() == null)
+            return false;
+        if (other.getSessionId() != null
+                && other.getSessionId().equals(this.getSessionId()) == false)
             return false;
         return true;
     }

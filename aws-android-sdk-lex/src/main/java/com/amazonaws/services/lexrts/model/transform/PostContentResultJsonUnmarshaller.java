@@ -56,6 +56,8 @@ public class PostContentResultJsonUnmarshaller implements
             java.io.ByteArrayInputStream bis = new java.io.ByteArrayInputStream(bytes);
             postContentResult.setAudioStream(bis);
         }
+        if (context.getHeader("x-amz-lex-session-id") != null)
+            postContentResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
         return postContentResult;
     }
 
