@@ -324,6 +324,8 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
+        jsonErrorUnmarshallers.add(new AccessDeniedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new AccountChannelLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new AccountStreamLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ClientLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new DeviceStreamLimitExceededExceptionUnmarshaller());
@@ -352,6 +354,63 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
         ClientConfiguration config = orig;
 
         return config;
+    }
+
+    /**
+     * <p>
+     * Creates a signaling channel.
+     * </p>
+     * <p>
+     * <code>CreateSignalingChannel</code> is an asynchronous operation.
+     * </p>
+     * 
+     * @param createSignalingChannelRequest
+     * @return createSignalingChannelResult The response from the
+     *         CreateSignalingChannel service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws AccountChannelLimitExceededException
+     * @throws ResourceInUseException
+     * @throws AccessDeniedException
+     * @throws TagsPerResourceExceededLimitException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public CreateSignalingChannelResult createSignalingChannel(
+            CreateSignalingChannelRequest createSignalingChannelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createSignalingChannelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateSignalingChannelRequest> request = null;
+        Response<CreateSignalingChannelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateSignalingChannelRequestMarshaller()
+                        .marshall(createSignalingChannelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateSignalingChannelResult, JsonUnmarshallerContext> unmarshaller = new CreateSignalingChannelResultJsonUnmarshaller();
+            JsonResponseHandler<CreateSignalingChannelResult> responseHandler = new JsonResponseHandler<CreateSignalingChannelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
     }
 
     /**
@@ -425,6 +484,62 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * Deletes a specified signaling channel.
+     * <code>DeleteSignalingChannel</code> is an asynchronous operation. If you
+     * don't specify the channel's current version, the most recent version is
+     * deleted.
+     * </p>
+     * 
+     * @param deleteSignalingChannelRequest
+     * @return deleteSignalingChannelResult The response from the
+     *         DeleteSignalingChannel service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws VersionMismatchException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DeleteSignalingChannelResult deleteSignalingChannel(
+            DeleteSignalingChannelRequest deleteSignalingChannelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteSignalingChannelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteSignalingChannelRequest> request = null;
+        Response<DeleteSignalingChannelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteSignalingChannelRequestMarshaller()
+                        .marshall(deleteSignalingChannelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteSignalingChannelResult, JsonUnmarshallerContext> unmarshaller = new DeleteSignalingChannelResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteSignalingChannelResult> responseHandler = new JsonResponseHandler<DeleteSignalingChannelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a Kinesis video stream and the data contained in the stream.
      * </p>
      * <p>
@@ -479,6 +594,60 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
             }
             Unmarshaller<DeleteStreamResult, JsonUnmarshallerContext> unmarshaller = new DeleteStreamResultJsonUnmarshaller();
             JsonResponseHandler<DeleteStreamResult> responseHandler = new JsonResponseHandler<DeleteStreamResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the most current information about the signaling channel. You
+     * must specify either the name or the ARN of the channel that you want to
+     * describe.
+     * </p>
+     * 
+     * @param describeSignalingChannelRequest
+     * @return describeSignalingChannelResult The response from the
+     *         DescribeSignalingChannel service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DescribeSignalingChannelResult describeSignalingChannel(
+            DescribeSignalingChannelRequest describeSignalingChannelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeSignalingChannelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeSignalingChannelRequest> request = null;
+        Response<DescribeSignalingChannelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeSignalingChannelRequestMarshaller()
+                        .marshall(describeSignalingChannelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeSignalingChannelResult, JsonUnmarshallerContext> unmarshaller = new DescribeSignalingChannelResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeSignalingChannelResult> responseHandler = new JsonResponseHandler<DescribeSignalingChannelResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -604,6 +773,131 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * Provides an endpoint for the specified signaling channel to send and
+     * receive messages. This API uses the
+     * <code>SingleMasterChannelEndpointConfiguration</code> input parameter,
+     * which consists of the <code>Protocols</code> and <code>Role</code>
+     * properties.
+     * </p>
+     * <p>
+     * <code>Protocols</code> is used to determine the communication mechanism.
+     * For example, specifying <code>WSS</code> as the protocol, results in this
+     * API producing a secure websocket endpoint, and specifying
+     * <code>HTTPS</code> as the protocol, results in this API generating an
+     * HTTPS endpoint.
+     * </p>
+     * <p>
+     * <code>Role</code> determines the messaging permissions. A
+     * <code>MASTER</code> role results in this API generating an endpoint that
+     * a client can use to communicate with any of the viewers on the channel. A
+     * <code>VIEWER</code> role results in this API generating an endpoint that
+     * a client can use to communicate only with a <code>MASTER</code>.
+     * </p>
+     * 
+     * @param getSignalingChannelEndpointRequest
+     * @return getSignalingChannelEndpointResult The response from the
+     *         GetSignalingChannelEndpoint service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetSignalingChannelEndpointResult getSignalingChannelEndpoint(
+            GetSignalingChannelEndpointRequest getSignalingChannelEndpointRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getSignalingChannelEndpointRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetSignalingChannelEndpointRequest> request = null;
+        Response<GetSignalingChannelEndpointResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetSignalingChannelEndpointRequestMarshaller()
+                        .marshall(getSignalingChannelEndpointRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetSignalingChannelEndpointResult, JsonUnmarshallerContext> unmarshaller = new GetSignalingChannelEndpointResultJsonUnmarshaller();
+            JsonResponseHandler<GetSignalingChannelEndpointResult> responseHandler = new JsonResponseHandler<GetSignalingChannelEndpointResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns an array of <code>ChannelInfo</code> objects. Each object
+     * describes a signaling channel. To retrieve only those channels that
+     * satisfy a specific condition, you can specify a
+     * <code>ChannelNameCondition</code>.
+     * </p>
+     * 
+     * @param listSignalingChannelsRequest
+     * @return listSignalingChannelsResult The response from the
+     *         ListSignalingChannels service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListSignalingChannelsResult listSignalingChannels(
+            ListSignalingChannelsRequest listSignalingChannelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSignalingChannelsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSignalingChannelsRequest> request = null;
+        Response<ListSignalingChannelsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListSignalingChannelsRequestMarshaller()
+                        .marshall(listSignalingChannelsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListSignalingChannelsResult, JsonUnmarshallerContext> unmarshaller = new ListSignalingChannelsResultJsonUnmarshaller();
+            JsonResponseHandler<ListSignalingChannelsResult> responseHandler = new JsonResponseHandler<ListSignalingChannelsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns an array of <code>StreamInfo</code> objects. Each object
      * describes a stream. To retrieve only streams that satisfy a specific
      * condition, you can specify a <code>StreamNameCondition</code>.
@@ -640,6 +934,58 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
             }
             Unmarshaller<ListStreamsResult, JsonUnmarshallerContext> unmarshaller = new ListStreamsResultJsonUnmarshaller();
             JsonResponseHandler<ListStreamsResult> responseHandler = new JsonResponseHandler<ListStreamsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a list of tags associated with the specified signaling channel.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -709,6 +1055,63 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * Adds one or more tags to a signaling channel. A <i>tag</i> is a key-value
+     * pair (the value is optional) that you can define and assign to AWS
+     * resources. If you specify a tag that already exists, the tag value is
+     * replaced with the value that you specify in the request. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
+     * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
+     * User Guide</i>.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws TagsPerResourceExceededLimitException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<TagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Adds one or more tags to a stream. A <i>tag</i> is a key-value pair (the
      * value is optional) that you can define and assign to AWS resources. If
      * you specify a tag that already exists, the tag value is replaced with the
@@ -764,6 +1167,57 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
             }
             Unmarshaller<TagStreamResult, JsonUnmarshallerContext> unmarshaller = new TagStreamResultJsonUnmarshaller();
             JsonResponseHandler<TagStreamResult> responseHandler = new JsonResponseHandler<TagStreamResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes one or more tags from a signaling channel. In the request,
+     * specify only a tag key or keys; don't specify the value. If you specify a
+     * tag key that does not exist, it's ignored.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<UntagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -909,6 +1363,67 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
             }
             Unmarshaller<UpdateDataRetentionResult, JsonUnmarshallerContext> unmarshaller = new UpdateDataRetentionResultJsonUnmarshaller();
             JsonResponseHandler<UpdateDataRetentionResult> responseHandler = new JsonResponseHandler<UpdateDataRetentionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the existing signaling channel. This is an asynchronous operation
+     * and takes time to complete.
+     * </p>
+     * <p>
+     * If the <code>MessageTtlSeconds</code> value is updated (either increased
+     * or reduced), then it only applies to new messages sent via this channel
+     * after it's been updated. Existing messages are still expire as per the
+     * previous <code>MessageTtlSeconds</code> value.
+     * </p>
+     * 
+     * @param updateSignalingChannelRequest
+     * @return updateSignalingChannelResult The response from the
+     *         UpdateSignalingChannel service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws AccessDeniedException
+     * @throws VersionMismatchException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateSignalingChannelResult updateSignalingChannel(
+            UpdateSignalingChannelRequest updateSignalingChannelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateSignalingChannelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateSignalingChannelRequest> request = null;
+        Response<UpdateSignalingChannelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateSignalingChannelRequestMarshaller()
+                        .marshall(updateSignalingChannelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateSignalingChannelResult, JsonUnmarshallerContext> unmarshaller = new UpdateSignalingChannelResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateSignalingChannelResult> responseHandler = new JsonResponseHandler<UpdateSignalingChannelResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

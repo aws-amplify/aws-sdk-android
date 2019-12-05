@@ -17,12 +17,19 @@ package com.amazonaws.services.kinesisvideo.model;
 
 import java.io.Serializable;
 
-public class ListTagsForStreamResult implements Serializable {
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * <p>
+ * Returns a list of tags associated with the specified signaling channel.
+ * </p>
+ */
+public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * If you specify this parameter and the result of a <code>ListTags</code>
+     * If you specify this parameter and the result of a ListTagsForResource
      * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * next request to fetch the next batch of tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,16 +40,22 @@ public class ListTagsForStreamResult implements Serializable {
 
     /**
      * <p>
-     * A map of tag keys and values associated with the specified stream.
+     * The ARN of the signaling channel for which you want to list tags.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
+     * <br/>
      */
-    private java.util.Map<String, String> tags = new java.util.HashMap<String, String>();
+    private String resourceARN;
 
     /**
      * <p>
-     * If you specify this parameter and the result of a <code>ListTags</code>
+     * If you specify this parameter and the result of a ListTagsForResource
      * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * next request to fetch the next batch of tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,9 +64,9 @@ public class ListTagsForStreamResult implements Serializable {
      *
      * @return <p>
      *         If you specify this parameter and the result of a
-     *         <code>ListTags</code> call is truncated, the response includes a
-     *         token that you can use in the next request to fetch the next set
-     *         of tags.
+     *         ListTagsForResource call is truncated, the response includes a
+     *         token that you can use in the next request to fetch the next
+     *         batch of tags.
      *         </p>
      */
     public String getNextToken() {
@@ -62,9 +75,9 @@ public class ListTagsForStreamResult implements Serializable {
 
     /**
      * <p>
-     * If you specify this parameter and the result of a <code>ListTags</code>
+     * If you specify this parameter and the result of a ListTagsForResource
      * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * next request to fetch the next batch of tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,9 +86,9 @@ public class ListTagsForStreamResult implements Serializable {
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            <code>ListTags</code> call is truncated, the response includes
-     *            a token that you can use in the next request to fetch the next
-     *            set of tags.
+     *            ListTagsForResource call is truncated, the response includes a
+     *            token that you can use in the next request to fetch the next
+     *            batch of tags.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -84,9 +97,9 @@ public class ListTagsForStreamResult implements Serializable {
 
     /**
      * <p>
-     * If you specify this parameter and the result of a <code>ListTags</code>
+     * If you specify this parameter and the result of a ListTagsForResource
      * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * next request to fetch the next batch of tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -98,98 +111,80 @@ public class ListTagsForStreamResult implements Serializable {
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            <code>ListTags</code> call is truncated, the response includes
-     *            a token that you can use in the next request to fetch the next
-     *            set of tags.
+     *            ListTagsForResource call is truncated, the response includes a
+     *            token that you can use in the next request to fetch the next
+     *            batch of tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListTagsForStreamResult withNextToken(String nextToken) {
+    public ListTagsForResourceRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
 
     /**
      * <p>
-     * A map of tag keys and values associated with the specified stream.
+     * The ARN of the signaling channel for which you want to list tags.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
+     * <br/>
      *
      * @return <p>
-     *         A map of tag keys and values associated with the specified
-     *         stream.
+     *         The ARN of the signaling channel for which you want to list tags.
      *         </p>
      */
-    public java.util.Map<String, String> getTags() {
-        return tags;
+    public String getResourceARN() {
+        return resourceARN;
     }
 
     /**
      * <p>
-     * A map of tag keys and values associated with the specified stream.
+     * The ARN of the signaling channel for which you want to list tags.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
+     * <br/>
      *
-     * @param tags <p>
-     *            A map of tag keys and values associated with the specified
-     *            stream.
+     * @param resourceARN <p>
+     *            The ARN of the signaling channel for which you want to list
+     *            tags.
      *            </p>
      */
-    public void setTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
+    public void setResourceARN(String resourceARN) {
+        this.resourceARN = resourceARN;
     }
 
     /**
      * <p>
-     * A map of tag keys and values associated with the specified stream.
+     * The ARN of the signaling channel for which you want to list tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
+     * <br/>
      *
-     * @param tags <p>
-     *            A map of tag keys and values associated with the specified
-     *            stream.
+     * @param resourceARN <p>
+     *            The ARN of the signaling channel for which you want to list
+     *            tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListTagsForStreamResult withTags(java.util.Map<String, String> tags) {
-        this.tags = tags;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A map of tag keys and values associated with the specified stream.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into Tags parameter, and returns a
-     * reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into Tags.
-     * @param value The corresponding value of the entry to be added into Tags.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListTagsForStreamResult addTagsEntry(String key, String value) {
-        if (null == this.tags) {
-            this.tags = new java.util.HashMap<String, String>();
-        }
-        if (this.tags.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.tags.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into Tags.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public ListTagsForStreamResult clearTagsEntries() {
-        this.tags = null;
+    public ListTagsForResourceRequest withResourceARN(String resourceARN) {
+        this.resourceARN = resourceARN;
         return this;
     }
 
@@ -206,8 +201,8 @@ public class ListTagsForStreamResult implements Serializable {
         sb.append("{");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
-        if (getTags() != null)
-            sb.append("Tags: " + getTags());
+        if (getResourceARN() != null)
+            sb.append("ResourceARN: " + getResourceARN());
         sb.append("}");
         return sb.toString();
     }
@@ -218,7 +213,8 @@ public class ListTagsForStreamResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
-        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getResourceARN() == null) ? 0 : getResourceARN().hashCode());
         return hashCode;
     }
 
@@ -229,18 +225,19 @@ public class ListTagsForStreamResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof ListTagsForStreamResult == false)
+        if (obj instanceof ListTagsForResourceRequest == false)
             return false;
-        ListTagsForStreamResult other = (ListTagsForStreamResult) obj;
+        ListTagsForResourceRequest other = (ListTagsForResourceRequest) obj;
 
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
-        if (other.getTags() == null ^ this.getTags() == null)
+        if (other.getResourceARN() == null ^ this.getResourceARN() == null)
             return false;
-        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+        if (other.getResourceARN() != null
+                && other.getResourceARN().equals(this.getResourceARN()) == false)
             return false;
         return true;
     }
