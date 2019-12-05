@@ -38,7 +38,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -141,7 +141,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -152,9 +152,10 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend: German ("de"),
-     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
-     *         Portuguese ("pt"). All documents must be in the same language.
+     *         following languages supported by Amazon Comprehend: German
+     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *         ("it"), or Portuguese ("pt"). All documents must be in the same
+     *         language.
      *         </p>
      * @see SyntaxLanguageCode
      */
@@ -164,7 +165,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -175,7 +176,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -188,7 +189,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -202,7 +203,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -218,7 +219,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -229,7 +230,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -242,7 +243,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -256,7 +257,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
