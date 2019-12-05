@@ -62,6 +62,9 @@ class AuthorizerDescriptionJsonUnmarshaller implements
             } else if (name.equals("lastModifiedDate")) {
                 authorizerDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("signingDisabled")) {
+                authorizerDescription.setSigningDisabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

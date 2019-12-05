@@ -33,32 +33,28 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated fields. If the field data type is String
-     * this value is indeterminate.
+     * The average of the aggregated field values.
      * </p>
      */
     private Double average;
 
     /**
      * <p>
-     * The sum of the aggregated fields. If the field data type is String this
-     * value is indeterminate.
+     * The sum of the aggregated field values.
      * </p>
      */
     private Double sum;
 
     /**
      * <p>
-     * The minimum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The minimum aggregated field value.
      * </p>
      */
     private Double minimum;
 
     /**
      * <p>
-     * The maximum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The maximum aggregated field value.
      * </p>
      */
     private Double maximum;
@@ -131,13 +127,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated fields. If the field data type is String
-     * this value is indeterminate.
+     * The average of the aggregated field values.
      * </p>
      *
      * @return <p>
-     *         The average of the aggregated fields. If the field data type is
-     *         String this value is indeterminate.
+     *         The average of the aggregated field values.
      *         </p>
      */
     public Double getAverage() {
@@ -146,13 +140,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated fields. If the field data type is String
-     * this value is indeterminate.
+     * The average of the aggregated field values.
      * </p>
      *
      * @param average <p>
-     *            The average of the aggregated fields. If the field data type
-     *            is String this value is indeterminate.
+     *            The average of the aggregated field values.
      *            </p>
      */
     public void setAverage(Double average) {
@@ -161,16 +153,14 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The average of the aggregated fields. If the field data type is String
-     * this value is indeterminate.
+     * The average of the aggregated field values.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param average <p>
-     *            The average of the aggregated fields. If the field data type
-     *            is String this value is indeterminate.
+     *            The average of the aggregated field values.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -182,13 +172,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated fields. If the field data type is String this
-     * value is indeterminate.
+     * The sum of the aggregated field values.
      * </p>
      *
      * @return <p>
-     *         The sum of the aggregated fields. If the field data type is
-     *         String this value is indeterminate.
+     *         The sum of the aggregated field values.
      *         </p>
      */
     public Double getSum() {
@@ -197,13 +185,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated fields. If the field data type is String this
-     * value is indeterminate.
+     * The sum of the aggregated field values.
      * </p>
      *
      * @param sum <p>
-     *            The sum of the aggregated fields. If the field data type is
-     *            String this value is indeterminate.
+     *            The sum of the aggregated field values.
      *            </p>
      */
     public void setSum(Double sum) {
@@ -212,16 +198,14 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The sum of the aggregated fields. If the field data type is String this
-     * value is indeterminate.
+     * The sum of the aggregated field values.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sum <p>
-     *            The sum of the aggregated fields. If the field data type is
-     *            String this value is indeterminate.
+     *            The sum of the aggregated field values.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -233,13 +217,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The minimum aggregated field value.
      * </p>
      *
      * @return <p>
-     *         The minimum value of the aggregated fields. If the field data
-     *         type is String this value is indeterminate.
+     *         The minimum aggregated field value.
      *         </p>
      */
     public Double getMinimum() {
@@ -248,13 +230,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The minimum aggregated field value.
      * </p>
      *
      * @param minimum <p>
-     *            The minimum value of the aggregated fields. If the field data
-     *            type is String this value is indeterminate.
+     *            The minimum aggregated field value.
      *            </p>
      */
     public void setMinimum(Double minimum) {
@@ -263,16 +243,14 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The minimum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The minimum aggregated field value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minimum <p>
-     *            The minimum value of the aggregated fields. If the field data
-     *            type is String this value is indeterminate.
+     *            The minimum aggregated field value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,13 +262,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The maximum aggregated field value.
      * </p>
      *
      * @return <p>
-     *         The maximum value of the aggregated fields. If the field data
-     *         type is String this value is indeterminate.
+     *         The maximum aggregated field value.
      *         </p>
      */
     public Double getMaximum() {
@@ -299,13 +275,11 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The maximum aggregated field value.
      * </p>
      *
      * @param maximum <p>
-     *            The maximum value of the aggregated fields. If the field data
-     *            type is String this value is indeterminate.
+     *            The maximum aggregated field value.
      *            </p>
      */
     public void setMaximum(Double maximum) {
@@ -314,16 +288,14 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The maximum value of the aggregated fields. If the field data type is
-     * String this value is indeterminate.
+     * The maximum aggregated field value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maximum <p>
-     *            The maximum value of the aggregated fields. If the field data
-     *            type is String this value is indeterminate.
+     *            The maximum aggregated field value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

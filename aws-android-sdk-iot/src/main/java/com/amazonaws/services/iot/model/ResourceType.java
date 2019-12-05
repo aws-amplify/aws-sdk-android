@@ -28,7 +28,9 @@ public enum ResourceType {
     IOT_POLICY("IOT_POLICY"),
     COGNITO_IDENTITY_POOL("COGNITO_IDENTITY_POOL"),
     CLIENT_ID("CLIENT_ID"),
-    ACCOUNT_SETTINGS("ACCOUNT_SETTINGS");
+    ACCOUNT_SETTINGS("ACCOUNT_SETTINGS"),
+    ROLE_ALIAS("ROLE_ALIAS"),
+    IAM_ROLE("IAM_ROLE");
 
     private String value;
 
@@ -50,6 +52,8 @@ public enum ResourceType {
         enumMap.put("COGNITO_IDENTITY_POOL", COGNITO_IDENTITY_POOL);
         enumMap.put("CLIENT_ID", CLIENT_ID);
         enumMap.put("ACCOUNT_SETTINGS", ACCOUNT_SETTINGS);
+        enumMap.put("ROLE_ALIAS", ROLE_ALIAS);
+        enumMap.put("IAM_ROLE", IAM_ROLE);
     }
 
     /**

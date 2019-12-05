@@ -79,6 +79,26 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
+     * The ARN of the IAM role that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     */
+    private String iamRoleArn;
+
+    /**
+     * <p>
+     * The ARN of the role alias that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     */
+    private String roleAliasArn;
+
+    /**
+     * <p>
      * The ID of the certificate attached to the resource.
      * </p>
      * <p>
@@ -387,6 +407,114 @@ public class ResourceIdentifier implements Serializable {
     }
 
     /**
+     * <p>
+     * The ARN of the IAM role that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @return <p>
+     *         The ARN of the IAM role that has overly permissive actions.
+     *         </p>
+     */
+    public String getIamRoleArn() {
+        return iamRoleArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the IAM role that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param iamRoleArn <p>
+     *            The ARN of the IAM role that has overly permissive actions.
+     *            </p>
+     */
+    public void setIamRoleArn(String iamRoleArn) {
+        this.iamRoleArn = iamRoleArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the IAM role that has overly permissive actions.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param iamRoleArn <p>
+     *            The ARN of the IAM role that has overly permissive actions.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ResourceIdentifier withIamRoleArn(String iamRoleArn) {
+        this.iamRoleArn = iamRoleArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the role alias that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @return <p>
+     *         The ARN of the role alias that has overly permissive actions.
+     *         </p>
+     */
+    public String getRoleAliasArn() {
+        return roleAliasArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the role alias that has overly permissive actions.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param roleAliasArn <p>
+     *            The ARN of the role alias that has overly permissive actions.
+     *            </p>
+     */
+    public void setRoleAliasArn(String roleAliasArn) {
+        this.roleAliasArn = roleAliasArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the role alias that has overly permissive actions.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param roleAliasArn <p>
+     *            The ARN of the role alias that has overly permissive actions.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ResourceIdentifier withRoleAliasArn(String roleAliasArn) {
+        this.roleAliasArn = roleAliasArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -408,7 +536,11 @@ public class ResourceIdentifier implements Serializable {
         if (getPolicyVersionIdentifier() != null)
             sb.append("policyVersionIdentifier: " + getPolicyVersionIdentifier() + ",");
         if (getAccount() != null)
-            sb.append("account: " + getAccount());
+            sb.append("account: " + getAccount() + ",");
+        if (getIamRoleArn() != null)
+            sb.append("iamRoleArn: " + getIamRoleArn() + ",");
+        if (getRoleAliasArn() != null)
+            sb.append("roleAliasArn: " + getRoleAliasArn());
         sb.append("}");
         return sb.toString();
     }
@@ -431,6 +563,9 @@ public class ResourceIdentifier implements Serializable {
                 + ((getPolicyVersionIdentifier() == null) ? 0 : getPolicyVersionIdentifier()
                         .hashCode());
         hashCode = prime * hashCode + ((getAccount() == null) ? 0 : getAccount().hashCode());
+        hashCode = prime * hashCode + ((getIamRoleArn() == null) ? 0 : getIamRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoleAliasArn() == null) ? 0 : getRoleAliasArn().hashCode());
         return hashCode;
     }
 
@@ -472,6 +607,16 @@ public class ResourceIdentifier implements Serializable {
         if (other.getAccount() == null ^ this.getAccount() == null)
             return false;
         if (other.getAccount() != null && other.getAccount().equals(this.getAccount()) == false)
+            return false;
+        if (other.getIamRoleArn() == null ^ this.getIamRoleArn() == null)
+            return false;
+        if (other.getIamRoleArn() != null
+                && other.getIamRoleArn().equals(this.getIamRoleArn()) == false)
+            return false;
+        if (other.getRoleAliasArn() == null ^ this.getRoleAliasArn() == null)
+            return false;
+        if (other.getRoleAliasArn() != null
+                && other.getRoleAliasArn().equals(this.getRoleAliasArn()) == false)
             return false;
         return true;
     }

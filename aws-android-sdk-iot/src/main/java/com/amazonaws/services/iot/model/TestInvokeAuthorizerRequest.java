@@ -62,6 +62,27 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Specifies a test HTTP authorization request.
+     * </p>
+     */
+    private HttpContext httpContext;
+
+    /**
+     * <p>
+     * Specifies a test MQTT authorization request.&gt;
+     * </p>
+     */
+    private MqttContext mqttContext;
+
+    /**
+     * <p>
+     * Specifies a test TLS authorization request.
+     * </p>
+     */
+    private TlsContext tlsContext;
+
+    /**
+     * <p>
      * The custom authorizer name.
      * </p>
      * <p>
@@ -235,6 +256,141 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Specifies a test HTTP authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies a test HTTP authorization request.
+     *         </p>
+     */
+    public HttpContext getHttpContext() {
+        return httpContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test HTTP authorization request.
+     * </p>
+     *
+     * @param httpContext <p>
+     *            Specifies a test HTTP authorization request.
+     *            </p>
+     */
+    public void setHttpContext(HttpContext httpContext) {
+        this.httpContext = httpContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test HTTP authorization request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param httpContext <p>
+     *            Specifies a test HTTP authorization request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withHttpContext(HttpContext httpContext) {
+        this.httpContext = httpContext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies a test MQTT authorization request.&gt;
+     * </p>
+     *
+     * @return <p>
+     *         Specifies a test MQTT authorization request.&gt;
+     *         </p>
+     */
+    public MqttContext getMqttContext() {
+        return mqttContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test MQTT authorization request.&gt;
+     * </p>
+     *
+     * @param mqttContext <p>
+     *            Specifies a test MQTT authorization request.&gt;
+     *            </p>
+     */
+    public void setMqttContext(MqttContext mqttContext) {
+        this.mqttContext = mqttContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test MQTT authorization request.&gt;
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mqttContext <p>
+     *            Specifies a test MQTT authorization request.&gt;
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withMqttContext(MqttContext mqttContext) {
+        this.mqttContext = mqttContext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies a test TLS authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies a test TLS authorization request.
+     *         </p>
+     */
+    public TlsContext getTlsContext() {
+        return tlsContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test TLS authorization request.
+     * </p>
+     *
+     * @param tlsContext <p>
+     *            Specifies a test TLS authorization request.
+     *            </p>
+     */
+    public void setTlsContext(TlsContext tlsContext) {
+        this.tlsContext = tlsContext;
+    }
+
+    /**
+     * <p>
+     * Specifies a test TLS authorization request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tlsContext <p>
+     *            Specifies a test TLS authorization request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withTlsContext(TlsContext tlsContext) {
+        this.tlsContext = tlsContext;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -250,7 +406,13 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
         if (getToken() != null)
             sb.append("token: " + getToken() + ",");
         if (getTokenSignature() != null)
-            sb.append("tokenSignature: " + getTokenSignature());
+            sb.append("tokenSignature: " + getTokenSignature() + ",");
+        if (getHttpContext() != null)
+            sb.append("httpContext: " + getHttpContext() + ",");
+        if (getMqttContext() != null)
+            sb.append("mqttContext: " + getMqttContext() + ",");
+        if (getTlsContext() != null)
+            sb.append("tlsContext: " + getTlsContext());
         sb.append("}");
         return sb.toString();
     }
@@ -265,6 +427,11 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode + ((getToken() == null) ? 0 : getToken().hashCode());
         hashCode = prime * hashCode
                 + ((getTokenSignature() == null) ? 0 : getTokenSignature().hashCode());
+        hashCode = prime * hashCode
+                + ((getHttpContext() == null) ? 0 : getHttpContext().hashCode());
+        hashCode = prime * hashCode
+                + ((getMqttContext() == null) ? 0 : getMqttContext().hashCode());
+        hashCode = prime * hashCode + ((getTlsContext() == null) ? 0 : getTlsContext().hashCode());
         return hashCode;
     }
 
@@ -292,6 +459,21 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getTokenSignature() != null
                 && other.getTokenSignature().equals(this.getTokenSignature()) == false)
+            return false;
+        if (other.getHttpContext() == null ^ this.getHttpContext() == null)
+            return false;
+        if (other.getHttpContext() != null
+                && other.getHttpContext().equals(this.getHttpContext()) == false)
+            return false;
+        if (other.getMqttContext() == null ^ this.getMqttContext() == null)
+            return false;
+        if (other.getMqttContext() != null
+                && other.getMqttContext().equals(this.getMqttContext()) == false)
+            return false;
+        if (other.getTlsContext() == null ^ this.getTlsContext() == null)
+            return false;
+        if (other.getTlsContext() != null
+                && other.getTlsContext().equals(this.getTlsContext()) == false)
             return false;
         return true;
     }
