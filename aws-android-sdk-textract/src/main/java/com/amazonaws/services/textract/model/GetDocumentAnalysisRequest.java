@@ -43,40 +43,44 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * Words and lines that are related to nearby lines and words. The related
- * information is returned in two <a>Block</a> objects each of type
- * <code>KEY_VALUE_SET</code>: a KEY Block object and a VALUE Block object. For
- * example, <i>Name: Ana Silva Carolina</i> contains a key and value.
- * <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.
+ * Form data (key-value pairs). The related information is returned in two
+ * <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY
+ * <code>Block</code> object and a VALUE <code>Block</code> object. For example,
+ * <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the
+ * key. <i>Ana Silva Carolina</i> is the value.
  * </p>
  * </li>
  * <li>
  * <p>
- * Table and table cell data. A TABLE Block object contains information about a
- * detected table. A CELL Block object is returned for each cell in a table.
+ * Table and table cell data. A TABLE <code>Block</code> object contains
+ * information about a detected table. A CELL <code>Block</code> object is
+ * returned for each cell in a table.
  * </p>
  * </li>
  * <li>
  * <p>
- * Selectable elements such as checkboxes and radio buttons. A SELECTION_ELEMENT
- * Block object contains information about a selectable element.
- * </p>
- * </li>
- * <li>
- * <p>
- * Lines and words of text. A LINE Block object contains one or more WORD Block
- * objects.
+ * Lines and words of text. A LINE <code>Block</code> object contains one or
+ * more WORD <code>Block</code> objects. All lines and words that are detected
+ * in the document are returned (including text that doesn't have a relationship
+ * with the value of the <code>StartDocumentAnalysis</code>
+ * <code>FeatureTypes</code> input parameter).
  * </p>
  * </li>
  * </ul>
  * <p>
- * Use the <code>MaxResults</code> parameter to limit the number of blocks
- * returned. If there are more results than specified in <code>MaxResults</code>
- * , the value of <code>NextToken</code> in the operation response contains a
- * pagination token for getting the next set of results. To get the next page of
- * results, call <code>GetDocumentAnalysis</code>, and populate the
- * <code>NextToken</code> request parameter with the token value that's returned
- * from the previous call to <code>GetDocumentAnalysis</code>.
+ * Selection elements such as check boxes and option buttons (radio buttons) can
+ * be detected in form data and in tables. A SELECTION_ELEMENT
+ * <code>Block</code> object contains information about a selection element,
+ * including the selection status.
+ * </p>
+ * <p>
+ * Use the <code>MaxResults</code> parameter to limit the number of blocks that
+ * are returned. If there are more results than specified in
+ * <code>MaxResults</code>, the value of <code>NextToken</code> in the operation
+ * response contains a pagination token for getting the next set of results. To
+ * get the next page of results, call <code>GetDocumentAnalysis</code>, and
+ * populate the <code>NextToken</code> request parameter with the token value
+ * that's returned from the previous call to <code>GetDocumentAnalysis</code>.
  * </p>
  * <p>
  * For more information, see <a href=
@@ -88,7 +92,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * A unique identifier for the text-detection job. The <code>JobId</code> is
-     * returned from <code>StartDocumentAnalysis</code>.
+     * returned from <code>StartDocumentAnalysis</code>. A <code>JobId</code>
+     * value is only valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -126,7 +131,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * A unique identifier for the text-detection job. The <code>JobId</code> is
-     * returned from <code>StartDocumentAnalysis</code>.
+     * returned from <code>StartDocumentAnalysis</code>. A <code>JobId</code>
+     * value is only valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,7 +142,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * @return <p>
      *         A unique identifier for the text-detection job. The
      *         <code>JobId</code> is returned from
-     *         <code>StartDocumentAnalysis</code>.
+     *         <code>StartDocumentAnalysis</code>. A <code>JobId</code> value is
+     *         only valid for 7 days.
      *         </p>
      */
     public String getJobId() {
@@ -146,7 +153,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * A unique identifier for the text-detection job. The <code>JobId</code> is
-     * returned from <code>StartDocumentAnalysis</code>.
+     * returned from <code>StartDocumentAnalysis</code>. A <code>JobId</code>
+     * value is only valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,7 +164,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * @param jobId <p>
      *            A unique identifier for the text-detection job. The
      *            <code>JobId</code> is returned from
-     *            <code>StartDocumentAnalysis</code>.
+     *            <code>StartDocumentAnalysis</code>. A <code>JobId</code> value
+     *            is only valid for 7 days.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -166,7 +175,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * A unique identifier for the text-detection job. The <code>JobId</code> is
-     * returned from <code>StartDocumentAnalysis</code>.
+     * returned from <code>StartDocumentAnalysis</code>. A <code>JobId</code>
+     * value is only valid for 7 days.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -179,7 +189,8 @@ public class GetDocumentAnalysisRequest extends AmazonWebServiceRequest implemen
      * @param jobId <p>
      *            A unique identifier for the text-detection job. The
      *            <code>JobId</code> is returned from
-     *            <code>StartDocumentAnalysis</code>.
+     *            <code>StartDocumentAnalysis</code>. A <code>JobId</code> value
+     *            is only valid for 7 days.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

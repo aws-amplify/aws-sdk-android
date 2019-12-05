@@ -56,6 +56,10 @@ public class GetDocumentAnalysisResultJsonUnmarshaller implements
             } else if (name.equals("StatusMessage")) {
                 getDocumentAnalysisResult.setStatusMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AnalyzeDocumentModelVersion")) {
+                getDocumentAnalysisResult.setAnalyzeDocumentModelVersion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

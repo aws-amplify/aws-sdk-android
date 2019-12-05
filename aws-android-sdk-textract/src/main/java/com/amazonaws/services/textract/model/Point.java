@@ -20,9 +20,10 @@ import java.io.Serializable;
 /**
  * <p>
  * The X and Y coordinates of a point on a document page. The X and Y values
- * returned are ratios of the overall document page size. For example, if the
- * input document is 700 x 200 and the operation returns X=0.5 and Y=0.25, then
- * the point is at the (350,50) pixel coordinate on the document page.
+ * that are returned are ratios of the overall document page size. For example,
+ * if the input document is 700 x 200 and the operation returns X=0.5 and
+ * Y=0.25, then the point is at the (350,50) pixel coordinate on the document
+ * page.
  * </p>
  * <p>
  * An array of <code>Point</code> objects, <code>Polygon</code>, is returned by
