@@ -19,37 +19,51 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The resource specified in the request does not exist.
+ * The function is inactive and its VPC connection is no longer available. Wait
+ * for the VPC connection to reestablish and try again.
  * </p>
  */
-public class ResourceNotFoundException extends AmazonServiceException {
+public class ResourceNotReadyException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * The exception type.
+     * </p>
+     */
     private String type;
 
     /**
-     * Constructs a new ResourceNotFoundException with the specified error
+     * Constructs a new ResourceNotReadyException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public ResourceNotFoundException(String message) {
+    public ResourceNotReadyException(String message) {
         super(message);
     }
 
     /**
-     * Returns the value of the type property for this object.
+     * <p>
+     * The exception type.
+     * </p>
      *
-     * @return The value of the type property for this object.
+     * @return <p>
+     *         The exception type.
+     *         </p>
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Sets the value of type
+     * <p>
+     * The exception type.
+     * </p>
      *
-     * @param type The new value for the type property for this object.
+     * @param type <p>
+     *            The exception type.
+     *            </p>
      */
     public void setType(String type) {
         this.type = type;
