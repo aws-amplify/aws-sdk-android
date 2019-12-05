@@ -27,8 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * You can encrypt up to 4 kilobytes (4096 bytes) of arbitrary data such as an
- * RSA key, a database password, or other sensitive information.
+ * You can encrypt small amounts of arbitrary data, such as a personal
+ * identifier or database password, or other sensitive information.
  * </p>
  * </li>
  * <li>
@@ -43,18 +43,119 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * You don't need use this operation to encrypt a data key within a region. The
- * <a>GenerateDataKey</a> and <a>GenerateDataKeyWithoutPlaintext</a> operations
- * return an encrypted data key.
+ * You don't need to use the <code>Encrypt</code> operation to encrypt a data
+ * key. The <a>GenerateDataKey</a> and <a>GenerateDataKeyPair</a> operations
+ * return a plaintext data key and an encrypted copy of that data key.
  * </p>
  * <p>
- * Also, you don't need to use this operation to encrypt data in your
- * application. You can use the plaintext and encrypted data keys that the
- * <code>GenerateDataKey</code> operation returns.
+ * When you encrypt data, you must specify a symmetric or asymmetric CMK to use
+ * in the encryption operation. The CMK must have a <code>KeyUsage</code> value
+ * of <code>ENCRYPT_DECRYPT.</code> To find the <code>KeyUsage</code> of a CMK,
+ * use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * If you use a symmetric CMK, you can use an encryption context to add
+ * additional security to your encryption operation. If you specify an
+ * <code>EncryptionContext</code> when encrypting data, you must specify the
+ * same encryption context (a case-sensitive exact match) when decrypting the
+ * data. Otherwise, the request to decrypt fails with an
+ * <code>InvalidCiphertextException</code>. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+ * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+ * Guide</i>.
+ * </p>
+ * <p>
+ * If you specify an asymmetric CMK, you must also specify the encryption
+ * algorithm. The algorithm must be compatible with the CMK type.
+ * </p>
+ * <important>
+ * <p>
+ * When you use an asymmetric CMK to encrypt or reencrypt data, be sure to
+ * record the CMK and encryption algorithm that you choose. You will be required
+ * to provide the same CMK and encryption algorithm when you decrypt the data.
+ * If the CMK and algorithm do not match the values used to encrypt the data,
+ * the decrypt operation fails.
+ * </p>
+ * <p>
+ * You are not required to supply the CMK ID and encryption algorithm when you
+ * decrypt with symmetric CMKs because AWS KMS stores this information in the
+ * ciphertext blob. AWS KMS cannot store metadata in ciphertext generated with
+ * asymmetric keys. The standard format for asymmetric key ciphertext does not
+ * include configurable fields.
+ * </p>
+ * </important>
+ * <p>
+ * The maximum size of the data that you can encrypt varies with the type of CMK
+ * and the encryption algorithm that you choose.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Symmetric CMKs
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>SYMMETRIC_DEFAULT</code>: 4096 bytes
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSA_2048</code>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_1</code>: 214 bytes
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_256</code>: 190 bytes
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSA_3072</code>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_1</code>: 342 bytes
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_256</code>: 318 bytes
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSA_4096</code>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_1</code>: 470 bytes
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>RSAES_OAEP_SHA_256</code>: 446 bytes
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * </ul>
+ * <p>
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
@@ -125,12 +226,24 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name-value pair that specifies the encryption context to be used for
-     * authenticated encryption. If used here, the same value must be supplied
-     * to the <code>Decrypt</code> API or decryption will fail. For more
-     * information, see <a href=
+     * Specifies the encryption context that will be used to encrypt the data.
+     * An encryption context is valid only for cryptographic operations with a
+     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
+     * uses do not support an encryption context.
+     * </p>
+     * <p>
+     * An <i>encryption context</i> is a collection of non-secret key-value
+     * pairs that represents additional authenticated data. When you use an
+     * encryption context to encrypt data, you must specify the same (an exact
+     * case-sensitive match) encryption context to decrypt the data. An
+     * encryption context is optional when encrypting with a symmetric CMK, but
+     * it is highly recommended.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a>.
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      */
     private java.util.Map<String, String> encryptionContext = new java.util.HashMap<String, String>();
@@ -147,6 +260,24 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      */
     private java.util.List<String> grantTokens = new java.util.ArrayList<String>();
+
+    /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     */
+    private String encryptionAlgorithm;
 
     /**
      * <p>
@@ -486,21 +617,47 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name-value pair that specifies the encryption context to be used for
-     * authenticated encryption. If used here, the same value must be supplied
-     * to the <code>Decrypt</code> API or decryption will fail. For more
-     * information, see <a href=
+     * Specifies the encryption context that will be used to encrypt the data.
+     * An encryption context is valid only for cryptographic operations with a
+     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
+     * uses do not support an encryption context.
+     * </p>
+     * <p>
+     * An <i>encryption context</i> is a collection of non-secret key-value
+     * pairs that represents additional authenticated data. When you use an
+     * encryption context to encrypt data, you must specify the same (an exact
+     * case-sensitive match) encryption context to decrypt the data. An
+     * encryption context is optional when encrypting with a symmetric CMK, but
+     * it is highly recommended.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a>.
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      *
      * @return <p>
-     *         Name-value pair that specifies the encryption context to be used
-     *         for authenticated encryption. If used here, the same value must
-     *         be supplied to the <code>Decrypt</code> API or decryption will
-     *         fail. For more information, see <a href=
+     *         Specifies the encryption context that will be used to encrypt the
+     *         data. An encryption context is valid only for cryptographic
+     *         operations with a symmetric CMK. The standard asymmetric
+     *         encryption algorithms that AWS KMS uses do not support an
+     *         encryption context.
+     *         </p>
+     *         <p>
+     *         An <i>encryption context</i> is a collection of non-secret
+     *         key-value pairs that represents additional authenticated data.
+     *         When you use an encryption context to encrypt data, you must
+     *         specify the same (an exact case-sensitive match) encryption
+     *         context to decrypt the data. An encryption context is optional
+     *         when encrypting with a symmetric CMK, but it is highly
+     *         recommended.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a>.
+     *         >Encryption Context</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.Map<String, String> getEncryptionContext() {
@@ -509,21 +666,47 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name-value pair that specifies the encryption context to be used for
-     * authenticated encryption. If used here, the same value must be supplied
-     * to the <code>Decrypt</code> API or decryption will fail. For more
-     * information, see <a href=
+     * Specifies the encryption context that will be used to encrypt the data.
+     * An encryption context is valid only for cryptographic operations with a
+     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
+     * uses do not support an encryption context.
+     * </p>
+     * <p>
+     * An <i>encryption context</i> is a collection of non-secret key-value
+     * pairs that represents additional authenticated data. When you use an
+     * encryption context to encrypt data, you must specify the same (an exact
+     * case-sensitive match) encryption context to decrypt the data. An
+     * encryption context is optional when encrypting with a symmetric CMK, but
+     * it is highly recommended.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a>.
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      *
      * @param encryptionContext <p>
-     *            Name-value pair that specifies the encryption context to be
-     *            used for authenticated encryption. If used here, the same
-     *            value must be supplied to the <code>Decrypt</code> API or
-     *            decryption will fail. For more information, see <a href=
+     *            Specifies the encryption context that will be used to encrypt
+     *            the data. An encryption context is valid only for
+     *            cryptographic operations with a symmetric CMK. The standard
+     *            asymmetric encryption algorithms that AWS KMS uses do not
+     *            support an encryption context.
+     *            </p>
+     *            <p>
+     *            An <i>encryption context</i> is a collection of non-secret
+     *            key-value pairs that represents additional authenticated data.
+     *            When you use an encryption context to encrypt data, you must
+     *            specify the same (an exact case-sensitive match) encryption
+     *            context to decrypt the data. An encryption context is optional
+     *            when encrypting with a symmetric CMK, but it is highly
+     *            recommended.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a>.
+     *            >Encryption Context</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setEncryptionContext(java.util.Map<String, String> encryptionContext) {
@@ -532,24 +715,50 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name-value pair that specifies the encryption context to be used for
-     * authenticated encryption. If used here, the same value must be supplied
-     * to the <code>Decrypt</code> API or decryption will fail. For more
-     * information, see <a href=
+     * Specifies the encryption context that will be used to encrypt the data.
+     * An encryption context is valid only for cryptographic operations with a
+     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
+     * uses do not support an encryption context.
+     * </p>
+     * <p>
+     * An <i>encryption context</i> is a collection of non-secret key-value
+     * pairs that represents additional authenticated data. When you use an
+     * encryption context to encrypt data, you must specify the same (an exact
+     * case-sensitive match) encryption context to decrypt the data. An
+     * encryption context is optional when encrypting with a symmetric CMK, but
+     * it is highly recommended.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a>.
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param encryptionContext <p>
-     *            Name-value pair that specifies the encryption context to be
-     *            used for authenticated encryption. If used here, the same
-     *            value must be supplied to the <code>Decrypt</code> API or
-     *            decryption will fail. For more information, see <a href=
+     *            Specifies the encryption context that will be used to encrypt
+     *            the data. An encryption context is valid only for
+     *            cryptographic operations with a symmetric CMK. The standard
+     *            asymmetric encryption algorithms that AWS KMS uses do not
+     *            support an encryption context.
+     *            </p>
+     *            <p>
+     *            An <i>encryption context</i> is a collection of non-secret
+     *            key-value pairs that represents additional authenticated data.
+     *            When you use an encryption context to encrypt data, you must
+     *            specify the same (an exact case-sensitive match) encryption
+     *            context to decrypt the data. An encryption context is optional
+     *            when encrypting with a symmetric CMK, but it is highly
+     *            recommended.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a>.
+     *            >Encryption Context</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -561,12 +770,24 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name-value pair that specifies the encryption context to be used for
-     * authenticated encryption. If used here, the same value must be supplied
-     * to the <code>Decrypt</code> API or decryption will fail. For more
-     * information, see <a href=
+     * Specifies the encryption context that will be used to encrypt the data.
+     * An encryption context is valid only for cryptographic operations with a
+     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
+     * uses do not support an encryption context.
+     * </p>
+     * <p>
+     * An <i>encryption context</i> is a collection of non-secret key-value
+     * pairs that represents additional authenticated data. When you use an
+     * encryption context to encrypt data, you must specify the same (an exact
+     * case-sensitive match) encryption context to decrypt the data. An
+     * encryption context is optional when encrypting with a symmetric CMK, but
+     * it is highly recommended.
+     * </p>
+     * <p>
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a>.
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * The method adds a new key-value pair into EncryptionContext parameter,
@@ -724,6 +945,183 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @return <p>
+     *         Specifies the encryption algorithm that AWS KMS will use to
+     *         encrypt the plaintext message. The algorithm must be compatible
+     *         with the CMK that you specify.
+     *         </p>
+     *         <p>
+     *         This parameter is required only for asymmetric CMKs. The default
+     *         value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     *         symmetric CMKs. If you are using an asymmetric CMK, we recommend
+     *         RSAES_OAEP_SHA_256.
+     *         </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public String getEncryptionAlgorithm() {
+        return encryptionAlgorithm;
+    }
+
+    /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            encrypt the plaintext message. The algorithm must be
+     *            compatible with the CMK that you specify.
+     *            </p>
+     *            <p>
+     *            This parameter is required only for asymmetric CMKs. The
+     *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
+     *            algorithm used for symmetric CMKs. If you are using an
+     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public void setEncryptionAlgorithm(String encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm;
+    }
+
+    /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            encrypt the plaintext message. The algorithm must be
+     *            compatible with the CMK that you specify.
+     *            </p>
+     *            <p>
+     *            This parameter is required only for asymmetric CMKs. The
+     *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
+     *            algorithm used for symmetric CMKs. If you are using an
+     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionAlgorithmSpec
+     */
+    public EncryptRequest withEncryptionAlgorithm(String encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            encrypt the plaintext message. The algorithm must be
+     *            compatible with the CMK that you specify.
+     *            </p>
+     *            <p>
+     *            This parameter is required only for asymmetric CMKs. The
+     *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
+     *            algorithm used for symmetric CMKs. If you are using an
+     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public void setEncryptionAlgorithm(EncryptionAlgorithmSpec encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the CMK that you
+     * specify.
+     * </p>
+     * <p>
+     * This parameter is required only for asymmetric CMKs. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
+     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            encrypt the plaintext message. The algorithm must be
+     *            compatible with the CMK that you specify.
+     *            </p>
+     *            <p>
+     *            This parameter is required only for asymmetric CMKs. The
+     *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
+     *            algorithm used for symmetric CMKs. If you are using an
+     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionAlgorithmSpec
+     */
+    public EncryptRequest withEncryptionAlgorithm(EncryptionAlgorithmSpec encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -741,7 +1139,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
         if (getEncryptionContext() != null)
             sb.append("EncryptionContext: " + getEncryptionContext() + ",");
         if (getGrantTokens() != null)
-            sb.append("GrantTokens: " + getGrantTokens());
+            sb.append("GrantTokens: " + getGrantTokens() + ",");
+        if (getEncryptionAlgorithm() != null)
+            sb.append("EncryptionAlgorithm: " + getEncryptionAlgorithm());
         sb.append("}");
         return sb.toString();
     }
@@ -757,6 +1157,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
                 + ((getEncryptionContext() == null) ? 0 : getEncryptionContext().hashCode());
         hashCode = prime * hashCode
                 + ((getGrantTokens() == null) ? 0 : getGrantTokens().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncryptionAlgorithm() == null) ? 0 : getEncryptionAlgorithm().hashCode());
         return hashCode;
     }
 
@@ -789,6 +1191,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
             return false;
         if (other.getGrantTokens() != null
                 && other.getGrantTokens().equals(this.getGrantTokens()) == false)
+            return false;
+        if (other.getEncryptionAlgorithm() == null ^ this.getEncryptionAlgorithm() == null)
+            return false;
+        if (other.getEncryptionAlgorithm() != null
+                && other.getEncryptionAlgorithm().equals(this.getEncryptionAlgorithm()) == false)
             return false;
         return true;
     }

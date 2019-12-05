@@ -21,7 +21,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the data key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,9 +32,9 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The plaintext data key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
-     * to encrypt your data outside of KMS. Then, remove it from memory as soon
-     * as possible.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded. Use this
+     * data key to encrypt your data outside of KMS. Then, remove it from memory
+     * as soon as possible.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +55,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the data key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,7 +64,7 @@ public class GenerateDataKeyResult implements Serializable {
      * @return <p>
      *         The encrypted copy of the data key. When you use the HTTP API or
      *         the AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     *         encoded.
+     *         Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -74,7 +74,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the data key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +83,7 @@ public class GenerateDataKeyResult implements Serializable {
      * @param ciphertextBlob <p>
      *            The encrypted copy of the data key. When you use the HTTP API
      *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     *            not encoded.
+     *            not Base64-encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -93,7 +93,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the data key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,7 +105,7 @@ public class GenerateDataKeyResult implements Serializable {
      * @param ciphertextBlob <p>
      *            The encrypted copy of the data key. When you use the HTTP API
      *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     *            not encoded.
+     *            not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -118,9 +118,9 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The plaintext data key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
-     * to encrypt your data outside of KMS. Then, remove it from memory as soon
-     * as possible.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded. Use this
+     * data key to encrypt your data outside of KMS. Then, remove it from memory
+     * as soon as possible.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,9 +128,9 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @return <p>
      *         The plaintext data key. When you use the HTTP API or the AWS CLI,
-     *         the value is Base64-encoded. Otherwise, it is not encoded. Use
-     *         this data key to encrypt your data outside of KMS. Then, remove
-     *         it from memory as soon as possible.
+     *         the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     *         Use this data key to encrypt your data outside of KMS. Then,
+     *         remove it from memory as soon as possible.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -140,9 +140,9 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The plaintext data key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
-     * to encrypt your data outside of KMS. Then, remove it from memory as soon
-     * as possible.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded. Use this
+     * data key to encrypt your data outside of KMS. Then, remove it from memory
+     * as soon as possible.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -151,8 +151,8 @@ public class GenerateDataKeyResult implements Serializable {
      * @param plaintext <p>
      *            The plaintext data key. When you use the HTTP API or the AWS
      *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            encoded. Use this data key to encrypt your data outside of
-     *            KMS. Then, remove it from memory as soon as possible.
+     *            Base64-encoded. Use this data key to encrypt your data outside
+     *            of KMS. Then, remove it from memory as soon as possible.
      *            </p>
      */
     public void setPlaintext(java.nio.ByteBuffer plaintext) {
@@ -162,9 +162,9 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The plaintext data key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
-     * to encrypt your data outside of KMS. Then, remove it from memory as soon
-     * as possible.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded. Use this
+     * data key to encrypt your data outside of KMS. Then, remove it from memory
+     * as soon as possible.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -176,8 +176,8 @@ public class GenerateDataKeyResult implements Serializable {
      * @param plaintext <p>
      *            The plaintext data key. When you use the HTTP API or the AWS
      *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            encoded. Use this data key to encrypt your data outside of
-     *            KMS. Then, remove it from memory as soon as possible.
+     *            Base64-encoded. Use this data key to encrypt your data outside
+     *            of KMS. Then, remove it from memory as soon as possible.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

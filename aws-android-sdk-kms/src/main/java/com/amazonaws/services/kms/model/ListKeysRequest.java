@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets a list of all customer master keys (CMKs) in the caller's AWS account
- * and region.
+ * and Region.
  * </p>
  */
 public class ListKeysRequest extends AmazonWebServiceRequest implements Serializable {

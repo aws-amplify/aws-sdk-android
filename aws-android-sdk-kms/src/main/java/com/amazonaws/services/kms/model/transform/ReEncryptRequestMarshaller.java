@@ -78,6 +78,11 @@ public class ReEncryptRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (reEncryptRequest.getSourceKeyId() != null) {
+                String sourceKeyId = reEncryptRequest.getSourceKeyId();
+                jsonWriter.name("SourceKeyId");
+                jsonWriter.value(sourceKeyId);
+            }
             if (reEncryptRequest.getDestinationKeyId() != null) {
                 String destinationKeyId = reEncryptRequest.getDestinationKeyId();
                 jsonWriter.name("DestinationKeyId");
@@ -98,6 +103,17 @@ public class ReEncryptRequestMarshaller implements
                     }
                 }
                 jsonWriter.endObject();
+            }
+            if (reEncryptRequest.getSourceEncryptionAlgorithm() != null) {
+                String sourceEncryptionAlgorithm = reEncryptRequest.getSourceEncryptionAlgorithm();
+                jsonWriter.name("SourceEncryptionAlgorithm");
+                jsonWriter.value(sourceEncryptionAlgorithm);
+            }
+            if (reEncryptRequest.getDestinationEncryptionAlgorithm() != null) {
+                String destinationEncryptionAlgorithm = reEncryptRequest
+                        .getDestinationEncryptionAlgorithm();
+                jsonWriter.name("DestinationEncryptionAlgorithm");
+                jsonWriter.value(destinationEncryptionAlgorithm);
             }
             if (reEncryptRequest.getGrantTokens() != null) {
                 java.util.List<String> grantTokens = reEncryptRequest.getGrantTokens();

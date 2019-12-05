@@ -80,6 +80,19 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
             } else if (name.equals("KeyManager")) {
                 keyMetadata.setKeyManager(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CustomerMasterKeySpec")) {
+                keyMetadata.setCustomerMasterKeySpec(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EncryptionAlgorithms")) {
+                keyMetadata.setEncryptionAlgorithms(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("SigningAlgorithms")) {
+                keyMetadata.setSigningAlgorithms(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
