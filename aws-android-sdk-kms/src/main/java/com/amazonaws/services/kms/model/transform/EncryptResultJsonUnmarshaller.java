@@ -39,6 +39,9 @@ public class EncryptResultJsonUnmarshaller implements
             } else if (name.equals("KeyId")) {
                 encryptResult.setKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EncryptionAlgorithm")) {
+                encryptResult.setEncryptionAlgorithm(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

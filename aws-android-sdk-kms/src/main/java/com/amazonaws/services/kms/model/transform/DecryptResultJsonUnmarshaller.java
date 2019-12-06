@@ -39,6 +39,9 @@ public class DecryptResultJsonUnmarshaller implements
             } else if (name.equals("Plaintext")) {
                 decryptResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EncryptionAlgorithm")) {
+                decryptResult.setEncryptionAlgorithm(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

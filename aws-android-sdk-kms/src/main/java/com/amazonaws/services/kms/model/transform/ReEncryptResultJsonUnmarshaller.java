@@ -42,6 +42,13 @@ public class ReEncryptResultJsonUnmarshaller implements
             } else if (name.equals("KeyId")) {
                 reEncryptResult.setKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SourceEncryptionAlgorithm")) {
+                reEncryptResult.setSourceEncryptionAlgorithm(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DestinationEncryptionAlgorithm")) {
+                reEncryptResult.setDestinationEncryptionAlgorithm(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

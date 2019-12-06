@@ -26,10 +26,64 @@ import com.amazonaws.AmazonWebServiceRequest;
  * When setting permissions, grants are an alternative to key policies.
  * </p>
  * <p>
- * To create a grant that allows a cryptographic operation only when the
- * encryption context in the operation request matches or includes a specified
- * encryption context, use the <code>Constraints</code> parameter. For details,
- * see <a>GrantConstraints</a>.
+ * To create a grant that allows a cryptographic operation only when the request
+ * includes a particular <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+ * >encryption context</a>, use the <code>Constraints</code> parameter. For
+ * details, see <a>GrantConstraints</a>.
+ * </p>
+ * <p>
+ * You can create grants on symmetric and asymmetric CMKs. However, if the grant
+ * allows an operation that the CMK does not support, <code>CreateGrant</code>
+ * fails with a <code>ValidationException</code>.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Grants for symmetric CMKs cannot allow operations that are not supported for
+ * symmetric CMKs, including <a>Sign</a>, <a>Verify</a>, and
+ * <a>GetPublicKey</a>. (There are limited exceptions to this rule for legacy
+ * operations, but you should not create a grant for an operation that AWS KMS
+ * does not support.)
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Grants for asymmetric CMKs cannot allow operations that are not supported for
+ * asymmetric CMKs, including operations that <a href=
+ * "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey"
+ * >generate data keys</a> or <a href=
+ * "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyPair"
+ * >data key pairs</a>, or operations related to <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+ * >automatic key rotation</a>, <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+ * >imported key material</a>, or CMKs in <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
+ * >custom key stores</a>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Grants for asymmetric CMKs with a <code>KeyUsage</code> of
+ * <code>ENCRYPT_DECRYPT</code> cannot allow the <a>Sign</a> or <a>Verify</a>
+ * operations. Grants for asymmetric CMKs with a <code>KeyUsage</code> of
+ * <code>SIGN_VERIFY</code> cannot allow the <a>Encrypt</a> or <a>Decrypt</a>
+ * operations.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Grants for asymmetric CMKs cannot include an encryption context grant
+ * constraint. An encryption context is not supported on asymmetric CMKs.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For information about symmetric and asymmetric CMKs, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
+ * >Using Symmetric and Asymmetric CMKs</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
  * <p>
  * To perform this operation on a CMK in a different AWS account, specify the
@@ -40,8 +94,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </i>.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.

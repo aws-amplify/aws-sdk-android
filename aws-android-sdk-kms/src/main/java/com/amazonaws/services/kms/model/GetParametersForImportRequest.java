@@ -21,32 +21,35 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the items you need in order to import key material into AWS KMS from
- * your existing key management infrastructure. For more information about
- * importing key material into AWS KMS, see <a href=
+ * Returns the items you need to import key material into a symmetric, customer
+ * managed customer master key (CMK). For more information about importing key
+ * material into AWS KMS, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
  * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
  * </p>
  * <p>
- * You must specify the key ID of the customer master key (CMK) into which you
- * will import key material. This CMK's <code>Origin</code> must be
- * <code>EXTERNAL</code>. You must also specify the wrapping algorithm and type
- * of wrapping key (public key) that you will use to encrypt the key material.
- * You cannot perform this operation on a CMK in a different AWS account.
- * </p>
- * <p>
  * This operation returns a public key and an import token. Use the public key
- * to encrypt the key material. Store the import token to send with a subsequent
- * <a>ImportKeyMaterial</a> request. The public key and import token from the
- * same response must be used together. These items are valid for 24 hours. When
- * they expire, they cannot be used for a subsequent <a>ImportKeyMaterial</a>
- * request. To get new ones, send another <code>GetParametersForImport</code>
- * request.
+ * to encrypt the symmetric key material. Store the import token to send with a
+ * subsequent <a>ImportKeyMaterial</a> request.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * You must specify the key ID of the symmetric CMK into which you will import
+ * key material. This CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+ * You must also specify the wrapping algorithm and type of wrapping key (public
+ * key) that you will use to encrypt the key material. You cannot perform this
+ * operation on an asymmetric CMK or on any CMK in a different AWS account.
+ * </p>
+ * <p>
+ * To import key material, you must use the public key and import token from the
+ * same response. These items are valid for 24 hours. The expiration date and
+ * time appear in the <code>GetParametersForImport</code> response. You cannot
+ * use an expired token in an <a>ImportKeyMaterial</a> request. If your key and
+ * token expire, send another <code>GetParametersForImport</code> request.
+ * </p>
+ * <p>
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
@@ -55,8 +58,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetParametersForImportRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the CMK into which you will import key material. The
-     * CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK into which you will import key
+     * material. The <code>Origin</code> of the CMK must be
+     * <code>EXTERNAL</code>.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -115,8 +119,9 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the CMK into which you will import key material. The
-     * CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK into which you will import key
+     * material. The <code>Origin</code> of the CMK must be
+     * <code>EXTERNAL</code>.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -146,8 +151,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the CMK into which you will import key
-     *         material. The CMK's <code>Origin</code> must be
+     *         The identifier of the symmetric CMK into which you will import
+     *         key material. The <code>Origin</code> of the CMK must be
      *         <code>EXTERNAL</code>.
      *         </p>
      *         <p>
@@ -180,8 +185,9 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the CMK into which you will import key material. The
-     * CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK into which you will import key
+     * material. The <code>Origin</code> of the CMK must be
+     * <code>EXTERNAL</code>.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -211,8 +217,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK into which you will import key
-     *            material. The CMK's <code>Origin</code> must be
+     *            The identifier of the symmetric CMK into which you will import
+     *            key material. The <code>Origin</code> of the CMK must be
      *            <code>EXTERNAL</code>.
      *            </p>
      *            <p>
@@ -246,8 +252,9 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the CMK into which you will import key material. The
-     * CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK into which you will import key
+     * material. The <code>Origin</code> of the CMK must be
+     * <code>EXTERNAL</code>.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -280,8 +287,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK into which you will import key
-     *            material. The CMK's <code>Origin</code> must be
+     *            The identifier of the symmetric CMK into which you will import
+     *            key material. The <code>Origin</code> of the CMK must be
      *            <code>EXTERNAL</code>.
      *            </p>
      *            <p>
