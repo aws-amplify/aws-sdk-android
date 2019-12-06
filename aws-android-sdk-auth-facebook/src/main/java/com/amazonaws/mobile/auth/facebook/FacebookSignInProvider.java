@@ -79,7 +79,7 @@ public class FacebookSignInProvider implements SignInProvider {
      * the facebook backend to allow login from the app.
      *
      * @param context the context.
-     * @param configuration the AWS Configuration.
+     * @param awsConfig the AWS Configuration.
      */
     @Override
     public void initialize(@NonNull final Context context,
