@@ -39,6 +39,7 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      */
     private String nextToken;
 
@@ -77,6 +78,7 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @return <p>
      *         If you specify this parameter and the result of a
@@ -99,6 +101,7 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
@@ -124,6 +127,7 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
