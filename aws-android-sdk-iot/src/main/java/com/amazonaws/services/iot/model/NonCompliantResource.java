@@ -30,7 +30,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      */
     private String resourceType;
 
@@ -55,7 +55,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      *
      * @return <p>
      *         The type of the noncompliant resource.
@@ -73,7 +73,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      *
      * @param resourceType <p>
      *            The type of the noncompliant resource.
@@ -94,7 +94,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      *
      * @param resourceType <p>
      *            The type of the noncompliant resource.
@@ -115,7 +115,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      *
      * @param resourceType <p>
      *            The type of the noncompliant resource.
@@ -136,7 +136,7 @@ public class NonCompliantResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
      *
      * @param resourceType <p>
      *            The type of the noncompliant resource.

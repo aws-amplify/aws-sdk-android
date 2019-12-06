@@ -665,6 +665,40 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param createDomainConfigurationRequest
+     * @return createDomainConfigurationResult The response from the
+     *         CreateDomainConfiguration service method, as returned by AWS IoT.
+     * @throws LimitExceededException
+     * @throws CertificateValidationException
+     * @throws ResourceAlreadyExistsException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws UnauthorizedException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateDomainConfigurationResult createDomainConfiguration(
+            CreateDomainConfigurationRequest createDomainConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a dynamic thing group.
      * </p>
      * 
@@ -718,7 +752,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
-     * issued public key.
+     * issued public key. You can also call
+     * <code>CreateKeysAndCertificate</code> over MQTT from a device, for more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api"
+     * >Provisioning MQTT API</a>.
      * </p>
      * <p>
      * <b>Note</b> This is the only time AWS IoT issues the private key for this
@@ -872,6 +910,87 @@ public interface AWSIot {
     CreatePolicyVersionResult createPolicyVersion(
             CreatePolicyVersionRequest createPolicyVersionRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a provisioning claim.
+     * </p>
+     * 
+     * @param createProvisioningClaimRequest
+     * @return createProvisioningClaimResult The response from the
+     *         CreateProvisioningClaim service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateProvisioningClaimResult createProvisioningClaim(
+            CreateProvisioningClaimRequest createProvisioningClaimRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a fleet provisioning template.
+     * </p>
+     * 
+     * @param createProvisioningTemplateRequest
+     * @return createProvisioningTemplateResult The response from the
+     *         CreateProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ResourceAlreadyExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateProvisioningTemplateResult createProvisioningTemplate(
+            CreateProvisioningTemplateRequest createProvisioningTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new version of a fleet provisioning template.
+     * </p>
+     * 
+     * @param createProvisioningTemplateVersionRequest
+     * @return createProvisioningTemplateVersionResult The response from the
+     *         CreateProvisioningTemplateVersion service method, as returned by
+     *         AWS IoT.
+     * @throws VersionsLimitExceededException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateProvisioningTemplateVersionResult createProvisioningTemplateVersion(
+            CreateProvisioningTemplateVersionRequest createProvisioningTemplateVersionRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -1270,6 +1389,38 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes the specified domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param deleteDomainConfigurationRequest
+     * @return deleteDomainConfigurationResult The response from the
+     *         DeleteDomainConfiguration service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteDomainConfigurationResult deleteDomainConfiguration(
+            DeleteDomainConfigurationRequest deleteDomainConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a dynamic thing group.
      * </p>
      * 
@@ -1464,6 +1615,60 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deletePolicyVersion(DeletePolicyVersionRequest deletePolicyVersionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a fleet provisioning template.
+     * </p>
+     * 
+     * @param deleteProvisioningTemplateRequest
+     * @return deleteProvisioningTemplateResult The response from the
+     *         DeleteProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws DeleteConflictException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteProvisioningTemplateResult deleteProvisioningTemplate(
+            DeleteProvisioningTemplateRequest deleteProvisioningTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a fleet provisioning template version.
+     * </p>
+     * 
+     * @param deleteProvisioningTemplateVersionRequest
+     * @return deleteProvisioningTemplateVersionResult The response from the
+     *         DeleteProvisioningTemplateVersion service method, as returned by
+     *         AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws DeleteConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteProvisioningTemplateVersionResult deleteProvisioningTemplateVersion(
+            DeleteProvisioningTemplateVersionRequest deleteProvisioningTemplateVersionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2010,6 +2215,38 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets summary information about a domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param describeDomainConfigurationRequest
+     * @return describeDomainConfigurationResult The response from the
+     *         DescribeDomainConfiguration service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeDomainConfigurationResult describeDomainConfiguration(
+            DescribeDomainConfigurationRequest describeDomainConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns a unique endpoint specific to the AWS account making the call.
      * </p>
      * 
@@ -2150,6 +2387,58 @@ public interface AWSIot {
      */
     DescribeMitigationActionResult describeMitigationAction(
             DescribeMitigationActionRequest describeMitigationActionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns information about a fleet provisioning template.
+     * </p>
+     * 
+     * @param describeProvisioningTemplateRequest
+     * @return describeProvisioningTemplateResult The response from the
+     *         DescribeProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeProvisioningTemplateResult describeProvisioningTemplate(
+            DescribeProvisioningTemplateRequest describeProvisioningTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns information about a fleet provisioning template version.
+     * </p>
+     * 
+     * @param describeProvisioningTemplateVersionRequest
+     * @return describeProvisioningTemplateVersionResult The response from the
+     *         DescribeProvisioningTemplateVersion service method, as returned
+     *         by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeProvisioningTemplateVersionResult describeProvisioningTemplateVersion(
+            DescribeProvisioningTemplateVersionRequest describeProvisioningTemplateVersionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2574,7 +2863,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Gets the search configuration.
+     * Gets the indexing configuration.
      * </p>
      * 
      * @param getIndexingConfigurationRequest
@@ -2795,7 +3084,10 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Gets statistics about things that match the specified query.
+     * Returns the count, average, sum, minimum, maximum, sum of squares,
+     * variance, and standard deviation for the specified aggregated field. If
+     * the aggregation field is of type <code>String</code>, only the count
+     * statistic is returned.
      * </p>
      * 
      * @param getStatisticsRequest
@@ -3176,6 +3468,38 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets a list of domain configurations for the user. This list is sorted
+     * alphabetically by domain configuration name.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param listDomainConfigurationsRequest
+     * @return listDomainConfigurationsResult The response from the
+     *         ListDomainConfigurations service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListDomainConfigurationsResult listDomainConfigurations(
+            ListDomainConfigurationsRequest listDomainConfigurationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the search indices.
      * </p>
      * 
@@ -3496,6 +3820,56 @@ public interface AWSIot {
     ListPrincipalThingsResult listPrincipalThings(
             ListPrincipalThingsRequest listPrincipalThingsRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * A list of fleet provisioning template versions.
+     * </p>
+     * 
+     * @param listProvisioningTemplateVersionsRequest
+     * @return listProvisioningTemplateVersionsResult The response from the
+     *         ListProvisioningTemplateVersions service method, as returned by
+     *         AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListProvisioningTemplateVersionsResult listProvisioningTemplateVersions(
+            ListProvisioningTemplateVersionsRequest listProvisioningTemplateVersionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the fleet provisioning templates in your AWS account.
+     * </p>
+     * 
+     * @param listProvisioningTemplatesRequest
+     * @return listProvisioningTemplatesResult The response from the
+     *         ListProvisioningTemplates service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListProvisioningTemplatesResult listProvisioningTemplates(
+            ListProvisioningTemplatesRequest listProvisioningTemplatesRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -4095,7 +4469,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Provisions a thing.
+     * Provisions a thing in the device registry. RegisterThing calls other AWS
+     * IoT control plane APIs. These calls might exceed your account level <a
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
+     * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact
+     * <a href="https://console.aws.amazon.com/support/home">AWS Customer
+     * Support</a> to raise your throttling limits if necessary.
      * </p>
      * 
      * @param registerThingRequest
@@ -4773,6 +5153,40 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates values stored in the domain configuration. Domain configurations
+     * for default endpoints can't be updated.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param updateDomainConfigurationRequest
+     * @return updateDomainConfigurationResult The response from the
+     *         UpdateDomainConfiguration service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws CertificateValidationException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateDomainConfigurationResult updateDomainConfiguration(
+            UpdateDomainConfigurationRequest updateDomainConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates a dynamic thing group.
      * </p>
      * 
@@ -4889,6 +5303,32 @@ public interface AWSIot {
      */
     UpdateMitigationActionResult updateMitigationAction(
             UpdateMitigationActionRequest updateMitigationActionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a fleet provisioning template.
+     * </p>
+     * 
+     * @param updateProvisioningTemplateRequest
+     * @return updateProvisioningTemplateResult The response from the
+     *         UpdateProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateProvisioningTemplateResult updateProvisioningTemplate(
+            UpdateProvisioningTemplateRequest updateProvisioningTemplateRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

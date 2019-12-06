@@ -93,6 +93,14 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     */
+    private Boolean signingDisabled;
+
+    /**
+     * <p>
      * The authorizer name.
      * </p>
      * <p>
@@ -573,6 +581,72 @@ public class AuthorizerDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether AWS IoT validates the token signature in an
+     *         authorization request.
+     *         </p>
+     */
+    public Boolean isSigningDisabled() {
+        return signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether AWS IoT validates the token signature in an
+     *         authorization request.
+     *         </p>
+     */
+    public Boolean getSigningDisabled() {
+        return signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @param signingDisabled <p>
+     *            Specifies whether AWS IoT validates the token signature in an
+     *            authorization request.
+     *            </p>
+     */
+    public void setSigningDisabled(Boolean signingDisabled) {
+        this.signingDisabled = signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param signingDisabled <p>
+     *            Specifies whether AWS IoT validates the token signature in an
+     *            authorization request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AuthorizerDescription withSigningDisabled(Boolean signingDisabled) {
+        this.signingDisabled = signingDisabled;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -598,7 +672,9 @@ public class AuthorizerDescription implements Serializable {
         if (getCreationDate() != null)
             sb.append("creationDate: " + getCreationDate() + ",");
         if (getLastModifiedDate() != null)
-            sb.append("lastModifiedDate: " + getLastModifiedDate());
+            sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
+        if (getSigningDisabled() != null)
+            sb.append("signingDisabled: " + getSigningDisabled());
         sb.append("}");
         return sb.toString();
     }
@@ -626,6 +702,8 @@ public class AuthorizerDescription implements Serializable {
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode
                 + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getSigningDisabled() == null) ? 0 : getSigningDisabled().hashCode());
         return hashCode;
     }
 
@@ -678,6 +756,11 @@ public class AuthorizerDescription implements Serializable {
             return false;
         if (other.getLastModifiedDate() != null
                 && other.getLastModifiedDate().equals(this.getLastModifiedDate()) == false)
+            return false;
+        if (other.getSigningDisabled() == null ^ this.getSigningDisabled() == null)
+            return false;
+        if (other.getSigningDisabled() != null
+                && other.getSigningDisabled().equals(this.getSigningDisabled()) == false)
             return false;
         return true;
     }
