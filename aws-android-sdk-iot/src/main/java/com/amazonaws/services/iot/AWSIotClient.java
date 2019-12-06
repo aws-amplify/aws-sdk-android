@@ -1411,6 +1411,67 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Creates a domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param createDomainConfigurationRequest
+     * @return createDomainConfigurationResult The response from the
+     *         CreateDomainConfiguration service method, as returned by AWS IoT.
+     * @throws LimitExceededException
+     * @throws CertificateValidationException
+     * @throws ResourceAlreadyExistsException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws UnauthorizedException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateDomainConfigurationResult createDomainConfiguration(
+            CreateDomainConfigurationRequest createDomainConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createDomainConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateDomainConfigurationRequest> request = null;
+        Response<CreateDomainConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateDomainConfigurationRequestMarshaller()
+                        .marshall(createDomainConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateDomainConfigurationResult, JsonUnmarshallerContext> unmarshaller = new CreateDomainConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<CreateDomainConfigurationResult> responseHandler = new JsonResponseHandler<CreateDomainConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a dynamic thing group.
      * </p>
      * 
@@ -1517,7 +1578,11 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
-     * issued public key.
+     * issued public key. You can also call
+     * <code>CreateKeysAndCertificate</code> over MQTT from a device, for more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api"
+     * >Provisioning MQTT API</a>.
      * </p>
      * <p>
      * <b>Note</b> This is the only time AWS IoT issues the private key for this
@@ -1794,6 +1859,168 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<CreatePolicyVersionResult, JsonUnmarshallerContext> unmarshaller = new CreatePolicyVersionResultJsonUnmarshaller();
             JsonResponseHandler<CreatePolicyVersionResult> responseHandler = new JsonResponseHandler<CreatePolicyVersionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a provisioning claim.
+     * </p>
+     * 
+     * @param createProvisioningClaimRequest
+     * @return createProvisioningClaimResult The response from the
+     *         CreateProvisioningClaim service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateProvisioningClaimResult createProvisioningClaim(
+            CreateProvisioningClaimRequest createProvisioningClaimRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createProvisioningClaimRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateProvisioningClaimRequest> request = null;
+        Response<CreateProvisioningClaimResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateProvisioningClaimRequestMarshaller()
+                        .marshall(createProvisioningClaimRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateProvisioningClaimResult, JsonUnmarshallerContext> unmarshaller = new CreateProvisioningClaimResultJsonUnmarshaller();
+            JsonResponseHandler<CreateProvisioningClaimResult> responseHandler = new JsonResponseHandler<CreateProvisioningClaimResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a fleet provisioning template.
+     * </p>
+     * 
+     * @param createProvisioningTemplateRequest
+     * @return createProvisioningTemplateResult The response from the
+     *         CreateProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ResourceAlreadyExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateProvisioningTemplateResult createProvisioningTemplate(
+            CreateProvisioningTemplateRequest createProvisioningTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createProvisioningTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateProvisioningTemplateRequest> request = null;
+        Response<CreateProvisioningTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateProvisioningTemplateRequestMarshaller()
+                        .marshall(createProvisioningTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateProvisioningTemplateResult, JsonUnmarshallerContext> unmarshaller = new CreateProvisioningTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<CreateProvisioningTemplateResult> responseHandler = new JsonResponseHandler<CreateProvisioningTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new version of a fleet provisioning template.
+     * </p>
+     * 
+     * @param createProvisioningTemplateVersionRequest
+     * @return createProvisioningTemplateVersionResult The response from the
+     *         CreateProvisioningTemplateVersion service method, as returned by
+     *         AWS IoT.
+     * @throws VersionsLimitExceededException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateProvisioningTemplateVersionResult createProvisioningTemplateVersion(
+            CreateProvisioningTemplateVersionRequest createProvisioningTemplateVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createProvisioningTemplateVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateProvisioningTemplateVersionRequest> request = null;
+        Response<CreateProvisioningTemplateVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateProvisioningTemplateVersionRequestMarshaller()
+                        .marshall(createProvisioningTemplateVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateProvisioningTemplateVersionResult, JsonUnmarshallerContext> unmarshaller = new CreateProvisioningTemplateVersionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateProvisioningTemplateVersionResult> responseHandler = new JsonResponseHandler<CreateProvisioningTemplateVersionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2564,6 +2791,65 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Deletes the specified domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param deleteDomainConfigurationRequest
+     * @return deleteDomainConfigurationResult The response from the
+     *         DeleteDomainConfiguration service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteDomainConfigurationResult deleteDomainConfiguration(
+            DeleteDomainConfigurationRequest deleteDomainConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteDomainConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteDomainConfigurationRequest> request = null;
+        Response<DeleteDomainConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteDomainConfigurationRequestMarshaller()
+                        .marshall(deleteDomainConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteDomainConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DeleteDomainConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteDomainConfigurationResult> responseHandler = new JsonResponseHandler<DeleteDomainConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a dynamic thing group.
      * </p>
      * 
@@ -2920,6 +3206,114 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a fleet provisioning template.
+     * </p>
+     * 
+     * @param deleteProvisioningTemplateRequest
+     * @return deleteProvisioningTemplateResult The response from the
+     *         DeleteProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws DeleteConflictException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteProvisioningTemplateResult deleteProvisioningTemplate(
+            DeleteProvisioningTemplateRequest deleteProvisioningTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteProvisioningTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteProvisioningTemplateRequest> request = null;
+        Response<DeleteProvisioningTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteProvisioningTemplateRequestMarshaller()
+                        .marshall(deleteProvisioningTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteProvisioningTemplateResult, JsonUnmarshallerContext> unmarshaller = new DeleteProvisioningTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteProvisioningTemplateResult> responseHandler = new JsonResponseHandler<DeleteProvisioningTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a fleet provisioning template version.
+     * </p>
+     * 
+     * @param deleteProvisioningTemplateVersionRequest
+     * @return deleteProvisioningTemplateVersionResult The response from the
+     *         DeleteProvisioningTemplateVersion service method, as returned by
+     *         AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws DeleteConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteProvisioningTemplateVersionResult deleteProvisioningTemplateVersion(
+            DeleteProvisioningTemplateVersionRequest deleteProvisioningTemplateVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteProvisioningTemplateVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteProvisioningTemplateVersionRequest> request = null;
+        Response<DeleteProvisioningTemplateVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteProvisioningTemplateVersionRequestMarshaller()
+                        .marshall(deleteProvisioningTemplateVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteProvisioningTemplateVersionResult, JsonUnmarshallerContext> unmarshaller = new DeleteProvisioningTemplateVersionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteProvisioningTemplateVersionResult> responseHandler = new JsonResponseHandler<DeleteProvisioningTemplateVersionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4024,6 +4418,65 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Gets summary information about a domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param describeDomainConfigurationRequest
+     * @return describeDomainConfigurationResult The response from the
+     *         DescribeDomainConfiguration service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeDomainConfigurationResult describeDomainConfiguration(
+            DescribeDomainConfigurationRequest describeDomainConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeDomainConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeDomainConfigurationRequest> request = null;
+        Response<DescribeDomainConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeDomainConfigurationRequestMarshaller()
+                        .marshall(describeDomainConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeDomainConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DescribeDomainConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeDomainConfigurationResult> responseHandler = new JsonResponseHandler<DescribeDomainConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns a unique endpoint specific to the AWS account making the call.
      * </p>
      * 
@@ -4314,6 +4767,112 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DescribeMitigationActionResult, JsonUnmarshallerContext> unmarshaller = new DescribeMitigationActionResultJsonUnmarshaller();
             JsonResponseHandler<DescribeMitigationActionResult> responseHandler = new JsonResponseHandler<DescribeMitigationActionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about a fleet provisioning template.
+     * </p>
+     * 
+     * @param describeProvisioningTemplateRequest
+     * @return describeProvisioningTemplateResult The response from the
+     *         DescribeProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeProvisioningTemplateResult describeProvisioningTemplate(
+            DescribeProvisioningTemplateRequest describeProvisioningTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeProvisioningTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeProvisioningTemplateRequest> request = null;
+        Response<DescribeProvisioningTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeProvisioningTemplateRequestMarshaller()
+                        .marshall(describeProvisioningTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeProvisioningTemplateResult, JsonUnmarshallerContext> unmarshaller = new DescribeProvisioningTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeProvisioningTemplateResult> responseHandler = new JsonResponseHandler<DescribeProvisioningTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about a fleet provisioning template version.
+     * </p>
+     * 
+     * @param describeProvisioningTemplateVersionRequest
+     * @return describeProvisioningTemplateVersionResult The response from the
+     *         DescribeProvisioningTemplateVersion service method, as returned
+     *         by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeProvisioningTemplateVersionResult describeProvisioningTemplateVersion(
+            DescribeProvisioningTemplateVersionRequest describeProvisioningTemplateVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeProvisioningTemplateVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeProvisioningTemplateVersionRequest> request = null;
+        Response<DescribeProvisioningTemplateVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeProvisioningTemplateVersionRequestMarshaller()
+                        .marshall(describeProvisioningTemplateVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeProvisioningTemplateVersionResult, JsonUnmarshallerContext> unmarshaller = new DescribeProvisioningTemplateVersionResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeProvisioningTemplateVersionResult> responseHandler = new JsonResponseHandler<DescribeProvisioningTemplateVersionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -5156,7 +5715,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Gets the search configuration.
+     * Gets the indexing configuration.
      * </p>
      * 
      * @param getIndexingConfigurationRequest
@@ -5589,7 +6148,10 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Gets statistics about things that match the specified query.
+     * Returns the count, average, sum, minimum, maximum, sum of squares,
+     * variance, and standard deviation for the specified aggregated field. If
+     * the aggregation field is of type <code>String</code>, only the count
+     * statistic is returned.
      * </p>
      * 
      * @param getStatisticsRequest
@@ -6373,6 +6935,65 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Gets a list of domain configurations for the user. This list is sorted
+     * alphabetically by domain configuration name.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param listDomainConfigurationsRequest
+     * @return listDomainConfigurationsResult The response from the
+     *         ListDomainConfigurations service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListDomainConfigurationsResult listDomainConfigurations(
+            ListDomainConfigurationsRequest listDomainConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDomainConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDomainConfigurationsRequest> request = null;
+        Response<ListDomainConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDomainConfigurationsRequestMarshaller()
+                        .marshall(listDomainConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDomainConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new ListDomainConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListDomainConfigurationsResult> responseHandler = new JsonResponseHandler<ListDomainConfigurationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the search indices.
      * </p>
      * 
@@ -7004,6 +7625,110 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListPrincipalThingsResult, JsonUnmarshallerContext> unmarshaller = new ListPrincipalThingsResultJsonUnmarshaller();
             JsonResponseHandler<ListPrincipalThingsResult> responseHandler = new JsonResponseHandler<ListPrincipalThingsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * A list of fleet provisioning template versions.
+     * </p>
+     * 
+     * @param listProvisioningTemplateVersionsRequest
+     * @return listProvisioningTemplateVersionsResult The response from the
+     *         ListProvisioningTemplateVersions service method, as returned by
+     *         AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListProvisioningTemplateVersionsResult listProvisioningTemplateVersions(
+            ListProvisioningTemplateVersionsRequest listProvisioningTemplateVersionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listProvisioningTemplateVersionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListProvisioningTemplateVersionsRequest> request = null;
+        Response<ListProvisioningTemplateVersionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListProvisioningTemplateVersionsRequestMarshaller()
+                        .marshall(listProvisioningTemplateVersionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListProvisioningTemplateVersionsResult, JsonUnmarshallerContext> unmarshaller = new ListProvisioningTemplateVersionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListProvisioningTemplateVersionsResult> responseHandler = new JsonResponseHandler<ListProvisioningTemplateVersionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the fleet provisioning templates in your AWS account.
+     * </p>
+     * 
+     * @param listProvisioningTemplatesRequest
+     * @return listProvisioningTemplatesResult The response from the
+     *         ListProvisioningTemplates service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListProvisioningTemplatesResult listProvisioningTemplates(
+            ListProvisioningTemplatesRequest listProvisioningTemplatesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listProvisioningTemplatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListProvisioningTemplatesRequest> request = null;
+        Response<ListProvisioningTemplatesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListProvisioningTemplatesRequestMarshaller()
+                        .marshall(listProvisioningTemplatesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListProvisioningTemplatesResult, JsonUnmarshallerContext> unmarshaller = new ListProvisioningTemplatesResultJsonUnmarshaller();
+            JsonResponseHandler<ListProvisioningTemplatesResult> responseHandler = new JsonResponseHandler<ListProvisioningTemplatesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -8228,7 +8953,13 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Provisions a thing.
+     * Provisions a thing in the device registry. RegisterThing calls other AWS
+     * IoT control plane APIs. These calls might exceed your account level <a
+     * href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
+     * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact
+     * <a href="https://console.aws.amazon.com/support/home">AWS Customer
+     * Support</a> to raise your throttling limits if necessary.
      * </p>
      * 
      * @param registerThingRequest
@@ -9539,6 +10270,67 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Updates values stored in the domain configuration. Domain configurations
+     * for default endpoints can't be updated.
+     * </p>
+     * <note>
+     * <p>
+     * The domain configuration feature is in public preview and is subject to
+     * change.
+     * </p>
+     * </note>
+     * 
+     * @param updateDomainConfigurationRequest
+     * @return updateDomainConfigurationResult The response from the
+     *         UpdateDomainConfiguration service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws CertificateValidationException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateDomainConfigurationResult updateDomainConfiguration(
+            UpdateDomainConfigurationRequest updateDomainConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateDomainConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateDomainConfigurationRequest> request = null;
+        Response<UpdateDomainConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateDomainConfigurationRequestMarshaller()
+                        .marshall(updateDomainConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateDomainConfigurationResult, JsonUnmarshallerContext> unmarshaller = new UpdateDomainConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateDomainConfigurationResult> responseHandler = new JsonResponseHandler<UpdateDomainConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates a dynamic thing group.
      * </p>
      * 
@@ -9775,6 +10567,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<UpdateMitigationActionResult, JsonUnmarshallerContext> unmarshaller = new UpdateMitigationActionResultJsonUnmarshaller();
             JsonResponseHandler<UpdateMitigationActionResult> responseHandler = new JsonResponseHandler<UpdateMitigationActionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a fleet provisioning template.
+     * </p>
+     * 
+     * @param updateProvisioningTemplateRequest
+     * @return updateProvisioningTemplateResult The response from the
+     *         UpdateProvisioningTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws ConflictingResourceUpdateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateProvisioningTemplateResult updateProvisioningTemplate(
+            UpdateProvisioningTemplateRequest updateProvisioningTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateProvisioningTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateProvisioningTemplateRequest> request = null;
+        Response<UpdateProvisioningTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateProvisioningTemplateRequestMarshaller()
+                        .marshall(updateProvisioningTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateProvisioningTemplateResult, JsonUnmarshallerContext> unmarshaller = new UpdateProvisioningTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateProvisioningTemplateResult> responseHandler = new JsonResponseHandler<UpdateProvisioningTemplateResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

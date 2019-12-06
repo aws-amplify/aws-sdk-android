@@ -132,6 +132,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Sends data from the MQTT message that triggered the rule to AWS IoT
+     * SiteWise asset properties.
+     * </p>
+     */
+    private IotSiteWiseAction iotSiteWise;
+
+    /**
+     * <p>
      * Starts execution of a Step Functions state machine.
      * </p>
      */
@@ -833,6 +841,57 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Sends data from the MQTT message that triggered the rule to AWS IoT
+     * SiteWise asset properties.
+     * </p>
+     *
+     * @return <p>
+     *         Sends data from the MQTT message that triggered the rule to AWS
+     *         IoT SiteWise asset properties.
+     *         </p>
+     */
+    public IotSiteWiseAction getIotSiteWise() {
+        return iotSiteWise;
+    }
+
+    /**
+     * <p>
+     * Sends data from the MQTT message that triggered the rule to AWS IoT
+     * SiteWise asset properties.
+     * </p>
+     *
+     * @param iotSiteWise <p>
+     *            Sends data from the MQTT message that triggered the rule to
+     *            AWS IoT SiteWise asset properties.
+     *            </p>
+     */
+    public void setIotSiteWise(IotSiteWiseAction iotSiteWise) {
+        this.iotSiteWise = iotSiteWise;
+    }
+
+    /**
+     * <p>
+     * Sends data from the MQTT message that triggered the rule to AWS IoT
+     * SiteWise asset properties.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param iotSiteWise <p>
+     *            Sends data from the MQTT message that triggered the rule to
+     *            AWS IoT SiteWise asset properties.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withIotSiteWise(IotSiteWiseAction iotSiteWise) {
+        this.iotSiteWise = iotSiteWise;
+        return this;
+    }
+
+    /**
+     * <p>
      * Starts execution of a Step Functions state machine.
      * </p>
      *
@@ -962,6 +1021,8 @@ public class Action implements Serializable {
             sb.append("iotAnalytics: " + getIotAnalytics() + ",");
         if (getIotEvents() != null)
             sb.append("iotEvents: " + getIotEvents() + ",");
+        if (getIotSiteWise() != null)
+            sb.append("iotSiteWise: " + getIotSiteWise() + ",");
         if (getStepFunctions() != null)
             sb.append("stepFunctions: " + getStepFunctions() + ",");
         if (getHttp() != null)
@@ -994,6 +1055,8 @@ public class Action implements Serializable {
         hashCode = prime * hashCode
                 + ((getIotAnalytics() == null) ? 0 : getIotAnalytics().hashCode());
         hashCode = prime * hashCode + ((getIotEvents() == null) ? 0 : getIotEvents().hashCode());
+        hashCode = prime * hashCode
+                + ((getIotSiteWise() == null) ? 0 : getIotSiteWise().hashCode());
         hashCode = prime * hashCode
                 + ((getStepFunctions() == null) ? 0 : getStepFunctions().hashCode());
         hashCode = prime * hashCode + ((getHttp() == null) ? 0 : getHttp().hashCode());
@@ -1078,6 +1141,11 @@ public class Action implements Serializable {
             return false;
         if (other.getIotEvents() != null
                 && other.getIotEvents().equals(this.getIotEvents()) == false)
+            return false;
+        if (other.getIotSiteWise() == null ^ this.getIotSiteWise() == null)
+            return false;
+        if (other.getIotSiteWise() != null
+                && other.getIotSiteWise().equals(this.getIotSiteWise()) == false)
             return false;
         if (other.getStepFunctions() == null ^ this.getStepFunctions() == null)
             return false;

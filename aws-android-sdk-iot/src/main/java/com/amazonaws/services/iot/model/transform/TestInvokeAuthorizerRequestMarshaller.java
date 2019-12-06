@@ -72,6 +72,21 @@ public class TestInvokeAuthorizerRequestMarshaller implements
                 jsonWriter.name("tokenSignature");
                 jsonWriter.value(tokenSignature);
             }
+            if (testInvokeAuthorizerRequest.getHttpContext() != null) {
+                HttpContext httpContext = testInvokeAuthorizerRequest.getHttpContext();
+                jsonWriter.name("httpContext");
+                HttpContextJsonMarshaller.getInstance().marshall(httpContext, jsonWriter);
+            }
+            if (testInvokeAuthorizerRequest.getMqttContext() != null) {
+                MqttContext mqttContext = testInvokeAuthorizerRequest.getMqttContext();
+                jsonWriter.name("mqttContext");
+                MqttContextJsonMarshaller.getInstance().marshall(mqttContext, jsonWriter);
+            }
+            if (testInvokeAuthorizerRequest.getTlsContext() != null) {
+                TlsContext tlsContext = testInvokeAuthorizerRequest.getTlsContext();
+                jsonWriter.name("tlsContext");
+                TlsContextJsonMarshaller.getInstance().marshall(tlsContext, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -58,6 +58,16 @@ class ResourceIdentifierJsonMarshaller {
             jsonWriter.name("account");
             jsonWriter.value(account);
         }
+        if (resourceIdentifier.getIamRoleArn() != null) {
+            String iamRoleArn = resourceIdentifier.getIamRoleArn();
+            jsonWriter.name("iamRoleArn");
+            jsonWriter.value(iamRoleArn);
+        }
+        if (resourceIdentifier.getRoleAliasArn() != null) {
+            String roleAliasArn = resourceIdentifier.getRoleAliasArn();
+            jsonWriter.name("roleAliasArn");
+            jsonWriter.value(roleAliasArn);
+        }
         jsonWriter.endObject();
     }
 

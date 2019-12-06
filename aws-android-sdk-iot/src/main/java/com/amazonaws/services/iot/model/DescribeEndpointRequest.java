@@ -59,6 +59,9 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
      */
     private String endpointType;
 
@@ -96,6 +99,9 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
      *
      * @return <p>
      *         The endpoint type. Valid endpoint types include:
@@ -169,6 +175,9 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
      *
      * @param endpointType <p>
      *            The endpoint type. Valid endpoint types include:
@@ -247,6 +256,9 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 128<br/>
      *
      * @param endpointType <p>
      *            The endpoint type. Valid endpoint types include:

@@ -48,8 +48,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      */
     private String nextToken;
@@ -184,13 +184,13 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or null if there
-     *         are no additional results.
+     *         The token used to get the next set of results, or
+     *         <code>null</code> if there are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -199,13 +199,13 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
+     *            The token used to get the next set of results, or
+     *            <code>null</code> if there are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -214,16 +214,16 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
+     *            The token used to get the next set of results, or
+     *            <code>null</code> if there are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
