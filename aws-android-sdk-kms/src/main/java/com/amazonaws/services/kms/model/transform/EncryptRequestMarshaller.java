@@ -94,6 +94,11 @@ public class EncryptRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (encryptRequest.getEncryptionAlgorithm() != null) {
+                String encryptionAlgorithm = encryptRequest.getEncryptionAlgorithm();
+                jsonWriter.name("EncryptionAlgorithm");
+                jsonWriter.value(encryptionAlgorithm);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

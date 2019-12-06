@@ -21,10 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Imports key material into an existing AWS KMS customer master key (CMK) that
- * was created without key material. You cannot perform this operation on a CMK
- * in a different AWS account. For more information about creating CMKs with no
- * key material and then importing key material, see <a href=
+ * Imports key material into an existing symmetric AWS KMS customer master key
+ * (CMK) that was created without key material. After you successfully import
+ * key material into a CMK, you can <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#reimport-key-material"
+ * >reimport the same key material</a> into that CMK, but you cannot import
+ * different key material.
+ * </p>
+ * <p>
+ * You cannot perform this operation on an asymmetric CMK or on any CMK in a
+ * different AWS account. For more information about creating CMKs with no key
+ * material and then importing key material, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
  * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
@@ -58,31 +65,37 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * The import token that <a>GetParametersForImport</a> returned. This token and
- * the public key used to encrypt the key material must have come from the same
+ * The import token that <a>GetParametersForImport</a> returned. You must use a
+ * public key and token from the same <code>GetParametersForImport</code>
  * response.
  * </p>
  * </li>
  * <li>
  * <p>
  * Whether the key material expires and if so, when. If you set an expiration
- * date, you can change it only by reimporting the same key material and
- * specifying a new expiration date. If the key material expires, AWS KMS
- * deletes the key material and the CMK becomes unusable. To use the CMK again,
- * you must reimport the same key material.
+ * date, AWS KMS deletes the key material from the CMK on the specified date,
+ * and the CMK becomes unusable. To use the CMK again, you must reimport the
+ * same key material. The only way to change an expiration date is by
+ * reimporting the same key material and specifying a new expiration date.
  * </p>
  * </li>
  * </ul>
  * <p>
  * When this operation is successful, the key state of the CMK changes from
  * <code>PendingImport</code> to <code>Enabled</code>, and you can use the CMK.
- * After you successfully import key material into a CMK, you can reimport the
- * same key material into that CMK, but you cannot import different key
- * material.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * If this operation fails, use the exception to help determine the problem. If
+ * the error is related to the key material, the import token, or wrapping key,
+ * use <a>GetParametersForImport</a> to get a new public key and import token
+ * for the CMK and repeat the import procedure. For help, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#importing-keys-overview"
+ * >How To Import Key Material</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
@@ -91,8 +104,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the CMK to import the key material into. The CMK's
-     * <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK that receives the imported key
+     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * This must be the same CMK specified in the <code>KeyID</code> parameter
+     * of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -137,10 +152,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The encrypted key material to import. It must be encrypted with the
-     * public key that you received in the response to a previous
-     * <a>GetParametersForImport</a> request, using the wrapping algorithm that
-     * you specified in that request.
+     * The encrypted key material to import. The key material must be encrypted
+     * with the public wrapping key that <a>GetParametersForImport</a> returned,
+     * using the wrapping algorithm that you specified in the same
+     * <code>GetParametersForImport</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,8 +190,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the CMK to import the key material into. The CMK's
-     * <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK that receives the imported key
+     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * This must be the same CMK specified in the <code>KeyID</code> parameter
+     * of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -206,8 +223,11 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the CMK to import the key material into. The
-     *         CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     *         The identifier of the symmetric CMK that receives the imported
+     *         key material. The CMK's <code>Origin</code> must be
+     *         <code>EXTERNAL</code>. This must be the same CMK specified in the
+     *         <code>KeyID</code> parameter of the corresponding
+     *         <a>GetParametersForImport</a> request.
      *         </p>
      *         <p>
      *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -239,8 +259,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the CMK to import the key material into. The CMK's
-     * <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK that receives the imported key
+     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * This must be the same CMK specified in the <code>KeyID</code> parameter
+     * of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -270,8 +292,11 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK to import the key material into. The
-     *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     *            The identifier of the symmetric CMK that receives the imported
+     *            key material. The CMK's <code>Origin</code> must be
+     *            <code>EXTERNAL</code>. This must be the same CMK specified in
+     *            the <code>KeyID</code> parameter of the corresponding
+     *            <a>GetParametersForImport</a> request.
      *            </p>
      *            <p>
      *            Specify the key ID or the Amazon Resource Name (ARN) of the
@@ -304,8 +329,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the CMK to import the key material into. The CMK's
-     * <code>Origin</code> must be <code>EXTERNAL</code>.
+     * The identifier of the symmetric CMK that receives the imported key
+     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     * This must be the same CMK specified in the <code>KeyID</code> parameter
+     * of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
      * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
@@ -338,8 +365,11 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK to import the key material into. The
-     *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
+     *            The identifier of the symmetric CMK that receives the imported
+     *            key material. The CMK's <code>Origin</code> must be
+     *            <code>EXTERNAL</code>. This must be the same CMK specified in
+     *            the <code>KeyID</code> parameter of the corresponding
+     *            <a>GetParametersForImport</a> request.
      *            </p>
      *            <p>
      *            Specify the key ID or the Amazon Resource Name (ARN) of the
@@ -444,20 +474,21 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The encrypted key material to import. It must be encrypted with the
-     * public key that you received in the response to a previous
-     * <a>GetParametersForImport</a> request, using the wrapping algorithm that
-     * you specified in that request.
+     * The encrypted key material to import. The key material must be encrypted
+     * with the public wrapping key that <a>GetParametersForImport</a> returned,
+     * using the wrapping algorithm that you specified in the same
+     * <code>GetParametersForImport</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The encrypted key material to import. It must be encrypted with
-     *         the public key that you received in the response to a previous
-     *         <a>GetParametersForImport</a> request, using the wrapping
-     *         algorithm that you specified in that request.
+     *         The encrypted key material to import. The key material must be
+     *         encrypted with the public wrapping key that
+     *         <a>GetParametersForImport</a> returned, using the wrapping
+     *         algorithm that you specified in the same
+     *         <code>GetParametersForImport</code> request.
      *         </p>
      */
     public java.nio.ByteBuffer getEncryptedKeyMaterial() {
@@ -466,20 +497,21 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The encrypted key material to import. It must be encrypted with the
-     * public key that you received in the response to a previous
-     * <a>GetParametersForImport</a> request, using the wrapping algorithm that
-     * you specified in that request.
+     * The encrypted key material to import. The key material must be encrypted
+     * with the public wrapping key that <a>GetParametersForImport</a> returned,
+     * using the wrapping algorithm that you specified in the same
+     * <code>GetParametersForImport</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param encryptedKeyMaterial <p>
-     *            The encrypted key material to import. It must be encrypted
-     *            with the public key that you received in the response to a
-     *            previous <a>GetParametersForImport</a> request, using the
-     *            wrapping algorithm that you specified in that request.
+     *            The encrypted key material to import. The key material must be
+     *            encrypted with the public wrapping key that
+     *            <a>GetParametersForImport</a> returned, using the wrapping
+     *            algorithm that you specified in the same
+     *            <code>GetParametersForImport</code> request.
      *            </p>
      */
     public void setEncryptedKeyMaterial(java.nio.ByteBuffer encryptedKeyMaterial) {
@@ -488,10 +520,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The encrypted key material to import. It must be encrypted with the
-     * public key that you received in the response to a previous
-     * <a>GetParametersForImport</a> request, using the wrapping algorithm that
-     * you specified in that request.
+     * The encrypted key material to import. The key material must be encrypted
+     * with the public wrapping key that <a>GetParametersForImport</a> returned,
+     * using the wrapping algorithm that you specified in the same
+     * <code>GetParametersForImport</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -501,10 +533,11 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param encryptedKeyMaterial <p>
-     *            The encrypted key material to import. It must be encrypted
-     *            with the public key that you received in the response to a
-     *            previous <a>GetParametersForImport</a> request, using the
-     *            wrapping algorithm that you specified in that request.
+     *            The encrypted key material to import. The key material must be
+     *            encrypted with the public wrapping key that
+     *            <a>GetParametersForImport</a> returned, using the wrapping
+     *            algorithm that you specified in the same
+     *            <code>GetParametersForImport</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

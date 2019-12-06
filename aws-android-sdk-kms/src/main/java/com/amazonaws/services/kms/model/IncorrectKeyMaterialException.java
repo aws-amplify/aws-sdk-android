@@ -19,9 +19,9 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the provided key material is invalid or is
- * not the same key material that was previously imported into this customer
- * master key (CMK).
+ * The request was rejected because the key material in the request is, expired,
+ * invalid, or is not the same key material that was previously imported into
+ * this customer master key (CMK).
  * </p>
  */
 public class IncorrectKeyMaterialException extends AmazonServiceException {

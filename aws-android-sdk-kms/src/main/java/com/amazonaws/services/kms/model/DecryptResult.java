@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class DecryptResult implements Serializable {
     /**
      * <p>
-     * ARN of the key used to perform the decryption. This value is returned if
-     * no errors are encountered during the operation.
+     * The ARN of the customer master key that was used to perform the
+     * decryption.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +32,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,16 +42,27 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * ARN of the key used to perform the decryption. This value is returned if
-     * no errors are encountered during the operation.
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     */
+    private String encryptionAlgorithm;
+
+    /**
+     * <p>
+     * The ARN of the customer master key that was used to perform the
+     * decryption.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         ARN of the key used to perform the decryption. This value is
-     *         returned if no errors are encountered during the operation.
+     *         The ARN of the customer master key that was used to perform the
+     *         decryption.
      *         </p>
      */
     public String getKeyId() {
@@ -60,16 +71,16 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * ARN of the key used to perform the decryption. This value is returned if
-     * no errors are encountered during the operation.
+     * The ARN of the customer master key that was used to perform the
+     * decryption.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            ARN of the key used to perform the decryption. This value is
-     *            returned if no errors are encountered during the operation.
+     *            The ARN of the customer master key that was used to perform
+     *            the decryption.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -78,8 +89,8 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * ARN of the key used to perform the decryption. This value is returned if
-     * no errors are encountered during the operation.
+     * The ARN of the customer master key that was used to perform the
+     * decryption.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,8 +100,8 @@ public class DecryptResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            ARN of the key used to perform the decryption. This value is
-     *            returned if no errors are encountered during the operation.
+     *            The ARN of the customer master key that was used to perform
+     *            the decryption.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -103,7 +114,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -111,7 +122,8 @@ public class DecryptResult implements Serializable {
      *
      * @return <p>
      *         Decrypted plaintext data. When you use the HTTP API or the AWS
-     *         CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     *         CLI, the value is Base64-encoded. Otherwise, it is not
+     *         Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -121,7 +133,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,7 +142,7 @@ public class DecryptResult implements Serializable {
      * @param plaintext <p>
      *            Decrypted plaintext data. When you use the HTTP API or the AWS
      *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            encoded.
+     *            Base64-encoded.
      *            </p>
      */
     public void setPlaintext(java.nio.ByteBuffer plaintext) {
@@ -140,7 +152,7 @@ public class DecryptResult implements Serializable {
     /**
      * <p>
      * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded.
+     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,13 +164,119 @@ public class DecryptResult implements Serializable {
      * @param plaintext <p>
      *            Decrypted plaintext data. When you use the HTTP API or the AWS
      *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            encoded.
+     *            Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DecryptResult withPlaintext(java.nio.ByteBuffer plaintext) {
         this.plaintext = plaintext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @return <p>
+     *         The encryption algorithm that was used to decrypt the ciphertext.
+     *         </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public String getEncryptionAlgorithm() {
+        return encryptionAlgorithm;
+    }
+
+    /**
+     * <p>
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            The encryption algorithm that was used to decrypt the
+     *            ciphertext.
+     *            </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public void setEncryptionAlgorithm(String encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm;
+    }
+
+    /**
+     * <p>
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            The encryption algorithm that was used to decrypt the
+     *            ciphertext.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionAlgorithmSpec
+     */
+    public DecryptResult withEncryptionAlgorithm(String encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            The encryption algorithm that was used to decrypt the
+     *            ciphertext.
+     *            </p>
+     * @see EncryptionAlgorithmSpec
+     */
+    public void setEncryptionAlgorithm(EncryptionAlgorithmSpec encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm.toString();
+    }
+
+    /**
+     * <p>
+     * The encryption algorithm that was used to decrypt the ciphertext.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
+     * RSAES_OAEP_SHA_256
+     *
+     * @param encryptionAlgorithm <p>
+     *            The encryption algorithm that was used to decrypt the
+     *            ciphertext.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionAlgorithmSpec
+     */
+    public DecryptResult withEncryptionAlgorithm(EncryptionAlgorithmSpec encryptionAlgorithm) {
+        this.encryptionAlgorithm = encryptionAlgorithm.toString();
         return this;
     }
 
@@ -176,7 +294,9 @@ public class DecryptResult implements Serializable {
         if (getKeyId() != null)
             sb.append("KeyId: " + getKeyId() + ",");
         if (getPlaintext() != null)
-            sb.append("Plaintext: " + getPlaintext());
+            sb.append("Plaintext: " + getPlaintext() + ",");
+        if (getEncryptionAlgorithm() != null)
+            sb.append("EncryptionAlgorithm: " + getEncryptionAlgorithm());
         sb.append("}");
         return sb.toString();
     }
@@ -188,6 +308,8 @@ public class DecryptResult implements Serializable {
 
         hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
         hashCode = prime * hashCode + ((getPlaintext() == null) ? 0 : getPlaintext().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncryptionAlgorithm() == null) ? 0 : getEncryptionAlgorithm().hashCode());
         return hashCode;
     }
 
@@ -210,6 +332,11 @@ public class DecryptResult implements Serializable {
             return false;
         if (other.getPlaintext() != null
                 && other.getPlaintext().equals(this.getPlaintext()) == false)
+            return false;
+        if (other.getEncryptionAlgorithm() == null ^ this.getEncryptionAlgorithm() == null)
+            return false;
+        if (other.getEncryptionAlgorithm() != null
+                && other.getEncryptionAlgorithm().equals(this.getEncryptionAlgorithm()) == false)
             return false;
         return true;
     }
