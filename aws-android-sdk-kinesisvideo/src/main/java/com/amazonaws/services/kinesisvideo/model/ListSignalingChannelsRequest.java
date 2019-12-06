@@ -21,16 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns an array of <code>StreamInfo</code> objects. Each object describes a
- * stream. To retrieve only streams that satisfy a specific condition, you can
- * specify a <code>StreamNameCondition</code>.
+ * Returns an array of <code>ChannelInfo</code> objects. Each object describes a
+ * signaling channel. To retrieve only those channels that satisfy a specific
+ * condition, you can specify a <code>ChannelNameCondition</code>.
  * </p>
  */
-public class ListStreamsRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListSignalingChannelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The maximum number of streams to return in the response. The default is
-     * 10,000.
+     * The maximum number of channels to return in the response. The default is
+     * 500.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,9 +41,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * If you specify this parameter, when the result of a
-     * <code>ListStreams</code> operation is truncated, the call returns the
-     * <code>NextToken</code> in the response. To get another batch of streams,
-     * provide this token in your next request.
+     * <code>ListSignalingChannels</code> operation is truncated, the call
+     * returns the <code>NextToken</code> in the response. To get another batch
+     * of channels, provide this token in your next request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,25 +54,23 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Optional: Returns only streams that satisfy a specific condition.
-     * Currently, you can specify only the prefix of a stream name as a
-     * condition.
+     * Optional: Returns only the channels that satisfy a specific condition.
      * </p>
      */
-    private StreamNameCondition streamNameCondition;
+    private ChannelNameCondition channelNameCondition;
 
     /**
      * <p>
-     * The maximum number of streams to return in the response. The default is
-     * 10,000.
+     * The maximum number of channels to return in the response. The default is
+     * 500.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
      * @return <p>
-     *         The maximum number of streams to return in the response. The
-     *         default is 10,000.
+     *         The maximum number of channels to return in the response. The
+     *         default is 500.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -81,16 +79,16 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of streams to return in the response. The default is
-     * 10,000.
+     * The maximum number of channels to return in the response. The default is
+     * 500.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of streams to return in the response. The
-     *            default is 10,000.
+     *            The maximum number of channels to return in the response. The
+     *            default is 500.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -99,8 +97,8 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of streams to return in the response. The default is
-     * 10,000.
+     * The maximum number of channels to return in the response. The default is
+     * 500.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,13 +108,13 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Range: </b>1 - 10000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of streams to return in the response. The
-     *            default is 10,000.
+     *            The maximum number of channels to return in the response. The
+     *            default is 500.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsRequest withMaxResults(Integer maxResults) {
+    public ListSignalingChannelsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
@@ -124,9 +122,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * If you specify this parameter, when the result of a
-     * <code>ListStreams</code> operation is truncated, the call returns the
-     * <code>NextToken</code> in the response. To get another batch of streams,
-     * provide this token in your next request.
+     * <code>ListSignalingChannels</code> operation is truncated, the call
+     * returns the <code>NextToken</code> in the response. To get another batch
+     * of channels, provide this token in your next request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,9 +133,10 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         If you specify this parameter, when the result of a
-     *         <code>ListStreams</code> operation is truncated, the call returns
-     *         the <code>NextToken</code> in the response. To get another batch
-     *         of streams, provide this token in your next request.
+     *         <code>ListSignalingChannels</code> operation is truncated, the
+     *         call returns the <code>NextToken</code> in the response. To get
+     *         another batch of channels, provide this token in your next
+     *         request.
      *         </p>
      */
     public String getNextToken() {
@@ -147,9 +146,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * If you specify this parameter, when the result of a
-     * <code>ListStreams</code> operation is truncated, the call returns the
-     * <code>NextToken</code> in the response. To get another batch of streams,
-     * provide this token in your next request.
+     * <code>ListSignalingChannels</code> operation is truncated, the call
+     * returns the <code>NextToken</code> in the response. To get another batch
+     * of channels, provide this token in your next request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,9 +157,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param nextToken <p>
      *            If you specify this parameter, when the result of a
-     *            <code>ListStreams</code> operation is truncated, the call
-     *            returns the <code>NextToken</code> in the response. To get
-     *            another batch of streams, provide this token in your next
+     *            <code>ListSignalingChannels</code> operation is truncated, the
+     *            call returns the <code>NextToken</code> in the response. To
+     *            get another batch of channels, provide this token in your next
      *            request.
      *            </p>
      */
@@ -171,9 +170,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * If you specify this parameter, when the result of a
-     * <code>ListStreams</code> operation is truncated, the call returns the
-     * <code>NextToken</code> in the response. To get another batch of streams,
-     * provide this token in your next request.
+     * <code>ListSignalingChannels</code> operation is truncated, the call
+     * returns the <code>NextToken</code> in the response. To get another batch
+     * of channels, provide this token in your next request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -185,73 +184,65 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param nextToken <p>
      *            If you specify this parameter, when the result of a
-     *            <code>ListStreams</code> operation is truncated, the call
-     *            returns the <code>NextToken</code> in the response. To get
-     *            another batch of streams, provide this token in your next
+     *            <code>ListSignalingChannels</code> operation is truncated, the
+     *            call returns the <code>NextToken</code> in the response. To
+     *            get another batch of channels, provide this token in your next
      *            request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsRequest withNextToken(String nextToken) {
+    public ListSignalingChannelsRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
 
     /**
      * <p>
-     * Optional: Returns only streams that satisfy a specific condition.
-     * Currently, you can specify only the prefix of a stream name as a
-     * condition.
+     * Optional: Returns only the channels that satisfy a specific condition.
      * </p>
      *
      * @return <p>
-     *         Optional: Returns only streams that satisfy a specific condition.
-     *         Currently, you can specify only the prefix of a stream name as a
+     *         Optional: Returns only the channels that satisfy a specific
      *         condition.
      *         </p>
      */
-    public StreamNameCondition getStreamNameCondition() {
-        return streamNameCondition;
+    public ChannelNameCondition getChannelNameCondition() {
+        return channelNameCondition;
     }
 
     /**
      * <p>
-     * Optional: Returns only streams that satisfy a specific condition.
-     * Currently, you can specify only the prefix of a stream name as a
-     * condition.
+     * Optional: Returns only the channels that satisfy a specific condition.
      * </p>
      *
-     * @param streamNameCondition <p>
-     *            Optional: Returns only streams that satisfy a specific
-     *            condition. Currently, you can specify only the prefix of a
-     *            stream name as a condition.
+     * @param channelNameCondition <p>
+     *            Optional: Returns only the channels that satisfy a specific
+     *            condition.
      *            </p>
      */
-    public void setStreamNameCondition(StreamNameCondition streamNameCondition) {
-        this.streamNameCondition = streamNameCondition;
+    public void setChannelNameCondition(ChannelNameCondition channelNameCondition) {
+        this.channelNameCondition = channelNameCondition;
     }
 
     /**
      * <p>
-     * Optional: Returns only streams that satisfy a specific condition.
-     * Currently, you can specify only the prefix of a stream name as a
-     * condition.
+     * Optional: Returns only the channels that satisfy a specific condition.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamNameCondition <p>
-     *            Optional: Returns only streams that satisfy a specific
-     *            condition. Currently, you can specify only the prefix of a
-     *            stream name as a condition.
+     * @param channelNameCondition <p>
+     *            Optional: Returns only the channels that satisfy a specific
+     *            condition.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsRequest withStreamNameCondition(StreamNameCondition streamNameCondition) {
-        this.streamNameCondition = streamNameCondition;
+    public ListSignalingChannelsRequest withChannelNameCondition(
+            ChannelNameCondition channelNameCondition) {
+        this.channelNameCondition = channelNameCondition;
         return this;
     }
 
@@ -270,8 +261,8 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
-        if (getStreamNameCondition() != null)
-            sb.append("StreamNameCondition: " + getStreamNameCondition());
+        if (getChannelNameCondition() != null)
+            sb.append("ChannelNameCondition: " + getChannelNameCondition());
         sb.append("}");
         return sb.toString();
     }
@@ -284,7 +275,7 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
-                + ((getStreamNameCondition() == null) ? 0 : getStreamNameCondition().hashCode());
+                + ((getChannelNameCondition() == null) ? 0 : getChannelNameCondition().hashCode());
         return hashCode;
     }
 
@@ -295,9 +286,9 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
         if (obj == null)
             return false;
 
-        if (obj instanceof ListStreamsRequest == false)
+        if (obj instanceof ListSignalingChannelsRequest == false)
             return false;
-        ListStreamsRequest other = (ListStreamsRequest) obj;
+        ListSignalingChannelsRequest other = (ListSignalingChannelsRequest) obj;
 
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
@@ -309,10 +300,10 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
-        if (other.getStreamNameCondition() == null ^ this.getStreamNameCondition() == null)
+        if (other.getChannelNameCondition() == null ^ this.getChannelNameCondition() == null)
             return false;
-        if (other.getStreamNameCondition() != null
-                && other.getStreamNameCondition().equals(this.getStreamNameCondition()) == false)
+        if (other.getChannelNameCondition() != null
+                && other.getChannelNameCondition().equals(this.getChannelNameCondition()) == false)
             return false;
         return true;
     }

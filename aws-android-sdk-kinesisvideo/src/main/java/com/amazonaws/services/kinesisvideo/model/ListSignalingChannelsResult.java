@@ -17,13 +17,13 @@ package com.amazonaws.services.kinesisvideo.model;
 
 import java.io.Serializable;
 
-public class ListStreamsResult implements Serializable {
+public class ListSignalingChannelsResult implements Serializable {
     /**
      * <p>
-     * An array of <code>StreamInfo</code> objects.
+     * An array of <code>ChannelInfo</code> objects.
      * </p>
      */
-    private java.util.List<StreamInfo> streamInfoList = new java.util.ArrayList<StreamInfo>();
+    private java.util.List<ChannelInfo> channelInfoList = new java.util.ArrayList<ChannelInfo>();
 
     /**
      * <p>
@@ -39,75 +39,76 @@ public class ListStreamsResult implements Serializable {
 
     /**
      * <p>
-     * An array of <code>StreamInfo</code> objects.
+     * An array of <code>ChannelInfo</code> objects.
      * </p>
      *
      * @return <p>
-     *         An array of <code>StreamInfo</code> objects.
+     *         An array of <code>ChannelInfo</code> objects.
      *         </p>
      */
-    public java.util.List<StreamInfo> getStreamInfoList() {
-        return streamInfoList;
+    public java.util.List<ChannelInfo> getChannelInfoList() {
+        return channelInfoList;
     }
 
     /**
      * <p>
-     * An array of <code>StreamInfo</code> objects.
+     * An array of <code>ChannelInfo</code> objects.
      * </p>
      *
-     * @param streamInfoList <p>
-     *            An array of <code>StreamInfo</code> objects.
+     * @param channelInfoList <p>
+     *            An array of <code>ChannelInfo</code> objects.
      *            </p>
      */
-    public void setStreamInfoList(java.util.Collection<StreamInfo> streamInfoList) {
-        if (streamInfoList == null) {
-            this.streamInfoList = null;
+    public void setChannelInfoList(java.util.Collection<ChannelInfo> channelInfoList) {
+        if (channelInfoList == null) {
+            this.channelInfoList = null;
             return;
         }
 
-        this.streamInfoList = new java.util.ArrayList<StreamInfo>(streamInfoList);
+        this.channelInfoList = new java.util.ArrayList<ChannelInfo>(channelInfoList);
     }
 
     /**
      * <p>
-     * An array of <code>StreamInfo</code> objects.
+     * An array of <code>ChannelInfo</code> objects.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamInfoList <p>
-     *            An array of <code>StreamInfo</code> objects.
+     * @param channelInfoList <p>
+     *            An array of <code>ChannelInfo</code> objects.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsResult withStreamInfoList(StreamInfo... streamInfoList) {
-        if (getStreamInfoList() == null) {
-            this.streamInfoList = new java.util.ArrayList<StreamInfo>(streamInfoList.length);
+    public ListSignalingChannelsResult withChannelInfoList(ChannelInfo... channelInfoList) {
+        if (getChannelInfoList() == null) {
+            this.channelInfoList = new java.util.ArrayList<ChannelInfo>(channelInfoList.length);
         }
-        for (StreamInfo value : streamInfoList) {
-            this.streamInfoList.add(value);
+        for (ChannelInfo value : channelInfoList) {
+            this.channelInfoList.add(value);
         }
         return this;
     }
 
     /**
      * <p>
-     * An array of <code>StreamInfo</code> objects.
+     * An array of <code>ChannelInfo</code> objects.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamInfoList <p>
-     *            An array of <code>StreamInfo</code> objects.
+     * @param channelInfoList <p>
+     *            An array of <code>ChannelInfo</code> objects.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsResult withStreamInfoList(java.util.Collection<StreamInfo> streamInfoList) {
-        setStreamInfoList(streamInfoList);
+    public ListSignalingChannelsResult withChannelInfoList(
+            java.util.Collection<ChannelInfo> channelInfoList) {
+        setChannelInfoList(channelInfoList);
         return this;
     }
 
@@ -172,7 +173,7 @@ public class ListStreamsResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListStreamsResult withNextToken(String nextToken) {
+    public ListSignalingChannelsResult withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -188,8 +189,8 @@ public class ListStreamsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getStreamInfoList() != null)
-            sb.append("StreamInfoList: " + getStreamInfoList() + ",");
+        if (getChannelInfoList() != null)
+            sb.append("ChannelInfoList: " + getChannelInfoList() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken());
         sb.append("}");
@@ -202,7 +203,7 @@ public class ListStreamsResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getStreamInfoList() == null) ? 0 : getStreamInfoList().hashCode());
+                + ((getChannelInfoList() == null) ? 0 : getChannelInfoList().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
@@ -214,14 +215,14 @@ public class ListStreamsResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof ListStreamsResult == false)
+        if (obj instanceof ListSignalingChannelsResult == false)
             return false;
-        ListStreamsResult other = (ListStreamsResult) obj;
+        ListSignalingChannelsResult other = (ListSignalingChannelsResult) obj;
 
-        if (other.getStreamInfoList() == null ^ this.getStreamInfoList() == null)
+        if (other.getChannelInfoList() == null ^ this.getChannelInfoList() == null)
             return false;
-        if (other.getStreamInfoList() != null
-                && other.getStreamInfoList().equals(this.getStreamInfoList()) == false)
+        if (other.getChannelInfoList() != null
+                && other.getChannelInfoList().equals(this.getChannelInfoList()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
