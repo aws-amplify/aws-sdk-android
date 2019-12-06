@@ -54,6 +54,7 @@
     <module>aws-android-sdk-kinesis</module>
     <module>aws-android-sdk-kinesisvideo</module>
     <module>aws-android-sdk-kinesisvideo-archivedmedia</module>
+    <module>aws-android-sdk-kinesisvideosignaling</module>
     <module>aws-android-sdk-kms</module>
     <module>aws-android-sdk-lambda</module>
     <module>aws-android-sdk-lex</module>
