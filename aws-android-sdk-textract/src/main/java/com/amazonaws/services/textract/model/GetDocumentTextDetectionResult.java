@@ -59,18 +59,24 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document text-detection
-     * operation.
+     * A list of warnings that occurred during the text-detection operation for
+     * the document.
      * </p>
      */
     private java.util.List<Warning> warnings;
 
     /**
      * <p>
-     * The current status of an asynchronous document text-detection operation.
+     * The current status of an asynchronous text-detection operation for the
+     * document.
      * </p>
      */
     private String statusMessage;
+
+    /**
+     * <p/>
+     */
+    private String detectDocumentTextModelVersion;
 
     /**
      * <p>
@@ -371,13 +377,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document text-detection
-     * operation.
+     * A list of warnings that occurred during the text-detection operation for
+     * the document.
      * </p>
      *
      * @return <p>
-     *         A list of warnings that occurred during the document
-     *         text-detection operation.
+     *         A list of warnings that occurred during the text-detection
+     *         operation for the document.
      *         </p>
      */
     public java.util.List<Warning> getWarnings() {
@@ -386,13 +392,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document text-detection
-     * operation.
+     * A list of warnings that occurred during the text-detection operation for
+     * the document.
      * </p>
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document
-     *            text-detection operation.
+     *            A list of warnings that occurred during the text-detection
+     *            operation for the document.
      *            </p>
      */
     public void setWarnings(java.util.Collection<Warning> warnings) {
@@ -406,16 +412,16 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document text-detection
-     * operation.
+     * A list of warnings that occurred during the text-detection operation for
+     * the document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document
-     *            text-detection operation.
+     *            A list of warnings that occurred during the text-detection
+     *            operation for the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -432,16 +438,16 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document text-detection
-     * operation.
+     * A list of warnings that occurred during the text-detection operation for
+     * the document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document
-     *            text-detection operation.
+     *            A list of warnings that occurred during the text-detection
+     *            operation for the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -453,12 +459,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document text-detection operation.
+     * The current status of an asynchronous text-detection operation for the
+     * document.
      * </p>
      *
      * @return <p>
-     *         The current status of an asynchronous document text-detection
-     *         operation.
+     *         The current status of an asynchronous text-detection operation
+     *         for the document.
      *         </p>
      */
     public String getStatusMessage() {
@@ -467,12 +474,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document text-detection operation.
+     * The current status of an asynchronous text-detection operation for the
+     * document.
      * </p>
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous document text-detection
-     *            operation.
+     *            The current status of an asynchronous text-detection operation
+     *            for the document.
      *            </p>
      */
     public void setStatusMessage(String statusMessage) {
@@ -481,21 +489,56 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document text-detection operation.
+     * The current status of an asynchronous text-detection operation for the
+     * document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous document text-detection
-     *            operation.
+     *            The current status of an asynchronous text-detection operation
+     *            for the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public GetDocumentTextDetectionResult withStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+        return this;
+    }
+
+    /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public String getDetectDocumentTextModelVersion() {
+        return detectDocumentTextModelVersion;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param detectDocumentTextModelVersion <p/>
+     */
+    public void setDetectDocumentTextModelVersion(String detectDocumentTextModelVersion) {
+        this.detectDocumentTextModelVersion = detectDocumentTextModelVersion;
+    }
+
+    /**
+     * <p/>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param detectDocumentTextModelVersion <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDocumentTextDetectionResult withDetectDocumentTextModelVersion(
+            String detectDocumentTextModelVersion) {
+        this.detectDocumentTextModelVersion = detectDocumentTextModelVersion;
         return this;
     }
 
@@ -521,7 +564,9 @@ public class GetDocumentTextDetectionResult implements Serializable {
         if (getWarnings() != null)
             sb.append("Warnings: " + getWarnings() + ",");
         if (getStatusMessage() != null)
-            sb.append("StatusMessage: " + getStatusMessage());
+            sb.append("StatusMessage: " + getStatusMessage() + ",");
+        if (getDetectDocumentTextModelVersion() != null)
+            sb.append("DetectDocumentTextModelVersion: " + getDetectDocumentTextModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -539,6 +584,10 @@ public class GetDocumentTextDetectionResult implements Serializable {
         hashCode = prime * hashCode + ((getWarnings() == null) ? 0 : getWarnings().hashCode());
         hashCode = prime * hashCode
                 + ((getStatusMessage() == null) ? 0 : getStatusMessage().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDetectDocumentTextModelVersion() == null) ? 0
+                        : getDetectDocumentTextModelVersion().hashCode());
         return hashCode;
     }
 
@@ -580,6 +629,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
             return false;
         if (other.getStatusMessage() != null
                 && other.getStatusMessage().equals(this.getStatusMessage()) == false)
+            return false;
+        if (other.getDetectDocumentTextModelVersion() == null
+                ^ this.getDetectDocumentTextModelVersion() == null)
+            return false;
+        if (other.getDetectDocumentTextModelVersion() != null
+                && other.getDetectDocumentTextModelVersion().equals(
+                        this.getDetectDocumentTextModelVersion()) == false)
             return false;
         return true;
     }

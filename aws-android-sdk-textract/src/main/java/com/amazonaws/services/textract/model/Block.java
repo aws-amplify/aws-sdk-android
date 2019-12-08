@@ -21,11 +21,11 @@ import java.io.Serializable;
  * <p>
  * A <code>Block</code> represents items that are recognized in a document
  * within a group of pixels close to each other. The information returned in a
- * <code>Block</code> depends on the type of operation. In document-text
- * detection (for example <a>DetectDocumentText</a>), you get information about
- * the detected words and lines of text. In text analysis (for example
+ * <code>Block</code> object depends on the type of operation. In text detection
+ * for documents (for example <a>DetectDocumentText</a>), you get information
+ * about the detected words and lines of text. In text analysis (for example
  * <a>AnalyzeDocument</a>), you can also get information about the fields,
- * tables and selection elements that are detected in the document.
+ * tables, and selection elements that are detected in the document.
  * </p>
  * <p>
  * An array of <code>Block</code> objects is returned by both synchronous and
@@ -43,14 +43,14 @@ import java.io.Serializable;
 public class Block implements Serializable {
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -61,8 +61,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -72,36 +72,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -112,10 +111,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -128,8 +127,9 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The confidence that Amazon Textract has in the accuracy of the recognized
-     * text and the accuracy of the geometry points around the recognized text.
+     * The confidence score that Amazon Textract has in the accuracy of the
+     * recognized text and the accuracy of the geometry points around the
+     * recognized text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -171,9 +171,10 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of rows that a table spans. <code>RowSpan</code> isn't
-     * returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of rows that a table cell spans. Currently this value is
+     * always 1, even if the number of rows spanned is greater than 1.
+     * <code>RowSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -183,9 +184,10 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of columns that a table cell spans. <code>ColumnSpan</code>
-     * isn't returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of columns that a table cell spans. Currently this value is
+     * always 1, even if the number of columns spanned is greater than 1.
+     * <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -215,7 +217,7 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * A list of child blocks of the current block. For example a LINE object
+     * A list of child blocks of the current block. For example, a LINE object
      * has child blocks for each WORD block that's part of the line of text.
      * There aren't Relationship objects in the list for relationships that
      * don't exist, such as when the current block has no child blocks. The list
@@ -262,8 +264,8 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -273,12 +275,12 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The page in which a block was detected. <code>Page</code> is returned by
+     * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multi-page documents that are in PDF format. A scanned image (JPG/PNG),
-     * even if it contains multiple document pages, is always considered to be a
-     * single-page document and the value of <code>Page</code> is always 1.
-     * Synchronous operations don't return <code>Page</code> as every input
+     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
+     * even if it contains multiple document pages, is considered to be a
+     * single-page document. The value of <code>Page</code> is always 1.
+     * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
      * <p>
@@ -289,14 +291,14 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -307,8 +309,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -318,36 +320,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -358,10 +359,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -371,14 +372,14 @@ public class Block implements Serializable {
      * SELECTION_ELEMENT
      *
      * @return <p>
-     *         The type of text that's recognized in a block. In text-detection
-     *         operations, the following types are returned:
+     *         The type of text item that's recognized. In operations for text
+     *         detection, the following types are returned:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>PAGE</i> - Contains a list of the LINE Block objects that are
-     *         detected on a document page.
+     *         <i>PAGE</i> - Contains a list of the LINE <code>Block</code>
+     *         objects that are detected on a document page.
      *         </p>
      *         </li>
      *         <li>
@@ -390,8 +391,8 @@ public class Block implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <i>LINE</i> - A string of tab-delimited, contiguous words that's
-     *         detected on a document page.
+     *         <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *         are detected on a document page.
      *         </p>
      *         </li>
      *         </ul>
@@ -401,36 +402,37 @@ public class Block implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>PAGE</i> - Contains a list of child Block objects that are
-     *         detected on a document page.
+     *         <i>PAGE</i> - Contains a list of child <code>Block</code> objects
+     *         that are detected on a document page.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for
-     *         a field that's detected on a document page. Use the
-     *         <code>EntityType</code> field to determine if a KEY_VALUE_SET
-     *         object is a KEY Block object or a VALUE Block object.
+     *         <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE
+     *         <code>Block</code> objects for linked text that's detected on a
+     *         document page. Use the <code>EntityType</code> field to determine
+     *         if a KEY_VALUE_SET object is a KEY <code>Block</code> object or a
+     *         VALUE <code>Block</code> object.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>WORD</i> - A word detected on a document page. A word is one
-     *         or more ISO basic Latin script characters that aren't separated
-     *         by spaces that's detected on a document page.
+     *         <i>WORD</i> - A word that's detected on a document page. A word
+     *         is one or more ISO basic Latin script characters that aren't
+     *         separated by spaces.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>LINE</i> - A string of tab-delimited, contiguous words that's
-     *         detected on a document page.
+     *         <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *         are detected on a document page.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <i>TABLE</i> - A table that's detected on a document page. A
-     *         table is any grid-based information with 2 or more rows or
-     *         columns with a cell span of 1 row and 1 column each.
+     *         table is grid-based information with two or more rows or columns,
+     *         with a cell span of one row and one column each.
      *         </p>
      *         </li>
      *         <li>
@@ -441,10 +443,10 @@ public class Block implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <i>SELECTION_ELEMENT</i> - A selectable element such as a radio
-     *         button or checkbox that's detected on a document page. Use the
-     *         value of <code>SelectionStatus</code> to determine the status of
-     *         the selection element.
+     *         <i>SELECTION_ELEMENT</i> - A selection element such as an option
+     *         button (radio button) or a check box that's detected on a
+     *         document page. Use the value of <code>SelectionStatus</code> to
+     *         determine the status of the selection element.
      *         </p>
      *         </li>
      *         </ul>
@@ -456,14 +458,14 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -474,8 +476,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -485,36 +487,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -525,10 +526,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -538,14 +539,14 @@ public class Block implements Serializable {
      * SELECTION_ELEMENT
      *
      * @param blockType <p>
-     *            The type of text that's recognized in a block. In
-     *            text-detection operations, the following types are returned:
+     *            The type of text item that's recognized. In operations for
+     *            text detection, the following types are returned:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of the LINE Block objects that
-     *            are detected on a document page.
+     *            <i>PAGE</i> - Contains a list of the LINE <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
@@ -557,8 +558,8 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            </ul>
@@ -568,36 +569,38 @@ public class Block implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of child Block objects that are
-     *            detected on a document page.
+     *            <i>PAGE</i> - Contains a list of child <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects
-     *            for a field that's detected on a document page. Use the
-     *            <code>EntityType</code> field to determine if a KEY_VALUE_SET
-     *            object is a KEY Block object or a VALUE Block object.
+     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE
+     *            <code>Block</code> objects for linked text that's detected on
+     *            a document page. Use the <code>EntityType</code> field to
+     *            determine if a KEY_VALUE_SET object is a KEY
+     *            <code>Block</code> object or a VALUE <code>Block</code>
+     *            object.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>WORD</i> - A word detected on a document page. A word is
-     *            one or more ISO basic Latin script characters that aren't
-     *            separated by spaces that's detected on a document page.
+     *            <i>WORD</i> - A word that's detected on a document page. A
+     *            word is one or more ISO basic Latin script characters that
+     *            aren't separated by spaces.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <i>TABLE</i> - A table that's detected on a document page. A
-     *            table is any grid-based information with 2 or more rows or
-     *            columns with a cell span of 1 row and 1 column each.
+     *            table is grid-based information with two or more rows or
+     *            columns, with a cell span of one row and one column each.
      *            </p>
      *            </li>
      *            <li>
@@ -608,10 +611,10 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SELECTION_ELEMENT</i> - A selectable element such as a
-     *            radio button or checkbox that's detected on a document page.
-     *            Use the value of <code>SelectionStatus</code> to determine the
-     *            status of the selection element.
+     *            <i>SELECTION_ELEMENT</i> - A selection element such as an
+     *            option button (radio button) or a check box that's detected on
+     *            a document page. Use the value of <code>SelectionStatus</code>
+     *            to determine the status of the selection element.
      *            </p>
      *            </li>
      *            </ul>
@@ -623,14 +626,14 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -641,8 +644,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -652,36 +655,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -692,10 +694,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -708,14 +710,14 @@ public class Block implements Serializable {
      * SELECTION_ELEMENT
      *
      * @param blockType <p>
-     *            The type of text that's recognized in a block. In
-     *            text-detection operations, the following types are returned:
+     *            The type of text item that's recognized. In operations for
+     *            text detection, the following types are returned:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of the LINE Block objects that
-     *            are detected on a document page.
+     *            <i>PAGE</i> - Contains a list of the LINE <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
@@ -727,8 +729,8 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            </ul>
@@ -738,36 +740,38 @@ public class Block implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of child Block objects that are
-     *            detected on a document page.
+     *            <i>PAGE</i> - Contains a list of child <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects
-     *            for a field that's detected on a document page. Use the
-     *            <code>EntityType</code> field to determine if a KEY_VALUE_SET
-     *            object is a KEY Block object or a VALUE Block object.
+     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE
+     *            <code>Block</code> objects for linked text that's detected on
+     *            a document page. Use the <code>EntityType</code> field to
+     *            determine if a KEY_VALUE_SET object is a KEY
+     *            <code>Block</code> object or a VALUE <code>Block</code>
+     *            object.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>WORD</i> - A word detected on a document page. A word is
-     *            one or more ISO basic Latin script characters that aren't
-     *            separated by spaces that's detected on a document page.
+     *            <i>WORD</i> - A word that's detected on a document page. A
+     *            word is one or more ISO basic Latin script characters that
+     *            aren't separated by spaces.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <i>TABLE</i> - A table that's detected on a document page. A
-     *            table is any grid-based information with 2 or more rows or
-     *            columns with a cell span of 1 row and 1 column each.
+     *            table is grid-based information with two or more rows or
+     *            columns, with a cell span of one row and one column each.
      *            </p>
      *            </li>
      *            <li>
@@ -778,10 +782,10 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SELECTION_ELEMENT</i> - A selectable element such as a
-     *            radio button or checkbox that's detected on a document page.
-     *            Use the value of <code>SelectionStatus</code> to determine the
-     *            status of the selection element.
+     *            <i>SELECTION_ELEMENT</i> - A selection element such as an
+     *            option button (radio button) or a check box that's detected on
+     *            a document page. Use the value of <code>SelectionStatus</code>
+     *            to determine the status of the selection element.
      *            </p>
      *            </li>
      *            </ul>
@@ -796,14 +800,14 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -814,8 +818,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -825,36 +829,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -865,10 +868,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -878,14 +881,14 @@ public class Block implements Serializable {
      * SELECTION_ELEMENT
      *
      * @param blockType <p>
-     *            The type of text that's recognized in a block. In
-     *            text-detection operations, the following types are returned:
+     *            The type of text item that's recognized. In operations for
+     *            text detection, the following types are returned:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of the LINE Block objects that
-     *            are detected on a document page.
+     *            <i>PAGE</i> - Contains a list of the LINE <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
@@ -897,8 +900,8 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            </ul>
@@ -908,36 +911,38 @@ public class Block implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of child Block objects that are
-     *            detected on a document page.
+     *            <i>PAGE</i> - Contains a list of child <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects
-     *            for a field that's detected on a document page. Use the
-     *            <code>EntityType</code> field to determine if a KEY_VALUE_SET
-     *            object is a KEY Block object or a VALUE Block object.
+     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE
+     *            <code>Block</code> objects for linked text that's detected on
+     *            a document page. Use the <code>EntityType</code> field to
+     *            determine if a KEY_VALUE_SET object is a KEY
+     *            <code>Block</code> object or a VALUE <code>Block</code>
+     *            object.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>WORD</i> - A word detected on a document page. A word is
-     *            one or more ISO basic Latin script characters that aren't
-     *            separated by spaces that's detected on a document page.
+     *            <i>WORD</i> - A word that's detected on a document page. A
+     *            word is one or more ISO basic Latin script characters that
+     *            aren't separated by spaces.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <i>TABLE</i> - A table that's detected on a document page. A
-     *            table is any grid-based information with 2 or more rows or
-     *            columns with a cell span of 1 row and 1 column each.
+     *            table is grid-based information with two or more rows or
+     *            columns, with a cell span of one row and one column each.
      *            </p>
      *            </li>
      *            <li>
@@ -948,10 +953,10 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SELECTION_ELEMENT</i> - A selectable element such as a
-     *            radio button or checkbox that's detected on a document page.
-     *            Use the value of <code>SelectionStatus</code> to determine the
-     *            status of the selection element.
+     *            <i>SELECTION_ELEMENT</i> - A selection element such as an
+     *            option button (radio button) or a check box that's detected on
+     *            a document page. Use the value of <code>SelectionStatus</code>
+     *            to determine the status of the selection element.
      *            </p>
      *            </li>
      *            </ul>
@@ -963,14 +968,14 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The type of text that's recognized in a block. In text-detection
-     * operations, the following types are returned:
+     * The type of text item that's recognized. In operations for text
+     * detection, the following types are returned:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of the LINE Block objects that are detected
-     * on a document page.
+     * <i>PAGE</i> - Contains a list of the LINE <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
@@ -981,8 +986,8 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
+     * detected on a document page.
      * </p>
      * </li>
      * </ul>
@@ -992,36 +997,35 @@ public class Block implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <i>PAGE</i> - Contains a list of child Block objects that are detected on
-     * a document page.
+     * <i>PAGE</i> - Contains a list of child <code>Block</code> objects that
+     * are detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects for a field
-     * that's detected on a document page. Use the <code>EntityType</code> field
-     * to determine if a KEY_VALUE_SET object is a KEY Block object or a VALUE
-     * Block object.
+     * <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE <code>Block</code>
+     * objects for linked text that's detected on a document page. Use the
+     * <code>EntityType</code> field to determine if a KEY_VALUE_SET object is a
+     * KEY <code>Block</code> object or a VALUE <code>Block</code> object.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>WORD</i> - A word detected on a document page. A word is one or more
-     * ISO basic Latin script characters that aren't separated by spaces that's
+     * <i>WORD</i> - A word that's detected on a document page. A word is one or
+     * more ISO basic Latin script characters that aren't separated by spaces.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>LINE</i> - A string of tab-delimited, contiguous words that are
      * detected on a document page.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>LINE</i> - A string of tab-delimited, contiguous words that's detected
-     * on a document page.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>TABLE</i> - A table that's detected on a document page. A table is any
-     * grid-based information with 2 or more rows or columns with a cell span of
-     * 1 row and 1 column each.
+     * <i>TABLE</i> - A table that's detected on a document page. A table is
+     * grid-based information with two or more rows or columns, with a cell span
+     * of one row and one column each.
      * </p>
      * </li>
      * <li>
@@ -1032,10 +1036,10 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SELECTION_ELEMENT</i> - A selectable element such as a radio button or
-     * checkbox that's detected on a document page. Use the value of
-     * <code>SelectionStatus</code> to determine the status of the selection
-     * element.
+     * <i>SELECTION_ELEMENT</i> - A selection element such as an option button
+     * (radio button) or a check box that's detected on a document page. Use the
+     * value of <code>SelectionStatus</code> to determine the status of the
+     * selection element.
      * </p>
      * </li>
      * </ul>
@@ -1048,14 +1052,14 @@ public class Block implements Serializable {
      * SELECTION_ELEMENT
      *
      * @param blockType <p>
-     *            The type of text that's recognized in a block. In
-     *            text-detection operations, the following types are returned:
+     *            The type of text item that's recognized. In operations for
+     *            text detection, the following types are returned:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of the LINE Block objects that
-     *            are detected on a document page.
+     *            <i>PAGE</i> - Contains a list of the LINE <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
@@ -1067,8 +1071,8 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            </ul>
@@ -1078,36 +1082,38 @@ public class Block implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>PAGE</i> - Contains a list of child Block objects that are
-     *            detected on a document page.
+     *            <i>PAGE</i> - Contains a list of child <code>Block</code>
+     *            objects that are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE Block objects
-     *            for a field that's detected on a document page. Use the
-     *            <code>EntityType</code> field to determine if a KEY_VALUE_SET
-     *            object is a KEY Block object or a VALUE Block object.
+     *            <i>KEY_VALUE_SET</i> - Stores the KEY and VALUE
+     *            <code>Block</code> objects for linked text that's detected on
+     *            a document page. Use the <code>EntityType</code> field to
+     *            determine if a KEY_VALUE_SET object is a KEY
+     *            <code>Block</code> object or a VALUE <code>Block</code>
+     *            object.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>WORD</i> - A word detected on a document page. A word is
-     *            one or more ISO basic Latin script characters that aren't
-     *            separated by spaces that's detected on a document page.
+     *            <i>WORD</i> - A word that's detected on a document page. A
+     *            word is one or more ISO basic Latin script characters that
+     *            aren't separated by spaces.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>LINE</i> - A string of tab-delimited, contiguous words
-     *            that's detected on a document page.
+     *            <i>LINE</i> - A string of tab-delimited, contiguous words that
+     *            are detected on a document page.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <i>TABLE</i> - A table that's detected on a document page. A
-     *            table is any grid-based information with 2 or more rows or
-     *            columns with a cell span of 1 row and 1 column each.
+     *            table is grid-based information with two or more rows or
+     *            columns, with a cell span of one row and one column each.
      *            </p>
      *            </li>
      *            <li>
@@ -1118,10 +1124,10 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SELECTION_ELEMENT</i> - A selectable element such as a
-     *            radio button or checkbox that's detected on a document page.
-     *            Use the value of <code>SelectionStatus</code> to determine the
-     *            status of the selection element.
+     *            <i>SELECTION_ELEMENT</i> - A selection element such as an
+     *            option button (radio button) or a check box that's detected on
+     *            a document page. Use the value of <code>SelectionStatus</code>
+     *            to determine the status of the selection element.
      *            </p>
      *            </li>
      *            </ul>
@@ -1136,17 +1142,18 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The confidence that Amazon Textract has in the accuracy of the recognized
-     * text and the accuracy of the geometry points around the recognized text.
+     * The confidence score that Amazon Textract has in the accuracy of the
+     * recognized text and the accuracy of the geometry points around the
+     * recognized text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         The confidence that Amazon Textract has in the accuracy of the
-     *         recognized text and the accuracy of the geometry points around
-     *         the recognized text.
+     *         The confidence score that Amazon Textract has in the accuracy of
+     *         the recognized text and the accuracy of the geometry points
+     *         around the recognized text.
      *         </p>
      */
     public Float getConfidence() {
@@ -1155,17 +1162,18 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The confidence that Amazon Textract has in the accuracy of the recognized
-     * text and the accuracy of the geometry points around the recognized text.
+     * The confidence score that Amazon Textract has in the accuracy of the
+     * recognized text and the accuracy of the geometry points around the
+     * recognized text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            The confidence that Amazon Textract has in the accuracy of the
-     *            recognized text and the accuracy of the geometry points around
-     *            the recognized text.
+     *            The confidence score that Amazon Textract has in the accuracy
+     *            of the recognized text and the accuracy of the geometry points
+     *            around the recognized text.
      *            </p>
      */
     public void setConfidence(Float confidence) {
@@ -1174,8 +1182,9 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The confidence that Amazon Textract has in the accuracy of the recognized
-     * text and the accuracy of the geometry points around the recognized text.
+     * The confidence score that Amazon Textract has in the accuracy of the
+     * recognized text and the accuracy of the geometry points around the
+     * recognized text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1185,9 +1194,9 @@ public class Block implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            The confidence that Amazon Textract has in the accuracy of the
-     *            recognized text and the accuracy of the geometry points around
-     *            the recognized text.
+     *            The confidence score that Amazon Textract has in the accuracy
+     *            of the recognized text and the accuracy of the geometry points
+     *            around the recognized text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1385,17 +1394,20 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of rows that a table spans. <code>RowSpan</code> isn't
-     * returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of rows that a table cell spans. Currently this value is
+     * always 1, even if the number of rows spanned is greater than 1.
+     * <code>RowSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The number of rows that a table spans. <code>RowSpan</code> isn't
-     *         returned by <code>DetectDocumentText</code> and
+     *         The number of rows that a table cell spans. Currently this value
+     *         is always 1, even if the number of rows spanned is greater than
+     *         1. <code>RowSpan</code> isn't returned by
+     *         <code>DetectDocumentText</code> and
      *         <code>GetDocumentTextDetection</code>.
      *         </p>
      */
@@ -1405,17 +1417,20 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of rows that a table spans. <code>RowSpan</code> isn't
-     * returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of rows that a table cell spans. Currently this value is
+     * always 1, even if the number of rows spanned is greater than 1.
+     * <code>RowSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param rowSpan <p>
-     *            The number of rows that a table spans. <code>RowSpan</code>
-     *            isn't returned by <code>DetectDocumentText</code> and
+     *            The number of rows that a table cell spans. Currently this
+     *            value is always 1, even if the number of rows spanned is
+     *            greater than 1. <code>RowSpan</code> isn't returned by
+     *            <code>DetectDocumentText</code> and
      *            <code>GetDocumentTextDetection</code>.
      *            </p>
      */
@@ -1425,9 +1440,10 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of rows that a table spans. <code>RowSpan</code> isn't
-     * returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of rows that a table cell spans. Currently this value is
+     * always 1, even if the number of rows spanned is greater than 1.
+     * <code>RowSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1437,8 +1453,10 @@ public class Block implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param rowSpan <p>
-     *            The number of rows that a table spans. <code>RowSpan</code>
-     *            isn't returned by <code>DetectDocumentText</code> and
+     *            The number of rows that a table cell spans. Currently this
+     *            value is always 1, even if the number of rows spanned is
+     *            greater than 1. <code>RowSpan</code> isn't returned by
+     *            <code>DetectDocumentText</code> and
      *            <code>GetDocumentTextDetection</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1451,17 +1469,19 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of columns that a table cell spans. <code>ColumnSpan</code>
-     * isn't returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of columns that a table cell spans. Currently this value is
+     * always 1, even if the number of columns spanned is greater than 1.
+     * <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The number of columns that a table cell spans.
-     *         <code>ColumnSpan</code> isn't returned by
+     *         The number of columns that a table cell spans. Currently this
+     *         value is always 1, even if the number of columns spanned is
+     *         greater than 1. <code>ColumnSpan</code> isn't returned by
      *         <code>DetectDocumentText</code> and
      *         <code>GetDocumentTextDetection</code>.
      *         </p>
@@ -1472,17 +1492,19 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of columns that a table cell spans. <code>ColumnSpan</code>
-     * isn't returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of columns that a table cell spans. Currently this value is
+     * always 1, even if the number of columns spanned is greater than 1.
+     * <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param columnSpan <p>
-     *            The number of columns that a table cell spans.
-     *            <code>ColumnSpan</code> isn't returned by
+     *            The number of columns that a table cell spans. Currently this
+     *            value is always 1, even if the number of columns spanned is
+     *            greater than 1. <code>ColumnSpan</code> isn't returned by
      *            <code>DetectDocumentText</code> and
      *            <code>GetDocumentTextDetection</code>.
      *            </p>
@@ -1493,9 +1515,10 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The number of columns that a table cell spans. <code>ColumnSpan</code>
-     * isn't returned by <code>DetectDocumentText</code> and
-     * <code>GetDocumentTextDetection</code>.
+     * The number of columns that a table cell spans. Currently this value is
+     * always 1, even if the number of columns spanned is greater than 1.
+     * <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code>
+     * and <code>GetDocumentTextDetection</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1505,8 +1528,9 @@ public class Block implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param columnSpan <p>
-     *            The number of columns that a table cell spans.
-     *            <code>ColumnSpan</code> isn't returned by
+     *            The number of columns that a table cell spans. Currently this
+     *            value is always 1, even if the number of columns spanned is
+     *            greater than 1. <code>ColumnSpan</code> isn't returned by
      *            <code>DetectDocumentText</code> and
      *            <code>GetDocumentTextDetection</code>.
      *            </p>
@@ -1639,7 +1663,7 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * A list of child blocks of the current block. For example a LINE object
+     * A list of child blocks of the current block. For example, a LINE object
      * has child blocks for each WORD block that's part of the line of text.
      * There aren't Relationship objects in the list for relationships that
      * don't exist, such as when the current block has no child blocks. The list
@@ -1659,7 +1683,7 @@ public class Block implements Serializable {
      * </ul>
      *
      * @return <p>
-     *         A list of child blocks of the current block. For example a LINE
+     *         A list of child blocks of the current block. For example, a LINE
      *         object has child blocks for each WORD block that's part of the
      *         line of text. There aren't Relationship objects in the list for
      *         relationships that don't exist, such as when the current block
@@ -1684,7 +1708,7 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * A list of child blocks of the current block. For example a LINE object
+     * A list of child blocks of the current block. For example, a LINE object
      * has child blocks for each WORD block that's part of the line of text.
      * There aren't Relationship objects in the list for relationships that
      * don't exist, such as when the current block has no child blocks. The list
@@ -1704,7 +1728,7 @@ public class Block implements Serializable {
      * </ul>
      *
      * @param relationships <p>
-     *            A list of child blocks of the current block. For example a
+     *            A list of child blocks of the current block. For example, a
      *            LINE object has child blocks for each WORD block that's part
      *            of the line of text. There aren't Relationship objects in the
      *            list for relationships that don't exist, such as when the
@@ -1735,7 +1759,7 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * A list of child blocks of the current block. For example a LINE object
+     * A list of child blocks of the current block. For example, a LINE object
      * has child blocks for each WORD block that's part of the line of text.
      * There aren't Relationship objects in the list for relationships that
      * don't exist, such as when the current block has no child blocks. The list
@@ -1758,7 +1782,7 @@ public class Block implements Serializable {
      * together.
      *
      * @param relationships <p>
-     *            A list of child blocks of the current block. For example a
+     *            A list of child blocks of the current block. For example, a
      *            LINE object has child blocks for each WORD block that's part
      *            of the line of text. There aren't Relationship objects in the
      *            list for relationships that don't exist, such as when the
@@ -1792,7 +1816,7 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * A list of child blocks of the current block. For example a LINE object
+     * A list of child blocks of the current block. For example, a LINE object
      * has child blocks for each WORD block that's part of the line of text.
      * There aren't Relationship objects in the list for relationships that
      * don't exist, such as when the current block has no child blocks. The list
@@ -1815,7 +1839,7 @@ public class Block implements Serializable {
      * together.
      *
      * @param relationships <p>
-     *            A list of child blocks of the current block. For example a
+     *            A list of child blocks of the current block. For example, a
      *            LINE object has child blocks for each WORD block that's part
      *            of the line of text. There aren't Relationship objects in the
      *            list for relationships that don't exist, such as when the
@@ -2054,16 +2078,16 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SELECTED, NOT_SELECTED
      *
      * @return <p>
-     *         The selection status of a selectable element such as a radio
-     *         button or checkbox.
+     *         The selection status of a selection element, such as an option
+     *         button or check box.
      *         </p>
      * @see SelectionStatus
      */
@@ -2073,16 +2097,16 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SELECTED, NOT_SELECTED
      *
      * @param selectionStatus <p>
-     *            The selection status of a selectable element such as a radio
-     *            button or checkbox.
+     *            The selection status of a selection element, such as an option
+     *            button or check box.
      *            </p>
      * @see SelectionStatus
      */
@@ -2092,8 +2116,8 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -2103,8 +2127,8 @@ public class Block implements Serializable {
      * <b>Allowed Values: </b>SELECTED, NOT_SELECTED
      *
      * @param selectionStatus <p>
-     *            The selection status of a selectable element such as a radio
-     *            button or checkbox.
+     *            The selection status of a selection element, such as an option
+     *            button or check box.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2117,16 +2141,16 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SELECTED, NOT_SELECTED
      *
      * @param selectionStatus <p>
-     *            The selection status of a selectable element such as a radio
-     *            button or checkbox.
+     *            The selection status of a selection element, such as an option
+     *            button or check box.
      *            </p>
      * @see SelectionStatus
      */
@@ -2136,8 +2160,8 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The selection status of a selectable element such as a radio button or
-     * checkbox.
+     * The selection status of a selection element, such as an option button or
+     * check box.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -2147,8 +2171,8 @@ public class Block implements Serializable {
      * <b>Allowed Values: </b>SELECTED, NOT_SELECTED
      *
      * @param selectionStatus <p>
-     *            The selection status of a selectable element such as a radio
-     *            button or checkbox.
+     *            The selection status of a selection element, such as an option
+     *            button or check box.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2161,12 +2185,12 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The page in which a block was detected. <code>Page</code> is returned by
+     * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multi-page documents that are in PDF format. A scanned image (JPG/PNG),
-     * even if it contains multiple document pages, is always considered to be a
-     * single-page document and the value of <code>Page</code> is always 1.
-     * Synchronous operations don't return <code>Page</code> as every input
+     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
+     * even if it contains multiple document pages, is considered to be a
+     * single-page document. The value of <code>Page</code> is always 1.
+     * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
      * <p>
@@ -2174,14 +2198,14 @@ public class Block implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The page in which a block was detected. <code>Page</code> is
+     *         The page on which a block was detected. <code>Page</code> is
      *         returned by asynchronous operations. Page values greater than 1
-     *         are only returned for multi-page documents that are in PDF
-     *         format. A scanned image (JPG/PNG), even if it contains multiple
-     *         document pages, is always considered to be a single-page document
-     *         and the value of <code>Page</code> is always 1. Synchronous
-     *         operations don't return <code>Page</code> as every input document
-     *         is considered to be a single-page document.
+     *         are only returned for multipage documents that are in PDF format.
+     *         A scanned image (JPEG/PNG), even if it contains multiple document
+     *         pages, is considered to be a single-page document. The value of
+     *         <code>Page</code> is always 1. Synchronous operations don't
+     *         return <code>Page</code> because every input document is
+     *         considered to be a single-page document.
      *         </p>
      */
     public Integer getPage() {
@@ -2190,12 +2214,12 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The page in which a block was detected. <code>Page</code> is returned by
+     * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multi-page documents that are in PDF format. A scanned image (JPG/PNG),
-     * even if it contains multiple document pages, is always considered to be a
-     * single-page document and the value of <code>Page</code> is always 1.
-     * Synchronous operations don't return <code>Page</code> as every input
+     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
+     * even if it contains multiple document pages, is considered to be a
+     * single-page document. The value of <code>Page</code> is always 1.
+     * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
      * <p>
@@ -2203,15 +2227,15 @@ public class Block implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param page <p>
-     *            The page in which a block was detected. <code>Page</code> is
+     *            The page on which a block was detected. <code>Page</code> is
      *            returned by asynchronous operations. Page values greater than
-     *            1 are only returned for multi-page documents that are in PDF
-     *            format. A scanned image (JPG/PNG), even if it contains
-     *            multiple document pages, is always considered to be a
-     *            single-page document and the value of <code>Page</code> is
-     *            always 1. Synchronous operations don't return
-     *            <code>Page</code> as every input document is considered to be
-     *            a single-page document.
+     *            1 are only returned for multipage documents that are in PDF
+     *            format. A scanned image (JPEG/PNG), even if it contains
+     *            multiple document pages, is considered to be a single-page
+     *            document. The value of <code>Page</code> is always 1.
+     *            Synchronous operations don't return <code>Page</code> because
+     *            every input document is considered to be a single-page
+     *            document.
      *            </p>
      */
     public void setPage(Integer page) {
@@ -2220,12 +2244,12 @@ public class Block implements Serializable {
 
     /**
      * <p>
-     * The page in which a block was detected. <code>Page</code> is returned by
+     * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multi-page documents that are in PDF format. A scanned image (JPG/PNG),
-     * even if it contains multiple document pages, is always considered to be a
-     * single-page document and the value of <code>Page</code> is always 1.
-     * Synchronous operations don't return <code>Page</code> as every input
+     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
+     * even if it contains multiple document pages, is considered to be a
+     * single-page document. The value of <code>Page</code> is always 1.
+     * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
      * <p>
@@ -2236,15 +2260,15 @@ public class Block implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param page <p>
-     *            The page in which a block was detected. <code>Page</code> is
+     *            The page on which a block was detected. <code>Page</code> is
      *            returned by asynchronous operations. Page values greater than
-     *            1 are only returned for multi-page documents that are in PDF
-     *            format. A scanned image (JPG/PNG), even if it contains
-     *            multiple document pages, is always considered to be a
-     *            single-page document and the value of <code>Page</code> is
-     *            always 1. Synchronous operations don't return
-     *            <code>Page</code> as every input document is considered to be
-     *            a single-page document.
+     *            1 are only returned for multipage documents that are in PDF
+     *            format. A scanned image (JPEG/PNG), even if it contains
+     *            multiple document pages, is considered to be a single-page
+     *            document. The value of <code>Page</code> is always 1.
+     *            Synchronous operations don't return <code>Page</code> because
+     *            every input document is considered to be a single-page
+     *            document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

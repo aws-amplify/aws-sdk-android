@@ -21,29 +21,29 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DetectDocumentTextResult
+ * JSON unmarshaller for POJO HumanLoopConfig
  */
-public class DetectDocumentTextResultJsonUnmarshaller implements
-        Unmarshaller<DetectDocumentTextResult, JsonUnmarshallerContext> {
+class HumanLoopConfigJsonUnmarshaller implements
+        Unmarshaller<HumanLoopConfig, JsonUnmarshallerContext> {
 
-    public DetectDocumentTextResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DetectDocumentTextResult detectDocumentTextResult = new DetectDocumentTextResult();
-
+    public HumanLoopConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        HumanLoopConfig humanLoopConfig = new HumanLoopConfig();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DocumentMetadata")) {
-                detectDocumentTextResult.setDocumentMetadata(DocumentMetadataJsonUnmarshaller
-                        .getInstance()
+            if (name.equals("HumanLoopName")) {
+                humanLoopConfig.setHumanLoopName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Blocks")) {
-                detectDocumentTextResult.setBlocks(new ListUnmarshaller<Block>(
-                        BlockJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("DetectDocumentTextModelVersion")) {
-                detectDocumentTextResult.setDetectDocumentTextModelVersion(StringJsonUnmarshaller
+            } else if (name.equals("FlowDefinitionArn")) {
+                humanLoopConfig.setFlowDefinitionArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DataAttributes")) {
+                humanLoopConfig.setDataAttributes(HumanLoopDataAttributesJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
             } else {
@@ -51,15 +51,14 @@ public class DetectDocumentTextResultJsonUnmarshaller implements
             }
         }
         reader.endObject();
-
-        return detectDocumentTextResult;
+        return humanLoopConfig;
     }
 
-    private static DetectDocumentTextResultJsonUnmarshaller instance;
+    private static HumanLoopConfigJsonUnmarshaller instance;
 
-    public static DetectDocumentTextResultJsonUnmarshaller getInstance() {
+    public static HumanLoopConfigJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DetectDocumentTextResultJsonUnmarshaller();
+            instance = new HumanLoopConfigJsonUnmarshaller();
         return instance;
     }
 }

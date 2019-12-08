@@ -58,6 +58,10 @@ public class GetDocumentTextDetectionResultJsonUnmarshaller implements
                 getDocumentTextDetectionResult.setStatusMessage(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DetectDocumentTextModelVersion")) {
+                getDocumentTextDetectionResult
+                        .setDetectDocumentTextModelVersion(StringJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

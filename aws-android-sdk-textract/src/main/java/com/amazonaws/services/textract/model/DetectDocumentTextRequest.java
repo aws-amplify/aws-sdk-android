@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Detects text in the input document. Amazon Textract can detect lines of text
  * and the words that make up a line of text. The input document must be an
- * image in JPG or PNG format. <code>DetectDocumentText</code> returns the
+ * image in JPEG or PNG format. <code>DetectDocumentText</code> returns the
  * detected text in an array of <a>Block</a> objects.
  * </p>
  * <p>
@@ -48,11 +48,12 @@ public class DetectDocumentTextRequest extends AmazonWebServiceRequest implement
      * <p>
      * The input document as base64-encoded bytes or an Amazon S3 object. If you
      * use the AWS CLI to call Amazon Textract operations, you can't pass image
-     * bytes. The document must be an image in JPG or PNG format.
+     * bytes. The document must be an image in JPEG or PNG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes that are passed using the <code>Bytes</code>
+     * field.
      * </p>
      */
     private Document document;
@@ -61,22 +62,23 @@ public class DetectDocumentTextRequest extends AmazonWebServiceRequest implement
      * <p>
      * The input document as base64-encoded bytes or an Amazon S3 object. If you
      * use the AWS CLI to call Amazon Textract operations, you can't pass image
-     * bytes. The document must be an image in JPG or PNG format.
+     * bytes. The document must be an image in JPEG or PNG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes that are passed using the <code>Bytes</code>
+     * field.
      * </p>
      *
      * @return <p>
      *         The input document as base64-encoded bytes or an Amazon S3
      *         object. If you use the AWS CLI to call Amazon Textract
      *         operations, you can't pass image bytes. The document must be an
-     *         image in JPG or PNG format.
+     *         image in JPEG or PNG format.
      *         </p>
      *         <p>
-     *         If you are using an AWS SDK to call Amazon Textract, you might
-     *         not need to base64-encode image bytes passed using the
+     *         If you're using an AWS SDK to call Amazon Textract, you might not
+     *         need to base64-encode image bytes that are passed using the
      *         <code>Bytes</code> field.
      *         </p>
      */
@@ -88,23 +90,24 @@ public class DetectDocumentTextRequest extends AmazonWebServiceRequest implement
      * <p>
      * The input document as base64-encoded bytes or an Amazon S3 object. If you
      * use the AWS CLI to call Amazon Textract operations, you can't pass image
-     * bytes. The document must be an image in JPG or PNG format.
+     * bytes. The document must be an image in JPEG or PNG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes that are passed using the <code>Bytes</code>
+     * field.
      * </p>
      *
      * @param document <p>
      *            The input document as base64-encoded bytes or an Amazon S3
      *            object. If you use the AWS CLI to call Amazon Textract
      *            operations, you can't pass image bytes. The document must be
-     *            an image in JPG or PNG format.
+     *            an image in JPEG or PNG format.
      *            </p>
      *            <p>
-     *            If you are using an AWS SDK to call Amazon Textract, you might
-     *            not need to base64-encode image bytes passed using the
-     *            <code>Bytes</code> field.
+     *            If you're using an AWS SDK to call Amazon Textract, you might
+     *            not need to base64-encode image bytes that are passed using
+     *            the <code>Bytes</code> field.
      *            </p>
      */
     public void setDocument(Document document) {
@@ -115,11 +118,12 @@ public class DetectDocumentTextRequest extends AmazonWebServiceRequest implement
      * <p>
      * The input document as base64-encoded bytes or an Amazon S3 object. If you
      * use the AWS CLI to call Amazon Textract operations, you can't pass image
-     * bytes. The document must be an image in JPG or PNG format.
+     * bytes. The document must be an image in JPEG or PNG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes that are passed using the <code>Bytes</code>
+     * field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,12 +133,12 @@ public class DetectDocumentTextRequest extends AmazonWebServiceRequest implement
      *            The input document as base64-encoded bytes or an Amazon S3
      *            object. If you use the AWS CLI to call Amazon Textract
      *            operations, you can't pass image bytes. The document must be
-     *            an image in JPG or PNG format.
+     *            an image in JPEG or PNG format.
      *            </p>
      *            <p>
-     *            If you are using an AWS SDK to call Amazon Textract, you might
-     *            not need to base64-encode image bytes passed using the
-     *            <code>Bytes</code> field.
+     *            If you're using an AWS SDK to call Amazon Textract, you might
+     *            not need to base64-encode image bytes that are passed using
+     *            the <code>Bytes</code> field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
