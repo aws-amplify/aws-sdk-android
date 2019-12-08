@@ -214,6 +214,28 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     * <note>
+     * <p>
+     * Starting February 1, 2020, the value of
+     * <code>AccountRecoverySetting</code> will default to
+     * <code>verified_email</code> first and <code>verified_phone_number</code>
+     * as the second option for newly created user pools if no value is
+     * provided.
+     * </p>
+     * </note>
+     */
+    private AccountRecoverySettingType accountRecoverySetting;
+
+    /**
+     * <p>
      * A string used to name the user pool.
      * </p>
      * <p>
@@ -1535,6 +1557,147 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     * <note>
+     * <p>
+     * Starting February 1, 2020, the value of
+     * <code>AccountRecoverySetting</code> will default to
+     * <code>verified_email</code> first and <code>verified_phone_number</code>
+     * as the second option for newly created user pools if no value is
+     * provided.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Use this setting to define which verified available method a user
+     *         can use to recover their password when they call
+     *         <code>ForgotPassword</code>. It allows you to define a preferred
+     *         method when a user has more than one method available. With this
+     *         setting, SMS does not qualify for a valid password recovery
+     *         mechanism if the user also has SMS MFA enabled. In the absence of
+     *         this setting, Cognito uses the legacy behavior to determine the
+     *         recovery method where SMS is preferred over email.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Starting February 1, 2020, the value of
+     *         <code>AccountRecoverySetting</code> will default to
+     *         <code>verified_email</code> first and
+     *         <code>verified_phone_number</code> as the second option for newly
+     *         created user pools if no value is provided.
+     *         </p>
+     *         </note>
+     */
+    public AccountRecoverySettingType getAccountRecoverySetting() {
+        return accountRecoverySetting;
+    }
+
+    /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     * <note>
+     * <p>
+     * Starting February 1, 2020, the value of
+     * <code>AccountRecoverySetting</code> will default to
+     * <code>verified_email</code> first and <code>verified_phone_number</code>
+     * as the second option for newly created user pools if no value is
+     * provided.
+     * </p>
+     * </note>
+     *
+     * @param accountRecoverySetting <p>
+     *            Use this setting to define which verified available method a
+     *            user can use to recover their password when they call
+     *            <code>ForgotPassword</code>. It allows you to define a
+     *            preferred method when a user has more than one method
+     *            available. With this setting, SMS does not qualify for a valid
+     *            password recovery mechanism if the user also has SMS MFA
+     *            enabled. In the absence of this setting, Cognito uses the
+     *            legacy behavior to determine the recovery method where SMS is
+     *            preferred over email.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Starting February 1, 2020, the value of
+     *            <code>AccountRecoverySetting</code> will default to
+     *            <code>verified_email</code> first and
+     *            <code>verified_phone_number</code> as the second option for
+     *            newly created user pools if no value is provided.
+     *            </p>
+     *            </note>
+     */
+    public void setAccountRecoverySetting(AccountRecoverySettingType accountRecoverySetting) {
+        this.accountRecoverySetting = accountRecoverySetting;
+    }
+
+    /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     * <note>
+     * <p>
+     * Starting February 1, 2020, the value of
+     * <code>AccountRecoverySetting</code> will default to
+     * <code>verified_email</code> first and <code>verified_phone_number</code>
+     * as the second option for newly created user pools if no value is
+     * provided.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param accountRecoverySetting <p>
+     *            Use this setting to define which verified available method a
+     *            user can use to recover their password when they call
+     *            <code>ForgotPassword</code>. It allows you to define a
+     *            preferred method when a user has more than one method
+     *            available. With this setting, SMS does not qualify for a valid
+     *            password recovery mechanism if the user also has SMS MFA
+     *            enabled. In the absence of this setting, Cognito uses the
+     *            legacy behavior to determine the recovery method where SMS is
+     *            preferred over email.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Starting February 1, 2020, the value of
+     *            <code>AccountRecoverySetting</code> will default to
+     *            <code>verified_email</code> first and
+     *            <code>verified_phone_number</code> as the second option for
+     *            newly created user pools if no value is provided.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolRequest withAccountRecoverySetting(
+            AccountRecoverySettingType accountRecoverySetting) {
+        this.accountRecoverySetting = accountRecoverySetting;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1582,7 +1745,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
         if (getSchema() != null)
             sb.append("Schema: " + getSchema() + ",");
         if (getUserPoolAddOns() != null)
-            sb.append("UserPoolAddOns: " + getUserPoolAddOns());
+            sb.append("UserPoolAddOns: " + getUserPoolAddOns() + ",");
+        if (getAccountRecoverySetting() != null)
+            sb.append("AccountRecoverySetting: " + getAccountRecoverySetting());
         sb.append("}");
         return sb.toString();
     }
@@ -1640,6 +1805,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getSchema() == null) ? 0 : getSchema().hashCode());
         hashCode = prime * hashCode
                 + ((getUserPoolAddOns() == null) ? 0 : getUserPoolAddOns().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAccountRecoverySetting() == null) ? 0 : getAccountRecoverySetting()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1750,6 +1919,11 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getUserPoolAddOns() != null
                 && other.getUserPoolAddOns().equals(this.getUserPoolAddOns()) == false)
+            return false;
+        if (other.getAccountRecoverySetting() == null ^ this.getAccountRecoverySetting() == null)
+            return false;
+        if (other.getAccountRecoverySetting() != null
+                && other.getAccountRecoverySetting().equals(this.getAccountRecoverySetting()) == false)
             return false;
         return true;
     }
