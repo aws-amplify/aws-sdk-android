@@ -35,21 +35,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectModerationLabelsRequest
+ * JSON request marshaller for DescribeProjectVersionsRequest
  */
-public class DetectModerationLabelsRequestMarshaller implements
-        Marshaller<Request<DetectModerationLabelsRequest>, DetectModerationLabelsRequest> {
+public class DescribeProjectVersionsRequestMarshaller implements
+        Marshaller<Request<DescribeProjectVersionsRequest>, DescribeProjectVersionsRequest> {
 
-    public Request<DetectModerationLabelsRequest> marshall(
-            DetectModerationLabelsRequest detectModerationLabelsRequest) {
-        if (detectModerationLabelsRequest == null) {
+    public Request<DescribeProjectVersionsRequest> marshall(
+            DescribeProjectVersionsRequest describeProjectVersionsRequest) {
+        if (describeProjectVersionsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectModerationLabelsRequest)");
+                    "Invalid argument passed to marshall(DescribeProjectVersionsRequest)");
         }
 
-        Request<DetectModerationLabelsRequest> request = new DefaultRequest<DetectModerationLabelsRequest>(
-                detectModerationLabelsRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectModerationLabels";
+        Request<DescribeProjectVersionsRequest> request = new DefaultRequest<DescribeProjectVersionsRequest>(
+                describeProjectVersionsRequest, "AmazonRekognition");
+        String target = "RekognitionService.DescribeProjectVersions";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -60,21 +60,32 @@ public class DetectModerationLabelsRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectModerationLabelsRequest.getImage() != null) {
-                Image image = detectModerationLabelsRequest.getImage();
-                jsonWriter.name("Image");
-                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
+            if (describeProjectVersionsRequest.getProjectArn() != null) {
+                String projectArn = describeProjectVersionsRequest.getProjectArn();
+                jsonWriter.name("ProjectArn");
+                jsonWriter.value(projectArn);
             }
-            if (detectModerationLabelsRequest.getMinConfidence() != null) {
-                Float minConfidence = detectModerationLabelsRequest.getMinConfidence();
-                jsonWriter.name("MinConfidence");
-                jsonWriter.value(minConfidence);
+            if (describeProjectVersionsRequest.getVersionNames() != null) {
+                java.util.List<String> versionNames = describeProjectVersionsRequest
+                        .getVersionNames();
+                jsonWriter.name("VersionNames");
+                jsonWriter.beginArray();
+                for (String versionNamesItem : versionNames) {
+                    if (versionNamesItem != null) {
+                        jsonWriter.value(versionNamesItem);
+                    }
+                }
+                jsonWriter.endArray();
             }
-            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
-                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
-                        .getHumanLoopConfig();
-                jsonWriter.name("HumanLoopConfig");
-                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            if (describeProjectVersionsRequest.getNextToken() != null) {
+                String nextToken = describeProjectVersionsRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
+            }
+            if (describeProjectVersionsRequest.getMaxResults() != null) {
+                Integer maxResults = describeProjectVersionsRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
             jsonWriter.endObject();

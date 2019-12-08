@@ -35,21 +35,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectModerationLabelsRequest
+ * JSON request marshaller for DetectCustomLabelsRequest
  */
-public class DetectModerationLabelsRequestMarshaller implements
-        Marshaller<Request<DetectModerationLabelsRequest>, DetectModerationLabelsRequest> {
+public class DetectCustomLabelsRequestMarshaller implements
+        Marshaller<Request<DetectCustomLabelsRequest>, DetectCustomLabelsRequest> {
 
-    public Request<DetectModerationLabelsRequest> marshall(
-            DetectModerationLabelsRequest detectModerationLabelsRequest) {
-        if (detectModerationLabelsRequest == null) {
+    public Request<DetectCustomLabelsRequest> marshall(
+            DetectCustomLabelsRequest detectCustomLabelsRequest) {
+        if (detectCustomLabelsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectModerationLabelsRequest)");
+                    "Invalid argument passed to marshall(DetectCustomLabelsRequest)");
         }
 
-        Request<DetectModerationLabelsRequest> request = new DefaultRequest<DetectModerationLabelsRequest>(
-                detectModerationLabelsRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectModerationLabels";
+        Request<DetectCustomLabelsRequest> request = new DefaultRequest<DetectCustomLabelsRequest>(
+                detectCustomLabelsRequest, "AmazonRekognition");
+        String target = "RekognitionService.DetectCustomLabels";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -60,21 +60,25 @@ public class DetectModerationLabelsRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectModerationLabelsRequest.getImage() != null) {
-                Image image = detectModerationLabelsRequest.getImage();
+            if (detectCustomLabelsRequest.getProjectVersionArn() != null) {
+                String projectVersionArn = detectCustomLabelsRequest.getProjectVersionArn();
+                jsonWriter.name("ProjectVersionArn");
+                jsonWriter.value(projectVersionArn);
+            }
+            if (detectCustomLabelsRequest.getImage() != null) {
+                Image image = detectCustomLabelsRequest.getImage();
                 jsonWriter.name("Image");
                 ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
             }
-            if (detectModerationLabelsRequest.getMinConfidence() != null) {
-                Float minConfidence = detectModerationLabelsRequest.getMinConfidence();
+            if (detectCustomLabelsRequest.getMaxResults() != null) {
+                Integer maxResults = detectCustomLabelsRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
+            if (detectCustomLabelsRequest.getMinConfidence() != null) {
+                Float minConfidence = detectCustomLabelsRequest.getMinConfidence();
                 jsonWriter.name("MinConfidence");
                 jsonWriter.value(minConfidence);
-            }
-            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
-                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
-                        .getHumanLoopConfig();
-                jsonWriter.name("HumanLoopConfig");
-                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

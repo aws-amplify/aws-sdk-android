@@ -35,21 +35,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectModerationLabelsRequest
+ * JSON request marshaller for StartProjectVersionRequest
  */
-public class DetectModerationLabelsRequestMarshaller implements
-        Marshaller<Request<DetectModerationLabelsRequest>, DetectModerationLabelsRequest> {
+public class StartProjectVersionRequestMarshaller implements
+        Marshaller<Request<StartProjectVersionRequest>, StartProjectVersionRequest> {
 
-    public Request<DetectModerationLabelsRequest> marshall(
-            DetectModerationLabelsRequest detectModerationLabelsRequest) {
-        if (detectModerationLabelsRequest == null) {
+    public Request<StartProjectVersionRequest> marshall(
+            StartProjectVersionRequest startProjectVersionRequest) {
+        if (startProjectVersionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectModerationLabelsRequest)");
+                    "Invalid argument passed to marshall(StartProjectVersionRequest)");
         }
 
-        Request<DetectModerationLabelsRequest> request = new DefaultRequest<DetectModerationLabelsRequest>(
-                detectModerationLabelsRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectModerationLabels";
+        Request<StartProjectVersionRequest> request = new DefaultRequest<StartProjectVersionRequest>(
+                startProjectVersionRequest, "AmazonRekognition");
+        String target = "RekognitionService.StartProjectVersion";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -60,21 +60,15 @@ public class DetectModerationLabelsRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectModerationLabelsRequest.getImage() != null) {
-                Image image = detectModerationLabelsRequest.getImage();
-                jsonWriter.name("Image");
-                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
+            if (startProjectVersionRequest.getProjectVersionArn() != null) {
+                String projectVersionArn = startProjectVersionRequest.getProjectVersionArn();
+                jsonWriter.name("ProjectVersionArn");
+                jsonWriter.value(projectVersionArn);
             }
-            if (detectModerationLabelsRequest.getMinConfidence() != null) {
-                Float minConfidence = detectModerationLabelsRequest.getMinConfidence();
-                jsonWriter.name("MinConfidence");
-                jsonWriter.value(minConfidence);
-            }
-            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
-                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
-                        .getHumanLoopConfig();
-                jsonWriter.name("HumanLoopConfig");
-                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            if (startProjectVersionRequest.getMinInferenceUnits() != null) {
+                Integer minInferenceUnits = startProjectVersionRequest.getMinInferenceUnits();
+                jsonWriter.name("MinInferenceUnits");
+                jsonWriter.value(minInferenceUnits);
             }
 
             jsonWriter.endObject();
