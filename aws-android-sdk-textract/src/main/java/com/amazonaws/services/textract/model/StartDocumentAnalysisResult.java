@@ -22,7 +22,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * <p>
      * The identifier for the document text detection job. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentAnalysis</code>.
+     * <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +36,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * <p>
      * The identifier for the document text detection job. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentAnalysis</code>.
+     * <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,7 +47,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * @return <p>
      *         The identifier for the document text detection job. Use
      *         <code>JobId</code> to identify the job in a subsequent call to
-     *         <code>GetDocumentAnalysis</code>.
+     *         <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is
+     *         only valid for 7 days.
      *         </p>
      */
     public String getJobId() {
@@ -56,7 +59,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * <p>
      * The identifier for the document text detection job. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentAnalysis</code>.
+     * <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,7 +70,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * @param jobId <p>
      *            The identifier for the document text detection job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
-     *            <code>GetDocumentAnalysis</code>.
+     *            <code>GetDocumentAnalysis</code>. A <code>JobId</code> value
+     *            is only valid for 7 days.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -77,7 +82,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * <p>
      * The identifier for the document text detection job. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentAnalysis</code>.
+     * <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +96,8 @@ public class StartDocumentAnalysisResult implements Serializable {
      * @param jobId <p>
      *            The identifier for the document text detection job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
-     *            <code>GetDocumentAnalysis</code>.
+     *            <code>GetDocumentAnalysis</code>. A <code>JobId</code> value
+     *            is only valid for 7 days.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

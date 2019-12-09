@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class DetectDocumentTextResult implements Serializable {
     /**
      * <p>
-     * Metadata about the document. Contains the number of pages that are
+     * Metadata about the document. It contains the number of pages that are
      * detected in the document.
      * </p>
      */
@@ -28,19 +28,25 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * An array of Block objects containing the text detected in the document.
+     * An array of <code>Block</code> objects that contain the text that's
+     * detected in the document.
      * </p>
      */
     private java.util.List<Block> blocks;
 
     /**
+     * <p/>
+     */
+    private String detectDocumentTextModelVersion;
+
+    /**
      * <p>
-     * Metadata about the document. Contains the number of pages that are
+     * Metadata about the document. It contains the number of pages that are
      * detected in the document.
      * </p>
      *
      * @return <p>
-     *         Metadata about the document. Contains the number of pages that
+     *         Metadata about the document. It contains the number of pages that
      *         are detected in the document.
      *         </p>
      */
@@ -50,13 +56,13 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * Metadata about the document. Contains the number of pages that are
+     * Metadata about the document. It contains the number of pages that are
      * detected in the document.
      * </p>
      *
      * @param documentMetadata <p>
-     *            Metadata about the document. Contains the number of pages that
-     *            are detected in the document.
+     *            Metadata about the document. It contains the number of pages
+     *            that are detected in the document.
      *            </p>
      */
     public void setDocumentMetadata(DocumentMetadata documentMetadata) {
@@ -65,7 +71,7 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * Metadata about the document. Contains the number of pages that are
+     * Metadata about the document. It contains the number of pages that are
      * detected in the document.
      * </p>
      * <p>
@@ -73,8 +79,8 @@ public class DetectDocumentTextResult implements Serializable {
      * together.
      *
      * @param documentMetadata <p>
-     *            Metadata about the document. Contains the number of pages that
-     *            are detected in the document.
+     *            Metadata about the document. It contains the number of pages
+     *            that are detected in the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -86,12 +92,13 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * An array of Block objects containing the text detected in the document.
+     * An array of <code>Block</code> objects that contain the text that's
+     * detected in the document.
      * </p>
      *
      * @return <p>
-     *         An array of Block objects containing the text detected in the
-     *         document.
+     *         An array of <code>Block</code> objects that contain the text
+     *         that's detected in the document.
      *         </p>
      */
     public java.util.List<Block> getBlocks() {
@@ -100,12 +107,13 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * An array of Block objects containing the text detected in the document.
+     * An array of <code>Block</code> objects that contain the text that's
+     * detected in the document.
      * </p>
      *
      * @param blocks <p>
-     *            An array of Block objects containing the text detected in the
-     *            document.
+     *            An array of <code>Block</code> objects that contain the text
+     *            that's detected in the document.
      *            </p>
      */
     public void setBlocks(java.util.Collection<Block> blocks) {
@@ -119,15 +127,16 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * An array of Block objects containing the text detected in the document.
+     * An array of <code>Block</code> objects that contain the text that's
+     * detected in the document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            An array of Block objects containing the text detected in the
-     *            document.
+     *            An array of <code>Block</code> objects that contain the text
+     *            that's detected in the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,21 +153,56 @@ public class DetectDocumentTextResult implements Serializable {
 
     /**
      * <p>
-     * An array of Block objects containing the text detected in the document.
+     * An array of <code>Block</code> objects that contain the text that's
+     * detected in the document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            An array of Block objects containing the text detected in the
-     *            document.
+     *            An array of <code>Block</code> objects that contain the text
+     *            that's detected in the document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DetectDocumentTextResult withBlocks(java.util.Collection<Block> blocks) {
         setBlocks(blocks);
+        return this;
+    }
+
+    /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public String getDetectDocumentTextModelVersion() {
+        return detectDocumentTextModelVersion;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param detectDocumentTextModelVersion <p/>
+     */
+    public void setDetectDocumentTextModelVersion(String detectDocumentTextModelVersion) {
+        this.detectDocumentTextModelVersion = detectDocumentTextModelVersion;
+    }
+
+    /**
+     * <p/>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param detectDocumentTextModelVersion <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectDocumentTextResult withDetectDocumentTextModelVersion(
+            String detectDocumentTextModelVersion) {
+        this.detectDocumentTextModelVersion = detectDocumentTextModelVersion;
         return this;
     }
 
@@ -176,7 +220,9 @@ public class DetectDocumentTextResult implements Serializable {
         if (getDocumentMetadata() != null)
             sb.append("DocumentMetadata: " + getDocumentMetadata() + ",");
         if (getBlocks() != null)
-            sb.append("Blocks: " + getBlocks());
+            sb.append("Blocks: " + getBlocks() + ",");
+        if (getDetectDocumentTextModelVersion() != null)
+            sb.append("DetectDocumentTextModelVersion: " + getDetectDocumentTextModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -189,6 +235,10 @@ public class DetectDocumentTextResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getDocumentMetadata() == null) ? 0 : getDocumentMetadata().hashCode());
         hashCode = prime * hashCode + ((getBlocks() == null) ? 0 : getBlocks().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDetectDocumentTextModelVersion() == null) ? 0
+                        : getDetectDocumentTextModelVersion().hashCode());
         return hashCode;
     }
 
@@ -211,6 +261,13 @@ public class DetectDocumentTextResult implements Serializable {
         if (other.getBlocks() == null ^ this.getBlocks() == null)
             return false;
         if (other.getBlocks() != null && other.getBlocks().equals(this.getBlocks()) == false)
+            return false;
+        if (other.getDetectDocumentTextModelVersion() == null
+                ^ this.getDetectDocumentTextModelVersion() == null)
+            return false;
+        if (other.getDetectDocumentTextModelVersion() != null
+                && other.getDetectDocumentTextModelVersion().equals(
+                        this.getDetectDocumentTextModelVersion()) == false)
             return false;
         return true;
     }

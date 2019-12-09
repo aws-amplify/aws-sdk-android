@@ -27,10 +27,24 @@ public class AnalyzeDocumentResult implements Serializable {
 
     /**
      * <p>
-     * The text that's detected and analyzed by <code>AnalyzeDocument</code>.
+     * The items that are detected and analyzed by <code>AnalyzeDocument</code>.
      * </p>
      */
     private java.util.List<Block> blocks;
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     */
+    private HumanLoopActivationOutput humanLoopActivationOutput;
+
+    /**
+     * <p>
+     * The version of the model used to analyze the document.
+     * </p>
+     */
+    private String analyzeDocumentModelVersion;
 
     /**
      * <p>
@@ -82,11 +96,11 @@ public class AnalyzeDocumentResult implements Serializable {
 
     /**
      * <p>
-     * The text that's detected and analyzed by <code>AnalyzeDocument</code>.
+     * The items that are detected and analyzed by <code>AnalyzeDocument</code>.
      * </p>
      *
      * @return <p>
-     *         The text that's detected and analyzed by
+     *         The items that are detected and analyzed by
      *         <code>AnalyzeDocument</code>.
      *         </p>
      */
@@ -96,11 +110,11 @@ public class AnalyzeDocumentResult implements Serializable {
 
     /**
      * <p>
-     * The text that's detected and analyzed by <code>AnalyzeDocument</code>.
+     * The items that are detected and analyzed by <code>AnalyzeDocument</code>.
      * </p>
      *
      * @param blocks <p>
-     *            The text that's detected and analyzed by
+     *            The items that are detected and analyzed by
      *            <code>AnalyzeDocument</code>.
      *            </p>
      */
@@ -115,14 +129,14 @@ public class AnalyzeDocumentResult implements Serializable {
 
     /**
      * <p>
-     * The text that's detected and analyzed by <code>AnalyzeDocument</code>.
+     * The items that are detected and analyzed by <code>AnalyzeDocument</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            The text that's detected and analyzed by
+     *            The items that are detected and analyzed by
      *            <code>AnalyzeDocument</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -140,14 +154,14 @@ public class AnalyzeDocumentResult implements Serializable {
 
     /**
      * <p>
-     * The text that's detected and analyzed by <code>AnalyzeDocument</code>.
+     * The items that are detected and analyzed by <code>AnalyzeDocument</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            The text that's detected and analyzed by
+     *            The items that are detected and analyzed by
      *            <code>AnalyzeDocument</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -155,6 +169,97 @@ public class AnalyzeDocumentResult implements Serializable {
      */
     public AnalyzeDocumentResult withBlocks(java.util.Collection<Block> blocks) {
         setBlocks(blocks);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @return <p>
+     *         Shows the results of the human in the loop evaluation.
+     *         </p>
+     */
+    public HumanLoopActivationOutput getHumanLoopActivationOutput() {
+        return humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     */
+    public void setHumanLoopActivationOutput(HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AnalyzeDocumentResult withHumanLoopActivationOutput(
+            HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The version of the model used to analyze the document.
+     * </p>
+     *
+     * @return <p>
+     *         The version of the model used to analyze the document.
+     *         </p>
+     */
+    public String getAnalyzeDocumentModelVersion() {
+        return analyzeDocumentModelVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the model used to analyze the document.
+     * </p>
+     *
+     * @param analyzeDocumentModelVersion <p>
+     *            The version of the model used to analyze the document.
+     *            </p>
+     */
+    public void setAnalyzeDocumentModelVersion(String analyzeDocumentModelVersion) {
+        this.analyzeDocumentModelVersion = analyzeDocumentModelVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the model used to analyze the document.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyzeDocumentModelVersion <p>
+     *            The version of the model used to analyze the document.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AnalyzeDocumentResult withAnalyzeDocumentModelVersion(String analyzeDocumentModelVersion) {
+        this.analyzeDocumentModelVersion = analyzeDocumentModelVersion;
         return this;
     }
 
@@ -172,7 +277,11 @@ public class AnalyzeDocumentResult implements Serializable {
         if (getDocumentMetadata() != null)
             sb.append("DocumentMetadata: " + getDocumentMetadata() + ",");
         if (getBlocks() != null)
-            sb.append("Blocks: " + getBlocks());
+            sb.append("Blocks: " + getBlocks() + ",");
+        if (getHumanLoopActivationOutput() != null)
+            sb.append("HumanLoopActivationOutput: " + getHumanLoopActivationOutput() + ",");
+        if (getAnalyzeDocumentModelVersion() != null)
+            sb.append("AnalyzeDocumentModelVersion: " + getAnalyzeDocumentModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -185,6 +294,14 @@ public class AnalyzeDocumentResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getDocumentMetadata() == null) ? 0 : getDocumentMetadata().hashCode());
         hashCode = prime * hashCode + ((getBlocks() == null) ? 0 : getBlocks().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getHumanLoopActivationOutput() == null) ? 0 : getHumanLoopActivationOutput()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAnalyzeDocumentModelVersion() == null) ? 0
+                        : getAnalyzeDocumentModelVersion().hashCode());
         return hashCode;
     }
 
@@ -207,6 +324,19 @@ public class AnalyzeDocumentResult implements Serializable {
         if (other.getBlocks() == null ^ this.getBlocks() == null)
             return false;
         if (other.getBlocks() != null && other.getBlocks().equals(this.getBlocks()) == false)
+            return false;
+        if (other.getHumanLoopActivationOutput() == null
+                ^ this.getHumanLoopActivationOutput() == null)
+            return false;
+        if (other.getHumanLoopActivationOutput() != null
+                && other.getHumanLoopActivationOutput().equals(this.getHumanLoopActivationOutput()) == false)
+            return false;
+        if (other.getAnalyzeDocumentModelVersion() == null
+                ^ this.getAnalyzeDocumentModelVersion() == null)
+            return false;
+        if (other.getAnalyzeDocumentModelVersion() != null
+                && other.getAnalyzeDocumentModelVersion().equals(
+                        this.getAnalyzeDocumentModelVersion()) == false)
             return false;
         return true;
     }

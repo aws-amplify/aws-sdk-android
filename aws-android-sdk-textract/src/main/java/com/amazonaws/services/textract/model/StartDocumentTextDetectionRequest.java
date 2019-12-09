@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <code>StartDocumentTextDetection</code> can analyze text in documents that
- * are in JPG, PNG, and PDF format. The documents are stored in an Amazon S3
+ * are in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3
  * bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name
  * of the document.
  * </p>
@@ -62,7 +62,9 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * use the same token with multiple <code>StartDocumentTextDetection</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,10 +75,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +146,9 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * use the same token with multiple <code>StartDocumentTextDetection</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -157,7 +161,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      *         <code>StartDocumentTextDetection</code> requests, the same
      *         <code>JobId</code> is returned. Use
      *         <code>ClientRequestToken</code> to prevent the same job from
-     *         being accidentally started more than once.
+     *         being accidentally started more than once. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *         >Calling Amazon Textract Asynchronous Operations</a>.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -170,7 +177,9 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * use the same token with multiple <code>StartDocumentTextDetection</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -183,7 +192,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      *            <code>StartDocumentTextDetection</code> requests, the same
      *            <code>JobId</code> is returned. Use
      *            <code>ClientRequestToken</code> to prevent the same job from
-     *            being accidentally started more than once.
+     *            being accidentally started more than once. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *            >Calling Amazon Textract Asynchronous Operations</a>.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -196,7 +208,9 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * use the same token with multiple <code>StartDocumentTextDetection</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -212,7 +226,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      *            <code>StartDocumentTextDetection</code> requests, the same
      *            <code>JobId</code> is returned. Use
      *            <code>ClientRequestToken</code> to prevent the same job from
-     *            being accidentally started more than once.
+     *            being accidentally started more than once. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *            >Calling Amazon Textract Asynchronous Operations</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -224,10 +241,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -235,11 +252,11 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @return <p>
-     *         An identifier you specify that's included in the completion
-     *         notification that's published to the Amazon SNS topic. For
-     *         example, you can use <code>JobTag</code> to identify the type of
-     *         document, such as a tax form or a receipt, that the completion
-     *         notification corresponds to.
+     *         An identifier that you specify that's included in the completion
+     *         notification published to the Amazon SNS topic. For example, you
+     *         can use <code>JobTag</code> to identify the type of document that
+     *         the completion notification corresponds to (such as a tax form or
+     *         a receipt).
      *         </p>
      */
     public String getJobTag() {
@@ -248,10 +265,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -259,11 +276,11 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            An identifier you specify that's included in the completion
-     *            notification that's published to the Amazon SNS topic. For
+     *            An identifier that you specify that's included in the
+     *            completion notification published to the Amazon SNS topic. For
      *            example, you can use <code>JobTag</code> to identify the type
-     *            of document, such as a tax form or a receipt, that the
-     *            completion notification corresponds to.
+     *            of document that the completion notification corresponds to
+     *            (such as a tax form or a receipt).
      *            </p>
      */
     public void setJobTag(String jobTag) {
@@ -272,10 +289,10 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -286,11 +303,11 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            An identifier you specify that's included in the completion
-     *            notification that's published to the Amazon SNS topic. For
+     *            An identifier that you specify that's included in the
+     *            completion notification published to the Amazon SNS topic. For
      *            example, you can use <code>JobTag</code> to identify the type
-     *            of document, such as a tax form or a receipt, that the
-     *            completion notification corresponds to.
+     *            of document that the completion notification corresponds to
+     *            (such as a tax form or a receipt).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
