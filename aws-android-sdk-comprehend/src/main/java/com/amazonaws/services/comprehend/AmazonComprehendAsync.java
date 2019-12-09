@@ -337,6 +337,65 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Creates a new document classification request to analyze a single
+     * document in real-time, using a previously created and trained custom
+     * model and an endpoint.
+     * </p>
+     * 
+     * @param classifyDocumentRequest
+     * @return A Java Future object containing the response from the
+     *         ClassifyDocument service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceUnavailableException
+     * @throws TextSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ClassifyDocumentResult> classifyDocumentAsync(
+            ClassifyDocumentRequest classifyDocumentRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new document classification request to analyze a single
+     * document in real-time, using a previously created and trained custom
+     * model and an endpoint.
+     * </p>
+     * 
+     * @param classifyDocumentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ClassifyDocument service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceUnavailableException
+     * @throws TextSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ClassifyDocumentResult> classifyDocumentAsync(
+            ClassifyDocumentRequest classifyDocumentRequest,
+            AsyncHandler<ClassifyDocumentRequest, ClassifyDocumentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a new document classifier that you can use to categorize
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
@@ -406,6 +465,67 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<CreateDocumentClassifierResult> createDocumentClassifierAsync(
             CreateDocumentClassifierRequest createDocumentClassifierRequest,
             AsyncHandler<CreateDocumentClassifierRequest, CreateDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a model-specific endpoint for synchronous inference for a
+     * previously trained custom model
+     * </p>
+     * 
+     * @param createEndpointRequest
+     * @return A Java Future object containing the response from the
+     *         CreateEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEndpointResult> createEndpointAsync(CreateEndpointRequest createEndpointRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a model-specific endpoint for synchronous inference for a
+     * previously trained custom model
+     * </p>
+     * 
+     * @param createEndpointRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEndpointResult> createEndpointAsync(CreateEndpointRequest createEndpointRequest,
+            AsyncHandler<CreateEndpointRequest, CreateEndpointResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -554,6 +674,61 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<DeleteDocumentClassifierResult> deleteDocumentClassifierAsync(
             DeleteDocumentClassifierRequest deleteDocumentClassifierRequest,
             AsyncHandler<DeleteDocumentClassifierRequest, DeleteDocumentClassifierResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a model-specific endpoint for a previously-trained custom model.
+     * All endpoints must be deleted in order for the model to be deleted.
+     * </p>
+     * 
+     * @param deleteEndpointRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteEndpointResult> deleteEndpointAsync(DeleteEndpointRequest deleteEndpointRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a model-specific endpoint for a previously-trained custom model.
+     * All endpoints must be deleted in order for the model to be deleted.
+     * </p>
+     * 
+     * @param deleteEndpointRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteEndpointResult> deleteEndpointAsync(DeleteEndpointRequest deleteEndpointRequest,
+            AsyncHandler<DeleteEndpointRequest, DeleteEndpointResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -804,6 +979,63 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<DescribeDominantLanguageDetectionJobResult> describeDominantLanguageDetectionJobAsync(
             DescribeDominantLanguageDetectionJobRequest describeDominantLanguageDetectionJobRequest,
             AsyncHandler<DescribeDominantLanguageDetectionJobRequest, DescribeDominantLanguageDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a specific endpoint. Use this
+     * operation to get the status of an endpoint.
+     * </p>
+     * 
+     * @param describeEndpointRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoint service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEndpointResult> describeEndpointAsync(
+            DescribeEndpointRequest describeEndpointRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a specific endpoint. Use this
+     * operation to get the status of an endpoint.
+     * </p>
+     * 
+     * @param describeEndpointRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoint service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEndpointResult> describeEndpointAsync(
+            DescribeEndpointRequest describeEndpointRequest,
+            AsyncHandler<DescribeEndpointRequest, DescribeEndpointResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1534,6 +1766,55 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<ListDominantLanguageDetectionJobsResult> listDominantLanguageDetectionJobsAsync(
             ListDominantLanguageDetectionJobsRequest listDominantLanguageDetectionJobsRequest,
             AsyncHandler<ListDominantLanguageDetectionJobsRequest, ListDominantLanguageDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of all existing endpoints that you've created.
+     * </p>
+     * 
+     * @param listEndpointsRequest
+     * @return A Java Future object containing the response from the
+     *         ListEndpoints service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEndpointsResult> listEndpointsAsync(ListEndpointsRequest listEndpointsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of all existing endpoints that you've created.
+     * </p>
+     * 
+     * @param listEndpointsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListEndpoints service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEndpointsResult> listEndpointsAsync(ListEndpointsRequest listEndpointsRequest,
+            AsyncHandler<ListEndpointsRequest, ListEndpointsResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2836,6 +3117,63 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      */
     Future<UntagResourceResult> untagResourceAsync(UntagResourceRequest untagResourceRequest,
             AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates information about the specified endpoint.
+     * </p>
+     * 
+     * @param updateEndpointRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateEndpointResult> updateEndpointAsync(UpdateEndpointRequest updateEndpointRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates information about the specified endpoint.
+     * </p>
+     * 
+     * @param updateEndpointRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateEndpoint service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateEndpointResult> updateEndpointAsync(UpdateEndpointRequest updateEndpointRequest,
+            AsyncHandler<UpdateEndpointRequest, UpdateEndpointResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }

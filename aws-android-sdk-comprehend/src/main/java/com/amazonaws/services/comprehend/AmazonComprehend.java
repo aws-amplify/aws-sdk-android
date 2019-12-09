@@ -227,6 +227,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Creates a new document classification request to analyze a single
+     * document in real-time, using a previously created and trained custom
+     * model and an endpoint.
+     * </p>
+     * 
+     * @param classifyDocumentRequest
+     * @return classifyDocumentResult The response from the ClassifyDocument
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceUnavailableException
+     * @throws TextSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ClassifyDocumentResult classifyDocument(ClassifyDocumentRequest classifyDocumentRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a new document classifier that you can use to categorize
      * documents. To create a classifier you provide a set of training documents
      * that labeled with the categories that you want to use. After the
@@ -257,6 +282,34 @@ public interface AmazonComprehend {
      */
     CreateDocumentClassifierResult createDocumentClassifier(
             CreateDocumentClassifierRequest createDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a model-specific endpoint for synchronous inference for a
+     * previously trained custom model
+     * </p>
+     * 
+     * @param createEndpointRequest
+     * @return createEndpointResult The response from the CreateEndpoint service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateEndpointResult createEndpoint(CreateEndpointRequest createEndpointRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -326,6 +379,31 @@ public interface AmazonComprehend {
      */
     DeleteDocumentClassifierResult deleteDocumentClassifier(
             DeleteDocumentClassifierRequest deleteDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a model-specific endpoint for a previously-trained custom model.
+     * All endpoints must be deleted in order for the model to be deleted.
+     * </p>
+     * 
+     * @param deleteEndpointRequest
+     * @return deleteEndpointResult The response from the DeleteEndpoint service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteEndpointResult deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -441,6 +519,30 @@ public interface AmazonComprehend {
      */
     DescribeDominantLanguageDetectionJobResult describeDominantLanguageDetectionJob(
             DescribeDominantLanguageDetectionJobRequest describeDominantLanguageDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a specific endpoint. Use this
+     * operation to get the status of an endpoint.
+     * </p>
+     * 
+     * @param describeEndpointRequest
+     * @return describeEndpointResult The response from the DescribeEndpoint
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeEndpointResult describeEndpoint(DescribeEndpointRequest describeEndpointRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -771,6 +873,28 @@ public interface AmazonComprehend {
      */
     ListDominantLanguageDetectionJobsResult listDominantLanguageDetectionJobs(
             ListDominantLanguageDetectionJobsRequest listDominantLanguageDetectionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a list of all existing endpoints that you've created.
+     * </p>
+     * 
+     * @param listEndpointsRequest
+     * @return listEndpointsResult The response from the ListEndpoints service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListEndpointsResult listEndpoints(ListEndpointsRequest listEndpointsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1372,6 +1496,32 @@ public interface AmazonComprehend {
      *             request, or a server side issue.
      */
     UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates information about the specified endpoint.
+     * </p>
+     * 
+     * @param updateEndpointRequest
+     * @return updateEndpointResult The response from the UpdateEndpoint service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateEndpointResult updateEndpoint(UpdateEndpointRequest updateEndpointRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
