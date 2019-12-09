@@ -229,6 +229,13 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
+     * A unique identifier for the session.
+     * </p>
+     */
+    private String sessionId;
+
+    /**
+     * <p>
      * The current user intent that Amazon Lex is aware of.
      * </p>
      *
@@ -2092,6 +2099,51 @@ public class PostTextResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     *
+     * @return <p>
+     *         A unique identifier for the session.
+     *         </p>
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     *
+     * @param sessionId <p>
+     *            A unique identifier for the session.
+     *            </p>
+     */
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sessionId <p>
+     *            A unique identifier for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withSessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2119,7 +2171,9 @@ public class PostTextResult implements Serializable {
         if (getSlotToElicit() != null)
             sb.append("slotToElicit: " + getSlotToElicit() + ",");
         if (getResponseCard() != null)
-            sb.append("responseCard: " + getResponseCard());
+            sb.append("responseCard: " + getResponseCard() + ",");
+        if (getSessionId() != null)
+            sb.append("sessionId: " + getSessionId());
         sb.append("}");
         return sb.toString();
     }
@@ -2144,6 +2198,7 @@ public class PostTextResult implements Serializable {
                 + ((getSlotToElicit() == null) ? 0 : getSlotToElicit().hashCode());
         hashCode = prime * hashCode
                 + ((getResponseCard() == null) ? 0 : getResponseCard().hashCode());
+        hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         return hashCode;
     }
 
@@ -2200,6 +2255,11 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getResponseCard() != null
                 && other.getResponseCard().equals(this.getResponseCard()) == false)
+            return false;
+        if (other.getSessionId() == null ^ this.getSessionId() == null)
+            return false;
+        if (other.getSessionId() != null
+                && other.getSessionId().equals(this.getSessionId()) == false)
             return false;
         return true;
     }
