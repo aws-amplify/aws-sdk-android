@@ -35,21 +35,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectModerationLabelsRequest
+ * JSON request marshaller for CreateProjectVersionRequest
  */
-public class DetectModerationLabelsRequestMarshaller implements
-        Marshaller<Request<DetectModerationLabelsRequest>, DetectModerationLabelsRequest> {
+public class CreateProjectVersionRequestMarshaller implements
+        Marshaller<Request<CreateProjectVersionRequest>, CreateProjectVersionRequest> {
 
-    public Request<DetectModerationLabelsRequest> marshall(
-            DetectModerationLabelsRequest detectModerationLabelsRequest) {
-        if (detectModerationLabelsRequest == null) {
+    public Request<CreateProjectVersionRequest> marshall(
+            CreateProjectVersionRequest createProjectVersionRequest) {
+        if (createProjectVersionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectModerationLabelsRequest)");
+                    "Invalid argument passed to marshall(CreateProjectVersionRequest)");
         }
 
-        Request<DetectModerationLabelsRequest> request = new DefaultRequest<DetectModerationLabelsRequest>(
-                detectModerationLabelsRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectModerationLabels";
+        Request<CreateProjectVersionRequest> request = new DefaultRequest<CreateProjectVersionRequest>(
+                createProjectVersionRequest, "AmazonRekognition");
+        String target = "RekognitionService.CreateProjectVersion";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -60,21 +60,30 @@ public class DetectModerationLabelsRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectModerationLabelsRequest.getImage() != null) {
-                Image image = detectModerationLabelsRequest.getImage();
-                jsonWriter.name("Image");
-                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
+            if (createProjectVersionRequest.getProjectArn() != null) {
+                String projectArn = createProjectVersionRequest.getProjectArn();
+                jsonWriter.name("ProjectArn");
+                jsonWriter.value(projectArn);
             }
-            if (detectModerationLabelsRequest.getMinConfidence() != null) {
-                Float minConfidence = detectModerationLabelsRequest.getMinConfidence();
-                jsonWriter.name("MinConfidence");
-                jsonWriter.value(minConfidence);
+            if (createProjectVersionRequest.getVersionName() != null) {
+                String versionName = createProjectVersionRequest.getVersionName();
+                jsonWriter.name("VersionName");
+                jsonWriter.value(versionName);
             }
-            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
-                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
-                        .getHumanLoopConfig();
-                jsonWriter.name("HumanLoopConfig");
-                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            if (createProjectVersionRequest.getOutputConfig() != null) {
+                OutputConfig outputConfig = createProjectVersionRequest.getOutputConfig();
+                jsonWriter.name("OutputConfig");
+                OutputConfigJsonMarshaller.getInstance().marshall(outputConfig, jsonWriter);
+            }
+            if (createProjectVersionRequest.getTrainingData() != null) {
+                TrainingData trainingData = createProjectVersionRequest.getTrainingData();
+                jsonWriter.name("TrainingData");
+                TrainingDataJsonMarshaller.getInstance().marshall(trainingData, jsonWriter);
+            }
+            if (createProjectVersionRequest.getTestingData() != null) {
+                TestingData testingData = createProjectVersionRequest.getTestingData();
+                jsonWriter.name("TestingData");
+                TestingDataJsonMarshaller.getInstance().marshall(testingData, jsonWriter);
             }
 
             jsonWriter.endObject();
