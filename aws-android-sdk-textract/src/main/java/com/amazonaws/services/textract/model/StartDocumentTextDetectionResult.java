@@ -20,9 +20,10 @@ import java.io.Serializable;
 public class StartDocumentTextDetectionResult implements Serializable {
     /**
      * <p>
-     * The identifier for the document text-detection job. Use
+     * The identifier of the text detection job for the document. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentTextDetection</code>.
+     * <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,9 +34,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the document text-detection job. Use
+     * The identifier of the text detection job for the document. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentTextDetection</code>.
+     * <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,9 +45,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @return <p>
-     *         The identifier for the document text-detection job. Use
+     *         The identifier of the text detection job for the document. Use
      *         <code>JobId</code> to identify the job in a subsequent call to
-     *         <code>GetDocumentTextDetection</code>.
+     *         <code>GetDocumentTextDetection</code>. A <code>JobId</code> value
+     *         is only valid for 7 days.
      *         </p>
      */
     public String getJobId() {
@@ -54,9 +57,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the document text-detection job. Use
+     * The identifier of the text detection job for the document. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentTextDetection</code>.
+     * <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,9 +68,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the document text-detection job. Use
+     *            The identifier of the text detection job for the document. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
-     *            <code>GetDocumentTextDetection</code>.
+     *            <code>GetDocumentTextDetection</code>. A <code>JobId</code>
+     *            value is only valid for 7 days.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -75,9 +80,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the document text-detection job. Use
+     * The identifier of the text detection job for the document. Use
      * <code>JobId</code> to identify the job in a subsequent call to
-     * <code>GetDocumentTextDetection</code>.
+     * <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only
+     * valid for 7 days.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,9 +94,10 @@ public class StartDocumentTextDetectionResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the document text-detection job. Use
+     *            The identifier of the text detection job for the document. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
-     *            <code>GetDocumentTextDetection</code>.
+     *            <code>GetDocumentTextDetection</code>. A <code>JobId</code>
+     *            value is only valid for 7 days.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

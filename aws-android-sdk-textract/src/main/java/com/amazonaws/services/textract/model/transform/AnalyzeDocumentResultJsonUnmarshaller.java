@@ -42,6 +42,15 @@ public class AnalyzeDocumentResultJsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("HumanLoopActivationOutput")) {
+                analyzeDocumentResult
+                        .setHumanLoopActivationOutput(HumanLoopActivationOutputJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("AnalyzeDocumentModelVersion")) {
+                analyzeDocumentResult.setAnalyzeDocumentModelVersion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

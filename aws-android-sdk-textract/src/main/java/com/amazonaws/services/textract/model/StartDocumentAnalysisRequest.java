@@ -21,12 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Starts asynchronous analysis of an input document for relationships between
- * detected items such as key and value pairs, tables, and selection elements.
+ * Starts the asynchronous analysis of an input document for relationships
+ * between detected items such as key-value pairs, tables, and selection
+ * elements.
  * </p>
  * <p>
  * <code>StartDocumentAnalysis</code> can analyze text in documents that are in
- * JPG, PNG, and PDF format. The documents are stored in an Amazon S3 bucket.
+ * JPEG, PNG, and PDF format. The documents are stored in an Amazon S3 bucket.
  * Use <a>DocumentLocation</a> to specify the bucket name and file name of the
  * document.
  * </p>
@@ -59,11 +60,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <p>
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
-     * document. Add FORMS to return detected fields and the associated text. To
-     * perform both types of analysis, add TABLES and FORMS to
-     * <code>FeatureTypes</code>. All selectable elements (
-     * <code>SELECTION_ELEMENT</code>) that are detected are returned, whatever
-     * the value of <code>FeatureTypes</code>.
+     * document. Add FORMS to return detected form data. To perform both types
+     * of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines
+     * and words detected in the document are included in the response
+     * (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      */
     private java.util.List<String> featureTypes;
@@ -74,7 +75,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * use the same token with multiple <code>StartDocumentAnalysis</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,10 +88,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,21 +157,21 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <p>
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
-     * document. Add FORMS to return detected fields and the associated text. To
-     * perform both types of analysis, add TABLES and FORMS to
-     * <code>FeatureTypes</code>. All selectable elements (
-     * <code>SELECTION_ELEMENT</code>) that are detected are returned, whatever
-     * the value of <code>FeatureTypes</code>.
+     * document. Add FORMS to return detected form data. To perform both types
+     * of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines
+     * and words detected in the document are included in the response
+     * (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      *
      * @return <p>
      *         A list of the types of analysis to perform. Add TABLES to the
      *         list to return information about the tables that are detected in
-     *         the input document. Add FORMS to return detected fields and the
-     *         associated text. To perform both types of analysis, add TABLES
-     *         and FORMS to <code>FeatureTypes</code>. All selectable elements (
-     *         <code>SELECTION_ELEMENT</code>) that are detected are returned,
-     *         whatever the value of <code>FeatureTypes</code>.
+     *         the input document. Add FORMS to return detected form data. To
+     *         perform both types of analysis, add TABLES and FORMS to
+     *         <code>FeatureTypes</code>. All lines and words detected in the
+     *         document are included in the response (including text that isn't
+     *         related to the value of <code>FeatureTypes</code>).
      *         </p>
      */
     public java.util.List<String> getFeatureTypes() {
@@ -179,21 +182,21 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <p>
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
-     * document. Add FORMS to return detected fields and the associated text. To
-     * perform both types of analysis, add TABLES and FORMS to
-     * <code>FeatureTypes</code>. All selectable elements (
-     * <code>SELECTION_ELEMENT</code>) that are detected are returned, whatever
-     * the value of <code>FeatureTypes</code>.
+     * document. Add FORMS to return detected form data. To perform both types
+     * of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines
+     * and words detected in the document are included in the response
+     * (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      *
      * @param featureTypes <p>
      *            A list of the types of analysis to perform. Add TABLES to the
      *            list to return information about the tables that are detected
-     *            in the input document. Add FORMS to return detected fields and
-     *            the associated text. To perform both types of analysis, add
-     *            TABLES and FORMS to <code>FeatureTypes</code>. All selectable
-     *            elements (<code>SELECTION_ELEMENT</code>) that are detected
-     *            are returned, whatever the value of <code>FeatureTypes</code>.
+     *            in the input document. Add FORMS to return detected form data.
+     *            To perform both types of analysis, add TABLES and FORMS to
+     *            <code>FeatureTypes</code>. All lines and words detected in the
+     *            document are included in the response (including text that
+     *            isn't related to the value of <code>FeatureTypes</code>).
      *            </p>
      */
     public void setFeatureTypes(java.util.Collection<String> featureTypes) {
@@ -209,11 +212,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <p>
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
-     * document. Add FORMS to return detected fields and the associated text. To
-     * perform both types of analysis, add TABLES and FORMS to
-     * <code>FeatureTypes</code>. All selectable elements (
-     * <code>SELECTION_ELEMENT</code>) that are detected are returned, whatever
-     * the value of <code>FeatureTypes</code>.
+     * document. Add FORMS to return detected form data. To perform both types
+     * of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines
+     * and words detected in the document are included in the response
+     * (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,11 +225,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * @param featureTypes <p>
      *            A list of the types of analysis to perform. Add TABLES to the
      *            list to return information about the tables that are detected
-     *            in the input document. Add FORMS to return detected fields and
-     *            the associated text. To perform both types of analysis, add
-     *            TABLES and FORMS to <code>FeatureTypes</code>. All selectable
-     *            elements (<code>SELECTION_ELEMENT</code>) that are detected
-     *            are returned, whatever the value of <code>FeatureTypes</code>.
+     *            in the input document. Add FORMS to return detected form data.
+     *            To perform both types of analysis, add TABLES and FORMS to
+     *            <code>FeatureTypes</code>. All lines and words detected in the
+     *            document are included in the response (including text that
+     *            isn't related to the value of <code>FeatureTypes</code>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -245,11 +248,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <p>
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
-     * document. Add FORMS to return detected fields and the associated text. To
-     * perform both types of analysis, add TABLES and FORMS to
-     * <code>FeatureTypes</code>. All selectable elements (
-     * <code>SELECTION_ELEMENT</code>) that are detected are returned, whatever
-     * the value of <code>FeatureTypes</code>.
+     * document. Add FORMS to return detected form data. To perform both types
+     * of analysis, add TABLES and FORMS to <code>FeatureTypes</code>. All lines
+     * and words detected in the document are included in the response
+     * (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -258,11 +261,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * @param featureTypes <p>
      *            A list of the types of analysis to perform. Add TABLES to the
      *            list to return information about the tables that are detected
-     *            in the input document. Add FORMS to return detected fields and
-     *            the associated text. To perform both types of analysis, add
-     *            TABLES and FORMS to <code>FeatureTypes</code>. All selectable
-     *            elements (<code>SELECTION_ELEMENT</code>) that are detected
-     *            are returned, whatever the value of <code>FeatureTypes</code>.
+     *            in the input document. Add FORMS to return detected form data.
+     *            To perform both types of analysis, add TABLES and FORMS to
+     *            <code>FeatureTypes</code>. All lines and words detected in the
+     *            document are included in the response (including text that
+     *            isn't related to the value of <code>FeatureTypes</code>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -278,7 +281,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * use the same token with multiple <code>StartDocumentAnalysis</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -291,7 +296,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      *         <code>StartDocumentAnalysis</code> requests, the same
      *         <code>JobId</code> is returned. Use
      *         <code>ClientRequestToken</code> to prevent the same job from
-     *         being accidentally started more than once.
+     *         being accidentally started more than once. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *         >Calling Amazon Textract Asynchronous Operations</a>.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -304,7 +312,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * use the same token with multiple <code>StartDocumentAnalysis</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -317,7 +327,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      *            <code>StartDocumentAnalysis</code> requests, the same
      *            <code>JobId</code> is returned. Use
      *            <code>ClientRequestToken</code> to prevent the same job from
-     *            being accidentally started more than once.
+     *            being accidentally started more than once. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *            >Calling Amazon Textract Asynchronous Operations</a>.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -330,7 +343,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * use the same token with multiple <code>StartDocumentAnalysis</code>
      * requests, the same <code>JobId</code> is returned. Use
      * <code>ClientRequestToken</code> to prevent the same job from being
-     * accidentally started more than once.
+     * accidentally started more than once. For more information, see <a
+     * href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     * >Calling Amazon Textract Asynchronous Operations</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -346,7 +361,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      *            <code>StartDocumentAnalysis</code> requests, the same
      *            <code>JobId</code> is returned. Use
      *            <code>ClientRequestToken</code> to prevent the same job from
-     *            being accidentally started more than once.
+     *            being accidentally started more than once. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/api-async.html"
+     *            >Calling Amazon Textract Asynchronous Operations</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -358,10 +376,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -369,11 +387,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @return <p>
-     *         An identifier you specify that's included in the completion
-     *         notification that's published to the Amazon SNS topic. For
-     *         example, you can use <code>JobTag</code> to identify the type of
-     *         document, such as a tax form or a receipt, that the completion
-     *         notification corresponds to.
+     *         An identifier that you specify that's included in the completion
+     *         notification published to the Amazon SNS topic. For example, you
+     *         can use <code>JobTag</code> to identify the type of document that
+     *         the completion notification corresponds to (such as a tax form or
+     *         a receipt).
      *         </p>
      */
     public String getJobTag() {
@@ -382,10 +400,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -393,11 +411,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            An identifier you specify that's included in the completion
-     *            notification that's published to the Amazon SNS topic. For
+     *            An identifier that you specify that's included in the
+     *            completion notification published to the Amazon SNS topic. For
      *            example, you can use <code>JobTag</code> to identify the type
-     *            of document, such as a tax form or a receipt, that the
-     *            completion notification corresponds to.
+     *            of document that the completion notification corresponds to
+     *            (such as a tax form or a receipt).
      *            </p>
      */
     public void setJobTag(String jobTag) {
@@ -406,10 +424,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * An identifier you specify that's included in the completion notification
-     * that's published to the Amazon SNS topic. For example, you can use
-     * <code>JobTag</code> to identify the type of document, such as a tax form
-     * or a receipt, that the completion notification corresponds to.
+     * An identifier that you specify that's included in the completion
+     * notification published to the Amazon SNS topic. For example, you can use
+     * <code>JobTag</code> to identify the type of document that the completion
+     * notification corresponds to (such as a tax form or a receipt).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -420,11 +438,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param jobTag <p>
-     *            An identifier you specify that's included in the completion
-     *            notification that's published to the Amazon SNS topic. For
+     *            An identifier that you specify that's included in the
+     *            completion notification published to the Amazon SNS topic. For
      *            example, you can use <code>JobTag</code> to identify the type
-     *            of document, such as a tax form or a receipt, that the
-     *            completion notification corresponds to.
+     *            of document that the completion notification corresponds to
+     *            (such as a tax form or a receipt).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
