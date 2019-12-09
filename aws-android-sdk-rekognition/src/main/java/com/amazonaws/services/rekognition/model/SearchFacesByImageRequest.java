@@ -60,11 +60,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The <code>QualityFilter</code> input parameter allows you to filter out
  * detected faces that don’t meet a required quality bar. The quality bar is
- * based on a variety of common use cases. By default, Amazon Rekognition
- * chooses the quality bar that's used to filter faces. You can also explicitly
- * choose the quality bar. Use <code>QualityFilter</code>, to set the quality
- * bar for filtering by specifying <code>LOW</code>, <code>MEDIUM</code>, or
- * <code>HIGH</code>. If you do not want to filter detected faces, specify
+ * based on a variety of common use cases. Use <code>QualityFilter</code> to set
+ * the quality bar for filtering by specifying <code>LOW</code>,
+ * <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter
+ * detected faces, specify <code>NONE</code>. The default value is
  * <code>NONE</code>.
  * </p>
  * <note>
@@ -136,12 +135,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -473,12 +472,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -494,13 +493,13 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      *         collection. If you specify <code>AUTO</code>, Amazon Rekognition
      *         chooses the quality bar. If you specify <code>LOW</code>,
      *         <code>MEDIUM</code>, or <code>HIGH</code>, filtering removes all
-     *         faces that don’t meet the chosen quality bar. The default value
-     *         is <code>AUTO</code>. The quality bar is based on a variety of
-     *         common use cases. Low-quality detections can occur for a number
-     *         of reasons. Some examples are an object that's misidentified as a
-     *         face, a face that's too blurry, or a face with a pose that's too
-     *         extreme to use. If you specify <code>NONE</code>, no filtering is
-     *         performed.
+     *         faces that don’t meet the chosen quality bar. The quality bar is
+     *         based on a variety of common use cases. Low-quality detections
+     *         can occur for a number of reasons. Some examples are an object
+     *         that's misidentified as a face, a face that's too blurry, or a
+     *         face with a pose that's too extreme to use. If you specify
+     *         <code>NONE</code>, no filtering is performed. The default value
+     *         is <code>NONE</code>.
      *         </p>
      *         <p>
      *         To use quality filtering, the collection you are using must be
@@ -519,12 +518,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -541,12 +540,13 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      *            Rekognition chooses the quality bar. If you specify
      *            <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>,
      *            filtering removes all faces that don’t meet the chosen quality
-     *            bar. The default value is <code>AUTO</code>. The quality bar
-     *            is based on a variety of common use cases. Low-quality
-     *            detections can occur for a number of reasons. Some examples
-     *            are an object that's misidentified as a face, a face that's
-     *            too blurry, or a face with a pose that's too extreme to use.
-     *            If you specify <code>NONE</code>, no filtering is performed.
+     *            bar. The quality bar is based on a variety of common use
+     *            cases. Low-quality detections can occur for a number of
+     *            reasons. Some examples are an object that's misidentified as a
+     *            face, a face that's too blurry, or a face with a pose that's
+     *            too extreme to use. If you specify <code>NONE</code>, no
+     *            filtering is performed. The default value is <code>NONE</code>
+     *            .
      *            </p>
      *            <p>
      *            To use quality filtering, the collection you are using must be
@@ -565,12 +565,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -590,12 +590,13 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      *            Rekognition chooses the quality bar. If you specify
      *            <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>,
      *            filtering removes all faces that don’t meet the chosen quality
-     *            bar. The default value is <code>AUTO</code>. The quality bar
-     *            is based on a variety of common use cases. Low-quality
-     *            detections can occur for a number of reasons. Some examples
-     *            are an object that's misidentified as a face, a face that's
-     *            too blurry, or a face with a pose that's too extreme to use.
-     *            If you specify <code>NONE</code>, no filtering is performed.
+     *            bar. The quality bar is based on a variety of common use
+     *            cases. Low-quality detections can occur for a number of
+     *            reasons. Some examples are an object that's misidentified as a
+     *            face, a face that's too blurry, or a face with a pose that's
+     *            too extreme to use. If you specify <code>NONE</code>, no
+     *            filtering is performed. The default value is <code>NONE</code>
+     *            .
      *            </p>
      *            <p>
      *            To use quality filtering, the collection you are using must be
@@ -617,12 +618,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -639,12 +640,13 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      *            Rekognition chooses the quality bar. If you specify
      *            <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>,
      *            filtering removes all faces that don’t meet the chosen quality
-     *            bar. The default value is <code>AUTO</code>. The quality bar
-     *            is based on a variety of common use cases. Low-quality
-     *            detections can occur for a number of reasons. Some examples
-     *            are an object that's misidentified as a face, a face that's
-     *            too blurry, or a face with a pose that's too extreme to use.
-     *            If you specify <code>NONE</code>, no filtering is performed.
+     *            bar. The quality bar is based on a variety of common use
+     *            cases. Low-quality detections can occur for a number of
+     *            reasons. Some examples are an object that's misidentified as a
+     *            face, a face that's too blurry, or a face with a pose that's
+     *            too extreme to use. If you specify <code>NONE</code>, no
+     *            filtering is performed. The default value is <code>NONE</code>
+     *            .
      *            </p>
      *            <p>
      *            To use quality filtering, the collection you are using must be
@@ -663,12 +665,12 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * you specify <code>AUTO</code>, Amazon Rekognition chooses the quality
      * bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or
      * <code>HIGH</code>, filtering removes all faces that don’t meet the chosen
-     * quality bar. The default value is <code>AUTO</code>. The quality bar is
-     * based on a variety of common use cases. Low-quality detections can occur
-     * for a number of reasons. Some examples are an object that's misidentified
-     * as a face, a face that's too blurry, or a face with a pose that's too
-     * extreme to use. If you specify <code>NONE</code>, no filtering is
-     * performed.
+     * quality bar. The quality bar is based on a variety of common use cases.
+     * Low-quality detections can occur for a number of reasons. Some examples
+     * are an object that's misidentified as a face, a face that's too blurry,
+     * or a face with a pose that's too extreme to use. If you specify
+     * <code>NONE</code>, no filtering is performed. The default value is
+     * <code>NONE</code>.
      * </p>
      * <p>
      * To use quality filtering, the collection you are using must be associated
@@ -688,12 +690,13 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      *            Rekognition chooses the quality bar. If you specify
      *            <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>,
      *            filtering removes all faces that don’t meet the chosen quality
-     *            bar. The default value is <code>AUTO</code>. The quality bar
-     *            is based on a variety of common use cases. Low-quality
-     *            detections can occur for a number of reasons. Some examples
-     *            are an object that's misidentified as a face, a face that's
-     *            too blurry, or a face with a pose that's too extreme to use.
-     *            If you specify <code>NONE</code>, no filtering is performed.
+     *            bar. The quality bar is based on a variety of common use
+     *            cases. Low-quality detections can occur for a number of
+     *            reasons. Some examples are an object that's misidentified as a
+     *            face, a face that's too blurry, or a face with a pose that's
+     *            too extreme to use. If you specify <code>NONE</code>, no
+     *            filtering is performed. The default value is <code>NONE</code>
+     *            .
      *            </p>
      *            <p>
      *            To use quality filtering, the collection you are using must be

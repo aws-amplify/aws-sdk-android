@@ -19,14 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about where the text detected by <a>DetectText</a> is located on
- * an image.
+ * Information about where an object (<a>DetectCustomLabels</a>) or text
+ * (<a>DetectText</a>) is located on an image.
  * </p>
  */
 public class Geometry implements Serializable {
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
+     * An axis-aligned coarse representation of the detected item's location on
      * the image.
      * </p>
      */
@@ -34,19 +34,19 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * Within the bounding box, a fine-grained polygon around the detected item.
      * </p>
      */
     private java.util.List<Point> polygon;
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
+     * An axis-aligned coarse representation of the detected item's location on
      * the image.
      * </p>
      *
      * @return <p>
-     *         An axis-aligned coarse representation of the detected text's
+     *         An axis-aligned coarse representation of the detected item's
      *         location on the image.
      *         </p>
      */
@@ -56,12 +56,12 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
+     * An axis-aligned coarse representation of the detected item's location on
      * the image.
      * </p>
      *
      * @param boundingBox <p>
-     *            An axis-aligned coarse representation of the detected text's
+     *            An axis-aligned coarse representation of the detected item's
      *            location on the image.
      *            </p>
      */
@@ -71,7 +71,7 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * An axis-aligned coarse representation of the detected text's location on
+     * An axis-aligned coarse representation of the detected item's location on
      * the image.
      * </p>
      * <p>
@@ -79,7 +79,7 @@ public class Geometry implements Serializable {
      * together.
      *
      * @param boundingBox <p>
-     *            An axis-aligned coarse representation of the detected text's
+     *            An axis-aligned coarse representation of the detected item's
      *            location on the image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -92,12 +92,12 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * Within the bounding box, a fine-grained polygon around the detected item.
      * </p>
      *
      * @return <p>
      *         Within the bounding box, a fine-grained polygon around the
-     *         detected text.
+     *         detected item.
      *         </p>
      */
     public java.util.List<Point> getPolygon() {
@@ -106,12 +106,12 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * Within the bounding box, a fine-grained polygon around the detected item.
      * </p>
      *
      * @param polygon <p>
      *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
+     *            detected item.
      *            </p>
      */
     public void setPolygon(java.util.Collection<Point> polygon) {
@@ -125,7 +125,7 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * Within the bounding box, a fine-grained polygon around the detected item.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -133,7 +133,7 @@ public class Geometry implements Serializable {
      *
      * @param polygon <p>
      *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
+     *            detected item.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -150,7 +150,7 @@ public class Geometry implements Serializable {
 
     /**
      * <p>
-     * Within the bounding box, a fine-grained polygon around the detected text.
+     * Within the bounding box, a fine-grained polygon around the detected item.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +158,7 @@ public class Geometry implements Serializable {
      *
      * @param polygon <p>
      *            Within the bounding box, a fine-grained polygon around the
-     *            detected text.
+     *            detected item.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
