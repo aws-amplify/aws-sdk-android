@@ -19,20 +19,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Identity Provider Type Type
+ * Recovery Option Name Type
  */
-public enum IdentityProviderTypeType {
+public enum RecoveryOptionNameType {
 
-    SAML("SAML"),
-    Facebook("Facebook"),
-    Google("Google"),
-    LoginWithAmazon("LoginWithAmazon"),
-    SignInWithApple("SignInWithApple"),
-    OIDC("OIDC");
+    Verified_email("verified_email"),
+    Verified_phone_number("verified_phone_number"),
+    Admin_only("admin_only");
 
     private String value;
 
-    private IdentityProviderTypeType(String value) {
+    private RecoveryOptionNameType(String value) {
         this.value = value;
     }
 
@@ -41,24 +38,21 @@ public enum IdentityProviderTypeType {
         return value;
     }
 
-    private static final Map<String, IdentityProviderTypeType> enumMap;
+    private static final Map<String, RecoveryOptionNameType> enumMap;
     static {
-        enumMap = new HashMap<String, IdentityProviderTypeType>();
-        enumMap.put("SAML", SAML);
-        enumMap.put("Facebook", Facebook);
-        enumMap.put("Google", Google);
-        enumMap.put("LoginWithAmazon", LoginWithAmazon);
-        enumMap.put("SignInWithApple", SignInWithApple);
-        enumMap.put("OIDC", OIDC);
+        enumMap = new HashMap<String, RecoveryOptionNameType>();
+        enumMap.put("verified_email", Verified_email);
+        enumMap.put("verified_phone_number", Verified_phone_number);
+        enumMap.put("admin_only", Admin_only);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return IdentityProviderTypeType corresponding to the value
+     * @return RecoveryOptionNameType corresponding to the value
      */
-    public static IdentityProviderTypeType fromValue(String value) {
+    public static RecoveryOptionNameType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
