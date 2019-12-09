@@ -27,6 +27,7 @@ public enum IdentityProviderTypeType {
     Facebook("Facebook"),
     Google("Google"),
     LoginWithAmazon("LoginWithAmazon"),
+    SignInWithApple("SignInWithApple"),
     OIDC("OIDC");
 
     private String value;
@@ -47,6 +48,7 @@ public enum IdentityProviderTypeType {
         enumMap.put("Facebook", Facebook);
         enumMap.put("Google", Google);
         enumMap.put("LoginWithAmazon", LoginWithAmazon);
+        enumMap.put("SignInWithApple", SignInWithApple);
         enumMap.put("OIDC", OIDC);
     }
 

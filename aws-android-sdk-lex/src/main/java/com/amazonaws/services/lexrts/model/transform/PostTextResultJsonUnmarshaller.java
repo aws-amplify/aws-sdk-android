@@ -64,6 +64,9 @@ public class PostTextResultJsonUnmarshaller implements
             } else if (name.equals("responseCard")) {
                 postTextResult.setResponseCard(ResponseCardJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("sessionId")) {
+                postTextResult.setSessionId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

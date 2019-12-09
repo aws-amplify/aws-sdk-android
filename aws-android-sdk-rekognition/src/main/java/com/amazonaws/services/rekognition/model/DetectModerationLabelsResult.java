@@ -36,6 +36,13 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     */
+    private HumanLoopActivationOutput humanLoopActivationOutput;
+
+    /**
+     * <p>
      * Array of detected Moderation labels and the time, in milliseconds from
      * the start of the video, they were detected.
      * </p>
@@ -170,6 +177,52 @@ public class DetectModerationLabelsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @return <p>
+     *         Shows the results of the human in the loop evaluation.
+     *         </p>
+     */
+    public HumanLoopActivationOutput getHumanLoopActivationOutput() {
+        return humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     */
+    public void setHumanLoopActivationOutput(HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectModerationLabelsResult withHumanLoopActivationOutput(
+            HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -183,7 +236,9 @@ public class DetectModerationLabelsResult implements Serializable {
         if (getModerationLabels() != null)
             sb.append("ModerationLabels: " + getModerationLabels() + ",");
         if (getModerationModelVersion() != null)
-            sb.append("ModerationModelVersion: " + getModerationModelVersion());
+            sb.append("ModerationModelVersion: " + getModerationModelVersion() + ",");
+        if (getHumanLoopActivationOutput() != null)
+            sb.append("HumanLoopActivationOutput: " + getHumanLoopActivationOutput());
         sb.append("}");
         return sb.toString();
     }
@@ -198,6 +253,10 @@ public class DetectModerationLabelsResult implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getModerationModelVersion() == null) ? 0 : getModerationModelVersion()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getHumanLoopActivationOutput() == null) ? 0 : getHumanLoopActivationOutput()
                         .hashCode());
         return hashCode;
     }
@@ -222,6 +281,12 @@ public class DetectModerationLabelsResult implements Serializable {
             return false;
         if (other.getModerationModelVersion() != null
                 && other.getModerationModelVersion().equals(this.getModerationModelVersion()) == false)
+            return false;
+        if (other.getHumanLoopActivationOutput() == null
+                ^ this.getHumanLoopActivationOutput() == null)
+            return false;
+        if (other.getHumanLoopActivationOutput() != null
+                && other.getHumanLoopActivationOutput().equals(this.getHumanLoopActivationOutput()) == false)
             return false;
         return true;
     }

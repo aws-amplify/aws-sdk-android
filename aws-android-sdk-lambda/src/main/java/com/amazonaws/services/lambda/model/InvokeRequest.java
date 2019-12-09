@@ -26,15 +26,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * set <code>InvocationType</code> to <code>Event</code>.
  * </p>
  * <p>
- * For synchronous invocation, details about the function response, including
+ * For <a
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html"
+ * >synchronous invocation</a>, details about the function response, including
  * errors, are included in the response body and headers. For either invocation
  * type, you can find more information in the <a href=
  * "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
  * >execution log</a> and <a
- * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>. To
- * record function errors for asynchronous invocations, configure your function
- * with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead
- * letter queue</a>.
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html"
+ * >trace</a>.
  * </p>
  * <p>
  * When an error occurs, your function may be invoked multiple times. Retry
@@ -44,6 +44,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a
  * href="https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html">
  * Retry Behavior</a>.
+ * </p>
+ * <p>
+ * For <a
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html"
+ * >asynchronous invocation</a>, Lambda adds events to a queue before sending
+ * them to your function. If your function does not have enough capacity to keep
+ * up with the queue, events may be lost. Occasionally, your function may
+ * receive the same event multiple times, even if no error occurs. To retain
+ * events that were not processed, configure your function with a <a href=
+ * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#dlq"
+ * >dead-letter queue</a>.
  * </p>
  * <p>
  * The status code in the API response doesn't reflect function errors. Error

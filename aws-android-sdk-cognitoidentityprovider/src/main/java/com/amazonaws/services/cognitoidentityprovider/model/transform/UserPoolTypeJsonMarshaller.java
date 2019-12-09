@@ -211,6 +211,13 @@ class UserPoolTypeJsonMarshaller {
             jsonWriter.name("Arn");
             jsonWriter.value(arn);
         }
+        if (userPoolType.getAccountRecoverySetting() != null) {
+            AccountRecoverySettingType accountRecoverySetting = userPoolType
+                    .getAccountRecoverySetting();
+            jsonWriter.name("AccountRecoverySetting");
+            AccountRecoverySettingTypeJsonMarshaller.getInstance().marshall(accountRecoverySetting,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

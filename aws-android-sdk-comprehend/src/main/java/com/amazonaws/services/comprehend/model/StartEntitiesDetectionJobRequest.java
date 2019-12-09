@@ -93,10 +93,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -471,10 +469,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -483,10 +479,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @return <p>
      *         The language of the input documents. All documents must be in the
      *         same language. You can specify any of the languages supported by
-     *         Amazon Comprehend: English ("en"), Spanish ("es"), French ("fr"),
-     *         German ("de"), Italian ("it"), or Portuguese ("pt"). If custom
-     *         entities recognition is used, this parameter is ignored and the
-     *         language used for training the model is used instead.
+     *         Amazon Comprehend. If custom entities recognition is used, this
+     *         parameter is ignored and the language used for training the model
+     *         is used instead.
      *         </p>
      * @see LanguageCode
      */
@@ -498,10 +493,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -510,11 +503,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
      *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend: English ("en"), Spanish
-     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
-     *            Portuguese ("pt"). If custom entities recognition is used,
-     *            this parameter is ignored and the language used for training
-     *            the model is used instead.
+     *            supported by Amazon Comprehend. If custom entities recognition
+     *            is used, this parameter is ignored and the language used for
+     *            training the model is used instead.
      *            </p>
      * @see LanguageCode
      */
@@ -526,10 +517,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -541,11 +530,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
      *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend: English ("en"), Spanish
-     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
-     *            Portuguese ("pt"). If custom entities recognition is used,
-     *            this parameter is ignored and the language used for training
-     *            the model is used instead.
+     *            supported by Amazon Comprehend. If custom entities recognition
+     *            is used, this parameter is ignored and the language used for
+     *            training the model is used instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -560,10 +547,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -572,11 +557,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
      *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend: English ("en"), Spanish
-     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
-     *            Portuguese ("pt"). If custom entities recognition is used,
-     *            this parameter is ignored and the language used for training
-     *            the model is used instead.
+     *            supported by Amazon Comprehend. If custom entities recognition
+     *            is used, this parameter is ignored and the language used for
+     *            training the model is used instead.
      *            </p>
      * @see LanguageCode
      */
@@ -588,10 +571,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <p>
      * The language of the input documents. All documents must be in the same
      * language. You can specify any of the languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
-     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
-     * used, this parameter is ignored and the language used for training the
-     * model is used instead.
+     * Comprehend. If custom entities recognition is used, this parameter is
+     * ignored and the language used for training the model is used instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -603,11 +584,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param languageCode <p>
      *            The language of the input documents. All documents must be in
      *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend: English ("en"), Spanish
-     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
-     *            Portuguese ("pt"). If custom entities recognition is used,
-     *            this parameter is ignored and the language used for training
-     *            the model is used instead.
+     *            supported by Amazon Comprehend. If custom entities recognition
+     *            is used, this parameter is ignored and the language used for
+     *            training the model is used instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

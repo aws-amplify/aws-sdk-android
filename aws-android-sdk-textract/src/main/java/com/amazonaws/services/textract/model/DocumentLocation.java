@@ -23,7 +23,7 @@ import java.io.Serializable;
  * asynchronous operations such as <a>StartDocumentTextDetection</a>.
  * </p>
  * <p>
- * The input document can be an image file in JPG or PNG format. It can also be
+ * The input document can be an image file in JPEG or PNG format. It can also be
  * a file in PDF format.
  * </p>
  */

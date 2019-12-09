@@ -33,7 +33,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +56,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +68,10 @@ public class Relationship implements Serializable {
      * @return <p>
      *         The type of relationship that the blocks in the IDs array have
      *         with the current block. The relationship can be
-     *         <code>VALUE</code> or <code>CHILD</code>.
+     *         <code>VALUE</code> or <code>CHILD</code>. A relationship of type
+     *         VALUE is a list that contains the ID of the VALUE block that's
+     *         associated with the KEY of a key-value pair. A relationship of
+     *         type CHILD is a list of IDs that identify WORD blocks.
      *         </p>
      * @see RelationshipType
      */
@@ -74,7 +83,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +95,11 @@ public class Relationship implements Serializable {
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
      *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>.
+     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
+     *            type VALUE is a list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair. A
+     *            relationship of type CHILD is a list of IDs that identify WORD
+     *            blocks.
      *            </p>
      * @see RelationshipType
      */
@@ -95,7 +111,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,7 +126,11 @@ public class Relationship implements Serializable {
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
      *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>.
+     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
+     *            type VALUE is a list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair. A
+     *            relationship of type CHILD is a list of IDs that identify WORD
+     *            blocks.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +145,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +157,11 @@ public class Relationship implements Serializable {
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
      *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>.
+     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
+     *            type VALUE is a list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair. A
+     *            relationship of type CHILD is a list of IDs that identify WORD
+     *            blocks.
      *            </p>
      * @see RelationshipType
      */
@@ -143,7 +173,10 @@ public class Relationship implements Serializable {
      * <p>
      * The type of relationship that the blocks in the IDs array have with the
      * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>.
+     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
+     * the ID of the VALUE block that's associated with the KEY of a key-value
+     * pair. A relationship of type CHILD is a list of IDs that identify WORD
+     * blocks.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -155,7 +188,11 @@ public class Relationship implements Serializable {
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
      *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>.
+     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
+     *            type VALUE is a list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair. A
+     *            relationship of type CHILD is a list of IDs that identify WORD
+     *            blocks.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

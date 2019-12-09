@@ -44,6 +44,11 @@ public class DetectModerationLabelsResultJsonUnmarshaller implements
                 detectModerationLabelsResult.setModerationModelVersion(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HumanLoopActivationOutput")) {
+                detectModerationLabelsResult
+                        .setHumanLoopActivationOutput(HumanLoopActivationOutputJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

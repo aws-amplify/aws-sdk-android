@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * A warning about an issue that occurred during asynchronous text analysis
- * (<a>StartDocumentAnalysis</a>) or asynchronous document-text detection
+ * (<a>StartDocumentAnalysis</a>) or asynchronous document text detection
  * (<a>StartDocumentTextDetection</a>).
  * </p>
  */

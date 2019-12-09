@@ -75,6 +75,11 @@ public class AnalyzeDocumentRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (analyzeDocumentRequest.getHumanLoopConfig() != null) {
+                HumanLoopConfig humanLoopConfig = analyzeDocumentRequest.getHumanLoopConfig();
+                jsonWriter.name("HumanLoopConfig");
+                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

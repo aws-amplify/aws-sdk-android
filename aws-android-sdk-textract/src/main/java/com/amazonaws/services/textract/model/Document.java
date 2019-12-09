@@ -52,50 +52,50 @@ import java.io.Serializable;
 public class Document implements Serializable {
     /**
      * <p>
-     * A blob of base-64 encoded documents bytes. The maximum size of a document
+     * A blob of base64-encoded document bytes. The maximum size of a document
      * that's provided in a blob of bytes is 5 MB. The document bytes must be in
-     * PNG or JPG format.
+     * PNG or JPEG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes passed using the <code>Bytes</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 5242880<br/>
+     * <b>Length: </b>1 - 10485760<br/>
      */
     private java.nio.ByteBuffer bytes;
 
     /**
      * <p>
      * Identifies an S3 object as the document source. The maximum size of a
-     * document stored in an S3 bucket is 5 MB.
+     * document that's stored in an S3 bucket is 5 MB.
      * </p>
      */
     private S3Object s3Object;
 
     /**
      * <p>
-     * A blob of base-64 encoded documents bytes. The maximum size of a document
+     * A blob of base64-encoded document bytes. The maximum size of a document
      * that's provided in a blob of bytes is 5 MB. The document bytes must be in
-     * PNG or JPG format.
+     * PNG or JPEG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes passed using the <code>Bytes</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 5242880<br/>
+     * <b>Length: </b>1 - 10485760<br/>
      *
      * @return <p>
-     *         A blob of base-64 encoded documents bytes. The maximum size of a
+     *         A blob of base64-encoded document bytes. The maximum size of a
      *         document that's provided in a blob of bytes is 5 MB. The document
-     *         bytes must be in PNG or JPG format.
+     *         bytes must be in PNG or JPEG format.
      *         </p>
      *         <p>
-     *         If you are using an AWS SDK to call Amazon Textract, you might
-     *         not need to base64-encode image bytes passed using the
+     *         If you're using an AWS SDK to call Amazon Textract, you might not
+     *         need to base64-encode image bytes passed using the
      *         <code>Bytes</code> field.
      *         </p>
      */
@@ -105,25 +105,25 @@ public class Document implements Serializable {
 
     /**
      * <p>
-     * A blob of base-64 encoded documents bytes. The maximum size of a document
+     * A blob of base64-encoded document bytes. The maximum size of a document
      * that's provided in a blob of bytes is 5 MB. The document bytes must be in
-     * PNG or JPG format.
+     * PNG or JPEG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes passed using the <code>Bytes</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 5242880<br/>
+     * <b>Length: </b>1 - 10485760<br/>
      *
      * @param bytes <p>
-     *            A blob of base-64 encoded documents bytes. The maximum size of
-     *            a document that's provided in a blob of bytes is 5 MB. The
-     *            document bytes must be in PNG or JPG format.
+     *            A blob of base64-encoded document bytes. The maximum size of a
+     *            document that's provided in a blob of bytes is 5 MB. The
+     *            document bytes must be in PNG or JPEG format.
      *            </p>
      *            <p>
-     *            If you are using an AWS SDK to call Amazon Textract, you might
+     *            If you're using an AWS SDK to call Amazon Textract, you might
      *            not need to base64-encode image bytes passed using the
      *            <code>Bytes</code> field.
      *            </p>
@@ -134,28 +134,28 @@ public class Document implements Serializable {
 
     /**
      * <p>
-     * A blob of base-64 encoded documents bytes. The maximum size of a document
+     * A blob of base64-encoded document bytes. The maximum size of a document
      * that's provided in a blob of bytes is 5 MB. The document bytes must be in
-     * PNG or JPG format.
+     * PNG or JPEG format.
      * </p>
      * <p>
-     * If you are using an AWS SDK to call Amazon Textract, you might not need
-     * to base64-encode image bytes passed using the <code>Bytes</code> field.
+     * If you're using an AWS SDK to call Amazon Textract, you might not need to
+     * base64-encode image bytes passed using the <code>Bytes</code> field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 5242880<br/>
+     * <b>Length: </b>1 - 10485760<br/>
      *
      * @param bytes <p>
-     *            A blob of base-64 encoded documents bytes. The maximum size of
-     *            a document that's provided in a blob of bytes is 5 MB. The
-     *            document bytes must be in PNG or JPG format.
+     *            A blob of base64-encoded document bytes. The maximum size of a
+     *            document that's provided in a blob of bytes is 5 MB. The
+     *            document bytes must be in PNG or JPEG format.
      *            </p>
      *            <p>
-     *            If you are using an AWS SDK to call Amazon Textract, you might
+     *            If you're using an AWS SDK to call Amazon Textract, you might
      *            not need to base64-encode image bytes passed using the
      *            <code>Bytes</code> field.
      *            </p>
@@ -170,12 +170,12 @@ public class Document implements Serializable {
     /**
      * <p>
      * Identifies an S3 object as the document source. The maximum size of a
-     * document stored in an S3 bucket is 5 MB.
+     * document that's stored in an S3 bucket is 5 MB.
      * </p>
      *
      * @return <p>
      *         Identifies an S3 object as the document source. The maximum size
-     *         of a document stored in an S3 bucket is 5 MB.
+     *         of a document that's stored in an S3 bucket is 5 MB.
      *         </p>
      */
     public S3Object getS3Object() {
@@ -185,12 +185,12 @@ public class Document implements Serializable {
     /**
      * <p>
      * Identifies an S3 object as the document source. The maximum size of a
-     * document stored in an S3 bucket is 5 MB.
+     * document that's stored in an S3 bucket is 5 MB.
      * </p>
      *
      * @param s3Object <p>
      *            Identifies an S3 object as the document source. The maximum
-     *            size of a document stored in an S3 bucket is 5 MB.
+     *            size of a document that's stored in an S3 bucket is 5 MB.
      *            </p>
      */
     public void setS3Object(S3Object s3Object) {
@@ -200,7 +200,7 @@ public class Document implements Serializable {
     /**
      * <p>
      * Identifies an S3 object as the document source. The maximum size of a
-     * document stored in an S3 bucket is 5 MB.
+     * document that's stored in an S3 bucket is 5 MB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -208,7 +208,7 @@ public class Document implements Serializable {
      *
      * @param s3Object <p>
      *            Identifies an S3 object as the document source. The maximum
-     *            size of a document stored in an S3 bucket is 5 MB.
+     *            size of a document that's stored in an S3 bucket is 5 MB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

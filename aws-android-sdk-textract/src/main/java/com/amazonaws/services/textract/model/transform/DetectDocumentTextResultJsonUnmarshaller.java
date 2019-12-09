@@ -42,6 +42,10 @@ public class DetectDocumentTextResultJsonUnmarshaller implements
                         BlockJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("DetectDocumentTextModelVersion")) {
+                detectDocumentTextResult.setDetectDocumentTextModelVersion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

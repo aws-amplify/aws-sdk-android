@@ -70,6 +70,12 @@ public class DetectModerationLabelsRequestMarshaller implements
                 jsonWriter.name("MinConfidence");
                 jsonWriter.value(minConfidence);
             }
+            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
+                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
+                        .getHumanLoopConfig();
+                jsonWriter.name("HumanLoopConfig");
+                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

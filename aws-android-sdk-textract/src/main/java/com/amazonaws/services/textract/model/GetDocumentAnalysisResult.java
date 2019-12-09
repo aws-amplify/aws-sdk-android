@@ -52,24 +52,29 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The results of the text analysis operation.
+     * The results of the text-analysis operation.
      * </p>
      */
     private java.util.List<Block> blocks;
 
     /**
      * <p>
-     * A list of warnings that occurred during the document analysis operation.
+     * A list of warnings that occurred during the document-analysis operation.
      * </p>
      */
     private java.util.List<Warning> warnings;
 
     /**
      * <p>
-     * The current status of an asynchronous document analysis operation.
+     * The current status of an asynchronous document-analysis operation.
      * </p>
      */
     private String statusMessage;
+
+    /**
+     * <p/>
+     */
+    private String analyzeDocumentModelVersion;
 
     /**
      * <p>
@@ -296,11 +301,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The results of the text analysis operation.
+     * The results of the text-analysis operation.
      * </p>
      *
      * @return <p>
-     *         The results of the text analysis operation.
+     *         The results of the text-analysis operation.
      *         </p>
      */
     public java.util.List<Block> getBlocks() {
@@ -309,11 +314,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The results of the text analysis operation.
+     * The results of the text-analysis operation.
      * </p>
      *
      * @param blocks <p>
-     *            The results of the text analysis operation.
+     *            The results of the text-analysis operation.
      *            </p>
      */
     public void setBlocks(java.util.Collection<Block> blocks) {
@@ -327,14 +332,14 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The results of the text analysis operation.
+     * The results of the text-analysis operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            The results of the text analysis operation.
+     *            The results of the text-analysis operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -351,14 +356,14 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The results of the text analysis operation.
+     * The results of the text-analysis operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blocks <p>
-     *            The results of the text analysis operation.
+     *            The results of the text-analysis operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -370,11 +375,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document analysis operation.
+     * A list of warnings that occurred during the document-analysis operation.
      * </p>
      *
      * @return <p>
-     *         A list of warnings that occurred during the document analysis
+     *         A list of warnings that occurred during the document-analysis
      *         operation.
      *         </p>
      */
@@ -384,11 +389,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document analysis operation.
+     * A list of warnings that occurred during the document-analysis operation.
      * </p>
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document analysis
+     *            A list of warnings that occurred during the document-analysis
      *            operation.
      *            </p>
      */
@@ -403,14 +408,14 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document analysis operation.
+     * A list of warnings that occurred during the document-analysis operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document analysis
+     *            A list of warnings that occurred during the document-analysis
      *            operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -428,14 +433,14 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * A list of warnings that occurred during the document analysis operation.
+     * A list of warnings that occurred during the document-analysis operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param warnings <p>
-     *            A list of warnings that occurred during the document analysis
+     *            A list of warnings that occurred during the document-analysis
      *            operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -448,11 +453,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document analysis operation.
+     * The current status of an asynchronous document-analysis operation.
      * </p>
      *
      * @return <p>
-     *         The current status of an asynchronous document analysis
+     *         The current status of an asynchronous document-analysis
      *         operation.
      *         </p>
      */
@@ -462,11 +467,11 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document analysis operation.
+     * The current status of an asynchronous document-analysis operation.
      * </p>
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous document analysis
+     *            The current status of an asynchronous document-analysis
      *            operation.
      *            </p>
      */
@@ -476,14 +481,14 @@ public class GetDocumentAnalysisResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous document analysis operation.
+     * The current status of an asynchronous document-analysis operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous document analysis
+     *            The current status of an asynchronous document-analysis
      *            operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -491,6 +496,40 @@ public class GetDocumentAnalysisResult implements Serializable {
      */
     public GetDocumentAnalysisResult withStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+        return this;
+    }
+
+    /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public String getAnalyzeDocumentModelVersion() {
+        return analyzeDocumentModelVersion;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param analyzeDocumentModelVersion <p/>
+     */
+    public void setAnalyzeDocumentModelVersion(String analyzeDocumentModelVersion) {
+        this.analyzeDocumentModelVersion = analyzeDocumentModelVersion;
+    }
+
+    /**
+     * <p/>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyzeDocumentModelVersion <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDocumentAnalysisResult withAnalyzeDocumentModelVersion(
+            String analyzeDocumentModelVersion) {
+        this.analyzeDocumentModelVersion = analyzeDocumentModelVersion;
         return this;
     }
 
@@ -516,7 +555,9 @@ public class GetDocumentAnalysisResult implements Serializable {
         if (getWarnings() != null)
             sb.append("Warnings: " + getWarnings() + ",");
         if (getStatusMessage() != null)
-            sb.append("StatusMessage: " + getStatusMessage());
+            sb.append("StatusMessage: " + getStatusMessage() + ",");
+        if (getAnalyzeDocumentModelVersion() != null)
+            sb.append("AnalyzeDocumentModelVersion: " + getAnalyzeDocumentModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -534,6 +575,10 @@ public class GetDocumentAnalysisResult implements Serializable {
         hashCode = prime * hashCode + ((getWarnings() == null) ? 0 : getWarnings().hashCode());
         hashCode = prime * hashCode
                 + ((getStatusMessage() == null) ? 0 : getStatusMessage().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAnalyzeDocumentModelVersion() == null) ? 0
+                        : getAnalyzeDocumentModelVersion().hashCode());
         return hashCode;
     }
 
@@ -575,6 +620,13 @@ public class GetDocumentAnalysisResult implements Serializable {
             return false;
         if (other.getStatusMessage() != null
                 && other.getStatusMessage().equals(this.getStatusMessage()) == false)
+            return false;
+        if (other.getAnalyzeDocumentModelVersion() == null
+                ^ this.getAnalyzeDocumentModelVersion() == null)
+            return false;
+        if (other.getAnalyzeDocumentModelVersion() != null
+                && other.getAnalyzeDocumentModelVersion().equals(
+                        this.getAnalyzeDocumentModelVersion()) == false)
             return false;
         return true;
     }
