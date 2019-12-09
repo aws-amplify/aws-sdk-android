@@ -346,7 +346,9 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         jsonErrorUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new KMSNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new SubnetIPAddressLimitReachedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
@@ -377,16 +379,15 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * asynchronously, set <code>InvocationType</code> to <code>Event</code>.
      * </p>
      * <p>
-     * For synchronous invocation, details about the function response,
+     * For <a href=
+     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html"
+     * >synchronous invocation</a>, details about the function response,
      * including errors, are included in the response body and headers. For
      * either invocation type, you can find more information in the <a href=
      * "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html"
      * >execution log</a> and <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">trace</a>.
-     * To record function errors for asynchronous invocations, configure your
-     * function with a <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/dlq.html">dead letter
-     * queue</a>.
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html"
+     * >trace</a>.
      * </p>
      * <p>
      * When an error occurs, your function may be invoked multiple times. Retry
@@ -396,6 +397,18 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * information, see <a href=
      * "https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html"
      * >Retry Behavior</a>.
+     * </p>
+     * <p>
+     * For <a href=
+     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html"
+     * >asynchronous invocation</a>, Lambda adds events to a queue before
+     * sending them to your function. If your function does not have enough
+     * capacity to keep up with the queue, events may be lost. Occasionally,
+     * your function may receive the same event multiple times, even if no error
+     * occurs. To retain events that were not processed, configure your function
+     * with a <a href=
+     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#dlq"
+     * >dead-letter queue</a>.
      * </p>
      * <p>
      * The status code in the API response doesn't reflect function errors.
@@ -443,6 +456,8 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * @throws KMSAccessDeniedException
      * @throws KMSNotFoundException
      * @throws InvalidRuntimeException
+     * @throws ResourceConflictException
+     * @throws ResourceNotReadyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
