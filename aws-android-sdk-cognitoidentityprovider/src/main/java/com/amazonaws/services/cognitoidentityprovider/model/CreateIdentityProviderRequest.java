@@ -53,7 +53,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      */
     private String providerType;
 
@@ -200,7 +201,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      *
      * @return <p>
      *         The identity provider type.
@@ -217,7 +219,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      *
      * @param providerType <p>
      *            The identity provider type.
@@ -237,7 +240,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      *
      * @param providerType <p>
      *            The identity provider type.
@@ -257,7 +261,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      *
      * @param providerType <p>
      *            The identity provider type.
@@ -277,7 +282,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon, OIDC
+     * <b>Allowed Values: </b>SAML, Facebook, Google, LoginWithAmazon,
+     * SignInWithApple, OIDC
      *
      * @param providerType <p>
      *            The identity provider type.
