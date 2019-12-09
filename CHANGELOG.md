@@ -7,12 +7,19 @@
 - Model updates for the following services
   - Amazon AutoScaling
   - Amazon Cognito Identity Provider
+      * Added support for [`IdentityProviderType.SignInWithApple`](https://github.com/aws-amplify/aws-sdk-android/pull/1362/files#diff-2949a3798ae1a86ffd84ddf2ee29e229R30).
+  - Amazon Comprehend
   - AWS IoT
+  - AWS Key Management Service (KMS)
   - Amazon Kinesis Firehose
+  - Amazon Kinesis Video Streams
+  - AWS Lambda
   - Amazon Lex
-  - AWS Rekognition
+      * Added support for `sessionId` in `PostContentResult` and `PostTextResult`. See [Amazon Lex SessionId Support](https://github.com/aws-amplify/aws-sdk-android/pull/1366) for details.
+  - Amazon Rekognition
   - Amazon Security Token Service (STS)
   - Amazon Simple Notification Service (SNS)
+  - Amazon Textract
   - Amazon Transcribe
 
 ## [Release 2.16.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.4)
