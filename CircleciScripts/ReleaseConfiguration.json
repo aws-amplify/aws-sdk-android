@@ -30,6 +30,7 @@
 			"aws-android-sdk-kinesis",
 			"aws-android-sdk-kinesisvideo",
 			"aws-android-sdk-kinesisvideo-archivedmedia",
+			"aws-android-sdk-kinesisvideo-signaling",
 			"aws-android-sdk-kms",
 			"aws-android-sdk-lambda",
 			"aws-android-sdk-lex",
@@ -179,6 +180,12 @@
 				packages : [ 
 					"${service.prefix}.kinesisvideoarchivedmedia*" 
 				]  
+			},
+			{
+				title : "Amazon Kinesis Video Signaling" ,
+				packages : [
+					"${service.prefix}.kinesisvideosignaling*"
+				]
 			},
 			{ 
 				title : "Amazon Lex", 
