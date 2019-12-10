@@ -652,11 +652,11 @@ abstract class NotificationClientBase {
      * Handles creation of the open app PendingIntent. Implementors of this method will need to
      * decide on how to create the intent based on the provided action.
      *
-     * @param data          the data to push
+     * @param data             the data to push
      * @param intentReceiver   the class that handles receiving messages.
-     * @param campaignId    pinpoint campaign id
-     * @param requestId     request id
-     * @param intentAction  intent action
+     * @param campaignId       pinpoint campaign id
+     * @param requestId        request id
+     * @param intentAction     intent action
      * @return {@link PendingIntent}
      */
     protected abstract PendingIntent createOpenAppPendingIntent(
