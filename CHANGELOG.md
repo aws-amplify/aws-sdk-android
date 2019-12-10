@@ -2,6 +2,11 @@
 
 ## [Release 2.16.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.5)
 
+### Bu Fixes
+
+- **Amazon Pinpoint**
+  - Fixed a bug where setting `Intent.FLAG_ACTIVITY_CLEAR_TOP` and `Intent.FLAG_ACTIVITY_SINGLE_TOP` on the `notificationIntent` being created for displaying notification causes a crash in Android OS Versions < 4.4. The fix involves removing the setting of flags as it is not relavent for an intent that communicates with a Android Service and a Broadcast receiver. See [PR #1370](https://github.com/aws-amplify/aws-sdk-android/pull/1370) for details.
+
 ### Misc. Updates
 
 - Model updates for the following services
