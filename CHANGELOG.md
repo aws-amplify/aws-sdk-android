@@ -2,7 +2,12 @@
 
 ## [Release 2.16.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.5)
 
-### Bu Fixes
+### New Features
+
+- **Amazon Kinesis Video Signaling**
+  - Amazon Kinesis Video Signaling Channels supports GetIceServerConfig and SendAlexaOfferToMaster. See [Amazon Kinese Video Signaling Channels Documentation](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Operations_Amazon_Kinesis_Video_Signaling_Channels.html) for more details
+
+### Bug Fixes
 
 - **Amazon Pinpoint**
   - Fixed a bug where setting `Intent.FLAG_ACTIVITY_CLEAR_TOP` and `Intent.FLAG_ACTIVITY_SINGLE_TOP` on the `notificationIntent` being created for displaying notification causes a crash in Android OS Versions < 4.4. The fix involves removing the setting of flags as it is not relavent for an intent that communicates with a Android Service and a Broadcast receiver. See [PR #1370](https://github.com/aws-amplify/aws-sdk-android/pull/1370) for details.
@@ -18,6 +23,7 @@
   - AWS Key Management Service (KMS)
   - Amazon Kinesis Firehose
   - Amazon Kinesis Video Streams
+  - Amazon Kinesis Video Signaling
   - AWS Lambda
   - Amazon Lex
       * Added support for `sessionId` in `PostContentResult` and `PostTextResult`. See [Amazon Lex SessionId Support](https://github.com/aws-amplify/aws-sdk-android/pull/1366) for details.
