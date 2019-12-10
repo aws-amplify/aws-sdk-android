@@ -652,23 +652,41 @@ abstract class NotificationClientBase {
      * Handles creation of the open app PendingIntent. Implementors of this method will need to
      * decide on how to create the intent based on the provided action.
      *
-     * @param pushBundle    the data to push
-     * @param targetClass   the class that handles receiving messages.
-     * @param campaignId    pinpoint campaign id
-     * @param requestId     request id
-     * @param intentAction  intent action
+     * @param data             the data to push
+     * @param intentReceiver   the class that handles receiving messages.
+     * @param campaignId       pinpoint campaign id
+     * @param requestId        request id
+     * @param intentAction     intent action
      * @return {@link PendingIntent}
      */
-    protected abstract PendingIntent createOpenAppPendingIntent(final Bundle pushBundle, final Class<?> targetClass, final String campaignId,
-                                                                final int requestId, final String intentAction);
+    protected abstract PendingIntent createOpenAppPendingIntent(
+            final Bundle data,
+            final Class<?> intentReceiver,
+            final String campaignId,
+            final int requestId,
+            final String intentAction);
 
 
-    protected final Intent notificationIntent(final Bundle pushBundle, final String campaignId, final int requestId, final String intentAction,
-                                      final Class<?> targetClass) {
-        final Intent notificationIntent = new Intent(pinpointContext.getApplicationContext(), targetClass);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    /**
+     * Creates a notification intent for the given set of parameters of an
+     * intent.
+     *
+     * @param data the data to push
+     * @param campaignId identifies the pinpoint campaign
+     * @param requestId identifies the notification request
+     * @param intentAction specifies the action of the intent
+     * @param intentReceiver the target class that handles receiving messages.
+     * @return
+     */
+    final Intent notificationIntent(
+            final Bundle data,
+            final String campaignId,
+            final int requestId,
+            final String intentAction,
+            final Class<?> intentReceiver) {
+        final Intent notificationIntent = new Intent(pinpointContext.getApplicationContext(), intentReceiver);
         notificationIntent.setAction(intentAction);
-        notificationIntent.putExtras(pushBundle);
+        notificationIntent.putExtras(data);
         notificationIntent.putExtra(INTENT_SNS_NOTIFICATION_FROM, AWS_EVENT_TYPE_OPENED);
         notificationIntent.putExtra(CAMPAIGN_ID_PUSH_KEY, campaignId);
         notificationIntent.putExtra(REQUEST_ID, requestId);
@@ -685,7 +703,7 @@ abstract class NotificationClientBase {
     int getNotificationRequestId(final String campaignId,
                                  final String activityId) {
         // Adding a random unique identifier for direct sends. For a campaign,
-        // use the campaingId and the activityId in order to prevent displaying
+        // use the campaignId and the activityId in order to prevent displaying
         // duplicate notifications from a campaign activity.
         if (DIRECT_CAMPAIGN_SEND.equals(campaignId) && activityId == null) {
             return random.nextInt();
@@ -694,18 +712,23 @@ abstract class NotificationClientBase {
         }
     }
 
-    private boolean displayNotification(final Bundle pushBundle, final Class<?> targetClass, final String imageUrl,
-                                        final String iconImageUrl, final String iconSmallImageUrl,
-                                        final Map<String, String> campaignAttributes, final String intentAction) {
-        log.info("Display Notification: " + pushBundle.toString());
+    private boolean displayNotification(
+            final Bundle data,
+            final Class<?> intentReceiver,
+            final String imageUrl,
+            final String iconImageUrl,
+            final String iconSmallImageUrl,
+            final Map<String, String> campaignAttributes,
+            final String intentAction) {
+        log.info("Display Notification: " + data.toString());
 
-        final int iconResId = getNotificationIconResourceId(pushBundle.getString(NOTIFICATION_ICON_PUSH_KEY));
+        final int iconResId = getNotificationIconResourceId(data.getString(NOTIFICATION_ICON_PUSH_KEY));
         if (iconResId == 0) {
             return false;
         }
 
-        final String title = pushBundle.getString(NOTIFICATION_TITLE_PUSH_KEY);
-        final String message = pushBundle.getString(NOTIFICATION_BODY_PUSH_KEY);
+        final String title = data.getString(NOTIFICATION_TITLE_PUSH_KEY);
+        final String message = data.getString(NOTIFICATION_BODY_PUSH_KEY);
 
         final String campaignId = campaignAttributes.get(CAMPAIGN_ID_ATTRIBUTE_KEY);
         final String activityId = campaignAttributes.get(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY);
@@ -718,11 +741,15 @@ abstract class NotificationClientBase {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Notification notification = createNotification(iconResId, title, message, imageUrl, iconImageUrl,
-                                                                     iconSmallImageUrl,
-                                                                     NotificationClientBase.this.createOpenAppPendingIntent(pushBundle, targetClass,
-                                                                                                     campaignId, requestID,
-                                                                                                     intentAction));
+                final Notification notification = createNotification(
+                        iconResId,
+                        title,
+                        message,
+                        imageUrl,
+                        iconImageUrl,
+                        iconSmallImageUrl,
+                        NotificationClientBase.this.createOpenAppPendingIntent(
+                                data, intentReceiver, campaignId, requestID, intentAction));
 
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
@@ -730,7 +757,7 @@ abstract class NotificationClientBase {
                 if (android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
                     log.info("SDK greater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
 
-                    final String colorString = pushBundle.getString(NOTIFICATION_COLOR_PUSH_KEY);
+                    final String colorString = data.getString(NOTIFICATION_COLOR_PUSH_KEY);
                     if (colorString != null) {
                         int color;
                         try {
@@ -750,14 +777,15 @@ abstract class NotificationClientBase {
                             exception = ex;
                         }
                         if (exception != null) {
-                            log.error("Couldn't set campaign notification color : " + exception.getMessage(), exception);
+                            log.error("Couldn't set campaign notification color : " +
+                                    exception.getMessage(), exception);
                         }
                     }
                 }
 
-                final NotificationManager notificationManager = (NotificationManager) pinpointContext.getApplicationContext()
-                                                                                                     .getSystemService(
-                                                                                                         Context.NOTIFICATION_SERVICE);
+                final NotificationManager notificationManager =
+                        (NotificationManager) pinpointContext.getApplicationContext()
+                                .getSystemService(Context.NOTIFICATION_SERVICE);
 
                 notificationManager.notify(requestID, notification);
             }
@@ -767,9 +795,9 @@ abstract class NotificationClientBase {
     }
 
     private boolean openApp() {
-        final Intent launchIntent = pinpointContext.getApplicationContext().getPackageManager()
-                                                   .getLaunchIntentForPackage(
-                                                       pinpointContext.getApplicationContext().getPackageName());
+        final Intent launchIntent =
+                pinpointContext.getApplicationContext().getPackageManager()
+                        .getLaunchIntentForPackage(pinpointContext.getApplicationContext().getPackageName());
 
         if (launchIntent == null) {
             log.error("Couldn't get app launch intent for campaign notification.");
@@ -845,7 +873,7 @@ abstract class NotificationClientBase {
     public final NotificationClient.CampaignPushResult handleCampaignPush(NotificationDetails notificationDetails) {
         final String from = notificationDetails.getFrom();
         final Bundle data = notificationDetails.getBundle();
-        final Class<?> targetClass = notificationDetails.getTargetClass();
+        final Class<?> intentReceiver = notificationDetails.getTargetClass();
         String intentAction = notificationDetails.getIntentAction();
         notificationChannelId = notificationDetails.getNotificationChannelId();
 
@@ -901,7 +929,7 @@ abstract class NotificationClientBase {
                 // App is in the background; attempt to display a
                 // notification in the notification center.
                 if (!areAppNotificationsEnabled() ||
-                    !displayNotification(data, targetClass, imageUrl, imageIconUrl, imageSmallIconUrl, campaignAttributes,
+                    !displayNotification(data, intentReceiver, imageUrl, imageIconUrl, imageSmallIconUrl, campaignAttributes,
                                          intentAction)) {
                     // Local app notifications have been disabled by the
                     // user from Settings -> App Info
