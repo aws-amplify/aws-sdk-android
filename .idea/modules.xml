@@ -39,6 +39,8 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling/aws-android-sdk-kinesisvideo-signaling.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling/aws-android-sdk-kinesisvideo-signaling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling-test/aws-android-sdk-kinesisvideo-signaling-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling-test/aws-android-sdk-kinesisvideo-signaling-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lambda-test/aws-android-sdk-lambda-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lambda-test/aws-android-sdk-lambda-test.iml" />
