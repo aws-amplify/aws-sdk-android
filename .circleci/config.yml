@@ -1274,16 +1274,16 @@ workflows:
               only:
                 - master
                 - develop
-      - integrationtest:
-          name: kinesisvideo-signaling
-          testmodule: aws-android-sdk-kinesisvideo-signaling-test
-          requires:
-            - pre_integrationtest
-          filters:
-            branches:
-              only:
-                - master
-                - develop
+      # - integrationtest:
+      #     name: kinesisvideo-signaling
+      #     testmodule: aws-android-sdk-kinesisvideo-signaling-test
+      #     requires:
+      #       - pre_integrationtest
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      #           - develop
       - integrationtest:
           name: lambda
           testmodule: aws-android-sdk-lambda-test
@@ -1505,7 +1505,7 @@ workflows:
             # - machinelearning
             - lambda
             - kinesis
-            - kinesisvideo-signaling
+            # - kinesisvideo-signaling
             - iot
             - elb
             - ddb
@@ -1683,16 +1683,16 @@ workflows:
               ignore: /.*/
             tags:
               only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-      - integrationtest:
-          name: kinesisvideo-signaling
-          testmodule: aws-android-sdk-kinesisvideo-signaling-test
-          requires:
-            - pre_integrationtest
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
+      # - integrationtest:
+      #     name: kinesisvideo-signaling
+      #     testmodule: aws-android-sdk-kinesisvideo-signaling-test
+      #     requires:
+      #       - pre_integrationtest
+      #     filters:
+      #       branches:
+      #         ignore: /.*/
+      #       tags:
+      #         only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
       - integrationtest:
           name: lambda
           testmodule: aws-android-sdk-lambda-test
@@ -1914,7 +1914,7 @@ workflows:
             # - machinelearning
             - lambda
             - kinesis
-            - kinesisvideo-signaling
+            # - kinesisvideo-signaling
             - iot
             - elb
             - ddb
