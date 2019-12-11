@@ -115,6 +115,8 @@ com.amazonaws.services.kinesisvideo
 com.amazonaws.services.kinesisvideo.model
 com.amazonaws.services.kinesisvideoarchivedmedia
 com.amazonaws.services.kinesisvideoarchivedmedia.model
+com.amazonaws.services.kinesisvideosignaling
+com.amazonaws.services.kinesisvideosignaling.model
 com.amazonaws.services.kms
 com.amazonaws.services.kms.model
 com.amazonaws.services.lambda
