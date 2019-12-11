@@ -23,10 +23,10 @@ import org.junit.runner.RunWith;
 
 import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX;
 import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX;
-import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import android.content.Context;
 import android.content.SharedPreferences;
