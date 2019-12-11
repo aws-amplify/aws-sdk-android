@@ -596,9 +596,11 @@ public class CognitoCachingCredentialsProvider
                 sessionCredentialsExpiration = new Date(expirationKeyInLong);
             } catch (NumberFormatException longNotParsed) {
                 sessionCredentialsExpiration = null;
+                return;
             }
         } else {
             sessionCredentialsExpiration = null;
+            return;
         }
 
         if (!hasCredentials()) {
@@ -611,6 +613,7 @@ public class CognitoCachingCredentialsProvider
         final String sessionToken = awsKeyValueStore.get(namespace(ST_KEY));
         if (accessKey == null || secretAccessKey == null || sessionToken == null) {
             LOG.debug("No valid credentials found in SharedPreferences");
+            sessionCredentialsExpiration = null;
             return;
         }
         sessionCredentials = new BasicSessionCredentials(accessKey, secretAccessKey, sessionToken);
