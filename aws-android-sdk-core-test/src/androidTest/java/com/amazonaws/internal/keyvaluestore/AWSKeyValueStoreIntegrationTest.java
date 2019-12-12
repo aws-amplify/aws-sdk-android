@@ -26,6 +26,7 @@ import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFE
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -433,11 +434,11 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
             KeyProvider23 keyProvider23 = new KeyProvider23();
             keyProvider23.generateKey("a");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            fail(Log.getStackTraceString(ex));
         }
 
         long end = System.nanoTime();
 
-        Log.d(TAG, "KeyStore load: " + String.valueOf(end - begin));
+        Log.d(TAG, "KeyStore load time: " + String.valueOf(end - begin) + " ns.");
     }
 }
