@@ -98,21 +98,21 @@ public class XpathUtilsTest {
     public void testAsInteger() throws Exception {
         Document document = XpathUtils.documentFrom(DOCUMENT);
         assertEquals((Integer) 1, XpathUtils.asInteger("Foo/Count", document));
-        assertEquals(null, XpathUtils.asInteger("Foo/Empty", document));
+        assertNull(XpathUtils.asInteger("Foo/Empty", document));
     }
 
     @Test
     public void testAsBoolean() throws Exception {
         Document document = XpathUtils.documentFrom(DOCUMENT);
         assertEquals(true, XpathUtils.asBoolean("Foo/Enabled", document));
-        assertEquals(null, XpathUtils.asBoolean("Foo/Empty", document));
+        assertNull(XpathUtils.asBoolean("Foo/Empty", document));
     }
 
     @Test
     public void testAsFloat() throws Exception {
         Document document = XpathUtils.documentFrom(DOCUMENT);
         assertEquals((Float) 0.0000071759f, XpathUtils.asFloat("Foo/Usage", document));
-        assertEquals(null, XpathUtils.asFloat("Foo/Empty", document));
+        assertNull(XpathUtils.asFloat("Foo/Empty", document));
     }
 
     /**
@@ -123,7 +123,7 @@ public class XpathUtilsTest {
         Document document = XpathUtils.documentFrom(DOCUMENT);
         assertEquals(new Byte((byte) 123), XpathUtils.asByte("Foo/PositiveByte", document));
         assertEquals(new Byte((byte) -99), XpathUtils.asByte("Foo/NegativeByte", document));
-        assertEquals(null, XpathUtils.asByte("Foo/Empty", document));
+        assertNull(XpathUtils.asByte("Foo/Empty", document));
     }
 
     /**
@@ -152,7 +152,7 @@ public class XpathUtilsTest {
         assertNotNull(date);
         assertEquals(expectedDate.getTimeInMillis(), date.getTime());
 
-        assertEquals(null, XpathUtils.asDate("Foo/Empty", document));
+        assertNull(XpathUtils.asDate("Foo/Empty", document));
     }
 
     @Test
@@ -204,7 +204,7 @@ public class XpathUtilsTest {
         String data = new String(byteBuffer.array(), StringUtils.UTF8);
         assertEquals(expectedData, data);
 
-        assertEquals(null, XpathUtils.asByteBuffer("Foo/Empty", document));
+        assertNull(XpathUtils.asByteBuffer("Foo/Empty", document));
     }
 
 }

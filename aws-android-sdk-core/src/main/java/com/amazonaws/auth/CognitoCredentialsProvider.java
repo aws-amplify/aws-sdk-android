@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package com.amazonaws.auth;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceClient;
 import com.amazonaws.AmazonWebServiceRequest;
@@ -52,7 +51,9 @@ import java.util.Map;
 public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     private static final Log log = LogFactory.getLog(AWSCredentialsProviderChain.class);
 
+    /** The name of the AWS region where the Cognito Identity pool is hosted. */
     private final String region;
+
     /** Used in the enhanced get credentials flow */
     private AmazonCognitoIdentity cib;
 
@@ -86,9 +87,9 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     protected String authRoleArn;
     protected String customRoleArn;
 
-    protected boolean useEnhancedFlow;
+    protected final boolean useEnhancedFlow;
 
-    protected ReentrantReadWriteLock credentialsLock;
+    protected final ReentrantReadWriteLock credentialsLock;
 
     /**
      * Constructs a new {@link CognitoCredentialsProvider}, which will use the
