@@ -52,8 +52,9 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
     private final CognitoUser user;
     private final String username;
     private final AuthenticationHandler callback;
-    protected Map<String, String> challengeResponses;
     private final boolean runInBackground;
+    protected Map<String, String> challengeResponses;
+    protected Map<String, String> clientMetaData;
 
     /**
      * Constructs a continuation for a challenge to be presented to the user.
@@ -85,6 +86,14 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
         this.callback = callback;
         this.runInBackground = runInBackground;
         challengeResponses = new HashMap<String, String>();
+    }
+
+    public Map<String, String> getClientMetaData() {
+        return clientMetaData;
+    }
+
+    public void setClientMetaData(Map<String, String> clientMetaData) {
+        this.clientMetaData = clientMetaData;
     }
 
     /**
@@ -140,6 +149,9 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
         respondToAuthChallengeRequest.setSession(challengeResult.getSession());
         respondToAuthChallengeRequest.setClientId(clientId);
         respondToAuthChallengeRequest.setChallengeResponses(challengeResponses);
+        if (clientMetaData != null) {
+            respondToAuthChallengeRequest.setClientMetadata(clientMetaData);
+        }
         if (runInBackground) {
             new Thread(new Runnable() {
                 @Override

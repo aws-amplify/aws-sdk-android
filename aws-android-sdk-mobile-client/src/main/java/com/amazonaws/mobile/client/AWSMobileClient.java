@@ -1286,10 +1286,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      */
     @AnyThread
     public void confirmSignIn(final Map<String, String> signInChallengeResponse,
-                              final Callback<SignInResult> callback) {
+                              final Callback<SignInResult> callback,
+                              final Map<String, String> clientMetaData) {
 
         final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback, clientMetaData));
     }
 
     /**
@@ -1301,14 +1302,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @throws Exception
      */
     @WorkerThread
-    public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse) throws Exception {
+    public SignInResult confirmSignIn(final Map<String, String> signInChallengeResponse,
+                                      final Map<String, String> clientMetaData) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback, clientMetaData));
     }
 
     private Runnable _confirmSignIn(final Map<String, String> signInChallengeResponse,
-                                    final Callback<SignInResult> callback) {
+                                    final Callback<SignInResult> callback,
+                                    final Map<String, String> clientMetaData) {
 
         return new Runnable() {
             @Override
@@ -1331,6 +1334,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
                         }
                         detectedContinuation = signInChallengeContinuation;
+                        signInChallengeContinuation.setClientMetaData(clientMetaData);
                         signInCallback = new InternalCallback<SignInResult>(callback);
                         break;
                     case DONE:
