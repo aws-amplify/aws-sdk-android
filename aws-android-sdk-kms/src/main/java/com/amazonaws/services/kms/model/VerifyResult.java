@@ -32,10 +32,11 @@ public class VerifyResult implements Serializable {
     /**
      * <p>
      * A Boolean value that indicates whether the signature was verified. A
-     * value of True indicates that the <code>Signature</code> was produced by
-     * signing the <code>Message</code> with the specified KeyID and
-     * <code>SigningAlgorithm.</code> A value of False indicates that the
-     * message, the algorithm, or the key changed since the message was signed.
+     * value of <code>True</code> indicates that the <code>Signature</code> was
+     * produced by signing the <code>Message</code> with the specified
+     * <code>KeyID</code> and <code>SigningAlgorithm.</code> If the signature is
+     * not verified, the <code>Verify</code> operation fails with a
+     * <code>KMSInvalidSignatureException</code> exception.
      * </p>
      */
     private Boolean signatureValid;
@@ -115,20 +116,21 @@ public class VerifyResult implements Serializable {
     /**
      * <p>
      * A Boolean value that indicates whether the signature was verified. A
-     * value of True indicates that the <code>Signature</code> was produced by
-     * signing the <code>Message</code> with the specified KeyID and
-     * <code>SigningAlgorithm.</code> A value of False indicates that the
-     * message, the algorithm, or the key changed since the message was signed.
+     * value of <code>True</code> indicates that the <code>Signature</code> was
+     * produced by signing the <code>Message</code> with the specified
+     * <code>KeyID</code> and <code>SigningAlgorithm.</code> If the signature is
+     * not verified, the <code>Verify</code> operation fails with a
+     * <code>KMSInvalidSignatureException</code> exception.
      * </p>
      *
      * @return <p>
      *         A Boolean value that indicates whether the signature was
-     *         verified. A value of True indicates that the
+     *         verified. A value of <code>True</code> indicates that the
      *         <code>Signature</code> was produced by signing the
-     *         <code>Message</code> with the specified KeyID and
-     *         <code>SigningAlgorithm.</code> A value of False indicates that
-     *         the message, the algorithm, or the key changed since the message
-     *         was signed.
+     *         <code>Message</code> with the specified <code>KeyID</code> and
+     *         <code>SigningAlgorithm.</code> If the signature is not verified,
+     *         the <code>Verify</code> operation fails with a
+     *         <code>KMSInvalidSignatureException</code> exception.
      *         </p>
      */
     public Boolean isSignatureValid() {
@@ -138,20 +140,21 @@ public class VerifyResult implements Serializable {
     /**
      * <p>
      * A Boolean value that indicates whether the signature was verified. A
-     * value of True indicates that the <code>Signature</code> was produced by
-     * signing the <code>Message</code> with the specified KeyID and
-     * <code>SigningAlgorithm.</code> A value of False indicates that the
-     * message, the algorithm, or the key changed since the message was signed.
+     * value of <code>True</code> indicates that the <code>Signature</code> was
+     * produced by signing the <code>Message</code> with the specified
+     * <code>KeyID</code> and <code>SigningAlgorithm.</code> If the signature is
+     * not verified, the <code>Verify</code> operation fails with a
+     * <code>KMSInvalidSignatureException</code> exception.
      * </p>
      *
      * @return <p>
      *         A Boolean value that indicates whether the signature was
-     *         verified. A value of True indicates that the
+     *         verified. A value of <code>True</code> indicates that the
      *         <code>Signature</code> was produced by signing the
-     *         <code>Message</code> with the specified KeyID and
-     *         <code>SigningAlgorithm.</code> A value of False indicates that
-     *         the message, the algorithm, or the key changed since the message
-     *         was signed.
+     *         <code>Message</code> with the specified <code>KeyID</code> and
+     *         <code>SigningAlgorithm.</code> If the signature is not verified,
+     *         the <code>Verify</code> operation fails with a
+     *         <code>KMSInvalidSignatureException</code> exception.
      *         </p>
      */
     public Boolean getSignatureValid() {
@@ -161,20 +164,21 @@ public class VerifyResult implements Serializable {
     /**
      * <p>
      * A Boolean value that indicates whether the signature was verified. A
-     * value of True indicates that the <code>Signature</code> was produced by
-     * signing the <code>Message</code> with the specified KeyID and
-     * <code>SigningAlgorithm.</code> A value of False indicates that the
-     * message, the algorithm, or the key changed since the message was signed.
+     * value of <code>True</code> indicates that the <code>Signature</code> was
+     * produced by signing the <code>Message</code> with the specified
+     * <code>KeyID</code> and <code>SigningAlgorithm.</code> If the signature is
+     * not verified, the <code>Verify</code> operation fails with a
+     * <code>KMSInvalidSignatureException</code> exception.
      * </p>
      *
      * @param signatureValid <p>
      *            A Boolean value that indicates whether the signature was
-     *            verified. A value of True indicates that the
+     *            verified. A value of <code>True</code> indicates that the
      *            <code>Signature</code> was produced by signing the
-     *            <code>Message</code> with the specified KeyID and
-     *            <code>SigningAlgorithm.</code> A value of False indicates that
-     *            the message, the algorithm, or the key changed since the
-     *            message was signed.
+     *            <code>Message</code> with the specified <code>KeyID</code> and
+     *            <code>SigningAlgorithm.</code> If the signature is not
+     *            verified, the <code>Verify</code> operation fails with a
+     *            <code>KMSInvalidSignatureException</code> exception.
      *            </p>
      */
     public void setSignatureValid(Boolean signatureValid) {
@@ -184,10 +188,11 @@ public class VerifyResult implements Serializable {
     /**
      * <p>
      * A Boolean value that indicates whether the signature was verified. A
-     * value of True indicates that the <code>Signature</code> was produced by
-     * signing the <code>Message</code> with the specified KeyID and
-     * <code>SigningAlgorithm.</code> A value of False indicates that the
-     * message, the algorithm, or the key changed since the message was signed.
+     * value of <code>True</code> indicates that the <code>Signature</code> was
+     * produced by signing the <code>Message</code> with the specified
+     * <code>KeyID</code> and <code>SigningAlgorithm.</code> If the signature is
+     * not verified, the <code>Verify</code> operation fails with a
+     * <code>KMSInvalidSignatureException</code> exception.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -195,12 +200,12 @@ public class VerifyResult implements Serializable {
      *
      * @param signatureValid <p>
      *            A Boolean value that indicates whether the signature was
-     *            verified. A value of True indicates that the
+     *            verified. A value of <code>True</code> indicates that the
      *            <code>Signature</code> was produced by signing the
-     *            <code>Message</code> with the specified KeyID and
-     *            <code>SigningAlgorithm.</code> A value of False indicates that
-     *            the message, the algorithm, or the key changed since the
-     *            message was signed.
+     *            <code>Message</code> with the specified <code>KeyID</code> and
+     *            <code>SigningAlgorithm.</code> If the signature is not
+     *            verified, the <code>Verify</code> operation fails with a
+     *            <code>KMSInvalidSignatureException</code> exception.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
