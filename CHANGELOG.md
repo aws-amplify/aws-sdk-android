@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.6)
+
+### New Features
+
+- **AWSMobileClient**
+  - `confirmSignIn()` now supports passing clientMetaData, map of custom key-value pairs that developers can provide as an input for any custom workflow lambda triggers.
+
 ## [Release 2.16.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.5)
 
 ### New Features
