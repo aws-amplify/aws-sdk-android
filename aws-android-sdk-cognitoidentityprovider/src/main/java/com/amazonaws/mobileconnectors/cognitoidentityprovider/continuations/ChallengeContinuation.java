@@ -26,6 +26,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServic
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,7 +105,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      * @param clientMetaData MetaData to be passed as input to the lambda triggers.
      */
     public void setClientMetaData(Map<String, String> clientMetaData) {
-        this.clientMetaData = clientMetaData;
+        this.clientMetaData = Collections.unmodifiableMap(clientMetaData);
     }
 
     /**
