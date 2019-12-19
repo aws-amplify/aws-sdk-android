@@ -88,10 +88,21 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
         challengeResponses = new HashMap<String, String>();
     }
 
+    /**
+     * <p>
+     * <code>clientMetadata</code> is a map of custom key-value pairs that you can provide as input for any
+     * custom work flows. Accessor method for <code>clientMetadata</code>.
+     * </p>
+     * @return ClientMetadata
+     */
     public Map<String, String> getClientMetaData() {
         return clientMetaData;
     }
 
+    /**
+     * Mutator for <code>clientMetadata</code>.
+     * @param clientMetaData MetaData to be passed as input to the lambda triggers.
+     */
     public void setClientMetaData(Map<String, String> clientMetaData) {
         this.clientMetaData = clientMetaData;
     }
