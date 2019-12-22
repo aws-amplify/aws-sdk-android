@@ -57,6 +57,9 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("Transcript")) {
                 transcriptionJob.setTranscript(TranscriptJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartTime")) {
+                transcriptionJob.setStartTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationTime")) {
                 transcriptionJob.setCreationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -68,6 +71,10 @@ class TranscriptionJobJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Settings")) {
                 transcriptionJob.setSettings(SettingsJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobExecutionSettings")) {
+                transcriptionJob.setJobExecutionSettings(JobExecutionSettingsJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

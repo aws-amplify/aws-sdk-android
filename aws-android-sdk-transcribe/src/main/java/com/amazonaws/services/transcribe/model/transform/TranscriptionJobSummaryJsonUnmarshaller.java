@@ -43,6 +43,9 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
             } else if (name.equals("CreationTime")) {
                 transcriptionJobSummary.setCreationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartTime")) {
+                transcriptionJobSummary.setStartTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CompletionTime")) {
                 transcriptionJobSummary.setCompletionTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

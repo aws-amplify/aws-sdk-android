@@ -400,6 +400,59 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Creates a new vocabulary filter that you can use to filter words, such as
+     * profane words, from the output of a transcription job.
+     * </p>
+     * 
+     * @param createVocabularyFilterRequest
+     * @return createVocabularyFilterResult The response from the
+     *         CreateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateVocabularyFilterResult createVocabularyFilter(
+            CreateVocabularyFilterRequest createVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createVocabularyFilterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateVocabularyFilterRequest> request = null;
+        Response<CreateVocabularyFilterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateVocabularyFilterRequestMarshaller()
+                        .marshall(createVocabularyFilterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateVocabularyFilterResult, JsonUnmarshallerContext> unmarshaller = new CreateVocabularyFilterResultJsonUnmarshaller();
+            JsonResponseHandler<CreateVocabularyFilterResult> responseHandler = new JsonResponseHandler<CreateVocabularyFilterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a previously submitted transcription job along with any other
      * generated results such as the transcription, models, and so on.
      * </p>
@@ -470,6 +523,49 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             awsRequestMetrics.startEvent(Field.RequestMarshallTime);
             try {
                 request = new DeleteVocabularyRequestMarshaller().marshall(deleteVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes a vocabulary filter.
+     * </p>
+     * 
+     * @param deleteVocabularyFilterRequest
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteVocabularyFilter(DeleteVocabularyFilterRequest deleteVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteVocabularyFilterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteVocabularyFilterRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteVocabularyFilterRequestMarshaller()
+                        .marshall(deleteVocabularyFilterRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
@@ -590,6 +686,58 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Returns information about a vocabulary filter.
+     * </p>
+     * 
+     * @param getVocabularyFilterRequest
+     * @return getVocabularyFilterResult The response from the
+     *         GetVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetVocabularyFilterResult getVocabularyFilter(
+            GetVocabularyFilterRequest getVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getVocabularyFilterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetVocabularyFilterRequest> request = null;
+        Response<GetVocabularyFilterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetVocabularyFilterRequestMarshaller()
+                        .marshall(getVocabularyFilterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetVocabularyFilterResult, JsonUnmarshallerContext> unmarshaller = new GetVocabularyFilterResultJsonUnmarshaller();
+            JsonResponseHandler<GetVocabularyFilterResult> responseHandler = new JsonResponseHandler<GetVocabularyFilterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists transcription jobs with the specified status.
      * </p>
      * 
@@ -677,6 +825,57 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<ListVocabulariesResult, JsonUnmarshallerContext> unmarshaller = new ListVocabulariesResultJsonUnmarshaller();
             JsonResponseHandler<ListVocabulariesResult> responseHandler = new JsonResponseHandler<ListVocabulariesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about vocabulary filters.
+     * </p>
+     * 
+     * @param listVocabularyFiltersRequest
+     * @return listVocabularyFiltersResult The response from the
+     *         ListVocabularyFilters service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListVocabularyFiltersResult listVocabularyFilters(
+            ListVocabularyFiltersRequest listVocabularyFiltersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listVocabularyFiltersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListVocabularyFiltersRequest> request = null;
+        Response<ListVocabularyFiltersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListVocabularyFiltersRequestMarshaller()
+                        .marshall(listVocabularyFiltersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListVocabularyFiltersResult, JsonUnmarshallerContext> unmarshaller = new ListVocabularyFiltersResultJsonUnmarshaller();
+            JsonResponseHandler<ListVocabularyFiltersResult> responseHandler = new JsonResponseHandler<ListVocabularyFiltersResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -781,6 +980,58 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<UpdateVocabularyResult, JsonUnmarshallerContext> unmarshaller = new UpdateVocabularyResultJsonUnmarshaller();
             JsonResponseHandler<UpdateVocabularyResult> responseHandler = new JsonResponseHandler<UpdateVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary filter with a new list of filtered words.
+     * </p>
+     * 
+     * @param updateVocabularyFilterRequest
+     * @return updateVocabularyFilterResult The response from the
+     *         UpdateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateVocabularyFilterResult updateVocabularyFilter(
+            UpdateVocabularyFilterRequest updateVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateVocabularyFilterRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateVocabularyFilterRequest> request = null;
+        Response<UpdateVocabularyFilterResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateVocabularyFilterRequestMarshaller()
+                        .marshall(updateVocabularyFilterRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateVocabularyFilterResult, JsonUnmarshallerContext> unmarshaller = new UpdateVocabularyFilterResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateVocabularyFilterResult> responseHandler = new JsonResponseHandler<UpdateVocabularyFilterResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -111,6 +111,32 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
+     * Creates a new vocabulary filter that you can use to filter words, such as
+     * profane words, from the output of a transcription job.
+     * </p>
+     * 
+     * @param createVocabularyFilterRequest
+     * @return createVocabularyFilterResult The response from the
+     *         CreateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateVocabularyFilterResult createVocabularyFilter(
+            CreateVocabularyFilterRequest createVocabularyFilterRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a previously submitted transcription job along with any other
      * generated results such as the transcription, models, and so on.
      * </p>
@@ -149,6 +175,27 @@ public interface AmazonTranscribe {
      *             request, or a server side issue.
      */
     void deleteVocabulary(DeleteVocabularyRequest deleteVocabularyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes a vocabulary filter.
+     * </p>
+     * 
+     * @param deleteVocabularyFilterRequest
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteVocabularyFilter(DeleteVocabularyFilterRequest deleteVocabularyFilterRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -205,6 +252,31 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
+     * Returns information about a vocabulary filter.
+     * </p>
+     * 
+     * @param getVocabularyFilterRequest
+     * @return getVocabularyFilterResult The response from the
+     *         GetVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetVocabularyFilterResult getVocabularyFilter(
+            GetVocabularyFilterRequest getVocabularyFilterRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Lists transcription jobs with the specified status.
      * </p>
      * 
@@ -248,6 +320,30 @@ public interface AmazonTranscribe {
      *             request, or a server side issue.
      */
     ListVocabulariesResult listVocabularies(ListVocabulariesRequest listVocabulariesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about vocabulary filters.
+     * </p>
+     * 
+     * @param listVocabularyFiltersRequest
+     * @return listVocabularyFiltersResult The response from the
+     *         ListVocabularyFilters service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListVocabularyFiltersResult listVocabularyFilters(
+            ListVocabularyFiltersRequest listVocabularyFiltersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -299,6 +395,31 @@ public interface AmazonTranscribe {
      *             request, or a server side issue.
      */
     UpdateVocabularyResult updateVocabulary(UpdateVocabularyRequest updateVocabularyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a vocabulary filter with a new list of filtered words.
+     * </p>
+     * 
+     * @param updateVocabularyFilterRequest
+     * @return updateVocabularyFilterResult The response from the
+     *         UpdateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateVocabularyFilterResult updateVocabularyFilter(
+            UpdateVocabularyFilterRequest updateVocabularyFilterRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

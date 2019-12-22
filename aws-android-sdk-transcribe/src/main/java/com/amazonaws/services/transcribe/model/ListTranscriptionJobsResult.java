@@ -24,7 +24,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      */
     private String status;
 
@@ -58,7 +58,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
      *         The requested status of the jobs returned.
@@ -75,7 +75,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            The requested status of the jobs returned.
@@ -95,7 +95,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            The requested status of the jobs returned.
@@ -115,7 +115,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            The requested status of the jobs returned.
@@ -135,7 +135,7 @@ public class ListTranscriptionJobsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            The requested status of the jobs returned.

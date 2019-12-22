@@ -103,6 +103,13 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("Settings");
                 SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
             }
+            if (startTranscriptionJobRequest.getJobExecutionSettings() != null) {
+                JobExecutionSettings jobExecutionSettings = startTranscriptionJobRequest
+                        .getJobExecutionSettings();
+                jsonWriter.name("JobExecutionSettings");
+                JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
