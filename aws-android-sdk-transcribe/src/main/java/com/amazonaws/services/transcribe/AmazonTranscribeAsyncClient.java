@@ -332,6 +332,79 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Creates a new vocabulary filter that you can use to filter words, such as
+     * profane words, from the output of a transcription job.
+     * </p>
+     * 
+     * @param createVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         CreateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateVocabularyFilterResult> createVocabularyFilterAsync(
+            final CreateVocabularyFilterRequest createVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateVocabularyFilterResult>() {
+            public CreateVocabularyFilterResult call() throws Exception {
+                return createVocabularyFilter(createVocabularyFilterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new vocabulary filter that you can use to filter words, such as
+     * profane words, from the output of a transcription job.
+     * </p>
+     * 
+     * @param createVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         CreateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateVocabularyFilterResult> createVocabularyFilterAsync(
+            final CreateVocabularyFilterRequest createVocabularyFilterRequest,
+            final AsyncHandler<CreateVocabularyFilterRequest, CreateVocabularyFilterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateVocabularyFilterResult>() {
+            public CreateVocabularyFilterResult call() throws Exception {
+                CreateVocabularyFilterResult result = null;
+                try {
+                    result = createVocabularyFilter(createVocabularyFilterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createVocabularyFilterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Deletes a previously submitted transcription job along with any other
      * generated results such as the transcription, models, and so on.
      * </p>
@@ -468,6 +541,78 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes a vocabulary filter.
+     * </p>
+     * 
+     * @param deleteVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteVocabularyFilterAsync(
+            final DeleteVocabularyFilterRequest deleteVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteVocabularyFilter(deleteVocabularyFilterRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Removes a vocabulary filter.
+     * </p>
+     * 
+     * @param deleteVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteVocabularyFilterAsync(
+            final DeleteVocabularyFilterRequest deleteVocabularyFilterRequest,
+            final AsyncHandler<DeleteVocabularyFilterRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteVocabularyFilter(deleteVocabularyFilterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteVocabularyFilterRequest, result);
                 return result;
             }
         });
@@ -623,6 +768,77 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Returns information about a vocabulary filter.
+     * </p>
+     * 
+     * @param getVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         GetVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetVocabularyFilterResult> getVocabularyFilterAsync(
+            final GetVocabularyFilterRequest getVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetVocabularyFilterResult>() {
+            public GetVocabularyFilterResult call() throws Exception {
+                return getVocabularyFilter(getVocabularyFilterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns information about a vocabulary filter.
+     * </p>
+     * 
+     * @param getVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         GetVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetVocabularyFilterResult> getVocabularyFilterAsync(
+            final GetVocabularyFilterRequest getVocabularyFilterRequest,
+            final AsyncHandler<GetVocabularyFilterRequest, GetVocabularyFilterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetVocabularyFilterResult>() {
+            public GetVocabularyFilterResult call() throws Exception {
+                GetVocabularyFilterResult result = null;
+                try {
+                    result = getVocabularyFilter(getVocabularyFilterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getVocabularyFilterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Lists transcription jobs with the specified status.
      * </p>
      * 
@@ -756,6 +972,75 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(listVocabulariesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets information about vocabulary filters.
+     * </p>
+     * 
+     * @param listVocabularyFiltersRequest
+     * @return A Java Future object containing the response from the
+     *         ListVocabularyFilters service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListVocabularyFiltersResult> listVocabularyFiltersAsync(
+            final ListVocabularyFiltersRequest listVocabularyFiltersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListVocabularyFiltersResult>() {
+            public ListVocabularyFiltersResult call() throws Exception {
+                return listVocabularyFilters(listVocabularyFiltersRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets information about vocabulary filters.
+     * </p>
+     * 
+     * @param listVocabularyFiltersRequest
+     * @return A Java Future object containing the response from the
+     *         ListVocabularyFilters service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListVocabularyFiltersResult> listVocabularyFiltersAsync(
+            final ListVocabularyFiltersRequest listVocabularyFiltersRequest,
+            final AsyncHandler<ListVocabularyFiltersRequest, ListVocabularyFiltersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListVocabularyFiltersResult>() {
+            public ListVocabularyFiltersResult call() throws Exception {
+                ListVocabularyFiltersResult result = null;
+                try {
+                    result = listVocabularyFilters(listVocabularyFiltersRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listVocabularyFiltersRequest, result);
                 return result;
             }
         });
@@ -904,6 +1189,77 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(updateVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary filter with a new list of filtered words.
+     * </p>
+     * 
+     * @param updateVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateVocabularyFilterResult> updateVocabularyFilterAsync(
+            final UpdateVocabularyFilterRequest updateVocabularyFilterRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateVocabularyFilterResult>() {
+            public UpdateVocabularyFilterResult call() throws Exception {
+                return updateVocabularyFilter(updateVocabularyFilterRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary filter with a new list of filtered words.
+     * </p>
+     * 
+     * @param updateVocabularyFilterRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateVocabularyFilter service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateVocabularyFilterResult> updateVocabularyFilterAsync(
+            final UpdateVocabularyFilterRequest updateVocabularyFilterRequest,
+            final AsyncHandler<UpdateVocabularyFilterRequest, UpdateVocabularyFilterResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateVocabularyFilterResult>() {
+            public UpdateVocabularyFilterResult call() throws Exception {
+                UpdateVocabularyFilterResult result = null;
+                try {
+                    result = updateVocabularyFilter(updateVocabularyFilterRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateVocabularyFilterRequest, result);
                 return result;
             }
         });

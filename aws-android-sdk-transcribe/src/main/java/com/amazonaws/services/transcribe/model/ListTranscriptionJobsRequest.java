@@ -34,7 +34,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      */
     private String status;
 
@@ -83,7 +83,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
      *         When specified, returns only transcription jobs with the
@@ -107,7 +107,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
@@ -134,7 +134,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
@@ -161,7 +161,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the
@@ -188,7 +188,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
      *            When specified, returns only transcription jobs with the

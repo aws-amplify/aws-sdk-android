@@ -19,18 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Transcription Job Status
+ * Vocabulary Filter Method
  */
-public enum TranscriptionJobStatus {
+public enum VocabularyFilterMethod {
 
-    QUEUED("QUEUED"),
-    IN_PROGRESS("IN_PROGRESS"),
-    FAILED("FAILED"),
-    COMPLETED("COMPLETED");
+    Remove("remove"),
+    Mask("mask");
 
     private String value;
 
-    private TranscriptionJobStatus(String value) {
+    private VocabularyFilterMethod(String value) {
         this.value = value;
     }
 
@@ -39,22 +37,20 @@ public enum TranscriptionJobStatus {
         return value;
     }
 
-    private static final Map<String, TranscriptionJobStatus> enumMap;
+    private static final Map<String, VocabularyFilterMethod> enumMap;
     static {
-        enumMap = new HashMap<String, TranscriptionJobStatus>();
-        enumMap.put("QUEUED", QUEUED);
-        enumMap.put("IN_PROGRESS", IN_PROGRESS);
-        enumMap.put("FAILED", FAILED);
-        enumMap.put("COMPLETED", COMPLETED);
+        enumMap = new HashMap<String, VocabularyFilterMethod>();
+        enumMap.put("remove", Remove);
+        enumMap.put("mask", Mask);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return TranscriptionJobStatus corresponding to the value
+     * @return VocabularyFilterMethod corresponding to the value
      */
-    public static TranscriptionJobStatus fromValue(String value) {
+    public static VocabularyFilterMethod fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

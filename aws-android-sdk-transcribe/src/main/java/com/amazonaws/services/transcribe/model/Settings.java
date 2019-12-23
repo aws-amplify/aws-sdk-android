@@ -109,6 +109,32 @@ public class Settings implements Serializable {
 
     /**
      * <p>
+     * The name of the vocabulary filter to use when transcribing the audio. The
+     * filter that you specify must have the same language code as the
+     * transcription job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     */
+    private String vocabularyFilterName;
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     */
+    private String vocabularyFilterMethod;
+
+    /**
+     * <p>
      * The name of a vocabulary to use when processing the transcription job.
      * </p>
      * <p>
@@ -706,6 +732,206 @@ public class Settings implements Serializable {
     }
 
     /**
+     * <p>
+     * The name of the vocabulary filter to use when transcribing the audio. The
+     * filter that you specify must have the same language code as the
+     * transcription job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @return <p>
+     *         The name of the vocabulary filter to use when transcribing the
+     *         audio. The filter that you specify must have the same language
+     *         code as the transcription job.
+     *         </p>
+     */
+    public String getVocabularyFilterName() {
+        return vocabularyFilterName;
+    }
+
+    /**
+     * <p>
+     * The name of the vocabulary filter to use when transcribing the audio. The
+     * filter that you specify must have the same language code as the
+     * transcription job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @param vocabularyFilterName <p>
+     *            The name of the vocabulary filter to use when transcribing the
+     *            audio. The filter that you specify must have the same language
+     *            code as the transcription job.
+     *            </p>
+     */
+    public void setVocabularyFilterName(String vocabularyFilterName) {
+        this.vocabularyFilterName = vocabularyFilterName;
+    }
+
+    /**
+     * <p>
+     * The name of the vocabulary filter to use when transcribing the audio. The
+     * filter that you specify must have the same language code as the
+     * transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @param vocabularyFilterName <p>
+     *            The name of the vocabulary filter to use when transcribing the
+     *            audio. The filter that you specify must have the same language
+     *            code as the transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Settings withVocabularyFilterName(String vocabularyFilterName) {
+        this.vocabularyFilterName = vocabularyFilterName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     *
+     * @return <p>
+     *         Set to <code>mask</code> to remove filtered text from the
+     *         transcript and replace it with three asterisks ("***") as
+     *         placeholder text. Set to <code>remove</code> to remove filtered
+     *         text from the transcript without using placeholder text.
+     *         </p>
+     * @see VocabularyFilterMethod
+     */
+    public String getVocabularyFilterMethod() {
+        return vocabularyFilterMethod;
+    }
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     *
+     * @param vocabularyFilterMethod <p>
+     *            Set to <code>mask</code> to remove filtered text from the
+     *            transcript and replace it with three asterisks ("***") as
+     *            placeholder text. Set to <code>remove</code> to remove
+     *            filtered text from the transcript without using placeholder
+     *            text.
+     *            </p>
+     * @see VocabularyFilterMethod
+     */
+    public void setVocabularyFilterMethod(String vocabularyFilterMethod) {
+        this.vocabularyFilterMethod = vocabularyFilterMethod;
+    }
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     *
+     * @param vocabularyFilterMethod <p>
+     *            Set to <code>mask</code> to remove filtered text from the
+     *            transcript and replace it with three asterisks ("***") as
+     *            placeholder text. Set to <code>remove</code> to remove
+     *            filtered text from the transcript without using placeholder
+     *            text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VocabularyFilterMethod
+     */
+    public Settings withVocabularyFilterMethod(String vocabularyFilterMethod) {
+        this.vocabularyFilterMethod = vocabularyFilterMethod;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     *
+     * @param vocabularyFilterMethod <p>
+     *            Set to <code>mask</code> to remove filtered text from the
+     *            transcript and replace it with three asterisks ("***") as
+     *            placeholder text. Set to <code>remove</code> to remove
+     *            filtered text from the transcript without using placeholder
+     *            text.
+     *            </p>
+     * @see VocabularyFilterMethod
+     */
+    public void setVocabularyFilterMethod(VocabularyFilterMethod vocabularyFilterMethod) {
+        this.vocabularyFilterMethod = vocabularyFilterMethod.toString();
+    }
+
+    /**
+     * <p>
+     * Set to <code>mask</code> to remove filtered text from the transcript and
+     * replace it with three asterisks ("***") as placeholder text. Set to
+     * <code>remove</code> to remove filtered text from the transcript without
+     * using placeholder text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>remove, mask
+     *
+     * @param vocabularyFilterMethod <p>
+     *            Set to <code>mask</code> to remove filtered text from the
+     *            transcript and replace it with three asterisks ("***") as
+     *            placeholder text. Set to <code>remove</code> to remove
+     *            filtered text from the transcript without using placeholder
+     *            text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VocabularyFilterMethod
+     */
+    public Settings withVocabularyFilterMethod(VocabularyFilterMethod vocabularyFilterMethod) {
+        this.vocabularyFilterMethod = vocabularyFilterMethod.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -727,7 +953,11 @@ public class Settings implements Serializable {
         if (getShowAlternatives() != null)
             sb.append("ShowAlternatives: " + getShowAlternatives() + ",");
         if (getMaxAlternatives() != null)
-            sb.append("MaxAlternatives: " + getMaxAlternatives());
+            sb.append("MaxAlternatives: " + getMaxAlternatives() + ",");
+        if (getVocabularyFilterName() != null)
+            sb.append("VocabularyFilterName: " + getVocabularyFilterName() + ",");
+        if (getVocabularyFilterMethod() != null)
+            sb.append("VocabularyFilterMethod: " + getVocabularyFilterMethod());
         sb.append("}");
         return sb.toString();
     }
@@ -750,6 +980,12 @@ public class Settings implements Serializable {
                 + ((getShowAlternatives() == null) ? 0 : getShowAlternatives().hashCode());
         hashCode = prime * hashCode
                 + ((getMaxAlternatives() == null) ? 0 : getMaxAlternatives().hashCode());
+        hashCode = prime * hashCode
+                + ((getVocabularyFilterName() == null) ? 0 : getVocabularyFilterName().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getVocabularyFilterMethod() == null) ? 0 : getVocabularyFilterMethod()
+                        .hashCode());
         return hashCode;
     }
 
@@ -793,6 +1029,16 @@ public class Settings implements Serializable {
             return false;
         if (other.getMaxAlternatives() != null
                 && other.getMaxAlternatives().equals(this.getMaxAlternatives()) == false)
+            return false;
+        if (other.getVocabularyFilterName() == null ^ this.getVocabularyFilterName() == null)
+            return false;
+        if (other.getVocabularyFilterName() != null
+                && other.getVocabularyFilterName().equals(this.getVocabularyFilterName()) == false)
+            return false;
+        if (other.getVocabularyFilterMethod() == null ^ this.getVocabularyFilterMethod() == null)
+            return false;
+        if (other.getVocabularyFilterMethod() != null
+                && other.getVocabularyFilterMethod().equals(this.getVocabularyFilterMethod()) == false)
             return false;
         return true;
     }

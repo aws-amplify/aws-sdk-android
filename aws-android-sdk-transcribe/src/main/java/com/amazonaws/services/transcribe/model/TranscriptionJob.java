@@ -41,7 +41,7 @@ public class TranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      */
     private String transcriptionJobStatus;
 
@@ -91,6 +91,13 @@ public class TranscriptionJob implements Serializable {
      * </p>
      */
     private Transcript transcript;
+
+    /**
+     * <p>
+     * A timestamp that shows with the job was started processing.
+     * </p>
+     */
+    private java.util.Date startTime;
 
     /**
      * <p>
@@ -183,6 +190,13 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
+     * Provides information about how a transcription job is executed.
+     * </p>
+     */
+    private JobExecutionSettings jobExecutionSettings;
+
+    /**
+     * <p>
      * The name of the transcription job.
      * </p>
      * <p>
@@ -244,7 +258,7 @@ public class TranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
      *         The status of the transcription job.
@@ -261,7 +275,7 @@ public class TranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job.
@@ -281,7 +295,7 @@ public class TranscriptionJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job.
@@ -301,7 +315,7 @@ public class TranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job.
@@ -321,7 +335,7 @@ public class TranscriptionJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job.
@@ -691,6 +705,51 @@ public class TranscriptionJob implements Serializable {
      */
     public TranscriptionJob withTranscript(Transcript transcript) {
         this.transcript = transcript;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows with the job was started processing.
+     * </p>
+     *
+     * @return <p>
+     *         A timestamp that shows with the job was started processing.
+     *         </p>
+     */
+    public java.util.Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows with the job was started processing.
+     * </p>
+     *
+     * @param startTime <p>
+     *            A timestamp that shows with the job was started processing.
+     *            </p>
+     */
+    public void setStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows with the job was started processing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startTime <p>
+     *            A timestamp that shows with the job was started processing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJob withStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
         return this;
     }
 
@@ -1255,6 +1314,53 @@ public class TranscriptionJob implements Serializable {
     }
 
     /**
+     * <p>
+     * Provides information about how a transcription job is executed.
+     * </p>
+     *
+     * @return <p>
+     *         Provides information about how a transcription job is executed.
+     *         </p>
+     */
+    public JobExecutionSettings getJobExecutionSettings() {
+        return jobExecutionSettings;
+    }
+
+    /**
+     * <p>
+     * Provides information about how a transcription job is executed.
+     * </p>
+     *
+     * @param jobExecutionSettings <p>
+     *            Provides information about how a transcription job is
+     *            executed.
+     *            </p>
+     */
+    public void setJobExecutionSettings(JobExecutionSettings jobExecutionSettings) {
+        this.jobExecutionSettings = jobExecutionSettings;
+    }
+
+    /**
+     * <p>
+     * Provides information about how a transcription job is executed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionSettings <p>
+     *            Provides information about how a transcription job is
+     *            executed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJob withJobExecutionSettings(JobExecutionSettings jobExecutionSettings) {
+        this.jobExecutionSettings = jobExecutionSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1279,6 +1385,8 @@ public class TranscriptionJob implements Serializable {
             sb.append("Media: " + getMedia() + ",");
         if (getTranscript() != null)
             sb.append("Transcript: " + getTranscript() + ",");
+        if (getStartTime() != null)
+            sb.append("StartTime: " + getStartTime() + ",");
         if (getCreationTime() != null)
             sb.append("CreationTime: " + getCreationTime() + ",");
         if (getCompletionTime() != null)
@@ -1286,7 +1394,9 @@ public class TranscriptionJob implements Serializable {
         if (getFailureReason() != null)
             sb.append("FailureReason: " + getFailureReason() + ",");
         if (getSettings() != null)
-            sb.append("Settings: " + getSettings());
+            sb.append("Settings: " + getSettings() + ",");
+        if (getJobExecutionSettings() != null)
+            sb.append("JobExecutionSettings: " + getJobExecutionSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -1310,6 +1420,7 @@ public class TranscriptionJob implements Serializable {
                 + ((getMediaFormat() == null) ? 0 : getMediaFormat().hashCode());
         hashCode = prime * hashCode + ((getMedia() == null) ? 0 : getMedia().hashCode());
         hashCode = prime * hashCode + ((getTranscript() == null) ? 0 : getTranscript().hashCode());
+        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationTime() == null) ? 0 : getCreationTime().hashCode());
         hashCode = prime * hashCode
@@ -1317,6 +1428,8 @@ public class TranscriptionJob implements Serializable {
         hashCode = prime * hashCode
                 + ((getFailureReason() == null) ? 0 : getFailureReason().hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getJobExecutionSettings() == null) ? 0 : getJobExecutionSettings().hashCode());
         return hashCode;
     }
 
@@ -1365,6 +1478,11 @@ public class TranscriptionJob implements Serializable {
         if (other.getTranscript() != null
                 && other.getTranscript().equals(this.getTranscript()) == false)
             return false;
+        if (other.getStartTime() == null ^ this.getStartTime() == null)
+            return false;
+        if (other.getStartTime() != null
+                && other.getStartTime().equals(this.getStartTime()) == false)
+            return false;
         if (other.getCreationTime() == null ^ this.getCreationTime() == null)
             return false;
         if (other.getCreationTime() != null
@@ -1383,6 +1501,11 @@ public class TranscriptionJob implements Serializable {
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
+            return false;
+        if (other.getJobExecutionSettings() == null ^ this.getJobExecutionSettings() == null)
+            return false;
+        if (other.getJobExecutionSettings() != null
+                && other.getJobExecutionSettings().equals(this.getJobExecutionSettings()) == false)
             return false;
         return true;
     }
