@@ -36,6 +36,11 @@ class TranscriptionJobSummaryJsonMarshaller {
             jsonWriter.name("CreationTime");
             jsonWriter.value(creationTime);
         }
+        if (transcriptionJobSummary.getStartTime() != null) {
+            java.util.Date startTime = transcriptionJobSummary.getStartTime();
+            jsonWriter.name("StartTime");
+            jsonWriter.value(startTime);
+        }
         if (transcriptionJobSummary.getCompletionTime() != null) {
             java.util.Date completionTime = transcriptionJobSummary.getCompletionTime();
             jsonWriter.name("CompletionTime");

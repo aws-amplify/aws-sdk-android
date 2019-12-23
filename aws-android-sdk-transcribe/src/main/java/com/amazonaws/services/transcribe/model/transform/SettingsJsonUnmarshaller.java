@@ -53,6 +53,12 @@ class SettingsJsonUnmarshaller implements Unmarshaller<Settings, JsonUnmarshalle
             } else if (name.equals("MaxAlternatives")) {
                 settings.setMaxAlternatives(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VocabularyFilterName")) {
+                settings.setVocabularyFilterName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("VocabularyFilterMethod")) {
+                settings.setVocabularyFilterMethod(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

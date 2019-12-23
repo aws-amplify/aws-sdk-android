@@ -186,6 +186,16 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * Provides information about how a transcription job is executed. Use this
+     * field to indicate that the job can be queued for deferred execution if
+     * the concurrency limit is reached and there are no slots available to
+     * immediately run the job.
+     * </p>
+     */
+    private JobExecutionSettings jobExecutionSettings;
+
+    /**
+     * <p>
      * The name of the job. Note that you can't use the strings "." or ".." by
      * themselves as the job name. The name must also be unique within an AWS
      * account.
@@ -1207,6 +1217,72 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Provides information about how a transcription job is executed. Use this
+     * field to indicate that the job can be queued for deferred execution if
+     * the concurrency limit is reached and there are no slots available to
+     * immediately run the job.
+     * </p>
+     *
+     * @return <p>
+     *         Provides information about how a transcription job is executed.
+     *         Use this field to indicate that the job can be queued for
+     *         deferred execution if the concurrency limit is reached and there
+     *         are no slots available to immediately run the job.
+     *         </p>
+     */
+    public JobExecutionSettings getJobExecutionSettings() {
+        return jobExecutionSettings;
+    }
+
+    /**
+     * <p>
+     * Provides information about how a transcription job is executed. Use this
+     * field to indicate that the job can be queued for deferred execution if
+     * the concurrency limit is reached and there are no slots available to
+     * immediately run the job.
+     * </p>
+     *
+     * @param jobExecutionSettings <p>
+     *            Provides information about how a transcription job is
+     *            executed. Use this field to indicate that the job can be
+     *            queued for deferred execution if the concurrency limit is
+     *            reached and there are no slots available to immediately run
+     *            the job.
+     *            </p>
+     */
+    public void setJobExecutionSettings(JobExecutionSettings jobExecutionSettings) {
+        this.jobExecutionSettings = jobExecutionSettings;
+    }
+
+    /**
+     * <p>
+     * Provides information about how a transcription job is executed. Use this
+     * field to indicate that the job can be queued for deferred execution if
+     * the concurrency limit is reached and there are no slots available to
+     * immediately run the job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionSettings <p>
+     *            Provides information about how a transcription job is
+     *            executed. Use this field to indicate that the job can be
+     *            queued for deferred execution if the concurrency limit is
+     *            reached and there are no slots available to immediately run
+     *            the job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withJobExecutionSettings(
+            JobExecutionSettings jobExecutionSettings) {
+        this.jobExecutionSettings = jobExecutionSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1232,7 +1308,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (getOutputEncryptionKMSKeyId() != null)
             sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
         if (getSettings() != null)
-            sb.append("Settings: " + getSettings());
+            sb.append("Settings: " + getSettings() + ",");
+        if (getJobExecutionSettings() != null)
+            sb.append("JobExecutionSettings: " + getJobExecutionSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -1258,6 +1336,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
                 + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
                         .hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getJobExecutionSettings() == null) ? 0 : getJobExecutionSettings().hashCode());
         return hashCode;
     }
 
@@ -1310,6 +1390,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
+            return false;
+        if (other.getJobExecutionSettings() == null ^ this.getJobExecutionSettings() == null)
+            return false;
+        if (other.getJobExecutionSettings() != null
+                && other.getJobExecutionSettings().equals(this.getJobExecutionSettings()) == false)
             return false;
         return true;
     }

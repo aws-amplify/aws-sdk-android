@@ -55,6 +55,16 @@ class SettingsJsonMarshaller {
             jsonWriter.name("MaxAlternatives");
             jsonWriter.value(maxAlternatives);
         }
+        if (settings.getVocabularyFilterName() != null) {
+            String vocabularyFilterName = settings.getVocabularyFilterName();
+            jsonWriter.name("VocabularyFilterName");
+            jsonWriter.value(vocabularyFilterName);
+        }
+        if (settings.getVocabularyFilterMethod() != null) {
+            String vocabularyFilterMethod = settings.getVocabularyFilterMethod();
+            jsonWriter.name("VocabularyFilterMethod");
+            jsonWriter.value(vocabularyFilterMethod);
+        }
         jsonWriter.endObject();
     }
 

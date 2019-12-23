@@ -61,6 +61,11 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("Transcript");
             TranscriptJsonMarshaller.getInstance().marshall(transcript, jsonWriter);
         }
+        if (transcriptionJob.getStartTime() != null) {
+            java.util.Date startTime = transcriptionJob.getStartTime();
+            jsonWriter.name("StartTime");
+            jsonWriter.value(startTime);
+        }
         if (transcriptionJob.getCreationTime() != null) {
             java.util.Date creationTime = transcriptionJob.getCreationTime();
             jsonWriter.name("CreationTime");
@@ -80,6 +85,12 @@ class TranscriptionJobJsonMarshaller {
             Settings settings = transcriptionJob.getSettings();
             jsonWriter.name("Settings");
             SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+        }
+        if (transcriptionJob.getJobExecutionSettings() != null) {
+            JobExecutionSettings jobExecutionSettings = transcriptionJob.getJobExecutionSettings();
+            jsonWriter.name("JobExecutionSettings");
+            JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

@@ -43,6 +43,13 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     */
+    private java.util.Date startTime;
+
+    /**
+     * <p>
      * A timestamp that shows when the job was completed.
      * </p>
      */
@@ -69,7 +76,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      */
     private String transcriptionJobStatus;
 
@@ -202,6 +209,51 @@ public class TranscriptionJobSummary implements Serializable {
      */
     public TranscriptionJobSummary withCreationTime(java.util.Date creationTime) {
         this.creationTime = creationTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     *
+     * @return <p>
+     *         A timestamp that shows when the job started processing.
+     *         </p>
+     */
+    public java.util.Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     *
+     * @param startTime <p>
+     *            A timestamp that shows when the job started processing.
+     *            </p>
+     */
+    public void setStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startTime <p>
+     *            A timestamp that shows when the job started processing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
         return this;
     }
 
@@ -370,7 +422,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
      *         The status of the transcription job. When the status is
@@ -391,7 +443,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -416,7 +468,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -441,7 +493,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -466,7 +518,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -771,6 +823,8 @@ public class TranscriptionJobSummary implements Serializable {
             sb.append("TranscriptionJobName: " + getTranscriptionJobName() + ",");
         if (getCreationTime() != null)
             sb.append("CreationTime: " + getCreationTime() + ",");
+        if (getStartTime() != null)
+            sb.append("StartTime: " + getStartTime() + ",");
         if (getCompletionTime() != null)
             sb.append("CompletionTime: " + getCompletionTime() + ",");
         if (getLanguageCode() != null)
@@ -794,6 +848,7 @@ public class TranscriptionJobSummary implements Serializable {
                 + ((getTranscriptionJobName() == null) ? 0 : getTranscriptionJobName().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationTime() == null) ? 0 : getCreationTime().hashCode());
+        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         hashCode = prime * hashCode
                 + ((getCompletionTime() == null) ? 0 : getCompletionTime().hashCode());
         hashCode = prime * hashCode
@@ -829,6 +884,11 @@ public class TranscriptionJobSummary implements Serializable {
             return false;
         if (other.getCreationTime() != null
                 && other.getCreationTime().equals(this.getCreationTime()) == false)
+            return false;
+        if (other.getStartTime() == null ^ this.getStartTime() == null)
+            return false;
+        if (other.getStartTime() != null
+                && other.getStartTime().equals(this.getStartTime()) == false)
             return false;
         if (other.getCompletionTime() == null ^ this.getCompletionTime() == null)
             return false;
