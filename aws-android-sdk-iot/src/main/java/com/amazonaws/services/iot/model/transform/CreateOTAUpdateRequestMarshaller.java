@@ -77,6 +77,17 @@ public class CreateOTAUpdateRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createOTAUpdateRequest.getProtocols() != null) {
+                java.util.List<String> protocols = createOTAUpdateRequest.getProtocols();
+                jsonWriter.name("protocols");
+                jsonWriter.beginArray();
+                for (String protocolsItem : protocols) {
+                    if (protocolsItem != null) {
+                        jsonWriter.value(protocolsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (createOTAUpdateRequest.getTargetSelection() != null) {
                 String targetSelection = createOTAUpdateRequest.getTargetSelection();
                 jsonWriter.name("targetSelection");
@@ -88,6 +99,13 @@ public class CreateOTAUpdateRequestMarshaller implements
                 jsonWriter.name("awsJobExecutionsRolloutConfig");
                 AwsJobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                         awsJobExecutionsRolloutConfig, jsonWriter);
+            }
+            if (createOTAUpdateRequest.getAwsJobPresignedUrlConfig() != null) {
+                AwsJobPresignedUrlConfig awsJobPresignedUrlConfig = createOTAUpdateRequest
+                        .getAwsJobPresignedUrlConfig();
+                jsonWriter.name("awsJobPresignedUrlConfig");
+                AwsJobPresignedUrlConfigJsonMarshaller.getInstance().marshall(
+                        awsJobPresignedUrlConfig, jsonWriter);
             }
             if (createOTAUpdateRequest.getFiles() != null) {
                 java.util.List<OTAUpdateFile> files = createOTAUpdateRequest.getFiles();
