@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -75,10 +75,27 @@ public class OTAUpdateInfo implements Serializable {
 
     /**
      * <p>
+     * The protocol used to transfer the OTA update image. Valid values are
+     * [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the
+     * target device can choose the protocol.
+     * </p>
+     */
+    private java.util.List<String> protocols;
+
+    /**
+     * <p>
      * Configuration for the rollout of OTA updates.
      * </p>
      */
     private AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig;
+
+    /**
+     * <p>
+     * Configuration information for pre-signed URLs. Valid when
+     * <code>protocols</code> contains HTTP.
+     * </p>
+     */
+    private AwsJobPresignedUrlConfig awsJobPresignedUrlConfig;
 
     /**
      * <p>
@@ -467,6 +484,96 @@ public class OTAUpdateInfo implements Serializable {
 
     /**
      * <p>
+     * The protocol used to transfer the OTA update image. Valid values are
+     * [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the
+     * target device can choose the protocol.
+     * </p>
+     *
+     * @return <p>
+     *         The protocol used to transfer the OTA update image. Valid values
+     *         are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are
+     *         specified, the target device can choose the protocol.
+     *         </p>
+     */
+    public java.util.List<String> getProtocols() {
+        return protocols;
+    }
+
+    /**
+     * <p>
+     * The protocol used to transfer the OTA update image. Valid values are
+     * [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the
+     * target device can choose the protocol.
+     * </p>
+     *
+     * @param protocols <p>
+     *            The protocol used to transfer the OTA update image. Valid
+     *            values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and
+     *            MQTT are specified, the target device can choose the protocol.
+     *            </p>
+     */
+    public void setProtocols(java.util.Collection<String> protocols) {
+        if (protocols == null) {
+            this.protocols = null;
+            return;
+        }
+
+        this.protocols = new java.util.ArrayList<String>(protocols);
+    }
+
+    /**
+     * <p>
+     * The protocol used to transfer the OTA update image. Valid values are
+     * [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the
+     * target device can choose the protocol.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param protocols <p>
+     *            The protocol used to transfer the OTA update image. Valid
+     *            values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and
+     *            MQTT are specified, the target device can choose the protocol.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OTAUpdateInfo withProtocols(String... protocols) {
+        if (getProtocols() == null) {
+            this.protocols = new java.util.ArrayList<String>(protocols.length);
+        }
+        for (String value : protocols) {
+            this.protocols.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The protocol used to transfer the OTA update image. Valid values are
+     * [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the
+     * target device can choose the protocol.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param protocols <p>
+     *            The protocol used to transfer the OTA update image. Valid
+     *            values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and
+     *            MQTT are specified, the target device can choose the protocol.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OTAUpdateInfo withProtocols(java.util.Collection<String> protocols) {
+        setProtocols(protocols);
+        return this;
+    }
+
+    /**
+     * <p>
      * Configuration for the rollout of OTA updates.
      * </p>
      *
@@ -509,6 +616,58 @@ public class OTAUpdateInfo implements Serializable {
     public OTAUpdateInfo withAwsJobExecutionsRolloutConfig(
             AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig) {
         this.awsJobExecutionsRolloutConfig = awsJobExecutionsRolloutConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Configuration information for pre-signed URLs. Valid when
+     * <code>protocols</code> contains HTTP.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration information for pre-signed URLs. Valid when
+     *         <code>protocols</code> contains HTTP.
+     *         </p>
+     */
+    public AwsJobPresignedUrlConfig getAwsJobPresignedUrlConfig() {
+        return awsJobPresignedUrlConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration information for pre-signed URLs. Valid when
+     * <code>protocols</code> contains HTTP.
+     * </p>
+     *
+     * @param awsJobPresignedUrlConfig <p>
+     *            Configuration information for pre-signed URLs. Valid when
+     *            <code>protocols</code> contains HTTP.
+     *            </p>
+     */
+    public void setAwsJobPresignedUrlConfig(AwsJobPresignedUrlConfig awsJobPresignedUrlConfig) {
+        this.awsJobPresignedUrlConfig = awsJobPresignedUrlConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration information for pre-signed URLs. Valid when
+     * <code>protocols</code> contains HTTP.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsJobPresignedUrlConfig <p>
+     *            Configuration information for pre-signed URLs. Valid when
+     *            <code>protocols</code> contains HTTP.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OTAUpdateInfo withAwsJobPresignedUrlConfig(
+            AwsJobPresignedUrlConfig awsJobPresignedUrlConfig) {
+        this.awsJobPresignedUrlConfig = awsJobPresignedUrlConfig;
         return this;
     }
 
@@ -1090,8 +1249,12 @@ public class OTAUpdateInfo implements Serializable {
             sb.append("description: " + getDescription() + ",");
         if (getTargets() != null)
             sb.append("targets: " + getTargets() + ",");
+        if (getProtocols() != null)
+            sb.append("protocols: " + getProtocols() + ",");
         if (getAwsJobExecutionsRolloutConfig() != null)
             sb.append("awsJobExecutionsRolloutConfig: " + getAwsJobExecutionsRolloutConfig() + ",");
+        if (getAwsJobPresignedUrlConfig() != null)
+            sb.append("awsJobPresignedUrlConfig: " + getAwsJobPresignedUrlConfig() + ",");
         if (getTargetSelection() != null)
             sb.append("targetSelection: " + getTargetSelection() + ",");
         if (getOtaUpdateFiles() != null)
@@ -1126,10 +1289,15 @@ public class OTAUpdateInfo implements Serializable {
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
+        hashCode = prime * hashCode + ((getProtocols() == null) ? 0 : getProtocols().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getAwsJobExecutionsRolloutConfig() == null) ? 0
                         : getAwsJobExecutionsRolloutConfig().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAwsJobPresignedUrlConfig() == null) ? 0 : getAwsJobPresignedUrlConfig()
+                        .hashCode());
         hashCode = prime * hashCode
                 + ((getTargetSelection() == null) ? 0 : getTargetSelection().hashCode());
         hashCode = prime * hashCode
@@ -1186,12 +1354,23 @@ public class OTAUpdateInfo implements Serializable {
             return false;
         if (other.getTargets() != null && other.getTargets().equals(this.getTargets()) == false)
             return false;
+        if (other.getProtocols() == null ^ this.getProtocols() == null)
+            return false;
+        if (other.getProtocols() != null
+                && other.getProtocols().equals(this.getProtocols()) == false)
+            return false;
         if (other.getAwsJobExecutionsRolloutConfig() == null
                 ^ this.getAwsJobExecutionsRolloutConfig() == null)
             return false;
         if (other.getAwsJobExecutionsRolloutConfig() != null
                 && other.getAwsJobExecutionsRolloutConfig().equals(
                         this.getAwsJobExecutionsRolloutConfig()) == false)
+            return false;
+        if (other.getAwsJobPresignedUrlConfig() == null
+                ^ this.getAwsJobPresignedUrlConfig() == null)
+            return false;
+        if (other.getAwsJobPresignedUrlConfig() != null
+                && other.getAwsJobPresignedUrlConfig().equals(this.getAwsJobPresignedUrlConfig()) == false)
             return false;
         if (other.getTargetSelection() == null ^ this.getTargetSelection() == null)
             return false;

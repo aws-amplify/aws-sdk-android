@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,12 +61,30 @@ class OTAUpdateInfoJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (oTAUpdateInfo.getProtocols() != null) {
+            java.util.List<String> protocols = oTAUpdateInfo.getProtocols();
+            jsonWriter.name("protocols");
+            jsonWriter.beginArray();
+            for (String protocolsItem : protocols) {
+                if (protocolsItem != null) {
+                    jsonWriter.value(protocolsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         if (oTAUpdateInfo.getAwsJobExecutionsRolloutConfig() != null) {
             AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig = oTAUpdateInfo
                     .getAwsJobExecutionsRolloutConfig();
             jsonWriter.name("awsJobExecutionsRolloutConfig");
             AwsJobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                     awsJobExecutionsRolloutConfig, jsonWriter);
+        }
+        if (oTAUpdateInfo.getAwsJobPresignedUrlConfig() != null) {
+            AwsJobPresignedUrlConfig awsJobPresignedUrlConfig = oTAUpdateInfo
+                    .getAwsJobPresignedUrlConfig();
+            jsonWriter.name("awsJobPresignedUrlConfig");
+            AwsJobPresignedUrlConfigJsonMarshaller.getInstance().marshall(awsJobPresignedUrlConfig,
+                    jsonWriter);
         }
         if (oTAUpdateInfo.getTargetSelection() != null) {
             String targetSelection = oTAUpdateInfo.getTargetSelection();

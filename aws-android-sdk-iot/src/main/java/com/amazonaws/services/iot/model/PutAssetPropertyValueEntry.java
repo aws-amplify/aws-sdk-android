@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the AWS IoT SiteWise asset. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      */
@@ -44,7 +44,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the asset's property. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      */
@@ -133,14 +133,14 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the AWS IoT SiteWise asset. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @return <p>
      *         The ID of the AWS IoT SiteWise asset. You must specify either a
-     *         <code>propertyAlias</code> or both an <code>analiasId</code> and
-     *         a <code>propertyId</code>. Accepts substitution templates.
+     *         <code>propertyAlias</code> or both an <code>aliasId</code> and a
+     *         <code>propertyId</code>. Accepts substitution templates.
      *         </p>
      */
     public String getAssetId() {
@@ -150,13 +150,13 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the AWS IoT SiteWise asset. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @param assetId <p>
      *            The ID of the AWS IoT SiteWise asset. You must specify either
-     *            a <code>propertyAlias</code> or both an <code>analiasId</code>
+     *            a <code>propertyAlias</code> or both an <code>aliasId</code>
      *            and a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      */
@@ -167,7 +167,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the AWS IoT SiteWise asset. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      * <p>
@@ -176,7 +176,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
      *
      * @param assetId <p>
      *            The ID of the AWS IoT SiteWise asset. You must specify either
-     *            a <code>propertyAlias</code> or both an <code>analiasId</code>
+     *            a <code>propertyAlias</code> or both an <code>aliasId</code>
      *            and a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -190,14 +190,14 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the asset's property. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @return <p>
      *         The ID of the asset's property. You must specify either a
-     *         <code>propertyAlias</code> or both an <code>analiasId</code> and
-     *         a <code>propertyId</code>. Accepts substitution templates.
+     *         <code>propertyAlias</code> or both an <code>aliasId</code> and a
+     *         <code>propertyId</code>. Accepts substitution templates.
      *         </p>
      */
     public String getPropertyId() {
@@ -207,14 +207,14 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the asset's property. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @param propertyId <p>
      *            The ID of the asset's property. You must specify either a
-     *            <code>propertyAlias</code> or both an <code>analiasId</code>
-     *            and a <code>propertyId</code>. Accepts substitution templates.
+     *            <code>propertyAlias</code> or both an <code>aliasId</code> and
+     *            a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      */
     public void setPropertyId(String propertyId) {
@@ -224,7 +224,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
     /**
      * <p>
      * The ID of the asset's property. You must specify either a
-     * <code>propertyAlias</code> or both an <code>analiasId</code> and a
+     * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      * <p>
@@ -233,8 +233,8 @@ public class PutAssetPropertyValueEntry implements Serializable {
      *
      * @param propertyId <p>
      *            The ID of the asset's property. You must specify either a
-     *            <code>propertyAlias</code> or both an <code>analiasId</code>
-     *            and a <code>propertyId</code>. Accepts substitution templates.
+     *            <code>propertyAlias</code> or both an <code>aliasId</code> and
+     *            a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
