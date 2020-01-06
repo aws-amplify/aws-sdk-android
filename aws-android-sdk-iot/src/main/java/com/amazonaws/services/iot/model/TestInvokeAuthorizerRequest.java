@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies a test MQTT authorization request.&gt;
+     * Specifies a test MQTT authorization request.
      * </p>
      */
     private MqttContext mqttContext;
@@ -302,11 +302,11 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies a test MQTT authorization request.&gt;
+     * Specifies a test MQTT authorization request.
      * </p>
      *
      * @return <p>
-     *         Specifies a test MQTT authorization request.&gt;
+     *         Specifies a test MQTT authorization request.
      *         </p>
      */
     public MqttContext getMqttContext() {
@@ -315,11 +315,11 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies a test MQTT authorization request.&gt;
+     * Specifies a test MQTT authorization request.
      * </p>
      *
      * @param mqttContext <p>
-     *            Specifies a test MQTT authorization request.&gt;
+     *            Specifies a test MQTT authorization request.
      *            </p>
      */
     public void setMqttContext(MqttContext mqttContext) {
@@ -328,14 +328,14 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Specifies a test MQTT authorization request.&gt;
+     * Specifies a test MQTT authorization request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mqttContext <p>
-     *            Specifies a test MQTT authorization request.&gt;
+     *            Specifies a test MQTT authorization request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
