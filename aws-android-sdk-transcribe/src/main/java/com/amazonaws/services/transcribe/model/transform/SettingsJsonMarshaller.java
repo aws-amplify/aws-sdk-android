@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,16 @@ class SettingsJsonMarshaller {
             Integer maxAlternatives = settings.getMaxAlternatives();
             jsonWriter.name("MaxAlternatives");
             jsonWriter.value(maxAlternatives);
+        }
+        if (settings.getVocabularyFilterName() != null) {
+            String vocabularyFilterName = settings.getVocabularyFilterName();
+            jsonWriter.name("VocabularyFilterName");
+            jsonWriter.value(vocabularyFilterName);
+        }
+        if (settings.getVocabularyFilterMethod() != null) {
+            String vocabularyFilterMethod = settings.getVocabularyFilterMethod();
+            jsonWriter.name("VocabularyFilterMethod");
+            jsonWriter.value(vocabularyFilterMethod);
         }
         jsonWriter.endObject();
     }
