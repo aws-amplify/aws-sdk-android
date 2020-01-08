@@ -252,6 +252,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private volatile CountDownLatch showSignInWaitLatch;
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
+    private Object resetLockObject;
     AWSMobileClientStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
@@ -317,6 +318,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         federateWithCognitoIdentityLockObject = new Object();
         showSignInWaitLatch = new CountDownLatch(1);
         initLockObject = new Object();
+        resetLockObject = new Object();
     }
 
     /**
@@ -693,6 +695,70 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 .setAdvancedSecurityDataCollection(false)
                 .setIdentityProvider(hostedUIJSON.optString("IdentityProvider"))
                 .setIdpIdentifier(hostedUIJSON.optString("IdpIdentifier"));
+    }
+
+    /**
+     * Undo any work done by initialization of AWSMobileClient.
+     */
+    @AnyThread
+    public void reset() {
+        final InternalCallback<Void> internalCallback = new InternalCallback<Void>();
+        internalCallback.async(_reset());
+    }
+
+    protected Runnable _reset() {
+        return new Runnable() {
+            public void run() {
+                synchronized (resetLockObject) {
+                    // Is it initialized yet?
+                    if (awsConfiguration == null) {
+                        throw new IllegalStateException("AWSMobileClient is not initialized yet.");
+                    }
+
+                    // Clear existing cache
+                    signOut();
+                    IdentityManager.setDefaultIdentityManager(null);
+
+                    // Nullify internal values
+                    awsConfiguration = null;
+                    cognitoIdentity = null;
+                    userpool = null;
+                    mContext = null;
+                    userStateDetails = null;
+                    mSignedOutWaitLatch = null;
+                    mCognitoUserSession = null;
+                    signInCallback = null;
+                    signInMfaContinuation = null;
+                    signInChallengeContinuation = null;
+                    signInState = null;
+                    forgotPasswordCallback = null;
+                    forgotPasswordContinuation = null;
+                    signUpUser = null;
+                    awsCredentialsProvider = null;
+                    signInProviderConfig = null;
+                    startupAuthResultHandler = null;
+                    awsStartupHandler = null;
+                    mStore = null;
+                    provider = null;
+                    mDeviceOperations = null;
+                    userpoolLL = null;
+                    hostedUI = null;
+                    mOAuth2Client = null;
+                    mUserPoolPoolId = null;
+
+                    // Reset the values initialized by getInstance()
+                    clientMap.clear();
+                    userpoolsLoginKey = "";
+                    mFederatedLoginsMap.clear();
+                    listeners.clear();
+                    showSignInWaitLatch = new CountDownLatch(1);
+
+                    // Set default values
+                    mIsLegacyMode = false;
+                    mIsPersistenceEnabled = true;
+                }
+            }
+        };
     }
 
     /**
