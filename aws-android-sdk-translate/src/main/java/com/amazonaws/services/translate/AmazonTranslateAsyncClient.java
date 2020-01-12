@@ -329,6 +329,79 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
+     * Gets the properties associated with an asycnhronous batch translation job
+     * including name, ID, status, source and target languages, input/output S3
+     * buckets, and so on.
+     * </p>
+     * 
+     * @param describeTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeTextTranslationJobResult> describeTextTranslationJobAsync(
+            final DescribeTextTranslationJobRequest describeTextTranslationJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTextTranslationJobResult>() {
+            public DescribeTextTranslationJobResult call() throws Exception {
+                return describeTextTranslationJob(describeTextTranslationJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets the properties associated with an asycnhronous batch translation job
+     * including name, ID, status, source and target languages, input/output S3
+     * buckets, and so on.
+     * </p>
+     * 
+     * @param describeTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeTextTranslationJobResult> describeTextTranslationJobAsync(
+            final DescribeTextTranslationJobRequest describeTextTranslationJobRequest,
+            final AsyncHandler<DescribeTextTranslationJobRequest, DescribeTextTranslationJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTextTranslationJobResult>() {
+            public DescribeTextTranslationJobResult call() throws Exception {
+                DescribeTextTranslationJobResult result = null;
+                try {
+                    result = describeTextTranslationJob(describeTextTranslationJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeTextTranslationJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Retrieves a custom terminology.
      * </p>
      * 
@@ -560,125 +633,276 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Translates input text from the source language to the target language. It
-     * is not necessary to use English (en) as either the source or the target
-     * language but not all language combinations are supported by Amazon
-     * Translate. For more information, see <a
-     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
-     * >Supported Language Pairs</a>.
+     * Gets a list of the batch translation jobs that you have submitted.
      * </p>
-     * <ul>
-     * <li>
+     * 
+     * @param listTextTranslationJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListTextTranslationJobs service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTextTranslationJobsResult> listTextTranslationJobsAsync(
+            final ListTextTranslationJobsRequest listTextTranslationJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTextTranslationJobsResult>() {
+            public ListTextTranslationJobsResult call() throws Exception {
+                return listTextTranslationJobs(listTextTranslationJobsRequest);
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Arabic (ar)
+     * Gets a list of the batch translation jobs that you have submitted.
      * </p>
-     * </li>
-     * <li>
+     * 
+     * @param listTextTranslationJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListTextTranslationJobs service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTextTranslationJobsResult> listTextTranslationJobsAsync(
+            final ListTextTranslationJobsRequest listTextTranslationJobsRequest,
+            final AsyncHandler<ListTextTranslationJobsRequest, ListTextTranslationJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTextTranslationJobsResult>() {
+            public ListTextTranslationJobsResult call() throws Exception {
+                ListTextTranslationJobsResult result = null;
+                try {
+                    result = listTextTranslationJobs(listTextTranslationJobsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTextTranslationJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Chinese (Simplified) (zh)
+     * Starts an asynchronous batch translation job. Batch translation jobs can
+     * be used to translate large volumes of text across multiple documents at
+     * once. For more information, see <a>async</a>.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Chinese (Traditional) (zh-TW)
+     * Batch translation jobs can be described with the
+     * <a>DescribeTextTranslationJob</a> operation, listed with the
+     * <a>ListTextTranslationJobs</a> operation, and stopped with the
+     * <a>StopTextTranslationJob</a> operation.
      * </p>
-     * </li>
-     * <li>
+     * <note>
      * <p>
-     * Czech (cs)
+     * Amazon Translate does not support batch translation of multiple source
+     * languages at once.
      * </p>
-     * </li>
-     * <li>
+     * </note>
+     * 
+     * @param startTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws TooManyRequestsException
+     * @throws UnsupportedLanguagePairException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartTextTranslationJobResult> startTextTranslationJobAsync(
+            final StartTextTranslationJobRequest startTextTranslationJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartTextTranslationJobResult>() {
+            public StartTextTranslationJobResult call() throws Exception {
+                return startTextTranslationJob(startTextTranslationJobRequest);
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Danish (da)
+     * Starts an asynchronous batch translation job. Batch translation jobs can
+     * be used to translate large volumes of text across multiple documents at
+     * once. For more information, see <a>async</a>.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Dutch (nl)
+     * Batch translation jobs can be described with the
+     * <a>DescribeTextTranslationJob</a> operation, listed with the
+     * <a>ListTextTranslationJobs</a> operation, and stopped with the
+     * <a>StopTextTranslationJob</a> operation.
      * </p>
-     * </li>
-     * <li>
+     * <note>
      * <p>
-     * English (en)
+     * Amazon Translate does not support batch translation of multiple source
+     * languages at once.
      * </p>
-     * </li>
-     * <li>
+     * </note>
+     * 
+     * @param startTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws TooManyRequestsException
+     * @throws UnsupportedLanguagePairException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartTextTranslationJobResult> startTextTranslationJobAsync(
+            final StartTextTranslationJobRequest startTextTranslationJobRequest,
+            final AsyncHandler<StartTextTranslationJobRequest, StartTextTranslationJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartTextTranslationJobResult>() {
+            public StartTextTranslationJobResult call() throws Exception {
+                StartTextTranslationJobResult result = null;
+                try {
+                    result = startTextTranslationJob(startTextTranslationJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startTextTranslationJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Finnish (fi)
+     * Stops an asynchronous batch translation job that is in progress.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * French (fr)
+     * If the job's state is <code>IN_PROGRESS</code>, the job will be marked
+     * for termination and put into the <code>STOP_REQUESTED</code> state. If
+     * the job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state. Otherwise, the job is put into the
+     * <code>STOPPED</code> state.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * German (de)
+     * Asynchronous batch translation jobs are started with the
+     * <a>StartTextTranslationJob</a> operation. You can use the
+     * <a>DescribeTextTranslationJob</a> or <a>ListTextTranslationJobs</a>
+     * operations to get a batch translation job's <code>JobId</code>.
      * </p>
-     * </li>
-     * <li>
+     * 
+     * @param stopTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopTextTranslationJobResult> stopTextTranslationJobAsync(
+            final StopTextTranslationJobRequest stopTextTranslationJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopTextTranslationJobResult>() {
+            public StopTextTranslationJobResult call() throws Exception {
+                return stopTextTranslationJob(stopTextTranslationJobRequest);
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Hebrew (he)
+     * Stops an asynchronous batch translation job that is in progress.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Indonesian (id)
+     * If the job's state is <code>IN_PROGRESS</code>, the job will be marked
+     * for termination and put into the <code>STOP_REQUESTED</code> state. If
+     * the job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state. Otherwise, the job is put into the
+     * <code>STOPPED</code> state.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * Italian (it)
+     * Asynchronous batch translation jobs are started with the
+     * <a>StartTextTranslationJob</a> operation. You can use the
+     * <a>DescribeTextTranslationJob</a> or <a>ListTextTranslationJobs</a>
+     * operations to get a batch translation job's <code>JobId</code>.
      * </p>
-     * </li>
-     * <li>
+     * 
+     * @param stopTextTranslationJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopTextTranslationJob service method, as returned by Amazon
+     *         Translate.
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopTextTranslationJobResult> stopTextTranslationJobAsync(
+            final StopTextTranslationJobRequest stopTextTranslationJobRequest,
+            final AsyncHandler<StopTextTranslationJobRequest, StopTextTranslationJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopTextTranslationJobResult>() {
+            public StopTextTranslationJobResult call() throws Exception {
+                StopTextTranslationJobResult result = null;
+                try {
+                    result = stopTextTranslationJob(stopTextTranslationJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(stopTextTranslationJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
      * <p>
-     * Japanese (ja)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Polish (pl)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Russian (ru)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swedish (sv)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Turkish (tr)
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To have Amazon Translate determine the source language of your text, you
-     * can specify <code>auto</code> in the <code>SourceLanguageCode</code>
-     * field. If you specify <code>auto</code>, Amazon Translate will call
-     * Amazon Comprehend to determine the source language.
+     * Translates input text from the source language to the target language.
+     * For a list of available languages and language codes, see
+     * <a>what-is-languages</a>.
      * </p>
      * 
      * @param translateTextRequest
@@ -712,125 +936,9 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Translates input text from the source language to the target language. It
-     * is not necessary to use English (en) as either the source or the target
-     * language but not all language combinations are supported by Amazon
-     * Translate. For more information, see <a
-     * href="http://docs.aws.amazon.com/translate/latest/dg/pairs.html"
-     * >Supported Language Pairs</a>.
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Arabic (ar)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Chinese (Simplified) (zh)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Chinese (Traditional) (zh-TW)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Czech (cs)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Danish (da)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Dutch (nl)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * English (en)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Finnish (fi)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Hebrew (he)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indonesian (id)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Polish (pl)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Russian (ru)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swedish (sv)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Turkish (tr)
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * To have Amazon Translate determine the source language of your text, you
-     * can specify <code>auto</code> in the <code>SourceLanguageCode</code>
-     * field. If you specify <code>auto</code>, Amazon Translate will call
-     * Amazon Comprehend to determine the source language.
+     * Translates input text from the source language to the target language.
+     * For a list of available languages and language codes, see
+     * <a>what-is-languages</a>.
      * </p>
      * 
      * @param translateTextRequest
