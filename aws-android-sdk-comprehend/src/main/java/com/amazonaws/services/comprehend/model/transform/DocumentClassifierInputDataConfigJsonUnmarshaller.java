@@ -40,6 +40,10 @@ class DocumentClassifierInputDataConfigJsonUnmarshaller implements
             if (name.equals("S3Uri")) {
                 documentClassifierInputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LabelDelimiter")) {
+                documentClassifierInputDataConfig.setLabelDelimiter(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
