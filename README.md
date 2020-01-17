@@ -49,8 +49,7 @@ Simply add to your app's build.gradle (Module)'s dependencies{ } section
 
 SERVICE can be `s3`, `ddb`, `pinpoint`, etc.
 
-(hint: you can specify 2.+ or 2.x.+ to automatically get the latest version where the + is specified.
-Remember for version 2.X.Y an increase in X may indicate a breaking change or new features, while increases in Y are likely bug fixes, or small feature improvements)
+(Note: Remember for version 2.X.Y an increase in X may indicate a breaking change or new features, while increases in Y are likely bug fixes, or small feature improvements)
  
 Note: Cognito Identity authentication abilities are included in the aws-android-sdk-core which all of the following packages depend on.
 
