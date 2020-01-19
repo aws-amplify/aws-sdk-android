@@ -87,6 +87,9 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
             } else if (name.equals("VpcConfig")) {
                 documentClassifierProperties.setVpcConfig(VpcConfigJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Mode")) {
+                documentClassifierProperties.setMode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

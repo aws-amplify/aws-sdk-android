@@ -101,6 +101,11 @@ class DocumentClassifierPropertiesJsonMarshaller {
             jsonWriter.name("VpcConfig");
             VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
         }
+        if (documentClassifierProperties.getMode() != null) {
+            String mode = documentClassifierProperties.getMode();
+            jsonWriter.name("Mode");
+            jsonWriter.value(mode);
+        }
         jsonWriter.endObject();
     }
 

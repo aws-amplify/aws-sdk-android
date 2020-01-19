@@ -116,6 +116,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (createDocumentClassifierRequest.getMode() != null) {
+                String mode = createDocumentClassifierRequest.getMode();
+                jsonWriter.name("Mode");
+                jsonWriter.value(mode);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
