@@ -5,9 +5,9 @@ dependencies {
 
     api project(":aws-android-sdk-core")
 
-    testCompile "junit:junit:4.12"
-    testCompile "org.robolectric:robolectric:2.4"
-    testCompile "org.mockito:mockito-all:1.10.5"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.robolectric:robolectric:3.8"
+    testImplementation "org.mockito:mockito-all:1.10.5"
 }
 
 sourceCompatibility = "1.7"
