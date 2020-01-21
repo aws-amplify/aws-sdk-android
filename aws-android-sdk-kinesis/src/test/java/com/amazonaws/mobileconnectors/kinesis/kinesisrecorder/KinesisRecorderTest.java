@@ -40,7 +40,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE, sdk = 27)
+@Config(manifest = Config.NONE)
 public class KinesisRecorderTest {
 
     private static final String WORKING_DIRECTORY = "KinesisRecorderTest";
