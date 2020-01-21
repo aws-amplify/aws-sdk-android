@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.Random;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk = 27)
 public class AbstractKinesisRecorderTest {
     private static final String STREAM_NAME = "mock_stream";
     private static final String RECORD_FILE_NAME = "mock_recorder_file.csv";

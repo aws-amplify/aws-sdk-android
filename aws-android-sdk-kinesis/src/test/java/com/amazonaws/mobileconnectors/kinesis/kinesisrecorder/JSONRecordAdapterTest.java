@@ -36,7 +36,7 @@ import org.robolectric.annotation.Config;
 import java.nio.ByteBuffer;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk = 27)
 public class JSONRecordAdapterTest {
 
     private final String stream = "TestStream";
