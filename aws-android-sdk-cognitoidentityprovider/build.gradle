@@ -7,7 +7,7 @@ dependencies {
     implementation "com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0"
 
     testImplementation "junit:junit:4.12"
-    testImplementation "org.robolectric:robolectric:2.4"
+    testImplementation "org.robolectric:robolectric:3.8"
     testImplementation "org.mockito:mockito-all:1.10.5"
 }
 
