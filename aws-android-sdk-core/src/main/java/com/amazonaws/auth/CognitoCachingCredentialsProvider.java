@@ -589,8 +589,8 @@ public class CognitoCachingCredentialsProvider
 
         // Expire the credentials if the expiration key is not present or if the
         // expiration key is tampered or not parseable into a date format.
-        if (awsKeyValueStore.get(namespace(EXP_KEY)) != null) {
-            final String expirationKeyInString = awsKeyValueStore.get(namespace(EXP_KEY));
+        final String expirationKeyInString = awsKeyValueStore.get(namespace(EXP_KEY));
+        if (expirationKeyInString != null) {
             try {
                 long expirationKeyInLong = Long.parseLong(expirationKeyInString);
                 sessionCredentialsExpiration = new Date(expirationKeyInLong);
