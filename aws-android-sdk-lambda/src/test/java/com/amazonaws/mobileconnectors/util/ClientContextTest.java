@@ -30,6 +30,7 @@ import com.amazonaws.util.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+@Ignore("Robolectric introduced a bug in 3.x where SharedPreference#edit() hangs.")
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = "src/test/resources/com/amazonaws/mobileconnectors/util/AndroidManifest.xml")
 public class ClientContextTest {

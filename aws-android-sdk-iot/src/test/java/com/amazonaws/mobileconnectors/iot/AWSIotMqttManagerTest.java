@@ -19,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -947,6 +948,7 @@ public class AWSIotMqttManagerTest {
         testClient.connect((AWSCredentialsProvider)null, csb);
     }
 
+    @Ignore("Turns out Robolectric 3.8 itself doesn't support SDK 15")
     @Config(manifest = Config.NONE, sdk = 15)
     @Test(expected = UnsupportedOperationException.class)
     public void testConnectSdkNotSufficient() throws Exception {
