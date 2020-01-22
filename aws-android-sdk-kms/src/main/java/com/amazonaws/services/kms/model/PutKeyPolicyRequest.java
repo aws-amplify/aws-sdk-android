@@ -111,7 +111,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy cannot exceed 32 kilobytes (32768 bytes). For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     * >Resource Quotas</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -437,7 +441,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy cannot exceed 32 kilobytes (32768 bytes). For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     * >Resource Quotas</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -480,7 +488,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *         </li>
      *         </ul>
      *         <p>
-     *         The key policy size limit is 32 kilobytes (32768 bytes).
+     *         The key policy cannot exceed 32 kilobytes (32768 bytes). For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     *         >Resource Quotas</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public String getPolicy() {
@@ -523,7 +535,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy cannot exceed 32 kilobytes (32768 bytes). For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     * >Resource Quotas</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -566,7 +582,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            </ul>
      *            <p>
-     *            The key policy size limit is 32 kilobytes (32768 bytes).
+     *            The key policy cannot exceed 32 kilobytes (32768 bytes). For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     *            >Resource Quotas</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setPolicy(String policy) {
@@ -609,7 +629,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy cannot exceed 32 kilobytes (32768 bytes). For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     * >Resource Quotas</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -655,7 +679,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            </ul>
      *            <p>
-     *            The key policy size limit is 32 kilobytes (32768 bytes).
+     *            The key policy cannot exceed 32 kilobytes (32768 bytes). For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html"
+     *            >Resource Quotas</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

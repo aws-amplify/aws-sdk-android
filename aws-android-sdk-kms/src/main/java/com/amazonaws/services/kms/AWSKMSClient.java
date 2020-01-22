@@ -586,7 +586,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * >DescribeClusters</a> operation. To add HSMs to the cluster, use the <a
      * href=
      * "https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_CreateHsm.html"
-     * >CreateHsm</a> operation.
+     * >CreateHsm</a> operation. Also, the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-concepts.html#concept-kmsuser"
+     * > <code>kmsuser</code> crypto user</a> (CU) must not be logged into the
+     * cluster. This prevents AWS KMS from using this account to log in.
      * </p>
      * <p>
      * The connection process can take an extended amount of time to complete;
@@ -601,9 +604,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * During the connection process, AWS KMS finds the AWS CloudHSM cluster
      * that is associated with the custom key store, creates the connection
      * infrastructure, connects to the cluster, logs into the AWS CloudHSM
-     * client as the <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-concepts.html#concept-kmsuser"
-     * > <code>kmsuser</code> crypto user</a> (CU), and rotates its password.
+     * client as the <code>kmsuser</code> CU, and rotates its password.
      * </p>
      * <p>
      * The <code>ConnectCustomKeyStore</code> operation might fail for various
@@ -1061,8 +1062,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * symmetric CMK to encrypt and decrypt small amounts of data, but they are
      * typically used to generate <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys"
-     * >data keys</a> or data key pairs. For details, see <a>GenerateDataKey</a>
-     * and <a>GenerateDataKeyPair</a>.
+     * >data keys</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-key-pairs"
+     * >data keys pairs</a>. For details, see <a>GenerateDataKey</a> and
+     * <a>GenerateDataKeyPair</a>.
      * </p>
      * </li>
      * <li>
@@ -2273,7 +2276,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * To generate a data key, specify the symmetric CMK that will be used to
      * encrypt the data key. You cannot use an asymmetric CMK to generate data
-     * keys.
+     * keys. To get the type of your CMK, use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
      * You must also specify the length of the data key. Use either the
@@ -2640,16 +2643,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * To generate a data key, you must specify the symmetric customer master
      * key (CMK) that is used to encrypt the data key. You cannot use an
      * asymmetric CMK to generate a data key. To get the type of your CMK, use
-     * the <code>KeySpec</code> field in the <a>DescribeKey</a> response. You
-     * must also specify the length of the data key using either the
-     * <code>KeySpec</code> or <code>NumberOfBytes</code> field (but not both).
-     * For common key lengths (128-bit and 256-bit symmetric keys), use the
-     * <code>KeySpec</code> parameter.
+     * the <a>DescribeKey</a> operation.
      * </p>
      * <p>
-     * If the operation succeeds, you will find the plaintext copy of the data
-     * key in the <code>Plaintext</code> field of the response, and the
-     * encrypted copy of the data key in the <code>CiphertextBlob</code> field.
+     * If the operation succeeds, you will find the encrypted copy of the data
+     * key in the <code>CiphertextBlob</code> field.
      * </p>
      * <p>
      * You can use the optional encryption context to add additional security to
@@ -3297,7 +3295,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * in your account, including predefined aliases, do not count against your
      * <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
-     * >AWS KMS aliases limit</a>.
+     * >AWS KMS aliases quota</a>.
      * </p>
      * 
      * @param listAliasesRequest
@@ -4635,8 +4633,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * symmetric CMK to encrypt and decrypt small amounts of data, but they are
      * typically used to generate <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys"
-     * >data keys</a> or data key pairs. For details, see <a>GenerateDataKey</a>
-     * and <a>GenerateDataKeyPair</a>.
+     * >data keys</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-key-pairs"
+     * >data keys pairs</a>. For details, see <a>GenerateDataKey</a> and
+     * <a>GenerateDataKeyPair</a>.
      * </p>
      * </li>
      * <li>
@@ -4798,7 +4798,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * in your account, including predefined aliases, do not count against your
      * <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
-     * >AWS KMS aliases limit</a>.
+     * >AWS KMS aliases quota</a>.
      * </p>
      * 
      * @return listAliasesResult The response from the ListAliases service

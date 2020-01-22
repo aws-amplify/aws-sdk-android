@@ -43,7 +43,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * associated with a CMK. Aliases that AWS creates in your account, including
  * predefined aliases, do not count against your <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
- * >AWS KMS aliases limit</a>.
+ * >AWS KMS aliases quota</a>.
  * </p>
  */
 public class ListAliasesRequest extends AmazonWebServiceRequest implements Serializable {
