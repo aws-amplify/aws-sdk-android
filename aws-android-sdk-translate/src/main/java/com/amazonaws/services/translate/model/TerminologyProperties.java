@@ -52,8 +52,8 @@ public class TerminologyProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern:
-     * </b>^arn:aws((-us-gov)|(-cn))?:translate:[a-zA-Z0-9-]+:[0-9]{12
-     * }:terminology/.+?/.+?$<br/>
+     * </b>^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:translate:[a-zA
+     * -Z0-9-]+:[0-9]{12}:terminology/.+?/.+?$<br/>
      */
     private String arn;
 
@@ -234,8 +234,8 @@ public class TerminologyProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern:
-     * </b>^arn:aws((-us-gov)|(-cn))?:translate:[a-zA-Z0-9-]+:[0-9]{12
-     * }:terminology/.+?/.+?$<br/>
+     * </b>^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:translate:[a-zA
+     * -Z0-9-]+:[0-9]{12}:terminology/.+?/.+?$<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the custom terminology.
@@ -252,8 +252,8 @@ public class TerminologyProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern:
-     * </b>^arn:aws((-us-gov)|(-cn))?:translate:[a-zA-Z0-9-]+:[0-9]{12
-     * }:terminology/.+?/.+?$<br/>
+     * </b>^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:translate:[a-zA
+     * -Z0-9-]+:[0-9]{12}:terminology/.+?/.+?$<br/>
      *
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the custom terminology.
@@ -273,8 +273,8 @@ public class TerminologyProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern:
-     * </b>^arn:aws((-us-gov)|(-cn))?:translate:[a-zA-Z0-9-]+:[0-9]{12
-     * }:terminology/.+?/.+?$<br/>
+     * </b>^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:translate:[a-zA
+     * -Z0-9-]+:[0-9]{12}:terminology/.+?/.+?$<br/>
      *
      * @param arn <p>
      *            The Amazon Resource Name (ARN) of the custom terminology.
