@@ -33,20 +33,6 @@ public class InvokeResult implements Serializable {
      * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>Handled</code> - The runtime caught an error thrown by the function
-     * and formatted it into a JSON document.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>Unhandled</code> - The runtime didn't handle the error. For
-     * example, the function ran out of memory or timed out.
-     * </p>
-     * </li>
-     * </ul>
      */
     private String functionError;
 
@@ -147,40 +133,12 @@ public class InvokeResult implements Serializable {
      * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>Handled</code> - The runtime caught an error thrown by the function
-     * and formatted it into a JSON document.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>Unhandled</code> - The runtime didn't handle the error. For
-     * example, the function ran out of memory or timed out.
-     * </p>
-     * </li>
-     * </ul>
      *
      * @return <p>
      *         If present, indicates that an error occurred during function
      *         execution. Details about the error are included in the response
      *         payload.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         <code>Handled</code> - The runtime caught an error thrown by the
-     *         function and formatted it into a JSON document.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>Unhandled</code> - The runtime didn't handle the error. For
-     *         example, the function ran out of memory or timed out.
-     *         </p>
-     *         </li>
-     *         </ul>
      */
     public String getFunctionError() {
         return functionError;
@@ -191,40 +149,12 @@ public class InvokeResult implements Serializable {
      * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>Handled</code> - The runtime caught an error thrown by the function
-     * and formatted it into a JSON document.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>Unhandled</code> - The runtime didn't handle the error. For
-     * example, the function ran out of memory or timed out.
-     * </p>
-     * </li>
-     * </ul>
      *
      * @param functionError <p>
      *            If present, indicates that an error occurred during function
      *            execution. Details about the error are included in the
      *            response payload.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>Handled</code> - The runtime caught an error thrown by
-     *            the function and formatted it into a JSON document.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>Unhandled</code> - The runtime didn't handle the error.
-     *            For example, the function ran out of memory or timed out.
-     *            </p>
-     *            </li>
-     *            </ul>
      */
     public void setFunctionError(String functionError) {
         this.functionError = functionError;
@@ -235,20 +165,6 @@ public class InvokeResult implements Serializable {
      * If present, indicates that an error occurred during function execution.
      * Details about the error are included in the response payload.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>Handled</code> - The runtime caught an error thrown by the function
-     * and formatted it into a JSON document.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>Unhandled</code> - The runtime didn't handle the error. For
-     * example, the function ran out of memory or timed out.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -258,20 +174,6 @@ public class InvokeResult implements Serializable {
      *            execution. Details about the error are included in the
      *            response payload.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>Handled</code> - The runtime caught an error thrown by
-     *            the function and formatted it into a JSON document.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>Unhandled</code> - The runtime didn't handle the error.
-     *            For example, the function ran out of memory or timed out.
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
