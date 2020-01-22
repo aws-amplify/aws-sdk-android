@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -246,7 +246,7 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      *             in the request, or a server side issue.
      */
     Future<GetTranscriptResult> getTranscriptAsync(GetTranscriptRequest getTranscriptRequest,
-                                                   AsyncHandler<GetTranscriptRequest, GetTranscriptResult> asyncHandler)
+            AsyncHandler<GetTranscriptRequest, GetTranscriptResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -299,7 +299,7 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      *             in the request, or a server side issue.
      */
     Future<SendEventResult> sendEventAsync(SendEventRequest sendEventRequest,
-                                           AsyncHandler<SendEventRequest, SendEventResult> asyncHandler)
+            AsyncHandler<SendEventRequest, SendEventResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -352,7 +352,7 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      *             in the request, or a server side issue.
      */
     Future<SendMessageResult> sendMessageAsync(SendMessageRequest sendMessageRequest,
-                                               AsyncHandler<SendMessageRequest, SendMessageResult> asyncHandler)
+            AsyncHandler<SendMessageRequest, SendMessageResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }
