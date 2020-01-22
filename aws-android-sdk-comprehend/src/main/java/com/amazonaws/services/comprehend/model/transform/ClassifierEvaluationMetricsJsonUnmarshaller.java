@@ -48,6 +48,18 @@ class ClassifierEvaluationMetricsJsonUnmarshaller implements
             } else if (name.equals("F1Score")) {
                 classifierEvaluationMetrics.setF1Score(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MicroPrecision")) {
+                classifierEvaluationMetrics.setMicroPrecision(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MicroRecall")) {
+                classifierEvaluationMetrics.setMicroRecall(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MicroF1Score")) {
+                classifierEvaluationMetrics.setMicroF1Score(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HammingLoss")) {
+                classifierEvaluationMetrics.setHammingLoss(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
