@@ -30,6 +30,18 @@ public class ClassifyDocumentResult implements Serializable {
 
     /**
      * <p>
+     * The labels used the document being analyzed. These are used for
+     * multi-label trained models. Individual labels represent different
+     * categories that are related in some manner and are not multually
+     * exclusive. For example, a movie can be just an action movie, or it can be
+     * an action movie, a science fiction movie, and a comedy, all at the same
+     * time.
+     * </p>
+     */
+    private java.util.List<DocumentLabel> labels;
+
+    /**
+     * <p>
      * The classes used by the document being analyzed. These are used for
      * multi-class trained models. Individual classes are mutually exclusive and
      * each document is expected to have only a single class assigned to it. For
@@ -131,6 +143,120 @@ public class ClassifyDocumentResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The labels used the document being analyzed. These are used for
+     * multi-label trained models. Individual labels represent different
+     * categories that are related in some manner and are not multually
+     * exclusive. For example, a movie can be just an action movie, or it can be
+     * an action movie, a science fiction movie, and a comedy, all at the same
+     * time.
+     * </p>
+     *
+     * @return <p>
+     *         The labels used the document being analyzed. These are used for
+     *         multi-label trained models. Individual labels represent different
+     *         categories that are related in some manner and are not multually
+     *         exclusive. For example, a movie can be just an action movie, or
+     *         it can be an action movie, a science fiction movie, and a comedy,
+     *         all at the same time.
+     *         </p>
+     */
+    public java.util.List<DocumentLabel> getLabels() {
+        return labels;
+    }
+
+    /**
+     * <p>
+     * The labels used the document being analyzed. These are used for
+     * multi-label trained models. Individual labels represent different
+     * categories that are related in some manner and are not multually
+     * exclusive. For example, a movie can be just an action movie, or it can be
+     * an action movie, a science fiction movie, and a comedy, all at the same
+     * time.
+     * </p>
+     *
+     * @param labels <p>
+     *            The labels used the document being analyzed. These are used
+     *            for multi-label trained models. Individual labels represent
+     *            different categories that are related in some manner and are
+     *            not multually exclusive. For example, a movie can be just an
+     *            action movie, or it can be an action movie, a science fiction
+     *            movie, and a comedy, all at the same time.
+     *            </p>
+     */
+    public void setLabels(java.util.Collection<DocumentLabel> labels) {
+        if (labels == null) {
+            this.labels = null;
+            return;
+        }
+
+        this.labels = new java.util.ArrayList<DocumentLabel>(labels);
+    }
+
+    /**
+     * <p>
+     * The labels used the document being analyzed. These are used for
+     * multi-label trained models. Individual labels represent different
+     * categories that are related in some manner and are not multually
+     * exclusive. For example, a movie can be just an action movie, or it can be
+     * an action movie, a science fiction movie, and a comedy, all at the same
+     * time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param labels <p>
+     *            The labels used the document being analyzed. These are used
+     *            for multi-label trained models. Individual labels represent
+     *            different categories that are related in some manner and are
+     *            not multually exclusive. For example, a movie can be just an
+     *            action movie, or it can be an action movie, a science fiction
+     *            movie, and a comedy, all at the same time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withLabels(DocumentLabel... labels) {
+        if (getLabels() == null) {
+            this.labels = new java.util.ArrayList<DocumentLabel>(labels.length);
+        }
+        for (DocumentLabel value : labels) {
+            this.labels.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The labels used the document being analyzed. These are used for
+     * multi-label trained models. Individual labels represent different
+     * categories that are related in some manner and are not multually
+     * exclusive. For example, a movie can be just an action movie, or it can be
+     * an action movie, a science fiction movie, and a comedy, all at the same
+     * time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param labels <p>
+     *            The labels used the document being analyzed. These are used
+     *            for multi-label trained models. Individual labels represent
+     *            different categories that are related in some manner and are
+     *            not multually exclusive. For example, a movie can be just an
+     *            action movie, or it can be an action movie, a science fiction
+     *            movie, and a comedy, all at the same time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withLabels(java.util.Collection<DocumentLabel> labels) {
+        setLabels(labels);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -142,7 +268,9 @@ public class ClassifyDocumentResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getClasses() != null)
-            sb.append("Classes: " + getClasses());
+            sb.append("Classes: " + getClasses() + ",");
+        if (getLabels() != null)
+            sb.append("Labels: " + getLabels());
         sb.append("}");
         return sb.toString();
     }
@@ -153,6 +281,7 @@ public class ClassifyDocumentResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getClasses() == null) ? 0 : getClasses().hashCode());
+        hashCode = prime * hashCode + ((getLabels() == null) ? 0 : getLabels().hashCode());
         return hashCode;
     }
 
@@ -170,6 +299,10 @@ public class ClassifyDocumentResult implements Serializable {
         if (other.getClasses() == null ^ this.getClasses() == null)
             return false;
         if (other.getClasses() != null && other.getClasses().equals(this.getClasses()) == false)
+            return false;
+        if (other.getLabels() == null ^ this.getLabels() == null)
+            return false;
+        if (other.getLabels() != null && other.getLabels().equals(this.getLabels()) == false)
             return false;
         return true;
     }

@@ -21,42 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response ClassifyDocumentResult
+ * JSON unmarshaller for POJO DocumentLabel
  */
-public class ClassifyDocumentResultJsonUnmarshaller implements
-        Unmarshaller<ClassifyDocumentResult, JsonUnmarshallerContext> {
+class DocumentLabelJsonUnmarshaller implements Unmarshaller<DocumentLabel, JsonUnmarshallerContext> {
 
-    public ClassifyDocumentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ClassifyDocumentResult classifyDocumentResult = new ClassifyDocumentResult();
-
+    public DocumentLabel unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DocumentLabel documentLabel = new DocumentLabel();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Classes")) {
-                classifyDocumentResult.setClasses(new ListUnmarshaller<DocumentClass>(
-                        DocumentClassJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("Labels")) {
-                classifyDocumentResult.setLabels(new ListUnmarshaller<DocumentLabel>(
-                        DocumentLabelJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+            if (name.equals("Name")) {
+                documentLabel.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Score")) {
+                documentLabel.setScore(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return classifyDocumentResult;
+        return documentLabel;
     }
 
-    private static ClassifyDocumentResultJsonUnmarshaller instance;
+    private static DocumentLabelJsonUnmarshaller instance;
 
-    public static ClassifyDocumentResultJsonUnmarshaller getInstance() {
+    public static DocumentLabelJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ClassifyDocumentResultJsonUnmarshaller();
+            instance = new DocumentLabelJsonUnmarshaller();
         return instance;
     }
 }

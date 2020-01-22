@@ -177,6 +177,19 @@ public class DocumentClassifierProperties implements Serializable {
 
     /**
      * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     */
+    private String mode;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) that identifies the document classifier.
      * </p>
      * <p>
@@ -1193,6 +1206,138 @@ public class DocumentClassifierProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @return <p>
+     *         Indicates the mode in which the specific classifier was trained.
+     *         This also indicates the format of input documents and the format
+     *         of the confusion matrix. Each classifier can only be trained in
+     *         one mode and this cannot be changed once the classifier is
+     *         trained.
+     *         </p>
+     * @see DocumentClassifierMode
+     */
+    public String getMode() {
+        return mode;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the specific classifier was
+     *            trained. This also indicates the format of input documents and
+     *            the format of the confusion matrix. Each classifier can only
+     *            be trained in one mode and this cannot be changed once the
+     *            classifier is trained.
+     *            </p>
+     * @see DocumentClassifierMode
+     */
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the specific classifier was
+     *            trained. This also indicates the format of input documents and
+     *            the format of the confusion matrix. Each classifier can only
+     *            be trained in one mode and this cannot be changed once the
+     *            classifier is trained.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierMode
+     */
+    public DocumentClassifierProperties withMode(String mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the specific classifier was
+     *            trained. This also indicates the format of input documents and
+     *            the format of the confusion matrix. Each classifier can only
+     *            be trained in one mode and this cannot be changed once the
+     *            classifier is trained.
+     *            </p>
+     * @see DocumentClassifierMode
+     */
+    public void setMode(DocumentClassifierMode mode) {
+        this.mode = mode.toString();
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the specific classifier was trained. This
+     * also indicates the format of input documents and the format of the
+     * confusion matrix. Each classifier can only be trained in one mode and
+     * this cannot be changed once the classifier is trained.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the specific classifier was
+     *            trained. This also indicates the format of input documents and
+     *            the format of the confusion matrix. Each classifier can only
+     *            be trained in one mode and this cannot be changed once the
+     *            classifier is trained.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierMode
+     */
+    public DocumentClassifierProperties withMode(DocumentClassifierMode mode) {
+        this.mode = mode.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1230,7 +1375,9 @@ public class DocumentClassifierProperties implements Serializable {
         if (getVolumeKmsKeyId() != null)
             sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
         if (getVpcConfig() != null)
-            sb.append("VpcConfig: " + getVpcConfig());
+            sb.append("VpcConfig: " + getVpcConfig() + ",");
+        if (getMode() != null)
+            sb.append("Mode: " + getMode());
         sb.append("}");
         return sb.toString();
     }
@@ -1264,6 +1411,7 @@ public class DocumentClassifierProperties implements Serializable {
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
         hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
+        hashCode = prime * hashCode + ((getMode() == null) ? 0 : getMode().hashCode());
         return hashCode;
     }
 
@@ -1344,6 +1492,10 @@ public class DocumentClassifierProperties implements Serializable {
             return false;
         if (other.getVpcConfig() != null
                 && other.getVpcConfig().equals(this.getVpcConfig()) == false)
+            return false;
+        if (other.getMode() == null ^ this.getMode() == null)
+            return false;
+        if (other.getMode() != null && other.getMode().equals(this.getMode()) == false)
             return false;
         return true;
     }
