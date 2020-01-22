@@ -38,7 +38,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * symmetric CMK to encrypt and decrypt small amounts of data, but they are
  * typically used to generate <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys"
- * >data keys</a> or data key pairs. For details, see <a>GenerateDataKey</a> and
+ * >data keys</a> and <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-key-pairs"
+ * >data keys pairs</a>. For details, see <a>GenerateDataKey</a> and
  * <a>GenerateDataKeyPair</a>.
  * </p>
  * </li>
@@ -168,7 +170,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Guide</i>.
      * </p>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy size quota is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -229,24 +231,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -483,7 +500,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Guide</i>.
      * </p>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy size quota is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -533,7 +550,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         Developer Guide</i>.
      *         </p>
      *         <p>
-     *         The key policy size limit is 32 kilobytes (32768 bytes).
+     *         The key policy size quota is 32 kilobytes (32768 bytes).
      *         </p>
      */
     public String getPolicy() {
@@ -582,7 +599,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Guide</i>.
      * </p>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy size quota is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -633,7 +650,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The key policy size limit is 32 kilobytes (32768 bytes).
+     *            The key policy size quota is 32 kilobytes (32768 bytes).
      *            </p>
      */
     public void setPolicy(String policy) {
@@ -682,7 +699,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Guide</i>.
      * </p>
      * <p>
-     * The key policy size limit is 32 kilobytes (32768 bytes).
+     * The key policy size quota is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -736,7 +753,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The key policy size limit is 32 kilobytes (32768 bytes).
+     *            The key policy size quota is 32 kilobytes (32768 bytes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1187,24 +1204,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -1285,25 +1317,42 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
      * @return <p>
-     *         Specifies the type of CMK to create. The
-     *         <code>CustomerMasterKeySpec</code> determines whether the CMK
+     *         Specifies the type of CMK to create. The default value,
+     *         <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit
+     *         symmetric key for encryption and decryption. For help choosing a
+     *         key spec for your CMK, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     *         >How to Choose Your CMK Configuration</a> in the <i>AWS Key
+     *         Management Service Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         The <code>CustomerMasterKeySpec</code> determines whether the CMK
      *         contains a symmetric key or an asymmetric key pair. It also
      *         determines the encryption algorithms or signing algorithms that
      *         the CMK supports. You can't change the
      *         <code>CustomerMasterKeySpec</code> after the CMK is created. To
      *         further restrict the algorithms that can be used with the CMK,
-     *         use its key policy or IAM policy.
+     *         use a condition key in its key policy or IAM policy. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     *         >kms:EncryptionAlgorithm</a> or <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     *         >kms:Signing Algorithm</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
      *         </p>
+     *         <important>
      *         <p>
-     *         For help with choosing a key spec for your CMK, see <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     *         >Selecting a Customer Master Key Spec</a> in the <i>AWS Key
+     *         <a href=
+     *         "http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     *         services that are integrated with AWS KMS</a> use symmetric CMKs
+     *         to protect your data. These services do not support asymmetric
+     *         CMKs. For help determining whether a CMK is symmetric or
+     *         asymmetric, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     *         >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
      *         Management Service Developer Guide</i>.
      *         </p>
-     *         <p>
-     *         The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK
-     *         with a 256-bit symmetric key.
-     *         </p>
+     *         </important>
      *         <p>
      *         AWS KMS supports the following key specs for CMKs:
      *         </p>
@@ -1386,24 +1435,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -1484,25 +1548,42 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
      * @param customerMasterKeySpec <p>
-     *            Specifies the type of CMK to create. The
-     *            <code>CustomerMasterKeySpec</code> determines whether the CMK
-     *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the encryption algorithms or signing algorithms
-     *            that the CMK supports. You can't change the
-     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
-     *            To further restrict the algorithms that can be used with the
-     *            CMK, use its key policy or IAM policy.
-     *            </p>
-     *            <p>
-     *            For help with choosing a key spec for your CMK, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     *            >Selecting a Customer Master Key Spec</a> in the <i>AWS Key
+     *            Specifies the type of CMK to create. The default value,
+     *            <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit
+     *            symmetric key for encryption and decryption. For help choosing
+     *            a key spec for your CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     *            >How to Choose Your CMK Configuration</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The default value, <code>SYMMETRIC_DEFAULT</code>, creates a
-     *            CMK with a 256-bit symmetric key.
+     *            The <code>CustomerMasterKeySpec</code> determines whether the
+     *            CMK contains a symmetric key or an asymmetric key pair. It
+     *            also determines the encryption algorithms or signing
+     *            algorithms that the CMK supports. You can't change the
+     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
+     *            To further restrict the algorithms that can be used with the
+     *            CMK, use a condition key in its key policy or IAM policy. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     *            >kms:EncryptionAlgorithm</a> or <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     *            >kms:Signing Algorithm</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <a href=
+     *            "http://aws.amazon.com/kms/features/#AWS_Service_Integration"
+     *            >AWS services that are integrated with AWS KMS</a> use
+     *            symmetric CMKs to protect your data. These services do not
+     *            support asymmetric CMKs. For help determining whether a CMK is
+     *            symmetric or asymmetric, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     *            >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS
+     *            Key Management Service Developer Guide</i>.
+     *            </p>
+     *            </important>
      *            <p>
      *            AWS KMS supports the following key specs for CMKs:
      *            </p>
@@ -1585,24 +1666,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -1686,25 +1782,42 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
      * @param customerMasterKeySpec <p>
-     *            Specifies the type of CMK to create. The
-     *            <code>CustomerMasterKeySpec</code> determines whether the CMK
-     *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the encryption algorithms or signing algorithms
-     *            that the CMK supports. You can't change the
-     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
-     *            To further restrict the algorithms that can be used with the
-     *            CMK, use its key policy or IAM policy.
-     *            </p>
-     *            <p>
-     *            For help with choosing a key spec for your CMK, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     *            >Selecting a Customer Master Key Spec</a> in the <i>AWS Key
+     *            Specifies the type of CMK to create. The default value,
+     *            <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit
+     *            symmetric key for encryption and decryption. For help choosing
+     *            a key spec for your CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     *            >How to Choose Your CMK Configuration</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The default value, <code>SYMMETRIC_DEFAULT</code>, creates a
-     *            CMK with a 256-bit symmetric key.
+     *            The <code>CustomerMasterKeySpec</code> determines whether the
+     *            CMK contains a symmetric key or an asymmetric key pair. It
+     *            also determines the encryption algorithms or signing
+     *            algorithms that the CMK supports. You can't change the
+     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
+     *            To further restrict the algorithms that can be used with the
+     *            CMK, use a condition key in its key policy or IAM policy. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     *            >kms:EncryptionAlgorithm</a> or <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     *            >kms:Signing Algorithm</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <a href=
+     *            "http://aws.amazon.com/kms/features/#AWS_Service_Integration"
+     *            >AWS services that are integrated with AWS KMS</a> use
+     *            symmetric CMKs to protect your data. These services do not
+     *            support asymmetric CMKs. For help determining whether a CMK is
+     *            symmetric or asymmetric, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     *            >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS
+     *            Key Management Service Developer Guide</i>.
+     *            </p>
+     *            </important>
      *            <p>
      *            AWS KMS supports the following key specs for CMKs:
      *            </p>
@@ -1790,24 +1903,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -1888,25 +2016,42 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
      * @param customerMasterKeySpec <p>
-     *            Specifies the type of CMK to create. The
-     *            <code>CustomerMasterKeySpec</code> determines whether the CMK
-     *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the encryption algorithms or signing algorithms
-     *            that the CMK supports. You can't change the
-     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
-     *            To further restrict the algorithms that can be used with the
-     *            CMK, use its key policy or IAM policy.
-     *            </p>
-     *            <p>
-     *            For help with choosing a key spec for your CMK, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     *            >Selecting a Customer Master Key Spec</a> in the <i>AWS Key
+     *            Specifies the type of CMK to create. The default value,
+     *            <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit
+     *            symmetric key for encryption and decryption. For help choosing
+     *            a key spec for your CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     *            >How to Choose Your CMK Configuration</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The default value, <code>SYMMETRIC_DEFAULT</code>, creates a
-     *            CMK with a 256-bit symmetric key.
+     *            The <code>CustomerMasterKeySpec</code> determines whether the
+     *            CMK contains a symmetric key or an asymmetric key pair. It
+     *            also determines the encryption algorithms or signing
+     *            algorithms that the CMK supports. You can't change the
+     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
+     *            To further restrict the algorithms that can be used with the
+     *            CMK, use a condition key in its key policy or IAM policy. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     *            >kms:EncryptionAlgorithm</a> or <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     *            >kms:Signing Algorithm</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <a href=
+     *            "http://aws.amazon.com/kms/features/#AWS_Service_Integration"
+     *            >AWS services that are integrated with AWS KMS</a> use
+     *            symmetric CMKs to protect your data. These services do not
+     *            support asymmetric CMKs. For help determining whether a CMK is
+     *            symmetric or asymmetric, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     *            >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS
+     *            Key Management Service Developer Guide</i>.
+     *            </p>
+     *            </important>
      *            <p>
      *            AWS KMS supports the following key specs for CMKs:
      *            </p>
@@ -1989,24 +2134,39 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the type of CMK to create. The
-     * <code>CustomerMasterKeySpec</code> determines whether the CMK contains a
-     * symmetric key or an asymmetric key pair. It also determines the
-     * encryption algorithms or signing algorithms that the CMK supports. You
-     * can't change the <code>CustomerMasterKeySpec</code> after the CMK is
-     * created. To further restrict the algorithms that can be used with the
-     * CMK, use its key policy or IAM policy.
-     * </p>
-     * <p>
-     * For help with choosing a key spec for your CMK, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     * >Selecting a Customer Master Key Spec</a> in the <i>AWS Key Management
+     * Specifies the type of CMK to create. The default value,
+     * <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit symmetric
+     * key for encryption and decryption. For help choosing a key spec for your
+     * CMK, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     * >How to Choose Your CMK Configuration</a> in the <i>AWS Key Management
      * Service Developer Guide</i>.
      * </p>
      * <p>
-     * The default value, <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a
-     * 256-bit symmetric key.
+     * The <code>CustomerMasterKeySpec</code> determines whether the CMK
+     * contains a symmetric key or an asymmetric key pair. It also determines
+     * the encryption algorithms or signing algorithms that the CMK supports.
+     * You can't change the <code>CustomerMasterKeySpec</code> after the CMK is
+     * created. To further restrict the algorithms that can be used with the
+     * CMK, use a condition key in its key policy or IAM policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     * >kms:EncryptionAlgorithm</a> or <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     * >kms:Signing Algorithm</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <a href="http://aws.amazon.com/kms/features/#AWS_Service_Integration">AWS
+     * services that are integrated with AWS KMS</a> use symmetric CMKs to
+     * protect your data. These services do not support asymmetric CMKs. For
+     * help determining whether a CMK is symmetric or asymmetric, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     * >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * </important>
      * <p>
      * AWS KMS supports the following key specs for CMKs:
      * </p>
@@ -2090,25 +2250,42 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
      * @param customerMasterKeySpec <p>
-     *            Specifies the type of CMK to create. The
-     *            <code>CustomerMasterKeySpec</code> determines whether the CMK
-     *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the encryption algorithms or signing algorithms
-     *            that the CMK supports. You can't change the
-     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
-     *            To further restrict the algorithms that can be used with the
-     *            CMK, use its key policy or IAM policy.
-     *            </p>
-     *            <p>
-     *            For help with choosing a key spec for your CMK, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#cmk-key-spec"
-     *            >Selecting a Customer Master Key Spec</a> in the <i>AWS Key
+     *            Specifies the type of CMK to create. The default value,
+     *            <code>SYMMETRIC_DEFAULT</code>, creates a CMK with a 256-bit
+     *            symmetric key for encryption and decryption. For help choosing
+     *            a key spec for your CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html"
+     *            >How to Choose Your CMK Configuration</a> in the <i>AWS Key
      *            Management Service Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The default value, <code>SYMMETRIC_DEFAULT</code>, creates a
-     *            CMK with a 256-bit symmetric key.
+     *            The <code>CustomerMasterKeySpec</code> determines whether the
+     *            CMK contains a symmetric key or an asymmetric key pair. It
+     *            also determines the encryption algorithms or signing
+     *            algorithms that the CMK supports. You can't change the
+     *            <code>CustomerMasterKeySpec</code> after the CMK is created.
+     *            To further restrict the algorithms that can be used with the
+     *            CMK, use a condition key in its key policy or IAM policy. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
+     *            >kms:EncryptionAlgorithm</a> or <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-signing-algorithm"
+     *            >kms:Signing Algorithm</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <a href=
+     *            "http://aws.amazon.com/kms/features/#AWS_Service_Integration"
+     *            >AWS services that are integrated with AWS KMS</a> use
+     *            symmetric CMKs to protect your data. These services do not
+     *            support asymmetric CMKs. For help determining whether a CMK is
+     *            symmetric or asymmetric, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html"
+     *            >Identifying Symmetric and Asymmetric CMKs</a> in the <i>AWS
+     *            Key Management Service Developer Guide</i>.
+     *            </p>
+     *            </important>
      *            <p>
      *            AWS KMS supports the following key specs for CMKs:
      *            </p>

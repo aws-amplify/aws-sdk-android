@@ -116,13 +116,15 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Specifies the message that was signed, or a hash digest of that message.
-     * Messages can be 0-4096 bytes. To verify a larger message, provide a hash
-     * digest of the message.
+     * Specifies the message that was signed. You can submit a raw message of up
+     * to 4096 bytes, or a hash digest of the message. If you submit a digest,
+     * use the <code>MessageType</code> parameter with a value of
+     * <code>DIGEST</code>.
      * </p>
      * <p>
-     * If the digest of the message specified here is different from the message
-     * digest that was signed, the signature verification fails.
+     * If the message specified here is different from the message that was
+     * signed, the signature verification fails. A message and its hash digest
+     * are considered to be the same message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,10 +135,17 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RAW, DIGEST
@@ -478,26 +487,30 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Specifies the message that was signed, or a hash digest of that message.
-     * Messages can be 0-4096 bytes. To verify a larger message, provide a hash
-     * digest of the message.
+     * Specifies the message that was signed. You can submit a raw message of up
+     * to 4096 bytes, or a hash digest of the message. If you submit a digest,
+     * use the <code>MessageType</code> parameter with a value of
+     * <code>DIGEST</code>.
      * </p>
      * <p>
-     * If the digest of the message specified here is different from the message
-     * digest that was signed, the signature verification fails.
+     * If the message specified here is different from the message that was
+     * signed, the signature verification fails. A message and its hash digest
+     * are considered to be the same message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @return <p>
-     *         Specifies the message that was signed, or a hash digest of that
-     *         message. Messages can be 0-4096 bytes. To verify a larger
-     *         message, provide a hash digest of the message.
+     *         Specifies the message that was signed. You can submit a raw
+     *         message of up to 4096 bytes, or a hash digest of the message. If
+     *         you submit a digest, use the <code>MessageType</code> parameter
+     *         with a value of <code>DIGEST</code>.
      *         </p>
      *         <p>
-     *         If the digest of the message specified here is different from the
-     *         message digest that was signed, the signature verification fails.
+     *         If the message specified here is different from the message that
+     *         was signed, the signature verification fails. A message and its
+     *         hash digest are considered to be the same message.
      *         </p>
      */
     public java.nio.ByteBuffer getMessage() {
@@ -506,27 +519,30 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Specifies the message that was signed, or a hash digest of that message.
-     * Messages can be 0-4096 bytes. To verify a larger message, provide a hash
-     * digest of the message.
+     * Specifies the message that was signed. You can submit a raw message of up
+     * to 4096 bytes, or a hash digest of the message. If you submit a digest,
+     * use the <code>MessageType</code> parameter with a value of
+     * <code>DIGEST</code>.
      * </p>
      * <p>
-     * If the digest of the message specified here is different from the message
-     * digest that was signed, the signature verification fails.
+     * If the message specified here is different from the message that was
+     * signed, the signature verification fails. A message and its hash digest
+     * are considered to be the same message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param message <p>
-     *            Specifies the message that was signed, or a hash digest of
-     *            that message. Messages can be 0-4096 bytes. To verify a larger
-     *            message, provide a hash digest of the message.
+     *            Specifies the message that was signed. You can submit a raw
+     *            message of up to 4096 bytes, or a hash digest of the message.
+     *            If you submit a digest, use the <code>MessageType</code>
+     *            parameter with a value of <code>DIGEST</code>.
      *            </p>
      *            <p>
-     *            If the digest of the message specified here is different from
-     *            the message digest that was signed, the signature verification
-     *            fails.
+     *            If the message specified here is different from the message
+     *            that was signed, the signature verification fails. A message
+     *            and its hash digest are considered to be the same message.
      *            </p>
      */
     public void setMessage(java.nio.ByteBuffer message) {
@@ -535,13 +551,15 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Specifies the message that was signed, or a hash digest of that message.
-     * Messages can be 0-4096 bytes. To verify a larger message, provide a hash
-     * digest of the message.
+     * Specifies the message that was signed. You can submit a raw message of up
+     * to 4096 bytes, or a hash digest of the message. If you submit a digest,
+     * use the <code>MessageType</code> parameter with a value of
+     * <code>DIGEST</code>.
      * </p>
      * <p>
-     * If the digest of the message specified here is different from the message
-     * digest that was signed, the signature verification fails.
+     * If the message specified here is different from the message that was
+     * signed, the signature verification fails. A message and its hash digest
+     * are considered to be the same message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -551,14 +569,15 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param message <p>
-     *            Specifies the message that was signed, or a hash digest of
-     *            that message. Messages can be 0-4096 bytes. To verify a larger
-     *            message, provide a hash digest of the message.
+     *            Specifies the message that was signed. You can submit a raw
+     *            message of up to 4096 bytes, or a hash digest of the message.
+     *            If you submit a digest, use the <code>MessageType</code>
+     *            parameter with a value of <code>DIGEST</code>.
      *            </p>
      *            <p>
-     *            If the digest of the message specified here is different from
-     *            the message digest that was signed, the signature verification
-     *            fails.
+     *            If the message specified here is different from the message
+     *            that was signed, the signature verification fails. A message
+     *            and its hash digest are considered to be the same message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -571,20 +590,35 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @return <p>
      *         Tells AWS KMS whether the value of the <code>Message</code>
-     *         parameter is a message or message digest. To indicate a message,
-     *         enter <code>RAW</code>. To indicate a message digest, enter
+     *         parameter is a message or message digest. The default value, RAW,
+     *         indicates a message. To indicate a message digest, enter
      *         <code>DIGEST</code>.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Use the <code>DIGEST</code> value only when the value of the
+     *         <code>Message</code> parameter is a message digest. If you use
+     *         the <code>DIGEST</code> value with a raw message, the security of
+     *         the verification operation can be compromised.
+     *         </p>
+     *         </important>
      * @see MessageType
      */
     public String getMessageType() {
@@ -594,20 +628,35 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Use the <code>DIGEST</code> value only when the value of the
+     *            <code>Message</code> parameter is a message digest. If you use
+     *            the <code>DIGEST</code> value with a raw message, the security
+     *            of the verification operation can be compromised.
+     *            </p>
+     *            </important>
      * @see MessageType
      */
     public void setMessageType(String messageType) {
@@ -617,10 +666,17 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -630,10 +686,18 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Use the <code>DIGEST</code> value only when the value of the
+     *            <code>Message</code> parameter is a message digest. If you use
+     *            the <code>DIGEST</code> value with a raw message, the security
+     *            of the verification operation can be compromised.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType
@@ -646,20 +710,35 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Use the <code>DIGEST</code> value only when the value of the
+     *            <code>Message</code> parameter is a message digest. If you use
+     *            the <code>DIGEST</code> value with a raw message, the security
+     *            of the verification operation can be compromised.
+     *            </p>
+     *            </important>
      * @see MessageType
      */
     public void setMessageType(MessageType messageType) {
@@ -669,10 +748,17 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
+     * <important>
+     * <p>
+     * Use the <code>DIGEST</code> value only when the value of the
+     * <code>Message</code> parameter is a message digest. If you use the
+     * <code>DIGEST</code> value with a raw message, the security of the
+     * verification operation can be compromised.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -682,10 +768,18 @@ public class VerifyRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Use the <code>DIGEST</code> value only when the value of the
+     *            <code>Message</code> parameter is a message digest. If you use
+     *            the <code>DIGEST</code> value with a raw message, the security
+     *            of the verification operation can be compromised.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType

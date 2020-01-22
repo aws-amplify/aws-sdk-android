@@ -116,7 +116,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      */
     private String keyStorePassword;
 
@@ -283,7 +283,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @return <p>
      *         Enter the current password of the <code>kmsuser</code> crypto
@@ -312,7 +312,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @param keyStorePassword <p>
      *            Enter the current password of the <code>kmsuser</code> crypto
@@ -344,7 +344,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @param keyStorePassword <p>
      *            Enter the current password of the <code>kmsuser</code> crypto

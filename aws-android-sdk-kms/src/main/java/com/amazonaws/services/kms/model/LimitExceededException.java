@@ -19,10 +19,10 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because a limit was exceeded. For more information,
+ * The request was rejected because a quota was exceeded. For more information,
  * see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/limits.html"
- * >Limits</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * >Quotas</a> in the <i>AWS Key Management Service Developer Guide</i>.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {

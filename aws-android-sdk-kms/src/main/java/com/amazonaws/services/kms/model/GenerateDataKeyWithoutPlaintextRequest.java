@@ -52,15 +52,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To generate a data key, you must specify the symmetric customer master key
  * (CMK) that is used to encrypt the data key. You cannot use an asymmetric CMK
  * to generate a data key. To get the type of your CMK, use the
- * <code>KeySpec</code> field in the <a>DescribeKey</a> response. You must also
- * specify the length of the data key using either the <code>KeySpec</code> or
- * <code>NumberOfBytes</code> field (but not both). For common key lengths
- * (128-bit and 256-bit symmetric keys), use the <code>KeySpec</code> parameter.
+ * <a>DescribeKey</a> operation.
  * </p>
  * <p>
- * If the operation succeeds, you will find the plaintext copy of the data key
- * in the <code>Plaintext</code> field of the response, and the encrypted copy
- * of the data key in the <code>CiphertextBlob</code> field.
+ * If the operation succeeds, you will find the encrypted copy of the data key
+ * in the <code>CiphertextBlob</code> field.
  * </p>
  * <p>
  * You can use the optional encryption context to add additional security to the
