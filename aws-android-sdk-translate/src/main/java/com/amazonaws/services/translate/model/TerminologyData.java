@@ -25,7 +25,10 @@ import java.io.Serializable;
 public class TerminologyData implements Serializable {
     /**
      * <p>
-     * The file containing the custom terminology data.
+     * The file containing the custom terminology data. Your version of the AWS
+     * SDK performs a Base64-encoding on this field before sending a request to
+     * the AWS service. Users of the SDK should not perform Base64-encoding
+     * themselves.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +48,20 @@ public class TerminologyData implements Serializable {
 
     /**
      * <p>
-     * The file containing the custom terminology data.
+     * The file containing the custom terminology data. Your version of the AWS
+     * SDK performs a Base64-encoding on this field before sending a request to
+     * the AWS service. Users of the SDK should not perform Base64-encoding
+     * themselves.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 10485760<br/>
      *
      * @return <p>
-     *         The file containing the custom terminology data.
+     *         The file containing the custom terminology data. Your version of
+     *         the AWS SDK performs a Base64-encoding on this field before
+     *         sending a request to the AWS service. Users of the SDK should not
+     *         perform Base64-encoding themselves.
      *         </p>
      */
     public java.nio.ByteBuffer getFile() {
@@ -61,14 +70,20 @@ public class TerminologyData implements Serializable {
 
     /**
      * <p>
-     * The file containing the custom terminology data.
+     * The file containing the custom terminology data. Your version of the AWS
+     * SDK performs a Base64-encoding on this field before sending a request to
+     * the AWS service. Users of the SDK should not perform Base64-encoding
+     * themselves.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 10485760<br/>
      *
      * @param file <p>
-     *            The file containing the custom terminology data.
+     *            The file containing the custom terminology data. Your version
+     *            of the AWS SDK performs a Base64-encoding on this field before
+     *            sending a request to the AWS service. Users of the SDK should
+     *            not perform Base64-encoding themselves.
      *            </p>
      */
     public void setFile(java.nio.ByteBuffer file) {
@@ -77,7 +92,10 @@ public class TerminologyData implements Serializable {
 
     /**
      * <p>
-     * The file containing the custom terminology data.
+     * The file containing the custom terminology data. Your version of the AWS
+     * SDK performs a Base64-encoding on this field before sending a request to
+     * the AWS service. Users of the SDK should not perform Base64-encoding
+     * themselves.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +105,10 @@ public class TerminologyData implements Serializable {
      * <b>Length: </b> - 10485760<br/>
      *
      * @param file <p>
-     *            The file containing the custom terminology data.
+     *            The file containing the custom terminology data. Your version
+     *            of the AWS SDK performs a Base64-encoding on this field before
+     *            sending a request to the AWS service. Users of the SDK should
+     *            not perform Base64-encoding themselves.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

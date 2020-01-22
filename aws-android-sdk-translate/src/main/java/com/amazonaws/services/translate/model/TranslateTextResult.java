@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class TranslateTextResult implements Serializable {
     /**
      * <p>
-     * The the translated text. The maximum length of this text is 5kb.
+     * The translated text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The the translated text. The maximum length of this text is 5kb.
+     * The translated text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +67,7 @@ public class TranslateTextResult implements Serializable {
      * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @return <p>
-     *         The the translated text. The maximum length of this text is 5kb.
+     *         The translated text.
      *         </p>
      */
     public String getTranslatedText() {
@@ -76,7 +76,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The the translated text. The maximum length of this text is 5kb.
+     * The translated text.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,8 +84,7 @@ public class TranslateTextResult implements Serializable {
      * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @param translatedText <p>
-     *            The the translated text. The maximum length of this text is
-     *            5kb.
+     *            The translated text.
      *            </p>
      */
     public void setTranslatedText(String translatedText) {
@@ -94,7 +93,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * The the translated text. The maximum length of this text is 5kb.
+     * The translated text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,8 +104,7 @@ public class TranslateTextResult implements Serializable {
      * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
      *
      * @param translatedText <p>
-     *            The the translated text. The maximum length of this text is
-     *            5kb.
+     *            The translated text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

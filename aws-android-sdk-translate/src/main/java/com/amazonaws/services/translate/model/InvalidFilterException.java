@@ -19,21 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The resource you are looking for has not been found. Review the resource
- * you're looking for and see if a different resource will accomplish your needs
- * before retrying the revised request.
+ * The filter specified for the operation is invalid. Specify a different
+ * filter.
  * </p>
  */
-public class ResourceNotFoundException extends AmazonServiceException {
+public class InvalidFilterException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ResourceNotFoundException with the specified error
-     * message.
+     * Constructs a new InvalidFilterException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public ResourceNotFoundException(String message) {
+    public InvalidFilterException(String message) {
         super(message);
     }
 }
