@@ -44,8 +44,10 @@ public class EncryptionKey implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 400<br/>
      * <b>Pattern:
-     * </b>(arn:aws((-us-gov)|(-cn))?:kms:)?([a-z]{2}-[a-z]+-\d:)?(\d
-     * {12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))<br/>
+     * </b>(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}
+     * -[a-z]+(-[a-
+     * z]+)?-\d:)?(\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))
+     * <br/>
      */
     private String id;
 
@@ -165,8 +167,10 @@ public class EncryptionKey implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 400<br/>
      * <b>Pattern:
-     * </b>(arn:aws((-us-gov)|(-cn))?:kms:)?([a-z]{2}-[a-z]+-\d:)?(\d
-     * {12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))<br/>
+     * </b>(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}
+     * -[a-z]+(-[a-
+     * z]+)?-\d:)?(\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))
+     * <br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the encryption key being used
@@ -186,8 +190,10 @@ public class EncryptionKey implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 400<br/>
      * <b>Pattern:
-     * </b>(arn:aws((-us-gov)|(-cn))?:kms:)?([a-z]{2}-[a-z]+-\d:)?(\d
-     * {12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))<br/>
+     * </b>(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}
+     * -[a-z]+(-[a-
+     * z]+)?-\d:)?(\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))
+     * <br/>
      *
      * @param id <p>
      *            The Amazon Resource Name (ARN) of the encryption key being
@@ -210,8 +216,10 @@ public class EncryptionKey implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 400<br/>
      * <b>Pattern:
-     * </b>(arn:aws((-us-gov)|(-cn))?:kms:)?([a-z]{2}-[a-z]+-\d:)?(\d
-     * {12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))<br/>
+     * </b>(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}
+     * -[a-z]+(-[a-
+     * z]+)?-\d:)?(\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))
+     * <br/>
      *
      * @param id <p>
      *            The Amazon Resource Name (ARN) of the encryption key being
