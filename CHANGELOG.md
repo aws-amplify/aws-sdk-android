@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.7)
+
+### Misc. Updates
+
+- Model updates for the following services
+  - Amazon Comprehend
+  - Amazon Connect Participant
+  - Amazon Translate
+  - AWS Lambda
+  - AWS Key Management Service
+
 ## [Release 2.16.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.6)
 
 ### New Features
