@@ -54,6 +54,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundExce
 import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
 import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
+import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,13 +99,10 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public static final String NEW_PASSWORD = "new1234Password!";
     public static final int THROTTLED_DELAY = 5000;
 
-    static BasicAWSCredentials adminCreds;
     static AmazonCognitoIdentityProvider userpoolLL;
 
     static {
         try {
-            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
-                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
             IDENTITY_ID = getPackageConfigure().getString("identity_id");
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +121,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
         if (userpoolLL == null) {
-            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
+            userpoolLL = new AmazonCognitoIdentityProviderClient(credentials);
             userpoolLL.setRegion(Region.getRegion(clientRegion));
         }
         return userpoolLL;
@@ -185,6 +183,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
@@ -519,7 +518,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testFederatedSignInWithDeveloperAuthenticatedIdentities() throws Exception {
-        AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(adminCreds);
+        AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(credentials);
         identityClient.setRegion(Region.getRegion("us-west-2"));
 
         GetOpenIdTokenForDeveloperIdentityRequest request =
