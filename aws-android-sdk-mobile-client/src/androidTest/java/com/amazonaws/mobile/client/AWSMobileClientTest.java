@@ -286,10 +286,9 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals(4,  userSub.split("-")[2].length());
         assertEquals(4,  userSub.split("-")[3].length());
         assertEquals(12,  userSub.split("-")[4].length());
-        if (signUpResult.getConfirmationState()) {
-            // Done
-        } else {
-            final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
+
+        final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
+        if (details != null) {
             assertEquals(BLURRED_EMAIL, details.getDestination());
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());

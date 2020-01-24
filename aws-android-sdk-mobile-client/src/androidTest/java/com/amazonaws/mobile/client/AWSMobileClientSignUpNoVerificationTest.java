@@ -70,18 +70,7 @@ public class AWSMobileClientSignUpNoVerificationTest extends AWSMobileClientTest
     private static final String PASSWORD = "1234Password!";
     private static final long THREAD_WAIT_DURATION = 60;
 
-    private static BasicAWSCredentials adminCredentials;
     private static AmazonCognitoIdentityProvider userPoolLowLevelClient;
-
-    static {
-        try {
-            adminCredentials = new BasicAWSCredentials(
-                    getPackageConfigure().getString("create_cognito_user_access_key"),
-                    getPackageConfigure().getString("create_cognito_user_secret_key"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     // Populated from awsconfiguration.json
     private static Regions clientRegion = Regions.US_WEST_2;
@@ -93,7 +82,7 @@ public class AWSMobileClientSignUpNoVerificationTest extends AWSMobileClientTest
 
     private static synchronized AmazonCognitoIdentityProvider getUserPoolLowLevelClient() {
         if (userPoolLowLevelClient == null) {
-            userPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(adminCredentials);
+            userPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(credentials);
             userPoolLowLevelClient.setRegion(Region.getRegion(clientRegion));
         }
         return userPoolLowLevelClient;
@@ -160,11 +149,11 @@ public class AWSMobileClientSignUpNoVerificationTest extends AWSMobileClientTest
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch waitUntilInitialized = new CountDownLatch(1);
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
-        awsConfiguration.setConfiguration("AWSMobileClientIntegrationTest-NoSignUpVerification");
         AWSMobileClient.getInstance().initialize(appContext,
                 awsConfiguration,
                 new Callback<UserStateDetails>() {

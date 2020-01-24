@@ -81,20 +81,8 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     private static final String EMAIL = "somebody@email.com";
     private static final String USERNAME = "somebody";
     private static final String PASSWORD = "1234Password!";
-    private static String IDENTITY_ID;
 
-    private static BasicAWSCredentials adminCredentials;
     private static AmazonCognitoIdentityProvider cognitoUserPoolLowLevelClient;
-
-    static {
-        try {
-            adminCredentials = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
-                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
-            IDENTITY_ID = getPackageConfigure().getString("identity_id");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     // Populated from awsconfiguration.json
     private static Regions clientRegion = Regions.US_WEST_2;
@@ -108,7 +96,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
 
     public static synchronized AmazonCognitoIdentityProvider getCognitoUserPoolLowLevelClient() {
         if (cognitoUserPoolLowLevelClient == null) {
-            cognitoUserPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(adminCredentials);
+            cognitoUserPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(credentials);
             cognitoUserPoolLowLevelClient.setRegion(Region.getRegion(clientRegion));
         }
         return cognitoUserPoolLowLevelClient;
@@ -170,6 +158,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch latch = new CountDownLatch(1);

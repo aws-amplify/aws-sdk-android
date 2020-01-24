@@ -70,20 +70,8 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
     public static final String EMAIL = "somebody@email.com";
     public static final String USERNAME = "somebody";
     public static final String PASSWORD = "1234Password!";
-    public static String IDENTITY_ID;
 
-    static BasicAWSCredentials adminCreds;
     static AmazonCognitoIdentityProvider userpoolLL;
-
-    static {
-        try {
-            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
-                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
-            IDENTITY_ID = getPackageConfigure().getString("identity_id");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     // Populated from awsconfiguration.json
     static Regions clientRegion = Regions.US_WEST_2;
@@ -97,7 +85,7 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
 
     public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
         if (userpoolLL == null) {
-            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
+            userpoolLL = new AmazonCognitoIdentityProviderClient(credentials);
             userpoolLL.setRegion(Region.getRegion(clientRegion));
         }
         return userpoolLL;
@@ -159,6 +147,7 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
