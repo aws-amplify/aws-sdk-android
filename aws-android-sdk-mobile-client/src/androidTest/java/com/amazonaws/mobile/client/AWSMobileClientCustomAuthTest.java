@@ -38,12 +38,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-import static com.amazonaws.mobile.client.AWSMobileClientTest.PASSWORD;
-import static com.amazonaws.mobile.client.AWSMobileClientTest.USERNAME;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
+
+    private static final String USERNAME = "somebody";
+    private static final String PASSWORD = "1234Password!";
 
     private static Context appContext;
     private static AWSMobileClient auth;

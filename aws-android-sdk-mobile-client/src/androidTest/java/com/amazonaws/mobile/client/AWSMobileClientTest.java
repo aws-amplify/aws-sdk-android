@@ -23,7 +23,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobile.client.results.ForgotPasswordResult;
 import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -54,7 +53,6 @@ import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundExce
 import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
 import com.amazonaws.services.cognitoidentityprovider.model.UsernameExistsException;
-import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,13 +89,13 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    public static final String EMAIL = "somebody@email.com";
-    public static final String BLURRED_EMAIL = "s***@e***.com";
-    public static final String USERNAME = "somebody";
-    public static final String PASSWORD = "1234Password!";
-    public static String IDENTITY_ID;
-    public static final String NEW_PASSWORD = "new1234Password!";
-    public static final int THROTTLED_DELAY = 5000;
+    private static final String EMAIL = "somebody@email.com";
+    private static final String BLURRED_EMAIL = "s***@e***.com";
+    private static final String USERNAME = "somebody";
+    private static final String PASSWORD = "1234Password!";
+    private static String IDENTITY_ID;
+    private static final String NEW_PASSWORD = "new1234Password!";
+    private static final int THROTTLED_DELAY = 5000;
 
     static AmazonCognitoIdentityProvider userpoolLL;
 

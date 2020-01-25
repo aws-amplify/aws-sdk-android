@@ -23,7 +23,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.client.results.SignInResult;
 import com.amazonaws.mobile.client.results.SignInState;
@@ -87,7 +86,6 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     // Populated from awsconfiguration.json
     private static Regions clientRegion = Regions.US_WEST_2;
     private static String userPoolId;
-    private static String identityPoolId;
 
     private Context appContext;
     private AWSMobileClient auth;
@@ -186,7 +184,6 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
                 awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
                         "CognitoIdentity").getJSONObject("Default");
         assertNotNull(identityPoolConfig);
-        identityPoolId = identityPoolConfig.getString("PoolId");
 
         deleteAllUsers(userPoolId);
     }

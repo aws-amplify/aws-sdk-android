@@ -62,17 +62,12 @@ import static org.junit.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientNetworkIssueTest.class.getSimpleName();
-    public static final String USERNAME = "somebody";
+    private static final String USERNAME = "somebody";
 
-    // Populated from awsconfiguration.json
-    static Regions clientRegion = Regions.US_WEST_2;
-    static String userPoolId;
-    static String identityPoolId;
-
-    Context appContext;
-    AWSMobileClient auth;
-    UserStateListener listener;
-    String username;
+    private Context appContext;
+    private AWSMobileClient auth;
+    private UserStateListener listener;
+    private String username;
 
     @BeforeClass
     public static void beforeClass() throws Exception {
@@ -97,14 +92,11 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
 
         JSONObject userPoolConfig = awsConfiguration.optJsonObject("CognitoUserPool");
         assertNotNull(userPoolConfig);
-        clientRegion = Regions.fromName(userPoolConfig.getString("Region"));
-        userPoolId = userPoolConfig.getString("PoolId");
 
         JSONObject identityPoolConfig =
                 awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
                         "CognitoIdentity").getJSONObject("Default");
         assertNotNull(identityPoolConfig);
-        identityPoolId = identityPoolConfig.getString("PoolId");
     }
 
     @Before

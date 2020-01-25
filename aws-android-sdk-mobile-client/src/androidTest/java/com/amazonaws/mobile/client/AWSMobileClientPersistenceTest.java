@@ -23,7 +23,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobile.client.results.SignInResult;
 import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.Token;
@@ -67,21 +66,20 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientPersistenceTest.class.getSimpleName();
 
-    public static final String EMAIL = "somebody@email.com";
-    public static final String USERNAME = "somebody";
-    public static final String PASSWORD = "1234Password!";
+    private static final String EMAIL = "somebody@email.com";
+    private static final String USERNAME = "somebody";
+    private static final String PASSWORD = "1234Password!";
 
-    static AmazonCognitoIdentityProvider userpoolLL;
+    private static AmazonCognitoIdentityProvider userpoolLL;
 
     // Populated from awsconfiguration.json
-    static Regions clientRegion = Regions.US_WEST_2;
-    static String userPoolId;
-    static String identityPoolId;
+    private static Regions clientRegion = Regions.US_WEST_2;
+    private static String userPoolId;
 
-    Context appContext;
-    AWSMobileClient auth;
-    UserStateListener listener;
-    String username;
+    private Context appContext;
+    private AWSMobileClient auth;
+    private UserStateListener listener;
+    private String username;
 
     public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
         if (userpoolLL == null) {
@@ -175,7 +173,6 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
                 awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
                         "CognitoIdentity").getJSONObject("Default");
         assertNotNull(identityPoolConfig);
-        identityPoolId = identityPoolConfig.getString("PoolId");
 
         deleteAllUsers(userPoolId);
     }
