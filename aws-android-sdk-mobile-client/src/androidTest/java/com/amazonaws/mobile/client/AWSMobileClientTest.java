@@ -23,7 +23,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobile.client.results.ForgotPasswordResult;
 import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -90,21 +89,18 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    public static final String EMAIL = "somebody@email.com";
-    public static final String BLURRED_EMAIL = "s***@e***.com";
-    public static final String USERNAME = "somebody";
-    public static final String PASSWORD = "1234Password!";
-    public static String IDENTITY_ID;
-    public static final String NEW_PASSWORD = "new1234Password!";
-    public static final int THROTTLED_DELAY = 5000;
+    private static final String EMAIL = "somebody@email.com";
+    private static final String BLURRED_EMAIL = "s***@e***.com";
+    private static final String USERNAME = "somebody";
+    private static final String PASSWORD = "1234Password!";
+    private static String IDENTITY_ID;
+    private static final String NEW_PASSWORD = "new1234Password!";
+    private static final int THROTTLED_DELAY = 5000;
 
-    static BasicAWSCredentials adminCreds;
     static AmazonCognitoIdentityProvider userpoolLL;
 
     static {
         try {
-            adminCreds = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
-                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
             IDENTITY_ID = getPackageConfigure().getString("identity_id");
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +119,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     public static synchronized AmazonCognitoIdentityProvider getUserpoolLL() {
         if (userpoolLL == null) {
-            userpoolLL = new AmazonCognitoIdentityProviderClient(adminCreds);
+            userpoolLL = new AmazonCognitoIdentityProviderClient(credentials);
             userpoolLL.setRegion(Region.getRegion(clientRegion));
         }
         return userpoolLL;
@@ -185,6 +181,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
@@ -287,10 +284,9 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals(4,  userSub.split("-")[2].length());
         assertEquals(4,  userSub.split("-")[3].length());
         assertEquals(12,  userSub.split("-")[4].length());
-        if (signUpResult.getConfirmationState()) {
-            // Done
-        } else {
-            final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
+
+        final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
+        if (details != null) {
             assertEquals(BLURRED_EMAIL, details.getDestination());
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());
@@ -519,7 +515,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Test
     public void testFederatedSignInWithDeveloperAuthenticatedIdentities() throws Exception {
-        AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(adminCreds);
+        AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(credentials);
         identityClient.setRegion(Region.getRegion("us-west-2"));
 
         GetOpenIdTokenForDeveloperIdentityRequest request =

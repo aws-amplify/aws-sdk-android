@@ -23,7 +23,6 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.client.results.SignInResult;
 import com.amazonaws.mobile.client.results.SignInState;
@@ -81,25 +80,12 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     private static final String EMAIL = "somebody@email.com";
     private static final String USERNAME = "somebody";
     private static final String PASSWORD = "1234Password!";
-    private static String IDENTITY_ID;
 
-    private static BasicAWSCredentials adminCredentials;
     private static AmazonCognitoIdentityProvider cognitoUserPoolLowLevelClient;
-
-    static {
-        try {
-            adminCredentials = new BasicAWSCredentials(getPackageConfigure().getString("create_cognito_user_access_key")
-                    , getPackageConfigure().getString("create_cognito_user_secret_key"));
-            IDENTITY_ID = getPackageConfigure().getString("identity_id");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     // Populated from awsconfiguration.json
     private static Regions clientRegion = Regions.US_WEST_2;
     private static String userPoolId;
-    private static String identityPoolId;
 
     private Context appContext;
     private AWSMobileClient auth;
@@ -108,7 +94,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
 
     public static synchronized AmazonCognitoIdentityProvider getCognitoUserPoolLowLevelClient() {
         if (cognitoUserPoolLowLevelClient == null) {
-            cognitoUserPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(adminCredentials);
+            cognitoUserPoolLowLevelClient = new AmazonCognitoIdentityProviderClient(credentials);
             cognitoUserPoolLowLevelClient.setRegion(Region.getRegion(clientRegion));
         }
         return cognitoUserPoolLowLevelClient;
@@ -170,6 +156,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        setUpCredentials();
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
@@ -197,7 +184,6 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
                 awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
                         "CognitoIdentity").getJSONObject("Default");
         assertNotNull(identityPoolConfig);
-        identityPoolId = identityPoolConfig.getString("PoolId");
 
         deleteAllUsers(userPoolId);
     }
