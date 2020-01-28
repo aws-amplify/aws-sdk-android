@@ -106,7 +106,8 @@ public class AWSIotMqttManager {
     /** AWS IoT region hosting the MQTT service. */
     private final Region region;
 
-    /** Is this client a WebSocket Client?  Setup on initial connect and then used for reconnect logic. */
+    /** Authentication mode used to authenticate requests to AWS IoT Device Gateway.
+     *  Setup on initial connect and then used for reconnect logic. */
     private AuthenticationMode authMode;
 
     /**
@@ -706,6 +707,7 @@ public class AWSIotMqttManager {
         this.mqttClientId = mqttClientId;
         this.region = region;
         this.endpoint = null;
+        this.customWebsocketHeaders = new Properties();
 
         initDefaults();
     }
@@ -993,7 +995,6 @@ public class AWSIotMqttManager {
                         new MemoryPersistence());
             }
 
-            customWebsocketHeaders = new Properties();
             customWebsocketHeaders.setProperty("X-Amz-CustomAuthorizer-Name", customAuthorizer);
             customWebsocketHeaders.setProperty("X-Amz-CustomAuthorizer-Signature", tokenSignature);
             customWebsocketHeaders.setProperty(tokenKeyName, token);
@@ -1150,7 +1151,6 @@ public class AWSIotMqttManager {
      * Attempts to reconnect.  If unsuccessful schedules a reconnect attempt.
      */
     void reconnectToSession() {
-        String endpointWithHttpPort;
 
         // status will be ConnectionLost if user calls disconnect() during reconnect logic
         if (null != mqttClient && connectionState != MqttManagerConnectionState.Disconnected) {
@@ -1171,33 +1171,13 @@ public class AWSIotMqttManager {
                     options.setSocketFactory(clientSocketFactory);
                     break;
                 case IAM:
-                    signer = new AWSIotWebSocketUrlSigner("iotdata");
-                    endpointWithHttpPort = getEndpointWithHttpPort();
-                    try {
-                        final String mqttWebSocketURL = signer
-                                .getSignedUrl(endpointWithHttpPort, clientCredentialsProvider.getCredentials(),
-                                        System.currentTimeMillis());
-                        LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
-                        // Specify the URL through the server URI array.  This is checked
-                        // at connect time and allows us to specify a new URL (with new
-                        // SigV4 parameters) for each connect.
-                        options.setServerURIs(new String[]{mqttWebSocketURL});
-                    } catch (AmazonClientException e) {
-                        LOGGER.error("Failed to get credentials. AmazonClientException: ", e);
-                        //TODO: revisit how to handle exception thrown by getCredentials() properly.
-                        if (scheduleReconnect()) {
-                            connectionState = MqttManagerConnectionState.Reconnecting;
-                        } else {
-                            connectionState = MqttManagerConnectionState.Disconnected;
-                        }
-                        userConnectionCallback(e);
-                    }
+                    reconnectWithIAM(options);
                     break;
                 case CUSTOM_AUTH:
                     options.setCustomWebSocketHeaders(customWebsocketHeaders);
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + authMode);
+                    handleConnectionFailure(new IllegalStateException("Unexpected value: " + authMode));
             }
 
             setupCallbackForMqttClient();
@@ -1225,26 +1205,52 @@ public class AWSIotMqttManager {
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable e) {
                         LOGGER.warn("Reconnect failed ", e);
-                        if (scheduleReconnect()) {
-                            connectionState = MqttManagerConnectionState.Reconnecting;
-                            userConnectionCallback(e);
-                        } else {
-                            connectionState = MqttManagerConnectionState.Disconnected;
-                            userConnectionCallback(e);
-                        }
+                        handleConnectionFailure(e);
                     }
                 });
             } catch (final MqttException e) {
                 LOGGER.error("Exception during reconnect, exception: ", e);
-                if (scheduleReconnect()) {
-                    connectionState = MqttManagerConnectionState.Reconnecting;
-                    userConnectionCallback(e);
-                } else {
-                    connectionState = MqttManagerConnectionState.Disconnected;
-                    userConnectionCallback(e);
-                }
+                handleConnectionFailure(e);
             }
         }
+    }
+
+    /**
+     * Reconnect to AWS IoT using AWS Credentials upon connection failure if autoReconnect is enabled.
+     * @param options {@link MqttConnectOptions} to be used for reconnection
+     */
+    private void reconnectWithIAM(MqttConnectOptions options) {
+        String endpointWithHttpPort;
+        signer = new AWSIotWebSocketUrlSigner("iotdata");
+        endpointWithHttpPort = getEndpointWithHttpPort();
+        try {
+            final String mqttWebSocketURL = signer
+                    .getSignedUrl(endpointWithHttpPort, clientCredentialsProvider.getCredentials(),
+                            System.currentTimeMillis());
+            LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
+            // Specify the URL through the server URI array.  This is checked
+            // at connect time and allows us to specify a new URL (with new
+            // SigV4 parameters) for each connect.
+            options.setServerURIs(new String[]{mqttWebSocketURL});
+        } catch (AmazonClientException e) {
+            LOGGER.error("Failed to get credentials. AmazonClientException: ", e);
+            //TODO: revisit how to handle exception thrown by getCredentials() properly.
+            handleConnectionFailure(e);
+        }
+    }
+
+    /**
+     * Update the client connection status and invoke the connection status callback upon connection
+     * failure.
+     * @param e Cause of the connection failure.
+     */
+    private void handleConnectionFailure(Throwable e) {
+        if (scheduleReconnect()) {
+            connectionState = MqttManagerConnectionState.Reconnecting;
+        } else {
+            connectionState = MqttManagerConnectionState.Disconnected;
+        }
+        userConnectionCallback(e);
     }
 
     /**
@@ -1608,15 +1614,11 @@ public class AWSIotMqttManager {
                     if ((lastConnackTime + (connectionStabilityTime * MILLIS_IN_ONE_SECOND)) < getSystemTimeMs()) {
                         resetReconnect();
                     }
-                    if (scheduleReconnect()) {
-                        connectionState = MqttManagerConnectionState.Reconnecting;
-                    } else {
-                        connectionState = MqttManagerConnectionState.Disconnected;
-                    }
+                    handleConnectionFailure(cause);
                 } else {
                     connectionState = MqttManagerConnectionState.Disconnected;
+                    userConnectionCallback(cause);
                 }
-                userConnectionCallback(cause);
             }
 
             @Override

@@ -24,6 +24,7 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode;
 import com.amazonaws.services.iot.AWSIotClient;
 import com.amazonaws.services.iot.model.AttachPolicyRequest;
 import com.amazonaws.services.iot.model.CertificateStatus;
@@ -39,6 +40,7 @@ import com.amazonaws.services.iot.model.DetachPolicyRequest;
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,8 +53,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
-import static com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH;
-import static com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode.IAM;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -724,37 +724,39 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
-    public void mqttWebSocket() throws Exception {
-        websocketConnectionTest(IAM);
+    public void testWebSocketWithIamAuth() throws Exception {
+        websocketConnectionTest(AuthenticationMode.IAM);
     }
 
     @Test
-    public void testCustomAuthConnect() throws Exception {
-        websocketConnectionTest(CUSTOM_AUTH);
+    public void testWebSocketWithCustomAuth() throws Exception {
+        websocketConnectionTest(AuthenticationMode.CUSTOM_AUTH);
     }
 
-    private void websocketConnectionTest(AWSIotMqttManager.AuthenticationMode authMode) throws InterruptedException {
+    private void websocketConnectionTest(AuthenticationMode authMode)
+            throws InterruptedException, JSONException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-ws", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-ws",
+                Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(false);
 
-        if (authMode.equals(CUSTOM_AUTH)) {
+        if (AuthenticationMode.CUSTOM_AUTH.equals(authMode)) {
             // connect using WebSockets and custom authentication token
             mqttManager.connect(
-                    "token-header",
-                    "allow",
-                    "Gv85h71GT07RWo5uWQpqHlYWePN7YVY7KgiuPVEnt65+tDDWyZOlGLIDxvwC7LiBF7FbmG/coeBELKltqmrP0gjM7sIyXlrx315xG3LupoK4bmsNIzg6xxWa0n60WxhOv1p5qXDAhmYWIFuL0enMtuwpCY1W073NqZ/+iOsrJexssZiiLnvVf3z6HReEEER6TfFevrgAEUva0h9pzbUepbJ6RaOO7zZY6e/T/wSHrKl0jA4MalGReKbhdlg0HyTPfILhjorYkF7ew/8Ml+QMr/WU90YMp9Sv8SF0q7WBzbuqxpAR8vxm00rRlgrFdsIRjGFTDmrp9Fsx+xlx0aADCA==",
-                    "CustomAuthorizerIntegTest",
+                    getPackageConfigure().getString("token_key_name"),
+                    getPackageConfigure().getString("token"),
+                    getPackageConfigure().getString("token_signature"),
+                    getPackageConfigure().getString("custom_authorizer_name"),
                     new AWSIotMqttClientStatusCallback() {
                         @Override
                         public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                             statuses.add(status);
                         }
                     });
-        } else if(authMode.equals(IAM)) {
+        } else if (AWSIotMqttManager.AuthenticationMode.IAM.equals(authMode)) {
             // connect using WebSockets and IAM credentials
             mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
                 @Override
@@ -804,23 +806,25 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
-    public void mqttWebSocketReconnect() throws Exception {
-        websocketReconnectionTest(IAM);
+    public void testWebsocketReconnectWithIam() throws Exception {
+        websocketReconnectionTest(AuthenticationMode.IAM);
     }
 
     @Test
-    public void testCustomAuthReconnect() throws Exception {
-        websocketReconnectionTest(CUSTOM_AUTH);
+    public void testWebsocketReconnectWithCustomAuth() throws Exception {
+        websocketReconnectionTest(AuthenticationMode.CUSTOM_AUTH);
     }
 
-    private void websocketReconnectionTest(AWSIotMqttManager.AuthenticationMode authMode) throws InterruptedException {
+    private void websocketReconnectionTest(AuthenticationMode authMode)
+            throws InterruptedException, JSONException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-ws-rc", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-ws-rc",
+                Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(true);
-        if (authMode.equals(IAM)) {
+        if (AuthenticationMode.IAM.equals(authMode)) {
             // connect using WebSockets and IAM credentials
             mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
                 @Override
@@ -828,13 +832,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                     statuses.add(status);
                 }
             });
-        } else if (authMode.equals(CUSTOM_AUTH)) {
+        } else if (AuthenticationMode.CUSTOM_AUTH.equals(authMode)) {
             // connect using WebSockets and custom authentication token
             mqttManager.connect(
-                    "token-header",
-                    "allow",
-                    "Gv85h71GT07RWo5uWQpqHlYWePN7YVY7KgiuPVEnt65+tDDWyZOlGLIDxvwC7LiBF7FbmG/coeBELKltqmrP0gjM7sIyXlrx315xG3LupoK4bmsNIzg6xxWa0n60WxhOv1p5qXDAhmYWIFuL0enMtuwpCY1W073NqZ/+iOsrJexssZiiLnvVf3z6HReEEER6TfFevrgAEUva0h9pzbUepbJ6RaOO7zZY6e/T/wSHrKl0jA4MalGReKbhdlg0HyTPfILhjorYkF7ew/8Ml+QMr/WU90YMp9Sv8SF0q7WBzbuqxpAR8vxm00rRlgrFdsIRjGFTDmrp9Fsx+xlx0aADCA==",
-                    "CustomAuthorizerIntegTest",
+                    getPackageConfigure().getString("token_key_name"),
+                    getPackageConfigure().getString("token"),
+                    getPackageConfigure().getString("token_signature"),
+                    getPackageConfigure().getString("custom_authorizer_name"),
                     new AWSIotMqttClientStatusCallback() {
                         @Override
                         public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
