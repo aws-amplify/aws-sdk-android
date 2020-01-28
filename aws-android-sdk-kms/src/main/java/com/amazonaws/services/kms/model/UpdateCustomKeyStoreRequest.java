@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -116,7 +116,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      */
     private String keyStorePassword;
 
@@ -283,7 +283,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @return <p>
      *         Enter the current password of the <code>kmsuser</code> crypto
@@ -312,7 +312,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @param keyStorePassword <p>
      *            Enter the current password of the <code>kmsuser</code> crypto
@@ -344,7 +344,7 @@ public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>7 - 32<br/>
      *
      * @param keyStorePassword <p>
      *            Enter the current password of the <code>kmsuser</code> crypto

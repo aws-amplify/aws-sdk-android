@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,12 @@ public enum ExplicitAuthFlowsType {
 
     ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH"),
     CUSTOM_AUTH_FLOW_ONLY("CUSTOM_AUTH_FLOW_ONLY"),
-    USER_PASSWORD_AUTH("USER_PASSWORD_AUTH");
+    USER_PASSWORD_AUTH("USER_PASSWORD_AUTH"),
+    ALLOW_ADMIN_USER_PASSWORD_AUTH("ALLOW_ADMIN_USER_PASSWORD_AUTH"),
+    ALLOW_CUSTOM_AUTH("ALLOW_CUSTOM_AUTH"),
+    ALLOW_USER_PASSWORD_AUTH("ALLOW_USER_PASSWORD_AUTH"),
+    ALLOW_USER_SRP_AUTH("ALLOW_USER_SRP_AUTH"),
+    ALLOW_REFRESH_TOKEN_AUTH("ALLOW_REFRESH_TOKEN_AUTH");
 
     private String value;
 
@@ -44,6 +49,11 @@ public enum ExplicitAuthFlowsType {
         enumMap.put("ADMIN_NO_SRP_AUTH", ADMIN_NO_SRP_AUTH);
         enumMap.put("CUSTOM_AUTH_FLOW_ONLY", CUSTOM_AUTH_FLOW_ONLY);
         enumMap.put("USER_PASSWORD_AUTH", USER_PASSWORD_AUTH);
+        enumMap.put("ALLOW_ADMIN_USER_PASSWORD_AUTH", ALLOW_ADMIN_USER_PASSWORD_AUTH);
+        enumMap.put("ALLOW_CUSTOM_AUTH", ALLOW_CUSTOM_AUTH);
+        enumMap.put("ALLOW_USER_PASSWORD_AUTH", ALLOW_USER_PASSWORD_AUTH);
+        enumMap.put("ALLOW_USER_SRP_AUTH", ALLOW_USER_SRP_AUTH);
+        enumMap.put("ALLOW_REFRESH_TOKEN_AUTH", ALLOW_REFRESH_TOKEN_AUTH);
     }
 
     /**

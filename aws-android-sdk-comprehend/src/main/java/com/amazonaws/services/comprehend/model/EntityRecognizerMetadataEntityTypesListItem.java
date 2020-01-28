@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
 
     /**
      * <p>
-     * indicates the number of times the given entity name was seen in the
+     * Indicates the number of times the given entity type was seen in the
      * training data.
      * </p>
      */
@@ -153,12 +153,12 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
 
     /**
      * <p>
-     * indicates the number of times the given entity name was seen in the
+     * Indicates the number of times the given entity type was seen in the
      * training data.
      * </p>
      *
      * @return <p>
-     *         indicates the number of times the given entity name was seen in
+     *         Indicates the number of times the given entity type was seen in
      *         the training data.
      *         </p>
      */
@@ -168,12 +168,12 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
 
     /**
      * <p>
-     * indicates the number of times the given entity name was seen in the
+     * Indicates the number of times the given entity type was seen in the
      * training data.
      * </p>
      *
      * @param numberOfTrainMentions <p>
-     *            indicates the number of times the given entity name was seen
+     *            Indicates the number of times the given entity type was seen
      *            in the training data.
      *            </p>
      */
@@ -183,7 +183,7 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
 
     /**
      * <p>
-     * indicates the number of times the given entity name was seen in the
+     * Indicates the number of times the given entity type was seen in the
      * training data.
      * </p>
      * <p>
@@ -191,7 +191,7 @@ public class EntityRecognizerMetadataEntityTypesListItem implements Serializable
      * together.
      *
      * @param numberOfTrainMentions <p>
-     *            indicates the number of times the given entity name was seen
+     *            Indicates the number of times the given entity type was seen
      *            in the training data.
      *            </p>
      * @return A reference to this updated object so that method calls can be

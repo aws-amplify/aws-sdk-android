@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * requester is not the subscription owner, a final cancellation message is
  * delivered to the endpoint, so that the endpoint owner can easily resubscribe
  * to the topic if the <code>Unsubscribe</code> request was unintended.
+ * </p>
+ * <p>
+ * This action is throttled at 100 transactions per second (TPS).
  * </p>
  */
 public class UnsubscribeRequest extends AmazonWebServiceRequest implements Serializable {

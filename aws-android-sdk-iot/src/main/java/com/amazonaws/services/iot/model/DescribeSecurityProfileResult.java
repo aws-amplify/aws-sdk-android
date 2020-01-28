@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public class DescribeSecurityProfileResult implements Serializable {
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      */
@@ -431,14 +431,14 @@ public class DescribeSecurityProfileResult implements Serializable {
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      *
      * @return <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the profile's
-     *         <code>behaviors</code> but it is also retained for any metric
+     *         <code>behaviors</code>, but it is also retained for any metric
      *         specified here.
      *         </p>
      */
@@ -449,14 +449,14 @@ public class DescribeSecurityProfileResult implements Serializable {
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      *
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      */
@@ -472,7 +472,7 @@ public class DescribeSecurityProfileResult implements Serializable {
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      * <p>
@@ -482,7 +482,7 @@ public class DescribeSecurityProfileResult implements Serializable {
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -503,7 +503,7 @@ public class DescribeSecurityProfileResult implements Serializable {
     /**
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
-     * retained for any metric used in the profile's <code>behaviors</code> but
+     * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
      * <p>
@@ -513,7 +513,7 @@ public class DescribeSecurityProfileResult implements Serializable {
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
-     *            <code>behaviors</code> but it is also retained for any metric
+     *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
      * @return A reference to this updated object so that method calls can be

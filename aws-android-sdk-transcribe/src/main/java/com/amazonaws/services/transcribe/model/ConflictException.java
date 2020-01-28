@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * When you are using the <code>StartTranscriptionJob</code> operation, the
+ * When you are using the <code>CreateVocabulary</code> operation, the
  * <code>JobName</code> field is a duplicate of a previously entered job name.
  * Resend your request with a different name.
  * </p>

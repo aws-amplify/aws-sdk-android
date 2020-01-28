@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import java.util.Map;
  */
 public enum TranscriptionJobStatus {
 
+    QUEUED("QUEUED"),
     IN_PROGRESS("IN_PROGRESS"),
     FAILED("FAILED"),
     COMPLETED("COMPLETED");
@@ -41,6 +42,7 @@ public enum TranscriptionJobStatus {
     private static final Map<String, TranscriptionJobStatus> enumMap;
     static {
         enumMap = new HashMap<String, TranscriptionJobStatus>();
+        enumMap.put("QUEUED", QUEUED);
         enumMap.put("IN_PROGRESS", IN_PROGRESS);
         enumMap.put("FAILED", FAILED);
         enumMap.put("COMPLETED", COMPLETED);

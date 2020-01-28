@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Cancels the deletion of a customer master key (CMK). When this operation is
- * successful, the CMK is set to the <code>Disabled</code> state. To enable a
+ * Cancels the deletion of a customer master key (CMK). When this operation
+ * succeeds, the key state of the CMK is <code>Disabled</code>. To enable the
  * CMK, use <a>EnableKey</a>. You cannot perform this operation on a CMK in a
  * different AWS account.
  * </p>
@@ -34,8 +34,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Developer Guide</i>.
  * </p>
  * <p>
- * The result of this operation varies with the key state of the CMK. For
- * details, see <a
+ * The CMK that you use for this operation must be in a compatible key state.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,6 +74,34 @@ public class AssumeRoleRequestMarshaller implements
             prefix = "DurationSeconds";
             Integer durationSeconds = assumeRoleRequest.getDurationSeconds();
             request.addParameter(prefix, StringUtils.fromInteger(durationSeconds));
+        }
+        if (assumeRoleRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<Tag> tags = assumeRoleRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (Tag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    TagStaxMarshaller.getInstance().marshall(tagsItem, request, prefix + ".");
+                }
+                tagsIndex++;
+            }
+            prefix = tagsPrefix;
+        }
+        if (assumeRoleRequest.getTransitiveTagKeys() != null) {
+            prefix = "TransitiveTagKeys";
+            java.util.List<String> transitiveTagKeys = assumeRoleRequest.getTransitiveTagKeys();
+            int transitiveTagKeysIndex = 1;
+            String transitiveTagKeysPrefix = prefix;
+            for (String transitiveTagKeysItem : transitiveTagKeys) {
+                prefix = transitiveTagKeysPrefix + ".member." + transitiveTagKeysIndex;
+                if (transitiveTagKeysItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(transitiveTagKeysItem));
+                }
+                transitiveTagKeysIndex++;
+            }
+            prefix = transitiveTagKeysPrefix;
         }
         if (assumeRoleRequest.getExternalId() != null) {
             prefix = "ExternalId";

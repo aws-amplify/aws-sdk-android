@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class AdminCreateUserConfigType implements Serializable {
      * </p>
      * <p>
      * See also <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      * >Customizing User Invitation Messages</a>.
      * </p>
      */
@@ -277,7 +277,7 @@ public class AdminCreateUserConfigType implements Serializable {
      * </p>
      * <p>
      * See also <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      * >Customizing User Invitation Messages</a>.
      * </p>
      *
@@ -287,7 +287,7 @@ public class AdminCreateUserConfigType implements Serializable {
      *         </p>
      *         <p>
      *         See also <a href=
-     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      *         >Customizing User Invitation Messages</a>.
      *         </p>
      */
@@ -301,7 +301,7 @@ public class AdminCreateUserConfigType implements Serializable {
      * </p>
      * <p>
      * See also <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      * >Customizing User Invitation Messages</a>.
      * </p>
      *
@@ -311,7 +311,7 @@ public class AdminCreateUserConfigType implements Serializable {
      *            </p>
      *            <p>
      *            See also <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      *            >Customizing User Invitation Messages</a>.
      *            </p>
      */
@@ -325,7 +325,7 @@ public class AdminCreateUserConfigType implements Serializable {
      * </p>
      * <p>
      * See also <a href=
-     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      * >Customizing User Invitation Messages</a>.
      * </p>
      * <p>
@@ -338,7 +338,7 @@ public class AdminCreateUserConfigType implements Serializable {
      *            </p>
      *            <p>
      *            See also <a href=
-     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization"
      *            >Customizing User Invitation Messages</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

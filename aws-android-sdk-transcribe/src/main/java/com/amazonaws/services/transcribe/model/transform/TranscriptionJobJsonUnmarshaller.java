@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,6 +57,9 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("Transcript")) {
                 transcriptionJob.setTranscript(TranscriptJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartTime")) {
+                transcriptionJob.setStartTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationTime")) {
                 transcriptionJob.setCreationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -68,6 +71,10 @@ class TranscriptionJobJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Settings")) {
                 transcriptionJob.setSettings(SettingsJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobExecutionSettings")) {
+                transcriptionJob.setJobExecutionSettings(JobExecutionSettingsJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

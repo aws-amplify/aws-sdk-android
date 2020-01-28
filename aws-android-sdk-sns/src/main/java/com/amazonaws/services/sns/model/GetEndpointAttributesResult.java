@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ public class GetEndpointAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>CustomUserData</code> -- arbitrary user data to associate with the
+     * <code>CustomUserData</code> – arbitrary user data to associate with the
      * endpoint. Amazon SNS does not use this data. The data must be in UTF-8
      * format and less than 2KB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Enabled</code> -- flag that enables/disables delivery to the
+     * <code>Enabled</code> – flag that enables/disables delivery to the
      * endpoint. Amazon SNS will set this to false when a notification service
      * indicates to Amazon SNS that the endpoint is invalid. Users can set it
      * back to true, typically after updating Token.
@@ -45,12 +45,16 @@ public class GetEndpointAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Token</code> -- device token, also referred to as a registration
-     * id, for an app and mobile device. This is returned from the notification
+     * <code>Token</code> – device token, also referred to as a registration id,
+     * for an app and mobile device. This is returned from the notification
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
@@ -62,14 +66,14 @@ public class GetEndpointAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>CustomUserData</code> -- arbitrary user data to associate with the
+     * <code>CustomUserData</code> – arbitrary user data to associate with the
      * endpoint. Amazon SNS does not use this data. The data must be in UTF-8
      * format and less than 2KB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Enabled</code> -- flag that enables/disables delivery to the
+     * <code>Enabled</code> – flag that enables/disables delivery to the
      * endpoint. Amazon SNS will set this to false when a notification service
      * indicates to Amazon SNS that the endpoint is invalid. Users can set it
      * back to true, typically after updating Token.
@@ -77,12 +81,16 @@ public class GetEndpointAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Token</code> -- device token, also referred to as a registration
-     * id, for an app and mobile device. This is returned from the notification
+     * <code>Token</code> – device token, also referred to as a registration id,
+     * for an app and mobile device. This is returned from the notification
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      *
      * @return <p>
@@ -91,28 +99,31 @@ public class GetEndpointAttributesResult implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>CustomUserData</code> -- arbitrary user data to associate
+     *         <code>CustomUserData</code> – arbitrary user data to associate
      *         with the endpoint. Amazon SNS does not use this data. The data
      *         must be in UTF-8 format and less than 2KB.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Enabled</code> -- flag that enables/disables delivery to
-     *         the endpoint. Amazon SNS will set this to false when a
-     *         notification service indicates to Amazon SNS that the endpoint is
-     *         invalid. Users can set it back to true, typically after updating
-     *         Token.
+     *         <code>Enabled</code> – flag that enables/disables delivery to the
+     *         endpoint. Amazon SNS will set this to false when a notification
+     *         service indicates to Amazon SNS that the endpoint is invalid.
+     *         Users can set it back to true, typically after updating Token.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Token</code> -- device token, also referred to as a
+     *         <code>Token</code> – device token, also referred to as a
      *         registration id, for an app and mobile device. This is returned
      *         from the notification service when an app and mobile device are
      *         registered with the notification service.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         The device token for the iOS platform is returned in lowercase.
+     *         </p>
+     *         </note></li>
      *         </ul>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -126,14 +137,14 @@ public class GetEndpointAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>CustomUserData</code> -- arbitrary user data to associate with the
+     * <code>CustomUserData</code> – arbitrary user data to associate with the
      * endpoint. Amazon SNS does not use this data. The data must be in UTF-8
      * format and less than 2KB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Enabled</code> -- flag that enables/disables delivery to the
+     * <code>Enabled</code> – flag that enables/disables delivery to the
      * endpoint. Amazon SNS will set this to false when a notification service
      * indicates to Amazon SNS that the endpoint is invalid. Users can set it
      * back to true, typically after updating Token.
@@ -141,12 +152,16 @@ public class GetEndpointAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Token</code> -- device token, also referred to as a registration
-     * id, for an app and mobile device. This is returned from the notification
+     * <code>Token</code> – device token, also referred to as a registration id,
+     * for an app and mobile device. This is returned from the notification
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      *
      * @param attributes <p>
@@ -155,14 +170,14 @@ public class GetEndpointAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>CustomUserData</code> -- arbitrary user data to
-     *            associate with the endpoint. Amazon SNS does not use this
-     *            data. The data must be in UTF-8 format and less than 2KB.
+     *            <code>CustomUserData</code> – arbitrary user data to associate
+     *            with the endpoint. Amazon SNS does not use this data. The data
+     *            must be in UTF-8 format and less than 2KB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Enabled</code> -- flag that enables/disables delivery to
+     *            <code>Enabled</code> – flag that enables/disables delivery to
      *            the endpoint. Amazon SNS will set this to false when a
      *            notification service indicates to Amazon SNS that the endpoint
      *            is invalid. Users can set it back to true, typically after
@@ -171,12 +186,17 @@ public class GetEndpointAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Token</code> -- device token, also referred to as a
+     *            <code>Token</code> – device token, also referred to as a
      *            registration id, for an app and mobile device. This is
      *            returned from the notification service when an app and mobile
      *            device are registered with the notification service.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The device token for the iOS platform is returned in
+     *            lowercase.
+     *            </p>
+     *            </note></li>
      *            </ul>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -190,14 +210,14 @@ public class GetEndpointAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>CustomUserData</code> -- arbitrary user data to associate with the
+     * <code>CustomUserData</code> – arbitrary user data to associate with the
      * endpoint. Amazon SNS does not use this data. The data must be in UTF-8
      * format and less than 2KB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Enabled</code> -- flag that enables/disables delivery to the
+     * <code>Enabled</code> – flag that enables/disables delivery to the
      * endpoint. Amazon SNS will set this to false when a notification service
      * indicates to Amazon SNS that the endpoint is invalid. Users can set it
      * back to true, typically after updating Token.
@@ -205,12 +225,16 @@ public class GetEndpointAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Token</code> -- device token, also referred to as a registration
-     * id, for an app and mobile device. This is returned from the notification
+     * <code>Token</code> – device token, also referred to as a registration id,
+     * for an app and mobile device. This is returned from the notification
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,14 +246,14 @@ public class GetEndpointAttributesResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>CustomUserData</code> -- arbitrary user data to
-     *            associate with the endpoint. Amazon SNS does not use this
-     *            data. The data must be in UTF-8 format and less than 2KB.
+     *            <code>CustomUserData</code> – arbitrary user data to associate
+     *            with the endpoint. Amazon SNS does not use this data. The data
+     *            must be in UTF-8 format and less than 2KB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Enabled</code> -- flag that enables/disables delivery to
+     *            <code>Enabled</code> – flag that enables/disables delivery to
      *            the endpoint. Amazon SNS will set this to false when a
      *            notification service indicates to Amazon SNS that the endpoint
      *            is invalid. Users can set it back to true, typically after
@@ -238,12 +262,17 @@ public class GetEndpointAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Token</code> -- device token, also referred to as a
+     *            <code>Token</code> – device token, also referred to as a
      *            registration id, for an app and mobile device. This is
      *            returned from the notification service when an app and mobile
      *            device are registered with the notification service.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The device token for the iOS platform is returned in
+     *            lowercase.
+     *            </p>
+     *            </note></li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -260,14 +289,14 @@ public class GetEndpointAttributesResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>CustomUserData</code> -- arbitrary user data to associate with the
+     * <code>CustomUserData</code> – arbitrary user data to associate with the
      * endpoint. Amazon SNS does not use this data. The data must be in UTF-8
      * format and less than 2KB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Enabled</code> -- flag that enables/disables delivery to the
+     * <code>Enabled</code> – flag that enables/disables delivery to the
      * endpoint. Amazon SNS will set this to false when a notification service
      * indicates to Amazon SNS that the endpoint is invalid. Users can set it
      * back to true, typically after updating Token.
@@ -275,12 +304,16 @@ public class GetEndpointAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Token</code> -- device token, also referred to as a registration
-     * id, for an app and mobile device. This is returned from the notification
+     * <code>Token</code> – device token, also referred to as a registration id,
+     * for an app and mobile device. This is returned from the notification
      * service when an app and mobile device are registered with the
      * notification service.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The device token for the iOS platform is returned in lowercase.
+     * </p>
+     * </note></li>
      * </ul>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

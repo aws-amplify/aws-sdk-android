@@ -49,8 +49,7 @@ Simply add to your app's build.gradle (Module)'s dependencies{ } section
 
 SERVICE can be `s3`, `ddb`, `pinpoint`, etc.
 
-(hint: you can specify 2.+ or 2.x.+ to automatically get the latest version where the + is specified.
-Remember for version 2.X.Y an increase in X may indicate a breaking change or new features, while increases in Y are likely bug fixes, or small feature improvements)
+(Note: Remember for version 2.X.Y an increase in X may indicate a breaking change or new features, while increases in Y are likely bug fixes, or small feature improvements)
  
 Note: Cognito Identity authentication abilities are included in the aws-android-sdk-core which all of the following packages depend on.
 
@@ -134,7 +133,7 @@ private class S3Example extends AsyncTask<Void,Void,Void>{
                 Regions.SELECT_YOUR_REGION // Region enum
             );
 
-            AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider);
+            AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider, Regions.getRegion(Regions.SELECT_YOUR_REGION));
             File fileToUpload = YOUR_FILE;
             //(Replace "MY-BUCKET" with your S3 bucket name, and "MY-OBJECT-KEY" with whatever you would like to name the file in S3)
             PutObjectRequest putRequest = new PutObjectRequest("MY-BUCKET", "MY-OBJECT-KEY",
@@ -171,8 +170,8 @@ This section describes how you can compile the SDK source code on your own.
 1. The AWS Core Runtime (`aws-android-sdk-core`) module requires Android API 23 only for compilation locally. Please download and install Android API Level 23 through SDK Manager in Android Studio. 
 
 2. When building the [Core module](https://github.com/aws-amplify/aws-sdk-android/blob/master/aws-android-sdk-core/build.gradle#L32), it requires the following:
-   2.1 Environment variable `ANDROID_HOME` to be set in order to find the `android-23.jar`.
-   2.2 Environment variable `ANDROID_PLATFORM` to be set to the platform number (`10` through `28` and above)
+    1. Environment variable `ANDROID_HOME` to be set in order to find the `android-23.jar`.
+    1. Environment variable `ANDROID_PLATFORM` to be set to the platform number (`10` through `28` and above)
 
 For command line approach, you can build the source via Gradle, which can be downloaded and installed from [here](https://gradle.org/install/).
 After installing Gradle, clone this repository and run

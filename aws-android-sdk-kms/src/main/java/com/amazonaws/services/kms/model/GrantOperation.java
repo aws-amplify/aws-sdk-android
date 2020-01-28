@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,9 +29,14 @@ public enum GrantOperation {
     GenerateDataKeyWithoutPlaintext("GenerateDataKeyWithoutPlaintext"),
     ReEncryptFrom("ReEncryptFrom"),
     ReEncryptTo("ReEncryptTo"),
+    Sign("Sign"),
+    Verify("Verify"),
+    GetPublicKey("GetPublicKey"),
     CreateGrant("CreateGrant"),
     RetireGrant("RetireGrant"),
-    DescribeKey("DescribeKey");
+    DescribeKey("DescribeKey"),
+    GenerateDataKeyPair("GenerateDataKeyPair"),
+    GenerateDataKeyPairWithoutPlaintext("GenerateDataKeyPairWithoutPlaintext");
 
     private String value;
 
@@ -53,9 +58,14 @@ public enum GrantOperation {
         enumMap.put("GenerateDataKeyWithoutPlaintext", GenerateDataKeyWithoutPlaintext);
         enumMap.put("ReEncryptFrom", ReEncryptFrom);
         enumMap.put("ReEncryptTo", ReEncryptTo);
+        enumMap.put("Sign", Sign);
+        enumMap.put("Verify", Verify);
+        enumMap.put("GetPublicKey", GetPublicKey);
         enumMap.put("CreateGrant", CreateGrant);
         enumMap.put("RetireGrant", RetireGrant);
         enumMap.put("DescribeKey", DescribeKey);
+        enumMap.put("GenerateDataKeyPair", GenerateDataKeyPair);
+        enumMap.put("GenerateDataKeyPairWithoutPlaintext", GenerateDataKeyPairWithoutPlaintext);
     }
 
     /**

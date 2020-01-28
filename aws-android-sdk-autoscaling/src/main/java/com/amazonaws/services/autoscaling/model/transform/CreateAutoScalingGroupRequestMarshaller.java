@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -213,6 +213,11 @@ public class CreateAutoScalingGroupRequestMarshaller implements
             prefix = "ServiceLinkedRoleARN";
             String serviceLinkedRoleARN = createAutoScalingGroupRequest.getServiceLinkedRoleARN();
             request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
+        }
+        if (createAutoScalingGroupRequest.getMaxInstanceLifetime() != null) {
+            prefix = "MaxInstanceLifetime";
+            Integer maxInstanceLifetime = createAutoScalingGroupRequest.getMaxInstanceLifetime();
+            request.addParameter(prefix, StringUtils.fromInteger(maxInstanceLifetime));
         }
 
         return request;

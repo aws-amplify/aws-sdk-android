@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,31 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>CurrentMetricData</code> object.
+ * Contains the data for a real-time metric.
  * </p>
  */
 public class CurrentMetricData implements Serializable {
     /**
      * <p>
-     * The metric in a <code>CurrentMetricData</code> object.
+     * Information about the metric.
      * </p>
      */
     private CurrentMetric metric;
 
     /**
      * <p>
-     * The value of the metric in the CurrentMetricData object.
+     * The value of the metric.
      * </p>
      */
     private Double value;
 
     /**
      * <p>
-     * The metric in a <code>CurrentMetricData</code> object.
+     * Information about the metric.
      * </p>
      *
      * @return <p>
-     *         The metric in a <code>CurrentMetricData</code> object.
+     *         Information about the metric.
      *         </p>
      */
     public CurrentMetric getMetric() {
@@ -52,11 +52,11 @@ public class CurrentMetricData implements Serializable {
 
     /**
      * <p>
-     * The metric in a <code>CurrentMetricData</code> object.
+     * Information about the metric.
      * </p>
      *
      * @param metric <p>
-     *            The metric in a <code>CurrentMetricData</code> object.
+     *            Information about the metric.
      *            </p>
      */
     public void setMetric(CurrentMetric metric) {
@@ -65,14 +65,14 @@ public class CurrentMetricData implements Serializable {
 
     /**
      * <p>
-     * The metric in a <code>CurrentMetricData</code> object.
+     * Information about the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metric <p>
-     *            The metric in a <code>CurrentMetricData</code> object.
+     *            Information about the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -84,11 +84,11 @@ public class CurrentMetricData implements Serializable {
 
     /**
      * <p>
-     * The value of the metric in the CurrentMetricData object.
+     * The value of the metric.
      * </p>
      *
      * @return <p>
-     *         The value of the metric in the CurrentMetricData object.
+     *         The value of the metric.
      *         </p>
      */
     public Double getValue() {
@@ -97,11 +97,11 @@ public class CurrentMetricData implements Serializable {
 
     /**
      * <p>
-     * The value of the metric in the CurrentMetricData object.
+     * The value of the metric.
      * </p>
      *
      * @param value <p>
-     *            The value of the metric in the CurrentMetricData object.
+     *            The value of the metric.
      *            </p>
      */
     public void setValue(Double value) {
@@ -110,14 +110,14 @@ public class CurrentMetricData implements Serializable {
 
     /**
      * <p>
-     * The value of the metric in the CurrentMetricData object.
+     * The value of the metric.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param value <p>
-     *            The value of the metric in the CurrentMetricData object.
+     *            The value of the metric.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

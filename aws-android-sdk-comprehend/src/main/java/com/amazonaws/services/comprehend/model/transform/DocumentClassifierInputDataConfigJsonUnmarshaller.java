@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,10 @@ class DocumentClassifierInputDataConfigJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("S3Uri")) {
                 documentClassifierInputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LabelDelimiter")) {
+                documentClassifierInputDataConfig.setLabelDelimiter(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

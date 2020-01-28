@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,11 @@ class LaunchTemplateOverridesStaxUnmarshaller implements
                 if (context.testExpression("InstanceType", targetDepth)) {
                     launchTemplateOverrides.setInstanceType(StringStaxUnmarshaller.getInstance()
                             .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("WeightedCapacity", targetDepth)) {
+                    launchTemplateOverrides.setWeightedCapacity(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

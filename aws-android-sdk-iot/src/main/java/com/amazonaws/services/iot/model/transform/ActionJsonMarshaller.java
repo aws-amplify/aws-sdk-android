@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -101,10 +101,20 @@ class ActionJsonMarshaller {
             jsonWriter.name("iotEvents");
             IotEventsActionJsonMarshaller.getInstance().marshall(iotEvents, jsonWriter);
         }
+        if (action.getIotSiteWise() != null) {
+            IotSiteWiseAction iotSiteWise = action.getIotSiteWise();
+            jsonWriter.name("iotSiteWise");
+            IotSiteWiseActionJsonMarshaller.getInstance().marshall(iotSiteWise, jsonWriter);
+        }
         if (action.getStepFunctions() != null) {
             StepFunctionsAction stepFunctions = action.getStepFunctions();
             jsonWriter.name("stepFunctions");
             StepFunctionsActionJsonMarshaller.getInstance().marshall(stepFunctions, jsonWriter);
+        }
+        if (action.getHttp() != null) {
+            HttpAction http = action.getHttp();
+            jsonWriter.name("http");
+            HttpActionJsonMarshaller.getInstance().marshall(http, jsonWriter);
         }
         jsonWriter.endObject();
     }

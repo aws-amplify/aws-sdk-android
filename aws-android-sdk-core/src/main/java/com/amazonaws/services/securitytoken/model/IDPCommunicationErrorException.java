@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,12 +19,11 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request could not be fulfilled because the non-AWS identity provider
- * (IDP) that was asked to verify the incoming identity token could not be
- * reached. This is often a transient error caused by network conditions. Retry
- * the request a limited number of times so that you don't exceed the request
- * rate. If the error persists, the non-AWS identity provider might be down or
- * not responding.
+ * The request could not be fulfilled because the identity provider (IDP) that
+ * was asked to verify the incoming identity token could not be reached. This is
+ * often a transient error caused by network conditions. Retry the request a
+ * limited number of times so that you don't exceed the request rate. If the
+ * error persists, the identity provider might be down or not responding.
  * </p>
  */
 public class IDPCommunicationErrorException extends AmazonServiceException {

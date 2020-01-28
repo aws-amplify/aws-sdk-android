@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides a summary of information about a transcription job. .
+ * Provides a summary of information about a transcription job.
  * </p>
  */
 public class TranscriptionJobSummary implements Serializable {
@@ -43,6 +43,13 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     */
+    private java.util.Date startTime;
+
+    /**
+     * <p>
      * A timestamp that shows when the job was completed.
      * </p>
      */
@@ -55,7 +62,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      */
     private String languageCode;
 
@@ -67,7 +76,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      */
     private String transcriptionJobStatus;
 
@@ -205,6 +214,51 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     *
+     * @return <p>
+     *         A timestamp that shows when the job started processing.
+     *         </p>
+     */
+    public java.util.Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     *
+     * @param startTime <p>
+     *            A timestamp that shows when the job started processing.
+     *            </p>
+     */
+    public void setStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * <p>
+     * A timestamp that shows when the job started processing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startTime <p>
+     *            A timestamp that shows when the job started processing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withStartTime(java.util.Date startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+    /**
+     * <p>
      * A timestamp that shows when the job was completed.
      * </p>
      *
@@ -255,7 +309,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @return <p>
      *         The language code for the input speech.
@@ -273,7 +329,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -294,7 +352,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -315,7 +375,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -336,7 +398,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA
+     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
+     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
+     * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -358,7 +422,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
      *         The status of the transcription job. When the status is
@@ -379,7 +443,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -404,7 +468,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -429,7 +493,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -454,7 +518,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
      *            The status of the transcription job. When the status is
@@ -759,6 +823,8 @@ public class TranscriptionJobSummary implements Serializable {
             sb.append("TranscriptionJobName: " + getTranscriptionJobName() + ",");
         if (getCreationTime() != null)
             sb.append("CreationTime: " + getCreationTime() + ",");
+        if (getStartTime() != null)
+            sb.append("StartTime: " + getStartTime() + ",");
         if (getCompletionTime() != null)
             sb.append("CompletionTime: " + getCompletionTime() + ",");
         if (getLanguageCode() != null)
@@ -782,6 +848,7 @@ public class TranscriptionJobSummary implements Serializable {
                 + ((getTranscriptionJobName() == null) ? 0 : getTranscriptionJobName().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationTime() == null) ? 0 : getCreationTime().hashCode());
+        hashCode = prime * hashCode + ((getStartTime() == null) ? 0 : getStartTime().hashCode());
         hashCode = prime * hashCode
                 + ((getCompletionTime() == null) ? 0 : getCompletionTime().hashCode());
         hashCode = prime * hashCode
@@ -817,6 +884,11 @@ public class TranscriptionJobSummary implements Serializable {
             return false;
         if (other.getCreationTime() != null
                 && other.getCreationTime().equals(this.getCreationTime()) == false)
+            return false;
+        if (other.getStartTime() == null ^ this.getStartTime() == null)
+            return false;
+        if (other.getStartTime() != null
+                && other.getStartTime().equals(this.getStartTime()) == false)
             return false;
         if (other.getCompletionTime() == null ^ this.getCompletionTime() == null)
             return false;

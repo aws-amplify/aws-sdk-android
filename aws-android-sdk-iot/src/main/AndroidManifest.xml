@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amazonaws.iot" >
+
+    <uses-sdk android:minSdkVersion="11"
+        android:targetSdkVersion="27"/>
+
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

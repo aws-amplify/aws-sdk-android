@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sends user input (text-only) to Amazon Lex. Client applications can use this
- * API to send requests to Amazon Lex at runtime. Amazon Lex then interprets the
- * user input using the machine learning model it built for the bot.
+ * Sends user input to Amazon Lex. Client applications can use this API to send
+ * requests to Amazon Lex at runtime. Amazon Lex then interprets the user input
+ * using the machine learning model it built for the bot.
  * </p>
  * <p>
  * In response, Amazon Lex returns the next <code>message</code> to convey to
@@ -111,7 +111,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * In addition, Amazon Lex also returns your application-specific
  * <code>sessionAttributes</code>. For more information, see <a
- * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html">Managing
+ * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html">Managing
  * Conversation Context</a>.
  * </p>
  */
@@ -186,7 +186,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      */
@@ -204,7 +204,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      */
@@ -606,7 +606,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      *
@@ -616,7 +616,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *         "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *         >Setting Session Attributes</a>.
      *         </p>
      */
@@ -631,7 +631,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      *
@@ -641,7 +641,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *            >Setting Session Attributes</a>.
      *            </p>
      */
@@ -656,7 +656,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      * <p>
@@ -669,7 +669,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      *            >Setting Session Attributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -687,7 +687,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs"
      * >Setting Session Attributes</a>.
      * </p>
      * <p>
@@ -735,7 +735,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      *
@@ -750,7 +750,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *         "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *         >Setting Request Attributes</a>.
      *         </p>
      */
@@ -770,7 +770,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      *
@@ -785,7 +785,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *            >Setting Request Attributes</a>.
      *            </p>
      */
@@ -805,7 +805,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      * <p>
@@ -823,7 +823,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     *            "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      *            >Setting Request Attributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -846,7 +846,7 @@ public class PostTextRequest extends AmazonWebServiceRequest implements Serializ
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
+     * "https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs"
      * >Setting Request Attributes</a>.
      * </p>
      * <p>

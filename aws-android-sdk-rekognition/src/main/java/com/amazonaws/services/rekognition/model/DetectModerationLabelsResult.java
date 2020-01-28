@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class DetectModerationLabelsResult implements Serializable {
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      */
     private java.util.List<ModerationLabel> moderationLabels;
@@ -36,12 +36,19 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     */
+    private HumanLoopActivationOutput humanLoopActivationOutput;
+
+    /**
+     * <p>
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      *
      * @return <p>
-     *         Array of detected Moderation labels and the time, in millseconds
+     *         Array of detected Moderation labels and the time, in milliseconds
      *         from the start of the video, they were detected.
      *         </p>
      */
@@ -51,13 +58,13 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      */
     public void setModerationLabels(java.util.Collection<ModerationLabel> moderationLabels) {
@@ -71,8 +78,8 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +87,7 @@ public class DetectModerationLabelsResult implements Serializable {
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,8 +105,8 @@ public class DetectModerationLabelsResult implements Serializable {
 
     /**
      * <p>
-     * Array of detected Moderation labels and the time, in millseconds from the
-     * start of the video, they were detected.
+     * Array of detected Moderation labels and the time, in milliseconds from
+     * the start of the video, they were detected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,7 +114,7 @@ public class DetectModerationLabelsResult implements Serializable {
      *
      * @param moderationLabels <p>
      *            Array of detected Moderation labels and the time, in
-     *            millseconds from the start of the video, they were detected.
+     *            milliseconds from the start of the video, they were detected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -170,6 +177,52 @@ public class DetectModerationLabelsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @return <p>
+     *         Shows the results of the human in the loop evaluation.
+     *         </p>
+     */
+    public HumanLoopActivationOutput getHumanLoopActivationOutput() {
+        return humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     */
+    public void setHumanLoopActivationOutput(HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+    }
+
+    /**
+     * <p>
+     * Shows the results of the human in the loop evaluation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param humanLoopActivationOutput <p>
+     *            Shows the results of the human in the loop evaluation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectModerationLabelsResult withHumanLoopActivationOutput(
+            HumanLoopActivationOutput humanLoopActivationOutput) {
+        this.humanLoopActivationOutput = humanLoopActivationOutput;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -183,7 +236,9 @@ public class DetectModerationLabelsResult implements Serializable {
         if (getModerationLabels() != null)
             sb.append("ModerationLabels: " + getModerationLabels() + ",");
         if (getModerationModelVersion() != null)
-            sb.append("ModerationModelVersion: " + getModerationModelVersion());
+            sb.append("ModerationModelVersion: " + getModerationModelVersion() + ",");
+        if (getHumanLoopActivationOutput() != null)
+            sb.append("HumanLoopActivationOutput: " + getHumanLoopActivationOutput());
         sb.append("}");
         return sb.toString();
     }
@@ -198,6 +253,10 @@ public class DetectModerationLabelsResult implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getModerationModelVersion() == null) ? 0 : getModerationModelVersion()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getHumanLoopActivationOutput() == null) ? 0 : getHumanLoopActivationOutput()
                         .hashCode());
         return hashCode;
     }
@@ -222,6 +281,12 @@ public class DetectModerationLabelsResult implements Serializable {
             return false;
         if (other.getModerationModelVersion() != null
                 && other.getModerationModelVersion().equals(this.getModerationModelVersion()) == false)
+            return false;
+        if (other.getHumanLoopActivationOutput() == null
+                ^ this.getHumanLoopActivationOutput() == null)
+            return false;
+        if (other.getHumanLoopActivationOutput() != null
+                && other.getHumanLoopActivationOutput().equals(this.getHumanLoopActivationOutput()) == false)
             return false;
         return true;
     }

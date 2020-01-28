@@ -64,9 +64,9 @@ public class UrlHttpClientTest {
     @Test
     public void testBasicCurlBuilder() throws URISyntaxException, IOException {
         conf.setCurlLogging(true);
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"));
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"));
         assertEquals(0, client.getLogList().size());
-        //assertEquals("curl -X POST https://www.test.com", client.getLogList().get(0));
+        //assertEquals("curl -X POST https://www.amazon.com", client.getLogList().get(0));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class UrlHttpClientTest {
             expectedCurlHeaders.add("\"" + entry.getKey() + ":" + entry.getValue() + "\"");
         }
        
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"),
                 headers,
                 null /* stream */);
         
@@ -109,7 +109,7 @@ public class UrlHttpClientTest {
         assertTrue(expectedCurlHeaders.contains(parts[6]));
         expectedCurlHeaders.remove(parts[6]);
         assertTrue(expectedCurlHeaders.isEmpty());
-        assertEquals("https://www.test.com", parts[7]);
+        assertEquals("https://www.amazon.com", parts[7]);
         */
     }
 
@@ -123,7 +123,7 @@ public class UrlHttpClientTest {
         headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(data.length));
 
         final InputStream stream = new ByteArrayInputStream(data);
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"),
                 headers, stream);
         
         try {
@@ -138,7 +138,7 @@ public class UrlHttpClientTest {
         assertEquals(1, client.getLogList().size());
         assertEquals(
                 "curl -X POST -H \"Content-Length:" + String.valueOf(data.length) + "\" -d '"
-                        + dataString + "' https://www.test.com",
+                        + dataString + "' https://www.amazon.com",
                 client.getLogList().get(0));
         */
     }
@@ -151,7 +151,7 @@ public class UrlHttpClientTest {
         final Map<String, String> headers = new HashMap<String, String>();
         headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(tooManyBytes));
         
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"),
                 headers, stream);
         request.setStreaming(true);
         
@@ -179,11 +179,11 @@ public class UrlHttpClientTest {
         headers.put(HttpHeader.CONTENT_LENGTH, "I should not be added");
         headers.put(HttpHeader.HOST, "I should not be added");
 
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"), headers,
                 null);
 
         final HttpsURLConnection conn = (HttpsURLConnection) client.applyHeadersAndMethod(request,
-                new MockHttpURLConnection(new URL("https://www.test.com")));
+                new MockHttpURLConnection(new URL("https://www.amazon.com")));
         assertEquals(conn.getRequestProperty("testKey"), "testValue");
         assertNull(conn.getRequestProperty(HttpHeader.CONTENT_LENGTH));
         assertNull(conn.getRequestProperty(HttpHeader.HOST));
@@ -193,10 +193,10 @@ public class UrlHttpClientTest {
     @Test
     public void testConfigureConnection() throws MalformedURLException, URISyntaxException {
         final Map<String, String> headers = new HashMap<String, String>();
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"),
                 headers,
                 null);
-        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.amazon.com"));
         client.configureConnection(request, conn);
 
         assertEquals(conn.getConnectTimeout(), conf.getConnectionTimeout());
@@ -211,10 +211,10 @@ public class UrlHttpClientTest {
     public void testConfigureConnectionWithCertCheckingDisabled()
             throws MalformedURLException, URISyntaxException {
         final Map<String, String> headers = new HashMap<String, String>();
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"),
                 headers,
                 null);
-        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.amazon.com"));
         System.setProperty(SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY, "true");
         client.configureConnection(request, conn);
 
@@ -230,8 +230,8 @@ public class UrlHttpClientTest {
 
     @Test
     public void testCreateResponse() throws URISyntaxException, IOException {
-        final HttpRequest request = new HttpRequest("PUT", new URI("https://www.test.com"));
-        final MockHttpURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+        final HttpRequest request = new HttpRequest("PUT", new URI("https://www.amazon.com"));
+        final MockHttpURLConnection conn = new MockHttpURLConnection(new URL("https://www.amazon.com"));
 
         final Map<String, List<String>> headerFields = new HashMap<String, List<String>>();
         final List<String> header1 = new ArrayList<String>();
@@ -268,11 +268,11 @@ public class UrlHttpClientTest {
         final Map<String, String> headers = new HashMap<String, String>();
         headers.put(HttpHeader.CONTENT_LENGTH,
                 String.valueOf("Content".getBytes(StringUtils.UTF8).length));
-        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.amazon.com"), headers,
                 bais);
 
         final MockHttpURLConnection connection = new MockHttpURLConnection(
-                new URL("https://www.test.com"));
+                new URL("https://www.amazon.com"));
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         connection.setOutputStream(baos);

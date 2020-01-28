@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class AssumedRoleUser implements Serializable {
      * <a>AssumeRole</a> action. For more information about ARNs and how to use
      * them in policies, see <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     * >IAM Identifiers</a> in <i>Using IAM</i>.
+     * >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,7 +128,7 @@ public class AssumedRoleUser implements Serializable {
      * <a>AssumeRole</a> action. For more information about ARNs and how to use
      * them in policies, see <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     * >IAM Identifiers</a> in <i>Using IAM</i>.
+     * >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,7 +141,7 @@ public class AssumedRoleUser implements Serializable {
      *         from the <a>AssumeRole</a> action. For more information about
      *         ARNs and how to use them in policies, see <a href=
      *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     *         >IAM Identifiers</a> in <i>Using IAM</i>.
+     *         >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      *         </p>
      */
     public String getArn() {
@@ -154,7 +154,7 @@ public class AssumedRoleUser implements Serializable {
      * <a>AssumeRole</a> action. For more information about ARNs and how to use
      * them in policies, see <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     * >IAM Identifiers</a> in <i>Using IAM</i>.
+     * >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,7 +168,7 @@ public class AssumedRoleUser implements Serializable {
      *            information about ARNs and how to use them in policies, see <a
      *            href=
      *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     *            >IAM Identifiers</a> in <i>Using IAM</i>.
+     *            >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      *            </p>
      */
     public void setArn(String arn) {
@@ -181,7 +181,7 @@ public class AssumedRoleUser implements Serializable {
      * <a>AssumeRole</a> action. For more information about ARNs and how to use
      * them in policies, see <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     * >IAM Identifiers</a> in <i>Using IAM</i>.
+     * >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -198,7 +198,7 @@ public class AssumedRoleUser implements Serializable {
      *            information about ARNs and how to use them in policies, see <a
      *            href=
      *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html"
-     *            >IAM Identifiers</a> in <i>Using IAM</i>.
+     *            >IAM Identifiers</a> in the <i>IAM User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

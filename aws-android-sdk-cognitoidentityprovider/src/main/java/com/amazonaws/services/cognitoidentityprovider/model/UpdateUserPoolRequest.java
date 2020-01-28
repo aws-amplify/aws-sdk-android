@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,10 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the specified user pool with the specified attributes. If you don't
- * provide a value for an attribute, it will be set to the default value. You
- * can get a list of the current user pool settings with .
+ * Updates the specified user pool with the specified attributes. You can get a
+ * list of the current user pool settings with .
  * </p>
+ * <important>
+ * <p>
+ * If you don't provide a value for an attribute, it will be set to the default
+ * value.
+ * </p>
+ * </important>
  */
 public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -188,6 +193,19 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * </p>
      */
     private UserPoolAddOnsType userPoolAddOns;
+
+    /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     */
+    private AccountRecoverySettingType accountRecoverySetting;
 
     /**
      * <p>
@@ -1345,6 +1363,93 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     *
+     * @return <p>
+     *         Use this setting to define which verified available method a user
+     *         can use to recover their password when they call
+     *         <code>ForgotPassword</code>. It allows you to define a preferred
+     *         method when a user has more than one method available. With this
+     *         setting, SMS does not qualify for a valid password recovery
+     *         mechanism if the user also has SMS MFA enabled. In the absence of
+     *         this setting, Cognito uses the legacy behavior to determine the
+     *         recovery method where SMS is preferred over email.
+     *         </p>
+     */
+    public AccountRecoverySettingType getAccountRecoverySetting() {
+        return accountRecoverySetting;
+    }
+
+    /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     *
+     * @param accountRecoverySetting <p>
+     *            Use this setting to define which verified available method a
+     *            user can use to recover their password when they call
+     *            <code>ForgotPassword</code>. It allows you to define a
+     *            preferred method when a user has more than one method
+     *            available. With this setting, SMS does not qualify for a valid
+     *            password recovery mechanism if the user also has SMS MFA
+     *            enabled. In the absence of this setting, Cognito uses the
+     *            legacy behavior to determine the recovery method where SMS is
+     *            preferred over email.
+     *            </p>
+     */
+    public void setAccountRecoverySetting(AccountRecoverySettingType accountRecoverySetting) {
+        this.accountRecoverySetting = accountRecoverySetting;
+    }
+
+    /**
+     * <p>
+     * Use this setting to define which verified available method a user can use
+     * to recover their password when they call <code>ForgotPassword</code>. It
+     * allows you to define a preferred method when a user has more than one
+     * method available. With this setting, SMS does not qualify for a valid
+     * password recovery mechanism if the user also has SMS MFA enabled. In the
+     * absence of this setting, Cognito uses the legacy behavior to determine
+     * the recovery method where SMS is preferred over email.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param accountRecoverySetting <p>
+     *            Use this setting to define which verified available method a
+     *            user can use to recover their password when they call
+     *            <code>ForgotPassword</code>. It allows you to define a
+     *            preferred method when a user has more than one method
+     *            available. With this setting, SMS does not qualify for a valid
+     *            password recovery mechanism if the user also has SMS MFA
+     *            enabled. In the absence of this setting, Cognito uses the
+     *            legacy behavior to determine the recovery method where SMS is
+     *            preferred over email.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateUserPoolRequest withAccountRecoverySetting(
+            AccountRecoverySettingType accountRecoverySetting) {
+        this.accountRecoverySetting = accountRecoverySetting;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1386,7 +1491,9 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
         if (getAdminCreateUserConfig() != null)
             sb.append("AdminCreateUserConfig: " + getAdminCreateUserConfig() + ",");
         if (getUserPoolAddOns() != null)
-            sb.append("UserPoolAddOns: " + getUserPoolAddOns());
+            sb.append("UserPoolAddOns: " + getUserPoolAddOns() + ",");
+        if (getAccountRecoverySetting() != null)
+            sb.append("AccountRecoverySetting: " + getAccountRecoverySetting());
         sb.append("}");
         return sb.toString();
     }
@@ -1439,6 +1546,10 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
                 + ((getAdminCreateUserConfig() == null) ? 0 : getAdminCreateUserConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getUserPoolAddOns() == null) ? 0 : getUserPoolAddOns().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAccountRecoverySetting() == null) ? 0 : getAccountRecoverySetting()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1536,6 +1647,11 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getUserPoolAddOns() != null
                 && other.getUserPoolAddOns().equals(this.getUserPoolAddOns()) == false)
+            return false;
+        if (other.getAccountRecoverySetting() == null ^ this.getAccountRecoverySetting() == null)
+            return false;
+        if (other.getAccountRecoverySetting() != null
+                && other.getAccountRecoverySetting().equals(this.getAccountRecoverySetting()) == false)
             return false;
         return true;
     }

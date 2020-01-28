@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,6 +42,9 @@ public class CreateIdentityPoolResultJsonUnmarshaller implements
             } else if (name.equals("AllowUnauthenticatedIdentities")) {
                 createIdentityPoolResult.setAllowUnauthenticatedIdentities(BooleanJsonUnmarshaller
                         .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AllowClassicFlow")) {
+                createIdentityPoolResult.setAllowClassicFlow(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SupportedLoginProviders")) {
                 createIdentityPoolResult.setSupportedLoginProviders(new MapUnmarshaller<String>(

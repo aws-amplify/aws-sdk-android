@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      */
     private String documentClassifierName;
 
@@ -92,14 +92,14 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -142,12 +142,27 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     */
+    private String mode;
+
+    /**
+     * <p>
      * The name of the document classifier.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @return <p>
      *         The name of the document classifier.
@@ -164,7 +179,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param documentClassifierName <p>
      *            The name of the document classifier.
@@ -184,7 +199,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 63<br/>
-     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      *
      * @param documentClassifierName <p>
      *            The name of the document classifier.
@@ -530,20 +545,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend: German ("de"),
-     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
-     *         Portuguese ("pt"). All documents must be in the same language.
+     *         following languages supported by Amazon Comprehend: German
+     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
+     *         ("it"), or Portuguese ("pt"). All documents must be in the same
+     *         language.
      *         </p>
      * @see LanguageCode
      */
@@ -553,18 +569,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -577,7 +593,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -587,11 +603,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -607,18 +623,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -631,7 +647,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
+     * The language of the input documents. You can specify any of the following
      * languages supported by Amazon Comprehend: German ("de"), English ("en"),
      * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
      * documents must be in the same language.
@@ -641,11 +657,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
+     *            the following languages supported by Amazon Comprehend: German
      *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
      *            ("it"), or Portuguese ("pt"). All documents must be in the
      *            same language.
@@ -881,6 +897,158 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @return <p>
+     *         Indicates the mode in which the classifier will be trained. The
+     *         classifier can be trained in multi-class mode, which identifies
+     *         one and only one class for each document, or multi-label mode,
+     *         which identifies one or more labels for each document. In
+     *         multi-label mode, multiple labels for an individual document are
+     *         separated by a delimiter. The default delimiter between labels is
+     *         a pipe (|).
+     *         </p>
+     * @see DocumentClassifierMode
+     */
+    public String getMode() {
+        return mode;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the classifier will be trained.
+     *            The classifier can be trained in multi-class mode, which
+     *            identifies one and only one class for each document, or
+     *            multi-label mode, which identifies one or more labels for each
+     *            document. In multi-label mode, multiple labels for an
+     *            individual document are separated by a delimiter. The default
+     *            delimiter between labels is a pipe (|).
+     *            </p>
+     * @see DocumentClassifierMode
+     */
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the classifier will be trained.
+     *            The classifier can be trained in multi-class mode, which
+     *            identifies one and only one class for each document, or
+     *            multi-label mode, which identifies one or more labels for each
+     *            document. In multi-label mode, multiple labels for an
+     *            individual document are separated by a delimiter. The default
+     *            delimiter between labels is a pipe (|).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierMode
+     */
+    public CreateDocumentClassifierRequest withMode(String mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the classifier will be trained.
+     *            The classifier can be trained in multi-class mode, which
+     *            identifies one and only one class for each document, or
+     *            multi-label mode, which identifies one or more labels for each
+     *            document. In multi-label mode, multiple labels for an
+     *            individual document are separated by a delimiter. The default
+     *            delimiter between labels is a pipe (|).
+     *            </p>
+     * @see DocumentClassifierMode
+     */
+    public void setMode(DocumentClassifierMode mode) {
+        this.mode = mode.toString();
+    }
+
+    /**
+     * <p>
+     * Indicates the mode in which the classifier will be trained. The
+     * classifier can be trained in multi-class mode, which identifies one and
+     * only one class for each document, or multi-label mode, which identifies
+     * one or more labels for each document. In multi-label mode, multiple
+     * labels for an individual document are separated by a delimiter. The
+     * default delimiter between labels is a pipe (|).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>MULTI_CLASS, MULTI_LABEL
+     *
+     * @param mode <p>
+     *            Indicates the mode in which the classifier will be trained.
+     *            The classifier can be trained in multi-class mode, which
+     *            identifies one and only one class for each document, or
+     *            multi-label mode, which identifies one or more labels for each
+     *            document. In multi-label mode, multiple labels for an
+     *            individual document are separated by a delimiter. The default
+     *            delimiter between labels is a pipe (|).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierMode
+     */
+    public CreateDocumentClassifierRequest withMode(DocumentClassifierMode mode) {
+        this.mode = mode.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -908,7 +1076,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         if (getVolumeKmsKeyId() != null)
             sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
         if (getVpcConfig() != null)
-            sb.append("VpcConfig: " + getVpcConfig());
+            sb.append("VpcConfig: " + getVpcConfig() + ",");
+        if (getMode() != null)
+            sb.append("Mode: " + getMode());
         sb.append("}");
         return sb.toString();
     }
@@ -936,6 +1106,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
         hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
+        hashCode = prime * hashCode + ((getMode() == null) ? 0 : getMode().hashCode());
         return hashCode;
     }
 
@@ -993,6 +1164,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getVpcConfig() != null
                 && other.getVpcConfig().equals(this.getVpcConfig()) == false)
+            return false;
+        if (other.getMode() == null ^ this.getMode() == null)
+            return false;
+        if (other.getMode() != null && other.getMode().equals(this.getMode()) == false)
             return false;
         return true;
     }

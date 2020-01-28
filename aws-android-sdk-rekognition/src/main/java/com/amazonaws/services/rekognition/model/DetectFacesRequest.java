@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * face detected, the operation returns face details. These details include a
  * bounding box of the face, a confidence value (that the bounding box contains
  * a face), and a fixed set of attributes such as facial landmarks (for example,
- * coordinates of eye and mouth), gender, presence of beard, sunglasses, and so
- * on.
+ * coordinates of eye and mouth), presence of beard, sunglasses, and so on.
  * </p>
  * <p>
  * The face-detection algorithm is most effective on frontal faces. For

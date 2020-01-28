@@ -43,6 +43,7 @@ captures/
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/codeStyles
 .idea/misc.xml
 
 # Keystore files

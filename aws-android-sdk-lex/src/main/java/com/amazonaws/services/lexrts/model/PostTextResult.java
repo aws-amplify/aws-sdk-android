@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -84,6 +84,17 @@ public class PostTextResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      */
     private String message;
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     */
+    private SentimentResponse sentimentResponse;
 
     /**
      * <p>
@@ -215,6 +226,13 @@ public class PostTextResult implements Serializable {
      * </p>
      */
     private ResponseCard responseCard;
+
+    /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     */
+    private String sessionId;
 
     /**
      * <p>
@@ -714,6 +732,78 @@ public class PostTextResult implements Serializable {
      */
     public PostTextResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @return <p>
+     *         The sentiment expressed in and utterance.
+     *         </p>
+     *         <p>
+     *         When the bot is configured to send utterances to Amazon
+     *         Comprehend for sentiment analysis, this field contains the result
+     *         of the analysis.
+     *         </p>
+     */
+    public SentimentResponse getSentimentResponse() {
+        return sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     */
+    public void setSentimentResponse(SentimentResponse sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withSentimentResponse(SentimentResponse sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
         return this;
     }
 
@@ -2009,6 +2099,51 @@ public class PostTextResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     *
+     * @return <p>
+     *         A unique identifier for the session.
+     *         </p>
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     *
+     * @param sessionId <p>
+     *            A unique identifier for the session.
+     *            </p>
+     */
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    /**
+     * <p>
+     * A unique identifier for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sessionId <p>
+     *            A unique identifier for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withSessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2027,6 +2162,8 @@ public class PostTextResult implements Serializable {
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
+        if (getSentimentResponse() != null)
+            sb.append("sentimentResponse: " + getSentimentResponse() + ",");
         if (getMessageFormat() != null)
             sb.append("messageFormat: " + getMessageFormat() + ",");
         if (getDialogState() != null)
@@ -2034,7 +2171,9 @@ public class PostTextResult implements Serializable {
         if (getSlotToElicit() != null)
             sb.append("slotToElicit: " + getSlotToElicit() + ",");
         if (getResponseCard() != null)
-            sb.append("responseCard: " + getResponseCard());
+            sb.append("responseCard: " + getResponseCard() + ",");
+        if (getSessionId() != null)
+            sb.append("sessionId: " + getSessionId());
         sb.append("}");
         return sb.toString();
     }
@@ -2050,6 +2189,8 @@ public class PostTextResult implements Serializable {
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode
+                + ((getSentimentResponse() == null) ? 0 : getSentimentResponse().hashCode());
+        hashCode = prime * hashCode
                 + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogState() == null) ? 0 : getDialogState().hashCode());
@@ -2057,6 +2198,7 @@ public class PostTextResult implements Serializable {
                 + ((getSlotToElicit() == null) ? 0 : getSlotToElicit().hashCode());
         hashCode = prime * hashCode
                 + ((getResponseCard() == null) ? 0 : getResponseCard().hashCode());
+        hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         return hashCode;
     }
 
@@ -2089,6 +2231,11 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
             return false;
+        if (other.getSentimentResponse() == null ^ this.getSentimentResponse() == null)
+            return false;
+        if (other.getSentimentResponse() != null
+                && other.getSentimentResponse().equals(this.getSentimentResponse()) == false)
+            return false;
         if (other.getMessageFormat() == null ^ this.getMessageFormat() == null)
             return false;
         if (other.getMessageFormat() != null
@@ -2108,6 +2255,11 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getResponseCard() != null
                 && other.getResponseCard().equals(this.getResponseCard()) == false)
+            return false;
+        if (other.getSessionId() == null ^ this.getSessionId() == null)
+            return false;
+        if (other.getSessionId() != null
+                && other.getSessionId().equals(this.getSessionId()) == false)
             return false;
         return true;
     }

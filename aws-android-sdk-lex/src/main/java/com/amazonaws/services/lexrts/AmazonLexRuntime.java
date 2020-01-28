@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -94,6 +94,53 @@ public interface AmazonLexRuntime {
      *      com.amazonaws.auth.AWSCredentialsProvider, ClientConfiguration)
      */
     public void setRegion(Region region) throws java.lang.IllegalArgumentException;
+
+    /**
+     * <p>
+     * Removes session information for a specified bot, alias, and user ID.
+     * </p>
+     * 
+     * @param deleteSessionRequest
+     * @return deleteSessionResult The response from the DeleteSession service
+     *         method, as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    DeleteSessionResult deleteSession(DeleteSessionRequest deleteSessionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns session information for a specified bot, alias, and user ID.
+     * </p>
+     * 
+     * @param getSessionRequest
+     * @return getSessionResult The response from the GetSession service method,
+     *         as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    GetSessionResult getSession(GetSessionRequest getSessionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -196,7 +243,7 @@ public interface AmazonLexRuntime {
      * <p>
      * In addition, Amazon Lex also returns your application-specific
      * <code>sessionAttributes</code>. For more information, see <a
-     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
      * >Managing Conversation Context</a>.
      * </p>
      * 
@@ -227,10 +274,9 @@ public interface AmazonLexRuntime {
 
     /**
      * <p>
-     * Sends user input (text-only) to Amazon Lex. Client applications can use
-     * this API to send requests to Amazon Lex at runtime. Amazon Lex then
-     * interprets the user input using the machine learning model it built for
-     * the bot.
+     * Sends user input to Amazon Lex. Client applications can use this API to
+     * send requests to Amazon Lex at runtime. Amazon Lex then interprets the
+     * user input using the machine learning model it built for the bot.
      * </p>
      * <p>
      * In response, Amazon Lex returns the next <code>message</code> to convey
@@ -320,7 +366,7 @@ public interface AmazonLexRuntime {
      * <p>
      * In addition, Amazon Lex also returns your application-specific
      * <code>sessionAttributes</code>. For more information, see <a
-     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * href="https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
      * >Managing Conversation Context</a>.
      * </p>
      * 
@@ -344,6 +390,40 @@ public interface AmazonLexRuntime {
      *             in the request, or a server side issue.
      */
     PostTextResult postText(PostTextRequest postTextRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new session or modifies an existing session with an Amazon Lex
+     * bot. Use this operation to enable your application to set the state of
+     * the bot.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/how-session-api.html"
+     * >Managing Sessions</a>.
+     * </p>
+     * 
+     * @param putSessionRequest
+     * @return putSessionResult The response from the PutSession service method,
+     *         as returned by Amazon Lex Runtime Service.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws NotAcceptableException
+     * @throws DependencyFailedException
+     * @throws BadGatewayException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Lex Runtime Service indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    PutSessionResult putSession(PutSessionRequest putSessionRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**

@@ -22,6 +22,8 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-comprehend-test/aws-android-sdk-comprehend-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-comprehend-test/aws-android-sdk-comprehend-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connect/aws-android-sdk-connect.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connect/aws-android-sdk-connect.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connect-test/aws-android-sdk-connect-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connect-test/aws-android-sdk-connect-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connectparticipant/aws-android-sdk-connectparticipant.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connectparticipant/aws-android-sdk-connectparticipant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-connectparticipant-test/aws-android-sdk-connectparticipant-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-connectparticipant-test/aws-android-sdk-connectparticipant-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-core/aws-android-sdk-core.iml" filepath="$PROJECT_DIR$/aws-android-sdk-core/aws-android-sdk-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-core-test/aws-android-sdk-core-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-core-test/aws-android-sdk-core-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-ddb/aws-android-sdk-ddb.iml" filepath="$PROJECT_DIR$/aws-android-sdk-ddb/aws-android-sdk-ddb.iml" />
@@ -37,6 +39,8 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesis-test/aws-android-sdk-kinesis-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo/aws-android-sdk-kinesisvideo.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-archivedmedia/aws-android-sdk-kinesisvideo-archivedmedia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling/aws-android-sdk-kinesisvideo-signaling.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling/aws-android-sdk-kinesisvideo-signaling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling-test/aws-android-sdk-kinesisvideo-signaling-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kinesisvideo-signaling-test/aws-android-sdk-kinesisvideo-signaling-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" filepath="$PROJECT_DIR$/aws-android-sdk-kms/aws-android-sdk-kms.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lambda/aws-android-sdk-lambda.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-lambda-test/aws-android-sdk-lambda-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-lambda-test/aws-android-sdk-lambda-test.iml" />
@@ -73,6 +77,7 @@
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-translate-test/aws-android-sdk-translate-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-translate-test/aws-android-sdk-translate-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-sdk-android.iml" filepath="$PROJECT_DIR$/aws-sdk-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/connect-sdk.iml" filepath="$PROJECT_DIR$/.idea/connect-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keystore-fix.iml" filepath="$PROJECT_DIR$/keystore-fix.iml" />
       <module fileurl="file://$PROJECT_DIR$/s3.iml" filepath="$PROJECT_DIR$/s3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/textract-sdk.iml" filepath="$PROJECT_DIR$/.idea/textract-sdk.iml" />
     </modules>

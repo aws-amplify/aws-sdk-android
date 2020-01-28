@@ -648,22 +648,36 @@ public class CognitoUser {
     }
 
     /**
-     * Returns a valid tokens for a user through the callback method. Runs in
-     * background.
-     * {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
-     * .
+     * getSession orchestrates the SignIn flow with Amazon Cognito UserPools.
+     *
      * <p>
-     * Tokens are passed as instance of {@link CognitoUserSession}. Call this
-     * method to get valid tokens for a user. This method returns any valid
-     * cached tokens for the user. If no valid cached tokens are available this
-     * method initiates the process to authenticate the user and get tokens from
-     * Cognito Identity Provider service. Implement the interface
-     * {@link AuthenticationHandler} and pass it as callback to this method.
-     * This method uses the callback to interact with application at different
-     * stages of the authentication process. Continuation objects are used when
-     * the authentication process requires more data to continue. See
-     * {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
-     * for details on continuation objects.
+     *     This method is asynchronous and performs network operations
+     *     on a background thread.
+     * </p>
+     *
+     * <p>
+     *     1) Read the tokens (Id, Access and Refresh) that are cached on the device.
+     *      1.1) If the Id and Access tokens are present and they are valid, the
+     *          {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}.
+     *          will be called with a {@link CognitoUserSession} that has references to the valid tokens.
+     *          This means that the user is signed-in.
+     *      1.2) If the Id and Access tokens are expired, and if there is a valid refresh token,
+     *          a network call is made to get new Id and Access tokens.
+     *          If valid Id and Access tokens are retrieved, they are cached on the device
+     *          and {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
+     *          will be called with a {@link CognitoUserSession} that has references to the valid
+     *          tokens. This means that the user is signed-in.
+     *
+     *     2) If there are no valid tokens cached on the device, the callback method
+     *          {@link AuthenticationHandler#getAuthenticationDetails(AuthenticationContinuation, String)}
+     *          will be called where the {@link AuthenticationDetails} will need to be supplied
+     *          to continue the SignIn operation. See
+     *          {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
+     *          for details on continuation objects.
+     *
+     *     3) In all other error scenarios, {@link AuthenticationHandler#onFailure(Exception)} will
+     *          be called with the type and message of the exception and it is the responsibility of
+     *          the caller to handle the exceptions appropriately.
      * </p>
      *
      * @param callback REQUIRED: {@link AuthenticationHandler} callback
@@ -713,24 +727,37 @@ public class CognitoUser {
     }
 
     /**
-     * Returns a valid tokens for a user through the callback method. Runs in
-     * background.
-     * {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
-     * .
+     * getSession orchestrates the SignIn flow with Amazon Cognito UserPools.
+     *
      * <p>
-     * Tokens are passed as instance of {@link CognitoUserSession}. Call this
-     * method to get valid tokens for a user. This method returns any valid
-     * cached tokens for the user. If no valid cached tokens are available this
-     * method initiates the process to authenticate the user and get tokens from
-     * Cognito Identity Provider service. Implement the interface
-     * {@link AuthenticationHandler} and pass it as callback to this method.
-     * This method uses the callback to interact with application at different
-     * stages of the authentication process. Continuation objects are used when
-     * the authentication process requires more data to continue. See
-     * {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
-     * for details on continuation objects. <b>Note:</b> This method will
-     * perform network operations. Calling this method in applications' main
-     * thread will cause Android to throw NetworkOnMainThreadException.
+     *     This method is synchronous and performs network operations
+     *     on the same thread in which the method is called.  Calling this
+     *     method in the MainThread will result in {@link android.os.NetworkOnMainThreadException}
+     * </p>
+     *
+     * <p>
+     *     1) Read the tokens (Id, Access and Refresh) that are cached on the device.
+     *      1.1) If the Id and Access tokens are present and they are valid, the
+     *          {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}.
+     *          will be called with a {@link CognitoUserSession} that has references to the valid tokens.
+     *          This means that the user is signed-in.
+     *      1.2) If the Id and Access tokens are expired, and if there is a valid refresh token,
+     *          a network call is made to get new Id and Access tokens.
+     *          If valid Id and Access tokens are retrieved, they are cached on the device
+     *          and {@link AuthenticationHandler#onSuccess(CognitoUserSession, CognitoDevice)}
+     *          will be called with a {@link CognitoUserSession} that has references to the valid
+     *          tokens. This means that the user is signed-in.
+     *
+     *     2) If there are no valid tokens cached on the device, the callback method
+     *          {@link AuthenticationHandler#getAuthenticationDetails(AuthenticationContinuation, String)}
+     *          will be called where the {@link AuthenticationDetails} will need to be supplied
+     *          to continue the SignIn operation. See
+     *          {@link com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.CognitoIdentityProviderContinuation}
+     *          for details on continuation objects.
+     *
+     *     3) In all other error scenarios, {@link AuthenticationHandler#onFailure(Exception)} will
+     *          be called with the type and message of the exception and it is the responsibility of
+     *          the caller to handle the exceptions appropriately.
      * </p>
      *
      * @param callback REQUIRED: {@link AuthenticationHandler} callback
@@ -937,16 +964,16 @@ public class CognitoUser {
                 }
             }
 
-            final CognitoUserSession cachedTokens = readCachedTokens();
+            final CognitoUserSession cognitoUserSessionFromStore = readCachedTokens();
 
-            if (cachedTokens.isValidForThreshold()) {
-                cipSession = cachedTokens;
+            if (cognitoUserSessionFromStore.isValidForThreshold()) {
+                cipSession = cognitoUserSessionFromStore;
                 return cipSession;
             }
 
-            if (cachedTokens.getRefreshToken() != null) {
+            if (cognitoUserSessionFromStore.getRefreshToken() != null) {
                 try {
-                    cipSession = refreshSession(cachedTokens);
+                    cipSession = refreshSession(cognitoUserSessionFromStore);
                     cacheTokens(cipSession);
                     return cipSession;
                 } catch (final NotAuthorizedException nae) {
@@ -955,7 +982,7 @@ public class CognitoUser {
                 } catch (final UserNotFoundException unfe) {
                     clearCachedTokens();
                     throw new CognitoNotAuthorizedException("User does not exist", unfe);
-                }catch (final Exception e) {
+                } catch (final Exception e) {
                     throw new CognitoInternalErrorException("Failed to authenticate user", e);
                 }
             }
@@ -2227,19 +2254,42 @@ public class CognitoUser {
             final String csiRefreshTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".refreshToken";
 
+            CognitoIdToken csiCachedIdToken = null;
+            CognitoAccessToken csiCachedAccessToken = null;
+            CognitoRefreshToken csiCachedRefreshToken = null;
+
             if (pool.awsKeyValueStore.contains(csiIdTokenKey)) {
-                final CognitoIdToken csiCachedIdToken = new CognitoIdToken(
-                        pool.awsKeyValueStore.get(csiIdTokenKey));
-                final CognitoAccessToken csiCachedAccessToken = new CognitoAccessToken(
-                        pool.awsKeyValueStore.get(csiAccessTokenKey));
-                final CognitoRefreshToken csiCachedRefreshToken = new CognitoRefreshToken(
-                        pool.awsKeyValueStore.get(csiRefreshTokenKey));
-                userSession = new CognitoUserSession(csiCachedIdToken, csiCachedAccessToken,
-                        csiCachedRefreshToken);
+                String idToken = pool.awsKeyValueStore.get(csiIdTokenKey);
+                if (idToken != null) {
+                    csiCachedIdToken = new CognitoIdToken(idToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiIdTokenKey + " is null.");
+                }
             }
+
+            if (pool.awsKeyValueStore.contains(csiAccessTokenKey)) {
+                String accessToken = pool.awsKeyValueStore.get(csiAccessTokenKey);
+                if (accessToken != null) {
+                    csiCachedAccessToken = new CognitoAccessToken(accessToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiAccessTokenKey + " is null.");
+                }
+            }
+
+            if (pool.awsKeyValueStore.contains(csiRefreshTokenKey)) {
+                String refreshToken = pool.awsKeyValueStore.get(csiRefreshTokenKey);
+                if (refreshToken != null) {
+                    csiCachedRefreshToken = new CognitoRefreshToken(refreshToken);
+                } else {
+                    LOGGER.warn("IdToken for " + csiRefreshTokenKey + " is null.");
+                }
+            }
+
+            userSession = new CognitoUserSession(csiCachedIdToken,
+                    csiCachedAccessToken,
+                    csiCachedRefreshToken);
         } catch (final Exception e) {
-            // Logging exception, this is not a fatal error
-            LOGGER.error("Error while reading SharedPreferences", e);
+            LOGGER.error("Error while reading the tokens from the persistent store.", e);
         }
         return userSession;
     }
@@ -2249,10 +2299,8 @@ public class CognitoUser {
      *
      * @param session REQUIRED: Tokens to be cached.
      */
-    private void cacheTokens(CognitoUserSession session) {
+    void cacheTokens(CognitoUserSession session) {
         try {
-            final String csiUserPoolId = pool.getUserPoolId();
-
             // Create keys to look for cached tokens
             final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
                     + ".idToken";
@@ -2263,9 +2311,11 @@ public class CognitoUser {
             final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
             // Store the data in Shared Preferences
-            pool.awsKeyValueStore.put(csiIdTokenKey, session.getIdToken().getJWTToken());
-            pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken().getJWTToken());
-            pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken().getToken());
+            if (session != null) {
+                pool.awsKeyValueStore.put(csiIdTokenKey, session.getIdToken() != null ? session.getIdToken().getJWTToken() : null);
+                pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken() != null ? session.getAccessToken().getJWTToken() : null);
+                pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken() != null ? session.getRefreshToken().getToken() : null);
+            }
             pool.awsKeyValueStore.put(csiLastUserKey, userId);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
@@ -2627,7 +2677,8 @@ public class CognitoUser {
             };
         } else {
             final ChallengeContinuation challengeContinuation = new ChallengeContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
+                    cognitoUser, context, usernameInternal, clientId,
+                    CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret), challenge,
                     runInBackground, callback);
             nextTask = new Runnable() {
                 @Override

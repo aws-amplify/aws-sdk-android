@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -210,6 +210,13 @@ class UserPoolTypeJsonMarshaller {
             String arn = userPoolType.getArn();
             jsonWriter.name("Arn");
             jsonWriter.value(arn);
+        }
+        if (userPoolType.getAccountRecoverySetting() != null) {
+            AccountRecoverySettingType accountRecoverySetting = userPoolType
+                    .getAccountRecoverySetting();
+            jsonWriter.name("AccountRecoverySetting");
+            AccountRecoverySettingTypeJsonMarshaller.getInstance().marshall(accountRecoverySetting,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ public class ListStreamsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      */
     private String nextToken;
 
@@ -118,6 +119,7 @@ public class ListStreamsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @return <p>
      *         If the response is truncated, the call returns this element with
@@ -137,6 +139,7 @@ public class ListStreamsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If the response is truncated, the call returns this element
@@ -159,6 +162,7 @@ public class ListStreamsResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If the response is truncated, the call returns this element

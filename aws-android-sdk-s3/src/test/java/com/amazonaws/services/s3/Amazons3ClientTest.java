@@ -47,7 +47,7 @@ public class Amazons3ClientTest {
     @Before
     public void setup() {
         creds = new BasicAWSCredentials("accessKey", "secretKey");
-        s3 = new AmazonS3Client(creds);
+        s3 = new AmazonS3Client(creds, Region.getRegion(Regions.US_EAST_1));
         accelerateOption = S3ClientOptions.builder().setAccelerateModeEnabled(true).build();
     }
 
@@ -190,29 +190,65 @@ public class Amazons3ClientTest {
         assertTrue(request.getResourcePath().contains(key));
     }
 
+    /**
+     * Remove this when we remove the no-arg constructor. Since this unit test doesn't hit the
+     * service, it won't trigger any alerts about using SigV2.
+     */
     @Test
+    @Deprecated
     public void testConstructorWithBasicAwsCredentials() {
         creds = new BasicAWSCredentials("accessKey", "secretKey");
         s3 = new AmazonS3Client(creds);
         assertNotNull(s3);
     }
 
+    /**
+     * Remove this when we remove the no-arg constructor. Since this unit test doesn't hit the
+     * service, it won't trigger any alerts about using SigV2.
+     */
     @Test
+    @Deprecated
     public void testDefaultConstructor() {
         s3 = new AmazonS3Client();
         assertNotNull(s3);
     }
 
+    /**
+     * Remove this when we remove the no-region constructor. Since this unit test doesn't hit the
+     * service, it won't trigger any alerts about using SigV2.
+     */
     @Test
+    @Deprecated
     public void testConstructorWithBasicAwsCredentialsAndClientConfiguration() {
         creds = new BasicAWSCredentials("accessKey", "secretKey");
         s3 = new AmazonS3Client(creds, new ClientConfiguration());
         assertNotNull(s3);
     }
 
+    /**
+     * Remove this when we remove the no-region constructor. Since this unit test doesn't hit the
+     * service, it won't trigger any alerts about using SigV2.
+     */
     @Test
+    @Deprecated
     public void testConstructorWithClientConfiguration() {
         s3 = new AmazonS3Client(new ClientConfiguration());
+        assertNotNull(s3);
+    }
+
+    @Test
+    public void testConstructorWithCredentialsAndRegion() {
+        creds = new BasicAWSCredentials("accessKey", "secretKey");
+        Region defaultRegion = Region.getRegion(Regions.DEFAULT_REGION);
+        s3 = new AmazonS3Client(creds, defaultRegion);
+        assertNotNull(s3);
+    }
+
+    @Test
+    public void testConstructorWithCredentialsRegionAndClientConfiguration() {
+        creds = new BasicAWSCredentials("accessKey", "secretKey");
+        Region defaultRegion = Region.getRegion(Regions.DEFAULT_REGION);
+        s3 = new AmazonS3Client(creds, defaultRegion, new ClientConfiguration());
         assertNotNull(s3);
     }
 

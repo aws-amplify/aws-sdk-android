@@ -36,5 +36,4 @@ public class CognitoUserToken {
     protected String getToken() {
         return token;
     }
-
 }

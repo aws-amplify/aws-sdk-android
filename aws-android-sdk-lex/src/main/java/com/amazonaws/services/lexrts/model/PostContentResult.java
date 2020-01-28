@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -64,13 +65,24 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     */
+    private String sentimentResponse;
+
+    /**
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -243,6 +255,13 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * The unique identifier for the session.
+     * </p>
+     */
+    private String sessionId;
+
+    /**
+     * <p>
      * Content type as specified in the <code>Accept</code> HTTP header in the
      * request.
      * </p>
@@ -340,7 +359,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -358,7 +378,8 @@ public class PostContentResult implements Serializable {
      *
      * @return <p>
      *         Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *         detected from the user input during the conversation.
+     *         detected from the user input during the conversation. The field
+     *         is base-64 encoded.
      *         </p>
      *         <p>
      *         Amazon Lex creates a resolution list containing likely values for
@@ -381,7 +402,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -399,7 +421,8 @@ public class PostContentResult implements Serializable {
      *
      * @param slots <p>
      *            Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *            detected from the user input during the conversation.
+     *            detected from the user input during the conversation. The
+     *            field is base-64 encoded.
      *            </p>
      *            <p>
      *            Amazon Lex creates a resolution list containing likely values
@@ -424,7 +447,8 @@ public class PostContentResult implements Serializable {
     /**
      * <p>
      * Map of zero or more intent slots (name/value pairs) Amazon Lex detected
-     * from the user input during the conversation.
+     * from the user input during the conversation. The field is base-64
+     * encoded.
      * </p>
      * <p>
      * Amazon Lex creates a resolution list containing likely values for a slot.
@@ -445,7 +469,8 @@ public class PostContentResult implements Serializable {
      *
      * @param slots <p>
      *            Map of zero or more intent slots (name/value pairs) Amazon Lex
-     *            detected from the user input during the conversation.
+     *            detected from the user input during the conversation. The
+     *            field is base-64 encoded.
      *            </p>
      *            <p>
      *            Amazon Lex creates a resolution list containing likely values
@@ -523,13 +548,85 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @return <p>
+     *         The sentiment expressed in and utterance.
+     *         </p>
+     *         <p>
+     *         When the bot is configured to send utterances to Amazon
+     *         Comprehend for sentiment analysis, this field contains the result
+     *         of the analysis.
+     *         </p>
+     */
+    public String getSentimentResponse() {
+        return sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     */
+    public void setSentimentResponse(String sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
+    }
+
+    /**
+     * <p>
+     * The sentiment expressed in and utterance.
+     * </p>
+     * <p>
+     * When the bot is configured to send utterances to Amazon Comprehend for
+     * sentiment analysis, this field contains the result of the analysis.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sentimentResponse <p>
+     *            The sentiment expressed in and utterance.
+     *            </p>
+     *            <p>
+     *            When the bot is configured to send utterances to Amazon
+     *            Comprehend for sentiment analysis, this field contains the
+     *            result of the analysis.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withSentimentResponse(String sentimentResponse) {
+        this.sentimentResponse = sentimentResponse;
+        return this;
+    }
+
+    /**
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -557,11 +654,11 @@ public class PostContentResult implements Serializable {
      *         <p>
      *         If the intent is not configured with a Lambda function, or if the
      *         Lambda function returned <code>Delegate</code> as the
-     *         <code>dialogAction.type</code> its response, Amazon Lex decides
-     *         on the next course of action and selects an appropriate message
-     *         from the bot's configuration based on the current interaction
-     *         context. For example, if Amazon Lex isn't able to understand user
-     *         input, it uses a clarification prompt message.
+     *         <code>dialogAction.type</code> in its response, Amazon Lex
+     *         decides on the next course of action and selects an appropriate
+     *         message from the bot's configuration based on the current
+     *         interaction context. For example, if Amazon Lex isn't able to
+     *         understand user input, it uses a clarification prompt message.
      *         </p>
      *         <p>
      *         When you create an intent you can assign messages to groups. When
@@ -588,7 +685,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -616,7 +713,7 @@ public class PostContentResult implements Serializable {
      *            <p>
      *            If the intent is not configured with a Lambda function, or if
      *            the Lambda function returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
      *            decides on the next course of action and selects an
      *            appropriate message from the bot's configuration based on the
      *            current interaction context. For example, if Amazon Lex isn't
@@ -648,7 +745,7 @@ public class PostContentResult implements Serializable {
      * <p>
      * If the intent is not configured with a Lambda function, or if the Lambda
      * function returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
      * next course of action and selects an appropriate message from the bot's
      * configuration based on the current interaction context. For example, if
      * Amazon Lex isn't able to understand user input, it uses a clarification
@@ -679,7 +776,7 @@ public class PostContentResult implements Serializable {
      *            <p>
      *            If the intent is not configured with a Lambda function, or if
      *            the Lambda function returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
      *            decides on the next course of action and selects an
      *            appropriate message from the bot's configuration based on the
      *            current interaction context. For example, if Amazon Lex isn't
@@ -2087,6 +2184,51 @@ public class PostContentResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     *
+     * @return <p>
+     *         The unique identifier for the session.
+     *         </p>
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     *
+     * @param sessionId <p>
+     *            The unique identifier for the session.
+     *            </p>
+     */
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sessionId <p>
+     *            The unique identifier for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withSessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2105,6 +2247,8 @@ public class PostContentResult implements Serializable {
             sb.append("slots: " + getSlots() + ",");
         if (getSessionAttributes() != null)
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
+        if (getSentimentResponse() != null)
+            sb.append("sentimentResponse: " + getSentimentResponse() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
         if (getMessageFormat() != null)
@@ -2116,7 +2260,9 @@ public class PostContentResult implements Serializable {
         if (getInputTranscript() != null)
             sb.append("inputTranscript: " + getInputTranscript() + ",");
         if (getAudioStream() != null)
-            sb.append("audioStream: " + getAudioStream());
+            sb.append("audioStream: " + getAudioStream() + ",");
+        if (getSessionId() != null)
+            sb.append("sessionId: " + getSessionId());
         sb.append("}");
         return sb.toString();
     }
@@ -2132,6 +2278,8 @@ public class PostContentResult implements Serializable {
         hashCode = prime * hashCode + ((getSlots() == null) ? 0 : getSlots().hashCode());
         hashCode = prime * hashCode
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getSentimentResponse() == null) ? 0 : getSentimentResponse().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
@@ -2143,6 +2291,7 @@ public class PostContentResult implements Serializable {
                 + ((getInputTranscript() == null) ? 0 : getInputTranscript().hashCode());
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
+        hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         return hashCode;
     }
 
@@ -2176,6 +2325,11 @@ public class PostContentResult implements Serializable {
         if (other.getSessionAttributes() != null
                 && other.getSessionAttributes().equals(this.getSessionAttributes()) == false)
             return false;
+        if (other.getSentimentResponse() == null ^ this.getSentimentResponse() == null)
+            return false;
+        if (other.getSentimentResponse() != null
+                && other.getSentimentResponse().equals(this.getSentimentResponse()) == false)
+            return false;
         if (other.getMessage() == null ^ this.getMessage() == null)
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
@@ -2204,6 +2358,11 @@ public class PostContentResult implements Serializable {
             return false;
         if (other.getAudioStream() != null
                 && other.getAudioStream().equals(this.getAudioStream()) == false)
+            return false;
+        if (other.getSessionId() == null ^ this.getSessionId() == null)
+            return false;
+        if (other.getSessionId() != null
+                && other.getSessionId().equals(this.getSessionId()) == false)
             return false;
         return true;
     }

@@ -23,9 +23,14 @@ import java.util.HashMap;
  * for backwards compatibility.
  */
 public class LogFactory {
+
+    /**
+     * NOTE : Any changes to rename this class should ensure that this log tag is no longer than 23.
+     * Log tag longer than 23 will cause it to break on Android API level <= 23.
+     */
     private static final String TAG = LogFactory.class.getSimpleName();
     private static final String APACHE_COMMONS_LOGGING_LOGFACTORY = "org.apache.commons.logging.LogFactory";
-
+    private static Level globalLogLevel = null;
     private static Map<String, Log> logMap = new HashMap<String, Log>();
 
     /**
@@ -35,32 +40,42 @@ public class LogFactory {
      * @return logger
      */
     public static synchronized Log getLog(Class clazz) {
-        return getLog(clazz.getSimpleName());
+        return getLog(getTruncatedLogTag(clazz.getSimpleName()));
     }
 
     /**
      * Get the logger for the string tag
-     * @param string the string tag
+     * @param logTag the string tag
      *
      * @return logger
      */
-    public static synchronized Log getLog(final String string) {
-        Log log = logMap.get(string);
+    public static synchronized Log getLog(String logTag) {
+        logTag = getTruncatedLogTag(logTag);
+
+        Log log = logMap.get(logTag);
         if (log == null) {
             if (checkApacheCommonsLoggingExists()) {
                 try {
-                    log = new ApacheCommonsLogging(string);
-                    logMap.put(string, log);
+                    log = new ApacheCommonsLogging(logTag);
+                    logMap.put(logTag, log);
                 } catch (Exception e) {
                     android.util.Log.w(TAG, "Could not create log from " + APACHE_COMMONS_LOGGING_LOGFACTORY, e);
                 }
             }
             if (log == null) {
-                log = new AndroidLog(string);
-                logMap.put(string, log);
+                log = new AndroidLog(logTag);
+                logMap.put(logTag, log);
             }
         }
         return log;
+    }
+
+    public static void setLevel(Level level) {
+        globalLogLevel = level;
+    }
+
+    public static Level getLevel() {
+        return globalLogLevel;
     }
 
     private static boolean checkApacheCommonsLoggingExists() {
@@ -72,6 +87,49 @@ public class LogFactory {
         } catch (Exception ex) {
             android.util.Log.e(TAG, ex.getMessage());
             return false;
+        }
+    }
+
+    /**
+     * Truncate log tag to be within 23 characters in length as required by Android on certain API levels.
+     *
+     * @param logTag Log tag to be truncated
+     * @return truncated log tag
+     */
+    private static String getTruncatedLogTag(String logTag) {
+        if (logTag.length() > 23) {
+            if (checkApacheCommonsLoggingExists()) {
+                Log log = new ApacheCommonsLogging(TAG);
+                log.warn("Truncating log tag length as it exceed 23, the limit imposed by Android on certain API Levels");
+            } else {
+                android.util.Log.w(TAG, "Truncating log tag length as it exceed 23, the limit imposed by Android on certain API Levels");
+            }
+            logTag = logTag.substring(0, 23);
+        }
+
+        return logTag;
+    }
+
+    public enum Level
+    {
+        ALL(Integer.MIN_VALUE),
+        TRACE(0),
+        DEBUG(1),
+        INFO(2),
+        WARN(3),
+        ERROR(4),
+        OFF(Integer.MAX_VALUE);
+
+        private int value;
+
+        public int getValue()
+        {
+            return this.value;
+        }
+
+        Level(int value)
+        {
+            this.value = value;
         }
     }
 }

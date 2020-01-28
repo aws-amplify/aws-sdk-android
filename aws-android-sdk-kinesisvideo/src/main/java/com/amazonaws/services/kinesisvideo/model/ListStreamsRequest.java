@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      */
     private String nextToken;
 
@@ -130,6 +131,7 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @return <p>
      *         If you specify this parameter, when the result of a
@@ -152,6 +154,7 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If you specify this parameter, when the result of a
@@ -178,6 +181,7 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/=]*<br/>
      *
      * @param nextToken <p>
      *            If you specify this parameter, when the result of a

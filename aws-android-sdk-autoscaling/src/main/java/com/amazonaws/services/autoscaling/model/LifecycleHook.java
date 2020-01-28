@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Describes a lifecycle hook, which tells Amazon EC2 Auto Scaling that you want
- * to perform an action whenever it launches instances or whenever it terminates
- * instances. Used in response to <a>DescribeLifecycleHooks</a>.
+ * to perform an action whenever it launches instances or terminates instances.
+ * Used in response to <a>DescribeLifecycleHooks</a>.
  * </p>
  */
 public class LifecycleHook implements Serializable {

@@ -17,19 +17,23 @@
 
 package com.amazonaws.mobile.client.results;
 
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-
 /**
  * The result of a sign up action. Check the confirmation state and delivery details to proceed.
  */
-public class SignUpResult {
+public final class SignUpResult {
 
     private final boolean signUpConfirmationState;
     private final UserCodeDeliveryDetails cognitoUserCodeDeliveryDetails;
+    private final String userSub;
 
-    public SignUpResult(boolean signUpConfirmationState, UserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
+    public SignUpResult(boolean signUpConfirmationState, UserCodeDeliveryDetails cognitoUserCodeDeliveryDetails, String userSub) {
         this.signUpConfirmationState = signUpConfirmationState;
         this.cognitoUserCodeDeliveryDetails = cognitoUserCodeDeliveryDetails;
+        this.userSub = userSub;
+    }
+
+    public String getUserSub() {
+        return this.userSub;
     }
 
     /**

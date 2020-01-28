@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class DescribeUserHierarchyGroupResult implements Serializable {
     /**
      * <p>
-     * Returns a <code>HierarchyGroup</code> object.
+     * Information about the hierarchy group.
      * </p>
      */
     private HierarchyGroup hierarchyGroup;
 
     /**
      * <p>
-     * Returns a <code>HierarchyGroup</code> object.
+     * Information about the hierarchy group.
      * </p>
      *
      * @return <p>
-     *         Returns a <code>HierarchyGroup</code> object.
+     *         Information about the hierarchy group.
      *         </p>
      */
     public HierarchyGroup getHierarchyGroup() {
@@ -40,11 +40,11 @@ public class DescribeUserHierarchyGroupResult implements Serializable {
 
     /**
      * <p>
-     * Returns a <code>HierarchyGroup</code> object.
+     * Information about the hierarchy group.
      * </p>
      *
      * @param hierarchyGroup <p>
-     *            Returns a <code>HierarchyGroup</code> object.
+     *            Information about the hierarchy group.
      *            </p>
      */
     public void setHierarchyGroup(HierarchyGroup hierarchyGroup) {
@@ -53,14 +53,14 @@ public class DescribeUserHierarchyGroupResult implements Serializable {
 
     /**
      * <p>
-     * Returns a <code>HierarchyGroup</code> object.
+     * Information about the hierarchy group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hierarchyGroup <p>
-     *            Returns a <code>HierarchyGroup</code> object.
+     *            Information about the hierarchy group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

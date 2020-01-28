@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -126,6 +126,21 @@ public interface AmazonRekognition {
      * box of the face and confidence value.
      * </p>
      * <p>
+     * The <code>QualityFilter</code> input parameter allows you to filter out
+     * detected faces that don’t meet a required quality bar. The quality bar is
+     * based on a variety of common use cases. Use <code>QualityFilter</code> to
+     * set the quality bar by specifying <code>LOW</code>, <code>MEDIUM</code>,
+     * or <code>HIGH</code>. If you do not want to filter detected faces,
+     * specify <code>NONE</code>. The default value is <code>NONE</code>.
+     * </p>
+     * <note>
+     * <p>
+     * To use quality filtering, you need a collection associated with version 3
+     * of the face model or higher. To get the version of the face model
+     * associated with a collection, call <a>DescribeCollection</a>.
+     * </p>
+     * </note>
+     * <p>
      * If the image doesn't contain Exif metadata, <code>CompareFaces</code>
      * returns orientation information for the source and target images. Use
      * these values to display the images with the correct image orientation.
@@ -217,6 +232,88 @@ public interface AmazonRekognition {
      */
     CreateCollectionResult createCollection(CreateCollectionRequest createCollectionRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new Amazon Rekognition Custom Labels project. A project is a
+     * logical grouping of resources (images, Labels, models) and operations
+     * (training, evaluation and detection).
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CreateProject</code> action.
+     * </p>
+     * 
+     * @param createProjectRequest
+     * @return createProjectResult The response from the CreateProject service
+     *         method, as returned by Amazon Rekognition.
+     * @throws ResourceInUseException
+     * @throws LimitExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateProjectResult createProject(CreateProjectRequest createProjectRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new version of a model and begins training. Models are managed
+     * as part of an Amazon Rekognition Custom Labels project. You can specify
+     * one training dataset and one testing dataset. The response from
+     * <code>CreateProjectVersion</code> is an Amazon Resource Name (ARN) for
+     * the version of the model.
+     * </p>
+     * <p>
+     * Training takes a while to complete. You can get the current status by
+     * calling <a>DescribeProjectVersions</a>.
+     * </p>
+     * <p>
+     * Once training has successfully completed, call
+     * <a>DescribeProjectVersions</a> to get the training results and evaluate
+     * the model.
+     * </p>
+     * <p>
+     * After evaluating the model, you start the model by calling
+     * <a>StartProjectVersion</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CreateProjectVersion</code> action.
+     * </p>
+     * 
+     * @param createProjectVersionRequest
+     * @return createProjectVersionResult The response from the
+     *         CreateProjectVersion service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateProjectVersionResult createProjectVersion(
+            CreateProjectVersionRequest createProjectVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -394,6 +491,71 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Lists and describes the models in an Amazon Rekognition Custom Labels
+     * project. You can specify up to 10 model versions in
+     * <code>ProjectVersionArns</code>. If you don't specify a value,
+     * descriptions for all models are returned.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DescribeProjectVersions</code> action.
+     * </p>
+     * 
+     * @param describeProjectVersionsRequest
+     * @return describeProjectVersionsResult The response from the
+     *         DescribeProjectVersions service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws InvalidPaginationTokenException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeProjectVersionsResult describeProjectVersions(
+            DescribeProjectVersionsRequest describeProjectVersionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists and gets information about your Amazon Rekognition Custom Labels
+     * projects.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DescribeProjects</code> action.
+     * </p>
+     * 
+     * @param describeProjectsRequest
+     * @return describeProjectsResult The response from the DescribeProjects
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InvalidPaginationTokenException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeProjectsResult describeProjects(DescribeProjectsRequest describeProjectsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides information about a stream processor created by
      * <a>CreateStreamProcessor</a>. You can get information about the input and
      * output streams, the input parameters for the face recognition being
@@ -424,6 +586,79 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Detects custom labels in a supplied image by using an Amazon Rekognition
+     * Custom Labels model.
+     * </p>
+     * <p>
+     * You specify which version of a model version to use by using the
+     * <code>ProjectVersionArn</code> input parameter.
+     * </p>
+     * <p>
+     * You pass the input image as base64-encoded image bytes or as a reference
+     * to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
+     * Rekognition operations, passing image bytes is not supported. The image
+     * must be either a PNG or JPEG formatted file.
+     * </p>
+     * <p>
+     * For each object that the model version detects on an image, the API
+     * returns a (<code>CustomLabel</code>) object in an array (
+     * <code>CustomLabels</code>). Each <code>CustomLabel</code> object provides
+     * the label name (<code>Name</code>), the level of confidence that the
+     * image contains the object (<code>Confidence</code>), and object location
+     * information, if it exists, for the label on the image (
+     * <code>Geometry</code>).
+     * </p>
+     * <p>
+     * During training model calculates a threshold value that determines if a
+     * prediction for a label is true. By default,
+     * <code>DetectCustomLabels</code> doesn't return labels whose confidence
+     * value is below the model's calculated threshold value. To filter labels
+     * that are returned, specify a value for <code>MinConfidence</code> that is
+     * higher than the model's calculated threshold. You can get the model's
+     * calculated threshold from the model's training results shown in the
+     * Amazon Rekognition Custom Labels console. To get all labels, regardless
+     * of confidence, specify a <code>MinConfidence</code> value of 0.
+     * </p>
+     * <p>
+     * You can also add the <code>MaxResults</code> parameter to limit the
+     * number of labels returned.
+     * </p>
+     * <p>
+     * This is a stateless API operation. That is, the operation does not
+     * persist any data.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DetectCustomLabels</code> action.
+     * </p>
+     * 
+     * @param detectCustomLabelsRequest
+     * @return detectCustomLabelsResult The response from the DetectCustomLabels
+     *         service method, as returned by Amazon Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws ResourceNotReadyException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidParameterException
+     * @throws ImageTooLargeException
+     * @throws LimitExceededException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidImageFormatException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DetectCustomLabelsResult detectCustomLabels(DetectCustomLabelsRequest detectCustomLabelsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Detects faces within an image that is provided as input.
      * </p>
      * <p>
@@ -431,8 +666,8 @@ public interface AmazonRekognition {
      * each face detected, the operation returns face details. These details
      * include a bounding box of the face, a confidence value (that the bounding
      * box contains a face), and a fixed set of attributes such as facial
-     * landmarks (for example, coordinates of eye and mouth), gender, presence
-     * of beard, sunglasses, and so on.
+     * landmarks (for example, coordinates of eye and mouth), presence of beard,
+     * sunglasses, and so on.
      * </p>
      * <p>
      * The face-detection algorithm is most effective on frontal faces. For
@@ -601,10 +836,10 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * Detects explicit or suggestive adult content in a specified JPEG or PNG
-     * format image. Use <code>DetectModerationLabels</code> to moderate images
-     * depending on your requirements. For example, you might want to filter
-     * images that contain nudity, but not images containing suggestive content.
+     * Detects unsafe content in a specified JPEG or PNG format image. Use
+     * <code>DetectModerationLabels</code> to moderate images depending on your
+     * requirements. For example, you might want to filter images that contain
+     * nudity, but not images containing suggestive content.
      * </p>
      * <p>
      * To filter images, use the labels returned by
@@ -634,6 +869,7 @@ public interface AmazonRekognition {
      * @throws ThrottlingException
      * @throws ProvisionedThroughputExceededException
      * @throws InvalidImageFormatException
+     * @throws HumanLoopQuotaExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -842,17 +1078,17 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * Gets the content moderation analysis results for a Amazon Rekognition
-     * Video analysis started by <a>StartContentModeration</a>.
+     * Gets the unsafe content analysis results for a Amazon Rekognition Video
+     * analysis started by <a>StartContentModeration</a>.
      * </p>
      * <p>
-     * Content moderation analysis of a video is an asynchronous operation. You
+     * Unsafe content analysis of a video is an asynchronous operation. You
      * start analysis by calling <a>StartContentModeration</a> which returns a
      * job identifier (<code>JobId</code>). When analysis finishes, Amazon
      * Rekognition Video publishes a completion status to the Amazon Simple
      * Notification Service topic registered in the initial call to
-     * <code>StartContentModeration</code>. To get the results of the content
-     * moderation analysis, first check that the status value published to the
+     * <code>StartContentModeration</code>. To get the results of the unsafe
+     * content analysis, first check that the status value published to the
      * Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
      * <code>GetContentModeration</code> and pass the job identifier (
      * <code>JobId</code>) from the initial call to
@@ -863,8 +1099,8 @@ public interface AmazonRekognition {
      * Rekognition Devlopers Guide.
      * </p>
      * <p>
-     * <code>GetContentModeration</code> returns detected content moderation
-     * labels, and the time they are detected, in an array,
+     * <code>GetContentModeration</code> returns detected unsafe content labels,
+     * and the time they are detected, in an array,
      * <code>ModerationLabels</code>, of <a>ContentModerationDetection</a>
      * objects.
      * </p>
@@ -1231,18 +1467,19 @@ public interface AmazonRekognition {
      * </p>
      * <p>
      * The <code>QualityFilter</code> input parameter allows you to filter out
-     * detected faces that don’t meet the required quality bar chosen by Amazon
-     * Rekognition. The quality bar is based on a variety of common use cases.
-     * By default, <code>IndexFaces</code> filters detected faces. You can also
-     * explicitly filter detected faces by specifying <code>AUTO</code> for the
-     * value of <code>QualityFilter</code>. If you do not want to filter
-     * detected faces, specify <code>NONE</code>.
+     * detected faces that don’t meet a required quality bar. The quality bar is
+     * based on a variety of common use cases. By default,
+     * <code>IndexFaces</code> chooses the quality bar that's used to filter
+     * faces. You can also explicitly choose the quality bar. Use
+     * <code>QualityFilter</code>, to set the quality bar by specifying
+     * <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>. If you do
+     * not want to filter detected faces, specify <code>NONE</code>.
      * </p>
      * <note>
      * <p>
      * To use quality filtering, you need a collection associated with version 3
-     * of the face model. To get the version of the face model associated with a
-     * collection, call <a>DescribeCollection</a>.
+     * of the face model or higher. To get the version of the face model
+     * associated with a collection, call <a>DescribeCollection</a>.
      * </p>
      * </note>
      * <p>
@@ -1275,6 +1512,11 @@ public interface AmazonRekognition {
      * <li>
      * <p>
      * The face has an extreme pose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The face doesn’t have enough detail to be suitable for face search.
      * </p>
      * </li>
      * </ul>
@@ -1311,10 +1553,10 @@ public interface AmazonRekognition {
      * If you request all facial attributes (by using the
      * <code>detectionAttributes</code> parameter), Amazon Rekognition returns
      * detailed facial attributes, such as facial landmarks (for example,
-     * location of eye and mouth) and other facial attributes like gender. If
-     * you provide the same image, specify the same collection, and use the same
-     * external ID in the <code>IndexFaces</code> operation, Amazon Rekognition
-     * doesn't save duplicate face metadata.
+     * location of eye and mouth) and other facial attributes. If you provide
+     * the same image, specify the same collection, and use the same external ID
+     * in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't save
+     * duplicate face metadata.
      * </p>
      * <p/>
      * <p>
@@ -1608,6 +1850,22 @@ public interface AmazonRekognition {
      * Rekognition Developer Guide.
      * </p>
      * <p>
+     * The <code>QualityFilter</code> input parameter allows you to filter out
+     * detected faces that don’t meet a required quality bar. The quality bar is
+     * based on a variety of common use cases. Use <code>QualityFilter</code> to
+     * set the quality bar for filtering by specifying <code>LOW</code>,
+     * <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter
+     * detected faces, specify <code>NONE</code>. The default value is
+     * <code>NONE</code>.
+     * </p>
+     * <note>
+     * <p>
+     * To use quality filtering, you need a collection associated with version 3
+     * of the face model or higher. To get the version of the face model
+     * associated with a collection, call <a>DescribeCollection</a>.
+     * </p>
+     * </note>
+     * <p>
      * This operation requires permissions to perform the
      * <code>rekognition:SearchFacesByImage</code> action.
      * </p>
@@ -1686,24 +1944,22 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * Starts asynchronous detection of explicit or suggestive adult content in
-     * a stored video.
+     * Starts asynchronous detection of unsafe content in a stored video.
      * </p>
      * <p>
      * Amazon Rekognition Video can moderate content in a video stored in an
      * Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the
      * filename of the video. <code>StartContentModeration</code> returns a job
      * identifier (<code>JobId</code>) which you use to get the results of the
-     * analysis. When content moderation analysis is finished, Amazon
-     * Rekognition Video publishes a completion status to the Amazon Simple
-     * Notification Service topic that you specify in
-     * <code>NotificationChannel</code>.
+     * analysis. When unsafe content analysis is finished, Amazon Rekognition
+     * Video publishes a completion status to the Amazon Simple Notification
+     * Service topic that you specify in <code>NotificationChannel</code>.
      * </p>
      * <p>
-     * To get the results of the content moderation analysis, first check that
-     * the status value published to the Amazon SNS topic is
-     * <code>SUCCEEDED</code>. If so, call <a>GetContentModeration</a> and pass
-     * the job identifier (<code>JobId</code>) from the initial call to
+     * To get the results of the unsafe content analysis, first check that the
+     * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
+     * If so, call <a>GetContentModeration</a> and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
      * <code>StartContentModeration</code>.
      * </p>
      * <p>
@@ -1927,6 +2183,51 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Starts the running of the version of a model. Starting a model takes a
+     * while to complete. To check the current state of the model, use
+     * <a>DescribeProjectVersions</a>.
+     * </p>
+     * <p>
+     * Once the model is running, you can detect custom labels in new images by
+     * calling <a>DetectCustomLabels</a>.
+     * </p>
+     * <note>
+     * <p>
+     * You are charged for the amount of time that the model is running. To stop
+     * a running model, call <a>StopProjectVersion</a>.
+     * </p>
+     * </note>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:StartProjectVersion</code> action.
+     * </p>
+     * 
+     * @param startProjectVersionRequest
+     * @return startProjectVersionResult The response from the
+     *         StartProjectVersion service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws LimitExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartProjectVersionResult startProjectVersion(
+            StartProjectVersionRequest startProjectVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Starts processing a stream processor. You create a stream processor by
      * calling <a>CreateStreamProcessor</a>. To tell
      * <code>StartStreamProcessor</code> which stream processor to start, use
@@ -1956,6 +2257,33 @@ public interface AmazonRekognition {
     StartStreamProcessorResult startStreamProcessor(
             StartStreamProcessorRequest startStreamProcessorRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops a running model. The operation might take a while to complete. To
+     * check the current status, call <a>DescribeProjectVersions</a>.
+     * </p>
+     * 
+     * @param stopProjectVersionRequest
+     * @return stopProjectVersionResult The response from the StopProjectVersion
+     *         service method, as returned by Amazon Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopProjectVersionResult stopProjectVersion(StopProjectVersionRequest stopProjectVersionRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

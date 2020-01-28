@@ -23,6 +23,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.amazonaws.AbortedException;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.internal.crypto.CryptoTestUtils;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -51,14 +53,15 @@ public class S3InterruptIntegrationTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        s3 = new AmazonS3Client(awsTestCredentials());
+        s3 = new AmazonS3Client(awsTestCredentials(), Region.getRegion(Regions.DEFAULT_REGION));
         tryCreateBucket(s3, TEST_BUCKET);
     }
 
     @AfterClass
     public static void cleanup() throws Exception {
         if (cleanup) {
-            final AmazonS3Client s3 = new AmazonS3Client(awsTestCredentials());
+            final AmazonS3Client s3 = new AmazonS3Client(awsTestCredentials(),
+                    Region.getRegion(Regions.DEFAULT_REGION));
             deleteBucketAndAllContents(s3, TEST_BUCKET);
         }
         s3.shutdown();

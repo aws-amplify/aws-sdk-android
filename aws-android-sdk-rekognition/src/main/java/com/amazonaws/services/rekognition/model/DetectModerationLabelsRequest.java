@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Detects explicit or suggestive adult content in a specified JPEG or PNG
- * format image. Use <code>DetectModerationLabels</code> to moderate images
- * depending on your requirements. For example, you might want to filter images
- * that contain nudity, but not images containing suggestive content.
+ * Detects unsafe content in a specified JPEG or PNG format image. Use
+ * <code>DetectModerationLabels</code> to moderate images depending on your
+ * requirements. For example, you might want to filter images that contain
+ * nudity, but not images containing suggestive content.
  * </p>
  * <p>
  * To filter images, use the labels returned by
@@ -73,6 +73,14 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>0 - 100<br/>
      */
     private Float minConfidence;
+
+    /**
+     * <p>
+     * Sets up the configuration for human evaluation, including the
+     * FlowDefinition the image will be sent to.
+     * </p>
+     */
+    private HumanLoopConfig humanLoopConfig;
 
     /**
      * Default constructor for DetectModerationLabelsRequest object. Callers
@@ -290,6 +298,57 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * Sets up the configuration for human evaluation, including the
+     * FlowDefinition the image will be sent to.
+     * </p>
+     *
+     * @return <p>
+     *         Sets up the configuration for human evaluation, including the
+     *         FlowDefinition the image will be sent to.
+     *         </p>
+     */
+    public HumanLoopConfig getHumanLoopConfig() {
+        return humanLoopConfig;
+    }
+
+    /**
+     * <p>
+     * Sets up the configuration for human evaluation, including the
+     * FlowDefinition the image will be sent to.
+     * </p>
+     *
+     * @param humanLoopConfig <p>
+     *            Sets up the configuration for human evaluation, including the
+     *            FlowDefinition the image will be sent to.
+     *            </p>
+     */
+    public void setHumanLoopConfig(HumanLoopConfig humanLoopConfig) {
+        this.humanLoopConfig = humanLoopConfig;
+    }
+
+    /**
+     * <p>
+     * Sets up the configuration for human evaluation, including the
+     * FlowDefinition the image will be sent to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param humanLoopConfig <p>
+     *            Sets up the configuration for human evaluation, including the
+     *            FlowDefinition the image will be sent to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectModerationLabelsRequest withHumanLoopConfig(HumanLoopConfig humanLoopConfig) {
+        this.humanLoopConfig = humanLoopConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -303,7 +362,9 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
         if (getImage() != null)
             sb.append("Image: " + getImage() + ",");
         if (getMinConfidence() != null)
-            sb.append("MinConfidence: " + getMinConfidence());
+            sb.append("MinConfidence: " + getMinConfidence() + ",");
+        if (getHumanLoopConfig() != null)
+            sb.append("HumanLoopConfig: " + getHumanLoopConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -316,6 +377,8 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getImage() == null) ? 0 : getImage().hashCode());
         hashCode = prime * hashCode
                 + ((getMinConfidence() == null) ? 0 : getMinConfidence().hashCode());
+        hashCode = prime * hashCode
+                + ((getHumanLoopConfig() == null) ? 0 : getHumanLoopConfig().hashCode());
         return hashCode;
     }
 
@@ -338,6 +401,11 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getMinConfidence() != null
                 && other.getMinConfidence().equals(this.getMinConfidence()) == false)
+            return false;
+        if (other.getHumanLoopConfig() == null ^ this.getHumanLoopConfig() == null)
+            return false;
+        if (other.getHumanLoopConfig() != null
+                && other.getHumanLoopConfig().equals(this.getHumanLoopConfig()) == false)
             return false;
         return true;
     }

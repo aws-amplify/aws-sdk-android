@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * associated with a CMK. Aliases that AWS creates in your account, including
  * predefined aliases, do not count against your <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
- * >AWS KMS aliases limit</a>.
+ * >AWS KMS aliases quota</a>.
  * </p>
  */
 public class ListAliasesRequest extends AmazonWebServiceRequest implements Serializable {

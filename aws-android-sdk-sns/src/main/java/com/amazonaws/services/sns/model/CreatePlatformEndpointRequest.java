@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates an endpoint for a device and mobile app on one of the supported push
- * notification services, such as GCM and APNS.
+ * notification services, such as FCM and APNS.
  * <code>CreatePlatformEndpoint</code> requires the PlatformApplicationArn that
  * is returned from <code>CreatePlatformApplication</code>. The EndpointArn that
  * is returned when using <code>CreatePlatformEndpoint</code> can then be used
@@ -32,14 +32,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * already owns an endpoint with the same device token and attributes, that
  * endpoint's ARN is returned without creating a new endpoint. For more
  * information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+ * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>.
  * </p>
  * <p>
  * When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes
  * must be provided: ChannelId and UserId. The token field must also contain the
  * ChannelId. For more information, see <a href=
- * "http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html"
+ * "https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html"
  * >Creating an Amazon SNS Endpoint for Baidu</a>.
  * </p>
  */
@@ -58,7 +58,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using GCM or ADM, the device token equivalent is called the registration
+     * using FCM or ADM, the device token equivalent is called the registration
      * ID.
      * </p>
      */
@@ -75,7 +75,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      */
@@ -138,7 +138,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using GCM or ADM, the device token equivalent is called the registration
+     * using FCM or ADM, the device token equivalent is called the registration
      * ID.
      * </p>
      *
@@ -147,7 +147,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *         on a device. The specific name for Token will vary, depending on
      *         which notification service is being used. For example, when using
      *         APNS as the notification service, you need the device token.
-     *         Alternatively, when using GCM or ADM, the device token equivalent
+     *         Alternatively, when using FCM or ADM, the device token equivalent
      *         is called the registration ID.
      *         </p>
      */
@@ -161,7 +161,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using GCM or ADM, the device token equivalent is called the registration
+     * using FCM or ADM, the device token equivalent is called the registration
      * ID.
      * </p>
      *
@@ -170,7 +170,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *            app on a device. The specific name for Token will vary,
      *            depending on which notification service is being used. For
      *            example, when using APNS as the notification service, you need
-     *            the device token. Alternatively, when using GCM or ADM, the
+     *            the device token. Alternatively, when using FCM or ADM, the
      *            device token equivalent is called the registration ID.
      *            </p>
      */
@@ -184,7 +184,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using GCM or ADM, the device token equivalent is called the registration
+     * using FCM or ADM, the device token equivalent is called the registration
      * ID.
      * </p>
      * <p>
@@ -196,7 +196,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *            app on a device. The specific name for Token will vary,
      *            depending on which notification service is being used. For
      *            example, when using APNS as the notification service, you need
-     *            the device token. Alternatively, when using GCM or ADM, the
+     *            the device token. Alternatively, when using FCM or ADM, the
      *            device token equivalent is called the registration ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -264,13 +264,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      *
      * @return <p>
      *         For a list of attributes, see <a href=
-     *         "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *         >SetEndpointAttributes</a>.
      *         </p>
      */
@@ -281,13 +281,13 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *            >SetEndpointAttributes</a>.
      *            </p>
      */
@@ -298,7 +298,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      * <p>
@@ -307,7 +307,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
-     *            "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      *            >SetEndpointAttributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -321,7 +321,7 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * For a list of attributes, see <a href=
-     * "http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
+     * "https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"
      * >SetEndpointAttributes</a>.
      * </p>
      * <p>

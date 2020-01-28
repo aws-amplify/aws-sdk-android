@@ -23,7 +23,8 @@ import static org.junit.Assert.fail;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.internal.crypto.CryptoTestUtils;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -44,7 +45,6 @@ import com.amazonaws.util.StringUtils;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -63,7 +63,6 @@ import java.util.Map;
  *
  * @author fulghum@amazon.com
  */
-@Ignore("TODO: test failed because of cn credentials")
 public class S3IntegrationTest extends S3IntegrationTestBase {
 
     /** Object contents to use/expect when we get/put a test object */
@@ -72,13 +71,8 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     /** Name of the test bucket these tests will create, test, delete, etc */
     private static String expectedBucketName = "integ-test-bucket-" + new Date().getTime();
 
-    /** Name of the test CN bucket these tests will create, test, delete, etc */
-    private static String expectedCnBucketName = "integ.test.cn.bucket-foobar"; // +
-                                                                                // new
-                                                                                // Date().getTime();
-
     /** Name of the test S3 account running these tests */
-    private final String expectedS3AccountOwnerName = "aws-dr-tools-test";
+    private final String expectedS3AccountOwnerName = "aws-dr-mobile-test-android";
 
     /** Name of the test key these tests will create, test, delete, etc */
     private static String expectedKey = "integ-test-key-" + new Date().getTime();
@@ -98,14 +92,6 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
                 exception.printStackTrace();
             }
         }
-
-        if (expectedCnBucketName != null) {
-            try {
-                CryptoTestUtils.deleteBucketAndAllContents(cnS3, expectedCnBucketName);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        }
     }
 
     /**
@@ -115,41 +101,19 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void createBucket() {
         CreateBucketRequest request = new CreateBucketRequest(expectedBucketName);
-        request.setCannedAcl(CannedAccessControlList.AuthenticatedRead);
+        request.setCannedAcl(CannedAccessControlList.Private);
         Bucket bucket = s3.createBucket(request);
         assertNotNull(bucket);
         assertEquals(expectedBucketName, bucket.getName());
-        S3ResponseMetadata responseMetadata = s3.getCachedResponseMetadata(request);
-        assertNotNull(responseMetadata.getHostId());
-        assertNotNull(responseMetadata.getRequestId());
+
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8).length);
         s3.putObject(expectedBucketName, expectedKey, new ByteArrayInputStream(
                 EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8)), metadata);
 
         AccessControlList bucketAcl = s3.getBucketAcl(bucket.getName());
-        assertTrue(doesAclContainGroupGrant(bucketAcl, GroupGrantee.AuthenticatedUsers,
+        assertFalse(doesAclContainGroupGrant(bucketAcl, GroupGrantee.AuthenticatedUsers,
                 Permission.Read));
-    }
-
-    /**
-     * Tests that we can correctly create an S3 bucket in the EU location for
-     * these tests to use.
-     */
-    @BeforeClass
-    public static void createCnBucket() {
-        cnS3.setEndpoint("s3.cn-north-1.amazonaws.com.cn");
-        Bucket bucket = cnS3.createBucket(expectedCnBucketName, "cn-north-1");
-        assertNotNull(bucket);
-        assertEquals(expectedCnBucketName, bucket.getName());
-        assertEquals(cnS3.getBucketLocation(expectedCnBucketName),
-                "cn-north-1");
-
-        String key = "key-with-$extended@-ascii-chars";
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength("hello-world".getBytes(StringUtils.UTF8).length);
-        cnS3.putObject(expectedCnBucketName, key,
-                new ByteArrayInputStream("hello-world".getBytes(StringUtils.UTF8)), metadata);
     }
 
     /**
@@ -205,15 +169,12 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     }
 
     /**
-     * Tests that we can correctly identify when a bucket exists or not.
+     * Tests that we can correctly identify when a bucket exists or not, using deprecated
+     * constructors. Remove when we remove the no-region constructors.
      */
     @Test
-    public void testDoesBucketExist() throws Exception {
+    public void testDoesBucketExistUsingDeprecatedConstructors() {
         assertTrue(s3.doesBucketExist(expectedBucketName)); // a bucket we own
-        assertTrue(cnS3.doesBucketExist(expectedCnBucketName)); // a bucket we
-                                                                // own in
-                                                                // another
-                                                                // region
         assertTrue(s3.doesBucketExist("s3-bucket")); // a bucket we don't own
         assertFalse(s3.doesBucketExist( // a non-existent bucket
                 "qweoiuasnxcvmnsfkljawasmnxasqwoiasdlfjamnxjkaoia-" + System.currentTimeMillis()));
@@ -225,15 +186,43 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
          * wrong. 2. returns false only if the bucket is not available.
          */
 
-        AmazonS3 noCredentialsS3 = new AmazonS3Client();
-        assertTrue(noCredentialsS3.doesBucketExist(expectedBucketName));
+        AmazonS3 unknownCredentialsS3 = new AmazonS3Client(
+                new BasicAWSCredentials("FOO", "BAR"),
+                Region.getRegion(Regions.DEFAULT_REGION));
+        assertTrue(unknownCredentialsS3.doesBucketExist(expectedBucketName));
+
+        AmazonS3 badCredentialsS3 = new AmazonS3Client(
+                new BasicAWSCredentials(credentials.getAWSAccessKeyId(), "BAD"),
+                Region.getRegion(Regions.DEFAULT_REGION));
+        assertTrue(badCredentialsS3.doesBucketExist(expectedBucketName));
+
+    }
+
+    /**
+     * Tests that we can correctly identify when a bucket exists or not.
+     */
+    @Test
+    public void testDoesBucketExist() {
+        assertTrue(s3.doesBucketExist(expectedBucketName)); // a bucket we own
+        assertTrue(s3.doesBucketExist("s3-bucket")); // a bucket we don't own
+        assertFalse(s3.doesBucketExist( // a non-existent bucket
+                "qweoiuasnxcvmnsfkljawasmnxasqwoiasdlfjamnxjkaoia-" + System.currentTimeMillis()));
+
+        /*
+         * The new implementation of @see
+         * com.amazonaws.services.s3.AmazonS3#doesBucketExist(java.lang.String)
+         * 1. returns true if the bucket exists even if the credentials are
+         * wrong. 2. returns false only if the bucket is not available.
+         */
 
         AmazonS3 unknownCredentialsS3 = new AmazonS3Client(
-                new BasicAWSCredentials("FOO", "BAR"));
+                new BasicAWSCredentials("FOO", "BAR"),
+                Region.getRegion(Regions.DEFAULT_REGION));
         assertTrue(unknownCredentialsS3.doesBucketExist(expectedBucketName));
 
         AmazonS3 badCredentialsS3 = new AmazonS3Client(new BasicAWSCredentials(
-                credentials.getAWSAccessKeyId(), "BAD"));
+                credentials.getAWSAccessKeyId(), "BAD"),
+                Region.getRegion(Regions.DEFAULT_REGION));
         assertTrue(badCredentialsS3.doesBucketExist(expectedBucketName));
 
     }
@@ -441,9 +430,6 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         ListObjectsRequest request = new ListObjectsRequest(
                 expectedBucketName, expectedKey.substring(0, 5), null, null, null);
         List<S3ObjectSummary> objects = s3.listObjects(request).getObjectSummaries();
-        S3ResponseMetadata responseMetadata = s3.getCachedResponseMetadata(request);
-        assertNotNull(responseMetadata.getHostId());
-        assertNotNull(responseMetadata.getRequestId());
 
         assertTrue(objectListContainsKey(objects, expectedKey));
 
@@ -457,8 +443,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testGetBucketLocation() {
-        assertEquals("US", s3.getBucketLocation(expectedBucketName));
-        assertEquals("cn-north-1", cnS3.getBucketLocation(expectedCnBucketName));
+        assertEquals("us-west-1", s3.getBucketLocation(expectedBucketName));
     }
 
     /*

@@ -116,6 +116,7 @@ public class InternalConfig {
         ret.put("AmazonConnectClient", new HttpClientConfig("connect"));
         ret.put("AmazonKinesisFirehoseClient", new HttpClientConfig("firehose"));
         ret.put("AWSKinesisVideoArchivedMediaClient", new HttpClientConfig("kinesisvideo"));
+        ret.put("AWSKinesisVideoSignalingClient", new HttpClientConfig("kinesisvideo"));
         ret.put("AWSIotClient", new HttpClientConfig("execute-api"));
         ret.put("AmazonLexRuntimeClient", new HttpClientConfig("runtime.lex"));
         ret.put("AmazonPinpointClient", new HttpClientConfig("mobiletargeting"));

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * A warning about an issue that occurred during asynchronous text analysis
- * (<a>StartDocumentAnalysis</a>) or asynchronous document-text detection
+ * (<a>StartDocumentAnalysis</a>) or asynchronous document text detection
  * (<a>StartDocumentTextDetection</a>).
  * </p>
  */

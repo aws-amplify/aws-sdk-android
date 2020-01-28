@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,8 +28,14 @@ public enum SecurityTokenServiceActions implements Action {
     /** Action for the AssumeRole operation. */
     AssumeRole("sts:AssumeRole"),
 
+    /** Action for the AssumeRoleWithSAML operation. */
+    AssumeRoleWithSAML("sts:AssumeRoleWithSAML"),
+
     /** Action for the AssumeRoleWithWebIdentity operation. */
     AssumeRoleWithWebIdentity("sts:AssumeRoleWithWebIdentity"),
+
+    /** Action for the DecodeAuthorizationMessage operation. */
+    DecodeAuthorizationMessage("sts:DecodeAuthorizationMessage"),
 
     /** Action for the GetAccessKeyInfo operation. */
     GetAccessKeyInfo("sts:GetAccessKeyInfo"),

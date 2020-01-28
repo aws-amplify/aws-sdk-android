@@ -37,6 +37,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 @RunWith(RobolectricTestRunner.class)
@@ -46,7 +47,7 @@ public class SharedPrefsUniqueIdServiceTest extends MobileAnalyticsTestBase {
     private static final String appId = "TestAppId";
 
     private AnalyticsContext mockAnalyticsContext = Mockito.mock(AnalyticsContext.class);
-    private Context mockAppContext = new Activity();
+    private Context mockAppContext = RuntimeEnvironment.application.getApplicationContext();
     private com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.System mockSystem = Mockito
             .mock(com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.System.class);
     private Preferences mockPreferences = Mockito.mock(Preferences.class);

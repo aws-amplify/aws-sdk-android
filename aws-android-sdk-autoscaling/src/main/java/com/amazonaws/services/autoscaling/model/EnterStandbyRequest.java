@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,6 +22,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Moves the specified instances into the standby state.
+ * </p>
+ * <p>
+ * If you choose to decrement the desired capacity of the Auto Scaling group,
+ * the instances can enter standby as long as the desired capacity of the Auto
+ * Scaling group after the instances are placed into standby is equal to or
+ * greater than the minimum capacity of the group.
+ * </p>
+ * <p>
+ * If you choose not to decrement the desired capacity of the Auto Scaling
+ * group, the Auto Scaling group launches new instances to replace the instances
+ * on standby.
  * </p>
  * <p>
  * For more information, see <a href=

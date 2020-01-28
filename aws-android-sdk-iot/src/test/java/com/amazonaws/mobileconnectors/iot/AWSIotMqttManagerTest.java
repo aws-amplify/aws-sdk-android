@@ -19,6 +19,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -32,9 +33,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE, emulateSdk = 16, reportSdk = 16)
+@Config(manifest = Config.NONE, sdk = 16)
 public class AWSIotMqttManagerTest {
 
     // This certificate is an invalid (to AWS IoT) certificate for unit testing only.
@@ -272,6 +274,30 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testConnectWithProxy() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connectWithProxy(testKeystore, "localhost", 8080, csb);
+        mockClient.mockConnectSuccess();
+
+        assertEquals(1, mockClient.connectCalls);
+        assertTrue(mockClient.mostRecentOptions.isCleanSession());
+        assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
+        assertEquals(2, csb.statuses.size());
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+    }
+
+    @Test
     public void testConnectWithLwt() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
@@ -486,11 +512,11 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 4 seconds, still 1 after 3 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
         assertEquals(1, mockClient.connectCalls);
 
         // now past 4
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         /*
         Comment out this temporarily before we upgrade to Robolectric v3
          */
@@ -528,11 +554,11 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 4 seconds, still 1 after 3 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
         assertEquals(1, mockClient.connectCalls);
 
         // now past 4
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         /*
         Comment out this temporarily before we upgrade to Robolectric v3
          */
@@ -584,12 +610,12 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 4 seconds, still 1 after 3 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(4000L);
         assertEquals(1, mockClient.connectCalls);
 
         // now past 4
-        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(5100L);
         /*
         Comment out this temporarily before we upgrade to Robolectric v3
@@ -599,12 +625,12 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 8 seconds, still 2 after 7 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(6900);
+        Robolectric.getForegroundThreadScheduler().advanceBy(6900, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(12000L);
         //assertEquals(2, mockClient.connectCalls);
 
         // now past 8
-        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(13100L);
 
         //assertEquals(3, mockClient.connectCalls);
@@ -636,12 +662,12 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 16 seconds, still 1 after 15 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(15000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(15000, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(16000L);
         assertEquals(1, mockClient.connectCalls);
 
         // now past 16
-        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(7100L);
         /*
         Comment out this temporarily before we upgrade to Robolectric v3
@@ -651,12 +677,12 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we again wait for 16 seconds, still 2 after 15 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(15900);
+        Robolectric.getForegroundThreadScheduler().advanceBy(15900, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(32000L);
         //assertEquals(2, mockClient.connectCalls);
 
         // now past 16
-        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(33100L);
 
         //assertEquals(3, mockClient.connectCalls);
@@ -687,12 +713,12 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // make sure we wait for 4 seconds, still 1 after 3 seconds
-        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(4000L);
         assertEquals(1, mockClient.connectCalls);
 
         // now past 4
-        Robolectric.getUiThreadScheduler().advanceBy(1100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
         testClient.setUnitTestMillisOverride(5100L);
 
         //assertEquals(2, mockClient.connectCalls);
@@ -704,7 +730,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
 
         // advance past reconnect time and ensure we don't attempt a reconnect
-        Robolectric.getUiThreadScheduler().advanceBy(10000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(10000, TimeUnit.MILLISECONDS);
         //assertEquals(2, mockClient.connectCalls);
         assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
     }
@@ -922,7 +948,8 @@ public class AWSIotMqttManagerTest {
         testClient.connect((AWSCredentialsProvider)null, csb);
     }
 
-    @Config(manifest = Config.NONE, reportSdk = 15)
+    @Ignore("Turns out Robolectric 3.8 itself doesn't support SDK 15")
+    @Config(manifest = Config.NONE, sdk = 15)
     @Test(expected = UnsupportedOperationException.class)
     public void testConnectSdkNotSufficient() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
@@ -2064,12 +2091,12 @@ public class AWSIotMqttManagerTest {
 
         // cause reconnect attempt
         for (int i = 0; i < 3; i++) {
-            Robolectric.getUiThreadScheduler().advanceBy(4100);
+            Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
             mockClient.mockConnectSuccess();
         }
 
         // cause all scheduled publishes to occur
-        Robolectric.getUiThreadScheduler().advanceBy(1000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1000, TimeUnit.MILLISECONDS);
         assertEquals(0, testClient.getMqttMessageQueue().size());
         assertEquals(3, mockClient.publishCalls);
     }
@@ -2108,7 +2135,7 @@ public class AWSIotMqttManagerTest {
         checkOfflinePublishingQueue(testClient);
 
         // cause reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately, still two messages in queue
@@ -2123,7 +2150,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(3, testClient.getMqttMessageQueue().size());
 
         // cause all scheduled publishes to occur
-        Robolectric.getUiThreadScheduler().advanceBy(1500);
+        Robolectric.getForegroundThreadScheduler().advanceBy(1500, TimeUnit.MILLISECONDS);
         for (int i = 0; i < 3; i++) {
             mockClient.mockConnectSuccess();
         }
@@ -2171,7 +2198,7 @@ public class AWSIotMqttManagerTest {
         checkOfflinePublishingQueue(testClient);
 
         // cause reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately, no callbacks invoked
@@ -2193,7 +2220,7 @@ public class AWSIotMqttManagerTest {
         // ---
 
         // cause next publish to occur
-        Robolectric.getUiThreadScheduler().advanceBy(250);
+        Robolectric.getForegroundThreadScheduler().advanceBy(250, TimeUnit.MILLISECONDS);
 
         // 2 publishes, same callbacks
         assertTrue(mockClient.publishCalls >= 2);
@@ -2214,7 +2241,7 @@ public class AWSIotMqttManagerTest {
         // ---
 
         // cause next publish to occur
-        Robolectric.getUiThreadScheduler().advanceBy(250);
+        Robolectric.getForegroundThreadScheduler().advanceBy(250, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // 3 publishes, same callbacks
@@ -2381,7 +2408,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
 
         // now reconnect so we can test filling the queue while connected
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately upon reconnect
@@ -2423,7 +2450,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(1, mockClient.publishCalls);
 
         // cause all scheduled publishes to occur
-        Robolectric.getUiThreadScheduler().advanceBy(3000);
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
         for (int i = 1; i <= 10; i++) {
             mockClient.mockConnectSuccess();
         }
@@ -2459,7 +2486,7 @@ public class AWSIotMqttManagerTest {
         checkOfflinePublishingQueue(testClient);
 
         // cause next reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately upon reconnect
@@ -2470,7 +2497,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(9, testClient.getMqttMessageQueue().size());
 
         // cause next reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         assertEquals(10, mockClient.publishCalls);
@@ -2505,7 +2532,7 @@ public class AWSIotMqttManagerTest {
         checkOfflinePublishingQueue(testClient);
 
         // cause reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately upon reconnect
@@ -2515,7 +2542,7 @@ public class AWSIotMqttManagerTest {
         assertEquals(AWSIotMqttQos.QOS0.asInt(), mockClient.mostRecentPublishQoS);
         assertEquals(9, testClient.getMqttMessageQueue().size());
 
-        Robolectric.getUiThreadScheduler().advanceBy(8100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(8100, TimeUnit.MILLISECONDS);
         assertEquals(9, mockClient.publishCalls);
     }
 
@@ -2557,7 +2584,7 @@ public class AWSIotMqttManagerTest {
         checkOfflinePublishingQueue(testClient);
 
         // cause reconnect attempt
-        Robolectric.getUiThreadScheduler().advanceBy(4100);
+        Robolectric.getForegroundThreadScheduler().advanceBy(4100, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // first publish occurs immediately, no callbacks invoked
@@ -2577,7 +2604,7 @@ public class AWSIotMqttManagerTest {
         // ---
 
         // cause next publish to occur
-        Robolectric.getUiThreadScheduler().advanceBy(250);
+        Robolectric.getForegroundThreadScheduler().advanceBy(250, TimeUnit.MILLISECONDS);
 
         // 2 publishes, same callbacks
         assertTrue(mockClient.publishCalls >= 2);

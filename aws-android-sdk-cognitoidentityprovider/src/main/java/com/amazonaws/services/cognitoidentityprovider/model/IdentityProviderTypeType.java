@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ public enum IdentityProviderTypeType {
     Facebook("Facebook"),
     Google("Google"),
     LoginWithAmazon("LoginWithAmazon"),
+    SignInWithApple("SignInWithApple"),
     OIDC("OIDC");
 
     private String value;
@@ -47,6 +48,7 @@ public enum IdentityProviderTypeType {
         enumMap.put("Facebook", Facebook);
         enumMap.put("Google", Google);
         enumMap.put("LoginWithAmazon", LoginWithAmazon);
+        enumMap.put("SignInWithApple", SignInWithApple);
         enumMap.put("OIDC", OIDC);
     }
 

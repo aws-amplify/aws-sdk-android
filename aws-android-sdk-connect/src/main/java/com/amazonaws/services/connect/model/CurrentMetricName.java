@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * <p>
- * A list of current metric names.
+ * The current metric names.
  * </p>
  */
 public enum CurrentMetricName {
@@ -34,7 +34,10 @@ public enum CurrentMetricName {
     AGENTS_STAFFED("AGENTS_STAFFED"),
     CONTACTS_IN_QUEUE("CONTACTS_IN_QUEUE"),
     OLDEST_CONTACT_AGE("OLDEST_CONTACT_AGE"),
-    CONTACTS_SCHEDULED("CONTACTS_SCHEDULED");
+    CONTACTS_SCHEDULED("CONTACTS_SCHEDULED"),
+    AGENTS_ON_CONTACT("AGENTS_ON_CONTACT"),
+    SLOTS_ACTIVE("SLOTS_ACTIVE"),
+    SLOTS_AVAILABLE("SLOTS_AVAILABLE");
 
     private String value;
 
@@ -60,6 +63,9 @@ public enum CurrentMetricName {
         enumMap.put("CONTACTS_IN_QUEUE", CONTACTS_IN_QUEUE);
         enumMap.put("OLDEST_CONTACT_AGE", OLDEST_CONTACT_AGE);
         enumMap.put("CONTACTS_SCHEDULED", CONTACTS_SCHEDULED);
+        enumMap.put("AGENTS_ON_CONTACT", AGENTS_ON_CONTACT);
+        enumMap.put("SLOTS_ACTIVE", SLOTS_ACTIVE);
+        enumMap.put("SLOTS_AVAILABLE", SLOTS_AVAILABLE);
     }
 
     /**

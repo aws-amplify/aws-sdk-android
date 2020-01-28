@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -71,6 +71,21 @@ public class TestInvokeAuthorizerRequestMarshaller implements
                 String tokenSignature = testInvokeAuthorizerRequest.getTokenSignature();
                 jsonWriter.name("tokenSignature");
                 jsonWriter.value(tokenSignature);
+            }
+            if (testInvokeAuthorizerRequest.getHttpContext() != null) {
+                HttpContext httpContext = testInvokeAuthorizerRequest.getHttpContext();
+                jsonWriter.name("httpContext");
+                HttpContextJsonMarshaller.getInstance().marshall(httpContext, jsonWriter);
+            }
+            if (testInvokeAuthorizerRequest.getMqttContext() != null) {
+                MqttContext mqttContext = testInvokeAuthorizerRequest.getMqttContext();
+                jsonWriter.name("mqttContext");
+                MqttContextJsonMarshaller.getInstance().marshall(mqttContext, jsonWriter);
+            }
+            if (testInvokeAuthorizerRequest.getTlsContext() != null) {
+                TlsContext tlsContext = testInvokeAuthorizerRequest.getTlsContext();
+                jsonWriter.name("tlsContext");
+                TlsContextJsonMarshaller.getInstance().marshall(tlsContext, jsonWriter);
             }
 
             jsonWriter.endObject();

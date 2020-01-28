@@ -15,6 +15,12 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.unauth;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoIdentityProviderUnitTestBase;
@@ -22,36 +28,36 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.*;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.utils.*;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
-import com.amazonaws.services.cognitoidentityprovider.model.*;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
+import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
+import com.amazonaws.services.cognitoidentityprovider.model.SignUpRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
+import com.amazonaws.services.cognitoidentityprovider.model.UnexpectedLambdaException;
+
+import junit.framework.Assert;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
-
+import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
 
+import static junit.framework.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 
 @RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProviderUnitTestBase {
@@ -215,7 +221,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				
 				// Verify the arguments
 				ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -231,10 +237,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		        
 		        // Verify results
 				assertNotNull(user);
-				assertNotNull(signUpState);
-				assertNotNull(var3);
+				assertNotNull(signUpResult.getUserConfirmed());
+				assertNotNull(signUpResult.getCodeDeliveryDetails());
 				assertEquals(TEST_USER_NAME, user.getUserId());
-				assertEquals(signUpState, expected_result_boolean);
+				assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
 			}
 
 			@Override
@@ -268,7 +274,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
         testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
             @Override
-            public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+            public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 
                 // Verify the arguments
                 ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -286,10 +292,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
                 
                 // Verify results
                 assertNotNull(user);
-                assertNotNull(signUpState);
-                assertNotNull(var3);
+                assertNotNull(signUpResult.getUserConfirmed());
+                assertNotNull(signUpResult.getCodeDeliveryDetails());
                 assertEquals(TEST_USER_NAME, user.getUserId());
-                assertEquals(signUpState, expected_result_boolean);
+                assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
             }
 
             @Override
@@ -314,7 +320,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
         testPool.signUp(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, null, new SignUpHandler(){
 
             @Override
-            public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+            public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
                 
                 // Verify the arguments
                 ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -331,10 +337,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
                 
                 // Verify results
                 assertNotNull(user);
-                assertNotNull(signUpState);
-                assertNotNull(var3);
+                assertNotNull(signUpResult.getUserConfirmed());
+                assertNotNull(signUpResult.getCodeDeliveryDetails());
                 assertEquals(TEST_USER_NAME, user.getUserId());
-                assertEquals(signUpState, expected_result_boolean);
+                assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
             }
 
             @Override
@@ -354,7 +360,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		testPool.signUpInBackground(TEST_USER_NAME, TEST_USER_PASSWORD, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				
 				// Verify the arguments
 				ArgumentCaptor<SignUpRequest> argumentCaptor = ArgumentCaptor.forClass(SignUpRequest.class);
@@ -370,10 +376,10 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		        assertEquals(3, requestSent.getValidationData().size());
 		        
 				assertNotNull(user);
-				assertNotNull(signUpState);
-				assertNotNull(var3);
+				assertNotNull(signUpResult.getUserConfirmed());
+				assertNotNull(signUpResult.getCodeDeliveryDetails());
 				assertEquals(TEST_USER_NAME, user.getUserId());
-				assertEquals(signUpState, expected_result_boolean);
+				assertEquals(signUpResult.getUserConfirmed(), expected_result_boolean);
 			}
 
 			@Override
@@ -395,9 +401,9 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
-				assertNotNull(signUpState);
+				assertNotNull(signUpResult.getUserConfirmed());
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
 
@@ -420,7 +426,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
@@ -444,7 +450,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 				, TEST_IN_USER_ATTRIBUTES_LIST, TEST_IN_VALIDATION_DATA, new SignUpHandler(){
 
 			@Override
-			public void onSuccess(CognitoUser user, boolean signUpState, CognitoUserCodeDeliveryDetails var3) {
+			public void onSuccess(CognitoUser user, SignUpResult signUpResult) {
 				assertNotNull(user);
 				assertEquals(TEST_USER_NAME, user.getUserId());
 			}
@@ -456,4 +462,27 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 			}
 		});
 	}
+
+	private static final String SHARED_PREFERENCES_NAME = "CognitoIdentityProviderCache";
+
+	@Test
+	public void testCacheWithEncryptionKeyNotRetrieved() throws Exception {
+		SharedPreferences sharedPreferencesForEncryptionMaterials = appContext
+				.getSharedPreferences(SHARED_PREFERENCES_NAME + ".encryptionKey", Context.MODE_PRIVATE);
+
+		// Test with a user cached in shared preferences
+		awsKeyValueStorageUtility.put("CognitoIdentityProvider." + TEST_CLIENT_ID + ".LastAuthUser",
+				TEST_USER_NAME);
+		CognitoUser user = testPool.getCurrentUser();
+		assertNotNull(user);
+		String username = user.getUserId();
+		assertEquals(TEST_USER_NAME, username);
+
+		deleteAllEncryptionKeys();
+
+		CognitoUserPool testPoolAfterKeyDeleted = new CognitoUserPool(appContext, TEST_USER_POOL, TEST_CLIENT_ID, TEST_CLIENT_SECRET);
+		AWSKeyValueStore store = getAWSKeyValueStorageUtility(testPoolAfterKeyDeleted);
+		assertNull(store.get("CognitoIdentityProvider." + TEST_CLIENT_ID + ".LastAuthUser"));
+	}
+
 }

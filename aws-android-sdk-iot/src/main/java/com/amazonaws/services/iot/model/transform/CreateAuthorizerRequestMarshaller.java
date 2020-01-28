@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -90,6 +90,11 @@ public class CreateAuthorizerRequestMarshaller implements
                 String status = createAuthorizerRequest.getStatus();
                 jsonWriter.name("status");
                 jsonWriter.value(status);
+            }
+            if (createAuthorizerRequest.getSigningDisabled() != null) {
+                Boolean signingDisabled = createAuthorizerRequest.getSigningDisabled();
+                jsonWriter.name("signingDisabled");
+                jsonWriter.value(signingDisabled);
             }
 
             jsonWriter.endObject();

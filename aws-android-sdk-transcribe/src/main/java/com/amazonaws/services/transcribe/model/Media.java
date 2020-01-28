@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -48,6 +48,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String mediaFileUri;
 
@@ -57,16 +58,16 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -76,6 +77,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
      *         The S3 location of the input media file. The URI must be in the
@@ -83,16 +85,16 @@ public class Media implements Serializable {
      *         form is:
      *         </p>
      *         <p>
-     *         <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *         </p>
      *         <p>
      *         For example:
      *         </p>
      *         <p>
-     *         <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     *         <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      *         </p>
      *         <p>
-     *         <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     *         <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -110,16 +112,16 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -129,6 +131,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param mediaFileUri <p>
      *            The S3 location of the input media file. The URI must be in
@@ -136,16 +139,16 @@ public class Media implements Serializable {
      *            general form is:
      *            </p>
      *            <p>
-     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -163,16 +166,16 @@ public class Media implements Serializable {
      * region as the API endpoint that you are calling. The general form is:
      * </p>
      * <p>
-     * <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      * </p>
      * <p>
-     * <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -185,6 +188,7 @@ public class Media implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param mediaFileUri <p>
      *            The S3 location of the input media file. The URI must be in
@@ -192,16 +196,16 @@ public class Media implements Serializable {
      *            general form is:
      *            </p>
      *            <p>
-     *            <code> https://s3-&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code>
      *            </p>
      *            <p>
-     *            <code>https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,6 +47,18 @@ class ClassifierEvaluationMetricsJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("F1Score")) {
                 classifierEvaluationMetrics.setF1Score(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MicroPrecision")) {
+                classifierEvaluationMetrics.setMicroPrecision(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MicroRecall")) {
+                classifierEvaluationMetrics.setMicroRecall(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MicroF1Score")) {
+                classifierEvaluationMetrics.setMicroF1Score(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HammingLoss")) {
+                classifierEvaluationMetrics.setHammingLoss(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

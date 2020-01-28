@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      */
     private String identityPoolName;
 
@@ -109,7 +109,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @return <p>
      *         A string that you provide.
@@ -126,7 +126,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.
@@ -146,7 +146,7 @@ public class IdentityPoolShortDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w ]+<br/>
+     * <b>Pattern: </b>[\w\s+=,.@-]+<br/>
      *
      * @param identityPoolName <p>
      *            A string that you provide.

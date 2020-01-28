@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -81,6 +81,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -88,7 +96,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      */
     private String authFlow;
 
@@ -127,10 +136,112 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * This is a random key-value pair map which can contain any key and will be
-     * passed to your PreAuthentication Lambda trigger as-is. It can be used to
-     * implement additional validations around authentication.
+     * A map of custom key-value pairs that you can provide as input for certain
+     * custom workflows that this action triggers.
      * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the InitiateAuth API action, Amazon Cognito
+     * invokes the AWS Lambda functions that are specified for various triggers.
+     * The ClientMetadata value is passed as input to the functions for only the
+     * following triggers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Pre signup
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User migration
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When Amazon Cognito invokes the functions for these triggers, it passes a
+     * JSON payload, which the function receives as input. This payload contains
+     * a <code>validationData</code> attribute, which provides the data that you
+     * assigned to the ClientMetadata parameter in your InitiateAuth request. In
+     * your function code in AWS Lambda, you can process the
+     * <code>validationData</code> value to enhance your workflow for your
+     * specific needs.
+     * </p>
+     * <p>
+     * When you use the InitiateAuth API action, Amazon Cognito also invokes the
+     * functions for the following triggers, but it does not provide the
+     * ClientMetadata value as input:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Post authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Custom message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre token generation
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Create auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Define auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Verify auth challenge
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      */
     private java.util.Map<String, String> clientMetadata;
 
@@ -218,6 +329,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -225,7 +344,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @return <p>
      *         The authentication flow for this call to execute. The API action
@@ -281,6 +401,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *         USERNAME and PASSWORD are passed directly. If a user migration
      *         Lambda trigger is set, this flow will invoke the user migration
      *         Lambda if the USERNAME is not found in the user pool.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     *         authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     *         authentication flow. In this flow, Cognito receives the password
+     *         in the request instead of using the SRP process to verify
+     *         passwords.
      *         </p>
      *         </li>
      *         </ul>
@@ -349,6 +478,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -356,7 +493,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -413,6 +551,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -481,6 +628,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -491,7 +646,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -548,6 +704,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -619,6 +784,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -626,7 +799,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -683,6 +857,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -751,6 +934,14 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * not found in the user pool.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user password
+     * authentication. This replaces the <code>ADMIN_NO_SRP_AUTH</code>
+     * authentication flow. In this flow, Cognito receives the password in the
+     * request instead of using the SRP process to verify passwords.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -761,7 +952,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER_SRP_AUTH, REFRESH_TOKEN_AUTH, REFRESH_TOKEN,
-     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH
+     * CUSTOM_AUTH, ADMIN_NO_SRP_AUTH, USER_PASSWORD_AUTH,
+     * ADMIN_USER_PASSWORD_AUTH
      *
      * @param authFlow <p>
      *            The authentication flow for this call to execute. The API
@@ -818,6 +1010,15 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            Lambda trigger is set, this flow will invoke the user
      *            migration Lambda if the USERNAME is not found in the user
      *            pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_USER_PASSWORD_AUTH</code>: Admin-based user
+     *            password authentication. This replaces the
+     *            <code>ADMIN_NO_SRP_AUTH</code> authentication flow. In this
+     *            flow, Cognito receives the password in the request instead of
+     *            using the SRP process to verify passwords.
      *            </p>
      *            </li>
      *            </ul>
@@ -1102,17 +1303,221 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * This is a random key-value pair map which can contain any key and will be
-     * passed to your PreAuthentication Lambda trigger as-is. It can be used to
-     * implement additional validations around authentication.
+     * A map of custom key-value pairs that you can provide as input for certain
+     * custom workflows that this action triggers.
      * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the InitiateAuth API action, Amazon Cognito
+     * invokes the AWS Lambda functions that are specified for various triggers.
+     * The ClientMetadata value is passed as input to the functions for only the
+     * following triggers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Pre signup
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User migration
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When Amazon Cognito invokes the functions for these triggers, it passes a
+     * JSON payload, which the function receives as input. This payload contains
+     * a <code>validationData</code> attribute, which provides the data that you
+     * assigned to the ClientMetadata parameter in your InitiateAuth request. In
+     * your function code in AWS Lambda, you can process the
+     * <code>validationData</code> value to enhance your workflow for your
+     * specific needs.
+     * </p>
+     * <p>
+     * When you use the InitiateAuth API action, Amazon Cognito also invokes the
+     * functions for the following triggers, but it does not provide the
+     * ClientMetadata value as input:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Post authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Custom message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre token generation
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Create auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Define auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Verify auth challenge
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      *
      * @return <p>
-     *         This is a random key-value pair map which can contain any key and
-     *         will be passed to your PreAuthentication Lambda trigger as-is. It
-     *         can be used to implement additional validations around
-     *         authentication.
+     *         A map of custom key-value pairs that you can provide as input for
+     *         certain custom workflows that this action triggers.
      *         </p>
+     *         <p>
+     *         You create custom workflows by assigning AWS Lambda functions to
+     *         user pool triggers. When you use the InitiateAuth API action,
+     *         Amazon Cognito invokes the AWS Lambda functions that are
+     *         specified for various triggers. The ClientMetadata value is
+     *         passed as input to the functions for only the following triggers:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Pre signup
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Pre authentication
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         User migration
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         When Amazon Cognito invokes the functions for these triggers, it
+     *         passes a JSON payload, which the function receives as input. This
+     *         payload contains a <code>validationData</code> attribute, which
+     *         provides the data that you assigned to the ClientMetadata
+     *         parameter in your InitiateAuth request. In your function code in
+     *         AWS Lambda, you can process the <code>validationData</code> value
+     *         to enhance your workflow for your specific needs.
+     *         </p>
+     *         <p>
+     *         When you use the InitiateAuth API action, Amazon Cognito also
+     *         invokes the functions for the following triggers, but it does not
+     *         provide the ClientMetadata value as input:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Post authentication
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Custom message
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Pre token generation
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Create auth challenge
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Define auth challenge
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Verify auth challenge
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *         >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     *         <i>Amazon Cognito Developer Guide</i>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Take the following limitations into consideration when you use
+     *         the ClientMetadata parameter:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not store the ClientMetadata value. This data
+     *         is available only to AWS Lambda triggers that are assigned to a
+     *         user pool to support custom workflows. If your user pool
+     *         configuration does not include triggers, the ClientMetadata
+     *         parameter serves no purpose.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not validate the ClientMetadata value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Cognito does not encrypt the the ClientMetadata value, so
+     *         don't use it to provide sensitive information.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </note>
      */
     public java.util.Map<String, String> getClientMetadata() {
         return clientMetadata;
@@ -1120,17 +1525,223 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * This is a random key-value pair map which can contain any key and will be
-     * passed to your PreAuthentication Lambda trigger as-is. It can be used to
-     * implement additional validations around authentication.
+     * A map of custom key-value pairs that you can provide as input for certain
+     * custom workflows that this action triggers.
      * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the InitiateAuth API action, Amazon Cognito
+     * invokes the AWS Lambda functions that are specified for various triggers.
+     * The ClientMetadata value is passed as input to the functions for only the
+     * following triggers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Pre signup
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User migration
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When Amazon Cognito invokes the functions for these triggers, it passes a
+     * JSON payload, which the function receives as input. This payload contains
+     * a <code>validationData</code> attribute, which provides the data that you
+     * assigned to the ClientMetadata parameter in your InitiateAuth request. In
+     * your function code in AWS Lambda, you can process the
+     * <code>validationData</code> value to enhance your workflow for your
+     * specific needs.
+     * </p>
+     * <p>
+     * When you use the InitiateAuth API action, Amazon Cognito also invokes the
+     * functions for the following triggers, but it does not provide the
+     * ClientMetadata value as input:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Post authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Custom message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre token generation
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Create auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Define auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Verify auth challenge
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      *
      * @param clientMetadata <p>
-     *            This is a random key-value pair map which can contain any key
-     *            and will be passed to your PreAuthentication Lambda trigger
-     *            as-is. It can be used to implement additional validations
-     *            around authentication.
+     *            A map of custom key-value pairs that you can provide as input
+     *            for certain custom workflows that this action triggers.
      *            </p>
+     *            <p>
+     *            You create custom workflows by assigning AWS Lambda functions
+     *            to user pool triggers. When you use the InitiateAuth API
+     *            action, Amazon Cognito invokes the AWS Lambda functions that
+     *            are specified for various triggers. The ClientMetadata value
+     *            is passed as input to the functions for only the following
+     *            triggers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Pre signup
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pre authentication
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            User migration
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            When Amazon Cognito invokes the functions for these triggers,
+     *            it passes a JSON payload, which the function receives as
+     *            input. This payload contains a <code>validationData</code>
+     *            attribute, which provides the data that you assigned to the
+     *            ClientMetadata parameter in your InitiateAuth request. In your
+     *            function code in AWS Lambda, you can process the
+     *            <code>validationData</code> value to enhance your workflow for
+     *            your specific needs.
+     *            </p>
+     *            <p>
+     *            When you use the InitiateAuth API action, Amazon Cognito also
+     *            invokes the functions for the following triggers, but it does
+     *            not provide the ClientMetadata value as input:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Post authentication
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Custom message
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pre token generation
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Create auth challenge
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Define auth challenge
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Verify auth challenge
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Take the following limitations into consideration when you use
+     *            the ClientMetadata parameter:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not store the ClientMetadata value. This
+     *            data is available only to AWS Lambda triggers that are
+     *            assigned to a user pool to support custom workflows. If your
+     *            user pool configuration does not include triggers, the
+     *            ClientMetadata parameter serves no purpose.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not encrypt the the ClientMetadata value,
+     *            so don't use it to provide sensitive information.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </note>
      */
     public void setClientMetadata(java.util.Map<String, String> clientMetadata) {
         this.clientMetadata = clientMetadata;
@@ -1138,20 +1749,226 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * This is a random key-value pair map which can contain any key and will be
-     * passed to your PreAuthentication Lambda trigger as-is. It can be used to
-     * implement additional validations around authentication.
+     * A map of custom key-value pairs that you can provide as input for certain
+     * custom workflows that this action triggers.
      * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the InitiateAuth API action, Amazon Cognito
+     * invokes the AWS Lambda functions that are specified for various triggers.
+     * The ClientMetadata value is passed as input to the functions for only the
+     * following triggers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Pre signup
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User migration
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When Amazon Cognito invokes the functions for these triggers, it passes a
+     * JSON payload, which the function receives as input. This payload contains
+     * a <code>validationData</code> attribute, which provides the data that you
+     * assigned to the ClientMetadata parameter in your InitiateAuth request. In
+     * your function code in AWS Lambda, you can process the
+     * <code>validationData</code> value to enhance your workflow for your
+     * specific needs.
+     * </p>
+     * <p>
+     * When you use the InitiateAuth API action, Amazon Cognito also invokes the
+     * functions for the following triggers, but it does not provide the
+     * ClientMetadata value as input:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Post authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Custom message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre token generation
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Create auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Define auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Verify auth challenge
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param clientMetadata <p>
-     *            This is a random key-value pair map which can contain any key
-     *            and will be passed to your PreAuthentication Lambda trigger
-     *            as-is. It can be used to implement additional validations
-     *            around authentication.
+     *            A map of custom key-value pairs that you can provide as input
+     *            for certain custom workflows that this action triggers.
      *            </p>
+     *            <p>
+     *            You create custom workflows by assigning AWS Lambda functions
+     *            to user pool triggers. When you use the InitiateAuth API
+     *            action, Amazon Cognito invokes the AWS Lambda functions that
+     *            are specified for various triggers. The ClientMetadata value
+     *            is passed as input to the functions for only the following
+     *            triggers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Pre signup
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pre authentication
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            User migration
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            When Amazon Cognito invokes the functions for these triggers,
+     *            it passes a JSON payload, which the function receives as
+     *            input. This payload contains a <code>validationData</code>
+     *            attribute, which provides the data that you assigned to the
+     *            ClientMetadata parameter in your InitiateAuth request. In your
+     *            function code in AWS Lambda, you can process the
+     *            <code>validationData</code> value to enhance your workflow for
+     *            your specific needs.
+     *            </p>
+     *            <p>
+     *            When you use the InitiateAuth API action, Amazon Cognito also
+     *            invokes the functions for the following triggers, but it does
+     *            not provide the ClientMetadata value as input:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Post authentication
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Custom message
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pre token generation
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Create auth challenge
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Define auth challenge
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Verify auth challenge
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            the <i>Amazon Cognito Developer Guide</i>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Take the following limitations into consideration when you use
+     *            the ClientMetadata parameter:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not store the ClientMetadata value. This
+     *            data is available only to AWS Lambda triggers that are
+     *            assigned to a user pool to support custom workflows. If your
+     *            user pool configuration does not include triggers, the
+     *            ClientMetadata parameter serves no purpose.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Cognito does not encrypt the the ClientMetadata value,
+     *            so don't use it to provide sensitive information.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1162,10 +1979,112 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * This is a random key-value pair map which can contain any key and will be
-     * passed to your PreAuthentication Lambda trigger as-is. It can be used to
-     * implement additional validations around authentication.
+     * A map of custom key-value pairs that you can provide as input for certain
+     * custom workflows that this action triggers.
      * </p>
+     * <p>
+     * You create custom workflows by assigning AWS Lambda functions to user
+     * pool triggers. When you use the InitiateAuth API action, Amazon Cognito
+     * invokes the AWS Lambda functions that are specified for various triggers.
+     * The ClientMetadata value is passed as input to the functions for only the
+     * following triggers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Pre signup
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User migration
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When Amazon Cognito invokes the functions for these triggers, it passes a
+     * JSON payload, which the function receives as input. This payload contains
+     * a <code>validationData</code> attribute, which provides the data that you
+     * assigned to the ClientMetadata parameter in your InitiateAuth request. In
+     * your function code in AWS Lambda, you can process the
+     * <code>validationData</code> value to enhance your workflow for your
+     * specific needs.
+     * </p>
+     * <p>
+     * When you use the InitiateAuth API action, Amazon Cognito also invokes the
+     * functions for the following triggers, but it does not provide the
+     * ClientMetadata value as input:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Post authentication
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Custom message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pre token generation
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Create auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Define auth challenge
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Verify auth challenge
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
+     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * <i>Amazon Cognito Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Take the following limitations into consideration when you use the
+     * ClientMetadata parameter:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito does not store the ClientMetadata value. This data is
+     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * support custom workflows. If your user pool configuration does not
+     * include triggers, the ClientMetadata parameter serves no purpose.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not validate the ClientMetadata value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
+     * use it to provide sensitive information.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      * <p>
      * The method adds a new key-value pair into ClientMetadata parameter, and
      * returns a reference to this object so that method calls can be chained

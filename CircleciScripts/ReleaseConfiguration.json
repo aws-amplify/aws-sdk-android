@@ -19,6 +19,7 @@
 			"aws-android-sdk-cognitoidentityprovider",
 			"aws-android-sdk-comprehend",
 			"aws-android-sdk-connect",
+			"aws-android-sdk-connectparticipant",
 			"aws-android-sdk-core",
 			"aws-android-sdk-ddb",
 			"aws-android-sdk-ddb-document",
@@ -29,6 +30,7 @@
 			"aws-android-sdk-kinesis",
 			"aws-android-sdk-kinesisvideo",
 			"aws-android-sdk-kinesisvideo-archivedmedia",
+			"aws-android-sdk-kinesisvideo-signaling",
 			"aws-android-sdk-kms",
 			"aws-android-sdk-lambda",
 			"aws-android-sdk-lex",
@@ -179,6 +181,12 @@
 					"${service.prefix}.kinesisvideoarchivedmedia*" 
 				]  
 			},
+			{
+				title : "Amazon Kinesis Video Signaling" ,
+				packages : [
+					"${service.prefix}.kinesisvideosignaling*"
+				]
+			},
 			{ 
 				title : "Amazon Lex", 
 				packages : [ 
@@ -221,6 +229,12 @@
 				packages : [ 
 					"${service.prefix}.connect*" 
 				]  
+			},
+			{
+				title : "Amazon Connect Participant" ,
+				packages : [
+					"${service.prefix}.connectparticipant*"
+				]
 			},
 			{ 
 				title : "Amazon EC2" , 

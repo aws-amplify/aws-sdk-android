@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,13 +37,12 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
 
@@ -140,19 +139,17 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend: German ("de"),
-     *         English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), or
-     *         Portuguese ("pt"). All documents must be in the same language.
+     *         primary languages supported by Amazon Comprehend. All documents
+     *         must be in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -163,20 +160,17 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -187,23 +181,20 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -217,20 +208,17 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -241,23 +229,20 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es, fr, de, it, pt
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the endpoints and endpoint attributes for devices in a supported push
- * notification service, such as GCM and APNS. The results for
+ * notification service, such as FCM and APNS. The results for
  * <code>ListEndpointsByPlatformApplication</code> are paginated and return a
  * limited list of endpoints, up to 100. If additional records are available
  * after the first page results, then a NextToken string will be returned. To
@@ -30,8 +30,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>ListEndpointsByPlatformApplication</code> again using the NextToken
  * string received from the previous call. When there are no more records to
  * return, NextToken will be null. For more information, see <a
- * href="http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+ * href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
  * Amazon SNS Mobile Push Notifications</a>.
+ * </p>
+ * <p>
+ * This action is throttled at 30 transactions per second (TPS).
  * </p>
  */
 public class ListEndpointsByPlatformApplicationRequest extends AmazonWebServiceRequest implements

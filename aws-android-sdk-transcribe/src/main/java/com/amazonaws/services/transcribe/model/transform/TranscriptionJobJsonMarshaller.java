@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,6 +61,11 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("Transcript");
             TranscriptJsonMarshaller.getInstance().marshall(transcript, jsonWriter);
         }
+        if (transcriptionJob.getStartTime() != null) {
+            java.util.Date startTime = transcriptionJob.getStartTime();
+            jsonWriter.name("StartTime");
+            jsonWriter.value(startTime);
+        }
         if (transcriptionJob.getCreationTime() != null) {
             java.util.Date creationTime = transcriptionJob.getCreationTime();
             jsonWriter.name("CreationTime");
@@ -80,6 +85,12 @@ class TranscriptionJobJsonMarshaller {
             Settings settings = transcriptionJob.getSettings();
             jsonWriter.name("Settings");
             SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+        }
+        if (transcriptionJob.getJobExecutionSettings() != null) {
+            JobExecutionSettings jobExecutionSettings = transcriptionJob.getJobExecutionSettings();
+            jsonWriter.name("JobExecutionSettings");
+            JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

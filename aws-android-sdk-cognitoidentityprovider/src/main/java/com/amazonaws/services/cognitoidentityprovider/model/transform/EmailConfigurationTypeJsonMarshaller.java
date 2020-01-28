@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,16 @@ class EmailConfigurationTypeJsonMarshaller {
             String emailSendingAccount = emailConfigurationType.getEmailSendingAccount();
             jsonWriter.name("EmailSendingAccount");
             jsonWriter.value(emailSendingAccount);
+        }
+        if (emailConfigurationType.getFrom() != null) {
+            String from = emailConfigurationType.getFrom();
+            jsonWriter.name("From");
+            jsonWriter.value(from);
+        }
+        if (emailConfigurationType.getConfigurationSet() != null) {
+            String configurationSet = emailConfigurationType.getConfigurationSet();
+            jsonWriter.name("ConfigurationSet");
+            jsonWriter.value(configurationSet);
         }
         jsonWriter.endObject();
     }

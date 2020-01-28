@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -99,6 +99,33 @@ class KeyMetadataJsonMarshaller {
             String keyManager = keyMetadata.getKeyManager();
             jsonWriter.name("KeyManager");
             jsonWriter.value(keyManager);
+        }
+        if (keyMetadata.getCustomerMasterKeySpec() != null) {
+            String customerMasterKeySpec = keyMetadata.getCustomerMasterKeySpec();
+            jsonWriter.name("CustomerMasterKeySpec");
+            jsonWriter.value(customerMasterKeySpec);
+        }
+        if (keyMetadata.getEncryptionAlgorithms() != null) {
+            java.util.List<String> encryptionAlgorithms = keyMetadata.getEncryptionAlgorithms();
+            jsonWriter.name("EncryptionAlgorithms");
+            jsonWriter.beginArray();
+            for (String encryptionAlgorithmsItem : encryptionAlgorithms) {
+                if (encryptionAlgorithmsItem != null) {
+                    jsonWriter.value(encryptionAlgorithmsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (keyMetadata.getSigningAlgorithms() != null) {
+            java.util.List<String> signingAlgorithms = keyMetadata.getSigningAlgorithms();
+            jsonWriter.name("SigningAlgorithms");
+            jsonWriter.beginArray();
+            for (String signingAlgorithmsItem : signingAlgorithms) {
+                if (signingAlgorithmsItem != null) {
+                    jsonWriter.value(signingAlgorithmsItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

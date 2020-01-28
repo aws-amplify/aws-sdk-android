@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ import java.util.Map;
  */
 public enum Channel {
 
-    VOICE("VOICE");
+    VOICE("VOICE"),
+    CHAT("CHAT");
 
     private String value;
 
@@ -40,6 +41,7 @@ public enum Channel {
     static {
         enumMap = new HashMap<String, Channel>();
         enumMap.put("VOICE", VOICE);
+        enumMap.put("CHAT", CHAT);
     }
 
     /**

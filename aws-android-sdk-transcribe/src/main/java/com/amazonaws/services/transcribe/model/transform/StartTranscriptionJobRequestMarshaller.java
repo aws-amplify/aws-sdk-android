@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -92,10 +92,23 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("OutputBucketName");
                 jsonWriter.value(outputBucketName);
             }
+            if (startTranscriptionJobRequest.getOutputEncryptionKMSKeyId() != null) {
+                String outputEncryptionKMSKeyId = startTranscriptionJobRequest
+                        .getOutputEncryptionKMSKeyId();
+                jsonWriter.name("OutputEncryptionKMSKeyId");
+                jsonWriter.value(outputEncryptionKMSKeyId);
+            }
             if (startTranscriptionJobRequest.getSettings() != null) {
                 Settings settings = startTranscriptionJobRequest.getSettings();
                 jsonWriter.name("Settings");
                 SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+            }
+            if (startTranscriptionJobRequest.getJobExecutionSettings() != null) {
+                JobExecutionSettings jobExecutionSettings = startTranscriptionJobRequest
+                        .getJobExecutionSettings();
+                jsonWriter.name("JobExecutionSettings");
+                JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
+                        jsonWriter);
             }
 
             jsonWriter.endObject();

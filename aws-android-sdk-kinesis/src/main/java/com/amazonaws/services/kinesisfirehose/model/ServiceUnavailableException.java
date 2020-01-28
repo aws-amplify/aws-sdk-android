@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.AmazonServiceException;
  * to see the exception, throughput limits for the delivery stream may have been
  * exceeded. For more information about limits and how to request an increase,
  * see <a
- * href="http://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
+ * href="https://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
  * Kinesis Data Firehose Limits</a>.
  * </p>
  */

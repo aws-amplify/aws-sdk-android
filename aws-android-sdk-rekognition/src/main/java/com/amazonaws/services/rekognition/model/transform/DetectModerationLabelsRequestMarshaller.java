@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,6 +69,12 @@ public class DetectModerationLabelsRequestMarshaller implements
                 Float minConfidence = detectModerationLabelsRequest.getMinConfidence();
                 jsonWriter.name("MinConfidence");
                 jsonWriter.value(minConfidence);
+            }
+            if (detectModerationLabelsRequest.getHumanLoopConfig() != null) {
+                HumanLoopConfig humanLoopConfig = detectModerationLabelsRequest
+                        .getHumanLoopConfig();
+                jsonWriter.name("HumanLoopConfig");
+                HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

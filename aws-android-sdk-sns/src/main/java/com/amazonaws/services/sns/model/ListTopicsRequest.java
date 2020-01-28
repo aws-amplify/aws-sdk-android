@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * topics, up to 100. If there are more topics, a <code>NextToken</code> is also
  * returned. Use the <code>NextToken</code> parameter in a new
  * <code>ListTopics</code> call to get further results.
+ * </p>
+ * <p>
+ * This action is throttled at 30 transactions per second (TPS).
  * </p>
  */
 public class ListTopicsRequest extends AmazonWebServiceRequest implements Serializable {

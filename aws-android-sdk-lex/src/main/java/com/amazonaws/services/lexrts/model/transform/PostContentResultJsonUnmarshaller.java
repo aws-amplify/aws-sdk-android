@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@ public class PostContentResultJsonUnmarshaller implements
         if (context.getHeader("x-amz-lex-session-attributes") != null)
             postContentResult.setSessionAttributes(context
                     .getHeader("x-amz-lex-session-attributes"));
+        if (context.getHeader("x-amz-lex-sentiment") != null)
+            postContentResult.setSentimentResponse(context.getHeader("x-amz-lex-sentiment"));
         if (context.getHeader("x-amz-lex-message") != null)
             postContentResult.setMessage(context.getHeader("x-amz-lex-message"));
         if (context.getHeader("x-amz-lex-message-format") != null)
@@ -54,6 +56,8 @@ public class PostContentResultJsonUnmarshaller implements
             java.io.ByteArrayInputStream bis = new java.io.ByteArrayInputStream(bytes);
             postContentResult.setAudioStream(bis);
         }
+        if (context.getHeader("x-amz-lex-session-id") != null)
+            postContentResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
         return postContentResult;
     }
 

@@ -60,8 +60,7 @@ public class GeneratePresignedUrlRequestIntegrationTest extends AWSTestBase {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	    setUpCredentials();			
-	    s3Client = new AmazonS3Client(credentials);
-	    s3Client.setRegion(Region.getRegion(Regions.US_WEST_2));
+	    s3Client = new AmazonS3Client(credentials, Region.getRegion(Regions.US_WEST_2));
 	    s3Client.createBucket(BUCKET_NAME);
 		
 	    int poll = 0;

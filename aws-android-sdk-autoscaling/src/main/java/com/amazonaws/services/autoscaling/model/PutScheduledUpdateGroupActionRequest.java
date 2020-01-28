@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * This parameter is deprecated.
+     * This parameter is no longer used.
      * </p>
      */
     private java.util.Date time;
@@ -255,11 +255,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * This parameter is deprecated.
+     * This parameter is no longer used.
      * </p>
      *
      * @return <p>
-     *         This parameter is deprecated.
+     *         This parameter is no longer used.
      *         </p>
      */
     public java.util.Date getTime() {
@@ -268,11 +268,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * This parameter is deprecated.
+     * This parameter is no longer used.
      * </p>
      *
      * @param time <p>
-     *            This parameter is deprecated.
+     *            This parameter is no longer used.
      *            </p>
      */
     public void setTime(java.util.Date time) {
@@ -281,14 +281,14 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * This parameter is deprecated.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param time <p>
-     *            This parameter is deprecated.
+     *            This parameter is no longer used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

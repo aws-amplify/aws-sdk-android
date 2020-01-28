@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,13 @@ public enum LanguageCode {
     Fr("fr"),
     De("de"),
     It("it"),
-    Pt("pt");
+    Pt("pt"),
+    Ar("ar"),
+    Hi("hi"),
+    Ja("ja"),
+    Ko("ko"),
+    Zh("zh"),
+    ZhTW("zh-TW");
 
     private String value;
 
@@ -50,6 +56,12 @@ public enum LanguageCode {
         enumMap.put("de", De);
         enumMap.put("it", It);
         enumMap.put("pt", Pt);
+        enumMap.put("ar", Ar);
+        enumMap.put("hi", Hi);
+        enumMap.put("ja", Ja);
+        enumMap.put("ko", Ko);
+        enumMap.put("zh", Zh);
+        enumMap.put("zh-TW", ZhTW);
     }
 
     /**

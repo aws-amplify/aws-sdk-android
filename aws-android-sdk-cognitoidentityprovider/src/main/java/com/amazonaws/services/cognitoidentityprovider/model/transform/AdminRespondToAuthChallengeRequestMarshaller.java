@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -106,6 +106,21 @@ public class AdminRespondToAuthChallengeRequestMarshaller implements
                 ContextDataType contextData = adminRespondToAuthChallengeRequest.getContextData();
                 jsonWriter.name("ContextData");
                 ContextDataTypeJsonMarshaller.getInstance().marshall(contextData, jsonWriter);
+            }
+            if (adminRespondToAuthChallengeRequest.getClientMetadata() != null) {
+                java.util.Map<String, String> clientMetadata = adminRespondToAuthChallengeRequest
+                        .getClientMetadata();
+                jsonWriter.name("ClientMetadata");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> clientMetadataEntry : clientMetadata
+                        .entrySet()) {
+                    String clientMetadataValue = clientMetadataEntry.getValue();
+                    if (clientMetadataValue != null) {
+                        jsonWriter.name(clientMetadataEntry.getKey());
+                        jsonWriter.value(clientMetadataValue);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

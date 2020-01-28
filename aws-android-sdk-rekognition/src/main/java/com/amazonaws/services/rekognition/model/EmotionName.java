@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ public enum EmotionName {
     CONFUSED("CONFUSED"),
     DISGUSTED("DISGUSTED"),
     SURPRISED("SURPRISED"),
-    CALM("CALM");
+    CALM("CALM"),
+    FEAR("FEAR");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum EmotionName {
         enumMap.put("DISGUSTED", DISGUSTED);
         enumMap.put("SURPRISED", SURPRISED);
         enumMap.put("CALM", CALM);
+        enumMap.put("FEAR", FEAR);
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -72,6 +72,14 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      */
     private String status;
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     */
+    private Boolean signingDisabled;
 
     /**
      * <p>
@@ -426,6 +434,72 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether AWS IoT validates the token signature in an
+     *         authorization request.
+     *         </p>
+     */
+    public Boolean isSigningDisabled() {
+        return signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether AWS IoT validates the token signature in an
+     *         authorization request.
+     *         </p>
+     */
+    public Boolean getSigningDisabled() {
+        return signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     *
+     * @param signingDisabled <p>
+     *            Specifies whether AWS IoT validates the token signature in an
+     *            authorization request.
+     *            </p>
+     */
+    public void setSigningDisabled(Boolean signingDisabled) {
+        this.signingDisabled = signingDisabled;
+    }
+
+    /**
+     * <p>
+     * Specifies whether AWS IoT validates the token signature in an
+     * authorization request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param signingDisabled <p>
+     *            Specifies whether AWS IoT validates the token signature in an
+     *            authorization request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAuthorizerRequest withSigningDisabled(Boolean signingDisabled) {
+        this.signingDisabled = signingDisabled;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -445,7 +519,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (getTokenSigningPublicKeys() != null)
             sb.append("tokenSigningPublicKeys: " + getTokenSigningPublicKeys() + ",");
         if (getStatus() != null)
-            sb.append("status: " + getStatus());
+            sb.append("status: " + getStatus() + ",");
+        if (getSigningDisabled() != null)
+            sb.append("signingDisabled: " + getSigningDisabled());
         sb.append("}");
         return sb.toString();
     }
@@ -467,6 +543,8 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
                 + ((getTokenSigningPublicKeys() == null) ? 0 : getTokenSigningPublicKeys()
                         .hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getSigningDisabled() == null) ? 0 : getSigningDisabled().hashCode());
         return hashCode;
     }
 
@@ -504,6 +582,11 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getSigningDisabled() == null ^ this.getSigningDisabled() == null)
+            return false;
+        if (other.getSigningDisabled() != null
+                && other.getSigningDisabled().equals(this.getSigningDisabled()) == false)
             return false;
         return true;
     }

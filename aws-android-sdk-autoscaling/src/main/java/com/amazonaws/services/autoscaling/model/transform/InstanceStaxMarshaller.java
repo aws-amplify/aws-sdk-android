@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,11 @@ class InstanceStaxMarshaller {
             String instanceId = _instance.getInstanceId();
             request.addParameter(prefix, StringUtils.fromString(instanceId));
         }
+        if (_instance.getInstanceType() != null) {
+            prefix = _prefix + "InstanceType";
+            String instanceType = _instance.getInstanceType();
+            request.addParameter(prefix, StringUtils.fromString(instanceType));
+        }
         if (_instance.getAvailabilityZone() != null) {
             prefix = _prefix + "AvailabilityZone";
             String availabilityZone = _instance.getAvailabilityZone();
@@ -61,6 +66,11 @@ class InstanceStaxMarshaller {
             prefix = _prefix + "ProtectedFromScaleIn";
             Boolean protectedFromScaleIn = _instance.getProtectedFromScaleIn();
             request.addParameter(prefix, StringUtils.fromBoolean(protectedFromScaleIn));
+        }
+        if (_instance.getWeightedCapacity() != null) {
+            prefix = _prefix + "WeightedCapacity";
+            String weightedCapacity = _instance.getWeightedCapacity();
+            request.addParameter(prefix, StringUtils.fromString(weightedCapacity));
         }
     }
 

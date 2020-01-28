@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,21 +20,18 @@ import java.io.Serializable;
 public class DescribeUserResult implements Serializable {
     /**
      * <p>
-     * A <code>User</code> object that contains information about the user
-     * account and configuration settings.
+     * Information about the user account and configuration settings.
      * </p>
      */
     private User user;
 
     /**
      * <p>
-     * A <code>User</code> object that contains information about the user
-     * account and configuration settings.
+     * Information about the user account and configuration settings.
      * </p>
      *
      * @return <p>
-     *         A <code>User</code> object that contains information about the
-     *         user account and configuration settings.
+     *         Information about the user account and configuration settings.
      *         </p>
      */
     public User getUser() {
@@ -43,13 +40,11 @@ public class DescribeUserResult implements Serializable {
 
     /**
      * <p>
-     * A <code>User</code> object that contains information about the user
-     * account and configuration settings.
+     * Information about the user account and configuration settings.
      * </p>
      *
      * @param user <p>
-     *            A <code>User</code> object that contains information about the
-     *            user account and configuration settings.
+     *            Information about the user account and configuration settings.
      *            </p>
      */
     public void setUser(User user) {
@@ -58,16 +53,14 @@ public class DescribeUserResult implements Serializable {
 
     /**
      * <p>
-     * A <code>User</code> object that contains information about the user
-     * account and configuration settings.
+     * Information about the user account and configuration settings.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param user <p>
-     *            A <code>User</code> object that contains information about the
-     *            user account and configuration settings.
+     *            Information about the user account and configuration settings.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

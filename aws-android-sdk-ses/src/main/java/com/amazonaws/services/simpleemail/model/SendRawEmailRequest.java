@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -135,18 +135,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ul>
  * <important>
  * <p>
- * Do not include these X-headers in the DKIM signature; Amazon SES will remove
- * them before sending the email.
+ * Don't include these X-headers in the DKIM signature. Amazon SES removes these
+ * before it sends the email.
  * </p>
  * </important>
  * <p>
- * For most common sending authorization scenarios, we recommend that you
- * specify the <code>SourceIdentityArn</code> parameter and not the
- * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>
- * parameters. If you only specify the <code>SourceIdentityArn</code> parameter,
- * Amazon SES will set the From and Return Path addresses to the identity
- * specified in <code>SourceIdentityArn</code>. For more information about
- * sending authorization, see the <a href=
+ * If you only specify the <code>SourceIdentityArn</code> parameter, Amazon SES
+ * sets the From and Return-Path addresses to the same identity that you
+ * specified.
+ * </p>
+ * <p>
+ * For more information about sending authorization, see the <a href=
  * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
  * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
  * Developer Guide.</i>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,6 +32,26 @@ public class ThingGroupIndexingConfiguration implements Serializable {
      * <b>Allowed Values: </b>OFF, ON
      */
     private String thingGroupIndexingMode;
+
+    /**
+     * <p>
+     * Contains fields that are indexed and whose types are already known by the
+     * Fleet Indexing service.
+     * </p>
+     */
+    private java.util.List<Field> managedFields;
+
+    /**
+     * <p>
+     * A list of thing group fields to index. This list cannot contain any
+     * managed fields. Use the GetIndexingConfiguration API to get a list of
+     * managed fields.
+     * </p>
+     * <p>
+     * Contains custom field names and their data type.
+     * </p>
+     */
+    private java.util.List<Field> customFields;
 
     /**
      * <p>
@@ -132,6 +152,203 @@ public class ThingGroupIndexingConfiguration implements Serializable {
     }
 
     /**
+     * <p>
+     * Contains fields that are indexed and whose types are already known by the
+     * Fleet Indexing service.
+     * </p>
+     *
+     * @return <p>
+     *         Contains fields that are indexed and whose types are already
+     *         known by the Fleet Indexing service.
+     *         </p>
+     */
+    public java.util.List<Field> getManagedFields() {
+        return managedFields;
+    }
+
+    /**
+     * <p>
+     * Contains fields that are indexed and whose types are already known by the
+     * Fleet Indexing service.
+     * </p>
+     *
+     * @param managedFields <p>
+     *            Contains fields that are indexed and whose types are already
+     *            known by the Fleet Indexing service.
+     *            </p>
+     */
+    public void setManagedFields(java.util.Collection<Field> managedFields) {
+        if (managedFields == null) {
+            this.managedFields = null;
+            return;
+        }
+
+        this.managedFields = new java.util.ArrayList<Field>(managedFields);
+    }
+
+    /**
+     * <p>
+     * Contains fields that are indexed and whose types are already known by the
+     * Fleet Indexing service.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param managedFields <p>
+     *            Contains fields that are indexed and whose types are already
+     *            known by the Fleet Indexing service.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ThingGroupIndexingConfiguration withManagedFields(Field... managedFields) {
+        if (getManagedFields() == null) {
+            this.managedFields = new java.util.ArrayList<Field>(managedFields.length);
+        }
+        for (Field value : managedFields) {
+            this.managedFields.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains fields that are indexed and whose types are already known by the
+     * Fleet Indexing service.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param managedFields <p>
+     *            Contains fields that are indexed and whose types are already
+     *            known by the Fleet Indexing service.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ThingGroupIndexingConfiguration withManagedFields(
+            java.util.Collection<Field> managedFields) {
+        setManagedFields(managedFields);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of thing group fields to index. This list cannot contain any
+     * managed fields. Use the GetIndexingConfiguration API to get a list of
+     * managed fields.
+     * </p>
+     * <p>
+     * Contains custom field names and their data type.
+     * </p>
+     *
+     * @return <p>
+     *         A list of thing group fields to index. This list cannot contain
+     *         any managed fields. Use the GetIndexingConfiguration API to get a
+     *         list of managed fields.
+     *         </p>
+     *         <p>
+     *         Contains custom field names and their data type.
+     *         </p>
+     */
+    public java.util.List<Field> getCustomFields() {
+        return customFields;
+    }
+
+    /**
+     * <p>
+     * A list of thing group fields to index. This list cannot contain any
+     * managed fields. Use the GetIndexingConfiguration API to get a list of
+     * managed fields.
+     * </p>
+     * <p>
+     * Contains custom field names and their data type.
+     * </p>
+     *
+     * @param customFields <p>
+     *            A list of thing group fields to index. This list cannot
+     *            contain any managed fields. Use the GetIndexingConfiguration
+     *            API to get a list of managed fields.
+     *            </p>
+     *            <p>
+     *            Contains custom field names and their data type.
+     *            </p>
+     */
+    public void setCustomFields(java.util.Collection<Field> customFields) {
+        if (customFields == null) {
+            this.customFields = null;
+            return;
+        }
+
+        this.customFields = new java.util.ArrayList<Field>(customFields);
+    }
+
+    /**
+     * <p>
+     * A list of thing group fields to index. This list cannot contain any
+     * managed fields. Use the GetIndexingConfiguration API to get a list of
+     * managed fields.
+     * </p>
+     * <p>
+     * Contains custom field names and their data type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customFields <p>
+     *            A list of thing group fields to index. This list cannot
+     *            contain any managed fields. Use the GetIndexingConfiguration
+     *            API to get a list of managed fields.
+     *            </p>
+     *            <p>
+     *            Contains custom field names and their data type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ThingGroupIndexingConfiguration withCustomFields(Field... customFields) {
+        if (getCustomFields() == null) {
+            this.customFields = new java.util.ArrayList<Field>(customFields.length);
+        }
+        for (Field value : customFields) {
+            this.customFields.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of thing group fields to index. This list cannot contain any
+     * managed fields. Use the GetIndexingConfiguration API to get a list of
+     * managed fields.
+     * </p>
+     * <p>
+     * Contains custom field names and their data type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customFields <p>
+     *            A list of thing group fields to index. This list cannot
+     *            contain any managed fields. Use the GetIndexingConfiguration
+     *            API to get a list of managed fields.
+     *            </p>
+     *            <p>
+     *            Contains custom field names and their data type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ThingGroupIndexingConfiguration withCustomFields(java.util.Collection<Field> customFields) {
+        setCustomFields(customFields);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -143,7 +360,11 @@ public class ThingGroupIndexingConfiguration implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getThingGroupIndexingMode() != null)
-            sb.append("thingGroupIndexingMode: " + getThingGroupIndexingMode());
+            sb.append("thingGroupIndexingMode: " + getThingGroupIndexingMode() + ",");
+        if (getManagedFields() != null)
+            sb.append("managedFields: " + getManagedFields() + ",");
+        if (getCustomFields() != null)
+            sb.append("customFields: " + getCustomFields());
         sb.append("}");
         return sb.toString();
     }
@@ -157,6 +378,10 @@ public class ThingGroupIndexingConfiguration implements Serializable {
                 * hashCode
                 + ((getThingGroupIndexingMode() == null) ? 0 : getThingGroupIndexingMode()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getManagedFields() == null) ? 0 : getManagedFields().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomFields() == null) ? 0 : getCustomFields().hashCode());
         return hashCode;
     }
 
@@ -175,6 +400,16 @@ public class ThingGroupIndexingConfiguration implements Serializable {
             return false;
         if (other.getThingGroupIndexingMode() != null
                 && other.getThingGroupIndexingMode().equals(this.getThingGroupIndexingMode()) == false)
+            return false;
+        if (other.getManagedFields() == null ^ this.getManagedFields() == null)
+            return false;
+        if (other.getManagedFields() != null
+                && other.getManagedFields().equals(this.getManagedFields()) == false)
+            return false;
+        if (other.getCustomFields() == null ^ this.getCustomFields() == null)
+            return false;
+        if (other.getCustomFields() != null
+                && other.getCustomFields().equals(this.getCustomFields()) == false)
             return false;
         return true;
     }

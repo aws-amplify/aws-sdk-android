@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class AttributePayload implements Serializable {
      * <note>
      * <p>
      * The <code>merge</code> attribute is only valid when calling
-     * <code>UpdateThing</code>.
+     * <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      * </p>
      * </note>
      */
@@ -176,7 +176,7 @@ public class AttributePayload implements Serializable {
      * <note>
      * <p>
      * The <code>merge</code> attribute is only valid when calling
-     * <code>UpdateThing</code>.
+     * <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      * </p>
      * </note>
      *
@@ -192,7 +192,7 @@ public class AttributePayload implements Serializable {
      *         <note>
      *         <p>
      *         The <code>merge</code> attribute is only valid when calling
-     *         <code>UpdateThing</code>.
+     *         <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      *         </p>
      *         </note>
      */
@@ -213,7 +213,7 @@ public class AttributePayload implements Serializable {
      * <note>
      * <p>
      * The <code>merge</code> attribute is only valid when calling
-     * <code>UpdateThing</code>.
+     * <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      * </p>
      * </note>
      *
@@ -229,7 +229,7 @@ public class AttributePayload implements Serializable {
      *         <note>
      *         <p>
      *         The <code>merge</code> attribute is only valid when calling
-     *         <code>UpdateThing</code>.
+     *         <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      *         </p>
      *         </note>
      */
@@ -250,7 +250,7 @@ public class AttributePayload implements Serializable {
      * <note>
      * <p>
      * The <code>merge</code> attribute is only valid when calling
-     * <code>UpdateThing</code>.
+     * <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      * </p>
      * </note>
      *
@@ -266,7 +266,7 @@ public class AttributePayload implements Serializable {
      *            <note>
      *            <p>
      *            The <code>merge</code> attribute is only valid when calling
-     *            <code>UpdateThing</code>.
+     *            <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      *            </p>
      *            </note>
      */
@@ -287,7 +287,7 @@ public class AttributePayload implements Serializable {
      * <note>
      * <p>
      * The <code>merge</code> attribute is only valid when calling
-     * <code>UpdateThing</code>.
+     * <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      * </p>
      * </note>
      * <p>
@@ -306,7 +306,7 @@ public class AttributePayload implements Serializable {
      *            <note>
      *            <p>
      *            The <code>merge</code> attribute is only valid when calling
-     *            <code>UpdateThing</code>.
+     *            <code>UpdateThing</code> or <code>UpdateThingGroup</code>.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

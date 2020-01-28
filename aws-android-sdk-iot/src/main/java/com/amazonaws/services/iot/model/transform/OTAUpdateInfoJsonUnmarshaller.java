@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,11 +55,20 @@ class OTAUpdateInfoJsonUnmarshaller implements Unmarshaller<OTAUpdateInfo, JsonU
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("protocols")) {
+                oTAUpdateInfo.setProtocols(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("awsJobExecutionsRolloutConfig")) {
                 oTAUpdateInfo
                         .setAwsJobExecutionsRolloutConfig(AwsJobExecutionsRolloutConfigJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("awsJobPresignedUrlConfig")) {
+                oTAUpdateInfo.setAwsJobPresignedUrlConfig(AwsJobPresignedUrlConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("targetSelection")) {
                 oTAUpdateInfo.setTargetSelection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

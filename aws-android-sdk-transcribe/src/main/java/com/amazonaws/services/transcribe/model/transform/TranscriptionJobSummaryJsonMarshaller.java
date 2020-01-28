@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@ class TranscriptionJobSummaryJsonMarshaller {
             java.util.Date creationTime = transcriptionJobSummary.getCreationTime();
             jsonWriter.name("CreationTime");
             jsonWriter.value(creationTime);
+        }
+        if (transcriptionJobSummary.getStartTime() != null) {
+            java.util.Date startTime = transcriptionJobSummary.getStartTime();
+            jsonWriter.name("StartTime");
+            jsonWriter.value(startTime);
         }
         if (transcriptionJobSummary.getCompletionTime() != null) {
             java.util.Date completionTime = transcriptionJobSummary.getCompletionTime();

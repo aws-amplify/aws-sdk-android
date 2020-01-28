@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,23 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <code>GetCurrentMetricData</code> operation retrieves current metric data
- * from your Amazon Connect instance.
+ * Gets the real-time metric data from the specified Amazon Connect instance.
  * </p>
  * <p>
- * If you are using an IAM account, it must have permission to the
- * <code>connect:GetCurrentMetricData</code> action.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
+ * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
  * </p>
  */
 public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,22 +43,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the queue IDs, ARNs, or Channels included in the filter.
-     * You can include both IDs and ARNs in the same request. To retrieve
-     * metrics for all queues, add the queue ID or ARN for each queue in your
-     * instance. Only VOICE is supported for Channels.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      */
     private Filters filters;
@@ -70,59 +55,31 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
-     * by QUEUE, the metrics returned apply to each queue rather than aggregated
-     * for all queues. If you group by CHANNEL, you should include a Channels
-     * filter. The only supported channel is VOICE.
+     * by <code>QUEUE</code>, the metrics returned apply to each queue rather
+     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
+     * should include a Channels filter. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>CurrentMetrics</code> is returned.
+     * metrics is returned.
      * </p>
      */
     private java.util.List<String> groupings;
 
     /**
      * <p>
-     * A list of <code>CurrentMetric</code> objects for the metrics to retrieve.
-     * Each <code>CurrentMetric</code> includes a name of a metric to retrieve
-     * and the unit to use for it. You must list each metric to retrieve data
-     * for in the request.
-     * </p>
-     * <p>
-     * The following metrics are available:
+     * The metrics to retrieve. Specify the name and unit for each metric. The
+     * following metrics are available:
      * </p>
      * <dl>
-     * <dt>AGENTS_AVAILABLE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ONLINE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ON_CALL</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_STAFFED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
      * </dd>
-     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -134,7 +91,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CALL</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ONLINE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_STAFFED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -146,7 +139,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: SECONDS
      * </p>
      * </dd>
-     * <dt>CONTACTS_SCHEDULED</dt>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -164,16 +163,15 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the <a href="">NextToken</a> must use the same request
-     * parameters as the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * <code>MaxResults</code> indicates the maximum number of results to return
-     * per page in the response, between 1 and 100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -183,25 +181,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for your Amazon Connect instance. To find the ID
-     *         of your instance, open the AWS console and select Amazon Connect.
-     *         Select the alias of the instance in the Instance alias column.
-     *         The instance ID is displayed in the Overview section of your
-     *         instance settings. For example, the instance ID is the set of
-     *         characters at the end of the instance ARN, after instance/, such
-     *         as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *         The identifier of the Amazon Connect instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -210,25 +197,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -237,12 +213,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The identifier for your Amazon Connect instance. To find the ID of your
-     * instance, open the AWS console and select Amazon Connect. Select the
-     * alias of the instance in the Instance alias column. The instance ID is
-     * displayed in the Overview section of your instance settings. For example,
-     * the instance ID is the set of characters at the end of the instance ARN,
-     * after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     * The identifier of the Amazon Connect instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -252,13 +223,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier for your Amazon Connect instance. To find the
-     *            ID of your instance, open the AWS console and select Amazon
-     *            Connect. Select the alias of the instance in the Instance
-     *            alias column. The instance ID is displayed in the Overview
-     *            section of your instance settings. For example, the instance
-     *            ID is the set of characters at the end of the instance ARN,
-     *            after instance/, such as 10a4c4eb-f57e-4d4c-b602-bf39176ced07.
+     *            The identifier of the Amazon Connect instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -270,43 +235,19 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the queue IDs, ARNs, or Channels included in the filter.
-     * You can include both IDs and ARNs in the same request. To retrieve
-     * metrics for all queues, add the queue ID or ARN for each queue in your
-     * instance. Only VOICE is supported for Channels.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      *
      * @return <p>
-     *         A <code>Filters</code> object that contains a list of queue IDs
-     *         or queue ARNs, up to 100, or list of Channels to use to filter
-     *         the metrics returned in the response. Metric data is retrieved
-     *         only for the resources associated with the queue IDs, ARNs, or
-     *         Channels included in the filter. You can include both IDs and
-     *         ARNs in the same request. To retrieve metrics for all queues, add
-     *         the queue ID or ARN for each queue in your instance. Only VOICE
-     *         is supported for Channels.
-     *         </p>
-     *         <p>
-     *         To find the ARN for a queue, open the queue you want to use in
-     *         the Amazon Connect Queue editor. The ARN for the queue is
-     *         displayed in the address bar as part of the URL. For example, the
-     *         queue ARN is the set of characters at the end of the URL, after
-     *         'id=' such as
-     *         <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *         . The queue ID is also included in the URL, and is the string
-     *         after 'queue/'.
+     *         The queues, up to 100, or channels, to use to filter the metrics
+     *         returned. Metric data is retrieved only for the resources
+     *         associated with the queues or channels included in the filter.
+     *         You can include both queue IDs and queue ARNs in the same
+     *         request. The only supported channel is <code>VOICE</code>.
      *         </p>
      */
     public Filters getFilters() {
@@ -315,43 +256,20 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the queue IDs, ARNs, or Channels included in the filter.
-     * You can include both IDs and ARNs in the same request. To retrieve
-     * metrics for all queues, add the queue ID or ARN for each queue in your
-     * instance. Only VOICE is supported for Channels.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      *
      * @param filters <p>
-     *            A <code>Filters</code> object that contains a list of queue
-     *            IDs or queue ARNs, up to 100, or list of Channels to use to
-     *            filter the metrics returned in the response. Metric data is
-     *            retrieved only for the resources associated with the queue
-     *            IDs, ARNs, or Channels included in the filter. You can include
-     *            both IDs and ARNs in the same request. To retrieve metrics for
-     *            all queues, add the queue ID or ARN for each queue in your
-     *            instance. Only VOICE is supported for Channels.
-     *            </p>
-     *            <p>
-     *            To find the ARN for a queue, open the queue you want to use in
-     *            the Amazon Connect Queue editor. The ARN for the queue is
-     *            displayed in the address bar as part of the URL. For example,
-     *            the queue ARN is the set of characters at the end of the URL,
-     *            after 'id=' such as
-     *            <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *            . The queue ID is also included in the URL, and is the string
-     *            after 'queue/'.
+     *            The queues, up to 100, or channels, to use to filter the
+     *            metrics returned. Metric data is retrieved only for the
+     *            resources associated with the queues or channels included in
+     *            the filter. You can include both queue IDs and queue ARNs in
+     *            the same request. The only supported channel is
+     *            <code>VOICE</code>.
      *            </p>
      */
     public void setFilters(Filters filters) {
@@ -360,46 +278,23 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A <code>Filters</code> object that contains a list of queue IDs or queue
-     * ARNs, up to 100, or list of Channels to use to filter the metrics
-     * returned in the response. Metric data is retrieved only for the resources
-     * associated with the queue IDs, ARNs, or Channels included in the filter.
-     * You can include both IDs and ARNs in the same request. To retrieve
-     * metrics for all queues, add the queue ID or ARN for each queue in your
-     * instance. Only VOICE is supported for Channels.
-     * </p>
-     * <p>
-     * To find the ARN for a queue, open the queue you want to use in the Amazon
-     * Connect Queue editor. The ARN for the queue is displayed in the address
-     * bar as part of the URL. For example, the queue ARN is the set of
-     * characters at the end of the URL, after 'id=' such as
-     * <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     * . The queue ID is also included in the URL, and is the string after
-     * 'queue/'.
+     * The queues, up to 100, or channels, to use to filter the metrics
+     * returned. Metric data is retrieved only for the resources associated with
+     * the queues or channels included in the filter. You can include both queue
+     * IDs and queue ARNs in the same request. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filters <p>
-     *            A <code>Filters</code> object that contains a list of queue
-     *            IDs or queue ARNs, up to 100, or list of Channels to use to
-     *            filter the metrics returned in the response. Metric data is
-     *            retrieved only for the resources associated with the queue
-     *            IDs, ARNs, or Channels included in the filter. You can include
-     *            both IDs and ARNs in the same request. To retrieve metrics for
-     *            all queues, add the queue ID or ARN for each queue in your
-     *            instance. Only VOICE is supported for Channels.
-     *            </p>
-     *            <p>
-     *            To find the ARN for a queue, open the queue you want to use in
-     *            the Amazon Connect Queue editor. The ARN for the queue is
-     *            displayed in the address bar as part of the URL. For example,
-     *            the queue ARN is the set of characters at the end of the URL,
-     *            after 'id=' such as
-     *            <code>arn:aws:connect:us-east-1:270923740243:instance/78fb859d-1b7d-44b1-8aa3-12f0835c5855/queue/1d1a4575-9618-40ab-bbeb-81e45795fe61</code>
-     *            . The queue ID is also included in the URL, and is the string
-     *            after 'queue/'.
+     *            The queues, up to 100, or channels, to use to filter the
+     *            metrics returned. Metric data is retrieved only for the
+     *            resources associated with the queues or channels included in
+     *            the filter. You can include both queue IDs and queue ARNs in
+     *            the same request. The only supported channel is
+     *            <code>VOICE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -412,25 +307,26 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
-     * by QUEUE, the metrics returned apply to each queue rather than aggregated
-     * for all queues. If you group by CHANNEL, you should include a Channels
-     * filter. The only supported channel is VOICE.
+     * by <code>QUEUE</code>, the metrics returned apply to each queue rather
+     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
+     * should include a Channels filter. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>CurrentMetrics</code> is returned.
+     * metrics is returned.
      * </p>
      *
      * @return <p>
      *         The grouping applied to the metrics returned. For example, when
-     *         grouped by QUEUE, the metrics returned apply to each queue rather
-     *         than aggregated for all queues. If you group by CHANNEL, you
-     *         should include a Channels filter. The only supported channel is
-     *         VOICE.
+     *         grouped by <code>QUEUE</code>, the metrics returned apply to each
+     *         queue rather than aggregated for all queues. If you group by
+     *         <code>CHANNEL</code>, you should include a Channels filter. The
+     *         only supported channel is <code>VOICE</code>.
      *         </p>
      *         <p>
      *         If no <code>Grouping</code> is included in the request, a summary
-     *         of <code>CurrentMetrics</code> is returned.
+     *         of metrics is returned.
      *         </p>
      */
     public java.util.List<String> getGroupings() {
@@ -440,25 +336,26 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
-     * by QUEUE, the metrics returned apply to each queue rather than aggregated
-     * for all queues. If you group by CHANNEL, you should include a Channels
-     * filter. The only supported channel is VOICE.
+     * by <code>QUEUE</code>, the metrics returned apply to each queue rather
+     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
+     * should include a Channels filter. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>CurrentMetrics</code> is returned.
+     * metrics is returned.
      * </p>
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when grouped by QUEUE, the metrics returned apply to each
-     *            queue rather than aggregated for all queues. If you group by
-     *            CHANNEL, you should include a Channels filter. The only
-     *            supported channel is VOICE.
+     *            when grouped by <code>QUEUE</code>, the metrics returned apply
+     *            to each queue rather than aggregated for all queues. If you
+     *            group by <code>CHANNEL</code>, you should include a Channels
+     *            filter. The only supported channel is <code>VOICE</code>.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>CurrentMetrics</code> is returned.
+     *            summary of metrics is returned.
      *            </p>
      */
     public void setGroupings(java.util.Collection<String> groupings) {
@@ -473,13 +370,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
-     * by QUEUE, the metrics returned apply to each queue rather than aggregated
-     * for all queues. If you group by CHANNEL, you should include a Channels
-     * filter. The only supported channel is VOICE.
+     * by <code>QUEUE</code>, the metrics returned apply to each queue rather
+     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
+     * should include a Channels filter. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>CurrentMetrics</code> is returned.
+     * metrics is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -487,14 +385,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when grouped by QUEUE, the metrics returned apply to each
-     *            queue rather than aggregated for all queues. If you group by
-     *            CHANNEL, you should include a Channels filter. The only
-     *            supported channel is VOICE.
+     *            when grouped by <code>QUEUE</code>, the metrics returned apply
+     *            to each queue rather than aggregated for all queues. If you
+     *            group by <code>CHANNEL</code>, you should include a Channels
+     *            filter. The only supported channel is <code>VOICE</code>.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>CurrentMetrics</code> is returned.
+     *            summary of metrics is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -512,13 +410,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
-     * by QUEUE, the metrics returned apply to each queue rather than aggregated
-     * for all queues. If you group by CHANNEL, you should include a Channels
-     * filter. The only supported channel is VOICE.
+     * by <code>QUEUE</code>, the metrics returned apply to each queue rather
+     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
+     * should include a Channels filter. The only supported channel is
+     * <code>VOICE</code>.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
-     * <code>CurrentMetrics</code> is returned.
+     * metrics is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -526,14 +425,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
-     *            when grouped by QUEUE, the metrics returned apply to each
-     *            queue rather than aggregated for all queues. If you group by
-     *            CHANNEL, you should include a Channels filter. The only
-     *            supported channel is VOICE.
+     *            when grouped by <code>QUEUE</code>, the metrics returned apply
+     *            to each queue rather than aggregated for all queues. If you
+     *            group by <code>CHANNEL</code>, you should include a Channels
+     *            filter. The only supported channel is <code>VOICE</code>.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
-     *            summary of <code>CurrentMetrics</code> is returned.
+     *            summary of metrics is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -545,46 +444,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A list of <code>CurrentMetric</code> objects for the metrics to retrieve.
-     * Each <code>CurrentMetric</code> includes a name of a metric to retrieve
-     * and the unit to use for it. You must list each metric to retrieve data
-     * for in the request.
-     * </p>
-     * <p>
-     * The following metrics are available:
+     * The metrics to retrieve. Specify the name and unit for each metric. The
+     * following metrics are available:
      * </p>
      * <dl>
-     * <dt>AGENTS_AVAILABLE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ONLINE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ON_CALL</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_STAFFED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
      * </dd>
-     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -596,7 +466,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CALL</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ONLINE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_STAFFED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -608,7 +514,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: SECONDS
      * </p>
      * </dd>
-     * <dt>CONTACTS_SCHEDULED</dt>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -617,46 +529,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </dl>
      *
      * @return <p>
-     *         A list of <code>CurrentMetric</code> objects for the metrics to
-     *         retrieve. Each <code>CurrentMetric</code> includes a name of a
-     *         metric to retrieve and the unit to use for it. You must list each
-     *         metric to retrieve data for in the request.
-     *         </p>
-     *         <p>
-     *         The following metrics are available:
+     *         The metrics to retrieve. Specify the name and unit for each
+     *         metric. The following metrics are available:
      *         </p>
      *         <dl>
-     *         <dt>AGENTS_AVAILABLE</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         </dd>
-     *         <dt>AGENTS_ONLINE</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         </dd>
-     *         <dt>AGENTS_ON_CALL</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         </dd>
-     *         <dt>AGENTS_STAFFED</dt>
-     *         <dd>
-     *         <p>
-     *         Unit: COUNT
-     *         </p>
-     *         </dd>
      *         <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
      *         </p>
      *         </dd>
-     *         <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *         <dt>AGENTS_AVAILABLE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
@@ -668,7 +551,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         Unit: COUNT
      *         </p>
      *         </dd>
+     *         <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>AGENTS_ON_CALL</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>AGENTS_ON_CONTACT</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>AGENTS_ONLINE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>AGENTS_STAFFED</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
      *         <dt>CONTACTS_IN_QUEUE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>CONTACTS_SCHEDULED</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
@@ -680,7 +599,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         Unit: SECONDS
      *         </p>
      *         </dd>
-     *         <dt>CONTACTS_SCHEDULED</dt>
+     *         <dt>SLOTS_ACTIVE</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: COUNT
+     *         </p>
+     *         </dd>
+     *         <dt>SLOTS_AVAILABLE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
@@ -694,46 +619,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A list of <code>CurrentMetric</code> objects for the metrics to retrieve.
-     * Each <code>CurrentMetric</code> includes a name of a metric to retrieve
-     * and the unit to use for it. You must list each metric to retrieve data
-     * for in the request.
-     * </p>
-     * <p>
-     * The following metrics are available:
+     * The metrics to retrieve. Specify the name and unit for each metric. The
+     * following metrics are available:
      * </p>
      * <dl>
-     * <dt>AGENTS_AVAILABLE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ONLINE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ON_CALL</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_STAFFED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
      * </dd>
-     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -745,7 +641,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CALL</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ONLINE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_STAFFED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -757,7 +689,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: SECONDS
      * </p>
      * </dd>
-     * <dt>CONTACTS_SCHEDULED</dt>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -766,46 +704,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </dl>
      *
      * @param currentMetrics <p>
-     *            A list of <code>CurrentMetric</code> objects for the metrics
-     *            to retrieve. Each <code>CurrentMetric</code> includes a name
-     *            of a metric to retrieve and the unit to use for it. You must
-     *            list each metric to retrieve data for in the request.
-     *            </p>
-     *            <p>
-     *            The following metrics are available:
+     *            The metrics to retrieve. Specify the name and unit for each
+     *            metric. The following metrics are available:
      *            </p>
      *            <dl>
-     *            <dt>AGENTS_AVAILABLE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ONLINE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ON_CALL</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_STAFFED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
      *            </dd>
-     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -817,7 +726,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CALL</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ONLINE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_STAFFED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -829,7 +774,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: SECONDS
      *            </p>
      *            </dd>
-     *            <dt>CONTACTS_SCHEDULED</dt>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -848,46 +799,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A list of <code>CurrentMetric</code> objects for the metrics to retrieve.
-     * Each <code>CurrentMetric</code> includes a name of a metric to retrieve
-     * and the unit to use for it. You must list each metric to retrieve data
-     * for in the request.
-     * </p>
-     * <p>
-     * The following metrics are available:
+     * The metrics to retrieve. Specify the name and unit for each metric. The
+     * following metrics are available:
      * </p>
      * <dl>
-     * <dt>AGENTS_AVAILABLE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ONLINE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ON_CALL</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_STAFFED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
      * </dd>
-     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -899,7 +821,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CALL</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ONLINE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_STAFFED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -911,7 +869,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: SECONDS
      * </p>
      * </dd>
-     * <dt>CONTACTS_SCHEDULED</dt>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -923,46 +887,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * together.
      *
      * @param currentMetrics <p>
-     *            A list of <code>CurrentMetric</code> objects for the metrics
-     *            to retrieve. Each <code>CurrentMetric</code> includes a name
-     *            of a metric to retrieve and the unit to use for it. You must
-     *            list each metric to retrieve data for in the request.
-     *            </p>
-     *            <p>
-     *            The following metrics are available:
+     *            The metrics to retrieve. Specify the name and unit for each
+     *            metric. The following metrics are available:
      *            </p>
      *            <dl>
-     *            <dt>AGENTS_AVAILABLE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ONLINE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ON_CALL</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_STAFFED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
      *            </dd>
-     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -974,7 +909,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CALL</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ONLINE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_STAFFED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -986,7 +957,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: SECONDS
      *            </p>
      *            </dd>
-     *            <dt>CONTACTS_SCHEDULED</dt>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -1008,46 +985,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A list of <code>CurrentMetric</code> objects for the metrics to retrieve.
-     * Each <code>CurrentMetric</code> includes a name of a metric to retrieve
-     * and the unit to use for it. You must list each metric to retrieve data
-     * for in the request.
-     * </p>
-     * <p>
-     * The following metrics are available:
+     * The metrics to retrieve. Specify the name and unit for each metric. The
+     * following metrics are available:
      * </p>
      * <dl>
-     * <dt>AGENTS_AVAILABLE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ONLINE</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_ON_CALL</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
-     * <dt>AGENTS_STAFFED</dt>
-     * <dd>
-     * <p>
-     * Unit: COUNT
-     * </p>
-     * </dd>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
      * </dd>
-     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -1059,7 +1007,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: COUNT
      * </p>
      * </dd>
+     * <dt>AGENTS_NON_PRODUCTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CALL</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ON_CONTACT</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_ONLINE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>AGENTS_STAFFED</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -1071,7 +1055,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * Unit: SECONDS
      * </p>
      * </dd>
-     * <dt>CONTACTS_SCHEDULED</dt>
+     * <dt>SLOTS_ACTIVE</dt>
+     * <dd>
+     * <p>
+     * Unit: COUNT
+     * </p>
+     * </dd>
+     * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
@@ -1083,46 +1073,17 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * together.
      *
      * @param currentMetrics <p>
-     *            A list of <code>CurrentMetric</code> objects for the metrics
-     *            to retrieve. Each <code>CurrentMetric</code> includes a name
-     *            of a metric to retrieve and the unit to use for it. You must
-     *            list each metric to retrieve data for in the request.
-     *            </p>
-     *            <p>
-     *            The following metrics are available:
+     *            The metrics to retrieve. Specify the name and unit for each
+     *            metric. The following metrics are available:
      *            </p>
      *            <dl>
-     *            <dt>AGENTS_AVAILABLE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ONLINE</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_ON_CALL</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
-     *            <dt>AGENTS_STAFFED</dt>
-     *            <dd>
-     *            <p>
-     *            Unit: COUNT
-     *            </p>
-     *            </dd>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
      *            </dd>
-     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -1134,7 +1095,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: COUNT
      *            </p>
      *            </dd>
+     *            <dt>AGENTS_NON_PRODUCTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CALL</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ON_CONTACT</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_ONLINE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>AGENTS_STAFFED</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -1146,7 +1143,13 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            Unit: SECONDS
      *            </p>
      *            </dd>
-     *            <dt>CONTACTS_SCHEDULED</dt>
+     *            <dt>SLOTS_ACTIVE</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: COUNT
+     *            </p>
+     *            </dd>
+     *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
@@ -1170,8 +1173,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the <a href="">NextToken</a> must use the same request
-     * parameters as the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      *
      * @return <p>
@@ -1181,9 +1184,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         </p>
      *         <p>
      *         The token expires after 5 minutes from the time it is created.
-     *         Subsequent requests that use the <a href="">NextToken</a> must
-     *         use the same request parameters as the request that generated the
-     *         token.
+     *         Subsequent requests that use the token must use the same request
+     *         parameters as the request that generated the token.
      *         </p>
      */
     public String getNextToken() {
@@ -1198,8 +1200,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the <a href="">NextToken</a> must use the same request
-     * parameters as the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      *
      * @param nextToken <p>
@@ -1209,9 +1211,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            The token expires after 5 minutes from the time it is created.
-     *            Subsequent requests that use the <a href="">NextToken</a> must
-     *            use the same request parameters as the request that generated
-     *            the token.
+     *            Subsequent requests that use the token must use the same
+     *            request parameters as the request that generated the token.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -1226,8 +1227,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * The token expires after 5 minutes from the time it is created. Subsequent
-     * requests that use the <a href="">NextToken</a> must use the same request
-     * parameters as the request that generated the token.
+     * requests that use the token must use the same request parameters as the
+     * request that generated the token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1240,9 +1241,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            The token expires after 5 minutes from the time it is created.
-     *            Subsequent requests that use the <a href="">NextToken</a> must
-     *            use the same request parameters as the request that generated
-     *            the token.
+     *            Subsequent requests that use the token must use the same
+     *            request parameters as the request that generated the token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1254,16 +1254,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * <code>MaxResults</code> indicates the maximum number of results to return
-     * per page in the response, between 1 and 100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         <code>MaxResults</code> indicates the maximum number of results
-     *         to return per page in the response, between 1 and 100.
+     *         The maximimum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -1272,16 +1270,14 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * <code>MaxResults</code> indicates the maximum number of results to return
-     * per page in the response, between 1 and 100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            <code>MaxResults</code> indicates the maximum number of
-     *            results to return per page in the response, between 1 and 100.
+     *            The maximimum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -1290,8 +1286,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * <code>MaxResults</code> indicates the maximum number of results to return
-     * per page in the response, between 1 and 100.
+     * The maximimum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1301,8 +1296,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            <code>MaxResults</code> indicates the maximum number of
-     *            results to return per page in the response, between 1 and 100.
+     *            The maximimum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

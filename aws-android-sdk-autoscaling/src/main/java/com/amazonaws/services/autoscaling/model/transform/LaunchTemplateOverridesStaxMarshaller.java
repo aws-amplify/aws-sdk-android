@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,11 @@ class LaunchTemplateOverridesStaxMarshaller {
             prefix = _prefix + "InstanceType";
             String instanceType = _launchTemplateOverrides.getInstanceType();
             request.addParameter(prefix, StringUtils.fromString(instanceType));
+        }
+        if (_launchTemplateOverrides.getWeightedCapacity() != null) {
+            prefix = _prefix + "WeightedCapacity";
+            String weightedCapacity = _launchTemplateOverrides.getWeightedCapacity();
+            request.addParameter(prefix, StringUtils.fromString(weightedCapacity));
         }
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
+     * Valid Values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * | <code>st1</code> | <code>sc1</code>
      * </p>
      * <p>
@@ -410,7 +410,7 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
+     * Valid Values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * | <code>st1</code> | <code>sc1</code>
      * </p>
      * <p>
@@ -428,7 +428,7 @@ public class Ebs implements Serializable {
      *         Linux Instances</i>.
      *         </p>
      *         <p>
-     *         Valid values: <code>standard</code> | <code>io1</code> |
+     *         Valid Values: <code>standard</code> | <code>io1</code> |
      *         <code>gp2</code> | <code>st1</code> | <code>sc1</code>
      *         </p>
      */
@@ -447,7 +447,7 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
+     * Valid Values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * | <code>st1</code> | <code>sc1</code>
      * </p>
      * <p>
@@ -465,7 +465,7 @@ public class Ebs implements Serializable {
      *            for Linux Instances</i>.
      *            </p>
      *            <p>
-     *            Valid values: <code>standard</code> | <code>io1</code> |
+     *            Valid Values: <code>standard</code> | <code>io1</code> |
      *            <code>gp2</code> | <code>st1</code> | <code>sc1</code>
      *            </p>
      */
@@ -484,7 +484,7 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
+     * Valid Values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * | <code>st1</code> | <code>sc1</code>
      * </p>
      * <p>
@@ -505,7 +505,7 @@ public class Ebs implements Serializable {
      *            for Linux Instances</i>.
      *            </p>
      *            <p>
-     *            Valid values: <code>standard</code> | <code>io1</code> |
+     *            Valid Values: <code>standard</code> | <code>io1</code> |
      *            <code>gp2</code> | <code>st1</code> | <code>sc1</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be

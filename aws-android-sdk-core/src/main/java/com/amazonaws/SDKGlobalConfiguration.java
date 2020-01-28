@@ -89,36 +89,6 @@ public class SDKGlobalConfiguration {
             "com.amazonaws.regions.RegionUtils.disableRemote";
 
     /**
-     * By default, the AmazonS3Client will continue to use the legacy S3Signer
-     * to authenticate requests it makes to S3 in regions that support the older
-     * protocol. Setting this property to anything other than null will cause
-     * the client to upgrade to Signature Version 4 whenever it has been
-     * configured with an explicit region (which is a required parameter for
-     * Signature Version 4). The client will continue to use the older signature
-     * protocol when not configured with a region to avoid breaking existing
-     * applications.
-     * <p>
-     * Signature Version 4 is more secure than the legacy S3Signer, but requires
-     * calculating a SHA-256 hash of the entire request body which can be
-     * expensive for large upload requests.
-     */
-    @Deprecated
-    public static final String ENABLE_S3_SIGV4_SYSTEM_PROPERTY =
-            "com.amazonaws.services.s3.enableV4";
-
-    /**
-     * Like {@link #ENABLE_S3_SIGV4_SYSTEM_PROPERTY}, but causes the client to
-     * always use Signature Version 4, assuming a region of
-     * &quot;us-east-1&quot; if no explicit region has been configured. This
-     * guarantees that the more secure authentication protocol will be used, but
-     * will cause authentication failures in code that accesses buckets in
-     * regions other than US Standard without explicitly configuring a region.
-     */
-    @Deprecated
-    public static final String ENFORCE_S3_SIGV4_SYSTEM_PROPERTY =
-            "com.amazonaws.services.s3.enforceV4";
-
-    /**
      * The default size of the buffer when uploading data from a stream. A
      * buffer of this size will be created and filled with the first bytes from
      * a stream being uploaded so that any transmit errors that occur in that

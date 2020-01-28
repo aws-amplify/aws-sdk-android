@@ -19,6 +19,8 @@ import static org.junit.Assert.fail;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 
 import org.junit.Test;
 
@@ -37,7 +39,8 @@ public class BucketNameValidationIntegrationTest {
 
     private final AWSCredentials fakeCredentials =
             new BasicAWSCredentials("fakeAccessKey", "fakeSecretKey");
-    private final AmazonS3 s3 = new AmazonS3Client(fakeCredentials);
+    private final AmazonS3 s3 =
+            new AmazonS3Client(fakeCredentials, Region.getRegion(Regions.DEFAULT_REGION));
 
     /**
      * Tests that the bucket names that don't follow S3's recommended

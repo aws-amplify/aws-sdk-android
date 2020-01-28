@@ -21,8 +21,12 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.internal.Constants;
 
 import org.json.JSONException;
@@ -64,7 +68,9 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        AmazonS3Client s3 = new AmazonS3Client();
+        AWSCredentials creds = new BasicAWSCredentials("accessKey", "secretKey");
+        Region region = Region.getRegion(Regions.DEFAULT_REGION);
+        AmazonS3Client s3 = new AmazonS3Client(creds, region);
 
         TransferUtility.builder()
                 .context(RuntimeEnvironment.application.getApplicationContext())
@@ -102,7 +108,9 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        AmazonS3Client s3 = new AmazonS3Client();
+        AWSCredentials creds = new BasicAWSCredentials("accessKey", "secretKey");
+        Region region = Region.getRegion(Regions.DEFAULT_REGION);
+        AmazonS3Client s3 = new AmazonS3Client(creds, region);
 
         TransferUtility.builder()
                 .context(RuntimeEnvironment.application.getApplicationContext())
@@ -139,7 +147,9 @@ public class TransferUtilityTest {
             fail("Error in constructing AWSConfiguration." + e.getLocalizedMessage());
         }
 
-        AmazonS3Client s3 = new AmazonS3Client();
+        AWSCredentials creds = new BasicAWSCredentials("accessKey", "secretKey");
+        Region region = Region.getRegion(Regions.DEFAULT_REGION);
+        AmazonS3Client s3 = new AmazonS3Client(creds, region);
 
         TransferUtility.builder()
                 .context(RuntimeEnvironment.application.getApplicationContext())

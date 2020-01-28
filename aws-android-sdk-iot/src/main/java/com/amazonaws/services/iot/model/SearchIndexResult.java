@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class SearchIndexResult implements Serializable {
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      */
     private String nextToken;
@@ -42,13 +42,13 @@ public class SearchIndexResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or null if there
-     *         are no additional results.
+     *         The token used to get the next set of results, or
+     *         <code>null</code> if there are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -57,13 +57,13 @@ public class SearchIndexResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
+     *            The token used to get the next set of results, or
+     *            <code>null</code> if there are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -72,16 +72,16 @@ public class SearchIndexResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or null if there are no
-     * additional results.
+     * The token used to get the next set of results, or <code>null</code> if
+     * there are no additional results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or null if
-     *            there are no additional results.
+     *            The token used to get the next set of results, or
+     *            <code>null</code> if there are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

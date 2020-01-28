@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -202,6 +202,13 @@ public class CreateUserPoolRequestMarshaller implements
                 UserPoolAddOnsType userPoolAddOns = createUserPoolRequest.getUserPoolAddOns();
                 jsonWriter.name("UserPoolAddOns");
                 UserPoolAddOnsTypeJsonMarshaller.getInstance().marshall(userPoolAddOns, jsonWriter);
+            }
+            if (createUserPoolRequest.getAccountRecoverySetting() != null) {
+                AccountRecoverySettingType accountRecoverySetting = createUserPoolRequest
+                        .getAccountRecoverySetting();
+                jsonWriter.name("AccountRecoverySetting");
+                AccountRecoverySettingTypeJsonMarshaller.getInstance().marshall(
+                        accountRecoverySetting, jsonWriter);
             }
 
             jsonWriter.endObject();

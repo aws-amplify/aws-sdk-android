@@ -17,6 +17,7 @@ package com.amazonaws.logging;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory.Level;
 
 /**
  * This is a wrapper over the Apache Commons
@@ -27,6 +28,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
     private Class logClass;
     private String logString;
     private Log log;
+
+    /** If set, only this level and above logs will be output by this logger **/
+    private Level level = null;
 
     /**
      * @param logClass the class object
@@ -55,7 +59,8 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public boolean isDebugEnabled() {
-        return this.log.isDebugEnabled();
+        return this.log.isDebugEnabled() &&
+                (getLevel() == null || getLevel().getValue() <= Level.DEBUG.getValue());
     }
 
     /**
@@ -69,7 +74,8 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public boolean isErrorEnabled() {
-        return this.log.isErrorEnabled();
+        return this.log.isErrorEnabled() &&
+                (getLevel() == null || getLevel().getValue() <= Level.ERROR.getValue());
     }
 
 
@@ -84,7 +90,8 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public boolean isInfoEnabled() {
-        return this.log.isInfoEnabled();
+        return this.log.isInfoEnabled()  &&
+                (getLevel() == null || getLevel().getValue() <= Level.INFO.getValue());
     }
 
     /**
@@ -98,7 +105,8 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public boolean isTraceEnabled() {
-        return this.log.isTraceEnabled();
+        return this.log.isTraceEnabled() &&
+                (getLevel() == null || getLevel().getValue() <= Level.TRACE.getValue());
     }
 
     /**
@@ -112,7 +120,8 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public boolean isWarnEnabled() {
-        return this.log.isWarnEnabled();
+        return this.log.isWarnEnabled()  &&
+                (getLevel() == null || getLevel().getValue() <= Level.WARN.getValue());
     }
 
     /**
@@ -122,7 +131,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void trace(Object message) {
-        this.log.trace(message);
+        if (getLevel() == null || getLevel().getValue() <= Level.TRACE.getValue()) {
+            this.log.trace(message);
+        }
     }
 
     /**
@@ -133,7 +144,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void trace(Object message, Throwable t) {
-        this.log.trace(message, t);
+        if (getLevel() == null || getLevel().getValue() <= Level.TRACE.getValue()) {
+            this.log.trace(message, t);
+        }
     }
 
     /**
@@ -143,7 +156,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void debug(Object message) {
-        this.log.debug(message);
+        if (getLevel() == null || getLevel().getValue() <= Level.DEBUG.getValue()) {
+            this.log.debug(message);
+        }
     }
 
     /**
@@ -154,7 +169,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void debug(Object message, Throwable t) {
-        this.log.debug(message, t);
+        if (getLevel() == null || getLevel().getValue() <= Level.DEBUG.getValue()) {
+            this.log.debug(message, t);
+        }
     }
 
     /**
@@ -164,7 +181,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void info(Object message) {
-        this.log.info(message);
+        if (getLevel() == null || getLevel().getValue() <= Level.INFO.getValue()) {
+            this.log.info(message);
+        }
     }
 
     /**
@@ -175,7 +194,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void info(Object message, Throwable t) {
-        this.log.info(message, t);
+        if (getLevel() == null || getLevel().getValue() <= Level.INFO.getValue()) {
+            this.log.info(message, t);
+        }
     }
 
     /**
@@ -185,7 +206,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void warn(Object message) {
-        this.log.warn(message);
+        if (getLevel() == null || getLevel().getValue() <= Level.WARN.getValue()) {
+            this.log.warn(message);
+        }
     }
 
     /**
@@ -196,7 +219,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void warn(Object message, Throwable t) {
-        this.log.warn(message, t);
+        if (getLevel() == null || getLevel().getValue() <= Level.WARN.getValue()) {
+            this.log.warn(message, t);
+        }
     }
 
     /**
@@ -206,7 +231,9 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void error(Object message) {
-        this.log.error(message);
+        if (getLevel() == null || getLevel().getValue() <= Level.ERROR.getValue()) {
+            this.log.error(message);
+        }
     }
 
     /**
@@ -217,6 +244,30 @@ public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
      */
     @Override
     public void error(Object message, Throwable t) {
-        this.log.error(message, t);
+        if (getLevel() == null || getLevel().getValue() <= Level.ERROR.getValue()) {
+            this.log.error(message, t);
+        }
+    }
+
+    /**
+     * <p> Set the level of logs which will be output for this particular logger. </p>
+     *
+     * @param level Only logs of this level and above will now be output
+     */
+    @Override
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    /**
+     * Checks whether a log level has been set either at the local level or, if not, the global one
+     * @return Appropriate log level if one has been set by the user
+     */
+    private Level getLevel() {
+        if (level != null) {
+            return level;
+        } else {
+            return com.amazonaws.logging.LogFactory.getLevel();
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,38 +19,34 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A <code>Dimensions</code> object that includes the Channel and Queue for the
- * metric.
+ * Contains information about the dimensions for a set of metrics.
  * </p>
  */
 public class Dimensions implements Serializable {
     /**
      * <p>
-     * A <code>QueueReference</code> object used as one part of dimension for
-     * the metrics results.
+     * Information about the queue for which metrics are returned.
      * </p>
      */
     private QueueReference queue;
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      */
     private String channel;
 
     /**
      * <p>
-     * A <code>QueueReference</code> object used as one part of dimension for
-     * the metrics results.
+     * Information about the queue for which metrics are returned.
      * </p>
      *
      * @return <p>
-     *         A <code>QueueReference</code> object used as one part of
-     *         dimension for the metrics results.
+     *         Information about the queue for which metrics are returned.
      *         </p>
      */
     public QueueReference getQueue() {
@@ -59,13 +55,11 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * A <code>QueueReference</code> object used as one part of dimension for
-     * the metrics results.
+     * Information about the queue for which metrics are returned.
      * </p>
      *
      * @param queue <p>
-     *            A <code>QueueReference</code> object used as one part of
-     *            dimension for the metrics results.
+     *            Information about the queue for which metrics are returned.
      *            </p>
      */
     public void setQueue(QueueReference queue) {
@@ -74,16 +68,14 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * A <code>QueueReference</code> object used as one part of dimension for
-     * the metrics results.
+     * Information about the queue for which metrics are returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queue <p>
-     *            A <code>QueueReference</code> object used as one part of
-     *            dimension for the metrics results.
+     *            Information about the queue for which metrics are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -95,15 +87,14 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @return <p>
-     *         The channel used for grouping and filters. Only VOICE is
-     *         supported.
+     *         The channel used for grouping and filters.
      *         </p>
      * @see Channel
      */
@@ -113,15 +104,14 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
-     *            The channel used for grouping and filters. Only VOICE is
-     *            supported.
+     *            The channel used for grouping and filters.
      *            </p>
      * @see Channel
      */
@@ -131,18 +121,17 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
-     *            The channel used for grouping and filters. Only VOICE is
-     *            supported.
+     *            The channel used for grouping and filters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,15 +144,14 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
-     *            The channel used for grouping and filters. Only VOICE is
-     *            supported.
+     *            The channel used for grouping and filters.
      *            </p>
      * @see Channel
      */
@@ -173,18 +161,17 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
-     * The channel used for grouping and filters. Only VOICE is supported.
+     * The channel used for grouping and filters.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VOICE
+     * <b>Allowed Values: </b>VOICE, CHAT
      *
      * @param channel <p>
-     *            The channel used for grouping and filters. Only VOICE is
-     *            supported.
+     *            The channel used for grouping and filters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

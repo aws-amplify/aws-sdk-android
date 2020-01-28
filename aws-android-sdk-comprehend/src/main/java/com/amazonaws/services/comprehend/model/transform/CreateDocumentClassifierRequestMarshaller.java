@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -115,6 +115,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 VpcConfig vpcConfig = createDocumentClassifierRequest.getVpcConfig();
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
+            }
+            if (createDocumentClassifierRequest.getMode() != null) {
+                String mode = createDocumentClassifierRequest.getMode();
+                jsonWriter.name("Mode");
+                jsonWriter.value(mode);
             }
 
             jsonWriter.endObject();

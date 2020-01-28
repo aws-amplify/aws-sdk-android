@@ -109,12 +109,14 @@ public class CognitoIdentityProviderChangePasswordInstrumentedTest extends Cogni
  	
  	// Test change password, with valid tokens - in current thread
   	@Test
-  	public void changePasswordInCurrentThreadWithCachedTokens() throws Exception {
-  		testPool.setPersistenceEnabled(false);
+  	public void changePasswordInCurrentThreadWithCachedTokens() {
+  		testPool.setPersistenceEnabled(true);
   		testUser = testPool.getUser(TEST_USER_NAME);
   		
   		// Set mock result for the change password request API call
-  		doReturn(TEST_CHANGE_PASSWORD_RESPONSE).when(mockCSIClient).changePassword(any(ChangePasswordRequest.class));
+  		doReturn(TEST_CHANGE_PASSWORD_RESPONSE)
+				.when(mockCSIClient)
+				.changePassword(any(ChangePasswordRequest.class));
   		
   		// Store tokens in shared preferences
   		awsKeyValueStorageUtility.put("CognitoIdentityProvider."+TEST_CLIENT_ID+"."+TEST_USER_NAME+"."+"idToken", getValidJWT(3600L));
@@ -303,19 +305,16 @@ public class CognitoIdentityProviderChangePasswordInstrumentedTest extends Cogni
    			}
    		});
    	}
-   	
-   	
- // Create valid access tokens
+
+    // Create valid access tokens
  	public String getValidJWT(long expiryInSecs){
- 		long epoch = System.currentTimeMillis()/1000L;
+ 		long epoch = System.currentTimeMillis() / 1000L;
  		epoch = epoch + expiryInSecs;
  		String accessToken_p1_Base64 = "eyJ0eXAiOiAiSldUIiwgImFsZyI6IlJTMjU2In0=";
  		String accessToken_p3_Base64 = "e0VuY3J5cHRlZF9LZXl9";
  		String accessToken_p2_Str = "{\"iss\": \"userPoolId\",\"sub\": \"my@email.com\",\"aud\": \"https:aws.cognito.com\",\"exp\": \"" + String.valueOf(epoch).toString() + "\"}"; 
         byte[] accessToken_p2_UTF8 = accessToken_p2_Str.getBytes(StringUtils.UTF8);
- 		//String accessToken_p2_Base64 = Base64.encodeToString(accessToken_p2_UTF8, Base64.DEFAULT);
  		String accessToken_p2_Base64 = new String(Base64.encode(accessToken_p2_UTF8, Base64.DEFAULT));
- 		String validAccessToken = accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
- 		return validAccessToken;
+ 		return accessToken_p1_Base64+"."+accessToken_p2_Base64+"."+accessToken_p3_Base64;
  	}
 }

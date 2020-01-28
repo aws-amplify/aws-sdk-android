@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,11 @@ class AuditFindingJsonMarshaller {
 
     public void marshall(AuditFinding auditFinding, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (auditFinding.getFindingId() != null) {
+            String findingId = auditFinding.getFindingId();
+            jsonWriter.name("findingId");
+            jsonWriter.value(findingId);
+        }
         if (auditFinding.getTaskId() != null) {
             String taskId = auditFinding.getTaskId();
             jsonWriter.name("taskId");

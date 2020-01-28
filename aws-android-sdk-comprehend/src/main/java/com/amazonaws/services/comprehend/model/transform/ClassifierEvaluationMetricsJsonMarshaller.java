@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,6 +45,26 @@ class ClassifierEvaluationMetricsJsonMarshaller {
             Double f1Score = classifierEvaluationMetrics.getF1Score();
             jsonWriter.name("F1Score");
             jsonWriter.value(f1Score);
+        }
+        if (classifierEvaluationMetrics.getMicroPrecision() != null) {
+            Double microPrecision = classifierEvaluationMetrics.getMicroPrecision();
+            jsonWriter.name("MicroPrecision");
+            jsonWriter.value(microPrecision);
+        }
+        if (classifierEvaluationMetrics.getMicroRecall() != null) {
+            Double microRecall = classifierEvaluationMetrics.getMicroRecall();
+            jsonWriter.name("MicroRecall");
+            jsonWriter.value(microRecall);
+        }
+        if (classifierEvaluationMetrics.getMicroF1Score() != null) {
+            Double microF1Score = classifierEvaluationMetrics.getMicroF1Score();
+            jsonWriter.name("MicroF1Score");
+            jsonWriter.value(microF1Score);
+        }
+        if (classifierEvaluationMetrics.getHammingLoss() != null) {
+            Double hammingLoss = classifierEvaluationMetrics.getHammingLoss();
+            jsonWriter.name("HammingLoss");
+            jsonWriter.value(hammingLoss);
         }
         jsonWriter.endObject();
     }
