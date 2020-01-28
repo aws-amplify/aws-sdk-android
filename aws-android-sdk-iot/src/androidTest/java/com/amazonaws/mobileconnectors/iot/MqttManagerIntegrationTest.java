@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
+import static com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH;
+import static com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode.IAM;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -723,20 +725,44 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void mqttWebSocket() throws Exception {
+        websocketConnectionTest(IAM);
+    }
 
+    @Test
+    public void testCustomAuthConnect() throws Exception {
+        websocketConnectionTest(CUSTOM_AUTH);
+    }
+
+    private void websocketConnectionTest(AWSIotMqttManager.AuthenticationMode authMode) throws InterruptedException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-ws", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(false);
-        // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                statuses.add(status);
-            }
-        });
+
+        if (authMode.equals(CUSTOM_AUTH)) {
+            // connect using WebSockets and custom authentication token
+            mqttManager.connect(
+                    "token-header",
+                    "allow",
+                    "Gv85h71GT07RWo5uWQpqHlYWePN7YVY7KgiuPVEnt65+tDDWyZOlGLIDxvwC7LiBF7FbmG/coeBELKltqmrP0gjM7sIyXlrx315xG3LupoK4bmsNIzg6xxWa0n60WxhOv1p5qXDAhmYWIFuL0enMtuwpCY1W073NqZ/+iOsrJexssZiiLnvVf3z6HReEEER6TfFevrgAEUva0h9pzbUepbJ6RaOO7zZY6e/T/wSHrKl0jA4MalGReKbhdlg0HyTPfILhjorYkF7ew/8Ml+QMr/WU90YMp9Sv8SF0q7WBzbuqxpAR8vxm00rRlgrFdsIRjGFTDmrp9Fsx+xlx0aADCA==",
+                    "CustomAuthorizerIntegTest",
+                    new AWSIotMqttClientStatusCallback() {
+                        @Override
+                        public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                            statuses.add(status);
+                        }
+                    });
+        } else if(authMode.equals(IAM)) {
+            // connect using WebSockets and IAM credentials
+            mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+                @Override
+                public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                    statuses.add(status);
+                }
+            });
+        }
 
         Thread.sleep(3000);
 
@@ -779,20 +805,43 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void mqttWebSocketReconnect() throws Exception {
+        websocketReconnectionTest(IAM);
+    }
 
+    @Test
+    public void testCustomAuthReconnect() throws Exception {
+        websocketReconnectionTest(CUSTOM_AUTH);
+    }
+
+    private void websocketReconnectionTest(AWSIotMqttManager.AuthenticationMode authMode) throws InterruptedException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-ws-rc", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(true);
-        // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                statuses.add(status);
-            }
-        });
+        if (authMode.equals(IAM)) {
+            // connect using WebSockets and IAM credentials
+            mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+                @Override
+                public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                    statuses.add(status);
+                }
+            });
+        } else if (authMode.equals(CUSTOM_AUTH)) {
+            // connect using WebSockets and custom authentication token
+            mqttManager.connect(
+                    "token-header",
+                    "allow",
+                    "Gv85h71GT07RWo5uWQpqHlYWePN7YVY7KgiuPVEnt65+tDDWyZOlGLIDxvwC7LiBF7FbmG/coeBELKltqmrP0gjM7sIyXlrx315xG3LupoK4bmsNIzg6xxWa0n60WxhOv1p5qXDAhmYWIFuL0enMtuwpCY1W073NqZ/+iOsrJexssZiiLnvVf3z6HReEEER6TfFevrgAEUva0h9pzbUepbJ6RaOO7zZY6e/T/wSHrKl0jA4MalGReKbhdlg0HyTPfILhjorYkF7ew/8Ml+QMr/WU90YMp9Sv8SF0q7WBzbuqxpAR8vxm00rRlgrFdsIRjGFTDmrp9Fsx+xlx0aADCA==",
+                    "CustomAuthorizerIntegTest",
+                    new AWSIotMqttClientStatusCallback() {
+                        @Override
+                        public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                            statuses.add(status);
+                        }
+                    });
+        }
 
         Thread.sleep(3000);
 
@@ -1163,7 +1212,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         Log.d(TAG, "Detaching the policy from the certificate.");
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        if (this.certResult != null) {
+            detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        }
         iotClient.detachPolicy(detachPolicyRequest);
 
         // delete policy
