@@ -812,7 +812,7 @@ public class AWSIotMqttManager {
         this.userStatusCallback = statusCallback;
 
         // Do nothing if Connecting, Connected or Reconnecting
-        if (connectionState != MqttManagerConnectionState.Disconnected) {
+        if (!MqttManagerConnectionState.Disconnected.equals(connectionState)) {
             userConnectionCallback();
             return;
         }
@@ -885,7 +885,7 @@ public class AWSIotMqttManager {
         this.userStatusCallback = statusCallback;
 
         // Do nothing if Connecting, Connected or Reconnecting
-        if (connectionState != MqttManagerConnectionState.Disconnected) {
+        if (!MqttManagerConnectionState.Disconnected.equals(connectionState)) {
             userConnectionCallback();
             return;
         }
@@ -979,7 +979,7 @@ public class AWSIotMqttManager {
         this.userStatusCallback = statusCallback;
 
         // Do nothing if Connecting, Connected or Reconnecting
-        if (connectionState != MqttManagerConnectionState.Disconnected) {
+        if (!MqttManagerConnectionState.Disconnected.equals(connectionState)) {
             userConnectionCallback();
             return;
         }
@@ -1153,7 +1153,7 @@ public class AWSIotMqttManager {
     void reconnectToSession() {
 
         // status will be ConnectionLost if user calls disconnect() during reconnect logic
-        if (null != mqttClient && connectionState != MqttManagerConnectionState.Disconnected) {
+        if (null != mqttClient && !(MqttManagerConnectionState.Disconnected.equals(connectionState))) {
             LOGGER.info("attempting to reconnect to mqtt broker");
 
             final MqttConnectOptions options = new MqttConnectOptions();
