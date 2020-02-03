@@ -16,6 +16,7 @@
 package com.amazonaws.mobileconnectors.iot;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
@@ -39,6 +40,8 @@ import com.amazonaws.services.iot.model.DetachPolicyRequest;
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -83,7 +86,8 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             Context appContext = InstrumentationRegistry.getTargetContext();
             KEYSTORE_PATH = appContext.getFilesDir().toString() + "/";
             System.out.println(KEYSTORE_PATH);
-            credentialsProvider = new CognitoCachingCredentialsProvider(appContext, getPackageConfigure().getString("identity_pool_id"), Regions.US_EAST_1);
+            credentialsProvider = new CognitoCachingCredentialsProvider(appContext,
+                    getPackageConfigure().getString(ConfigKey.IDENTITY_POOL_ID.toString()), Regions.US_EAST_1);
 
             iotClient = new AWSIotClient(credentialsProvider);
 
@@ -722,21 +726,48 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
-    public void mqttWebSocket() throws Exception {
+    public void testWebSocketWithIamAuth() throws Exception {
+        websocketConnectionTest(AWSIotMqttManager.AuthenticationMode.IAM);
+    }
 
+    @Test
+    public void testWebSocketWithCustomAuth() throws Exception {
+        websocketConnectionTest(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH);
+    }
+
+    private void websocketConnectionTest(AWSIotMqttManager.AuthenticationMode authMode)
+            throws InterruptedException, JSONException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-ws", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-ws",
+                Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(false);
-        // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                statuses.add(status);
-            }
-        });
+
+        if (AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH.equals(authMode)) {
+            ConnectionParams connectionParams = ConnectionParams.fromPackageConfig(getPackageConfigure());
+            // connect using WebSockets and custom authentication token
+            mqttManager.connect(
+                    connectionParams.getTokenKeyName(),
+                    connectionParams.getToken(),
+                    connectionParams.getTokenSignature(),
+                    connectionParams.getCustomerAuthorizerName(),
+                    new AWSIotMqttClientStatusCallback() {
+                        @Override
+                        public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                            statuses.add(status);
+                        }
+                    });
+        } else if (AWSIotMqttManager.AuthenticationMode.IAM.equals(authMode)) {
+            // connect using WebSockets and IAM credentials
+            mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+                @Override
+                public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                    statuses.add(status);
+                }
+            });
+        }
 
         Thread.sleep(3000);
 
@@ -778,21 +809,47 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     @Test
-    public void mqttWebSocketReconnect() throws Exception {
+    public void testWebsocketReconnectWithIam() throws Exception {
+        websocketReconnectionTest(AWSIotMqttManager.AuthenticationMode.IAM);
+    }
 
+    @Test
+    public void testWebsocketReconnectWithCustomAuth() throws Exception {
+        websocketReconnectionTest(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH);
+    }
+
+    private void websocketReconnectionTest(AWSIotMqttManager.AuthenticationMode authMode)
+            throws InterruptedException, JSONException {
         final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
         final ArrayList<String> messages = new ArrayList<String>();
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-ws-rc", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-ws-rc",
+                Region.getRegion(Regions.US_EAST_1), endpointPrefix);
 
         mqttManager.setAutoReconnect(true);
-        // connect using WebSockets and IAM credentials
-        mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                statuses.add(status);
-            }
-        });
+        if (AWSIotMqttManager.AuthenticationMode.IAM.equals(authMode)) {
+            // connect using WebSockets and IAM credentials
+            mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
+                @Override
+                public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                    statuses.add(status);
+                }
+            });
+        } else if (AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH.equals(authMode)) {
+            ConnectionParams connectionParams = ConnectionParams.fromPackageConfig(getPackageConfigure());
+            // connect using WebSockets and custom authentication token
+            mqttManager.connect(
+                    connectionParams.getTokenKeyName(),
+                    connectionParams.getToken(),
+                    connectionParams.getTokenSignature(),
+                    connectionParams.getCustomerAuthorizerName(),
+                    new AWSIotMqttClientStatusCallback() {
+                        @Override
+                        public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                            statuses.add(status);
+                        }
+                    });
+        }
 
         Thread.sleep(3000);
 
@@ -1163,7 +1220,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         Log.d(TAG, "Detaching the policy from the certificate.");
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        if (this.certResult != null) {
+            detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        }
         iotClient.detachPolicy(detachPolicyRequest);
 
         // delete policy
@@ -1189,5 +1248,98 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
         deleteCertificateRequest.setCertificateId(this.certResult.getCertificateId());
         iotClient.deleteCertificate(deleteCertificateRequest);
+    }
+
+    static final class ConnectionParams {
+        private final String tokenKeyName;
+        private final String token;
+        private final String tokenSignature;
+        private final String customerAuthorizerName;
+
+        ConnectionParams(final String tokenKeyName,
+                         final String token,
+                         final String tokenSignature,
+                         final String customerAuthorizerName) {
+            this.tokenKeyName = tokenKeyName;
+            this.token = token;
+            this.tokenSignature = tokenSignature;
+            this.customerAuthorizerName = customerAuthorizerName;
+        }
+
+
+        String getTokenKeyName() {
+            return tokenKeyName;
+        }
+
+        String getToken() {
+            return token;
+        }
+
+        String getTokenSignature() {
+            return tokenSignature;
+        }
+
+        public String getCustomerAuthorizerName() {
+            return customerAuthorizerName;
+        }
+
+        static ConnectionParams fromPackageConfig(JSONObject config) throws JSONException {
+            return new ConnectionParams(
+                    config.getString(ConfigKey.TOKEN_KEY_NAME.toString()),
+                    config.getString(ConfigKey.TOKEN.toString()),
+                    config.getString(ConfigKey.TOKEN_SIGNATURE.toString()),
+                    config.getString(ConfigKey.CUSTOM_AUTHORIZER_NAME.toString())
+            );
+        }
+    }
+
+    /**
+     * Iot instrumented tests need following configuration values.
+     */
+    enum ConfigKey {
+        /**
+         * HTTP request header key for the custom authorization token.
+         */
+        TOKEN_KEY_NAME("token_key_name"),
+
+        /**
+         * Custom authorization token used to connect via IoT custom authorizer.
+         */
+        TOKEN("token"),
+
+        /**
+         * Custom authorization token signature.
+         */
+        TOKEN_SIGNATURE("token_signature"),
+
+        /**
+         * Name of the AWS IoT custom authorizer to be used.
+         */
+        CUSTOM_AUTHORIZER_NAME("custom_authorizer_name"),
+
+        /**
+         * Identity pool id used to authorize connection via IAM.
+         */
+        IDENTITY_POOL_ID("identity_pool_id");
+
+        private final String configKey;
+
+        ConfigKey(String configKey) {
+            this.configKey = configKey;
+        }
+
+        @Override
+        public String toString() {
+            return configKey;
+        }
+
+        public static ConfigKey fromString(@Nullable String value) {
+            for (ConfigKey configKey : values()) {
+                if (configKey.toString().equals(value)) {
+                    return configKey;
+                }
+            }
+            throw new IllegalArgumentException("No config key with value = " + value);
+        }
     }
 }

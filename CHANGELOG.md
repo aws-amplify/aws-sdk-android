@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.8)
+
+### New Features
+
+- **AWS IoT**
+  - Added support for Custom Authorizers. AWS IoT allows you to define custom authorizers that allow you to manage your own authentication and authorization strategy using a custom authentication service and a Lambda function. Custom authorizers allow AWS IoT to authenticate your devices and authorize operations using bearer token authentication and authorization strategies. See [AWS IoT Custom Authentication](https://docs.aws.amazon.com/iot/latest/developerguide/custom-authentication.html) for more details.
+
 ## [Release 2.16.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.7)
 
 ### Misc. Updates
