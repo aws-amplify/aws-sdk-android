@@ -154,9 +154,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -586,9 +585,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -596,8 +594,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *
      * @return <p>
      *         Tells AWS KMS whether the value of the <code>Message</code>
-     *         parameter is a message or message digest. To indicate a message,
-     *         enter <code>RAW</code>. To indicate a message digest, enter
+     *         parameter is a message or message digest. The default value, RAW,
+     *         indicates a message. To indicate a message digest, enter
      *         <code>DIGEST</code>.
      *         </p>
      * @see MessageType
@@ -609,9 +607,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -619,9 +616,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
      * @see MessageType
      */
@@ -632,9 +629,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -645,9 +641,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -661,9 +657,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -671,9 +666,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
      * @see MessageType
      */
@@ -684,9 +679,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
     /**
      * <p>
      * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. To indicate a message, enter
-     * <code>RAW</code>. To indicate a message digest, enter <code>DIGEST</code>
-     * .
+     * a message or message digest. The default value, RAW, indicates a message.
+     * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -697,9 +691,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *
      * @param messageType <p>
      *            Tells AWS KMS whether the value of the <code>Message</code>
-     *            parameter is a message or message digest. To indicate a
-     *            message, enter <code>RAW</code>. To indicate a message digest,
-     *            enter <code>DIGEST</code>.
+     *            parameter is a message or message digest. The default value,
+     *            RAW, indicates a message. To indicate a message digest, enter
+     *            <code>DIGEST</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

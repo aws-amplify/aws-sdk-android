@@ -153,6 +153,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -190,7 +203,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      */
     private String connectionErrorCode;
 
@@ -820,6 +833,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -857,7 +883,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      *
      * @return <p>
      *         Describes the connection error. This field appears in the
@@ -908,6 +934,20 @@ public class CustomKeyStoresListEntry implements Serializable {
      *         <p>
      *         <code>NETWORK_ERRORS</code> - Network errors are preventing AWS
      *         KMS from connecting to the custom key store.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM
+     *         cluster configuration was deleted. If AWS KMS cannot find all of
+     *         the subnets that were configured for the cluster when the custom
+     *         key store was created, attempts to connect fail. To fix this
+     *         error, create a cluster from a backup and associate it with your
+     *         custom key store. This process includes selecting a VPC and
+     *         subnets. For details, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     *         >How to Fix a Connection Failure</a> in the <i>AWS Key Management
+     *         Service Developer Guide</i>.
      *         </p>
      *         </li>
      *         <li>
@@ -1005,6 +1045,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -1042,7 +1095,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1093,6 +1146,20 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            <p>
      *            <code>NETWORK_ERRORS</code> - Network errors are preventing
      *            AWS KMS from connecting to the custom key store.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM
+     *            cluster configuration was deleted. If AWS KMS cannot find all
+     *            of the subnets that were configured for the cluster when the
+     *            custom key store was created, attempts to connect fail. To fix
+     *            this error, create a cluster from a backup and associate it
+     *            with your custom key store. This process includes selecting a
+     *            VPC and subnets. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     *            >How to Fix a Connection Failure</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -1191,6 +1258,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -1231,7 +1311,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1282,6 +1362,20 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            <p>
      *            <code>NETWORK_ERRORS</code> - Network errors are preventing
      *            AWS KMS from connecting to the custom key store.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM
+     *            cluster configuration was deleted. If AWS KMS cannot find all
+     *            of the subnets that were configured for the cluster when the
+     *            custom key store was created, attempts to connect fail. To fix
+     *            this error, create a cluster from a backup and associate it
+     *            with your custom key store. This process includes selecting a
+     *            VPC and subnets. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     *            >How to Fix a Connection Failure</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -1383,6 +1477,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -1420,7 +1527,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1471,6 +1578,20 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            <p>
      *            <code>NETWORK_ERRORS</code> - Network errors are preventing
      *            AWS KMS from connecting to the custom key store.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM
+     *            cluster configuration was deleted. If AWS KMS cannot find all
+     *            of the subnets that were configured for the cluster when the
+     *            custom key store was created, attempts to connect fail. To fix
+     *            this error, create a cluster from a backup and associate it
+     *            with your custom key store. This process includes selecting a
+     *            VPC and subnets. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     *            >How to Fix a Connection Failure</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -1569,6 +1690,19 @@ public class CustomKeyStoresListEntry implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM cluster
+     * configuration was deleted. If AWS KMS cannot find all of the subnets that
+     * were configured for the cluster when the custom key store was created,
+     * attempts to connect fail. To fix this error, create a cluster from a
+     * backup and associate it with your custom key store. This process includes
+     * selecting a VPC and subnets. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     * >How to Fix a Connection Failure</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>USER_LOCKED_OUT</code> - The <code>kmsuser</code> CU account is
      * locked out of the associated AWS CloudHSM cluster due to too many failed
      * password attempts. Before you can connect your custom key store to its
@@ -1609,7 +1743,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1660,6 +1794,20 @@ public class CustomKeyStoresListEntry implements Serializable {
      *            <p>
      *            <code>NETWORK_ERRORS</code> - Network errors are preventing
      *            AWS KMS from connecting to the custom key store.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SUBNET_NOT_FOUND</code> - A subnet in the AWS CloudHSM
+     *            cluster configuration was deleted. If AWS KMS cannot find all
+     *            of the subnets that were configured for the cluster when the
+     *            custom key store was created, attempts to connect fail. To fix
+     *            this error, create a cluster from a backup and associate it
+     *            with your custom key store. This process includes selecting a
+     *            VPC and subnets. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-failed"
+     *            >How to Fix a Connection Failure</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
