@@ -294,6 +294,17 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
+     * You can choose to enable case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     */
+    private UsernameConfigurationType usernameConfiguration;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the user pool.
      * </p>
      * <p>
@@ -2244,6 +2255,75 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
+     * You can choose to enable case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     *
+     * @return <p>
+     *         You can choose to enable case sensitivity on the username input
+     *         for the selected sign-in option. For example, when this is set to
+     *         <code>False</code>, users will be able to sign in using either
+     *         "username" or "Username". This configuration is immutable once it
+     *         has been set. For more information, see .
+     *         </p>
+     */
+    public UsernameConfigurationType getUsernameConfiguration() {
+        return usernameConfiguration;
+    }
+
+    /**
+     * <p>
+     * You can choose to enable case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     *
+     * @param usernameConfiguration <p>
+     *            You can choose to enable case sensitivity on the username
+     *            input for the selected sign-in option. For example, when this
+     *            is set to <code>False</code>, users will be able to sign in
+     *            using either "username" or "Username". This configuration is
+     *            immutable once it has been set. For more information, see .
+     *            </p>
+     */
+    public void setUsernameConfiguration(UsernameConfigurationType usernameConfiguration) {
+        this.usernameConfiguration = usernameConfiguration;
+    }
+
+    /**
+     * <p>
+     * You can choose to enable case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param usernameConfiguration <p>
+     *            You can choose to enable case sensitivity on the username
+     *            input for the selected sign-in option. For example, when this
+     *            is set to <code>False</code>, users will be able to sign in
+     *            using either "username" or "Username". This configuration is
+     *            immutable once it has been set. For more information, see .
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserPoolType withUsernameConfiguration(UsernameConfigurationType usernameConfiguration) {
+        this.usernameConfiguration = usernameConfiguration;
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the user pool.
      * </p>
      * <p>
@@ -2458,6 +2538,8 @@ public class UserPoolType implements Serializable {
             sb.append("AdminCreateUserConfig: " + getAdminCreateUserConfig() + ",");
         if (getUserPoolAddOns() != null)
             sb.append("UserPoolAddOns: " + getUserPoolAddOns() + ",");
+        if (getUsernameConfiguration() != null)
+            sb.append("UsernameConfiguration: " + getUsernameConfiguration() + ",");
         if (getArn() != null)
             sb.append("Arn: " + getArn() + ",");
         if (getAccountRecoverySetting() != null)
@@ -2541,6 +2623,9 @@ public class UserPoolType implements Serializable {
                 + ((getAdminCreateUserConfig() == null) ? 0 : getAdminCreateUserConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getUserPoolAddOns() == null) ? 0 : getUserPoolAddOns().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUsernameConfiguration() == null) ? 0 : getUsernameConfiguration().hashCode());
         hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime
                 * hashCode
@@ -2700,6 +2785,11 @@ public class UserPoolType implements Serializable {
             return false;
         if (other.getUserPoolAddOns() != null
                 && other.getUserPoolAddOns().equals(this.getUserPoolAddOns()) == false)
+            return false;
+        if (other.getUsernameConfiguration() == null ^ this.getUsernameConfiguration() == null)
+            return false;
+        if (other.getUsernameConfiguration() != null
+                && other.getUsernameConfiguration().equals(this.getUsernameConfiguration()) == false)
             return false;
         if (other.getArn() == null ^ this.getArn() == null)
             return false;

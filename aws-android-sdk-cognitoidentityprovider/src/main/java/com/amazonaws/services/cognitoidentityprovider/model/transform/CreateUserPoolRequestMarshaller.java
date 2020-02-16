@@ -203,6 +203,13 @@ public class CreateUserPoolRequestMarshaller implements
                 jsonWriter.name("UserPoolAddOns");
                 UserPoolAddOnsTypeJsonMarshaller.getInstance().marshall(userPoolAddOns, jsonWriter);
             }
+            if (createUserPoolRequest.getUsernameConfiguration() != null) {
+                UsernameConfigurationType usernameConfiguration = createUserPoolRequest
+                        .getUsernameConfiguration();
+                jsonWriter.name("UsernameConfiguration");
+                UsernameConfigurationTypeJsonMarshaller.getInstance().marshall(
+                        usernameConfiguration, jsonWriter);
+            }
             if (createUserPoolRequest.getAccountRecoverySetting() != null) {
                 AccountRecoverySettingType accountRecoverySetting = createUserPoolRequest
                         .getAccountRecoverySetting();
