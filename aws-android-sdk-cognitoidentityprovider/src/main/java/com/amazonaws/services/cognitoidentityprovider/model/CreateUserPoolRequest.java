@@ -214,6 +214,17 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * You can choose to set case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     */
+    private UsernameConfigurationType usernameConfiguration;
+
+    /**
+     * <p>
      * Use this setting to define which verified available method a user can use
      * to recover their password when they call <code>ForgotPassword</code>. It
      * allows you to define a preferred method when a user has more than one
@@ -1558,6 +1569,76 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * You can choose to set case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     *
+     * @return <p>
+     *         You can choose to set case sensitivity on the username input for
+     *         the selected sign-in option. For example, when this is set to
+     *         <code>False</code>, users will be able to sign in using either
+     *         "username" or "Username". This configuration is immutable once it
+     *         has been set. For more information, see .
+     *         </p>
+     */
+    public UsernameConfigurationType getUsernameConfiguration() {
+        return usernameConfiguration;
+    }
+
+    /**
+     * <p>
+     * You can choose to set case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     *
+     * @param usernameConfiguration <p>
+     *            You can choose to set case sensitivity on the username input
+     *            for the selected sign-in option. For example, when this is set
+     *            to <code>False</code>, users will be able to sign in using
+     *            either "username" or "Username". This configuration is
+     *            immutable once it has been set. For more information, see .
+     *            </p>
+     */
+    public void setUsernameConfiguration(UsernameConfigurationType usernameConfiguration) {
+        this.usernameConfiguration = usernameConfiguration;
+    }
+
+    /**
+     * <p>
+     * You can choose to set case sensitivity on the username input for the
+     * selected sign-in option. For example, when this is set to
+     * <code>False</code>, users will be able to sign in using either "username"
+     * or "Username". This configuration is immutable once it has been set. For
+     * more information, see .
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param usernameConfiguration <p>
+     *            You can choose to set case sensitivity on the username input
+     *            for the selected sign-in option. For example, when this is set
+     *            to <code>False</code>, users will be able to sign in using
+     *            either "username" or "Username". This configuration is
+     *            immutable once it has been set. For more information, see .
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolRequest withUsernameConfiguration(
+            UsernameConfigurationType usernameConfiguration) {
+        this.usernameConfiguration = usernameConfiguration;
+        return this;
+    }
+
+    /**
+     * <p>
      * Use this setting to define which verified available method a user can use
      * to recover their password when they call <code>ForgotPassword</code>. It
      * allows you to define a preferred method when a user has more than one
@@ -1746,6 +1827,8 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
             sb.append("Schema: " + getSchema() + ",");
         if (getUserPoolAddOns() != null)
             sb.append("UserPoolAddOns: " + getUserPoolAddOns() + ",");
+        if (getUsernameConfiguration() != null)
+            sb.append("UsernameConfiguration: " + getUsernameConfiguration() + ",");
         if (getAccountRecoverySetting() != null)
             sb.append("AccountRecoverySetting: " + getAccountRecoverySetting());
         sb.append("}");
@@ -1805,6 +1888,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getSchema() == null) ? 0 : getSchema().hashCode());
         hashCode = prime * hashCode
                 + ((getUserPoolAddOns() == null) ? 0 : getUserPoolAddOns().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUsernameConfiguration() == null) ? 0 : getUsernameConfiguration().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getAccountRecoverySetting() == null) ? 0 : getAccountRecoverySetting()
@@ -1919,6 +2005,11 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getUserPoolAddOns() != null
                 && other.getUserPoolAddOns().equals(this.getUserPoolAddOns()) == false)
+            return false;
+        if (other.getUsernameConfiguration() == null ^ this.getUsernameConfiguration() == null)
+            return false;
+        if (other.getUsernameConfiguration() != null
+                && other.getUsernameConfiguration().equals(this.getUsernameConfiguration()) == false)
             return false;
         if (other.getAccountRecoverySetting() == null ^ this.getAccountRecoverySetting() == null)
             return false;

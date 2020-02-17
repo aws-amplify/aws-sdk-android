@@ -206,6 +206,13 @@ class UserPoolTypeJsonMarshaller {
             jsonWriter.name("UserPoolAddOns");
             UserPoolAddOnsTypeJsonMarshaller.getInstance().marshall(userPoolAddOns, jsonWriter);
         }
+        if (userPoolType.getUsernameConfiguration() != null) {
+            UsernameConfigurationType usernameConfiguration = userPoolType
+                    .getUsernameConfiguration();
+            jsonWriter.name("UsernameConfiguration");
+            UsernameConfigurationTypeJsonMarshaller.getInstance().marshall(usernameConfiguration,
+                    jsonWriter);
+        }
         if (userPoolType.getArn() != null) {
             String arn = userPoolType.getArn();
             jsonWriter.name("Arn");

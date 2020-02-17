@@ -134,6 +134,10 @@ class UserPoolTypeJsonUnmarshaller implements Unmarshaller<UserPoolType, JsonUnm
             } else if (name.equals("UserPoolAddOns")) {
                 userPoolType.setUserPoolAddOns(UserPoolAddOnsTypeJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UsernameConfiguration")) {
+                userPoolType.setUsernameConfiguration(UsernameConfigurationTypeJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Arn")) {
                 userPoolType.setArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
