@@ -540,12 +540,18 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String clientId = userPoolJSON.getString("AppClientId");
                             final String clientSecret = userPoolJSON.optString("AppClientSecret");
                             final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
+                            final String endpoint = userPoolJSON.optString("Endpoint");
+
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
                             clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
                             userpoolLL =
                                     new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
                             userpoolLL.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
+
+                            if (endpoint != null && !endpoint.isEmpty()) {
+                                userpoolLL.setEndpoint(endpoint);
+                            }
 
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
 
