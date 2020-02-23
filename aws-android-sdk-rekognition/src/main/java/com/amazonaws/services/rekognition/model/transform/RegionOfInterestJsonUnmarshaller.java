@@ -21,40 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DetectTextResult
+ * JSON unmarshaller for POJO RegionOfInterest
  */
-public class DetectTextResultJsonUnmarshaller implements
-        Unmarshaller<DetectTextResult, JsonUnmarshallerContext> {
+class RegionOfInterestJsonUnmarshaller implements
+        Unmarshaller<RegionOfInterest, JsonUnmarshallerContext> {
 
-    public DetectTextResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DetectTextResult detectTextResult = new DetectTextResult();
-
+    public RegionOfInterest unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        RegionOfInterest regionOfInterest = new RegionOfInterest();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("TextDetections")) {
-                detectTextResult.setTextDetections(new ListUnmarshaller<TextDetection>(
-                        TextDetectionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("TextModelVersion")) {
-                detectTextResult.setTextModelVersion(StringJsonUnmarshaller.getInstance()
+            if (name.equals("BoundingBox")) {
+                regionOfInterest.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return detectTextResult;
+        return regionOfInterest;
     }
 
-    private static DetectTextResultJsonUnmarshaller instance;
+    private static RegionOfInterestJsonUnmarshaller instance;
 
-    public static DetectTextResultJsonUnmarshaller getInstance() {
+    public static RegionOfInterestJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DetectTextResultJsonUnmarshaller();
+            instance = new RegionOfInterestJsonUnmarshaller();
         return instance;
     }
 }
