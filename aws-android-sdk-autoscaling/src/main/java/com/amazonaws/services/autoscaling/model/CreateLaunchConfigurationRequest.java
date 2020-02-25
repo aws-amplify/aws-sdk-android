@@ -28,8 +28,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For information about viewing this limit, see <a>DescribeAccountLimits</a>.
  * For information about updating this limit, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
- * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
- * Guide</i>.
+ * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto Scaling
+ * User Guide</i>.
  * </p>
  * <p>
  * For more information, see <a href=

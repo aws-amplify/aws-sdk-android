@@ -117,6 +117,11 @@ class ScalingPolicyStaxMarshaller {
             TargetTrackingConfigurationStaxMarshaller.getInstance().marshall(
                     targetTrackingConfiguration, request, prefix + ".");
         }
+        if (_scalingPolicy.getEnabled() != null) {
+            prefix = _prefix + "Enabled";
+            Boolean enabled = _scalingPolicy.getEnabled();
+            request.addParameter(prefix, StringUtils.fromBoolean(enabled));
+        }
     }
 
     private static ScalingPolicyStaxMarshaller instance;
