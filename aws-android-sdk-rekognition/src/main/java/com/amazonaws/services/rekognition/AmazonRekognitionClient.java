@@ -1298,9 +1298,9 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * </p>
      * <p>
      * You pass the input image either as base64-encoded image bytes or as a
-     * reference to an image in an Amazon S3 bucket. If you use the to call
-     * Amazon Rekognition operations, passing image bytes is not supported. The
-     * image must be either a PNG or JPEG formatted file.
+     * reference to an image in an Amazon S3 bucket. If you use the AWS CLI to
+     * call Amazon Rekognition operations, passing image bytes is not supported.
+     * The image must be either a PNG or JPEG formatted file.
      * </p>
      * <note>
      * <p>
@@ -2312,6 +2312,92 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<GetPersonTrackingResult, JsonUnmarshallerContext> unmarshaller = new GetPersonTrackingResultJsonUnmarshaller();
             JsonResponseHandler<GetPersonTrackingResult> responseHandler = new JsonResponseHandler<GetPersonTrackingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the text detection results of a Amazon Rekognition Video analysis
+     * started by <a>StartTextDetection</a>.
+     * </p>
+     * <p>
+     * Text detection with Amazon Rekognition Video is an asynchronous
+     * operation. You start text detection by calling <a>StartTextDetection</a>
+     * which returns a job identifier (<code>JobId</code>) When the text
+     * detection operation finishes, Amazon Rekognition publishes a completion
+     * status to the Amazon Simple Notification Service topic registered in the
+     * initial call to <code>StartTextDetection</code>. To get the results of
+     * the text detection operation, first check that the status value published
+     * to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call
+     * <code>GetTextDetection</code> and pass the job identifier (
+     * <code>JobId</code>) from the initial call of
+     * <code>StartLabelDetection</code>.
+     * </p>
+     * <p>
+     * <code>GetTextDetection</code> returns an array of detected text (
+     * <code>TextDetections</code>) sorted by the time the text was detected, up
+     * to 50 words per frame of video.
+     * </p>
+     * <p>
+     * Each element of the array includes the detected text, the precentage
+     * confidence in the acuracy of the detected text, the time the text was
+     * detected, bounding box information for where the text was located, and
+     * unique identifiers for words and their lines.
+     * </p>
+     * <p>
+     * Use MaxResults parameter to limit the number of text detections returned.
+     * If there are more results than specified in <code>MaxResults</code>, the
+     * value of <code>NextToken</code> in the operation response contains a
+     * pagination token for getting the next set of results. To get the next
+     * page of results, call <code>GetTextDetection</code> and populate the
+     * <code>NextToken</code> request parameter with the token value returned
+     * from the previous call to <code>GetTextDetection</code>.
+     * </p>
+     * 
+     * @param getTextDetectionRequest
+     * @return getTextDetectionResult The response from the GetTextDetection
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws InvalidPaginationTokenException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetTextDetectionResult getTextDetection(GetTextDetectionRequest getTextDetectionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getTextDetectionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTextDetectionRequest> request = null;
+        Response<GetTextDetectionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTextDetectionRequestMarshaller().marshall(getTextDetectionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetTextDetectionResult, JsonUnmarshallerContext> unmarshaller = new GetTextDetectionResultJsonUnmarshaller();
+            JsonResponseHandler<GetTextDetectionResult> responseHandler = new JsonResponseHandler<GetTextDetectionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3564,6 +3650,78 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<StartStreamProcessorResult, JsonUnmarshallerContext> unmarshaller = new StartStreamProcessorResultJsonUnmarshaller();
             JsonResponseHandler<StartStreamProcessorResult> responseHandler = new JsonResponseHandler<StartStreamProcessorResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Starts asynchronous detection of text in a stored video.
+     * </p>
+     * <p>
+     * Amazon Rekognition Video can detect text in a video stored in an Amazon
+     * S3 bucket. Use <a>Video</a> to specify the bucket name and the filename
+     * of the video. <code>StartTextDetection</code> returns a job identifier (
+     * <code>JobId</code>) which you use to get the results of the operation.
+     * When text detection is finished, Amazon Rekognition Video publishes a
+     * completion status to the Amazon Simple Notification Service topic that
+     * you specify in <code>NotificationChannel</code>.
+     * </p>
+     * <p>
+     * To get the results of the text detection operation, first check that the
+     * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
+     * if so, call <a>GetTextDetection</a> and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartTextDetection</code>.
+     * </p>
+     * 
+     * @param startTextDetectionRequest
+     * @return startTextDetectionResult The response from the StartTextDetection
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws IdempotentParameterMismatchException
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InternalServerErrorException
+     * @throws VideoTooLargeException
+     * @throws ProvisionedThroughputExceededException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartTextDetectionResult startTextDetection(
+            StartTextDetectionRequest startTextDetectionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startTextDetectionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartTextDetectionRequest> request = null;
+        Response<StartTextDetectionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartTextDetectionRequestMarshaller()
+                        .marshall(startTextDetectionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartTextDetectionResult, JsonUnmarshallerContext> unmarshaller = new StartTextDetectionResultJsonUnmarshaller();
+            JsonResponseHandler<StartTextDetectionResult> responseHandler = new JsonResponseHandler<StartTextDetectionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

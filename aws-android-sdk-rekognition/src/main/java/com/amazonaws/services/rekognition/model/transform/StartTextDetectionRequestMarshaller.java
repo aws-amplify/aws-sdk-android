@@ -35,20 +35,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectTextRequest
+ * JSON request marshaller for StartTextDetectionRequest
  */
-public class DetectTextRequestMarshaller implements
-        Marshaller<Request<DetectTextRequest>, DetectTextRequest> {
+public class StartTextDetectionRequestMarshaller implements
+        Marshaller<Request<StartTextDetectionRequest>, StartTextDetectionRequest> {
 
-    public Request<DetectTextRequest> marshall(DetectTextRequest detectTextRequest) {
-        if (detectTextRequest == null) {
+    public Request<StartTextDetectionRequest> marshall(
+            StartTextDetectionRequest startTextDetectionRequest) {
+        if (startTextDetectionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectTextRequest)");
+                    "Invalid argument passed to marshall(StartTextDetectionRequest)");
         }
 
-        Request<DetectTextRequest> request = new DefaultRequest<DetectTextRequest>(
-                detectTextRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectText";
+        Request<StartTextDetectionRequest> request = new DefaultRequest<StartTextDetectionRequest>(
+                startTextDetectionRequest, "AmazonRekognition");
+        String target = "RekognitionService.StartTextDetection";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -59,15 +60,32 @@ public class DetectTextRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectTextRequest.getImage() != null) {
-                Image image = detectTextRequest.getImage();
-                jsonWriter.name("Image");
-                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
+            if (startTextDetectionRequest.getVideo() != null) {
+                Video video = startTextDetectionRequest.getVideo();
+                jsonWriter.name("Video");
+                VideoJsonMarshaller.getInstance().marshall(video, jsonWriter);
             }
-            if (detectTextRequest.getFilters() != null) {
-                DetectTextFilters filters = detectTextRequest.getFilters();
+            if (startTextDetectionRequest.getClientRequestToken() != null) {
+                String clientRequestToken = startTextDetectionRequest.getClientRequestToken();
+                jsonWriter.name("ClientRequestToken");
+                jsonWriter.value(clientRequestToken);
+            }
+            if (startTextDetectionRequest.getNotificationChannel() != null) {
+                NotificationChannel notificationChannel = startTextDetectionRequest
+                        .getNotificationChannel();
+                jsonWriter.name("NotificationChannel");
+                NotificationChannelJsonMarshaller.getInstance().marshall(notificationChannel,
+                        jsonWriter);
+            }
+            if (startTextDetectionRequest.getJobTag() != null) {
+                String jobTag = startTextDetectionRequest.getJobTag();
+                jsonWriter.name("JobTag");
+                jsonWriter.value(jobTag);
+            }
+            if (startTextDetectionRequest.getFilters() != null) {
+                StartTextDetectionFilters filters = startTextDetectionRequest.getFilters();
                 jsonWriter.name("Filters");
-                DetectTextFiltersJsonMarshaller.getInstance().marshall(filters, jsonWriter);
+                StartTextDetectionFiltersJsonMarshaller.getInstance().marshall(filters, jsonWriter);
             }
 
             jsonWriter.endObject();

@@ -39,7 +39,7 @@ public class FaceSearchSettings implements Serializable {
     /**
      * <p>
      * Minimum face match confidence score that must be met to return a result
-     * for a recognized face. Default is 70. 0 is the lowest confidence. 100 is
+     * for a recognized face. Default is 80. 0 is the lowest confidence. 100 is
      * the highest confidence.
      * </p>
      * <p>
@@ -111,7 +111,7 @@ public class FaceSearchSettings implements Serializable {
     /**
      * <p>
      * Minimum face match confidence score that must be met to return a result
-     * for a recognized face. Default is 70. 0 is the lowest confidence. 100 is
+     * for a recognized face. Default is 80. 0 is the lowest confidence. 100 is
      * the highest confidence.
      * </p>
      * <p>
@@ -120,7 +120,7 @@ public class FaceSearchSettings implements Serializable {
      *
      * @return <p>
      *         Minimum face match confidence score that must be met to return a
-     *         result for a recognized face. Default is 70. 0 is the lowest
+     *         result for a recognized face. Default is 80. 0 is the lowest
      *         confidence. 100 is the highest confidence.
      *         </p>
      */
@@ -131,7 +131,7 @@ public class FaceSearchSettings implements Serializable {
     /**
      * <p>
      * Minimum face match confidence score that must be met to return a result
-     * for a recognized face. Default is 70. 0 is the lowest confidence. 100 is
+     * for a recognized face. Default is 80. 0 is the lowest confidence. 100 is
      * the highest confidence.
      * </p>
      * <p>
@@ -140,7 +140,7 @@ public class FaceSearchSettings implements Serializable {
      *
      * @param faceMatchThreshold <p>
      *            Minimum face match confidence score that must be met to return
-     *            a result for a recognized face. Default is 70. 0 is the lowest
+     *            a result for a recognized face. Default is 80. 0 is the lowest
      *            confidence. 100 is the highest confidence.
      *            </p>
      */
@@ -151,7 +151,7 @@ public class FaceSearchSettings implements Serializable {
     /**
      * <p>
      * Minimum face match confidence score that must be met to return a result
-     * for a recognized face. Default is 70. 0 is the lowest confidence. 100 is
+     * for a recognized face. Default is 80. 0 is the lowest confidence. 100 is
      * the highest confidence.
      * </p>
      * <p>
@@ -163,7 +163,7 @@ public class FaceSearchSettings implements Serializable {
      *
      * @param faceMatchThreshold <p>
      *            Minimum face match confidence score that must be met to return
-     *            a result for a recognized face. Default is 70. 0 is the lowest
+     *            a result for a recognized face. Default is 80. 0 is the lowest
      *            confidence. 100 is the highest confidence.
      *            </p>
      * @return A reference to this updated object so that method calls can be
