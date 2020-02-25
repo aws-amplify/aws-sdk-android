@@ -113,6 +113,11 @@ public class PutScalingPolicyRequestMarshaller implements
             TargetTrackingConfigurationStaxMarshaller.getInstance().marshall(
                     targetTrackingConfiguration, request, prefix + ".");
         }
+        if (putScalingPolicyRequest.getEnabled() != null) {
+            prefix = "Enabled";
+            Boolean enabled = putScalingPolicyRequest.getEnabled();
+            request.addParameter(prefix, StringUtils.fromBoolean(enabled));
+        }
 
         return request;
     }

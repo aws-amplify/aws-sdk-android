@@ -28,8 +28,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * information about viewing this limit, see <a>DescribeAccountLimits</a>. For
  * information about updating this limit, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
- * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
- * Guide</i>.
+ * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto Scaling
+ * User Guide</i>.
  * </p>
  */
 public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest implements Serializable {
@@ -378,6 +378,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The maximum amount of time, in seconds, that an instance can be in
      * service.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     * >Replacing Auto Scaling Instances Based on Maximum Instance Lifetime</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Valid Range: Minimum value of 604800.
@@ -2719,12 +2725,24 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * service.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     * >Replacing Auto Scaling Instances Based on Maximum Instance Lifetime</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
      * Valid Range: Minimum value of 604800.
      * </p>
      *
      * @return <p>
      *         The maximum amount of time, in seconds, that an instance can be
      *         in service.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     *         >Replacing Auto Scaling Instances Based on Maximum Instance
+     *         Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
      *         Valid Range: Minimum value of 604800.
@@ -2740,12 +2758,24 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * service.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     * >Replacing Auto Scaling Instances Based on Maximum Instance Lifetime</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
      * Valid Range: Minimum value of 604800.
      * </p>
      *
      * @param maxInstanceLifetime <p>
      *            The maximum amount of time, in seconds, that an instance can
      *            be in service.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     *            >Replacing Auto Scaling Instances Based on Maximum Instance
+     *            Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Valid Range: Minimum value of 604800.
@@ -2761,6 +2791,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * service.
      * </p>
      * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     * >Replacing Auto Scaling Instances Based on Maximum Instance Lifetime</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
      * Valid Range: Minimum value of 604800.
      * </p>
      * <p>
@@ -2770,6 +2806,12 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param maxInstanceLifetime <p>
      *            The maximum amount of time, in seconds, that an instance can
      *            be in service.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html"
+     *            >Replacing Auto Scaling Instances Based on Maximum Instance
+     *            Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Valid Range: Minimum value of 604800.
