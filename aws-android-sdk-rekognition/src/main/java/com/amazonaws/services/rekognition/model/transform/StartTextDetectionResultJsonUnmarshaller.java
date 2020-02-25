@@ -21,25 +21,20 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DetectTextResult
+ * JSON unmarshaller for response StartTextDetectionResult
  */
-public class DetectTextResultJsonUnmarshaller implements
-        Unmarshaller<DetectTextResult, JsonUnmarshallerContext> {
+public class StartTextDetectionResultJsonUnmarshaller implements
+        Unmarshaller<StartTextDetectionResult, JsonUnmarshallerContext> {
 
-    public DetectTextResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DetectTextResult detectTextResult = new DetectTextResult();
+    public StartTextDetectionResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        StartTextDetectionResult startTextDetectionResult = new StartTextDetectionResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("TextDetections")) {
-                detectTextResult.setTextDetections(new ListUnmarshaller<TextDetection>(
-                        TextDetectionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("TextModelVersion")) {
-                detectTextResult.setTextModelVersion(StringJsonUnmarshaller.getInstance()
+            if (name.equals("JobId")) {
+                startTextDetectionResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
@@ -47,14 +42,14 @@ public class DetectTextResultJsonUnmarshaller implements
         }
         reader.endObject();
 
-        return detectTextResult;
+        return startTextDetectionResult;
     }
 
-    private static DetectTextResultJsonUnmarshaller instance;
+    private static StartTextDetectionResultJsonUnmarshaller instance;
 
-    public static DetectTextResultJsonUnmarshaller getInstance() {
+    public static StartTextDetectionResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DetectTextResultJsonUnmarshaller();
+            instance = new StartTextDetectionResultJsonUnmarshaller();
         return instance;
     }
 }

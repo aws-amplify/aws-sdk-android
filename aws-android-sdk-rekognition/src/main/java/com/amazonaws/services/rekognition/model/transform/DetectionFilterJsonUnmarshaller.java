@@ -21,40 +21,43 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DetectTextResult
+ * JSON unmarshaller for POJO DetectionFilter
  */
-public class DetectTextResultJsonUnmarshaller implements
-        Unmarshaller<DetectTextResult, JsonUnmarshallerContext> {
+class DetectionFilterJsonUnmarshaller implements
+        Unmarshaller<DetectionFilter, JsonUnmarshallerContext> {
 
-    public DetectTextResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DetectTextResult detectTextResult = new DetectTextResult();
-
+    public DetectionFilter unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        DetectionFilter detectionFilter = new DetectionFilter();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("TextDetections")) {
-                detectTextResult.setTextDetections(new ListUnmarshaller<TextDetection>(
-                        TextDetectionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("TextModelVersion")) {
-                detectTextResult.setTextModelVersion(StringJsonUnmarshaller.getInstance()
+            if (name.equals("MinConfidence")) {
+                detectionFilter.setMinConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MinBoundingBoxHeight")) {
+                detectionFilter.setMinBoundingBoxHeight(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MinBoundingBoxWidth")) {
+                detectionFilter.setMinBoundingBoxWidth(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return detectTextResult;
+        return detectionFilter;
     }
 
-    private static DetectTextResultJsonUnmarshaller instance;
+    private static DetectionFilterJsonUnmarshaller instance;
 
-    public static DetectTextResultJsonUnmarshaller getInstance() {
+    public static DetectionFilterJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DetectTextResultJsonUnmarshaller();
+            instance = new DetectionFilterJsonUnmarshaller();
         return instance;
     }
 }

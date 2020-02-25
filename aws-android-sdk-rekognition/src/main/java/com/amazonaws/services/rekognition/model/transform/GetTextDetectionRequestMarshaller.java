@@ -35,20 +35,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DetectTextRequest
+ * JSON request marshaller for GetTextDetectionRequest
  */
-public class DetectTextRequestMarshaller implements
-        Marshaller<Request<DetectTextRequest>, DetectTextRequest> {
+public class GetTextDetectionRequestMarshaller implements
+        Marshaller<Request<GetTextDetectionRequest>, GetTextDetectionRequest> {
 
-    public Request<DetectTextRequest> marshall(DetectTextRequest detectTextRequest) {
-        if (detectTextRequest == null) {
+    public Request<GetTextDetectionRequest> marshall(GetTextDetectionRequest getTextDetectionRequest) {
+        if (getTextDetectionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DetectTextRequest)");
+                    "Invalid argument passed to marshall(GetTextDetectionRequest)");
         }
 
-        Request<DetectTextRequest> request = new DefaultRequest<DetectTextRequest>(
-                detectTextRequest, "AmazonRekognition");
-        String target = "RekognitionService.DetectText";
+        Request<GetTextDetectionRequest> request = new DefaultRequest<GetTextDetectionRequest>(
+                getTextDetectionRequest, "AmazonRekognition");
+        String target = "RekognitionService.GetTextDetection";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -59,15 +59,20 @@ public class DetectTextRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (detectTextRequest.getImage() != null) {
-                Image image = detectTextRequest.getImage();
-                jsonWriter.name("Image");
-                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
+            if (getTextDetectionRequest.getJobId() != null) {
+                String jobId = getTextDetectionRequest.getJobId();
+                jsonWriter.name("JobId");
+                jsonWriter.value(jobId);
             }
-            if (detectTextRequest.getFilters() != null) {
-                DetectTextFilters filters = detectTextRequest.getFilters();
-                jsonWriter.name("Filters");
-                DetectTextFiltersJsonMarshaller.getInstance().marshall(filters, jsonWriter);
+            if (getTextDetectionRequest.getMaxResults() != null) {
+                Integer maxResults = getTextDetectionRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
+            if (getTextDetectionRequest.getNextToken() != null) {
+                String nextToken = getTextDetectionRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
             }
 
             jsonWriter.endObject();
