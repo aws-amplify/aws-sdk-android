@@ -1,5 +1,25 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.9)
+
+### New Features
+
+- **Amazon Rekognition**
+  - Adds new APIs for detecting text in a video file.
+
+- **Amazon Cognito Identity Provider**
+  - This release adds a new setting for a user pool to allow if customer wants their user signup/signin with case insensitive username. The current default setting is case sensitive, and for our next release we will change it to case insensitive.
+
+### Misc. Updates
+
+- Model updates for the following services
+  - **AWS Auto Scaling**
+    - Documentation updates
+    - Adds a field to request enable or disable on a PutScalingPolicyRequest
+  - Amazon Cognito Identity Provider
+  - AWS Key Management Service (KMS)
+    - The ConnectCustomKeyStore API now provides a new error code (SUBNET_NOT_FOUND) for customers to better troubleshoot if their "connect-custom-key-store" operation fails.
+
 ## [Release 2.16.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.8)
 
 ### New Features
