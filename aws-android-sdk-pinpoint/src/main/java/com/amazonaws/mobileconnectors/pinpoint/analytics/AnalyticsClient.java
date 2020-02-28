@@ -467,6 +467,20 @@ public class AnalyticsClient implements JSONSerializable {
             }
         }
 
+        final JSONArray campaignAttrs = new JSONArray();
+        if (null != campaignAttributes) {
+            for (final Entry<String, String> entry : campaignAttributes.entrySet()) {
+                try {
+                    final JSONObject attr = new JSONObject();
+                    attr.put(entry.getKey(), entry.getValue());
+                    campaignAttrs.put(attr);
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Campaign Attributes.");
+                }
+            }
+        }
+
         return new JSONBuilder(this)
             .withAttribute("uniqueId", context.getUniqueId())
             .withAttribute("observers", observersJSON)
@@ -474,6 +488,7 @@ public class AnalyticsClient implements JSONSerializable {
             .withAttribute("globalMetrics", globalMets)
             .withAttribute("eventTypeAttributes", eventTypesAttributesJson)
             .withAttribute("eventTypeMetrics", eventTypesMetricsJson)
+            .withAttribute("campaignAttributes", campaignAttrs)
             .toJSONObject();
     }
 
