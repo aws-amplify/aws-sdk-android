@@ -92,6 +92,11 @@ class TranscriptionJobJsonMarshaller {
             JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
                     jsonWriter);
         }
+        if (transcriptionJob.getContentRedaction() != null) {
+            ContentRedaction contentRedaction = transcriptionJob.getContentRedaction();
+            jsonWriter.name("ContentRedaction");
+            ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
