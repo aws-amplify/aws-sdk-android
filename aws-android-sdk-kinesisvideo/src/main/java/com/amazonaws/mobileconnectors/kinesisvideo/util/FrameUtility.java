@@ -24,6 +24,9 @@ import android.util.Log;
 
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_TRACK_ID;
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.FRAME_DURATION_0_MS;
+
 public class FrameUtility {
     private static final String TAG = FrameUtility.class.getSimpleName();
     private static final int FRAME_FLAG_KEY_FRAME = 1;
@@ -35,15 +38,18 @@ public class FrameUtility {
             final MediaCodec.BufferInfo bufferInfo,
             final long timeCodeMs,
             final int frameIndex,
-            final ByteBuffer encodedFrameData) {
+            final ByteBuffer encodedFrameData,
+            final int trackId,
+            final boolean allNonKeyFrame) {
 
         final long currentTimeMs = System.currentTimeMillis();
 
-        final int flags = isKeyFrame(bufferInfo) ? FRAME_FLAG_KEY_FRAME : FRAME_FLAG_NONE;
+        final int flags = allNonKeyFrame ? FRAME_FLAG_NONE
+                : (isKeyFrame(bufferInfo) ? FRAME_FLAG_KEY_FRAME : FRAME_FLAG_NONE);
 
         Log.d(TAG, "frame timestamp: " + currentTimeMs
                 + ", index: " + frameIndex
-                + ", duration: " + FRAME_DURATION_2_MS
+                + ", duration: " + FRAME_DURATION_0_MS
                 + ", keyFrame: " + isKeyFrame(bufferInfo)
                 + ", flags: " + flags);
         // time is zero, currently the stream will use wall clock internally
@@ -52,8 +58,18 @@ public class FrameUtility {
                 flags,
                 currentTimeMs * HUNDREDS_OF_NANOS_IN_MS,
                 currentTimeMs * HUNDREDS_OF_NANOS_IN_MS,
-                FRAME_DURATION_2_MS * HUNDREDS_OF_NANOS_IN_MS,
-                encodedFrameData);
+                FRAME_DURATION_0_MS * HUNDREDS_OF_NANOS_IN_MS,
+                encodedFrameData,
+                trackId);
+    }
+
+    public static KinesisVideoFrame createFrame(
+            final MediaCodec.BufferInfo bufferInfo,
+            final long timeCodeMs,
+            final int frameIndex,
+            final ByteBuffer encodedFrameData) {
+
+        return createFrame(bufferInfo, timeCodeMs, frameIndex, encodedFrameData, DEFAULT_TRACK_ID, false);
     }
 
     private static boolean isKeyFrame(final MediaCodec.BufferInfo bufferInfo) {

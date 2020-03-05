@@ -1,25 +1,24 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.producer;
 
+import com.amazonaws.kinesisvideo.internal.producer.jni.NativeKinesisVideoProducerJni;
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import com.amazonaws.kinesisvideo.producer.StorageInfo;
-import com.amazonaws.kinesisvideo.producer.Tag;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,21 +37,32 @@ public class DeviceInfo {
     /**
      * Current version for the structure as defined in the native code
      */
-    public static final int DEVICE_INFO_CURRENT_VERSION = 0;
+    public static final int DEVICE_INFO_CURRENT_VERSION = 1;
 
     private final int mVersion;
     private final String mName;
     private final StorageInfo mStorageInfo;
     private final int mStreamCount;
     private final Tag[] mTags;
+    private final String mClientId;
+    private final ClientInfo mClientInfo;
 
     public DeviceInfo(int version, @Nullable final String name, @NonNull final StorageInfo storageInfo,
             int streamCount, @Nullable final Tag[] tags) {
+        this(version, name, storageInfo, streamCount, tags,
+                "JNI " + NativeKinesisVideoProducerJni.EXPECTED_LIBRARY_VERSION, new ClientInfo());
+    }
+
+    public DeviceInfo(int version, @Nullable final String name, @NonNull final StorageInfo storageInfo,
+                      int streamCount, @Nullable final Tag[] tags, @NonNull final String clientId,
+                      @NonNull final ClientInfo clientInfo) {
         mStorageInfo = Preconditions.checkNotNull(storageInfo);
         mName = name;
         mTags = tags;
         mVersion = version;
         mStreamCount = streamCount;
+        mClientId = clientId;
+        mClientInfo = clientInfo;
     }
 
     public int getVersion() {
@@ -96,5 +106,15 @@ public class DeviceInfo {
     @Nullable
     public Tag[] getTags() {
         return mTags;
+    }
+
+    @NonNull
+    public String getClientId() {
+        return mClientId;
+    }
+
+    @NonNull
+    public ClientInfo getClientInfo() {
+        return mClientInfo;
     }
 }

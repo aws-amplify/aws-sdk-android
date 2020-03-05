@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.client;
@@ -95,6 +95,18 @@ public abstract class AbstractKinesisVideoClient implements KinesisVideoClient {
     }
 
     /**
+     * Free media source's binding producer stream
+     *
+     * @param mediaSource media source binding to kinesis video producer stream to be freed
+     * @throws KinesisVideoException if unable to free media source.
+     */
+    @Override
+    public void freeMediaSource(@NonNull final MediaSource mediaSource) throws KinesisVideoException {
+        mMediaSources.remove(mediaSource);
+        mediaSource.stop();
+    }
+
+    /**
      * Pauses the processing
      */
     @Override
@@ -158,5 +170,6 @@ public abstract class AbstractKinesisVideoClient implements KinesisVideoClient {
     @Override
     public void unregisterMediaSource(@NonNull final MediaSource mediaSource) throws KinesisVideoException {
         mMediaSources.remove(mediaSource);
+        mediaSource.stop();
     }
 }

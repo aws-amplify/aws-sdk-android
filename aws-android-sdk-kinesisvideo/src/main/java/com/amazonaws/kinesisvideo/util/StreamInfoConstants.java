@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.util;
@@ -45,6 +45,14 @@ public final class StreamInfoConstants {
     public static final boolean ABSOLUTE_TIMECODES = true;
     public static final boolean RELATIVE_TIMECODES = false;
     public static final boolean RECALCULATE_METRICS = true;
+    public static final int DEFAULT_TRACK_ID = 1;
+    public static final int VIDEO_TRACK_ID = DEFAULT_TRACK_ID;
+    public static final int AUDIO_TRACK_ID = DEFAULT_TRACK_ID + 1;
+    public static final String VIDEO_CONTENT_TYPE = "video/h264";
+    public static final String AUDIO_VIDEO_CONTENT_TYPE = "video/h264,audio/aac";
+    public static final long FRAME_DURATION_0_MS = 0L;
+    public static final String VIDEO_CODEC_ID = "V_MPEG4/ISO/AVC";
+    public static final String AUDIO_CODEC_ID = "A_AAC";
 
     /**
      * Default buffer duration for a stream
@@ -65,4 +73,3 @@ public final class StreamInfoConstants {
         throw new UnsupportedOperationException();
     }
 }
-

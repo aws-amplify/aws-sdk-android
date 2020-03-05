@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.encoding;
@@ -110,7 +110,7 @@ public final class ChunkDecoder {
         do {
             result = inputStream.read(buffer, offset++, 1);
         } while (result > -1 && arrayIndexOf(buffer, 0, offset, delimiter) == -1);
-        return new String(buffer, 0 , offset, StandardCharsets.UTF_8);
+        return new String(buffer, 0, offset, StandardCharsets.UTF_8);
     }
 
     public static int arrayIndexOf(final byte[] haystack, final int tail, final int head, final byte[] needle) {
@@ -182,12 +182,21 @@ public final class ChunkDecoder {
     public static Integer decodeAckInResponseBody(final InputStream inputStream,
                                                   final Consumer<String> ackTimestampConsumer) {
         final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.US_ASCII));
-        String line;
-        int chunkSize;
-        int numBytesRead, offset, ackCount = 0;
 
         try {
             skipResponseHeaders(reader);
+            return parseResponseBodyAndDecodeAck(reader, ackTimestampConsumer);
+        } catch (final Throwable e) {
+            throw new RuntimeException("Exception while decoding Ack in response ! ", e);
+        }
+    }
+
+    public static Integer parseResponseBodyAndDecodeAck(final BufferedReader reader,
+            final Consumer<String> ackTimestampConsumer) {
+        String line;
+        int chunkSize;
+        int numBytesRead, offset, ackCount = 0;
+        try {
             line = skipEmptyLines(reader);
 
             // Parse chunk data
@@ -220,7 +229,6 @@ public final class ChunkDecoder {
         } catch (final Throwable e) {
             throw new RuntimeException("Exception while decoding Ack in response ! ", e);
         }
-
         return ackCount;
     }
 

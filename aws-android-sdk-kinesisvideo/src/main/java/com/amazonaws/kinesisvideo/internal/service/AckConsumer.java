@@ -1,18 +1,18 @@
 /**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
+ * COPYRIGHT:
+ * <p>
+ * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.kinesisvideo.internal.service;
@@ -21,6 +21,7 @@ import com.amazonaws.kinesisvideo.common.function.Consumer;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
+import com.amazonaws.kinesisvideo.internal.producer.jni.NativeKinesisVideoProducerJni;
 import com.amazonaws.kinesisvideo.producer.ProducerException;
 
 import android.support.annotation.NonNull;
@@ -34,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 class AckConsumer implements Consumer<InputStream> {
     private static final long STOPPED_TIMEOUT_IN_MILLISECONDS = 15000;
     private static final int FOUR_KB = 4096;
-    private static final String END_OF_STREAM_MSG = "0";
+    private static final String END_OF_STREAM_MSG = "0\r\n\r\n";
     private final KinesisVideoProducerStream stream;
     private InputStream ackStream = null;
     private final CountDownLatch stoppedLatch;
@@ -81,7 +82,8 @@ class AckConsumer implements Consumer<InputStream> {
                 }
 
                 // Check for end-of-stream and 0 before processing
-                if (bytesRead == -1 || END_OF_STREAM_MSG.equals(bytesString)) {
+                if (stream.getStreamHandle() == NativeKinesisVideoProducerJni.INVALID_STREAM_HANDLE_VALUE
+                        || bytesRead <= 0 || END_OF_STREAM_MSG.equals(bytesString)) {
                     // End-of-stream
                     log.debug("Received end-of-stream for ACKs.");
                     closed = true;
