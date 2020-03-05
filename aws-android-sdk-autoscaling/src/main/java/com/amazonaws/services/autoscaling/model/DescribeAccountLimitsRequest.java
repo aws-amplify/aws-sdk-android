@@ -21,14 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the current Amazon EC2 Auto Scaling resource limits for your AWS
+ * Describes the current Amazon EC2 Auto Scaling resource quotas for your AWS
  * account.
  * </p>
  * <p>
- * For information about requesting an increase in these limits, see <a href=
+ * For information about requesting an increase, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
- * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
- * Guide</i>.
+ * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto Scaling
+ * User Guide</i>.
  * </p>
  */
 public class DescribeAccountLimitsRequest extends AmazonWebServiceRequest implements Serializable {

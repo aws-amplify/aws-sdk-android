@@ -1,5 +1,4 @@
 // SDK Modules
-include ':app'
 include ':aws-android-sdk-apigateway-core'
 include ':aws-android-sdk-auth-core'
 include ':aws-android-sdk-auth-facebook'

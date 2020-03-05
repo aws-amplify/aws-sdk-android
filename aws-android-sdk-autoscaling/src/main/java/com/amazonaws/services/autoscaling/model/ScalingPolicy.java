@@ -167,6 +167,14 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
+     * Indicates whether the policy is enabled (<code>true</code>) or disabled (
+     * <code>false</code>).
+     * </p>
+     */
+    private Boolean enabled;
+
+    /**
+     * <p>
      * The name of the Auto Scaling group.
      * </p>
      * <p>
@@ -1048,6 +1056,72 @@ public class ScalingPolicy implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether the policy is enabled (<code>true</code>) or disabled (
+     * <code>false</code>).
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the policy is enabled (<code>true</code>) or
+     *         disabled (<code>false</code>).
+     *         </p>
+     */
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the policy is enabled (<code>true</code>) or disabled (
+     * <code>false</code>).
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the policy is enabled (<code>true</code>) or
+     *         disabled (<code>false</code>).
+     *         </p>
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the policy is enabled (<code>true</code>) or disabled (
+     * <code>false</code>).
+     * </p>
+     *
+     * @param enabled <p>
+     *            Indicates whether the policy is enabled (<code>true</code>) or
+     *            disabled (<code>false</code>).
+     *            </p>
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the policy is enabled (<code>true</code>) or disabled (
+     * <code>false</code>).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enabled <p>
+     *            Indicates whether the policy is enabled (<code>true</code>) or
+     *            disabled (<code>false</code>).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScalingPolicy withEnabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1085,7 +1159,9 @@ public class ScalingPolicy implements Serializable {
         if (getAlarms() != null)
             sb.append("Alarms: " + getAlarms() + ",");
         if (getTargetTrackingConfiguration() != null)
-            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration());
+            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration() + ",");
+        if (getEnabled() != null)
+            sb.append("Enabled: " + getEnabled());
         sb.append("}");
         return sb.toString();
     }
@@ -1125,6 +1201,7 @@ public class ScalingPolicy implements Serializable {
                 * hashCode
                 + ((getTargetTrackingConfiguration() == null) ? 0
                         : getTargetTrackingConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         return hashCode;
     }
 
@@ -1208,6 +1285,10 @@ public class ScalingPolicy implements Serializable {
         if (other.getTargetTrackingConfiguration() != null
                 && other.getTargetTrackingConfiguration().equals(
                         this.getTargetTrackingConfiguration()) == false)
+            return false;
+        if (other.getEnabled() == null ^ this.getEnabled() == null)
+            return false;
+        if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
             return false;
         return true;
     }

@@ -82,6 +82,14 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
+     * Optional parameters that let you set the criteria that the text must meet
+     * to be included in your response.
+     * </p>
+     */
+    private DetectTextFilters filters;
+
+    /**
+     * <p>
      * The input image as base64-encoded bytes or an Amazon S3 object. If you
      * use the AWS CLI to call Amazon Rekognition operations, you can't pass
      * image bytes.
@@ -174,6 +182,57 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
+     * <p>
+     * Optional parameters that let you set the criteria that the text must meet
+     * to be included in your response.
+     * </p>
+     *
+     * @return <p>
+     *         Optional parameters that let you set the criteria that the text
+     *         must meet to be included in your response.
+     *         </p>
+     */
+    public DetectTextFilters getFilters() {
+        return filters;
+    }
+
+    /**
+     * <p>
+     * Optional parameters that let you set the criteria that the text must meet
+     * to be included in your response.
+     * </p>
+     *
+     * @param filters <p>
+     *            Optional parameters that let you set the criteria that the
+     *            text must meet to be included in your response.
+     *            </p>
+     */
+    public void setFilters(DetectTextFilters filters) {
+        this.filters = filters;
+    }
+
+    /**
+     * <p>
+     * Optional parameters that let you set the criteria that the text must meet
+     * to be included in your response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filters <p>
+     *            Optional parameters that let you set the criteria that the
+     *            text must meet to be included in your response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectTextRequest withFilters(DetectTextFilters filters) {
+        this.filters = filters;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -185,7 +244,9 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getImage() != null)
-            sb.append("Image: " + getImage());
+            sb.append("Image: " + getImage() + ",");
+        if (getFilters() != null)
+            sb.append("Filters: " + getFilters());
         sb.append("}");
         return sb.toString();
     }
@@ -196,6 +257,7 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getImage() == null) ? 0 : getImage().hashCode());
+        hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode());
         return hashCode;
     }
 
@@ -213,6 +275,10 @@ public class DetectTextRequest extends AmazonWebServiceRequest implements Serial
         if (other.getImage() == null ^ this.getImage() == null)
             return false;
         if (other.getImage() != null && other.getImage().equals(this.getImage()) == false)
+            return false;
+        if (other.getFilters() == null ^ this.getFilters() == null)
+            return false;
+        if (other.getFilters() != null && other.getFilters().equals(this.getFilters()) == false)
             return false;
         return true;
     }

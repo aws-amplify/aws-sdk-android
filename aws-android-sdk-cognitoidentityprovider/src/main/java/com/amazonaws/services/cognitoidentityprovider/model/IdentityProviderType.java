@@ -58,9 +58,143 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details, such as <code>MetadataURL</code> and
-     * <code>MetadataFile</code>.
+     * The identity provider details. The following list describes the provider
+     * detail keys for each identity provider type.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For Google, Facebook and Login with Amazon:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Sign in with Apple:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * team_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * key_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * private_key
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For OIDC providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_request_method
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * oidc_issuer
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * token_url <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For SAML providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * MetadataFile OR MetadataURL
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IDPSignOut <i>optional</i>
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
      */
     private java.util.Map<String, String> providerDetails;
 
@@ -311,14 +445,282 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details, such as <code>MetadataURL</code> and
-     * <code>MetadataFile</code>.
+     * The identity provider details. The following list describes the provider
+     * detail keys for each identity provider type.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For Google, Facebook and Login with Amazon:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Sign in with Apple:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * team_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * key_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * private_key
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For OIDC providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_request_method
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * oidc_issuer
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * token_url <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For SAML providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * MetadataFile OR MetadataURL
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IDPSignOut <i>optional</i>
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         The identity provider details, such as <code>MetadataURL</code>
-     *         and <code>MetadataFile</code>.
+     *         The identity provider details. The following list describes the
+     *         provider detail keys for each identity provider type.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For Google, Facebook and Login with Amazon:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         client_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         client_secret
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For Sign in with Apple:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         client_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         team_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         key_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         private_key
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For OIDC providers:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         client_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         client_secret
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         attributes_request_method
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         oidc_issuer
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_url <i>if not available from discovery URL specified by
+     *         oidc_issuer key</i>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         token_url <i>if not available from discovery URL specified by
+     *         oidc_issuer key</i>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         attributes_url <i>if not available from discovery URL specified
+     *         by oidc_issuer key</i>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         jwks_uri <i>if not available from discovery URL specified by
+     *         oidc_issuer key</i>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For SAML providers:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         MetadataFile OR MetadataURL
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         IDPSignOut <i>optional</i>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         </ul>
      */
     public java.util.Map<String, String> getProviderDetails() {
         return providerDetails;
@@ -326,14 +728,282 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details, such as <code>MetadataURL</code> and
-     * <code>MetadataFile</code>.
+     * The identity provider details. The following list describes the provider
+     * detail keys for each identity provider type.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For Google, Facebook and Login with Amazon:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Sign in with Apple:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * team_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * key_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * private_key
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For OIDC providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_request_method
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * oidc_issuer
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * token_url <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For SAML providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * MetadataFile OR MetadataURL
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IDPSignOut <i>optional</i>
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
      *
      * @param providerDetails <p>
-     *            The identity provider details, such as
-     *            <code>MetadataURL</code> and <code>MetadataFile</code>.
+     *            The identity provider details. The following list describes
+     *            the provider detail keys for each identity provider type.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For Google, Facebook and Login with Amazon:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For Sign in with Apple:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            team_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            key_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            private_key
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For OIDC providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_request_method
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            oidc_issuer
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_url <i>if not available from discovery URL specified
+     *            by oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            token_url <i>if not available from discovery URL specified by
+     *            oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_url <i>if not available from discovery URL
+     *            specified by oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            jwks_uri <i>if not available from discovery URL specified by
+     *            oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For SAML providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            MetadataFile OR MetadataURL
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            IDPSignOut <i>optional</i>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            </ul>
      */
     public void setProviderDetails(java.util.Map<String, String> providerDetails) {
         this.providerDetails = providerDetails;
@@ -341,17 +1011,285 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details, such as <code>MetadataURL</code> and
-     * <code>MetadataFile</code>.
+     * The identity provider details. The following list describes the provider
+     * detail keys for each identity provider type.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For Google, Facebook and Login with Amazon:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Sign in with Apple:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * team_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * key_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * private_key
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For OIDC providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_request_method
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * oidc_issuer
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * token_url <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For SAML providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * MetadataFile OR MetadataURL
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IDPSignOut <i>optional</i>
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param providerDetails <p>
-     *            The identity provider details, such as
-     *            <code>MetadataURL</code> and <code>MetadataFile</code>.
+     *            The identity provider details. The following list describes
+     *            the provider detail keys for each identity provider type.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For Google, Facebook and Login with Amazon:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For Sign in with Apple:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            team_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            key_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            private_key
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For OIDC providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_request_method
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            oidc_issuer
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_url <i>if not available from discovery URL specified
+     *            by oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            token_url <i>if not available from discovery URL specified by
+     *            oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_url <i>if not available from discovery URL
+     *            specified by oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            jwks_uri <i>if not available from discovery URL specified by
+     *            oidc_issuer key</i>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For SAML providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            MetadataFile OR MetadataURL
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            IDPSignOut <i>optional</i>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -362,9 +1300,143 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details, such as <code>MetadataURL</code> and
-     * <code>MetadataFile</code>.
+     * The identity provider details. The following list describes the provider
+     * detail keys for each identity provider type.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For Google, Facebook and Login with Amazon:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Sign in with Apple:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * team_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * key_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * private_key
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For OIDC providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_request_method
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * oidc_issuer
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * token_url <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * attributes_url <i>if not available from discovery URL specified by
+     * oidc_issuer key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
+     * key</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For SAML providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * MetadataFile OR MetadataURL
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IDPSignOut <i>optional</i>
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
      * <p>
      * The method adds a new key-value pair into ProviderDetails parameter, and
      * returns a reference to this object so that method calls can be chained

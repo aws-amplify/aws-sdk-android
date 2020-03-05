@@ -27,6 +27,13 @@ public class DetectTextResult implements Serializable {
 
     /**
      * <p>
+     * The model version used to detect text.
+     * </p>
+     */
+    private String textModelVersion;
+
+    /**
+     * <p>
      * An array of text that was detected in the input image.
      * </p>
      *
@@ -100,6 +107,51 @@ public class DetectTextResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The model version used to detect text.
+     * </p>
+     *
+     * @return <p>
+     *         The model version used to detect text.
+     *         </p>
+     */
+    public String getTextModelVersion() {
+        return textModelVersion;
+    }
+
+    /**
+     * <p>
+     * The model version used to detect text.
+     * </p>
+     *
+     * @param textModelVersion <p>
+     *            The model version used to detect text.
+     *            </p>
+     */
+    public void setTextModelVersion(String textModelVersion) {
+        this.textModelVersion = textModelVersion;
+    }
+
+    /**
+     * <p>
+     * The model version used to detect text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param textModelVersion <p>
+     *            The model version used to detect text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectTextResult withTextModelVersion(String textModelVersion) {
+        this.textModelVersion = textModelVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -111,7 +163,9 @@ public class DetectTextResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getTextDetections() != null)
-            sb.append("TextDetections: " + getTextDetections());
+            sb.append("TextDetections: " + getTextDetections() + ",");
+        if (getTextModelVersion() != null)
+            sb.append("TextModelVersion: " + getTextModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -123,6 +177,8 @@ public class DetectTextResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getTextDetections() == null) ? 0 : getTextDetections().hashCode());
+        hashCode = prime * hashCode
+                + ((getTextModelVersion() == null) ? 0 : getTextModelVersion().hashCode());
         return hashCode;
     }
 
@@ -141,6 +197,11 @@ public class DetectTextResult implements Serializable {
             return false;
         if (other.getTextDetections() != null
                 && other.getTextDetections().equals(this.getTextDetections()) == false)
+            return false;
+        if (other.getTextModelVersion() == null ^ this.getTextModelVersion() == null)
+            return false;
+        if (other.getTextModelVersion() != null
+                && other.getTextModelVersion().equals(this.getTextModelVersion()) == false)
             return false;
         return true;
     }

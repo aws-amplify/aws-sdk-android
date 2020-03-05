@@ -38,6 +38,9 @@ public class DetectTextResultJsonUnmarshaller implements
                         TextDetectionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("TextModelVersion")) {
+                detectTextResult.setTextModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

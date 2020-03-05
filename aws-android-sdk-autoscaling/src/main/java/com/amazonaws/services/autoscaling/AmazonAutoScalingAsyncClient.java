@@ -868,8 +868,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param createAutoScalingGroupRequest
@@ -909,8 +909,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param createAutoScalingGroupRequest
@@ -958,8 +958,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1004,8 +1004,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1689,15 +1689,14 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the current Amazon EC2 Auto Scaling resource limits for your
+     * Describes the current Amazon EC2 Auto Scaling resource quotas for your
      * AWS account.
      * </p>
      * <p>
-     * For information about requesting an increase in these limits, see <a
-     * href=
+     * For information about requesting an increase, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param describeAccountLimitsRequest
@@ -1725,15 +1724,14 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the current Amazon EC2 Auto Scaling resource limits for your
+     * Describes the current Amazon EC2 Auto Scaling resource quotas for your
      * AWS account.
      * </p>
      * <p>
-     * For information about requesting an increase in these limits, see <a
-     * href=
+     * For information about requesting an increase, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
-     * >Amazon EC2 Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling
-     * User Guide</i>.
+     * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param describeAccountLimitsRequest
@@ -3907,10 +3905,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Creates or updates a scaling policy for an Auto Scaling group. To update
-     * an existing scaling policy, use the existing policy name and set the
-     * parameters to change. Any existing parameter not changed in an update to
-     * an existing policy is not changed in this update request.
+     * Creates or updates a scaling policy for an Auto Scaling group.
      * </p>
      * <p>
      * For more information about using scaling policies to scale your Auto
@@ -3946,10 +3941,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Creates or updates a scaling policy for an Auto Scaling group. To update
-     * an existing scaling policy, use the existing policy name and set the
-     * parameters to change. Any existing parameter not changed in an update to
-     * an existing policy is not changed in this update request.
+     * Creates or updates a scaling policy for an Auto Scaling group.
      * </p>
      * <p>
      * For more information about using scaling policies to scale your Auto
@@ -4652,11 +4644,25 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Terminates the specified instance and optionally adjusts the desired
-     * group size.
+     * group size. This call simply makes a termination request. The instance is
+     * not terminated immediately. When an instance is terminated, the instance
+     * status changes to <code>terminated</code>. You can't connect to or start
+     * an instance after you've terminated it.
      * </p>
      * <p>
-     * This call simply makes a termination request. The instance is not
-     * terminated immediately.
+     * If you do not specify the option to decrement the desired capacity,
+     * Amazon EC2 Auto Scaling launches instances to replace the ones that are
+     * terminated.
+     * </p>
+     * <p>
+     * By default, Amazon EC2 Auto Scaling balances instances across all
+     * Availability Zones. If you decrement the desired capacity, your Auto
+     * Scaling group can become unbalanced between Availability Zones. Amazon
+     * EC2 Auto Scaling tries to rebalance the group, and rebalancing might
+     * terminate instances in other zones. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#AutoScalingBehavior.InstanceUsage"
+     * >Rebalancing Activities</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param terminateInstanceInAutoScalingGroupRequest
@@ -4686,11 +4692,25 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Terminates the specified instance and optionally adjusts the desired
-     * group size.
+     * group size. This call simply makes a termination request. The instance is
+     * not terminated immediately. When an instance is terminated, the instance
+     * status changes to <code>terminated</code>. You can't connect to or start
+     * an instance after you've terminated it.
      * </p>
      * <p>
-     * This call simply makes a termination request. The instance is not
-     * terminated immediately.
+     * If you do not specify the option to decrement the desired capacity,
+     * Amazon EC2 Auto Scaling launches instances to replace the ones that are
+     * terminated.
+     * </p>
+     * <p>
+     * By default, Amazon EC2 Auto Scaling balances instances across all
+     * Availability Zones. If you decrement the desired capacity, your Auto
+     * Scaling group can become unbalanced between Availability Zones. Amazon
+     * EC2 Auto Scaling tries to rebalance the group, and rebalancing might
+     * terminate instances in other zones. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#AutoScalingBehavior.InstanceUsage"
+     * >Rebalancing Activities</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param terminateInstanceInAutoScalingGroupRequest

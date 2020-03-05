@@ -64,6 +64,11 @@ public class DetectTextRequestMarshaller implements
                 jsonWriter.name("Image");
                 ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
             }
+            if (detectTextRequest.getFilters() != null) {
+                DetectTextFilters filters = detectTextRequest.getFilters();
+                jsonWriter.name("Filters");
+                DetectTextFiltersJsonMarshaller.getInstance().marshall(filters, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

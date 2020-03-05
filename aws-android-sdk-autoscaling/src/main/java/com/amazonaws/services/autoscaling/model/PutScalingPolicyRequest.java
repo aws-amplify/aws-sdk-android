@@ -21,10 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates or updates a scaling policy for an Auto Scaling group. To update an
- * existing scaling policy, use the existing policy name and set the parameters
- * to change. Any existing parameter not changed in an update to an existing
- * policy is not changed in this update request.
+ * Creates or updates a scaling policy for an Auto Scaling group.
  * </p>
  * <p>
  * For more information about using scaling policies to scale your Auto Scaling
@@ -219,6 +216,17 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      */
     private TargetTrackingConfiguration targetTrackingConfiguration;
+
+    /**
+     * <p>
+     * Indicates whether the scaling policy is enabled or disabled. The default
+     * is enabled. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     * >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     */
+    private Boolean enabled;
 
     /**
      * <p>
@@ -1370,6 +1378,96 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * Indicates whether the scaling policy is enabled or disabled. The default
+     * is enabled. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     * >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the scaling policy is enabled or disabled. The
+     *         default is enabled. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     *         >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         </p>
+     */
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the scaling policy is enabled or disabled. The default
+     * is enabled. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     * >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the scaling policy is enabled or disabled. The
+     *         default is enabled. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     *         >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *         </p>
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the scaling policy is enabled or disabled. The default
+     * is enabled. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     * >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     *
+     * @param enabled <p>
+     *            Indicates whether the scaling policy is enabled or disabled.
+     *            The default is enabled. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     *            >Disabling a Scaling Policy for an Auto Scaling Group</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the scaling policy is enabled or disabled. The default
+     * is enabled. For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     * >Disabling a Scaling Policy for an Auto Scaling Group</a> in the
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enabled <p>
+     *            Indicates whether the scaling policy is enabled or disabled.
+     *            The default is enabled. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enable-disable-scaling-policy.html"
+     *            >Disabling a Scaling Policy for an Auto Scaling Group</a> in
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutScalingPolicyRequest withEnabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1403,7 +1501,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
         if (getEstimatedInstanceWarmup() != null)
             sb.append("EstimatedInstanceWarmup: " + getEstimatedInstanceWarmup() + ",");
         if (getTargetTrackingConfiguration() != null)
-            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration());
+            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration() + ",");
+        if (getEnabled() != null)
+            sb.append("Enabled: " + getEnabled());
         sb.append("}");
         return sb.toString();
     }
@@ -1441,6 +1541,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
                 * hashCode
                 + ((getTargetTrackingConfiguration() == null) ? 0
                         : getTargetTrackingConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         return hashCode;
     }
 
@@ -1515,6 +1616,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
         if (other.getTargetTrackingConfiguration() != null
                 && other.getTargetTrackingConfiguration().equals(
                         this.getTargetTrackingConfiguration()) == false)
+            return false;
+        if (other.getEnabled() == null ^ this.getEnabled() == null)
+            return false;
+        if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
             return false;
         return true;
     }
