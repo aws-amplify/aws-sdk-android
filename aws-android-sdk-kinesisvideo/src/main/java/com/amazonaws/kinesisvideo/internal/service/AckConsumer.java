@@ -87,7 +87,7 @@ class AckConsumer implements Consumer<InputStream> {
                     // End-of-stream
                     log.debug("Received end-of-stream for ACKs.");
                     closed = true;
-                } else if (bytesRead != 0) {
+                } else {
                     log.debug("Received ACK bits: " + bytesString);
                     try {
                         stream.parseFragmentAck(uploadHandle, bytesString);

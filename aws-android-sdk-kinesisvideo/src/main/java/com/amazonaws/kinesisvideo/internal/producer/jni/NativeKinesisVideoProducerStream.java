@@ -490,7 +490,7 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
                         mStreamCallbacks.streamClosed(stream.getKey());
                     }
                 } catch (final IOException e) {
-                    mLog.error("stream close failed with exception ", e);
+                    mLog.exception(e, "stream close failed with exception ");
                 }
             }
 
@@ -500,7 +500,7 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
             try {
                 mInputStreamMap.get(uploadHandle).close();
             } catch (final IOException e) {
-                mLog.error("stream close failed with exception ", e);
+                mLog.exception(e, "stream close failed with exception ");
             }
 
             // Release the stopped latch

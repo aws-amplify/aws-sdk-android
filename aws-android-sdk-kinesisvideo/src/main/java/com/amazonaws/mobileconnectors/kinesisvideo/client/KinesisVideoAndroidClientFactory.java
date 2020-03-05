@@ -110,7 +110,7 @@ public final class KinesisVideoAndroidClientFactory {
      *
      * @param context Android context to use
      * @param regions Regions object
-     * @param KinesisVideoCredentialsProvider Credentials provider
+     * @param kinesisVideoCredentialsProvider Credentials provider
      * @return
      * @throws KinesisVideoException
      */

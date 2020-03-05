@@ -99,6 +99,7 @@ public class AwsIoTCredentialsProvider implements AWSCredentialsProvider {
     }
 
     private AwsIoTSessionCredentials updateCredentials(){
+        BufferedReader bufferedInputReader = null;
         try {
             log.debug("Retrieving IoT Session Credentials from: " + this.awsIotAuthUrl);
 
@@ -106,7 +107,7 @@ public class AwsIoTCredentialsProvider implements AWSCredentialsProvider {
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setSSLSocketFactory(this.sslSocketFactory);
 
-            BufferedReader bufferedInputReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            bufferedInputReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             AwsIoTSessionCredentials awsIoTcredentials = serializeAuthorizationResponse(bufferedInputReader);
             if( awsIoTcredentials != null && awsIoTcredentials.getAccessKeyId() != null
                     && awsIoTcredentials.getSecretAccessKey() != null
@@ -123,6 +124,14 @@ public class AwsIoTCredentialsProvider implements AWSCredentialsProvider {
         } catch (IOException e) {
             log.exception(e, " Error retrieving IoT credentials");
             return null;
+        } finally {
+            try {
+                if (bufferedInputReader != null) {
+                    bufferedInputReader.close();
+                }
+            } catch (IOException e) {
+                log.exception(e, " Error closing buffer input reader in IoT credentials provider");
+            }
         }
 
     }

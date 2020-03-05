@@ -96,6 +96,7 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
     }
 
     private AwsIoTSessionCredentials refresh(){
+        BufferedReader bufferedInputReader = null;
         try {
             log.debug("Retrieving IoT Session Credentials from: " + this.awsIotAuthUrl);
 
@@ -103,9 +104,9 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setSSLSocketFactory(this.sslSocketFactory);
             urlConnection.setRequestProperty("x-amzn-iot-thingname", iotDeviceName);
-            BufferedReader bufferedInputReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            bufferedInputReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             AwsIoTSessionCredentials awsIoTcredentials = serializeAuthorizationResponse(bufferedInputReader);
-            if( awsIoTcredentials != null && awsIoTcredentials.getAccessKeyId() != null
+            if (awsIoTcredentials != null && awsIoTcredentials.getAccessKeyId() != null
                     && awsIoTcredentials.getSecretAccessKey() != null
                     && awsIoTcredentials.getSessionToken() != null
                     && awsIoTcredentials.getExpiration() != null) {
@@ -120,6 +121,14 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
         } catch (IOException e) {
             log.exception(e, " Error retrieving IoT credentials");
             return null;
+        } finally {
+            try {
+                if (bufferedInputReader != null) {
+                    bufferedInputReader.close();
+                }
+            } catch (IOException e) {
+                log.exception(e, " Error closing buffer input reader in IoT credentials provider");
+            }
         }
 
     }
