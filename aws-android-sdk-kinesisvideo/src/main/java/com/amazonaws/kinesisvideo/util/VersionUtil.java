@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
 
 public final class VersionUtil {
 
-    public static final String AWS_SDK_KVS_PRODUCER_VERSION_STRING = "1.9.3";
+    public static final String AWS_SDK_KVS_PRODUCER_VERSION_STRING = "2.0.0";
 
     private static final String DEFAULT_USER_AGENT_NAME = "AWS-SDK-KVS";
 

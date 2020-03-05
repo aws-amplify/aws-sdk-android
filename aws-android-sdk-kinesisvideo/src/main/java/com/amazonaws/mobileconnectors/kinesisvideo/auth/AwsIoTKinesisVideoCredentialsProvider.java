@@ -18,12 +18,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.util.Date;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
-import com.amazonaws.kinesisvideo.auth.AbstractKinesisVideoCredentialsProvider;
+
 import com.amazonaws.kinesisvideo.auth.KinesisVideoCredentials;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.logging.Log;
@@ -33,9 +32,6 @@ import com.google.gson.GsonBuilder;
 
 public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoCredentialsProvider {
 
-    public static final Date CREDENTIALS_NEVER_EXPIRE = new Date(Long.MAX_VALUE);
-    private static final String KEYMANAGER_X509 = "SunX509";
-    private static final String KEYSTORE_PKCS = "PKCS12";
     private static final String TLS = "TLS";
 
     private String awsIotAuthUrl;
@@ -44,12 +40,14 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
     private SSLSocketFactory sslSocketFactory;
     private Gson gson;
     private final Log log;
+    private String iotDeviceName;
 
-
-    public AwsIoTKinesisVideoCredentialsProvider(@NonNull final String awsIotAuthUrl,
+    public AwsIoTKinesisVideoCredentialsProvider(@NonNull final String iotDeiveName,
+                                                 @NonNull final String awsIotAuthUrl,
                                                  @NonNull final String keyStoreLocation,
                                                  @NonNull final String keyStorePassword,
                                                  @NonNull Log log) throws UnrecoverableKeyException, KeyManagementException, NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException {
+        this.iotDeviceName = iotDeiveName;
         this.awsIotAuthUrl = Preconditions.checkNotNull(awsIotAuthUrl);
         this.keyStorePassword = Preconditions.checkNotNull(keyStorePassword);
         this.keyStoreLocation = Preconditions.checkNotNull(keyStoreLocation);
@@ -104,7 +102,7 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
             URL url = new URL(this.awsIotAuthUrl);
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setSSLSocketFactory(this.sslSocketFactory);
-
+            urlConnection.setRequestProperty("x-amzn-iot-thingname", iotDeviceName);
             BufferedReader bufferedInputReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             AwsIoTSessionCredentials awsIoTcredentials = serializeAuthorizationResponse(bufferedInputReader);
             if( awsIoTcredentials != null && awsIoTcredentials.getAccessKeyId() != null
@@ -134,15 +132,14 @@ public class AwsIoTKinesisVideoCredentialsProvider extends AbstractKinesisVideoC
 
     private SSLSocketFactory getFactory( String keyManagerLocation, String keyPassword ) throws NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException, UnrecoverableKeyException, KeyManagementException  {
         File keyManagerfile = new File(keyManagerLocation);
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KEYMANAGER_X509);
-        KeyStore keyStore = KeyStore.getInstance(KEYSTORE_PKCS);
+        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
 
         InputStream keyInput = new FileInputStream(keyManagerfile);
         keyStore.load(keyInput, keyPassword.toCharArray());
         keyInput.close();
 
         keyManagerFactory.init(keyStore, keyPassword.toCharArray());
-
         SSLContext context = SSLContext.getInstance(TLS);
         context.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
 

@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.10)
+
+### New Features
+- **Amazon Kinesis Video**
+  - Add Audio Video support with new media source and samples.
+  - Add IoT credentials provider to retrieve credentials with IoT certificate.
+
+### Misc. Updates
+- **Amazon Kinesis Video**
+  - Fixed a bug media source adapter was not reset to null after release causing "starting camera frames source second time".
+
 ## [Release 2.16.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.9)
 
 ### New Features

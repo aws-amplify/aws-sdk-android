@@ -189,6 +189,7 @@ public class CameraFramesSource {
     private void releaseCamera() {
         try {
             mCameraAdapter.closeCamera();
+            mCameraAdapter = null;
         } catch (final Throwable e) {
             Log.e(TAG, "error releasing camera");
         }
