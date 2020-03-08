@@ -25,14 +25,14 @@ import java.io.Serializable;
 public class Transcript implements Serializable {
     /**
      * <p>
-     * The location where the transcription is stored.
+     * The S3 object location of the the transcript.
      * </p>
      * <p>
-     * Use this URI to access the transcription. If you specified an S3 bucket
-     * in the <code>OutputBucketName</code> field when you created the job, this
-     * is the URI of that bucket. If you chose to store the transcription in
-     * Amazon Transcribe, this is a shareable URL that provides secure access to
-     * that location.
+     * Use this URI to access the transcript. If you specified an S3 bucket in
+     * the <code>OutputBucketName</code> field when you created the job, this is
+     * the URI of that bucket. If you chose to store the transcript in Amazon
+     * Transcribe, this is a shareable URL that provides secure access to that
+     * location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,14 +43,32 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The location where the transcription is stored.
+     * The S3 object location of the redacted transcript.
      * </p>
      * <p>
-     * Use this URI to access the transcription. If you specified an S3 bucket
-     * in the <code>OutputBucketName</code> field when you created the job, this
-     * is the URI of that bucket. If you chose to store the transcription in
-     * Amazon Transcribe, this is a shareable URL that provides secure access to
-     * that location.
+     * Use this URI to access the redacated transcript. If you specified an S3
+     * bucket in the <code>OutputBucketName</code> field when you created the
+     * job, this is the URI of that bucket. If you chose to store the transcript
+     * in Amazon Transcribe, this is a shareable URL that provides secure access
+     * to that location.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     */
+    private String redactedTranscriptFileUri;
+
+    /**
+     * <p>
+     * The S3 object location of the the transcript.
+     * </p>
+     * <p>
+     * Use this URI to access the transcript. If you specified an S3 bucket in
+     * the <code>OutputBucketName</code> field when you created the job, this is
+     * the URI of that bucket. If you chose to store the transcript in Amazon
+     * Transcribe, this is a shareable URL that provides secure access to that
+     * location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,13 +76,13 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The location where the transcription is stored.
+     *         The S3 object location of the the transcript.
      *         </p>
      *         <p>
-     *         Use this URI to access the transcription. If you specified an S3
+     *         Use this URI to access the transcript. If you specified an S3
      *         bucket in the <code>OutputBucketName</code> field when you
      *         created the job, this is the URI of that bucket. If you chose to
-     *         store the transcription in Amazon Transcribe, this is a shareable
+     *         store the transcript in Amazon Transcribe, this is a shareable
      *         URL that provides secure access to that location.
      *         </p>
      */
@@ -74,14 +92,14 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The location where the transcription is stored.
+     * The S3 object location of the the transcript.
      * </p>
      * <p>
-     * Use this URI to access the transcription. If you specified an S3 bucket
-     * in the <code>OutputBucketName</code> field when you created the job, this
-     * is the URI of that bucket. If you chose to store the transcription in
-     * Amazon Transcribe, this is a shareable URL that provides secure access to
-     * that location.
+     * Use this URI to access the transcript. If you specified an S3 bucket in
+     * the <code>OutputBucketName</code> field when you created the job, this is
+     * the URI of that bucket. If you chose to store the transcript in Amazon
+     * Transcribe, this is a shareable URL that provides secure access to that
+     * location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,13 +107,13 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
-     *            The location where the transcription is stored.
+     *            The S3 object location of the the transcript.
      *            </p>
      *            <p>
-     *            Use this URI to access the transcription. If you specified an
-     *            S3 bucket in the <code>OutputBucketName</code> field when you
+     *            Use this URI to access the transcript. If you specified an S3
+     *            bucket in the <code>OutputBucketName</code> field when you
      *            created the job, this is the URI of that bucket. If you chose
-     *            to store the transcription in Amazon Transcribe, this is a
+     *            to store the transcript in Amazon Transcribe, this is a
      *            shareable URL that provides secure access to that location.
      *            </p>
      */
@@ -105,14 +123,14 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The location where the transcription is stored.
+     * The S3 object location of the the transcript.
      * </p>
      * <p>
-     * Use this URI to access the transcription. If you specified an S3 bucket
-     * in the <code>OutputBucketName</code> field when you created the job, this
-     * is the URI of that bucket. If you chose to store the transcription in
-     * Amazon Transcribe, this is a shareable URL that provides secure access to
-     * that location.
+     * Use this URI to access the transcript. If you specified an S3 bucket in
+     * the <code>OutputBucketName</code> field when you created the job, this is
+     * the URI of that bucket. If you chose to store the transcript in Amazon
+     * Transcribe, this is a shareable URL that provides secure access to that
+     * location.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,13 +141,13 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
-     *            The location where the transcription is stored.
+     *            The S3 object location of the the transcript.
      *            </p>
      *            <p>
-     *            Use this URI to access the transcription. If you specified an
-     *            S3 bucket in the <code>OutputBucketName</code> field when you
+     *            Use this URI to access the transcript. If you specified an S3
+     *            bucket in the <code>OutputBucketName</code> field when you
      *            created the job, this is the URI of that bucket. If you chose
-     *            to store the transcription in Amazon Transcribe, this is a
+     *            to store the transcript in Amazon Transcribe, this is a
      *            shareable URL that provides secure access to that location.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -137,6 +155,107 @@ public class Transcript implements Serializable {
      */
     public Transcript withTranscriptFileUri(String transcriptFileUri) {
         this.transcriptFileUri = transcriptFileUri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The S3 object location of the redacted transcript.
+     * </p>
+     * <p>
+     * Use this URI to access the redacated transcript. If you specified an S3
+     * bucket in the <code>OutputBucketName</code> field when you created the
+     * job, this is the URI of that bucket. If you chose to store the transcript
+     * in Amazon Transcribe, this is a shareable URL that provides secure access
+     * to that location.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @return <p>
+     *         The S3 object location of the redacted transcript.
+     *         </p>
+     *         <p>
+     *         Use this URI to access the redacated transcript. If you specified
+     *         an S3 bucket in the <code>OutputBucketName</code> field when you
+     *         created the job, this is the URI of that bucket. If you chose to
+     *         store the transcript in Amazon Transcribe, this is a shareable
+     *         URL that provides secure access to that location.
+     *         </p>
+     */
+    public String getRedactedTranscriptFileUri() {
+        return redactedTranscriptFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 object location of the redacted transcript.
+     * </p>
+     * <p>
+     * Use this URI to access the redacated transcript. If you specified an S3
+     * bucket in the <code>OutputBucketName</code> field when you created the
+     * job, this is the URI of that bucket. If you chose to store the transcript
+     * in Amazon Transcribe, this is a shareable URL that provides secure access
+     * to that location.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @param redactedTranscriptFileUri <p>
+     *            The S3 object location of the redacted transcript.
+     *            </p>
+     *            <p>
+     *            Use this URI to access the redacated transcript. If you
+     *            specified an S3 bucket in the <code>OutputBucketName</code>
+     *            field when you created the job, this is the URI of that
+     *            bucket. If you chose to store the transcript in Amazon
+     *            Transcribe, this is a shareable URL that provides secure
+     *            access to that location.
+     *            </p>
+     */
+    public void setRedactedTranscriptFileUri(String redactedTranscriptFileUri) {
+        this.redactedTranscriptFileUri = redactedTranscriptFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 object location of the redacted transcript.
+     * </p>
+     * <p>
+     * Use this URI to access the redacated transcript. If you specified an S3
+     * bucket in the <code>OutputBucketName</code> field when you created the
+     * job, this is the URI of that bucket. If you chose to store the transcript
+     * in Amazon Transcribe, this is a shareable URL that provides secure access
+     * to that location.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @param redactedTranscriptFileUri <p>
+     *            The S3 object location of the redacted transcript.
+     *            </p>
+     *            <p>
+     *            Use this URI to access the redacated transcript. If you
+     *            specified an S3 bucket in the <code>OutputBucketName</code>
+     *            field when you created the job, this is the URI of that
+     *            bucket. If you chose to store the transcript in Amazon
+     *            Transcribe, this is a shareable URL that provides secure
+     *            access to that location.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Transcript withRedactedTranscriptFileUri(String redactedTranscriptFileUri) {
+        this.redactedTranscriptFileUri = redactedTranscriptFileUri;
         return this;
     }
 
@@ -152,7 +271,9 @@ public class Transcript implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getTranscriptFileUri() != null)
-            sb.append("TranscriptFileUri: " + getTranscriptFileUri());
+            sb.append("TranscriptFileUri: " + getTranscriptFileUri() + ",");
+        if (getRedactedTranscriptFileUri() != null)
+            sb.append("RedactedTranscriptFileUri: " + getRedactedTranscriptFileUri());
         sb.append("}");
         return sb.toString();
     }
@@ -164,6 +285,10 @@ public class Transcript implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getTranscriptFileUri() == null) ? 0 : getTranscriptFileUri().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getRedactedTranscriptFileUri() == null) ? 0 : getRedactedTranscriptFileUri()
+                        .hashCode());
         return hashCode;
     }
 
@@ -182,6 +307,12 @@ public class Transcript implements Serializable {
             return false;
         if (other.getTranscriptFileUri() != null
                 && other.getTranscriptFileUri().equals(this.getTranscriptFileUri()) == false)
+            return false;
+        if (other.getRedactedTranscriptFileUri() == null
+                ^ this.getRedactedTranscriptFileUri() == null)
+            return false;
+        if (other.getRedactedTranscriptFileUri() != null
+                && other.getRedactedTranscriptFileUri().equals(this.getRedactedTranscriptFileUri()) == false)
             return false;
         return true;
     }

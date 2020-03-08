@@ -197,6 +197,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
+     * An object that describes content redaction settings for the transcription
+     * job.
+     * </p>
+     */
+    private ContentRedaction contentRedaction;
+
+    /**
+     * <p>
      * The name of the transcription job.
      * </p>
      * <p>
@@ -1361,6 +1369,57 @@ public class TranscriptionJob implements Serializable {
     }
 
     /**
+     * <p>
+     * An object that describes content redaction settings for the transcription
+     * job.
+     * </p>
+     *
+     * @return <p>
+     *         An object that describes content redaction settings for the
+     *         transcription job.
+     *         </p>
+     */
+    public ContentRedaction getContentRedaction() {
+        return contentRedaction;
+    }
+
+    /**
+     * <p>
+     * An object that describes content redaction settings for the transcription
+     * job.
+     * </p>
+     *
+     * @param contentRedaction <p>
+     *            An object that describes content redaction settings for the
+     *            transcription job.
+     *            </p>
+     */
+    public void setContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+    }
+
+    /**
+     * <p>
+     * An object that describes content redaction settings for the transcription
+     * job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contentRedaction <p>
+     *            An object that describes content redaction settings for the
+     *            transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJob withContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1396,7 +1455,9 @@ public class TranscriptionJob implements Serializable {
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
         if (getJobExecutionSettings() != null)
-            sb.append("JobExecutionSettings: " + getJobExecutionSettings());
+            sb.append("JobExecutionSettings: " + getJobExecutionSettings() + ",");
+        if (getContentRedaction() != null)
+            sb.append("ContentRedaction: " + getContentRedaction());
         sb.append("}");
         return sb.toString();
     }
@@ -1430,6 +1491,8 @@ public class TranscriptionJob implements Serializable {
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getJobExecutionSettings() == null) ? 0 : getJobExecutionSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentRedaction() == null) ? 0 : getContentRedaction().hashCode());
         return hashCode;
     }
 
@@ -1506,6 +1569,11 @@ public class TranscriptionJob implements Serializable {
             return false;
         if (other.getJobExecutionSettings() != null
                 && other.getJobExecutionSettings().equals(this.getJobExecutionSettings()) == false)
+            return false;
+        if (other.getContentRedaction() == null ^ this.getContentRedaction() == null)
+            return false;
+        if (other.getContentRedaction() != null
+                && other.getContentRedaction().equals(this.getContentRedaction()) == false)
             return false;
         return true;
     }
