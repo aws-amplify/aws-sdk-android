@@ -1957,7 +1957,6 @@ workflows:
       - release_s3:
           requires:
             - build
-            - release_javadoc
             - release_maven
           filters:
             branches:
