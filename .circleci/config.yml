@@ -1948,6 +1948,7 @@ workflows:
           requires:
             - unittest
             - post_integrationtest
+            - release_maven
           filters:
             branches:
               ignore: /.*/
@@ -1956,7 +1957,6 @@ workflows:
       - release_s3:
           requires:
             - build
-            - release_javadoc
             - release_maven
           filters:
             branches:
