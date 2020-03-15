@@ -21,39 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Transcript
+ * JSON unmarshaller for POJO ContentRedaction
  */
-class TranscriptJsonUnmarshaller implements Unmarshaller<Transcript, JsonUnmarshallerContext> {
+class ContentRedactionJsonUnmarshaller implements
+        Unmarshaller<ContentRedaction, JsonUnmarshallerContext> {
 
-    public Transcript unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ContentRedaction unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Transcript transcript = new Transcript();
+        ContentRedaction contentRedaction = new ContentRedaction();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("TranscriptFileUri")) {
-                transcript.setTranscriptFileUri(StringJsonUnmarshaller.getInstance()
+            if (name.equals("RedactionType")) {
+                contentRedaction.setRedactionType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("RedactedTranscriptFileUri")) {
-                transcript.setRedactedTranscriptFileUri(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("RedactionOutput")) {
+                contentRedaction.setRedactionOutput(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return transcript;
+        return contentRedaction;
     }
 
-    private static TranscriptJsonUnmarshaller instance;
+    private static ContentRedactionJsonUnmarshaller instance;
 
-    public static TranscriptJsonUnmarshaller getInstance() {
+    public static ContentRedactionJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new TranscriptJsonUnmarshaller();
+            instance = new ContentRedactionJsonUnmarshaller();
         return instance;
     }
 }

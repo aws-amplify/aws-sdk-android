@@ -110,6 +110,12 @@ public class StartTranscriptionJobRequestMarshaller implements
                 JobExecutionSettingsJsonMarshaller.getInstance().marshall(jobExecutionSettings,
                         jsonWriter);
             }
+            if (startTranscriptionJobRequest.getContentRedaction() != null) {
+                ContentRedaction contentRedaction = startTranscriptionJobRequest
+                        .getContentRedaction();
+                jsonWriter.name("ContentRedaction");
+                ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
