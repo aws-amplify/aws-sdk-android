@@ -1118,7 +1118,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final String password,
                                final Map<String, String> validationData) throws Exception {
         if(isSignedIn()){
-            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling signIn.")
+            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling signIn.");
         }
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
         return internalCallback.await(_signIn(username, password, validationData, internalCallback));
@@ -2620,7 +2620,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     public void showSignIn(final Activity callingActivity,
                            final Callback<UserStateDetails> callback) { //SignInUIOptions
         if(isSignedIn()){
-            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.")
+            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.");
         }
         InternalCallback internalCallback = new InternalCallback(callback);
         internalCallback.async(_showSignIn(callingActivity, SignInUIOptions.builder().build(), internalCallback));
@@ -2633,7 +2633,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity) throws Exception {
         if(isSignedIn()){
-            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.")
+            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.");
         }
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
         return internalCallback.await(_showSignIn(callingActivity, SignInUIOptions.builder().build(), internalCallback));
@@ -2649,7 +2649,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                            final SignInUIOptions signInUIOptions,
                            final Callback<UserStateDetails> callback) throws Exception { //SignInUIOptions
         if(isSignedIn()){
-            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.")
+            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.");
         }
         InternalCallback internalCallback = new InternalCallback(callback);
         internalCallback.async(_showSignIn(callingActivity, signInUIOptions, internalCallback));
@@ -2664,7 +2664,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     public UserStateDetails showSignIn(final Activity callingActivity,
                                        final SignInUIOptions signInUIOptions) throws Exception {
         if(isSignedIn()){
-            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.")
+            throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.");
         }
         }
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
