@@ -66,7 +66,7 @@ public class UrlHttpClient implements HttpClient {
     @Override
     public HttpResponse execute(final HttpRequest request) throws IOException {
         final URL url = request.getUri().toURL();
-        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        final HttpURLConnection connection = getUrlConnection(url);
         final CurlBuilder curlBuilder = config.isCurlLogging()
                 ? new CurlBuilder(request.getUri().toURL()) : null;
 
