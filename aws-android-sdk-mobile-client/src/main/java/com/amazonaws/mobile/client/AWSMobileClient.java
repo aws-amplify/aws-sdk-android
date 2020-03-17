@@ -2663,9 +2663,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     @WorkerThread
     public UserStateDetails showSignIn(final Activity callingActivity,
                                        final SignInUIOptions signInUIOptions) throws Exception {
-        if(isSignedIn()){
+        if(isSignedIn()) {
             throw new IllegalStateException("There is already a user which is signed in. Please log out the user before calling showSignIn.");
-        }
         }
         InternalCallback<UserStateDetails> internalCallback = new InternalCallback<UserStateDetails>();
         return internalCallback.await(_showSignIn(callingActivity, signInUIOptions, internalCallback));
