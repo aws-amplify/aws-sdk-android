@@ -86,7 +86,7 @@ public class UrlHttpClient implements HttpClient {
     }
 
     @SuppressWarnings("checkstyle:emptyblock")
-    HttpResponse createHttpResponse(final HttpRequest request, final HttpURLConnection connection)
+    protected HttpResponse createHttpResponse(final HttpRequest request, final HttpURLConnection connection)
             throws IOException {
         // connection.setDoOutput(true);
         final String statusText = connection.getResponseMessage();
@@ -135,7 +135,7 @@ public class UrlHttpClient implements HttpClient {
      * @see #writeContentToConnection(HttpRequest, HttpURLConnection,
      *      CurlBuilder)
      */
-    void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
+    protected void writeContentToConnection(HttpRequest request, HttpURLConnection connection)
             throws IOException {
         writeContentToConnection(request, connection, null /* curlBuilder */);
     }
@@ -148,7 +148,7 @@ public class UrlHttpClient implements HttpClient {
      * @param curlBuilder
      * @throws IOException
      */
-    void writeContentToConnection(final HttpRequest request, final HttpURLConnection connection,
+    protected void writeContentToConnection(final HttpRequest request, final HttpURLConnection connection,
             final CurlBuilder curlBuilder) throws IOException {
         // Note: if DoOutput is set to true and method is GET, HttpUrlConnection
         // will silently change the method to POST.
@@ -183,13 +183,13 @@ public class UrlHttpClient implements HttpClient {
      *
      * @see #applyHeadersAndMethod(HttpRequest, HttpURLConnection, CurlBuilder)
      */
-    HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
+    protected HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
             final HttpURLConnection connection) throws ProtocolException {
         return applyHeadersAndMethod(request, connection, null /* curlBuilder */);
     }
 
     @SuppressWarnings("checkstyle:emptyblock")
-    HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
+    protected HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
             final HttpURLConnection connection, final CurlBuilder curlBuilder)
             throws ProtocolException {
         // add headers
@@ -237,7 +237,7 @@ public class UrlHttpClient implements HttpClient {
         return (HttpURLConnection) url.openConnection();
     }
 
-    private void write(InputStream is, OutputStream os, CurlBuilder curlBuilder,
+    protected void write(InputStream is, OutputStream os, CurlBuilder curlBuilder,
             ByteBuffer curlBuffer) throws IOException {
         final byte[] buf = new byte[DEFAULT_BUFFER_SIZE * BUFFER_SIZE_MULTIPLIER];
         int len;
@@ -253,7 +253,7 @@ public class UrlHttpClient implements HttpClient {
         }
     }
 
-    void configureConnection(HttpRequest request, HttpURLConnection connection) {
+    protected void configureConnection(HttpRequest request, HttpURLConnection connection) {
         // configure the connection
         connection.setConnectTimeout(config.getConnectionTimeout());
         connection.setReadTimeout(config.getSocketTimeout());
@@ -283,9 +283,9 @@ public class UrlHttpClient implements HttpClient {
         }
     }
 
-    private SSLContext sc = null;
+    protected SSLContext sc = null;
 
-    private void enableCustomTrustManager(HttpsURLConnection connection) {
+    protected void enableCustomTrustManager(HttpsURLConnection connection) {
         if (sc == null) {
             final TrustManager[] customTrustManagers = new TrustManager[] {
                     config.getTrustManager()
