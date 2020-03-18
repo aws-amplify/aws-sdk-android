@@ -91,11 +91,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
-     * transcription in the specified S3 bucket. When you call the
+     * transcript in the specified S3 bucket. When you call the
      * <a>GetTranscriptionJob</a> operation, the operation returns this location
-     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
-     * permissions that allow Amazon Transcribe to put files in the bucket. For
-     * more information, see <a href=
+     * in the <code>TranscriptFileUri</code> field. If you enable content
+     * redaction, the redacted transcript appears in
+     * <code>RedactedTranscriptFileUri</code>. If you enable content redaction
+     * and choose to output an unredacted transcript, that transcript's location
+     * still appears in the <code>TranscriptFileUri</code>. The S3 bucket must
+     * have permissions that allow Amazon Transcribe to put files in the bucket.
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
@@ -193,6 +197,13 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private JobExecutionSettings jobExecutionSettings;
+
+    /**
+     * <p>
+     * An object that contains the request parameters for content redaction.
+     * </p>
+     */
+    private ContentRedaction contentRedaction;
 
     /**
      * <p>
@@ -630,11 +641,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
-     * transcription in the specified S3 bucket. When you call the
+     * transcript in the specified S3 bucket. When you call the
      * <a>GetTranscriptionJob</a> operation, the operation returns this location
-     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
-     * permissions that allow Amazon Transcribe to put files in the bucket. For
-     * more information, see <a href=
+     * in the <code>TranscriptFileUri</code> field. If you enable content
+     * redaction, the redacted transcript appears in
+     * <code>RedactedTranscriptFileUri</code>. If you enable content redaction
+     * and choose to output an unredacted transcript, that transcript's location
+     * still appears in the <code>TranscriptFileUri</code>. The S3 bucket must
+     * have permissions that allow Amazon Transcribe to put files in the bucket.
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
@@ -662,11 +677,16 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         </p>
      *         <p>
      *         If you set the <code>OutputBucketName</code>, Amazon Transcribe
-     *         puts the transcription in the specified S3 bucket. When you call
-     *         the <a>GetTranscriptionJob</a> operation, the operation returns
-     *         this location in the <code>TranscriptFileUri</code> field. The S3
-     *         bucket must have permissions that allow Amazon Transcribe to put
-     *         files in the bucket. For more information, see <a href=
+     *         puts the transcript in the specified S3 bucket. When you call the
+     *         <a>GetTranscriptionJob</a> operation, the operation returns this
+     *         location in the <code>TranscriptFileUri</code> field. If you
+     *         enable content redaction, the redacted transcript appears in
+     *         <code>RedactedTranscriptFileUri</code>. If you enable content
+     *         redaction and choose to output an unredacted transcript, that
+     *         transcript's location still appears in the
+     *         <code>TranscriptFileUri</code>. The S3 bucket must have
+     *         permissions that allow Amazon Transcribe to put files in the
+     *         bucket. For more information, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      *         >Permissions Required for IAM User Roles</a>.
      *         </p>
@@ -696,11 +716,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
-     * transcription in the specified S3 bucket. When you call the
+     * transcript in the specified S3 bucket. When you call the
      * <a>GetTranscriptionJob</a> operation, the operation returns this location
-     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
-     * permissions that allow Amazon Transcribe to put files in the bucket. For
-     * more information, see <a href=
+     * in the <code>TranscriptFileUri</code> field. If you enable content
+     * redaction, the redacted transcript appears in
+     * <code>RedactedTranscriptFileUri</code>. If you enable content redaction
+     * and choose to output an unredacted transcript, that transcript's location
+     * still appears in the <code>TranscriptFileUri</code>. The S3 bucket must
+     * have permissions that allow Amazon Transcribe to put files in the bucket.
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
@@ -728,10 +752,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            If you set the <code>OutputBucketName</code>, Amazon
-     *            Transcribe puts the transcription in the specified S3 bucket.
+     *            Transcribe puts the transcript in the specified S3 bucket.
      *            When you call the <a>GetTranscriptionJob</a> operation, the
      *            operation returns this location in the
-     *            <code>TranscriptFileUri</code> field. The S3 bucket must have
+     *            <code>TranscriptFileUri</code> field. If you enable content
+     *            redaction, the redacted transcript appears in
+     *            <code>RedactedTranscriptFileUri</code>. If you enable content
+     *            redaction and choose to output an unredacted transcript, that
+     *            transcript's location still appears in the
+     *            <code>TranscriptFileUri</code>. The S3 bucket must have
      *            permissions that allow Amazon Transcribe to put files in the
      *            bucket. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
@@ -763,11 +792,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
-     * transcription in the specified S3 bucket. When you call the
+     * transcript in the specified S3 bucket. When you call the
      * <a>GetTranscriptionJob</a> operation, the operation returns this location
-     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
-     * permissions that allow Amazon Transcribe to put files in the bucket. For
-     * more information, see <a href=
+     * in the <code>TranscriptFileUri</code> field. If you enable content
+     * redaction, the redacted transcript appears in
+     * <code>RedactedTranscriptFileUri</code>. If you enable content redaction
+     * and choose to output an unredacted transcript, that transcript's location
+     * still appears in the <code>TranscriptFileUri</code>. The S3 bucket must
+     * have permissions that allow Amazon Transcribe to put files in the bucket.
+     * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
      * >Permissions Required for IAM User Roles</a>.
      * </p>
@@ -798,10 +831,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            If you set the <code>OutputBucketName</code>, Amazon
-     *            Transcribe puts the transcription in the specified S3 bucket.
+     *            Transcribe puts the transcript in the specified S3 bucket.
      *            When you call the <a>GetTranscriptionJob</a> operation, the
      *            operation returns this location in the
-     *            <code>TranscriptFileUri</code> field. The S3 bucket must have
+     *            <code>TranscriptFileUri</code> field. If you enable content
+     *            redaction, the redacted transcript appears in
+     *            <code>RedactedTranscriptFileUri</code>. If you enable content
+     *            redaction and choose to output an unredacted transcript, that
+     *            transcript's location still appears in the
+     *            <code>TranscriptFileUri</code>. The S3 bucket must have
      *            permissions that allow Amazon Transcribe to put files in the
      *            bucket. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user"
@@ -1283,6 +1321,54 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * An object that contains the request parameters for content redaction.
+     * </p>
+     *
+     * @return <p>
+     *         An object that contains the request parameters for content
+     *         redaction.
+     *         </p>
+     */
+    public ContentRedaction getContentRedaction() {
+        return contentRedaction;
+    }
+
+    /**
+     * <p>
+     * An object that contains the request parameters for content redaction.
+     * </p>
+     *
+     * @param contentRedaction <p>
+     *            An object that contains the request parameters for content
+     *            redaction.
+     *            </p>
+     */
+    public void setContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+    }
+
+    /**
+     * <p>
+     * An object that contains the request parameters for content redaction.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contentRedaction <p>
+     *            An object that contains the request parameters for content
+     *            redaction.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1310,7 +1396,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
         if (getJobExecutionSettings() != null)
-            sb.append("JobExecutionSettings: " + getJobExecutionSettings());
+            sb.append("JobExecutionSettings: " + getJobExecutionSettings() + ",");
+        if (getContentRedaction() != null)
+            sb.append("ContentRedaction: " + getContentRedaction());
         sb.append("}");
         return sb.toString();
     }
@@ -1338,6 +1426,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getJobExecutionSettings() == null) ? 0 : getJobExecutionSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentRedaction() == null) ? 0 : getContentRedaction().hashCode());
         return hashCode;
     }
 
@@ -1395,6 +1485,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getJobExecutionSettings() != null
                 && other.getJobExecutionSettings().equals(this.getJobExecutionSettings()) == false)
+            return false;
+        if (other.getContentRedaction() == null ^ this.getContentRedaction() == null)
+            return false;
+        if (other.getContentRedaction() != null
+                && other.getContentRedaction().equals(this.getContentRedaction()) == false)
             return false;
         return true;
     }

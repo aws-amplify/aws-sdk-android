@@ -76,6 +76,9 @@ class TranscriptionJobJsonUnmarshaller implements
                 transcriptionJob.setJobExecutionSettings(JobExecutionSettingsJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContentRedaction")) {
+                transcriptionJob.setContentRedaction(ContentRedactionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
