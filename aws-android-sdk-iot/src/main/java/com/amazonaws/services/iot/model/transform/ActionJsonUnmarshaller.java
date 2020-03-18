@@ -68,6 +68,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("cloudwatchAlarm")) {
                 action.setCloudwatchAlarm(CloudwatchAlarmActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("cloudwatchLogs")) {
+                action.setCloudwatchLogs(CloudwatchLogsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("elasticsearch")) {
                 action.setElasticsearch(ElasticsearchActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

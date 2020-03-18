@@ -1107,7 +1107,7 @@ public interface AWSIot {
      * <note>
      * <p>
      * This is a control plane operation. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html"
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
@@ -1143,7 +1143,7 @@ public interface AWSIot {
      * <note>
      * <p>
      * This is a control plane operation. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html"
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>

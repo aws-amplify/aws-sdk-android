@@ -60,6 +60,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </li>
      * </ul>
      * <p>
+     * We strongly recommend that customers use the newer
+     * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
+     * widespread distrust of Symantec certificate authorities.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
      */
@@ -100,6 +105,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </li>
      * </ul>
      * <p>
+     * We strongly recommend that customers use the newer
+     * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
+     * widespread distrust of Symantec certificate authorities.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
      *
@@ -136,6 +146,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         We strongly recommend that customers use the newer
+     *         <code>iot:Data-ATS</code> endpoint type to avoid issues related
+     *         to the widespread distrust of Symantec certificate authorities.
+     *         </p>
      */
     public String getEndpointType() {
         return endpointType;
@@ -176,6 +191,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </li>
      * </ul>
      * <p>
+     * We strongly recommend that customers use the newer
+     * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
+     * widespread distrust of Symantec certificate authorities.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
      *
@@ -214,6 +234,12 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            We strongly recommend that customers use the newer
+     *            <code>iot:Data-ATS</code> endpoint type to avoid issues
+     *            related to the widespread distrust of Symantec certificate
+     *            authorities.
+     *            </p>
      */
     public void setEndpointType(String endpointType) {
         this.endpointType = endpointType;
@@ -253,6 +279,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * We strongly recommend that customers use the newer
+     * <code>iot:Data-ATS</code> endpoint type to avoid issues related to the
+     * widespread distrust of Symantec certificate authorities.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -295,6 +326,12 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            We strongly recommend that customers use the newer
+     *            <code>iot:Data-ATS</code> endpoint type to avoid issues
+     *            related to the widespread distrust of Symantec certificate
+     *            authorities.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

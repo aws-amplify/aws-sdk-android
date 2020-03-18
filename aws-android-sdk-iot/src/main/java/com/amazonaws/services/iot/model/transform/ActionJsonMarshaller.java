@@ -81,6 +81,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("cloudwatchAlarm");
             CloudwatchAlarmActionJsonMarshaller.getInstance().marshall(cloudwatchAlarm, jsonWriter);
         }
+        if (action.getCloudwatchLogs() != null) {
+            CloudwatchLogsAction cloudwatchLogs = action.getCloudwatchLogs();
+            jsonWriter.name("cloudwatchLogs");
+            CloudwatchLogsActionJsonMarshaller.getInstance().marshall(cloudwatchLogs, jsonWriter);
+        }
         if (action.getElasticsearch() != null) {
             ElasticsearchAction elasticsearch = action.getElasticsearch();
             jsonWriter.name("elasticsearch");
