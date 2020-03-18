@@ -33,8 +33,9 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     * >Programmatic Provisioning</a> for more information.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     * >Provisioning Devices That Have Device Certificates</a> for more
+     * information.
      * </p>
      */
     private String templateBody;
@@ -51,14 +52,16 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     * >Programmatic Provisioning</a> for more information.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     * >Provisioning Devices That Have Device Certificates</a> for more
+     * information.
      * </p>
      *
      * @return <p>
      *         The provisioning template. See <a href=
-     *         "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     *         >Programmatic Provisioning</a> for more information.
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     *         >Provisioning Devices That Have Device Certificates</a> for more
+     *         information.
      *         </p>
      */
     public String getTemplateBody() {
@@ -68,14 +71,16 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     * >Programmatic Provisioning</a> for more information.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     * >Provisioning Devices That Have Device Certificates</a> for more
+     * information.
      * </p>
      *
      * @param templateBody <p>
      *            The provisioning template. See <a href=
-     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     *            >Programmatic Provisioning</a> for more information.
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     *            >Provisioning Devices That Have Device Certificates</a> for
+     *            more information.
      *            </p>
      */
     public void setTemplateBody(String templateBody) {
@@ -85,8 +90,9 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The provisioning template. See <a href=
-     * "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     * >Programmatic Provisioning</a> for more information.
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     * >Provisioning Devices That Have Device Certificates</a> for more
+     * information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,8 +100,9 @@ public class RegisterThingRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param templateBody <p>
      *            The provisioning template. See <a href=
-     *            "https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html"
-     *            >Programmatic Provisioning</a> for more information.
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html"
+     *            >Provisioning Devices That Have Device Certificates</a> for
+     *            more information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

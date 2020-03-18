@@ -104,6 +104,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Send data to CloudWatch logs.
+     * </p>
+     */
+    private CloudwatchLogsAction cloudwatchLogs;
+
+    /**
+     * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      */
@@ -661,6 +668,51 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Send data to CloudWatch logs.
+     * </p>
+     *
+     * @return <p>
+     *         Send data to CloudWatch logs.
+     *         </p>
+     */
+    public CloudwatchLogsAction getCloudwatchLogs() {
+        return cloudwatchLogs;
+    }
+
+    /**
+     * <p>
+     * Send data to CloudWatch logs.
+     * </p>
+     *
+     * @param cloudwatchLogs <p>
+     *            Send data to CloudWatch logs.
+     *            </p>
+     */
+    public void setCloudwatchLogs(CloudwatchLogsAction cloudwatchLogs) {
+        this.cloudwatchLogs = cloudwatchLogs;
+    }
+
+    /**
+     * <p>
+     * Send data to CloudWatch logs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param cloudwatchLogs <p>
+     *            Send data to CloudWatch logs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withCloudwatchLogs(CloudwatchLogsAction cloudwatchLogs) {
+        this.cloudwatchLogs = cloudwatchLogs;
+        return this;
+    }
+
+    /**
+     * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      *
@@ -1013,6 +1065,8 @@ public class Action implements Serializable {
             sb.append("cloudwatchMetric: " + getCloudwatchMetric() + ",");
         if (getCloudwatchAlarm() != null)
             sb.append("cloudwatchAlarm: " + getCloudwatchAlarm() + ",");
+        if (getCloudwatchLogs() != null)
+            sb.append("cloudwatchLogs: " + getCloudwatchLogs() + ",");
         if (getElasticsearch() != null)
             sb.append("elasticsearch: " + getElasticsearch() + ",");
         if (getSalesforce() != null)
@@ -1049,6 +1103,8 @@ public class Action implements Serializable {
                 + ((getCloudwatchMetric() == null) ? 0 : getCloudwatchMetric().hashCode());
         hashCode = prime * hashCode
                 + ((getCloudwatchAlarm() == null) ? 0 : getCloudwatchAlarm().hashCode());
+        hashCode = prime * hashCode
+                + ((getCloudwatchLogs() == null) ? 0 : getCloudwatchLogs().hashCode());
         hashCode = prime * hashCode
                 + ((getElasticsearch() == null) ? 0 : getElasticsearch().hashCode());
         hashCode = prime * hashCode + ((getSalesforce() == null) ? 0 : getSalesforce().hashCode());
@@ -1121,6 +1177,11 @@ public class Action implements Serializable {
             return false;
         if (other.getCloudwatchAlarm() != null
                 && other.getCloudwatchAlarm().equals(this.getCloudwatchAlarm()) == false)
+            return false;
+        if (other.getCloudwatchLogs() == null ^ this.getCloudwatchLogs() == null)
+            return false;
+        if (other.getCloudwatchLogs() != null
+                && other.getCloudwatchLogs().equals(this.getCloudwatchLogs()) == false)
             return false;
         if (other.getElasticsearch() == null ^ this.getElasticsearch() == null)
             return false;
