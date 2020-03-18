@@ -19,30 +19,31 @@ import com.amazonaws.services.transcribe.model.*;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO Transcript
+ * JSON marshaller for POJO ContentRedaction
  */
-class TranscriptJsonMarshaller {
+class ContentRedactionJsonMarshaller {
 
-    public void marshall(Transcript transcript, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(ContentRedaction contentRedaction, AwsJsonWriter jsonWriter)
+            throws Exception {
         jsonWriter.beginObject();
-        if (transcript.getTranscriptFileUri() != null) {
-            String transcriptFileUri = transcript.getTranscriptFileUri();
-            jsonWriter.name("TranscriptFileUri");
-            jsonWriter.value(transcriptFileUri);
+        if (contentRedaction.getRedactionType() != null) {
+            String redactionType = contentRedaction.getRedactionType();
+            jsonWriter.name("RedactionType");
+            jsonWriter.value(redactionType);
         }
-        if (transcript.getRedactedTranscriptFileUri() != null) {
-            String redactedTranscriptFileUri = transcript.getRedactedTranscriptFileUri();
-            jsonWriter.name("RedactedTranscriptFileUri");
-            jsonWriter.value(redactedTranscriptFileUri);
+        if (contentRedaction.getRedactionOutput() != null) {
+            String redactionOutput = contentRedaction.getRedactionOutput();
+            jsonWriter.name("RedactionOutput");
+            jsonWriter.value(redactionOutput);
         }
         jsonWriter.endObject();
     }
 
-    private static TranscriptJsonMarshaller instance;
+    private static ContentRedactionJsonMarshaller instance;
 
-    public static TranscriptJsonMarshaller getInstance() {
+    public static ContentRedactionJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new TranscriptJsonMarshaller();
+            instance = new ContentRedactionJsonMarshaller();
         return instance;
     }
 }

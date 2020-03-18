@@ -62,6 +62,10 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
             } else if (name.equals("OutputLocationType")) {
                 transcriptionJobSummary.setOutputLocationType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContentRedaction")) {
+                transcriptionJobSummary.setContentRedaction(ContentRedactionJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

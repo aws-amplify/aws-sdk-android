@@ -66,6 +66,11 @@ class TranscriptionJobSummaryJsonMarshaller {
             jsonWriter.name("OutputLocationType");
             jsonWriter.value(outputLocationType);
         }
+        if (transcriptionJobSummary.getContentRedaction() != null) {
+            ContentRedaction contentRedaction = transcriptionJobSummary.getContentRedaction();
+            jsonWriter.name("ContentRedaction");
+            ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

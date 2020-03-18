@@ -112,6 +112,13 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
+     * The content redaction settings of the transcription job.
+     * </p>
+     */
+    private ContentRedaction contentRedaction;
+
+    /**
+     * <p>
      * The name of the transcription job.
      * </p>
      * <p>
@@ -809,6 +816,51 @@ public class TranscriptionJobSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The content redaction settings of the transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         The content redaction settings of the transcription job.
+     *         </p>
+     */
+    public ContentRedaction getContentRedaction() {
+        return contentRedaction;
+    }
+
+    /**
+     * <p>
+     * The content redaction settings of the transcription job.
+     * </p>
+     *
+     * @param contentRedaction <p>
+     *            The content redaction settings of the transcription job.
+     *            </p>
+     */
+    public void setContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+    }
+
+    /**
+     * <p>
+     * The content redaction settings of the transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contentRedaction <p>
+     *            The content redaction settings of the transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withContentRedaction(ContentRedaction contentRedaction) {
+        this.contentRedaction = contentRedaction;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -834,7 +886,9 @@ public class TranscriptionJobSummary implements Serializable {
         if (getFailureReason() != null)
             sb.append("FailureReason: " + getFailureReason() + ",");
         if (getOutputLocationType() != null)
-            sb.append("OutputLocationType: " + getOutputLocationType());
+            sb.append("OutputLocationType: " + getOutputLocationType() + ",");
+        if (getContentRedaction() != null)
+            sb.append("ContentRedaction: " + getContentRedaction());
         sb.append("}");
         return sb.toString();
     }
@@ -861,6 +915,8 @@ public class TranscriptionJobSummary implements Serializable {
                 + ((getFailureReason() == null) ? 0 : getFailureReason().hashCode());
         hashCode = prime * hashCode
                 + ((getOutputLocationType() == null) ? 0 : getOutputLocationType().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentRedaction() == null) ? 0 : getContentRedaction().hashCode());
         return hashCode;
     }
 
@@ -914,6 +970,11 @@ public class TranscriptionJobSummary implements Serializable {
             return false;
         if (other.getOutputLocationType() != null
                 && other.getOutputLocationType().equals(this.getOutputLocationType()) == false)
+            return false;
+        if (other.getContentRedaction() == null ^ this.getContentRedaction() == null)
+            return false;
+        if (other.getContentRedaction() != null
+                && other.getContentRedaction().equals(this.getContentRedaction()) == false)
             return false;
         return true;
     }
