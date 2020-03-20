@@ -192,6 +192,20 @@ For more information on Android development, see the Android developer site at: 
 
 Visit our GitHub [Issues](https://github.com/aws-amplify/aws-sdk-android/issues) to leave feedback and to connect with other users of the SDK.
 
+When filing an issue, please check [existing open](https://github.com/aws-amplify/aws-sdk-android/issues)
+and [recently closed](https://github.com/aws-amplify/aws-sdk-android/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20)
+issues to make sure somebody else hasn't already reported the issue.
+Please try to include as much information as you can. Details like these
+are useful:
+
+* The version of the SDK you are using
+* Details and configurations for any backend resources that are relevant
+* A full exception trace of an error you observe
+* Which SDK modules you are using
+* A statement about what system behavior you _expect_, alongside the
+  behavior you actually observe
+
+
 ## Author
 
 Amazon Web Services
