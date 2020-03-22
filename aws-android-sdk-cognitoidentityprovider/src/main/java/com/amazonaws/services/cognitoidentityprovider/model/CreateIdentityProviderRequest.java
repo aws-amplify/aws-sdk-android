@@ -191,7 +191,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -564,7 +564,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -703,7 +703,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         </li>
      *         <li>
      *         <p>
-     *         IDPSignOut <i>optional</i>
+     *         IDPSignout <i>optional</i>
      *         </p>
      *         </li>
      *         </ul>
@@ -847,7 +847,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -986,7 +986,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignOut <i>optional</i>
+     *            IDPSignout <i>optional</i>
      *            </p>
      *            </li>
      *            </ul>
@@ -1130,7 +1130,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -1272,7 +1272,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignOut <i>optional</i>
+     *            IDPSignout <i>optional</i>
      *            </p>
      *            </li>
      *            </ul>
@@ -1420,7 +1420,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>

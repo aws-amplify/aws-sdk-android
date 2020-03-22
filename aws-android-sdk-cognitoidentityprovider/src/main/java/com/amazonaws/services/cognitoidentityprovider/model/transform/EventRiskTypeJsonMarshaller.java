@@ -35,6 +35,12 @@ class EventRiskTypeJsonMarshaller {
             jsonWriter.name("RiskLevel");
             jsonWriter.value(riskLevel);
         }
+        if (eventRiskType.getCompromisedCredentialsDetected() != null) {
+            Boolean compromisedCredentialsDetected = eventRiskType
+                    .getCompromisedCredentialsDetected();
+            jsonWriter.name("CompromisedCredentialsDetected");
+            jsonWriter.value(compromisedCredentialsDetected);
+        }
         jsonWriter.endObject();
     }
 
