@@ -41,6 +41,10 @@ class EventRiskTypeJsonUnmarshaller implements Unmarshaller<EventRiskType, JsonU
             } else if (name.equals("RiskLevel")) {
                 eventRiskType.setRiskLevel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CompromisedCredentialsDetected")) {
+                eventRiskType.setCompromisedCredentialsDetected(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -22,6 +22,13 @@ import java.io.Serializable;
  * The Amazon Pinpoint analytics configuration for collecting metrics for a user
  * pool.
  * </p>
+ * <note>
+ * <p>
+ * Cognito User Pools only supports sending events to Amazon Pinpoint projects
+ * in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+ * which the user pool resides.
+ * </p>
+ * </note>
  */
 public class AnalyticsConfigurationType implements Serializable {
     /**
