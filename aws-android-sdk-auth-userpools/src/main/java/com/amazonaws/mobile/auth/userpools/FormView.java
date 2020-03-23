@@ -18,6 +18,7 @@
 package com.amazonaws.mobile.auth.userpools;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -42,15 +43,7 @@ public class FormView extends LinearLayout {
     private static final int FIELD_LEFT_RIGHT_MARGIN = dp(20);
 
     /** Background Drawables for the form. */
-    private final Drawable[] backgroundDrawables = new Drawable[] {
-        // Border Shadow
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 10),
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 20),
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 30),
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 50),
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 80),
-        // Background Color
-        createRoundedRectShape(FORM_CORNER_RADIUS, Color.WHITE, 100)};
+    private final Drawable[] backgroundDrawables;
 
     public FormView(final Context context) {
         this(context, null);
@@ -62,6 +55,24 @@ public class FormView extends LinearLayout {
 
     public FormView(final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        boolean isDarkModeOn = (context.getResources().getConfiguration().uiMode &
+                Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+
+        backgroundDrawables = new Drawable[] {
+                // Border Shadow
+                createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 10),
+                createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 20),
+                createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 30),
+                createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 50),
+                createRoundedRectShape(FORM_CORNER_RADIUS, Color.DKGRAY, 80),
+                // Background color
+                createRoundedRectShape(FORM_CORNER_RADIUS,
+                        isDarkModeOn
+                                ? Color.BLACK
+                                : Color.WHITE
+                        , 100)};
+
         this.setOrientation(VERTICAL);
         this.setBackgroundDrawable(getFormBackground());
     }
