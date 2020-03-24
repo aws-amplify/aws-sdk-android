@@ -98,6 +98,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
@@ -177,6 +178,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /// This value is a boolean stored as a String 'true' 'false'
     static final String FEDERATION_ENABLED_KEY = "isFederationEnabled";
     private static final String CUSTOM_ROLE_ARN_KEY = "customRoleArn";
+
+    public static final String CHALLENGE_RESPONSE_NEW_PASSWORD_KEY = CognitoServiceConstants.CHLG_RESP_NEW_PASSWORD;
+    public static final String CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY = CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX;
+
     /**
      * Configuration keys for SignInProviders in awsconfiguration.json.
      */
@@ -1366,7 +1371,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         }
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
-                        if(CUSTOM_CHALLENGE.equals(signInState)){
+                        if (CUSTOM_CHALLENGE.equals(signInState)) {
                             signInChallengeContinuation.setClientMetaData(clientMetaData);
                         }
                         break;

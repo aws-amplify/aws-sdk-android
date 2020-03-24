@@ -32,7 +32,6 @@ import com.amazonaws.mobile.client.results.Token;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
 import com.amazonaws.mobile.config.AWSConfiguration;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
@@ -76,6 +75,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.amazonaws.mobile.client.AWSMobileClient.CHALLENGE_RESPONSE_NEW_PASSWORD_KEY;
+import static com.amazonaws.mobile.client.AWSMobileClient.CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY;
 import static com.amazonaws.mobile.client.UserState.SIGNED_IN;
 import static com.amazonaws.mobile.client.results.SignInState.DONE;
 import static com.amazonaws.mobile.client.results.SignInState.NEW_PASSWORD_REQUIRED;
@@ -148,9 +149,9 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
     }
 
-    public static void createUserViaAdminAPI(final String userpoolId,
-                                                     final String username,
-                                                     final String email){
+    private static void createUserViaAdminAPI(final String userpoolId,
+                                              final String username,
+                                              final String email) {
         AdminCreateUserRequest request = new AdminCreateUserRequest()
                 .withUsername(username)
                 .withTemporaryPassword(TEMP_PASSWORD)
@@ -322,6 +323,15 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
     }
 
+    /**
+     * When the user signs in with temporary credentials, they should be prompted to set a new password.
+     * To do this, they can supply a map of attributes to {@link confirmSignIn(....)},
+     * including the challenge response (key = NEW_PASSWORD), as well as
+     * user attributes (key = userAttributes.<attribute name>) to be
+     * set as part of the update. The ability to pass additional attributes is
+     * needed so the caller can pass in any required attributes
+     * other than email and/or mobile.
+     */
     @Test
     public void testSignInForceChangePassword() throws Exception{
         final CountDownLatch stateNotificationLatch = new CountDownLatch(1);
@@ -332,7 +342,6 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
                 userState.set(details);
                 auth.removeUserStateListener(listener);
                 stateNotificationLatch.countDown();
-
             }
         };
         auth.addUserStateListener(listener);
@@ -343,10 +352,10 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         HashMap<String, String> inputAttributes = new HashMap<String, String>();
         //Add attribute to set new password
-        inputAttributes.put(CognitoServiceConstants.CHLG_RESP_NEW_PASSWORD, PASSWORD);
+        inputAttributes.put(CHALLENGE_RESPONSE_NEW_PASSWORD_KEY, PASSWORD);
         //Set some extra attributes
-        inputAttributes.put(CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX + "name", "dummy-name");
-        inputAttributes.put(CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE_PREFIX + "nickname", "dummy-nickname");
+        inputAttributes.put(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + "name", "dummy-name");
+        inputAttributes.put(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + "nickname", "dummy-nickname");
 
         //Confirm sign-in using the challenge response + attributes
         SignInResult signInResultAfterConfirm = auth.confirmSignIn(inputAttributes);
