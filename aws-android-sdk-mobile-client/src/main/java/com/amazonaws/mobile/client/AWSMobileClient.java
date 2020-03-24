@@ -128,6 +128,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import static com.amazonaws.mobile.client.results.SignInState.CUSTOM_CHALLENGE;
+
 /**
  * The AWSMobileClient provides client APIs and building blocks for developers who want to create
  * user authentication experiences. This includes declarative methods for performing
@@ -1354,17 +1356,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 final CognitoIdentityProviderContinuation detectedContinuation;
                 switch (signInState) {
                     case SMS_MFA:
-                    case NEW_PASSWORD_REQUIRED:
                         callback.onError(new IllegalStateException(
                                 "Please use confirmSignIn(String, Callback) " +
-                                        "for SMS_MFA and NEW_PASSWORD_REQUIRED challenges"));
+                                        "for SMS_MFA challenges"));
                     case CUSTOM_CHALLENGE:
+                    case NEW_PASSWORD_REQUIRED:
                         for (final String key : signInChallengeResponse.keySet()) {
                             signInChallengeContinuation.setChallengeResponse(key, signInChallengeResponse.get(key));
                         }
                         detectedContinuation = signInChallengeContinuation;
-                        signInChallengeContinuation.setClientMetaData(clientMetaData);
                         signInCallback = new InternalCallback<SignInResult>(callback);
+                        if(CUSTOM_CHALLENGE.equals(signInState)){
+                            signInChallengeContinuation.setClientMetaData(clientMetaData);
+                        }
                         break;
                     case DONE:
                         detectedContinuation = null;
